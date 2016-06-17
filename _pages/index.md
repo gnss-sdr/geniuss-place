@@ -14,14 +14,14 @@ feature_row:
     alt: "RF front-ends"
     title: "RF front-ends"
     excerpt: "Open Designs of radio frequency front-ends."
-    url: "/docs/configuration/"
-    btn_label: "Learn More"
+    url: "/hardware/rf-frontends/"
+    btn_label: "See an example"
   - image_path: makers.png
     alt: "Enclosures"
     title: "Enclosures"
     excerpt: "Nice enclosures for your gear that you can print in 3D."
-    url: "/docs/layouts/"
-    btn_label: "Learn More"
+    url: "/hardware/enclosures/"
+    btn_label: "See an example"
   - image_path: radar-chart.png
     alt: "KPIs"
     title: "Key Performance Indicators"
