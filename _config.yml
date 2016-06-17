@@ -153,10 +153,10 @@ collections:
   docs:
     output: true
     permalink: /:collection/:path/
-  recipes:
+  software:
     output: true
     permalink: /:collection/:path/
-  pets:
+  hardware:
     output: true
     permalink: /:collection/:path/
   portfolio:
@@ -196,6 +196,16 @@ defaults:
       comments: false
       sidebar:
         nav: "docs"
+  # _hardware
+  - scope:
+      path: ""
+      type: hardware
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: true
+      comments: false
 
 
 # Outputting
