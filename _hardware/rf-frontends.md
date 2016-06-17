@@ -29,7 +29,20 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 {% include gallery caption="This is a sample gallery to go along with this case study." %}
 
-Schematics, .brd, .sch files, etc. We can also include inline math as in $$ a^2 + b^2 = c^2 $$ or as in:
+Schematics, .brd, .sch files, etc. We can also include inline math as in $$ a^2 + b^2 = c^2 $$ or as in $$
+   s_T(t)= \sqrt{P_{T}} \sum_{u=-\infty}^{\infty}d(u)p(t-uT_{b_I})
+$$, as well as equations such as:
+
+\begin{equation}
+   s_T(t)= \sqrt{P_{T}} \sum_{u=-\infty}^{\infty}d(u)p(t-uT_{b_I})
+\end{equation}
+
+or
+
+\begin{align}
+    y_{i_{k}} & =   \frac{|a_{i_{k}}|}{2} K  \frac{\sin(\pi \Delta f_{d_{i_{k}}} T_{int}) }{\pi \Delta f_{d_{i_{k}}} T_{int}} \cdot d_{i}\left([k]_{\frac{T_b}{T_{int}}}\right) \cdot \\\\
+    {} & \cdot R_{\tilde{p}q}(\Delta \tau_{i_k})  \cdot e^{-j ( \pi \Delta f_{d_{i_{k}}} T_{int} + \Delta \phi_{i_k}) } + \tilde{w}_{i_{k}}
+\end{align}
 
 $$
 \begin{align}
@@ -58,8 +71,6 @@ y_{i_{k}}&=&  \frac{|a_{i_{k}}|}{2} K  \frac{\sin(\pi \Delta f_{d_{i_{k}}} T_{in
 
 Let's test some inline math $x$, $y$, $x_1$, $y_1$.
 
-Now a inline math with special character: $|\psi\rangle$, $x'$, $x^\*$.
-
 Test a display math:
 $$
    s_T(t)= \sqrt{P_{T}} \sum_{u=-\infty}^{\infty}d(u)p(t-uT_{b_I})
@@ -70,7 +81,7 @@ Test a display math with equation number:
 \begin{equation}
    s_T(t)= \sqrt{P_{T}} \sum_{u=-\infty}^{\infty}d(u)p(t-uT_{b_I})
 \end{equation}
-Is it O.K.? 
+Is it O.K.?
 
 Test a display math with equation number:
 $$
@@ -92,14 +103,14 @@ Is it O.K.? NO
 
 Test a display math with equation number:
 \begin{align}
-    |\psi_1\rangle &= a|0\rangle + b|1\rangle \\\\
-    |\psi_2\rangle &= c|0\rangle + d|1\rangle
+    y_{i_{k}} & =   \frac{|a_{i_{k}}|}{2} K  \frac{\sin(\pi \Delta f_{d_{i_{k}}} T_{int}) }{\pi \Delta f_{d_{i_{k}}} T_{int}} \cdot d_{i}\left([k]_{\frac{T_b}{T_{int}}}\right) \cdot \\\\
+    {} & \cdot R_{\tilde{p}q}(\Delta \tau_{i_k})  \cdot e^{-j ( \pi \Delta f_{d_{i_{k}}} T_{int} + \Delta \phi_{i_k}) } + \tilde{w}_{i_{k}}
 \end{align}
 Is it O.K.?
 
 And test a display math without equaltion number:
 \begin{align\*}
-    |\psi_1\rangle &= a|0\rangle + b|1\rangle \\\\
-    |\psi_2\rangle &= c|0\rangle + d|1\rangle
+    y_{i_{k}} & =   \frac{|a_{i_{k}}|}{2} K  \frac{\sin(\pi \Delta f_{d_{i_{k}}} T_{int}) }{\pi \Delta f_{d_{i_{k}}} T_{int}} \cdot d_{i}\left([k]_{\frac{T_b}{T_{int}}}\right) \cdot  \\\\
+    {} & \cdot R_{\tilde{p}q}(\Delta \tau_{i_k})  \cdot e^{-j ( \pi \Delta f_{d_{i_{k}}} T_{int} + \Delta \phi_{i_k}) } + \tilde{w}_{i_{k}}
 \end{align\*}
 Is it O.K.?
