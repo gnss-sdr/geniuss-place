@@ -18,7 +18,7 @@ teaser                   : # filename of teaser fallback teaser image placed in 
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : discus # google-plus # false (default), "disqus", "discourse", "facebook", "google-plus", custom"
+  provider               : disqus # google-plus # false (default), "disqus", "discourse", "facebook", "google-plus", custom"
   disqus:
     shortname            : geniussplace # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
