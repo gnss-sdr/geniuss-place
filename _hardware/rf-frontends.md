@@ -27,6 +27,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 {% include gallery caption="This is a sample gallery to go along with this case study." %}
 
-Schematics, .brd, .sch files, etc. We can also include inline math as in \\( a^2 + b^2 = c^2 \\) or as in:
+Schematics, .brd, .sch files, etc. We can also include inline math as in $$ a^2 + b^2 = c^2 $$ or as in:
 
-$$a^2 + b^2 = c^2$$
+$$ a^2 + b^2 = c^2 $$
