@@ -28,10 +28,10 @@ main:
     url: /about/
 
   - title: "Hardware"
-    url: /year-archive/
+    url: /hardware/
 
   - title: "Conversation"
-    url: /collection-archive/
+    url: /about/
 
   - title: "About"
     url: /about/
@@ -50,7 +50,7 @@ docs:
       - title: "Upgrading"
         url: /docs/upgrading/
 
-  - title: Customization
+  - title: Software
     children:
       - title: "Configuration"
         url: /docs/configuration/
@@ -63,7 +63,7 @@ docs:
       - title: "Layouts"
         url: /docs/layouts/
 
-  - title: Content
+  - title: Hardware
     children:
       - title: "Working with Posts"
         url: /docs/posts/
