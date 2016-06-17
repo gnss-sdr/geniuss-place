@@ -29,4 +29,5 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Stereolitografy example:
 
-<script src="https://embed.github.com/view/3d/hectorbu/Prueba-2/blob/master/USRP_Version4/USRP_Base1.4.stl"></script>
+<script src="https://embed.github.com/view/3d/hectorbu/Prueba-2/master/USRP_Version4/USRP_Base1.4.stl">
+</script>
