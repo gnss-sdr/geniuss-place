@@ -31,4 +31,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Schematics, .brd, .sch files, etc. We can also include inline math as in $$ a^2 + b^2 = c^2 $$ or as in:
 
-$$ a^2 + b^2 = c^2 $$
+$$
+\begin{eqnarray}\label{output_corr}
+y_{i_{k}}&=&  \frac{|a_{i_{k}}|}{2} K  \frac{\sin(\pi \Delta f_{d_{i_{k}}} T_{int})
+}{\pi \Delta f_{d_{i_{k}}} T_{int}} \cdot d_{i}\left([k]_{\frac{T_b}{T_{int}}}\right) \cdot \\
+\nonumber
+\nonumber \; &{}& \cdot R_{\tilde{p}q}(\Delta \tau_{i_k})  \cdot e^{-j ( \pi \Delta f_{d_{i_{k}}} T_{int}+\Delta
+\phi_{i_k}) } + \tilde{w}_{i_{k}}
+\end{eqnarray}
+$$
