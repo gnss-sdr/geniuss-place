@@ -15,9 +15,9 @@ gallery:
   - url: hw-header.jpg
     image_path: hw-header-th.jpg
     alt: "placeholder image 1"
-  - url: hw-header.jpg
-    image_path: hw-header-th.jpg
-    alt: "placeholder image 2"
+  - url: usrp-enclosure-1.jpg
+    image_path: usrp-enclosure-1.jpg
+    alt: "USRP enclosure"
   - url: hw-header.jpg
     image_path: hw-header-th.jpg
     alt: "placeholder image 3"
