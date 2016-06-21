@@ -81,3 +81,21 @@ participate:
         url: /contribute/
       - title: "Coding Style"
         url: /coding-style/
+
+about:
+  - title: About Us
+    children:
+      - title: "Contact Info"
+        url: /contact/
+      - title: "Team"
+        url: /team/
+      - title: "About the project"
+        url: /docs/about/
+      - title: "Contribute"
+        url: /contribute/
+      - title: "Acknowledgements"
+        url: /acks/
+      - title: "Media"
+        url: /media/
+      - title: "Publications"
+        url: /publications/

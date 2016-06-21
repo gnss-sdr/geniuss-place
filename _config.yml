@@ -65,29 +65,29 @@ google_ad_slot           :
 # Site Author
 author:
   name             : *name
-  avatar           : "Icono64x64.jpg"
-  bio              :
+  avatar           : "carles.jpg"
+  bio              : "Senior Researcher at CTTC"
   location         :
-  email            : *email
-  uri              : "http://gnss-sdr.org"
-  bitbucket        :
+  email            : carles.fernandez@cttc.cat
+  uri              : "http://www.cttc.es/people/cfernandez/"
+  bitbucket        : carles_fernandez
   codepen          :
   dribbble         :
   flickr           :
   facebook         :
   foursquare       :
-  github           : "gnss-sdr"
-  google_plus      : "+GnsssdrOrgPage"
+  github           : "carlesfernandez"
+  google_plus      : "CarlesFernandez"
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         :
+  linkedin         : "carlesfernandez"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          :
+  twitter          : "FernandezPrades"
   vine             :
   weibo            :
   xing             :
@@ -162,9 +162,6 @@ collections:
   hardware:
     output: true
     permalink: /:collection/:path/
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
   signals:
     output: true
     permalink: /:collection/:path/
@@ -189,7 +186,7 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
+      author_profile: false
   # _quick-start
   - scope:
       path: ""
