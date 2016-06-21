@@ -153,6 +153,9 @@ collections:
   docs:
     output: true
     permalink: /:collection/:path/
+  quick-start:
+    output: true
+    permalink: /:path/
   software:
     output: true
     permalink: /:collection/:path/
@@ -160,6 +163,9 @@ collections:
     output: true
     permalink: /:collection/:path/
   portfolio:
+    output: true
+    permalink: /:collection/:path/
+  signals:
     output: true
     permalink: /:collection/:path/
 
@@ -184,6 +190,15 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # _quick-start
+  - scope:
+      path: ""
+      type: quick-start
+    values:
+      layout: single
+      author_profile: false
+      sidebar:
+        nav: "start"
   # _docs
   - scope:
       path: ""
@@ -200,6 +215,18 @@ defaults:
   - scope:
       path: ""
       type: hardware
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: true
+      comments: false
+      sidebar:
+        nav: "participate"
+  # _signals
+  - scope:
+      path: ""
+      type: signals
     values:
       layout: single
       read_time: false

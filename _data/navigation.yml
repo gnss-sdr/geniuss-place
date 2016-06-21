@@ -22,76 +22,62 @@ foo:
 # main links links
 main:
   - title: "Quick-Start Guide"
-    url: /docs/quick-start-guide/
+    url: /quick-start-guide/
 
-  - title: "Software"
-    url: /about/
+  - title: "Documentation"
+    url: /docs/
 
-  - title: "Hardware"
+  - title: "Participate"
     url: /hardware/
 
-  - title: "Conversation"
-    url: /about/
+  - title: "News"
+    url: /news/
 
-  - title: "About"
+  - title: "About Us"
     url: /about/
 
 
 # documentation links
-docs:
+start:
   - title: Getting Started
     children:
       - title: "Quick-Start Guide"
+        url: /quick-start-guide/
+      - title: "Requirements"
+        url: /requirements/
+      - title: "Build and Install"
+        url: /building-guide/
+      - title: "My first position fix"
+        url: /my-first-fix/
+      - title: "Configurations"
+        url: /configurations/
+
+docs:
+  - title: Documentation
+    children:
+      - title: "Contents"
         url: /docs/quick-start-guide/
-      - title: "Structure"
+      - title: "Overview"
         url: /docs/structure/
-      - title: "Installation"
+      - title: "Fundamentals"
         url: /docs/installation/
-      - title: "Upgrading"
+      - title: "Control Plane"
+        url: /docs/installation/
+      - title: "Signal Processing Blocks"
+        url: /docs/upgrading/
+      - title: "Tutorials"
         url: /docs/upgrading/
 
-  - title: Software
+participate:
+  - title: Participate
     children:
-      - title: "Configuration"
-        url: /docs/configuration/
-      - title: "Navigation"
-        url: /docs/navigation/
-      - title: "UI Text"
-        url: /docs/ui-text/
-      - title: "Authors"
-        url: /docs/authors/
-      - title: "Layouts"
-        url: /docs/layouts/
-
-  - title: Hardware
-    children:
-      - title: "Working with Posts"
-        url: /docs/posts/
-      - title: "Working with Pages"
-        url: /docs/pages/
-      - title: "Working with Collections"
-        url: /docs/collections/
-      - title: "Helpers"
-        url: /docs/helpers/
-      - title: "Utility Classes"
-        url: /docs/utility-classes/
-
-  - title: Extras
-    children:
-      - title: "Stylesheets"
-        url: /docs/stylesheets/
-      - title: "JavaScript"
-        url: /docs/javascript/
-
-  - title: Meta
-    children:
-      - title: "History"
-        url: /docs/history/
-      - title: "Contributing"
-        url: /docs/contributing/
-      - title: "Old 2.2 Docs"
-        url: /docs/docs-2-2/
-      - title: "License"
-        url: /docs/license/
-      - title: "Terms &amp; Privacy Policy"
-        url: /terms/
+      - title: "Design Forces"
+        url: /design-forces/
+      - title: "Open Design"
+        url: /rf-frontends/
+      - title: "Makers"
+        url: /hardware/enclosures
+      - title: "Contribute"
+        url: /contribute/
+      - title: "Coding Style"
+        url: /coding-style/
