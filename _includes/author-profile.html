@@ -1,8 +1,12 @@
 {% include base_path %}
 
-{% if page.author %}
+
+{% if pauthor %}
+  {% assign author = site.data.authors[pauthor] %}
+{% else %}
   {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.author %}
 {% endif %}
+
 
 <div itemscope itemtype="http://schema.org/Person">
 
