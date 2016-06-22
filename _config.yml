@@ -65,29 +65,29 @@ google_ad_slot           :
 # Site Author
 author:
   name             : *name
-  avatar           : "carles.jpg"
+  avatar           :
   bio              : "Senior Researcher at CTTC"
   location         :
-  email            : carles.fernandez@cttc.cat
-  uri              : "http://www.cttc.es/people/cfernandez/"
-  bitbucket        : carles_fernandez
+  email            :
+  uri              :
+  bitbucket        :
   codepen          :
   dribbble         :
   flickr           :
   facebook         :
   foursquare       :
-  github           : "carlesfernandez"
-  google_plus      : "CarlesFernandez"
+  github           : "gnss-sdr"
+  google_plus      : "GnsssdrOrgPage"
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : "carlesfernandez"
+  linkedin         :
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "FernandezPrades"
+  twitter          :
   vine             :
   weibo            :
   xing             :
