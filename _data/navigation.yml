@@ -27,8 +27,8 @@ main:
   - title: "Documentation"
     url: /docs/
 
-  - title: "Participate"
-    url: /hardware/
+  - title: "GeNiuSS Place"
+    url: /geniuss-place/
 
   - title: "News"
     url: /news/
@@ -70,6 +70,20 @@ docs:
 
 participate:
   - title: Participate
+    children:
+      - title: "Design Forces"
+        url: /design-forces/
+      - title: "Open Design"
+        url: /rf-frontends/
+      - title: "Makers"
+        url: /hardware/enclosures
+      - title: "Contribute"
+        url: /contribute/
+      - title: "Coding Style"
+        url: /coding-style/
+
+geniuss-place:
+  - title: GeNiuSS Place
     children:
       - title: "Design Forces"
         url: /design-forces/
