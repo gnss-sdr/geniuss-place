@@ -1,0 +1,20 @@
+---
+layout: archive
+title: "GeNiuSS Place"
+permalink: /geniuss-place/
+author_profile: false
+header:
+  image: hw-header.jpg
+  teaser: hw-header-th.jpg
+sidebar:
+  nav: "geniuss-place"
+---
+
+A place for sharing projects and thoughts about software-deined GNSS receivers.
+
+
+
+{% include base_path %}
+{% for post in site.geniuss-place %}
+  {% include archive-single.html %}
+{% endfor %}

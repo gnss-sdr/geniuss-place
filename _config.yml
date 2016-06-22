@@ -159,10 +159,10 @@ collections:
   software:
     output: true
     permalink: /:collection/:path/
-  hardware:
+  signals:
     output: true
     permalink: /:collection/:path/
-  signals:
+  geniuss-place:
     output: true
     permalink: /:collection/:path/
 
@@ -208,18 +208,6 @@ defaults:
       comments: false
       sidebar:
         nav: "docs"
-  # _hardware
-  - scope:
-      path: ""
-      type: hardware
-    values:
-      layout: single
-      read_time: false
-      author_profile: false
-      share: true
-      comments: false
-      sidebar:
-        nav: "participate"
   # _signals
   - scope:
       path: ""
@@ -230,7 +218,18 @@ defaults:
       author_profile: false
       share: true
       comments: false
-
+  # _geniuss-place
+  - scope:
+      path: ""
+      type: geniuss-place
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: true
+      comments: false
+      sidebar:
+        nav: "geniuss-place"
 
 # Outputting
 permalink: /:categories/:title/
