@@ -35,6 +35,10 @@ The main goal of the recommendation is to improve readability and thereby the un
 The rules can be violated if there are strong personal objections against them.
 The attempt is to make a guideline, not to force a particular coding style onto individuals. Experienced programmers normally want to adopt a style like this anyway, but having one, and at least requiring everyone to get familiar with it, usually makes people start thinking about programming styling and evaluate their own habits in this area. On the other hand, new and inexperienced programmers normally use a style guide as a convenience of getting into the programming jargon more easily.
 
+
+**Reference:** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
+{: .notice--primary}
+
 -------
 
 ## Naming conventions
