@@ -12,6 +12,7 @@ Carles Fernandez:
   linkedin    : "carlesfernandez"
   twitter     : "FernandezPrades"
   orcid       : "0000-0002-9201-7007"
+  google-scholar: "1blroIcAAAAJ"
 
 Ignacio Paniego:
   name        : "Ignacio Paniego"
@@ -34,6 +35,8 @@ Javier Arribas:
   github      : "Arribas"
   bitbucket   : "jarribas"
   linkedin    : "javier-arribas-215b785b"
+  orcid       : "0000-0001-6346-3406"
+  google-scholar: "NSIEEYUAAAAJ"
 
 Pau Closas:
   name        : "Pau Closas"
@@ -44,6 +47,8 @@ Pau Closas:
   twitter     :
   google_plus :
   linkedin    : "closas"
+  orcid       : "0000-0002-5960-6600"
+  google-scholar: "o7bF79sAAAA"
 
 Luis Esteve:
   name        : "Luis Esteve"

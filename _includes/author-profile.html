@@ -102,7 +102,10 @@
         <li><a href="https://vine.co/u/{{ author.vine }}"><i class="fa fa-fw fa-vine" aria-hidden="true"></i> Vine</a></li>
       {% endif %}
       {% if author.orcid %}
-        <li><a href="http://orcid.org/{{ author.orcid }}"><i class="ai ai-orcid ai-square" aria-hidden="true"></i> ORCID</a></li>
+        <li><a href="http://orcid.org/{{ author.orcid }}"><i class="ai ai-orcid-square" aria-hidden="true"></i>  ORCID</a></li>
+      {% endif %}
+      {% if author.google-scholar %}
+        <li><a href="https://scholar.google.es/citations?user={{ author.google-scholar }}"><i class="ai ai-google-scholar-square" aria-hidden="true"></i> Google Scholar</a></li>
       {% endif %}
 
     </ul>
