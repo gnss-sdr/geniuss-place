@@ -1,7 +1,7 @@
 # Authors
 
 Carles Fernandez:
-  name        : "Carles Fernandez-Prades"
+  name        : "Carles Fernández-Prades"
   github      : "carlesfernandez"
   google_plus : "CarlesFernandez"
   avatar      : "carles.jpg"
@@ -13,6 +13,7 @@ Carles Fernandez:
   twitter     : "FernandezPrades"
   orcid       : "0000-0002-9201-7007"
   google-scholar: "1blroIcAAAAJ"
+  researchgate: "Carles_Fernandez-Prades"
 
 Ignacio Paniego:
   name        : "Ignacio Paniego"
@@ -37,6 +38,7 @@ Javier Arribas:
   linkedin    : "javier-arribas-215b785b"
   orcid       : "0000-0001-6346-3406"
   google-scholar: "NSIEEYUAAAAJ"
+  researchgate: "Javier_Arribas2"
 
 Pau Closas:
   name        : "Pau Closas"
@@ -49,6 +51,7 @@ Pau Closas:
   linkedin    : "closas"
   orcid       : "0000-0002-5960-6600"
   google-scholar: "o7bF79sAAAA"
+  researchgate: "Pau_Closas"
 
 Luis Esteve:
   name        : "Luis Esteve"

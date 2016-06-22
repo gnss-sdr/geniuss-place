@@ -107,6 +107,9 @@
       {% if author.google-scholar %}
         <li><a href="https://scholar.google.es/citations?user={{ author.google-scholar }}"><i class="ai ai-google-scholar-square" aria-hidden="true"></i> Google Scholar</a></li>
       {% endif %}
+      {% if author.researchgate %}
+        <li><a href="https://www.researchgate.net/profile/{{ author.researchgate }}"><i class="ai ai-researchgate-square" aria-hidden="true"></i> ResearchGate</a></li>
+      {% endif %}
 
     </ul>
   </div>
