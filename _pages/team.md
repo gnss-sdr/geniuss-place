@@ -11,6 +11,9 @@ author:
 
 This is the result of the effort of a lot of people.
 
+----
+
+
 # Main Developer Team
 
 {% assign pauthor = "Carles Fernandez" %}
@@ -19,6 +22,10 @@ This is the result of the effort of a lot of people.
 
 
 {% assign pauthor = "Javier Arribas" %}
+
+{% include author-profile.html %}
+
+{% assign pauthor = "Luis Esteve" %}
 
 {% include author-profile.html %}
 

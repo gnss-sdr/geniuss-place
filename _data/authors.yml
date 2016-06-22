@@ -11,12 +11,13 @@ Carles Fernandez:
   uri         : "http://www.cttc.es/people/cfernandez/"
   linkedin    : "carlesfernandez"
   twitter     : "FernandezPrades"
+  orcid       : "0000-0002-9201-7007"
 
 Ignacio Paniego:
   name        : "Ignacio Paniego"
   uri         :
   email       : "ignacio.paniego@gmail.com"
-  bio         :
+  bio         : "Freelance Web Designer"
   avatar      : "https://lh3.googleusercontent.com/--I8QD63fWN0/AAAAAAAAAAI/AAAAAAAAkBU/1fUNVZdHFSM/s56-c-k-no/photo.jpg"
   twitter     : "ip65"
   google_plus :
@@ -26,7 +27,7 @@ Javier Arribas:
   name        : "Javier Arribas"
   uri         : "http://www.cttc.es/people/jarribas/"
   email       : "javier.arribas@cttc.es"
-  bio         :
+  bio         : "Senior Researcher at CTTC"
   avatar      : "javier.jpg"
   twitter     :
   google_plus :
@@ -35,11 +36,22 @@ Javier Arribas:
   linkedin    : "javier-arribas-215b785b"
 
 Pau Closas:
-    name        : "Pau Closas"
-    uri         : "http://www.cttc.es/people/pclosas/"
-    email       : "pau.closas@cttc.es"
-    bio         :
-    avatar      : "pau.jpg"
-    twitter     :
-    google_plus :
-    linkedin    : "closas"
+  name        : "Pau Closas"
+  uri         : "http://www.cttc.es/people/pclosas/"
+  email       : "pau.closas@cttc.es"
+  bio         : "Senior Researcher at CTTC"
+  avatar      : "pau.jpg"
+  twitter     :
+  google_plus :
+  linkedin    : "closas"
+
+Luis Esteve:
+  name        : "Luis Esteve"
+  uri         :
+  email       : "luis@epsilon-formacion.com"
+  bio         : "Owner, Epsilon Formacion"
+  avatar      : "https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-1/c18.16.197.197/313611_2442229295540_1230679566_n.jpg?oh=ec2b915b5f8a372a1c235cdae617895f&oe=57D4FDD8"
+  twitter     : "LElfau"
+  facebook    : "luis.elfau"
+  google_plus :
+  linkedin    : "luis-esteve-ba624a4"
