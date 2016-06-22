@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "GeNiuSS Place"
+title                    : "GNSS-SDR"
 title_separator          : "-"
 name                     : &name "Carles Fernandez-Prades"
-description              : &description "A website for sharing projects and thoughts about software-defined GNSS receivers."
+description              : &description "An open source Global Navigation Satellite Systems software-defined receiver."
 url                      : "https://carlesfernandez.github.io" # https://mmistakes.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/test" # "/minimal-mistakes" # the subpath of your site, e.g. "/blog"
 gh_repo                  : "https://github.com/carlesfernandez/test"
