@@ -1,15 +1,17 @@
 ---
 layout: archive
-permalink: /news/
-title: "News"
+permalink: /docs/tutorials/
+title: "Tutorials"
 author_profile: false
+sidebar:
+  nav: "docs"
 ---
 
 {% include base_path %}
 {% include group-by-array collection=site.posts field="tags" %}
 
 {% for tag in group_names %}
-  {% if tag == "news" %}
+  {% if tag == "tutorial" %}
     {% assign posts = group_items[forloop.index0] %}
     {% for post in posts %}
       {% include archive-single.html %}

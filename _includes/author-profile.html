@@ -39,13 +39,13 @@
         <li><a href="https://github.com/{{ author.github }}"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
       {% endif %}
       {% if author.orcid %}
-        <li><a href="http://orcid.org/{{ author.orcid }}">&nbsp;<i class="ai ai-orcid-square" aria-hidden="true"></i>&nbsp; ORCID</a></li>
+        <li><a href="http://orcid.org/{{ author.orcid }}"><i class="ai ai-fw ai-orcid" aria-hidden="true"></i> ORCID</a></li>
       {% endif %}
       {% if author.google-scholar %}
-        <li><a href="https://scholar.google.es/citations?user={{ author.google-scholar }}">&nbsp;<i class="ai ai-google-scholar-square" aria-hidden="true"></i>&nbsp; Google Scholar</a></li>
+        <li><a href="https://scholar.google.es/citations?user={{ author.google-scholar }}"><i class="ai ai-fw ai-google-scholar" aria-hidden="true"></i> Google Scholar</a></li>
       {% endif %}
       {% if author.researchgate %}
-        <li> <a href="https://www.researchgate.net/profile/{{ author.researchgate }}">&nbsp;<i class="ai ai-researchgate-square"></i>&nbsp; ResearchGate</a></li>
+        <li> <a href="https://www.researchgate.net/profile/{{ author.researchgate }}"><i class="ai ai-fw ai-researchgate"></i> ResearchGate</a></li>
       {% endif %}
       {% if author.linkedin %}
         <li><a href="https://www.linkedin.com/in/{{ author.linkedin }}"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
@@ -53,7 +53,6 @@
       {% if author.behance %}
         <li><a href="https://www.behance.net/{{ author.behance }}"><i class="fa fa-fw fa-behance" aria-hidden="true"></i> B&#275;hance</a></li>
       {% endif %}
-
       {% if author.keybase %}
         <li><a href="https://keybase.io/{{ author.keybase }}"><i class="fa fa-fw fa-key" aria-hidden="true"></i> Keybase</a></li>
       {% endif %}
