@@ -46,7 +46,7 @@ start:
       - title: "Requirements"
         url: /requirements/
       - title: "Build and Install"
-        url: /building-guide/
+        url: /build-and-install/
       - title: "My first position fix"
         url: /my-first-fix/
       - title: "Configurations"

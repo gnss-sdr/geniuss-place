@@ -10,3 +10,7 @@ sidebar:
 {% include base_path %}
 
 Welcome to GNSS-SDR.
+
+
+{% capture my-include %}https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md{% endcapture %}
+{{ my-include | markdownify }}

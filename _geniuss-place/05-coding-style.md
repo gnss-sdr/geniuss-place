@@ -212,11 +212,10 @@ Be consistent and use the `// ...` style comments.
 The comment styles `///` and `/** ... */` are used by JavaDoc, Doxygen
 and some other code documenting tools.
 
-For a complete description on how to document the code with Doxygen,
-click here
+For a complete description on how to document the code, see the [Doxygen Manual](http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html)
 
 All classes in GNSS-SDR should be properly documented with Doxygen
-comments in include (.h) files. Source (.cc) files should be documented
+comments in include (`.h`) files. Source (`.cc`) files should be documented
 according to a normal standard for well documented C++ code.
 
 An example of how the interface of a class should be documented in
@@ -284,7 +283,7 @@ GNSS-SDR is shown here:
         TYPE2 private_variable2; //!< Short description of private_variable2 here
     };
 
-### You can even include formulae
+### You can even [include formulae](http://www.stack.nl/~dimitri/doxygen/manual/formulas.html)
 
 ### Multiple line comments should be split in one comment per line, each having the `/*` and `*/` markers on the same line
 
@@ -311,7 +310,7 @@ Having as few declarations as possible in a header file reduces header
 dependencies.
 
 The header file should have the same name as the class plus extension
-.h.
+`.h`.
 
 External non-member functions that belong to the class interface may
 also be declared in the same header file.
