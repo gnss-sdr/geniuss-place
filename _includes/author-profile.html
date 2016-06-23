@@ -50,6 +50,10 @@
       {% if author.linkedin %}
         <li><a href="https://www.linkedin.com/in/{{ author.linkedin }}"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
       {% endif %}
+      {% if author.behance %}
+        <li><a href="https://www.behance.net/{{ author.behance }}"><i class="fa fa-fw fa-behance" aria-hidden="true"></i> B&#275;hance</a></li>
+      {% endif %}
+
       {% if author.keybase %}
         <li><a href="https://keybase.io/{{ author.keybase }}"><i class="fa fa-fw fa-key" aria-hidden="true"></i> Keybase</a></li>
       {% endif %}
