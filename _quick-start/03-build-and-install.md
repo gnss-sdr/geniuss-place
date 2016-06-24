@@ -80,7 +80,7 @@ $ sudo apt-get install build-essential cmake git libboost-dev libboost-date-time
 you will need to build from source and install GNU Radio manually, as explained below, since GNSS-SDR requires gnuradio-dev >= 3.7.3, and Ubuntu 14.04 came with 3.7.2. Install all the packages above BUT EXCEPT ```libuhd-dev```, ```gnuradio-dev``` and ```gr-osmosdr``` (and remove them if they are already installed in your machine), and install those dependencies using PyBOMBS.
 {: .notice--warning}
 
-Once you have installed these packages, you can jump directly to [how to download the source code and build GNSS-SDR](#install). 
+Once you have installed these packages, you can jump directly to [how to download the source code and build GNSS-SDR](#install).
 
 ### Install dependencies using PyBOMBS
 
@@ -132,7 +132,7 @@ In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR 
 $ pybombs install armadillo gflags glog gnutls
 ~~~~~~
 
-## <a name="install">Clone, build and install GNSS-SDR</a>
+## <a name="install"></a>Clone, build and install GNSS-SDR
 
 Once all the dependencies are installed in your system, you are ready to clone the repository, build the source code and install the software in your system:
 
