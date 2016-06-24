@@ -3,6 +3,8 @@ permalink: /team/
 title: "Team"
 comments: false
 excerpt: "Team members profiles"
+sidebar:
+  nav: "about"
 author:
 - usman
 - someone_else

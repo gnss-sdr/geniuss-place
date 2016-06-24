@@ -7,12 +7,7 @@ header:
   image: hw-header.jpg
   teaser: hw-header-th.jpg
 sidebar:
-  - title: "Role"
-    image: http://placehold.it/350x250
-    image_alt: "logo"
-    text: "Designer, Front-End Developer"
-  - title: "Responsibilities"
-    text: "Reuters try PR stupid commenters should isn't a business model"
+    nav: "geniuss-place"
 gallery:
   - url: hw-header.jpg
     image_path: hw-header-th.jpg
