@@ -100,7 +100,7 @@ about:
   - title: About Us
     children:
       - title: "Contact Info"
-        url: /contact/
+        url: /contact-info/
       - title: "Team"
         url: /team/
       - title: "About the project"

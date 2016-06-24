@@ -10,6 +10,9 @@ sidebar:
   nav: "docs"
 ---
 
+{% include base_path %}
+{% include toc %}
+
 {% capture fig_img1 %}
   ![SiGe GN3S Sampler v2]({{ site.url }}{{ site.baseurl }}/images/sige_v2.jpg)
 {% endcapture %}

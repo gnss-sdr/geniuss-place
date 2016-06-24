@@ -7,6 +7,9 @@ sidebar:
   nav: "start"
 ---
 
+{% include base_path %}
+{% include toc %}
+
 # Installing everything through software package managers
 
 ## GNU/Linux distributions based on Debian
@@ -132,7 +135,7 @@ In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR 
 $ pybombs install armadillo gflags glog gnutls
 ~~~~~~
 
-## <a name="install"></a>Clone, build and install GNSS-SDR
+## Clone, build and install GNSS-SDR<a name="install"></a>
 
 Once all the dependencies are installed in your system, you are ready to clone the repository, build the source code and install the software in your system:
 

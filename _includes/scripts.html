@@ -2,8 +2,6 @@
 <script>window.jQuery || document.write('<script src="{{ site.url }}/assets/js/vendor/jquery-1.12.1.min.js"><\/script>')</script>
 <script src="{{ base_path }}/assets/js/main.min.js"></script>
 <script type="text/javascript">
-  <!--
-  // Toggle Display of BibTeX
   function toggleBibtex(articleid) {
       var bib = document.getElementById('bib_'+articleid);
       if (bib) {
@@ -13,9 +11,7 @@
       } else {
           return;
       }
-  }
-  -->
-</script>
+  }</script>
 
 {% include analytics.html %}
 {% include /comments-providers/scripts.html %}

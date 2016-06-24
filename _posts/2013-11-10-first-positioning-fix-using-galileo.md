@@ -6,6 +6,9 @@ tags:
   - news
 ---
 
+{% include base_path %}
+{% include toc %}
+
 {% capture fig_img1 %}
   ![First GNSS-SDR Galileo standalone position fix]({{ site.url }}{{ site.baseurl }}/images/Galileo_fix_run2.jpg)
 {% endcapture %}

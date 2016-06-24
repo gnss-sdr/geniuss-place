@@ -6,8 +6,8 @@ modified: 2016-06-22T15:54:02-04:00
 ---
 
 {% include base_path %}
+{% include toc %}
 
-![Coding Style]({{ site.url }}{{ site.baseurl }}/images/geniuss-painting.jpg)
 
 Since the seminal work by Kernighan _et al_. in 1974[^Kernighan74], there is a clear concern on the style in writing software and its impact in the final quality of the product. Following programming guidelines and code conventions not only helps to avoid introducing errors, but cuts maintenance costs and favors effective code reuse.
 
@@ -69,7 +69,7 @@ do_something( with, these, parameters );
 
 When function calls get too long, you will have to split them up in several lines. Align the following lines with the previous ones so the structure becomes obvious, and go to the next line after the comma.
 
-```
+```cpp
 Channel(ConfigurationInterface *configuration,
     unsigned int channel,
     std::shared_ptr<GNSSBlockInterface> pass_through,
@@ -129,22 +129,24 @@ braces are indented relative to the braces. Braces should be indented 4
 columns to the right of the starting position of the enclosing statement
 or declaration. Example:
 
-    void f(int a)
+```cpp
+void f(int a)
+{
+    int i;
+    if (a > 0)
     {
-        int i;
-        if (a > 0)
-            {
-                i = a;
-            }
-        else
-            {
-                i = a;
-            }
+        i = a;
     }
-
-    class A
+    else
     {
-    };
+        i = a;
+    }
+}
+
+class A
+{
+};
+```
 
 ### Function parameters should be lined up with one parameter per line
 
@@ -161,7 +163,9 @@ statement today, there might be a need for more code in the future.
 The only time when two braces can appear on the same line is when they
 do not contain any code. Example:
 
-    while (...) {}
+```cpp
+while (...) {}
+```
 
 ### Each statement should be placed on a line on its own
 
@@ -173,7 +177,10 @@ same line only makes the code cryptic to read.
 This makes it easier to see all variables. It also avoids the problem of
 knowing which variables are pointers. (Bad) example:
 
-    int* p, i;
+```cpp
+int* p, i;
+```
+
 
 It is easy to forget that the star belongs to the declared name, not the
 type, and look at it and assume that the type is “pointer to int” and
@@ -221,69 +228,66 @@ according to a normal standard for well documented C++ code.
 An example of how the interface of a class should be documented in
 GNSS-SDR is shown here:
 
-    /*!
-     * \brief Brief description of My_Class here
-     *
-     * Detailed description of My_Class here. With example code if needed.
-     */
-    class My_Class
+```cpp
+/*!
+ * \brief Brief description of My_Class here
+ *
+ * Detailed description of My_Class here. With example code if needed.
+ */
+class My_Class
+{
+public:
+    //! Default constructor
+    My_Class(void)
     {
+        setup_done = false;
+    }
 
-    public:
+    /*!
+     * \brief Constructor that initializes the class with parameters
+     *
+     * Detailed description of the constructor here if needed
+     *
+     * \param[in] param1 Description of \a param1 here
+     * \param[in] param2 Description of \a param2 here
+     */
+    My_Class(TYPE1 param1, TYPE2 param2)
+    {
+        setup(param1, param2);
+    }
 
-        //! Default constructor
-        My_Class(void)
-        {
-            setup_done = false;
-        }
+    /*!
+     * \brief Setup function for My_Class
+     *
+     * Detailed description of the setup function here if needed
+     *
+     * \param[in] param1 Description of \a param1 here
+     * \param[in] param2 Description of \a param2 here
+     */
+    void setup(TYPE1 param1, TYPE2 param2);
 
-        /*!
-         * \brief Constructor that initializes the class with parameters
-         *
-         * Detailed description of the constructor here if needed
-         *
-         * \param[in] param1 Description of \a param1 here
-         * \param[in] param2 Description of \a param2 here
-         */
+    /*!
+     * \brief Brief description of member_function1
+     *
+     * Detailed description of member_function1 here if needed
+     *
+     * \param[in]     param1 Description of \a param1 here
+     * \param[in]     param2 Description of \a param2 here
+     * \param[in,out] param3 Description of \a param3 here
+     * \return Description of the return value here
+     */
+    TYPE4 member_function1(TYPE1 param1, TYPE2 param2, TYPE3 &param3);
 
-        My_Class(TYPE1 param1, TYPE2 param2)
-        {
-            setup(param1, param2);
-        }
+private:
+    bool setup_done;  //!< Checks if the class is properly initialized
+    TYPE1 private_variable1; //!< Short description of private_variable1 here
+    TYPE2 private_variable2; //!< Short description of private_variable2 here
+};
+```
 
-        /*!
-         * \brief Setup function for My_Class
-         *
-         * Detailed description of the setup function here if needed
-         *
-         * \param[in] param1 Description of \a param1 here
-         * \param[in] param2 Description of \a param2 here
-         */
+### Include formulae
 
-        void setup(TYPE1 param1, TYPE2 param2);
-
-        /*!
-         * \brief Brief description of member_function1
-         *
-         * Detailed description of member_function1 here if needed
-         *
-         * \param[in]     param1 Description of \a param1 here
-         * \param[in]     param2 Description of \a param2 here
-         * \param[in,out] param3 Description of \a param3 here
-         * \return Description of the return value here
-         */
-
-        TYPE4 member_function1(TYPE1 param1, TYPE2 param2, TYPE3 &param3);
-
-    private:
-
-        bool setup_done;  /*!< Variable that checks if the class is properly
-                               initialized with parameters */
-        TYPE1 private_variable1; //!< Short description of private_variable1 here
-        TYPE2 private_variable2; //!< Short description of private_variable2 here
-    };
-
-### You can even [include formulae](http://www.stack.nl/~dimitri/doxygen/manual/formulas.html)
+Follow this link to see how can [include formulae](http://www.stack.nl/~dimitri/doxygen/manual/formulas.html).
 
 ### Multiple line comments should be split in one comment per line, each having the `/*` and `*/` markers on the same line
 
@@ -348,10 +352,12 @@ multiple times. The format of the symbol name should be
 based on the full path in a project’s source tree. For example, the file
 `gnss-sdr/src/bar/baz.h` should have the following guard:
 
-    #ifndef GNSS_SDR_BAR_BAZ_H_
-    #define GNSS_SDR_BAR_BAZ_H_
-    ...
-    #endif // GNSS_SDR_BAR_BAZ_H_
+```cpp
+#ifndef GNSS_SDR_BAR_BAZ_H_
+#define GNSS_SDR_BAR_BAZ_H_
+...
+#endif // GNSS_SDR_BAR_BAZ_H_
+```
 
 ### The name of the macro used in the include guard should have the same name as the file (excluding the extension) followed by the suffix “`_H_`”
 
@@ -367,10 +373,12 @@ A simple way to make sure that a header file does not have any
 dependencies is to include it first in the corresponding source file.
 Example:
 
-    /* foobar.cc */
-    #include "foobar.h"
-    #include <cmath>
-    ...
+```cpp
+/* foobar.cc */
+#include "foobar.h"
+#include <cmath>
+...
+```
 
 ### System header files should be included with `<>` and project headers with ``
 
@@ -403,26 +411,32 @@ declared `const`, usually in addition to what the pointer points to. To
 define a constant char\*-based string in a header file, for example, you
 have to write `const` twice:
 
-    const char * const authorName = "Carlos Aviles";
+```cpp
+const char * const authorName = "Carlos Aviles";
+```
 
 However, it is worth reminding you here that string objects are
 generally preferable to their `char*`-based progenitors, so `authorName`
 is often better defined this way:
 
-    const std::string authorName("Carlos Aviles");  
+```cpp
+const std::string authorName("Carlos Aviles");  
+```
 
 The second special case concerns class-specific constants. To limit the
 scope of a constant to a class, you must make it a member, and to ensure
 there is at most one copy of the constant, you must make it a static
 member:
 
-    class My_Acquisition_Algorithm
-    {
-    private:
-        static const int num_dwells = 5; // constant declaration
-        int scores[num_dwells];          // use of constant
-        ...
-    };  
+```cpp
+class My_Acquisition_Algorithm
+{
+private:
+    static const int num_dwells = 5; // constant declaration
+    int scores[num_dwells];      // use of constant
+    ...
+};  
+```
 
 In general, use `const` whenever possible. The wonderful thing about
 `const` is that it allows you to specify a semantic constraint — a
@@ -436,37 +450,40 @@ compilers’ aid in making sure the constraint is not violated.
 
 Please use the following template at the header of all files:
 
-    /*!
-     * \file filename
-     * \brief Brief description of the file here
-     * \author Names of the authors who contributed to this code
-     *
-     * Detailed description of the file here if needed.
-     *
-     * -----------------------------------------------------------------------
-     *
-     * Copyright (C) 2010-2016  (see AUTHORS file for a list of contributors)
-     *
-     * GNSS-SDR is a software defined Global Navigation
-     *          Satellite Systems receiver
-     *
-     * This file is part of GNSS-SDR.
-     *
-     * GNSS-SDR is free software: you can redistribute it and/or modify
-     * it under the terms of the GNU General Public License as published by
-     * the Free Software Foundation, either version 3 of the License, or
-     * (at your option) any later version.
-     *
-     * GNSS-SDR is distributed in the hope that it will be useful,
-     * but WITHOUT ANY WARRANTY; without even the implied warranty of
-     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     * GNU General Public License for more details.
-     *
-     * You should have received a copy of the GNU General Public License
-     * along with GNSS-SDR. If not, see <http://www.gnu.org/licenses/>.
-     *
-     * -----------------------------------------------------------------------
-     */
+```cpp
+/*!
+ * \file filename
+ * \brief Brief description of the file here
+ * \author Names of the authors who contributed to this code
+ *
+ * Detailed description of the file here if needed.
+ *
+ * -----------------------------------------------------------------------
+ *
+ * Copyright (C) 2010-2016  (see AUTHORS file for a list of contributors)
+ *
+ * GNSS-SDR is a software defined Global Navigation
+ *      Satellite Systems receiver
+ *
+ * This file is part of GNSS-SDR.
+ *
+ * GNSS-SDR is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * GNSS-SDR is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with GNSS-SDR. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * -----------------------------------------------------------------------
+ */
+```
+
 
 ## Declarations
 
@@ -481,13 +498,15 @@ have a strange syntax. The code becomes much clearer if you use a
 `typedef` for the pointer to function type. This `typedef` name can then
 be used to declare variables etc.
 
-    double sin(double arg);
-    typedef double (*Trigfunc)(double arg);
+```cpp
+double sin(double arg);
+typedef double (*Trigfunc)(double arg);
 
-    /* Usage examples */
-    Trigfunc myfunc = sin;
-    void callfunc(Trigfunc callback);
-    Trigfunc functable[10];
+/* Usage examples */
+Trigfunc myfunc = sin;
+void callfunc(Trigfunc callback);
+Trigfunc functable[10];
+```
 
 ### Do not use exception specifications
 
@@ -537,23 +556,25 @@ Do not use `using` directives. Bringing in names from a `namespace` can
 cause all sorts of problems as the `namespace` might contain more names
 than you would expect. Use them carefully.
 
-    #include <iostream>
+```cpp
+#include <iostream>
 
-    // Bring in names from the std namespace.
-    using namespace std;
+// Bring in names from the std namespace.
+using namespace std;
 
-    // Declaring an object with the same name as
-    // a function in the std namespace.
-    int dec(int);
+// Declaring an object with the same name as
+// a function in the std namespace.
+int dec(int);
 
-    void f()
-    {
-        // Now we can use iostream names lazily.
-        cout << "Hello world." << endl;
+void f()
+{
+    // Now we can use iostream names lazily.
+    cout << "Hello world." << endl;
 
-        // Error: Ambiguous reference to dec.
-        cout << "Decimal base is " << dec << endl;
-    }
+    // Error: Ambiguous reference to dec.
+    cout << "Decimal base is " << dec << endl;
+}
+```
 
 ### The parts of a class definition must be `public`, `protected` and `private`
 
@@ -579,17 +600,19 @@ the class.
 
 Example:
 
-    class T
-    {
-        T operator+=(const T & right);
-    };
+```cpp
+class T
+{
+    T operator+=(const T & right);
+};
 
-    T operator+(const T & left, const T & right)
-    {
-        T temp(left);
-        temp += right;
-        return temp;
-    }
+T operator+(const T & left, const T & right)
+{
+    T temp(left);
+    temp += right;
+    return temp;
+}
+```
 
 ## Statements
 
@@ -666,17 +689,19 @@ anything in performance or used memory in the end product.
 Example: This square root function is only designed to work with
 positive numbers.
 
-    #include <assert.h>
+```cpp
+#include <assert.h>
 
-    double sqrt(double x)
-    {
-        // precondition: x is positive
-        assert(x > 0);
-        double result;
-        ...
-        // postcondition: result^2 ~= x
-        assert(abs(result*result-x)/x < 1E-8) ;
-    }
+double sqrt(double x)
+{
+    // precondition: x is positive
+    assert(x > 0);
+    double result;
+    ...
+    // postcondition: result^2 ~= x
+    assert(abs(result*result-x)/x < 1E-8) ;
+}
+```
 
 ### Use prefix increment/decrement instead of postfix increment/decrement when the value of the variable is not used
 
@@ -695,9 +720,11 @@ This style avoids accidental assignments of the variable when the
 comparison operator is written with only one equal sign (=). Do not rely
 on implicit conversion to bool in conditions.
 
-    if (ptr) // wrong
-    if (ptr != NULL) // ok
-    if (ptr != nullptr) // even better (C++11)
+```cpp
+if (ptr) // wrong
+if (ptr != NULL) // ok
+if (ptr != nullptr) // even better (C++11)
+```
 
 ### Use the new cast operators
 
@@ -740,6 +767,7 @@ file looks drastically different from the existing code around it, the
 discontinuity throws readers out of their rhythm when they go to read
 it. Try to avoid this.
 
+![Coding Style]({{ site.url }}{{ site.baseurl }}/images/geniuss-painting.jpg)
 
 -------
 
