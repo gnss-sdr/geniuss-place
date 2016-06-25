@@ -24,12 +24,11 @@ sidebar:
 {% endcapture %}
 
 
-
 Welcome to GNSS-SDR.
 
 The name is not a bragging display of creativity:
 
- * GNSS: **G**lobal **N**avitation **S**atellite **S**ystems. The acronym that encompasses those systems that allow users to compute their position based on signals transmitted by satellites, world-wide. The obvious example is [GPS](http://www.gps.gov/), but this term also includes other systems such as [GLONASS](https://www.glonass-iac.ru/en/), [Galileo](http://www.esa.int/Our_Activities/Navigation/Galileo/What_is_Galileo) and [BeiDou](http://en.beidou.gov.cn/).
+ * GNSS: **G**lobal **N**avitation **S**atellite **S**ystems. The acronym that encompasses those systems that allow users to compute their position based on signals transmitted by satellites, world-wide. The obvious example is [GPS](http://www.gps.gov/){:target="_blank"}, but this term also includes other systems such as [GLONASS](https://www.glonass-iac.ru/en/){:target="_blank"}, [Galileo](http://www.esa.int/Our_Activities/Navigation/Galileo/What_is_Galileo){:target="_blank"} and [BeiDou](http://en.beidou.gov.cn/){:target="_blank"}.
 
  * SDR: **S**oftware **D**efined **R**eceiver. We play a little trick here, since SDR is usually an acronym that stands for Software Defined _Radio_. In both cases, it refers to systems in which components that have been typically implemented in hardware (e.g. mixers, filters, demodulators, detectors, etc.) are instead implemented by means of software executing on a personal computer or embedded system.
 
@@ -44,9 +43,9 @@ Then, GNSS-SDR takes care of all the digital signal processing, performing signa
 ![](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/docs/doxygen/images/GeneralBlockDiagram.png)
 {: style="text-align: center;"}
 
-All the intermediate signals are observable, and the _products_ of the GNSS signal processing (that is, the measurements known in this context as [observables](http://www.navipedia.net/index.php/GNSS_Basic_Observables) and the data trasmitted by the satellites in their navigation message) are delivered in standard formats.
+All the intermediate signals are observable, and the _products_ of the GNSS signal processing (that is, the measurements known in this context as [observables](http://www.navipedia.net/index.php/GNSS_Basic_Observables){:target="_blank"} and the data trasmitted by the satellites in their navigation message) are delivered in standard formats.
 
-GNSS-SDR is [free and open source software](http://www.unesco.org/new/en/communication-and-information/access-to-knowledge/free-and-open-source-software-foss/) released under the [General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html). This means you have:
+GNSS-SDR is [free and open source software](http://www.unesco.org/new/en/communication-and-information/access-to-knowledge/free-and-open-source-software-foss/){:target="_blank"} released under the [General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html){:target="_blank"}. This means you have:
 
  * the freedom to use the software for any purpose,
  * the freedom to change the software to suit your needs,

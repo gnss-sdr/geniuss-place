@@ -29,7 +29,7 @@ GNSS-SDR package updates need to undergo an acceptance process before they are i
 
 ## Mac OS X using Macports
 
-If you are using Mac OS X 10.9 or above, and the [Macports](https://www.macports.org/) package manager, GNSS-SDR can be installed by typing in a Ierminal:
+If you are using Mac OS X 10.9 or above, and the [Macports](https://www.macports.org/){:target="_blank"} package manager, GNSS-SDR can be installed by typing in a Terminal:
 
     $ sudo port install gnss-sdr
 
@@ -87,7 +87,7 @@ Once you have installed these packages, you can jump directly to [how to downloa
 
 ### Install dependencies using PyBOMBS
 
-This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend to use [PyBOMBS](http://gnuradio.org/pybombs "Python Build Overlay Managed Bundle System wiki") (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs). Here we provide a quick step-by-step tutorial.
+This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend to use [PyBOMBS](http://gnuradio.org/pybombs "Python Build Overlay Managed Bundle System wiki"){:target="_blank"} (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs). Here we provide a quick step-by-step tutorial.
 
 First of all, install some basic packages:
 
@@ -135,7 +135,7 @@ In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR 
 $ pybombs install armadillo gflags glog gnutls
 ~~~~~~
 
-## Clone, build and install GNSS-SDR<a name="install"></a>
+## Clone, build and install GNSS-SDR<a name="install"> </a>
 
 Once all the dependencies are installed in your system, you are ready to clone the repository, build the source code and install the software in your system:
 
