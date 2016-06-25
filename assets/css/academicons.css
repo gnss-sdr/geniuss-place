@@ -42,6 +42,7 @@
 }
 .ai-orcid:before {
     content: "\e906";
+    color:   #a6cd39;
 }
 .ai-orcid-square:before {
     content: "\e907";
@@ -187,7 +188,7 @@
 .ai.fa-pull-right {
   margin-left: .3em;
 }
-/*  
+/*
  *  Repeat of the FontAwesome style classes to prevent override if academicons.css
  *  is called after font-awesome.css.
  */

@@ -58,11 +58,11 @@ docs:
       - title: "Contents"
         url: /docs/quick-start-guide/
       - title: "Overview"
-        url: /docs/structure/
+        url: /docs/overview/
       - title: "Fundamentals"
-        url: /docs/installation/
+        url: /docs/fundamentals/
       - title: "Control Plane"
-        url: /docs/installation/
+        url: /docs/control-plane/
       - title: "Signal Processing Blocks"
         url: /docs/upgrading/
       - title: "Tutorials"

@@ -13,4 +13,5 @@ Found a typo in the documentation? Interested in adding a feature or [fixing a b
 
 
 
-[Fork GNSS-SDR from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--success .btn--x-large}
+[<i class="fa fa-github fa-lg"></i> Fork GNSS-SDR from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--success .btn--x-large}
+{: style="text-align: center;"}

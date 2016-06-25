@@ -24,12 +24,12 @@ This is the easiest and fastest way to get GNSS-SDR installed in your system. Ju
 {: .notice--success}
 
 **The downside:**
-GNSS-SDR package updates need to undergo an acceptance process before they are included in the different distributions, so it might not be the ultimate version of the source code.
-{: .notice--warning}
+GNSS-SDR package updates need to undergo an acceptance process before they are included in the different distributions, so it might not be the ultimate version of the source code. The same applies for the dependency libraries.
+{: .notice--danger}
 
 ## Mac OS X using Macports
 
-If you are using Mac OS X 10.? or above, and the [Macports](https://www.macports.org/) package manager, GNSS-SDR can be installed by doing:
+If you are using Mac OS X 10.9 or above, and the [Macports](https://www.macports.org/) package manager, GNSS-SDR can be installed by typing in a Ierminal:
 
     $ sudo port install gnss-sdr
 
@@ -51,7 +51,7 @@ $ sudo port install gnss-sdr-next
 ```
 {% endcapture %}
 
-<div class="notice--info">
+<div class="notice--success">
   <h4>You have more options here!</h4>
   {{ mac-os-text | markdownify }}
 </div>

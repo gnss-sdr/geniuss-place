@@ -3,6 +3,7 @@ title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR"
 modified: 2016-06-22T15:54:02-04:00
+comments: true
 ---
 
 {% include base_path %}
