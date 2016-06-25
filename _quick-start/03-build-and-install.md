@@ -79,15 +79,15 @@ $ sudo apt-get install build-essential cmake git libboost-dev libboost-date-time
        libarmadillo-dev libgflags-dev libgoogle-glog-dev libgnutls-openssl-dev libgtest-dev
 ~~~~~~
 
-**Note for Ubuntu Ubuntu 14.04 LTS users:**
-you will need to build from source and install GNU Radio manually, as explained below, since GNSS-SDR requires gnuradio-dev >= 3.7.3, and Ubuntu 14.04 came with 3.7.2. Install all the packages above BUT EXCEPT ```libuhd-dev```, ```gnuradio-dev``` and ```gr-osmosdr``` (and remove them if they are already installed in your machine), and install those dependencies using PyBOMBS.
+**Note for Ubuntu 14.04 LTS users:**
+you will need to build from source and install GNU Radio manually, as explained below, since GNSS-SDR requires gnuradio-dev >= 3.7.3, and Ubuntu 14.04 came with 3.7.2. Install all the packages above BUT EXCEPT ```libuhd-dev```, ```gnuradio-dev``` and ```gr-osmosdr``` (and remove them if they are already installed in your machine), and install those dependencies using PyBOMBS, as explained below.
 {: .notice--warning}
 
 Once you have installed these packages, you can jump directly to [how to download the source code and build GNSS-SDR](#install).
 
 ### Install dependencies using PyBOMBS
 
-This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend to use [PyBOMBS](http://gnuradio.org/pybombs "Python Build Overlay Managed Bundle System wiki"){:target="_blank"} (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs). Here we provide a quick step-by-step tutorial.
+This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend to use [PyBOMBS](http://gnuradio.org/pybombs "Python Build Overlay Managed Bundle System wiki"){:target="_blank"} (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs){:target="_blank"}. Here we provide a quick step-by-step tutorial.
 
 First of all, install some basic packages:
 
@@ -135,7 +135,7 @@ In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR 
 $ pybombs install armadillo gflags glog gnutls
 ~~~~~~
 
-## Clone, build and install GNSS-SDR<a name="install"> </a>
+## Clone, build and install GNSS-SDR<a name="install"> Hi</a>
 
 Once all the dependencies are installed in your system, you are ready to clone the repository, build the source code and install the software in your system:
 
