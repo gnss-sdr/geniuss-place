@@ -45,12 +45,12 @@ sidebar:
 
 ## Introduction
 
-This article provides details about the support that GNSS-SDR offers for real-time operation using the GNSS USB front-end [SiGe GN3S Sampler v2](https://www.sparkfun.com/products/retired/8238). Unfortunately, this product has been retired and replaced by a newer version v3, but we hope this still can be useful to v2 users. The article starts with a brief description of the GN3S hardware and gives some insights about the required modifications in the firmware code that drives the Cypress FX2 microcontroller. It follows introducing the GNU Radio compliant GN3S signal source that enables access to the signal samples in real-time. The driver can be compiled and installed as standalone library, and thus can be used by any other GNU Radio application in C++ or Python, including gnuradio-companion. Finally, we describe a step-by-step procedure to configure GNSS-SDR to receive GPS L1 signals using the GN3S dongle. Some experimental results with real-life signals are also provided.
+This article provides details about the support that GNSS-SDR offers for real-time operation using the GNSS USB front-end [SiGe GN3S Sampler v2](https://www.sparkfun.com/products/retired/8238){:target="_blank"}. Unfortunately, this product has been retired and replaced by a newer version v3, but we hope this still can be useful to v2 users. The article starts with a brief description of the GN3S hardware and gives some insights about the required modifications in the firmware code that drives the Cypress FX2 microcontroller. It follows introducing the GNU Radio compliant GN3S signal source that enables access to the signal samples in real-time. The driver can be compiled and installed as standalone library, and thus can be used by any other GNU Radio application in C++ or Python, including gnuradio-companion. Finally, we describe a step-by-step procedure to configure GNSS-SDR to receive GPS L1 signals using the GN3S dongle. Some experimental results with real-life signals are also provided.
 
 
 ## SiGe GN3S firmware internal details and modifications
 
-The [SiGe GN3S v2 USB RF front-end](https://www.sparkfun.com/products/8238?), developed by the [Colorado Center For Astrodynamics Research](http://ccar.colorado.edu/gnss/), is basically composed of two different integrated circuits. On the one hand, GNSS-related operations are based on the [SiGe 4120](http://www.skyworksinc.com/Products_SiGe.aspx) GPS Application Specific Integrated Circuit (ASIC), that performs RF amplification, filtering, downconversion, and baseband sampling (In June 2011, Skyworks closed its acquisition of SiGe Semiconductor). On the other hand, the Cypress Semiconductors [EZ-USB FX2LP](http://www.cypress.com/?id=193) USB 2.0 microcontroller is in charge of reading the digital samples coming from the SiGe 4120 ASIC and sending them in real-time to the PC through the universal serial bus.
+The [SiGe GN3S v2 USB RF front-end](https://www.sparkfun.com/products/8238?){:target="_blank"}, developed by the [Colorado Center For Astrodynamics Research](http://ccar.colorado.edu/gnss/){:target="_blank"}, is basically composed of two different integrated circuits. On the one hand, GNSS-related operations are based on the [SiGe 4120](http://www.skyworksinc.com/Products_SiGe.aspx){:target="_blank"} GPS Application Specific Integrated Circuit (ASIC), that performs RF amplification, filtering, downconversion, and baseband sampling (in June 2011, Skyworks closed its acquisition of SiGe Semiconductor). On the other hand, the Cypress Semiconductors [EZ-USB FX2LP](http://www.cypress.com/?id=193){:target="_blank"} USB 2.0 microcontroller is in charge of reading the digital samples coming from the SiGe 4120 ASIC and sending them in real-time to the PC through the universal serial bus.
 
 
 <figure>
@@ -67,7 +67,7 @@ SiGe 4120 Analog to Digital Converter (ADC) is configured to provide a sample st
  * 2-bit I/Q samples (1bit I & 1bit Q) in a short char binary format (sI0, sQ0, sI1, sQ1, sI2, sQ2, ...)
 
 
-The front-end firmware is licensed as GPL open source, and available online from [GN3Sv2.rar](http://www.sparkfun.com/datasheets/GPS/Modules/GN3Sv2.rar). The front-end was intended to capture up to 600 Mb of data and then use a Matlab GNSS software available from K.Borre’s book[^Kay06] to perform post-processing operations to GPS signals.
+The front-end firmware is licensed as GPL open source, and available online from [GN3Sv2.rar](http://www.sparkfun.com/datasheets/GPS/Modules/GN3Sv2.rar){:target="_blank"}. The front-end was intended to capture up to 600 Mb of data and then use a Matlab GNSS software available from K.Borre’s book[^Kay06] to perform post-processing operations to GPS signals.
 
 [^Kay06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkhäuser, November 2006.
 
@@ -136,15 +136,15 @@ static void main_loop(void)
 }
 ```
 
-For the sake of simplicity of use, the [gr-gn3s code repository](https://github.com/gnss-sdr/gr-gn3s) contains a copy of the modified GN3S v2 firmware, available at [gr-gn3s/firmware/GN3Sv2](https://github.com/gnss-sdr/gr-gn3s/tree/master/firmware/GN3S_v2). In addition, a pre-compiled binary firmware file ready to be uploaded by the GN3S driver is also available. See next section for the details.
+For the sake of simplicity of use, the [gr-gn3s code repository](https://github.com/gnss-sdr/gr-gn3s){:target="_blank"} contains a copy of the modified GN3S v2 firmware, available at [gr-gn3s/firmware/GN3Sv2](https://github.com/gnss-sdr/gr-gn3s/tree/master/firmware/GN3S_v2){:target="_blank"}. In addition, a pre-compiled binary firmware file ready to be uploaded by the GN3S driver is also available. See next section for the details.
 
 
 ## GNU Radio compliant GN3S front-end signal source: gr-gn3s
 
-We developed a complete GNU Radio signal source that provides an interface to the GN3S RF front-end signal samples. The firmware loader is based on Gregory. W. Heckler’s [GPS-SDR](https://github.com/gps-sdr/gps-sdr) GN3S driver. However, the signal sample reception was based on the original SiGe GN3S driver.
+We developed a complete GNU Radio signal source that provides an interface to the GN3S RF front-end signal samples. The firmware loader is based on Gregory. W. Heckler’s [GPS-SDR](https://github.com/gps-sdr/gps-sdr){:target="_blank"} GN3S driver. However, the signal sample reception was based on the original SiGe GN3S driver.
 
 
-Th gr-gn3s module contains a GNU Radio fully-compliant gr-block signal source, intended to be used either with GNSS-SDR as a signal source or as a standalone signal source block instantiated from a GNU Radio flowgraph from C++ or using Python (it includes a gnuradio-companion interface also). The source code is available at [gr-gn3s](https://github.com/gnss-sdr/gr-gn3s).
+Th gr-gn3s module contains a GNU Radio fully-compliant gr-block signal source, intended to be used either with GNSS-SDR as a signal source or as a standalone signal source block instantiated from a GNU Radio flowgraph from C++ or using Python (it includes a gnuradio-companion interface also). The source code is available at [gr-gn3s](https://github.com/gnss-sdr/gr-gn3s){:target="_blank"}.
 
 
 Once the driver is compiled and installed, the gr-gn3s signal source is available to gnuradio-companion under the tab [GN3S] -> gn3s_source and it can be instantiated as is shown in the following example:
@@ -155,7 +155,7 @@ Once the driver is compiled and installed, the gr-gn3s signal source is availabl
 </figure>
 
 
-In addition, it is required to copy the GN3S firmware binary file [gr-gn3s/firmware/GN3S_v2/bin/gn3s_firmware.ihx](https://github.com/gnss-sdr/gr-gn3s/blob/master/firmware/GN3S_v2/bin/gn3s_firmware.ihx) to the application runtime directory. In this example, if the gnuradio-companion application is called from `/home/username/`, then a copy of `gn3s_firmware.ihx` should be available at `/home/username/gn3s_firmware.ihx`.
+In addition, it is required to copy the GN3S firmware binary file [gr-gn3s/firmware/GN3S_v2/bin/gn3s_firmware.ihx](https://github.com/gnss-sdr/gr-gn3s/blob/master/firmware/GN3S_v2/bin/gn3s_firmware.ihx){:target="_blank"} to the application runtime directory. In this example, if the gnuradio-companion application is called from `/home/username/`, then a copy of `gn3s_firmware.ihx` should be available at `/home/username/gn3s_firmware.ihx`.
 
 
 Since the driver requires access to the USB port, it is necessary to run the script as root. In case you are using gnuradio-companion, it can be done as:
@@ -203,8 +203,8 @@ The GNSS signals are well below the noise floor, and thus the thermal white nois
 GNSS-SDR support for GN3S dongles makes use of the gr-gn3s GNU Radio source block and driver. The associated GNSS-SDR Signal Source name is `Gn3s_Signal_Source` and the adapter source code is located at:
 
 
-* [gnss-sdr/src/algorithms/signal_source/adapters/gn3s_signal_source.hhttps://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/signal_source/adapters/gn3s_signal_source.h
-* [gnss-sdr/src/algorithms/signal_source/adapters/gn3s_signal_source.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/signal_source/adapters/gn3s_signal_source.cc)
+* [gnss-sdr/src/algorithms/signal_source/adapters/gn3s_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/signal_source/adapters/gn3s_signal_source.h){:target="_blank"}
+* [gnss-sdr/src/algorithms/signal_source/adapters/gn3s_signal_source.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/signal_source/adapters/gn3s_signal_source.cc){:target="_blank"}
 
 
 It makes use of the library gr-gn3s by including the following header:
@@ -215,7 +215,7 @@ It makes use of the library gr-gn3s by including the following header:
 
 
 **Important:**
-The compilation of the SiGe GN3S support in GNSS-SDR is optional and it requires the installation of the [gr-gn3s](https://github.com/gnss-sdr/gr-gn3s) module. See GNSS-SDR's [README.md](https://github.com/gnss-sdr/gnss-sdr#how-to-build-gnss-sdr) file for step-by-step building instructions with the [optional GN3S driver](https://github.com/gnss-sdr/gnss-sdr#build-gn3s-v2-custom-firmware-and-driver-optional).
+The compilation of the SiGe GN3S support in GNSS-SDR is optional and it requires the installation of the [gr-gn3s](https://github.com/gnss-sdr/gr-gn3s){:target="_blank"} module. See GNSS-SDR's [README.md](https://github.com/gnss-sdr/gnss-sdr#how-to-build-gnss-sdr){:target="_blank"} file for step-by-step building instructions with the [optional GN3S driver](https://github.com/gnss-sdr/gnss-sdr#build-gn3s-v2-custom-firmware-and-driver-optional){:target="_blank"}.
 {: .notice--warning}
 
 
