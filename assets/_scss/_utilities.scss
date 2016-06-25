@@ -376,16 +376,16 @@ body:hover .visually-hidden button {
    ========================================================================== */
 
 .footnote {
-  color: mix(#fff, $gray, 25%);
+  color: $darker-gray; //mix(#fff, $gray, 25%);
   text-decoration: none;
 }
 
 .footnotes {
-  color: mix(#fff, $gray, 25%);
+  color: $darker-gray; //mix(#fff, $gray, 25%);
 
   ol, li, p {
     margin-bottom: 0;
-    font-size: $type-size-6;
+    font-size: $type-size-5;
   }
 }
 
