@@ -3,6 +3,8 @@ title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR"
 modified: 2016-06-22T15:54:02-04:00
+header:
+  teaser: geniuss-painting.jpg
 comments: true
 ---
 
@@ -37,7 +39,7 @@ The rules can be violated if there are strong personal objections against them.
 The attempt is to make a guideline, not to force a particular coding style onto individuals. Experienced programmers normally want to adopt a style like this anyway, but having one, and at least requiring everyone to get familiar with it, usually makes people start thinking about programming styling and evaluate their own habits in this area. On the other hand, new and inexperienced programmers normally use a style guide as a convenience of getting into the programming jargon more easily.
 
 
-**Reference:** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl){:target="_blank"}. Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html){:target="_blank"}.
+**Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl){:target="_blank"}. Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html){:target="_blank"}.
 {: .notice--primary}
 
 -------
