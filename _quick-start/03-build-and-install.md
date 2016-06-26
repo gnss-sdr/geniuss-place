@@ -142,13 +142,13 @@ $ pybombs install armadillo gflags glog gnutls
 Once all the dependencies are installed in your system, you are ready to clone the repository, build the source code and install the software in your system:
 
     $ git clone https://github.com/gnss-sdr/gnss-sdr
-    $ git checkout next
     $ cd gnss-sdr/build
+    $ git checkout next
     $ cmake ..
     $ make
     $ sudo make install
 
-The step 'git checkout next' is optional, and sets the source tree pointing to the 'next' branch, which is the most recent development snapshot. If this step is ommitted, the default it the 'master' branch, which contains the latest stable release, and maybe some bug fixes.
+The step `git checkout next` is optional, and sets the source tree pointing to the `next` branch, which is the most recent development snapshot. If this step is ommitted it takes the `master` branch by dafault, which contains the latest stable release, and maybe some bug fixes.
 
 If everything went fine, now you can jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}//first-position-fix/).
 

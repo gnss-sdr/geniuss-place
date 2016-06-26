@@ -8,6 +8,9 @@ sidebar:
 author:
 - usman
 - someone_else
+role_main:
+  - "Carles Fernandez"
+  - "Javier Arribas"
 ---
 {% include base_path %}
 
@@ -45,3 +48,9 @@ This is the result of the effort of a lot of people.
 {% assign pauthor = "Ignacio Paniego" %}
 
 {% include author-profile.html %}
+
+
+{% for au in page.role_main %}
+{% assign pauthor = au %}
+{% include author-profile.html %}
+{% endfor %}
