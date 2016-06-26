@@ -215,7 +215,7 @@ It makes use of the library gr-gn3s by including the following header:
 
 
 **Important:**
-The compilation of the SiGe GN3S support in GNSS-SDR is optional and it requires the installation of the [gr-gn3s](https://github.com/gnss-sdr/gr-gn3s){:target="_blank"} module. See GNSS-SDR's [README.md](https://github.com/gnss-sdr/gnss-sdr#how-to-build-gnss-sdr){:target="_blank"} file for step-by-step building instructions with the [optional GN3S driver](https://github.com/gnss-sdr/gnss-sdr#build-gn3s-v2-custom-firmware-and-driver-optional){:target="_blank"}.
+The compilation of the SiGe GN3S support in GNSS-SDR is optional and it requires the previous installation of the [gr-gn3s](https://github.com/gnss-sdr/gr-gn3s){:target="_blank"} module. See GNSS-SDR's [README.md](https://github.com/gnss-sdr/gnss-sdr#how-to-build-gnss-sdr){:target="_blank"} file for step-by-step building instructions with the [optional GN3S driver](https://github.com/gnss-sdr/gnss-sdr#build-gn3s-v2-custom-firmware-and-driver-optional){:target="_blank"}.
 {: .notice--warning}
 
 
@@ -299,7 +299,7 @@ We used the GN3S front-end connected to a ceramic patch antenna equipped with an
 
 
 
-## Some qualitative performance measurements and conclusions
+## Some qualitative performance measurements
 
 In this experiment, we used a Dell XPS M1530 laptop equipped with an Intel Core 2 Duo T9300 CPU with 4 GB of RAM. The operating system was Linux Ubuntu 12.04 and GNU Radio version was 3.6.0.
 At this time of writing (SVN rev. 244), real-time operation with the aforementioned equipment supports up to 7 satellite channels. The antenna was placed in the ground and remained static during the experiment. The whole setup is shown in the following picture:
@@ -314,8 +314,8 @@ The following pictures show some tracking data analysis using the GNSS-SDR inter
 Tracking.dump=true Tracking.dump_filename=./tracking_ch_
 ```
 
-As a sanity check, we did some post processing analysis using the Matlab script available at:
-./src/utils/matlab/gps_l1_ca_dll_pll_plot_sample.m
+As a sanity check, we did some post processing analysis using the Matlab script available at
+[gnss-sdr/src/utils/matlab/gps_l1_ca_dll_pll_plot_sample.m](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/utils/matlab/gps_l1_ca_dll_pll_plot_sample.m){:target="_blank"}.
 The figure clearly shows the GPS C/A navigation symbols:
 
 

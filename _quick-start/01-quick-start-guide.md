@@ -66,7 +66,6 @@ Here you will find:
 
 ---
 
-<figure>
-  {{ fig_img3 | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>This is GeNiuSS. You will see him here and there.</figcaption>
-</figure>
+
+![Introducing GeNiuSS]({{ site.url }}{{ site.baseurl }}/images/geniuss.jpg){:height="250px" width="250x"}{: style="text-align: center;"}
+This is GeNiuSS. You will see him here and there.
