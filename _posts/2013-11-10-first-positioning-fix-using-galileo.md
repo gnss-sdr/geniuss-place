@@ -37,7 +37,7 @@ If you wish to try, obtain an executable built from the latest revision of the s
 $ gnss-sdr --config_file=../conf/gnss-sdr_Galileo_E1.conf
 ```
 
-to post-process a raw data file (there is a sample file [here](https://sourceforge.net/projects/gnss-sdr/files/data/)), or configure the `.conf` file to process data from your RF front-end if you want to obtain PVT fixes in real-time.
+to post-process a raw data file (there is a sample file [here](https://sourceforge.net/projects/gnss-sdr/files/data/){:target="_blank"}), or configure the `.conf` file to process data from your RF front-end if you want to obtain PVT fixes in real-time.
 
 The results of the processing are shown below. Fig. 1 shows a Google Earth snapshot of the obtained KML file, after processing 100 seconds of signal. Some details of the processing output log are listed as follows:
 
@@ -84,4 +84,4 @@ The minimal available Galileo constellation of four satellites provided a Diluti
 </figure>
 
 
-If you are interested in replicating the experiments and playing with the software receiver, we suggest the use of a tool such as [GPredict](http://gpredict.oz9aec.net/) for predicting the time window in which the four satellites will be visible from your location. Happy satellite hunting!
+If you are interested in replicating the experiments and playing with the software receiver, we suggest the use of a tool such as [GPredict](http://gpredict.oz9aec.net/){:target="_blank"} for predicting the time window in which the four satellites will be visible from your location. Happy satellite hunting!
