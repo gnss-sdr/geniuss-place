@@ -27,6 +27,8 @@ This is the easiest and fastest way to get GNSS-SDR installed in your system. Ju
 GNSS-SDR package updates need to undergo an acceptance process before they are included in the different distributions, so it might not be the ultimate version of the source code. The same applies for the dependency libraries.
 {: .notice--danger}
 
+If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}//first-position-fix/).
+
 ## Mac OS X using Macports
 
 If you are using Mac OS X 10.9 or above, and the [Macports](https://www.macports.org/){:target="_blank"} package manager, GNSS-SDR can be installed by typing in a Terminal:
@@ -38,13 +40,13 @@ This will install the latest stable release of GNSS-SDR
 
 
 {% capture mac-os-text %}
-Instead of installing the latest stable release, you can install the code found on the `master` branch:
+Instead of installing the latest stable release, you can install the code found on the `master` branch, which might contain some bug fixes with respect to the latest stable release:
 
 ```
 $ sudo port install gnss-sdr-devel
 ```
 
-or the context of the `next` branch:
+or the context of the `next` branch, which might contain fixes and new features with respect to the latest stable release:
 
 ```
 $ sudo port install gnss-sdr-next
@@ -56,7 +58,7 @@ $ sudo port install gnss-sdr-next
   {{ mac-os-text | markdownify }}
 </div>
 
-
+If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}//first-position-fix/).
 
 # Building from source
 
@@ -129,7 +131,7 @@ $ pybombs install gnss-sdr
 
 By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, which is the most recent version of the source code. This behaviour can be modified by altering the corresponding recipe at ```$HOME/.pybombs/recipes/gr-recipes/gnss-sdr.lwr```
 
-In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual ```cmake .. && make && make install``` dance), Armadillo, GFlags, Glog and GunTLS can be installed either by using PyBOMBS:
+In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual ```cmake .. && make && make install``` dance, as explained below), there are still some missing depenencies (_i.e._, Armadillo, GFlags, Glog and GunTLS) that can be installed either by using PyBOMBS:
 
 ~~~~~~
 $ pybombs install armadillo gflags glog gnutls
@@ -140,7 +142,17 @@ $ pybombs install armadillo gflags glog gnutls
 Once all the dependencies are installed in your system, you are ready to clone the repository, build the source code and install the software in your system:
 
     $ git clone https://github.com/gnss-sdr/gnss-sdr
+    $ git checkout next
     $ cd gnss-sdr/build
     $ cmake ..
     $ make
     $ sudo make install
+
+The step 'git checkout next' is optional, and sets the source tree pointing to the 'next' branch, which is the most recent development snapshot. If this step is ommitted, the default it the 'master' branch, which contains the latest stable release, and maybe some bug fixes.
+
+If everything went fine, now you can jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}//first-position-fix/).
+
+----
+
+![GeNiuSS building]({{ site.url }}{{ site.baseurl }}/images/geniuss-building.png){:height="250px" width="250x"}
+{: style="text-align: center;"}
