@@ -20,6 +20,7 @@ Debian's strict admission process guarantees that all files in the source code, 
 From now on, installing GNSS-SDR in a Debian (sid) machine is as easy as:
 
 ```
+$ sudo apt-get update
 $ sudo apt-get install gnss-sdr
 ```
 
