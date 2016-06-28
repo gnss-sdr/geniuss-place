@@ -4,7 +4,7 @@ permalink: /docs/tutorials/understanding-data-types/
 excerpt: "How GNSS-SDR handles data types."
 author_profile: false
 header:
-  teaser: git-logo.png
+  teaser: signal-conditioner-options.png
 tags:
   - tutorial
   - Git
@@ -36,10 +36,9 @@ GNSS-SDR is designed to work with a wide range of radiofrequency
 front-ends, each one with its own parameters of sampling frequency,
 number of bits per sample, signal format (baseband or passband), etc.
 When the sample stream enters the host computer, there is a first
-processing block, called *Signal Conditioner* (see Section
-[sec:conditioner]), which is in charge of accommodate the sample stream
+processing block, called *Signal Conditioner*, which is in charge of accommodate the sample stream
 in a format tractable by a computer. The containers of data in a
-computer system are called data types.
+computer system are called **data types**.
 
 ### Data type definition
 
@@ -58,7 +57,7 @@ The C++ type system defines the following fundamental types:
 
 -   The type `void` specifies that the function does not return a value.
 -   The null-pointer type `std::nullptr_t`
--   Arithmetic types
+-   Arithmetic types:
     -   Floating-point types (`float`, `double`, `long double`)
     -   Integral types
         -   The type `bool`
@@ -76,9 +75,9 @@ The following Table lists the fundamental data types in C++. Within each of the 
 |----------
 |:-|:-|:-|
 |  **Group**       |  **Type names**          | **Notes on size / precision**
-|  -------------- 
+|  --------------
 |  Void type       | void                     | no storage
-|  Null pointer    | decltype(nullptr)        | 
+|  Null pointer    | decltype(nullptr)        |
 |  Boolean type    | bool                     |
 |  Character types | char                     |  Exactly one byte in size. At least 8 bits.
 |                  | char16\_t                |  Not smaller than char. At least 16 bits.
@@ -101,7 +100,7 @@ The following Table lists the fundamental data types in C++. Within each of the 
 
 
 
-This Table  shows a list fundamental types in C++. Note that
+Note that
 other than `char` (which has a size of exactly one byte), none of the
 fundamental types has a standard size specified (but a minimum size, at
 most). Therefore, the type is not required (and in many cases is not)
@@ -117,7 +116,7 @@ for types, as shown below:
 ```cpp
 // simple typedef
 typedef unsigned long ulong;
-     
+
 // the following two objects have the same type
 unsigned long l1;
 ulong l2;
@@ -144,21 +143,23 @@ others, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/std
 
 -   `int32_t` Signed integer type with a width of *exactly* 32 bits.
 
-Building upon these definitions, the Vector-Optimized Library of Kernels
-(VOLK) library[^3] defines complex data types. As shown below, it loads the header [`complex.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/complex.h){:target="_blank"}, a file that defines
+Building upon these definitions, the [Vector-Optimized Library of Kernels
+(VOLK)](http://libvolk.org/){:target="_blank"} library defines complex data types. As shown below, it loads the header [`<complex>`](http://en.cppreference.com/w/cpp/header/complex){:target="_blank"}, a file that defines
 functionality for complex arithmetic (i.e. basic, arithmetic,
 trigonometric and hyperbolic operations, but only for floating-point
 data types: `float`, `double` and `long double`. This means that complex
 operations are not defined for integer data types, and for instance the
-instantiation of an object of type `std::complex<int8>` has undefined
+instantiation of an object of type `std::complex<int8_t>` has undefined
 behavior. The VOLK library provides definitions for those data types
 that are missing in C++ in a portable manner.
+
+Those data type definitions can be seen at [volk/include/volk/volk_complex.h](https://github.com/gnuradio/volk/blob/master/include/volk/volk_complex.h){:target="_blank"}. We reproduce here a snippet to make those definitions more obvious:
 
 ```cpp
 ...
 #include <complex>
 #include <stdint.h>
-
+...
 typedef std::complex<int8_t>  lv_8sc_t;
 typedef std::complex<int16_t> lv_16sc_t;
 typedef std::complex<int32_t> lv_32sc_t;
@@ -175,55 +176,86 @@ template <typename T> inline std::complex<T> lv_cmake(const T &r, const T &i){
 
 As shown in the typedefs listed above, VOLK defines
 type names for objects holding complex numbers in which their real and
-imaginary parts are integers of exactly 8, 16, 32 or bits, or floating
+imaginary parts are integers of exactly 8, 16, 32 or 64 bits, or floating
 point numbers of 32 or 64 bits. It also provides a template constructor
-for them. VOLK is also instrumental in squeezing the processor
-capabilities by providing with an interface to use Single Input -
-Multiple Data (SIMD) instructions, which are of special interest for
-operations that are in the receiver’s critical path of processing load.
-Processors providing SIMD instruction sets compute with multiple
-processing elements that perform the same operation on multiple data
-points simultaneously, thus exploiting data-level parallelism, an can be
-found in most modern desktop and laptop personal computers. In a
-nutshell, VOLK implements in assembly language optimized versions of
-computationally-intensive operations for different processor
-architectures that are commonly found in modern computers. In order to
-use the most optimized version for the specific processor(s) of the host
-machine running the software receiver (that is, the implementation than
-runs the fastest), VOLK provides `volk_profile`, a program that tests
-all known VOLK kernels (that is, basic processing components like
-adders, multipliers, correlators, and much more) for each architecture
-supported by the host machine, measuring their performance. When
-finished, the profiler writes to `$HOME/.volk/volk_config` the best
-architecture for each VOLK function. This file is read when using a
-function to know the best version to execute. In this way, portability
-is always ensured, since VOLK always provide a generic C implementation
-that is executed when no SIMD instructions are available at the host
-machine executing the software receiver, but takes advantage of those
-instructions when they are actually present. By using VOLK, GNSS-SDR
-ensures that it will produce optimized executables for a wide range of
-processors and low-level instruction sets.
+for them.
+
 
 Internally, GNSS-SDR makes use of the complex data types defined by
 VOLK. They are fundamental for handling sample streams in which samples
 are complex numbers with real and imaginary components of 8, 16 or 32
-bits, common formats delivered by GNSS radio frequency front-ends. Next Table shows the data type names that GNSS-SDR exposes through
-the configuration file.
+bits, common formats delivered by GNSS radio frequency front-ends. Next Table shows the data type names that GNSS-SDR exposes through the configuration file.
 
 |----------
 |:-|:-|:-|
-| **Type name in conf file** | **Definition** | **Sample stream** 
+| **Type name in conf file** | **Definition** | **Sample stream**
 |----------
-| byte | Signed integer, 8-bit two’s complement numberranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_3],... $$
-| short | Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 S_1 ] $$
-| float | Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_3],... $$
-| ibyte | Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | ...
-| ishort | Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | ...
-| cbyte | Complex samples, with real and imaginary parts of type `byte`. C++ type name: `lv_8sc_t` | ...
-| cshort | Complex samples, with real and imaginary parts of type `short`. C++ type name: `lv_16sc_t` | ...
+| byte | Signed integer, 8-bit two’s complement numberranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
+| short | Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
+| float | Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
+| ibyte | Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
+| ishort | Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
+| cbyte | Complex samples, with real and imaginary parts of type `byte`. C++ type name: `lv_8sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+| cshort | Complex samples, with real and imaginary parts of type `short`. C++ type name: `lv_16sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
 | gr\_complex | Complex samples, with real and imaginary parts of type `float`.  C++ type name: `std::complex<float>` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
 |----------
 
 
+## From the Signal Source to the processing Channels
+
+A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering. Regardless the selected signal source features, the Signal Conditioner interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate. This signal stream feeds a set of parallel Channels.
+
+![Signal Conditioner]( {{ base_path }}/images/SignalConditioner2.png)
+
+This is an example of _Signal Conditioner_ configuration, in which the _Signal Source_ is delivering samples of type `ishort`. We convert them to `gr_complex` with the _Data Type Adapter_, and then all the downstream processing (filtering and resampling) is also performed on `gr_complex` data. Hence, in this example the data stream delivered to _Channels_ is of type `gr_complex`:
 
 
+```ini
+; ...
+
+;######### SIGNAL_CONDITIONER CONFIG ############
+; It holds blocks to change data type, filter and resample input data.
+; Can be by-passed by setting its implementation to Pass_Through
+SignalConditioner.implementation=Signal_Conditioner
+
+;######### DATA_TYPE_ADAPTER CONFIG ############
+; Changes the type of input data.
+; implementation: Pass_Through by-passes this block
+DataTypeAdapter.implementation=Ishort_To_Complex
+
+;######### INPUT_FILTER CONFIG ############
+; Filters the input data.
+; implementation: Pass_Through by-passes this block
+InputFilter.implementation=Fir_Filter
+InputFilter.input_item_type=gr_complex
+InputFilter.output_item_type=gr_complex
+; ... other parameters
+
+;######### RESAMPLER CONFIG ############
+; Resamples the input data.
+; implementation: Pass_Through by-passes this block
+Resampler.implementation=Direct_Resampler
+Resampler.item_type=gr_complex
+Resampler.sample_freq_in=8000000
+Resampler.sample_freq_out=4000000
+
+; ...
+```
+
+The data type expected by _Channels_ actually depends on the specific implementations chosen for _Acquisition_ and _Tracking_ blocks. Currently, all the available implementations admit `gr_complex` at its input, and some of them also `cshort`. But maybe in the future there will be other implementations working with `cbyte`, so there is a need for flexibility when bringing the data stream from _Signal Source_ to the _Channels_. The following guidelines can help you to choose the right path for your setup:
+
+* The less processing, the faster. If your _Signal Source_ already delivers samples in a format that _Channels_ admits, setting ```SignalConditioner.implementation=Pass_Through``` (that is, a direct wire between the _Signal Source_ and _Channels_) is probably the best choice. Unnecessary filtering or data format conversion will always consume processing cycles, and given that those operations are performed at the sample rate provided by the signal source, this is specially critical if your are working with a real-time configuration. If you are reading samples from a file, there is no more constraint here that the required processing time.
+* In general, the smaller the data type, the faster. Intuitively, the less bits the processor needs to operate with, the faster it can perform the given instruction. That is, multiplying a pair of 8-bit integers should be faster than multipling a pair of 32-bit floating point values. However, in practice this not always holds. Processor manufacturers have spent a lot of effort in optimizing floating-point operations and, when combined with the inherent saturation problem in integer arithmetics (which proper management use to consume a non-negligible amount of cycles), it turns out that sometimes a floating point operation can be done as fast as  its 8 or 16 bit integer counterpart, or even faster. We have found widely different results when using different computing platforms, so specific testing in _your_ machine is always recommended.
+* If your _Signal Source_ is delivering a format which is not defined in the Table above (for instance, a specific mapping of signed samples of 2-bit length, which is usual in GNSS-specific front-ends, or any other combination), you need an specific _Data Type Adapter_ for such format.  
+* * If your _Signal Source_ is delivering signal at some Intermediate Frequency instead of baseband, use the `Freq_Xlating_Fir_Filter` implementation for _Filter_ and bring it down to a baseband signal (_i.e._ complex format).
+
+
+The following Table shows some of the possible configurations when bringing samples from your  _Signal Source_ to the processing _Channels_:
+
+
+![Signal Conditioner options]( {{ base_path }}/images/signal-conditioner-options.png)
+
+
+## What happens after Channels?
+
+Your duty as user when configuring GNSS-SDR, in the matters related to data types, ends when delivering samples to _Channels_. After that, all the information is handled by an object of an internal class ([check out its API](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/system_parameters/gnss_synchro.h){:target="_blank"} if you are curious) and the end of the whole processing is then delivered in standard formats such as [RINEX](https://en.wikipedia.org/wiki/RINEX){:target="_blank"}, [RTCM 104](https://en.wikipedia.org/wiki/RTCM){:target="_blank"} or [KML](https://en.wikipedia.org/wiki/Keyhole_Markup_Language){:target="_blank"}, among others.
