@@ -121,7 +121,8 @@ typedef unsigned long ulong;
 unsigned long l1;
 ulong l2;
 ```
-
+**Idea to take home:** If your GNSS front-end is delivering samples of 2-bit length, a computer does not know how to handle them. A data type for that length is not defined, so there are no operations defined upon it. Even if you define an specific data type and its related operations, processors and compilers will likely not be optimized for such non-standard type. You need to bring whatever format your _Signal Source_ is delivering to a format that is understandable by the processing environment (processor, operating system, compiler, etc.) in charge of executing GNSS-SDR. Luckyly, it is easy to define new formats convertors, and they need to be placed at the first processing block that receives the incoming sample stream: the _Data Type_Adapter_.
+{: .notice--info}
 
 ## Data types in GNSS-SDR
 
@@ -203,7 +204,7 @@ bits, common formats delivered by GNSS radio frequency front-ends. Next Table sh
 
 ### From the Signal Source to the processing Channels
 
-A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering. Regardless the selected signal source features, the Signal Conditioner interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate. This signal stream feeds a set of parallel Channels.
+A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering. Regardless the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate. This signal stream feeds a set of parallel _Channels_.
 
 ![Signal Conditioner]( {{ base_path }}/images/SignalConditioner2.png)
 

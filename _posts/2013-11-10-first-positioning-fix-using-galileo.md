@@ -85,3 +85,8 @@ The minimal available Galileo constellation of four satellites provided a Diluti
 
 
 If you are interested in replicating the experiments and playing with the software receiver, we suggest the use of a tool such as [GPredict](http://gpredict.oz9aec.net/){:target="_blank"} for predicting the time window in which the four satellites will be visible from your location. Happy satellite hunting!
+
+**Update:** This position fix was acknowledged by the European Space Agency as one of the first 50 users of the Galileo system:
+
+![ESA Certificate]({{ site.url }}{{ site.baseurl }}/images/ESA-ack.jpg)
+{: style="text-align: center;"}
