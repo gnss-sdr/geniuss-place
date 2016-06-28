@@ -3,9 +3,10 @@ title: "First positioning fix using Galileo"
 excerpt: "Report of the first positioning fix exclusively using Galileo satellites."
 author_profile: false
 header:
-  teaser: ScrSav001.jpg
+  teaser: ESA-ack.jpg
 tags:
   - news
+  - Galileo
 ---
 
 {% include base_path %}
@@ -86,7 +87,13 @@ The minimal available Galileo constellation of four satellites provided a Diluti
 
 If you are interested in replicating the experiments and playing with the software receiver, we suggest the use of a tool such as [GPredict](http://gpredict.oz9aec.net/){:target="_blank"} for predicting the time window in which the four satellites will be visible from your location. Happy satellite hunting!
 
+
+---------
+
+
+
 **Update:** This position fix was acknowledged by the [European Space Agency](http://www.esa.int/){:target="_blank"} as one of the first 50 users of the Galileo system:
 
 ![ESA Certificate]({{ site.url }}{{ site.baseurl }}/images/ESA-ack.jpg){: width="500px"}
 {: style="text-align: center;"}
+{: .notice--primary}
