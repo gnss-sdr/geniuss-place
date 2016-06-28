@@ -201,7 +201,7 @@ bits, common formats delivered by GNSS radio frequency front-ends. Next Table sh
 |----------
 
 
-## From the Signal Source to the processing Channels
+### From the Signal Source to the processing Channels
 
 A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering. Regardless the selected signal source features, the Signal Conditioner interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate. This signal stream feeds a set of parallel Channels.
 
@@ -256,6 +256,6 @@ The following Table shows some of the possible configurations when bringing samp
 ![Signal Conditioner options]( {{ base_path }}/images/signal-conditioner-options.png)
 
 
-## What happens after Channels?
+### What happens after Channels?
 
-Your duty as user when configuring GNSS-SDR, in the matters related to data types, ends when delivering samples to _Channels_. After that, all the information is handled by an object of an internal class ([check out its API](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/system_parameters/gnss_synchro.h){:target="_blank"} if you are curious) and the end of the whole processing is then delivered in standard formats such as [RINEX](https://en.wikipedia.org/wiki/RINEX){:target="_blank"}, [RTCM 104](https://en.wikipedia.org/wiki/RTCM){:target="_blank"} or [KML](https://en.wikipedia.org/wiki/Keyhole_Markup_Language){:target="_blank"}, among others.
+Your duty as user when configuring GNSS-SDR, in the matters related to data types, ends when delivering samples to _Channels_. After that, all the information is handled by an object of an internal class ([check out its API](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/system_parameters/gnss_synchro.h){:target="_blank"} if you are curious) and the results of the whole processing are then delivered in standard formats such as [RINEX](https://en.wikipedia.org/wiki/RINEX){:target="_blank"}, [RTCM 104](https://en.wikipedia.org/wiki/RTCM){:target="_blank"} or [KML](https://en.wikipedia.org/wiki/Keyhole_Markup_Language){:target="_blank"}, among others.
