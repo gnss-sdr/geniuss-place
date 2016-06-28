@@ -7,17 +7,13 @@ header:
   teaser: signal-conditioner-options.png
 tags:
   - tutorial
-  - Git
 sidebar:
   nav: "docs"
 ---
 {% include base_path %}
 {% include toc %}
 
-
-
 ## Data ingestion in GNSS-SDR
-
 
 The input of a software receiver are the raw bits that come out from the
 front-end’s analog-to-digital converter (ADC), as shown below. Those bits can be read from a file stored in the hard
@@ -40,8 +36,8 @@ processing block, called *Signal Conditioner*, which is in charge of accommodate
 in a format tractable by a computer. The containers of data in a
 computer system are called **data types**.
 
-### Data type definition
 
+### Data type definition
 
 A *type* is a set of possible values which an object, reference,
 function or expression can possess, and it is defined as its
@@ -124,8 +120,8 @@ ulong l2;
 **Idea to take home:** If your GNSS front-end is delivering samples of 2-bit length, a computer does not know how to handle them. A data type for that length is not defined, so there are no operations defined upon it. Even if you define an specific data type and its related operations, processors and compilers will likely not be optimized for such non-standard type. You need to bring whatever format your _Signal Source_ is delivering to a format that is understandable by the processing environment (processor, operating system, compiler, etc.) in charge of executing GNSS-SDR. Luckyly, it is easy to define new formats convertors, and they need to be placed at the first processing block that receives the incoming sample stream: the _Data Type_Adapter_.
 {: .notice--info}
 
-## Data types in GNSS-SDR
 
+## Data types in GNSS-SDR
 
 In the C and C++ programming languages, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h){:target="_blank"} is the name of the
 header file that allows programmers to write more portable code by
@@ -188,17 +184,17 @@ are complex numbers with real and imaginary components of 8, 16 or 32
 bits, common formats delivered by GNSS radio frequency front-ends. Next Table shows the data type names that GNSS-SDR exposes through the configuration file.
 
 |----------
-|:-|:-|:-|
-| **Type name in conf file** | **Definition** | **Sample stream**
+| **Type name in GNSS-SDR conf files** | **Identifier in VOLK kernels** | **Definition** | **Sample stream**
+|:-:|:-:|:-|:-|
 |----------
-| byte | Signed integer, 8-bit two’s complement numberranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
-| short | Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
-| float | Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
-| ibyte | Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
-| ishort | Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
-| cbyte | Complex samples, with real and imaginary parts of type `byte`. C++ type name: `lv_8sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
-| cshort | Complex samples, with real and imaginary parts of type `short`. C++ type name: `lv_16sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
-| gr\_complex | Complex samples, with real and imaginary parts of type `float`.  C++ type name: `std::complex<float>` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+| byte | 8i | Signed integer, 8-bit two’s complement numberranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
+| short |  16i | Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
+| float | 32f | Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
+| ibyte |  8i | Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
+| ishort |  16i | Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
+| cbyte |  8ic | Complex samples, with real and imaginary parts of type `byte`. C++ type name: `lv_8sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+| cshort |  16ic | Complex samples, with real and imaginary parts of type `short`. C++ type name: `lv_16sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+| gr\_complex | 32fc | Complex samples, with real and imaginary parts of type `float`.  C++ type name: `std::complex<float>` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
 |----------
 
 
@@ -245,11 +241,12 @@ Resampler.sample_freq_out=4000000
 
 The data type expected by _Channels_ actually depends on the specific implementations chosen for _Acquisition_ and _Tracking_ blocks. Currently, all the available implementations admit `gr_complex` at its input, and some of them also `cshort`. But maybe in the future there will be other implementations working with `cbyte`, so there is a need for flexibility when bringing the data stream from _Signal Source_ to the _Channels_. The following guidelines can help you to choose the right path for your setup:
 
+
 * The less processing, the faster. If your _Signal Source_ already delivers samples in a format that _Channels_ admits, setting ```SignalConditioner.implementation=Pass_Through``` (that is, a direct wire between the _Signal Source_ and _Channels_) is probably the best choice. Unnecessary filtering or data format conversion will always consume processing cycles, and given that those operations are performed at the sample rate provided by the signal source, this is specially critical if your are working with a real-time configuration. If you are reading samples from a file, there is no more constraint here that the required processing time.
 * In general, the smaller the data type, the faster. Intuitively, the less bits the processor needs to operate with, the faster it can perform the given instruction. That is, multiplying a pair of 8-bit integers should be faster than multipling a pair of 32-bit floating point values. However, in practice this not always holds. Processor manufacturers have spent a lot of effort in optimizing floating-point operations and, when combined with the inherent saturation problem in integer arithmetics (which proper management use to consume a non-negligible amount of cycles), it turns out that sometimes a floating point operation can be done as fast as  its 8 or 16 bit integer counterpart, or even faster. We have found widely different results when using different computing platforms, so specific testing in _your_ machine is always recommended.
 * If your _Signal Source_ is delivering a format which is not defined in the Table above (for instance, a specific mapping of signed samples of 2-bit length, which is usual in GNSS-specific front-ends, or any other combination), you need an specific _Data Type Adapter_ for such format.  
 * If your _Signal Source_ is delivering signal at some Intermediate Frequency instead of baseband, use the `Freq_Xlating_Fir_Filter` implementation for _Filter_ and bring it down to a baseband signal (_i.e._, complex format).
-
+* In a processing flow graph, the data type used by a processing block to write at its output buffer(s) must be the same than the downstream processing blocks which are consuming data from its input buffer(s). Please check that the implementation of the immediately next processing nodes accepts that specific output data format.
 
 The following Table shows some of the possible configurations when bringing samples from your  _Signal Source_ to the processing _Channels_:
 
