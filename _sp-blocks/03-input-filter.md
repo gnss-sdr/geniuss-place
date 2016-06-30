@@ -106,7 +106,7 @@ The following figure shows the relationship between $$ f $$ = [`band1_begin` `ba
 `ampl2_begin` `ampl2_end`] vectors in defining a desired frequency
 response for the _Input Filter_:
 
-![Filter]({{ site.url }}{{ site.baseurl }}/images/fir-filter.jpg)
+![Filter]({{ site.url }}{{ site.baseurl }}/images/fir-filter.png)
 
 
 If you have access to MATLAB, you can plot easily the frequency response
