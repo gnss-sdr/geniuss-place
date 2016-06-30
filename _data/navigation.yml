@@ -127,6 +127,8 @@ sp-block:
         url: /docs/sp-blocks/acquisition/
       - title: "Tracking"
         url: /docs/sp-blocks/tracking/
+      - title: "Telemetry Decoder"
+        url: /docs/sp-blocks/telemetry-decoder/
       - title: "Observables"
         url: /docs/sp-blocks/observables/
       - title: "PVT"
