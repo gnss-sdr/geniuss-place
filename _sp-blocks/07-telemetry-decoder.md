@@ -2,6 +2,8 @@
 title: "Telemetry Decoder"
 permalink: /docs/sp-blocks/telemetry-decoder/
 excerpt: "Documentation for the Telemetry Decoder block"
+sidebar:
+  nav: "sp-block"
 modified: 2016-04-13T15:54:02-04:00
 ---
 
@@ -49,4 +51,3 @@ coding are applied to the Galileo message data stream:
 -   block interleaving on the resulting frames, with $$ 30 $$ columns (where
     data is written) and $$ 8 $$ rows (where data is read), providing
     robustness to the FEC decoding algorithm by avoiding error bursts.
-

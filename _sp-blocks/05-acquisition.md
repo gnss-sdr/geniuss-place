@@ -2,6 +2,8 @@
 title: "Acquisition"
 permalink: /docs/sp-blocks/acquisition/
 excerpt: "Documentation for the Acquisition block"
+sidebar:
+  nav: "sp-block"
 modified: 2016-04-13T15:54:02-04:00
 ---
 {% include toc %}
@@ -81,18 +83,18 @@ code.
  * **Require**: Input signal buffer $$ \mathbf{x}_{\text{IN}} $$ of $$ N $$ complex samples,
 provided by the Signal Conditioner; on-memory FFT of the local replica,
 $$ D[n]=FFT_{N}\left\{d[n]\right\} $$; acquisition threshold $$ \gamma $$; freq.
-span $$ [f_{min}\; f_{max}] $$; freq. step $$ f_{step} $$. 
+span $$ [f_{min}\; f_{max}] $$; freq. step $$ f_{step} $$.
  * **Ensure**: Decision positive or negative signal acquisition. In case of positive detection, it provides
 coarse estimations of code phase $$ \hat{\tau}_{acq} $$ and Doppler shift
-$$ \hat{f}_{d_{acq}} $$ to the Tracking block. 
+$$ \hat{f}_{d_{acq}} $$ to the Tracking block.
 
  1.	Compute input signal power estimation:
 	$$ \hat{P}_{in}=\frac{1}{N}\sum_{n=0}^{N-1}\left|x_{\text{IN}}[n]\right|^2 $$.
 
- 2.	**for** 
+ 2.	**for**
 
 	1.	Carrier wipe-off: $$ x[n]=x_{\text{IN}}[n] \cdot e^{-(j2\pi  \check{f}_d  n T_s)} $$, for $$ n=0,...,N-1 $$.
- 
+
    	2.	$$ X[n]=\text{FFT}_{N}\left\{ x[n]\right\} $$.
 
    	3.	$$ Y[n]=X[n] \cdot D[n] $$, for $$ n=0,...,N-1 $$.
@@ -107,10 +109,10 @@ $$ \hat{f}_{d_{acq}} $$ to the Tracking block.
  9.	Compute the GLRT function with normalized variance:
 	$$ \Gamma_{\text{GLRT}}=\frac{2\cdot N \cdot S_{max}}{\hat{P}_{in}} $$
 
- 10.	**if** 
+ 10.	**if**
 
  	11.	Declare positive acquisition and provide $$ \hat{f}_{d_{acq}}=f_i $$ and
-$$ \hat{\tau}_{acq}=\tau_j $$. 
+$$ \hat{\tau}_{acq}=\tau_j $$.
 
  12.	**else**
 
@@ -122,14 +124,14 @@ $$ \hat{\tau}_{acq}=\tau_j $$.
 ```ini
     ;######### ACQUISITION GLOBAL CONFIG ############
     Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
-    Acquisition_1C.dump=false 
-    Acquisition_1C.dump_filename=./acq_dump.dat 
+    Acquisition_1C.dump=false
+    Acquisition_1C.dump_filename=./acq_dump.dat
     Acquisition_1C.item_type=gr_complex
-    Acquisition_1C.if=0 
-    Acquisition_1C.sampled_ms=1 
-    Acquisition_1C.pfa=0.0001 
-    Acquisition_1C.doppler_max=10000 
-    Acquisition_1C.doppler_step=500 
+    Acquisition_1C.if=0
+    Acquisition_1C.sampled_ms=1
+    Acquisition_1C.pfa=0.0001
+    Acquisition_1C.doppler_max=10000
+    Acquisition_1C.doppler_step=500
 ```
 
 ### Implementation: `GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`
@@ -179,5 +181,3 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 ### Implementation: `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF`
 
 ## Assisted acquisition
-
-

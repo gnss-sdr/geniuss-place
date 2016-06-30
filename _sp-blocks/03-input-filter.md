@@ -3,6 +3,8 @@ title: "Input Filter"
 permalink: /docs/sp-blocks/input-filter/
 excerpt: "Documentation for the Input Filter block"
 modified: 2016-04-13T15:54:02-04:00
+sidebar:
+  nav: "sp-block"
 ---
 
 {% include toc %}
@@ -226,6 +228,3 @@ performing any filtering.
 ;######### INPUT_FILTER CONFIG ############
 InputFilter.implementation=Pass_Through
 ```
-
-
-

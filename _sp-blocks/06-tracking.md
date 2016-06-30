@@ -2,6 +2,8 @@
 title: "Tracking"
 permalink: /docs/sp-blocks/tracking/
 excerpt: "Documentation for the Tracking block"
+sidebar:
+  nav: "sp-block"
 modified: 2016-04-13T15:54:02-04:00
 ---
 {% include toc %}
@@ -129,7 +131,7 @@ $$ N_{k+1}=\text{round}(S)$ and $\psi_{k+1}=S-N_{k+1} $$, where
 $S = \frac{T_{int}f_{\text{IN} } }{\left( 1 + \frac{\hat{f}_{d_{k} } }{f^{\text{\textit{(Gal E1)} } }_c} \right)} +\psi_{k} + h_{DLL}(\hat{\Delta \tau}_k)f_{\text{IN} }  $$.
 
 
-Code lock indicator: 
+Code lock indicator:
 
 $$ \hat{ \text{CN0} } = 10 \cdot \log_{10} ( \hat{\rho}) + 10 \cdot \log_{10}(\frac{ f_{ \text{IN} } }{2} )-10 \cdot \log_{10} (L_{ \text{PRN} }) $$,
 
@@ -152,4 +154,3 @@ $$ \text{P}_k $$, accumulated carrier phase error $$ \hat{\phi}_k $$, code phase
 $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, $$ \hat{\text{CN0}} $$.
 
 ## Galileo E5a signal tracking
-

@@ -111,3 +111,23 @@ about:
         url: /media/
       - title: "Publications"
         url: /publications/
+
+sp-block:
+  - title: Signal Processing blocks
+    children:
+      - title: "Signal Source"
+        url: /docs/sp-blocks/signal-source/
+      - title: "Data Type Adapter"
+        url: /docs/sp-blocks/data-type-adapter/
+      - title: "Input Filter"
+        url: /docs/sp-blocks/input-filter/
+      - title: "Resampler"
+        url: /docs/sp-blocks/resampler/
+      - title: "Acquisition"
+        url: /docs/sp-blocks/resampler/
+      - title: "Tracking"
+        url: /docs/sp-blocks/tracking/
+      - title: "Observables"
+        url: /docs/sp-blocks/observables/
+      - title: "PVT"
+        url: /docs/sp-blocks/pvt/

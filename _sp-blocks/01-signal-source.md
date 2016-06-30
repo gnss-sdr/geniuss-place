@@ -3,6 +3,8 @@ title: "Signal Source"
 permalink: /docs/sp-blocks/signal-source/
 excerpt: "Documentation for the Signal Source block"
 modified: 2016-04-13T15:54:02-04:00
+sidebar:
+  nav: "sp-block"
 ---
 
 {% include toc %}
@@ -109,7 +111,7 @@ appears on the configuration file can be overriden at the command line
 when invoking `gnss-sdr` with the flag `--signal_source`. Example:
 
 ```bash
-$ gnss-sdr --config_file=/path/to/my_receiver.conf \ 
+$ gnss-sdr --config_file=/path/to/my_receiver.conf \
   --signal_source=/path/to/my_capture2.dat
 ```
 
@@ -161,13 +163,13 @@ byte in each short is output first.
 The output data type is either `float` or `gr_complex` depending on
 whether or not `sample_type` is real. Example:
 
-```ini 
+```ini
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=Two_Bit_Packed_File_Signal_Source
 SignalSource.filename=/data/my_capture.datz
 SignalSource.item_type=short
-SignalSource.sampling_frequency=60000000 
-SignalSource.freq=1575468750 
+SignalSource.sampling_frequency=60000000
+SignalSource.freq=1575468750
 SignalSource.samples=6000000000  ;Notice that 0 indicates the entire file.
 SignalSource.repeat=false
 SignalSource.dump=false
@@ -226,7 +228,7 @@ SignalSource.freq=1575420000
 SignalSource.samples=0
 SignalSource.repeat=false
 SignalSource.dump=false
-SignalSource.dump_filename=../data/signal_source.dat 
+SignalSource.dump_filename=../data/signal_source.dat
 SignalSource.enable_throttle_control=false
 ```
 
@@ -235,7 +237,7 @@ appears on the configuration file can be overriden at the command line
 when invoking `gnss-sdr` with the flag `–nsr_signal_source`. Example:
 
 ```bash
-$ gnss-sdr --config_file=/path/to/my_receiver.conf \ 
+$ gnss-sdr --config_file=/path/to/my_receiver.conf \
   --nsr_signal_source=/path/to/my_capture2.dat
 ```
 
@@ -292,7 +294,7 @@ SignalSource.gain=40
 SignalSource.subdevice=A:0
 SignalSource.repeat=false
 SignalSource.dump=false
-SignalSource.dump_filename=../data/signal_source.dat 
+SignalSource.dump_filename=../data/signal_source.dat
 SignalSource.enable_throttle_control=false
 ```
 
@@ -381,7 +383,7 @@ front-ends for proper GNSS signal receiving.
 SignalSource.implementation=Osmosdr_Signal_Source
 SignalSource.item_type=gr_complex
 SignalSource.sampling_frequency=2000000
-SignalSource.freq=1575420000 
+SignalSource.freq=1575420000
 SignalSource.gain=40
 SignalSource.rf_gain=40
 SignalSource.if_gain=30
@@ -522,21 +524,21 @@ Channel15.signal=2S
 ...
 
 
-Acquisition_1C.implementation=... 
+Acquisition_1C.implementation=...
 ; or Acquisition_1C0, ..., Acquisition_1C7
-Acquisition_2S.implementation=... 
+Acquisition_2S.implementation=...
 ; or Acquisition_2S8, ..., Acquisition_2S15
 
 
-Tracking_1C.implementation=... 
+Tracking_1C.implementation=...
 ; or Tracking_1C0, ..., Tracking_1C7
-Tracking_2S.implementation=... 
+Tracking_2S.implementation=...
 ; or Tracking_2S8, ..., Tracking_2S15
 
 
-TelemetryDecoder_1C.implementation=... 
+TelemetryDecoder_1C.implementation=...
 ; or TelemetryDecoder_1C0, ..., TelemetryDecoder_1C7
-TelemetryDecoder_2S.implementation=... 
+TelemetryDecoder_2S.implementation=...
 ; or TelemetryDecoder_2S8, ..., TelemetryDecoder_2S15
 
 ...
@@ -599,4 +601,3 @@ Channel2.signal=1B
 Channel3.signal=1B
 ...
 ```
-
