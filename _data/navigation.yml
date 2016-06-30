@@ -64,7 +64,7 @@ docs:
       - title: "Control Plane"
         url: /docs/control-plane/
       - title: "Signal Processing Blocks"
-        url: /docs/upgrading/
+        url: /docs/sp-blocks/
       - title: "Tutorials"
         url: /docs/tutorials/
 

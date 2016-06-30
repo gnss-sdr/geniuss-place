@@ -165,6 +165,9 @@ collections:
   geniuss-place:
     output: true
     permalink: /:collection/:path/
+  sp-blocks:
+    output: true
+    permalink: /docs/:collection/:path/
 
 
 # Defaults
@@ -230,6 +233,16 @@ defaults:
       comments: false
       sidebar:
         nav: "geniuss-place"
+# _sp-blocks
+  - scope:
+      path: ""
+      type: sp-blocks
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: true
+      comments: true
 
 # Outputting
 permalink: /:categories/:title/
