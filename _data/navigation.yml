@@ -124,7 +124,7 @@ sp-block:
       - title: "Resampler"
         url: /docs/sp-blocks/resampler/
       - title: "Acquisition"
-        url: /docs/sp-blocks/resampler/
+        url: /docs/sp-blocks/acquisition/
       - title: "Tracking"
         url: /docs/sp-blocks/tracking/
       - title: "Observables"
