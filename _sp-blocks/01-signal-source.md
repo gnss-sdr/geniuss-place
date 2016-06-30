@@ -9,18 +9,42 @@ sidebar:
 
 {% include toc %}
 
+{% capture fig_img2 %}
+  ![Front-end]({{ site.url }}{{ site.baseurl }}/images/frontend.png)
+{% endcapture %}
+
+{% capture fig_img3 %}
+  ![Multichannel]({{ site.url }}{{ site.baseurl }}/images/multichannel.png)
+{% endcapture %}
+
+{% capture fig_img4 %}
+  ![Multiple sources]({{ site.url }}{{ site.baseurl }}/images/multisource.png)
+{% endcapture %}
+
+{% capture fig_img5 %}
+  ![Output2]({{ site.url }}{{ site.baseurl }}/images/Ch3_track.jpg)
+{% endcapture %}
+
+{% capture fig_img6 %}
+  ![GooGle Earth]({{ site.url }}{{ site.baseurl }}/images/RTLSDR-4CH-fs1.2-MSPS-no-LNA.jpg)
+{% endcapture %}
+
+
 The input of a software receiver are the raw bits that come out from the
 front-end’s analog-to-digital converter (ADC), as sketched in Figure
 [fig:RFfront-end]. Those bits can be read from a file stored in the hard
 disk or directly in real-time from a hardware device through USB or
 Ethernet buses.
 
-![Simplified lock diagram of a generic radio frequency front-end,
-consisting of an antenna, an amplification stage, downshifting from RF
-to and intermediate frequency (or baseband), filtering, sampling, and an
-interface to a host computer for real-time processing mode, or to an
-storage device for post-processing. ](./Pictures/Frontend.png "fig:")
-[fig:RFfront-end]
+<figure>
+  {{ fig_img2 | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Simplified lock diagram of a generic radio frequency front-end,
+  consisting of an antenna, an amplification stage, downshifting from RF
+  to and intermediate frequency (or baseband), filtering, sampling, and an
+  interface to a host computer for real-time processing mode, or to an
+  storage device for post-processing..</figcaption>
+</figure>
+
 
 The Signal Source module is in charge of implementing the hardware
 driver, that is, the portion of the code that communicates with the RF
@@ -57,7 +81,7 @@ Real signals sampled at an intermediate frequency can be downshifted to
 baseband (and thus expressed as complex samples) by the
 `Freq_Xlating_Fir_Filter` implementation of the Input Filter present at
 the Signal Conditioner block (see Section
-[Input Filter](/docs/sp-blocks/input-filter/) for further details.
+[Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/) for further details).
 
 ### Implementation: `File_Signal_Source`
 
@@ -91,7 +115,7 @@ corresponding to the frequency band defined in ... (see ...). Any known
 deviation from that value can be compensated by using the `IF` parameter
 of the `Freq_Xlating_Fir_Filter` implementation of the Input Filter
 present at the Signal Conditioner block (see Section
-[Input Filter](/docs/sp-blocks/input-filter/) for further details.
+[Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/){:target="_blank"} for further details).
 
 It follows  an example of a Signal Source block
 configured with the `File_Signal_Source` implementation:
@@ -448,8 +472,12 @@ also there is a need to set up different Signal Conditioners for each
 band, and configure the Channel implementations for the different
 signals present on each band.
 
-![Simplified block diagram of a dual-band receiver of GPS L1 C/A and GPS
-L2C (M) signals.](./Pictures/Multichannel.pdf "fig:") [fig:multichannel]
+<figure>
+  {{ fig_img3 | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Simplified block diagram of a dual-band receiver of GPS L1 C/A and GPS
+  L2C (M) signals.</figcaption>
+</figure>
+
 
 The number of radio-frequency chains is denoted by parameter
 `RF_channels`, which defaults to one if it is not present in the
@@ -561,9 +589,13 @@ Examples of such configuration could be:
 
 -   Different front-ends sharing the same antenna.
 
-![Simplified block diagram of a multi-source receiver of GPS L1 C/A and
-GPS L2C (M) signals.](./Pictures/Multisource.pdf "fig:")
-[fig:multisource]
+
+<figure>
+  {{ fig_img4 | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Simplified block diagram of a multi-source receiver of GPS L1 C/A and
+  GPS L2C (M) signals.</figcaption>
+</figure>
+
 
 ```ini
 Receiver.sources_count=2

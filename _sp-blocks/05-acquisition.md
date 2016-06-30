@@ -30,14 +30,17 @@ received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase
 of the received signal with respect to a local reference, $$ f_d $$ is the
 Doppler shift, $$ N $$ is the number of samples in a spreading code (4 ms
 for Galileo E1, 1 ms for GPS L1), and $$ d[n] $$ is a locally generated
-reference. The maximization in ([eq:ML]) requires a two-dimensional
+reference. The maximization in the equation above requires a two-dimensional
 search in a function which output results from a multiplication-and-sum
 of $$ N $$ complex samples, becoming the computational bottleneck of the
 whole process. A usual method to alleviate this issue is to resort to
 the FFT-based circular convolution, which exchanges the expensive
 multiplication-and-sum operation by a discrete Fourier transform, a
 vector product and an inverse transform, taking advantage of the
-efficient implementations available for such operations @Borre07.
+efficient implementations available for such operations[^Borre06].
+
+
+[^Borre06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkhäuser, November 2006.
 
 [fig:Rxd]
 
@@ -181,3 +184,9 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 ### Implementation: `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF`
 
 ## Assisted acquisition
+
+
+-------
+
+
+## References

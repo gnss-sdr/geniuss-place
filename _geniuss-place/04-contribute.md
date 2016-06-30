@@ -27,11 +27,11 @@ Found a typo in this website? Interested in giving your thoughts on existing pag
 
 This website itself lives in a [GitHub repository](https://github.com/carlesfernandez{{ site.baseurl }}/){:target="_blank"}.
 
- * Comment (through your Google, Facebook or Twitter account, or just open a profile at [Disqus](https://disqus.com/){:target="_blank"} and use it if you want to remain anonymous) in the boxes such as the one at the bottom of this page. Moderation will be applied in cases of flagrant off-topic or unappropriate style.
+ * Comment (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/){:target="_blank"}) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriate style.
 
  * Submit an [issue](https://github.com/gnss-sdr/gnss-sdr/issues){:target="_blank"}.
 
- * Fork this web, work on the changes in your own repository, and make a pull request.
+ * [Fork this web](https://github.com/carlesfernandez{{ site.baseurl }}/fork){:target="_blank"}, work on the changes in your own repository, and make a pull request.
 
  [<i class="fa fa-github fa-lg"></i> Fork this website from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--notice .btn--x-large}
  {: style="text-align: center;"}

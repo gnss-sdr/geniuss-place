@@ -50,13 +50,13 @@ start:
       - title: "My first position fix"
         url: /my-first-fix/
       - title: "Configurations"
-        url: /configurations/
+        url: /conf/
 
 docs:
   - title: Documentation
     children:
       - title: "Contents"
-        url: /docs/quick-start-guide/
+        url: /docs/
       - title: "Overview"
         url: /docs/overview/
       - title: "Fundamentals"

@@ -110,7 +110,7 @@ response for the _Input Filter_:
 
 
 If you have access to MATLAB, you can plot easily the frequency response
-of the filter:
+of the filter. Just copy these lines into the command window:
 
 ```matlab
 f = [0 0.45 0.55 1];
@@ -121,6 +121,8 @@ plot(f, a, w/pi, abs(h))
 legend('Ideal', 'Filter design')
 xlabel('Radian Frequency (\omega/\pi)'), ylabel('Magnitude')
 ```
+
+Example of GNSS-SDR configuration:
 
 ```ini
 ;######### INPUT_FILTER CONFIG ############
