@@ -92,9 +92,9 @@ Parameters:
 -   `filename`: Path to the file containing the raw digitized signal
     samples.
 
--   `samples`: Number of samples to be read. If set to $0$, the whole
+-   `samples`: Number of samples to be read. If set to $$ 0 $$ the whole
     file but the last two milliseconds are processed. It defaults to
-    $0$.
+    $$ 0 $$.
 
 -   `sampling_frequency`: sample rate, in samples per second.
 
@@ -158,11 +158,13 @@ bytes `item_type=byte` or shorts `item_type=short` so that there are 4
 two bit samples in each byte. The two bit values are assumed to have the
 following interpretation:
 
-<span>| c | c || c |</span> **b1** & **b0** & **Value**\
-0 & 0 & +1\
-0 & 1 & +3\
-1 & 0 & -3\
-1 & 1 & -1\
+|---
+| **b1** | **b0** | **Value** |
+|:-:|:-:|:-:|
+| 0 | 0 | +1 |
+| 0 | 1 | +3 |
+| 1 | 0 | -3 |
+| 1 | 1 | -1 |
 
 Within a byte the samples may be packed in big endian
 `big_endian_bytes=true` (if the most significant byte value is stored at
@@ -213,7 +215,7 @@ implementation (i.e, it is not among `byte`, `ibyte`, `short`, `ishort`,
 delivered at a given intermediate frequency, which is a common format
 found in RF front-ends:
 
-$[S_0], [S_1], [S_2], ...$ where $[S_i]$ are 2-bit real samples.
+$$ [S_0], [S_1], [S_2], ... $$ where $$ [S_i] $$ are 2-bit real samples.
 
 This Signal Source implementation is able to read such format and
 deliver at its output a sample stream composed of samples of type *byte*
@@ -239,8 +241,8 @@ Parameters:
 
 -   `enable_throttle_control` [`true`, `false`]:
 
-Listing [list:NSR] provides an example of a Signal Source block
-configured with the `Nsr_Signal_Source` implementation.
+It follows an example of a Signal Source block
+configured with the `Nsr_Signal_Source` implementation:
 
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
@@ -272,6 +274,10 @@ specified in `SignalSource.filename`.
 ## Radio Frequency front-ends
 
 ### Implementation: `UHD_Signal_Source`
+
+![Ettus Research](http://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}
+
+
 
 Parameters:
 
@@ -309,8 +315,7 @@ Example:
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=UHD_Signal_Source
-SignalSource.device_address=192.168.40.2
-SignalSource.filename=/datalogger/my_capture.dat
+SignalSource.device_address=192.168.40.2  ; <- PUT YOUR USRP IP ADDRESS HERE
 SignalSource.item_type=cshort
 SignalSource.sampling_frequency=4000000
 SignalSource.freq=1575420000
@@ -323,7 +328,7 @@ SignalSource.enable_throttle_control=false
 ```
 
 If `RF_channels` is set to more than one, then the number of the
-radio-frequency channel (starting with $0$) is appended to the name of
+radio-frequency channel (starting with $$ 0 $$) is appended to the name of
 parameters `samples`, `dump`, `dump_filename`, `freq`, `gain` and
 `IF_bandwidth_hz` to indicate to which RF chain they come from:
 
