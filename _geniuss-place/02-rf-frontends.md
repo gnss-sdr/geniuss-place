@@ -1,6 +1,6 @@
 ---
 title: "RF Front-ends"
-excerpt: "RF Front-ends for your software receiver."
+excerpt: "Build your own RF Front-ends for your software receiver."
 permalink: "/rf-frontends/"
 header:
   image: hw-header.jpg
