@@ -1,6 +1,6 @@
 ---
 title: "Enclosures"
-excerpt: "Enclosures for you gear."
+excerpt: "Designs of enclosures for you gear that you can print in 3D."
 permalink: /enclosures/
 comments: true
 header:
