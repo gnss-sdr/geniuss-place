@@ -32,7 +32,7 @@ This is the easiest and fastest way to get GNSS-SDR installed in your system. Ju
 GNSS-SDR package updates need to undergo an acceptance process before they are included in the different distributions, so it might not be the ultimate version of the source code. The same applies for the dependency libraries.
 {: .notice--danger}
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}//first-position-fix/).
+If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/).
 
 ## Mac OS X using Macports
 
@@ -63,7 +63,7 @@ $ sudo port install gnss-sdr-next
   {{ mac-os-text | markdownify }}
 </div>
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}//first-position-fix/).
+If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/).
 
 # Building from source
 
@@ -155,7 +155,7 @@ Once all the dependencies are installed in your system, you are ready to clone t
 
 The step `git checkout next` is optional, and sets the source tree pointing to the `next` branch, which is the most recent development snapshot. If this step is ommitted it takes the `master` branch by dafault, which contains the latest stable release, and maybe some bug fixes.
 
-If everything went fine, now you can jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}//first-position-fix/).
+If everything went fine, now you can jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/).
 
 ----
 
