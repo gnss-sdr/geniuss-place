@@ -57,15 +57,30 @@ In particular, you have the freedom to install and use GNSS-SDR right now in you
 
 Here you will find:
 
-
+{::comment}
 {% for post in site.quick-start %}
   {% if post.title == "Quick-Start Guide" %} {% else %}
-  {% include archive-single.html %}
+  {% include archive-single.html %}{:a:link style="color: #FFF"}
   {% endif %}
-{% endfor %}    
+{% endfor %}
+{:/comment}
+
+
+
+
+<div class="grid__wrapper">
+  {% for post in site.quick-start %}
+    {% if post.title == "Quick-Start Guide" %} {% else %}
+      {% include archive-single.html type="grid" %}
+    {% endif %}
+  {% endfor %}
+</div>
+{: link="color: #FFF"}
+
 
 ---
 
-
+{::comment}
 ![Introducing GeNiuSS]({{ site.url }}{{ site.baseurl }}/images/geniuss.jpg){:height="250px" width="250x"}{: style="text-align: center;"}
 This is GeNiuSS. You will see him here and there.
+{:/comment}
