@@ -60,7 +60,7 @@ Here you will find:
 {::comment}
 {% for post in site.quick-start %}
   {% if post.title == "Quick-Start Guide" %} {% else %}
-  {% include archive-single.html %}{:a:link style="color: #FFF"}
+  {% include archive-single.html %}
   {% endif %}
 {% endfor %}
 {:/comment}
@@ -75,7 +75,7 @@ Here you will find:
     {% endif %}
   {% endfor %}
 </div>
-{: link="color: #FFF"}
+
 
 
 ---
