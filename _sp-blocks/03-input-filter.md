@@ -164,7 +164,7 @@ performs frequency translation, filtering and decimation in one step.
 The basic principle of this block is to perform:
 
 Input signal $$ \rightarrow $$ BPF $$ \rightarrow $$ decim $$ \rightarrow $$ (mult
-by $$ 2 \pi \frac{f_{IF}}{f_s} $$\*decim) $$ \rightarrow $$ Output signal.
+by $$ 2 \pi \frac{f_{IF}}{f_s} $$ · decim) $$ \rightarrow $$ Output signal.
 
 The BPF is the baseband filter (LPF) moved up to the center frequency
 $$ 2 \pi \frac{f_{IF}}{f_s} $$. The block then applies a derotator with
