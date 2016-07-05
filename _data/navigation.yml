@@ -85,14 +85,14 @@ geniuss-place:
     children:
       - title: "Design Forces"
         url: /design-forces/
+      - title: "Contribute"
+        url: /contribute/
+      - title: "Coding Style"
+        url: /coding-style/  
       - title: "Open Design"
         url: /rf-frontends/
       - title: "Makers"
         url: /enclosures/
-      - title: "Contribute"
-        url: /contribute/
-      - title: "Coding Style"
-        url: /coding-style/
 
 about:
   - title: About Us
