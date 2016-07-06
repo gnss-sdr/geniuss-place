@@ -1,8 +1,8 @@
 ---
-title: "GNSS-SDR v0.0.8 release"
+title: "GNSS-SDR v0.0.8 released"
 excerpt: "GNSS-SDR v0.0.8 has been released."
 header:
-  teaser: https://wiki.videolan.org/images/Debian-logo.jpg
+  teaser: logo-gnss-sdr.png
 tags:
   - news
 author_profile: false
