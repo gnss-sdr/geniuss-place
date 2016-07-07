@@ -14,47 +14,37 @@ role_main:
 ---
 {% include base_path %}
 
-This is the result of the effort of a lot of people.
 
-----
+## Main Developer Team
 
+<html> <body > <table>
+ <tr>
+     <td id="authortable">  
+        {% assign pauthor = "Carles Fernandez" %}
+        {% include author-profile.html %}
+     </td>
+     <td id="authortable">
+        {% assign pauthor = "Javier Arribas" %}
+        {% include author-profile.html %}
+     </td>
+     <td id="authortable">
+        {% assign pauthor = "Luis Esteve" %}
+        {% include author-profile.html %}
+    </td>
+    <td id="authortable">
+    {% assign pauthor = "Pau Closas" %}
+    {% include author-profile.html %}
+   </td>
+  </tr>
+</table> </body> </html>
 
-# Main Developer Team
+## Artwork
 
-{: style="text-align: center"}
-{% assign pauthor = "Carles Fernandez" %}
-{% include author-profile.html %}
-
-------
-
-{: style="text-align: center"}
-{% assign pauthor = "Javier Arribas" %}
-{% include author-profile.html %}
-
-------
-
-{: style="text-align: center"}
-{% assign pauthor = "Luis Esteve" %}
-{% include author-profile.html %}
-
-------
-
-{: style="text-align: center"}
-{% assign pauthor = "Pau Closas" %}
-{% include author-profile.html %}
-
-
-------
-
-
-
-# Artwork
-
-
-{: style="text-align: center"}
-{% assign pauthor = "Ignacio Paniego" %}
-{% include author-profile.html %}
-
-|
-
-
+<html> <body > <table>
+  <tr>
+     <td id="authortable">  
+        {% assign pauthor = "Ignacio Paniego" %}
+        {% include author-profile.html %}
+     </td>
+  </tr>
+</table> </body> </html>

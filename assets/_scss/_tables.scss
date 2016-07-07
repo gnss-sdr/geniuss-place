@@ -36,3 +36,13 @@ td {
 tr, td, th {
   vertical-align: middle;
 }
+
+#authortable {
+  padding: 0.5em;
+  font-size: $type-size-4;
+  border: 0px hidden $body-color;
+  border-bottom: 0px hidden $body-color;
+  border-right: 0px hidden $body-color;
+  text-align: center;
+  vertical-align: top;
+}
