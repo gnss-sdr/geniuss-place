@@ -14,7 +14,7 @@ sidebar:
 {% include toc %}
 
 
-A _generic_ GNSS complex baseband signal transmitted by a given GNSS space vehicle $$ i $$ can be described as[^Fernandez11]
+A _generic_ GNSS complex baseband signal transmitted by a given GNSS space vehicle $$ i $$ can be described as
 
 $$
 s_T(t)= \sqrt{P_{T}} \sum_{u=-\infty}^{\infty}d(u)p(t-uT_{b_I}) ~,
@@ -33,16 +33,16 @@ q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)g_{T}(t-lT_{c}) ~,
 $$
 
 
-being $$ P_{T} $$ the transmitting power, $$ d(u) \in \{-1,1\} $$ the navigation message data
+being $$ P_{T} $$ the transmitting power, $$ d(u) $$ the navigation message data
 symbols, $$ T_{b} $$ the bit period,  $$ N_{c} $$ the number of
 repetitions of a full codeword that spans a bit period,
 $$ T_{PRN}=\frac{T_{b}}{N_{c}} $$ the codeword period,
-$$ c_{i}(l) \in \{-1,1\} $$ a chip of a spreading codeword $$ i $$ of length
+$$ c_{i}(l) $$ a chip of a spreading codeword $$ i $$ of length
 $$ L_{c} $$ chips, $$ g_{T}(t) $$ the transmitting chip pulse shape,
 which is considered energy-normalized for notation clarity, and
 $$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ is the chip period.
 
-Particularizations of such signal structure for the different existing systems are described below.
+Particularizations of such signal structure for the different existing systems[^Fernandez11] are described below.
 
 [^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5942139){:target="_blank"}, Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](http://dx.doi.org/10.1109/JPROC.2011.2158032).
 
