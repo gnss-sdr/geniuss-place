@@ -14,7 +14,7 @@ sidebar:
 {% include toc %}
 
 
-A _generic_ GNSS complex baseband signal can be described as
+A _generic_ GNSS complex baseband signal transmitted by a given GNSS space vehicle $$ i $$ can be described as[^Fernandez11]
 
 $$
 s_T(t)= \sqrt{P_{T}} \sum_{u=-\infty}^{\infty}d(u)p(t-uT_{b_I}) ~,
@@ -44,6 +44,7 @@ $$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ is the chip period.
 
 Particularizations of such signal structure for the different existing systems are described below.
 
+[^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5942139){:target="_blank"}, Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](http://dx.doi.org/10.1109/JPROC.2011.2158032).
 
 ## Global Positioning System (GPS)
 
