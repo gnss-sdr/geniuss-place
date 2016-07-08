@@ -14,7 +14,7 @@ sidebar:
 {% include toc %}
 
 
-Let us assume a generic GNSS complex baseband signal of the form
+A _generic_ GNSS complex baseband signal can be described as
 
 $$
 s_T(t)= \sqrt{P_{T}} \sum_{u=-\infty}^{\infty}d(u)p(t-uT_{b_I}) ~,
@@ -37,20 +37,12 @@ being $$ P_{T} $$ the transmitting power, $$ d(u) \in \{-1,1\} $$ the navigation
 symbols, $$ T_{b} $$ the bit period,  $$ N_{c} $$ the number of
 repetitions of a full codeword that spans a bit period,
 $$ T_{PRN}=\frac{T_{b}}{N_{c}} $$ the codeword period,
-$$ c_{i}(l) \in \{-1,1\} $$ a chip of a spreading codeword $$i$$ of length
-$$ L_{c}$$ chips, $$ g_{T}(t) $$ the transmitting chip pulse shape,
+$$ c_{i}(l) \in \{-1,1\} $$ a chip of a spreading codeword $$ i $$ of length
+$$ L_{c} $$ chips, $$ g_{T}(t) $$ the transmitting chip pulse shape,
 which is considered energy-normalized for notation clarity, and
 $$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ is the chip period.
 
-
-
-The analytic representation of a signal received from a generic GNSS satellite $$ i $$ can be generically expressed as
-
-$$
-r_{i}(t)=\alpha_i(t) s_{i,T} \left(t-\tau_i(t)\right)e^{-j2 \pi f_{d_i}(t) }e^{j 2 \pi f_c t}+w(t)~,
-$$
-
-where $$ \alpha_i(t) $$ is the amplitude, $$ s_{i,T}(t) $$ is the complex baseband transmitted signal, $$ \tau_i(t) $$ is the time--varying delay, $$ f_{d_i}(t)=f_c \tau_i(t) $$ is the Doppler shift, $$ f_c $$ is the carrier frequency, and $$ w(t) $$ is a noise term.
+Particularizations of such signal structure for the different existing systems are described below.
 
 
 ## Global Positioning System (GPS)
