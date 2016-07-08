@@ -159,9 +159,6 @@ collections:
   software:
     output: true
     permalink: /:collection/:path/
-  signals:
-    output: true
-    permalink: /:collection/:path/
   geniuss-place:
     output: true
     permalink: /:collection/:path/
@@ -211,16 +208,6 @@ defaults:
       comments: false
       sidebar:
         nav: "docs"
-  # _signals
-  - scope:
-      path: ""
-      type: signals
-    values:
-      layout: single
-      read_time: false
-      author_profile: false
-      share: true
-      comments: false
   # _geniuss-place
   - scope:
       path: ""
