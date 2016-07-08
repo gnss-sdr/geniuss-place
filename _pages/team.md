@@ -8,9 +8,6 @@ sidebar:
 author:
 - usman
 - someone_else
-role_main:
-  - "Carles Fernandez"
-  - "Javier Arribas"
 ---
 {% include base_path %}
 
