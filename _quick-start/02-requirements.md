@@ -40,9 +40,15 @@ GNSS-SDR will process incoming raw samples as fast as the computing platform exe
 
 ### Operating Systems
 
-* GNU/Linux: GNSS-SDR and all its dependencies can be easily installed in most popular distributions, and it is even included as a software package starting in [Debian 9 (stretch)](https://packages.debian.org/stretch/gnss-sdr){:target="_blank"} and [Ubuntu 16.04 LTS (Xenial)](http://packages.ubuntu.com/search?keywords=gnss-sdr){:target="_blank"}.
-* Mac OS X: GNSS-SDR and all its dependencies can be easily installed using 10.9 (Mavericks) and above. You will need [Xcode](https://developer.apple.com/xcode/){:target="_blank"} and software package manager such as [Macports](https://www.macports.org/){:target="_blank"} (there is a [gnss-sdr port](https://www.macports.org/ports.php?by=name&substr=gnss-sdr){:target="_blank"} that will do all the work for you) or [Homebrew](http://brew.sh/){:target="_blank"}.
-* Microsoft Windows: At this time of writing, GNSS-SDR cannot be built natively on Microsoft Windows. As far as authors' knowledge, nothing prevents it but their own ignorance on Microsoft's building tools. Users have reported successful buildings of GNU Radio on Windows systems, so there should be not serious caveats building GNSS-SDR as well. However, GNSS-SDR is not blocked for Windows users. There are several virtualization tools that work well. Here we suggest Oracle's [VirtualBox](http://www.virtualbox.org/){:target="_blank"}, a professional solution that can be installed on Windows XP and later and it is freely available as Open Source Software under the terms of the GNU General Public License (GPL) version 2. Users can install VirtualBox on their Windows machine, and then install the ultimate Linux version as a _guest_ operating system.
+* ![GNU/Linux Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/2000px-Tux.svg.png){:height="100px" width="100x"}{: .align-right} **GNU/Linux**: GNSS-SDR and all its dependencies can be easily installed in most popular distributions, and it is even included as a software package starting in [Debian 9 (stretch)](https://packages.debian.org/stretch/gnss-sdr){:target="_blank"} and [Ubuntu 16.04 LTS (Xenial)](http://packages.ubuntu.com/search?keywords=gnss-sdr){:target="_blank"}. Older releases and other distributions might also work well.
+* ![Mac OS  Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/OS_X_El_Capitan_logo.svg/1024px-OS_X_El_Capitan_logo.svg.png){:height="100px" width="100x"}{: .align-right} **Mac OS X**: GNSS-SDR and all its dependencies can be easily installed using 10.9 (Mavericks) and above. You will need [Xcode](https://developer.apple.com/xcode/){:target="_blank"} and software package manager such as [Macports](https://www.macports.org/){:target="_blank"} (there is a [gnss-sdr port](https://www.macports.org/ports.php?by=name&substr=gnss-sdr){:target="_blank"} that will do all the work for you) or [Homebrew](http://brew.sh/){:target="_blank"}.
+* ![Windows Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2000px-Windows_logo_-_2012.svg.png){:height="100px" width="100x"}{: .align-right} **Microsoft Windows**: At this time of writing, GNSS-SDR cannot be built natively on Microsoft Windows. As far as authors' knowledge, nothing prevents it but their own ignorance on Microsoft's building tools. Users have reported successful buildings of GNU Radio on Windows systems, so there should be not serious caveats building GNSS-SDR as well. However, GNSS-SDR is not blocked for Windows users. There are several virtualization tools that work well. Here we suggest Oracle's [VirtualBox](http://www.virtualbox.org/){:target="_blank"}, a professional solution that can be installed on Windows XP and later and it is freely available as Open Source Software under the terms of the GNU General Public License (GPL) version 2. Users can install VirtualBox on their Windows machine, and then install the ultimate Linux version as a _guest_ operating system.
+
+
+
+
+
+
 
 **The Operating System should not be an issue**: GNSS-SDR can be executed in GNU/Linux distributions as old as Ubuntu  14.04 LTS and Mac OS X 10.9. You are probably already working with newer versions, or you can install a virtual machine running the ultimate Ubuntu or Debian releases.
 {: .notice--success}
@@ -59,7 +65,7 @@ GNSS-SDR builds upon a number of free and open source software libraries.
 
 In order to install those dependencies in your system, check out our [building guide]({{ site.url }}{{ site.baseurl }}/build-and-install/){:target="_blank"} and find more details at GNSS-SDR's [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md){:target="_blank"} file.
 
-**Automated tools**: Building and installing GNSS-SDR and its dependencies is a quite complex process, but there are automated tools that can do most of the work for you. Check out our [building guide]({{ site.url }}{{ site.baseurl }}/build-and-install/){:target="_blank"}.
+**Availability of automated tools**: Building and installing GNSS-SDR and its dependencies is a quite complex process, but there are automated tools that can do most of the work for you. Check out our [building guide]({{ site.url }}{{ site.baseurl }}/build-and-install/){:target="_blank"}.
 {: .notice--success}
 
 
