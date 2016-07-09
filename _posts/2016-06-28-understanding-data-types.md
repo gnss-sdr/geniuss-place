@@ -20,7 +20,7 @@ front-end’s analog-to-digital converter (ADC), as shown below. Those bits can 
 disk or directly in real-time from a hardware device through USB or
 Ethernet buses.
 
-![Block diagram]( {{ base_path }}/images/Frontend.png)
+![Block diagram of a RF front-end]( {{ base_path }}/images/frontend.png)
 
 This is a simplified block diagram of a generic radio frequency front-end,
 consisting of an antenna, an amplification stage, downshifting from RF
