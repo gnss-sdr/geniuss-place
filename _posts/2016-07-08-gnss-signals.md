@@ -432,14 +432,23 @@ $$ sc_s(t) = \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t - \fra
 
 $$ sc_p(t) = -\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t - \frac{\pi}{4}\right) \right)+ \frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_s t \right) \Big)-\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t + \frac{\pi}{4}\right) \right)~, $$
 
-with a subcarrier frequency of $$ f_s=15.345 $$ MHz. Plotting the power
-spectrum of the carriers in ([GalE5]) (see Figure [fig:subcarriers]), we
+with a subcarrier frequency of $$ f_s=15.345 $$ MHz.
+
+Plotting the power spectrum of the carriers for $$ s^{\text{(Gal E5)}}_{T}(t) $$ (see Figure below), we
 can see that the QPSK signal $$ e_{E5a}(t) $$ defined above is shifted
 to
 $$ f_{\text{Gal E5a}}\doteq f_{\text{Gal E5}}-f_s=1176.450 $$
 MHz, while $$ e_{E5b}(t) $$ is shifted to
 $$ f_{Gal E5b}\doteq f_{\text{Gal E5}}+f_s=1207.140 $$
-MHz. Thus, we can bandpass filter around $$ f_{Gal E5a} $$
+MHz.
+
+![Single and product side-band spectra in E5.]({{ site.url }}{{ site.baseurl }}/images/subcarriers-e5.png)
+_Power spectrum of single and product side-band subcarriers signals for $$ s^{\text{(Gal E5)}}_{T}(t) $$, normalized to the power of $$ ssc^{*}_s(t) $$ at $$ f_{\text{Gal E5a}} $$. The modified AltBOC modulation can be well approximated by two QPSK signals $$ 2 f_s $$ apart, with negligible contribution of the crossed terms around its center frequency._[^Fernandez11]
+{: style="text-align: center;"}
+
+
+
+Thus, we can bandpass filter around $$ f_{Gal E5a} $$
 and get a good approximation of a QPSK signal, with very low energy
 components of $$ e_{E5b}(t) $$, $$ \bar{e}_{E5a}(t) $$, and
 $$ \bar{e}_{E5b}(t) $$:
