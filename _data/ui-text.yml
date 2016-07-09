@@ -30,7 +30,11 @@ en: &DEFAULT_EN
   undefined_wpm         : "Undefined parameter words_per_minute at _config.yml"
 en-US:
   <<: *DEFAULT_EN
-en-UK:
+en-CA:
+  <<: *DEFAULT_EN
+en-GB:
+  <<: *DEFAULT_EN
+en-AU:
   <<: *DEFAULT_EN
 
 # Spanish
@@ -101,5 +105,38 @@ fr-BE:
 fr-CH:
   <<: *DEFAULT_FR
 
-# Another locale
+
+# Catalan
 # --------------
+ca: &DEFAULT_CA
+  page                  : "Pàgina"
+  pagination_previous   : "Anterior"
+  pagination_next       : "Següent"
+  breadcrumb_home_label : "Inici"
+  breadcrumb_separator  : "/"
+  toc_label             : "Continguts"
+  ext_link_label        : "Enllaç"
+  less_than             : "menys de"
+  minute_read           : "minut de lectura"
+  minutes_read          : "minuts de lectura"
+  share_on_label        : "Compartir"
+  meta_label            :
+  tags_label            : "Etiquetes:"
+  categories_label      : "Categories:"
+  date_label            : "Actualitzat:"
+  comments_label        : "Comentar"
+  more_label            : "Veure'n més"
+  related_label         : "Podries veure també"
+  follow_label          : "Seguir:"
+  feed_label            : "Feed"
+  powered_by            : "Fet amb"
+  website_label         : "Lloc web"
+  email_label           : "Email"
+  recent_posts          : "Entrades recents"
+  undefined_wpm         : "Paràmetre words_per_minute (Palaules per minut) no definit a _config.yml"
+ca-ES:
+  <<: *DEFAULT_CA
+ca-FR:
+  <<: *DEFAULT_CA
+ca-IT:
+  <<: *DEFAULT_CA
