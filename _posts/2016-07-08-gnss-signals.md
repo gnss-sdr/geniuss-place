@@ -72,9 +72,9 @@ s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~,$$
 
 with
 
-$$\begin{aligned}
-e_{L1I}(t)=&  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big]   p(t -  lT_{c,\text{P(Y)}})~,\label{eq:L1CAI}\\
-e_{L1Q}(t) =& \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}  \Big]  \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~,\label{eq:L1CA}\end{aligned}$$
+$$
+e_{L1I}(t)=  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big]   p(t -  lT_{c,\text{P(Y)}})~,\\
+e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}  \Big]  \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~ $$
 
 where $$ \oplus $$ is the exclusive–or operation (modulo–2 addition),
 $$ |l|_{L} $$ means $$ l $$ modulo $$ L $$, $$ [l]_{L} $$ means the integer part of
@@ -123,11 +123,15 @@ precision code in the In–phase component, just as in $$ e_{L1I}(t)= $$  but
 with an optional presence of the navigation message $$ D_{\text{NAV}} $$.
 For the Quadrature–phase component, three options are defined:
 
-$$\begin{aligned}
-     \nonumber             e_{L2CQ}(t) =&        \sum_{l=-\infty}^{\infty}     D_{\text{CNAV}}  \Big[ [l]_{10230}  \Big]    \oplus      \left(  C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big]  p_{\text{1/2}}  \left(  t - lT_{c,L2C}   \right)   +  \right.\\ {} &+ \left. C_{\text{CM}}  \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{3}{4}\right)T_{c,L2C}\right) \right),\\
-                 e_{L2CQ}(t)  =&        \sum_{l=-\infty}^{\infty}     D_{\text{NAV}}  \Big[ [l]_{20460}  \Big]    \oplus     C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p \left(t - lT_{c,\text{C/A}}\right) \text{, or}\\
-                 e_{L2CQ}(t)=& \sum_{l=-\infty}^{\infty}C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~,
-     \end{aligned}$$
+$$
+ e_{L2CQ}(t) = \sum_{l=-\infty}^{\infty}     D_{\text{CNAV}}  \Big[ [l]_{10230}  \Big]    \oplus      \left(  C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big]  p_{\text{1/2}}  \left(  t - lT_{c,L2C}   \right)   +  C_{\text{CM}}  \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{3}{4}\right)T_{c,L2C}\right) \right),$$
+
+ $$ e_{L2CQ}(t)  =        \sum_{l=-\infty}^{\infty}     D_{\text{NAV}}  \Big[ [l]_{20460}  \Big]    \oplus     C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p \left(t - lT_{c,\text{C/A}}\right)$$
+
+ or
+
+$$ e_{L2CQ}(t)= \sum_{l=-\infty}^{\infty}C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~,
+$$
 
 where $$ T_{c,L2C}=\frac{1}{511.5} $$ ms and $$ p_{\text{1/2}}(t) $$ is a
 rectangular pulse of half chip–period duration, thus time–multiplexing
@@ -153,9 +157,11 @@ written as:
 
 $$ s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, $$
 
-$$ \begin{aligned}
-e_{L5I}(t)  =&   \sum_{m=-\infty}^{+\infty}   C_{nh_{10}} \Big[ |m|_{10}\Big]   \oplus    \ D_{\text{CNAV}}\Big[ [m]_{10}\Big]    \oplus \sum_{l=1}^{102300}   C_{L5I}\Big[|l|_{10230}\Big]    p(t  -  m T_{c,nh}  -  lT_{c,L5}) ~,   \\
-\nonumber e_{L5Q}(t) =&   \sum_{m=-\infty}^{+\infty}     C_{nh_{20}} \Big[ |m|_{20}\Big]   \oplus  \sum_{l=1}^{102300}C_{L5Q}\Big[|l|_{10230}\Big]  \cdot   p(t  - m T_{c,nh}  -  lT_{c,L5})~,\end{aligned} $$
+$$
+e_{L5I}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ D_{\text{CNAV}}\Big[ [m]_{10}\Big]    \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big]  p(t - m T_{c,nh} - lT_{c,L5}) ~,$$
+
+
+$$ e_{L5Q}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{20}} \Big[ |m|_{20}\Big]   \oplus  \sum_{l=1}^{102300}C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, $$
 
 where $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
 component contains a synchronization sequence $$ C_{nh_{10}}=0000110101 $$,
@@ -212,9 +218,10 @@ $$ s^{\text{(GLO L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, $$
 
 with
 
-$$\begin{aligned}
-            e_{L1I}(t)   =&     \sum_{l=-\infty}^{\infty}     D_{\text{GNAV}}\Big[ [l]_{102200}\Big]    \oplus   C_{\text{HP}} \Big[ |l|_{L_{\text{HP}}} \Big]   p(t  -  lT_{c,\text{HP}})~,\\
-            e_{L1Q}(t)   =&      \sum_{l=-\infty}^{\infty}     D_{\text{GNAV}}\Big[ [l]_{10220}  \Big]    \oplus     C_{\text{SP}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{SP}})~,\end{aligned}$$
+$$
+e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{102200}\Big] \oplus C_{\text{HP}} \Big[ |l|_{L_{\text{HP}}} \Big] p(t  -  lT_{c,\text{HP}})~,$$
+
+$$ e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{10220} \Big]  \oplus  C_{\text{SP}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{SP}})~$$
 
 where $$ T_{c,\text{HP}}=\frac{1}{5.11} $$ $$ \mu $$s,
 $$ T_{c,\text{SP}}=\frac{1}{0.511} $$ $$ \mu $$s, and
@@ -286,29 +293,25 @@ This band, centered at $$ f_{\text{Gal E1}}=1575.420 $$ MHz and
 with a reference bandwidth of $$ 24.5520 $$ MHz, uses the Composite Binary
 Offset Carrier (CBOC) modulation, defined in baseband as:
 
-$$\begin{aligned}
-\nonumber s^{\text{(Gal E1)}}_{T}(t)=&\frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~,\label{eq:CBOC}\end{aligned}$$
+$$ s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, $$
 
 where the subcarriers $$ sc(t) $$ are defined as
 
-$$\begin{aligned}
-sc_A(t) = & \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big)~,\\
-sc_B(t) = & \text{sign} \Big( \sin( 2 \pi f_{s, E1B}t) \Big)~,\end{aligned}$$
+$$ sc_A(t) = \text{sign} \Big(\sin(2\pi f_{s,E1A}t) \Big)~, $$
+
+$$ sc_B(t) = \text{sign} \Big(\sin(2\pi f_{s,E1B}t) \Big)~, $$
 
 and $$ f_{s,E1A}=1.023 $$ MHz, $$ f_{s, E1B}=6.138 $$ MHz are the subcarrier
 rates, $$ \alpha=\sqrt{\frac{10}{11}} $$, and $$ \beta=\sqrt{\frac{1}{11}} $$.
 Channel B contains the I/NAV type of navigation message,
 $$ D_{I/NAV} $$, intended for Safety–of–Life (SoL) services:
 
-$$\begin{aligned}
-\label{eq:e1b}
-e_{E1B}(t)    &=      \sum_{l=-\infty}^{+\infty}     D_{\text{I/NAV}} \Big[ [l]_{4092}\Big]   \oplus   C_{E1B}\Big[|l|_{4092}\Big]    p(t  -  lT_{c,E1B}).\end{aligned}$$
+$$ e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big]   \oplus   C_{E1B}\Big[|l|_{4092}\Big]    p(t  -  lT_{c,E1B})~. $$
 
 In case of channel C, it is a pilot (dataless) channel with a
 secondary code, forming a tiered code:
 
-$$\begin{aligned}
-\nonumber e_{E1C}(t)&= \sum_{m=-\infty}^{+\infty}C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~,\label{eq:E1C}\end{aligned}$$
+$$ e_{E1C}(t) = \sum_{m=-\infty}^{+\infty}C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, $$
 
 with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$
 ms. The $$ C_{E1B} $$ and $$ C_{E1Cp} $$ primary codes are pseudorandom memory
@@ -335,9 +338,9 @@ and data components
 
 $$s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t)-e_{E6C}(t)\right){~},$$
 
-$$\begin{aligned}
-\nonumber e_{E6B}(t)   =&  \sum_{m=-\infty}^{+\infty}  D_{\text{C/NAV}}  \Big[ [l]_{5115}\Big]  \oplus C_{E6B}\Big[|l|_{L_{E6B}}\Big]   \cdot  p(t  -  lT_{c,E6}),\\
-\nonumber e_{E6C}(t)=& \sum_{m=-\infty}^{+\infty}C_{E6Cs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{L_{E6C}}C_{E6Cp}\Big[ l \Big] \cdot p(t-mT_{c,E6s} -lT_{c,E6p}),\end{aligned}$$
+$$ e_{E6B}(t)   =  \sum_{m=-\infty}^{+\infty}  D_{\text{C/NAV}}  \Big[ [l]_{5115}\Big]  \oplus C_{E6B}\Big[|l|_{L_{E6B}}\Big]   \cdot  p(t  -  lT_{c,E6}), $$
+
+$$ e_{E6C}(t)= \sum_{m=-\infty}^{+\infty}C_{E6Cs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{L_{E6C}}C_{E6Cp}\Big[ l \Big] \cdot p(t-mT_{c,E6s} -lT_{c,E6p})~, $$
 
 where $$ D_{\text{C/NAV}} $$ is the C/NAV navigation data stream, which is
 modulated with the encrypted ranging code $$ C_{E6B} $$ with chip period
@@ -380,36 +383,42 @@ thus use the HPA at saturation. This can be done by adding some
 inter–modulation products to the expression above, coming up
 with the following definition:
 
-$$\begin{aligned}
-\nonumber s^{\text{(Gal E5)}}_{T}(t)= & e_{E5a}(t) ssc_s^{*}(t)+ e_{E5b}(t) ssc_s(t) + \\
-{} & +\bar{e}_{E5a}(t)ssc_p^{*}(t)+\bar{e}_{E5b}(t)ssc_p(t)~,\label{GalE5}\end{aligned}$$
+$$ s^{\text{(Gal E5)}}_{T}(t) = e_{E5a}(t) ssc_s^{*}(t)+ e_{E5b}(t) ssc_s(t) +\bar{e}_{E5a}(t)ssc_p^{*}(t)+\bar{e}_{E5b}(t)ssc_p(t)~, $$
 
 where the single and product side–band signal subcarriers are
 
-$$\begin{aligned}
-ssc_s(t)=& sc_s(t) +jsc_s\left(t-\frac{T_s}{4}\right) ~,\label{sscs}\\
-ssc_p(t)=& sc_p(t) +jsc_p\left(t-\frac{T_s}{4}\right) ~,\label{sscp}\end{aligned}$$
+$$ ssc_s(t) = sc_s(t) +jsc_s\left(t-\frac{T_s}{4}\right) ~, $$
+
+$$ ssc_p(t) = sc_p(t) +jsc_p\left(t-\frac{T_s}{4}\right) ~, $$
 
 and
 
-$$\begin{aligned}
- e_{E5a}(t)=&e_{E5aI}(t)+je_{E5aQ}(t),\label{E5a}\\
- e_{E5b}(t)=&e_{E5bI}(t)+je_{E5bQ}(t),\\
- \bar{e}_{E5a}(t)&=\bar{e}_{E5aI}(t)+j\bar{e}_{E5aQ}(t),\\
- \bar{e}_{E5b}(t)&=\bar{e}_{E5bI}(t)+j\bar{e}_{E5bQ}(t),\\
- \bar{e}_{E5aI}(t)=& e_{E5aQ}(t)e_{E5bI}(t)e_{E5bQ}(t),\\
- \bar{e}_{E5aQ}(t)=& e_{E5aI}(t)e_{E5bI}(t)e_{E5bQ}(t),\\
- \bar{e}_{E5bI}(t)=& e_{E5bQ}(t)e_{E5aI}(t)e_{E5aQ}(t),\\ \bar{e}_{E5bQ}(t)=&e_{E5bI}(t)e_{E5aI}(t)e_{E5aQ}(t).
- \end{aligned}$$
+$$ e_{E5a}(t) = e_{E5aI}(t)+je_{E5aQ}(t)~, $$
+
+$$ e_{E5b}(t) = e_{E5bI}(t)+je_{E5bQ}(t)~, $$
+
+$$ \bar{e}_{E5a}(t) = \bar{e}_{E5aI}(t)+j\bar{e}_{E5aQ}(t)~, $$
+
+$$ \bar{e}_{E5b}(t) = \bar{e}_{E5bI}(t)+j\bar{e}_{E5bQ}(t)~, $$
+
+$$ \bar{e}_{E5aI}(t) = e_{E5aQ}(t)e_{E5bI}(t)e_{E5bQ}(t)~, $$
+
+$$ \bar{e}_{E5aQ}(t) = e_{E5aI}(t)e_{E5bI}(t)e_{E5bQ}(t)~, $$
+
+$$ \bar{e}_{E5bI}(t) = e_{E5bQ}(t)e_{E5aI}(t)e_{E5aQ}(t)~, $$
+
+$$ \bar{e}_{E5bQ}(t) = e_{E5bI}(t)e_{E5aI}(t)e_{E5aQ}(t). $$
 
 The signal components are defined as
 
-$$\begin{aligned}
- \nonumber e_{E5aI}(t)=&  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p}),\\
-  \nonumber e_{E5aQ}(t)=& \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p}),\\
-  \nonumber e_{E5bI}(t)=& \sum_{m=-\infty}^{+\infty}C_{E5bIs}\Big[|m|_{4}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{I/NAV}} \Big[ [l]_{40920}\Big] p(t-mT_{c,E5s}-lT_{c,E5p}),\\
-  \nonumber e_{E5bQ}(t)=& \sum_{m=-\infty}^{+\infty}C_{E5bQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5bQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p}),
- \end{aligned}$$
+$$ e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, $$
+
+$$ e_{E5aQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, $$
+
+$$ e_{E5bI}(t) = \sum_{m=-\infty}^{+\infty}C_{E5bIs}\Big[|m|_{4}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{I/NAV}} \Big[ [l]_{40920}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, $$
+
+$$ e_{E5bQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5bQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5bQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, $$
+
 
 where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s. Channel
 A contains the F/NAV type of navigation message, $$ D_{F/NAV} $$,
@@ -419,13 +428,9 @@ different, with page swapping between both components in order to allow
 a fast reception of data by a dual frequency receiver. The single
 subcarrier $$ sc_s(t) $$ and the product subcarrier $$ sc_p(t) $$  are defined as:
 
-$$\begin{aligned}
-\nonumber sc_s(t)=& \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t - \frac{\pi}{4}\right) \right)+\\ \nonumber {}&+ \frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_s t \right) \Big)+\\
-{} &+\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t + \frac{\pi}{4}\right) \right)~,\end{aligned}$$
+$$ sc_s(t) = \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t - \frac{\pi}{4}\right) \right)+\frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_s t \right) \Big)+\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t + \frac{\pi}{4}\right) \right)~, $$
 
-$$\begin{aligned}
-\nonumber sc_p(t)=& -\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t - \frac{\pi}{4}\right) \right)+\\ \nonumber {}&+ \frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_s t \right) \Big)+\\
-{} &-\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t + \frac{\pi}{4}\right) \right)~,\end{aligned}$$
+$$ sc_p(t) = -\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t - \frac{\pi}{4}\right) \right)+ \frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_s t \right) \Big)-\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t + \frac{\pi}{4}\right) \right)~, $$
 
 with a subcarrier frequency of $$ f_s=15.345 $$ MHz. Plotting the power
 spectrum of the carriers in ([GalE5]) (see Figure [fig:subcarriers]), we
@@ -513,16 +518,15 @@ Satellite System with the abbreviation BDS.
 
 ### BeiDou B1
 
-$$\label{eq:BeidouB1}
-s^{\text{(BeiDou B1)}}_{T}(t)=e_{B1I}(t) + j e_{B1Q}(t)~,$$
+$$ s^{\text{(BeiDou B1)}}_{T}(t) = e_{B1I}(t) + j e_{B1Q}(t)~,$$
 
 with
 
-$$\begin{aligned}
-e_{B1I}(t)=&  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{40920}\Big] \oplus C_{\text{B1I}} \Big[ |l|_{2046} \Big]   p(t -  lT_{c,\text{B1I}})~,\label{eq:B1I}\\
-e_{B1Q}(t) =& \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{{XXXX}}  \Big]  \oplus   C_{\text{B1Q}}  \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~,\label{eq:B1Q}\end{aligned}$$
+$$ e_{B1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{40920}\Big] \oplus C_{\text{B1I}} \Big[ |l|_{2046} \Big]   p(t -  lT_{c,\text{B1I}})~, $$
 
-Beidou’s Interface Control Document version 1.0 describes the Inphase
+$$ e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{{XXXX}}  \Big]  \oplus   C_{\text{B1Q}}  \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~, $$
+
+Beidou’s Interface Control Document version 2.0 describes the Inphase
 component of the Beidou B1 link. The nominal frequency of B1I signal is
 1561.098 MHz.
 
