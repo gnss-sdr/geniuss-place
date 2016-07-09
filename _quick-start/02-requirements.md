@@ -22,21 +22,52 @@ In order to execute GNSS-SDR, you will need:
 
 ## The computing platform
 
+### Processor architecture
+
+GNSS-SDR can be built in a variety of processor architectures, covering a wide range of computers such as desktops, laptops, mini-computers, embedded systems and even mainframes:
+
+* Intel/AMD [x86](https://en.wikipedia.org/wiki/X86){:target="_blank"} instruction set (32 and 64 bits).
+* [PowerPC](https://en.wikipedia.org/wiki/PowerPC){:target="_blank"}: big-endian and little-endian, 32 and 64 bits.
+* [ARM](https://en.wikipedia.org/wiki/ARM_architecture){:target="_blank"}: version v4t and above, including 64-bit ARMv8.
+* [MIPS](https://en.wikipedia.org/wiki/MIPS_instruction_set){:target="_blank"}: big-endian and little-endian, 32 and 64 bits.
+* [S/390](https://en.wikipedia.org/wiki/IBM_ESA/390){:target="_blank"}: IBM's architecture for mainframes.
+
+GNSS-SDR will process incoming raw samples as fast as the computing platform executing it allows. It will automatically take advantage of multi-core architectures, and it will select the fastest SIMD implementation available in your machine (covering technologies such as [SSE2](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=SSE2){:target="_blank"}, [SSE3](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=SSE3){:target="_blank"}, [SSE4.1](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=SSE4_1){:target="_blank"}, [AVX](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=AVX){:target="_blank"}, [AVX2](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=AVX2){:target="_blank"} and [NEON](http://www.arm.com/products/processors/technologies/neon.php){:target="_blank"}). It can even offload some of the computing work to the Graphics Processing Unit. If there is computational power enough, GNSS-SDR can be used in real-time, reading raw samples from a radio frequeny front-end. In slower machines, GNSS-SDR will execute exactly the same code, for instance reading raw samples from a file stored in a hard drive.
+
+
+**Try the software in your own computer**: GNSS-SDR can be executed in a wide range of processor architectures, from newest ones to those that have been around for a while. Your own computer will probably be among the list above. The software receiver processes data _as fast as it can_, taking advantage of the particularities of your processor and emmiting messages to the terminal output in case it is not able to perform the required computation in real-time. If your processor is not fast enough to process GNSS signals in real-time, you can still use files and use the software, performing exactly the same processing but at a slower pace, and thus without processing time constraints.
+{: .notice--success}
+
 ### Operating Systems
+
+* GNU/Linux: GNSS-SDR and all its dependencies can be easily installed in most popular distributions, and it is even included as a software package starting in [Debian 9 (stretch)](https://packages.debian.org/stretch/gnss-sdr){:target="_blank"} and [Ubuntu 16.04 LTS (Xenial)](http://packages.ubuntu.com/search?keywords=gnss-sdr){:target="_blank"}.
+* Mac OS X: GNSS-SDR and all its dependencies can be easily installed using 10.9 (Mavericks) and above. You will need [Xcode](https://developer.apple.com/xcode/){:target="_blank"} and software package manager such as [Macports](https://www.macports.org/){:target="_blank"} (there is a [gnss-sdr port](https://www.macports.org/ports.php?by=name&substr=gnss-sdr){:target="_blank"} that will do all the work for you) or [Homebrew](http://brew.sh/){:target="_blank"}.
+* Microsoft Windows: At this time of writing, GNSS-SDR cannot be built natively on Microsoft Windows. As far as authors' knowledge, nothing prevents it but their own ignorance on Microsoft's building tools. Users have reported successful buildings of GNU Radio on Windows systems, so there should be not serious caveats building GNSS-SDR as well. However, GNSS-SDR is not blocked for Windows users. There are several virtualization tools that work well. Here we suggest Oracle's [VirtualBox](http://www.virtualbox.org/){:target="_blank"}, a professional solution that can be installed on Windows XP and later and it is freely available as Open Source Software under the terms of the GNU General Public License (GPL) version 2. Users can install VirtualBox on their Windows machine, and then install the ultimate Linux version as a _guest_ operating system.
+
+**The Operating System should not be an issue**: GNSS-SDR can be executed in GNU/Linux distributions as old as Ubuntu  14.04 LTS and Mac OS X 10.9. You are probably already working with newer versions, or you can install a virtual machine running the ultimate Ubuntu or Debian releases.
+{: .notice--success}
 
 ### Software dependencies
 
-* [GNU Radio](http://gnuradio.org/){:target="_blank"}, a free and open source toolkit for software radio.
-* [Armadillo](http://arma.sourceforge.net/){:target="_blank"}, a C++ linear algebra library.
+GNSS-SDR builds upon a number of free and open source software libraries.
+
+* [GNU Radio](http://gnuradio.org/){:target="_blank"}, a free and open source toolkit for software radio. In turn, GNU Radio requires a number of software dependencies, some of which are also used by GNSS-SDR. Notably, [Boost](http://www.boost.org/){:target="_blank"}, [FFTW](http://www.fftw.org/){:target="_blank"} and [VOLK](http://libvolk.org/){:target="_blank"}.
+* [Armadillo](http://arma.sourceforge.net/){:target="_blank"}, a C++ linear algebra library. It acts as a wrapper for all the relevant libraries present on your system, such as [LAPACK](http://www.netlib.org/lapack/){:target="_blank"}, [BLAS](http://www.netlib.org/blas/){:target="_blank"}, [OpenBlas](http://www.openblas.net/){:target="_blank"}, [ATLAS](http://math-atlas.sourceforge.net/){:target="_blank"} and [others](http://arma.sourceforge.net/faq.html#linking){:target="_blank"}.
 * [glog](https://github.com/google/glog){:target="_blank"}, a C++ implementation of the Google logging module.
 * [gflags](https://github.com/gflags/gflags){:target="_blank"}, a C++ library that implements commandline flags processing.
 * A library implementing some basic SSL functions, such as [OpenSSL](https://www.openssl.org/){:target="_blank"}, [GnuTLS](http://www.gnutls.org/){:target="_blank"} or [LibreSSL](http://www.libressl.org/){:target="_blank"}.
+
+In order to install those dependencies in your system, check out our [building guide]({{ site.url }}{{ site.baseurl }}/build-and-install/){:target="_blank"} and find more details at GNSS-SDR's [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md){:target="_blank"} file.
+
+**Automated tools**: Building and installing GNSS-SDR and its dependencies is a quite complex process, but there are automated tools that can do most of the work for you. Check out our [building guide]({{ site.url }}{{ site.baseurl }}/build-and-install/){:target="_blank"}.
+{: .notice--success}
+
 
 ## GNSS Signal Sources
 
 ### Files
 
-### Radio frequency Front-ends
+### Radio frequency front-ends
 
 
 
