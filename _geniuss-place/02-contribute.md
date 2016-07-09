@@ -40,6 +40,8 @@ This website itself lives in a [GitHub repository](https://github.com/carlesfern
 
 ## How to run this website locally
 
+The required software can be installed through [RubyGems](https://rubygems.org/){:target="_blank"}, which is probably already installed in your system.
+
 Install [Jekyll](https://jekyllrb.com/){:target="_blank"}:
 
 ```bash
@@ -52,9 +54,11 @@ More information at [Jekyll's installation page](https://jekyllrb.com/docs/insta
 $ sudo gem install bundler
 ```
 
-From the base folder of your forked local copy of this website, run:
+Clone your forked repository of this website and install the required dependencies:
 
 ```bash
+$ git clone https://github.com/YOUR_USERNAME/test/
+$ cd test
 $ bundler install
 ```
 
@@ -65,3 +69,17 @@ $ bundle exec jekyll serve -w --config _config.yml,_config.dev.yml
 ```
 
 Just point your browser to that local direction in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
+
+**Pro Tip**: if you want to modify Stylesheets or JavaScript (under ```/assets/_scss``` and ```assets/js```, respectively), you will need to install [Node.js](https://nodejs.org/en/){:target="_blank"}, ```cd```to the root of your project, and run ```$ npm install``` to get all the dependencies. If all goes well, running running ```$ npm run build:css``` will process all SCSS files into ```main.css```. and ```npm build:js``` will compress/concatenate ```_main.js``` and all plugin scripts into ```main.min.js```. Thus, upon a change on css or JavaScript content, run:
+```
+$ npm run build:css
+```
+or
+```
+$ npm run build:js
+```
+in order to update ```main.css``` and ```main.js``` scripts and implement the changes on the website.
+{: .notice--warning}
+
+**Note**: If you upgraded from a previous version of the theme be sure you copied over ```package.json``` prior to running ```npm install```.
+{: .notice--warning}
