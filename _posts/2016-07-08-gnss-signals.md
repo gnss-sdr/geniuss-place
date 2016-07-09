@@ -67,13 +67,11 @@ Defined in IS-GPS-200[^ISGPS200], this band is centered at
 $$ f_{\text{GPS L1}}=1575.42 $$ MHz. The complex baseband
 transmitted signal can be written as
 
-$$
-s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~,$$
+$$ s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~,$$
 
 with
 
-$$
-e_{L1I}(t)=  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big]   p(t -  lT_{c,\text{P(Y)}})~,\\
+$$ e_{L1I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big]   p(t -  lT_{c,\text{P(Y)}})~,\\
 e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}  \Big]  \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~ $$
 
 where $$ \oplus $$ is the exclusive–or operation (modulo–2 addition),
@@ -155,8 +153,7 @@ written as:
 
 $$ s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, $$
 
-$$
-e_{L5I}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ D_{\text{CNAV}}\Big[ [m]_{10}\Big]    \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big]  p(t - m T_{c,nh} - lT_{c,L5}) ~,$$
+$$ e_{L5I}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ D_{\text{CNAV}}\Big[ [m]_{10}\Big]    \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big]  p(t - m T_{c,nh} - lT_{c,L5}) ~,$$
 
 
 $$ e_{L5Q}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{20}} \Big[ |m|_{20}\Big]   \oplus  \sum_{l=1}^{102300}C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, $$
@@ -176,7 +173,6 @@ _GPS signals spectra in L5. Source: [Navipedia](http://www.navipedia.net/index.p
 
 ## GLONASS
 
-
 The nominal baseline constellation of the Russian Federation’s Global
 Navigation Satellite System (GLONASS) comprises $$ 24 $$ GLONASS–M
 satellites that are uniformly deployed in three roughly circular orbital
@@ -186,7 +182,7 @@ $$ 15 $$ minutes, and $$ 45 $$ seconds. The orbital planes are separated by
 $$ 120^o $$ right ascension of the ascending node. Eight satellites are
 equally spaced in each plane with $$ 45^o $$ argument of latitude. Moreover,
 the orbital planes have an argument of latitude displacement of $$ 15^o $$
-relative to each other.
+relative to each other. The current constellation status can be checked at the Russian [Information and Analysis Center for Positioning, Navigation and Timing website](https://www.glonass-iac.ru/en/){:target="_blank"}.
 
 The ground control segment of GLONASS is almost entirely located within
 former Soviet Union territory, except for a station in Brasilia, Brazil.
@@ -216,8 +212,7 @@ $$ s^{\text{(GLO L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, $$
 
 with
 
-$$
-e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{102200}\Big] \oplus C_{\text{HP}} \Big[ |l|_{L_{\text{HP}}} \Big] p(t  -  lT_{c,\text{HP}})~,$$
+$$ e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{102200}\Big] \oplus C_{\text{HP}} \Big[ |l|_{L_{\text{HP}}} \Big] p(t  -  lT_{c,\text{HP}})~,$$
 
 $$ e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{10220} \Big]  \oplus  C_{\text{SP}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{SP}})~$$
 
@@ -280,7 +275,7 @@ Galileo satellites are placed in quasi–circular Earth orbits with a
 nominal semi–major axis of about $$ 30,000 $$ km and an approximate
 revolution period of $$ 14 $$ hours. The Control segment full infrastructure
 will be composed of $$ 30-40 $$ sensor stations, $$ 3 $$ control centers, $$ 9 $$
-Mission Uplink stations, and $$ 5 $$ TT&C stations.
+Mission Uplink stations, and $$ 5 $$ TT&C stations. The current constellation status can be checked at the [European GNSS Service Centre website](http://www.gsc-europa.eu/system-status/Constellation-Information){:target="_blank"}.
 
 Galileo’s Open Service is defined in Galileo's ICD[^GalileoICD], where the following
 signal structures are specified:
@@ -304,7 +299,7 @@ rates, $$ \alpha=\sqrt{\frac{10}{11}} $$, and $$ \beta=\sqrt{\frac{1}{11}} $$.
 Channel B contains the I/NAV type of navigation message,
 $$ D_{I/NAV} $$, intended for Safety–of–Life (SoL) services:
 
-$$ e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big]   \oplus   C_{E1B}\Big[|l|_{4092}\Big]    p(t  -  lT_{c,E1B})~. $$
+$$ e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big]    p(t - lT_{c,E1B})~. $$
 
 In case of channel C, it is a pilot (dataless) channel with a
 secondary code, forming a tiered code:
@@ -334,11 +329,11 @@ Intended for the Commercial Service and centered at
 $$ f_{\text{Gal E6}}=1278.750 $$ MHz, this band provides with pilot
 and data components
 
-$$s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t)-e_{E6C}(t)\right){~},$$
+$$ s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t)-e_{E6C}(t)\right)~, $$
 
-$$ e_{E6B}(t)   =  \sum_{m=-\infty}^{+\infty}  D_{\text{C/NAV}}  \Big[ [l]_{5115}\Big]  \oplus C_{E6B}\Big[|l|_{L_{E6B}}\Big]   \cdot  p(t  -  lT_{c,E6}), $$
+$$ e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{C/NAV}} \Big[ [l]_{5115}\Big]  \oplus C_{E6B}\Big[|l|_{L_{E6B}}\Big] \cdot p(t - lT_{c,E6})~, $$
 
-$$ e_{E6C}(t)= \sum_{m=-\infty}^{+\infty}C_{E6Cs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{L_{E6C}}C_{E6Cp}\Big[ l \Big] \cdot p(t-mT_{c,E6s} -lT_{c,E6p})~, $$
+$$ e_{E6C}(t) = \sum_{m=-\infty}^{+\infty}C_{E6Cs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{L_{E6C}}C_{E6Cp}\Big[ l \Big] \cdot p(t-mT_{c,E6s} -lT_{c,E6p})~, $$
 
 where $$ D_{\text{C/NAV}} $$ is the C/NAV navigation data stream, which is
 modulated with the encrypted ranging code $$ C_{E6B} $$ with chip period
@@ -366,8 +361,7 @@ Centered at $$ f_{\text{Gal E5}}=1191.795 $$ MHz and with a total
 (baseband) bandwidth of $$ 51.150 $$ MHz, its signal structure deserves some analysis.
 The AltBOC modulation can be generically expressed as
 
-$$ \label{AltBOC}
-s^{\text{AltBOC}}(t)=x_1(t)v^{*}(t)+x_2(t)v(t)~, $$
+$$ s^{\text{AltBOC}}(t) = x_1(t)v^{*}(t)+x_2(t)v(t)~, $$
 
 where
 $$ v(t)=\frac{1}{\sqrt{2}}\left( \text{sign}\left( \cos (2 \pi f_s t)\right)+j \text{sign}\left( \sin (2 \pi f_s t)\right)\right) $$
