@@ -33,13 +33,6 @@ Setting a single-band receiver with twelve channels devoted to GPS L1 C/A signal
 Channels_1C.count=12
 ```
 
-and setting a multi-constellation receiver with eight channels for GPS L1 C/A and eight more for Galileo E1 B I/NAV as:
-
-
-```ini
-Channels_1C.count=8
-Channels_1B.count=8
-```
 
 ## Multi-constellation, single band receiver
 

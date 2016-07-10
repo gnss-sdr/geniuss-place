@@ -49,7 +49,39 @@ combination of those samples, known as discriminator functions.
 
 ### Implementation: `Galileo_E1_DLL_PLL_VEML_Tracking`
 
+The Maximum likelihood (ML) estimates of $$ f_d $$ and $$ \tau $$ can be obtained by maximizing the function
+
+$$
+\hat{f}_{d_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_d,\tau} \left\{   \left| \hat{R}_{xd}(f_d,\tau)\right|^2\right\}~,
+$$
+
+where
+
+$$
+\hat{R}_{xd}(f_d,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_d nT_s}~,
+$$
+
+$$ x_{\text{IN}}[n] $$ is a complex vector containing I&Q samples of the received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase of the received signal with respect to a local reference,  $$ f_d $$ is the Doppler shift, $$ N $$ is the number of samples in a spreading code (4 ms for E1), and $$ d[n] $$ is a locally generated reference. The user can also configure the shape of $$ d[n] $$, allowing simplifications that reduce the computational load. For the E1B signal component, the reference signals available in our implementation are:
+
+$$ d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t  -  lT_{c,E1B})\cdot  \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~,$$
+
+$$ d_{E1B}^{(\text{sinBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B}) sc_A[n]~,
+$$
+
+while for E1C, users can choose among:
+
+$$ d_{E1C}^{(\text{CBOC})}[n] = \sum_{m=-\infty}^{+\infty} \sum_{l=1}^{4092} C_{E1Cp}\Big[ l \Big] \cdot  p[n- mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~,
+$$
+
+$$ d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n].
+$$
+
+
+
+
 ![Rxd]({{ site.url }}{{ site.baseurl }}/images/rxd.png)
+{: style="text-align: center;"}
+_Normalized $$ \left|R_{xd}\left(\check{f}_d=f_d, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
 {: style="text-align: center;"}
 
 In case of Galileo E1, the CBOC(6,1,$$ \frac{1}{11} $$) modulation creates
@@ -83,13 +115,16 @@ normalized Very Early Minus Late Power discriminator (step $$ 10 $$ ). For code 
 (step $$ 13 $$ ), we used the [Squared Signal-to-Noise Variance
 (SNV) estimator](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf){:target="_blank"}. In the case of carrier lock
 detection (step $$ 14 $$ ), we used the normalized estimate of
-the cosine of twice the carrier phase @Dierendonck95. The values of the
+the cosine of twice the carrier phase[^Dierendonck]. The values of the
 lock indicator range from $$ -1 $$, when the locally generated carrier is
 completely out of phase, to $$ 1 $$, that indicates a perfect match. When
 either the code or the carrier detectors are below given thresholds
 during a consecutive number of code periods $$ \vartheta $$, the Tracking
 block informs to control plane through the message queue.
 
+[^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from “Global Positioning System: Theory and Applications”, Volume I, Edited by B. W. Parkinson, J. J. Spilker Jr.
+
+[^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
 
 *  **Require:** Complex sample stream, $$ \mathbf{x}_{\text{IN}} $$; estimations of code
 phase $$ \hat{\tau}_{acq} $$ and Doppler shift $$ \hat{f}_{d_{acq}} $$; buffer
@@ -181,3 +216,8 @@ $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density
 
 
 ## Galileo E5a signal tracking
+
+
+-------
+
+## References
