@@ -16,11 +16,16 @@ is to refine such estimations and track their changes along the time.
 Three parameters are relevant for signal tracking: the evolution of the
 code phase $$ \tau $$, Doppler shift $$ f_d $$ and carrier phase $$ \phi $$.
 
+![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
+_Typical diagram of a tracking block._
+{: style="text-align: center;"}
+
+
 ## GPS L1 C/A signal tracking
 
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking`
 
-According the ML principle expressed in Equation ([eq:ML]), obtaining
+According the ML principle, obtaining
 the optimum estimators implies the maximization of the correlation of
 the incoming signal with its matched filter. This is usually achieved
 with closed-loop structures designed to minimize the difference between
@@ -44,8 +49,11 @@ combination of those samples, known as discriminator functions.
 
 ### Implementation: `Galileo_E1_DLL_PLL_VEML_Tracking`
 
+![Rxd]({{ site.url }}{{ site.baseurl }}/images/rxd.png)
+{: style="text-align: center;"}
+
 In case of Galileo E1, the CBOC(6,1,$$ \frac{1}{11} $$) modulation creates
-correlation ambiguities, as shown in Figure [fig:Rxd]. The possibility
+correlation ambiguities, as shown in the figure above. The possibility
 of tracking a local maximum instead of the global one can be avoided by
 using discriminators that consider two extra samples of the cost
 function, referred to as *Very Early*
@@ -68,14 +76,13 @@ indicators of the tracking performance.
 
 The implementation of this block is described in Algorithm
 below. The computation of the complex values VE, E, P, L and VL
-in step $$ 5 $$ was implemented using the VOLK library. The
-PLL discriminator implemented in step [step:atan2] is the extended
+in step $$ 5 $$ was implemented using the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library. The
+PLL discriminator implemented in step $$ 6 $$  is the extended
 arctangent (four-quadrant) discriminator, and for the DLL we used the
-normalized Very Early Minus Late Power discriminator proposed in
-@Jovanovic12 (step [step:dlldiscriminator]). For code lock detection
-(step [step:codelock]), we used the Squared Signal-to-Noise Variance
-(SNV) estimator proposed in @Pauluzzi00. In the case of carrier lock
-detection (step [step:carrierlock]), we used the normalized estimate of
+normalized Very Early Minus Late Power discriminator (step $$ 10 $$ ). For code lock detection
+(step $$ 13 $$ ), we used the [Squared Signal-to-Noise Variance
+(SNV) estimator](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf){:target="_blank"}. In the case of carrier lock
+detection (step $$ 14 $$ ), we used the normalized estimate of
 the cosine of twice the carrier phase @Dierendonck95. The values of the
 lock indicator range from $$ -1 $$, when the locally generated carrier is
 completely out of phase, to $$ 1 $$, that indicates a perfect match. When
@@ -154,13 +161,20 @@ $$ \hat{P}_{tot} = \frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{k-i
 14. Phase lock indicator:
 $$ T_{carrier} = \frac{ \left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$.
 
-15. Increase lock fail counter $$ \upsilon \leftarrow \upsilon +1 $$. Decrease
-lock fail counter $$ \upsilon \leftarrow \max(\upsilon -1,0) $$.
+15. **if** $$ T_{carrier} < \mathcal{T} $$ or $$ CN0 < CN0_{min} $$
+* Increase lock fail counter $$ \upsilon \leftarrow \upsilon +1 $$.
 
-16. Notify the
-loss of lock to the control plane through the message queue.
+16. **else**
+* Decrease lock fail counter $$ \upsilon \leftarrow \max(\upsilon -1,0) $$.
 
-17. **Output**:
+17. **endif**
+
+18. **if**  $$ \upsilon >  \vartheta $$
+* Notify the loss of lock to the control plane through the message queue.
+
+20. **endif**
+
+21. **Output**:
 $$ \text{P}_k $$, accumulated carrier phase error $$ \hat{\phi}_k $$, code phase
 $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density ratio $$ \hat{\text{CN0}} $$.
 {: .notice--info}

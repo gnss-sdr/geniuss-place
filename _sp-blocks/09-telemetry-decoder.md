@@ -24,16 +24,22 @@ TelemetryDecoder_1C.dump=false
 
 ### Implementation: `Galileo_E1B_Telemetry_Decoder`
 
-[fig:inav]
 
-As shown in Equation ([eq:e1b]), the E1B signal component carries the
-I/NAV navigation message, which provides the space vehicle
+$$ e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big]    p(t - lT_{c,E1B})~. $$
+
+As shown in this equation, the E1B signal component carries the
+$$ D_{\text{I/NAV}} $$ navigation message, which provides the space vehicle
 identification (SVID), an Issue of Data, the ephemeris data, a
 signal-in-space accuracy (SISA) indicator, clock correction parameters,
 a ionospheric correction, the Broadcast Group Delay (BGD), signal health
 and data validity status, Galileo System Time (GST), GST-UTC and GST-GPS
 time conversion parameters, the almanacs, and Search and Rescue (SAR)
-service data. The message structure is depicted in Figure [fig:inav]:
+service data.
+
+![INAV message structure]({{ site.url }}{{ site.baseurl }}/images/inav.png)
+{: style="text-align: center;"}
+
+In the message structure depicted above,
 each frame contains 24 subframes, and each subframe contains 15 nominal
 pages, having a duration of 2 seconds transmitted sequentially in time
 in two parts of duration 1 second each. Each page part (denoted as

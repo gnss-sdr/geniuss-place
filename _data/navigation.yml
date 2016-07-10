@@ -88,7 +88,7 @@ geniuss-place:
       - title: "Contribute"
         url: /contribute/
       - title: "Coding Style"
-        url: /coding-style/  
+        url: /coding-style/
       - title: "Open Design"
         url: /rf-frontends/
       - title: "Makers"
@@ -113,12 +113,16 @@ sp-block:
     children:
       - title: "Signal Source"
         url: /docs/sp-blocks/signal-source/
+      - title: "Signal Conditioner"
+        url: /docs/sp-blocks/signal-conditioner/
       - title: "Data Type Adapter"
         url: /docs/sp-blocks/data-type-adapter/
       - title: "Input Filter"
         url: /docs/sp-blocks/input-filter/
       - title: "Resampler"
         url: /docs/sp-blocks/resampler/
+      - title: "Channel"
+        url: /docs/sp-blocks/channel/
       - title: "Acquisition"
         url: /docs/sp-blocks/acquisition/
       - title: "Tracking"
