@@ -19,7 +19,9 @@ GNSS-SDR is a project hosted and sponsored by the Centre Tecnol&ograve;gic de Te
 
 <div class="text-center">
 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5997.1091801719485!2d1.9877100000000003!3d41.275033!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x61bdbefd79ec3227!2sCentre+Tecnol%C3%B2gic+de+Telecomunicacions+de+Catalunya+(CTTC)!5e0!3m2!1ses!2ses!4v1468193542395" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-</div> 
+</div>
+
+## Mailing list
 
 There is an open distribution list devoted to discussions related to the development of GNSS-SDR. You can:
 
