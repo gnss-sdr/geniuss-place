@@ -67,8 +67,8 @@ must also implement code and carrier lock detectors, providing
 indicators of the tracking performance.
 
 The implementation of this block is described in Algorithm
-[alg:tracking]. The computation of the complex values VE, E, P, L and VL
-in step [step:correlators] was implemented using the VOLK library. The
+below. The computation of the complex values VE, E, P, L and VL
+in step $$ 5 $$ was implemented using the VOLK library. The
 PLL discriminator implemented in step [step:atan2] is the extended
 arctangent (four-quadrant) discriminator, and for the DLL we used the
 normalized Very Early Minus Late Power discriminator proposed in
@@ -83,74 +83,87 @@ either the code or the carrier detectors are below given thresholds
 during a consecutive number of code periods $$ \vartheta $$, the Tracking
 block informs to control plane through the message queue.
 
-[!h] [alg:tracking]
 
-[1] Complex sample stream, $\mathbf{x}_{\text{IN}}$; estimations of code
-phase $\hat{\tau}_{acq}$ and Doppler shift $\hat{f}_{d_{acq}}$; buffer
-size for power estimation, $\mathcal{U}$; carrier lock detector
-threshold, $\mathcal{T}$; $CN0_{min}$; maximum value for the lock fail
-counter, $\vartheta$; correlators spacing $\epsilon$ and
-$\epsilon^\prime$; loop filters bandwidth $BW_{DLL}$ and $BW_{PLL}$;
-integration time $T_{int}$. Track signal’s synchronization parameters
-within a given lock margin. Inform about a loss of lock.\
-$\! \!\!\!\!\!\! \!\! \!$**Initialization:** Using $\hat{\tau}_{acq}$
-and a sample counter $\mathcal{N}$, skip samples until
-$\mathbf{x}_{\text{IN}}$ is aligned with local PRN replica. Set
-$\upsilon=0$, $k=0$, $\hat{f}_{d_{0}}=\hat{f}_{d_{acq}}$,
-$\hat{\phi}_0=0$, $\psi_1=0$, $N_1=\text{round}(T_{int} f_{\text{IN}})$.
-Increase the integration period counter: $k=k+1$. Generate local code
-references: for $n=1...N_k$,\
-$s[n]=d_{E1B/E1C_{p}}\left[\text{round}(\delta_{k} \cdot n + \psi_{k})\right]$,
-where\
-$\delta_{k}= \frac{1}{T_{c,E1B} \cdot f_{\text{IN}} }\left( 1 + \frac{\hat{f}_{d_{k-1}}}{f^{\text{\textit{(Gal E1)}}}_c} \right)$,
-and the Very Early, Early, Late, and Very Late versions with $\epsilon$
-and $\epsilon^\prime$.Generate local carrier: for $n=1...N_k$,\
-$c[n]=e^{-j\left(2\pi \hat{f}_{d_{k-1}} \frac{n}{f_{\text{IN}}}+\text{mod}\left(\hat{\phi}_{k-1},2\pi \right) \right)}$.Perform
-carrier wipe-off and compute the complex samples VE$_k$, E$_k$, P$_k$,
-L$_k$ and VL$_k$. [step:correlators]\
+*  **Require:** Complex sample stream, $$ \mathbf{x}_{\text{IN}} $$; estimations of code
+phase $$ \hat{\tau}_{acq} $$ and Doppler shift $$ \hat{f}_{d_{acq}} $$; buffer
+size for power estimation, $$ \mathcal{U} $$; carrier lock detector
+threshold, $$ \mathcal{T} $$; $$ CN0_{min} $$; maximum value for the lock fail
+counter, $$ \vartheta $$; correlators spacing $$ \epsilon $$ and
+$$ \epsilon^\prime $$; loop filters bandwidth $$ BW_{DLL} $$ and $$ BW_{PLL} $$;
+integration time $$ T_{int} $$. Track signal’s synchronization parameters
+within a given lock margin. Inform about a loss of lock.
+
+1. **Initialization:** Using $$ \hat{\tau}_{acq} $$
+and a sample counter $$ \mathcal{N} $$, skip samples until
+$$ \mathbf{x}_{\text{IN}} $$ is aligned with local PRN replica. Set
+$$ \upsilon=0 $$, $$ k=0 $$, $$ \hat{f}_{d_{0}}=\hat{f}_{d_{acq}} $$,
+$$ \hat{\phi}_0=0 $$, $$ \psi_1=0 $$, $$ N_1=\text{round}(T_{int} f_{\text{IN}}) $$.
+
+2. Increase the integration period counter: $$ k=k+1 $$.
+
+3. Generate local code references: for $$ n=1...N_k $$,
+$$ s[n]=d_{E1B/E1C_{p}}\left[\text{round}(\delta_{k} \cdot n + \psi_{k})\right] $$,
+where
+$$ \delta_{k}= \frac{1}{T_{c,E1B} \cdot f_{\text{IN}} }\left( 1 + \frac{\hat{f}_{d_{k-1}}}{f^{\text{(Gal E1)}}_c} \right) $$,
+and the Very Early, Early, Late, and Very Late versions with $$ \epsilon $$
+and $$ \epsilon^\prime $$.
+4. Generate local carrier: for $$ n=1...N_k $$,
+$$ c[n]=e^{-j\left(2\pi \hat{f}_{d_{k-1}} \frac{n}{f_{\text{IN}}}+\text{mod}\left(\hat{\phi}_{k-1},2\pi \right) \right)} $$.
+
+5. Perform carrier wipe-off and compute the complex samples VE$$ _k $$, E$$ _k $$, P$$ _k $$,
+L$$ _k $$ and VL$$ _k $$.
 Example:
-$\text{P}_k=\frac{1}{N_k} \sum_{n=0}^{N_k-1} x_{\text{IN}}[n] s[n] c[n]$ .
-Compute PLL discriminator:
-$\Delta \hat{\phi}_{k}= \mbox{atan2}\left( \frac{ \text{P}_{Q_{k}}}{\text{P}_{I_{k}}} \right)$ .[step:atan2]
-Filter $ \Delta \hat{\phi}_{k}$ with a bandwidth $BW_{PLL}$:
-$h_{PLL}\left( \Delta \hat{\phi}_{k}\right) $. Update carrier frequency
-estimation (in Hz):\
-$\hat{f}_{d_{k}}=\hat{f}_{d_{acq}}+\frac{1}{ 2\pi T_{int} } h_{PLL}\left( \Delta \hat{\phi}_{k} \right)$.
-Update carrier phase estimation (in rad):\
-$\hat{\phi}_k=\hat{\phi}_{k-1}+ 2 \pi \hat{f}_{d_{k}} T_{int}+ h_{PLL}(\Delta \hat{\phi})$.
-Compute DLL discriminator:
-$ \Delta \hat{\tau}_{k}=\frac{\mathcal{E}_{k}-\mathcal{L}_{k}}{\mathcal{E}_{k}+\mathcal{L}_{k}}$,
-where:\
-$\mathcal{E}_{k}=\sqrt{\text{VE}_{I_{k}}^2+\text{VE}_{Q_{k}}^2+E_{I_{k}}^2+E_{Q_{k}}^2}$,
-and\
-$$ \mathcal{L}_{k}=\sqrt{\text{VL}_{I_{k}}^2+\text{VL}_{Q_{k}}^2+L_{I_{k}}^2+L_{Q_{k}}^2} $$.[step:dlldiscriminator]
-Filter $$ \Delta \hat{\tau}_{k} $$ with a bandwidth $$ BW_{DLL} $$:
-$$ h_{DLL}\left( \Delta \hat{\tau}_{k}\right) $$. Update code phase
-estimation (in samples): [step:codephase]\
-$$ N_{k+1}=\text{round}(S)$ and $\psi_{k+1}=S-N_{k+1} $$, where
-$S = \frac{T_{int}f_{\text{IN} } }{\left( 1 + \frac{\hat{f}_{d_{k} } }{f^{\text{\textit{(Gal E1)} } }_c} \right)} +\psi_{k} + h_{DLL}(\hat{\Delta \tau}_k)f_{\text{IN} }  $$.
+$$ \text{P}_k=\frac{1}{N_k} \sum_{n=0}^{N_k-1} x_{\text{IN}}[n] s[n] c[n] $$.
 
+6. Compute PLL discriminator:
+$$ \Delta \hat{\phi}_{k} = \mbox{atan2}\left( \frac{ \text{P}_{Q_{k}}}{\text{P}_{I_{k}}} \right) $$
 
-Code lock indicator:
+7. Filter $$ \Delta \hat{\phi}_{k} $$ with a bandwidth $$ BW_{PLL} $$:
+$$ h_{PLL}\left( \Delta \hat{\phi}_{k}\right) $$.
 
-$$ \hat{ \text{CN0} } = 10 \cdot \log_{10} ( \hat{\rho}) + 10 \cdot \log_{10}(\frac{ f_{ \text{IN} } }{2} )-10 \cdot \log_{10} (L_{ \text{PRN} }) $$,
+8. Update carrier frequency
+estimation (in Hz):
+$$ \hat{f}_{d_{k}}=\hat{f}_{d_{acq}}+\frac{1}{ 2\pi T_{int} } h_{PLL}\left( \Delta \hat{\phi}_{k} \right) $$.
 
+9. Update carrier phase estimation (in rad):
+$$ \hat{\phi}_k=\hat{\phi}_{k-1}+ 2 \pi \hat{f}_{d_{k}} T_{int}+ h_{PLL}(\Delta \hat{\phi}) $$.
+
+10. Compute DLL discriminator:
+$$ \Delta \hat{\tau}_{k}=\frac{\mathcal{E}_{k}-\mathcal{L}_{k}}{\mathcal{E}_{k}+\mathcal{L}_{k}} $$,
 where:
+$$ \mathcal{E}_{k}=\sqrt{\text{VE}_{I_{k}}^2+\text{VE}_{Q_{k}}^2+E_{I_{k}}^2+E_{Q_{k}}^2} $$,
+and
+$$ \mathcal{L}_{k}=\sqrt{\text{VL}_{I_{k}}^2+\text{VL}_{Q_{k}}^2+L_{I_{k}}^2+L_{Q_{k}}^2} $$.
 
+11. Filter $$ \Delta \hat{\tau}_{k} $$ with a bandwidth $$ BW_{DLL} $$:
+$$ h_{DLL}\left( \Delta \hat{\tau}_{k}\right) $$.
+
+12. Update code phase
+estimation (in samples):
+$$ N_{k+1}=\text{round}(S) $$ and $$ \psi_{k+1}=S-N_{k+1} $$, where
+$$ S = \frac{T_{int}f_{\text{IN} } }{\left( 1 + \frac{\hat{f}_{d_{k} } }{f^{\text{(Gal E1) } }_c} \right)} +\psi_{k} + h_{DLL}(\hat{\Delta \tau}_k)f_{\text{IN} }  $$.
+
+13. Code lock indicator:
+$$ \hat{ \text{CN0} } = 10 \cdot \log_{10} ( \hat{\rho}) + 10 \cdot \log_{10}(\frac{ f_{ \text{IN} } }{2} )-10 \cdot \log_{10} (L_{ \text{PRN} }) $$,
+where:
 $$ \hat{\rho}=\frac{ \hat{P}_s }{ \hat{P}_n } = \frac{\hat{P}_s}{\hat{P}_{tot}-\hat{P}_s} $$,
-
 $$ \hat{P}_s = \left(\frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{I_{k-i}} |\right)^2 $$,
 and
 $$ \hat{P}_{tot} = \frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{k-i}|^2 $$.
-[step:codelock] Phase lock indicator:
 
-$$ T_{carrier} = \frac{ \left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$ .
-[step:carrierlock]
+14. Phase lock indicator:
+$$ T_{carrier} = \frac{ \left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$.
 
-Increase lock fail counter $$ \upsilon \leftarrow \upsilon +1 $$. Decrease
-lock fail counter $$ \upsilon \leftarrow \max(\upsilon -1,0) $$. Notify the
-loss of lock to the control plane through the message queue. Output:
+15. Increase lock fail counter $$ \upsilon \leftarrow \upsilon +1 $$. Decrease
+lock fail counter $$ \upsilon \leftarrow \max(\upsilon -1,0) $$.
+
+16. Notify the
+loss of lock to the control plane through the message queue.
+
+17. **Output**:
 $$ \text{P}_k $$, accumulated carrier phase error $$ \hat{\phi}_k $$, code phase
-$$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, $$ \hat{\text{CN0}} $$.
+$$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density ratio $$ \hat{\text{CN0}} $$.
+{: .notice--info}
+
 
 ## Galileo E5a signal tracking
