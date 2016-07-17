@@ -15,7 +15,7 @@ comments: true
 
 ## Contributing to GNSS-SDR
 
-Found a bug in the code? Interested in adding a new feature or [fixing a bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an issue](https://github.com/gnss-sdr/gnss-sdr/issues/new){:target="_blank"} or [pull request](https://help.github.com/articles/using-pull-requests/){:target="_blank"}. If this is your first pull request, it may be helpful to read up on the [GitHub Flow](https://guides.github.com/introduction/flow/){:target="_blank"} first. If you need a quick introduction to Git and its parlance (concepts such as _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git tutorial]({{ site.url }}{{ site.baseurl }}/docs/tutorials/using-git/).
+Found a bug in the code? Interested in adding a new feature or [fixing a known bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an issue](https://github.com/gnss-sdr/gnss-sdr/issues/new){:target="_blank"} or [pull request](https://help.github.com/articles/using-pull-requests/){:target="_blank"}. If this is your first pull request, it may be helpful to read up on the [GitHub Flow](https://guides.github.com/introduction/flow/){:target="_blank"} first. If you need a quick introduction to Git and its parlance (concepts such as _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git tutorial]({{ site.url }}{{ site.baseurl }}/docs/tutorials/using-git/).
 
 [<i class="fa fa-github fa-lg"></i> Fork GNSS-SDR from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--notice .btn--x-large}
 {: style="text-align: center;"}
@@ -26,13 +26,15 @@ Before start working in GNSS-SDR source code, specially if you want to contribut
 
 Found a typo in this website? Interested in giving your thoughts on existing pages, adding a post, tutorial, new feature or enhancement?
 
-This website itself lives in a [GitHub repository](https://github.com/carlesfernandez{{ site.baseurl }}/){:target="_blank"}.
+This website itself lives in a [GitHub repository](https://github.com/carlesfernandez{{ site.baseurl }}/){:target="_blank"}. You can contribute in several ways:
 
- * Comment (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/){:target="_blank"}) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriate style.
+ * Commenting (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/){:target="_blank"}) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriate style.
 
- * Check [existing open issues](https://github.com/gnss-sdr/gnss-sdr/issues/){:target="_blank"} or submit a [new one](https://github.com/gnss-sdr/gnss-sdr/issues/new){:target="_blank"}.
+ * Sharing the content in your favorite social network.
 
- * [Fork this web](https://github.com/carlesfernandez{{ site.baseurl }}/fork){:target="_blank"}, work on the changes in your own repository, and make a pull request.
+ * Checking [existing open issues](https://github.com/gnss-sdr/gnss-sdr/issues/){:target="_blank"} or submiting a [new one](https://github.com/gnss-sdr/gnss-sdr/issues/new){:target="_blank"}.
+
+ * [Forking this web](https://github.com/carlesfernandez{{ site.baseurl }}/fork){:target="_blank"}, working on the changes in your own repository, and making a pull request.
 
  [<i class="fa fa-github fa-lg"></i> Fork this website from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--notice .btn--x-large}
  {: style="text-align: center;"}
@@ -68,7 +70,23 @@ After all gems are installed, the following command will deploy the website and 
 $ bundle exec jekyll serve -w --config _config.yml,_config.dev.yml
 ```
 
-Just point your browser to that local direction in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
+You should see something as:
+
+```
+Configuration file: _config.yml
+Configuration file: _config.dev.yml
+            Source: /path_to_cloned_repo/test
+       Destination: /path_to_cloned_repo/test/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating...
+                    done in 4.017 seconds.
+ Auto-regeneration: enabled for '/path_to_cloned_repo/test'
+Configuration file: /path_to_cloned_repo/test/_config.yml
+    Server address: http://127.0.0.1:4000/test/
+  Server running... press ctrl-c to stop.
+```
+
+Just point your browser to that [local direction](http://127.0.0.1:4000/test/){:target="_blank"} in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
 
 **Pro Tip**: if you want to modify Stylesheets or JavaScript (under ```/assets/_scss``` and ```assets/js```, respectively), you will need to install [Node.js](https://nodejs.org/en/){:target="_blank"}, ```cd```to the root of your project, and run ```$ npm install``` to get all the dependencies. If all gone well, then running ```$ npm run build:css``` will process all SCSS files into ```main.css```, and ```npm build:js``` will compress/concatenate ```_main.js``` and all plugin scripts into ```main.min.js```. Thus, upon a change on css or JavaScript content, run:
 ```
