@@ -9,14 +9,26 @@ modified: 2016-04-13T15:54:02-04:00
 
 {% include base_path %}
 
-Documentation. Here we explain how it is organized.
-
-**Note:** We explain a lot of things here.
-{: .notice--warning}
+Here you will find:
 
 
 {% for post in site.docs %}
   {% if post.title == "Documentation" %} {% else %}
   {% include archive-single.html %}
+  {% endif %}
+{% endfor %}
+
+## Tutorials
+
+In addition, there is a set of tutorials providing more information in particular topics or examples of use:
+
+{% include group-by-array collection=site.posts field="tags" %}
+
+{% for tag in group_names %}
+  {% if tag == "tutorial" %}
+    {% assign posts = group_items[forloop.index0] %}
+    {% for post in posts %}
+      {% include archive-single.html %}
+    {% endfor %}
   {% endif %}
 {% endfor %}

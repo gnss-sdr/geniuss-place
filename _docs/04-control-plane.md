@@ -1,7 +1,7 @@
 ---
 title: "The Control Plane"
 permalink: /docs/control-plane/
-excerpt: "This is about the control plane"
+excerpt: "Managing a network of connected signal processing blocks from the signal source up to the position fix. "
 modified: 2016-04-13T15:54:02-04:00
 ---
 {% include toc %}
