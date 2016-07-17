@@ -18,7 +18,9 @@ Here you will find:
   {% endif %}
 {% endfor %}
 
-## Tutorials
+----
+
+# Tutorials
 
 In addition, there is a set of tutorials providing more information in particular topics or examples of use:
 
