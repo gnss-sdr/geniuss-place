@@ -196,7 +196,7 @@ $$ \hat{P}_{tot} = \frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{k-i
 14. Phase lock indicator:
 $$ T_{carrier} = \frac{ \left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$.
 
-15. **if** $$ T_{carrier} < \mathcal{T} $$ or $$ CN0 < CN0_{min} $$
+15. **if** $$ T_{carrier} < \mathcal{T} $$ or $$ CN0 < CN0_{min} $$ 
 * Increase lock fail counter $$ \upsilon \leftarrow \upsilon +1 $$.
 
 16. **else**
