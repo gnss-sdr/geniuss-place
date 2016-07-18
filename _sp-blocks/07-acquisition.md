@@ -40,11 +40,7 @@ vector product and an inverse transform, taking advantage of the
 efficient implementations available for such operations[^Borre06].
 
 
-[^Borre06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkhäuser, November 2006.
-
-[fig:Rxd]
-
-The magnitude of ([eq:CAF]), also known as cross-ambiguity function, is
+The magnitude of $$ |\hat{R}_{xd}(f_d,\tau)| $$, also known as cross-ambiguity function, is
 also used to decide whether the satellite corresponding to the local
 replica $$ d[n] $$ is in view or it is not. Resorting to signal detection
 theory, it is possible to define tests statistics with desirable
@@ -65,6 +61,17 @@ where $$ \hat{R}_{xx} $$ is an estimation of the input signal power. It can
 be shown that this acquisition test statistic is a Constant False
 Alarm Rate (CFAR) detector because $$ P_{fa} $$ does not depend on the noise
 power.
+
+![CAF]({{ site.url }}{{ site.baseurl }}/images/caf.png)
+{: style="text-align: center;"}
+_GLRT statistic for Parallel Code Phase Search acquisition algoritm
+for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kHz with steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo’s IOV satellite PRN 11[^Fernandez]._
+{: style="text-align: center;"}
+
+
+[^Borre06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkhäuser, November 2006.
+
+[^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
 
 ## GPS L1 C/A signal acquisition
 
