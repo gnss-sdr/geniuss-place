@@ -16,13 +16,14 @@ sidebar:
 
 ## GNU/Linux distributions based on Debian
 
-Starting from Debian 8 and Ubuntu 16.04, you can install GNSS-SDR just by doing:
+Starting from Debian 9 and Ubuntu 16.04, you can install GNSS-SDR just by doing:
 
 
 
 ```
 $ sudo apt-get install gnss-sdr
 ```
+{: highlight id="terminal"}
 
 **The good part:**
 This is the easiest and fastest way to get GNSS-SDR installed in your system. Just a single line in your terminal will do all the work for you.
@@ -32,7 +33,7 @@ This is the easiest and fastest way to get GNSS-SDR installed in your system. Ju
 GNSS-SDR package updates need to undergo an acceptance process before they are included in the different distributions, so it might not be the ultimate version of the source code. The same applies for the dependency libraries.
 {: .notice--danger}
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/).
+If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/). If you Operating System still does not include the GNSS-SDR package, you can build it from source.
 
 ## Mac OS X using Macports
 
@@ -67,14 +68,31 @@ If everything went fine, you can directly jump into how to get your [first posit
 
 # Building from source
 
-
-**Building from source or using packages?**
-If you build a given software from its source code, all other softwares linking against it must be also be built from source.
+**Is it better to compile from source or to install from a package?** Here we provide some guidelines. The rule of thumb is: Always consider installing from standard packages of your Operating System first; only compile from sources if you know exactly why you need to do that.
 {: .notice--info}
+
+GNSS-SDR and its software dependencies can all be installed either by downloading their source code, building and installing them in your system, or by installing the corresponding software package. Under GNU/Linux, the package manager my vary according to the distribution you are using (```.deb``` for Debian-based distros, such as Ubuntu, Linaro and Raspbian; ```.rpm``` for Fedora / SUSE / Mandriva; etc.). In Mac OS X, most popular open source pacake managers are Macports and Homebrew. In all cases, a possible option for a quick jump into GNSS-SDR is to install all the dependencies from packages, and then building GNSS-SDR from the source code.
+
+But maybe this approach does not fit your needs. Maybe you already have some dependency already built from source and want to use it, or your setup requires some specific flag somewhere. This is a building-time _vs_. fine-tuning trade-off. In order to take the adequate approach, just remember this basic rule:
+
+![Install package or build from source?]({{ site.url }}{{ site.baseurl }}/images/deb-or-build-from-source.png){: .align-center}
+_Software packages require that all its dependencies must be also installed from packages._
+{: style="text-align: center;"}
+
+and take into account the following considerations:
+
+**The good part:** The advantage of compiling from source is that you can compile packages with certain flags/options which may be missing or disabled in standard packages. Also, it makes it easy to have multiple versions of the same program installed. Also, you can choose an exact version of a package which may be already removed from, or not yet present in, your OS repositories.
+{: .notice--success}
+
+
+**The downside:** The disadvantage of compiling from source is that the usual ```cmake .. && make && sudo make install``` procedure keeps your package manager completely unaware of the changes you are making, so you are not going to get any automatic updates for the manually-compiled software; and it is possible that package manager will later override/break your package if you are not careful to install it in a separate location.
+{: .notice--danger}
+
+Some highly automated tools that can do some of the work for you are described below.
 
 ## Install dependencies
 
-### Install dependencies using packages
+### Install all dependencies using packages
 
 If you are using Debian 8, Ubuntu 14.10 or above, this can be done by copying and pasting the following line in a terminal:
 
@@ -121,7 +139,7 @@ Download, build and install GNU Radio, related drivers and some other extra modu
 $ pybombs prefix init /path/to/prefix -a myprefix -R gnuradio-default
 ~~~~~~
 
-This will perform a local installation of the dependencies under ```/path/to/prefix```, so they will not be visible when opening a new terminal. In order to make them available, you will need to set up the adequate environment variables:
+This will perform a local installation of the dependencies under ```/path/to/prefix```, so they will not be visible when opening a new terminal. In order to make them available, you will need to set up the adequate environment variables by sourcing the ```setup_env.sh``` script:
 
 ~~~~~~
 $ cd /path/to/prefix
@@ -136,7 +154,7 @@ $ pybombs install gnss-sdr
 
 By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, which is the most recent version of the source code. This behaviour can be modified by altering the corresponding recipe at ```$HOME/.pybombs/recipes/gr-recipes/gnss-sdr.lwr```
 
-In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual ```cmake .. && make && make install``` dance, as explained below), there are still some missing depenencies (_i.e._, Armadillo, GFlags, Glog and GunTLS) that can be installed either by using PyBOMBS:
+In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual ```cmake .. && make && sudo make install``` dance, as explained below), there are still some missing depenencies (_i.e._, Armadillo, GFlags, Glog and GunTLS) that can be installed either by using PyBOMBS:
 
 ~~~~~~
 $ pybombs install armadillo gflags glog gnutls
