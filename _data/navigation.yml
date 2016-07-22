@@ -121,8 +121,8 @@ sp-block:
         url: /docs/sp-blocks/input-filter/
       - title: "Resampler"
         url: /docs/sp-blocks/resampler/
-      - title: "Channel"
-        url: /docs/sp-blocks/channel/
+      - title: "Channels"
+        url: /docs/sp-blocks/channels/
       - title: "Acquisition"
         url: /docs/sp-blocks/acquisition/
       - title: "Tracking"
