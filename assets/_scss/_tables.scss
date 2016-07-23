@@ -46,3 +46,13 @@ tr, td, th {
   text-align: center;
   vertical-align: top;
 }
+
+#gridtable {
+  padding: 0.5em;
+  font-size: $type-size-4;
+  border: 0px hidden $body-color;
+  border-bottom: 0px hidden $body-color;
+  border-right: 0px hidden $body-color;
+  text-align: left;
+  vertical-align: top;
+}
