@@ -3,7 +3,7 @@ layout: splash
 permalink: /
 date:
 header:
-  overlay_color: "#5e616c"
+  overlay_color: "#3399cc"
   overlay_image: mm-home-page-feature.jpg
   # cta_label: "<i class='fa fa-download'></i> Install Now"
   # cta_url: "/docs/quick-start-guide/"
@@ -22,7 +22,7 @@ feature_row:
     excerpt: "Nice enclosures for your gear that you can print in 3D."
     url: "/enclosures/"
     btn_label: "See an example"
-  - image_path: radar-chart.png
+  - image_path: radar-chart2.png
     alt: "KPIs"
     title: "Key Performance Indicators"
     excerpt: "A discussion on the assessment of software-defined GNSS receivers."
@@ -37,3 +37,32 @@ intro:
 {% include feature_row id="intro" type="center" %}
 
 {% include feature_row %}
+
+![GeNiuSS]({{ site.url }}{{ site.baseurl }}/images/geniuss.jpg){: width="300px"}
+{: style="text-align: center;"}
+[![Icon]({{ site.url }}{{ site.baseurl }}/images/icon-gnss-sdr-white.png){: width="36px"} Get Started]({{ site.url }}{{ site.baseurl }}/quick-start-guide/){: .btn .btn--geniuss .btn--x-large}
+{: style="text-align: center;"}
+
+---
+
+<p>&nbsp;</p>
+
+# Latest news
+{: style="text-align: center;"}
+
+<p>&nbsp;</p>
+
+<div class="grid__wrapper">
+
+{% include group-by-array collection=site.posts field="tags" %}
+
+{% for tag in group_names %}
+  {% if tag == "news" %}
+    {% assign posts = group_items[forloop.index0] %}
+    {% for post in posts limit:4 %}
+      {% include archive-single.html type="grid" %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+</div>
