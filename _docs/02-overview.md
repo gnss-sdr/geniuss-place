@@ -1,7 +1,9 @@
 ---
 title: "Overview"
 permalink: /docs/overview/
-excerpt: "A brief introduction to GNSS-SDR."
+excerpt: "A brief introduction to GNSS-SDR, a free and open source Global Navigation Satellite System software-defined receiver."
+header:
+  teaser: what-is-gnss-sdr.jpg
 modified: 2016-04-13T15:54:02-04:00
 ---
 

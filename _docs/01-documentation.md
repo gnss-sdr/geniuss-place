@@ -12,11 +12,21 @@ modified: 2016-04-13T15:54:02-04:00
 Here you will find:
 
 
-{% for post in site.docs %}
-  {% if post.title == "Documentation" %} {% else %}
-  {% include archive-single.html %}
-  {% endif %}
-{% endfor %}
+<div class="grid__wrapper">
+  {% for post in site.docs %}
+    {% if post.title == "Documentation" %} {% else %}
+      {% include archive-single.html type="grid" %}
+    {% endif %}
+  {% endfor %}
+</div>
+
+<p> &nbsp; </p>
+<p>  &nbsp; </p>
+<p>  &nbsp; </p>
+<p>  &nbsp; </p>
+<p>  &nbsp; </p>
+<p>  &nbsp; </p>
+
 
 ----
 
