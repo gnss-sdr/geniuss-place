@@ -11,7 +11,7 @@ modified: 2016-04-13T15:54:02-04:00
 
 Here you will find:
 
-
+<html> <body > <table> <tr> <td id="gridtable">  
 <div class="grid__wrapper">
   {% for post in site.docs %}
     {% if post.title == "Documentation" %} {% else %}
@@ -19,13 +19,7 @@ Here you will find:
     {% endif %}
   {% endfor %}
 </div>
-
-<p> &nbsp; </p>
-<p>  &nbsp; </p>
-<p>  &nbsp; </p>
-<p>  &nbsp; </p>
-<p>  &nbsp; </p>
-<p>  &nbsp; </p>
+</td></tr></table></body></html>
 
 
 ----
@@ -36,7 +30,8 @@ In addition, there is a set of tutorials providing more information in particula
 
 {% include group-by-array collection=site.posts field="tags" %}
 
-
+<html> <body > <table> <tr> <td id="gridtable">
+<div class="grid__wrapper">
 {% for tag in group_names %}
   {% if tag == "tutorial" %}
     {% assign posts = group_items[forloop.index0] %}
@@ -45,12 +40,10 @@ In addition, there is a set of tutorials providing more information in particula
     {% endfor %}
   {% endif %}
 {% endfor %}
-
-<p> &nbsp; </p>
-<p>  &nbsp; </p>
-<p>  &nbsp; </p>
-<p>  &nbsp; </p>
-<p>  &nbsp; </p>
-<p>  &nbsp; </p>
+</div>
+</td></tr></table></body></html>
 
 ... and [many more]({{ site.url }}{{ site.baseurl }}/docs/tutorials/)!
+
+[![Icon]({{ site.url }}{{ site.baseurl }}/images/icon-gnss-sdr-white.png){: width="36px"} Check our Tutorials page]({{ site.url }}{{ site.baseurl }}/docs/tutorials/){: .btn .btn--geniuss .btn--x-large}
+{: style="text-align: center;"}

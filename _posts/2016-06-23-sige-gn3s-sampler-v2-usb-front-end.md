@@ -4,7 +4,7 @@ permalink: /docs/tutorials/sige-gn3s-sampler-v2-usb-front-end/
 excerpt: "This article provides details about the support that GNSS-SDR offers for real-time operation using the GNSS USB front-end SiGe GN3S Sampler v2."
 author_profile: false
 header:
-  teaser: sige_v2.jpg
+  teaser: GN3S_setup1.jpg
 tags:
   - tutorial
   - GN3S
