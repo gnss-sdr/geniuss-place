@@ -57,17 +57,8 @@ In particular, you have the freedom to install and use GNSS-SDR right now in you
 
 Here you will find:
 
-{::comment}
-{% for post in site.quick-start %}
-  {% if post.title == "Quick-Start Guide" %} {% else %}
-  {% include archive-single.html %}
-  {% endif %}
-{% endfor %}
-{:/comment}
 
-
-
-
+<html> <body > <table> <tr> <td id="gridtable">
 <div class="grid__wrapper">
   {% for post in site.quick-start %}
     {% if post.title == "Quick-Start Guide" %} {% else %}
@@ -75,7 +66,7 @@ Here you will find:
     {% endif %}
   {% endfor %}
 </div>
-
+</td></tr></table></body></html>
 
 
 ---

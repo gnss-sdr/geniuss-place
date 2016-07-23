@@ -26,12 +26,12 @@ GNSS-SDR is a project hosted and sponsored by the Centre Tecnol&ograve;gic de Te
 There is an open distribution list devoted to discussions related to the development of GNSS-SDR. You can:
 
 
-[<i class="fa fa-envelope fa-lg"></i> Subscribe to GNSS-SDR-developers mailing list](https://lists.sourceforge.net/lists/listinfo/gnss-sdr-developers){:target="_blank"}{: .btn .btn--notice .btn--x-large}
+[<i class="fa fa-envelope fa-lg"></i> Subscribe to GNSS-SDR-developers mailing list](https://lists.sourceforge.net/lists/listinfo/gnss-sdr-developers){:target="_blank"}{: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 or
 
-[<i class="fa fa-list-ul fa-lg"></i> Check prior postings](https://sourceforge.net/p/gnss-sdr/mailman/gnss-sdr-developers/){:target="_blank"}{: .btn .btn--notice .btn--x-large}
+[<i class="fa fa-list-ul fa-lg"></i> Check prior postings](https://sourceforge.net/p/gnss-sdr/mailman/gnss-sdr-developers/){:target="_blank"}{: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 
