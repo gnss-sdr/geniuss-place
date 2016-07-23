@@ -105,6 +105,16 @@
     }
   }
 
+  /* geniuss */
+
+  &--geniuss {
+    background-color: $geniuss-color;
+
+    &:hover {
+      background-color: mix(#000, $geniuss-color, 20%);
+    }
+  }
+
   /* disabled */
 
   &--disabled {
