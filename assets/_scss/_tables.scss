@@ -55,4 +55,15 @@ tr, td, th {
   border-right: 0px hidden $body-color;
   text-align: left;
   vertical-align: top;
+  a {
+    color: $dark-gray;
+    text-decoration: none;
+    border-bottom: 1px solid $light-gray;
+    transition: $global-transition;
+
+    &:hover {
+      color: #000;
+      border-bottom-color: #000;
+    }
+  }
 }
