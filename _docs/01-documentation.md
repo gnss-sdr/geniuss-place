@@ -36,11 +36,21 @@ In addition, there is a set of tutorials providing more information in particula
 
 {% include group-by-array collection=site.posts field="tags" %}
 
+
 {% for tag in group_names %}
   {% if tag == "tutorial" %}
     {% assign posts = group_items[forloop.index0] %}
-    {% for post in posts %}
-      {% include archive-single.html %}
+    {% for post in posts limit:4 %}
+      {% include archive-single.html type="grid" %}
     {% endfor %}
   {% endif %}
 {% endfor %}
+
+<p> &nbsp; </p>
+<p>  &nbsp; </p>
+<p>  &nbsp; </p>
+<p>  &nbsp; </p>
+<p>  &nbsp; </p>
+<p>  &nbsp; </p>
+
+... and [many more]({{ site.url }}{{ site.baseurl }}/docs/tutorials/)!
