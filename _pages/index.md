@@ -22,7 +22,7 @@ feature_row:
     excerpt: "Nice enclosures for your gear that you can print in 3D."
     url: "/enclosures/"
     btn_label: "See an example"
-  - image_path: radar-chart2.png
+  - image_path: radar-chart.png
     alt: "KPIs"
     title: "Key Performance Indicators"
     excerpt: "A discussion on the assessment of software-defined GNSS receivers."
