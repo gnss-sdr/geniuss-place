@@ -97,8 +97,6 @@ geniuss-place:
 about:
   - title: About Us
     children:
-      - title: "Contact Info"
-        url: /contact-info/
       - title: "Team"
         url: /team/
       - title: "Acknowledgements"
