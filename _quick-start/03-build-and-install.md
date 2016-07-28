@@ -12,6 +12,11 @@ sidebar:
 {% include base_path %}
 {% include toc %}
 
+This page describe several ways to build and install GNSS-SDR.
+
+![GeNiuSS building]({{ site.url }}{{ site.baseurl }}/images/geniuss-building.png){:height="250px" width="250x"}
+{: style="text-align: center;"}
+
 # Installing everything through software package managers
 
 ## GNU/Linux distributions based on Debian
@@ -33,7 +38,7 @@ This is the easiest and fastest way to get GNSS-SDR installed in your system. Ju
 GNSS-SDR package updates need to undergo an acceptance process before they are included in the different distributions, so it might not be the ultimate version of the source code. The same applies for the dependency libraries.
 {: .notice--danger}
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/). If you Operating System still does not include the GNSS-SDR package, you can build it from source.
+If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/). If your Operating System release still does not include the GNSS-SDR package, you can [build it from source](#source).
 
 ## Mac OS X using Macports
 
@@ -67,6 +72,8 @@ $ sudo port install gnss-sdr-next
 If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/).
 
 # Building from source
+
+<a name="source"></a>
 
 **Is it better to compile from source or to install from a package?** Here we provide some guidelines. The rule of thumb is: Always consider installing from standard packages of your Operating System first; only compile from sources if you know exactly why you need to do that.
 {: .notice--info}
@@ -108,7 +115,7 @@ $ sudo apt-get install build-essential cmake git libboost-dev libboost-date-time
 you will need to build from source and install GNU Radio manually, as explained below, since GNSS-SDR requires gnuradio-dev >= 3.7.3, and Ubuntu 14.04 came with 3.7.2. Install all the packages above BUT EXCEPT ```libuhd-dev```, ```gnuradio-dev``` and ```gr-osmosdr``` (and remove them if they are already installed in your machine), and install those dependencies using PyBOMBS, as explained below.
 {: .notice--warning}
 
-Once you have installed these packages, you can jump directly to clone, build and install GNSS-SDR.
+Once you have installed these packages, you can jump directly to [clone, build and install GNSS-SDR](#build).
 
 ### Install dependencies using PyBOMBS
 
@@ -146,7 +153,7 @@ $ cd /path/to/prefix
 $ . ./setup_env.sh
 ~~~~~~
 
-Now you are ready to use GNU Radio and to jump into building GNSS-SDR after installing a few other dependencies. Actually, those are steps that PyBOMBS can do for you as well:
+Now you are ready to use GNU Radio and to jump into [building GNSS-SDR](#build) after installing a few other dependencies. Actually, those are steps that PyBOMBS can do for you as well:
 
 ~~~~~~
 $ pybombs install gnss-sdr
@@ -162,6 +169,8 @@ $ pybombs install armadillo gflags glog gnutls
 
 ## Clone, build and install GNSS-SDR
 
+<a name="build"></a>
+
 Once all the dependencies are installed in your system, you are ready to clone the repository, build the source code and install the software in your system:
 
     $ git clone https://github.com/gnss-sdr/gnss-sdr
@@ -176,6 +185,3 @@ The step `git checkout next` is optional, and sets the source tree pointing to t
 If everything went fine, now you can jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/).
 
 ----
-
-![GeNiuSS building]({{ site.url }}{{ site.baseurl }}/images/geniuss-building.png){:height="250px" width="250x"}
-{: style="text-align: center;"}
