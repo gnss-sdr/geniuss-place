@@ -35,13 +35,8 @@ author:
   </tr>
 </table> </body> </html>
 
-## Artwork
 
-<html> <body > <table>
-  <tr>
-     <td id="authortable">  
-        {% assign pauthor = "Ignacio Paniego" %}
-        {% include author-profile.html %}
-     </td>
-  </tr>
-</table> </body> </html>
+## Contributors
+
+
+Check the full [list of contributors](https://github.com/gnss-sdr/gnss-sdr/graphs/contributors){:target="_blank"} to the source code.
