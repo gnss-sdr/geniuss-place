@@ -65,7 +65,7 @@ This project has received funding from the [**European GNSS Agency**](http://www
           - In [New blocks for BeiDou B1 in GNSS-SDR: toward a multi-constellation receiver](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marabra87.html), Mara Branzanti started working on the Beidou B1 receiver.
 
      * [2013](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr){:target="_blank"}
-          - In [Development of new blocks for Galileo E1 in GNSS-SDR: From telemetry TO PVT solutions](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/marabra87.html){:target="_blank"}, Mara Branzanti worked on the Galileo E1 receiver.
+          - In [Development of new blocks for Galileo E1 in GNSS-SDR: From telemetry to PVT solutions](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/marabra87.html){:target="_blank"}, Mara Branzanti worked on the Galileo E1 receiver.
           - In [GNSS-SDR goes SBAS](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/fehrdan.html){:target="_blank"}, Daniel Fehr set the basis for the EGNOS receiver.
           - In [Improve the acquisition sensitivity of a GNSS receiver](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/marcmolina.html){:target="_blank"}, Marc Molina improved the performance of acquisition algorithms.
 
