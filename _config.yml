@@ -165,6 +165,9 @@ collections:
   sp-blocks:
     output: true
     permalink: /docs/:collection/:path/
+  design-forces:
+    output: true
+    permalink: /:collection/:path/
 
 
 # Defaults
@@ -231,6 +234,17 @@ defaults:
       author_profile: false
       share: true
       comments: true
+# _design-forces
+  - scope:
+      path: ""
+      type: design-forces
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: true
+      comments: true
+      related: true
 
 # Outputting
 permalink: /:categories/:title/
