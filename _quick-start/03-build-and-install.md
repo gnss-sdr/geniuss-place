@@ -69,7 +69,7 @@ $ sudo port install gnss-sdr-next
   {{ mac-os-text | markdownify }}
 </div>
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/).
+If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/). Or maybe you might prefer other options, such as using [Homebrew](http://brew.sh/){:target="_blank"} instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on Mac OS X, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#mac-os-x-){:target="_blank"} file.
 
 # Building from source
 
@@ -161,11 +161,13 @@ $ pybombs install gnss-sdr
 
 By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, which is the most recent version of the source code. This behaviour can be modified by altering the corresponding recipe at ```$HOME/.pybombs/recipes/gr-recipes/gnss-sdr.lwr```
 
-In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual ```cmake .. && make && sudo make install``` dance, as explained below), there are still some missing depenencies (_i.e._, Armadillo, GFlags, Glog and GunTLS) that can be installed either by using PyBOMBS:
+In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual ```cmake .. && make && sudo make install``` dance, as explained below), there are still some missing depenencies (_i.e._, Armadillo, GFlags, Glog and GnuTLS) that can be installed either by using PyBOMBS:
 
 ~~~~~~
 $ pybombs install armadillo gflags glog gnutls
 ~~~~~~
+
+or manually, just donwloading, building and installing them. More details are available in the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#manual-installation-of-other-required-dependencies){:target="_blank"} file.
 
 ## Clone, build and install GNSS-SDR
 
