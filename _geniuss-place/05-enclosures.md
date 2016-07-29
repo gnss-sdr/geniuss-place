@@ -4,7 +4,7 @@ excerpt: "Designs of enclosures for you gear that you can print in 3D."
 permalink: /enclosures/
 comments: true
 header:
-  image: hw-header.jpg
+  image: usrp-enclosure-header.jpg
   teaser: hw-header-th.jpg
 sidebar:
     nav: "geniuss-place"

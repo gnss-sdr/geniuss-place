@@ -3,7 +3,7 @@ title: "RF Front-ends"
 excerpt: "Build your own RF Front-ends for your software receiver."
 permalink: "/rf-frontends/"
 header:
-  image: hw-header.jpg
+  image: frontend-gsoc-header.jpg
   teaser: hw-header-th.jpg
 sidebar:
   nav: "geniuss-place"
