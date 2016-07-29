@@ -39,4 +39,4 @@ author:
 ## Contributors
 
 
-Check the full [list of contributors](https://github.com/gnss-sdr/gnss-sdr/graphs/contributors){:target="_blank"} to the source code.
+Check out the full [list of contributors to the source code in GitHub](https://github.com/gnss-sdr/gnss-sdr/graphs/contributors){:target="_blank"}.
