@@ -7,7 +7,7 @@ sidebar:
 date: 2016-07-28T18:38:52+00:00
 ---
 
-This project has been mainly developed on a volunteer basis, for education and research purposes. The main [Developer Team]({{ site.url }}{{ site.baseurl }}/team/){:target="_blank"} is a group of researchers at CTTC, a non-profit research institution, and they use to be quite busy developing amazing new concepts and practical developments for advanced wireless communication systems and serving the industry in actually deploying them. Only some selected students  got a stipend (through their participation in Google's Summer of Code and ESA's Summer of Code In Space programs) for their direct work on GNSS-SDR.  
+This project has been mainly developed on a volunteer basis, for education and research purposes. The main [Developer Team]({{ site.url }}{{ site.baseurl }}/team/){:target="_blank"} is a group of researchers at CTTC, a non-profit research institution, and they use to be quite busy developing amazing new concepts and practical developments for advanced wireless communication systems and serving the industry in actually deploying them. Only some selected students  got a stipend (through their participation in Google Summer of Code and ESA Summer of Code In Space programs) for their direct work on GNSS-SDR.  
 
 According to [Open HUB](https://www.openhub.net/p/gnss-sdr){:target="_blank"}, the development of GNSS-SDR from its [first commit](https://github.com/gnss-sdr/gnss-sdr/commit/228fa3b797dba7d0192f751e7e25a7b8348f9326){:target="_blank"} to a Git repository (in October, 2011, after a happy childhoold living in a Subversion repository) up to now has taken 35 years of effort, as estimated by the Constructive Cost Model ([COCOMO](https://en.wikipedia.org/wiki/COCOMO){:target="_blank"}).
 {: .notice--info}
@@ -15,24 +15,24 @@ According to [Open HUB](https://www.openhub.net/p/gnss-sdr){:target="_blank"}, t
 Slowly but steadily baked, the source code evolved and demonstrated its feasibility as an open and free framework for software-defined GNSS receiver development, attracting the interest of more researchers, students, skilled hobbyists and the industry.
 
 
-The Authors are proud to be supported by the following public institutions, private companies and spontaneous, enthusiastic volunteers that contribute in maintaining and expanding the capabilities of a free and open source GNSS sofware-defined recceiver:
+The Authors are proud to be supported by the following public institutions, private companies and spontaneous, enthusiastic volunteers that contribute in maintaining and expanding the capabilities and field of applications of a free and open source GNSS sofware-defined receiver:
 
 
 
 ## Public Research Funds
 
 
-[![AUDITOR logo]({{ site.url }}{{ site.baseurl }}/images/logo-auditor.png){:height="250px" width="250x"}](http://www.auditor-project.eu/index.html){:target="_blank"}
-
 * **[AUDITOR](http://www.auditor-project.eu/index.html){:target="_blank"} - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
 
+[![AUDITOR logo]({{ site.url }}{{ site.baseurl }}/images/logo-auditor.png){:height="250px" width="250x"}](http://www.auditor-project.eu/index.html){:target="_blank"}
+{: style="text-align: center;"}
 
-This project has received funding from the European GNSS Agency under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](http://cordis.europa.eu/project/rcn/199301_en.html){:target="_blank"}
+This project has received funding from the [**European GNSS Agency**](http://www.gsa.europa.eu/){:target="_blank"} under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](http://cordis.europa.eu/project/rcn/199301_en.html){:target="_blank"}.
 {: .notice--success}
 
 
 
-* Support of Research Groups of the Government of Catalonia (Grant 2014--SGR--1567).
+* Support of Research Groups by the Government of Catalonia (Grant 2014--SGR--1567).
 
 **The Government of Catalonia**, through Grant 2014--SGR--1567, provides partial support for registrations and travel expenses to well-established scientific conferences.
 {: .notice--success}
@@ -41,14 +41,18 @@ This project has received funding from the European GNSS Agency under the Europe
 ## Education programs funded by private entities
 
 * **Google Summer of Code (GSoC)**
+
+    [![GSoC logo]({{ site.url }}{{ site.baseurl }}/images/logo-gsoc.png){:height="100px" width="100x"}](https://developers.google.com/open-source/gsoc/){:target="_blank"}
+    {: style="text-align: center;"}
+
      * [2016](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr){:target="_blank"} ...exciting developents happening right now!
           - In [GNSS-SDR port to android](https://summerofcode.withgoogle.com/projects/?sp-page=2#4871316700135424){:target="_blank"}, Eric Wild is working on porting GNSS-SDR to Android.
           - In [Implementation of the BeiDou signal tracking block for the GNSS-SDR Project](https://summerofcode.withgoogle.com/projects/?sp-page=2#5537250955755520){:target="_blank"}, Enric Juan is developing the Beidou B1 receiver.
-          - In [Project Frisbee : An Antenna Array Receiver Testbed for GNSS-SDR](https://summerofcode.withgoogle.com/projects/?sp-page=2#4771132842442752){:target="_blank"}, Ajith Peter is exploring advanced receiver architectures.
+          - In [Project Frisbee : An Antenna Array Receiver Testbed for GNSS-SDR](https://summerofcode.withgoogle.com/projects/?sp-page=2#4771132842442752){:target="_blank"}, Ajith Peter is exploring advanced front-end architectures and evolving his open design.
 
      * [2015](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr){:target="_blank"}
           - In [BeiDou signal generation and acquisition](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/giorgio.html), Giorgio Savastano explored acquisition methods for the Beidou B1 receiver.
-          - In [Development of a Low Cost Multi-Constellation GNSS Sampler](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/ajithpeter.html), Ajith Peter continued his work on the low-cost radiofrequency front-end.
+          - In [Development of a Low Cost Multi-Constellation GNSS Sampler](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/ajithpeter.html), Ajith Peter implemented the first version of a low-cost radiofrequency front-end, achieving a working prototype.
           - In [Embedding GNSS-SDR in a System on Chip](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/cris_proteinlab.html), Cristian Becerra worked in adapting GNSS-SDR to embedded devices.
           - In [GNSSSDR Metadata Standard Implementation - Automatic Receiver Configuration](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/sumitgautamjbp.html), Sumit Gautam explored novel interfaces and APIs to describe signal inputs.
           - In [Run-time partitioning of functions at an embedded SDR framework](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/scaelles.html), Sergi Caelles worked in adapting GNSS-SDR to embedded devices.
@@ -56,7 +60,7 @@ This project has received funding from the European GNSS Agency under the Europe
 
      * [2014](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr){:target="_blank"}
           - In [Development of a GNSS Sampler using the MAX2769 Universal GPS Receiver](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/ajithpeter.html){:target="_blank"}, Ajith Peter worked on the design of a low-cost radiofrequency front-end for GNSS-SDR.
-          - In [Expanding the receiver to Galileo E5a](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marc_sales.html){:target="_blank"}, Marc Sales developed blocks for the Galileo E5a receiver.
+          - In [Expanding the receiver to Galileo E5a](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marc_sales.html){:target="_blank"}, Marc Sales pioneered the developemewnt of blocks for the Galileo E5a receiver.
           - In [Faster GNSS Signal Acquisition using the Sparse Fourier Transform](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/dmiralles2009.html){:target="_blank"}, Damian Miralles explored the QuickSync algortihm for signal acquiaition.
           - In [New blocks for BeiDou B1 in GNSS-SDR: toward a multi-constellation receiver](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marabra87.html), Mara Branzanti started working on the Beidou B1 receiver.
 
@@ -68,31 +72,33 @@ This project has received funding from the European GNSS Agency under the Europe
      * [2012](https://www.google-melange.com/archive/gsoc/2012/orgs/gnu){:target="_blank"}, under the kind umbrella of GNU Radio and the GNU Project.
           - In [GNSS Receiver on GNU Radio](https://www.google-melange.com/archive/gsoc/2012/orgs/gnu/projects/lesteve.html){:target="_blank"}, Luis Esteve implemented an acquisition algorithm for GPS L1 C/A.
 
-          **Google**, through the GSoC program, offers a stipend to students participating in open source projects.
+          **Google**, through the GSoC program, offers students a stipend for contributing to open source projects.
           {: .notice--success}
 
 
-* **Summer of Code in Space (SOCIS)**
+* **ESA Summer Of Code In Space (SOCIS)**
+
      * [2015](http://sophia.estec.esa.int/socis2015/?q=node/13){:target="_blank"}
-          - In _Direct Position Estimation_, Luis Esteve explored the applicability of such algorithm.
+          - In _Direct Position Estimation_, Luis Esteve explored the DPE algorithm and proposed receiver architectures.
 
      * [2014](http://sophia.estec.esa.int/socis2014/?q=node/13){:target="_blank"}
-          - In _GNSS-SDR. Acceleration with VOLK_, Andr&eacute;s Cecilia worked in a new VOLK module (now VOLK_GNSSSDR)
+          - In _GNSS-SDR. Acceleration with VOLK_, Andr&eacute;s Cecilia created a new VOLK module with kernels for GNSS signal processing, the inception of the current [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"}.
 
      * [2013](http://sophia.estec.esa.int/socis2013/?q=node/13){:target="_blank"}
           - In _Real-time positioning solution for GNSS-SDR_, Vladimir Avrov started working on the generation of RTCM messages.
 
-          **The European Space Agency**, through the SOCIS program, offers a stipend to students participating in open source projects.
+          **The European Space Agency**, through the SOCIS program, offers students a stipend for contributing to open source projects.
           {: .notice--success}
 
 
 ## Sponsors
 
 [![NSL logo]({{ site.url }}{{ site.baseurl }}/images/logo-nsl.jpg){:height="250px" width="250x"}](http://www.nsl.eu.com/){:target="_blank"}
+{: style="text-align: center;"}
 
 * [NSL](http://www.nsl.eu.com/){:target="_blank"}, a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](http://www.nsl.eu.com/primo.html){:target="_blank"} system that is being used with GNSS-SDR development.
 
-[**NSL**](http://www.nsl.eu.com/){:target="_blank"} kindly provides equipment technical support to the development of dual-band architectures.
+[**NSL**](http://www.nsl.eu.com/){:target="_blank"} kindly provides equipment and technical support to the development of dual-band software architectures.
 {: .notice--success}
 
 ## Research networks
@@ -100,6 +106,7 @@ This project has received funding from the European GNSS Agency under the Europe
 ### COST - European Cooperation in Science and Technology
 
 [![IRACON logo](http://www.iracon.org/wp-content/uploads/2016/03/iracon-logo-big.jpg){:height="250px" width="250x"}](http://www.iracon.org){:target="_blank"}
+{: style="text-align: center;"}
 
 * **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org){:target="_blank"})**, which aims to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
 
