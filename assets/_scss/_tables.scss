@@ -47,6 +47,25 @@ tr, td, th {
   vertical-align: top;
 }
 
+#forcetable {
+  padding: 0.5em;
+  font-size: $type-size-4;
+  border: 0px hidden $body-color;
+  border-bottom: 0px hidden $body-color;
+  border-right: 0px hidden $body-color;
+  text-align: left;
+  vertical-align: top;
+
+  .archive__item-excerpt {
+    margin-top: 0;
+    font-size: $type-size-5;
+
+    & + p {
+      text-indent: 0;
+    }
+  }
+}
+
 #gridtable {
   padding: 0.5em;
   font-size: $type-size-4;
