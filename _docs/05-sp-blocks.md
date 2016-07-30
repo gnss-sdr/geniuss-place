@@ -15,6 +15,8 @@ In GNSS-SDR, each configuration file defines a receiver. This page documents the
 ![](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/docs/doxygen/images/GeneralBlockDiagram.png)
 {: style="text-align: center;"}
 
+<html> <body> <table> <tr> <td id="forcetable">  
 {% for post in site.sp-blocks %}
   {% include archive-single.html %}
 {% endfor %}
+</td> </tr> </table> </body> </html>
