@@ -5,4 +5,4 @@ excerpt: "It refers to the usability of the same software in different environme
 modified: 2016-07-29T15:54:02-04:00
 ---
 
-Hi
+_Portability_  refers to the usability of the same software in different computing environments.
