@@ -10,6 +10,7 @@ sidebar:
 {% include base_path %}
 {% include group-by-array collection=site.posts field="tags" %}
 
+<html> <body> <table> <tr> <td id="forcetable">
 {% for tag in group_names %}
   {% if tag == "tutorial" %}
     {% assign posts = group_items[forloop.index0] %}
@@ -18,3 +19,4 @@ sidebar:
     {% endfor %}
   {% endif %}
 {% endfor %}
+</td> </tr> </table> </body> </html>
