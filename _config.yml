@@ -245,6 +245,9 @@ defaults:
       share: true
       comments: true
       related: true
+      sidebar:
+        nav: "design-forces"
+
 
 # Outputting
 permalink: /:categories/:title/

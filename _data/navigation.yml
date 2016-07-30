@@ -131,3 +131,39 @@ sp-block:
         url: /docs/sp-blocks/observables/
       - title: "PVT"
         url: /docs/sp-blocks/pvt/
+
+design-forces:
+  - title: Design Forces
+    children:
+      - title: "Accuracy"
+        url: /design-forces/accuracy/
+      - title: "Availability"
+        url: /design-forces/availability/
+      - title: "Efficiency"
+        url: /design-forces/efficiency/
+      - title: "Flexibility"
+        url: /design-forces/flexibility/
+      - title: "Interoperability"
+        url: /design-forces/interoperability/
+      - title: "Maintainability"
+        url: /design-forces/maintainability/
+      - title: "Marketability"
+        url: /design-forces/marketability/
+      - title: "Portability"
+        url: /design-forces/portability/
+      - title: "Popularity"
+        url: /design-forces/popularity/
+      - title: "Reliability"
+        url: /design-forces/reliability/
+      - title: "Repeatability"
+        url: /design-forces/repeatability/
+      - title: "Reproducibility"
+        url: /design-forces/reproducibility/
+      - title: "Scalability"
+        url: /design-forces/scalability/
+      - title: "Testability"
+        url: /design-forces/testability/
+      - title: "Openness"
+        url: /design-forces/openness/
+      - title: "Usability"
+        url: /design-forces/usability/
