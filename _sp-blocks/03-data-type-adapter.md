@@ -9,27 +9,32 @@ sidebar:
 
 {% include toc %}
 
-The _Data Type Adapter_ is the first processing block inside a _Signal Conditioner_
+The _Data Type Adapter_ is the first processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/signal-conditioner/#signal-conditioner){:target="_blank"} implementation.
 
 
 
-This block is in charge of changing the data type of the sample stream.
+The role of a _Data Type Adapter_  block is to perform a conversion of the data type in the sample stream.
+{: .notice--info}
+
 This is the first processing block after the Signal Source, and each
-king of source can deliver data in different formats.
+kind of source can deliver data in different formats.
 
--   Signal Source is delivering samples at a given intermediate
-    frequency:
+-   If the _Signal Source_ is delivering samples at a given intermediate
+    frequency, the _native_ data types can be:
 
     -   Real samples: `byte`, `short`, `float` (8, 16 and 32 bits,
         respectively).
 
-    -   Intervealed (I&Q) samples: `ibyte`, `ishort`, `gr_complex`
+    -   Intervealed (I&Q) samples: `ibyte`, `ishort`, `gr_complex` (8+8, 16+16 and 32+32 bits, respectively).
 
--   Signal Source is delivering samples at baseband:
+-   If the _Signal Source_ is delivering samples at baseband, the _native_ data types can be:
 
-    -   Intervealed (I&Q) samples: `ibyte`, `ishort`, `gr_complex`
+    -   Intervealed (I&Q) samples: `ibyte`, `ishort`, `gr_complex` (8+8, 16+16 and 32+32 bits, respectively).
 
-    -   Complex samples: `cbyte`, `cshort`, `gr_complex`
+    -   Complex samples: `cbyte`, `cshort`, `gr_complex` (8+8, 16+16 and 32+32 bits, respectively).
+
+This block provide several implementations of data type conversions.
+
 
 ### Implementation: `Byte_To_Short`
 

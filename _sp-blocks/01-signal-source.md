@@ -29,10 +29,12 @@ sidebar:
   ![GooGle Earth]({{ site.url }}{{ site.baseurl }}/images/RTLSDR-4CH-fs1.2-MSPS-no-LNA.jpg)
 {% endcapture %}
 
+A _Signal Source_ is the block that injects a continuous stream of raw data samples to the processing flow graph.
+{: .notice--info}
+
 
 The input of a software receiver are the raw bits that come out from the
-front-end’s analog-to-digital converter (ADC), as sketched in Figure
-[fig:RFfront-end]. Those bits can be read from a file stored in the hard
+front-end’s analog-to-digital converter (ADC), as sketched in the figure below. Those bits can be read from a file stored in the hard
 disk or directly in real-time from a hardware device through USB or
 Ethernet buses.
 
@@ -46,7 +48,7 @@ Ethernet buses.
 </figure>
 
 
-The Signal Source module is in charge of implementing the hardware
+The _Signal Source_ block is in charge of implementing the hardware
 driver, that is, the portion of the code that communicates with the RF
 front-end and receives the samples coming from the ADC. This
 communication is usually performed through USB or Ethernet buses. Since
@@ -58,7 +60,7 @@ baseband I&Q components), the sampling rate and number of bits per
 sample, that must be specified by the user in the configuration file, as
 shown below.
 
-This module also performs bit-depth adaptation, since most of the
+This block also performs bit-depth adaptation, since most of the
 existing RF front-ends provide samples quantized with 2 or 3 bits, while
 operations inside the processor are performed on 32- or 64-bit words,
 depending on its architecture. Although there are implementations of the
@@ -69,6 +71,9 @@ suggest to keep signal samples in standard data types and letting the
 compiler select the best library version (implemented using SIMD or any
 other processor-specific technology) of the required routines for a
 given processor.
+
+For more details about sample formats, plese check out our tutorial [Understanding Data Types]({{ site.url }}{{ site.baseurl }}/docs/tutorials/understanding-data-types/){:target="_blank"}.
+
 
 ## Reading data from a file
 
@@ -85,30 +90,29 @@ the Signal Conditioner block (see Section
 
 ### Implementation: `File_Signal_Source`
 
-This Signal Source implementation reads samples stored in a file.
+This _Signal Source_ implementation reads raw signal samples stored in a file.
 
-Parameters:
-
--   `filename`: Path to the file containing the raw digitized signal
-    samples.
-
--   `samples`: Number of samples to be read. If set to $$ 0 $$ the whole
-    file but the last two milliseconds are processed. It defaults to
-    $$ 0 $$.
-
--   `sampling_frequency`: sample rate, in samples per second.
-
--   `item_type` [`byte`, `ibyte`, `short`, `ishort`, `float`,
-    `gr_complex`]: Sample data type. Defaults to `gr_complex`.
-
--   `repeat` [`true`, `false`]: If set to `true`, processing of samples
-    restarts the file when the end is reached. It defaults to `false`.
 
 -   `dump` [`true`, `false`]:
 
 -   `dump_filename`: If `dump` is set to `true`....
 
 -   `enable_throttle_control` [`true`, `false`]: Defaults to `false`
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
+| `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
+| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `item_type` | [`byte`, `ibyte`, `short`, `ishort`, `float`, `gr_complex`]: Sample data type. It defaults to `gr_complex`. | Optional |
+| `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
+|-------
+
+  _Signal Source implementation:_ **`File_Signal_Source`**
+  {: style="text-align: center;"}
 
 This implementation assumes that the center frequency is the nominal
 corresponding to the frequency band defined in ... (see ...). Any known
@@ -124,13 +128,11 @@ configured with the `File_Signal_Source` implementation:
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=File_Signal_Source
 SignalSource.filename=/home/user/gnss-sdr/data/my_capture.dat
-SignalSource.samples=0
-SignalSource.item_type=gr_complex
 SignalSource.sampling_frequency=4000000 ; Sampling frequency in [sps]
 ```
 
-
-The name of the file to be read (that is, `SignalSource.filename`) that
+{% capture overide-file %}
+**Tip:** The name of the file to be read (that is, `SignalSource.filename`) that
 appears on the configuration file can be overriden at the command line
 when invoking `gnss-sdr` with the flag `--signal_source`. Example:
 
@@ -142,6 +144,11 @@ $ gnss-sdr --config_file=/path/to/my_receiver.conf \
 This will read the configuration file `my_receiver.conf`, but it will
 read samples from the file `my_capture2.dat` instead of the one
 specified in `SignalSource.filename`.
+{% endcapture %}
+
+<div class="notice--warning">
+  {{ overide-file | markdownify }}
+</div>
 
 ### Implementation: `Two_Bit_Packed_File_Signal_Source`
 
@@ -258,7 +265,8 @@ SignalSource.dump_filename=../data/signal_source.dat
 SignalSource.enable_throttle_control=false
 ```
 
-The name of the file to be read (that is, `SignalSource.filename`) that
+{% capture overide-nsr %}
+**Tip:** The name of the file to be read (that is, `SignalSource.filename`) that
 appears on the configuration file can be overriden at the command line
 when invoking `gnss-sdr` with the flag `–nsr_signal_source`. Example:
 
@@ -270,45 +278,49 @@ $ gnss-sdr --config_file=/path/to/my_receiver.conf \
 This will read the configuration file `my_receiver.conf`, but it will
 read samples from the file `my_capture2.dat` instead of the one
 specified in `SignalSource.filename`.
+{% endcapture %}
+
+<div class="notice--warning">
+  {{ overide-nsr | markdownify }}
+</div>
 
 ## Radio Frequency front-ends
 
 ### Implementation: `UHD_Signal_Source`
 
-![Ettus Research](http://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}
+[![Ettus Research](http://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com){:target="_blank"} The USRP Hardware Driver ([UHD](http://files.ettus.com/manual/){:target="_blank"}) software API supports application development on all Ettus Research [USRP](https://www.ettus.com/product){:target="_blank"} Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
 
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `device_address` |  IP address of the USRP device. When left empty, the device discovery routines will search all the available transports on the system (Ethernet, USB, ...) | Mandatory |
+| `RF_channels` | Number of RF channels present in the front-end device. | Optional |
+| `subdevice` | [`A:0`, `B:0`]: UHD subdevice specification. | Optional |
+| `sampling_frequency` |  Sampling frequency, in symbols per second. | Mandatory |
+| `item_type` | [`cbyte`, `cshort`, `gr_complex`]: data type for each sample. The type `cbyte` (i.e., complex signed 8-bit integers) is not available in USRP devices. This parameter defaults to `cshort`. | Optional |
+|-------
 
-
-Parameters:
-
--   `device_address`: IP address of the USRP device. When left empty,
-    the device discovery routines will search all the available
-    transports on the system (Ethernet, USB, ...).
-
--   `RF_channels`: Number of RF channels present in the front-end
-    device.
-
--   `subdevice [A:0, B:0]`: UHD subdevice specification.
-
--   `sampling_frequency`: RF front-end center frequency, in Hz.
-
--   `item_type [cbyte, cshort, gr_complex]`: data type for each sample.
-    The type `cbyte` (i.e., complex signed 8-bit integers) is not
-    available in USRP devices. This parameter defaults to `cshort`.
+  _Signal Source implementation:_ **`UHD_Signal_Source`** general parameters.
+  {: style="text-align: center;"}
 
 If `RF_channels` is set to `1`, then:
 
--   `samples`: Number of samples to be processed.
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples | Optional |
+| `dump` | [`true`, `false`]: . | Optional |
+| `dump_filename` | . | Optional |
+| `freq` | RF front-end center frequency, in Hz. | Mandatory |
+| `gain` | RF front-end gain, in dB. | Optional |
+| `IF_bandwidth_hz` | . | Optional |
+|-------
 
--   `dump [true, false]`: Defaults to `false`.
+  _Signal Source implementation:_ **`UHD_Signal_Source`** single-band parameters.
+  {: style="text-align: center;"}
 
--   `dump_filename`:
-
--   `freq`: RF front-end center frequency, in Hz.
-
--   `gain`: RF front-end gain, in dB.
-
--   `IF_bandwidth_hz`:
 
 Example:
 
@@ -330,56 +342,38 @@ SignalSource.enable_throttle_control=false
 If `RF_channels` is set to more than one, then the number of the
 radio-frequency channel (starting with $$ 0 $$) is appended to the name of
 parameters `samples`, `dump`, `dump_filename`, `freq`, `gain` and
-`IF_bandwidth_hz` to indicate to which RF chain they come from:
+`IF_bandwidth_hz` to indicate to which RF chain they apply:
 
--   `samples0`: Number of samples to be processed for RF channel 0.
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `samples0` |  Number of samples to be processed for RF channel 0. It defaults to $$ 0 $$, which means infinite samples | Optional |
+| `dump0` | [`true`, `false`]: . | Optional |
+| `dump_filename0` | . | Optional |
+| `freq0` | RF front-end center frequency for RF channel 0, in Hz. | Mandatory |
+| `gain0` | RF front-end gain for RF channel 0, in dB. | Optional |
+| `IF_bandwidth_hz0` | . | Optional |
+| `samples1` |  Number of samples to be processed for RF channel 1. It defaults to $$ 0 $$, which means infinite samples | Optional |
+| `dump1` | [`true`, `false`]: . | Optional |
+| `dump_filename1` | . | Optional |
+| `freq1` | RF front-end center frequency for RF channel 1, in Hz. | Mandatory |
+| `gain1` | RF front-end gain for RF channel 1, in dB. | Optional |
+| `IF_bandwidth_hz1` | . | Optional |
+| ... | ... | ... |
+|-------
 
--   `dump0`:
+  _Signal Source implementation:_ **`UHD_Signal_Source`** multiple-band parameters.
+  {: style="text-align: center;"}
 
--   `dump_filename0`:
+{% capture tip-exit %}
+  **Tip:** If the `samples` parameter is not specified, or set to $$ 0 $$, the USRP will deliver samples in a continuous way and with no specified end time, and so the software receiver will process endlessly. When configured for an infinite number of samples, please **always** terminate the software receiver execution by **pressing key 'q' and then key 'ENTER'**. This will make the program to exit gracefully, doing some clean-up work and preparing output products such as RINEX files to be properly read by other software tools. This is not guaranteed if the program is interrupted for instance by pressing keys 'CTRL' and 'c' at the same time.
+{% endcapture %}
 
--   `freq0`: RF front-end center frequency for RF channel 0, in Hz.
+<div class="notice--warning">
+  {{ tip-exit | markdownify }}
+</div>
 
--   `gain0`: RF front-end gain for RF channel 0, in dB.
-
--   `IF_bandwidth_hz0`:
-
--   `samples1`: Number of samples to be processed for RF channel 1.
-
--   `dump1`:
-
--   `dump_filename1`:
-
--   `freq1`: RF front-end center frequency for RF channel 1, in Hz.
-
--   `gain1`: RF front-end gain for RF channel 1, in dB.
-
--   `IF_bandwidth_hz1`:
-
-Example:
-
-```ini
-;######### SIGNAL_SOURCE CONFIG ############
-SignalSource.implementation=UHD_Signal_Source
-SignalSource.device_address=192.168.40.2
-SignalSource.item_type=gr_complex
-SignalSource.RF_channels=2
-SignalSource.sampling_frequency=4000000
-SignalSource.subdevice=A:0 B:0
-
-;######### RF Channels specific settings ######
-SignalSource.freq0=1575420000
-SignalSource.gain0=50
-SignalSource.samples0=0
-SignalSource.dump0=false
-SignalSource.dump_filename0=../data/signal_source0.dat
-
-SignalSource.freq1=1575420000
-SignalSource.gain1=50
-SignalSource.samples1=0
-SignalSource.dump1=false
-SignalSource.dump_filename1=../data/signal_source1.dat
-```
 
 ### NSL Stereo
 
@@ -402,8 +396,7 @@ dongles, HackRF, bladeRF, etc.
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
-Not all the OsmoSDR-compatible devices can work as radio frequency
-front-ends for proper GNSS signal receiving.
+Note that not all the OsmoSDR-compatible devices can work as radio frequency front-ends for proper GNSS signal reception, please check the specifications. For suitable RF front-ends, you can use:
 
 ### Implementation: `Osmosdr_Signal_Source`
 
@@ -417,38 +410,27 @@ SignalSource.gain=40
 SignalSource.rf_gain=40
 SignalSource.if_gain=30
 SignalSource.enable_throttle_control=false
-
-;######### SIGNAL_SOURCE CONFIG ############
-SignalSource.implementation=Osmosdr_Signal_Source
-SignalSource.item_type=gr_complex
-SignalSource.sampling_frequency=2000000
-SignalSource.freq=1575420000
-SignalSource.gain=40
-SignalSource.rf_gain=40
-SignalSource.if_gain=30
-;SignalSource.AGC_enabled=false
-SignalSource.samples=0
-SignalSource.repeat=false
-SignalSource.dump=false
-SignalSource.dump_filename=../data/signal_source.dat
-SignalSource.enable_throttle_control=false
 SignalSource.osmosdr_args=rtl_tcp,offset_tune=1
 ```
 
+
 ### Implementation: `RtlTcp_Signal_Source`
 
-`rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
+In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](http://sdr.osmocom.org/trac/wiki/rtl-sdr#rtl_sdr) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
+
+In a terminal, type:
 
 ```bash
 $ rtl_tcp -a 127.0.0.1 -f 1575420000 -g 0 -s 2000000
 ```
 
+and use the following configuration:
+
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=RtlTcp_Signal_Source
-SignalSource.filename=/media/DATALOGGER_/signals/RTL-SDR/geo/pmt4.dat
 SignalSource.item_type=gr_complex
-SignalSource.sampling_frequency=1200000
+SignalSource.sampling_frequency=2000000
 SignalSource.freq=1575420000
 SignalSource.gain=40
 SignalSource.rf_gain=40
@@ -459,8 +441,8 @@ SignalSource.repeat=false
 SignalSource.dump=false
 SignalSource.dump_filename=../data/signal_source.dat
 SignalSource.enable_throttle_control=false
-SignalSource.address=127.0.0.1
-SignalSource.port=1234
+SignalSource.address=127.0.0.1 ; Put your IP here
+SignalSource.port=1234         ; Put your port here
 SignalSource.swap_iq=false
 ```
 
@@ -575,6 +557,32 @@ TelemetryDecoder_2S.implementation=...
 ; or TelemetryDecoder_2S8, ..., TelemetryDecoder_2S15
 
 ...
+```
+
+
+Example: Configuring the USRP X300 with two front-ends for receiving signals in L1 and L2 bands
+
+```ini
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=UHD_Signal_Source
+SignalSource.device_address=192.168.40.2  ; Put your USRP IP address here
+SignalSource.item_type=gr_complex
+SignalSource.RF_channels=2
+SignalSource.sampling_frequency=4000000
+SignalSource.subdevice=A:0 B:0
+
+;######### RF Channels specific settings ######
+SignalSource.freq0=1575420000
+SignalSource.gain0=50
+SignalSource.samples0=0
+SignalSource.dump0=false
+SignalSource.dump_filename0=../data/signal_source0.dat
+
+SignalSource.freq1=1227600000
+SignalSource.gain1=50
+SignalSource.samples1=0
+SignalSource.dump1=false
+SignalSource.dump_filename1=../data/signal_source1.dat
 ```
 
 

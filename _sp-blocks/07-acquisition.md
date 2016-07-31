@@ -12,7 +12,10 @@ The role of an _Acquisition_ block is the detection of presence/absence
 of signals coming from a given GNSS satellite. In case of a positive
 detection, it should provide coarse estimations of the code phase
 $$ \hat{\tau} $$ and the Doppler shift $$ \hat{f}_d $$, yet accurate enough to
-initialize the delay and phase tracking loops. By exploiting the
+initialize the delay and phase tracking loops.
+{: .notice--info}
+
+By exploiting the
 concepts and the methodology of the estimation theory, it is possible to
 show that the maximum likelihood (ML) estimates of $$ f_d $$ and $$ \tau $$ can
 be obtained by maximizing the function

@@ -18,11 +18,24 @@ Each _Channel_ encapsulates blocks for signal acquisition, tracking and demodula
 |  ```1C```      | GPS L1 C/A |
 |  ```2S```      | GPS L2 L2C (M) |
 |  ```1B```      | Galileo E1 B |
-|  ```5X```      | Galileo E5a (I+Q) |
+|  ```1B```      | Galileo E5a (I+Q) |
 |-----
 
 
 Then, four parameters can be set: ```Channels_1C.count```, ```Channels_2S.count```, ```Channels_1B.count``` and ```Channels_5X.count```, all of them defaulting to $$ 0 $$.
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `Channels_1C.count` |  Number of channels targeting GPS L1 C/A signals. It defaults to $$ 0 $$.| Optional |
+| `Channels_2S.count` |  Number of channels targeting GPS L2 L2C (M) signals. It defaults to $$ 0 $$.| Optional |
+| `Channels_1B.count` |  Number of channels targeting Galileo E1 B  signals. It defaults to $$ 0 $$.| Optional |
+| `Channels_5X.count` |  Number of channels targeting Galileo E5a (I+Q) signals. It defaults to $$ 0 $$. | Optional |
+| `ChannelN.signal` |  (where N is the channel number, starting from 0). Assign each channel to a specific signal [`1C`, `2S`, `1B`, `5X`]. Not required in single-system receivers. | Optional |
+|----------
+
 
 ## Single system, single band receiver
 

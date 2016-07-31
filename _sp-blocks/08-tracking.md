@@ -13,8 +13,10 @@ $$ x_\text{IN} $$, but does nothing until it receives a “positive
 acquisition” message from the control plane, along with the coarse
 estimations $$ \hat{\tau}_{acq} $$ and $$ \hat{f}_{d_{acq}} $$. Then, its role
 is to refine such estimations and track their changes along the time.
-Three parameters are relevant for signal tracking: the evolution of the
-code phase $$ \tau $$, Doppler shift $$ f_d $$ and carrier phase $$ \phi $$.
+
+The role of a _Tracking_ block is to follow the evolution of the
+signal synchronization parameters: code phase $$ \tau $$, Doppler shift $$ f_d $$ and carrier phase $$ \phi $$.
+{: .notice--info}
 
 ![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
 _Typical diagram of a tracking block._
@@ -196,7 +198,7 @@ $$ \hat{P}_{tot} = \frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{k-i
 14. Phase lock indicator:
 $$ T_{carrier} = \frac{ \left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$.
 
-15. **if** $$ T_{carrier} < \mathcal{T} $$ or $$ CN0 < CN0_{min} $$ 
+15. **if** $$ T_{carrier} < \mathcal{T} $$ or $$ CN0 < CN0_{min} $$
 * Increase lock fail counter $$ \upsilon \leftarrow \upsilon +1 $$.
 
 16. **else**
