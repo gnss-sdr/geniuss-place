@@ -68,3 +68,6 @@ Acquisition sensitivity determines the minimum signal power threshold that allow
 ## Tracking sensitivity
 
 Tracking sensitivity refers to the minimum signal level that allows the receiver to maintain a location fix within some specified degree of accuracy. The generation of testing inputs is as follows: fixing the number of visible satellites to one, the power level of the received signal is set such that the GNSS software receiver under test can identify the single GNSS satellite signal. The power level of the GNSS satellite signal is then decreased until the GNSS receiver loses tracking of the single satellite.
+
+
+## Indicators of Availability

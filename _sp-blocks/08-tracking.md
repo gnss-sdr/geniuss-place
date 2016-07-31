@@ -8,7 +8,7 @@ modified: 2016-04-13T15:54:02-04:00
 ---
 {% include toc %}
 
-The Tracking block is continually receiving the data stream
+The _Tracking_ block is continually receiving the data stream
 $$ x_\text{IN} $$, but does nothing until it receives a “positive
 acquisition” message from the control plane, along with the coarse
 estimations $$ \hat{\tau}_{acq} $$ and $$ \hat{f}_{d_{acq}} $$. Then, its role
@@ -81,7 +81,7 @@ $$
 
 
 
-![Rxd]({{ site.url }}{{ site.baseurl }}/images/rxd.png)
+![Rxd]({{ site.url }}{{ site.baseurl }}/images/rxd.png){:width="600x"}
 {: style="text-align: center;"}
 _Normalized $$ \left|R_{xd}\left(\check{f}_d=f_d, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
 {: style="text-align: center;"}

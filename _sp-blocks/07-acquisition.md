@@ -65,7 +65,7 @@ be shown that this acquisition test statistic is a Constant False
 Alarm Rate (CFAR) detector because $$ P_{fa} $$ does not depend on the noise
 power.
 
-![CAF]({{ site.url }}{{ site.baseurl }}/images/caf.png)
+![CAF]({{ site.url }}{{ site.baseurl }}/images/caf.png){:width="600x"}
 {: style="text-align: center;"}
 _GLRT statistic for Parallel Code Phase Search acquisition algoritm
 for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kHz with steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo’s IOV satellite PRN 11[^Fernandez]._

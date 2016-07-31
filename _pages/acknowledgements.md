@@ -24,18 +24,28 @@ The Authors are proud to be supported by the following public institutions, priv
 
 * **[AUDITOR](http://www.auditor-project.eu/index.html){:target="_blank"} - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
 
-[![AUDITOR logo]({{ site.url }}{{ site.baseurl }}/images/logo-auditor.png){:height="250px" width="250x"}](http://www.auditor-project.eu/index.html){:target="_blank"}
-{: style="text-align: center;"}
+  [![AUDITOR logo]({{ site.url }}{{ site.baseurl }}/images/logo-auditor.png){:height="250px" width="250x"}](http://www.auditor-project.eu/index.html){:target="_blank"}
+  {: style="text-align: center;"}
 
-This project has received funding from the [**European GNSS Agency**](http://www.gsa.europa.eu/){:target="_blank"} under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](http://cordis.europa.eu/project/rcn/199301_en.html){:target="_blank"}.
-{: .notice--success}
+  This project has received funding from the [**European GNSS Agency**](http://www.gsa.europa.eu/){:target="_blank"} under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](http://cordis.europa.eu/project/rcn/199301_en.html){:target="_blank"}.
+  {: .notice--success}
 
 
 
 * Support of Research Groups by the Government of Catalonia (Grant 2014--SGR--1567).
 
-**The Government of Catalonia**, through Grant 2014--SGR--1567, provides partial support for registrations and travel expenses to well-established scientific conferences.
-{: .notice--success}
+  **The Government of Catalonia**, through Grant 2014--SGR--1567, provides partial support for registrations and travel expenses to well-established scientific conferences.
+  {: .notice--success}
+
+* Research networks
+
+  - **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org){:target="_blank"})**, which aims to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
+
+  [![IRACON logo](http://www.iracon.org/wp-content/uploads/2016/03/iracon-logo-big.jpg){:height="250px" width="250x"}](http://www.iracon.org){:target="_blank"}
+  {: style="text-align: center;"}
+
+   **IRACON** offers Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsm/){:target="_blank"}.
+   {: .notice--success}
 
 
 ## Education programs funded by private entities
@@ -99,16 +109,4 @@ This project has received funding from the [**European GNSS Agency**](http://www
 * [NSL](http://www.nsl.eu.com/){:target="_blank"}, a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](http://www.nsl.eu.com/primo.html){:target="_blank"} system that is being used with GNSS-SDR development.
 
 [**NSL**](http://www.nsl.eu.com/){:target="_blank"} kindly provides equipment and technical support to the development of dual-band software architectures.
-{: .notice--success}
-
-## Research networks
-
-### COST - European Cooperation in Science and Technology
-
-[![IRACON logo](http://www.iracon.org/wp-content/uploads/2016/03/iracon-logo-big.jpg){:height="250px" width="250x"}](http://www.iracon.org){:target="_blank"}
-{: style="text-align: center;"}
-
-* **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org){:target="_blank"})**, which aims to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
-
-**IRACON** offers Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsm/){:target="_blank"}.
 {: .notice--success}

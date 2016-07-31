@@ -5,9 +5,6 @@ excerpt: "How close a Position-Velocity-Time (PVT) solution is to the true posit
 modified: 2016-07-29T15:54:02-04:00
 ---
 
-Hi
-
-
 In this context, it refers to how close a Position-Velocity-Time (PVT) solution is to the true (actual) position (that is, a measure of the bias or systematic error). Its measurement requires a reference (fiducial) position in the case of static positioning, and a controlled mobile platform in the case of dynamic positioning.
 
 
@@ -31,3 +28,6 @@ where $$ E_{ref} $$ is the East coordinate of the reference location. Similar ex
 $$ \sigma_N^{(accuracy)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- N_{ref}\right)^2} $$
 
 $$ \sigma_E^{(accuracy)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- U_{ref}\right)^2} $$
+
+
+## Indicators of Accuracy

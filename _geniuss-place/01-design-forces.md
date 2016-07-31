@@ -33,7 +33,7 @@ S.M.A.R.T.  is  an  acronym mentioned  for  the  first  time  in  1981[^Doran81]
 
 Hence, KPIs are not universal but based on the very single project, product or service in which they are going to be applied. This page suggests a wide list of indicators derived from a list of Design Forces, defined below, to be considered when assessing the quality of a software-defined GNSS receiver. Its degree of _S.M.A.R.T.-ness_ in every particular context may vary.
 
-Hereafter, we identify 16 dimensions in which the performance and features of a software-defined GNSS receiver can be evaluated. This taxonomy allows comparison of different implementations.
+The design of a GNSS software-defined receiver needs to resolve some design forces that could appear as antithetical, (_e.g._, portability _vs._ efficiency, openness _vs._ marketable product), and a "sweet spot" must be identified according to the targeted user and application. Hereafter, we identify 16 dimensions in which the performance and features of a software-defined GNSS receiver can be evaluated. Click on their names to see a discussion of the concept and some possible metrics, indicators and check points:
 
 
 <html> <body> <table> <tr> <td id="forcetable">  

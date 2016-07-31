@@ -1,7 +1,7 @@
 ---
 title: "How to contribute"
 permalink: /contribute/
-excerpt: "Contributing to the Source Code"
+excerpt: "Contributing to the Source Code and to this website."
 modified: 2016-06-22T15:54:02-04:00
 header:
   teaser: "geniuss-contribute.png"

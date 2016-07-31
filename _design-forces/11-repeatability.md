@@ -28,3 +28,6 @@ where $$ \hat{E}=\frac{1}{L}\sum_{l=1}^{L}E[l] $$ is the mean of all the $$ E $$
 $$ \sigma_{N}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- \hat{N}\right)^2} $$, where $$ \hat{N}=\frac{1}{L}\sum_{l=1}^{L}N[l] $$, and
 
 $$ \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U}\right)^2} $$, where $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.
+
+
+## Indicators of Repeatability

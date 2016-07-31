@@ -28,7 +28,7 @@ Starting from Debian 9 and Ubuntu 16.04, you can install GNSS-SDR just by doing:
 ```
 $ sudo apt-get install gnss-sdr
 ```
-{: highlight id="terminal"}
+
 
 **The good part:**
 This is the easiest and fastest way to get GNSS-SDR installed in your system. Just a single line in your terminal will do all the work for you.

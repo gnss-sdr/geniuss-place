@@ -11,3 +11,6 @@ Testability can be understood as visibility and control:
 
  * **Visibility** is our ability to observe the states, outputs, resource usage and other side effects of the software under test.
  * **Control** is our ability to apply inputs to the software under test or place it in specified states.
+
+
+## Indicators of Testability
