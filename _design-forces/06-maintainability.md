@@ -9,3 +9,17 @@ _Maintainability_ refers to the ease with which a product can be maintained in o
 
 
 ## Indicators of Maintainability
+
+Possible maintainability indicators are:
+
+* Time to Fix Defects.
+* Source code under a version control system.
+* Well--established programming language.
+* Automated build environments.
+* Availability of an issue tracking system.
+* Availability of "debugging modes" and tools.
+* Availability of static and dynamic code analysis tools.
+* Definition of a source tree structure.
+* Automated documentation system.
+* Availability and observance of a coding style guide.
+* Availability of required and optional software dependencies (type of license, pricing, maintenance / development status).

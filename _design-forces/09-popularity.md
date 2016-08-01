@@ -9,3 +9,10 @@ _Popularity_ is a complex social phenomenon with no agreed upon definition. It c
 
 
 ## Indicators of Popularity
+
+Possible popularity indicators are:
+
+* Number of users / customers / licenses sold.
+* Traffic to the site, measured with a counter installed on site and traffic analysis systems, such as Google Analytics.
+*  Size of users community.
+*  Number of references / citations in scientific papers and technical reports.

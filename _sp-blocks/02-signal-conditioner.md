@@ -22,6 +22,14 @@ Regardless the selected signal source features, the _Signal Conditioner_ interfa
 
 ![Signal Conditioner]( {{ base_path }}/images/SignalConditioner2.png)
 
+Check out more details of each of the inner blocks:
+
+* [Data Type Adapter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/data-type-adapter/)
+* [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/)
+* [Resampler]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/resampler/)
+
+Example:
+
 ```ini
 ;######### SIGNAL_CONDITIONER CONFIG ############
 ;## It holds blocks to change data type, filter and resample input data.

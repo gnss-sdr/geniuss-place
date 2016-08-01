@@ -31,3 +31,11 @@ $$ \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U
 
 
 ## Indicators of Repeatability
+
+Possible repeatability indicators are:
+
+* Stand-alone receiver's static positioning precision.
+* Stand-alone receiver's dynamic positioning precision.
+* Differential GNSS static positioning precision.
+* Differential GNSS dynamic positioning precision.
+* Average convergence times to sub-metric precision.
