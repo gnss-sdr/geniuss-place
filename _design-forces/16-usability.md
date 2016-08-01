@@ -8,3 +8,40 @@ modified: 2016-07-29T15:54:02-04:00
 It refers to the degree to which a software can be used by specified consumers to achieve quantified objectives with effectiveness, efficiency, and satisfaction in a quantified context of use.
 
 ## Indicators of Usability
+
+Possible usability indicators are:
+
+* Availability of a (versioned) User Manual.
+* Availability of a (versioned and documented) application user interface (API).
+* Availability of graphical user interface.
+* Availability of accessibility mechanisms for users who experience disabilities.
+* Availability of mechanisms for remote operation.
+* Availability of interfaces with other programming languages.
+* Availability of user documentation: tutorials, detailed _howtos_, user stories, etc.
+
+
+For the project, product or service in which the software receiver has a role:
+
+* Website of project, product or service.
+* Availability of professional help desk support services.
+* Availability of communication channels with other users and the development team.
+  - Public mailing list.
+  - Presence in public IRC channels.
+  - resence in social networks.
+
+
+For the computing platform executing the software receiver:
+
+* For physical devices:
+  - Computer form factor, shape, size and weight.
+  - Power consumption / battery autonomy.
+  - Degrees of protection from solid objects and liquids, given by the Ingress Protection rating system:
+      * IP65: protection from dust and from low pressure jets of water in all directions. Limited water ingress permitted.
+      * IP67: protection from dust and against the effects of immersion in water to depth between 15 cm and 1 meter.
+  - Temperature / humidity / vibration operative ranges.
+
+
+* For cloud--based services:
+  - Input/output data throughput requirements.
+  - Computational and memory bandwidth requirements.
+  - Connection to third parties in case of assisted or differential GNSS.

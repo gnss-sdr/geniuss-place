@@ -13,7 +13,7 @@ modified: 2016-04-13T15:54:02-04:00
 A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering.
 {: .notice--info}
 
-Regardless the selected signal source features, the Signal Conditioner interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate $$ f_{IN} $$. We denote the complex samples at the Signal Conditioner output as $$ x_{\text{IN}}[n] $$. This signal stream feeds a set of parallel _Channels_.
+Regardless the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate $$ f_{IN} $$. We denote the complex samples at the Signal Conditioner output as $$ x_{\text{IN}}[n] $$. This signal stream feeds a set of parallel _Channels_.
 
 
 ### Implementation: `Signal_Conditioner`
@@ -42,18 +42,33 @@ InputFilter.output_item_type=gr_complex
 ;######### RESAMPLER CONFIG ############
 ;## Resamples the input data.
 Resampler.implementation=Pass_Through
-Resampler.item_type=gr_complex
 ```
 
 ### Implementation: `Pass_Through`
 
-This implementation by-passes the _Signal Conditioner_ block, reading samples from its input buffer and writing them to the output buffer, without any transformation in between.
+This implementation copies samples from its input to its output.
 
-It can be seen as a wire connecting the input and the output.
+Parameters:
 
-Example:
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_size` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+|-------
+
+  _Signal Conditioner implementation:_ **`Pass_Through`**.
+  {: style="text-align: center;"}
+
+Examples:
 
 ```ini
 ;######### SIGNAL_CONDITIONER CONFIG ############
 SignalConditioner.implementation=Pass_Through
+```
+
+```ini
+;######### SIGNAL_CONDITIONER CONFIG ############
+SignalConditioner.implementation=Pass_Through
+SignalConditioner.item_size=cshort
 ```

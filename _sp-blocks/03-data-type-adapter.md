@@ -100,7 +100,26 @@ DataTypeAdapter.implementation=Ishort_To_Complex
 
 This implementation copies samples from its input to its output.
 
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_size` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+|-------
+
+  _Data Type Adapter implementation:_ **`Pass_Through`**.
+  {: style="text-align: center;"}
+
+
+Examples:
+
 ```ini
 ;######### DATA_TYPE_ADAPTER CONFIG ############
 DataTypeAdapter.implementation=Pass_Through
+```
+
+```ini
+;######### DATA_TYPE_ADAPTER CONFIG ############
+DataTypeAdapter.implementation=Pass_Through
+DataTypeAdapter.item_type=cshort
 ```

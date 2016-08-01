@@ -203,7 +203,28 @@ InputFilter.sampling_frequency=8000000
 This implementation copies samples from its input to its output, without
 performing any filtering.
 
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_size` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+|-------
+
+  _Input Filter implementation:_ **`Pass_Through`**.
+  {: style="text-align: center;"}
+
+
+Examples:
+
 ```ini
-;######### INPUT_FILTER CONFIG ############
+;######### INPUT FILTER CONFIG ############
 InputFilter.implementation=Pass_Through
+```
+
+```ini
+;######### INPUT FILTER CONFIG ############
+InputFilter.implementation=Pass_Through
+InputFilter.item_type=cshort
 ```

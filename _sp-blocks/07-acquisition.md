@@ -127,7 +127,35 @@ Multiple-Data (SIMD) assembly instructions that take advantage of
 parallel computing techniques and allows writing efficient and portable
 code.
 
+|----------
+|  **Global Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
 
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` | [`gr_complex`, `cshort`] . It defaults to `gr_complex`. | Optional |
+| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
+| `doppler_step` |  . It defaults to 500 Hz. | Optional |
+| `threshold` |  . It defaults to 500 Hz. | Optional |
+| `pfa` |  If defined, ... | Optional |
+| `use_CFAR_algorithm` |  . It defaults to `true`. | Optional |
+| `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
+| `bit_transition_flag` |  . It defaults to `false`. | Optional |
+| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `if` |  . It defaults to 0. | Optional |
+| `max_dwells` |  . It defaults to 1. | Optional |
+| `dump` |  . | Optional |
+| `dump_filename` |  . | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Acquisition`**.
+  {: style="text-align: center;"}
 
 
 ```ini
@@ -145,6 +173,36 @@ Acquisition_1C.doppler_step=500
 
 ### Implementation: `GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`
 
+|----------
+|  **Global Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` | [`gr_complex`, `cshort`] . It defaults to `gr_complex`. | Optional |
+| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
+| `doppler_step` |  . It defaults to 500 Hz. | Optional |
+| `threshold` |  . It defaults to 500 Hz. | Optional |
+| `pfa` |  If defined, ... | Optional |
+| `use_CFAR_algorithm` |  . It defaults to `true`. | Optional |
+| `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
+| `bit_transition_flag` |  . It defaults to `false`. | Optional |
+| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `if` |  . It defaults to 0. | Optional |
+| `max_dwells` |  . It defaults to 1. | Optional |
+| `dump` |  . | Optional |
+| `dump_filename` |  . | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`**.
+  {: style="text-align: center;"}
+
 ### Implementation: `GPS_L1_CA_PCPS_Tong_Acquisition`
 
 On top of the PCPS Algorithm (or any other providing the same
@@ -157,6 +215,37 @@ within a given time-out interval.
 ## GPS L2C (M) signal acquisition
 
 ### Implementation: `GPS_L2_M_PCPS_Acquisition`
+
+|----------
+|  **Global Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` | [`gr_complex`, `cshort`] . It defaults to `gr_complex`. | Optional |
+| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
+| `doppler_step` |  . It defaults to 500 Hz. | Optional |
+| `threshold` |  . It defaults to 500 Hz. | Optional |
+| `pfa` |  If defined, ... | Optional |
+| `use_CFAR_algorithm` |  . It defaults to `true`. | Optional |
+| `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
+| `bit_transition_flag` |  . It defaults to `false`. | Optional |
+| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `if` |  . It defaults to 0. | Optional |
+| `max_dwells` |  . It defaults to 1. | Optional |
+| `dump` |  . | Optional |
+| `dump_filename` |  . | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`GPS_L2_M_PCPS_Acquisition`**.
+  {: style="text-align: center;"}
+
 
 ## Galileo E1B signal acquisition
 
@@ -184,6 +273,39 @@ where the subcarriers are defined as
 $$ sc_A(t)= \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big) $$ and
 $$ sc_B(t)= \text{sign} \Big( \sin( 2 \pi f_{s, E1B}t ) \Big) $$, with
 $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
+
+
+
+|----------
+|  **Global Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` | [`gr_complex`, `cshort`] . It defaults to `gr_complex`. | Optional |
+| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
+| `doppler_step` |  . It defaults to 500 Hz. | Optional |
+| `cboc` |  . It defaults to `false`. | Optional |
+| `threshold` |  . It defaults to 500 Hz. | Optional |
+| `pfa` |  If defined, ... | Optional |
+| `coherent_integration_time_ms` |  . It defaults to 4 ms. | Optional |
+| `bit_transition_flag` |  . It defaults to `false`. | Optional |
+| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `if` |  . It defaults to 0. | Optional |
+| `max_dwells` |  . It defaults to 1. | Optional |
+| `dump` |  . | Optional |
+| `dump_filename` |  . | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`Galileo_E1_PCPS_Ambiguous_Acquisition`**.
+  {: style="text-align: center;"}
+
 
 ## Galileo E5a signal acquisition
 

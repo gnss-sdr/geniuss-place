@@ -18,18 +18,9 @@ The role of a _Tracking_ block is to follow the evolution of the
 signal synchronization parameters: code phase $$ \tau $$, Doppler shift $$ f_d $$ and carrier phase $$ \phi $$.
 {: .notice--info}
 
-![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
-_Typical diagram of a tracking block._
-{: style="text-align: center;"}
-
-
-## GPS L1 C/A signal tracking
-
-### Implementation: `GPS_L1_CA_DLL_PLL_Tracking`
-
-According the ML principle, obtaining
+According to the Maximum Likelihood approach, obtaining
 the optimum estimators implies the maximization of the correlation of
-the incoming signal with its matched filter. This is usually achieved
+the incoming signal with its _matched filter_. This is usually achieved
 with closed-loop structures designed to minimize the difference between
 the code phase, carrier phase and frequency of the incoming signal with
 respect to a locally-generated replica.
@@ -38,14 +29,102 @@ In the case of code phase tracking, the cost function is driven to the
 maximum using feedback loops that employ the derivative
 $$ \frac{dR_{xd}(\tau)}{d\tau} $$ zero-crossing as a timing error detector.
 This is the case of the Delay Lock Loop (DLL) architecture and its wide
-range of variants usually applied for GPS L1 signals, where the receiver
-computes three samples of $$ R_{xd} $$, usually referred to as *Early*
+range of variants, where the receiver computes three samples of $$ R_{xd} $$, usually referred to as *Early*
 $$ E=R_{xd}(\hat{\tau}-\epsilon) $$, *Prompt* $$ P=R_{xd}(\hat{\tau}) $$ and
 *Late* $$ L=R_{xd}(\hat{\tau}-\epsilon) $$, with $$ \epsilon $$ ranging from
 $$ 0.1T_c $$ to $$ 0.5T_c $$, and then computes a timing error with some
-combination of those samples, known as discriminator functions.
+combination of those samples, known as _discriminator_ functions.
+
+![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
+_Typical diagram of a tracking block._
+{: style="text-align: center;"}
+
+The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseurl }}/design-forces/efficiency/){:target="_blank"} and [**Portability**]({{ site.url }}{{ site.baseurl }}/design-forces/portability/){:target="_blank"} at the same time.
+{: .notice--success}
+
+## GPS L1 C/A signal tracking
+
+### Implementation: `GPS_L1_CA_DLL_PLL_Tracking`
+
+|----------
+|  **Global Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` |  . It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` |  . It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  . | Optional |
+| `dump_filename` |  . | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`GPS_L1_CA_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+
+### Implementation: `GPS_L1_CA_DLL_PLL_C_Aid_Tracking`
+
+|----------
+|  **Global Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` |  [`gr_complex`, `cshort`]. It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
+| `pll_bw_narrow_hz` |  . It defaults to 20 Hz. | Optional |
+| `dll_bw_narrow_hz` |  . It defaults to 2 Hz. | Optional |
+| `extend_correlation_ms` |  . It defaults to 1 ms. | Optional |
+| `early_late_space_chips` |  . It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  . | Optional |
+| `dump_filename` |  . | Optional |
+|--------------
+
+  _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_C_Aid_Tracking`**.
+  {: style="text-align: center;"}
+
 
 ## GPS L2C (M) signal tracking
+
+|----------
+|  **Global Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` |  . It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` |  . It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  . | Optional |
+| `dump_filename` |  . | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`GPS_L2_M_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+
 
 ## Galileo E1B signal tracking
 
@@ -215,6 +294,31 @@ $$ T_{carrier} = \frac{ \left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\
 $$ \text{P}_k $$, accumulated carrier phase error $$ \hat{\phi}_k $$, code phase
 $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density ratio $$ \hat{\text{CN0}} $$.
 {: .notice--info}
+
+
+|----------
+|  **Global Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` |  . It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` |  . It defaults to $$ 0.15 $$. | Optional |
+| `very_early_late_space_chips` |  . It defaults to $$ 0.6 $$. | Optional |
+| `dump` |  . | Optional |
+| `dump_filename` |  . | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`Galileo_E1_DLL_PLL_VEML_Tracking`**.
+  {: style="text-align: center;"}
 
 
 ## Galileo E5a signal tracking

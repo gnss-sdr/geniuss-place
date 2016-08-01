@@ -14,6 +14,21 @@ modified: 2016-04-13T15:54:02-04:00
 
 ### Implementation: `GPS_L1_CA_Telemetry_Decoder`
 
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `decimation_factor` |  . It defaults to 1. | Optional |
+| `dump` |  . It defaults to `false`. | Optional |
+| `dump_filename` |  . It defaults to `./navigation.dat` | Optional |
+|--------------
+
+  _Telemetry Decoder implementation:_ **`GPS_L1_CA_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+
+
 ```ini
 ;######### TELEMETRY DECODER CONFIG ############
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
@@ -57,3 +72,31 @@ coding are applied to the Galileo message data stream:
 -   block interleaving on the resulting frames, with $$ 30 $$ columns (where
     data is written) and $$ 8 $$ rows (where data is read), providing
     robustness to the FEC decoding algorithm by avoiding error bursts.
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `decimation_factor` |  . It defaults to 1. | Optional |
+| `dump` |  . It defaults to `false`. | Optional |
+| `dump_filename` |  . It defaults to `./navigation.dat` | Optional |
+|--------------
+
+  _Telemetry Decoder implementation:_ **`Galileo_E1B_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+
+### Implementation: `Galileo_E5a_Telemetry_Decoder`
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `decimation_factor` |  . It defaults to 1. | Optional |
+| `dump` |  . It defaults to `false`. | Optional |
+| `dump_filename` |  . It defaults to `./navigation.dat` | Optional |
+|--------------
+
+  _Telemetry Decoder implementation:_ **`Galileo_E5a_Telemetry_Decoder`**.
+  {: style="text-align: center;"}

@@ -8,6 +8,8 @@ modified: 2016-04-13T15:54:02-04:00
 ---
 {% include toc %}
 
+## Output formats
+
 * **KML** (Keyhole Markup Language) is an XML grammar used to encode and transport representations of geographic data for display in an earth browser. KML is an open standard officially named the OpenGIS KML Encoding Standard (OGC KML), and it is maintained by the Open Geospatial Consortium, Inc. (OGC). KML files can be displayed in geobrowsers such as [Google Earth](https://www.google.com/earth/), [Marble](https://marble.kde.org), [osgEarth](http://osgearth.org), or used with the [NASA World Wind SDK for Java](http://worldwind.arc.nasa.gov/java/).
 
    KML files are generated automatically by default, upon the first position fix obtained by the _PVT_ block.
@@ -52,6 +54,7 @@ Parameters:
 | `rtcm_station_id` |  ... | Optional |
 | `rtcm_MT1019_rate_ms` |  ... | Optional |
 | `rtcm_MSM_rate_ms` |  ... | Optional |
+| `rtcm_dump_devname` |  . . It defaults to `/dev/pts/1`. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  ... | Optional |
 |----------
@@ -69,5 +72,28 @@ PVT.dump=false ; Enables the PVT internal binary data file logging
 
 
 ### Implementation: `Galileo_E1_PVT`
+
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `averaging_depth` |  . It defaults to 10. | Optional |
+| `flag_averaging` |  . It defaults to `false`. | Optional |
+| `output_rate_ms` |  . It defaults to 500 ms. | Optional |
+| `display_rate_ms` |  . It defaults to 500 ms. | Optional |
+| `nmea_dump_filename` |  . It defaults to `./nmea_pvt.nmea`. | Optional |
+| `flag_nmea_tty_port` |  . It defaults to `false`. | Optional |
+| `nmea_dump_devname` |  .  It defaults to `/dev/tty1`. | Optional |
+| `flag_rtcm_server` |  [`true`, `false`]: . It defaults to `false`. | Optional |
+| `rtcm_tcp_port` |  . It defaults to 2101. | Optional |
+| `rtcm_station_id` |  . It defaults to 1234. | Optional |
+| `rtcm_MT1045_rate_ms` |  . It defaults to 5000 ms. | Optional |
+| `rtcm_MSM_rate_ms` |  . . It defaults to 1000 ms. | Optional |
+| `rtcm_dump_devname` |  . . It defaults to `/dev/pts/1`. | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  . It defaults to `./pvt.dat`. | Optional |
+|----------
 
 ### Implementation: `Hybrid_PVT`
