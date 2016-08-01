@@ -47,6 +47,12 @@ Resampler.item_type=gr_complex
 
 ### Implementation: `Pass_Through`
 
+This implementation by-passes the _Signal Conditioner_ block, reading samples from its input buffer and writing them to the output buffer, without any transformation in between.
+
+It can be seen as a wire connecting the input and the output.
+
+Example:
+
 ```ini
 ;######### SIGNAL_CONDITIONER CONFIG ############
 SignalConditioner.implementation=Pass_Through

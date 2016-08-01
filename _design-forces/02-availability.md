@@ -55,10 +55,32 @@ _Availability_ refers to the degree to which a system, subsystem or equipment is
   {{ hot-start | markdownify }}
 </div>
 
+The TTFF samples are then analyzed to determine the mean, minimum, and maximum  values. The standard deviation of the sample set is computed as follows, where $$ L $$ is the sample size:
+
+$$ \sigma_{TTFF} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( TTFF_i - \frac{1}{L}\sum_{j=1}^L TTFF_j \right)^2 } $$
+
+
+|----------
+|  **Mean TTFF**  |  **Max TTFF** | **Min TTFF** | **Sample Dev / Size** | Signal | Nav. mode | Avail. Accy. | DGPS |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|--------------
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|--------------
+
 
 ## Reacquisition Time
 
 Reacquisition time characterizes the performance of the receiver in a scenario where the signal is greatly reduced or interrupted for some short period of time and is then restored. An example of this would be a vehicle going through a tunnel or under some heavy tree cover. In this case the receiver is briefly unable to track most or all of the satellites, but must re-acquire (track) the signal when "visibility" is restored.
+
+The test measurement system must be configured to record the time at which signals are removed from the receiver ($$ t_1 $$) and the time at which signals are reapplied to the receiver ($$ t_2 $$). All navigation data produced by the receiver shall be recorded for subsequent data analysis.
+
+A total of at least 50 valid REAQ samples should be produced for use in data analysis and the total sample size recorded as $ L $$.
+
+
+The standard deviation of the sample set is computed as follows, where $$ L $$ is the sample size:
+
+$$ \sigma_{REAQ} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( REAQ_i - \frac{1}{L}\sum_{j=1}^L REAQ_j \right)^2 } $$
+
 
 ## Acquisition sensitivity
 
