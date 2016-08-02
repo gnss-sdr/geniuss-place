@@ -35,6 +35,7 @@ kind of source can deliver data in different formats.
 
 This block provide several implementations of data type conversions.
 
+For more details about sample data types and their usage in GNSS-SDR, please check out our [tutorial on data types]({{ site.url }}{{ site.baseurl }}/docs/tutorials/understanding-data-types/).
 
 ### Implementation: `Byte_To_Short`
 
