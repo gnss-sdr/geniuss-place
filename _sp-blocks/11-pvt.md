@@ -8,6 +8,12 @@ modified: 2016-04-13T15:54:02-04:00
 ---
 {% include toc %}
 
+The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a signal sink, since the stream of data flowing along the receiver ends there.
+
+The role of a _PVT_ block is to compute navigation solutions and deliver information in adequate formats for further processing or data representation.
+{: .notice--info}
+
+
 ## Output formats
 
 * **KML** (Keyhole Markup Language) is an XML grammar used to encode and transport representations of geographic data for display in an earth browser. KML is an open standard officially named the OpenGIS KML Encoding Standard (OGC KML), and it is maintained by the Open Geospatial Consortium, Inc. (OGC). KML files can be displayed in geobrowsers such as [Google Earth](https://www.google.com/earth/), [Marble](https://marble.kde.org), [osgEarth](http://osgearth.org), or used with the [NASA World Wind SDK for Java](http://worldwind.arc.nasa.gov/java/).

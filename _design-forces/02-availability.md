@@ -42,10 +42,9 @@ _Availability_ refers to the degree to which a system, subsystem or equipment is
 
 ## Time-To-First-Fix (TTFF)
 
-
 The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. A _valid_ position fix is required to have a 3D accuracy below a given threshold (for instance, 600 m for GPS L1 C/A signals). The value includes the time to recover ephemeris data from all satellites used in the navigation estimation process.
 
-
+When a software receiver starts its execution, it can retrieve some previously stored information in order to accelerate certain processes. Depending on the kind of stored information, and its validity, three starting scenarios are defined:
 
 
 <div class="notice--info">

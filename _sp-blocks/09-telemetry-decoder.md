@@ -9,6 +9,8 @@ modified: 2016-04-13T15:54:02-04:00
 
 {% include toc %}
 
+The role of a _Telemetry Decoder_ block is to obtain the data bits from the navigation message broadcast by GNSS satellites.
+{: .notice--info}
 
 ## GPS navigation message
 
