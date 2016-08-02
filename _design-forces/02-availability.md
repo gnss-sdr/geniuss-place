@@ -59,6 +59,21 @@ The TTFF samples are then analyzed to determine the mean, minimum, and maximum  
 
 $$ \sigma_{TTFF} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( TTFF_i - \frac{1}{L}\sum_{j=1}^L TTFF_j \right)^2 } $$
 
+|----------
+|  **Test parameter**  |  **Description** |
+|:-:|:--|
+|--------------
+|  **Mean TTFF**  | Average of the obtained measurements, computed as $$  \frac{1}{L}\sum_{j=1}^L TTFF_j $$ |
+|  **Max TTFF**  | Maximum of the obtained valid measurements. |
+|  **Min TTFF**  | Minimum of the obtained valid measurements. |
+|  **Sample Dev / Size** |  The standard deviation of the sample set is computed as $$ \sigma_{TTFF} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( TTFF_i - \frac{1}{L}\sum_{j=1}^L TTFF_j \right)^2 } $$ |
+|  **Signal**  | . |
+|  **Source**  | . |
+|  **Navigation Mode**  | . |
+|  **AGNSS**  | . |
+|--------------
+
+Example of report:
 
 |----------
 |  **Mean TTFF**  |  **Max TTFF** | **Min TTFF** | **Sample Dev / Size** | Signal | Nav. mode | Avail. Accy. | DGPS |
