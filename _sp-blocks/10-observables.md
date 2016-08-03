@@ -64,8 +64,8 @@ Parameters:
 |--------------
 | `flag_averaging` |  . It defaults to `false`. | Optional |
 | `output_rate_ms` |  . It defaults to 500 ms. | Optional |
-| `dump` |  . It defaults to `false`. | Optional |
-| `dump_filename` |  . It defaults to `./navigation.dat` | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Observables implementation:_ **`GPS_L1_CA_Observables`**.
@@ -90,8 +90,8 @@ Parameters:
 |--------------
 | `flag_averaging` |  . It defaults to `false`. | Optional |
 | `output_rate_ms` |  . It defaults to 500 ms. | Optional |
-| `dump` |  . It defaults to `false`. | Optional |
-| `dump_filename` |  . It defaults to `./navigation.dat` | Optional |
+| `dump` | [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Observables implementation:_ **`Galileo_E1B_Observables`**.

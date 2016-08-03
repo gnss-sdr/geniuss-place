@@ -150,8 +150,8 @@ code.
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if` |  . It defaults to 0. | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
-| `dump` |  . | Optional |
-| `dump_filename` |  . | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Acquisition`**.
@@ -196,8 +196,8 @@ Acquisition_1C.doppler_step=500
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if` |  . It defaults to 0. | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
-| `dump` |  . | Optional |
-| `dump_filename` |  . | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`**.
@@ -239,8 +239,8 @@ within a given time-out interval.
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if` |  . It defaults to 0. | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
-| `dump` |  . | Optional |
-| `dump_filename` |  . | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L2_M_PCPS_Acquisition`**.
@@ -299,8 +299,8 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if` |  . It defaults to 0. | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
-| `dump` |  . | Optional |
-| `dump_filename` |  . | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`Galileo_E1_PCPS_Ambiguous_Acquisition`**.

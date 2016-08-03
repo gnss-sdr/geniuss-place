@@ -62,8 +62,8 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 | `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
 | `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
 | `early_late_space_chips` |  . It defaults to $$ 0.5 $$. | Optional |
-| `dump` |  . | Optional |
-| `dump_filename` |  . | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L1_CA_DLL_PLL_Tracking`**.
@@ -91,8 +91,8 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 | `dll_bw_narrow_hz` |  . It defaults to 2 Hz. | Optional |
 | `extend_correlation_ms` |  . It defaults to 1 ms. | Optional |
 | `early_late_space_chips` |  . It defaults to $$ 0.5 $$. | Optional |
-| `dump` |  . | Optional |
-| `dump_filename` |  . | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_C_Aid_Tracking`**.
@@ -117,8 +117,8 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 | `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
 | `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
 | `early_late_space_chips` |  . It defaults to $$ 0.5 $$. | Optional |
-| `dump` |  . | Optional |
-| `dump_filename` |  . | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L2_M_DLL_PLL_Tracking`**.
@@ -313,8 +313,8 @@ $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density
 | `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
 | `early_late_space_chips` |  . It defaults to $$ 0.15 $$. | Optional |
 | `very_early_late_space_chips` |  . It defaults to $$ 0.6 $$. | Optional |
-| `dump` |  . | Optional |
-| `dump_filename` |  . | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`Galileo_E1_DLL_PLL_VEML_Tracking`**.

@@ -22,8 +22,8 @@ The role of a _Telemetry Decoder_ block is to obtain the data bits from the navi
 |:-:|:--|:-:|    
 |--------------
 | `decimation_factor` |  . It defaults to 1. | Optional |
-| `dump` |  . It defaults to `false`. | Optional |
-| `dump_filename` |  . It defaults to `./navigation.dat` | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L1_CA_Telemetry_Decoder`**.
@@ -81,8 +81,8 @@ coding are applied to the Galileo message data stream:
 |:-:|:--|:-:|    
 |--------------
 | `decimation_factor` |  . It defaults to 1. | Optional |
-| `dump` |  . It defaults to `false`. | Optional |
-| `dump_filename` |  . It defaults to `./navigation.dat` | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`Galileo_E1B_Telemetry_Decoder`**.
@@ -96,8 +96,8 @@ coding are applied to the Galileo message data stream:
 |:-:|:--|:-:|    
 |--------------
 | `decimation_factor` |  . It defaults to 1. | Optional |
-| `dump` |  . It defaults to `false`. | Optional |
-| `dump_filename` |  . It defaults to `./navigation.dat` | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`Galileo_E5a_Telemetry_Decoder`**.
