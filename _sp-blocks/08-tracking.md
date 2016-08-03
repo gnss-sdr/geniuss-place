@@ -58,12 +58,12 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 |  **Parameter**  |  **Description** | **Type** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` |  . It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` |  . It defaults to $$ 0.5 $$. | Optional |
+| `item_type` |  [`gr_complex`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L1_CA_DLL_PLL_Tracking`**.
@@ -84,18 +84,44 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 |  **Parameter**  |  **Description** | **Type** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` |  [`gr_complex`, `cshort`]. It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
-| `pll_bw_narrow_hz` |  . It defaults to 20 Hz. | Optional |
-| `dll_bw_narrow_hz` |  . It defaults to 2 Hz. | Optional |
-| `extend_correlation_ms` |  . It defaults to 1 ms. | Optional |
-| `early_late_space_chips` |  . It defaults to $$ 0.5 $$. | Optional |
+| `item_type` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter before achieving bit synchronization. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter before achieving bit synchronization. It defaults to 2 Hz. | Optional |
+| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after achieving bit synchronization. It defaults to 20 Hz. | Optional |
+| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after achieving bit synchronization. It defaults to 2 Hz. | Optional |
+| `extend_correlation_ms` |  [`1` , `2`, `4`, `5`, `10`, `20`]: extension of the correlation length, in ms, after bit synchronization is achieved. It defaults to 1 ms. Only available when using `gr_complex`. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
 
   _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_C_Aid_Tracking`**.
+  {: style="text-align: center;"}
+
+
+### Implementation: `GPS_L1_CA_DLL_PLL_Tracking_GPU`
+
+|----------
+|  **Global Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
+|--------------
+
+  _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_Tracking_GPU`**.
   {: style="text-align: center;"}
 
 
@@ -113,12 +139,12 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 |  **Parameter**  |  **Description** | **Type** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` |  . It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` |  . It defaults to $$ 0.5 $$. | Optional |
+| `item_type` |  [`gr_complex`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L2_M_DLL_PLL_Tracking`**.
@@ -203,9 +229,6 @@ either the code or the carrier detectors are below given thresholds
 during a consecutive number of code periods $$ \vartheta $$, the Tracking
 block informs to control plane through the message queue.
 
-[^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from “Global Positioning System: Theory and Applications”, Volume I, Edited by B. W. Parkinson, J. J. Spilker Jr.
-
-[^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
 
 *  **Require:** Complex sample stream, $$ \mathbf{x}_{\text{IN}} $$; estimations of code
 phase $$ \hat{\tau}_{acq} $$ and Doppler shift $$ \hat{f}_{d_{acq}} $$; buffer
@@ -308,18 +331,32 @@ $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density
 |  **Parameter**  |  **Description** | **Type** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` |  . It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  . It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  . It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` |  . It defaults to $$ 0.15 $$. | Optional |
-| `very_early_late_space_chips` |  . It defaults to $$ 0.6 $$. | Optional |
+| `item_type` |  [`gr_complex`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$.  | Optional |
+| `very_early_late_space_chips` |  Spacing between Very Early and Prompt, and between Prompt and Very Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.6 $$. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`Galileo_E1_DLL_PLL_VEML_Tracking`**.
   {: style="text-align: center;"}
 
+
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_1B.implementation=Galileo_E1_DLL_PLL_VEML_Tracking
+Tracking_1B.item_type=gr_complex
+Tracking_1B.pll_bw_hz=20.0;
+Tracking_1B.dll_bw_hz=2.0;
+Tracking_1B.early_late_space_chips=0.15;
+Tracking_1B.very_early_late_space_chips=0.6;
+Tracking_1B.dump=false
+Tracking_1B.dump_filename=../data/veml_tracking_ch_
+```
 
 ## Galileo E5a signal tracking
 
@@ -327,3 +364,7 @@ $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density
 -------
 
 ## References
+
+[^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from “Global Positioning System: Theory and Applications”, Volume I, Edited by B. W. Parkinson, J. J. Spilker Jr.
+
+[^Fernandez]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).

@@ -27,8 +27,8 @@ where:
   * $$ d_{\rho} $$ models satellite orbital errors, since the orbits of the satellites are affected by many factors including the variations in gravity, drag and tidal forces from the sun, the moon etc.
   * $$ k_{P_r} $$ models receiver's instrumental delays.
   * $$ k_{P_s} $$ models satellites's instrumental delays.
-  * $$ d_{P_\text{multipath}}} $$ represents the effect of multipath.
-  * $$ \epsilon_P $$ models the receiver's noise.
+  * $$ d_{P_\text{multipath}} $$ models the effect of multipath on code delay estimation.
+  * $$ \epsilon_P $$ models the receiver's thermal noise.
 
 
 
@@ -50,9 +50,9 @@ where:
   * $$ N_L $$ represents the integer ambiguity.
   * $$ \lambda_L \omega $$  is the [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect){:target="_blank"} term due to the circular polarization of the electromagnetic signal.
   * $$ d_{L_{\text{multipath}}} $$ models the effect of multipath on carrier phase estimation.
-  * $$ \epsilon_L $$ models the receiver's noise.
+  * $$ \epsilon_L $$ models the receiver's thermal noise.
 
-Notice that the ionospheric term has opposite sign for code and phase. This means that the ionosphere produces an advance of the carrier phase measurement equal to the delay on the code measurements
+Notice that the ionospheric term has opposite sign for code and phase. This means that the ionosphere produces an advance of the carrier phase measurement equal to the delay on the code measurements.
 
 ### Implementation: `GPS_L1_CA_Observables`
 
