@@ -14,3 +14,7 @@ Testability can be understood as visibility and control:
 
 
 ## Indicators of Testability
+
+* Time To First Fix (TTFF) testability:
+* Acquisition sensitivity testability:
+* Tracking sensitivity testability:
