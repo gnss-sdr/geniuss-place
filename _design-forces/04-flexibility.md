@@ -14,12 +14,12 @@ Possible flexibility indicators are:
 
 * Possibility to either use synthetically generated or real-life GNSS signals.
 + Possibility to process signals either in real time or in post-processing time (only limited by the computational capacity of the processing platform executing the software receiver).
-* Possibility to use different RF front-ends.
+* Possibility to use interchangeable RF front-ends.
 + Possibility to define custom receiver architectures.
 * Possibility to easily define / interchange implementations and parameters for each processing block.
 * Possibility to change parameters while the software is executing.
 * Possibility to be executed in different processing platforms (mainframes,personal computers, embedded systems, etc).
-* Flexible configuration mechanism.
+* Availability of a versatile configuration mechanism.
 * Availability of _operation modes_, as combinations of:
   - Single / multiple frequency bands.
   - Single / multiple constellations.
