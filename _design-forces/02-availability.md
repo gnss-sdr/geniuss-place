@@ -58,7 +58,7 @@ Such a test should be reported as:
 | **Source** | [`Live`, `Sim`, `File`]: `Live` for GNSS signals from space, `Sim` for or simulated GNSS signals generated at RF, `File` for a pre-defined set of signal inputs, stored in files. |
 | **Processing platform**  | Brand and model of the processing platform performing the test. |
 | **Operating system**  | Brand and release of the operating system in which the software receiver undergoing the test was executed. |
-| **Source code unique ID** | Software release, Git hash, D.O.I., or any other unique identifier. |
+| **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
 |----------
 
 **Example of report**: For a software-defined receiver being observed to successfully deliver position fixes over a week using live signals, when executing version X.Y.Z of the software receiver in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, with no watch dog, the results would be presented as:
@@ -110,16 +110,16 @@ TTFF test results should be reported as:
 |  **Min TTFF**  | Minimum of the obtained valid measurements. Units: seconds |
 |  **Sample Dev / Size** |  The standard deviation of the sample set is computed as $$ \sigma_{TTFF} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( TTFF_i - \frac{1}{L}\sum_{j=1}^L TTFF_j \right)^2 } $$, in seconds. / Number of valid measurements (L) over the total number of measurements (M), expressed as (L of M). |
 | **Init. status** | [`cold`, `warm`, `hot`]: Initial receiver status, as defined above.  |
-| **Nav. mode** | [`2D`, `3D`]: `3D` Navigation mode in which at least four satellite signals are received and are used to compute positioning data containing as a minimum: time tagged latitude, longitude, and altitude referenced to a given coordinate system.  /  `2D` Navigation mode in which no fewer than three satellite signals and fixed altitude are received and used to compute positioning data containing as a minimum: time tagged latitude, longitude, and fixed altitude referenced to a given system.    |
+| **Nav. mode** | [`2D`, `3D`]: `3D` Navigation mode in which at least four satellite signals are received and are used to compute positioning data containing as a minimum: time tagged latitude, longitude, and altitude referenced to a given coordinate system.  / `2D` Navigation mode in which no fewer than three satellite signals and fixed altitude are received and used to compute positioning data containing as a minimum: time tagged latitude, longitude, and fixed altitude referenced to a given system.    |
 |  **DGNSS**  | [`Y`, `N`]: `Y` if an external system is providing ephemeris data, `N` if the receiver is not receiving external information. |
 | **Signal** | Targeted GNSS signal(s) during the test. |
 | **Source** | [`Live`, `Sim`, `File`]: `Live` for GNSS signals from space, `Sim` for or simulated GNSS signals generated at RF, `File` for a pre-defined set of signal inputs, stored in files. |
 | **Processing platform**  | Brand and model of the processing platform performing the test. |
 | **Operating system**  | Brand and release of the operating system in which the software receiver undergoing the test was executed. |
-| **Source code unique ID** | Software release, Git hash, D.O.I., or any other unique identifier. |
+| **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
 |--------------
 
-**Example of report**: For a receiver with a mean TTFF of 90 seconds, minimum measured value of 75 seconds, maximum measured value of 110 seconds, valid sample size of 20 with no invalid samples, sample deviation of 8 seconds, using GPS L1 C/A signals in 3D mode, and assuming a cold start with no external source of information, the results would be presented as:
+**Example of report**: For a receiver with a mean TTFF of 90 seconds, minimum measured value of 75 seconds, maximum measured value of 110 seconds, valid sample size of 20 with no invalid samples, sample deviation of 8 seconds, using GPS L1 C/A signals in 3D mode, and assuming a cold start with no external source of information, when executing version X.Y.Z of the software receiver in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, the results would be presented as:
 
 |----------
 |  **Mean TTFF**  |  **Max TTFF** | **Min TTFF** | **Sample Dev / Size** | **Init. status** | **Nav. Mode** | **DGNSS** |  **Signal** | **Source** | **Processing platform** | **Operating system** |  **Source code unique ID**  |
@@ -150,16 +150,16 @@ Reacquisition Time test results should be reported as:
 |  **Max REAQ**  | Maximum of the obtained valid measurements. Units: seconds |
 |  **Sample Dev / Size** |  The standard deviation of the sample set is computed as $$ \sigma_{REAQ} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( REAQ_i - \frac{1}{L}\sum_{j=1}^L REAQ_j \right)^2 } $$, in seconds. / Number of valid measurements (L) over the total number of measurements (M), expressed as (L of M). |
 | **Nav. mode** | [`2D`, `3D`]: `3D` Navigation mode in which at least four satellite signals are received and are used to compute positioning data containing as a minimum: time tagged latitude, longitude, and altitude referenced to a given coordinate system.  /  `2D` Navigation mode in which no fewer than three satellite signals and fixed altitude are received and used to compute positioning data containing as a minimum: time tagged latitude, longitude, and fixed altitude referenced to a given system.    |
-|  **DGNSS**  | [`Y`, `N`]: `Y` if an external system is providing ephemeris data, `N` if the receiver is not receiving external information. |
+|  **DGNSS**  | [`Y`, `N`]: `Y` if an external system is providing data, `N` if the receiver is not receiving external information. |
 | **Signal** | Targeted GNSS signal(s) during the test. |
 | **Source** | [`Live`, `Sim`, `File`]: `Live` for GNSS signals from space, `Sim` for or simulated GNSS signals generated at RF, `File` for a pre-defined set of signal inputs, stored in files. |
 | **Processing platform**  | Brand and model of the processing platform performing the test. |
 | **Operating system**  | Brand and release of the operating system in which the software receiver undergoing the test was executed. |
-| **Source code unique ID** | Software release, Git hash, D.O.I., or any other unique identifier. |
+| **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
 |--------------
 
 
-**Example of report**: For a receiver with a mean REAQ of 5 seconds for 30 second blockage, a valid sample size of 50 plus 2 invalid samples, minimum measured value of 2 seconds, maximum measured value of 35 seconds, sample deviation of 1 second, using 30 navigation mode and simulated Galileo E1 open signals, the results would be presented as:
+**Example of report**: For version X.Y.Z of the software receiver executed in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, obtaining a mean REAQ of 5 seconds for 30 second blockage, with a valid sample size of 50 plus 2 invalid samples, minimum measured value of 2 seconds, maximum measured value of 35 seconds, sample deviation of 1 second, using 30 navigation mode and simulated Galileo E1 open signals, the results would be presented as:
 
 
 |----------
@@ -193,7 +193,7 @@ Thus, it is important to ensure that your instrumentation  for RF signal generat
 Hence, only the $$ {C/N_0}_{\text{min}} $$ term is responsability of the software receiver, whereas the noise figure is related to the hardware implementation of the RF front-end. From a digital signal processing perspective, the usual approach for improving acquisition sensitivity is the extension of the coherent integration time $$ T_{\text{int}} $$. However, there are several limitations to this method:
 
   * **The presence of data-bit transitions modulating the ranging code**. Each transition introduces a sign reversal in successive correlation blocks, such that their coherent accumulation leads to the potential loss of the correlation peak. Therefore, the availability of an external-aiding source is crucial to extend $$ T_{\text{int}} $$ to be larger than the data bit duration. This approach is referred to as the aided (or assisted) signal acquisition, and it is a part of the Assisted GNSS (A-GNSS) positioning method defined by different standardization bodies such as 3GPP and OMA.
-  * **Local oscillator stability**. The uncertainty on the actual frequency value delivered by the local oscillator gives rise to effects very similar to those caused by a Doppler shift, and hence to an additional correlation loss. Using a simple model for time deviation between the clock with the true oscillator and an ideal clock,
+  * **Local oscillator stability**. The uncertainty on the actual frequency value delivered by the front-end's local oscillator gives rise to effects very similar to those caused by a Doppler shift, and hence to an additional correlation loss. Using a simple model for time deviation between the clock with the true oscillator and an ideal clock,
   $$ x_{LO}(t) = x_0 + y_0 t $$, where $$ x_0 $$ is an initial synchronization error between real and ideal clocks, $$ y_0 $$ is a constant frequency offset and $$ t $$ is the time elapsed since the initial synchronization epoch, the output of the sampling process will be $$ x[n] = x \left( \frac{n}{f_s} + x_0 + y_0 \frac{n}{f_s} \right) $$, which is affected by a time-variant delay with respect to the ideal case. This might cause correlation losses, specially when $$ T_{\text{int}} $$ is large.
 
 Acquisition sensitivity is quite dependant of the radio frequency front-end (including the antenna / cable connection to a RF generator) that was used to capture signals (either live signals or simulated). It is then a good practice to provide technical details of the front-end equipment used in the testing procedures when reporting acquisition sensitivity of a software-defined receiver. Ideally, input signals should be generated digitally and stored in files in order to remove this limitation and to provide a measure for which the software-defined receiver is the sole responsible.
@@ -207,12 +207,23 @@ The generation of testing inputs is as follows: fixing the number of visible sat
 |--------------
 |  **Acquisition sensitivity**  | Minimum signal power level, in dBm, for which the receiver is able to acquire it, for a given probability of detection. |
 |  **$$ C/N_0 $$**  | $$ C/N_0 $$ value, in dB-Hz, reported by the receiver when the input signal is set to the acquisition sensitivity power level. |
-| **RF front-end** | In the case that the input signals were originally captured from a RF soruce, identification (brand and model) of the RF front-end that was used to gather input signals, including the local oscillator nominal stability and possible attenuators used in the set up. |
+| **RF front-end** | In the case that the input signals were originally captured from a RF source, identification (brand and model) of the RF front-end that was used to gather input signals, including the local oscillator nominal stability and possible attenuators used in the set up. 'N/A' in case of input signals generated digitally and stored in files. |
 | **Signal** | Targeted GNSS signal(s) during the test. |
 | **Source** | [`Live`, `Sim`, `File`]: `Live` for GNSS signals from space, `Sim` for or simulated GNSS signals generated at RF, `File` for a pre-defined set of signal inputs, stored in files. |
+| **DGNSS** |  [`Y`, `N`]: `Y` if an external system is providing data, `N` if the receiver is not receiving external information. |
 | **Processing platform**  | Brand and model of the processing platform performing the test. |
 | **Operating system**  | Brand and release of the operating system in which the software receiver undergoing the test was executed. |
-| **Source code unique ID** | Software release, Git hash, D.O.I., or any other unique identifier. |
+| **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
+|--------------
+
+**Example of report**: For version X.Y.Z of the software receiver executed in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, obtaining an acquisition sensitivity of -147 dBm reporting a $$ C/N_0 $$ of 30 dB-Hz, using simulated Galileo E1 open signals, the results would be presented as:
+
+
+|----------
+|  **Acq. sensitivity**  |  **$$ C/N_0 $$** | **RF front-end**  | **Signal** | **Source** | **DGNSS** | **Processing platform** | **Operating system** |  **Source code unique ID**  |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|--------------
+| -147 | 30 | N/A | 1B | File | N | Brand B, Model M | Ubuntu 16.04 (64 bits) | X.Y.Z |
 |--------------
 
 
@@ -235,16 +246,26 @@ Another possible receiver sensitivity test is to measure the power level and $$ 
 |  **Reported parameter**  |  **Description** |
 |:-:|:--|
 |--------------
-|  **Acquisition sensitivity**  | Minimum signal power level, in dBm, for which the receiver is able to acquire it, for a given probability of detection. |
-|  **$$ C/N_0 $$**  | $$ C/N_0 $$ value, in dB-Hz, reported by the receiver when the input signal is set to the acquisition sensitivity power level. |
+|  **Tracking sensitivity**  | Minimum signal power level, in dBm, for which the receiver is able to keep track of the signal under some pre-defined error bounds. |
+|  **$$ C/N_0 $$**  | $$ C/N_0 $$ value, in dB-Hz, reported by the receiver when the input signal is set to the tracking sensitivity power level. |
 | **Test mode** | [`Single`, `Multiple`]: `Single` in case of the single signal test described above measuring tracking loss, and `Multiple` in case of using multiple signals and measuring the availability of 3D location fixes. |
-| **RF front-end** | In the case that the input signals were originally captured from a RF soruce, identification (brand and model) of the RF front-end that was used to gather input signals, including the local oscillator nominal stability and possible attenuators used in the set up. |
+| **RF front-end** | In the case that the input signals were originally captured from a RF source, identification (brand and model) of the RF front-end that was used to gather input signals, including the local oscillator nominal stability and possible attenuators used in the set up. N/A' in case of input signals generated digitally and stored in files. |
 | **Signal** | Targeted GNSS signal(s) during the test. |
 | **Source** | [`Live`, `Sim`, `File`]: `Live` for GNSS signals from space, `Sim` for or simulated GNSS signals generated at RF, `File` for a pre-defined set of signal inputs, stored in files. |
 | **Processing platform**  | Brand and model of the processing platform performing the test. |
 | **Operating system**  | Brand and release of the operating system in which the software receiver undergoing the test was executed. |
-| **Source code unique ID** | Software release, Git hash, D.O.I., or any other unique identifier. |
+| **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
 |--------------
+
+**Example of report**: For version X.Y.Z of the software receiver executed in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, obtaining an acquisition sensitivity of -163 dBm reporting a $$ C/N_0 $$ of 28 dB-Hz, using one simulated Galileo E1 open signal and no external data, the results would be presented as:
+
+|----------
+|  **Trk. sensitivity**  |  **$$ C/N_0 $$** | **Test Mode** | **RF front-end**  | **Signal** | **Source** | **DGNSS** | **Processing platform** | **Operating system** |  **Source code unique ID**  |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|--------------
+| -163 | 28 | Single | N/A | 1B | File | N | Brand B, Model M | Ubuntu 16.04 (64 bits) | X.Y.Z |
+|--------------
+
 
 ## Indicators of Availability
 
