@@ -5,15 +5,16 @@ excerpt: "How close a Position-Velocity-Time (PVT) solution is to the true posit
 modified: 2016-07-29T15:54:02-04:00
 ---
 
-In this context, it refers to how close a position solution delivered by the software-defined GNSS receiver is to the true (actual) position. Hence, it is a measure of the _bias_ or systematic error. Its measurement requires a reference (fiducial) position in the case of static positioning, and a controlled mobile platform in the case of dynamic positioning.
+In this context, it refers to how close a position solution delivered by the software-defined GNSS receiver is to the _true_ (actual) position. Hence, it is a measure of the _bias_ or systematic error. Its measurement requires a reference (also known as _fiducial_) position in the case of static positioning, and a controlled mobile platform in the case of dynamic positioning.
 
 The definition of the reference point implies the agreement on some reference coordinate systems for the satellite system and the reference position:
 
 *  GNSS satellite coordinate reference system: The International Earth Rotation and Reference Sytems Service ([IERS](https://www.iers.org/IERS/EN/Home/home_node.html){:target="_blank"}) recommend to express it as "ITRFyy at epoch yyyy.y"[^Petit10]
-* A local geographic coordinate reference system (providing transformation parameters, if applicable), preferrably expressed on an East-North-Up (ENU) reference frame.
+* A local geographic coordinate reference system (providing transformation parameters, if applicable).
+* An East-North-Up (ENU) reference frame with origin in the _reference point_.
 * In case of differential GNSS configurations, datum of the differential source.
 
-Upon those definitions, most common position accuracy metrics for 2D and 3D positioning, expressed in a local reference frame, are defined below:
+Upon those definitions, most common position accuracy metrics for 2D and 3D positioning, expressed in a local ENU reference frame, are defined below:
 
 |----------
 |  **Measure**  |  **Formula** | **Confidence region probability** | **Definition** |
@@ -28,7 +29,7 @@ Upon those definitions, most common position accuracy metrics for 2D and 3D posi
 |  **SEP**   | $$ 0.51 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 50 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 50 % |
 |-----
 
-with the standard deviations, in case of a static receiver, computed as:
+with the standard deviations, in the case of a static receiver, computed as:
 
 $$ \sigma_E^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- E_{ref}\right)^2} ,$$
 
@@ -40,7 +41,7 @@ $$ \sigma_E^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U
 
 Ideally, static position measurements should be averaged over 24 hours and performed on a clear-sky environment.
 
-In case of a dynamic receiver, position measurements and references will have a time index. In order to mitigate differences due to satellite visibility and geometry, averaging on different trajectories and locations, performed at different time schedules, is encouraged.
+In the case of a dynamic receiver, position measurements and references will have a time index. In order to mitigate differences due to satellite visibility and geometry, averaging on different trajectories and locations, performed at different time schedules, is encouraged.
 
 For collections of $$ K_r $$ position measurements delivered at instants $$ t_{k_r} $$, and performed over $$ r=0,...,R-1 $$ different trajectories and time schedules:
 
