@@ -11,7 +11,7 @@ _Interoperability_ refers to the ability of making systems work together. In par
 
 ## Interoperability with GNSS signals
 
-A software defined receiver needs to interoperate with GNSS signals, defined as combinations of frequency band and channel or code, from which GNSS observables (_i.e._, measurements of pseudorange, carrier phase, Doppler and signal strength) can be generated. The new signal structures for GPS, Galileo and BDS make it possible to generate code and phase observations based on one or a combination of several channels: two-channel signals are composed of I and Q components, whereas three-channel signals of A, B, and C components.
+A software defined receiver needs to interoperate with GNSS signals, defined as combinations of frequency band and channel or code, from which GNSS observables (_i.e._, measurements of pseudorange, carrier phase, Doppler and signal strength) can be generated. The new signal structures for GPS, Galileo and Beidou make it possible to generate code and phase observations based on one or a combination of several channels: two-channel signals are composed of I and Q components, whereas three-channel signals of A, B, and C components.
 
 Possible GNSS signals are listed below:
 
@@ -74,15 +74,35 @@ Depending of the region of use, other satellite-based signals can be available:
 
 ## Interoperability with data collection topologies
 
-## Output formats
+For raw GNSS (and possibly other sensors) data stored digitally, the software receiver should support the fundamental data collection topologies, as defined by the [ION GNSS SDR Standard Working Group](https://github.com/IonMetadataWorkingGroup){:target="_blank"} (which, by the way, is _not_ related to GNSS-SDR):
 
+* Single band, single-stream, single file.
+* Multi-band, single-stream, single file.
+* Multi-stream, single file.
+* Multi-sensor, single file.
+* Temporal splitting of files.
+* Spatial splitting of files.
+* Spatial-temporal splitting.
 
-* GIS formats: KML, GeoJSON, SHP.
-* Application-specific messages (_e.g._, NMEA 0183 / 2000, ISOBUS, proprietary/custom).
-* RTCM-104 messages.
-* RINEX observation and navigation data files. Specify version: 2.10, 2.11, 3.02, 3.03.
+Support of sample formats for the exchange of raw GNSS data:
 
-## Interoperability with data link protocols.
+* Quantization: 1, 2, 4, 8, 16, 32 or 64 bits per sample.
+* Encoding: sign, sign-magnitude, signed integer, offset binary or floating point.
+
+More details in the initial draft of the [Global Navigation Satellite Systems Software Defined Radio Sampled Data Metadata Standard](https://github.com/IonMetadataWorkingGroup/MetadataSpec/blob/master/documentation/DraftMetadataStd_0_1_150125.pdf){:target="_blank"}.
+
+## Support of output formats
+
+The software receiver should deliver the results of the processing in several standard output formats:
+
+* GIS-oriented formats: [KML](http://www.opengeospatial.org/standards/kml){:target="_blank"}, [GeoJSON](http://geojson.org/){:target="_blank"}, [SHP](https://en.wikipedia.org/wiki/Shapefile){:target="_blank"}.
+* Application-specific messages (_e.g._, NMEA [0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"} / [2000](https://en.wikipedia.org/wiki/NMEA_2000){:target="_blank"}, [ISOBUS](https://en.wikipedia.org/wiki/ISO_11783), proprietary / custom, etc.).
+* [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php){:target="_blank"} messages (specify version, type and rate). RTCM messages should be streamed over a communication network as defined by the Networked Transport of RTCM via Internet Protocol (NTRIP [1.0](http://epsagnss.usal.es/documentos/ntripdocumentation.pdf){:target="_blank"}, [2.0](https://ssl29.pair.com/dmarkle/puborder.php?show=3){:target="_blank"}).
+* RINEX observation and navigation data files. Specify version: [2.10](https://igscb.jpl.nasa.gov/igscb/data/format/rinex210.txt){:target="_blank"}, [2.11](https://igscb.jpl.nasa.gov/igscb/data/format/rinex211.txt){:target="_blank"}, [3.00](https://igscb.jpl.nasa.gov/igscb/data/format/rinex300.pdf){:target="_blank"}, [3.02](ftp://igs.org/pub/data/format/rinex302.pdf){:target="_blank"}, [3.03](ftp://igs.org/pub/data/format/rinex303.pdf){:target="_blank"}.
+
+## Interoperability with data link protocols
+
+The software receiver should support several data link communication protocols, both to the digital signal source (the radio frequency front-end, the network providing a data stream) and to other systems expecting the outputs of the processing:
 
 * Ethernet (IEEE 802.3ab / 802.3ae / others).
 * Wireless LAN (IEEE 802.11 family).

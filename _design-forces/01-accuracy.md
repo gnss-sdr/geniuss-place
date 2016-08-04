@@ -58,7 +58,9 @@ $$ \sigma_U^{(\text{dynamic accuracy})} = \frac{1}{R}\sum_{r=0}^{R-1} \sqrt{\fra
 Upon the definition of:
 
   -  The GNSS satellite coordinate reference system (expressed as "ITRFyy at epoch yyyy.y"[^Petit10]) and ellipsoid (_e.g._, WGS 84);
-  -  The local geographic coordinate reference system (providing transformation parameters, if applicable) and ellipsoid; and
+  -  The local geographic coordinate reference system (providing transformation parameters, if applicable) and ellipsoid;
+  -  In the case of static accuracy, a _reference point_, adequately surveyed and expressed in a well--defined coordinate reference system, and in which the Antenna Reference Point (ARP) is placed when collecting raw signal data, or as defined by the synthetic generator tool,
+  -  In the case of dynamic accuracy, one or more _reference timed trajectories_, in which the Antenna Reference Point (ARP) was mechanically moved when collecting raw signal data, or as defined by the synthetic generator tool,
   -  In case of differential GNSS configurations, the datum of the differential source.
 
 possible indicators of accuracy are:
@@ -81,4 +83,4 @@ possible indicators of accuracy are:
 
 ## References
 
-[^Petit10]: G. Petit and B.Luzum, Eds., [_IERS Conventions (2010)_](https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36.pdf?__blob=publicationFile&v=1){:target="_blank"}, Verlag des Bundesamts f&uuml;r Kartographie und Geod&auml;sie, Frankfurt, Germany, 2010, IERS Technical Note 36. ISBN 3-89888-989-6.
+[^Petit10]: G. Petit and B. Luzum, Eds., [_IERS Conventions (2010)_](https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36.pdf?__blob=publicationFile&v=1){:target="_blank"}, Verlag des Bundesamts f&uuml;r Kartographie und Geod&auml;sie, Frankfurt, Germany, 2010, IERS Technical Note 36. ISBN 3-89888-989-6.

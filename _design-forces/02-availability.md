@@ -41,7 +41,7 @@ A software application can _apparently_ run as expected for a period of time, an
 
 Another common source of such problems are _concurrency deadlocks_. Software applications that exploit task parallelism are exposed to be caught in unexpected scenarios that can cause a deadlock, blocking the application to further deliver position fixes. However, the application itself can implement a _watchdog_, an independent _thread_ monitoring this kind of situations and resetting the receiver to a known, working state. In such a case, the maximum expected response time of such process should be reported.
 
-Such software defects are hard to identify and to fix. Even well-kwown, massively used commercial software applications suffer from this problem. It is then required to report the _maximum_ period of time in which the software receiver has been observed to be in a functioning condition.
+Such software defects are hard to identify and to fix. Even well-kwown, massively used commercial software applications are not free from this kind of problems. It is then required to report the _maximum_ period of time in which the software receiver has been observed to be in a functioning condition in order to provide an objective measurement.
 
 Failures due to GNSS space and control segment failures, announced / reported service discontinuities, or general Operating System failures not directly ascribable to the software receiver should be discarded and not reported, unless constituting a performance hallmark and being reported as the interrupting cause.
 
@@ -93,7 +93,7 @@ Before taking each TTFF measurement, the receiver must be set in the states defi
 
 Each TTFF sample should be computed as the time interval starting with the invocation of the receiver's executable and ending with the first valid navigation data point derived from live or simulated satellite signals. The start times of the test samples should not be synchronized to any UTC time boundary and should be randomly spread within the 24 hour UTC day and within the GNSS data collection interval (_e.g._, 30 s for GPS L1 C/A signals).
 
-A total of at least 20 valid TTFF samples shall be produced for use in data analysis and the total sample size recorded as $$ L $$. Provisions must be made between samples to ensure that current ephemeris does not remain in the receiver. In order to make the measurement as independent as possible of the satellite geometry, measurements should be spread in an interval of 8 hours.
+A total of at least 20 valid TTFF samples shall be produced for use in data analysis[^ION101] and the total sample size recorded as $$ L $$. Provisions must be made between samples to ensure that current ephemeris does not remain in the receiver. In order to make the measurement as independent as possible of the satellite geometry, measurements should be spread in an interval of 8 hours.
 
 In addition, this test makes provisions for anomalous behavior by allowing the tester to reject samples which exceed 10 times the value of MEAN determined for the valid sample size. Such samples are considered non-tests for purposes of statistical analysis, but the total number of such occurrences is recorded and presented with the test results.
 
@@ -136,7 +136,7 @@ Reacquisition time characterizes the performance of the receiver in a scenario w
 The test measurement system must be configured to record the time at which signals are removed from the receiver ($$ t_1 $$) and the time at which signals are reapplied to the receiver ($$ t_2 $$). All navigation data produced by the receiver should be recorded for subsequent data analysis. Each REAQ sample is computed as the time interval beginning at $$ t_2 $$ and ending with the first valid navigation data point derived from live or simulated satellite signals which is within the accuracy limits specified for the targeted signal(s).
 
 
-A total of at least 50 valid REAQ samples should be produced for use in data analysis.
+A total of at least 50 valid REAQ samples should be produced for use in data analysis[^ION101].
 
 Reacquisition Time test results should be reported as:
 
@@ -291,3 +291,10 @@ In case of using differential GNSS techniques:
 In case of using assisted GNSS techniques:
 
 * Availability of an external service delivering assisted GNSS data.
+
+------
+
+
+## References
+
+[^ION101]: Institute of Navigation, _ION STD 101 recommended test procedures for GPS receivers,_ Revision C, Manassas, VA, 1997.
