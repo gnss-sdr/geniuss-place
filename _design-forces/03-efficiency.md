@@ -13,5 +13,5 @@ In this context, _efficiency_ refers to optimizing the speed and memory requirem
 Possible efficiency indicators are:
 
 * Number  of  parallel  channels  that  the  software  receiver  can  sustain  in  real time, given the targeted signal(s) (GPS L1 C/A, Galileo E1B, etc.) of each channel, the sampling rate, the sample data format and the computational resources available for signal processing.
-* Power  consumption  (in watts) for  a  given  computing platform executing the software receiver   and a given   computational  load  in terms of number of signals and channels to be processed. Power consumption sometimes in given as current (in mA) for a given fixed voltage (in volts).
-* Availability  of  profiling  tools  for  identifying  processing  bottlenecks  and measuring    computational    performance    in    the    supported    processing environments (processor architecture, operating system, etc.).
+* Power consumption (in watts) for a given computing platform executing the software receiver and a given computational load in terms of number of signals and channels to be processed. Power consumption sometimes in given as current (in mA) for a given fixed voltage (in volts).
+* Availability of profiling tools and performance tests for identifying processing bottlenecks and measuring computational performance in the supported processing environments (processor architecture, operating system, etc.).
