@@ -38,7 +38,7 @@ $$ \Phi = \rho + c \left( dt_r - dt^s \right) +  d_{\text{trop}} - d_{\text{ion}
 
 where:
 
-  * $$ \Phi $$ is the carrier phase measurement
+  * $$ \Phi $$ is the carrier phase measurement.
   * $$ c $$ is the speed of light.
   * $$ dt_r $$ is the satellite clock offset from GNSS time.    
   * $$ dt^s $$ is the receiver clock offset from GNSS time.
@@ -56,16 +56,16 @@ Notice that the ionospheric term has opposite sign for code and phase. This mean
 
 ### Implementation: `GPS_L1_CA_Observables`
 
+This implementation computes observables by collecting the outputs of channels for GPS L1 C/A signals.
+
 Parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Type** |
 |:-:|:--|:-:|    
 |--------------
-| `flag_averaging` |  . It defaults to `false`. | Optional |
-| `output_rate_ms` |  . It defaults to 500 ms. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
 
   _Observables implementation:_ **`GPS_L1_CA_Observables`**.
@@ -76,11 +76,13 @@ Example:
 ```ini
     ;######### OBSERVABLES CONFIG ############
     Observables.implementation=GPS_L1_CA_Observables
-    Observables.dump=false
-    Observables.dump_filename=./observables.dat
+    Observables.dump=true
+    Observables.dump_filename=./my_observables.dat
 ```
 
 ### Implementation: `Galileo_E1B_Observables`
+
+This implementation computes observables by collecting the outputs of channels for Galileo E1B signals.
 
 Parameters:
 
@@ -88,11 +90,42 @@ Parameters:
 |  **Parameter**  |  **Description** | **Type** |
 |:-:|:--|:-:|    
 |--------------
-| `flag_averaging` |  . It defaults to `false`. | Optional |
-| `output_rate_ms` |  . It defaults to 500 ms. | Optional |
-| `dump` | [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
 
   _Observables implementation:_ **`Galileo_E1B_Observables`**.
   {: style="text-align: center;"}
+
+Example:
+
+```ini
+    ;######### OBSERVABLES CONFIG ############
+    Observables.implementation=Galileo_E1B_Observables
+```
+
+
+
+### Implementation: `Hybrid_Observables`  
+
+This implementation computes observables by collecting the outputs of channels for GPS L1 C/A and Galileo E1B signals.
+
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Type** |
+|:-:|:--|:-:|    
+|--------------
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
+|--------------
+
+  _Observables implementation:_ **`Hybrid_Observables`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+    ;######### OBSERVABLES CONFIG ############
+    Observables.implementation=Hybrid_Observables
+```
