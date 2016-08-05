@@ -14,8 +14,38 @@ The role of a _Telemetry Decoder_ block is to obtain the data bits from the navi
 
 ## GPS navigation message
 
+
+
 ### Implementation: `GPS_L1_CA_Telemetry_Decoder`
 
+The GPS L1 C/A baseband signal can be written as:
+
+$$ s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~,$$
+
+with
+
+$$ e_{L1I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big]   p(t -  lT_{c,\text{P(Y)}})~,\\
+e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}  \Big]  \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~ $$
+
+The GPS NAV message $$ D_{\text{NAV}} $$ is modulated at 50 bps. The whole message contains 25 pages (or "frames") of 30 seconds each, forming the master frame that takes 12,5 minutes to be transmitted. Every frame is subdivided into 5 sub-frames of 6 seconds each; in turn, every sub-frame consists of 10 words, with 30 bits per word:
+
+![GPS NAV message](http://www.navipedia.net/images/f/fe/Navigation_Message.png)
+_GPS NAV message. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message){:target="_blank"}_.
+{: style="text-align: center;"}
+
+The content of every sub-frame is as follows:
+
+* **Sub-frame 1**: contains information about the parameters to be applied to satellite clock status for its correction. These values are polynomial coefficients that allow converting time on board to GPS time. It also has information about satellite health condition.
+* **Sub-frames 2 and 3**: these sub-frames contain satellite ephemeris.
+* **Sub-frame 4**: provides ionospheric model parameters (in order to adjust for ionospheric refraction), UTC information (Universal Coordinate Time), part of the almanac, and indications whether the Anti-Spoofing, A/S, is activated or not (which transforms P code into the encrypted Y code).
+* **Sub-frame 5**: contains data from the almanac and the constellation status. A total of 25 frames are needed to complete the almanac.
+
+Sub-frames 1, 2 and 3 are transmitted with each frame (i.e., they are repeated every 30 seconds). Sub-frames 4 and 5 contain different pages (25 pages each) of the navigation message. Thence, the transmission of the full navigation message takes $$ 25 \times 30 $$ seconds = 12.5 minutes.
+
+
+The content of sub-frames 4 and 5 is common for all satellites. Thence, the almanac data for all in orbit satellites can be obtained from a single tracked satellite.
+
+Parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Type** |
@@ -29,7 +59,7 @@ The role of a _Telemetry Decoder_ block is to obtain the data bits from the navi
   _Telemetry Decoder implementation:_ **`GPS_L1_CA_Telemetry_Decoder`**.
   {: style="text-align: center;"}
 
-
+Example:
 
 ```ini
 ;######### TELEMETRY DECODER CONFIG ############
