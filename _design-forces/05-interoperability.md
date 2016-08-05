@@ -93,6 +93,8 @@ More details in the initial draft of the [Global Navigation Satellite Systems So
 
 ## Support of output formats
 
+<a name="output-formats"></a>
+
 The software receiver should deliver the results of the processing in several standard output formats:
 
 * GIS-oriented formats: [KML](http://www.opengeospatial.org/standards/kml){:target="_blank"}, [GeoJSON](http://geojson.org/){:target="_blank"}, [SHP](https://en.wikipedia.org/wiki/Shapefile){:target="_blank"}.
@@ -101,6 +103,9 @@ The software receiver should deliver the results of the processing in several st
     {: .notice--info}
 
     **GeoJSON** is a geospatial data interchange format based on JavaScript Object Notation (JSON) supported by numerous mapping and GIS software packages, including [OpenLayers](http://openlayers.org), [Leaflet](http://leafletjs.com), [MapServer](http://www.mapserver.org), [GeoServer](http://geoserver.org), [GeoDjango](https://www.djangoproject.com), [GDAL](http://www.gdal.org), and [CartoDB](https://cartodb.com). It is also possible to use GeoJSON with [PostGIS](http://postgis.net) and [Mapnik](http://mapnik.org), both of which handle the format via the GDAL OGR conversion library. The [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/) v3 directly supports the [integration of GeoJSON data layers](https://developers.google.com/maps/documentation/javascript/examples/layer-data-simple), and [GitHub also supports GeoJSON rendering](https://github.com/blog/1528-there-s-a-map-for-that).
+    {: .notice--info}
+
+    **Shapefile** is a digital vector storage format for storing geometric location and associated attribute information. It is a popular format for geographic information system (GIS) software. It is developed and regulated by [Esri](http://www.esri.com/){:target="_blank"} as a (mostly) open specification for data interoperability among Esri and other GIS software products. The shapefile format can spatially describe vector features: points, lines, and polygons, representing, for example, water wells, rivers, and lakes. Each item usually has attributes that describe it, such as _name_ or _temperature_.
     {: .notice--info}
 
 * Application-specific messages (_e.g._, NMEA [0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"} / [2000](https://en.wikipedia.org/wiki/NMEA_2000){:target="_blank"}, [ISOBUS](https://en.wikipedia.org/wiki/ISO_11783), proprietary / custom, etc.).
