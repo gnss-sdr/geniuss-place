@@ -64,7 +64,7 @@ Parameters:
 |--------------
 | `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |
 | `averaging_depth` | If `flag_averaging` is set to `true`, size of the buffer performing a moving average. It defaults to 10. | Optional |
-| `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. It defaults to 500 ms. | Optional |
+| `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. The minimum is the integration time used in the tracking block. It defaults to 500 ms. | Optional |
 | `display_rate_ms` |  Rate at which PVT solutions will be displayed in the terminal, in ms. It defaults to 500 ms. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
@@ -125,6 +125,26 @@ Parameters:
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
 |----------
 
+
+Example:
+
+```ini
+;######### PVT CONFIG ############
+PVT.implementation=GALILEO_E1_PVT
+PVT.averaging_depth=100
+PVT.flag_averaging=false
+PVT.output_rate_ms=100;
+PVT.display_rate_ms=500;
+PVT.nmea_dump_filename=./gnss_sdr_pvt.nmea;
+PVT.flag_nmea_tty_port=true;
+PVT.nmea_dump_devname=/dev/pts/4
+PVT.flag_rtcm_server=true;
+PVT.rtcm_tcp_port=2101
+PVT.rtcm_MT1045_rate_ms=5000
+PVT.rtcm_MSM_rate_ms=1000
+```
+
+
 ### Implementation: `Hybrid_PVT`
 This is an experimental _PVT_ implementation taht computes position fixes usign both GPS L1 C/A and Galileo E1B signals, and a basic, memoryless Least Squares solution. Those solutions are exported to KML and GeoJSON formats for their graphical representation.
 
@@ -156,13 +176,33 @@ Parameters:
 | `flag_rtcm_server` |  [`true`, `false`]: If set to `true`, it runs up a TCP server that is serving RTCM messages to the connected clients during the execution of the software receiver. It defaults to `false`. | Optional |
 | `rtcm_tcp_port` | If `flag_rtcm_server` is set to `true`, TCP port from which the RTCM messages will be served. It defaults to 2101. | Optional |
 | `rtcm_station_id` | Station ID reported in the generated RTCM messages. It defaults to 1234. | Optional |
-| `rtcm_MT1045_rate_ms` | Rate at which RTCM Message Type 1045 (Galileo Ephemeris data) will be generated, in ms. It defaults to 5000 ms. It defaults to 5000 ms. | Optional |
-| `rtcm_MT1019_rate_ms` | Rate at which RTCM Message Type 1019 (GPS Ephemeris data) will be generated, in ms. It defaults to 5000 ms. It defaults to 5000 ms. | Optional |
+| `rtcm_MT1045_rate_ms` | Rate at which RTCM Message Type 1045 (Galileo Ephemeris data) will be generated, in ms. If set to `0`, mutes this message. It defaults to 5000 ms. | Optional |
+| `rtcm_MT1019_rate_ms` | Rate at which RTCM Message Type 1019 (GPS Ephemeris data) will be generated, in ms. If set to `0`, mutes this message. It defaults to 5000 ms. | Optional |
 | `rtcm_MSM_rate_ms` |  Default rate at which RTCM Multiple Signal Messages will be generated. It defaults to 1000 ms. | Optional |
-| `rtcm_MT1077_rate_ms` | Rate at which RTCM Multiple Signal Messages GPS MSM7 (MT1077 - Full GPS observations) will be generated, in ms. It defaults to `rtcm_MSM_rate_ms`. | Optional |
-| `rtcm_MT1097_rate_ms` | Rate at which RTCM Multiple Signal Messages Galileo MSM7 (MT1097 - Full Galileo observations) will be generated, in ms. It defaults to `rtcm_MSM_rate_ms`.  | Optional |
+| `rtcm_MT1077_rate_ms` | Rate at which RTCM Multiple Signal Messages GPS MSM7 (MT1077 - Full GPS observations) will be generated, in ms. If set to `0`, mutes this message. It defaults to `rtcm_MSM_rate_ms`. | Optional |
+| `rtcm_MT1097_rate_ms` | Rate at which RTCM Multiple Signal Messages Galileo MSM7 (MT1097 - Full Galileo observations) will be generated, in ms. If set to `0`, mutes this message. It defaults to `rtcm_MSM_rate_ms`.  | Optional |
 | `flag_rtcm_tty_port` | [`true`, `false`]: If set to `true`, the generated RTCM messages are also sent to a serial port device. It defaults to `false`. | Optional |
 | `rtcm_dump_devname` |  If `flag_rtcm_tty_port` is set to `true`, descriptor of the serial port device. . It defaults to `/dev/pts/1`. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
 |----------
+
+
+Example:
+
+```ini
+;######### PVT CONFIG ############
+PVT.implementation=Hybrid_PVT
+PVT.averaging_depth=10
+PVT.flag_averaging=false
+PVT.output_rate_ms=100;
+PVT.display_rate_ms=500;
+PVT.flag_rtcm_server=true
+PVT.flag_rtcm_tty_port=false
+PVT.rtcm_dump_devname=/dev/pts/1
+PVT.rtcm_tcp_port=2101
+PVT.rtcm_MT1045_rate_ms=5000
+PVT.rtcm_MT1045_rate_ms=5000
+PVT.rtcm_MT1097_rate_ms=1000
+PVT.rtcm_MT1077_rate_ms=1000
+```
