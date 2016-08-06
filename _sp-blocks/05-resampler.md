@@ -25,7 +25,7 @@ without performing any interpolation.
 Parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `sample_freq_in` |  Sample rate at the block input, in samples per second. | Mandatory |
@@ -61,7 +61,7 @@ This implementation copies samples from its input to its output.
 Parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Data type to be copied from the input to the output of this block. It defaults to `gr_complex`. | Optional |

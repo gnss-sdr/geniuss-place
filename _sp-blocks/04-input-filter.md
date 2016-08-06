@@ -28,7 +28,7 @@ Parameters:
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `dump` |  [`false`, `true`]: Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
@@ -149,7 +149,7 @@ the following differences:
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `input_item_type` |  [`byte`, `short`, `float`, `gr_complex`]: This implementation accepts as input data type real samples. It also accepts complex samples of the type `gr_complex`, assuming the presence of an intermediate frequency. The filter also works with `IF=0`. | Optional |
@@ -206,7 +206,7 @@ performing any filtering.
 Parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `item_size` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |

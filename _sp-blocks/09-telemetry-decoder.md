@@ -48,7 +48,7 @@ The content of sub-frames 4 and 5 is common for all satellites. Thence, the alma
 Parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `decimation_factor` |  . It defaults to 1. | Optional |
@@ -72,7 +72,7 @@ TelemetryDecoder_1C.dump=false
 ### Implementation: `Galileo_E1B_Telemetry_Decoder`
 
 
-$$ e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big]    p(t - lT_{c,E1B})~. $$
+$$ e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})~. $$
 
 As shown in this equation, the E1B signal component carries the
 $$ D_{\text{I/NAV}} $$ navigation message, which provides the space vehicle
@@ -107,7 +107,7 @@ coding are applied to the Galileo message data stream:
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `decimation_factor` |  . It defaults to 1. | Optional |
@@ -121,8 +121,13 @@ coding are applied to the Galileo message data stream:
 
 ### Implementation: `Galileo_E5a_Telemetry_Decoder`
 
+Galileo's F/NAV navigation message modulates the I component of the E5a signal, which baseband can be expressed as:
+
+$$ e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
+
+
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `decimation_factor` |  . It defaults to 1. | Optional |

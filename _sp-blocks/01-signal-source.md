@@ -74,6 +74,8 @@ given processor.
 
 For more details about sample formats, plese check out our tutorial [Understanding Data Types]({{ site.url }}{{ site.baseurl }}/docs/tutorials/understanding-data-types/){:target="_blank"}.
 
+The more kinds of signal souces GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ site.url }}{{ site.baseurl }}/design-forces/interoperability/#signal-sources){:target="_blank"}.
+{: .notice--success}
 
 ## Reading data from a file
 
@@ -101,7 +103,7 @@ This _Signal Source_ implementation reads raw signal samples stored in a file.
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
@@ -128,7 +130,7 @@ configured with the `File_Signal_Source` implementation:
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=File_Signal_Source
 SignalSource.filename=/home/user/gnss-sdr/data/my_capture.dat
-SignalSource.sampling_frequency=4000000 ; Sampling frequency in [sps]
+SignalSource.sampling_frequency=4000000
 ```
 
 {% capture overide-file %}
@@ -290,32 +292,32 @@ specified in `SignalSource.filename`.
 
 [![Ettus Research](http://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com){:target="_blank"} The USRP Hardware Driver ([UHD](http://files.ettus.com/manual/){:target="_blank"}) software API supports application development on all Ettus Research [USRP](https://www.ettus.com/product){:target="_blank"} Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
 
+Parameters:
+
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `device_address` |  IP address of the USRP device. When left empty, the device discovery routines will search all the available transports on the system (Ethernet, USB, ...) | Mandatory |
-| `RF_channels` | Number of RF channels present in the front-end device. | Optional |
-| `subdevice` | [`A:0`, `B:0`]: UHD subdevice specification. | Optional |
+| `subdevice` | [`A:0`, `B:0`]: UHD subdevice specification.  | Mandatory |
 | `sampling_frequency` |  Sampling frequency, in symbols per second. | Mandatory |
-| `item_type` | [`cbyte`, `cshort`, `gr_complex`]: data type for each sample. The type `cbyte` (i.e., complex signed 8-bit integers) is not available in USRP devices. This parameter defaults to `cshort`. | Optional |
+| `RF_channels` | Number of RF channels present in the front-end device. It defaults to 1. | Optional |
+| `clock_source` | [`internal`, `external`, `MIMO`]: Set the clock source for the USRP device. It defaults to `internal`. | Optional |
+| `item_type` | [`cbyte`, `cshort`, `gr_complex`]: data type for each sample. The type `cbyte` (i.e., complex signed 8-bit integers) is not available in USRP devices with their default configurations. This parameter defaults to `cshort`. | Optional |
 |-------
-
-  _Signal Source implementation:_ **`UHD_Signal_Source`** general parameters.
-  {: style="text-align: center;"}
 
 If `RF_channels` is set to `1`, then:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples | Optional |
-| `dump` | [`true`, `false`]: . | Optional |
-| `dump_filename` | . | Optional |
 | `freq` | RF front-end center frequency, in Hz. | Mandatory |
+| `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples | Optional |
 | `gain` | RF front-end gain, in dB. | Optional |
 | `IF_bandwidth_hz` | . | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the dump of the signal source delivered data into a file. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
 
   _Signal Source implementation:_ **`UHD_Signal_Source`** single-band parameters.
@@ -342,25 +344,26 @@ SignalSource.enable_throttle_control=false
 If `RF_channels` is set to more than one, then the number of the
 radio-frequency channel (starting with $$ 0 $$) is appended to the name of
 parameters `samples`, `dump`, `dump_filename`, `freq`, `gain` and
-`IF_bandwidth_hz` to indicate to which RF chain they apply:
+`IF_bandwidth_hz` to indicate to which RF chain they apply.
+
+For instance, if `RF_channels` is set to `2`, then:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `samples0` |  Number of samples to be processed for RF channel 0. It defaults to $$ 0 $$, which means infinite samples | Optional |
-| `dump0` | [`true`, `false`]: . | Optional |
-| `dump_filename0` | . | Optional |
 | `freq0` | RF front-end center frequency for RF channel 0, in Hz. | Mandatory |
+| `samples0` |  Number of samples to be processed for RF channel 0. It defaults to $$ 0 $$, which means infinite samples | Optional |
 | `gain0` | RF front-end gain for RF channel 0, in dB. | Optional |
 | `IF_bandwidth_hz0` | . | Optional |
-| `samples1` |  Number of samples to be processed for RF channel 1. It defaults to $$ 0 $$, which means infinite samples | Optional |
-| `dump1` | [`true`, `false`]: . | Optional |
-| `dump_filename1` | . | Optional |
+| `dump0` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source $$ 0 $$ delivered data into a file. It defaults to `false`. | Optional |
+| `dump_filename0` | If `dump0` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source0.dat` | Optional |
 | `freq1` | RF front-end center frequency for RF channel 1, in Hz. | Mandatory |
+| `samples1` |  Number of samples to be processed for RF channel 1. It defaults to $$ 0 $$, which means infinite samples | Optional |
 | `gain1` | RF front-end gain for RF channel 1, in dB. | Optional |
 | `IF_bandwidth_hz1` | . | Optional |
-| ... | ... | ... |
+| `dump1` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source $$ 1 $$ delivered data into a file. It defaults to `false`.  | Optional |
+| `dump_filename1` | If `dump1` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source1.dat` | Optional |
 |-------
 
   _Signal Source implementation:_ **`UHD_Signal_Source`** multiple-band parameters.

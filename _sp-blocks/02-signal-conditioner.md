@@ -59,7 +59,7 @@ This implementation copies samples from its input to its output.
 Parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `item_size` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |

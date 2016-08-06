@@ -124,7 +124,7 @@ parallel computing techniques and allows writing efficient and portable
 code.
 
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
@@ -132,10 +132,10 @@ code.
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` | [`gr_complex`, `cshort`] . It defaults to `gr_complex`. | Optional |
+| `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `doppler_max` |  . It defaults to 5000 Hz. | Optional |
 | `doppler_step` |  . It defaults to 500 Hz. | Optional |
 | `threshold` |  . It defaults to 500 Hz. | Optional |
@@ -144,10 +144,10 @@ code.
 | `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
 | `bit_transition_flag` |  . It defaults to `false`. | Optional |
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
-| `if` |  . It defaults to 0. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Acquisition`**.
@@ -170,7 +170,7 @@ Acquisition_1C.doppler_step=500
 ### Implementation: `GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`
 
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
@@ -178,10 +178,10 @@ Acquisition_1C.doppler_step=500
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` | [`gr_complex`, `cshort`] . It defaults to `gr_complex`. | Optional |
+| `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `doppler_max` |  . It defaults to 5000 Hz. | Optional |
 | `doppler_step` |  . It defaults to 500 Hz. | Optional |
 | `threshold` |  . It defaults to 500 Hz. | Optional |
@@ -190,10 +190,10 @@ Acquisition_1C.doppler_step=500
 | `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
 | `bit_transition_flag` |  . It defaults to `false`. | Optional |
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
-| `if` |  . It defaults to 0. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`**.
@@ -213,7 +213,7 @@ within a given time-out interval.
 ### Implementation: `GPS_L2_M_PCPS_Acquisition`
 
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
@@ -221,10 +221,10 @@ within a given time-out interval.
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` | [`gr_complex`, `cshort`] . It defaults to `gr_complex`. | Optional |
+| `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `doppler_max` |  . It defaults to 5000 Hz. | Optional |
 | `doppler_step` |  . It defaults to 500 Hz. | Optional |
 | `threshold` |  . It defaults to 500 Hz. | Optional |
@@ -233,10 +233,10 @@ within a given time-out interval.
 | `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
 | `bit_transition_flag` |  . It defaults to `false`. | Optional |
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
-| `if` |  . It defaults to 0. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L2_M_PCPS_Acquisition`**.
@@ -273,7 +273,7 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 
 
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
@@ -281,10 +281,10 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` | [`gr_complex`, `cshort`] . It defaults to `gr_complex`. | Optional |
+| `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `doppler_max` |  . It defaults to 5000 Hz. | Optional |
 | `doppler_step` |  . It defaults to 500 Hz. | Optional |
 | `cboc` |  . It defaults to `false`. | Optional |
@@ -293,10 +293,10 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 | `coherent_integration_time_ms` |  . It defaults to 4 ms. | Optional |
 | `bit_transition_flag` |  . It defaults to `false`. | Optional |
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
-| `if` |  . It defaults to 0. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`Galileo_E1_PCPS_Ambiguous_Acquisition`**.
@@ -306,6 +306,39 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 ## Galileo E5a signal acquisition
 
 ### Implementation: `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF`
+
+Parameters:
+
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` | [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
+| `CAF_window_hz` |  . It defaults to 0 Hz. | Optional |
+| `.Zero_padding` |  . It defaults to $$ 0 $$. | Optional |
+| `threshold` |  . It defaults to $$ 0 $$. | Optional |
+| `pfa` |  If defined, ... | Optional |
+| `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
+| `bit_transition_flag` |  . It defaults to `false`. | Optional |
+| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `max_dwells` |  . It defaults to 1. | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`Galileo_E5a_Noncoherent_IQ_Acquisition_CAF`**.
+  {: style="text-align: center;"}
 
 ## Assisted acquisition
 

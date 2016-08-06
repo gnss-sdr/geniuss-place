@@ -72,6 +72,8 @@ Depending of the region of use, other satellite-based signals can be available:
 
 ## Interoperability with radio frequency front-ends
 
+<a name="signal-sources"></a>
+
 ## Interoperability with data collection topologies
 
 For raw GNSS (and possibly other sensors) data stored digitally, the software receiver should support the fundamental data collection topologies, as defined by the [ION GNSS SDR Standard Working Group](https://github.com/IonMetadataWorkingGroup){:target="_blank"} (which, by the way, is _not_ related to GNSS-SDR):

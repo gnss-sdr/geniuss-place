@@ -33,21 +33,23 @@ range of variants, where the receiver computes three samples of $$ R_{xd} $$, us
 $$ E=R_{xd}(\hat{\tau}-\epsilon) $$, *Prompt* $$ P=R_{xd}(\hat{\tau}) $$ and
 *Late* $$ L=R_{xd}(\hat{\tau}-\epsilon) $$, with $$ \epsilon $$ ranging from
 $$ 0.1T_c $$ to $$ 0.5T_c $$, and then computes a timing error with some
-combination of those samples, known as _discriminator_ functions.
+combination of those samples, known as _discriminator_ functions. The result is low-pass filtered and reinjected back to the matched filter, as shown in the figure below:
 
 ![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
-_Typical diagram of a tracking block._
+_Typical diagram of a tracking block. Colored boxes indicate functions implemented in the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library_
 {: style="text-align: center;"}
 
-The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseurl }}/design-forces/efficiency/){:target="_blank"} and [**Portability**]({{ site.url }}{{ site.baseurl }}/design-forces/portability/){:target="_blank"} at the same time.
+The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library addresses [**Efficiency**]({{ site.url }}{{ site.baseurl }}/design-forces/efficiency/){:target="_blank"} and [**Portability**]({{ site.url }}{{ site.baseurl }}/design-forces/portability/){:target="_blank"} at the same time, by providing several implementations of the same functions in different SIMD technologies, benchmarking them and selecting the fastest in your machine at runtime.
 {: .notice--success}
 
 ## GPS L1 C/A signal tracking
 
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking`
 
+Parameters:
+
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
@@ -55,25 +57,39 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` |  [`gr_complex`]: Format of data samples. It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter. It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
 
-  _Acquisition implementation:_ **`GPS_L1_CA_DLL_PLL_Tracking`**.
+  _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_Tracking`**.
   {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
+Tracking_1C.pll_bw_hz=30.0
+Tracking_1C.dll_bw_hz=4.0
+Tracking_1C.early_late_space_chips=0.5
+```
+
 
 
 ### Implementation: `GPS_L1_CA_DLL_PLL_C_Aid_Tracking`
 
+Parameters:
+
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
@@ -81,16 +97,17 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter before achieving bit synchronization. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter before achieving bit synchronization. It defaults to 2 Hz. | Optional |
-| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after achieving bit synchronization. It defaults to 20 Hz. | Optional |
-| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after achieving bit synchronization. It defaults to 2 Hz. | Optional |
-| `extend_correlation_ms` |  [`1` , `2`, `4`, `5`, `10`, `20`]: extension of the correlation length, in ms, after bit synchronization is achieved. It defaults to 1 ms. Only available when using `gr_complex`. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `item_type` |  [`gr_complex`, `cshort`]. Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter before bit synchronization, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter before bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
+| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 20 Hz. | Optional |
+| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
+| `extend_correlation_ms` | Correlation length, in ms. It defaults to 1 ms. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
@@ -98,11 +115,12 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
   _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_C_Aid_Tracking`**.
   {: style="text-align: center;"}
 
-
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking_GPU`
 
+Parameters:
+
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
@@ -110,13 +128,14 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter. It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
@@ -127,8 +146,12 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 
 ## GPS L2C (M) signal tracking
 
+### Implementation: `GPS_L2_M_DLL_PLL_Tracking`
+
+Parameters:
+
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
@@ -136,18 +159,19 @@ The VOLK_GNSSSDR library addresses [**Efficiency**]({{ site.url }}{{ site.baseur
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` |  [`gr_complex`]: Format of data samples. It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter. It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
 
-  _Acquisition implementation:_ **`GPS_L2_M_DLL_PLL_Tracking`**.
+  _Tracking implementation:_ **`GPS_L2_M_DLL_PLL_Tracking`**.
   {: style="text-align: center;"}
 
 
@@ -219,8 +243,8 @@ in step $$ 5 $$ was implemented using the [VOLK_GNSSSDR](https://github.com/gnss
 PLL discriminator implemented in step $$ 6 $$  is the extended
 arctangent (four-quadrant) discriminator, and for the DLL we used the
 normalized Very Early Minus Late Power discriminator (step $$ 10 $$ ). For code lock detection
-(step $$ 13 $$ ), we used the [Squared Signal-to-Noise Variance
-(SNV) estimator](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf){:target="_blank"}. In the case of carrier lock
+(step $$ 13 $$ ), we used the Squared Signal-to-Noise Variance
+(SNV) estimator[^Petovello10]. In the case of carrier lock
 detection (step $$ 14 $$ ), we used the normalized estimate of
 the cosine of twice the carrier phase[^Dierendonck]. The values of the
 lock indicator range from $$ -1 $$, when the locally generated carrier is
@@ -228,6 +252,7 @@ completely out of phase, to $$ 1 $$, that indicates a perfect match. When
 either the code or the carrier detectors are below given thresholds
 during a consecutive number of code periods $$ \vartheta $$, the Tracking
 block informs to control plane through the message queue.
+
 
 
 *  **Require:** Complex sample stream, $$ \mathbf{x}_{\text{IN}} $$; estimations of code
@@ -300,7 +325,7 @@ $$ \hat{P}_{tot} = \frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{k-i
 14. Phase lock indicator:
 $$ T_{carrier} = \frac{ \left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$.
 
-15. **if** $$ T_{carrier} < \mathcal{T} $$ or $$ CN0 < CN0_{min} $$
+15. **if** $$ T_{carrier} < \mathcal{T} $$ or $$  \hat{ CN0 } < CN0_{min} $$
 * Increase lock fail counter $$ \upsilon \leftarrow \upsilon +1 $$.
 
 16. **else**
@@ -319,8 +344,11 @@ $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density
 {: .notice--info}
 
 
+
+Parameters:
+
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
@@ -328,43 +356,89 @@ $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `item_type` |  [`gr_complex`]: Format of data samples. It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter. It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt, and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$.  | Optional |
-| `very_early_late_space_chips` |  Spacing between Very Early and Prompt, and between Prompt and Very Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.6 $$. | Optional |
+| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$. | Optional |
+| `very_early_late_space_chips` | Spacing between Very Early and Prompt and between Prompt and Very Late correlators, normalized by the chip period $$ T_c $$ It defaults to $$ 0.6 $$. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
 
-  _Acquisition implementation:_ **`Galileo_E1_DLL_PLL_VEML_Tracking`**.
+  _Tracking implementation:_ **`Galileo_E1_DLL_PLL_VEML_Tracking`**.
   {: style="text-align: center;"}
 
+
+## Galileo E5a signal tracking
+
+### Implementation: `Galileo_E5a_DLL_PLL_Tracking`
+The AltBOC modulation in the Galileo E5 band allows the approximation to two sub-bands, referred to as E5a and E5b, QPSK-modulated and centered at $$ f_{\text{Gal E5a}}=1176.450 $$ MHz and $$ f_{Gal E5b}=1207.140 $$ MHz, respectively.
+
+The baseband signal at E5a can then be approximated by:
+
+$$ e_{E5a}(t) = e_{E5aI}(t)+je_{E5aQ}(t)~, $$
+
+where the signal components are defined as:
+
+$$ e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, $$
+
+$$ e_{E5aQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, $$
+
+where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s.
+
+Parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_init_hz` |  Bandwidth of the PLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
+| `dll_bw_init_hz` |  Bandwidth of the DLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 5 Hz. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
+| `ti_ms` | Correlation length after the secondary code lock, in ms. It defaults to 3 ms. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  [`true`, `false`]: if set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
+|--------------
+
+  _Tracking implementation:_ **`Galileo_E5a_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
 
 Example:
 
 ```ini
 ;######### TRACKING GLOBAL CONFIG ############
-Tracking_1B.implementation=Galileo_E1_DLL_PLL_VEML_Tracking
-Tracking_1B.item_type=gr_complex
-Tracking_1B.pll_bw_hz=20.0;
-Tracking_1B.dll_bw_hz=2.0;
-Tracking_1B.early_late_space_chips=0.15;
-Tracking_1B.very_early_late_space_chips=0.6;
-Tracking_1B.dump=false
-Tracking_1B.dump_filename=../data/veml_tracking_ch_
+Tracking_5X.implementation=Galileo_E5a_DLL_PLL_Tracking
+Tracking_5X.item_type=gr_complex
+Tracking_5X.pll_bw_hz_init=25.0
+Tracking_5X.dll_bw_hz_init=4.0
+Tracking_5X.ti_ms=1
+Tracking_5X.pll_bw_hz=10.0
+Tracking_5X.dll_bw_hz=4.0
+Tracking_5X.early_late_space_chips=0.5
 ```
-
-## Galileo E5a signal tracking
-
 
 -------
 
 ## References
 
+[^Petovello10]: M. Petovello, E. Falletti, M. Pini, L. Lo Presti, [_Are Carrier-to-Noise algorithms equivalent in all situations?_](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf){:target="_blank"}. Inside GNSS, Vol. 5, no. 1, pp. 20-27, Jan.-Feb. 2010.
+
 [^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from “Global Positioning System: Theory and Applications”, Volume I, Edited by B. W. Parkinson, J. J. Spilker Jr.
 
-[^Fernandez]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
+[^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).

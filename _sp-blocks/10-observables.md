@@ -61,7 +61,7 @@ This implementation computes observables by collecting the outputs of channels f
 Parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
@@ -87,7 +87,7 @@ This implementation computes observables by collecting the outputs of channels f
 Parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
@@ -113,7 +113,7 @@ This implementation computes observables by collecting the outputs of channels f
 Parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |

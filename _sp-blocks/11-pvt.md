@@ -51,7 +51,7 @@ If configured, this block also generates RTCM messages in real-time, delivered t
 Parameters:
 
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.SUPL_gps_ephemeris_xml` |  Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml` | Optional |
@@ -59,7 +59,7 @@ Parameters:
 
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |
@@ -104,7 +104,7 @@ If configured, this block also generates RTCM messages in real-time, delivered t
 Parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |
@@ -156,14 +156,14 @@ If configured, this block also generates RTCM messages in real-time, delivered t
 Parameters:
 
 |----------
-|  **Global Parameter**  |  **Description** | **Type** |
+|  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.SUPL_gps_ephemeris_xml` |  Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml` | Optional |
 |--------------
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |

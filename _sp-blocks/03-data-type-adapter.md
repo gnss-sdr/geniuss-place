@@ -102,7 +102,7 @@ DataTypeAdapter.implementation=Ishort_To_Complex
 This implementation copies samples from its input to its output.
 
 |----------
-|  **Parameter**  |  **Description** | **Type** |
+|  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
 | `item_size` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |
