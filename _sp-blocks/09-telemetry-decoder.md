@@ -24,10 +24,10 @@ $$ s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~,$$
 
 with
 
-$$ \color{black} e_{L1I}(t) =  \sum_{l=-\infty}^{\infty} \color{blue} D_{\text{NAV}} \Big[ [l]_{204600}\Big] \color{black} \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big]   p(t -  lT_{c,\text{P(Y)}})~,\\
-\color{black} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} \color{blue} D_{\text{NAV}}\Big[ [l]_{20460}  \Big] \color{black} \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~ $$
+$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{L1I}(t) =  \sum_{l=-\infty}^{\infty} \color{blue} D_{\text{NAV}} \Big[ [l]_{204600}\Big] \color{dark-grey} \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big]   p(t -  lT_{c,\text{P(Y)}})~,\\
+\color{dark-grey} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} \color{blue} D_{\text{NAV}}\Big[ [l]_{20460}  \Big] \color{dark-grey} \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~ $$
 
-The GPS NAV message $$ D_{\text{NAV}} $$ is modulated at 50 bps. The whole message contains 25 pages (or "frames") of 30 seconds each, forming the master frame that takes 12,5 minutes to be transmitted. Every frame is subdivided into 5 sub-frames of 6 seconds each; in turn, every sub-frame consists of 10 words, with 30 bits per word:
+The GPS NAV message $$ D_{\text{NAV}} $$ is modulated at 50 bis per second. The whole message contains 25 pages (or "frames") of 30 seconds each, forming the master frame that takes 12,5 minutes to be transmitted. Every frame is subdivided into 5 sub-frames of 6 seconds each; in turn, every sub-frame consists of 10 words, with 30 bits per word:
 
 ![GPS NAV message](http://www.navipedia.net/images/f/fe/Navigation_Message.png)
 _GPS NAV message. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message){:target="_blank"}_.
@@ -72,7 +72,7 @@ TelemetryDecoder_1C.dump=false
 ### Implementation: `Galileo_E1B_Telemetry_Decoder`
 
 
-$$ \color{black}  e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} \color{blue} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \color{black} \oplus C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})~. $$
+$$  \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} \color{blue} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \color{dark-grey} \oplus C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})~. $$
 
 As shown in this equation, the E1B signal component carries the
 $$ D_{\text{I/NAV}} $$ navigation message, which provides the space vehicle
@@ -123,9 +123,9 @@ coding are applied to the Galileo message data stream:
 
 Galileo's F/NAV navigation message modulates the I component of the E5a signal, which baseband can be expressed as:
 
-$$ \color{black} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]  \color{black} p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
+$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]  \color{dark-grey} p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
 
-$$ \color{black} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] \color{black} p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
+$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] \color{dark-grey} p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
 
 Parameters:
 
