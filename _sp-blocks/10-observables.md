@@ -11,7 +11,7 @@ modified: 2016-04-13T15:54:02-04:00
 The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange** and **carrier phase**.
 {: .notice--info}
 
-The pseudorange is defined as follows:
+The **pseudorange measurement** is defined as the difference of the time of reception (expressed in the time frame of the receiver) and the time of transmission (expressed in the time frame of the satellite) of a distinct satellite signal. It can be modeled as follows:
 
 $$ P = \rho + c \left( dt_r - dt^s \right) + d_{\text{trop}} + d_{\text{ion}} + d_{\rho} + k_{P_r} - k_{P_s} + d_{P_{\text{multipath}}} + \epsilon_P $$
 
@@ -31,8 +31,25 @@ where:
   * $$ \epsilon_P $$ models the receiver's thermal noise.
 
 
+GNSS-SDR performs pseudorange generation based on setting a **common reception time** across all channels[^Petovello12]. The result of this approach is not an absolute pseudorange, but a relative pseudorange with respect to the value (of pseudorange) allocated for a reference satellite. This is possible thanks to the TOW information, that is the epoch denoted in the navigation message, and the associated reception time $$ t_{\text{RX}} $$, that is the epoch denoted by the receiver time counter, both available for each satellite.
 
-The carrier phase measurements can be modeled as:
+The first step performed by the common reception time algorithm is the selection of a reference satellite: it is the satellite with the most recent TOW (the nearest satellite), denoted as $$ \text{TOW}_\text{ref} $$, whose associated $$ t_{\text{RX}_\text{ref}} $$ is taken as the common reception time for all channels. To this satellite it is assigned a initial travel time ($$ \tau_\text{ref} = 68.802 $$ ms, but in general it is a value between $$ 65 $$ and $$ 85 $$ milliseconds according to the user altitude) that can be easily converted in meters considering the speed of light. Then, the pseudoranges for all other satellites are derived by adding the relative-arrival times. Each travel time $$ \tau $$ can be computed as:
+
+$$ \tau^{(i)} = \Delta \text{TOW} + \Delta t_\text{RX} + \tau_\text{ref} = \text{TOW}^{(i)}-\text{TOW}_\text{ref}+t_\text{RX}^{(i)}-t_{\text{RX}_\text{ref}} + \tau_\text{ref} $$
+
+where $$ \Delta \text{TOW} $$ is the difference between the reference TOW and the current TOW of the $$ i $$-th satellite; $$  \Delta t_\text{RX} $$ is the time elapsed between the reference $$ t_{\text{RX}_\text{ref}} $$ and the actual receiver time, when the pseudorange must be computed for the specific satellite. This method is equivalent to taking a snapshot of all the channels' counters at a given time, and thus it can produce pseudoranges at any time, without waiting for a particular bit front on each channel.
+
+The block diagram of such approach is shown below:
+
+
+![Pseudorange computation]({{ site.url }}{{ site.baseurl }}/images/common-reception-time.png)
+_Block diagram of the pseudorange computation using the common reception time approach in GNSS-SDR_
+{: style="text-align: center;"}
+
+Note that, in the case of a multi-system receiver, all pseudorange observations must be referred to one receiver clock only.
+
+
+The **carrier phase measurement** can be modeled as:
 
 $$ \Phi = \rho + c \left( dt_r - dt^s \right) +  d_{\text{trop}} - d_{\text{ion}} +  k_{L_r} - k_{L_s} + \lambda_L N_L + \lambda_L \omega + d_{L_{\text{multipath}}}  + \epsilon_L $$
 
@@ -53,6 +70,24 @@ where:
   * $$ \epsilon_L $$ models the receiver's thermal noise.
 
 Notice that the ionospheric term has opposite sign for code and phase. This means that the ionosphere produces an advance of the carrier phase measurement equal to the delay on the code measurements.
+
+As shown in a paper by Petovello and O'Driscoll[^Petovello10], the carrier phase measurement delivered by the receiver can be written as:
+
+$$ \Phi^{(i)} (t_{\text{Rx}})= \frac{r(t_{\text{Rx}})}{\lambda} + \phi_{\text{mix}}(0) - \phi^{s_i}(0) + N^{(i)} (t_{\text{Rx}}) $$
+
+where:
+
+  * $$ t_{\text{Rx}} $$ is the signal reception time.
+  * $$ r(t_{\text{Rx}}) $$ is the range from the satellite to the receiver at time $$ t_{\text{Rx}} $$.
+  * $$ \lambda $$ is the radio frequency wavelegth.
+  * $$ \phi_{\text{mix}}(0) $$ is an initial phase offset of the locally-generated mixer signal.
+  * $$ \phi^{s_i}(0) $$ is an initial satellite phase offset.
+  * $$ N^{(i)} (t_{\text{Rx}}) = L^{(i)} (t_{\text{Rx}}) - K^{(i)} (t_{\text{Rx}}) $$ is the integer ambiguity, where:
+    * $$ L^{(i)} (t_{\text{Rx}}) $$ is the integer component of the NCO phase.
+    * $$ K^{(i)} (t_{\text{Rx}}) $$ is the integer component of the term $$ \left( \frac{r(t_{\text{Rx}})}{\lambda} +\phi_{\text{mix}}(0)- \phi^{s_i}(0) \right) $$.
+
+In order to generate useable phase measurements, the receiver phase observations must maintain a contant integer number of cycles offset from the true carrier phase. That is, if the range increases by one cycle (_i.e._, one wavelength), the integer component of the NCO, denoted as $$ L^{(i)} (t_{\text{Rx}}) $$, also increments by one cycle.
+
 
 ### Implementation: `GPS_L1_CA_Observables`
 
@@ -129,3 +164,11 @@ Example:
     ;######### OBSERVABLES CONFIG ############
     Observables.implementation=Hybrid_Observables
 ```
+
+----
+
+## References
+
+[^Petovello12]: M. Petovello, M. Rao, G. Falca, [_Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?_](http://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf){:target="_blank"}, Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
+
+[^Petovello10]: M. Petovello, C. O'Driscoll, [_Carrier phase and its measurements for GNSS: What is the carrier phase measurement? How is it generated in GNSS receivers?_](http://www.insidegnss.com/auto/julaug10-solutions.pdf){:target="_blank"} Inside GNSS, vol. 5, no. 5, pp. 18–22, Jul./Aug. 2010.
