@@ -71,6 +71,11 @@ TelemetryDecoder_1C.dump=false
 
 ### Implementation: `Galileo_E1B_Telemetry_Decoder`
 
+The Galileo E1 baseband signal can be written as:
+
+$$ s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, $$
+
+where $$ sc_A(t) $$ and $$ sc_B(t) $$ are the Composite Binary Offset Carrier (CBOC) square subcarriers, and:
 
 $$  \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} \color{blue} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \color{dark-grey} \oplus C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})~. $$
 
@@ -105,6 +110,7 @@ coding are applied to the Galileo message data stream:
     data is written) and $$ 8 $$ rows (where data is read), providing
     robustness to the FEC decoding algorithm by avoiding error bursts.
 
+Parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -121,11 +127,14 @@ coding are applied to the Galileo message data stream:
 
 ### Implementation: `Galileo_E5a_Telemetry_Decoder`
 
-Galileo's F/NAV navigation message modulates the I component of the E5a signal, which baseband can be expressed as:
+The Galileo E5 baseband signal can be written as:
+
+$$ s^{\text{(Gal E5)}}_{T}(t) = e_{E5a}(t) ssc_s^{*}(t)+ e_{E5b}(t) ssc_s(t) +\bar{e}_{E5a}(t)ssc_p^{*}(t)+\bar{e}_{E5b}(t)ssc_p(t)~, $$
+
+where $$ ssc_s(t) $$ and $$ ssc_p(t) $$ are the single and product side–band signal subcarriers. However, sub-band E5a can be approximated by a QPSK signal. Galileo's F/NAV navigation message modulates the I component of the E5a signal, which can be expressed as:
 
 $$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]  \color{dark-grey} p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
 
-$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] \color{dark-grey} p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
 
 Parameters:
 
