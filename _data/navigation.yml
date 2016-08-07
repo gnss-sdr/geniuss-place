@@ -113,19 +113,19 @@ sp-block:
         url: /docs/sp-blocks/signal-source/
       - title: "Signal Conditioner"
         url: /docs/sp-blocks/signal-conditioner/
-      - title: "Data Type Adapter"
+      - title: " - Data Type Adapter"
         url: /docs/sp-blocks/data-type-adapter/
-      - title: "Input Filter"
+      - title: " - Input Filter"
         url: /docs/sp-blocks/input-filter/
-      - title: "Resampler"
+      - title: " - Resampler"
         url: /docs/sp-blocks/resampler/
       - title: "Channels"
         url: /docs/sp-blocks/channels/
-      - title: "Acquisition"
+      - title: " - Acquisition"
         url: /docs/sp-blocks/acquisition/
-      - title: "Tracking"
+      - title: " - Tracking"
         url: /docs/sp-blocks/tracking/
-      - title: "Telemetry Decoder"
+      - title: " - Telemetry Decoder"
         url: /docs/sp-blocks/telemetry-decoder/
       - title: "Observables"
         url: /docs/sp-blocks/observables/
