@@ -31,9 +31,9 @@ where:
   * $$ \epsilon_P $$ models the receiver's thermal noise.
 
 
-GNSS-SDR performs pseudorange generation based on setting a **common reception time** across all channels[^Petovello12]. The result of this approach is not an absolute pseudorange, but a relative pseudorange with respect to the value (of pseudorange) allocated for a reference satellite. This is possible thanks to the TOW information, that is the epoch denoted in the navigation message, and the associated reception time $$ t_{\text{RX}} $$, that is the epoch denoted by the receiver time counter, both available for each satellite.
+GNSS-SDR performs pseudorange generation based on setting a **common reception time** across all channels[^Petovello12]. The result of this approach is not an absolute pseudorange, but a relative pseudorange with respect to the value (of pseudorange) allocated for a reference satellite. This is possible thanks to the time of week (TOW) information, that is the epoch conveyed by the navigation message, and the associated reception time $$ t_{\text{RX}} $$, that is the epoch measured by the receiver's time counter, both available for each satellite.
 
-The first step performed by the common reception time algorithm is the selection of a reference satellite: it is the satellite with the most recent TOW (the nearest satellite), denoted as $$ \text{TOW}_\text{ref} $$, whose associated $$ t_{\text{RX}_\text{ref}} $$ is taken as the common reception time for all channels. To this satellite it is assigned a initial travel time ($$ \tau_\text{ref} = 68.802 $$ ms, but in general it is a value between $$ 65 $$ and $$ 85 $$ milliseconds according to the user altitude) that can be easily converted in meters considering the speed of light. Then, the pseudoranges for all other satellites are derived by adding the relative-arrival times. Each travel time $$ \tau $$ can be computed as:
+The first step performed by the common reception time algorithm is the selection of a reference satellite: it is the satellite with the most recent TOW (which is the nearest satellite), denoted as $$ \text{TOW}_\text{ref} $$, whose associated $$ t_{\text{RX}_\text{ref}} $$ is taken as the common reception time for all channels. To this satellite it is assigned a initial travel time ($$ \tau_\text{ref} = 68.802 $$ ms, but in general it is a value between $$ 65 $$ and $$ 85 $$ milliseconds according to the user altitude) that can be easily converted in meters considering the speed of light. Then, the pseudoranges for all other satellites are derived by adding the relative-arrival times. Each travel time $$ \tau $$ can be computed as:
 
 $$ \tau^{(i)} = \Delta \text{TOW} + \Delta t_\text{RX} + \tau_\text{ref} = \text{TOW}^{(i)}-\text{TOW}_\text{ref}+t_\text{RX}^{(i)}-t_{\text{RX}_\text{ref}} + \tau_\text{ref} $$
 
@@ -169,7 +169,7 @@ Example:
 
 ## References
 
-[^Arribas14]: J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas, [_Fastening GPS and Galileo Tight with a Software Receiver_](https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428){:target="_blank"}, in Proc. of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014), Tampa, Florida, Sep. 2014, pp. 1383 - 1395. 
+[^Arribas14]: J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas, [_Fastening GPS and Galileo Tight with a Software Receiver_](https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428){:target="_blank"}, in Proc. of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014), Tampa, Florida, Sep. 2014, pp. 1383 - 1395.
 
 [^Petovello12]: M. Petovello, M. Rao, G. Falca, [_Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?_](http://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf){:target="_blank"}, Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
 
