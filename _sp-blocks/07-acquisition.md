@@ -147,7 +147,7 @@ code.
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
@@ -194,7 +194,7 @@ Acquisition_1C.doppler_step=500
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
@@ -238,7 +238,7 @@ within a given time-out interval.
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
@@ -299,7 +299,7 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
@@ -338,7 +338,7 @@ Parameters:
 | `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `max_dwells` |  . It defaults to 1. | Optional |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 

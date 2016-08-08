@@ -318,7 +318,7 @@ If `RF_channels` is set to `1`, then:
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples | Optional |
 | `gain` | RF front-end gain, in dB. | Optional |
 | `IF_bandwidth_hz` | . | Optional |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the dump of the signal source delivered data into a file. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the dump of the signal source delivered data into a file. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
 

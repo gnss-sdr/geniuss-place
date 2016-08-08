@@ -100,7 +100,7 @@ Parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L1_CA_Observables` | Mandatory |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
 
@@ -127,7 +127,7 @@ Parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E1B_Observables` | Mandatory |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
 
@@ -154,7 +154,7 @@ Parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Hybrid_Observables` | Mandatory |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
 

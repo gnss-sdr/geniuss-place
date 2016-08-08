@@ -77,7 +77,7 @@ Parameters:
 | `rtcm_MSM_rate_ms` | Rate at which RTCM Multiple Signal Messages GPS MSM7 (MT1077 - Full GPS observations) will be generated, in ms. It defaults to 1000 ms.  | Optional |
 | `flag_rtcm_tty_port` | [`true`, `false`]: If set to `true`, the generated RTCM messages are also sent to a serial port device. It defaults to `false`. | Optional |
 | `rtcm_dump_devname` |  If `flag_rtcm_tty_port` is set to `true`, descriptor of the serial port device. . It defaults to `/dev/pts/1`. | Optional |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
 |----------
 
@@ -123,7 +123,7 @@ Parameters:
 | `rtcm_MSM_rate_ms` |  Rate at which RTCM Multiple Signal Messages Galileo MSM7 (MT1097 - Full Galileo observations) will be generated, in ms. It defaults to 1000 ms. | Optional |
 | `flag_rtcm_tty_port` | [`true`, `false`]: If set to `true`, the generated RTCM messages are also sent to a serial port device. It defaults to `false`. | Optional |
 | `rtcm_dump_devname` |  If `flag_rtcm_tty_port` is set to `true`, descriptor of the serial port device. . It defaults to `/dev/pts/1`. | Optional |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
 |----------
 
@@ -186,7 +186,7 @@ Parameters:
 | `rtcm_MT1097_rate_ms` | Rate at which RTCM Multiple Signal Messages Galileo MSM7 (MT1097 - Full Galileo observations) will be generated, in ms. If set to `0`, mutes this message. It defaults to `rtcm_MSM_rate_ms`.  | Optional |
 | `flag_rtcm_tty_port` | [`true`, `false`]: If set to `true`, the generated RTCM messages are also sent to a serial port device. It defaults to `false`. | Optional |
 | `rtcm_dump_devname` |  If `flag_rtcm_tty_port` is set to `true`, descriptor of the serial port device. . It defaults to `/dev/pts/1`. | Optional |
-| `dump` |  [`true`, `false`]: if set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
 |----------
 
