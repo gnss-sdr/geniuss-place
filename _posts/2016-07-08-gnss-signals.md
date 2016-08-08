@@ -114,20 +114,25 @@ _GPS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.p
 
 ### GPS L2C
 
-Defined in IS-GPS-200[^ISGPS200], is only available on Block IIR–M and subsequent
-satellite blocks. Centered at $$ f_{\text{GPS L2}}=1227.60 $$ MHz,
-the signal structure is the same than in GPS L1, with the
-precision code in the In–phase component, just as in $$ e_{L1I}(t) $$  but
-with an optional presence of the navigation message $$ D_{\text{NAV}} $$.
-For the Quadrature–phase component, three options are defined:
+Defined in IS-GPS-200[^ISGPS200], this band is centered at
+$$ f_{\text{GPS L2}}=1227.60 $$ MHz. The complex baseband
+transmitted signal can be written as:
 
-$$ e_{L2CQ}(t) = \sum_{l=-\infty}^{\infty} D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus \left(  C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{3}{4}\right)T_{c,L2C}\right) \right), $$
+$$ s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~,$$
 
-$$ e_{L2CQ}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}} \Big[ [l]_{20460} \Big] \oplus C_{\text{C/A}} \Big[ |l|_{1023} \Big] p \left(t - lT_{c,\text{C/A}}\right) $$
+with the In–phase component defined as:
+
+$$ e_{L2I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big]   p(t -  lT_{c,\text{P(Y)}})~, $$
+
+with an optional presence of the navigation message $$ D_{\text{NAV}} $$. For the Quadrature–phase component, three options are defined:
+
+$$ e_{L2Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus \left(  C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{3}{4}\right)T_{c,L2C}\right) \right), $$
+
+$$ e_{L2Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}} \Big[ [l]_{20460} \Big] \oplus C_{\text{C/A}} \Big[ |l|_{1023} \Big] p \left(t - lT_{c,\text{C/A}}\right) $$
 
 or
 
-$$ e_{L2CQ}(t) = \sum_{l=-\infty}^{\infty}C_{\text{C/A}} \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~, $$
+$$ e_{L2Q}(t) = \sum_{l=-\infty}^{\infty}C_{\text{C/A}} \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~, $$
 
 where $$ T_{c,L2C}=\frac{1}{511.5} $$ ms and $$ p_{\text{1/2}}(t) $$ is a
 rectangular pulse of half chip–period duration, thus time–multiplexing
@@ -143,6 +148,8 @@ resulting in $$ 50 $$ sps.
 ![Spectra GPS Signals L2](http://www.navipedia.net/images/c/c4/Chapter_2_Spectra_GPS_Signals_L2.png)
 _GPS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan){:target="_blank"}_.
 {: style="text-align: center;"}
+
+This signal is only available on Block IIR–M and subsequent satellite blocks.
 
 ### GPS L5
 
