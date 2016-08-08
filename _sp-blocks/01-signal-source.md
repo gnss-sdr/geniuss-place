@@ -107,6 +107,9 @@ This _Signal Source_ implementation reads raw signal samples stored in a file, a
 | `gr_complex` | Complex samples, with real and imaginary parts of type `float`.  C++ type name: `std::complex<float>` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
 |----------
 
+  _Data type definition in GNSS-SDR._
+  {: style="text-align: center;"}
+
 This implementation accepts the following parameters:
 
 |----------
@@ -407,20 +410,12 @@ For instance, if `RF_channels` is set to `2`, then:
 </div>
 
 
-### NSL Stereo
 
-### Flexiband
+### Implementation: `Osmosdr_Signal_Source`
 
-```bash
-$ cmake -DENABLE_FLEXIBAND=ON ../
-```
-It requires an specific driver that is not available under an open
-source license.
-
-### OsmoSDR-compatible devices
-
-OsmoSDR is a small form-factor inexpensive SDR (Software Defined Radio)
-project. It provides a driver for several front-ends, such as RTL-based
+[![OsmoSDR](http://sdr.osmocom.org/osmocom/osmocom_sdr.png){:height="250px" width="250x"}{: .align-right}](http://sdr.osmocom.org/trac/){:target="_blank"}
+OsmoSDR is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
+project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. It provides a driver for several front-ends, such as RTL-based
 dongles, HackRF, bladeRF, etc.
 
 
@@ -428,9 +423,25 @@ dongles, HackRF, bladeRF, etc.
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
-Note that not all the OsmoSDR-compatible devices can work as radio frequency front-ends for proper GNSS signal reception, please check the specifications. For suitable RF front-ends, you can use:
 
-### Implementation: `Osmosdr_Signal_Source`
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Osmosdr_Signal_Source` | Mandatory |
+| `freq` | RF front-end center frequency, in Hz. | Mandatory |
+| `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
+| `gain` | RF front-end gain for RF channel 0, in dB. | Optional |
+| `rf_gain` | RF front-end gain for RF channel 0, in dB. | Optional |
+| `if_gain` | RF front-end gain for RF channel 0, in dB. | Optional |
+| `sampling_frequency` | . | Optional |
+| `item_type` | [`gr_complex`]: Set the output data type. Only  `gr_complex` is allowed in this version, so it is set by default. | Optional |
+| `osmosdr_args` | . | Optional |
+| `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
+| `dump_filename` | If `dump1` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+|-------
+
+Please note that not all the OsmoSDR-compatible devices can work as radio frequency front-ends for proper GNSS signal reception, please check the specifications. For suitable RF front-ends, you can use:
 
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
@@ -477,6 +488,22 @@ SignalSource.address=127.0.0.1 ; Put your IP here
 SignalSource.port=1234         ; Put your port here
 SignalSource.swap_iq=false
 ```
+
+
+
+### NSL Stereo
+
+### Flexiband
+
+```bash
+$ cmake -DENABLE_FLEXIBAND=ON ../
+```
+It requires an specific driver that is not available under an open
+source license.
+
+
+
+
 
 Multiple radio frequency chains
 -------------------------------

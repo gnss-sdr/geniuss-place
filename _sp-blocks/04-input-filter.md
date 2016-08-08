@@ -152,12 +152,11 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Freq_Xlating_Fir_Filter` | Mandatory |
-| `input_item_type` |  [`byte`, `short`, `float`, `gr_complex`]: This implementation accepts as input data type real samples. It also accepts complex samples of the type `gr_complex`, assuming the presence of an intermediate frequency. The filter also works with `IF=0`. | Optional |
-| `IF` |  Specifies the intermediate frequency $$ f_{IF} $$, in Hz. | Optional |
-| `sampling_frequency` |  Specifies the sample rate $$ f_s $$, in samples per second. | Optional |
+| `input_item_type` |  [`byte`, `short`, `float`, `gr_complex`]: This implementation accepts as input data type real samples. It also accepts complex samples of the type `gr_complex`, assuming the presence of an intermediate frequency. The filter also works with `IF=0`. | Mandatory |
+| `output_item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Output data type. You can use this implementation to upcast the data type. | Mandatory |
+| `sampling_frequency` |  Specifies the sample rate $$ f_s $$, in samples per second. | Mandatory |
+| `IF` |  Specifies the intermediate frequency $$ f_{IF} $$, in Hz. It defaults to $$ 0 $$. | Optional |
 | `decimation_factor` |  Decimation factor (defaults to 1). | Optional |
-| `input_item_type` | [`cbyte`, `cshort`, `gr_complex`]: Input data type. This implementation only accepts streams of complex data types. | Mandatory |
-| `output_item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Output data type. You can use this implementation to upcast the data type (i.e., from `cbyte` to `gr_complex` and from `cshort` to `gr_complex`). | Mandatory |
 | `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. | Mandatory |
 | `number_of_bands` |  Number of frequency bands in the filter. | Mandatory |
