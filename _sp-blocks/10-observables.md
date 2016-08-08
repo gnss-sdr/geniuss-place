@@ -43,7 +43,7 @@ The block diagram of such approach is shown below:
 
 
 ![Pseudorange computation]({{ site.url }}{{ site.baseurl }}/images/common-reception-time.png)
-_Block diagram of the pseudorange computation using the common reception time approach in GNSS-SDR_
+_Block diagram of the pseudorange computation using the common reception time approach in GNSS-SDR[^Arribas14]_
 {: style="text-align: center;"}
 
 Note that, in the case of a multi-system receiver, all pseudorange observations must be referred to one receiver clock only.
@@ -168,6 +168,8 @@ Example:
 ----
 
 ## References
+
+[^Arribas14]: J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas, [_Fastening GPS and Galileo Tight with a Software Receiver_](https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428){:target="_blank"}, in Proc. of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014), Tampa, Florida, Sep. 2014, pp. 1383 - 1395. 
 
 [^Petovello12]: M. Petovello, M. Rao, G. Falca, [_Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?_](http://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf){:target="_blank"}, Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
 
