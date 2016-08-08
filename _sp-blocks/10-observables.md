@@ -49,7 +49,7 @@ _Block diagram of the pseudorange computation using the common reception time ap
 Note that, in the case of a multi-system receiver, all pseudorange observations must be referred to one receiver clock only.
 
 
-The **carrier phase measurement** can be modeled as:
+The **carrier phase measurement** is actually a measurement on the beat frequency between the received carrier of the satellite signal and a receiver-generated reference frequency. It can be modeled as:
 
 $$ \Phi = \rho + c \left( dt_r - dt^s \right) +  d_{\text{trop}} - d_{\text{ion}} +  k_{L_r} - k_{L_s} + \lambda_L N_L + \lambda_L \omega + d_{L_{\text{multipath}}}  + \epsilon_L $$
 
