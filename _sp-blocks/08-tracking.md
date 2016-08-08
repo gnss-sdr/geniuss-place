@@ -36,8 +36,10 @@ $$ 0.1T_c $$ to $$ 0.5T_c $$, and then computes a timing error with some
 combination of those samples, known as _discriminator_ functions. The result is low-pass filtered and reinjected back to the matched filter, as shown in the figure below:
 
 ![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
-_Typical diagram of a tracking block. Colored boxes indicate functions implemented in the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library_
+_Typical diagram of a tracking block. Colored boxes indicate functions implemented in the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library._
 {: style="text-align: center;"}
+
+GNSS-SDR's _Tracking_ implementations make heavy use of [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"}, an extension module of the original [VOLK](http://libvolk.org/){:target="_blank"} library which contains some functions that are specially useful in the context of a GNSS receiver (some examples in the figure above). 
 
 The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library addresses [**Efficiency**]({{ site.url }}{{ site.baseurl }}/design-forces/efficiency/){:target="_blank"} and [**Portability**]({{ site.url }}{{ site.baseurl }}/design-forces/portability/){:target="_blank"} at the same time, by providing several implementations of the same functions in different SIMD technologies, benchmarking them and selecting the fastest in your machine at runtime.
 {: .notice--success}
