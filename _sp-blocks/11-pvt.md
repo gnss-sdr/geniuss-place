@@ -62,6 +62,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `GPS_L1_CA_PVT` | Mandatory |
 | `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |
 | `averaging_depth` | If `flag_averaging` is set to `true`, size of the buffer performing a moving average. It defaults to 10. | Optional |
 | `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. The minimum is the integration time used in the tracking block. It defaults to 500 ms. | Optional |
@@ -107,6 +108,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Galileo_E1_PVT` | Mandatory |
 | `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |
 | `averaging_depth` | If `flag_averaging` is set to `true`, size of the buffer performing a moving average. It defaults to 10. | Optional |
 | `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. It defaults to 500 ms. | Optional |
@@ -166,6 +168,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Hybrid_PVT` | Mandatory |
 | `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |
 | `averaging_depth` | If `flag_averaging` is set to `true`, size of the buffer performing a moving average. It defaults to 10. | Optional |
 | `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. It defaults to 500 ms. | Optional |

@@ -28,6 +28,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Direct_Resampler` | Mandatory |
 | `sample_freq_in` |  Sample rate at the block input, in samples per second. | Mandatory |
 | `sample_freq_out` |  Sample rate at the block output, in samples per second. | Mandatory |
 | `item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Data type to be resampled. It defaults to `gr_complex`. | Optional |
@@ -64,6 +65,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Pass_Through` | Mandatory |
 | `item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Data type to be copied from the input to the output of this block. It defaults to `gr_complex`. | Optional |
 |----------
 

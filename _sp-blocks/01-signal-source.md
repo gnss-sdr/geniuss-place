@@ -106,6 +106,7 @@ This _Signal Source_ implementation reads raw signal samples stored in a file.
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `File_Signal_Source` | Mandatory |
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
 | `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
@@ -298,6 +299,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `UHD_Signal_Source` | Mandatory |
 | `device_address` |  IP address of the USRP device. When left empty, the device discovery routines will search all the available transports on the system (Ethernet, USB, ...) | Mandatory |
 | `subdevice` | [`A:0`, `B:0`]: UHD subdevice specification.  | Mandatory |
 | `sampling_frequency` |  Sampling frequency, in symbols per second. | Mandatory |

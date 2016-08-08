@@ -43,6 +43,20 @@ This implementation takes samples of type `byte` (8 bits, real samples)
 at its input and writes samples of type `short` (16 bits, real samples)
 at its output.
 
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Byte_To_Short` | Mandatory |
+|-------
+
+  _Signal Conditioner implementation:_ **`Byte_To_Short`**.
+  {: style="text-align: center;"}
+
+Example:
+
 ```ini
 ;######### DATA_TYPE_ADAPTER CONFIG ############
 DataTypeAdapter.implementation=Byte_To_Short
@@ -56,6 +70,20 @@ samples, 8 bits each) at its input and writes samples of type `cbyte`
 (complex samples with real and imaginary components of 8 bits each) at
 its output. This reduces the sample rate by two.
 
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Ibyte_To_Cbyte` | Mandatory |
+|-------
+
+  _Signal Conditioner implementation:_ **`Ibyte_To_Cbyte`**.
+  {: style="text-align: center;"}
+
+Example:
+
 ```ini
 ;######### DATA_TYPE_ADAPTER CONFIG ############
 DataTypeAdapter.implementation=Ibyte_To_Cbyte
@@ -67,6 +95,20 @@ This implementation takes samples of type `ibyte` (interleaved I&Q
 samples, 8 bits each) at its input and writes samples of type
 `gr_complex` (complex samples with real and imaginary components of 32
 bits each) at its output. This reduces the sample rate by two.
+
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Ibyte_To_Complex` | Mandatory |
+|-------
+
+  _Signal Conditioner implementation:_ **`Ibyte_To_Complex`**.
+  {: style="text-align: center;"}
+
+Example:
 
 ```ini
 ;######### DATA_TYPE_ADAPTER CONFIG ############
@@ -80,6 +122,20 @@ samples, 16 bits each) at its input and writes samples of type `cshort`
 (complex samples with real and imaginary components of 16 bits each) at
 its output. This reduces the sample rate by two.
 
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Ishort_To_Cshort` | Mandatory |
+|-------
+
+  _Signal Conditioner implementation:_ **`Ishort_To_Cshort`**.
+  {: style="text-align: center;"}
+
+Example:
+
 ```ini
 ;######### DATA_TYPE_ADAPTER CONFIG ############
 DataTypeAdapter.implementation=Ishort_To_Cshort
@@ -92,6 +148,20 @@ samples, 16 bits each) at its input and writes samples of type
 `gr_complex` (complex samples with real and imaginary components of 32
 bits each) at its output. This reduces the sample rate by two.
 
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Ishort_To_Complex` | Mandatory |
+|-------
+
+  _Signal Conditioner implementation:_ **`Ishort_To_Complex`**.
+  {: style="text-align: center;"}
+
+Example:
+
 ```ini
 ;######### DATA_TYPE_ADAPTER CONFIG ############
 DataTypeAdapter.implementation=Ishort_To_Complex
@@ -101,10 +171,13 @@ DataTypeAdapter.implementation=Ishort_To_Complex
 
 This implementation copies samples from its input to its output.
 
+Parameters:
+
 |----------
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Pass_Through` | Mandatory |
 | `item_size` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |
 |-------
 

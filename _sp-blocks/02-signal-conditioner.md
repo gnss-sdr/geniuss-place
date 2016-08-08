@@ -28,6 +28,18 @@ Check out more details of each of the inner blocks:
 * [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/)
 * [Resampler]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/resampler/)
 
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Signal_Conditioner` | Mandatory |
+|-------
+
+  _Signal Conditioner implementation:_ **`Signal_Conditioner`**.
+  {: style="text-align: center;"}
+
 Example:
 
 ```ini
@@ -62,6 +74,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Pass_Through` | Mandatory |
 | `item_size` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |
 |-------
 

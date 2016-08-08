@@ -51,6 +51,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `GPS_L1_CA_Telemetry_Decoder` | Mandatory |
 | `decimation_factor` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
@@ -116,6 +117,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Galileo_E1B_Telemetry_Decoder` | Mandatory |
 | `decimation_factor` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
@@ -143,6 +145,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Galileo_E5a_Telemetry_Decoder` | Mandatory |
 | `decimation_factor` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: if set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |

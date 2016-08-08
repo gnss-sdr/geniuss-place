@@ -31,11 +31,10 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `dump` |  [`false`, `true`]: Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
-| `dump_filename` | If `dump` is set to `true`, path to the file where data will be stored. | Optional |
+| `implementation` | `Fir_Filter` | Mandatory |
 | `input_item_type` | [`cbyte`, `cshort`, `gr_complex`]: Input data type. This implementation only accepts streams of complex data types. | Mandatory |
 | `output_item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Output data type. You can use this implementation to upcast the data type (i.e., from `cbyte` to `gr_complex` and from `cshort` to `gr_complex`). | Mandatory |
-| `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Optional |
+| `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. | Mandatory |
 | `number_of_bands` |  Number of frequency bands in the filter. | Mandatory |
 | `band1_begin` |  Frequency at the band edges [ **b1** e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. | Mandatory |
@@ -50,6 +49,8 @@ Parameters:
 | `band2_error` |  Weighting applied to band 2 (usually 1). | Mandatory |
 | `filter_type` |  [`bandpass`, `hilbert`, `differentiator`]: type of filter to be used.  | Mandatory |
 | `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values makes the filter slower to compute, but often results in filters that more exactly match an equiripple filter. | Mandatory |
+| `dump` |  [`false`, `true`]: Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
+| `dump_filename` | If `dump` is set to `true`, path to the file where data will be stored. | Optional |
 |-------
 
   _Input Filter implementation:_ **`Fir_Filter`**.
@@ -152,6 +153,7 @@ the following differences:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Freq_Xlating_Fir_Filter` | Mandatory |
 | `input_item_type` |  [`byte`, `short`, `float`, `gr_complex`]: This implementation accepts as input data type real samples. It also accepts complex samples of the type `gr_complex`, assuming the presence of an intermediate frequency. The filter also works with `IF=0`. | Optional |
 | `IF` |  Specifies the intermediate frequency $$ f_{IF} $$, in Hz. | Optional |
 | `sampling_frequency` |  Specifies the sample rate $$ f_s $$, in samples per second. | Optional |

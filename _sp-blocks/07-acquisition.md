@@ -135,6 +135,7 @@ code.
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `GPS_L1_CA_PCPS_Acquisition` | Mandatory |
 | `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `doppler_max` |  . It defaults to 5000 Hz. | Optional |
 | `doppler_step` |  . It defaults to 500 Hz. | Optional |
@@ -181,6 +182,7 @@ Acquisition_1C.doppler_step=500
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `GPS_L1_CA_PCPS_Fine_Doppler_Acquisition` | Mandatory |
 | `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `doppler_max` |  . It defaults to 5000 Hz. | Optional |
 | `doppler_step` |  . It defaults to 500 Hz. | Optional |
@@ -224,6 +226,7 @@ within a given time-out interval.
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `GPS_L2_M_PCPS_Acquisition` | Mandatory |
 | `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `doppler_max` |  . It defaults to 5000 Hz. | Optional |
 | `doppler_step` |  . It defaults to 500 Hz. | Optional |
@@ -284,6 +287,7 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Galileo_E1_PCPS_Ambiguous_Acquisition` | Mandatory |
 | `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `doppler_max` |  . It defaults to 5000 Hz. | Optional |
 | `doppler_step` |  . It defaults to 500 Hz. | Optional |
@@ -322,6 +326,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF` | Mandatory |
 | `item_type` | [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `doppler_max` |  . It defaults to 5000 Hz. | Optional |
 | `CAF_window_hz` |  . It defaults to 0 Hz. | Optional |

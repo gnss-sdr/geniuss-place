@@ -60,6 +60,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `GPS_L1_CA_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
@@ -100,6 +101,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `GPS_L1_CA_DLL_PLL_C_Aid_Tracking` | Mandatory |
 | `item_type` |  [`gr_complex`, `cshort`]. Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter before bit synchronization, in Hz. It defaults to 50 Hz. | Optional |
@@ -131,6 +133,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `GPS_L1_CA_DLL_PLL_Tracking_GPU` | Mandatory |
 | `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
@@ -162,6 +165,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `GPS_L2_M_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
@@ -359,6 +363,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Galileo_E1_DLL_PLL_VEML_Tracking` | Mandatory |
 | `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
@@ -404,6 +409,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Galileo_E5a_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `pll_bw_init_hz` |  Bandwidth of the PLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
