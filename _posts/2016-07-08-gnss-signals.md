@@ -149,7 +149,7 @@ resulting in $$ 50 $$ sps.
 _GPS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan){:target="_blank"}_.
 {: style="text-align: center;"}
 
-This signal is only available on Block IIR–M and subsequent satellite blocks.
+GPS L2C is only available on Block IIR–M and subsequent satellite blocks.
 
 ### GPS L5
 
