@@ -94,14 +94,6 @@ the Signal Conditioner block (see Section
 
 This _Signal Source_ implementation reads raw signal samples stored in a file.
 
-
--   `dump` [`true`, `false`]:
-
--   `dump_filename`: If `dump` is set to `true`....
-
--   `enable_throttle_control` [`true`, `false`]: Defaults to `false`
-
-
 |----------
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
@@ -112,6 +104,7 @@ This _Signal Source_ implementation reads raw signal samples stored in a file.
 | `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 | `item_type` | [`byte`, `ibyte`, `short`, `ishort`, `float`, `gr_complex`]: Sample data type. It defaults to `gr_complex`. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
+| `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
 |-------
 
   _Signal Source implementation:_ **`File_Signal_Source`**
@@ -197,7 +190,33 @@ be stored in either big endian `big_endian_items=true` or little endian
 byte in each short is output first.
 
 The output data type is either `float` or `gr_complex` depending on
-whether or not `sample_type` is real. Example:
+whether or not `sample_type` is real.
+
+Parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Two_Bit_Packed_File_Signal_Source` | Mandatory |
+| `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
+| `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
+| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `item_type` | [`byte`, `short`]: Sample data type. It defaults to `byte`. | Optional |
+| `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
+| `sample_type` | [`real`, `qi`, `iq`]: Set real or complex sample types (see above). It defaults to `real`. | Optional |
+| `big_endian_bytes` |  [`true`, `false`]: If set to `true`, the most significant byte value is expected to be stored at the memory location with the lowest address. If set to `false`, the least significant byte value is expected at the lowest address. It defaults to `false`. | Optional |
+| `seconds_to_skip` | Seconds to skip in the file header. It defaults to $$ 0 $$ s. | Optional |
+| `big_endian_items` |  [`true`, `false`]: If set to `true`, and the data is stored as shorts, it is interpreted as big endian. If set to `false`, data is interpreted to be stored in little endian. It defaults to `true`. | Optional |
+| `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
+|-------
+
+  _Signal Source implementation:_ **`Two_Bit_Packed_File_Signal_Source`**
+  {: style="text-align: center;"}
+
+
+
+Example:
 
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
@@ -205,8 +224,7 @@ SignalSource.implementation=Two_Bit_Packed_File_Signal_Source
 SignalSource.filename=/data/my_capture.datz
 SignalSource.item_type=short
 SignalSource.sampling_frequency=60000000
-SignalSource.freq=1575468750
-SignalSource.samples=6000000000  ;Notice that 0 indicates the entire file.
+SignalSource.samples=6000000000  ; Notice that 0 indicates the entire file.
 SignalSource.repeat=false
 SignalSource.dump=false
 SignalSource.dump_filename=./signal_source.dat
@@ -234,22 +252,22 @@ of type `gr_complex`.
 
 Parameters:
 
--   `filename`:
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Nsr_Signal_Source` | Mandatory |
+| `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
+| `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
+| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `item_type` | [`byte`]: Sample data type. Only `byte` is allowed in this implementation. | Optional |
+| `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
+| `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
+|-------
 
--   `samples`:
+  _Signal Source implementation:_ **`Nsr_Signal_Source`**
+  {: style="text-align: center;"}
 
--   `sampling_frequency`:
-
--   `item_type` [`byte`]: Output data type. Only `byte` is allowed in
-    this implementation.
-
--   `repeat` [`true`, `false`]:
-
--   `dump` [`true`, `false`]:
-
--   `dump_filename`:
-
--   `enable_throttle_control` [`true`, `false`]:
 
 It follows an example of a Signal Source block
 configured with the `Nsr_Signal_Source` implementation:
@@ -260,12 +278,7 @@ SignalSource.implementation=Nsr_File_Signal_Source
 SignalSource.filename=/datalogger/signals/ifen/E1L1_FE0_Band0.stream
 SignalSource.item_type=byte
 SignalSource.sampling_frequency=20480000
-SignalSource.freq=1575420000
 SignalSource.samples=0
-SignalSource.repeat=false
-SignalSource.dump=false
-SignalSource.dump_filename=../data/signal_source.dat
-SignalSource.enable_throttle_control=false
 ```
 
 {% capture overide-nsr %}
