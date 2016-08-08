@@ -28,7 +28,7 @@ Check out more details of each of the inner blocks:
 * [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/)
 * [Resampler]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/resampler/)
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -68,7 +68,7 @@ Resampler.implementation=Pass_Through
 
 This implementation copies samples from its input to its output.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |

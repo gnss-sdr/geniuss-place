@@ -43,7 +43,7 @@ This implementation takes samples of type `byte` (8 bits, real samples)
 at its input and writes samples of type `short` (16 bits, real samples)
 at its output.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -70,7 +70,7 @@ samples, 8 bits each) at its input and writes samples of type `cbyte`
 (complex samples with real and imaginary components of 8 bits each) at
 its output. This reduces the sample rate by two.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -96,7 +96,7 @@ samples, 8 bits each) at its input and writes samples of type
 `gr_complex` (complex samples with real and imaginary components of 32
 bits each) at its output. This reduces the sample rate by two.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -122,7 +122,7 @@ samples, 16 bits each) at its input and writes samples of type `cshort`
 (complex samples with real and imaginary components of 16 bits each) at
 its output. This reduces the sample rate by two.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -148,7 +148,7 @@ samples, 16 bits each) at its input and writes samples of type
 `gr_complex` (complex samples with real and imaginary components of 32
 bits each) at its output. This reduces the sample rate by two.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -171,7 +171,7 @@ DataTypeAdapter.implementation=Ishort_To_Complex
 
 This implementation copies samples from its input to its output.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |

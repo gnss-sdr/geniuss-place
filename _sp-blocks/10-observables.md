@@ -93,7 +93,7 @@ In order to generate useable phase measurements, the receiver phase observations
 
 This implementation computes observables by collecting the outputs of channels for GPS L1 C/A signals.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -120,7 +120,7 @@ Example:
 
 This implementation computes observables by collecting the outputs of channels for Galileo E1B signals.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -147,7 +147,7 @@ Example:
 
 This implementation computes observables by collecting the outputs of channels for GPS L1 C/A and Galileo E1B signals.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |

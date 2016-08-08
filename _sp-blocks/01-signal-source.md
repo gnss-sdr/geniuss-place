@@ -29,7 +29,7 @@ sidebar:
   ![GooGle Earth]({{ site.url }}{{ site.baseurl }}/images/RTLSDR-4CH-fs1.2-MSPS-no-LNA.jpg)
 {% endcapture %}
 
-A _Signal Source_ is the block that injects a continuous stream of raw data samples to the processing flow graph.
+A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kind of sources, from samples stored in files (in a variety of formats) to sample flows delivered in real-time by radio frequency front-ends.
 {: .notice--info}
 
 
@@ -72,7 +72,7 @@ compiler select the best library version (implemented using SIMD or any
 other processor-specific technology) of the required routines for a
 given processor.
 
-For more details about sample formats, plese check out our tutorial [Understanding Data Types]({{ site.url }}{{ site.baseurl }}/docs/tutorials/understanding-data-types/){:target="_blank"}.
+For more details about sample formats, please check out our tutorial [Understanding Data Types]({{ site.url }}{{ site.baseurl }}/docs/tutorials/understanding-data-types/){:target="_blank"}.
 
 The more kinds of signal souces GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ site.url }}{{ site.baseurl }}/design-forces/interoperability/#signal-sources){:target="_blank"}.
 {: .notice--success}
@@ -93,6 +93,8 @@ the Signal Conditioner block (see Section
 ### Implementation: `File_Signal_Source`
 
 This _Signal Source_ implementation reads raw signal samples stored in a file.
+
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -192,7 +194,7 @@ byte in each short is output first.
 The output data type is either `float` or `gr_complex` depending on
 whether or not `sample_type` is real.
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -250,7 +252,7 @@ deliver at its output a sample stream composed of samples of type *byte*
 (8-bit signed integer). This implementation delivers a stream of samples
 of type `gr_complex`.
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -306,7 +308,7 @@ specified in `SignalSource.filename`.
 
 [![Ettus Research](http://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com){:target="_blank"} The USRP Hardware Driver ([UHD](http://files.ettus.com/manual/){:target="_blank"}) software API supports application development on all Ettus Research [USRP](https://www.ettus.com/product){:target="_blank"} Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |

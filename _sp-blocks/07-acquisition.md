@@ -123,6 +123,8 @@ Multiple-Data (SIMD) assembly instructions that take advantage of
 parallel computing techniques and allows writing efficient and portable
 code.
 
+This implementation accepts the following parameters:
+
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
@@ -170,6 +172,8 @@ Acquisition_1C.doppler_step=500
 
 ### Implementation: `GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`
 
+This implementation accepts the following parameters:
+
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
@@ -213,6 +217,8 @@ within a given time-out interval.
 ## GPS L2C (M) signal acquisition
 
 ### Implementation: `GPS_L2_M_PCPS_Acquisition`
+
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -273,7 +279,7 @@ $$ sc_A(t)= \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big) $$ and
 $$ sc_B(t)= \text{sign} \Big( \sin( 2 \pi f_{s, E1B}t ) \Big) $$, with
 $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 
-
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -311,7 +317,7 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 
 ### Implementation: `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF`
 
-Parameters:
+This implementation accepts the following parameters:
 
 
 |----------

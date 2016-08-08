@@ -48,7 +48,7 @@ If configured, this block delivers NMEA messages in real-time through a serial p
 
 If configured, this block also generates RTCM messages in real-time, delivered through a TCP server.
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -102,7 +102,7 @@ If configured, this block delivers NMEA messages in real-time through a serial p
 
 If configured, this block also generates RTCM messages in real-time, delivered through a TCP server.
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -155,7 +155,7 @@ If configured, this block delivers NMEA messages in real-time through a serial p
 If configured, this block also generates RTCM messages in real-time, delivered through a TCP server (**still experimental**).
 
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |

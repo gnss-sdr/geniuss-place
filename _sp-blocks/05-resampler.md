@@ -22,7 +22,7 @@ At the _Resampler_’s output, only complex types are allowed: `cbyte`, `cshort`
 This implementation performs a direct resampling of the incoming signal,
 without performing any interpolation.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -59,7 +59,7 @@ Resampler.item_type=cshort
 
 This implementation copies samples from its input to its output.
 
-Parameters:
+It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |

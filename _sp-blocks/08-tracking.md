@@ -46,7 +46,7 @@ The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorith
 
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking`
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -87,7 +87,7 @@ Tracking_1C.early_late_space_chips=0.5
 
 ### Implementation: `GPS_L1_CA_DLL_PLL_C_Aid_Tracking`
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -119,7 +119,7 @@ Parameters:
 
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking_GPU`
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -151,7 +151,7 @@ Parameters:
 
 ### Implementation: `GPS_L2_M_DLL_PLL_Tracking`
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -349,7 +349,7 @@ $$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density
 
 
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -395,7 +395,7 @@ $$ e_{E5aQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \
 
 where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s.
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |

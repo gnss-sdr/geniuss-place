@@ -45,7 +45,7 @@ Sub-frames 1, 2 and 3 are transmitted with each frame (i.e., they are repeated e
 
 The content of sub-frames 4 and 5 is common for all satellites. Thence, the almanac data for all in orbit satellites can be obtained from a single tracked satellite.
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -87,8 +87,7 @@ representation and nominally more accurate data than the NAV data. It is
 transmitted at $$ 25 $$ bps with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ sps.
 
-
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -154,7 +153,7 @@ coding are applied to the Galileo message data stream:
     data is written) and $$ 8 $$ rows (where data is read), providing
     robustness to the FEC decoding algorithm by avoiding error bursts.
 
-Parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -181,7 +180,7 @@ where $$ ssc_s(t) $$ and $$ ssc_p(t) $$ are the single and product side–band s
 $$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]  \color{dark-grey} p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
 
 
-Parameters:
+This implementation accepts the following parameters:
 
 
 |----------
