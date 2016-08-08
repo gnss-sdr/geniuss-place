@@ -211,6 +211,7 @@ Parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
+| `implementation` | `Pass_Through` | Mandatory |
 | `item_size` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |
 |-------
 
