@@ -72,7 +72,7 @@ compiler select the best library version (implemented using SIMD or any
 other processor-specific technology) of the required routines for a
 given processor.
 
-For more details about sample formats, please check out our tutorial [Understanding Data Types]({{ site.url }}{{ site.baseurl }}/docs/tutorials/understanding-data-types/){:target="_blank"}.
+For more details about sample formats, please check out our tutorial on [data types in GNSS-SDR]({{ site.url }}{{ site.baseurl }}/docs/tutorials/understanding-data-types/){:target="_blank"}.
 
 The more kinds of signal souces GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ site.url }}{{ site.baseurl }}/design-forces/interoperability/#signal-sources){:target="_blank"}.
 {: .notice--success}
@@ -86,13 +86,26 @@ captured.
 
 Real signals sampled at an intermediate frequency can be downshifted to
 baseband (and thus expressed as complex samples) by the
-`Freq_Xlating_Fir_Filter` implementation of the Input Filter present at
-the Signal Conditioner block (see Section
-[Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/) for further details).
+`Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/){:target="_blank"} present at
+the Signal Conditioner block with its `IF` parameter.
 
 ### Implementation: `File_Signal_Source`
 
-This _Signal Source_ implementation reads raw signal samples stored in a file.
+This _Signal Source_ implementation reads raw signal samples stored in a file, as long as they are atored in one of the following formats: `byte`, `ibyte`, `short`, `ishort`, `float` or `gr_complex`. Their definition is as follows:
+
+|----------
+| **Type name in GNSS-SDR conf files** | **Definition** | **Sample stream**
+|:-:|:-|:-|
+|----------
+| `byte` | Signed integer, 8-bit two’s complement number ranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
+| `short` |  Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
+| `float` |  Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
+| `ibyte` |   Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
+| `ishort` |  Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
+| `cbyte` |  Complex samples, with real and imaginary parts of type `byte`. C++ type name: `lv_8sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+| `cshort` | Complex samples, with real and imaginary parts of type `short`. C++ type name: `lv_16sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+| `gr_complex` | Complex samples, with real and imaginary parts of type `float`.  C++ type name: `std::complex<float>` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+|----------
 
 This implementation accepts the following parameters:
 
@@ -113,13 +126,12 @@ This implementation accepts the following parameters:
   {: style="text-align: center;"}
 
 This implementation assumes that the center frequency is the nominal
-corresponding to the frequency band defined in ... (see ...). Any known
+corresponding to the GNSS frequency band. Any known
 deviation from that value can be compensated by using the `IF` parameter
-of the `Freq_Xlating_Fir_Filter` implementation of the Input Filter
-present at the Signal Conditioner block (see Section
-[Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/){:target="_blank"} for further details).
+of the `Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/){:target="_blank"}
+present at the Signal Conditioner block, or later on in the flow graph at the [Acquisition]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/acquisition/){:target="_blank"} and [Tracking]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/tracking/){:target="_blank"} blocks with their `if` parameter.
 
-It follows  an example of a Signal Source block
+It follows an example of a Signal Source block
 configured with the `File_Signal_Source` implementation:
 
 ```ini
@@ -131,7 +143,7 @@ SignalSource.sampling_frequency=4000000
 
 {% capture overide-file %}
 **Tip:** The name of the file to be read (that is, `SignalSource.filename`) that
-appears on the configuration file can be overriden at the command line
+appears on the configuration file can be overridden at the command line
 when invoking `gnss-sdr` with the flag `--signal_source`. Example:
 
 ```bash
@@ -285,7 +297,7 @@ SignalSource.samples=0
 
 {% capture overide-nsr %}
 **Tip:** The name of the file to be read (that is, `SignalSource.filename`) that
-appears on the configuration file can be overriden at the command line
+appears on the configuration file can be overridden at the command line
 when invoking `gnss-sdr` with the flag `–nsr_signal_source`. Example:
 
 ```bash
