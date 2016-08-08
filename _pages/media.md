@@ -31,6 +31,14 @@ On December 6, 2013, GNSS-SDR appeared at _GPS World_, an essential reference fo
 
 ----
 
+## European Space Agency
+
+The [European Space Agency](http://www.esa.int/){:target="_blank"} acknowledged CTTC as one of the first 50 users of the Galileo system:
+
+![ESA Certificate]({{ site.url }}{{ site.baseurl }}/images/ESA-ack.jpg){: width="500px"}
+{: style="text-align: center;"}
+
+----
 
 ## European Commission News
 
@@ -43,6 +51,7 @@ On July 17, 2013 and on February 12, 2014 (and later updated on June 24, 2015), 
 [![EC news screenshot 2]({{ site.url }}{{ site.baseurl }}/images/ec-growth-gsoc.png)](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemdetail.cfm?item_type=251&lang=en&item_id=6833){:target="_blank"}
 {: style="text-align: center;"}
 
+----
 
 ## Hackaday
 
