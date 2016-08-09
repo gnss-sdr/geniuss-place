@@ -36,14 +36,14 @@ This implementation accepts the following parameters:
 | `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. | Mandatory |
 | `number_of_bands` |  Number of frequency bands in the filter. | Mandatory |
-| `band1_begin` |  Frequency at the band edges [ **b1** e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. | Mandatory |
-| `band1_end` |  Frequency at the band edges [ b1 **e1** b2 e2 b3 e3 ...] | Mandatory |
-| `band2_begin` |  Frequency at the band edges [ b1 e1 **b2** e2 b3 e3 ...] | Mandatory |
-| `band2_end` |  Frequency at the band edges [ b1 e1 b2 **e2** b3 e3 ...] | Mandatory |
-| `ampl1_begin` |  Desired amplitude at the band edges [ **a(b1)** a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands. | Mandatory |
-| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) **a(e1)** a(b2) a(e2) ...]. | Mandatory |
-| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) **a(b2)** a(e2) ...]. | Mandatory |
-| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) **a(e2)** ...]. | Mandatory |
+| `band1_begin` |  Frequency at the band edges [ <span style="color: blue">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. | Mandatory |
+| `band1_end` |  Frequency at the band edges [ b1 <span style="color: blue">**e1**</span> b2 e2 b3 e3 ...] | Mandatory |
+| `band2_begin` |  Frequency at the band edges [ b1 e1 <span style="color: blue">**b2**</span> e2 b3 e3 ...] | Mandatory |
+| `band2_end` |  Frequency at the band edges [ b1 e1 b2 <span style="color: blue">**e2**</span> b3 e3 ...] | Mandatory |
+| `ampl1_begin` |  Desired amplitude at the band edges [ <span style="color: blue">**a(b1)**</span> a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands. | Mandatory |
+| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) <span style="color: blue">**a(e1)**</span> a(b2) a(e2) ...]. | Mandatory |
+| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) <span style="color: blue">**a(b2)**</span> a(e2) ...]. | Mandatory |
+| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) <span style="color: blue">**a(e2)**</span> ...]. | Mandatory |
 | `band1_error` |  Weighting applied to band 1 (usually 1). | Mandatory |
 | `band2_error` |  Weighting applied to band 2 (usually 1). | Mandatory |
 | `filter_type` |  [`bandpass`, `hilbert`, `differentiator`]: type of filter to be used.  | Mandatory |
@@ -160,14 +160,14 @@ This implementation accepts the following parameters:
 | `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. | Mandatory |
 | `number_of_bands` |  Number of frequency bands in the filter. | Mandatory |
-| `band1_begin` |  Frequency at the band edges [ **b1** e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. | Mandatory |
-| `band1_end` |  Frequency at the band edges [ b1 **e1** b2 e2 b3 e3 ...] | Mandatory |
-| `band2_begin` |  Frequency at the band edges [ b1 e1 **b2** e2 b3 e3 ...] | Mandatory |
-| `band2_end` |  Frequency at the band edges [ b1 e1 b2 **e2** b3 e3 ...] | Mandatory |
-| `ampl1_begin` |  Desired amplitude at the band edges [ **a(b1)** a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands. | Mandatory |
-| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) **a(e1)** a(b2) a(e2) ...]. | Mandatory |
-| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) **a(b2)** a(e2) ...]. | Mandatory |
-| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) **a(e2)** ...]. | Mandatory |
+| `band1_begin` |  Frequency at the band edges [ <span style="color: blue">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. | Mandatory |
+| `band1_end` |  Frequency at the band edges [ b1 <span style="color: blue">**e1**</span> b2 e2 b3 e3 ...] | Mandatory |
+| `band2_begin` |  Frequency at the band edges [ b1 e1 <span style="color: blue">**b2**</span> e2 b3 e3 ...] | Mandatory |
+| `band2_end` |  Frequency at the band edges [ b1 e1 b2 <span style="color: blue">**e2**</span> b3 e3 ...] | Mandatory |
+| `ampl1_begin` |  Desired amplitude at the band edges [ <span style="color: blue">**a(b1)**</span> a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands. | Mandatory |
+| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) <span style="color: blue">**a(e1)**</span> a(b2) a(e2) ...]. | Mandatory |
+| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) <span style="color: blue">**a(b2)**</span> a(e2) ...]. | Mandatory |
+| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) <span style="color: blue">**a(e2)**</span> ...]. | Mandatory |
 | `band1_error` |  Weighting applied to band 1 (usually 1). | Mandatory |
 | `band2_error` |  Weighting applied to band 2 (usually 1). | Mandatory |
 | `filter_type` |  [`bandpass`, `hilbert`, `differentiator`]: type of filter to be used.  | Mandatory |
