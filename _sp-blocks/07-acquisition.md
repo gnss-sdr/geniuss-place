@@ -342,7 +342,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a 3 ms or less. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
-| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------

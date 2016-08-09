@@ -219,7 +219,7 @@ InputFilter.sampling_frequency=8000000
 ### Implementation: `Pass_Through`
 
 This implementation copies samples from its input to its output, without
-performing any filtering.
+performing any filtering or data type conversion.
 
 It accepts the following parameters:
 

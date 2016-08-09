@@ -13,22 +13,26 @@ modified: 2016-04-13T15:54:02-04:00
 A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering.
 {: .notice--info}
 
-Regardless the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate $$ f_{IN} $$. We denote the complex samples at the Signal Conditioner output as $$ x_{\text{IN}}[n] $$. This signal stream feeds a set of parallel _Channels_.
+Regardless the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate $$ f_{IN} $$. We denote the complex samples at the Signal Conditioner output as $$ x_{\text{IN}}[n] $$. This signal stream feeds a set of parallel [_Channels_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/channels/).
 
 
 ### Implementation: `Signal_Conditioner`
+
+This implementation is in fact a wrapper for other three processing blocks.
 
 <a name="signal-conditioner"></a>
 
 ![Signal Conditioner]( {{ base_path }}/images/SignalConditioner2.png)
 
-Check out more details of each of the inner blocks:
+Those inner blocks are in charge of:
 
-* [Data Type Adapter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/data-type-adapter/)
-* [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/)
-* [Resampler]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/resampler/)
+* The role of the [Data Type Adapter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/data-type-adapter/) block is to perform a conversion of the data type in the incoming sample stream.
+* The role on the [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/) block is to filter the incoming signal.
+* The role on the [Resampler]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/resampler/) block is to resample the signal and to deliver it to the $$ N $$ parallel processing channels.
 
-This implementation accepts the following parameters:
+Any of them can be by-passed by using a `Pass_Through` implementation.
+
+The `Signal_Conditioner` implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |

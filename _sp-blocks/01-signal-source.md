@@ -418,11 +418,13 @@ OsmoSDR is a 100 % Free Software based small form-factor inexpensive SDR (Softwa
 project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. It provides a driver for several front-ends, such as RTL-based
 dongles, HackRF, bladeRF, etc.
 
+If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the built with the following flag:
 
 ```bash
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
