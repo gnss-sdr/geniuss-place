@@ -138,17 +138,17 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L1_CA_PCPS_Acquisition` | Mandatory |
-| `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
-| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
-| `doppler_step` |  . It defaults to 500 Hz. | Optional |
-| `threshold` |  . It defaults to 500 Hz. | Optional |
-| `pfa` |  If defined, ... | Optional |
-| `use_CFAR_algorithm` |  . It defaults to `true`. | Optional |
-| `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
-| `bit_transition_flag` |  . It defaults to `false`. | Optional |
-| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `item_type` | [`gr_complex`, `cshort`, `cbyte`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
-| `max_dwells` |  . It defaults to 1. | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
+| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
+| `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
+| `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -187,17 +187,15 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L1_CA_PCPS_Fine_Doppler_Acquisition` | Mandatory |
-| `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
-| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
-| `doppler_step` |  . It defaults to 500 Hz. | Optional |
-| `threshold` |  . It defaults to 500 Hz. | Optional |
-| `pfa` |  If defined, ... | Optional |
-| `use_CFAR_algorithm` |  . It defaults to `true`. | Optional |
-| `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
-| `bit_transition_flag` |  . It defaults to `false`. | Optional |
-| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `item_type` | [`gr_complex`]: Set the sample data type expected at the block input. Only `gr_complex` is defined in this version. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
-| `max_dwells` |  . It defaults to 1. | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to $$ 5000 $$ Hz. | Optional |
+| `doppler_min`  | Minimum Doppler value in the search grid, in Hz. It defaults to $$ -5000 $$ Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
+| `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -233,17 +231,17 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L2_M_PCPS_Acquisition` | Mandatory |
-| `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
-| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
-| `doppler_step` |  . It defaults to 500 Hz. | Optional |
-| `threshold` |  . It defaults to 500 Hz. | Optional |
-| `pfa` |  If defined, ... | Optional |
-| `use_CFAR_algorithm` |  . It defaults to `true`. | Optional |
-| `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
-| `bit_transition_flag` |  . It defaults to `false`. | Optional |
-| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `item_type` | [`gr_complex`, `cshort`, `cbyte`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
-| `max_dwells` |  . It defaults to 1. | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
+| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
+| `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
+| `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -294,17 +292,17 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E1_PCPS_Ambiguous_Acquisition` | Mandatory |
-| `item_type` | [`gr_complex`, `cshort`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
-| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
-| `doppler_step` |  . It defaults to 500 Hz. | Optional |
-| `cboc` |  . It defaults to `false`. | Optional |
-| `threshold` |  . It defaults to 500 Hz. | Optional |
-| `pfa` |  If defined, ... | Optional |
-| `coherent_integration_time_ms` |  . It defaults to 4 ms. | Optional |
-| `bit_transition_flag` |  . It defaults to `false`. | Optional |
-| `repeat_satellite` |  . It defaults to `false`. | Optional |
+| `item_type` | [`gr_complex`, `cshort`, `cbyte`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
-| `max_dwells` |  . It defaults to 1. | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
+| `cboc` | [`true`, `false`]: If set to `true` the algorithm uses the CBOC waveform , if set to `false` a simpler sinBOC waveform is used. It defaults to `false`. | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a multiple of 4 ms. It defaults to 4 ms. | Optional |
+| `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
+| `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -334,16 +332,17 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF` | Mandatory |
 | `item_type` | [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
-| `doppler_max` |  . It defaults to 5000 Hz. | Optional |
-| `CAF_window_hz` |  . It defaults to 0 Hz. | Optional |
-| `.Zero_padding` |  . It defaults to $$ 0 $$. | Optional |
-| `threshold` |  . It defaults to $$ 0 $$. | Optional |
-| `pfa` |  If defined, ... | Optional |
-| `coherent_integration_time_ms` |  . It defaults to 1 ms. | Optional |
-| `bit_transition_flag` |  . It defaults to `false`. | Optional |
-| `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
-| `max_dwells` |  . It defaults to 1. | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `CAF_window_hz` | ? . It defaults to 0 Hz. | Optional |
+| `Zero_padding` |  If set to a value greater that $$ 0 $$, it takes 1 ms of code plus 1 ms of zero padding. It defaults to $$ 0 $$. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a 3 ms or less. It defaults to 1 ms. | Optional |
+| `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
+| `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
+| `repeat_satellite` |  . It defaults to `false`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
