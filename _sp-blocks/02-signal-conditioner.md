@@ -35,6 +35,9 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Signal_Conditioner` | Mandatory |
+| _DataTypeAdapter_ | This implementation requires the configuration of a [Data Type Adapter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/data-type-adapter/) block. | Mandatory |
+| _InputFilter_ | This implementation requires the configuration of an [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/) block. | Mandatory |
+| _Resampler_ | This implementation requires the configuration of a [Resampler]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/resampler/) block. | Mandatory |
 |-------
 
   _Signal Conditioner implementation:_ **`Signal_Conditioner`**.
