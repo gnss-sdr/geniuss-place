@@ -17,7 +17,7 @@ Each _Channel_ encapsulates blocks for signal acquisition, tracking and demodula
 |--------------
 |  ```1C```      | GPS L1 C/A | $$ 1575.42 $$ MHz |
 |  ```1B```      | Galileo E1 B | $$ 1575.42 $$ MHz |
-|  ```2S```      | GPS L2 L2C (M) | $$ 1227.60 $$ MHz |
+|  ```2S```      | GPS L2 L2CM | $$ 1227.60 $$ MHz |
 |  ```5X```      | Galileo E5a (I+Q) | $$ 1207.14 $$ MHz |
 |-----
 
@@ -33,7 +33,7 @@ Parameters:
 |:-:|:--|:-:|    
 |--------------
 | `Channels_1C.count` |  Number of channels targeting GPS L1 C/A signals. It defaults to $$ 0 $$.| Optional |
-| `Channels_2S.count` |  Number of channels targeting GPS L2 L2C (M) signals. It defaults to $$ 0 $$.| Optional |
+| `Channels_2S.count` |  Number of channels targeting GPS L2 L2CM signals. It defaults to $$ 0 $$.| Optional |
 | `Channels_1B.count` |  Number of channels targeting Galileo E1 B  signals. It defaults to $$ 0 $$.| Optional |
 | `Channels_5X.count` |  Number of channels targeting Galileo E5a (I+Q) signals. It defaults to $$ 0 $$. | Optional |
 | `ChannelN.signal` |  (where `N` is the channel number, starting from $$ 0 $$). Assign each channel to a specific signal [`1C`, `1B`, `2S`, `5X`]. Not required in single-system receivers. | Optional |
@@ -42,6 +42,12 @@ Parameters:
 | `Channels.in_acquisition` | Maximum number of channels performing signal acquisition at the same time. It defaults to the total number of channels. | Optional |
 |----------
 
+Then, each type of defined channel requires the configuration of:
+
+* [_Acquisition_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/acquisition/) blocks targeting the desired signal type, in charge of the detection of signals coming from a given GNSS satellite and, in the case of a positive
+detection, to provide coarse estimations of the code phase $$ \hat{\tau} $$ and the Doppler shift $$ \hat{f}_d $$,
+* [_Tracking_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/tracking/) blocks targeting the desired signal type, in charge of following the evolution of the signal synchronization parameters: code phase $$ \tau(t) $$, Doppler shift $$ f_d(t) $$ and carrier phase $$ \phi(t) $$, and
+* [_Telemetry Decoder_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/telemetry-decoder/) blocks targeting the desired signal type, in charge of demodulating and decoding the GNSS navigation message carried by that particular signal.
 
 Examples for different receiver architectures are provided below.
 
@@ -55,6 +61,15 @@ Setting a single-band receiver with twelve channels devoted to GPS L1 C/A signal
 ;######### CHANNELS GLOBAL CONFIG ############
 Channels_1C.count=12
 Channels.in_acquisition=1
+
+Acquisition_1C.implementation=...
+; or Acquisition_1C0, ..., Acquisition_1C11, and parameters.
+
+Tracking_1C.implementation=...
+; or Tracking_1C0, ..., Tracking_1C11, and parameters.
+
+TelemetryDecoder_1C.implementation=...
+; or TelemetryDecoder_1C0, ..., TelemetryDecoder_1C11, and parameters.
 ```
 
 
@@ -75,6 +90,21 @@ Channel4.signal=1B
 Channel5.signal=1B
 Channel6.signal=1B
 Channel7.signal=1B
+
+Acquisition_1C.implementation=...
+; or Acquisition_1C0, ..., Acquisition_1C3, and parameters.
+Acquisition_1B.implementation=...
+; or Acquisition_1B4, ..., Acquisition_1B7, and parameters.
+
+Tracking_1C.implementation=...
+; or Tracking_1C0, ..., Tracking_1C3
+Tracking_1B.implementation=...
+; or Tracking_1B4, ..., Tracking_1B7
+
+TelemetryDecoder_1C.implementation=...
+; or TelemetryDecoder_1C0, ..., TelemetryDecoder_1C3, and parameters.
+TelemetryDecoder_1B.implementation=...
+; or TelemetryDecoder_1B4, ..., TelemetryDecoder_1B7, and parameters.
 ```
 
 
@@ -88,7 +118,7 @@ Channel0.RF_channel_ID=0
 Channel1.RF_channel_ID=1
 ```
 
-Thus, a dual-band GPS receiver, connecting eight GPS L1 C/A channels to the radio frequency chain $$ 0 $$ and eight GPS L2C (M) channels to the radio frequency chain $$ 1 $$ would be configured as:
+Thus, a dual-band GPS receiver, connecting eight GPS L1 C/A channels to the radio frequency chain $$ 0 $$ and eight GPS L2CM channels to the radio frequency chain $$ 1 $$ would be configured as:
 
 
 ```ini
@@ -128,6 +158,21 @@ Channel12.RF_channel_ID=1
 Channel13.RF_channel_ID=1
 Channel14.RF_channel_ID=1
 Channel15.RF_channel_ID=1
+
+Acquisition_1C.implementation=...
+; or Acquisition_1C0, ..., Acquisition_1C7
+Acquisition_2S.implementation=...
+; or Acquisition_2S8, ..., Acquisition_2S15
+
+Tracking_1C.implementation=...
+; or Tracking_1C0, ..., Tracking_1C7
+Tracking_2S.implementation=...
+; or Tracking_2S8, ..., Tracking_2S15
+
+TelemetryDecoder_1C.implementation=...
+; or TelemetryDecoder_1C0, ..., TelemetryDecoder_1C7
+TelemetryDecoder_2S.implementation=...
+; or TelemetryDecoder_2S8, ..., TelemetryDecoder_2S15
 ```
 
 

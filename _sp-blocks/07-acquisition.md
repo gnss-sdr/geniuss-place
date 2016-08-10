@@ -156,6 +156,7 @@ This implementation accepts the following parameters:
   _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Acquisition`**.
   {: style="text-align: center;"}
 
+Example:
 
 ```ini
 ;######### ACQUISITION GLOBAL CONFIG ############
@@ -203,6 +204,17 @@ This implementation accepts the following parameters:
   _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`**.
   {: style="text-align: center;"}
 
+Example:
+
+```ini
+Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition_Fine_Doppler
+Acquisition_1C.threshold=0.007
+Acquisition_1C.doppler_max=10000
+Acquisition_1C.doppler_min=-10000
+Acquisition_1C.doppler_step=500
+Acquisition_1C.max_dwells=10
+```
+
 ### Implementation: `GPS_L1_CA_PCPS_Tong_Acquisition`
 
 On top of the PCPS Algorithm (or any other providing the same
@@ -212,7 +224,7 @@ the minimum signal power at which a receiver can correctly identify the
 presence of a particular satellite signal in the incoming RF signal
 within a given time-out interval.
 
-## GPS L2C (M) signal acquisition
+## GPS L2CM signal acquisition
 
 ### Implementation: `GPS_L2_M_PCPS_Acquisition`
 
@@ -235,7 +247,7 @@ This implementation accepts the following parameters:
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
-| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `threshold`    | Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
@@ -249,6 +261,16 @@ This implementation accepts the following parameters:
   _Acquisition implementation:_ **`GPS_L2_M_PCPS_Acquisition`**.
   {: style="text-align: center;"}
 
+Example:
+
+```ini
+Acquisition_2S.implementation=GPS_L2_M_PCPS_Acquisition
+Acquisition_2S.item_type=cshort
+Acquisition_2S.threshold=0.0015
+Acquisition_2S.doppler_max=6000
+Acquisition_2S.doppler_step=60
+Acquisition_2S.max_dwells=2
+```
 
 ## Galileo E1B signal acquisition
 
@@ -310,6 +332,16 @@ This implementation accepts the following parameters:
   _Acquisition implementation:_ **`Galileo_E1_PCPS_Ambiguous_Acquisition`**.
   {: style="text-align: center;"}
 
+Example:
+
+```ini
+;######### ACQUISITION GLOBAL CONFIG ############
+Acquisition_1B.implementation=Galileo_E1_PCPS_Ambiguous_Acquisition
+Acquisition_1B.pfa=0.000008
+Acquisition_1B.doppler_max=6000
+Acquisition_1B.doppler_step=250
+```
+
 
 ## Galileo E5a signal acquisition
 
@@ -335,8 +367,8 @@ This implementation accepts the following parameters:
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
-| `CAF_window_hz` | ? . It defaults to 0 Hz. | Optional |
-| `Zero_padding` |  If set to a value greater that $$ 0 $$, it takes 1 ms of code plus 1 ms of zero padding. It defaults to $$ 0 $$. | Optional |
+| `CAF_window_hz` | Resolves Doppler ambiguity by veraging the specified bandwidth (in Hz) in the winner code delay. If set to $$ 0 $$, the CAF filter is deactivated. Recommended value: $$ 3000 $$ Hz. It defaults to 0 Hz. | Optional |
+| `Zero_padding` |  If set to a $$ 1 $$, it avoids power loss and doppler ambiguity in bit transitions by correlating one code with twice the input data length, ensuring that at least one full code is present without transitions. It defaults to $$ 0 $$ (_i.e._, deactivated). | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a 3 ms or less. It defaults to 1 ms. | Optional |
@@ -349,6 +381,17 @@ This implementation accepts the following parameters:
 
   _Acquisition implementation:_ **`Galileo_E5a_Noncoherent_IQ_Acquisition_CAF`**.
   {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### ACQUISITION GLOBAL CONFIG ############
+Acquisition_5X.implementation=Galileo_E5a_Noncoherent_IQ_Acquisition_CAF
+Acquisition_5X.threshold=0.002
+Acquisition_5X.doppler_max=10000
+Acquisition_5X.doppler_step=250
+```
+
 
 ## Assisted acquisition
 
