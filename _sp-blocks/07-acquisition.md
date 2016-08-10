@@ -15,8 +15,7 @@ $$ \hat{\tau} $$ and the Doppler shift $$ \hat{f}_d $$, yet accurate enough to
 initialize the delay and phase tracking loops.
 {: .notice--info}
 
-By exploiting the
-concepts and the methodology of the estimation theory, it is possible to
+By exploiting the concepts and methodology of estimation theory, it is possible to
 show that the maximum likelihood (ML) estimates of $$ f_d $$ and $$ \tau $$ can
 be obtained by maximizing the function
 
@@ -279,7 +278,7 @@ Acquisition_2S.max_dwells=2
 The user can also configure the shape of $$ d[n] $$, allowing
 simplifications that reduce the computational load. As shown in Figure
 [fig:Rxd], in narrowband receivers the CBOC waveform can be substituted
-by a sinBOC modulation with very small performance penalty @Lohan11. For
+by a sinBOC modulation with very small performance penalty[^Lohan11]. For
 the E1B signal component, the reference signals available in our
 implementation are:
 
@@ -298,6 +297,12 @@ where the subcarriers are defined as
 $$ sc_A(t)= \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big) $$ and
 $$ sc_B(t)= \text{sign} \Big( \sin( 2 \pi f_{s, E1B}t ) \Big) $$, with
 $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
+
+
+![Rxd]({{ site.url }}{{ site.baseurl }}/images/rxd.png){:width="600x"}
+{: style="text-align: center;"}
+_Normalized $$ \left|R_{xd}\left(\check{f}_d=f_d, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
+{: style="text-align: center;"}
 
 This implementation accepts the following parameters:
 
@@ -404,3 +409,5 @@ Acquisition_5X.doppler_step=250
 [^Borre06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkhäuser, November 2006.
 
 [^Fernandez12]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
+
+[^Lohan11]: Zhang J, Lohan E.S., _Galileo E1 and E5a Link-Level Performances in Single and Multipath Channels_. In Giambene G, Sacchi C, editors, Personal Satellite Services, Third International ICST Conference PSATS 2011, Malaga, Spain, February 2011.

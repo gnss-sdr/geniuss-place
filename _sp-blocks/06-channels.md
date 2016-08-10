@@ -26,7 +26,7 @@ Then, four parameters can be set: ```Channels_1C.count```, ```Channels_2S.count`
 
 In addition, the GNSS-SDR flow graph allows to set the number of channels that will be executing signal acquisition (which is known to require a high computational load) concurrently. This is controlled by the parameter `Channels.in_acquisition`, which defaults to the total number of channels (all of them performing acquisition on different satellite signals at the same time, if required). When working with real-time configurations, it is a good practice to set this parameter  to 1 (that is, only one channel performing acquisition at a given time) in order to alleviate the computational burden.
 
-Parameters:
+_Channels_ accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -39,7 +39,7 @@ Parameters:
 | `ChannelN.signal` |  (where `N` is the channel number, starting from $$ 0 $$). Assign each channel to a specific signal [`1C`, `1B`, `2S`, `5X`]. Not required in single-system receivers. | Optional |
 | `ChannelN.RF_channel_ID` | (where `N` is the channel number, starting from $$ 0 $$). Connects channel `N` to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. | Optional |
 | `ChannelN.Signal_Source_ID` | (where `N` is the channel number, starting from $$ 0 $$). Connects channel `N` to a signal source. It defaults to $$ 0 $$. Not required in single-source receivers. | Optional |
-| `Channels.in_acquisition` | Maximum number of channels performing signal acquisition at the same time. It defaults to the total number of channels. | Optional |
+| `Channels.in_acquisition` | Maximum number of channels performing signal acquisition at the same time. The recommended value is $$ 1 $$. It defaults to the total number of channels. | Optional |
 |----------
 
 Then, each type of defined channel requires the configuration of:
