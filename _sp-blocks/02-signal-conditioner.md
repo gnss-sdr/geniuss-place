@@ -27,8 +27,8 @@ This implementation is in fact a wrapper for other three processing blocks.
 Those inner blocks are in charge of:
 
 * The role of the [Data Type Adapter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/data-type-adapter/) block is to perform a conversion of the data type in the incoming sample stream.
-* The role on the [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/) block is to filter the incoming signal.
-* The role on the [Resampler]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/resampler/) block is to resample the signal and to deliver it to the $$ N $$ parallel processing channels.
+* The role of the [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/) block is to filter the incoming signal.
+* The role of the [Resampler]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/resampler/) block is to resample the signal and to deliver it to the $$ N $$ parallel processing channels.
 
 Any of them can be by-passed by using a `Pass_Through` implementation.
 
