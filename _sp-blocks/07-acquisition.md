@@ -223,6 +223,62 @@ the minimum signal power at which a receiver can correctly identify the
 presence of a particular satellite signal in the incoming RF signal
 within a given time-out interval.
 
+This is the case of the Tong detector[^Tong73], a sequential variable dwell time detector with a
+reasonable computation burden and proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
+signal search, the up/down counter $$ K $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
+decremented by one. If the counter has reached maximum count value $$ A $$, the signal is
+declared ‘_present_’ and the search is terminated. Similarly if the counter contents reach zero,
+the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
+trapped into an extended dwell in the same cell, under certain poor signal conditions, another
+counter ($$ K_{max} $$) sets the limit on maximum number of dwells.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GPS_L1_CA_Tong_PCPS_Acquisition` | Mandatory |
+| `item_type` | [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
+| `tong_init_val` | Initial value of the Tong counter $$ K $$. It defaults to 1. | Optional |
+| `tong_max_val` | Count value $$ A $$ that, if reached by counter $$ K $$, declares a signal as present. It defaults to 2. | Optional |
+| `tong_max_val` | Maximum number of dwells in a search $$ K_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Tong_Acquisition`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### ACQUISITION GLOBAL CONFIG ############
+Acquisition_1C.implementation=GPS_L1_CA_PCPS_Tong_Acquisition
+Acquisition_1C.pfa=0.0001
+Acquisition_1C.doppler_max=10000
+Acquisition_1C.doppler_step=250
+Acquisition_1C.tong_init_val=2
+Acquisition_1C.tong_max_val=10
+Acquisition_1C.tong_max_dwells=20
+```
+
+
 ## GPS L2CM signal acquisition
 
 ### Implementation: `GPS_L2_M_PCPS_Acquisition`
@@ -347,6 +403,63 @@ Acquisition_1B.doppler_max=6000
 Acquisition_1B.doppler_step=250
 ```
 
+### Implementation: `Galileo_E1_PCPS_Tong_Ambiguous_Acquisition`
+
+The Tong detector[^Tong73] is a sequential variable dwell time detector with a
+reasonable computation burden that proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
+signal search, the up/down counter $$ K $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
+decremented by one. If the counter has reached maximum count value $$ A $$, the signal is
+declared ‘_present_’ and the search is terminated. Similarly if the counter contents reach zero,
+the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
+trapped into an extended dwell in the same cell, under certain poor signal conditions, another
+counter ($$ K_{max} $$) sets the limit on maximum number of dwells.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Galileo_E1_PCPS_Tong_Ambiguous_Acquisition` | Mandatory |
+| `item_type` | [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a multiple of 4 ms. It defaults to 4 ms. | Optional |
+| `tong_init_val` | Initial value of the Tong counter $$ K $$. It defaults to 1. | Optional |
+| `tong_max_val` | Count value $$ A $$ that, if reached by counter $$ K $$, declares a signal as present. It defaults to 2. | Optional |
+| `tong_max_val` | Maximum number of dwells in a search $$ K_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`Galileo_E1_PCPS_Tong_Ambiguous_Acquisition`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### ACQUISITION GLOBAL CONFIG ############
+Acquisition_1B.implementation=Galileo_E1_PCPS_Tong_Ambiguous_Acquisition
+Acquisition_1B.pfa=0.0001
+Acquisition_1B.doppler_max=10000
+Acquisition_1B.doppler_step=250
+Acquisition_1B.tong_init_val=2
+Acquisition_1B.tong_max_val=10
+Acquisition_1B.tong_max_dwells=20
+```
+
 
 ## Galileo E5a signal acquisition
 
@@ -411,3 +524,5 @@ Acquisition_5X.doppler_step=250
 [^Fernandez12]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
 
 [^Lohan11]: Zhang J, Lohan E.S., _Galileo E1 and E5a Link-Level Performances in Single and Multipath Channels_. In Giambene G, Sacchi C, editors, Personal Satellite Services, Third International ICST Conference PSATS 2011, Malaga, Spain, February 2011.
+
+[^Tong73]: P. S. Tong, _A Suboptimum Synchronization Procedure for Pseudo Noise Communication Systems_, in Proc. of National Telecommunications Conference, 1973, pp. 26D1-26D5.
