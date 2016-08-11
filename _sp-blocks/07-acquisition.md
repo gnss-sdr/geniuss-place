@@ -256,7 +256,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `tong_init_val` | Initial value of the Tong counter $$ K $$. It defaults to 1. | Optional |
 | `tong_max_val` | Count value $$ A $$ that, if reached by counter $$ K $$, declares a signal as present. It defaults to 2. | Optional |
-| `tong_max_val` | Maximum number of dwells in a search $$ K_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
+| `tong_max_dwells` | Maximum number of dwells in a search $$ K_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
@@ -438,7 +438,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a multiple of 4 ms. It defaults to 4 ms. | Optional |
 | `tong_init_val` | Initial value of the Tong counter $$ K $$. It defaults to 1. | Optional |
 | `tong_max_val` | Count value $$ A $$ that, if reached by counter $$ K $$, declares a signal as present. It defaults to 2. | Optional |
-| `tong_max_val` | Maximum number of dwells in a search $$ K_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
+| `tong_max_dwells` | Maximum number of dwells in a search $$ K_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
