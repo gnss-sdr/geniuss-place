@@ -36,6 +36,7 @@ _Channels_ accepts the following parameters:
 | `Channels_2S.count` |  Number of channels targeting GPS L2 L2CM signals. It defaults to $$ 0 $$.| Optional |
 | `Channels_1B.count` |  Number of channels targeting Galileo E1 B  signals. It defaults to $$ 0 $$.| Optional |
 | `Channels_5X.count` |  Number of channels targeting Galileo E5a (I+Q) signals. It defaults to $$ 0 $$. | Optional |
+| `Channel.signal` |  Assign all channels to a specific signal [`1C`, `1B`, `2S`, `5X`]. Only required in single-system receivers. | Optional |
 | `ChannelN.signal` |  (where `N` is the channel number, starting from $$ 0 $$). Assign each channel to a specific signal [`1C`, `1B`, `2S`, `5X`]. Not required in single-system receivers. | Optional |
 | `ChannelN.RF_channel_ID` | (where `N` is the channel number, starting from $$ 0 $$). Connects channel `N` to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. | Optional |
 | `ChannelN.Signal_Source_ID` | (where `N` is the channel number, starting from $$ 0 $$). Connects channel `N` to a signal source. It defaults to $$ 0 $$. Not required in single-source receivers. | Optional |
@@ -60,6 +61,7 @@ Setting a single-band receiver with twelve channels devoted to GPS L1 C/A signal
 ```ini
 ;######### CHANNELS GLOBAL CONFIG ############
 Channels_1C.count=12
+Channel.signal=1C
 Channels.in_acquisition=1
 
 Acquisition_1C.implementation=...
