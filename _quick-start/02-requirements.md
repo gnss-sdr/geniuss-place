@@ -70,11 +70,11 @@ The input of GNSS-SDR is a sequence of raw digital samples of GNSS signals. The 
 
 ### Files
 
-The stream of raw GNSS signals samples can be stored in a file. Some of such files are freely available on the Internet, so you do not need a GNSS front-end for using GNSS-SDR. Only some few basic parameters are needed to be known: the sampling frequency, the format in which samples are delivered, the presence of an Intermediate Frequency, and so on.
+The stream of raw GNSS signals samples can be stored in a file. Some of such files are freely available on the Internet, so you do not need access to a GNSS front-end for using GNSS-SDR. Only some few basic parameters are needed to be known (file name and path, the sampling frequency, the format in which samples are delivered, the presence of an Intermediate Frequency) in order to configure GNSS-SDR's _Signal Source_ adequately.
 
 GNSS-SDR consumes data _as fast as it can_, regardless the original sample rate in which signal was captured. Hence, the processing of a file containing captured samples can take less time that the actual recording length.
 
-In configuration using a high number of parallel channels, or highly complex algorithms, the host computer could not be able to perform the required processing in due time. While this is an issue for real-time configurations (that would cause an overflow), it is not a problem when processing samples from a file. The software receiver will process it at its own pace, applying exactly the same processing as it were real-time, and delivering the corresponding outputs as soon as they are available. This is very useful for algorithm prototyping, since its functional performance can be checked before code optimization.
+On the contrary, in multi-sytem, multi-band configurations using a high number of parallel channels or highly complex algorithms, the host computer could not be able to perform the required processing in due time. While this is an issue in real-time configurations (that would cause buffer overflows and service discontinuity), it is not a problem when processing samples from a file. The software receiver will process samples at its own pace, applying exactly the same processing as it were real-time, and delivering the corresponding outputs as soon as they are available. This is very useful for algorithm prototyping, since its functional performance can be checked before code optimization and does not requires a powerful computer.
 
 ### Radio frequency front-ends
 
