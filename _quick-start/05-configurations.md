@@ -20,15 +20,17 @@ Some radio frequency front-ends have jumpers, or some other configurable mode, f
 
 ## GPS L1 C/A receiver using a USRP
 
-This in an example of an eight-channel GPS L1 C/A receiver, working at 4 Msps (baseband, _i.e._ complex samples), and using a device from the [USRP family](https://www.ettus.com/product){:target="_blank"} as a radio frequency front-end.
+This in an example of an eight-channel GPS L1 C/A receiver, working at 4 Msps (baseband, _i.e._ complex samples), and using a device from the [USRP family](https://www.ettus.com/product){:target="_blank"} as the "air-to-computer" interface.
 
 ### Setting up the front-end
 
 In order to get real-time position fixes, you will need:
 
-  1. An active GPS antenna. Any model will fit, just be sure you can plug it to the USRP's SMA-male connector.
-  2. All USRP models will do the job. Depending on the specific USRP model you are using, configuration may vary (see below).
-  3. In case of using a USRP without an embedded transceiver, you will need a daughterboard allowing the reception of signals around 1.5 GHz. That is: DBSRX2, WBX, SBX, CBX and UBX daughterboards can work for you.
+  1. **An active GPS antenna**. Any model will fit, just be sure you can plug it to the USRP's SMA-male connector.
+  2. **A USRP**. All models will do the job. Depending on the specific USRP model you are using, configuration may vary (see below).
+  3. The USRP family features a modular architecture with interchangeable daughterboard modules that serve as the RF front end. In case of using a USRP without an embedded transceiver, you will need **a daughterboard** allowing the reception of signals around 1.5 GHz. That is: DBSRX2, WBX, SBX, CBX and UBX daughterboards can work for you. You will not need a daughterboard if you are using USRP B200, B210 or E310, which ship an Analog Devices AD9361 RFIC as an integrated wideband transceiver.
+  4. **A computer** connected to the USRP and with GNSS-SDR installed.
+
 
 In case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper in order to feed the antenna.
 
@@ -36,21 +38,19 @@ In case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper
 _DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the injection of current towards the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
 {: style="text-align: center;"}
 
-If this feature is not available (_e.g._, WBX), you will need a bias-T between the USRP and the antenna, and to connect it to a power source delivering the voltage required by your antenna (usually, 3 V or 5 V).
+If this feature is not available (_e.g._, WBX daughterboards), you will need a bias-T between the USRP and the antenna, and to connect it to a power source delivering the voltage required by your antenna (usually, 3 V or 5 V).
 
 ![Bias-T](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/bias_tee_scale.jpg){: .align-center}
 _Bias-T allowing the injection of DC voltage to the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
 {: style="text-align: center;"}
 
+In USRP with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labelled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
 
 ![Setup](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/whole_hw_scaled.jpeg){: .align-center}
 _USRP N210 with the bias-T and the GPS antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
 {: style="text-align: center;"}
 
-
-Depending on the specific USRP model you are using, the connection to the host computer in charge of the execution of the software receiver can be through USB (2.0 or 3.0) or Ethernet (10/100/1000 BASE-T Ethernet).
-
-Every device has [several ways of identifying it](http://files.ettus.com/manual/page_identification.html){:target="_blank"} on the host system:
+Depending on the specific USRP model you are using, the connection to the host computer in charge of the execution of the software receiver can be through USB (2.0 or 3.0) or Ethernet (10/100/1000 BASE-T Ethernet). Once connected, every USRP device has [several ways of identifying it](http://files.ettus.com/manual/page_identification.html){:target="_blank"} on the host system:
 
 |----------
 |  **Identifier**  |  **Key** | **Notes** | **Example** |
@@ -61,9 +61,9 @@ Every device has [several ways of identifying it](http://files.ettus.com/manual/
 | Type | `type` | 	hardware series identifier | 	usrp1, usrp2, b200, x300, ... |
 |--------------
 
-Devices attached to your system can be discovered using the `uhd_find_devices` program. This program scans your system for supported devices and prints out an enumerated list of discovered devices and their addresses. if you type `uhd_find_devices --help` in a terminal, you should see something similar to this:
+Devices attached to your system can be discovered using the `uhd_find_devices` program. This program scans your system for supported devices and prints out an enumerated list of discovered devices and their addresses. If you type `uhd_find_devices --help` in a terminal, you should see something similar to this:
 
-```bash
+```
 $ uhd_find_devices --help
 linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010.git-0-2d68f228
 
@@ -74,7 +74,7 @@ UHD Find Devices Allowed options:
 
 Then, you can search your USRP in a specific IP address:
 
-```bash
+```
 $ uhd_find_devices --args addr=192.168.50.2
 linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010.git-0-2d68f228
 
@@ -92,14 +92,15 @@ Device Address:
 
 or by typing:
 
-```bash
+```
 $ uhd_find_devices --args type=usrp1
 ```
 
+This is a good way to check if the USRP is correctly connected to your computer. After this check, we can proceed to configure the software receiver. The [USRP Hardware Driver and USRP Manual](http://files.ettus.com/manual/page_devices.html){:target="_blank"} provides more information about the configuration and usage of those devices.
 
 ### Setting up the software receiver
 
-Copy the configuration below into you favorite plain text editor and save it with a same such as `my_GPS_receiver.conf`
+Copy the configuration below into you favorite plain text editor and save it with a name such as `my_GPS_receiver.conf` in your favorite working directory.
 
 ```ini
 ;######### GLOBAL OPTIONS ##################
@@ -107,12 +108,13 @@ GNSS-SDR.internal_fs_hz=4000000
 
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=UHD_Signal_Source
-SignalSource.device_address=192.168.50.2 ; <- PUT THE IP ADDRESS OF YOUR USRP HERE, leave it empty for USB
+SignalSource.device_address=192.168.50.2 ; <- PUT THE IP ADDRESS OF YOUR USRP HERE
+                                         ;    OR LEAVE IT EMPTY FOR USB
 SignalSource.item_type=cshort
 SignalSource.sampling_frequency=4000000
 SignalSource.freq=1575420000
 SignalSource.gain=40
-SignalSource.subdevice=B:0  ; <- Can be A:0 or B:0
+SignalSource.subdevice=A:0  ; <- Can be A:0 or B:0
 SignalSource.samples=0
 
 ;######### SIGNAL_CONDITIONER CONFIG ############
@@ -183,7 +185,12 @@ PVT.display_rate_ms=500
 PVT.flag_rtcm_server=true
 ```
 
+You will need to adjust the values for at least two parameters:
 
+  * Check that `SignalSource.device_address` points to the actual IP address of your USRP, if you are connected through Ethernet, or leave it empty for USB.
+  * Check that `SignalSource.subdevice` is set to the receiving slot in which you actually plugged your daughterboard and antenna. In USRPs with only one receiving slot, leave it as `A:0`.
+
+The [Signal Processing Blocks documentation]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/){:target="_blank"} provides definitions and more details about the configuration parameters.
 
 ### Run it!
 
