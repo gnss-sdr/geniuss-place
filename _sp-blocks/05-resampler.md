@@ -31,7 +31,7 @@ It accepts the following parameters:
 | `implementation` | `Direct_Resampler` | Mandatory |
 | `sample_freq_in` |  Sample rate at the block input, in samples per second. | Mandatory |
 | `sample_freq_out` |  Sample rate at the block output, in samples per second. | Mandatory |
-| `item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Data type to be resampled. It defaults to `gr_complex`. | Optional |
+| `item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Data type to be resampled. | Mandatory |
 |----------
 
   _Resampler implementation:_ **`Direct_Resampler`**.
