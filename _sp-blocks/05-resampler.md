@@ -45,13 +45,14 @@ Examples:
 Resampler.implementation=Direct_Resampler
 Resampler.sample_freq_in=8000000
 Resampler.sample_freq_out=4000000
+Resampler.item_type=gr_complex
 ```
 
 ```ini
 ;######### RESAMPLER CONFIG ############
 Resampler.implementation=Direct_Resampler
 Resampler.sample_freq_in=8000000
-Resampler.sample_freq_out=4000000
+Resampler.sample_freq_out=2500000
 Resampler.item_type=cshort
 ```
 
