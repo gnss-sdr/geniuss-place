@@ -332,7 +332,7 @@ This implementation accepts the following parameters:
 | `implementation` | `UHD_Signal_Source` | Mandatory |
 | `device_address` |  IP address of the USRP device. When left empty, the device discovery routines will search all the available transports on the system (Ethernet, USB, ...) | Mandatory |
 | `subdevice` | [`A:0`, `B:0`]: UHD subdevice specification.  | Mandatory |
-| `sampling_frequency` |  Sampling frequency, in symbols per second. | Mandatory |
+| `sampling_frequency` |  Sampling frequency, in samples per second. | Mandatory |
 | `RF_channels` | Number of RF channels present in the front-end device. It defaults to 1. | Optional |
 | `clock_source` | [`internal`, `external`, `MIMO`]: Set the clock source for the USRP device. It defaults to `internal`. | Optional |
 | `item_type` | [`cbyte`, `cshort`, `gr_complex`]: data type for each sample. The type `cbyte` (i.e., complex signed 8-bit integers) is not available in USRP devices with their default configurations. This parameter defaults to `cshort`. | Optional |
@@ -345,9 +345,9 @@ If `RF_channels` is set to `1`, then:
 |:-:|:--|:-:|    
 |--------------
 | `freq` | RF front-end center frequency, in Hz. | Mandatory |
-| `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples | Optional |
-| `gain` | RF front-end gain, in dB. | Optional |
-| `IF_bandwidth_hz` | . | Optional |
+| `IF_bandwidth_hz` | Set the IF filter bandwidth of the front-end, in Hz. It defaults to `sampling_frequency` / 2. | Optional |
+| `gain` | Set the RF front-end gain, in dB, distributed across all gain elements. It defaults to $$ 50 $$ dB. | Optional |
+| `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the dump of the signal source delivered data into a file. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
@@ -385,15 +385,15 @@ For instance, if `RF_channels` is set to `2`, then:
 |:-:|:--|:-:|    
 |--------------
 | `freq0` | RF front-end center frequency for RF channel 0, in Hz. | Mandatory |
+| `IF_bandwidth_hz0` | Set the IF filter bandwidth of RF channel 0, in Hz. It defaults to `sampling_frequency` / 2. | Optional |
+| `gain0` | Set the RF front-end gain for RF channel 0, in dB, distributed across all gain elements. It defaults to $$ 50 $$ dB. | Optional |
 | `samples0` |  Number of samples to be processed for RF channel 0. It defaults to $$ 0 $$, which means infinite samples | Optional |
-| `gain0` | RF front-end gain for RF channel 0, in dB. | Optional |
-| `IF_bandwidth_hz0` | . | Optional |
 | `dump0` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source $$ 0 $$ delivered data into a file. It defaults to `false`. | Optional |
 | `dump_filename0` | If `dump0` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source0.dat` | Optional |
 | `freq1` | RF front-end center frequency for RF channel 1, in Hz. | Mandatory |
+| `IF_bandwidth_hz1` | Set the IF filter bandwidth of RF channel 1, in Hz. It defaults to `sampling_frequency` / 2. | Optional |
+| `gain1` | Set the RF front-end gain for RF channel 1, in dB, distributed across all gain elements. It defaults to $$ 50 $$ dB. | Optional |
 | `samples1` |  Number of samples to be processed for RF channel 1. It defaults to $$ 0 $$, which means infinite samples | Optional |
-| `gain1` | RF front-end gain for RF channel 1, in dB. | Optional |
-| `IF_bandwidth_hz1` | . | Optional |
 | `dump1` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source $$ 1 $$ delivered data into a file. It defaults to `false`.  | Optional |
 | `dump_filename1` | If `dump1` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source1.dat` | Optional |
 |-------
@@ -433,10 +433,10 @@ This implementation accepts the following parameters:
 | `implementation` | `Osmosdr_Signal_Source` | Mandatory |
 | `freq` | RF front-end center frequency, in Hz. | Mandatory |
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
-| `gain` | RF front-end gain for RF channel 0, in dB. | Optional |
-| `rf_gain` | RF front-end gain for RF channel 0, in dB. | Optional |
-| `if_gain` | RF front-end gain for RF channel 0, in dB. | Optional |
-| `sampling_frequency` | . | Optional |
+| `gain` | RF front-end gain for RF channel 0, in dB. The value is spread across the receiving chain, | Optional |
+| `rf_gain` | RF front-end gain for the RF amplifier, in dB. | Optional |
+| `if_gain` | RF front-end gain for the IF amplifier, in dB. | Optional |
+| `sampling_frequency` | Sampling frequency, in samples per second. | Optional |
 | `item_type` | [`gr_complex`]: Set the output data type. Only  `gr_complex` is allowed in this version, so it is set by default. | Optional |
 | `osmosdr_args` | . | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
