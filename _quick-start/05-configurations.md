@@ -22,17 +22,54 @@ Some radio frequency front-ends have jumpers, or some other configurable mode, f
 
 This in an example of an eight-channel GPS L1 C/A receiver, working at 4 Msps (baseband, _i.e._ complex samples), and using a device from the [USRP family](https://www.ettus.com/product){:target="_blank"} as the "air-to-computer" interface.
 
-### Setting up the front-end
+### Required equipment
 
 In order to get real-time position fixes, you will need:
 
-  1. **An active GPS antenna**. Any model will fit, just be sure you can plug it to the USRP's SMA-male connector.
-  2. **A USRP**. All models will do the job. Depending on the specific USRP model you are using, configuration may vary (see below).
-  3. The USRP family features a modular architecture with interchangeable daughterboard modules that serve as the RF front end. In case of using a USRP without an embedded transceiver, you will need **a daughterboard** allowing the reception of signals around 1.5 GHz. That is: DBSRX2, WBX, SBX, CBX and UBX daughterboards can work for you. You will not need a daughterboard if you are using USRP B200, B210 or E310, which ship an Analog Devices AD9361 RFIC as an integrated wideband transceiver.
-  4. **A computer** connected to the USRP and with GNSS-SDR installed.
+  * **An active GPS antenna**. Any model will fit, just check that you can plug it to the USRP's SMA-male connector.
+  * **A USRP**. All models will do the job. Depending on the specific USRP model you are using, the configuration may vary (see below).
+
+  |----------
+  |  **USRP Model**  |  **RF bandwidth (MHz @ 16 bits per sample)** | **RX gain (dB)** | **ADC Processing Bandwidth (MS/s)** | **Interface** | **Host Sample Rate (MS/s @ 16-bit I&Q)** |
+  |:--|:-:|:-:|:-:|:-:|:-:|
+  |--------------
+  | USRP 1, B100 | Up to $$ 8 $$ MHz | See daughterboard | $$ 64 $$ MS/s | USB 2.0 | $$ 8 $$ MS/s |
+  | B200, B210, B200mini, B205mini | From $$ 200 $$ kHz to $$ 56 $$ MHz |  Up to $$ 73 $$ dB | $$ 61.44 $$ MS/s | USB 3.0 |  $$ 61.44 $$ MS/s |
+  | N200, N210 |  Up to $$ 25 $$ MHz | See daughterboard | $$ 100 $$ MS/s | Gigabit Ethernet | $$ 25 $$ MS/s |
+  | X300, X310 | Up to $$ 120 $$ MHz | See daughterboard |  $$ 200 $$ MS/s | 10 Gigabit Ethernet | $$ 200 $$ MS/s |
+  |--------------
+
+  _Some USRP models and features. The ADC processing bandwidth is the sample rate provided by the ADCs on the USRP motherboard, and the host sample rate refers to the sample stream between the FPGA of a USRP device, and a host PC. Some USRP models also provide to option to stream 8-bit samples, effectively doubling the host-bandwidth in terms of samples/second. Source: [Ettus Research Knowledge Base](https://kb.ettus.com/About_USRP_Bandwidths_and_Sampling_Rates){:target="_blank"}._
+  {: style="text-align: center;"}
+
+  * The USRP family features a modular architecture with interchangeable daughterboard modules that serve as the RF front end. In case of using a USRP without an embedded transceiver, you will need **a daughterboard** allowing the reception of signals around 1.5 GHz. That is: DBSRX2, WBX, SBX, CBX and UBX daughterboards can work for you. You will not need a daughterboard if you are using USRP B200, B210 or E310, which ship an Analog Devices AD9361 RFIC as an integrated wideband transceiver.
+
+  |----------
+  |  **Daughterboard**  |  **Frequency coverage** | **Analog bandwidth** | **RX gain**
+  |:--|:-:|:-:|:-:|
+  |--------------
+  | WBX-120 | 50 MHz - 2.2 GHz | 120 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
+  | SBX-120 | 400 MHz - 4.4 GHz | 120 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
+  | CBX-120 | 1.2 GHz - 6 GHz | 120 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
+  | UBX-160 | 10 MHz - 2.2 GHz | 160 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
+  | WBX | 50 MHz - 2.2 GHz | 40 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
+  | SBX | 400 MHz - 4.4 GHz | 40 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
+  | CBX | 1.2 GHz - 6 GHz | 40 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
+  | UBX-40 | 10 MHz - 6 GHz | 40 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
+  | DBSRX2 | 800 MHz - 2.3 GHz | Configurable: 8 MHz to 80 MHz | GC1 from $$ 0 $$ to $$ 73 $$ dB, and BBC from $$ 0 $$ to $$ 15 $$ dB |
+  |--------------
+
+  _Daugtherboards allowing GNSS signal reception. Note that WBX-120, CBX-120 and SBX-120 daughterboards were designed to work with USRP X300/X310 and any future products with sufficient ADC/DAC sample rates. These boards are not compatible with devices that incorporate lower rate ADC/DAC below 200 MS/s. Source: [Ettus Research Knowledge Base](https://kb.ettus.com/About_USRP_Bandwidths_and_Sampling_Rates){:target="_blank"}._
+  {: style="text-align: center;"}
 
 
-In case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper in order to feed the antenna.
+  * **A computer** connected to the USRP and with GNSS-SDR installed.
+
+### Setting up the front-end
+
+The first thing to do is to install a suitable daughterboard into the USRP. As a example, you can check Ettus Research's detailed [step-by-step guide to install a daughterboard into the USRP N200/N210](https://kb.ettus.com/USRP_N_Series_Quick_Start_(Daughterboard_Installation)){:target="_blank"}. In USRPs with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labelled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
+
+Then, you will need to feed your GNSS active antenna. In case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper in order to feed the antenna.
 
 ![DBSRX2](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/DBSRX2_scale.jpg){: .align-center}
 _DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the injection of current towards the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
@@ -44,13 +81,12 @@ If this feature is not available (_e.g._, WBX daughterboards), you will need a b
 _Bias-T allowing the injection of DC voltage to the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
 {: style="text-align: center;"}
 
-In USRP with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labelled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
 
 ![Setup](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/whole_hw_scaled.jpeg){: .align-center}
 _USRP N210 with the bias-T and the GPS antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
 {: style="text-align: center;"}
 
-Depending on the specific USRP model you are using, the connection to the host computer in charge of the execution of the software receiver can be through USB (2.0 or 3.0) or Ethernet (10/100/1000 BASE-T Ethernet). Once connected, every USRP device has [several ways of identifying it](http://files.ettus.com/manual/page_identification.html){:target="_blank"} on the host system:
+Depending on the specific USRP model you are using, the connection to the host computer in charge of the execution of the software receiver can be through USB (2.0 or 3.0) or Ethernet (1 GigE or 10 GigE). Once connected, every USRP device has [several ways of identifying it](http://files.ettus.com/manual/page_identification.html){:target="_blank"} on the host system:
 
 |----------
 |  **Identifier**  |  **Key** | **Notes** | **Example** |
@@ -310,6 +346,12 @@ Now you can examine the files created in your working folder.
 
 ### If something goes wrong
 
+* Check out that the GNSS antenna is actually fed and that it is placed in a location with a good sky visibility.
+
+* Check out Ettus Research's [getting starting guide](https://kb.ettus.com/Getting_Started_Guides){:target="_blank"} for your particular hardware configuration.
+
+* Watch out for overflows! Maybe your host computer is not able to sustain the required computational load for this particular implementation.
+
 {% capture overflow %}
  When receiving, the USRP device produces samples at a constant rate. Overflows occurs when the host computer does not consume data fast enough. When UHD software detects the overflow, it prints an "```O```" or "```D```" to the standard terminal output, and pushes an inline message packet into the receive stream.
 
@@ -321,3 +363,8 @@ Now you can examine the files created in your working folder.
   <h4>Overflow warnings:</h4>
   {{ overflow | markdownify }}
 </div>
+
+ * Play with configuration parameters:
+
+
+  
