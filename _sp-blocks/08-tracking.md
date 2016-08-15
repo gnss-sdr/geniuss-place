@@ -119,6 +119,16 @@ This implementation accepts the following parameters:
   _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_C_Aid_Tracking`**.
   {: style="text-align: center;"}
 
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_C_Aid_Tracking
+Tracking_1C.item_type=cshort
+Tracking_1C.pll_bw_hz=40.0;
+Tracking_1C.dll_bw_hz=4.0;
+```
+
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking_GPU`
 
 GPU-accelerated computing consists in the use of a graphics processing unit (GPU) together with a CPU to accelerate the execution of a software application, by offloading computation-intensive portions of the application to the GPU, while the remainder of the code still runs on the CPU. The key idea is to utilize the computation power of both CPU cores and GPU execution units in tandem for better utilization of available computing power.
@@ -156,6 +166,14 @@ This implementation accepts the following parameters:
   _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_Tracking_GPU`**.
   {: style="text-align: center;"}
 
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking_GPU
+Tracking_1C.pll_bw_hz=40.0;
+Tracking_1C.dll_bw_hz=4.0;
+```
 
 ## GPS L2CM signal tracking
 
@@ -189,6 +207,15 @@ This implementation accepts the following parameters:
   {: style="text-align: center;"}
 
 
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_2S.implementation=GPS_L2_M_DLL_PLL_Tracking
+Tracking_2S.pll_bw_hz=40.0;
+Tracking_2S.dll_bw_hz=4.0;
+Tracking_2S.early_late_space_chips=0.4
+```
 
 ## Galileo E1B signal tracking
 
@@ -387,6 +414,14 @@ This implementation accepts the following parameters:
   _Tracking implementation:_ **`Galileo_E1_DLL_PLL_VEML_Tracking`**.
   {: style="text-align: center;"}
 
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_1B.implementation=Galileo_E1_DLL_PLL_VEML_Tracking
+Tracking_1B.pll_bw_hz=15.0;
+Tracking_1B.dll_bw_hz=2.0;
+```
 
 ## Galileo E5a signal tracking
 
