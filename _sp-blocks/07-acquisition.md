@@ -518,6 +518,6 @@ Acquisition_5X.doppler_step=250
 
 [^Fernandez12]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
 
-[^Lohan11]: Zhang J, Lohan E.S., _Galileo E1 and E5a Link-Level Performances in Single and Multipath Channels_. In Giambene G, Sacchi C, editors, Personal Satellite Services, Third International ICST Conference PSATS 2011, Malaga, Spain, February 2011.
+[^Lohan11]: J. Zhang, E. S. Lohan, _Galileo E1 and E5a Link-Level Performances in Single and Multipath Channels_. In G. Giambene, C. Sacchi, Eds., Personal Satellite Services, Third International ICST Conference PSATS 2011, Malaga, Spain, February 2011.
 
 [^Tong73]: P. S. Tong, _A Suboptimum Synchronization Procedure for Pseudo Noise Communication Systems_, in Proc. of National Telecommunications Conference, 1973, pp. 26D1-26D5.

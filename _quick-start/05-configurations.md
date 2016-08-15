@@ -70,7 +70,12 @@ In order to get real-time position fixes, you will need:
 
 The first thing to do is to install a suitable daughterboard into the USRP. As a example, you can check Ettus Research's detailed [step-by-step guide to install a daughterboard into the USRP N200/N210](https://kb.ettus.com/USRP_N_Series_Quick_Start_(Daughterboard_Installation)){:target="_blank"}. In USRPs with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labelled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
 
-Then, you will need to feed your GNSS active antenna. In case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper in order to feed the antenna.
+Then, you will need to feed your GNSS active antenna.
+
+**Important:** Never apply more than -15 dBm of power into any RF input.
+{: .notice--danger}
+
+In case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper in order to feed the antenna.
 
 ![DBSRX2](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/DBSRX2_scale.jpg){: .align-center}
 _DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the injection of current towards the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
