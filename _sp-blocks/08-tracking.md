@@ -35,7 +35,7 @@ $$ E=R_{xd}(\hat{\tau}-\epsilon) $$, *Prompt* $$ P=R_{xd}(\hat{\tau}) $$ and
 $$ 0.1T_c $$ to $$ 0.5T_c $$, and then computes a timing error with some
 combination of those samples, known as _discriminator_ functions. The result is low-pass filtered and reinjected back to the matched filter, as shown in the figure below:
 
-![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
+![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
 _Typical diagram of a tracking block. Colored boxes indicate functions implemented in the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library._
 {: style="text-align: center;"}
 
@@ -120,6 +120,14 @@ This implementation accepts the following parameters:
   {: style="text-align: center;"}
 
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking_GPU`
+
+GPU-accelerated computing consists in the use of a graphics processing unit (GPU) together with a CPU to accelerate the execution of a software application, by offloading computation-intensive portions of the application to the GPU, while the remainder of the code still runs on the CPU. The key idea is to utilize the computation power of both CPU cores and GPU execution units in tandem for better utilization of available computing power.
+
+This implementation follows the CUDA programming model and targets NVIDIA's GPU computing platform. Thus, you will need a [CUDA-enabled GPU](https://developer.nvidia.com/cuda-gpus){:target="_blank"} and the [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit){:target="_blank"} installed. Moreover, it is only available if GNSS-SDR has been built from source and compiled with the flag `ENABLE_CUDA` set to `ON`:
+
+```
+$ cmake -DENABLE_CUDA=ON ../ && make && sudo make install
+```
 
 This implementation accepts the following parameters:
 
