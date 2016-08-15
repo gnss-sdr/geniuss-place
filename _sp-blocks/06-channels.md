@@ -9,7 +9,7 @@ modified: 2016-04-13T15:54:02-04:00
 {% include toc %}
 
 
-Each _Channel_ encapsulates blocks for signal acquisition, tracking and demodulation of the navigation message for a single satellite. These abstract interfaces can be populated with different algorithms addressing any suitable GNSS signal. The user can define the number of parallel channels to be instantiated by the software receiver, and the thread-per-block scheduler imposed by GNU Radio automatically manages the multitasking capabilities of modern multi-core processors. This is done through the configuration file with the ```Channels_XX.count``` parameter, where ```XX``` is one of the following signal identifiers:
+Each _Channel_ encapsulates blocks for signal [acquisition]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/acquisition/), [tracking]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/tracking/) and [demodulation of the navigation message]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/telemetry-decoder/) for a single satellite. These abstract interfaces can be populated with different algorithms addressing any suitable GNSS signal. The user can define the number of parallel channels to be instantiated by the software receiver, and the thread-per-block scheduler imposed by GNU Radio automatically manages the multitasking capabilities of modern multi-core processors. This is done through the configuration file with the ```Channels_XX.count``` parameter, where ```XX``` is one of the following signal identifiers:
 
 |----------
 |  **Identifier**  |  **Signal** | **Center Frequency** |
