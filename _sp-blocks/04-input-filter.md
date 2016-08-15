@@ -228,7 +228,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Pass_Through` | Mandatory |
-| `item_size` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `item_type` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |
 |-------
 
   _Input Filter implementation:_ **`Pass_Through`**.

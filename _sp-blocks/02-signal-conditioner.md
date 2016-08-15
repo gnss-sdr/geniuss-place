@@ -82,7 +82,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Pass_Through` | Mandatory |
-| `item_size` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `item_type` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |
 |-------
 
   _Signal Conditioner implementation:_ **`Pass_Through`**.
@@ -98,5 +98,5 @@ SignalConditioner.implementation=Pass_Through
 ```ini
 ;######### SIGNAL_CONDITIONER CONFIG ############
 SignalConditioner.implementation=Pass_Through
-SignalConditioner.item_size=cshort
+SignalConditioner.item_type=cshort
 ```
