@@ -2,6 +2,7 @@
 title: "Configurations"
 permalink: /conf/
 excerpt: "How to configure GNSS-SDR in a variety of setups."
+related: true
 modified: 2016-04-13T15:54:02-04:00
 header:
   teaser: "http://exploreflask.com/en/latest/_images/configuration.png"
@@ -95,7 +96,11 @@ Depending on the specific USRP model you are using, the connection to the host c
 | Serial #	| `serial` | 	globally unique identifier | 	12345678 |
 | IP Address | `addr` |	unique identifier on a network	| 192.168.10.2 |
 | Type | `type` | 	hardware series identifier | 	usrp1, usrp2, b200, x300, ... |
+| Name | `name` | optional user-set identifier | lab1_usrp3 |
 |--------------
+
+ _Common device identifiers. Source: [Identifying USRP Devices](http://files.ettus.com/manual/page_identification.html){:target="_blank"}._
+{: style="text-align: center;"}
 
 Devices attached to your system can be discovered using the `uhd_find_devices` program. This program scans your system for supported devices and prints out an enumerated list of discovered devices and their addresses. If you type `uhd_find_devices --help` in a terminal, you should see something similar to this:
 
@@ -224,7 +229,7 @@ PVT.flag_rtcm_server=true
 You will need to adjust the values for at least two parameters:
 
   * Check that `SignalSource.device_address` points to the actual IP address of your USRP, if you are connected through Ethernet, or leave it empty for USB.
-  * Check that `SignalSource.subdevice` is set to the receiving slot in which you actually plugged your daughterboard and antenna. In USRPs with only one receiving slot, leave it as `A:0`.
+  * Check that `SignalSource.subdevice` is set to the receiving slot in which you actually inserted your daughterboard with the antenna. In USRPs with only one receiving slot, leave it as `A:0`. Please check more details on [how to specify the subdevice](http://files.ettus.com/manual/page_configuration.html#config_subdev){:target="_blank"}.
 
 The [Signal Processing Blocks documentation]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/){:target="_blank"} provides definitions and more details about the configuration parameters.
 
@@ -365,6 +370,3 @@ Now you can examine the files created in your working folder.
 </div>
 
  * Play with configuration parameters:
-
-
-  

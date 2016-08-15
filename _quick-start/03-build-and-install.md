@@ -46,7 +46,7 @@ If you are using Mac OS X 10.9 or above, and the [Macports](https://www.macports
 
     $ sudo port install gnss-sdr
 
-This will install the latest stable release of GNSS-SDR
+This will install the latest stable release of GNSS-SDR.
 
 
 

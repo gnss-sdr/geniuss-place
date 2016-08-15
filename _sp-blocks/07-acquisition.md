@@ -75,7 +75,7 @@ for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kH
 
 ### Implementation: `GPS_L1_CA_PCPS_Acquisition`
 
-The Parallel Code Phase Search (PCPS) method is described as follows:
+The Parallel Code Phase Search (PCPS) algorithm is described as follows:
 
 * **Require**: Input signal buffer $$ \mathbf{x}_{\text{IN}} $$ of $$ N $$ complex samples,
 provided by the Signal Conditioner; on-memory FFT of the local replica,
@@ -160,14 +160,9 @@ Example:
 ```ini
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
-Acquisition_1C.dump=false
-Acquisition_1C.dump_filename=./acq_dump.dat
-Acquisition_1C.item_type=gr_complex
-Acquisition_1C.if=0
-Acquisition_1C.sampled_ms=1
+Acquisition_1C.doppler_max=8000
+Acquisition_1C.doppler_step=250
 Acquisition_1C.pfa=0.0001
-Acquisition_1C.doppler_max=10000
-Acquisition_1C.doppler_step=500
 ```
 
 ### Implementation: `GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`
