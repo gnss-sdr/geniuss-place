@@ -156,7 +156,7 @@ This implementation accepts the following parameters:
 | `output_item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Output data type. You can use this implementation to upcast the data type. | Mandatory |
 | `sampling_frequency` |  Specifies the sample rate $$ f_s $$, in samples per second. | Mandatory |
 | `IF` |  Specifies the intermediate frequency $$ f_{IF} $$, in Hz. It defaults to $$ 0 $$. | Optional |
-| `decimation_factor` |  Decimation factor (defaults to 1). | Optional |
+| `decimation_factor` |  Decimation factor (defaults to 1). Needs to be an integer. | Optional |
 | `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. | Mandatory |
 | `number_of_bands` |  Number of frequency bands in the filter. | Mandatory |
