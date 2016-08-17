@@ -213,3 +213,12 @@ Current input signal time = 58 [s]
 
 If you see something similar to this... Yay! You are getting position fixes with your open source software-defined GPS receiver!
 {: .notice--success}
+
+Now you can examine the processing outputs in the folder from which you invoked GNSS-SDR:
+
+ * A `.kml` file.
+ * A `.geojson` file.
+ * A `.nmea` file.
+ * Observation and Navigation RINEX files.
+
+... play with the configuration parameters or try out more challenging [configurations]({{ site.url }}{{ site.baseurl }}/conf/).
