@@ -26,10 +26,13 @@ Examples of notable CPU architectures:
 * [x86](https://en.wikipedia.org/wiki/X86){:target="_blank"} instruction sets (32 and 64 bits).
   * Intel's [IA-32](https://en.wikipedia.org/wiki/IA-32){:target="_blank"} architecture, also called x86-32.
   * [x86-64](https://en.wikipedia.org/wiki/X86-64){:target="_blank"} with AMD's [AMD64](https://en.wikipedia.org/wiki/X86-64#AMD64){:target="_blank"} and Intel's [Intel 64](https://en.wikipedia.org/wiki/X86-64#Intel_64){:target="_blank"} versions.
+    * Single Instruction Multiple Data (SIMD) instruction set extensions: SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, FMA, AVX-512, and others (see the [Intel Intrinsics Guide](https://software.intel.com/sites/landingpage/IntrinsicsGuide/){:target="_blank"} for a full list of technologies).
 
 * ARM's
    * [ARM architecture](https://en.wikipedia.org/wiki/ARM_architecture){:target="_blank"} (32-bit).
-   * [ARM64](https://en.wikipedia.org/wiki/ARM_architecture#64-bit){:target="_blank"} (64/32-bit).
+     * SIMD instruction set extension: [NEON](http://www.arm.com/products/processors/technologies/neon.php){:target="_blank"}.
+   * [AArch64](https://en.wikipedia.org/wiki/ARM_architecture#64-bit){:target="_blank"} (64/32-bit).
+     * SIMD instruction set extension: AArch64 NEON instruction set.
 
 * [Power Architecture](https://en.wikipedia.org/wiki/Power_Architecture){:target="_blank"} (formely known as [PowerPC](https://en.wikipedia.org/wiki/PowerPC){:target="_blank"}): big-endian and little-endian, 32 and 64 bits.
 
@@ -60,11 +63,11 @@ Applications that do not need an operating system are called _bare metal_ applic
 *  **Unix** and **Unix-like** operating systems:
 
    * The present owner of the trademark _UNIX_ is [The Open Group](http://www.opengroup.org/){:target="_blank"}, an industry standards consortium. Only systems fully compliant with and certified to the [Single Unix Specification](https://en.wikipedia.org/wiki/Single_UNIX_Specification){:target="_blank"} qualify as "[Unix](https://en.wikipedia.org/wiki/Unix){:target="_blank"}" (others are called "Unix system-like" or "Unix-like"). Examples:
-     * HP's [HP-UX](https://en.wikipedia.org/wiki/HP-UX){:target="_blank"}
-     * IBM's [AIX](https://en.wikipedia.org/wiki/IBM_AIX){:target="_blank"}
-     * Sun Microsystems's [Solaris](https://en.wikipedia.org/wiki/Solaris_(operating_system)){:target="_blank"}
-     * IBM's [z/OS](https://en.wikipedia.org/wiki/Z/OS){:target="_blank"}
-     * Apple's [OS X](https://en.wikipedia.org/wiki/OS_X){:target="_blank"}
+     * HP's [HP-UX](https://en.wikipedia.org/wiki/HP-UX){:target="_blank"}.
+     * IBM's [AIX](https://en.wikipedia.org/wiki/IBM_AIX){:target="_blank"}.
+     * Sun Microsystems's [Solaris](https://en.wikipedia.org/wiki/Solaris_(operating_system)){:target="_blank"}.
+     * IBM's [z/OS](https://en.wikipedia.org/wiki/Z/OS){:target="_blank"}.
+     * Apple's [OS X](https://en.wikipedia.org/wiki/OS_X){:target="_blank"}.
 
    * [BSD](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution){:target="_blank"} and its descendants, which includes [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD){:target="_blank"}, [NetBSD](https://en.wikipedia.org/wiki/NetBSD){:target="_blank"}, and [OpenBSD](https://en.wikipedia.org/wiki/OpenBSD){:target="_blank"}.
 
@@ -80,6 +83,8 @@ Applications that do not need an operating system are called _bare metal_ applic
 It follows a list of possible portability indicators for a software-defined GNSS receiver:
 
 * Number of supported processor architectures (specify distribution and release).
+
+* Supported SIMD technologies.
 
 * Support of GPU offloading (define GPU's vendor/model).
 
