@@ -214,6 +214,16 @@ Current input signal time = 58 [s]
 If you see something similar to this... Yay! You are getting position fixes with your open source software-defined GPS receiver!
 {: .notice--success}
 
+```
+...
+Current input signal time = 98 [s]
+Position at 2013-Apr-04 06:25:01 UTC is Lat = 41.27485191181121 [deg], Long = 1.987647398644359 [deg], Height= 71.97478503454477 [m]
+Stopping GNSS-SDR, please wait!
+Total GNSS-SDR run time 20.65166 [seconds]
+GNSS-SDR program ended.
+$
+```
+
 Now you can examine the processing outputs in the folder from which you invoked GNSS-SDR:
 
  * A `.kml` file.
