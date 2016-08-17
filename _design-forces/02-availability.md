@@ -269,7 +269,7 @@ Another possible receiver sensitivity test is to measure the power level and $$ 
 
 ## Indicators of Availability
 
-Possible indicators of availability are:
+It follows a list of possible availability indicators for a software-defined GNSS receiver:
 
 * Maximum observed running time, measured and reported as explained above, and for each of the _running modes_ (that is, for all the GNSS signal combinations) allowed by the software receiver.
 * Time To First Fix (TTFF), measured and reported as explained above for cold, warm and hot starts, and for each of the _running modes_ (that is, for all the GNSS signal combinations) allowed by the software receiver.

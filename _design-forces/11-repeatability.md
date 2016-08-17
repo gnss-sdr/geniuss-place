@@ -50,7 +50,7 @@ _2D position scatter plot and the circles containing 50 %, 65 % and 95% of posit
 
 ## Indicators of Repeatability
 
-Possible repeatability indicators are:
+It follows a list of possible repeatability indicators for a software-defined GNSS receiver:
 
 * Stand-alone receiver's static positioning precision.
 * Differential GNSS static positioning precision.

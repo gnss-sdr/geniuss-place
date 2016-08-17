@@ -29,7 +29,7 @@ The value proposition and thrust of **[Open Innovation](https://en.wikipedia.org
 
 ## Indicators of Openness
 
-Possible openness indicators are:
+It follows a list of possible openness indicators for a software-defined GNSS receiver:
 
 * Software released under a [free and open source license](https://opensource.org/licenses){:target="_blank"}.
   - Allowing derivative works under the same license terms.

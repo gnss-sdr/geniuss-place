@@ -10,7 +10,7 @@ _Popularity_ is a complex social phenomenon with no agreed upon definition. It c
 
 ## Indicators of Popularity
 
-Possible popularity indicators are:
+It follows a list of possible popularity indicators for a software-defined GNSS receiver:
 
 * Number of users / customers / licenses sold.
 * Traffic to the site, measured with a counter installed on site and traffic analysis systems, such as Google Analytics.

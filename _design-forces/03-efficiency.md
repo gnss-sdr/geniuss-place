@@ -10,7 +10,7 @@ In this context, _efficiency_ refers to optimizing the speed and memory requirem
 
 ## Indicators of Efficiency
 
-Possible efficiency indicators are:
+It follows a list of possible efficiency indicators for a software-defined GNSS receiver:
 
 * Number  of  parallel  channels  that  the  software  receiver  can  sustain  in  real time, given the targeted signal(s) (GPS L1 C/A, Galileo E1B, etc.) of each channel, the sampling rate, the sample data format and the computational resources available for signal processing.
 * Power consumption (in watts) for a given computing platform executing the software receiver and a given computational load in terms of number of signals and channels to be processed. Power consumption sometimes in given as current (in mA) for a given fixed voltage (in volts).

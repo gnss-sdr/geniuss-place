@@ -10,7 +10,7 @@ _Marketability_ is a measure of the ability of a security to be bought and sold.
 
 ## Indicators of Marketability
 
-For every instantiation of a product or service based on a software-defined GNSS receiver, managers should identify the (minimal) viable product, for which the organization will be continuously delivering (minimal) marketable features (MF) to create or maintain a (minimal) marketable product or service. From those definitions, possible marketability indicators are:
+For every instantiation of a product or service based on a software-defined GNSS receiver, managers should identify the (minimal) viable product, for which the organization will be continuously delivering (minimal) marketable features (MF) to create or maintain a (minimal) marketable product or service. From those definitions, possible marketability indicators for a software-defined GNSS receiver are:
 
 * **Business impact**: Savings obtained from the product or service with respect to a traditional (_i.e._, integrated circuit based) approach.
 * **Defect Ratio**: Percentage of the total MF which are defects.

@@ -60,11 +60,11 @@ Upon the definition of:
 
   -  The GNSS satellite coordinate reference system (expressed as "ITRFyy at epoch yyyy.y"[^Petit10]) and ellipsoid (_e.g._, WGS 84);
   -  The local geographic coordinate reference system (providing transformation parameters, if applicable) and ellipsoid;
-  -  In the case of static accuracy, a _reference point_, adequately surveyed and expressed in a well--defined coordinate reference system, and in which the Antenna Reference Point (ARP) is placed when collecting raw signal data, or as defined by the synthetic generator tool,
-  -  In the case of dynamic accuracy, one or more _reference timed trajectories_, in which the Antenna Reference Point (ARP) was mechanically moved when collecting raw signal data, or as defined by the synthetic generator tool,
-  -  In case of differential GNSS configurations, the datum of the differential source.
+  -  In the case of static accuracy, a _reference point_, adequately surveyed and expressed in a well--defined coordinate reference system, and in which the Antenna Reference Point (ARP) is placed when collecting raw signal data, or as defined by the synthetic generator tool;
+  -  In the case of dynamic accuracy, one or more _reference timed trajectories_, in which the Antenna Reference Point (ARP) was mechanically moved when collecting raw signal data, or as defined by the synthetic generator tool;
+  -  In case of differential GNSS configurations, the datum of the differential source;
 
-possible indicators of accuracy are:
+it follows a list of possible accuracy indicators for a software-defined GNSS receiver:
 
 * Stand-alone static position accuracy.
   -  Position accuracy results are given in meters of error with respect to a reference (fiducial)  point  previously  measured  in  a  geodetic  survey, or defined by the testing equipment. The most commonly used confidence measurements for 2D positioning are the Distance Root Mean Square (DRMS) and the Circular Error Probability (CEP); and the Mean Radial Spherical Error (MRSE), the Spherical Error Probable (SEP), and the 90 % and 99% Spherical Accuracy Standards when measures are expressed in 3D.

@@ -10,7 +10,7 @@ _Maintainability_ refers to the ease with which a product can be maintained in o
 
 ## Indicators of Maintainability
 
-Possible maintainability indicators are:
+It follows a list of possible maintainability indicators for a software-defined GNSS receiver:
 
 * Time to Fix Defects.
 * Source code under a version control system.

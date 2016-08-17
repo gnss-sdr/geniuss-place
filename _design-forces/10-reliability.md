@@ -17,7 +17,7 @@ Reliability is about the overall consistency of a measure. It is a concept that 
 
 ## Indicators of Reliability
 
-Possible indicators of reliability are:
+It follows a list of possible reliability indicators for a software-defined GNSS receiver:
 
 * Percentage of false and missed alerts.
 * Availability of receiver autonomous integrity monitoring (RAIM) mechanisms:

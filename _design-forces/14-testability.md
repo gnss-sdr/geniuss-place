@@ -33,6 +33,8 @@ Software tests have the following desirable features[^Whittaker12]:
 
 ## Indicators of Testability
 
+It follows a list of possible testability indicators for a software-defined GNSS receiver:
+
 * Unit / component / integration testing:
   - Availability of a software testing framework.
   - Number of available unit / component / integration tests.

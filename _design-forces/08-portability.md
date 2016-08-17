@@ -77,7 +77,7 @@ Applications that do not need an operating system are called _bare metal_ applic
 
 ## Indicators of Portability
 
-Possible portability indicators are:
+It follows a list of possible portability indicators for a software-defined GNSS receiver:
 
 * Number of supported processor architectures (specify distribution and release).
 

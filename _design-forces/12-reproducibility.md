@@ -9,7 +9,7 @@ _Reproducibility_ refers to the ability of an entire experiment or study to be r
 
 ## Indicators of Reproducibility
 
-Possible reproducibility indicators are:
+It follows a list of possible reproducibility indicators for a software-defined GNSS receiver:
 
 * Meet the requirements of [Reproducible Builds](https://reproducible-builds.org){:target="_blank"}, a set of software development practices which create a verifiable path from human readable source code to the binary code used by computers. This includes[^Bobbio15]:
   - The build system needs to be made entirely deterministic: transforming a given source must always create the same result. Typically, the current date and time must not be recorded and output always has to be written in the same order.

@@ -9,7 +9,7 @@ It refers to the degree to which a software can be used by specified consumers t
 
 ## Indicators of Usability
 
-Possible usability indicators are:
+It follows a list of possible usability indicators for a software-defined GNSS receiver:
 
 * Availability of a (versioned) User Manual.
 * Availability of a (versioned and documented) application user interface (API).

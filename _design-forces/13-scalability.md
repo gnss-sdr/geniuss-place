@@ -9,7 +9,7 @@ Scalability refers to the ability of the software to handle a growing amount of 
 
 ## Indicators of Scalability
 
-Possible scalability indicators are:
+It follows a list of possible scalability indicators for a software-defined GNSS receiver:
 
 * Quasi-linear acceleration with the number of processors available in the computing platform.
 * Arbitrarily scalable receiver's software architecture: unlimited addition of new GNSS signals and algorithms.

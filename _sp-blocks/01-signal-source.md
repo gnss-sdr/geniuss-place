@@ -21,15 +21,7 @@ sidebar:
   ![Multiple sources]({{ site.url }}{{ site.baseurl }}/images/multisource.png)
 {% endcapture %}
 
-{% capture fig_img5 %}
-  ![Output2]({{ site.url }}{{ site.baseurl }}/images/Ch3_track.jpg)
-{% endcapture %}
-
-{% capture fig_img6 %}
-  ![GooGle Earth]({{ site.url }}{{ site.baseurl }}/images/RTLSDR-4CH-fs1.2-MSPS-no-LNA.jpg)
-{% endcapture %}
-
-A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kind of sources, from samples stored in files (in a variety of formats) to sample flows delivered in real-time by radio frequency front-ends.
+A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kind of sources, from samples stored in files (in a variety of formats) to multiple sample streams delivered in real-time by radio frequency front-ends.
 {: .notice--info}
 
 
@@ -44,7 +36,7 @@ Ethernet buses.
   consisting of an antenna, an amplification stage, downshifting from RF
   to and intermediate frequency (or baseband), filtering, sampling, and an
   interface to a host computer for real-time processing mode, or to an
-  storage device for post-processing..</figcaption>
+  storage device for post-processing.</figcaption>
 </figure>
 
 

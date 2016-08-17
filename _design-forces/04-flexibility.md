@@ -10,7 +10,7 @@ In the context of engineering design, _flexibility_ refers to the ability of a s
 
 ## Indicators of Flexibility
 
-Possible flexibility indicators are:
+It follows a list of possible flexibility indicators for a software-defined GNSS receiver:
 
 * Possibility to either use synthetically generated or real-life GNSS signals.
 + Possibility to process signals either in real time or in post-processing time (only limited by the computational capacity of the processing platform executing the software receiver).
