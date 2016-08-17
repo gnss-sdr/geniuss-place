@@ -81,7 +81,9 @@ On the contrary, in multi-sytem, multi-band configurations using a high number o
 
 ### Radio frequency front-ends
 
-For real-time operation with live GNSS signals, you will need an "air-to-computer" interface. That is, a suitable antenna and some hardware providing signal amplification, downshifting, filtering and conversion to the digital domain, plus some standard connection (usually, through USB or Ethernet) to the host computer in charge of the execution of the software-defined receiver, which will be performing all the baseband processing. Such computer needs to be powerful enough to sustain the required amount of computational load. For simple configurations, any modern laptop should work well.
+For real-time operation with live GNSS signals, you will need an "air-to-computer" interface. That is, a suitable antenna and some hardware providing signal amplification at the appropriate frequency ranges (see our [GNSS Signals tutorial]({{ site.url }}{{ site.baseurl }}/docs/tutorials/gnss-signals/){:target="_blank"} for more information about GNSS signals' center frequencies, modulations and recommended bandwidths), downshifting, filtering and conversion to the digital domain, plus some standard connection (usually, through USB or Ethernet) to the host computer in charge of the execution of the software-defined receiver, which will be performing all the baseband processing. Such computer needs to be powerful enough to sustain the required amount of computational load. For simple configurations, any modern laptop should work well.
+
+Commercially available examples of such "air-to-computer" interfaces are the [USRP family](https://www.ettus.com/product){:target="_blank"}.
 
 For testing purposes, the antenna can be replaced by a radio frequency GNSS signal generator, which can directly feed the front-end and thus provide controlled inputs to the software-defined receiver.
 
