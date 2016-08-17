@@ -64,7 +64,7 @@ $ wget https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGN
 $ tar -zxvf 2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz
 ```
 
-or by opening [this link](https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz/download) in your browser, downloading the file and unpacking it. This will get you the file `2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat`, which contains $$ 100 $$ seconds of raw GNSS signal samples collected by a RF front-end centered at $1,575.42$ MHz, that was delivering interleaved I&Q samples at $$ 4 $$ MS/s, in a 16-bit integer format.
+or by opening [this link](https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz/download) in your browser, downloading the file and unpacking it. This will get you the file `2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat`, which contains $$ 100 $$ seconds of raw GNSS signal samples collected by a RF front-end centered at $$ 1,575.42 $$ MHz, that was delivering baseband samples at $$ 4 $$ MS/s, in an interleaved I&Q 16-bit integer format.
 
 
 ## Step 3: Configure GNSS-SDR
