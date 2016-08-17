@@ -9,6 +9,7 @@ header:
 sidebar:
   nav: "start"
 ---
+
 {% include toc %}
 
 Obtaining position fixes from a file is nice and useful, but the real deal for a software-defined receiver is to play with live GNSS signals in real-time. This page describes examples of hardware setups, software configurations and general tips for obtaining position fixes (and a collection of side data, delivered in standard formats) with GNSS-SDR.
@@ -105,7 +106,7 @@ Depending on the specific USRP model you are using, the connection to the host c
 |--------------
 
  _Common device identifiers. Source: [Identifying USRP Devices](http://files.ettus.com/manual/page_identification.html){:target="_blank"}._
-{: style="text-align: center;"}
+ {: style="text-align: center;"}
 
 Devices attached to your system can be discovered using the `uhd_find_devices` program. This program scans your system for supported devices and prints out an enumerated list of discovered devices and their addresses. If you type `uhd_find_devices --help` in a terminal, you should see something similar to this:
 
@@ -330,11 +331,11 @@ Current input signal time = 68 [s]
 
 ```
 
-If you see something similar to this... Yay! You are getting real-time position fixes with your open source software-defined GPS receiver! :smile:
-{: .notice--success}
+  If you see something similar to this... Yay! You are getting real-time position fixes with your open source software-defined GPS receiver!
+  {: .notice--success}
 
-**Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
-{: .notice--warning}
+  **Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
+  {: .notice--warning}
 
 Always stop the execution of GNSS-SDR by pressing key '`q`'  and then key '`ENTER`' (_not_ at the same time, first '`q`' and then '`ENTER`'):
 
@@ -362,7 +363,7 @@ Now you can examine the files created in your working folder.
 
 * Watch out for overflows! Maybe your host computer is not able to sustain the required computational load for this particular implementation.
 
-{% capture overflow %}
+{% capture overflow-text %}
  When receiving, the USRP device produces samples at a constant rate. Overflows occurs when the host computer does not consume data fast enough. When UHD software detects the overflow, it prints an "```O```" or "```D```" to the standard terminal output, and pushes an inline message packet into the receive stream.
 
   * **Network-based devices (_e.g._, USRP N2xx, X3xx)**: The host does not back-pressure the receive stream. When the kernel's socket buffer becomes full, it will drop subsequent packets. UHD software detects the overflow as a discontinuity in the packet's sequence numbers, and pushes an inline message packet into the receive stream. In this case the character ```D``` is printed to the standard terminal output as an indication.
@@ -371,7 +372,7 @@ Now you can examine the files created in your working folder.
 
 <div class="notice--danger">
   <h4>Overflow warnings:</h4>
-  {{ overflow | markdownify }}
+  {{ overflow-text | markdownify }}
 </div>
 
  * Play with configuration parameters:
