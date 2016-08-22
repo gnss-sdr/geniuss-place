@@ -83,9 +83,17 @@ On the contrary, in multi-sytem, multi-band configurations using a high number o
 
 For real-time operation with live GNSS signals, you will need an "air-to-computer" interface. That is, a suitable antenna and some hardware providing signal amplification at the appropriate frequency ranges (see our [GNSS Signals tutorial]({{ site.url }}{{ site.baseurl }}/docs/tutorials/gnss-signals/){:target="_blank"} for more information about GNSS signals' center frequencies, modulations and recommended bandwidths), downshifting, filtering and conversion to the digital domain, plus some standard connection (usually, through USB or Ethernet) to the host computer in charge of the execution of the software-defined receiver, which will be performing all the baseband processing. Such computer needs to be powerful enough to sustain the required amount of computational load. For simple configurations, any modern laptop should work well.
 
-Commercially available examples of such "air-to-computer" interfaces are the [USRP family](https://www.ettus.com/product){:target="_blank"}.
+It follows a list of commercially available examples of such general-purpose "air-to-computer" interfaces suitable for software-defined GNSS receivers:
 
-For testing purposes, the antenna can be replaced by a radio frequency GNSS signal generator, which can directly feed the front-end and thus provide controlled inputs to the software-defined receiver.
+* Ettus Research [USRP family](https://www.ettus.com/product){:target="_blank"} is designed for RF applications from DC to 6 GHz, and provides a wide range of devices. The USRP product line spans from affordable hobbyist SDRs to high-end high-bandwidth radios. All USRPs can be used by GNSS-SDR through the USRP Hardware Driver ([UHD](http://files.ettus.com/manual/){:target="_blank"}).
+
+* Fairwaves [UmTRX](http://umtrx.org){:target="_blank"} is an open hardware dual-channel wideband transceiver that covers from 300 MHz to 3.8 GHz. Host connection is via gigabit Ethernet, and a special version of UHD provides a host driver, along with the firmware.
+
+* Great Scott Gadgets [HackRF One](https://greatscottgadgets.com/hackrf/){:target="_blank"} is an open source hardware platform for Software Defined Radio that can operate from 1 MHz to 6 GHz, with a maximum quadrature sample rate of 20 MS/s with 8-bit quadrature samples (8-bit I and 8-bit Q). It features a Hi-Speed USB 2.0 connection and software-controlled antenna port power, and GNSS-SDR integration is provided via [gr-osmosdr](http://sdr.osmocom.org/trac/wiki/GrOsmoSDR){:target="_blank"}.
+
+* Nuand [BladeRF](http://nuand.com){:target="_blank"} is a wideband transceiver that covers from 300 MHz to 3.8 GHz. The host connection is via USB 3.0, and GNSS-SDR integration is provided via [gr-osmosdr](http://sdr.osmocom.org/trac/wiki/GrOsmoSDR){:target="_blank"}.
+
+For testing purposes, the antenna can be replaced by a radio frequency GNSS signal generator, which can directly feed the front-end and thus provide controlled inputs to the software-defined receiver. In such a case, you might need an attenuator between the signal generator and the antenna input in order to protect the RF circuitry.
 
 
 -----
