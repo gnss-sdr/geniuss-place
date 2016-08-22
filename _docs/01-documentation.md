@@ -45,5 +45,5 @@ In addition, there is a set of tutorials providing more information in particula
 
 ... and [many more]({{ site.url }}{{ site.baseurl }}/docs/tutorials/)!
 
-[![Icon]({{ site.url }}{{ site.baseurl }}/images/icon-gnss-sdr-white.png){: width="36px"} Check our Tutorials page]({{ site.url }}{{ site.baseurl }}/docs/tutorials/){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ site.url }}{{ site.baseurl }}/images/icon-gnss-sdr-white.png){: width="36px"} Check the full list of Tutorials]({{ site.url }}{{ site.baseurl }}/docs/tutorials/){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
