@@ -8,22 +8,20 @@ header:
   teaser: hw-header-th.jpg
 sidebar:
     nav: "geniuss-place"
-gallery:
-  - url: hw-header.jpg
-    image_path: hw-header-th.jpg
-    alt: "placeholder image 1"
-  - url: usrp-enclosure-1.jpg
-    image_path: usrp-enclosure-1.jpg
-    alt: "USRP enclosure"
-  - url: hw-header.jpg
-    image_path: hw-header-th.jpg
-    alt: "placeholder image 3"
 ---
 {% include base_path %}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The _maker_ movement is a trend in which people employ do-it-yourself (DIY) and do-it-with-others (DIWO) techniques and processes to develop unique technology products. This culture emphasizes learning-through-doing in a social environment...
 
-{% include gallery caption="This is a sample gallery to go along with this case study." %}
+fab lab
+
+* Design Thinking is a formal method for practical, creative resolution of problems or issues, with the intent of an improved future result.
+* Design Thinking attempts to inspire the essential element of creativity, the ability to take an abstract idea and create something with it.
+* Doing is equally as valuable as thinking.
+* Develop a _just-try-it_ mentality through rapid prototyping and iteration.
+
+
+![Coming soon]({{ site.url }}{{ site.baseurl }}/images/coming-soon.jpg){: .align-center}
 
 ## Stereolitografy example:
 
