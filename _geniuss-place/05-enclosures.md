@@ -1,24 +1,22 @@
 ---
-title: "Enclosures"
+title: "Make your own GNSS receiver"
 excerpt: "Designs of enclosures for you gear that you can print in 3D."
 permalink: /enclosures/
 comments: true
 header:
   image: usrp-enclosure-header.jpg
-  teaser: hw-header-th.jpg
+  teaser: srp-enclosure-header.jpg
 sidebar:
     nav: "geniuss-place"
 ---
 {% include base_path %}
 
-The _maker_ movement is a trend in which people employ do-it-yourself (DIY) and do-it-with-others (DIWO) techniques and processes to develop unique technology products. This culture emphasizes learning-through-doing in a social environment...
+The _maker movement_ is a trend in which people employ do-it-yourself (DIY) and do-it-with-others (DIWO) techniques and processes to develop unique technology products. This culture emphasizes learning-through-doing in a social environment, and thus it has spurred the creation of "maker spaces" and [Fab Labs](https://en.wikipedia.org/wiki/Fab_lab){:target="_blank"} (open, small-scale workshops with computer-controlled tools and flexible manufacturing equipment such as 3D printers, CNC machines, printed circuit board milling and etching tools, cutters, etc.) around the World. Those are spaces where people share ideas, tools and skillsets, creating an environment that encourages novel applications of technologies and the exploration of intersections between traditionally separate domains, and developing a _just-try-it_ mentality through rapid prototyping and iteration.
 
-fab lab
+  A free and open source software-defined GNSS receiver constitutes an excellent opportunity to exercise product design processes and methodologies.
+  {: .notice--info}
 
-* Design Thinking is a formal method for practical, creative resolution of problems or issues, with the intent of an improved future result.
-* Design Thinking attempts to inspire the essential element of creativity, the ability to take an abstract idea and create something with it.
-* Doing is equally as valuable as thinking.
-* Develop a _just-try-it_ mentality through rapid prototyping and iteration.
+
 
 
 ![Coming soon]({{ site.url }}{{ site.baseurl }}/images/coming-soon.jpg){: .align-center}

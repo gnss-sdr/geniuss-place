@@ -9,7 +9,7 @@ sidebar:
   nav: "geniuss-place"
 ---
 
-In spite of its name, software defined radio applications still need a portion of hardware. Although GNSS-SDR is free and open source software and it is usable without the need of hardware (it can work with raw signal samples stored in files), practical systems require physical components such as antennas and radio frequency front-ends that are not implementable by software. It is what could be called the _air-to-computer interface_, that is, the physical device that translates the radiowaves broadcast by GNSS satellites and received by a suitable antenna at a given location and time into a sequence of 0s and 1s tractable by a computer program.
+In spite of its name, software defined radio applications still need a portion of hardware. Although GNSS-SDR is free and open source software and it can be used on its own as a simulation and development environment without the need of any hardware (it can work with raw signal samples stored in files), practical systems require physical components such as antennas and radio frequency front-ends that are not implementable by software. It is what could be called the _air-to-computer interface_, that is, the physical device that translates the radiowaves broadcast by GNSS satellites and received by a suitable antenna at a given location and time into a sequence of 0s and 1s tractable by a computer program.
 
 ![Front-end]({{ site.url }}{{ site.baseurl }}/images/frontend.png){: .align-center}
 
@@ -33,3 +33,9 @@ The aim is to offer an unbiased creative scenario for GNSS front-end receiver de
 
 
 ![Coming soon]({{ site.url }}{{ site.baseurl }}/images/coming-soon.jpg){: .align-center}
+
+
+![GeNiuSS-One prototype]({{ site.url }}{{ site.baseurl }}/images/GeNiuSS-One-prototype.png){: width="400px" .align-center}
+
+  _Prototype of a GNSS radio frequency front-end with USB interface._
+  {: style="text-align: center;"}
