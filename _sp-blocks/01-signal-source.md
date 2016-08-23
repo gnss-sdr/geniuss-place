@@ -32,7 +32,7 @@ Ethernet buses.
 
 <figure>
   {{ fig_img2 | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>Simplified lock diagram of a generic radio frequency front-end,
+  <figcaption>Simplified block diagram of a generic radio frequency front-end,
   consisting of an antenna, an amplification stage, downshifting from RF
   to and intermediate frequency (or baseband), filtering, sampling, and an
   interface to a host computer for real-time processing mode, or to an
