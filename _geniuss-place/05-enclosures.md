@@ -5,7 +5,7 @@ permalink: /enclosures/
 comments: true
 header:
   image: usrp-enclosure-header.jpg
-  teaser: srp-enclosure-header.jpg
+  teaser: usrp-enclosure-header.jpg
 sidebar:
     nav: "geniuss-place"
 ---
@@ -21,7 +21,7 @@ The _maker movement_ is a trend in which people employ do-it-yourself (DIY) and 
 
 ![Coming soon]({{ site.url }}{{ site.baseurl }}/images/coming-soon.jpg){: .align-center}
 
-## Stereolitografy example:
+## Stereolitography example:
 
 <script src="https://embed.github.com/view/3d/hectorbu/Prueba-2/master/USRP_Version4/USRP_Base1.4.stl">
 </script>
