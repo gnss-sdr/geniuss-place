@@ -110,3 +110,25 @@ The Authors are proud to be supported by the following public institutions, priv
 
 [**NSL**](http://www.nsl.eu.com/){:target="_blank"} kindly provides equipment and technical support to the development of dual-band software architectures.
 {: .notice--success}
+
+-----
+
+
+[![Xilinx logo](https://silica.avnet.com/wps/wcm/connect/88131948-b40f-4223-89fd-137f3e8b3473/1/Xilinx-logo_web.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE-88131948-b40f-4223-89fd-137f3e8b3473/1-lid08oQ){:height="250px" width="250x"}](http://www.xilinx.com){:target="_blank"}
+{: style="text-align: center;"}
+
+* [Xilinx](http://www.xilinx.com){:target="_blank"} is a worldwide renowned supplier of programmable logic devices. It is known for inventing the field-programmable gate array (FPGA) and as the first semiconductor company with a fabless manufacturing model.
+
+Through their [**Xilinx University Program (XUP)**](https://www.xilinx.com/support/university.html){:target="_blank"}, Xilinx is supporting GNSS-SDR with the donation of four Zedboard development kits and a full license of the Vivado Design Suite, a software tool for synthesis and analysis of HDL designs.
+{: .notice--success}
+
+
+-------
+
+[![JetBrains logo](http://resources.jetbrains.com/assets/media/open-graph/jetbrains_250x250.png){:height="250px" width="250x"}](https://www.jetbrains.com){:target="_blank"}
+{: style="text-align: center;"}
+
+* [JetBrains](https://www.jetbrains.com){:target="_blank"} is a technology-leading software vendor specializing in the creation of intelligent development tools.
+
+[**JetBrains**](https://www.jetbrains.com){:target="_blank"} is supporting the development of GNSS-SDR by providing free licenses for their products as long their are used for open source projects. We specially like [CLion](https://www.jetbrains.com/clion/){:target="_blank"}, a smart cross-platform IDE for C and C++.
+{: .notice--success}
