@@ -26,17 +26,17 @@ Before start working in GNSS-SDR source code, specially if you want to contribut
 
 Found a typo in this website? Interested in giving your thoughts on existing pages, adding a post, tutorial, new feature or enhancement?
 
-This website itself lives in a [GitHub repository](https://github.com/carlesfernandez{{ site.baseurl }}/){:target="_blank"}. You can contribute in several ways:
+This website itself lives in a [GitHub repository](https://github.com/gnss-sdr{{ site.baseurl }}/){:target="_blank"}. You can contribute in several ways:
 
  * Commenting (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/){:target="_blank"}) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriate style.
 
  * Sharing the content in your favorite social network.
 
- * Checking [existing open issues](https://github.com/gnss-sdr/gnss-sdr/issues/){:target="_blank"} or submiting a [new one](https://github.com/gnss-sdr/gnss-sdr/issues/new){:target="_blank"}.
+ * Checking [existing open issues](https://github.com/gnss-sdr/geniuss-place/issues/){:target="_blank"} or submitting a [new one](https://github.com/gnss-sdr/geniuss-place/issues/new){:target="_blank"}.
 
- * [Forking this web](https://github.com/carlesfernandez{{ site.baseurl }}/fork){:target="_blank"}, working on the changes in your own repository, and making a pull request.
+ * [Forking this web](https://github.com/gnss-sdr{{ site.baseurl }}/fork){:target="_blank"}, working on the changes in your own repository, and making a pull request.
 
- [<i class="fa fa-github fa-lg"></i> Fork this website from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--geniuss .btn--x-large}
+ [<i class="fa fa-github fa-lg"></i> Fork this website from GitHub](https://github.com/gnss-sdr/geniuss-place/fork){: .btn .btn--geniuss .btn--x-large}
  {: style="text-align: center;"}
 
 
@@ -59,12 +59,12 @@ $ sudo gem install bundler
 Clone your forked repository of this website and install the required dependencies:
 
 ```bash
-$ git clone https://github.com/YOUR_USERNAME/test/
+$ git clone https://github.com/YOUR_USERNAME/geniuss-place/
 $ cd test
 $ bundler install
 ```
 
-After all gems are installed, the following command will deploy the website and run a local server at http://127.0.0.1:4000/
+After all gems are installed, the following command will deploy the website and run a local server at http://127.0.0.1:4000/geniuss-place/
 
 ```bash
 $ bundle exec jekyll serve -w --config _config.yml,_config.dev.yml
@@ -75,18 +75,18 @@ You should see something as:
 ```
 Configuration file: _config.yml
 Configuration file: _config.dev.yml
-            Source: /path_to_cloned_repo/test
-       Destination: /path_to_cloned_repo/test/_site
+            Source: /path_to_cloned_repo/geniuss-place
+       Destination: /path_to_cloned_repo/geniuss-place/_site
  Incremental build: disabled. Enable with --incremental
       Generating...
                     done in 4.017 seconds.
- Auto-regeneration: enabled for '/path_to_cloned_repo/test'
-Configuration file: /path_to_cloned_repo/test/_config.yml
-    Server address: http://127.0.0.1:4000/test/
+ Auto-regeneration: enabled for '/path_to_cloned_repo/geniuss-place'
+Configuration file: /path_to_cloned_repo/geniuss-place/_config.yml
+    Server address: http://127.0.0.1:4000/geniuss-place/
   Server running... press ctrl-c to stop.
 ```
 
-Just point your browser to that [local direction](http://127.0.0.1:4000/test/){:target="_blank"} in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
+Just point your browser to that [local direction](http://127.0.0.1:4000/geniuss-place/){:target="_blank"} in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
 
 **Pro Tip**: if you want to modify Stylesheets or JavaScript (under ```/assets/_scss``` and ```assets/js```, respectively), you will need to install [Node.js](https://nodejs.org/en/){:target="_blank"}, ```cd```to the root of your project, and run ```$ npm install``` to get all the dependencies. If all gone well, then running ```$ npm run build:css``` will process all SCSS files into ```main.css```, and ```npm build:js``` will compress/concatenate ```_main.js``` and all plugin scripts into ```main.min.js```. Thus, upon a change on css or JavaScript content, run:
 ```
