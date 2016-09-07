@@ -1,22 +1,22 @@
 {
-  "name": "minimal-mistakes",
-  "version": "3.2.7",
-  "description": "Minimal Mistakes Jekyll theme npm build scripts",
+  "name": "geniuss-place",
+  "version": "1.0.0",
+  "description": "GNSS-SDR website npm build scripts",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mmistakes/minimal-mistakes.git"
+    "url": "git://github.com/gnss-sdr/geniuss-place.git"
   },
   "keywords": [
-    "jekyll",
-    "theme",
-    "minimal"
+    "gnss",
+    "sdr",
+    "website"
   ],
-  "author": "Michael Rose",
+  "author": "Carles Fernandez-Prades",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mmistakes/minimal-mistakes/issues"
+    "url": "https://github.com/gnss-sdr/geniuss-place/issues"
   },
-  "homepage": "https://mmistakes.github.io/minimal-mistakes/",
+  "homepage": "https://gnss-sdr.github.io/geniuss-place/",
   "engines": {
     "node": ">= 0.10.0"
   },
