@@ -12,7 +12,7 @@ It refers to the degree to which a software can be used by specified consumers t
 It follows a list of possible usability indicators for a software-defined GNSS receiver:
 
 * Availability of a (versioned) User Manual.
-* Availability of a (versioned and documented) application user interface (API).
+* Availability of a (versioned and documented) application programming interface (API).
 * Availability of graphical user interface.
 * Availability of accessibility mechanisms for users who experience disabilities.
 * Availability of mechanisms for remote operation.
