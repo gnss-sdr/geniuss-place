@@ -60,7 +60,7 @@ Clone your forked repository of this website and install the required dependenci
 
 ```bash
 $ git clone https://github.com/YOUR_USERNAME/geniuss-place/
-$ cd test
+$ cd geniuss-place
 $ bundler install
 ```
 
