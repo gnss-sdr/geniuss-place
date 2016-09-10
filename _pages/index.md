@@ -4,7 +4,7 @@ permalink: /
 date:
 header:
   overlay_color: "#3399cc"
-  overlay_image: mm-home-page-feature.jpg
+  overlay_image: index-header.jpg
   # cta_label: "<i class='fa fa-download'></i> Install Now"
   # cta_url: "/docs/quick-start-guide/"
   caption:
