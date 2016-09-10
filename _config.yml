@@ -101,6 +101,7 @@ include:
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
+  - vendor
   - .asset-cache
   - .bundle
   - .jekyll-assets-cache
@@ -248,6 +249,11 @@ defaults:
       sidebar:
         nav: "design-forces"
 
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+
 
 # Outputting
 permalink: /:categories/:title/
@@ -263,7 +269,6 @@ gems:
   - jekyll-gist
   - jekyll-feed
   - jemoji
-  - jekyll-redirect-from
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -272,7 +277,6 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jemoji
-  - jekyll-redirect-from
 
 
 # Archives

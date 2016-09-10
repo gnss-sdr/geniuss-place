@@ -88,15 +88,11 @@ Configuration file: /path_to_cloned_repo/geniuss-place/_config.yml
 
 Just point your browser to that [local direction](http://127.0.0.1:4000/geniuss-place/){:target="_blank"} in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
 
-**Pro Tip**: if you want to modify Stylesheets or JavaScript (under ```/assets/_scss``` and ```assets/js```, respectively), you will need to install [Node.js](https://nodejs.org/en/){:target="_blank"}, ```cd```to the root of your project, and run ```$ npm install``` to get all the dependencies. If all gone well, then running ```$ npm run build:css``` will process all SCSS files into ```main.css```, and ```npm build:js``` will compress/concatenate ```_main.js``` and all plugin scripts into ```main.min.js```. Thus, upon a change on css or JavaScript content, run:
-```
-$ npm run build:css
-```
-or
+**Pro Tip**: if you want to modify JavaScript (under ```assets/js```), you will need to install [Node.js](https://nodejs.org/en/){:target="_blank"}, ```cd```to the root of your project, and run ```$ npm install``` to get all the dependencies. If all gone well, then running ```npm run build:js``` will compress/concatenate ```_main.js``` and all plugin scripts into ```main.min.js```. Thus, upon a change on JavaScript content, run:
 ```
 $ npm run build:js
 ```
-in order to update ```main.css``` and ```main.js``` scripts and implement the changes on the website.
+in order to update the ```main.js``` script and implement the changes on the website.
 {: .notice--warning}
 
 **Note**: If you upgraded from a previous version of the theme be sure you copied over ```package.json``` prior to running ```npm install```.
