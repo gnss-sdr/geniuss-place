@@ -486,18 +486,6 @@ SignalSource.swap_iq=false
 
 
 
-### NSL Stereo
-
-### Flexiband
-
-```bash
-$ cmake -DENABLE_FLEXIBAND=ON ../
-```
-It requires an specific driver that is not available under an open
-source license.
-
-
-
 
 
 Multiple radio frequency chains

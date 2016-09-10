@@ -2,7 +2,7 @@
 title: "My first position fix"
 permalink: /my-first-fix/
 excerpt: "How to quickly get a position fix with GNSS-SDR."
-modified: 2016-04-13T15:54:02-04:00
+modified: 2016-09-10T15:54:02-04:00
 header:
   teaser: "gn3s_pvt_4_sats.jpg"
 sidebar:
@@ -97,6 +97,7 @@ Resampler.item_type=cshort
 Channels_1C.count=8
 Channels.in_acquisition=1
 Channel.signal=1C
+Channel.input_type=cshort  ; not needed from 0.0.8+
 
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition

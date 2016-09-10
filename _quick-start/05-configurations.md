@@ -375,4 +375,4 @@ Now you can examine the files created in your working folder.
   {{ overflow-text | markdownify }}
 </div>
 
- * Play with configuration parameters:
+ * Play with configuration parameters!

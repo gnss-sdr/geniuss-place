@@ -54,7 +54,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -95,7 +95,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -145,7 +145,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -185,7 +185,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -392,7 +392,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -446,7 +446,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  .  | Mandatory |
+| `GNSS-SDR.internal_fs_hz` | Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
