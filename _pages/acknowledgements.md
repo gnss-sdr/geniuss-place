@@ -55,10 +55,10 @@ The Authors are proud to be supported by the following public institutions, priv
     [![GSoC logo]({{ site.url }}{{ site.baseurl }}/images/logo-gsoc.png){:height="100px" width="100x"}](https://developers.google.com/open-source/gsoc/){:target="_blank"}
     {: style="text-align: center;"}
 
-     * [2016](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr){:target="_blank"} ...exciting developents happening right now!
-          - In [GNSS-SDR port to android](https://summerofcode.withgoogle.com/projects/?sp-page=2#4871316700135424){:target="_blank"}, Eric Wild is working on porting GNSS-SDR to Android.
-          - In [Implementation of the BeiDou signal tracking block for the GNSS-SDR Project](https://summerofcode.withgoogle.com/projects/?sp-page=2#5537250955755520){:target="_blank"}, Enric Juan is developing the Beidou B1 receiver.
-          - In [Project Frisbee : An Antenna Array Receiver Testbed for GNSS-SDR](https://summerofcode.withgoogle.com/projects/?sp-page=2#4771132842442752){:target="_blank"}, Ajith Peter is exploring advanced front-end architectures and evolving his open design.
+     * [2016](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr){:target="_blank"}
+          - In [GNSS-SDR port to android](https://summerofcode.withgoogle.com/projects/?sp-page=2#4871316700135424){:target="_blank"}, Eric Wild worked on porting GNSS-SDR to Android.
+          - In [Implementation of the BeiDou signal tracking block for the GNSS-SDR Project](https://summerofcode.withgoogle.com/projects/?sp-page=2#5537250955755520){:target="_blank"}, Enric Juan developed part of the Beidou B1 receiver.
+          - In [Project Frisbee : An Antenna Array Receiver Testbed for GNSS-SDR](https://summerofcode.withgoogle.com/projects/?sp-page=2#4771132842442752){:target="_blank"}, Ajith Peter explored advanced front-end architectures and evolved his open design.
 
      * [2015](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr){:target="_blank"}
           - In [BeiDou signal generation and acquisition](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/giorgio.html), Giorgio Savastano explored acquisition methods for the Beidou B1 receiver.
