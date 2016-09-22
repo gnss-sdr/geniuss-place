@@ -40,9 +40,9 @@ GNSS-SDR package updates need to undergo an acceptance process before they are i
 
 If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/). If your Operating System release still does not include the GNSS-SDR package, you can [build it from source](#source).
 
-## Mac OS X using Macports
+## macOS / Mac OS X using Macports
 
-If you are using Mac OS X 10.9 or above, and the [Macports](https://www.macports.org/){:target="_blank"} package manager, GNSS-SDR can be installed by typing in a Terminal:
+If you are using Mac OS X 10.9 or above, or macOS Sierra, and the [Macports](https://www.macports.org/){:target="_blank"} package manager, GNSS-SDR can be installed by typing in a Terminal:
 
     $ sudo port install gnss-sdr
 
