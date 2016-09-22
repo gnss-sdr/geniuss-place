@@ -6,3 +6,5 @@
 .jekyll-metadata
 _site
 node_modules
+CNAME
+google*
