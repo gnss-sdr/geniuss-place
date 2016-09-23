@@ -1,6 +1,6 @@
 ---
 title: "How to profile the code"
-excerpt: "This tutorial describes what is probably one of the cheapest ways for experimenting with real-life signals and GNSS-SDR."
+excerpt: "Tools for profiling GNSS-SDR."
 author_profile: false
 header:
   teaser: Rtlsdr_with_lna_patch_GA27.jpg
