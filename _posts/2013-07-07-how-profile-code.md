@@ -3,7 +3,7 @@ title: "How to profile the code"
 excerpt: "Tools for profiling GNSS-SDR."
 author_profile: false
 header:
-  teaser: Rtlsdr_with_lna_patch_GA27.jpg
+  teaser: https://upload.wikimedia.org/wikipedia/en/f/f9/Valgrind_logo.png
 tags:
   - news
 ---
