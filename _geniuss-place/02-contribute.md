@@ -2,7 +2,7 @@
 title: "How to contribute"
 permalink: /contribute/
 excerpt: "Contributing to the Source Code and to this website."
-modified: 2016-09-10T15:54:02-04:00
+modified: 2016-09-25T08:54:02+02:00
 header:
   teaser: "geniuss-contribute.png"
 comments: true
@@ -26,7 +26,7 @@ Before start working in GNSS-SDR source code, specially if you want to contribut
 
 Found a typo in this website? Interested in giving your thoughts on existing pages, adding a post, tutorial, new feature or enhancement?
 
-This website itself lives in a [GitHub repository](https://github.com/gnss-sdr{{ site.baseurl }}/){:target="_blank"}. You can contribute in several ways:
+This website itself lives in a [GitHub repository](https://github.com/gnss-sdr/geniuss-place.git){:target="_blank"}. You can contribute in several ways:
 
  * Commenting (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/){:target="_blank"}) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriate style.
 
@@ -34,7 +34,7 @@ This website itself lives in a [GitHub repository](https://github.com/gnss-sdr{{
 
  * Checking [existing open issues](https://github.com/gnss-sdr/geniuss-place/issues/){:target="_blank"} or submitting a [new one](https://github.com/gnss-sdr/geniuss-place/issues/new){:target="_blank"}.
 
- * [Forking this web](https://github.com/gnss-sdr{{ site.baseurl }}/fork){:target="_blank"}, working on the changes in your own repository, and making a pull request.
+ * [Forking this web](https://github.com/gnss-sdr/geniuss-place/fork){:target="_blank"}, working on the changes in your own repository, and making a pull request.
 
  [<i class="fa fa-github fa-lg"></i> Fork this website from GitHub](https://github.com/gnss-sdr/geniuss-place/fork){: .btn .btn--geniuss .btn--x-large}
  {: style="text-align: center;"}
@@ -58,7 +58,7 @@ $ sudo gem install bundler
 
 Clone your forked repository of this website and install the required dependencies:
 
-```bash
+```
 $ git clone https://github.com/YOUR_USERNAME/geniuss-place/
 $ cd geniuss-place
 $ bundler install
@@ -66,7 +66,7 @@ $ bundler install
 
 After all gems are installed, the following command will deploy the website and run a local server at http://127.0.0.1:4000/
 
-```bash
+```
 $ bundle exec jekyll serve -w --config _config.yml,_config.dev.yml
 ```
 
@@ -96,5 +96,5 @@ $ npm run build:js
 in order to update the ```main.js``` script and implement the changes on the website.
 {: .notice--warning}
 
-**Note**: If you upgraded from a previous version of the theme be sure you copied over ```package.json``` prior to running ```npm install```.
+**Note**: If you upgraded from a previous version of the website be sure you copied over ```package.json``` prior to running ```npm install```.
 {: .notice--warning}
