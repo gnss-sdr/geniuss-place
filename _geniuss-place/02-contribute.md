@@ -2,7 +2,7 @@
 title: "How to contribute"
 permalink: /contribute/
 excerpt: "Contributing to the Source Code and to this website."
-modified: 2016-09-10T15:54:02-04:00
+modified: 2016-09-25T08:54:02+02:00
 header:
   teaser: "geniuss-contribute.png"
 comments: true
@@ -58,7 +58,7 @@ $ sudo gem install bundler
 
 Clone your forked repository of this website and install the required dependencies:
 
-```bash
+```
 $ git clone https://github.com/YOUR_USERNAME/geniuss-place/
 $ cd geniuss-place
 $ bundler install
@@ -66,7 +66,7 @@ $ bundler install
 
 After all gems are installed, the following command will deploy the website and run a local server at http://127.0.0.1:4000/
 
-```bash
+```
 $ bundle exec jekyll serve -w --config _config.yml,_config.dev.yml
 ```
 
@@ -96,5 +96,5 @@ $ npm run build:js
 in order to update the ```main.js``` script and implement the changes on the website.
 {: .notice--warning}
 
-**Note**: If you upgraded from a previous version of the theme be sure you copied over ```package.json``` prior to running ```npm install```.
+**Note**: If you upgraded from a previous version of the website be sure you copied over ```package.json``` prior to running ```npm install```.
 {: .notice--warning}
