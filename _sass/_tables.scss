@@ -47,6 +47,7 @@ tr, td, th {
   vertical-align: top;
 }
 
+
 #forcetable {
   padding: 0.5em;
   font-size: $type-size-4;
@@ -55,6 +56,38 @@ tr, td, th {
   border-right: 0px hidden $body-color;
   text-align: left;
   vertical-align: top;
+
+  .archive__item-excerpt {
+    margin-top: 0;
+    font-size: $type-size-5;
+
+    & + p {
+      text-indent: 0;
+    }
+  }
+}
+
+
+#forcetable2 {
+  padding: 0.5em;
+  font-size: $type-size-4;
+  border: 0px hidden $body-color;
+  border-bottom: 0px hidden $body-color;
+  border-right: 0px hidden $body-color;
+  text-align: left;
+  vertical-align: top;
+
+  a {
+    color: $dark-gray;
+    text-decoration: none;
+    border-bottom: 1px solid $light-gray;
+    transition: $global-transition;
+
+    &:hover {
+      color: #000;
+      border-bottom-color: #000;
+    }
+  }
 
   .archive__item-excerpt {
     margin-top: 0;
