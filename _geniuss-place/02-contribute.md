@@ -64,7 +64,7 @@ $ cd geniuss-place
 $ bundler install
 ```
 
-After all gems are installed, the following command will deploy the website and run a local server at http://127.0.0.1:4000/geniuss-place/
+After all gems are installed, the following command will deploy the website and run a local server at http://127.0.0.1:4000/
 
 ```bash
 $ bundle exec jekyll serve -w --config _config.yml,_config.dev.yml
@@ -81,12 +81,13 @@ Configuration file: _config.dev.yml
       Generating...
                     done in 4.017 seconds.
  Auto-regeneration: enabled for '/path_to_cloned_repo/geniuss-place'
-Configuration file: /path_to_cloned_repo/geniuss-place/_config.yml
-    Server address: http://127.0.0.1:4000/geniuss-place/
+Configuration file: _config.yml
+Configuration file: _config.dev.yml
+    Server address: http://127.0.0.1:4000/
   Server running... press ctrl-c to stop.
 ```
 
-Just point your browser to that [local direction](http://127.0.0.1:4000/geniuss-place/){:target="_blank"} in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
+Just point your browser to that [local direction](http://127.0.0.1:4000/){:target="_blank"} in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
 
 **Pro Tip**: if you want to modify JavaScript (under ```assets/js```), you will need to install [Node.js](https://nodejs.org/en/){:target="_blank"}, ```cd```to the root of your project, and run ```$ npm install``` to get all the dependencies. If all gone well, then running ```npm run build:js``` will compress/concatenate ```_main.js``` and all plugin scripts into ```main.min.js```. Thus, upon a change on JavaScript content, run:
 ```
