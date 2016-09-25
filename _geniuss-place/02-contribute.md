@@ -26,7 +26,7 @@ Before start working in GNSS-SDR source code, specially if you want to contribut
 
 Found a typo in this website? Interested in giving your thoughts on existing pages, adding a post, tutorial, new feature or enhancement?
 
-This website itself lives in a [GitHub repository](https://github.com/gnss-sdr{{ site.baseurl }}/){:target="_blank"}. You can contribute in several ways:
+This website itself lives in a [GitHub repository](https://github.com/gnss-sdr/geniuss-place.git){:target="_blank"}. You can contribute in several ways:
 
  * Commenting (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/){:target="_blank"}) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriate style.
 
@@ -34,7 +34,7 @@ This website itself lives in a [GitHub repository](https://github.com/gnss-sdr{{
 
  * Checking [existing open issues](https://github.com/gnss-sdr/geniuss-place/issues/){:target="_blank"} or submitting a [new one](https://github.com/gnss-sdr/geniuss-place/issues/new){:target="_blank"}.
 
- * [Forking this web](https://github.com/gnss-sdr{{ site.baseurl }}/fork){:target="_blank"}, working on the changes in your own repository, and making a pull request.
+ * [Forking this web](https://github.com/gnss-sdr/geniuss-place/fork){:target="_blank"}, working on the changes in your own repository, and making a pull request.
 
  [<i class="fa fa-github fa-lg"></i> Fork this website from GitHub](https://github.com/gnss-sdr/geniuss-place/fork){: .btn .btn--geniuss .btn--x-large}
  {: style="text-align: center;"}
