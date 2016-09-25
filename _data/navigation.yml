@@ -107,7 +107,8 @@ about:
         url: /publications/
 
 sp-block:
-  - title: Signal Processing blocks
+  - title: Signal Processing Blocks
+    url: /docs/sp-blocks/
     children:
       - title: "Signal Source"
         url: /docs/sp-blocks/signal-source/
@@ -134,6 +135,7 @@ sp-block:
 
 design-forces:
   - title: Design Forces
+    url: /design-forces/
     children:
       - title: "Accuracy"
         url: /design-forces/accuracy/
