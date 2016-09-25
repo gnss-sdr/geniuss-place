@@ -1,5 +1,4 @@
 ---
-
 title: "16 Design Forces for software-defined GNSS receivers"
 excerpt: "A discussion on how to assesss software-defined GNSS receivers."
 permalink: "/design-forces/"
