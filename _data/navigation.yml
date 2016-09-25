@@ -1,25 +1,4 @@
-# example navigation
-foo:
-  - title: "Parent Link 1"
-    url: /parent-1-page-url/
-    children:
-      - title: "Child Link 1"
-        url: /child-1-page-url/
-      - title: "Child Link 2"
-        url: /child-2-page-url/
-
-  - title: "Parent Link 2"
-    url: /parent-2-page-url/
-    children:
-      - title: "Child Link 1"
-        url: /child-1-page-url/
-      - title: "Child Link 2"
-        url: /child-2-page-url/
-      - title: "Child Link 3"
-        url: /child-3-page-url/
-
-
-# main links links
+# main links
 main:
   - title: "Quick-Start Guide"
     url: /quick-start-guide/
@@ -65,20 +44,6 @@ docs:
         url: /docs/sp-blocks/
       - title: "Tutorials"
         url: /docs/tutorials/
-
-participate:
-  - title: Participate
-    children:
-      - title: "Design Forces"
-        url: /design-forces/
-      - title: "Open Design"
-        url: /rf-frontends/
-      - title: "Makers"
-        url: /hardware/enclosures
-      - title: "Contribute"
-        url: /contribute/
-      - title: "Coding Style"
-        url: /coding-style/
 
 geniuss-place:
   - title: GeNiuSS Place
