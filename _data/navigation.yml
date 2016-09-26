@@ -134,3 +134,54 @@ design-forces:
         url: /design-forces/openness/
       - title: "Usability"
         url: /design-forces/usability/
+
+news:
+  - title: Quick-Start Guide
+    children:
+      - title: "Quick-Start Guide"
+        url: /quick-start-guide/
+      - title: "Requirements"
+        url: /requirements/
+      - title: "Build and Install"
+        url: /build-and-install/
+      - title: "My first position fix"
+        url: /my-first-fix/
+      - title: "Configurations"
+        url: /conf/
+
+  - title: Documentation
+    children:
+      - title: "Overview"
+        url: /docs/overview/
+      - title: "Fundamentals"
+        url: /docs/fundamentals/
+      - title: "Control Plane"
+        url: /docs/control-plane/
+      - title: "Signal Processing Blocks"
+        url: /docs/sp-blocks/
+      - title: "Tutorials"
+        url: /docs/tutorials/
+
+  - title: GeNiuSS Place
+    children:
+      - title: "Design Forces"
+        url: /design-forces/
+      - title: "Contribute"
+        url: /contribute/
+      - title: "Coding Style"
+        url: /coding-style/
+      - title: "Open RF Design"
+        url: /rf-frontends/
+      - title: "Makers"
+        url: /enclosures/
+
+  - title: About Us
+    children:
+      - title: "Team"
+        url: /team/
+      - title: "Acknowledgements"
+        url: /acks/
+      - title: "Media"
+        url: /media/
+      - title: "Publications"
+        url: /publications/
