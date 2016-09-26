@@ -3,7 +3,7 @@ layout: splash
 permalink: /
 date:
 header:
-  overlay_color: "000000" # "#3399cc"
+  overlay_color: "#000000" # "#3399cc"
   overlay_image: index-header.jpg
   # cta_label: "<i class='fa fa-download'></i> Install Now"
   # cta_url: "/docs/quick-start-guide/"
