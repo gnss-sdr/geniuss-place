@@ -42,7 +42,7 @@ If everything went fine, you can directly jump into how to get your [first posit
 
 ## macOS / Mac OS X using Macports
 
-If you are using Mac OS X 10.9 or above, or macOS Sierra, and the [Macports](https://www.macports.org/){:target="_blank"} package manager, GNSS-SDR can be installed by typing in a Terminal:
+If you are using macOS Sierra (or Mac OS X 10.9 and above), and the [Macports](https://www.macports.org/){:target="_blank"} package manager, GNSS-SDR can be installed by typing in a Terminal:
 
     $ sudo port install gnss-sdr
 
@@ -69,7 +69,7 @@ $ sudo port install gnss-sdr-next
   {{ mac-os-text | markdownify }}
 </div>
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/). Or maybe you might prefer other options, such as using [Homebrew](http://brew.sh/){:target="_blank"} instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on Mac OS X, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#mac-os-x-){:target="_blank"} file.
+If everything went fine, you can directly jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/). Or maybe you might prefer other options, such as using [Homebrew](http://brew.sh/){:target="_blank"} instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on macOS Sierra or Mac OS X, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x){:target="_blank"} file.
 
 # Building from source
 
