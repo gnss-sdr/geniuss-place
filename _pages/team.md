@@ -5,9 +5,6 @@ comments: false
 excerpt: "Team members profiles"
 sidebar:
   nav: "about"
-author:
-- usman
-- someone_else
 ---
 {% include base_path %}
 
