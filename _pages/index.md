@@ -4,34 +4,34 @@ permalink: /
 date:
 header:
   overlay_color: "#000000" # "#3399cc"
-  overlay_image: index-header.jpg
-  # cta_label: "<i class='fa fa-download'></i> Install Now"
-  # cta_url: "/docs/quick-start-guide/"
+  overlay_image: main-page-header.jpg
+  cta_label: "<i class='fa fa-download'></i> Install Now"
+  cta_url: "/build-and-install/"
   caption:
-excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver.' #<br /> <small>Currently at Version 3.2.7</small><br /><br /> {::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=mmistakes&repo=minimal-mistakes&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=mmistakes&repo=minimal-mistakes&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
+excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.8](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.8){:target="_blank"}</small> <br /><br /> ' # {::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 feature_row:
   - image_path: pcb.png
     alt: "RF front-ends"
-    title: "RF front-ends"
-    excerpt: "Open Designs of radio frequency front-ends."
+    title: "Open Design of RF front-ends"
+    excerpt: "Filling the gap between the antenna and the software receiver."
     url: "/rf-frontends/"
-    btn_label: "See an example"
+    btn_label: "From the antenna to position"
   - image_path: makers.png
     alt: "Enclosures"
-    title: "Enclosures"
+    title: "Make your own GNSS receiver"
     excerpt: "Nice enclosures for your gear that you can print in 3D."
     url: "/enclosures/"
-    btn_label: "See an example"
+    btn_label: "Open design of GNSS receivers"
   - image_path: radar-chart.png
     alt: "KPIs"
     title: "Key Performance Indicators"
     excerpt: "A discussion on the assessment of software-defined GNSS receivers."
     url: "/design-forces/"
-    btn_label: "Learn More"
-#github:
-#  - excerpt: '{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=mmistakes&repo=minimal-mistakes&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=mmistakes&repo=minimal-mistakes&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
+    btn_label: "Participate in the discussion"
+# github:
+#  - excerpt: '{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="158px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 intro:
-#  - excerpt: 'Get notified when I add new stuff &nbsp; [<i class="fa fa-twitter"></i> @mmistakes](https://twitter.com/mmistakes){: .btn .btn--twitter}'
+  - excerpt: '{::nomarkdown} <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 ---
 
 {% include feature_row id="intro" type="center" %}
