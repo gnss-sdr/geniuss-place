@@ -120,9 +120,6 @@ collections:
   quick-start:
     output: true
     permalink: /:path/
-  software:
-    output: true
-    permalink: /:collection/:path/
   geniuss-place:
     output: true
     permalink: /:collection/:path/
