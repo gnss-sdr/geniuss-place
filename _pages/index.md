@@ -19,7 +19,7 @@ feature_row:
   - image_path: makers.png
     alt: "Enclosures"
     title: "Make your own GNSS receiver"
-    excerpt: "Nice enclosures for your gear that you can print in 3D."
+    excerpt: "Designs of nice enclosures for your gear that you can print in 3D."
     url: "/enclosures/"
     btn_label: "Read more"
   - image_path: radar-chart.png
