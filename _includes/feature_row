@@ -42,7 +42,9 @@
           {% endif %}
 
           {% if f.url %}
-            <p><a href="{{ f_url }}" class="btn {{ f.btn_class }}">{{ f.btn_label | default: site.data.ui-text[site.locale].more_label }}</a></p>
+            <div class="archive__item-button">
+              <p><a href="{{ f_url }}" class="btn {{ f.btn_class }}">{{ f.btn_label | default: site.data.ui-text[site.locale].more_label }}</a></p>
+            </div>
           {% endif %}
         </div>
       </div>
