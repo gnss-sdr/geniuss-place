@@ -15,19 +15,19 @@ feature_row:
     title: "Open Design of RF front-ends"
     excerpt: "Filling the gap between the antenna and the software receiver."
     url: "/rf-frontends/"
-    btn_label: "From the antenna to position"
+    btn_label: "Read more"
   - image_path: makers.png
     alt: "Enclosures"
     title: "Make your own GNSS receiver"
     excerpt: "Nice enclosures for your gear that you can print in 3D."
     url: "/enclosures/"
-    btn_label: "Open design of GNSS receivers"
+    btn_label: "Read more"
   - image_path: radar-chart.png
     alt: "KPIs"
     title: "Key Performance Indicators"
     excerpt: "A discussion on the assessment of software-defined GNSS receivers."
     url: "/design-forces/"
-    btn_label: "Participate in the discussion"
+    btn_label: "Read more"
 # github:
 #  - excerpt: '{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="158px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 intro:
