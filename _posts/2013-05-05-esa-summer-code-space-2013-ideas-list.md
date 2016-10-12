@@ -6,6 +6,9 @@ header:
 tags:
   - news
 author_profile: false
+redirect_from:
+  - /documentation/esa-summer-code-space-2013-ideas-list
+  - /node/53
 ---
 
 ESA Summer of Code in Space 2013 ([SOCIS 2013](http://sophia.estec.esa.int/socis2013/){:target="_blank"}) is a program run by the European Space Agency. It aims at offering student developers stipends to write code for various space-related open source software projects. Through SOCIS, accepted student applicants are paired with a mentor or mentors from the participating projects, thus gaining exposure to real-world software development scenarios. In turn, the participating projects are able to more easily identify and bring in new developers. To learn more about the program, check out the [timeline](http://sophia.estec.esa.int/socis2013/timeline){:target="_blank"}, visit the [documentation center](http://sophia.estec.esa.int/socis2013/documentation_center){:target="_blank"}, or head to its [mailing list](https://groups.google.com/forum/#!forum/esa-socis){:target="_blank"}.

@@ -6,6 +6,8 @@ header:
 tags:
   - news
 author_profile: false
+redirect_from:
+  - /documentation/g​oogle-summer-code-2013-ideas-list
 ---
 
 [Global Navigation Satellite System (GNSS)](https://en.wikipedia.org/wiki/Satellite_navigation){:target="_blank"} is the general concept used to identify those systems that allow user positioning based on a constellation of satellites. Specific GNSS are the well-known American [GPS](http://www.gps.gov/){:target="_blank"}, the Russian [GLONASS](https://www.glonass-iac.ru/en/){:target="_blank"} or the forthcoming European [Galileo](https://ec.europa.eu/growth/sectors/space/galileo_en){:target="_blank"} and Chinese [BeiDou](http://en.beidou.gov.cn/){:target="_blank"}. Governments around the World are spending billions of dollars of tax payers' money in building and maintaining an infrastructure with explicitly free civilian usage. However, users only have access to a small fraction of the full capability of GNSS in terms of accuracy, robustness and reliability of the provided service at a reasonable cost. Professional, full-featured receivers are expensive, and even in those cases the users have limited access (if any) to know exactly how position and time information were computed.
