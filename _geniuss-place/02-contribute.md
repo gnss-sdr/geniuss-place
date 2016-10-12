@@ -6,6 +6,8 @@ modified: 2016-09-25T08:54:02+02:00
 header:
   teaser: "geniuss-contribute.png"
 comments: true
+redirect_from:
+  - /node/19
 ---
 {% include base_path %}
 {% include toc %}

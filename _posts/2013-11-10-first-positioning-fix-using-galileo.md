@@ -7,6 +7,8 @@ header:
 tags:
   - news
   - Galileo
+redirect_from:
+  - /node/54
 ---
 
 {% include base_path %}
