@@ -10,6 +10,8 @@ tags:
   - GN3S
 sidebar:
   nav: "docs"
+redirect_from:
+  - /documentation/sige-gn3s-sampler-v2-usb-front-end
 ---
 
 {% include base_path %}

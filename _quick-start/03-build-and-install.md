@@ -7,6 +7,9 @@ header:
   teaser: "geniuss-building.png"
 sidebar:
   nav: "start"
+redirect_from:
+  - /documentation/building-guide
+  - /node/45
 ---
 
 {% include base_path %}
