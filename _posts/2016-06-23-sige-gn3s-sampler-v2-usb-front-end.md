@@ -12,6 +12,7 @@ sidebar:
   nav: "docs"
 redirect_from:
   - /documentation/sige-gn3s-sampler-v2-usb-front-end
+  - /node/51
 ---
 
 {% include base_path %}
