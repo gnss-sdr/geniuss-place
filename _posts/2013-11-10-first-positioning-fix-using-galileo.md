@@ -4,6 +4,8 @@ excerpt: "Report of the first positioning fix exclusively using Galileo satellit
 author_profile: false
 header:
   teaser: ESA-ack.jpg
+sidebar:
+  nav: "news"
 tags:
   - news
   - Galileo
