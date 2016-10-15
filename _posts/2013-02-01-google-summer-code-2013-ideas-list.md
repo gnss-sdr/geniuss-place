@@ -1,11 +1,13 @@
 ---
 title: "Google Summer of Code 2013 ideas list"
-excerpt: "Ideas page for GSoC 2013"
+excerpt: "Ideas page for GSoC 2013."
 header:
   teaser: logo-gsoc.png
 tags:
   - news
 author_profile: false
+sidebar:
+  nav: "news"
 redirect_from:
   - /documentation/g​oogle-summer-code-2013-ideas-list
   - /node/52

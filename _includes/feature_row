@@ -38,7 +38,13 @@
 
         <div class="archive__item-body">
           {% if f.title %}
+          {% if f.url %}
+             <a href="{{ f_url }}">
+          {% endif %}
             <h2 class="archive__item-title">{{ f.title }}</h2>
+            {% if f.url %}
+              </a>
+            {% endif %}
           {% endif %}
 
           {% if f.excerpt %}
