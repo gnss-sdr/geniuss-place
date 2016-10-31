@@ -120,9 +120,6 @@ collections:
   quick-start:
     output: true
     permalink: /:path/
-  software:
-    output: true
-    permalink: /:collection/:path/
   geniuss-place:
     output: true
     permalink: /:collection/:path/
@@ -231,6 +228,7 @@ gems:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
+  - jekyll-redirect-from
   - jemoji
 
 # mimic GitHub Pages with --safe
@@ -239,6 +237,7 @@ whitelist:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
+  - jekyll-redirect-from
   - jemoji
 
 category_archive:

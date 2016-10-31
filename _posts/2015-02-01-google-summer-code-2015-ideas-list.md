@@ -1,11 +1,16 @@
 ---
 title: "Google Summer of Code 2015 ideas list"
-excerpt: "Ideas page for GSoC 2015"
+excerpt: "Ideas page for GSoC 2015."
 header:
   teaser: logo-gsoc.png
 tags:
   - news
 author_profile: false
+sidebar:
+  nav: "news"
+redirect_from:
+  - /documentation/g​oogle-summer-code-2015-ideas-list
+  - /node/57
 ---
 
 This year, GNSS-SDR is serving again as a mentoring organization for [Google Summer of Code](https://www.google-melange.com/archive/gsoc/2015){:target="_blank"} (also known as GSoC), a global program that offers students stipends to write code for open source projects. In order to participate in the program, you must be a student. Google defines a student as an individual enrolled in or accepted into an accredited institution including (but not necessarily limited to) colleges, universities, masters programs, PhD programs and undergraduate programs. You should be prepared, upon request, to provide Google with transcripts or other documentation from your accredited institution as proof of enrollment or admission status. Computer Science does not need to be your field of study in order to participate in the program. You may be enrolled as a full-time or part-time student, and must be 18 years of age or older oon or before April 27, 2015 to be eligible to participate in Google Summer of Code in 2015.

@@ -1,11 +1,15 @@
 ---
 title: "ESA Summer of Code in Space 2014 ideas list"
-excerpt: "Ideas page for SOCIS 2014"
+excerpt: "Ideas page for SOCIS 2014."
 header:
   teaser: http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/03/socis/15309314-1-eng-GB/SOCIS_large.jpg
 tags:
   - news
 author_profile: false
+sidebar:
+  nav: "news"
+redirect_from:
+  - /documentation/esa-summer-code-space-2014-ideas-list
 ---
 
 ESA Summer of Code in Space 2014 ([SOCIS 2014](http://sophia.estec.esa.int/socis2014/){:target="_blank"}) is a program run by the European Space Agency. It aims at offering student developers stipends to write code for various space-related open source software projects. Through SOCIS, accepted student applicants are paired with a mentor or mentors from the participating projects, thus gaining exposure to real-world software development scenarios. In turn, the participating projects are able to more easily identify and bring in new developers. To learn more about the program, check out the [timeline](http://sophia.estec.esa.int/socis2014/timeline){:target="_blank"}, visit the [documentation center](http://sophia.estec.esa.int/socis2014/documentation_center){:target="_blank"}, or head to its [mailing list](https://groups.google.com/forum/#!forum/esa-socis){:target="_blank"}.

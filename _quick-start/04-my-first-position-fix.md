@@ -72,6 +72,8 @@ or by opening [this link](https://sourceforge.net/projects/gnss-sdr/files/data/2
 Then, copy the GNSS-SDR configuration shown below and paste it into your favorite plain text editor:
 
 ```ini
+[GNSS-SDR]
+
 ;######### GLOBAL OPTIONS ##################
 GNSS-SDR.internal_fs_hz=2000000
 
@@ -85,30 +87,29 @@ SignalSource.samples=0
 
 ;######### SIGNAL_CONDITIONER CONFIG ############
 SignalConditioner.implementation=Signal_Conditioner
-DataTypeAdapter.implementation=Ishort_To_Cshort
+DataTypeAdapter.implementation=Ishort_To_Complex
 InputFilter.implementation=Pass_Through
-InputFilter.item_type=cshort
+InputFilter.item_type=gr_complex
 Resampler.implementation=Direct_Resampler
 Resampler.sample_freq_in=4000000
 Resampler.sample_freq_out=2000000
-Resampler.item_type=cshort
+Resampler.item_type=gr_complex
 
 ;######### CHANNELS GLOBAL CONFIG ############
 Channels_1C.count=8
 Channels.in_acquisition=1
 Channel.signal=1C
-Channel.input_type=cshort  ; not needed from 0.0.8+
 
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
-Acquisition_1C.item_type=cshort
+Acquisition_1C.item_type=gr_complex
 Acquisition_1C.threshold=0.008
 Acquisition_1C.doppler_max=10000
 Acquisition_1C.doppler_step=250
 
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_C_Aid_Tracking
-Tracking_1C.item_type=cshort
+Tracking_1C.item_type=gr_complex
 Tracking_1C.pll_bw_hz=40.0;
 Tracking_1C.dll_bw_hz=4.0;
 
