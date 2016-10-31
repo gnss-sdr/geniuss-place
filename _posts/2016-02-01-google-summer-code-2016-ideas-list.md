@@ -6,6 +6,8 @@ header:
 tags:
   - news
 author_profile: false
+sidebar:
+  nav: "news"
 redirect_from:
   - /documentation/g​oogle-summer-code-2016-ideas-list
   - /node/59

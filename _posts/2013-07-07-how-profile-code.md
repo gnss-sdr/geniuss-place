@@ -2,6 +2,8 @@
 title: "How to profile the code"
 excerpt: "Tools for profiling GNSS-SDR."
 author_profile: false
+sidebar:
+  nav: "news"
 header:
   teaser: https://upload.wikimedia.org/wikipedia/en/f/f9/Valgrind_logo.png
 tags:

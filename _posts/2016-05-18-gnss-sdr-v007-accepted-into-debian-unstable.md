@@ -7,6 +7,8 @@ tags:
   - news
   - Debian
 author_profile: false
+sidebar:
+  nav: "news"
 ---
 
 GNSS-SDR v0.0.7 has been accepted as a software package in [Debian unstable](https://packages.debian.org/source/sid/gnss-sdr).

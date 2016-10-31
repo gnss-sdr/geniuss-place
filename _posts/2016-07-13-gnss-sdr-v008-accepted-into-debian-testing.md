@@ -7,6 +7,8 @@ tags:
   - news
   - Debian
 author_profile: false
+sidebar:
+  nav: "news"
 ---
 
 GNSS-SDR v0.0.8 has been accepted as a software package in [Debian testing](https://packages.debian.org/source/testing/gnss-sdr){:target="_blank"} and [Ubuntu 16.09](https://launchpad.net/ubuntu/+source/gnss-sdr){:target="_blank"}.

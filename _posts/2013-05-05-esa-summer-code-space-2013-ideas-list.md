@@ -1,11 +1,13 @@
 ---
 title: "ESA Summer of Code in Space 2013 ideas list"
-excerpt: "Ideas page for SOCIS 2013"
+excerpt: "Ideas page for SOCIS 2013."
 header:
   teaser: http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/03/socis/15309314-1-eng-GB/SOCIS_large.jpg
 tags:
   - news
 author_profile: false
+sidebar:
+  nav: "news"
 redirect_from:
   - /documentation/esa-summer-code-space-2013-ideas-list
   - /node/53
