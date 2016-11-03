@@ -68,7 +68,7 @@ TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1C.dump=false
 ```
 
-### Implementation: `GPS_L2_M_Telemetry_Decoder`
+### Implementation: `GPS_L2C_Telemetry_Decoder`
 
 The GPS L2C baseband signal can be written as:
 
@@ -99,14 +99,14 @@ This implementation accepts the following parameters:
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
 
-  _Telemetry Decoder implementation:_ **`GPS_L2_M_Telemetry_Decoder`**.
+  _Telemetry Decoder implementation:_ **`GPS_L2C_Telemetry_Decoder`**.
   {: style="text-align: center;"}
 
 Example:
 
 ```ini
 ;######### TELEMETRY DECODER GPS L2C CONFIG ############
-TelemetryDecoder_2S.implementation=GPS_L2_M_Telemetry_Decoder
+TelemetryDecoder_2S.implementation=GPS_L2C_Telemetry_Decoder
 TelemetryDecoder_2S.dump=true
 ```
 
