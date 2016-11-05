@@ -1,6 +1,6 @@
 ---
 title: "Google Summer of Code 2016 ideas list"
-excerpt: "Ideas page for GSoC 2016"
+excerpt: "Ideas page for GSoC 2016."
 header:
   teaser: logo-gsoc.png
 tags:
