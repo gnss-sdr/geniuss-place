@@ -1,7 +1,7 @@
 ---
 title: "Coding Style"
 permalink: /coding-style/
-excerpt: "Coding style for GNSS-SDR"
+excerpt: "Coding style for GNSS-SDR source code development."
 modified: 2016-06-22T15:54:02-04:00
 header:
   teaser: geniuss-painting.jpg
