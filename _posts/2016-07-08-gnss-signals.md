@@ -500,7 +500,7 @@ On December 27, 2012, the Chinese government released the first version
 of BeiDou’s Interface Control Document (ICD), a 77-page
 document that included details of the navigation message, including
 parameters of the satellite almanacs and ephemerides that were missing
-from a “test version” of the ICD released exactly one year before. One year later, Version 2.0 was released, and version 2.1 followed in November 2016[^Beidou]. The wonderful Navipedia keeps track of [BeiDou status](http://www.navipedia.net/index.php/BeiDou_Future_and_Evolutions){:target="_blank"}.
+from a “test version” of the ICD released exactly one year before. One year later cersion 2.0 was released, and version 2.1 followed in November 2016[^Beidou]. The wonderful Navipedia keeps track of [BeiDou status](http://www.navipedia.net/index.php/BeiDou_Future_and_Evolutions){:target="_blank"}.
 
 ![BeiDou Logo](http://www.gpsworld.com/wp-content/uploads/2013/01/BeiDou-Logo.png){:height="250px" width="250x"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
 official logo of the BeiDou system, the design of which incorporates the
@@ -534,7 +534,7 @@ $$ e_{B1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{40920}\Big] \
 
 $$ e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{{XXXX}}  \Big]  \oplus   C_{\text{B1Q}}  \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~, $$
 
-Beidou’s Interface Control Document version 2.0 describes the Inphase
+Beidou’s Interface Control Document version 2.1 describes the Inphase
 component of the Beidou B1 link. The nominal frequency of B1I signal is
 1561.098 MHz.
 
