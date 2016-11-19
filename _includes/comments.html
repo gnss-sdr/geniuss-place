@@ -9,7 +9,7 @@
     <section class="fb-comments" data-href="{{ base_path }}{{ page.url }}" data-mobile="true" data-num-posts="{{ site.comments.facebook.num_posts | default: 5 }}" data-width="100%" data-colorscheme="{{ site.comments.facebook.colorscheme | default: 'light' }}"></section>
   {% when "google-plus" %}
   <script src="https://apis.google.com/js/plusone.js"></script>
-<div id="comments"></div>
+<div id="disqus-comments"></div>
 <script>
 gapi.comments.render('comments', {
   href: window.location,
@@ -19,6 +19,6 @@ gapi.comments.render('comments', {
 });
 </script>
   {% when "custom" %}
-    <section id="comments"></section>
+    <section id="custom-comments"></section>
   {% endcase %}
 </div>
