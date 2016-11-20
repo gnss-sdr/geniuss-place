@@ -4,13 +4,11 @@ excerpt: "A discussion on how to assess software-defined GNSS receivers."
 permalink: "/design-forces/"
 comments: true
 header:
-  image: kpi-header.jpg
-  teaser: kpi-header.jpg
+  image: /assets/images/kpi-header.jpg
+  teaser: /assets/images/kpi-header.jpg
 sidebar:
   nav: "geniuss-place"
 ---
-
-{% include base_path %}
 
 A GNSS receiver is a complex device which performance is affected by a wide range of internal and external factors. To the best of the authors' knowledge, the first formal effort to define testing procedures for GPS receivers is found in the paper by Teasley[^Teasley95], a work that anticipated the key concepts of the Standard 101 published by the Institute of Navigation in 1997[^ION97]. Such procedures have been widely accepted by the GNSS industry and, two decades later, world-class testing firms are still referencing them in their white papers. In summary, the set of those proposed testing procedures measure receiver's sensitivity in acquisition and tracking, diverse time-to-first-fix and reacquisition times, static and dynamic location accuracy and robustness to multipath and radio frequency interferences.
 

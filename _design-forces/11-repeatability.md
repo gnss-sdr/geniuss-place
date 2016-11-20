@@ -9,7 +9,7 @@ _Repeatability_ is related to the spread of a measure, also referred to as _prec
 
 The difference between [accuracy]({{ site.url }}{{ site.baseurl }}/design-forces/accuracy/) and precision is shown below:
 
-![Accuracy vs Precision]({{ site.url }}{{ site.baseurl }}/images/accuracy-and-precision.png){:width="520x"}
+![Accuracy vs Precision]({{ site.url }}{{ site.baseurl }}/assets/images/accuracy-and-precision.png){:width="520x"}
 {: style="text-align: center;"}
 _Although the two words precision and accuracy can be synonymous in colloquial use, they are deliberately contrasted in the context of the scientific method. Source: [Wikipedia](https://en.wikipedia.org/wiki/Accuracy_and_precision){:target="_blank"}._
 {: style="text-align: center;"}
@@ -42,7 +42,7 @@ $$ \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U
 
 Example:
 
-![2D scatter plot]({{ site.url }}{{ site.baseurl }}/images/2d-accuracy.png){:width="600x"}
+![2D scatter plot]({{ site.url }}{{ site.baseurl }}/assets/images/2d-accuracy.png){:width="600x"}
 {: style="text-align: center;"}
 _2D position scatter plot and the circles containing 50 %, 65 % and 95% of position fixes (corresponding to the CEP, DRMS and 2DRMS precision errors, respectively)[^Fernandez13]._
 {: style="text-align: center;"}

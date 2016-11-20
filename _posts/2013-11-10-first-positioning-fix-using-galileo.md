@@ -3,7 +3,7 @@ title: "First positioning fix using Galileo"
 excerpt: "Report of the first positioning fix exclusively using Galileo satellites."
 author_profile: false
 header:
-  teaser: ESA-ack.jpg
+  teaser: /assets/images/ESA-ack.jpg
 sidebar:
   nav: "news"
 tags:
@@ -16,19 +16,19 @@ redirect_from:
 {% include base_path %}
 
 {% capture fig_img1 %}
-  ![First GNSS-SDR Galileo standalone position fix]({{ site.url }}{{ site.baseurl }}/images/Galileo_fix_run2.jpg)
+  ![First GNSS-SDR Galileo standalone position fix]({{ '/assets/images/Galileo_fix_run2.jpg' | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img2 %}
-  ![Predicted positions of Galileo IOV satellites]({{ site.url }}{{ site.baseurl }}/images/ScrSav001.jpg)
+  ![Predicted positions of Galileo IOV satellites]({{ '/assets/images/ScrSav001.jpg' | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![2D ENU coordinates precision]({{ site.url }}{{ site.baseurl }}/images/Galileo_first_PVT_fix_precision_2D.jpg)
+  ![2D ENU coordinates precision]({{ '/assets/images/Galileo_first_PVT_fix_precision_2D.jpg' | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img4 %}
-  ![GNSS-SDR 3D ENU coordinates precision for the Galileo position fix]({{ site.url }}{{ site.baseurl }}/images/Galileo_first_PVT_fix_precision_3D.jpg)
+  ![GNSS-SDR 3D ENU coordinates precision for the Galileo position fix]({{ '/assets/images/Galileo_first_PVT_fix_precision_3D.jpg' | absolute_url }})
 {% endcapture %}
 
 
@@ -98,6 +98,6 @@ If you are interested in replicating the experiments and playing with the softwa
 
 **Update:** This position fix was acknowledged by the [European Space Agency](http://www.esa.int/){:target="_blank"} as one of the first 50 users of the Galileo system:
 
-![ESA Certificate]({{ site.url }}{{ site.baseurl }}/images/ESA-ack.jpg){: width="500px"}
+![ESA Certificate]({{ '/assets/images/ESA-ack.jpg' | absolute_url }}){: width="500px"}
 {: style="text-align: center;"}
 {: .notice--primary}

@@ -4,25 +4,25 @@ permalink: /
 date:
 header:
   overlay_color: "#000000" # "#3399cc"
-  overlay_image: main-page-header.jpg
+  overlay_image: /assets/images/main-page-header.jpg
   cta_label: "<i class='fa fa-download'></i> Install Now"
   cta_url: "/build-and-install/"
   caption:
 excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.8](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.8){:target="_blank"}</small> <br /><br /> ' # {::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 feature_row:
-  - image_path: pcb.png
+  - image_path: /assets/images/pcb.png
     alt: "RF front-ends"
     title: "Open Design of RF front-ends"
     excerpt: "Filling the gap between the antenna and the software receiver."
     url: "/rf-frontends/"
     btn_label: "Read more"
-  - image_path: makers.png
+  - image_path: /assets/images/makers.png
     alt: "Enclosures"
     title: "Make your own GNSS receiver"
     excerpt: "Designs of nice enclosures for your gear that you can print in 3D."
     url: "/enclosures/"
     btn_label: "Read more"
-  - image_path: radar-chart.png
+  - image_path: /assets/images/radar-chart.png
     alt: "KPIs"
     title: "Key Performance Indicators"
     excerpt: "A discussion on the assessment of software-defined GNSS receivers."
@@ -38,9 +38,9 @@ intro:
 
 {% include feature_row %}
 
-![GeNiuSS]({{ site.url }}{{ site.baseurl }}/images/geniuss.jpg){: width="300px"}
+![GeNiuSS]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss.jpg){: width="300px"}
 {: style="text-align: center;"}
-[![Icon]({{ site.url }}{{ site.baseurl }}/images/icon-gnss-sdr-white.png){: width="36px"} Get Started]({{ site.url }}{{ site.baseurl }}/quick-start-guide/){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ site.url }}{{ site.baseurl }}/assets/images/icon-gnss-sdr-white.png){: width="36px"} Get Started]({{ site.url }}{{ site.baseurl }}/quick-start-guide/){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 ---
@@ -93,5 +93,5 @@ intro:
 </td></tr></table></body></html>
 
 
-[![Icon]({{ site.url }}{{ site.baseurl }}/images/icon-gnss-sdr-white.png){: width="36px"} Learn more]({{ site.url }}{{ site.baseurl }}/docs/){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ site.url }}{{ site.baseurl }}/assets/images/icon-gnss-sdr-white.png){: width="36px"} Learn more]({{ site.url }}{{ site.baseurl }}/docs/){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}

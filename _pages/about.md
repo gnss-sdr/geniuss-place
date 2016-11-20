@@ -13,7 +13,7 @@ modified: 2016-07-24T16:39:37-04:00
 
 {:center: style="text-align: center"}
 [
-![CTTC logo]({{ site.url }}{{ site.baseurl }}/images/CTTC_logo_square.png){:height="250px" width="250x" : style="text-align: center;"}
+![CTTC logo]({{ 'assets/images/CTTC_logo_square.png' | absolute_url }}){:height="250px" width="250x" : style="text-align: center;"}
 ](http://www.cttc.es){:target="_blank"}
 {:center}
 

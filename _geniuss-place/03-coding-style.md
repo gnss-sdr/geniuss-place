@@ -4,7 +4,7 @@ permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
 modified: 2016-06-22T15:54:02-04:00
 header:
-  teaser: geniuss-painting.jpg
+  teaser: /assets/images/geniuss-painting.jpg
 comments: true
 ---
 
@@ -770,7 +770,7 @@ file looks drastically different from the existing code around it, the
 discontinuity throws readers out of their rhythm when they go to read
 it. Try to avoid this.
 
-![Coding Style]({{ site.url }}{{ site.baseurl }}/images/geniuss-painting.jpg)
+![Coding Style]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss-painting.jpg)
 
 -------
 

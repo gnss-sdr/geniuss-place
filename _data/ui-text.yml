@@ -8,6 +8,7 @@ en: &DEFAULT_EN
   pagination_next       : "Next"
   breadcrumb_home_label : "Home"
   breadcrumb_separator  : "/"
+  menu_label            : "Toggle Menu"
   toc_label             : "On This Page"
   ext_link_label        : "Direct Link"
   less_than             : "less than"
@@ -45,6 +46,7 @@ es: &DEFAULT_ES
   pagination_next       : "Siguiente"
   breadcrumb_home_label : "Inicio"
   breadcrumb_separator  : "/"
+  menu_label            :
   toc_label             : "Contenidos"
   ext_link_label        : "Enlace"
   less_than             : "menos de"
@@ -78,6 +80,7 @@ fr: &DEFAULT_FR
   pagination_next       : "Suivant"
   breadcrumb_home_label : "Accueil"
   breadcrumb_separator  : "/"
+  menu_label            :
   toc_label             : "Sur cette page"
   ext_link_label        : "Lien direct"
   less_than             : "plus petit que"
@@ -114,6 +117,7 @@ ca: &DEFAULT_CA
   pagination_next       : "Següent"
   breadcrumb_home_label : "Inici"
   breadcrumb_separator  : "/"
+  menu_label            :
   toc_label             : "Continguts"
   ext_link_label        : "Enllaç"
   less_than             : "menys de"

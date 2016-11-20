@@ -79,7 +79,7 @@ The following figure shows the relationship between $$ f $$ = [`band1_begin` `ba
 `ampl2_begin` `ampl2_end`] vectors in defining a desired frequency
 response for the _Input Filter_:
 
-![Filter]({{ site.url }}{{ site.baseurl }}/images/fir-filter.png){:width="600x"}
+![Filter]({{ site.url }}{{ site.baseurl }}/assets/images/fir-filter.png){:width="600x"}
 {: style="text-align: center;"}
 
 

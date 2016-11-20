@@ -4,8 +4,8 @@ excerpt: "Designs of enclosures for you gear that you can print in 3D."
 permalink: /enclosures/
 comments: true
 header:
-  image: usrp-enclosure-header.jpg
-  teaser: usrp-enclosure-header.jpg
+  image: /assets/images/usrp-enclosure-header.jpg
+  teaser: /assets/images/usrp-enclosure-header.jpg
 sidebar:
     nav: "geniuss-place"
 ---
@@ -19,7 +19,7 @@ The _maker movement_ is a trend in which people employ do-it-yourself (DIY) and 
 
 
 
-![Coming soon]({{ site.url }}{{ site.baseurl }}/images/coming-soon.jpg){: .align-center}
+![Coming soon]({{ site.url }}{{ site.baseurl }}/assets/images/coming-soon.jpg){: .align-center}
 
 ## Stereolitography example:
 
