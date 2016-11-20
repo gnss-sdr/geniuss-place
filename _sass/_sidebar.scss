@@ -40,6 +40,12 @@
     line-height: 1.5;
   }
 
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   img {
     width: 100%;
   }

@@ -20,7 +20,7 @@ front-end’s analog-to-digital converter (ADC), as shown below. Those bits can 
 disk or directly in real-time from a hardware device through USB or
 Ethernet buses.
 
-![Block diagram of a RF front-end]( {{ base_path }}assets/images/frontend.png)
+![Block diagram of a RF front-end]( {{ base_path }}/assets/images/frontend.png)
 
 This is a simplified block diagram of a generic radio frequency front-end,
 consisting of an antenna, an amplification stage, downshifting from RF
@@ -252,7 +252,7 @@ The data type expected by _Channels_ actually depends on the specific implementa
 The following Table shows some of the possible configurations when bringing samples from your  _Signal Source_ to the processing _Channels_:
 
 
-![Signal Conditioner options]( {{ base_path }}assets/images/signal-conditioner-options.png)
+![Signal Conditioner options]( {{ base_path }}/assets/images/signal-conditioner-options.png)
 
 
 ### What happens after Channels?

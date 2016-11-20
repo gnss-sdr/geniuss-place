@@ -14,7 +14,7 @@ redirect_from:
 
 {% include toc %}
 
-This page describe several ways to build and install GNSS-SDR.
+This page describes several ways to build and install GNSS-SDR.
 
 ![GeNiuSS building]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss-building.png){:height="250px" width="250x"}
 {: style="text-align: center;"}

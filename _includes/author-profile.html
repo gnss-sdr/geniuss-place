@@ -22,6 +22,7 @@
   <div class="author__content">
     <h3 class="author__name" itemprop="name">{{ author.name }}</h3>
     <meta itemprop="name" content="{{ author.name }}">
+    {% if author.name.size < 15 %} <br /> {% endif %}
     {% if author.bio %}<p class="author__bio" itemprop="description">{{ author.bio }}</p>{% endif %}
   </div>
 
