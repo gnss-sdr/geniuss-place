@@ -24,7 +24,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
 * **[AUDITOR](http://www.auditor-project.eu/index.html){:target="_blank"} - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
 
-  [![AUDITOR logo]({{ site.url }}{{ site.baseurl }}/images/logo-auditor.png){:height="250px" width="250x"}](http://www.auditor-project.eu/index.html){:target="_blank"}
+  [![AUDITOR logo]({{ site.url }}{{ site.baseurl }}/assets/images/logo-auditor.png){:height="250px" width="250x"}](http://www.auditor-project.eu/index.html){:target="_blank"}
   {: style="text-align: center;"}
 
   This project has received funding from the [**European GNSS Agency**](http://www.gsa.europa.eu/){:target="_blank"} under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](http://cordis.europa.eu/project/rcn/199301_en.html){:target="_blank"}.
@@ -52,7 +52,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
 * **Google Summer of Code (GSoC)**
 
-    [![GSoC logo]({{ site.url }}{{ site.baseurl }}/images/logo-gsoc.png){:height="100px" width="100x"}](https://developers.google.com/open-source/gsoc/){:target="_blank"}
+    [![GSoC logo]({{ site.url }}{{ site.baseurl }}/assets/images/logo-gsoc.png){:height="100px" width="100x"}](https://developers.google.com/open-source/gsoc/){:target="_blank"}
     {: style="text-align: center;"}
 
      * [2016](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr){:target="_blank"}
@@ -103,7 +103,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
 ## Sponsors
 
-[![NSL logo]({{ site.url }}{{ site.baseurl }}/images/logo-nsl.jpg){:height="250px" width="250x"}](http://www.nsl.eu.com/){:target="_blank"}
+[![NSL logo]({{ site.url }}{{ site.baseurl }}/assets/images/logo-nsl.jpg){:height="250px" width="250x"}](http://www.nsl.eu.com/){:target="_blank"}
 {: style="text-align: center;"}
 
 * [NSL](http://www.nsl.eu.com/){:target="_blank"}, a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](http://www.nsl.eu.com/primo.html){:target="_blank"} system that is being used with GNSS-SDR development.

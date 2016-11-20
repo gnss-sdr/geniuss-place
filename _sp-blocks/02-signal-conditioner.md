@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 modified: 2016-04-13T15:54:02-04:00
 ---
-{% include base_path %}
+
 {% include toc %}
 
 
@@ -22,7 +22,7 @@ This implementation is in fact a wrapper for other three processing blocks.
 
 <a name="signal-conditioner"></a>
 
-![Signal Conditioner]( {{ base_path }}/images/SignalConditioner2.png)
+![Signal Conditioner]( {{ base_path }}/assets/images/SignalConditioner2.png)
 
 Those inner blocks are in charge of:
 

@@ -441,7 +441,7 @@ MHz, while $$ e_{E5b}(t) $$ is shifted to
 $$ f_{Gal E5b}\doteq f_{\text{Gal E5}}+f_s=1207.140 $$
 MHz.
 
-![Single and product side-band spectra in E5.]({{ site.url }}{{ site.baseurl }}/images/subcarriers-e5.png)
+![Single and product side-band spectra in E5.]({{ site.url }}{{ site.baseurl }}/assets/images/subcarriers-e5.png)
 _Power spectrum of single and product side-band subcarriers signals for $$ s^{\text{(Gal E5)}}_{T}(t) $$, normalized to the power of $$ ssc^{*}_s(t) $$ at $$ f_{\text{Gal E5a}} $$. The modified AltBOC modulation can be well approximated by two QPSK signals $$ 2 f_s $$ apart, with negligible contribution of the crossed terms around its center frequency._[^Fernandez11]
 {: style="text-align: center;"}
 

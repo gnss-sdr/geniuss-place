@@ -80,7 +80,7 @@ tr, td, th {
   a {
     color: $dark-gray;
     text-decoration: none;
-    border-bottom: 1px solid $light-gray;
+    border-bottom: 1px solid $body-color;
     transition: $global-transition;
 
     &:hover {
@@ -110,7 +110,7 @@ tr, td, th {
   a {
     color: $dark-gray;
     text-decoration: none;
-    border-bottom: 1px solid $light-gray;
+    border-bottom: 1px solid $body-color;
     transition: $global-transition;
 
     &:hover {

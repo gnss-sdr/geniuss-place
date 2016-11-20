@@ -1,10 +1,11 @@
-{% include base_path %}
-
-
 {% if pauthor %}
   {% assign author = site.data.authors[pauthor] %}
 {% else %}
-  {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.author %}
+  {% if page.author and site.data.authors[page.author] %}
+    {% assign author = site.data.authors[page.author] %}
+  {% else %}
+    {% assign author = site.author %}
+  {% endif %}
 {% endif %}
 
 
@@ -14,7 +15,7 @@
     {% if author.avatar contains "://" %}
     	<img src="{{ author.avatar }}" alt="{{ author.name }}" itemprop="image">
     {% else %}
-    	<img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" class="author__avatar" alt="{{ author.name }}" itemprop="image">
+    	<img src="{{ author.avatar |  absolute_url }}" class="author__avatar" alt="{{ author.name }}" itemprop="image">
     {% endif %}
   </div>
 

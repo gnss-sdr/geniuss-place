@@ -4,7 +4,7 @@ permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
 modified: 2016-04-13T15:54:02-04:00
 header:
-  teaser: "geniuss-building.png"
+  teaser: "/assets/images/geniuss-building.png"
 sidebar:
   nav: "start"
 redirect_from:
@@ -12,12 +12,11 @@ redirect_from:
   - /node/45
 ---
 
-{% include base_path %}
 {% include toc %}
 
 This page describe several ways to build and install GNSS-SDR.
 
-![GeNiuSS building]({{ site.url }}{{ site.baseurl }}/images/geniuss-building.png){:height="250px" width="250x"}
+![GeNiuSS building]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss-building.png){:height="250px" width="250x"}
 {: style="text-align: center;"}
 
 # Installing everything through software package managers
@@ -85,7 +84,7 @@ GNSS-SDR and its software dependencies can all be installed either by downloadin
 
 But maybe this approach does not fit your needs. Maybe you already have some dependency already built from source and want to use it, or your setup requires some specific flag somewhere. This is a building-time _vs_. fine-tuning trade-off. In order to take the adequate approach, just remember this basic rule:
 
-![Install package or build from source?]({{ site.url }}{{ site.baseurl }}/images/deb-or-build-from-source.png){: .align-center}
+![Install package or build from source?]({{ site.url }}{{ site.baseurl }}/assets/images/deb-or-build-from-source.png){: .align-center}
 _Software packages require that all its dependencies must be also installed from packages._
 {: style="text-align: center;"}
 

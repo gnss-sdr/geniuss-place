@@ -4,11 +4,9 @@ title: "Signal Processing Blocks"
 permalink: /docs/sp-blocks/
 excerpt: "Documentation on GNSS-SDR Signal Processing Blocks: implementations and their configuration."
 header:
-  teaser: caf.png
+  teaser: /assets/images/caf.png
 modified: 2016-04-13T15:54:02-04:00
 ---
-
-{% include base_path %}
 
 In GNSS-SDR, each configuration file defines a receiver. This page documents the available implementations for each of the _GNSS processing blocks_, represented as blue boxes in the figure below, and their parameters.
 
