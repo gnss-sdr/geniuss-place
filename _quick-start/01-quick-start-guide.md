@@ -4,16 +4,14 @@ permalink: /quick-start-guide/
 excerpt: "Start here to get a general idea on what is all about."
 modified: 2016-06-24T15:54:02-04:00
 header:
-  teaser: "geniuss.jpg"
+  teaser: "/assets/images/geniuss.jpg"
 sidebar:
   nav: "start"
 ---
 
-{% include base_path %}
-
 
 {% capture fig_img1 %}
-  ![What is GNSS-SDR]({{ site.url }}{{ site.baseurl }}/images/what-is-gnss-sdr.jpg)
+  ![What is GNSS-SDR]({{ site.url }}{{ site.baseurl }}/assets/images/what-is-gnss-sdr.jpg)
 {% endcapture %}
 
 {% capture fig_img2 %}
@@ -21,7 +19,7 @@ sidebar:
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![Introducing GeNiuSS]({{ site.url }}{{ site.baseurl }}/images/geniuss.jpg)
+  ![Introducing GeNiuSS]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss.jpg)
 {% endcapture %}
 
 
@@ -33,7 +31,7 @@ The name is not a bragging display of creativity:
 
  * SDR: **S**oftware **D**efined **R**eceiver. We play a little trick here, since SDR is usually an acronym that stands for Software Defined _Radio_. In both cases, it refers to systems in which components that have been typically implemented in hardware (e.g. mixers, filters, demodulators, detectors, etc.) are instead implemented by means of software executing on a personal computer or embedded system.
 
-![What is GNSS-SDR]({{ site.url }}{{ site.baseurl }}/images/what-is-gnss-sdr.jpg)
+![What is GNSS-SDR]({{ site.url }}{{ site.baseurl }}/assets/images/what-is-gnss-sdr.jpg)
 {: style="text-align: center;"}
 
 Today's technology still does not allow processing signals digitally at the frequencies that satellites transmit (about 1.5 GHz), so we still need a radio frequency front-end that down-convert signals to a lower frequency, making some filtering and amplification in the process, and sampling them at a certain rate, delivering a stream of quantized, digital raw samples to the computing platform (via USB, Ethernet, etc.).
@@ -72,6 +70,6 @@ Here you will find:
 ---
 
 {::comment}
-![Introducing GeNiuSS]({{ site.url }}{{ site.baseurl }}/images/geniuss.jpg){:height="250px" width="250x"}{: style="text-align: center;"}
+![Introducing GeNiuSS]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss.jpg){:height="250px" width="250x"}{: style="text-align: center;"}
 This is GeNiuSS. You will see him here and there.
 {:/comment}

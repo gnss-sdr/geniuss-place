@@ -4,7 +4,7 @@ permalink: /contribute/
 excerpt: "Contributing to the GNSS-SDR source code and to this website."
 modified: 2016-09-25T08:54:02+02:00
 header:
-  teaser: "geniuss-contribute.png"
+  teaser: "/assets/images/geniuss-contribute.png"
 comments: true
 redirect_from:
   - /node/19
@@ -12,7 +12,7 @@ redirect_from:
 {% include base_path %}
 {% include toc %}
 
-![Contributing]({{ site.url }}{{ site.baseurl }}/images/geniuss-contribute.png){:height="250px" width="250x"}
+![Contributing]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss-contribute.png){:height="250px" width="250x"}
 
 
 ## Contributing to GNSS-SDR

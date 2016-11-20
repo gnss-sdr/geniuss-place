@@ -6,8 +6,6 @@ excerpt: "Team members profiles"
 sidebar:
   nav: "about"
 ---
-{% include base_path %}
-
 
 ## Main Developer Team
 

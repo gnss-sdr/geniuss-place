@@ -10,15 +10,15 @@ sidebar:
 {% include toc %}
 
 {% capture fig_img2 %}
-  ![Front-end]({{ site.url }}{{ site.baseurl }}/images/frontend.png)
+  ![Front-end]({{ site.url }}{{ site.baseurl }}/assets/images/frontend.png)
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![Multichannel]({{ site.url }}{{ site.baseurl }}/images/multichannel.png)
+  ![Multichannel]({{ site.url }}{{ site.baseurl }}/assets/images/multichannel.png)
 {% endcapture %}
 
 {% capture fig_img4 %}
-  ![Multiple sources]({{ site.url }}{{ site.baseurl }}/images/multisource.png)
+  ![Multiple sources]({{ site.url }}{{ site.baseurl }}/assets/images/multisource.png)
 {% endcapture %}
 
 A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kind of sources, from samples stored in files (in a variety of formats) to multiple sample streams delivered in real-time by radio frequency front-ends.

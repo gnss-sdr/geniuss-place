@@ -251,7 +251,7 @@ $$
 
 
 
-![Rxd]({{ site.url }}{{ site.baseurl }}/images/rxd.png){:width="600x"}
+![Rxd]({{ site.url }}{{ site.baseurl }}/assets/images/rxd.png){:width="600x"}
 {: style="text-align: center;"}
 _Normalized $$ \left|R_{xd}\left(\check{f}_d=f_d, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
 {: style="text-align: center;"}

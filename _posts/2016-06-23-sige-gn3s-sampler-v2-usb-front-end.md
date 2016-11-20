@@ -4,7 +4,7 @@ permalink: /docs/tutorials/sige-gn3s-sampler-v2-usb-front-end/
 excerpt: "This article provides details about the support that GNSS-SDR offers for real-time operation using the GNSS USB front-end SiGe GN3S Sampler v2."
 author_profile: false
 header:
-  teaser: GN3S_setup1.jpg
+  teaser: /assets/images/GN3S_setup1.jpg
 tags:
   - tutorial
   - GN3S
@@ -15,35 +15,34 @@ redirect_from:
   - /node/51
 ---
 
-{% include base_path %}
 {% include toc %}
 
 {% capture fig_img1 %}
-  ![SiGe GN3S Sampler v2]({{ site.url }}{{ site.baseurl }}/images/sige_v2.jpg)
+  ![SiGe GN3S Sampler v2]({{ site.url }}{{ site.baseurl }}/assets/images/sige_v2.jpg)
 {% endcapture %}
 
 {% capture fig_img2 %}
-  ![Gnuradio-companion example]({{ site.url }}{{ site.baseurl }}/images/gr_gn3s_1.jpg)
+  ![Gnuradio-companion example]({{ site.url }}{{ site.baseurl }}/assets/images/gr_gn3s_1.jpg)
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![FFT plot and waterfall spectrum]({{ site.url }}{{ site.baseurl }}/images/gr_gn3s_driver_2.jpg)
+  ![FFT plot and waterfall spectrum]({{ site.url }}{{ site.baseurl }}/assets/images/gr_gn3s_driver_2.jpg)
 {% endcapture %}
 
 {% capture fig_img4 %}
-  ![SiGe GN3S setup]({{ site.url }}{{ site.baseurl }}/images/gr_gn3s_4.jpg)
+  ![SiGe GN3S setup]({{ site.url }}{{ site.baseurl }}/assets/images/gr_gn3s_4.jpg)
 {% endcapture %}
 
 {% capture fig_img5 %}
-  ![Realtime GN3S GPS positioning]({{ site.url }}{{ site.baseurl }}/images/GN3S_setup1.jpg)
+  ![Realtime GN3S GPS positioning]({{ site.url }}{{ site.baseurl }}/assets/images/GN3S_setup1.jpg)
 {% endcapture %}
 
 {% capture fig_img6 %}
-  ![GTracking data analysis]({{ site.url }}{{ site.baseurl }}/images/gn3s_tracking_2M.jpg)
+  ![GTracking data analysis]({{ site.url }}{{ site.baseurl }}/assets/images/gn3s_tracking_2M.jpg)
 {% endcapture %}
 
 {% capture fig_img7 %}
-  ![ Google Earth]({{ site.url }}{{ site.baseurl }}/images/gn3s_pvt_4_sats.jpg)
+  ![ Google Earth]({{ site.url }}{{ site.baseurl }}/assets/images/gn3s_pvt_4_sats.jpg)
 {% endcapture %}
 
 ## Introduction
