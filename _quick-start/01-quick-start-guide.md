@@ -39,7 +39,7 @@ Today's technology still does not allow processing signals digitally at the freq
 Then, GNSS-SDR takes care of all the digital signal processing, performing signal acquisition and tracking of the available satellite signals, decoding the navigation message and computing the observables needed by positioning algorithms, which ultimately compute the navigation solution. The software is designed to facilitate the inclusion of new signal processing techniques, offering an easy way to measure their impact in the overall receiver performance. Testing of all the processes is conducted both by the systematic functional validation of every single software block and by experimental validation of the complete receiver using either real-time signals receiver by the radio frequency front-end or a file containing those raw signal samples.
 
 
-![](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/docs/doxygen/images/GeneralBlockDiagram.png)
+![General Block Diagram](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/docs/doxygen/images/GeneralBlockDiagram.png)
 {: style="text-align: center;"}
 
 All the intermediate signals are observable, and the _products_ of the GNSS signal processing (that is, the measurements known in this context as [observables](http://www.navipedia.net/index.php/GNSS_Basic_Observables){:target="_blank"} and the data trasmitted by the satellites in their navigation message) are delivered in standard formats.
