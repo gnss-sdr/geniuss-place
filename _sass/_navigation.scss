@@ -446,7 +446,7 @@
   .nav__list input:checked ~ .nav__items {
     -webkit-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
-    max-height: 100vh;
+    max-height: 100%;
     overflow: visible;
     opacity: 1;
     margin-top: 1em;
