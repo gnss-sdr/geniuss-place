@@ -4,7 +4,7 @@ permalink: /docs/tutorials/understanding-data-types/
 excerpt: "How GNSS-SDR handles data types."
 author_profile: false
 header:
-  teaser: /assets/images/signal-conditioner-options.png
+  teaser: https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Lego_dublo_arto_alanenpaa_5.JPG/640px-Lego_dublo_arto_alanenpaa_5.JPG
 tags:
   - tutorial
 sidebar:
