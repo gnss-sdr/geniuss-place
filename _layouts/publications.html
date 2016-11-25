@@ -2,6 +2,7 @@
 layout: single
 ---
 
+
 List of academic papers in which GNSS-SDR has been described or used for research purposes.
 
 
@@ -372,7 +373,17 @@ List of academic papers in which GNSS-SDR has been described or used for researc
     </li>
 </ul>
 
-    {% include scripts.html %}
+<script type="text/javascript">
+  function toggleBibtex(articleid) {
+      var bib = document.getElementById('bib_'+articleid);
+      if (bib) {
+          if(bib.className.indexOf('bibtex') != -1) {
+              bib.className.indexOf('noshow') == -1?bib.className = 'bibtex noshow':bib.className = 'bibtex';
+          }
+      } else {
+          return;
+      }
+  }</script>
 
   </body>
 </html>
