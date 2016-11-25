@@ -2,7 +2,7 @@
 title: "GNSS-SDR v0.0.8 released"
 excerpt: "GNSS-SDR v0.0.8 has been released."
 header:
-  teaser: logo-gnss-sdr.png
+  teaser: /assets/images/logo-gnss-sdr.png
 tags:
   - news
 author_profile: false

@@ -13,7 +13,7 @@
     {% if f.url contains "://" %}
       {% capture f_url %}{{ f.url }}{% endcapture %}
     {% else %}
-      {% capture f_url %}{{ f.url | prepend: base_path }}{% endcapture %}
+      {% capture f_url %}{{ f.url | absolute_url }}{% endcapture %}
     {% endif %}
 
     <div class="feature__item{% if include.type %}--{{ include.type }}{% endif %}">
@@ -27,7 +27,7 @@
               {% if f.image_path contains "://" %}
                 "{{ f.image_path }}"
               {% else %}
-                "{{ f.image_path | prepend: "/images/" | prepend: base_path }}"
+                "{{ f.image_path | absolute_url }}"
               {% endif %}
             alt="{% if f.alt %}{{ f.alt }}{% endif %}">
           {% if f.url %}
@@ -55,7 +55,7 @@
 
           {% if f.url %}
             <div class="archive__item-button">
-              <p><a href="{{ f_url }}" class="btn {{ f.btn_class }}"><img src="{{ "icon-gnss-sdr-white.png" | prepend: "/images/" | prepend: site.baseurl | prepend: site.url }}" alt="logo" width="24"> {{ f.btn_label | default: site.data.ui-text[site.locale].more_label }}</a></p>
+              <p><a href="{{ f_url }}" class="btn {{ f.btn_class }}"><img src="{{ "icon-gnss-sdr-white.png" | prepend: "/assets/images/" | prepend: site.baseurl | prepend: site.url }}" alt="logo" width="24"> {{ f.btn_label | default: site.data.ui-text[site.locale].more_label }}</a></p>
             </div>
           {% endif %}
         </div>

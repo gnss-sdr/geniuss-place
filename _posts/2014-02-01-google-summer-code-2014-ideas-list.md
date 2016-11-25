@@ -1,8 +1,8 @@
 ---
 title: "Google Summer of Code 2014 ideas list"
-excerpt: "Ideas page for GSoC 2014"
+excerpt: "Ideas page for GSoC 2014."
 header:
-  teaser: logo-gsoc.png
+  teaser: /assets/images/logo-gsoc.png
 tags:
   - news
 author_profile: false

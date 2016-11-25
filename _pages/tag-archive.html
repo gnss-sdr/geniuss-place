@@ -2,12 +2,12 @@
 layout: archive
 permalink: /tags/
 title: "Posts by Tags"
+excerpt: "Posts of GNSS-SDR website, organized by tags."
 author_profile: false
 sidebar:
   nav: "news"
 ---
 
-{% include base_path %}
 {% include group-by-array collection=site.posts field="tags" %}
 
 {% for tag in group_names %}
