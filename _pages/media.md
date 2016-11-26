@@ -9,8 +9,6 @@ sidebar:
 modified: 2016-06-21T16:39:37-04:00
 ---
 
-{% include base_path %}
-
 ## Youtube
 
 GeNiuSS debut film:

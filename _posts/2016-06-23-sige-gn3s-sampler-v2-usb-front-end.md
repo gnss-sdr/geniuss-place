@@ -18,31 +18,31 @@ redirect_from:
 {% include toc %}
 
 {% capture fig_img1 %}
-  ![SiGe GN3S Sampler v2]({{ site.url }}{{ site.baseurl }}/assets/images/sige_v2.jpg)
+  ![SiGe GN3S Sampler v2]({{ "/assets/images/sige_v2.jpg" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img2 %}
-  ![Gnuradio-companion example]({{ site.url }}{{ site.baseurl }}/assets/images/gr_gn3s_1.jpg)
+  ![Gnuradio-companion example]({{ "/assets/images/gr_gn3s_1.jpg" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![FFT plot and waterfall spectrum]({{ site.url }}{{ site.baseurl }}/assets/images/gr_gn3s_driver_2.jpg)
+  ![FFT plot and waterfall spectrum]({{ "/assets/images/gr_gn3s_driver_2.jpg" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img4 %}
-  ![SiGe GN3S setup]({{ site.url }}{{ site.baseurl }}/assets/images/gr_gn3s_4.jpg)
+  ![SiGe GN3S setup]({{ "/assets/images/gr_gn3s_4.jpg" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img5 %}
-  ![Realtime GN3S GPS positioning]({{ site.url }}{{ site.baseurl }}/assets/images/GN3S_setup1.jpg)
+  ![Realtime GN3S GPS positioning]({{ "/assets/images/GN3S_setup1.jpg" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img6 %}
-  ![GTracking data analysis]({{ site.url }}{{ site.baseurl }}/assets/images/gn3s_tracking_2M.jpg)
+  ![GTracking data analysis]({{ "/assets/images/gn3s_tracking_2M.jpg" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img7 %}
-  ![ Google Earth]({{ site.url }}{{ site.baseurl }}/assets/images/gn3s_pvt_4_sats.jpg)
+  ![ Google Earth]({{ "/assets/images/gn3s_pvt_4_sats.jpg" | absolute_url }})
 {% endcapture %}
 
 ## Introduction
