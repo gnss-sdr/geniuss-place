@@ -13,8 +13,6 @@ redirect_from:
   - /node/54
 ---
 
-{% include base_path %}
-
 {% capture fig_img1 %}
   ![First GNSS-SDR Galileo standalone position fix]({{ '/assets/images/Galileo_fix_run2.jpg' | absolute_url }})
 {% endcapture %}
