@@ -6,7 +6,6 @@ header:
   teaser: /assets/images/class-hierarchy-general.png
 modified: 2016-04-13T15:54:02-04:00
 ---
-{% include base_path %}
 {% include toc %}
 
 As a matter of fact, GNSS baseband signal processing requires a high computational load. Even in modern computers, real-time processing is hard to reach without a proper software architecture able to take the most of the processor(s) that are executing it. It is then of the utmost importance to exploit the underlying parallelisms in the processing platform executing the software receiver in order to meet real-time requirements.

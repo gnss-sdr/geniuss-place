@@ -8,7 +8,6 @@ header:
 comments: true
 ---
 
-{% include base_path %}
 {% include toc %}
 
 

@@ -9,7 +9,6 @@ comments: true
 redirect_from:
   - /node/19
 ---
-{% include base_path %}
 {% include toc %}
 
 ![Contributing]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss-contribute.png){:height="250px" width="250x"}
