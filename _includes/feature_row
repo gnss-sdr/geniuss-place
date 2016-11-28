@@ -1,5 +1,3 @@
-{% include base_path %}
-
 {% if include.id %}
   {% assign feature_row = page.[include.id] %}
 {% else %}
@@ -55,7 +53,7 @@
 
           {% if f.url %}
             <div class="archive__item-button">
-              <p><a href="{{ f_url }}" class="btn {{ f.btn_class }}"><img src="{{ "icon-gnss-sdr-white.png" | prepend: "/assets/images/" | prepend: site.baseurl | prepend: site.url }}" alt="logo" width="24"> {{ f.btn_label | default: site.data.ui-text[site.locale].more_label }}</a></p>
+              <p><a href="{{ f_url }}" class="btn {{ f.btn_class }}"><img src="{{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}" alt="logo" width="24"> {{ f.btn_label | default: site.data.ui-text[site.locale].more_label }}</a></p>
             </div>
           {% endif %}
         </div>

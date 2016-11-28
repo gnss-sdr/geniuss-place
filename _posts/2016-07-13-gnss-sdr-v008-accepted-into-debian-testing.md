@@ -2,7 +2,7 @@
 title: "GNSS-SDR v0.0.8 accepted into Debian testing"
 excerpt: "GNSS-SDR v0.0.8 is already in Debian stretch and Ubuntu 16.10."
 header:
-  teaser: https://wiki.videolan.org/images/Debian-logo.jpg
+  teaser: /assets/images/Debian-logo-th.jpg
 tags:
   - news
   - Debian
