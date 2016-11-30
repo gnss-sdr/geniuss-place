@@ -4,7 +4,7 @@ permalink: /docs/tutorials/gnss-signals/
 excerpt: "Description of Open Service GNSS signals transmitted by satellites."
 author_profile: false
 header:
-  teaser: "http://www.navipedia.net/images/e/e2/Galileo_Signal_Plan_Fig_7.png"
+  teaser: /assets/images/Galileo_Signal_Plan_Fig_7-th.png
 tags:
   - tutorial
 sidebar:

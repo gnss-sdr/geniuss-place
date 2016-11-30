@@ -5,6 +5,8 @@ comments: false
 excerpt: "Team members profiles"
 sidebar:
   nav: "about"
+redirect_from:
+  - /contact-us
 ---
 
 ## Main Developer Team

@@ -2,7 +2,7 @@
 title: "GNSS-SDR v0.0.7 accepted into Debian unstable"
 excerpt: "GNSS-SDR v0.0.7 is already a Debian package."
 header:
-  teaser: https://wiki.videolan.org/images/Debian-logo.jpg
+  teaser: /assets/images/Debian-logo-th.jpg
 tags:
   - news
   - Debian

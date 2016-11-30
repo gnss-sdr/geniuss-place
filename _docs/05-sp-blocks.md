@@ -4,7 +4,7 @@ title: "Signal Processing Blocks"
 permalink: /docs/sp-blocks/
 excerpt: "Documentation on GNSS-SDR Signal Processing Blocks: implementations and their configuration."
 header:
-  teaser: /assets/images/caf.png
+  teaser: /assets/images/caf-th.png
 modified: 2016-04-13T15:54:02-04:00
 ---
 
