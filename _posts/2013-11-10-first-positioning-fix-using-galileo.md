@@ -11,6 +11,7 @@ tags:
   - Galileo
 redirect_from:
   - /node/54
+  - /documentation/first-positioning-fix-using-galileo
 ---
 
 {% capture fig_img1 %}
