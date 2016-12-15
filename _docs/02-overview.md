@@ -5,6 +5,8 @@ excerpt: "A brief introduction to GNSS-SDR, a free and open source Global Naviga
 header:
   teaser: /assets/images/what-is-gnss-sdr.jpg
 modified: 2016-04-13T15:54:02-04:00
+redirect_from:
+  - /documentation/general-overview
 ---
 
 ![What is GNSS-SDR]({{ site.url }}{{ site.baseurl }}/assets/images/what-is-gnss-sdr.jpg)
