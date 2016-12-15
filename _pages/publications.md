@@ -8,6 +8,8 @@ header:
 sidebar:
     nav: "about"
 date: 2016-07-24T18:38:52+00:00
+redirect_from:
+  - /documentation/publications
 ---
 
 List of academic papers in which GNSS-SDR has been described or used for research purposes.
