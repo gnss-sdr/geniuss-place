@@ -104,6 +104,7 @@ Portland, OR, Sept. 2016. In Press.<br>
     <br />
     <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
     <a href="https://www.ion.org/gnss/abstracts.cfm?paperID=3972" target="_blank">[Online]</a>
+    <a href="https://www.overleaf.com/articles/accelerating-gnss-software-receivers/ywcwtdjwgnky.pdf" target="_blank">[Slides]</a>
     </p>
     <div id="bib_Fernandez16b" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez16b,
