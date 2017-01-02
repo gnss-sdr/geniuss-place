@@ -2,7 +2,7 @@
 title: "5.- Interoperability"
 permalink: /design-forces/interoperability/
 excerpt: "The ability of making systems work together."
-modified: 2016-07-29T15:54:02-04:00
+modified: 2017-01-02T08:31:02+02:00
 ---
 {% include toc %}
 
@@ -116,9 +116,12 @@ The software receiver should deliver the results of the processing in several st
     **Shapefile** is a digital vector storage format for storing geometric location and associated attribute information. It is a popular format for geographic information system (GIS) software. It is developed and regulated by [Esri](http://www.esri.com/){:target="_blank"} as a (mostly) open specification for data interoperability among Esri and other GIS software products. The shapefile format can spatially describe vector features: points, lines, and polygons, representing, for example, water wells, rivers, and lakes. Each item usually has attributes that describe it, such as _name_ or _temperature_.
     {: .notice--info}
 
-* Application-specific messages (_e.g._, NMEA [0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"} / [2000](https://en.wikipedia.org/wiki/NMEA_2000){:target="_blank"}, [ISOBUS](https://en.wikipedia.org/wiki/ISO_11783), proprietary / custom, etc.).
+* Application-specific messages (_e.g._, NMEA [0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"} / [2000](https://en.wikipedia.org/wiki/NMEA_2000){:target="_blank"}, [GPX](http://www.topografix.com/gpx.asp),  [ISOBUS](https://en.wikipedia.org/wiki/ISO_11783), proprietary / custom, etc.).
 
     **NMEA 0183** is a combined electrical and data specification for communication between marine electronics such as echo sounder, sonars, anemometer, gyrocompass, autopilot, GPS receivers and many other types of instruments. It has been defined by, and is controlled by, the U.S. [National Marine Electronics Association](http://www.nmea.org/). The NMEA 0183 standard uses a simple ASCII, serial communications protocol that defines how data are transmitted in a *sentence* from one *talker* to multiple *listeners* at a time. Through the use of intermediate expanders, a talker can have a unidirectional conversation with a nearly unlimited number of listeners, and using multiplexers, multiple sensors can talk to a single computer port. At the application layer, the standard also defines the contents of each sentence (message) type, so that all listeners can parse messages accurately. Those messages can be sent through the serial port (that could be for instance a Bluetooth link) and be used/displayed by a number of software applications such as [gpsd](http://www.catb.org/gpsd/ "The UNIX GPS daemon"), [JOSM](https://josm.openstreetmap.de/ "The Java OpenStreetMap Editor"), [OpenCPN](http://opencpn.org/ocpn/ "Open Chart Plotter Navigator"), and many others (and maybe running on other devices).
+    {: .notice--info}
+
+    **GPX** (the GPS Exchange Format) is a light-weight XML data format for the interchange of GPS data (waypoints, routes, and tracks) between applications and Web services on the Internet. The format is open and can be used without the need to pay license fees, and it is supported by a [large list of software tools](http://www.topografix.com/gpx_resources.asp).
     {: .notice--info}
 
 * [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php){:target="_blank"} messages (specify version, type and rate). RTCM messages should be streamed over a communication network as defined by the Networked Transport of RTCM via Internet Protocol (NTRIP [1.0](http://epsagnss.usal.es/documentos/ntripdocumentation.pdf){:target="_blank"}, [2.0](https://ssl29.pair.com/dmarkle/puborder.php?show=3){:target="_blank"}).
@@ -158,7 +161,7 @@ It follows a list of possible interoperability indicators for a software-defined
 
 * Number of supported standard output formats.
   * GIS formats: [KML](http://www.opengeospatial.org/standards/kml){:target="_blank"}, [GeoJSON](http://geojson.org/){:target="_blank"}, [Shapefile](https://en.wikipedia.org/wiki/Shapefile){:target="_blank"}, others.
-  * Application-specific formats: NMEA  [0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"} / [2000](https://en.wikipedia.org/wiki/NMEA_2000){:target="_blank"}, others. Specify version.
+  * Application-specific formats: NMEA  [0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"} / [2000](https://en.wikipedia.org/wiki/NMEA_2000){:target="_blank"}, [GPX](http://www.topografix.com/gpx.asp), others. Specify version.
   * Geodesic formats: [RINEX](https://en.wikipedia.org/wiki/RINEX){:target="_blank"}, [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php){:target="_blank"}.
     * Generation of RINEX observation and navigation data files. Specify version.
     * Real-time generation of RTCM messages in real-time. Type and frequency of real-time generated RTCM messages. Specify RTCM version.
