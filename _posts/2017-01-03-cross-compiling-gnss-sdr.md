@@ -149,7 +149,7 @@ where ```/dev/sdX``` is the device the card is mounted as. This works, but can b
 
 This option is faster:
 
-     $ git clone git://git.infradead.org/users/dedekind/bmap-tools.git
+     $ git clone https://github.com/01org/bmap-tools.git
      $ cd bmap-tools
      $ sudo python setup.py install
      $ sudo bmaptool copy gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz /dev/sdX --nobmap
