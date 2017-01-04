@@ -7,6 +7,7 @@ header:
   teaser: /assets/images/oe-logo.png
 tags:
   - tutorial
+  - embedded
 sidebar:
   nav: "docs"
 ---
@@ -32,7 +33,7 @@ Getting the SDK
 
 We offer two options here: you can either download a script that will install the full SDK in your computer, or you can customise and build your own SDK. Both options are described below:
 
-### Downloading the SDK
+### Option 1: Downloading the SDK
 
 You can download the SDK from the links below. Version names (Jethro, Krogoth, Morty, ...) follow those of the [Yocto Project Releases](https://wiki.yoctoproject.org/wiki/Releases){:target="_blank"}.
 
@@ -41,16 +42,16 @@ The following table lists the available SDK versions:
 
 | Version | Status | Download | md5 | Manifest |
 |:-|:-:|:-:|:-|:-:|
-| Morty | Development | [SDK]() | d32239bcb673463ab874e80d47fae504 | [Host](), [Target]() |
-| Krogoth | Development | [SDK]() | d32239bcb673463ab874e80d47fae504 | [Host](), [Target]() |
-| Jethro | Stable | [SDK]() | 81cba6254f63e23394edae847fd60e0a | [Host](), [Target]() |
+| Morty | Development | [SDK](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh) | f2abf51e5f438dc30eb0261566f2066b | [Host](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
+| Krogoth | Development | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh) | 837044c6d475d8ffe21e73a5a7e2d2d4 | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
+| Jethro | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh) | 81cba6254f63e23394edae847fd60e0a | [Host](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
 
 
 
-Please note that the SDK scripts provided in this table take about 1.5 GB.
+Please note that the SDK scripts provided in this table take about 1.5 GB. Check out the manifest files to see the full list of packages and versions each SDK will install in the root filesystem of your device. Releases are listed from the most recent (top) to the oldest (bottom). For a smoother, more tested experience, pick a stable release.
 
 
-### Building your own SDK
+### Option 2: Building your own SDK
 
 Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github.com/carlesfernandez/oe-gnss-sdr-manifest){:target="_blank"} and follow instructions there. Make sure you have plenty of space in your hard drive (25 GB minimum). In summary, the process is as follows:
 
@@ -138,8 +139,9 @@ We have several options here:
 
 ### Using ```dd```
 
-     $ xzdec e300.direct.xz
-     $ sudo dd if=e300.direct of=/dev/sdX
+     $ mkdir myimage
+     $ tar -xvzf gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz -C myimage
+     $ sudo dd status=progress bs=4M if=myimage of=/dev/sdX
 
 where ```/dev/sdX``` is the device the card is mounted as. This works, but can be slow.
 
@@ -150,22 +152,26 @@ This option is faster:
      $ git clone git://git.infradead.org/users/dedekind/bmap-tools.git
      $ cd bmap-tools
      $ sudo python setup.py install
-     $ sudo bmaptool copy e300.direct.xz /dev/sdX --nobmap
+     $ sudo bmaptool copy gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz /dev/sdX --nobmap
 
 
 ### Using ```sshfs```
 
-For example, let's assume that we can address the device by a network name or IP address. Let's say it's called "mydevice" and it has an ip address of 192.168.2.2. We would use a mount point created in your home directory. To mount mydevice locally:
+For example, let's assume that we can address the device by a network name or IP address. Let's say it's called "mydevice" and it has an ip address of 192.168.2.2. We would use a mount point created in your home directory. To install sshfs and mount mydevice locally:
 
+     $ sudo apt-get install sshfs
+     $ sudo gpasswd -a $USER fuse
      $ cd
      $ mkdir mydevice
      $ sshfs -o allow_root root@192.168.2.2:/ mydevice
 
 You should be able to ```ls mydevice``` and see the contents of mydevice's file system. Then you can cross-compile GNSS-SDR as before, changing the last command by:
 
-     $ make install DESTDIR=~/mydevice
+     $ sudo make install DESTDIR=~/mydevice
 
-in order to install the GNSS-SDR binary directly in your device.
+in order to install the GNSS-SDR binary directly in your device. To unmount:
+
+     $ fusermount -u ~/mydevice
 
 
 References
