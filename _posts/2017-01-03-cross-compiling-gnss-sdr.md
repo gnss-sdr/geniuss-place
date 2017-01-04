@@ -20,7 +20,7 @@ Once all the required dependencies are already installed, GNSS-SDR can be built 
 
 **Cross-compilation** consists of a building framework capable of creating executable code for a platform other than the one on which the compiler is running. In our example, we would like to build GNSS-SDR with the powerful, fast processor of a general-purpose desktop computer, and to generate binaries that can be directly executed by the Zynq device.
 
-  By using cross-compilation, we can shorten the building time from more than 10 hours to less than 10 minutes. This improves [**Testability**](http://gnss-sdr.org/design-forces/testability/){:target="_blank"}, as one of its requirements is that a testing cycle has to be *fast*. This ensures that you can debug and benchmark code effectively, in a comfortable environment.
+  By using cross-compilation, we can shorten the building time from more than 10 hours to less than 10 minutes. This improves [**Testability**](http://gnss-sdr.org/design-forces/testability/){:target="_blank"}, as one of its requirements is that a testing cycle has to be *fast*.
   {: .notice--success}
 
 The cross-compilation environment proposed here is based on [OpenEmbedded](http://www.openembedded.org){:target="_blank"}, a building framework for embedded Linux. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.
@@ -43,7 +43,7 @@ The following table lists the available SDK versions:
 |:-|:-:|:-:|:-|:-:|
 | Morty | Development | [SDK]() | d32239bcb673463ab874e80d47fae504 | [Host](), [Target]() |
 | Krogoth | Development | [SDK]() | d32239bcb673463ab874e80d47fae504 | [Host](), [Target]() |
-| Jethro | Stable | [SDK]() | d32239bcb673463ab874e80d47fae504 | [Host](), [Target]() |
+| Jethro | Stable | [SDK]() | 81cba6254f63e23394edae847fd60e0a | [Host](), [Target]() |
 
 
 
