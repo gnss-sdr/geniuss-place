@@ -136,13 +136,13 @@ void f(int a)
 {
     int i;
     if (a > 0)
-    {
-        i = a;
-    }
+        {
+            i = a;
+        }
     else
-    {
-        i = a;
-    }
+        {
+            i = a;
+        }
 }
 
 class A
