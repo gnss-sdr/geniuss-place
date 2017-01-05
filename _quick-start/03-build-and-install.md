@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-modified: 2016-04-13T15:54:02-04:00
+modified: 2017-01-05T15:54:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -188,5 +188,19 @@ Once all the dependencies are installed in your system, you are ready to clone t
 The step `git checkout next` is optional, and sets the source tree pointing to the `next` branch, which is the most recent development snapshot. If this step is ommitted it takes the `master` branch by dafault, which contains the latest stable release, and maybe some bug fixes.
 
 If everything went fine, now you can jump into how to get your [first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/).
+
+# Other builds
+
+## Snap packages
+
+[Snaps](http://snapcraft.io){:target="_blank"} are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox){:target="_blank"} for instructions.
+
+
+## GNSS-SDR in embedded platforms
+
+We provide a Software Development Kit (SDK) based on [OpenEmbedded](http://www.openembedded.org/wiki/Main_Page){:target="_blank"} for cross-compiling GNSS-SDR in your desktop computer and for producing executables that can run in embedded platforms, such as a Zedboard or a Raspberry Pi 3. Visit [Cross-compiling GNSS-SDR]({{ site.url }}{{ site.baseurl }}/docs/tutorials/cross-compiling/){:target="_blank"} for instructions.
+
+
+
 
 ----
