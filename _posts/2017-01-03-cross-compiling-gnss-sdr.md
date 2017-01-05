@@ -100,7 +100,7 @@ will generate the Morty release.
      $ bitbake -c populate_sdk gnss-sdr-dev-image
 
 
-This process will generate a script (such as the ones linked above) which will install the SDK in your system. Such script will be found under ```./tmp-glibc/deploy/sdk/```.
+This process downloads several gigabytes of source code and then proceeds to compile the packages for the host and native targets, so it will take time. At the end, it will have generated a script (such as the ones linked above) which will install the SDK in your system. Such script will be found under ```./tmp-glibc/deploy/sdk/```.
 
 
 Using the SDK
