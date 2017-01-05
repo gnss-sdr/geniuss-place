@@ -39,7 +39,6 @@ According to the name and the quality of the theme this website is based upon, a
 - [FitVids.JS](http://fitvidsjs.com/)
 - Greedy Navigation - [lukejacksonn](http://codepen.io/lukejacksonn/pen/PwmwWV)
 - [jQuery Smooth Scroll](https://github.com/kswedberg/jquery-smooth-scroll)
-- [Stickyfill](https://github.com/wilddeer/stickyfill)
 - [Sass](http://sass-lang.com/)
 
 ---
