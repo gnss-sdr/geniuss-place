@@ -110,7 +110,8 @@ $ sudo apt-get install build-essential cmake git libboost-dev libboost-date-time
        libboost-system-dev libboost-filesystem-dev libboost-thread-dev libboost-chrono-dev \
        libboost-serialization-dev libboost-program-options-dev libboost-test-dev \
        liblog4cpp5-dev libuhd-dev gnuradio-dev gr-osmosdr libblas-dev liblapack-dev \
-       libarmadillo-dev libgflags-dev libgoogle-glog-dev libgnutls-openssl-dev libgtest-dev
+       libarmadillo-dev libgflags-dev libgoogle-glog-dev libgnutls-openssl-dev libgtest-dev \
+       python-mako python-six
 ~~~~~~
 
 **Note for Ubuntu 14.04 LTS users:**

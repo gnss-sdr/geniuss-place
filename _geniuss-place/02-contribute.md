@@ -8,6 +8,9 @@ header:
 comments: true
 redirect_from:
   - /node/19
+  - /participate
+  - /documentation/how-contribute-source-code
+  - /documentation/how-report-bugs
 ---
 {% include toc %}
 

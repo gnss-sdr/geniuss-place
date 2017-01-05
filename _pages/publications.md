@@ -70,6 +70,31 @@ note     = { {DOI}: 10.1186/1687-6180-2013-143}
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in International Conferences</h3>
 
 <ul class="biblist">
+    <!-- Item: GNSS-SDR16c -->
+    <li ><p>
+    C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+    <br><b>Assessment of Software-Defined GNSS Receivers</b><br>
+<i>Proceedings of the 8th edition of NAVITEC</i>,
+ESA/ESTEC, Noordwijk, The Netherlands, Dec 14-16, 2016. In Press.
+    <br />
+    <a href="javascript:toggleBibtex('Fernandez16c')">[BibTeX]</a>
+    <a href="http://esaconferencebureau.com/2016-events/16c10/programme" target="_blank">[Online]</a>
+    </p>
+    <div id="bib_Fernandez16c" class="bibtex noshow">
+    <pre>@inproceedings{ Fernandez16c,
+author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas},
+title   = {Assessment of Software-Defined {GNSS} Receivers},
+booktitle = {Proc. 8th ed. of NAVITEC Conf.},
+year    = {2016},
+address = {ESA/ESTEC, Noordwijk, The Netherlands},
+month   = {Dec.}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: GNSS-SDR16a -->
     <li ><p>
     C. O'Driscoll and J. T. Curran
@@ -104,6 +129,7 @@ Portland, OR, Sept. 2016. In Press.<br>
     <br />
     <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
     <a href="https://www.ion.org/gnss/abstracts.cfm?paperID=3972" target="_blank">[Online]</a>
+    <a href="https://www.overleaf.com/articles/accelerating-gnss-software-receivers/ywcwtdjwgnky.pdf" target="_blank">[Slides]</a>
     </p>
     <div id="bib_Fernandez16b" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez16b,

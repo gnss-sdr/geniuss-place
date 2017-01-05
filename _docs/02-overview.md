@@ -7,6 +7,7 @@ header:
 modified: 2016-04-13T15:54:02-04:00
 redirect_from:
   - /documentation/general-overview
+  - /project
 ---
 
 ![What is GNSS-SDR]({{ site.url }}{{ site.baseurl }}/assets/images/what-is-gnss-sdr.jpg)
