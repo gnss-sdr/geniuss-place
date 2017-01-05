@@ -58,7 +58,7 @@ Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github
 1) Install ```repo```:
 
      $ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
-     $ chmod a+x repo 
+     $ chmod a+x repo
      $ sudo mv repo /usr/local/bin/
 
 2) Create a folder in which all the process will take place:
@@ -66,18 +66,19 @@ Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github
      $ mkdir oe-repo
      $ cd oe-repo
 
-3) Initialize ```repo```, download the required tools and build the image:
+3) Initialize ```repo```, download the required tools and prepare your building environment:
 
-     $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b jethro 
+     $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b jethro
      $ repo sync
      $ TEMPLATECONF=`pwd`/meta-gnss-sdr/conf source ./oe-core/oe-init-build-env ./build ./bitbake
-     $ bitbake gnss-sdr-dev-image
-     $ bitbake -c populate_sdk gnss-sdr-dev-image
+
+This last command copies default configuration information into the ```./build/conf``` directory and sets up some environment variables for OpenEmbedded.
 
 {% capture branches_info %}
 Please note that the name of the oe-gnss-sdr-manifest branch passed to ```repo``` will determine the version of the SDK to be built. For instance,
 
      $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b jethro
+
 
 will generate the Jethro release of the SDK (see the manifest for a list of installed packages and their respective versions), while
 
@@ -91,7 +92,15 @@ will generate the Morty release.
 </div>
 
 
-This process will create a script (such as the ones linked above) which will install the SDK in your system. Such script will be found under ```./tmp-glibc/deploy/sdk/```.
+4) OPTIONAL: at this point, you can configure your building by editing the file ```./conf/conf.local```. If you do nothing and leave the configuration by default, the next step will generate an image for a Zedboard. Other platforms can be selected by changing the value of the MACHINE variable. Read the comments at ```./conf/conf.local``` for more options.
+
+5) Build the image:
+
+     $ bitbake gnss-sdr-dev-image
+     $ bitbake -c populate_sdk gnss-sdr-dev-image
+
+
+This process will generate a script (such as the ones linked above) which will install the SDK in your system. Such script will be found under ```./tmp-glibc/deploy/sdk/```.
 
 
 Using the SDK
