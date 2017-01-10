@@ -100,7 +100,7 @@ month   = {Dec.}
     C. O'Driscoll and J. T. Curran
     <br><b>Codeless Code Tracking of BOC Signals</b><br>
 <i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
-Portland, OR, Sept. 2016. In Press.
+Portland, OR, Sept. 2016, pp. 497-508.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll16')">[BibTeX]</a>
     <a href="https://www.ion.org/gnss/abstracts.cfm?paperID=4237" target="_blank">[Online]</a>
@@ -110,9 +110,11 @@ Portland, OR, Sept. 2016. In Press.
 author  = {C.~{O'Driscoll} and J.~T.~Curran},
 title   = {Codeless Code Tracking of {BOC} Signals},
 booktitle = {Proc. 29th Int. Tech. Meeting Sat. Div. Inst. Navig.},
+pages   = {497--508},
 year    = {2016},
 address = {Portland, OR},
-month   = {Sep.}
+month   = {Sep.},
+note    = { {ISSN}: 2331-5911}
 }</pre>
     </div>
     </li>
@@ -124,7 +126,7 @@ month   = {Sep.}
     C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
     <br><b>Accelerating GNSS Software Receivers</b><br>
 <i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
-Portland, OR, Sept. 2016. In Press.<br>
+Portland, OR, Sept. 2016, pp. 44-61.<br>
 <i class="fa fa-fw fa-star"></i> Best Presentation Award (<i>Session A1: Advances in GNSS Software-defined Receivers</i>)
     <br />
     <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
@@ -136,9 +138,11 @@ Portland, OR, Sept. 2016. In Press.<br>
 author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas},
 title   = {Accelerating {GNSS} Software Receivers},
 booktitle = {Proc. 29th Int. Tech. Meeting Sat. Div. Inst. Navig.},
+pages   = {44--61},
 year    = {2016},
 address = {Portland, OR},
-month   = {Sep.}
+month   = {Sep.},
+note    = { {ISSN}: 2331-5911}
 }</pre>
     </div>
     </li>
