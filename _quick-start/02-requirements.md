@@ -4,7 +4,7 @@ permalink: /requirements/
 excerpt: "Things you need for executing GNSS-SDR."
 modified: 2016-04-13T15:54:02-04:00
 header:
-  teaser: "https://www.gluu.org/blog/wp-content/uploads/2014/07/POC-checklist-blog.png"
+  teaser: "/assets/images/checklist.jpg"
 sidebar:
   nav: "start"
 ---
