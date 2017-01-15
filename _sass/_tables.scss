@@ -115,7 +115,7 @@ tr, td, th {
 
     &:hover {
       color: #000;
-      border-bottom-color: #000;
+      border-bottom-color: $body-color;
     }
   }
 }
