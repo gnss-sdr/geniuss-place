@@ -9,6 +9,7 @@ tags:
   - tutorial
 sidebar:
   nav: "docs"
+modified: 2017-01-20T09:37:02+02:00
 ---
 
 {% include toc %}
@@ -272,11 +273,11 @@ _GLONASS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/ind
 
 ## Galileo
 
-The nominal Galileo constellation comprises a total of $$ 27 $$ operational
-satellites (plus $$ 3 $$ active spares), that are evenly distributed among
+The nominal Galileo constellation comprises a total of $$ 24 $$ operational
+satellites (plus $$ 6 $$ active spares), that are evenly distributed among
 three orbital planes inclined at $$ 56^o $$ relative to the equator. There
-are nine operational satellites per orbital plane, occupying evenly
-distributed orbital slots. Three additional spare satellites (one per
+are eight operational satellites per orbital plane, occupying evenly
+distributed orbital slots. Six additional spare satellites (two per
 orbital plane) complement the nominal constellation configuration. The
 Galileo satellites are placed in quasi–circular Earth orbits with a
 nominal semi–major axis of about $$ 30,000 $$ km and an approximate
