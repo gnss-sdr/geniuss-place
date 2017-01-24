@@ -9,7 +9,7 @@ sidebar:
 
 {% include toc %}
 
-The _Data Type Adapter_ is the first processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/signal-conditioner/#signal-conditioner){:target="_blank"} implementation.
+The _Data Type Adapter_ is the first processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}){:target="_blank"} implementation.
 
 
 
@@ -35,7 +35,7 @@ kind of source can deliver data in different formats.
 
 This block provide several implementations of data type conversions.
 
-For more details about sample data types and their usage in GNSS-SDR, please check out our [tutorial on data types]({{ site.url }}{{ site.baseurl }}/docs/tutorials/understanding-data-types/).
+For more details about sample data types and their usage in GNSS-SDR, please check out our [tutorial on data types]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}).
 
 ### Implementation: `Byte_To_Short`
 

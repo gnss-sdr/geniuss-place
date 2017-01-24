@@ -237,7 +237,7 @@ You will need to adjust the values for at least two parameters:
   * Check that `SignalSource.device_address` points to the actual IP address of your USRP, if you are connected through Ethernet, or leave it empty for USB.
   * Check that `SignalSource.subdevice` is set to the receiving slot in which you actually inserted your daughterboard with the antenna. In USRPs with only one receiving slot, leave it as `A:0`. Please check more details on [how to specify the subdevice](http://files.ettus.com/manual/page_configuration.html#config_subdev){:target="_blank"}.
 
-The [Signal Processing Blocks documentation]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/){:target="_blank"} provides definitions and more details about the configuration parameters.
+The [Signal Processing Blocks documentation]({{ "/docs/sp-blocks/" | absolute_url }}){:target="_blank"} provides definitions and more details about the configuration parameters.
 
 ### Run it!
 

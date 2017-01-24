@@ -131,7 +131,7 @@ and data validity status, Galileo System Time (GST), GST-UTC and GST-GPS
 time conversion parameters, the almanacs, and Search and Rescue (SAR)
 service data.
 
-![INAV message structure]({{ site.url }}{{ site.baseurl }}/assets/images/inav.png)
+![INAV message structure]({{ "/assets/images/inav.png" | absolute_url }})
 {: style="text-align: center;"}
 
 In the message structure depicted above,

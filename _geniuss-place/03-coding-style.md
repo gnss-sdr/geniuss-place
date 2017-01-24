@@ -769,7 +769,7 @@ file looks drastically different from the existing code around it, the
 discontinuity throws readers out of their rhythm when they go to read
 it. Try to avoid this.
 
-![Coding Style]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss-painting.jpg)
+![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | absolute_url }})
 
 -------
 
