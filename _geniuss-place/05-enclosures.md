@@ -18,7 +18,7 @@ The _maker movement_ is a trend in which people employ do-it-yourself (DIY) and 
 
 
 
-![Coming soon]({{ site.url }}{{ site.baseurl }}/assets/images/coming-soon.jpg){: .align-center}
+![Coming soon]({{ "/assets/images/coming-soon.jpg" | absolute_url }}){: .align-center}
 
 ## Stereolitography example:
 

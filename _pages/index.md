@@ -38,9 +38,9 @@ intro:
 
 {% include feature_row %}
 
-![GeNiuSS]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss.jpg){: width="300px"}
+![GeNiuSS]({{ "/assets/images/geniuss.jpg" | absolute_url }}){: width="300px"}
 {: style="text-align: center;"}
-[![Icon]({{ site.url }}{{ site.baseurl }}/assets/images/icon-gnss-sdr-white.png){: width="36px"} Get Started]({{ site.url }}{{ site.baseurl }}/quick-start-guide/){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Get Started]({{ "/quick-start-guide/" | absolute_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 ---
@@ -93,5 +93,5 @@ intro:
 </td></tr></table></body></html>
 
 
-[![Icon]({{ site.url }}{{ site.baseurl }}/assets/images/icon-gnss-sdr-white.png){: width="36px"} Learn more]({{ site.url }}{{ site.baseurl }}/docs/){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Learn more]({{ "/docs/" | absolute_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}

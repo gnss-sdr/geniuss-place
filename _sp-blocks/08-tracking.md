@@ -41,7 +41,7 @@ _Typical diagram of a tracking block. Colored boxes indicate functions implement
 
 GNSS-SDR's _Tracking_ implementations make heavy use of [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"}, an extension module of the original [VOLK](http://libvolk.org/){:target="_blank"} library which contains some functions that are specially useful in the context of a GNSS receiver (some examples in the figure above).
 
-The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library addresses [**Efficiency**]({{ site.url }}{{ site.baseurl }}/design-forces/efficiency/){:target="_blank"} and [**Portability**]({{ site.url }}{{ site.baseurl }}/design-forces/portability/){:target="_blank"} at the same time, by providing several implementations of the same functions in different SIMD technologies, benchmarking them and selecting the fastest in your machine at runtime.
+The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library addresses [**Efficiency**]({{ "/design-forces/efficiency/" | absolute_url }}){:target="_blank"} and [**Portability**]({{ "/design-forces/portability/" | absolute_url }}){:target="_blank"} at the same time, by providing several implementations of the same functions in different SIMD technologies, benchmarking them and selecting the fastest in your machine at runtime.
 {: .notice--success}
 
 ## GPS L1 C/A signal tracking
@@ -251,7 +251,7 @@ $$
 
 
 
-![Rxd]({{ site.url }}{{ site.baseurl }}/assets/images/rxd.png){:width="600x"}
+![Rxd]({{ "/assets/images/rxd.png" | absolute_url }}){:width="600x"}
 {: style="text-align: center;"}
 _Normalized $$ \left|R_{xd}\left(\check{f}_d=f_d, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
 {: style="text-align: center;"}
