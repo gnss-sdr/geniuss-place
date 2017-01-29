@@ -193,12 +193,35 @@ If everything went fine, now you can jump into how to get your [first position f
 
 ## Snap packages
 
-[Snaps](http://snapcraft.io){:target="_blank"} are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox){:target="_blank"} for instructions.
+<figure style="width: 64px" class="align-left">
+  <img src="{{ "/assets/images/logo-snappy.png" | absolute_url }}" alt="Snappy logo">
+</figure>
+
+[Snaps](http://snapcraft.io){:target="_blank"} are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
+
+Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox){:target="_blank"} for instructions on building your own snap package of GNSS-SDR.
+
+## Docker
+
+<figure style="width: 64px; height: 64px" class="align-left">
+  <img src="{{ "/assets/images/docker_logo.png" | absolute_url }}" alt="Docker logo">
+</figure>
+
+[Docker](https://www.docker.com){:target="_blank"} is an open source tool designed to make it easier to create, deploy, and run applications by using *containers*. Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools and system libraries, and ship it all out as one package. This guarantees that the software will always run the same, regardless of any customized settings that the executing machine might have that could differ from the machine used for writing and testing the code. Using containers is another way of packing applications, in a much lighter weight and with a much faster delivery model than using Virtual Machines.
+
+Visit [https://github.com/carlesfernandez/docker-pybombs-gnsssdr](https://github.com/carlesfernandez/docker-pybombs-gnsssdr){:target="_blank"} for instructions on building your own Docker image containing GNSS-SDR.
 
 
 ## GNSS-SDR in embedded platforms
 
-We provide a Software Development Kit (SDK) based on [OpenEmbedded](http://www.openembedded.org/wiki/Main_Page){:target="_blank"} for cross-compiling GNSS-SDR in your desktop computer and for producing executables that can run in embedded platforms, such as a Zedboard or a Raspberry Pi 3. Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | absolute_url }}){:target="_blank"} for instructions.
+<figure style="width: 64px" class="align-left">
+  <img src="{{ "/assets/images/oe-logo.png" | absolute_url }}" alt="Openembedded logo">
+</figure>
+
+We provide a Software Development Kit (SDK) based on [OpenEmbedded](http://www.openembedded.org/wiki/Main_Page){:target="_blank"} for cross-compiling GNSS-SDR in your desktop computer, producing executables that can run in embedded platforms, such as a Zedboard or a Raspberry Pi 3. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.
+
+
+Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | absolute_url }}){:target="_blank"} for instructions on cross-compiling GNSS-SDR for embedded systems.
 
 
 
