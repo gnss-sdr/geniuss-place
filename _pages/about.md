@@ -9,11 +9,9 @@ sidebar:
 modified: 2016-07-24T16:39:37-04:00
 ---
 
-{% include base_path %}
-
 {:center: style="text-align: center"}
 [
-![CTTC logo]({{ 'assets/images/CTTC_logo_square.png' | absolute_url }}){:height="250px" width="250x" : style="text-align: center;"}
+![CTTC logo]({{ '/assets/images/CTTC_logo_square.png' | absolute_url }}){:height="250px" width="250x" : style="text-align: center;"}
 ](http://www.cttc.es){:target="_blank"}
 {:center}
 
@@ -40,4 +38,4 @@ or
 
 Inquiries beyond the mailing list can be sent to Carles Fern&aacute;ndez-Prades <a href="mailto:carles.fernandez@cttc.cat"><i class="fa fa-fw fa-envelope" aria-hidden="true"></i> </a>
 
-See other contact details in our [Team]({{ site.url }}{{ site.baseurl }}/team/) page.
+See other contact details in our [Team]({{ "/team/" | absolute_url }}) page.

@@ -4,13 +4,14 @@ permalink: /docs/tutorials/gnss-signals/
 excerpt: "Description of Open Service GNSS signals transmitted by satellites."
 author_profile: false
 header:
-  teaser: "http://www.navipedia.net/images/e/e2/Galileo_Signal_Plan_Fig_7.png"
+  teaser: /assets/images/Galileo_Signal_Plan_Fig_7-th.png
 tags:
   - tutorial
 sidebar:
   nav: "docs"
+modified: 2017-01-20T09:37:02+02:00
 ---
-{% include base_path %}
+
 {% include toc %}
 
 
@@ -272,11 +273,11 @@ _GLONASS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/ind
 
 ## Galileo
 
-The nominal Galileo constellation comprises a total of $$ 27 $$ operational
-satellites (plus $$ 3 $$ active spares), that are evenly distributed among
+The nominal Galileo constellation comprises a total of $$ 24 $$ operational
+satellites (plus $$ 6 $$ active spares), that are evenly distributed among
 three orbital planes inclined at $$ 56^o $$ relative to the equator. There
-are nine operational satellites per orbital plane, occupying evenly
-distributed orbital slots. Three additional spare satellites (one per
+are eight operational satellites per orbital plane, occupying evenly
+distributed orbital slots. Six additional spare satellites (two per
 orbital plane) complement the nominal constellation configuration. The
 Galileo satellites are placed in quasi–circular Earth orbits with a
 nominal semi–major axis of about $$ 30,000 $$ km and an approximate
@@ -441,7 +442,7 @@ MHz, while $$ e_{E5b}(t) $$ is shifted to
 $$ f_{Gal E5b}\doteq f_{\text{Gal E5}}+f_s=1207.140 $$
 MHz.
 
-![Single and product side-band spectra in E5.]({{ site.url }}{{ site.baseurl }}/assets/images/subcarriers-e5.png)
+![Single and product side-band spectra in E5.]({{ "/assets/images/subcarriers-e5.png" | absolute_url }})
 _Power spectrum of single and product side-band subcarriers signals for $$ s^{\text{(Gal E5)}}_{T}(t) $$, normalized to the power of $$ ssc^{*}_s(t) $$ at $$ f_{\text{Gal E5a}} $$. The modified AltBOC modulation can be well approximated by two QPSK signals $$ 2 f_s $$ apart, with negligible contribution of the crossed terms around its center frequency._[^Fernandez11]
 {: style="text-align: center;"}
 

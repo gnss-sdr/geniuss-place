@@ -5,6 +5,8 @@ permalink: /docs/
 excerpt: "Organization of the documentation"
 related: true
 modified: 2016-04-13T15:54:02-04:00
+redirect_from:
+  - /documents
 ---
 
 Here you will find:
@@ -41,7 +43,7 @@ In addition, there is a set of tutorials providing more information in particula
 </div>
 </td></tr></table></body></html>
 
-... and [many more]({{ site.url }}{{ site.baseurl }}/docs/tutorials/)!
+... and [many more]({{ "/docs/tutorials/" | absolute_url }})!
 
-[![Icon]({{ site.url }}{{ site.baseurl }}/assets/images/icon-gnss-sdr-white.png){: width="36px"} Check the full list of Tutorials]({{ site.url }}{{ site.baseurl }}/docs/tutorials/){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Check the full list of Tutorials]({{ "/docs/tutorials/" | absolute_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}

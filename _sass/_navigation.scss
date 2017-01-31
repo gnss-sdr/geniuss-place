@@ -75,6 +75,7 @@
     margin-left: -1px;
 
     a {
+      display: block;
       margin-bottom: 0.25em;
       padding: 0.5em 1em;
       font-family: $sans-serif;
@@ -321,7 +322,7 @@
     display: none;
   }
 
-  @include breakpoint(max-width $large) {
+  @include breakpoint(max-width ($large - 1px)) {
 
     label {
       position: relative;
@@ -428,10 +429,10 @@
     }
   }
 
-  @include breakpoint(max-width $large) {
+  @include breakpoint(max-width ($large - 1px)) {
     position: relative;
     max-height: 0;
-    opacity: 0;
+    opacity: 0%;
     overflow: hidden;
     z-index: 10;
     -webkit-transition: 0.3s ease-in-out;
@@ -442,11 +443,11 @@
   }
 }
 
-@include breakpoint(max-width $large) {
+@include breakpoint(max-width ($large - 1px)) {
   .nav__list input:checked ~ .nav__items {
     -webkit-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
-    max-height: 100vh;
+    max-height: 9999px;
     overflow: visible;
     opacity: 1;
     margin-top: 1em;

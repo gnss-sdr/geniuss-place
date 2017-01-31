@@ -4,13 +4,13 @@ permalink: /docs/tutorials/understanding-data-types/
 excerpt: "How GNSS-SDR handles data types."
 author_profile: false
 header:
-  teaser: /assets/images/signal-conditioner-options.png
+  teaser: https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Lego_dublo_arto_alanenpaa_5.JPG/640px-Lego_dublo_arto_alanenpaa_5.JPG
 tags:
   - tutorial
 sidebar:
   nav: "docs"
 ---
-{% include base_path %}
+
 {% include toc %}
 
 ## Data ingestion in GNSS-SDR
@@ -20,7 +20,7 @@ front-end’s analog-to-digital converter (ADC), as shown below. Those bits can 
 disk or directly in real-time from a hardware device through USB or
 Ethernet buses.
 
-![Block diagram of a RF front-end]( {{ base_path }}assets/images/frontend.png)
+![Block diagram of a RF front-end]({{ "/assets/images/frontend.png" | absolute_url }})
 
 This is a simplified block diagram of a generic radio frequency front-end,
 consisting of an antenna, an amplification stage, downshifting from RF
@@ -45,7 +45,7 @@ representation and a set of operators manipulating these
 representations. The type is a property which both restricts the
 operations that are permitted for those entities and provides semantic
 meaning to the otherwise generic sequences of bits.
-
+{: .notice--info}
 
 ### Fundamental data types in C++
 
@@ -202,7 +202,7 @@ bits, common formats delivered by GNSS radio frequency front-ends. Next Table sh
 
 A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering. Regardless the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate. This signal stream feeds a set of parallel _Channels_.
 
-![Signal Conditioner]( {{ base_path }}/assets/images/SignalConditioner2.png)
+![Signal Conditioner]( {{ "/assets/images/SignalConditioner2.png" | absolute_url }})
 
 This is an example of _Signal Conditioner_ configuration, in which the _Signal Source_ is delivering samples of type `ishort`. We convert them to `gr_complex` with the _Data Type Adapter_, and then all the downstream processing (filtering and resampling) is also performed on `gr_complex` data. Hence, in this example the data stream delivered to _Channels_ is of type `gr_complex`:
 
@@ -252,7 +252,7 @@ The data type expected by _Channels_ actually depends on the specific implementa
 The following Table shows some of the possible configurations when bringing samples from your  _Signal Source_ to the processing _Channels_:
 
 
-![Signal Conditioner options]( {{ base_path }}assets/images/signal-conditioner-options.png)
+![Signal Conditioner options]( {{ "/assets/images/signal-conditioner-options.png" | absolute_url }})
 
 
 ### What happens after Channels?

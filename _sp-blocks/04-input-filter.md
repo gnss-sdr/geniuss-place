@@ -9,7 +9,7 @@ sidebar:
 
 {% include toc %}
 
-The _Input Filter_ is the second processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/signal-conditioner/#signal-conditioner){:target="_blank"} implementation.
+The _Input Filter_ is the second processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}){:target="_blank"} implementation.
 
 The role on an _Input Filter_ block is to filter the incoming signal.
 {: .notice--info}
@@ -79,7 +79,7 @@ The following figure shows the relationship between $$ f $$ = [`band1_begin` `ba
 `ampl2_begin` `ampl2_end`] vectors in defining a desired frequency
 response for the _Input Filter_:
 
-![Filter]({{ site.url }}{{ site.baseurl }}/assets/images/fir-filter.png){:width="600x"}
+![Filter]({{ "/assets/images/fir-filter.png" | absolute_url }}){:width="600x"}
 {: style="text-align: center;"}
 
 

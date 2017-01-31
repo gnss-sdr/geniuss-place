@@ -2,7 +2,7 @@
 title: "GNSS-SDR v0.0.8 accepted into Debian testing"
 excerpt: "GNSS-SDR v0.0.8 is already in Debian stretch and Ubuntu 16.10."
 header:
-  teaser: https://wiki.videolan.org/images/Debian-logo.jpg
+  teaser: /assets/images/Debian-logo-th.jpg
 tags:
   - news
   - Debian
@@ -32,5 +32,5 @@ The package also closes bug [#828040](https://bugs.debian.org/cgi-bin/bugreport.
 * **s390x**: IBM System z architecture for mainframe computers.
 
 
-This is an improvement in [**Portability**]({{ site.url }}{{ site.baseurl }}/design-forces/portability/){:target="_blank"}.
+This is an improvement in [**Portability**]({{ "/design-forces/portability/" | absolute_url }}){:target="_blank"}.
 {: .notice--success}

@@ -2,13 +2,12 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-modified: 2016-06-22T15:54:02-04:00
+modified: 2017-01-03T15:54:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
 ---
 
-{% include base_path %}
 {% include toc %}
 
 
@@ -137,13 +136,13 @@ void f(int a)
 {
     int i;
     if (a > 0)
-    {
-        i = a;
-    }
+        {
+            i = a;
+        }
     else
-    {
-        i = a;
-    }
+        {
+            i = a;
+        }
 }
 
 class A
@@ -770,7 +769,7 @@ file looks drastically different from the existing code around it, the
 discontinuity throws readers out of their rhythm when they go to read
 it. Try to avoid this.
 
-![Coding Style]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss-painting.jpg)
+![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | absolute_url }})
 
 -------
 

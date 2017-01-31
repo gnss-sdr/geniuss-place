@@ -11,9 +11,8 @@ tags:
   - Galileo
 redirect_from:
   - /node/54
+  - /documentation/first-positioning-fix-using-galileo
 ---
-
-{% include base_path %}
 
 {% capture fig_img1 %}
   ![First GNSS-SDR Galileo standalone position fix]({{ '/assets/images/Galileo_fix_run2.jpg' | absolute_url }})

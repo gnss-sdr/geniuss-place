@@ -2,7 +2,382 @@
 permalink: /publications/
 layout: publications
 title: "Publications"
+excerpt: "List of academic papers in which GNSS-SDR has been described or used for research purposes."
+header:
+  teaser: "https://scontent-mad1-1.cdninstagram.com/t51.2885-15/e15/11190810_1446633488967530_1154530547_n.jpg"
 sidebar:
     nav: "about"
 date: 2016-07-24T18:38:52+00:00
+redirect_from:
+  - /documentation/publications
 ---
+
+List of academic papers in which GNSS-SDR has been described or used for research purposes.
+
+<h3 style="margin-bottom:0px;padding-top:10px;">Articles in Journals</h3>
+
+<ul class="biblist">
+    <!-- Item: Fernandez16 -->
+    <li ><p>
+    C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+    <br><b>Robust GNSS Receivers by Array Signal Processing: Theory and Implementation</b><br>
+<i>Proceedings of the IEEE</i>, Vol. 104, No. 6, pp. 1207 - 1220, June 2016.
+    <br />
+    <a href="javascript:toggleBibtex('Fernandez16')">[BibTeX]</a>
+    <a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7444116" target="_blank">[Online <i class="ai ai-open-access"> </i>]</a>
+    </p>
+    <div id="bib_Fernandez16" class="bibtex noshow">
+    <pre>@article{ Fernandez16,
+author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas},
+title   = {Robust {GNSS} Receivers by Array Signal Processing: {T}heory and Implementation},
+journal = {Proceedings of the IEEE},
+year    = {2016},
+pages   = {1207--1220},
+volume  = {104},
+number  = {6},
+month   = {June},
+note    = { {DOI}: 10.1109/JPROC.2016.2532963}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<ul class="biblist">
+    <!-- Item: Arribas13 -->
+    <li ><p>
+    J. Arribas, C. Fern&aacute;ndez-Prades and P. Closas
+    <br><b>Multi-antenna Techniques for Interference Mitigation in GNSS Signal Acquisition</b><br>
+<i>EURASIP Journal on Advances in Signal Processing</i>, Vol. 2013, No. 143, Sep. 2013.
+    <br />
+    <a href="javascript:toggleBibtex('Arribas13')">[BibTeX]</a>
+    <a href="http://asp.eurasipjournals.springeropen.com/articles/10.1186/1687-6180-2013-143" target="_blank">[Online <i class="ai ai-open-access"> </i>]</a>
+    </p>
+    <div id="bib_Arribas13" class="bibtex noshow">
+    <pre>@article{ Arribas13,
+author  = {J.~Arribas and C.~{Fern\'{a}ndez--Prades} and P.~Closas},
+title   = {Multi-antenna Techniques for Interference Mitigation in {GNSS} Signal Acquisition},
+journal = {EURASIP Journal on Advances in Signal Processing},
+year    = {2013},
+volume  = {2013},
+number  = {143},
+month   = {Sep.},
+note     = { {DOI}: 10.1186/1687-6180-2013-143}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<h3 style="margin-bottom:0px;padding-top:10px;">Articles in International Conferences</h3>
+
+<ul class="biblist">
+    <!-- Item: GNSS-SDR16c -->
+    <li ><p>
+    C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+    <br><b>Assessment of Software-Defined GNSS Receivers</b><br>
+<i>Proceedings of the 8th edition of NAVITEC</i>,
+ESA/ESTEC, Noordwijk, The Netherlands, Dec 14-16, 2016. In Press.
+    <br />
+    <a href="javascript:toggleBibtex('Fernandez16c')">[BibTeX]</a>
+    <a href="http://esaconferencebureau.com/2016-events/16c10/programme" target="_blank">[Online]</a>
+    </p>
+    <div id="bib_Fernandez16c" class="bibtex noshow">
+    <pre>@inproceedings{ Fernandez16c,
+author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas},
+title   = {Assessment of Software-Defined {GNSS} Receivers},
+booktitle = {Proc. 8th ed. of NAVITEC Conf.},
+year    = {2016},
+address = {ESA/ESTEC, Noordwijk, The Netherlands},
+month   = {Dec.}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: GNSS-SDR16a -->
+    <li ><p>
+    C. O'Driscoll and J. T. Curran
+    <br><b>Codeless Code Tracking of BOC Signals</b><br>
+<i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
+Portland, OR, Sept. 2016, pp. 497-508.
+    <br />
+    <a href="javascript:toggleBibtex('Odriscoll16')">[BibTeX]</a>
+    <a href="https://www.ion.org/gnss/abstracts.cfm?paperID=4237" target="_blank">[Online]</a>
+    </p>
+    <div id="bib_Odriscoll16" class="bibtex noshow">
+    <pre>@inproceedings{ Odriscoll16,
+author  = {C.~{O'Driscoll} and J.~T.~Curran},
+title   = {Codeless Code Tracking of {BOC} Signals},
+booktitle = {Proc. 29th Int. Tech. Meeting Sat. Div. Inst. Navig.},
+pages   = {497--508},
+year    = {2016},
+address = {Portland, OR},
+month   = {Sep.},
+note    = { {ISSN}: 2331-5911}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<ul class="biblist">
+    <!-- Item: GNSS-SDR16b -->
+    <li ><p>
+    C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+    <br><b>Accelerating GNSS Software Receivers</b><br>
+<i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
+Portland, OR, Sept. 2016, pp. 44-61.<br>
+<i class="fa fa-fw fa-star"></i> Best Presentation Award (<i>Session A1: Advances in GNSS Software-defined Receivers</i>)
+    <br />
+    <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
+    <a href="https://www.ion.org/gnss/abstracts.cfm?paperID=3972" target="_blank">[Online]</a>
+    <a href="https://www.overleaf.com/articles/accelerating-gnss-software-receivers/ywcwtdjwgnky.pdf" target="_blank">[Slides]</a>
+    </p>
+    <div id="bib_Fernandez16b" class="bibtex noshow">
+    <pre>@inproceedings{ Fernandez16b,
+author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas},
+title   = {Accelerating {GNSS} Software Receivers},
+booktitle = {Proc. 29th Int. Tech. Meeting Sat. Div. Inst. Navig.},
+pages   = {44--61},
+year    = {2016},
+address = {Portland, OR},
+month   = {Sep.},
+note    = { {ISSN}: 2331-5911}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<ul class="biblist">
+    <!-- Item: GNSS-SDR15 -->
+    <li ><p>
+    J. Arribas, C. Fern&aacute;ndez-Prades and P. Closas
+    <br><b>GESTALT: A Testbed for Experimentation and Validation of GNSS Software Receivers</b><br>
+<i>Proceedings of the 28th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2015)</i>,
+Tampa, Florida, Sep. 2015, pp. 3222 - 3234.
+    <br />
+    <a href="javascript:toggleBibtex('GNSS-SDR15')">[BibTeX]</a>
+    <a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=13101" target="_blank">[Online]</a>
+    </p>
+    <div id="bib_GNSS-SDR15" class="bibtex noshow">
+    <pre>@inproceedings{ GNSS-SDR15,
+author  = {J.~Arribas and C.~{Fern\'{a}ndez--Prades} and P.~Closas},
+title   = { {GESTALT}: {A} Testbed for Experimentation and Validation of {GNSS} Software Receivers},
+booktitle = {Proc. 28th Int. Tech. Meeting Sat. Div. Inst. Navig.},
+year    = {2015},
+pages   = {3222--3234},
+address = {Tampa, FL},
+month   = {Sep.}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<ul class="biblist">
+    <!-- Item: GNSS-SDR14b -->
+    <li ><p>
+    J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas
+    <br><b>Fastening GPS and Galileo Tight with a Software Receiver</b><br>
+<i>Proceedings of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014)</i>,
+Tampa, Florida, Sep. 2014, pp. 1383 - 1395.
+    <br />
+    <a href="javascript:toggleBibtex('GNSS-SDR14b')">[BibTeX]</a>
+    <a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428" target="_blank">[Online]</a>
+    </p>
+    <div id="bib_GNSS-SDR14b" class="bibtex noshow">
+    <pre>@inproceedings{ GNSS-SDR14b,
+author  = {J.~Arribas and M.~Branzanti and C.~{Fern\'{a}ndez--Prades} and P.~Closas},
+title   = {Fastening {GPS} and {G}alileo Tight with a Software Receiver},
+booktitle = {Proc. 27th Int. Tech. Meeting Sat. Div. Inst. Navig.},
+year    = {2014},
+pages   = {1383--1395},
+address = {Tampa, FL},
+month   = {Sep.}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<ul class="biblist">
+        <!-- Item: GNSS-SDR14a -->
+        <li ><p>
+        J. Arribas, P. Closas and C. Fern&aacute;ndez-Prades
+        <br><b>Interference Mitigation in GNSS Receivers by Array Signal Processing: A Software Radio Approach</b><br>
+        <i>Proceedings of the 8th IEEE Sensor Array and Multichannel Signal Processing Workshop</i>,
+    A Coru&ntilde;a, Spain, June 2014, pp. 121 - 124.
+        <br />
+        <a href="javascript:toggleBibtex('GNSS-SDR14a')">[BibTeX]</a>
+        <a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6882355" target="_blank">[Online]</a> <a href="https://www.researchgate.net/profile/Pau_Closas/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach/links/548a95080cf225bf669c7fc0.pdf?origin=publication_detail" target="_blank">
+        [PDF]</a> <a href="http://dx.doi.org/10.1109/SAM.2014.6882355" target="_blank">[<i class="ai ai-doi"> </i>]</a>
+        </p>
+        <div id="bib_GNSS-SDR14a" class="bibtex noshow">
+        <pre>@inproceedings{ GNSS-SDR14a,
+author  = {J.~Arribas and P.~Closas and C.~{Fern\'{a}ndez--Prades}},
+title   = {Interference Mitigation in {GNSS} Receivers by Array Signal Processing: {A} Software Radio Approach},
+booktitle = {Proc. of the 8th IEEE Sensor Array and Multichannel Signal Processing Workshop},
+year    = {2014},
+pages   = {121--124},
+address = {A Coru\~{n}a, Spain},
+month   = {Sep.},
+note    = { {DOI}: 10.1109/SAM.2014.6882355}
+}</pre>
+        </div>
+        </li>
+</ul>
+
+<ul class="biblist">
+        <!-- Item: GNSS-SDR13 -->
+        <li ><p>
+        C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+        <br><b>Turning a Television into a GNSS Receiver</b><br>
+    <i>Proceedings of the 26th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2013)</i>,
+    Nashville, TN, Sep. 2013, pp. 1492 - 1507.
+        <br />
+        <a href="javascript:toggleBibtex('GNSS-SDR13')">[BibTeX]</a>
+        <a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=11334" target="_blank">[Online]</a> <a href="http://www.cttc.es/wp-content/uploads/2013/09/Turning_TV_into_GNSS_Rx1.pdf" target="_blank">
+        [PDF]</a>
+        </p>
+        <div id="bib_GNSS-SDR13" class="bibtex noshow">
+        <pre>@inproceedings{ GNSS-SDR13,
+author  = {C.~{Fern\'{a}ndez--Prades} and P.~Closas and J.~Arribas},
+title   = {Turning a Television into a {GNSS} Receiver},
+booktitle = {Proc. 26th Int. Tech. Meeting Sat. Div. Inst. Navig.},
+year    = {2013},
+pages   = {1492--1507},
+address = {Nashville, TN},
+month   = {Sep.}
+}</pre>
+        </div>
+        </li>
+</ul>
+
+<ul class="biblist">
+        <!-- Item: GNSS-SDR12 -->
+        <li ><p>
+        J. Arribas, P. Closas and C. Fern&aacute;ndez-Prades
+        <br><b>An Open Source Galileo E1 Software Receiver</b><br>
+        <i>Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies</i>,
+    ESTEC, Noordwijk, The Netherlands, Dec. 2012, pp. 1 - 8.
+        <br />
+        <a href="javascript:toggleBibtex('GNSS-SDR12')">[BibTeX]</a>
+        <a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6423057" target="_blank">[Online]</a> <a href="http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf" target="_blank">
+        [PDF]</a> <a href="http://dx.doi.org/10.1109/NAVITEC.2012.6423057" target="_blank">[<i class="ai ai-doi"> </i>]</a>
+        </p>
+        <div id="bib_GNSS-SDR12" class="bibtex noshow">
+        <pre>@inproceedings{ GNSS-SDR12,
+author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and L.~Esteve and D.~Pubill and P.~Closas},
+title   = {An Open Source {G}alileo {E1} Software Receiver},
+booktitle = {Proc. of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC'2012)},
+year    = {2012},
+pages   = {1--8},
+address = {ESTEC, Noordwijk, The Netherlands},
+month   = {Dec.},
+note    = { {DOI}: 10.1109/NAVITEC.2012.6423057}
+}</pre>
+        </div>
+        </li>
+</ul>
+
+<ul class="biblist">
+        <!-- Item: GNSS-SDR11 -->
+        <li ><p>
+        C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+        <br><b>GNSS-SDR: An Open Source Tool For Researchers and Developers</b><br>
+    <i>Proceedings of the 24th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS 2011)</i>,
+    Portland, OR, Sep. 2011, pp. 780 - 794.
+        <br />
+        <a href="javascript:toggleBibtex('GNSS-SDR11')">[BibTeX]</a>
+        <a href="https://www.ion.org/publications/abstract.cfm?articleID=9640" target="_blank">[Online]</a> <a href="https://www.researchgate.net/profile/Carles_Fernandez-Prades/publication/233380791_GNSS-SDR_An_open_source_tool_for_researchers_and_developers/links/09e41509e27ee6de56000000.pdf?origin=publication_detail" target="_blank">
+        [PDF]</a>
+        </p>
+        <div id="bib_GNSS-SDR11" class="bibtex noshow">
+        <pre>@inproceedings{ GNSS-SDR11,
+author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas and C.~Avil\'{e}s and L.~Esteve},
+title   = { {GNSS-SDR}: An Open Source Tool For Researchers and Developers},
+booktitle = {Proc. 24th Int. Tech. Meeting Sat. Div. Inst. Navig.},
+year    = {2011},
+pages   = {780--794},
+address = {Portland, OR},
+month   = {Sep.}
+}</pre>
+        </div>
+        </li>
+</ul>
+
+<ul class="biblist">
+        <!-- Item: GNSS-SDR10 -->
+        <li ><p>
+        C. Fern&aacute;ndez-Prades, C. Avil&eacute;s, L. Esteve, J. Arribas and P. Closas
+        <br><b>Design patterns for GNSS software receivers</b><br>
+        <i>Proceedings of the 5th ESA Workshop on Satellite Navigation Technologies</i>,
+    ESTEC, Noordwijk, The Netherlands, Dec. 2010, pp. 1 - 8.
+        <br />
+        <a href="javascript:toggleBibtex('GNSS-SDR10')">[BibTeX]</a>
+        <a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=5707981" target="_blank">[Online]</a> <a href="http://www.cttc.es/wp-content/uploads/2013/03/101213-pid1531501-14543.pdf" target="_blank">
+        [PDF]</a> <a href="http://dx.doi.org/10.1109/NAVITEC.2010.5707981" target="_blank">[<i class="ai ai-doi"> </i>]</a>
+        </p>
+        <div id="bib_GNSS-SDR10" class="bibtex noshow">
+        <pre>@inproceedings{ GNSS-SDR10,
+author  = {C.~{Fern\'{a}ndez--Prades} and C.~Avil\'{e}s and L.~Esteve and J.~Arribas and P.~Closas},
+title   = {Design patterns for {GNSS} software receivers},
+booktitle = {Proc. of the 5th ESA Workshop on Satellite Navigation Technologies (NAVITEC'2010)},
+year    = {2010},
+pages   = {1--8},
+address = {ESTEC, Noordwijk, The Netherlands},
+month   = {Dec.},
+note     = { {DOI}: 10.1109/NAVITEC.2010.5707981}
+}</pre>
+        </div>
+        </li>
+</ul>
+
+<h3 style="margin-bottom:0px;padding-top:10px;">Theses</h3>
+
+<ul class="biblist">
+<!-- Item: Arribas12 -->
+<li ><p>
+J. Arribas
+<br><b>GNSS Array-based Acquisition: Theory and Implementation</b><br>
+<i>PhD Thesis, Universitat Polit&egrave;cnica de Catalunya, June 2012.</i>
+<br><i class="fa fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="http://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" target="_blank">2015</a>
+<br />
+<a href="javascript:toggleBibtex('Arribas12')">[BibTeX]</a>
+<a href="http://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" target="_blank">[Online]</a> <a href="http://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" target="_blank">
+[PDF]</a>
+</p>
+<div id="bib_Arribas12" class="bibtex noshow">
+<pre>@phdthesis{ Arribas12,
+author = {J.~Arribas},
+title = { {GNSS} Array-based Acquisition: Theory and Implementation },
+school = {Universitat Polit\`{e}cnica de Catalunya},
+year = {2012},
+address = {Barcelona, Spain},
+month = {June}
+}</pre>
+</div>
+</li>
+</ul>
+
+<ul class="biblist">
+<!-- Item: Arribas12 -->
+<li ><p>
+L. Esteve-Elfau
+<br><b>Contribuci&oacute;n al dise&ntilde;o de GNSS-SDR. Un receptor GNSS de c&oacute;digo abierto</b> (<i>In Spanish</i>)<br>
+<i>MS Thesis, Universitat Polit&egrave;cnica de Catalunya, July 2011.</i>
+<br />
+<a href="javascript:toggleBibtex('Esteve11')">[BibTeX]</a>
+<a href="https://upcommons.upc.edu/handle/2099.1/18997" target="_blank">[Online <i class="ai ai-open-access"> </i>]</a> <a href="http://upcommons.upc.edu/bitstream/handle/2099.1/18997/PFC_Luis_Esteve_Elfau.pdf" target="_blank">
+[PDF]</a>
+</p>
+<div id="bib_Esteve11" class="bibtex noshow">
+<pre>@mastersthesis{ Esteve11,
+author = {L.~{Esteve-Elfau}},
+title = { Contribuci\'{o}n al dise\~{n}o de {GNSS-SDR}. {U}n receptor {GNSS} de c\'{o}digo abierto },
+school = {Universitat Polit\`{e}cnica de Catalunya},
+year = {2011},
+address = {Barcelona, Spain},
+month = {July}
+}</pre>
+</div>
+</li>
+</ul>

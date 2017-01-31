@@ -8,21 +8,23 @@ header:
 comments: true
 redirect_from:
   - /node/19
+  - /participate
+  - /documentation/how-contribute-source-code
+  - /documentation/how-report-bugs
 ---
-{% include base_path %}
 {% include toc %}
 
-![Contributing]({{ site.url }}{{ site.baseurl }}/assets/images/geniuss-contribute.png){:height="250px" width="250x"}
+![Contributing]({{ "/assets/images/geniuss-contribute.png" | absolute_url }}){:height="250px" width="250x"}
 
 
 ## Contributing to GNSS-SDR
 
-Found a bug in the code? Interested in adding a new feature or [fixing a known bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an issue](https://github.com/gnss-sdr/gnss-sdr/issues/new){:target="_blank"} or [pull request](https://help.github.com/articles/using-pull-requests/){:target="_blank"}. If this is your first pull request, it may be helpful to read up on the [GitHub Flow](https://guides.github.com/introduction/flow/){:target="_blank"} first. If you need a quick introduction to Git and its parlance (concepts such as _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git tutorial]({{ site.url }}{{ site.baseurl }}/docs/tutorials/using-git/).
+Found a bug in the code? Interested in adding a new feature or [fixing a known bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an issue](https://github.com/gnss-sdr/gnss-sdr/issues/new){:target="_blank"} or [pull request](https://help.github.com/articles/using-pull-requests/){:target="_blank"}. If this is your first pull request, it may be helpful to read up on the [GitHub Flow](https://guides.github.com/introduction/flow/){:target="_blank"} first. If you need a quick introduction to Git and its parlance (concepts such as _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}).
 
 [<i class="fa fa-github fa-lg"></i> Fork GNSS-SDR from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
-Before start working in GNSS-SDR source code, specially if you want to contribute your changes back to the _upstream_ repository, you may be interested in having a look at our [coding style guide]({{ site.url }}{{ site.baseurl }}/coding-style/).
+Before start working in GNSS-SDR source code, specially if you want to contribute your changes back to the _upstream_ repository, you may be interested in having a look at our [coding style guide]({{ "/coding-style/" | absolute_url }}).
 
 ## Contributing to this website
 

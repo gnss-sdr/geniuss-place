@@ -3,7 +3,7 @@ title: "The Control Plane"
 permalink: /docs/control-plane/
 excerpt: "Configuring and managing a network of connected signal processing blocks from the signal source up to the position fix."
 header:
-  teaser: /assets/images/multi-band-multi-system-flow-graph.png
+  teaser: /assets/images/multi-band-multi-system-flow-graph-th.png
 modified: 2016-04-13T15:54:02-04:00
 ---
 {% include toc %}
@@ -88,7 +88,7 @@ capacities in a high degree. It also allows to produce fully customized
 receivers, for instance a testbed for acquisition algorithms, and
 to place observers at any point of the receiver chain.
 
-![Design pattern]({{ site.url }}{{ site.baseurl }}/assets/images/design-pattern.png){: .align-center}
+![Design pattern]({{ "/assets/images/design-pattern.png" | absolute_url }}){: .align-center}
 _A Factory encapsulates the complexity of the instantiation of processing blocks._
 {: style="text-align: center;"}
 
@@ -127,11 +127,11 @@ the graph quite easily.
 The [```ControlThread```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h){:target="_blank"} class is responsible for instantiating the [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h){:target="_blank"} and passing the required
 configuration. Once the flow graph is defined an its blocks connected, it starts to process the incoming data stream. The [```ControlThread```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h){:target="_blank"} object is then in charge of reading the control queue and processing all the messages sent by the processing blocks via a thread-safe message queue.
 
-![Configuration pattern]({{ site.url }}{{ site.baseurl }}/assets/images/config-pattern.png){: .align-center}
+![Configuration pattern]({{ "/assets/images/config-pattern.png" | absolute_url }}){: .align-center}
 _The Control Thread reads the configuration and builds the flow graph of signal processing blocks that defines the receiver._
 {: style="text-align: center;"}
 
-As we saw in the [Overview]({{ site.url }}{{ site.baseurl }}/docs/overview/){:target="_blank"}, the ```main``` method of GNSS-SDR instantiates an object of the class [```ControlThread```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h){:target="_blank"}, managed by a smart pointer:
+As we saw in the [Overview]({{ "/docs/overview/" | absolute_url }}){:target="_blank"}, the ```main``` method of GNSS-SDR instantiates an object of the class [```ControlThread```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h){:target="_blank"}, managed by a smart pointer:
 
 ```cpp
 std::unique_ptr<ControlThread> control_thread(new ControlThread());
@@ -171,23 +171,23 @@ void ControlThread::run()
   }
 ```
 
-Hence, the object of class [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h){:target="_blank"} will parse the configuration file and will ask the Block Factory for the corresponding [_Signal Source_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/signal-source/){:target="_blank"}, [_Signal Conditioner_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/signal-conditioner/){:target="_blank"}, [_Channels_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/channels/){:target="_blank"} (each one with its own [_Acquisition_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/acquisition/){:target="_blank"}, [_Tracking_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/tracking/){:target="_blank"} and [_Telemetry Decoder_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/telemetry-decoder/){:target="_blank"}), an [_Observables_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/observables/){:target="_blank"} block collecting the processing results and a [_PVT_]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/pvt/){:target="_blank"} block acting as a signal sink:
+Hence, the object of class [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h){:target="_blank"} will parse the configuration file and will ask the Block Factory for the corresponding [_Signal Source_]({{ "/docs/sp-blocks/signal-source/" | absolute_url }}){:target="_blank"}, [_Signal Conditioner_]({{ "/docs/sp-blocks/signal-conditioner/" | absolute_url }}){:target="_blank"}, [_Channels_]({{ "/docs/sp-blocks/channels/" | absolute_url }}){:target="_blank"} (each one with its own [_Acquisition_]({{ "/docs/sp-blocks/acquisition/" | absolute_url }}){:target="_blank"}, [_Tracking_]({{ "/docs/sp-blocks/tracking/" | absolute_url }}){:target="_blank"} and [_Telemetry Decoder_]({{ "/docs/sp-blocks/telemetry-decoder/" | absolute_url }}){:target="_blank"}), an [_Observables_]({{ "/docs/sp-blocks/observables/" | absolute_url }}){:target="_blank"} block collecting the processing results and a [_PVT_]({{ "/docs/sp-blocks/pvt/" | absolute_url }}){:target="_blank"} block acting as a signal sink:
 
-![Basic GNSS flow graph]({{ site.url }}{{ site.baseurl }}/assets/images/simple-gnss-sdr-flowgraph.png){:width="600x"}{: .align-center}
+![Basic GNSS flow graph]({{ "/assets/images/simple-gnss-sdr-flowgraph.png" | absolute_url }}){:width="600x"}{: .align-center}
 _Diagram of a basic (single-band, single-system) flow graph generated by [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h){:target="_blank"}._
 {: style="text-align: center;"}
 
-Please check out [My first position fix]({{ site.url }}{{ site.baseurl }}/my-first-fix/){:target="_blank"} for an example of such receiver's flow graph configuration file.
+Please check out [My first position fix]({{ "/my-first-fix/" | absolute_url }}){:target="_blank"} for an example of such receiver's flow graph configuration file.
 
 GNSS-SDR's configuration mechanism is flexible enough for allowing other more complex flow graphs. For instance, you can target a given signal (for instance, GPS L1 C/A) with eight channels, and define eight more channels targeting Galileo E1 B/C signals, thus defining a multi-system receiver. Or maybe extend that structure to another band, defining a flow graph for a multi-system, dual band GNSS receiver:
 
 
-![Complex GNSS flow graph]({{ site.url }}{{ site.baseurl }}/assets/images/multi-band-multi-system-flow-graph.png){: .align-center}
+![Complex GNSS flow graph]({{ "/assets/images/multi-band-multi-system-flow-graph.png" | absolute_url }}){: .align-center}
 _Diagram of a  multi-band, multi-system flow graph generated by [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h){:target="_blank"}._
 {: style="text-align: center;"}
 
 
-[Next section]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/) describes the available implementations for each of the available GNSS-SDR processing blocks and how they are configured.
+[Next section]({{ "/docs/sp-blocks/" | absolute_url }}) describes the available implementations for each of the available GNSS-SDR processing blocks and how they are configured.
 
 
 ----
