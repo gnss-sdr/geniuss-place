@@ -10,15 +10,15 @@ sidebar:
 {% include toc %}
 
 {% capture fig_img2 %}
-  ![Front-end]({{ site.url }}{{ site.baseurl }}/assets/images/frontend.png)
+  ![Front-end]({{ "/assets/images/frontend.png" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![Multichannel]({{ site.url }}{{ site.baseurl }}/assets/images/multichannel.png)
+  ![Multichannel]({{ "/assets/images/multichannel.png" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img4 %}
-  ![Multiple sources]({{ site.url }}{{ site.baseurl }}/assets/images/multisource.png)
+  ![Multiple sources]({{ "/assets/images/multisource.png" | absolute_url }})
 {% endcapture %}
 
 A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kind of sources, from samples stored in files (in a variety of formats) to multiple sample streams delivered in real-time by radio frequency front-ends.
@@ -64,9 +64,9 @@ compiler select the best library version (implemented using SIMD or any
 other processor-specific technology) of the required routines for a
 given processor.
 
-For more details about sample formats, please check out our tutorial on [data types in GNSS-SDR]({{ site.url }}{{ site.baseurl }}/docs/tutorials/understanding-data-types/){:target="_blank"}.
+For more details about sample formats, please check out our tutorial on [data types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}){:target="_blank"}.
 
-The more kinds of signal souces GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ site.url }}{{ site.baseurl }}/design-forces/interoperability/#signal-sources){:target="_blank"}.
+The more kinds of signal souces GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" | absolute_url }}){:target="_blank"}.
 {: .notice--success}
 
 ## Reading data from a file
@@ -78,7 +78,7 @@ captured.
 
 Real signals sampled at an intermediate frequency can be downshifted to
 baseband (and thus expressed as complex samples) by the
-`Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/){:target="_blank"} present at
+`Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }}){:target="_blank"} present at
 the Signal Conditioner block with its `IF` parameter.
 
 ### Implementation: `File_Signal_Source`
@@ -123,8 +123,8 @@ This implementation accepts the following parameters:
 This implementation assumes that the center frequency is the nominal
 corresponding to the GNSS frequency band. Any known
 deviation from that value can be compensated by using the `IF` parameter
-of the `Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/input-filter/){:target="_blank"}
-present at the Signal Conditioner block, or later on in the flow graph at the [Acquisition]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/acquisition/){:target="_blank"} and [Tracking]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/tracking/){:target="_blank"} blocks with their `if` parameter.
+of the `Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }}){:target="_blank"}
+present at the Signal Conditioner block, or later on in the flow graph at the [Acquisition]({{ "/docs/sp-blocks/acquisition/" | absolute_url }}){:target="_blank"} and [Tracking]({{ "/docs/sp-blocks/tracking/" | absolute_url }}){:target="_blank"} blocks with their `if` parameter.
 
 It follows an example of a Signal Source block
 configured with the `File_Signal_Source` implementation:

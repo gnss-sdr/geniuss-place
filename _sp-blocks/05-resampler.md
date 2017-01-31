@@ -9,7 +9,7 @@ modified: 2016-04-13T15:54:02-04:00
 
 {% include toc %}
 
-The _Resampler_ is the third processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ site.url }}{{ site.baseurl }}/docs/sp-blocks/signal-conditioner/#signal-conditioner){:target="_blank"} implementation.
+The _Resampler_ is the third processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}){:target="_blank"} implementation.
 
 A _Resampler_ block is in charge of resampling the signal and delivering it to
 the $$ N $$ parallel processing channels.

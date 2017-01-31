@@ -35,7 +35,7 @@ In _PVT_ implementations that support it, the TCP/IP server of RTCM messages can
 **Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
 {: .notice--warning}
 
-Read more about standard output formats at our [**Interoperability**]({{ site.url }}{{ site.baseurl }}/design-forces/interoperability/#output-formats){:target="_blank"} page.
+Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | absolute_url }}){:target="_blank"} page.
 {: .notice--success}
 
 ### Implementation: `GPS_L1_CA_PVT`

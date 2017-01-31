@@ -42,7 +42,7 @@ where $$ \Delta \text{TOW} $$ is the difference between the reference TOW and th
 The block diagram of such approach is shown below:
 
 
-![Pseudorange computation]({{ site.url }}{{ site.baseurl }}/assets/images/common-reception-time.png)
+![Pseudorange computation]({{ "/assets/images/common-reception-time.png" | absolute_url }})
 _Block diagram of the pseudorange computation using the common reception time approach in GNSS-SDR[^Arribas14]_
 {: style="text-align: center;"}
 

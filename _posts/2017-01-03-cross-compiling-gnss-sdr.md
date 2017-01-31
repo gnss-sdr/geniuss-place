@@ -21,7 +21,7 @@ Once all the required dependencies are already installed, GNSS-SDR can be built 
 
 **Cross-compilation** consists of a building framework capable of creating executable code for a platform other than the one on which the compiler is running. In our example, we would like to build GNSS-SDR with the powerful, fast processor of a general-purpose desktop computer, and to generate binaries that can be directly executed by the Zynq device.
 
-  By using cross-compilation, we can shorten the building time from more than 10 hours to less than 10 minutes. This improves [**Testability**](http://gnss-sdr.org/design-forces/testability/){:target="_blank"}, as one of its requirements is that a testing cycle has to be *fast*.
+  By using cross-compilation, we can shorten the building time from more than 10 hours to less than 10 minutes. This improves [**Testability**]({{ "/design-forces/testability/" | absolute_url }}){:target="_blank"}, as one of its requirements is that a testing cycle has to be *fast*.
   {: .notice--success}
 
 The cross-compilation environment proposed here is based on [OpenEmbedded](http://www.openembedded.org){:target="_blank"}, a building framework for embedded Linux. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.
@@ -43,8 +43,8 @@ The following table lists the available SDK versions:
 | Version | Status | Download | md5 | Manifest |
 |:-|:-:|:-:|:-|:-:|
 | Morty | Development | [SDK](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | f2abf51e5f438dc30eb0261566f2066b | [Host](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
-| Krogoth | Development | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 837044c6d475d8ffe21e73a5a7e2d2d4 | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
-| Jethro | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 81cba6254f63e23394edae847fd60e0a | [Host](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
+| Krogoth | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 837044c6d475d8ffe21e73a5a7e2d2d4 | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
+| Jethro | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh"} | 81cba6254f63e23394edae847fd60e0a | [Host](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
 
 
 
@@ -57,7 +57,7 @@ Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github
 
 1) Install ```repo```:
 
-     $ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > repo
+     $ curl http://storage.googleapis.com/git-repo-downloads/repo > repo
      $ chmod a+x repo
      $ sudo mv repo /usr/local/bin/
 
@@ -94,13 +94,13 @@ will generate the Morty release.
 
 4) OPTIONAL: at this point, you can configure your building by editing the file ```./conf/conf.local```. If you do nothing and leave the configuration by default, the next step will generate an image for a Zedboard. Other platforms can be selected by changing the value of the MACHINE variable. Read the comments at ```./conf/conf.local``` for more options.
 
-5) Build the image:
+5) Build the image and the toolchain installer:
 
      $ bitbake gnss-sdr-dev-image
      $ bitbake -c populate_sdk gnss-sdr-dev-image
 
 
-This process downloads several gigabytes of source code and then proceeds to compile the packages for the host and native targets, so it will take time. At the end, it will have generated a script (such as the ones linked above) which will install the SDK in your system. Such script will be found under ```./tmp-glibc/deploy/sdk/```.
+This process downloads several gigabytes of source code and then proceeds to compile all the required packages for the host and native targets, so **it will take time**. The first command constructs a complete Linux image for your target device. The second command generates the toolchain installer, a script that installs a cross-compiler, a cross-linker and a cross-debugger, forming a completely self-contained toolchain which allows you to cross-develop on the host machine for the target hardware. The generated script will be found under ```./tmp-glibc/deploy/sdk/```.
 
 
 Using the SDK
@@ -110,7 +110,7 @@ Using the SDK
 
 Download the SDK shell script (or use a locally created SDK, as explained above) and install it:
 
-     $ sudo sh oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh
+     $ sudo sh oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh
 
 This will ask you what directory to install the SDK into. Which directory does not matter, just make sure wherever it goes that you have enough disk space. The default is ```/usr/local```.
 
@@ -122,7 +122,7 @@ The SDK comes with everything you need to build GNSS-SDR. The main contents it h
 ### Setting up the cross-compiling environment
 Running the environment script will set up most of the variables you'll need to compile. You will need to do this each time you want to run the SDK (and since the environment variables are only set for the current shell, you need to source it for every console you will run the SDK from):
 
-     $ . /usr/local/oecore-x86_64/environment-setup-armv7ahf-vfp-neon-oe-linux-gnueabi
+     $ . /usr/local/oecore-x86_64/environment-setup-armv7ahf-neon-oe-linux-gnueabi
 
 
 ### Cross-compiling GNSS-SDR and installing it on the target filesystem
@@ -135,7 +135,7 @@ Once the environment script has been run, you can cross-compile GNSS-SDR as:
      $ cd build
      $ cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchains/oe-sdk_cross.cmake -DCMAKE_INSTALL_PREFIX=/usr ..
      $ make
-     $ sudo make install DESTDIR=/usr/local/oecore-x86_64/sysroots/armv7ahf-vfp-neon-oe-linux-gnueabi/
+     $ sudo make install DESTDIR=/usr/local/oecore-x86_64/sysroots/armv7ahf-neon-oe-linux-gnueabi/
 
 Please note that we set the install prefix to ```/usr```. That will be the installation location of the project on the embedded device. We use this because all links and references within the file system will be based on this prefix, but it is obviously not where we want to install these files on our own host system. Instead, we use the ```make``` program's ```DESTDIR``` directive. On the device itself, however, the file system would have this installed onto ```/usr```, which means all our links and references are correct as far as the device is concerned.
 
@@ -186,4 +186,6 @@ in order to install the GNSS-SDR binary directly in your device. To unmount:
 References
 --------
 
-This work is heavily based on [Embedded Developments with GNU Radio](http://gnuradio.org/redmine/projects/gnuradio/wiki/Embedded){:target="_blank"} and the work by Philip Balister (and others) on the [oe-gnuradio-manifest](https://github.com/balister/oe-gnuradio-manifest){:target="_blank"} and the [meta-sdr](https://github.com/balister/meta-sdr){:target="_blank"} layer.
+ * More information about the development environment and the usage of BitBake can be found in the [Yocto Project Documentation](https://www.yoctoproject.org/documentation).
+
+ * This work is heavily based on [Embedded Developments with GNU Radio](http://gnuradio.org/redmine/projects/gnuradio/wiki/Embedded){:target="_blank"} and the work by Philip Balister (and others) on the [oe-gnuradio-manifest](https://github.com/balister/oe-gnuradio-manifest){:target="_blank"} and the [meta-sdr](https://github.com/balister/meta-sdr){:target="_blank"} layer.

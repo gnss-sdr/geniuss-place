@@ -38,4 +38,4 @@ or
 
 Inquiries beyond the mailing list can be sent to Carles Fern&aacute;ndez-Prades <a href="mailto:carles.fernandez@cttc.cat"><i class="fa fa-fw fa-envelope" aria-hidden="true"></i> </a>
 
-See other contact details in our [Team]({{ site.url }}{{ site.baseurl }}/team/) page.
+See other contact details in our [Team]({{ "/team/" | absolute_url }}) page.

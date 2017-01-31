@@ -24,7 +24,7 @@ This movie was beautifully crafted by [les3ines](https://www.facebook.com/las3in
 
 On December 6, 2013, GNSS-SDR appeared at _GPS World_, an essential reference for professionals in every tech field that uses or seeks to use global positioning, navigation, and timing. Click on the screenshot below to see the original page:
 
-[![GPS World screenchot]({{ site.url }}{{ site.baseurl }}/assets/images/gps-world.png)](http://gpsworld.com/galileo-position-fix-with-open-source-software-receiver-achieved/){:target="_blank"}
+[![GPS World screenshot]({{ "/assets/images/gps-world.png" | absolute_url }})](http://gpsworld.com/galileo-position-fix-with-open-source-software-receiver-achieved/){:target="_blank"}
 {: style="text-align: center;"}
 
 ----
@@ -33,7 +33,7 @@ On December 6, 2013, GNSS-SDR appeared at _GPS World_, an essential reference fo
 
 The [European Space Agency](http://www.esa.int/){:target="_blank"} acknowledged CTTC as one of the first 50 users of the Galileo system:
 
-![ESA Certificate]({{ site.url }}{{ site.baseurl }}/assets/images/ESA-ack.jpg){: width="500px"}
+![ESA Certificate]({{ "/assets/images/ESA-ack.jpg" | absolute_url }}){: width="500px"}
 {: style="text-align: center;"}
 
 ----
@@ -42,11 +42,11 @@ The [European Space Agency](http://www.esa.int/){:target="_blank"} acknowledged 
 
 On July 17, 2013 and on February 12, 2014 (and later updated on June 24, 2015), GNSS-SDR appeared at the News published by the European Commission. Click on the screenshots below to see the original pages:
 
-[![EC news screenshot]({{ site.url }}{{ site.baseurl }}/assets/images/ec-growth.png)](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemdetail.cfm?item_type=251&lang=en&item_id=7254){:target="_blank"}
+[![EC news screenshot]({{ "/assets/images/ec-growth.png" | absolute_url }})](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemdetail.cfm?item_type=251&lang=en&item_id=7254){:target="_blank"}
 {: style="text-align: center;"}
 
 
-[![EC news screenshot 2]({{ site.url }}{{ site.baseurl }}/assets/images/ec-growth-gsoc.png)](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemdetail.cfm?item_type=251&lang=en&item_id=6833){:target="_blank"}
+[![EC news screenshot 2]({{ "/assets/images/ec-growth-gsoc.png" | absolute_url }})](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemdetail.cfm?item_type=251&lang=en&item_id=6833){:target="_blank"}
 {: style="text-align: center;"}
 
 ----
@@ -55,5 +55,5 @@ On July 17, 2013 and on February 12, 2014 (and later updated on June 24, 2015), 
 
 On August 19, 2012, GNSS-SDR was mentioned in _Hackaday_, a popular blog about hardware and software hacks. Click on the screenshot below to see the original page:
 
-[![Hackaday]({{ site.url }}{{ site.baseurl }}/assets/images/hackaday.png)](http://hackaday.com/2012/08/19/real-time-gps-decoding-with-software-defined-radio/){:target="_blank"}
+[![Hackaday]({{ "/assets/images/hackaday.png" | absolute_url }})](http://hackaday.com/2012/08/19/real-time-gps-decoding-with-software-defined-radio/){:target="_blank"}
 {: style="text-align: center;"}
