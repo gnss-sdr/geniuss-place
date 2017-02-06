@@ -148,11 +148,11 @@ PVT.rtcm_MSM_rate_ms=1000
 
 
 ### Implementation: `Hybrid_PVT`
-This is an experimental _PVT_ implementation taht computes position fixes usign both GPS L1 C/A and Galileo E1B signals, and a basic, memoryless Least Squares solution. Those solutions are exported to KML and GeoJSON formats for their graphical representation.
+This is a _PVT_ implementation that computes position fixes using all the receiver's available signals, and performs a basic, memoryless Least Squares solution. Those solutions are exported to KML and GeoJSON formats for their graphical representation. **You always can use this implementation in your configuration file, since it accepts all kind of (single- or multi-band, single- or multi-constellation) receiver configurations.**
 
 If configured, this block delivers NMEA messages in real-time through a serial port.
 
-If configured, this block also generates RTCM messages in real-time, delivered through a TCP server (**still experimental**).
+If configured, this block also generates RTCM messages in real-time, delivered through a TCP server.
 
 
 This implementation accepts the following parameters:

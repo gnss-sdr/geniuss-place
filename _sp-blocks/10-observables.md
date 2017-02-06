@@ -4,7 +4,7 @@ permalink: docs/sp-blocks/observables/
 excerpt: "Documentation for the Observables block"
 sidebar:
   nav: "sp-block"
-modified: 2016-04-13T15:54:02-04:00
+modified: 2016-11-03T15:54:02-04:00
 ---
 {% include toc %}
 
@@ -100,6 +100,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L1_CA_Observables` | Mandatory |
+| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
@@ -116,6 +117,36 @@ Example:
     Observables.dump_filename=./my_observables.dat
 ```
 
+### Implementation: `GPS_L2C_Observables`
+
+This implementation computes observables by collecting the outputs of channels for GPS L2C(M) signals.
+
+It accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GPS_L2C_Observables` | Mandatory |
+| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
+|--------------
+
+  _Observables implementation:_ **`GPS_L2C_Observables`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+    ;######### OBSERVABLES CONFIG ############
+    Observables.implementation=GPS_L2C_Observables
+    Observables.dump=true
+    Observables.dump_filename=./my_observables.dat
+```
+
+
+
 ### Implementation: `Galileo_E1B_Observables`
 
 This implementation computes observables by collecting the outputs of channels for Galileo E1B signals.
@@ -127,6 +158,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E1B_Observables` | Mandatory |
+| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
@@ -141,11 +173,37 @@ Example:
     Observables.implementation=Galileo_E1B_Observables
 ```
 
+### Implementation: `Galileo_E5A_Observables`
+
+This implementation computes observables by collecting the outputs of channels for Galileo E5a signals.
+
+It accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Galileo_E5A_Observables` | Mandatory |
+| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
+|--------------
+
+  _Observables implementation:_ **`Galileo_E5A_Observables`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+    ;######### OBSERVABLES CONFIG ############
+    Observables.implementation=Galileo_E5A_Observables
+```
+
 
 
 ### Implementation: `Hybrid_Observables`  
 
-This implementation computes observables by collecting the outputs of channels for GPS L1 C/A and Galileo E1B signals.
+This implementation computes observables by collecting the outputs of channels for all kind of allowed GNSS signals. **You always can use this implementation in your configuration file, since it accepts all kind of (single- or multi-band, single- or multi-constellation) receiver configurations.**
 
 It accepts the following parameters:
 
@@ -154,6 +212,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Hybrid_Observables` | Mandatory |
+| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
