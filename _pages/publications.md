@@ -75,10 +75,10 @@ note     = { {DOI}: 10.1186/1687-6180-2013-143}
     C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
     <br><b>Assessment of Software-Defined GNSS Receivers</b><br>
 <i>Proceedings of the 8th edition of NAVITEC</i>,
-ESA/ESTEC, Noordwijk, The Netherlands, Dec 14-16, 2016. In Press.
+ESA/ESTEC, Noordwijk, The Netherlands, Dec 14-16, 2016, pp. 1-9.
     <br />
     <a href="javascript:toggleBibtex('Fernandez16c')">[BibTeX]</a>
-    <a href="http://esaconferencebureau.com/2016-events/16c10/programme" target="_blank">[Online]</a>
+    <a href="https://zenodo.org/record/266524#.WJR5AbbhB88" target="_blank">[Online <i class="ai ai-open-access"> </i>]</a>
     </p>
     <div id="bib_Fernandez16c" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez16c,
@@ -130,7 +130,7 @@ Portland, OR, Sept. 2016, pp. 44-61.<br>
 <i class="fa fa-fw fa-star"></i> Best Presentation Award (<i>Session A1: Advances in GNSS Software-defined Receivers</i>)
     <br />
     <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
-    <a href="https://www.ion.org/gnss/abstracts.cfm?paperID=3972" target="_blank">[Online]</a>
+    <a href="https://zenodo.org/record/266493#.WJR7rbbhB88" target="_blank">[Online  <i class="ai ai-open-access"> </i>]</a>
     <a href="https://www.overleaf.com/articles/accelerating-gnss-software-receivers/ywcwtdjwgnky.pdf" target="_blank">[Slides]</a>
     </p>
     <div id="bib_Fernandez16b" class="bibtex noshow">
