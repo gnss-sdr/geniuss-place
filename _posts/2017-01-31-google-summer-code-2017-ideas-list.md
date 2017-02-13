@@ -106,6 +106,25 @@ Basic knowledge on digital signal processing and C++ programming (familiarity wi
 
 Dr. Carles Fern&aacute;ndez-Prades. Mr. Luis Esteve, Dr. Javier Arribas.
 
+
+
+## Coding aspects of secure and robust GNSS receivers
+
+### Description:
+
+Applications that rely on accurate positioning are demanding higher security, reliability and resilience against possible attacks. Interference signals can cause GNSS signal degradation, denial of service, or mislead the receiver positioning solution with fake transmissions. Understanding jamming attacks and devising receiver algorithm against them has been an active area of research and development within GNSS community. The focus has primarily been on developing countermeasures addressing front-end receiver stages. In contrast, the effects of interferences on the decoding performance of the receiver have received less attention. However, explicitly exploiting the presence of channel coding and its properties can help to increase robustness against intentional and unintentional interferences.
+The main goal of this project is to implement and characterize state-of-the art receiver algorithms for reliable message decoding under jamming attacks and propose improvements. Evaluation of these advanced techniques will be done using real signals.
+
+
+### Skills required:
+
+Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework is a plus).
+
+### Potential mentor(s):
+
+Dr. Monica Navarro, Dr. Pau Closas.
+
+
 --------
 
 
