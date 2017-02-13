@@ -94,7 +94,7 @@ _```ClassA``` depends on ```ClassB```._
 Inheritance models _is a_ and _is like_ relationships, enabling you to reuse existing data and code easily. When ```ClassB``` inherits from ```ClassA```, we say that ```ClassB``` is the subclass of ```ClassA```, and ```ClassA``` is the superclass (or parent class) of ```ClassB```. The UML modeling notation for inheritance is a line with a closed arrowhead pointing from the subclass to the superclass.
 
 ![Class inheritance]({{ "/assets/images/inheritance.png" | absolute_url }}){:width="150x"}{: .align-center}
-_```ClassB``` inherits from ```ClassA```._
+_```ClassA``` inherits from ```ClassB```._
 {: style="text-align: center;"}
 
 ### Class hierarchy overview
