@@ -165,8 +165,8 @@ This option is faster:
 
 ### Copy only rootfs to the SD card using ```cp```
 
-For systems with a dedicated u-boot, devicetree and Kernel, it is possible to copy only the cross-compiled rootfs to the SD ext4 partition. Mount the rootfs SD card partition and extract the root filesystem to the mounted root directory (e.g. sdb is the SD card device and the ext4 partition is the second partition in the SD partition table):
-    
+For systems with a dedicated u-boot, devicetree and Kernel, it is possible to copy only the cross-compiled rootfs to the SD ext4 partition. Mount the rootfs SD card partition and extract the root filesystem to the mounted root directory (in this example, ```sdb2``` is the SD card device and the ext4 partition is the second partition in the SD partition table):
+
     $ mkdir ./mounted_SD
     $ sudo mount -rw /dev/sdb2 ./mounted_SD
     $ cd ./mounted_SD
