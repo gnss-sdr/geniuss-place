@@ -163,9 +163,10 @@ This option is faster:
      $ sudo python setup.py install
      $ sudo bmaptool copy gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz /dev/sdX --nobmap
 
-### Copy only rootfs to the SD card using ```cp```
 
-For systems with a dedicated u-boot, devicetree and Kernel, it is possible to copy only the cross-compiled rootfs to the SD ext4 partition. Mount the rootfs SD card partition and extract the root filesystem to the mounted root directory (in this example, ```sdb2``` is the SD card device and the ext4 partition is the second partition in the SD partition table):
+### Copying only the sysroot to the SD card using ```cp```
+
+For systems with a dedicated u-boot, devicetree and Kernel, it is possible to copy only the cross-compiled sysroot to the SD ext4 partition. Mount the SD card partition and extract the root filesystem to the mounted root directory (in this example, ```sdb2``` is the SD card device and the ext4 partition is the second partition in the SD partition table), and then use ```cp``` with the ```-a``` option, which preserves the same directory tree, same file types, same contents, same metadata (times, permissions, extended attributes, etc.) and same symbolic links:
 
     $ mkdir ./mounted_SD
     $ sudo mount -rw /dev/sdb2 ./mounted_SD
