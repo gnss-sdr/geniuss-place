@@ -175,7 +175,7 @@ For systems with a dedicated u-boot, devicetree and Kernel, it is possible to co
     $ cd ..
     $ sudo cp /usr/local/oecore-x86_64/sysroots/armv7ahf-neon-oe-linux-gnueabi/* -a ./mounted_SD
 
-### Copy only GNSS-SDR executables to the device over the network using ```sshfs```
+### Copying only GNSS-SDR executables to the device over the network using ```sshfs```
 
 For example, let's assume that we can address the device by a network name or IP address. Let's say it's called "mydevice" and it has an ip address of 192.168.2.2. We would use a mount point created in your home directory. To install sshfs and mount mydevice locally:
 
