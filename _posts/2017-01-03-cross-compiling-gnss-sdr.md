@@ -163,8 +163,18 @@ This option is faster:
      $ sudo python setup.py install
      $ sudo bmaptool copy gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz /dev/sdX --nobmap
 
+### Copy only rootfs to the SD card using ```cp```
 
-### Using ```sshfs```
+For systems with a dedicated u-boot, devicetree and Kernel, it is possible to copy only the cross-compiled rootfs to the SD ext4 partition. Mount the rootfs SD card partition and extract the root filesystem to the mounted root directory (e.g. sdb is the SD card device and the ext4 partition is the second partition in the SD partition table):
+    
+    $ mkdir ./mounted_SD
+    $ sudo mount -rw /dev/sdb2 ./mounted_SD
+    $ cd ./mounted_SD
+    $ sudo rm -rf *
+    $ cd ..
+    $ sudo cp /usr/local/oecore-x86_64/sysroots/armv7ahf-neon-oe-linux-gnueabi/* -a ./mounted_SD
+
+### Copy only GNSS-SDR executables to the device over the network using ```sshfs```
 
 For example, let's assume that we can address the device by a network name or IP address. Let's say it's called "mydevice" and it has an ip address of 192.168.2.2. We would use a mount point created in your home directory. To install sshfs and mount mydevice locally:
 
