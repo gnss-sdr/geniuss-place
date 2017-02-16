@@ -164,7 +164,18 @@ This option is faster:
      $ sudo bmaptool copy gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz /dev/sdX --nobmap
 
 
-### Using ```sshfs```
+### Copying only the sysroot to the SD card using ```cp```
+
+For systems with a dedicated u-boot, devicetree and Kernel, it is possible to copy only the cross-compiled sysroot to the SD ext4 partition. Mount the SD card partition and extract the root filesystem to the mounted root directory (in this example, ```sdb2``` is the SD card device and the ext4 partition is the second partition in the SD partition table), and then use ```cp``` with the ```-a``` option, which preserves the same directory tree, same file types, same contents, same metadata (times, permissions, extended attributes, etc.) and same symbolic links:
+
+    $ mkdir ./mounted_SD
+    $ sudo mount -rw /dev/sdb2 ./mounted_SD
+    $ cd ./mounted_SD
+    $ sudo rm -rf *
+    $ cd ..
+    $ sudo cp /usr/local/oecore-x86_64/sysroots/armv7ahf-neon-oe-linux-gnueabi/* -a ./mounted_SD
+
+### Copy only GNSS-SDR executables to the device over the network using ```sshfs```
 
 For example, let's assume that we can address the device by a network name or IP address. Let's say it's called "mydevice" and it has an ip address of 192.168.2.2. We would use a mount point created in your home directory. To install sshfs and mount mydevice locally:
 
