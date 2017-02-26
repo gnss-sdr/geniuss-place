@@ -14,9 +14,12 @@
   &__inner-wrap {
     @include container;
     @include clearfix;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+     justify-content: space-between;
     padding: 1em 1em 1em;
     font-family: $sans-serif-narrow;
-    font-size: 1.15rem;
 
     @include breakpoint($x-large) {
       max-width: $x-large;
@@ -32,7 +35,28 @@
   }
 }
 
+.site-title {
+  display: -webkit-box;
+  display: flex;
+  padding: 0.5rem 0;
+  align-self: stretch;
+  -webkit-box-align: center;
+        align-items: center;
+  font-weight: bold;
+  z-index: 20;
+}
+
 .masthead__menu {
+  width: 100%;
+  font-size: $type-size-4-5;
+
+  .site-nav {
+    margin-left: 0;
+
+    @include breakpoint($small) {
+      float: right;
+    }
+  }
 
   ul {
     margin: 0;
