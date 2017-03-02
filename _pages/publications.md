@@ -75,7 +75,7 @@ note     = { {DOI}: 10.1186/1687-6180-2013-143}
     C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
     <br><b>Assessment of Software-Defined GNSS Receivers</b><br>
 <i>Proceedings of the 8th edition of NAVITEC</i>,
-ESA/ESTEC, Noordwijk, The Netherlands, Dec 14-16, 2016, pp. 1-9.
+ESA/ESTEC, Noordwijk, The Netherlands, Dec. 14-16, 2016, pp. 1-9.
     <br />
     <a href="javascript:toggleBibtex('Fernandez16c')">[BibTeX]</a>
     <a href="https://zenodo.org/record/266524" target="_blank">[Online <i class="ai ai-open-access"> </i>]</a>
@@ -88,6 +88,32 @@ booktitle = {Proc. 8th ed. of NAVITEC Conf.},
 year    = {2016},
 address = {ESA/ESTEC, Noordwijk, The Netherlands},
 month   = {Dec.}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: SPREE -->
+    <li ><p>
+    A. Ranganathan, H. &Oacute;lafsd&oacute;ttir and S. Capkun
+    <br><b>SPREE: A Spoofing Resistant GPS Receiver</b><br>
+<i>Proceedings of the 22nd Annual International Conference on Mobile Computing and Networking</i>,
+New York, Oct. 3-7, 2016, pp. 348-360.
+    <br />
+    <a href="javascript:toggleBibtex('SPREE')">[BibTeX]</a>
+    <a href="https://aanjhan.com/assets/spree_arxiv.pdf" target="_blank">[Online <i class="ai ai-open-access"> </i>]</a>
+    </p>
+    <div id="bib_SPREE" class="bibtex noshow">
+    <pre>@inproceedings{ SPREE,
+author  = {A. Ranganathan and H. \'{O}lafsd\'{o}ttir and S. Capkun},
+title   = { {SPREE}: {A} Spoofing Resistant {GPS} Receiver},
+booktitle = {Proc. 22nd ed. Annual International Conference on Mobile Computing and Networking},
+year    = {2016},
+pages   = {348--360},
+address = {New York, USA},
+month   = {Oct.}
 }</pre>
     </div>
     </li>
