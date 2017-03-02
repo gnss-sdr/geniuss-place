@@ -109,7 +109,7 @@ New York, Oct. 3-7, 2016, pp. 348-360.
     <pre>@inproceedings{ SPREE,
 author  = {A. Ranganathan and H. \'{O}lafsd\'{o}ttir and S. Capkun},
 title   = { {SPREE}: {A} Spoofing Resistant {GPS} Receiver},
-booktitle = {Proc. 22nd ed. Annual International Conference on Mobile Computing and Networking},
+booktitle = {Proc. 22nd Annual International Conference on Mobile Computing and Networking},
 year    = {2016},
 pages   = {348--360},
 address = {New York, USA},
