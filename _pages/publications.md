@@ -127,6 +127,32 @@ month   = {Dec.}
 
 
 <ul class="biblist">
+    <!-- Item: Lopez16 -->
+    <li ><p>
+    E. L&oacute;pez, J. Dom&iacute;nguez, B. Quijano, C. Fern&aacute;ndez-Prades, J. Arribas, M. Hern&aacute;ndez-Pajares, A. Garc&iacute;a-Rigo, M. Schmidt,  A. Goss, E. Spaltro, J. Grosso, M. Symeonidou, S. Fountas, Z. Tsiropoulos, F. Van Evert, P. Blok and D. Roma
+    <br><b>Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network (AUDITOR)</b><br>
+<i>Proceedings of the Global Wireless Summit</i>,
+Aarhus, Denmark, Nov. 27-30, 2016, pp. 1-6.
+    <br />
+    <a href="javascript:toggleBibtex('Lopez16')">[BibTeX]</a>
+    <a href="https://zenodo.org/record/266524" target="_blank">[Online <i class="ai ai-open-access"> </i>]</a>
+    </p>
+    <div id="bib_Lopez16" class="bibtex noshow">
+    <pre>@inproceedings{ Lopez16,
+author  = {E.~L\'{o}pez and J.~Dom\'{i}nguez and B.~Quijano and C.~{Fern\'{a}ndez-Prades} and J.~Arribas and M.~{Hern\'{a}ndez-Pajares} and A.~{Garc\'{i}a-Rigo} and M.~Schmidt and A.~Goss and E.~Spaltro and J.~Grosso and M.~Symeonidou and S.~Fountas and Z.~Tsiropoulos and F.~{Van~Evert} and P.~Blok and D.~Roma},
+title   = {Advanced Multi-Constellation {EGNSS} Augmentation and Monitoring Network ({AUDITOR})},
+booktitle = {Proc. Global Wireless Summit},
+year    = {2016},
+pages   = {1--6},
+address = {Aarhus, Denmark},
+month   = {Nov.}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: SPREE -->
     <li ><p>
     A. Ranganathan, H. &Oacute;lafsd&oacute;ttir and S. Capkun
