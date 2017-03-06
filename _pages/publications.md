@@ -135,7 +135,6 @@ month   = {Dec.}
 Aarhus, Denmark, Nov. 27-30, 2016, pp. 1-6.
     <br />
     <a href="javascript:toggleBibtex('Lopez16')">[BibTeX]</a>
-    <a href="https://zenodo.org/record/266524" target="_blank">[Online <i class="ai ai-open-access"> </i>]</a>
     </p>
     <div id="bib_Lopez16" class="bibtex noshow">
     <pre>@inproceedings{ Lopez16,
