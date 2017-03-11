@@ -187,7 +187,14 @@ Once all the dependencies are installed in your system, you are ready to clone t
 
 The step `git checkout next` is optional, and sets the source tree pointing to the `next` branch, which is the most recent development snapshot. If this step is omitted it takes the `master` branch by dafault, which contains the latest stable release, and maybe some bug fixes.
 
-If everything went fine, now you can jump into how to get your [first position fix]({{ "/my-first-fix/" | absolute_url }}).
+In addition, CMake accepts a number of configuration options for your building process. For instance, if you want to compile your source in "Debug" mode instead of the default "Release", you can type:
+
+    $ cmake -DCMAKE_BUILD_TYPE=Debug ..
+
+and then CMake will add the debug flags appropriate for your compiler. There are more options that can be of your interest, such as the addition of extra drivers for RF front-ends not included by default, implementations of signal processing blocks that take advantage of your GPU, addition of experimental features, building of optional QA code, and so on. Check out the available [building configuration options]({{ "/docs/tutorials/configuration-options-building-time/" | absolute_url }}) documentation for more details.
+
+
+If everything went fine in the building process, now you can jump into how to get your [first position fix]({{ "/my-first-fix/" | absolute_url }}).
 
 # Other builds
 
