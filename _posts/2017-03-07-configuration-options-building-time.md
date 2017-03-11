@@ -14,7 +14,7 @@ modified: 2017-03-07T09:37:02+02:00
 
 {% include toc %}
 
-GNSS-SDR's building system is based on [CMake](https://cmake.org/), a cross-platform, free and open-source software for managing the build process of software using a compiler-independent method. CMake supports directory hierarchies and applications that depend on multiple libraries.  It can locate executables, files, and libraries that are required for your built, generating [makefiles](https://en.wikipedia.org/wiki/Makefile) for many platforms and IDEs (such as [Eclipse](http://www.eclipse.org), [Codeblocks](http://www.codeblocks.org/) and [Xcode](https://developer.apple.com/xcode/), and liberating users from choosing the adequate flags for their compiler. CMake is used in conjunction with native build environments such as [make](https://en.wikipedia.org/wiki/Make_(software)) or Apple's [Xcode](https://en.wikipedia.org/wiki/Xcode).
+GNSS-SDR's building system is based on [CMake](https://cmake.org/), a cross-platform, free and open-source software for managing the build process of software using a compiler-independent method. CMake supports directory hierarchies and applications that depend on multiple libraries.  It can locate executables, files, and libraries to be linked against, generating [makefiles](https://en.wikipedia.org/wiki/Makefile) for many platforms and IDEs (such as [Eclipse](http://www.eclipse.org), [Codeblocks](http://www.codeblocks.org/) and [Xcode](https://developer.apple.com/xcode/)), and liberating users from choosing the adequate flags for their compiler. CMake is used in conjunction with native build environments such as [make](https://en.wikipedia.org/wiki/Make_(software)) or Apple's [Xcode](https://en.wikipedia.org/wiki/Xcode).
 
 
 CMake allows GNSS-SDR to be effortlessly built in a wide range of operating systems and processor architectures, constituting a key tool for its [**portability**]({{ "/design-forces/portability/" | absolute_url }}).
@@ -25,14 +25,14 @@ CMake can handle in-place and out-of-place builds, enabling several builds from 
 
 The ```cmake``` executable is the CMake command-line interface. When ```cmake``` is first run in an empty build tree, it creates a CMakeCache.txt file and populates it with customizable settings for the project.
 
-Once all the requied dependencies are installed in your system, the default building process is:
+Once all the required dependencies are installed in your system, the default building process is:
 
     $ cd gnss-sdr/build
     $ cmake ..
     $ make
     $ sudo make install
 
-Default project configuration settings can be overridden on the command line with the -D option, with the following syntax:
+CMake's defaults and GNSS-SDR project configuration settings can be overridden on the command line with the -D option, with the following syntax:
 
     cmake -D<var>=<value>
 
@@ -99,7 +99,7 @@ Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb pa
 |--------------
 | &#x2011;DENABLE_OPENCL | ON / OFF | OFF | If set to ON, it enables building of processing blocks implemented with OpenCL (experimental). Specifically, the ```GPS_L1_CA_PCPS_OpenCl_Acquisition``` implementation of an [Acquisition]({{ "/docs/sp-blocks/acquisition/" | absolute_url }}) block becomes available. This option requires the [OpenCL library](https://www.khronos.org/opencl/) and a compatible Graphic Processing Unit (GPU). |
 | &#x2011;DENABLE_CUDA |  ON / OFF | OFF  |  If set to ON, it enables building of processing blocks implemented with CUDA (experimental). Specifically, the ```GPS_L1_CA_DLL_PLL_Tracking_GPU``` implementation of a [Tracking]({{ "/docs/sp-blocks/tracking/" | absolute_url }}) block becomes available. This option requires the [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads) and a compatible Graphic Processing Unit (GPU). |
-| <span style="color: DarkGreen">&#x2011;DENABLE_FPGA</span> |  <span style="color: DarkGreen">ON / OFF</span> | <span style="color: DarkGreen">OFF</span>  |  <span style="color: DarkGreen">If set to ON, it enables building of processing blocks implemented in VHDL and executed in a FGPA device (experimental).</span> |
+| <span style="color: DarkOrange">&#x2011;DENABLE_FPGA</span> |  <span style="color: DarkOrange">ON / OFF</span> | <span style="color: DarkOrange">OFF</span>  |  <span style="color: DarkOrange">If set to ON, it enables building of processing blocks implemented in VHDL and executed in a FGPA device (experimental).</span> |
 | &#x2011;DENABLE_PROFILING |  ON / OFF | OFF  | If set to ON, it enables  automatic execution of ```volk_gnsssdr_profile``` at the end of the building process. |
 |----------
 
@@ -119,18 +119,18 @@ Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb pa
 
 
 
-## QA code
+## QA code building options
 
 |----------
 |  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|   
 |--------------
 | &#x2011;DENABLE_UNIT_TESTING | ON / OFF | ON  |  If set to OFF, it disables the building of unit tests. This can be useful in memory-limited systems. |
-| &#x2011;DENABLE_UNIT_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external files and builds some extra unit tests. |
-| &#x2011;DENABLE_SYSTEM_TESTING | ON / OFF |  OFF |  If set to ON, it builds system tests.  |
-| &#x2011;DENABLE_SYSTEM_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external software tools and builds some extra system tests.  |
+| &#x2011;DENABLE_UNIT_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external raw sample files files and other software tools (among them, [GPSTk](http://www.gpstk.org/), if it is not already found in your system), and builds some extra unit tests.  |
+| &#x2011;DENABLE_SYSTEM_TESTING | ON / OFF |  OFF |  If set to ON, it builds system tests. The binary ```ttff```, a tool for Time-To-First-Fix measurement, is generated at the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option.  |
+| &#x2011;DENABLE_SYSTEM_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](http://www.gpstk.org/), if it is not already found in your system) and builds some extra system tests.  |
 | &#x2011;DENABLE_OWN_GPSTK | ON / OFF |  OFF | If set to ON, it forces to download, build and link [GPSTk](http://www.gpstk.org/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
-| <span style="color: DarkGreen">&#x2011;DENABLE_INSTALL_TESTS</span> | <span style="color: DarkGreen">ON / OFF</span> |  <span style="color: DarkGreen">OFF</span> | <span style="color: DarkGreen">By default, generated test binaries are not installed system-wide but placed in the local folder ```gnss-sdr/install```. If this option is set to ON, test binaries and auxiliary files will not be copied to  ```gnss-sdr/install``` but installed in the system path when doing ```make install```.</span>  |
+| <span style="color: DarkOrange">&#x2011;DENABLE_INSTALL_TESTS</span> | <span style="color: DarkOrange">ON / OFF</span> |  <span style="color: DarkOrange">OFF</span> | <span style="color: DarkOrange">By default, generated test binaries are not installed system-wide but placed in the local folder ```gnss-sdr/install```. If this option is set to ON, test binaries and auxiliary files will not be copied to  ```gnss-sdr/install``` but installed in the system path when doing ```make install```.</span>  |
 |----------
 
 If all these options are set to OFF (so, ```-DENABLE_UNIT_TESTING=OFF``` in a fresh start), then [Google Test](https://github.com/google/googletest) is not a required dependency anymore.
@@ -138,4 +138,5 @@ If all these options are set to OFF (so, ```-DENABLE_UNIT_TESTING=OFF``` in a fr
 --------
 
 
-<span style="color: DarkGreen">**NOTE**: Options in dark green are currently available only in the ```next``` branch of GNSS-SDR, and will be part of the next release. More info on how to access the ```next``` branch can be found in our brief [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}).</span>
+**NOTE**: Options in orange are currently available only in the ```next``` branch of GNSS-SDR, and will be part of the next release. More info on how to access the ```next``` branch can be found in our brief [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}).
+{: .notice--warning}
