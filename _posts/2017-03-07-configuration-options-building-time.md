@@ -23,7 +23,7 @@ CMake allows GNSS-SDR to be effortlessly built in a wide range of operating syst
 CMake can handle in-place and out-of-place builds, enabling several builds from the same source tree, and [cross-compilation](https://en.wikipedia.org/wiki/Cross_compiler). The ability to build a directory tree outside the source tree is a key feature, ensuring that if a build directory is removed, the source files remain unaffected. This approach is highly recommended when building GNSS-SDR, and you will get a warning message if you try an in-place build.
 
 
-The ```cmake``` executable is the CMake command-line interface. When ```cmake``` is first run in an empty build tree, it creates a CMakeCache.txt file and populates it with customizable settings for the project.
+The ```cmake``` executable is the CMake command-line interface. When ```cmake``` is first run in an empty build tree, it creates a ```CMakeCache.txt``` file and populates it with customizable settings for the project.
 
 Once all the required dependencies are installed in your system, the default building process is:
 
