@@ -48,6 +48,10 @@ You can specify any number of variables:
 This page documents the available GNSS-SDR configuration options at bulding time.
 
 
+**NOTE**: Options in orange are currently available only in the ```next``` branch of GNSS-SDR, and they will be part of the next release. More info on how to access the ```next``` branch can be found in our brief [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}).
+{: .notice--warning}
+
+
 ## General CMake variables
 
 The building system honors the usual [CMake variables](https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html). Most relevant are:
@@ -136,17 +140,14 @@ If all these options are set to OFF (so, ```-DENABLE_UNIT_TESTING=OFF``` in a fr
 
 ## Performance analysis tools
 
+Some statistical profiling tools require the software under analysis to be compiled and linked with certain profiling options enabled. GNSS-SDR provides some options for that:
 
 |----------
 |  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|
 |--------------
 | &#x2011;DENABLE_GPERFTOOLS | ON / OFF | OFF | If set to ON, it enables linking to [gperftools](https://github.com/gperftools/gperftools) libraries (tcmalloc and profiler). This option requires gperftools to be already installed in your system. Check out [how to profile GNSS-SDR]({{ "/how-profile-code/" | absolute_url }}) for more details on gperftools usage.  |
-| &#x2011;DENABLE_GPROF | ON / OFF | OFF  |  If set to ON, it enables the use of the GNU profiler tool [gprof](https://sourceware.org/binutils/docs/gprof/). Specifically, it adds ```-pg``` to the list of flags passed to the compiler and the linker. If the compiler is not gcc, this option has no effect. |
+| &#x2011;DENABLE_GPROF | ON / OFF | OFF  |  If set to ON, it enables the use of the GNU profiler tool [gprof](https://sourceware.org/binutils/docs/gprof/). Specifically, it adds ```-pg``` to the list of flags passed to the compiler and the linker. If the compiler is not GNU, this option has no effect. |
 |----------
 
 --------
-
-
-**NOTE**: Options in orange are currently available only in the ```next``` branch of GNSS-SDR, and they will be part of the next release. More info on how to access the ```next``` branch can be found in our brief [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}).
-{: .notice--warning}
