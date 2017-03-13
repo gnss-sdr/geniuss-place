@@ -410,11 +410,14 @@ OsmoSDR is a 100 % Free Software based small form-factor inexpensive SDR (Softwa
 project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. It provides a driver for several front-ends, such as RTL-based
 dongles, HackRF, bladeRF, etc.
 
-If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the built with the following flag:
+If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
 
 ```bash
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
+
+For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | absolute_url }}).
+
 
 This implementation accepts the following parameters:
 
@@ -455,6 +458,14 @@ SignalSource.osmosdr_args=rtl_tcp,offset_tune=1
 ### Implementation: `RtlTcp_Signal_Source`
 
 In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](http://sdr.osmocom.org/trac/wiki/rtl-sdr#rtl_sdr) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
+
+If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
+
+```bash
+$ cmake -DENABLE_OSMOSDR=ON ../
+```
+
+For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | absolute_url }}).
 
 In a terminal, type:
 
