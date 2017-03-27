@@ -238,7 +238,7 @@ _GLONASS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/ind
 {: style="text-align: center;"}
 
 
-[^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://facility.unavco.org/data/docs/ICD_GLONASS_5.1_(2008)_en.pdf){:target="_blank"}. Edition 5.1, Moscow, Russia, 2008.
+[^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://support.use-snip.com/wp-content/uploads/2016/03/ICD_GLONASS_5.1_2008_en.pdf){:target="_blank"}. Edition 5.1, Moscow, Russia, 2008.
 
 
 
