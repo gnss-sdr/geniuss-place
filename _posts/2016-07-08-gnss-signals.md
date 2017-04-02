@@ -109,7 +109,7 @@ are not defined in IS-GPS-800D.
 _GPS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan){:target="_blank"}_.
 {: style="text-align: center;"}
 
-[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](http://www.gps.gov/technical/icwg/IS-GPS-200H.pdf){:target="_blank"}, Sept. 2013.
+[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf){:target="_blank"}, Dec. 2015.
 
 [^ISGPS800]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-800D: Navstar GPS Space Segment/User Segment L1C Interface](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf){:target="_blank"}, Sept. 2013.
 
@@ -233,20 +233,10 @@ found in GLONASS' ICD [^GLONASS08]. The usage of the HP signal should be agreed 
 the Russian Federation Defense Ministry, and no more details have been
 disclosed.
 
+
 ![Spectra GLONASS Signals L1](http://www.navipedia.net/images/2/2e/GLONASS_Sig_Plan_Fig_2.png)
 _GLONASS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan){:target="_blank"}_.
 {: style="text-align: center;"}
-
-
-[^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://support.use-snip.com/wp-content/uploads/2016/03/ICD_GLONASS_5.1_2008_en.pdf){:target="_blank"}. Edition 5.1, Moscow, Russia, 2008.
-
-
-
-### GLONASS L2
-
-Beginning with the second generation of satellites, called GLONASS–M and
-first launched in 2001, a second civil signal is available using the
-same SP code than the one in the L1 band.
 
 The use of FDMA techniques, in which the same code is used to broadcast
 navigation signals on different frequencies, and the placement of civil
@@ -254,22 +244,42 @@ GLONASS transmissions on frequencies close to $$ 1600 $$ MHz, well above the
 GPS L1 band, have complicated the design of combined GLONASS/GPS
 receivers, particularly low–cost equipment for mass–market applications.
 
+In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1600.99 $$ MHz, referred to as L1OC, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, to be launched from 2018. This documentation is only available in Russian [^GLONASS16-1].
 
-Future plans of modernization are intended to increase compatibility and
-interoperability with other GNSS, and include the addition of a
-code–division multiple access (CDMA) structure (and possibly BOC
-modulation) beginning with the third civil signal in the L3 band
-($$ 1197.648 - 1212.255 $$ MHz). Russia is implementing the new signals on
-the next–generation GLONASS–K satellites, with a first space vehicle
-successfully launched on February 26, 2011.
 
-On July 2, 2013, a Russian Proton-M rocket carrying three GLONASS–M
-navigation satellites [crashed](https://www.youtube.com/watch?v=HpBYCLu6kXA){:target="_blank"} soon after liftoff today from Kazakhstan’ Baikonur cosmodrome.
+[^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf){:target="_blank"}. Edition 5.1, Moscow, Russia, 2008.
+
+[^GLONASS16-1]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L1 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}. Revision 1.0, Moscow, Russia, 2016.
+
+
+
+### GLONASS L2
+
+Beginning with the second generation of satellites, called GLONASS–M and
+first launched in 2001, a second civil signal is available using the
+same SP code than the one in the L1 band but centered at $$ 1246 $$ MHz.
 
 ![Spectra GLONASS Signals L2](http://www.navipedia.net/images/4/41/GLONASS_Sig_Plan_Fig_4.png)
 _GLONASS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan){:target="_blank"}_.
 {: style="text-align: center;"}
 
+Future plans of modernization are intended to increase compatibility and
+interoperability with other GNSS, and include the addition of a
+code–division multiple access (CDMA) structure.
+
+On July 2, 2013, a Russian Proton-M rocket carrying three GLONASS–M
+navigation satellites [crashed](https://www.youtube.com/watch?v=HpBYCLu6kXA){:target="_blank"} soon after liftoff today from Kazakhstan’ Baikonur cosmodrome.
+
+In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1248.06 $$ MHz, referred to as L2OC and featuring a BOC(1,1) modulation, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, to be launched from 2018. This documentation is only available in Russian [^GLONASS16-2].
+
+[^GLONASS16-2]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L2 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}. Revision 1.0, Moscow, Russia, 2016.
+
+
+### GLONASS L3
+
+In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1202.025 $$ MHz, referred to as L3OC and featuring a BPSK(10) modulation, to be broadcast by GLONASS satellites starting by Glonass-M, in production since 2014. This documentation is only available in Russian [^GLONASS16-3].
+
+[^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}. Revision 1.0, Moscow, Russia, 2016.
 
 ## Galileo
 
