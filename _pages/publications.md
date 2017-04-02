@@ -111,6 +111,7 @@ ESA/ESTEC, Noordwijk, The Netherlands, Dec. 14-16, 2016, pp. 1-9.
     <br />
     <a href="javascript:toggleBibtex('Fernandez16c')">[BibTeX]</a>
     <a href="https://zenodo.org/record/266524" target="_blank">[Online <i class="ai ai-open-access"> </i>]</a>
+    <a href="https://doi.org/10.5281/zenodo.266524" target="_blank">[<i class="ai ai-doi"> </i>]</a>
     </p>
     <div id="bib_Fernandez16c" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez16c,
@@ -119,7 +120,8 @@ title   = {Assessment of Software-Defined {GNSS} Receivers},
 booktitle = {Proc. 8th ed. of NAVITEC Conf.},
 year    = {2016},
 address = {ESA/ESTEC, Noordwijk, The Netherlands},
-month   = {Dec.}
+month   = {Dec.},
+note     = { {DOI}: 10.5281/zenodo.266524}
 }</pre>
     </div>
     </li>
