@@ -210,6 +210,10 @@ Satellites in opposite points of an orbit plane transmit signals on
 equal frequencies, as these satellites will never be in view
 simultaneously by a ground–based user.
 
+The modernization of GLONASS includes the adoption of the CDMA scheme[^GLONASS16], with new open signals called L1OC, L2OC and L3OC.
+
+[^GLONASS16]: Global Navigation Satellite System GLONASS. [General description of the system with code division of signals](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD.-Obshh.-opis.-Red.-1.0-2016.pdf){:target="_blank"}. Revision 1.0, Moscow, Russia, 2016.
+
 ### GLONASS L1
 
 Two kind of signals are transmitted: a standard precision (SP) and an
