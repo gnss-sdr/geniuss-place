@@ -585,6 +585,33 @@ _BeiDou signals spectra in B1. Source: [Navipedia](http://www.navipedia.net/inde
 {: style="text-align: center;"}
 
 
+## Summary of Open Service signals
+
+The following table lists all the available GNSS signals providing Open Service.
+
+|----------
+|  **Signal**  |  **Center Freq.** |  **Modulation** |
+|:-:|:-:|:-:|    
+|--------------
+| GPS L5$$ ^{(*)} $$ | $$1176.45 $$ MHz  |  BPSK(10)  |
+| Galileo E5a   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
+| GLONASS L3OC$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
+| Galileo E5b   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
+| BeiDou B2I    | $$ 1207.14 $$ MHz |  BPSK(2)   |
+| GPS L2C$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
+| GLONASS L2OF  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
+| GLONASS L2OC$$ ^{(*)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
+| BeiDou B1     | $$ 1561.098 $$ MHz | BPSK(2) |
+| GPS L1 C/A    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
+| GPS L1C$$ ^{(*)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
+| Galileo E1b/c | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
+| GLONASS L1OC$$ ^{(*)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
+| GLONASS L1OF  | $$ 1602.00 $$ MHz | BPSK(0.5) |
+|--------------
+
+(*): Modernized signal not broadcast by all satellites.
+
+
 ------
 
 
