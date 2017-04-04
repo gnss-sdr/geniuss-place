@@ -343,7 +343,7 @@ Navipedia.](http://www.navipedia.net/images/2/23/Galileo_Signal_Plan_Fig_2.png)
 _Galileo signals spectra in E1. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan){:target="_blank"}_.
 {: style="text-align: center;"}
 
-[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf){:target="_blank"}, Version 1.2, Nov. 2015.
+[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf){:target="_blank"}, Issue 1.3, Dec. 2016.
 
 ### Galileo E6
 
@@ -587,29 +587,31 @@ _BeiDou signals spectra in B1. Source: [Navipedia](http://www.navipedia.net/inde
 
 ## Summary of Open Service signals
 
-The following table lists all the available GNSS signals providing Open Service.
+The following table lists the GNSS signals providing Open Service.
 
 |----------
-|  **Signal**  |  **Center Freq.** |  **Modulation** |
+|  **GNSS Signal**  |  **Center Freq.** |  **Modulation** |
 |:-:|:-:|:-:|    
 |--------------
-| GPS L5$$ ^{(*)} $$ | $$1176.45 $$ MHz  |  BPSK(10)  |
-| Galileo E5a   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
-| GLONASS L3OC$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
-| Galileo E5b   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
-| BeiDou B2I    | $$ 1207.14 $$ MHz |  BPSK(2)   |
-| GPS L2C$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
-| GLONASS L2OF  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
-| GLONASS L2OC$$ ^{(*)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
-| BeiDou B1     | $$ 1561.098 $$ MHz | BPSK(2) |
-| GPS L1 C/A    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
-| GPS L1C$$ ^{(*)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
-| Galileo E1b/c | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
-| GLONASS L1OC$$ ^{(*)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
-| GLONASS L1OF  | $$ 1602.00 $$ MHz | BPSK(0.5) |
+| [GPS L5](http://www.gps.gov/technical/icwg/IS-GPS-705D.pdf){:target="_blank"}$$ ^{(*)} $$ | $$1176.45 $$ MHz  |  BPSK(10)  |
+| [Galileo E5a](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf){:target="_blank"}   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
+| [GLONASS L3OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
+| [Galileo E5b](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf){:target="_blank"}   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
+| [BeiDou B2I](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf){:target="_blank"}    | $$ 1207.14 $$ MHz |  BPSK(2)   |
+| [GPS L2C](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf){:target="_blank"}$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
+| [GLONASS L2OF](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf){:target="_blank"}  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
+| [GLONASS L2OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
+| [BeiDou B1](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf){:target="_blank"}     | $$ 1561.098 $$ MHz | BPSK(2) |
+| [GPS L1 C/A](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf){:target="_blank"}    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
+| [GPS L1C](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf){:target="_blank"}$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
+| [Galileo E1b/c](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf){:target="_blank"} | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
+| [GLONASS L1OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
+| [GLONASS L1OF](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf){:target="_blank"}  | $$ 1602.00 $$ MHz | BPSK(0.5) |
 |--------------
 
 (*): Modernized signal not broadcast by all satellites.
+
+(**): Planned signal still not broadcast by any satellite.
 
 
 ------
