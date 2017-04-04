@@ -2,7 +2,7 @@
 title: "10.- Reliability"
 permalink: /design-forces/reliability/
 excerpt: "The ability of a system or component to function under stated conditions for a specified period of time."
-modified: 2016-07-29T15:54:02-04:00
+modified: 2017-04-04T07:54:02-02:00
 ---
 
 _Reliability_ describes the ability of a system or component to function under stated conditions for a specified period of time. Reliability refers to the consistency of the results provided by a system; internal and external reliability are, respectively, the ability to detect gross errors and the effect of an undetected blunder on the solution.
@@ -13,6 +13,7 @@ Reliability is about the overall consistency of a measure. It is a concept that 
 * a **_time to alert_**, defined as the maximum allowable time elapsed from the onset of the navigation system being out of tolerance until the equipment enunciates the alert,
 * the corresponding **_integrity risk_**, defined as the probability that, at any moment, the position error exceeds the alert limit, and
 * a **_protection level_**, defined as the statistical bound error computed so as to guarantee that the probability of the absolute position error exceeding said number is smaller than or equal to the target integrity risk.
+
 
 
 ## Indicators of Reliability
@@ -28,7 +29,7 @@ It follows a list of possible reliability indicators for a software-defined GNSS
 * Horizontal / Vertical Protection Limits (HPL / VPL):  radius of circles which are centered on the GNSS position solution and are guaranteed to contain the true position of the receiver to within the specifications of the RAIM scheme (_i.e._, which meets specified false alarm and  missed detection probabilities).
 
 * Availability of mechanisms providing robustness against RF interferences and multipath:
-  - Out-of-band rejection of RF interferences.
+  - Out-of-band rejection of RF interferences (see [ETSI EN 303 413 Standard](https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=48239){:target="_blank"}).
   - In-band rejection techniques for continuous wave, pulsed, and wideband interferences.
   - Countermeasures against spoofing, meaconing, and fake assisted and differential data.
   - Spatial diversity: Fixed / Controlled Reception Pattern Antennas[^Fernandez16].

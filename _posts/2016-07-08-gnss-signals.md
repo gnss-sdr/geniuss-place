@@ -9,7 +9,7 @@ tags:
   - tutorial
 sidebar:
   nav: "docs"
-modified: 2017-01-20T09:37:02+02:00
+modified: 2017-04-03T09:37:02+02:00
 ---
 
 {% include toc %}
@@ -541,20 +541,76 @@ Satellite System with the abbreviation BDS.
 
 ### BeiDou B1
 
+BeiDou B1, centered at $$ f_{B1} = 1561.098 $$ MHz, features a QPSK(2) modulation. The complex baseband transmitted signal can be written as:
+
 $$ s^{\text{(BeiDou B1)}}_{T}(t) = e_{B1I}(t) + j e_{B1Q}(t)~,$$
 
 with
 
 $$ e_{B1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{40920}\Big] \oplus C_{\text{B1I}} \Big[ |l|_{2046} \Big]   p(t -  lT_{c,\text{B1I}})~, $$
 
-$$ e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{{XXXX}}  \Big]  \oplus   C_{\text{B1Q}}  \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~, $$
+$$ e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{\text{N/A}}  \Big]  \oplus   C_{\text{B1Q}}  \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~, $$
 
 Beidou’s Interface Control Document version 2.1 describes the Inphase
-component of the Beidou B1 link. The nominal frequency of B1I signal is
-1561.098 MHz.
+component of the Beidou B1 link.[^Beidou] The chip rate of the B1I ranging code, $$ C_{B1I} $$ is 2.046 Mcps, and the length is 2046 chips.
 
-The chip rate of the B1I ranging code, $$ C_{B1I} $$ is 2.046 Mcps, and the
-length is 2046 chips.
+
+
+
+### BeiDou B2
+
+
+BeiDou B2, centered at $$ f_{B2} = 1207.140 $$ MHz, features a BPSK(2) modulation in the I component, and a BPSK(10) in the Q component.[^Beidou]
+
+Next figure shows the power spectral densities of the BeiDou signals in B2.
+
+![Spectra of BeiDou signals in B2. Source:
+Navipedia.](http://www.navipedia.net/images/e/ec/Compass_Sig_Plan_Fig_3.png)
+_BeiDou signals spectra in B1. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan){:target="_blank"}_.
+{: style="text-align: center;"}
+
+
+### BeiDou B3
+
+Currntly, not all the technical aspects of the BeiDou B3 signals are defined yet. It probably will feature a QPSK(10) modulation centered at $$ f_{B3} = 1268.52 $$ MHz.
+
+
+Next figure shows the power spectral densities of the proposed BeiDou signals in B3.
+
+
+
+![Spectra of BeiDou signals in B3. Source:
+Navipedia.](http://www.navipedia.net/images/d/de/Compass_Sig_Plan_Fig_5.png)
+_BeiDou signals spectra in B1. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan){:target="_blank"}_.
+{: style="text-align: center;"}
+
+
+## Summary of Open Service signals
+
+The following table lists all the available GNSS signals providing Open Service.
+
+|----------
+|  **Signal**  |  **Center Freq.** |  **Modulation** |
+|:-:|:-:|:-:|    
+|--------------
+| GPS L5$$ ^{(*)} $$ | $$1176.45 $$ MHz  |  BPSK(10)  |
+| Galileo E5a   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
+| GLONASS L3OC$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
+| Galileo E5b   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
+| BeiDou B2I    | $$ 1207.14 $$ MHz |  BPSK(2)   |
+| GPS L2C$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
+| GLONASS L2OF  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
+| GLONASS L2OC$$ ^{(*)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
+| BeiDou B1     | $$ 1561.098 $$ MHz | BPSK(2) |
+| GPS L1 C/A    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
+| GPS L1C$$ ^{(*)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
+| Galileo E1b/c | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
+| GLONASS L1OC$$ ^{(*)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
+| GLONASS L1OF  | $$ 1602.00 $$ MHz | BPSK(0.5) |
+|--------------
+
+(*): Modernized signal not broadcast by all satellites.
+
 
 ------
 
