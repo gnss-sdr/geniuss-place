@@ -566,13 +566,13 @@ Next figure shows the power spectral densities of the BeiDou signals in B2.
 
 ![Spectra of BeiDou signals in B2. Source:
 Navipedia.](http://www.navipedia.net/images/e/ec/Compass_Sig_Plan_Fig_3.png)
-_BeiDou signals spectra in B1. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan){:target="_blank"}_.
+_BeiDou signals spectra in B2. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan){:target="_blank"}_.
 {: style="text-align: center;"}
 
 
 ### BeiDou B3
 
-Currntly, not all the technical aspects of the BeiDou B3 signals are defined yet. It probably will feature a QPSK(10) modulation centered at $$ f_{B3} = 1268.52 $$ MHz.
+Currently, not all the technical aspects of the BeiDou B3 signals are defined yet. It probably will feature a QPSK(10) modulation centered at $$ f_{B3} = 1268.52 $$ MHz.
 
 
 Next figure shows the power spectral densities of the proposed BeiDou signals in B3.
@@ -581,7 +581,7 @@ Next figure shows the power spectral densities of the proposed BeiDou signals in
 
 ![Spectra of BeiDou signals in B3. Source:
 Navipedia.](http://www.navipedia.net/images/d/de/Compass_Sig_Plan_Fig_5.png)
-_BeiDou signals spectra in B1. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan){:target="_blank"}_.
+_BeiDou signals spectra in B3. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan){:target="_blank"}_.
 {: style="text-align: center;"}
 
 
