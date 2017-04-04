@@ -15,6 +15,7 @@ Reliability is about the overall consistency of a measure. It is a concept that 
 * a **_protection level_**, defined as the statistical bound error computed so as to guarantee that the probability of the absolute position error exceeding said number is smaller than or equal to the target integrity risk.
 
 
+
 ## Indicators of Reliability
 
 It follows a list of possible reliability indicators for a software-defined GNSS receiver:
@@ -28,7 +29,7 @@ It follows a list of possible reliability indicators for a software-defined GNSS
 * Horizontal / Vertical Protection Limits (HPL / VPL):  radius of circles which are centered on the GNSS position solution and are guaranteed to contain the true position of the receiver to within the specifications of the RAIM scheme (_i.e._, which meets specified false alarm and  missed detection probabilities).
 
 * Availability of mechanisms providing robustness against RF interferences and multipath:
-  - Out-of-band rejection of RF interferences.
+  - Out-of-band rejection of RF interferences (see [ETSI EN 303 413 Standard](https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=48239){:target="_blank"}).
   - In-band rejection techniques for continuous wave, pulsed, and wideband interferences.
   - Countermeasures against spoofing, meaconing, and fake assisted and differential data.
   - Spatial diversity: Fixed / Controlled Reception Pattern Antennas[^Fernandez16].
