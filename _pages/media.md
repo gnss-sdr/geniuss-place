@@ -6,7 +6,7 @@ comments: false
 excerpt: "Appearances of GNSS-SDR in general media"
 sidebar:
     nav: "about"
-modified: 2016-06-21T16:39:37-04:00
+last_modified_at: 2016-06-21T16:39:37-04:00
 ---
 
 ## Youtube

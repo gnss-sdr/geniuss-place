@@ -2,7 +2,7 @@
 title: "Quick-Start Guide"
 permalink: /quick-start-guide/
 excerpt: "Start here to get a general idea on what is all about."
-modified: 2016-06-24T15:54:02-04:00
+last_modified_at: 2016-06-24T15:54:02-04:00
 header:
   teaser: "/assets/images/geniuss.jpg"
 sidebar:

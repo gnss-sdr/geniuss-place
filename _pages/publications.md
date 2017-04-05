@@ -7,7 +7,7 @@ header:
   teaser: "https://scontent-mad1-1.cdninstagram.com/t51.2885-15/e15/11190810_1446633488967530_1154530547_n.jpg"
 sidebar:
     nav: "about"
-date: 2017-03-05T18:38:52+00:00
+last_modified_at: 2017-03-05T18:38:52+00:00
 redirect_from:
   - /documentation/publications
 ---

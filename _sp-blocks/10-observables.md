@@ -4,7 +4,7 @@ permalink: docs/sp-blocks/observables/
 excerpt: "Documentation for the Observables block"
 sidebar:
   nav: "sp-block"
-modified: 2016-11-03T15:54:02-04:00
+last_modified_at: 2016-11-03T15:54:02-04:00
 ---
 {% include toc %}
 
