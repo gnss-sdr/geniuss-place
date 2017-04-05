@@ -2,7 +2,7 @@
 title: "How to contribute"
 permalink: /contribute/
 excerpt: "Contributing to the GNSS-SDR source code and to this website."
-modified: 2016-09-25T08:54:02+02:00
+last_modified_at: 2016-09-25T08:54:02+02:00
 header:
   teaser: "/assets/images/geniuss-contribute.png"
 comments: true

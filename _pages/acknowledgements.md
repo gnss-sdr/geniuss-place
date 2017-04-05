@@ -5,7 +5,7 @@ title: "Acknowledgements"
 excerpt: "List of public and private organizations that have helped in the development of GNSS-SDR."
 sidebar:
     nav: "about"
-date: 2016-07-28T18:38:52+00:00
+last_modified_at: 2016-07-28T18:38:52+00:00
 ---
 
 This project has been mainly developed on a volunteer basis, for education and research purposes. The main [Developer Team]({{ "/team/" | absolute_url }}){:target="_blank"} is a group of researchers at CTTC, a non-profit research institution, and they use to be quite busy developing amazing new concepts and practical developments for advanced wireless communication systems and serving the industry in actually deploying them. Only some selected students  got a stipend (through their participation in Google Summer of Code and ESA Summer of Code In Space programs) for their direct work on GNSS-SDR.  

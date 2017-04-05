@@ -2,7 +2,7 @@
 title: "5.- Interoperability"
 permalink: /design-forces/interoperability/
 excerpt: "The ability of making systems work together."
-modified: 2017-01-02T08:31:02+02:00
+last_modified_at: 2017-01-02T08:31:02+02:00
 ---
 {% include toc %}
 
