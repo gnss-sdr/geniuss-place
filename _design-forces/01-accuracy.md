@@ -2,7 +2,7 @@
 title: "1.- Accuracy"
 permalink: /design-forces/accuracy/
 excerpt: "How close a Position-Velocity-Time (PVT) solution is to the true position."
-modified: 2016-07-29T15:54:02-04:00
+last_modified_at: 2016-07-29T15:54:02-04:00
 ---
 
 In this context, it refers to how close a position solution delivered by the software-defined GNSS receiver is to the _true_ (actual) position. Hence, it is a measure of the _bias_ or systematic error. Its measurement requires a reference (also known as _fiducial_) position in the case of static positioning, and a controlled mobile platform in the case of dynamic positioning.

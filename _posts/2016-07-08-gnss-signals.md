@@ -9,7 +9,7 @@ tags:
   - tutorial
 sidebar:
   nav: "docs"
-modified: 2017-04-03T09:37:02+02:00
+last_modified_at: 2017-04-03T09:37:02+02:00
 ---
 
 {% include toc %}
@@ -537,7 +537,7 @@ Satellite System with the abbreviation BDS.
 
 [^Beidou]: [BeiDou Navigation Satellite System Signal In Space Interface Control Document](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf){:target="_blank"}. Open Service Signal (Version 2.1). China Satellite Navigation Office, November 2016.
 
-
+Updated information can be found at the [Beidou Navigation Satellite System website](http://en.beidou.gov.cn/){:target="_blank"}.
 
 ### BeiDou B1
 
