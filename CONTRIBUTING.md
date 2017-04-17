@@ -12,7 +12,8 @@ contribute in several ways:
  * Commenting (through your Google, Facebook or Twitter account, or just
 open a new profile at [Disqus](https://disqus.com/)) in the boxes such
 as the one at the bottom of this page. Moderation will be applied only
-in cases of flagrant off-topic or unappropriate style.
+in cases of flagrant off-topic or unappropriate style. See our [code of
+conduct](CODE_OF_CONDUCT.md).
 
  * Sharing the content in your favorite social network.
 
@@ -21,14 +22,16 @@ issues](https://github.com/gnss-sdr/geniuss-place/issues/) or submitting
 a [new one](https://github.com/gnss-sdr/geniuss-place/issues/new).
 
  * [Forking this web](https://github.com/gnss-sdr/geniuss-place/fork),
-working on the changes in your own repository, and making a pull
-request.
+working on the changes in your own repository, and making a [pull
+request](#how-to-submit-a-pull-request).
 
 ## Code of Conduct
 
 This project adheres to the Contributor Covenant [code of
 conduct](CODE_OF_CONDUCT.md). By participating, you are expected to
-uphold this code. Please report unacceptable behavior.
+uphold this code. Please report unacceptable behavior to
+carles.fernandez@cttc.es.
+
 
 ## How to run this website locally
 
@@ -100,9 +103,93 @@ compress/concatenate ```_main.js``` and all plugin scripts into
 $ npm run build:js
 ```
 
-in order to update the ```main.js``` script and implement the changes on
+in order to update the `main.js` script and implement the changes on
 the website.
 
+
+## Contributing to the source code of this website
+
+### Preliminaries
+
+   1. If you still have not done so, [create your personal account on
+GitHub](https://github.com/join).
+
+   2. [Fork this repository from
+GitHub](https://github.com/gnss-sdr/geniuss-place/fork). This will copy the
+whole website repository to your personal account.
+
+   3. Then, go to your favourite working folder in your computer and
+clone your forked repository by typing (replacing ```YOUR_USERNAME``` by
+the actual username of your GitHub account):
+
+          $ git clone https://github.com/YOUR_USERNAME/geniuss-place
+
+   4. Your forked repository https://github.com/YOUR_USERNAME/geniuss-place
+will receive the default name of `origin`. You can also add the original
+gnss-sdr repository, which is usually called `upstream`:
+
+          $ cd gnss-sdr
+          $ git remote add upstream https://github.com/gnss-sdr/geniuss-place.git
+
+To verify the new upstream repository you have specified for your fork,
+type `git remote -v`. You should see the URL for your fork as `origin`,
+and the URL for the original repository as `upstream`:
+
+```
+$ git remote -v
+origin    https://github.com/YOUR_USERNAME/geniuss-place.git (fetch)
+origin    https://github.com/YOUR_USERNAME/geniuss-place.git (push)
+upstream  https://github.com/gnss-sdr/geniuss-place.git (fetch)
+upstream  https://github.com/gnss-sdr/geniuss-place.git (push)
+```
+
+### Start working on your contribution
+
+Checkout the `next` branch of the git repository in order to get
+synchronized with the latest development code:
+
+```
+$ git checkout master
+$ git pull upstream master
+```
+
+When start working in a new improvement, please **always** branch off
+from `master`. Open a new branch and start working on it:
+
+```
+$ git checkout -b my_feature
+```
+
+Now you can do changes, add files, do commits (please take a look at
+[how to write good commit
+messages](https://chris.beams.io/posts/git-commit/)!) and push them to
+your repository:
+
+```
+$ git push origin my_feature
+```
+
+If there have been new pushes to the `master` branch of the `upstream`
+repository since the last time you pulled from it, you might want to put
+your commits on top of them (this is mandatory for pull requests):
+
+```
+$ git pull --rebase upstream master
+```
+
+### How to submit a pull request
+
+When the contribution is ready, you can [submit a pull
+request](https://github.com/gnss-sdr/master/compare/). Head to your
+GitHub repository, switch to your `my_feature` branch, and click the
+_**Pull Request**_ button, which will do all the work for you.
+
+Once a pull request is sent, the Developer Team can review the set of
+changes, discuss potential modifications, and even push follow-up
+commits if necessary.
+
+For more details about Git usage, please check out [our
+tutorial](http://gnss-sdr.org/docs/tutorials/using-git/).
 
 ------
 
