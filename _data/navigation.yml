@@ -58,6 +58,8 @@ geniuss-place:
         url: /rf-frontends/
       - title: "Makers"
         url: /enclosures/
+      - title: "Code of Conduct"
+        url: /code-of-conduct/
 
 about:
   - title: About Us
@@ -174,6 +176,8 @@ news:
         url: /rf-frontends/
       - title: "Makers"
         url: /enclosures/
+      - title: "Code of Conduct"
+        url: /code-of-conduct/ 
 
   - title: About Us
     children:
