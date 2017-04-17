@@ -1,5 +1,7 @@
 # Contributing to this website
 
+:+1::tada: Thanks for taking the time to contribute! :tada::+1:
+
 Found a typo in this website? Interested in giving your thoughts on
 existing pages, adding a post, tutorial, new feature or enhancement?
 
@@ -100,3 +102,13 @@ $ npm run build:js
 
 in order to update the ```main.js``` script and implement the changes on
 the website.
+
+
+------
+
+
+
+![GeNiuSS
+contributes](http://gnss-sdr.org/assets/images/geniuss-contribute.png)
+
+Thanks for your contribution to GNSS-SDR!
