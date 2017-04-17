@@ -46,7 +46,7 @@ According to the name and the quality of the theme this website is based upon, a
 
 ### License
 
-&copy; Carles Fern&aacute;ndez-Prades, 2016
+&copy; Carles Fern&aacute;ndez-Prades, 2016 - 2017
 
 This work is released under the Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)) license.
 
