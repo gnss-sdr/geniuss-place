@@ -21,7 +21,7 @@ conduct](CODE_OF_CONDUCT.md).
 issues](https://github.com/gnss-sdr/geniuss-place/issues/) or submitting
 a [new one](https://github.com/gnss-sdr/geniuss-place/issues/new).
 
- * [Forking this web](https://github.com/gnss-sdr/geniuss-place/fork),
+ * [Forking this repo](https://github.com/gnss-sdr/geniuss-place/fork),
 working on the changes in your own repository, and making a [pull
 request](#how-to-submit-a-pull-request).
 
