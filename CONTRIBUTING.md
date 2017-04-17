@@ -35,6 +35,42 @@ carles.fernandez@cttc.es.
 
 ## How to run this website locally
 
+### Preliminaries
+
+   1. If you still have not done so, [create your personal account on
+GitHub](https://github.com/join).
+
+   2. [Fork this repository from
+GitHub](https://github.com/gnss-sdr/geniuss-place/fork). This will copy the
+whole website repository to your personal account.
+
+   3. Then, go to your favourite working folder in your computer and
+clone your forked repository by typing (replacing ```YOUR_USERNAME``` by
+the actual username of your GitHub account):
+
+          $ git clone https://github.com/YOUR_USERNAME/geniuss-place
+
+   4. Your forked repository https://github.com/YOUR_USERNAME/geniuss-place
+will receive the default name of `origin`. You can also add the original
+website repository, which is usually called `upstream`:
+
+          $ cd geniuss-place
+          $ git remote add upstream https://github.com/gnss-sdr/geniuss-place.git
+
+To verify the new upstream repository you have specified for your fork,
+type `git remote -v`. You should see the URL for your fork as `origin`,
+and the URL for the original repository as `upstream`:
+
+```
+$ git remote -v
+origin    https://github.com/YOUR_USERNAME/geniuss-place.git (fetch)
+origin    https://github.com/YOUR_USERNAME/geniuss-place.git (push)
+upstream  https://github.com/gnss-sdr/geniuss-place.git (fetch)
+upstream  https://github.com/gnss-sdr/geniuss-place.git (push)
+```
+
+### Install the required software and run a local copy of the website
+
 The required software can be installed through
 [RubyGems](https://rubygems.org/), which is probably already installed
 in your system.
@@ -109,51 +145,7 @@ the website.
 
 ## Contributing to the source code of this website
 
-### Preliminaries
-
-   1. If you still have not done so, [create your personal account on
-GitHub](https://github.com/join).
-
-   2. [Fork this repository from
-GitHub](https://github.com/gnss-sdr/geniuss-place/fork). This will copy the
-whole website repository to your personal account.
-
-   3. Then, go to your favourite working folder in your computer and
-clone your forked repository by typing (replacing ```YOUR_USERNAME``` by
-the actual username of your GitHub account):
-
-          $ git clone https://github.com/YOUR_USERNAME/geniuss-place
-
-   4. Your forked repository https://github.com/YOUR_USERNAME/geniuss-place
-will receive the default name of `origin`. You can also add the original
-gnss-sdr repository, which is usually called `upstream`:
-
-          $ cd gnss-sdr
-          $ git remote add upstream https://github.com/gnss-sdr/geniuss-place.git
-
-To verify the new upstream repository you have specified for your fork,
-type `git remote -v`. You should see the URL for your fork as `origin`,
-and the URL for the original repository as `upstream`:
-
-```
-$ git remote -v
-origin    https://github.com/YOUR_USERNAME/geniuss-place.git (fetch)
-origin    https://github.com/YOUR_USERNAME/geniuss-place.git (push)
-upstream  https://github.com/gnss-sdr/geniuss-place.git (fetch)
-upstream  https://github.com/gnss-sdr/geniuss-place.git (push)
-```
-
-### Start working on your contribution
-
-Checkout the `next` branch of the git repository in order to get
-synchronized with the latest development code:
-
-```
-$ git checkout master
-$ git pull upstream master
-```
-
-When start working in a new improvement, please **always** branch off
+When start working on a new improvement, please **always** branch off
 from `master`. Open a new branch and start working on it:
 
 ```
@@ -180,7 +172,7 @@ $ git pull --rebase upstream master
 ### How to submit a pull request
 
 When the contribution is ready, you can [submit a pull
-request](https://github.com/gnss-sdr/master/compare/). Head to your
+request](https://github.com/gnss-sdr/geniuss-place/compare/). Head to your
 GitHub repository, switch to your `my_feature` branch, and click the
 _**Pull Request**_ button, which will do all the work for you.
 
