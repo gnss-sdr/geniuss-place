@@ -122,7 +122,7 @@ The Authors are proud to be supported by the following public institutions, priv
 -----
 
 
-[![Xilinx logo](https://silica.avnet.com/wps/wcm/connect/88131948-b40f-4223-89fd-137f3e8b3473/1/Xilinx-logo_web.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE-88131948-b40f-4223-89fd-137f3e8b3473/1-lid08oQ){:height="250px" width="250x"}](http://www.xilinx.com){:target="_blank"}
+[![Xilinx logo](https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Xilinx_logo.svg/1280px-Xilinx_logo.svg.png){:height="250px" width="250x"}](http://www.xilinx.com){:target="_blank"}
 {: style="text-align: center;"}
 
 * [Xilinx](http://www.xilinx.com){:target="_blank"} is a worldwide renowned supplier of programmable logic devices. It is known for inventing the field-programmable gate array (FPGA) and as the first semiconductor company with a fabless manufacturing model.
