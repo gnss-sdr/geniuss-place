@@ -56,6 +56,13 @@ The Authors are proud to be supported by the following public institutions, priv
     [![GSoC logo]({{ "/assets/images/logo-gsoc.png" | absolute_url }}){:height="100px" width="100x"}](https://developers.google.com/open-source/gsoc/){:target="_blank"}
     {: style="text-align: center;"}
 
+     * [2017](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr){:target="_blank"}
+          - In [Robust KF-based Tracking Techniques for Advanced GNSS Receivers](https://summerofcode.withgoogle.com/dashboard/project/6197701027823616/overview/){:target="_blank"} Shashanka Joisa will be working on improving the tracking loops.
+          - In [Graphical User Interface for GNSS-SDR configuration](https://summerofcode.withgoogle.com/dashboard/project/4704519677018112/overview/){:target="_blank"}, Usman Haider will be working on a GUI for making GNSS-SDR configuration easier and more intuitive.
+          - In [Expanding the receiver to GLONASS](https://summerofcode.withgoogle.com/dashboard/project/5472452239949824/overview/){:target="_blank"}, Damian Miralles will be working on expanding GNSS-SDR to GLONASS signals.
+          - In [Expanding the GNSS-SDR receiver to GLONASS](https://summerofcode.withgoogle.com/dashboard/project/4511514108100608/overview/){:target="_blank"}, Gabriel Araujo will be working on expanding GNSS-SDR to GLONASS signals.
+          - In [Pulsed and continuous wave radio frequency interferences mitigation: application to GNSS-SDR in low Signal to Noise ratio scenarios](https://summerofcode.withgoogle.com/dashboard/project/5694177315651584/overview/){:target="_blank"}, Antonio Ramos de Torres will be working on interference mitigation techniques.
+
      * [2016](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr){:target="_blank"}
           - In [GNSS-SDR port to android](https://summerofcode.withgoogle.com/projects/?sp-page=2#4871316700135424){:target="_blank"}, Eric Wild worked on porting GNSS-SDR to Android.
           - In [Implementation of the BeiDou signal tracking block for the GNSS-SDR Project](https://summerofcode.withgoogle.com/projects/?sp-page=2#5537250955755520){:target="_blank"}, Enric Juan developed part of the Beidou B1 receiver.
@@ -115,7 +122,7 @@ The Authors are proud to be supported by the following public institutions, priv
 -----
 
 
-[![Xilinx logo](https://silica.avnet.com/wps/wcm/connect/88131948-b40f-4223-89fd-137f3e8b3473/1/Xilinx-logo_web.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE-88131948-b40f-4223-89fd-137f3e8b3473/1-lid08oQ){:height="250px" width="250x"}](http://www.xilinx.com){:target="_blank"}
+[![Xilinx logo](https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Xilinx_logo.svg/1280px-Xilinx_logo.svg.png){:height="250px" width="250x"}](http://www.xilinx.com){:target="_blank"}
 {: style="text-align: center;"}
 
 * [Xilinx](http://www.xilinx.com){:target="_blank"} is a worldwide renowned supplier of programmable logic devices. It is known for inventing the field-programmable gate array (FPGA) and as the first semiconductor company with a fabless manufacturing model.

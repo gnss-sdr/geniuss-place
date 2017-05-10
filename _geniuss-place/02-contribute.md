@@ -19,10 +19,24 @@ redirect_from:
 
 ## Contributing to GNSS-SDR
 
-Found a bug in the code? Interested in adding a new feature or [fixing a known bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an issue](https://github.com/gnss-sdr/gnss-sdr/issues/new){:target="_blank"} or [pull request](https://help.github.com/articles/using-pull-requests/){:target="_blank"}. If this is your first pull request, it may be helpful to read up on the [GitHub Flow](https://guides.github.com/introduction/flow/){:target="_blank"} first. If you need a quick introduction to Git and its parlance (concepts such as _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}).
+Found a bug in the code? Interested in adding a new feature or [fixing a known bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an issue](https://github.com/gnss-sdr/gnss-sdr/issues/new){:target="_blank"} or [pull request](https://help.github.com/articles/using-pull-requests/){:target="_blank"}. If this is your first pull request, it may be helpful to read up on the [GitHub Flow](https://guides.github.com/introduction/flow/){:target="_blank"} first. If you need a quick introduction to Git and its parlance (concepts such as _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}). This project adheres to the [Contributor Covenant code of
+conduct]({{ "/code-of-conduct/" | absolute_url }}). By participating, you are expected to uphold this code.
 
-[<i class="fa fa-github fa-lg"></i> Fork GNSS-SDR from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--geniuss .btn--x-large}
-{: style="text-align: center;"}
+The basic setup steps for a contribution to the source code are the following:
+
+1. If you still have not done so, [create your personal account on GitHub](https://github.com/join).
+
+2. [Fork the GNSS-SDR source code repository from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork). This will copy the
+whole source code repository into your personal account.
+
+   [<i class="fa fa-github fa-lg"></i> Fork GNSS-SDR from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--geniuss .btn--x-large}
+   {: style="text-align: center;"}
+
+3. Then, clone your forked repository into your local machine, checkout the `next` branch, branch off from it, and start working on the source code.
+
+4. When your contribution is ready, head your browser to your GitHub repository, switch to the branch where your contributions are, and click the **Pull Request** button.
+
+More details are available in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) file.
 
 Before start working in GNSS-SDR source code, specially if you want to contribute your changes back to the _upstream_ repository, you may be interested in having a look at our [coding style guide]({{ "/coding-style/" | absolute_url }}).
 
