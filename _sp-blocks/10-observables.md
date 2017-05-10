@@ -4,7 +4,7 @@ permalink: docs/sp-blocks/observables/
 excerpt: "Documentation for the Observables block"
 sidebar:
   nav: "sp-block"
-last_modified_at: 2016-11-03T15:54:02-04:00
+last_modified_at: 2017-05-10T15:54:02-04:00
 ---
 {% include toc %}
 
@@ -91,6 +91,9 @@ In order to generate useable phase measurements, the receiver phase observations
 
 ### Implementation: `GPS_L1_CA_Observables`
 
+**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `Hybrid_Observables` implementation described below.
+{: .notice--danger}
+
 This implementation computes observables by collecting the outputs of channels for GPS L1 C/A signals.
 
 It accepts the following parameters:
@@ -118,6 +121,9 @@ Example:
 ```
 
 ### Implementation: `GPS_L2C_Observables`
+
+**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `Hybrid_Observables` implementation described below.
+{: .notice--danger}
 
 This implementation computes observables by collecting the outputs of channels for GPS L2C(M) signals.
 
@@ -149,6 +155,9 @@ Example:
 
 ### Implementation: `Galileo_E1B_Observables`
 
+**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `Hybrid_Observables` implementation described below.
+{: .notice--danger}
+
 This implementation computes observables by collecting the outputs of channels for Galileo E1B signals.
 
 It accepts the following parameters:
@@ -174,6 +183,9 @@ Example:
 ```
 
 ### Implementation: `Galileo_E5A_Observables`
+
+**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `Hybrid_Observables` implementation described below.
+{: .notice--danger}
 
 This implementation computes observables by collecting the outputs of channels for Galileo E5a signals.
 
@@ -212,7 +224,6 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Hybrid_Observables` | Mandatory |
-| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
