@@ -224,6 +224,10 @@ PVT.rtcm_MT1077_rate_ms=1000
 
 ### Implementation: `RTKLIB_PVT`
 
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR source code and will be present in the next stable release.
+{: .notice--danger}
+
 This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
 
 |----------
