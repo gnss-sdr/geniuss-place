@@ -13,6 +13,188 @@ The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a 
 The role of a _PVT_ block is to compute navigation solutions and deliver information in adequate formats for further processing or data representation.
 {: .notice--info}
 
+# Positioning modes
+
+The positioning problem is generally stated as
+
+$$ \mathbf{y} = \mathbf{h}(\mathbf{x}) +  \mathbf{n} $$
+
+where $$ \mathbf{y} $$ is the measurement vector (that is, the observables obtained from the GNSS signals of a set of $$ m $$ satellites), $$ \mathbf{x} $$ is the state vector to be estimated (at least, the position of the receiver's antenna and the time), $$ \mathbf{h}(\cdot) $$ is the function that relates states with measurements, and $$ \mathbf{n} $$ models measurement noise. Depending on the models, assumptions, available measurements and the availability of *a priori* or externally-provided information, many positioning strategies and algorithms can be devised. It follows a description of the positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}.
+
+## Single Point Positioning
+
+The default positiong mode is `PVT.positioning_mode=Single`. In this mode, the vector of unknown states is defined as:
+
+$$ \mathbf{x} = ( \mathbf{r}_r^T, cdt_r)^T $$
+
+where $$ \mathbf{r}_r $$ is the receiver's antenna position in an earth-centered, earth-fixed (ECEF) coordinate system (in meters), $$ c $$ is the speed of light and $$ dt_r $$ is the receiver clock bias (in seconds).
+
+The measurement vector is defined as:
+
+$$ \mathbf{y} = ( P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} )^T $$
+
+The pseudorange is defined as <span style="color: blue">the distance from the receiver antenna to the satellite antenna
+including receiver and satellite clock offsets and other biases, such as atmospheric delays</span>. For a signal from satellite $$ s $$ in the *i*-th band, the pseudorange $$ P_{r,i}^{(s)} $$ can be expressed by using the signal reception time $$ \bar{t}_r $$ (s) measured by the receiver clock and the signal transmission time $$ \bar{t}^{(s)} $$ (s) measured by the satellite clock as:
+
+$$ P_{r,i}^{(s)} = c (\bar{t}_r - \bar{t}^{(s)}) $$
+
+![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | absolute_url }})
+_Pseudorange model [^RTKLIBManual]_
+{: style="text-align: center;"}
+
+[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
+
+The equation can be written by using the geometric range $$ \rho_r^{(s)} $$ between satellite and receiver antennas,
+the receiver and satellite clock biases $$ dt_r $$ and $$ dT^{(s)} $$, the ionospheric and tropospheric delays $$ I_{r,i}^{(s)} $$ and $$ T_r^{(s)} $$ and the measurement error $$ \epsilon_P $$ as:
+
+$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{array}{ccl} P_{r,i}^{(s)} & = & c( (t_r+dt_r(t_r)) - (t^{(s)}+dT^{(s)}(t^{(s)})) )+ \epsilon_P \\
+{} & = & \color{blue}c(t_r - t^{(s)} )\color{dark-grey}+c( dt_r(t_r)-dT^{(s)}(t^{(s)}) )+\epsilon_P \\
+{} & = & \color{blue}\rho_r^{(s)} + I_{r,i}^{(s)} + T_r^{(s)}\color{dark-grey} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) +\epsilon_P \\
+{} & = & \rho_r^{(s)} - c( dt_r(t_r) - dT^{(s)}(t^{(s)}) ) + I_{r,i}^{(s)} + T_r^{(s)} +\epsilon_P \end{array} $$
+
+Hence, the equation that relates pseudorange measurements to the vector of unknown states can be written as:
+
+$$ \mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(1)} + cdt_r - cdT^{(1)} + I_{r}^{(1)} + T_{r}^{(1)} \\  \rho_{r}^{(2)} + cdt_r - cdT^{(2)} + I_{r}^{(2)} + T_{r}^{(2)}  \\ \rho_{r}^{(3)} + cdt_r - cdT^{(3)} + I_{r}^{(3)} + T_{r}^{(3)}  \\ \vdots \\ \rho_{r}^{(m)} + cdt_r - cdT^{(m)} + I_{r}^{(m)} + T_{r}^{(m)} \end{array} \right) $$
+
+
+The geometric range $$ \rho_r^{(s)} $$ is defined as the physical distance between the satellite antenna phase center position and the receiver antenna phase center position in the inertial coordinates. For the expression in the ECEF coordinates, the earth rotation effect has to be incorporated. This is known as the <span style="color: green">Sagnac effect</span> and it can be approximated by:
+
+$$ \definecolor{dark-green}{RGB}{0,128,0} \color{dark-grey} \rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + \color{dark-green} \frac{\omega_e}{c}(x^{(s)}y_r - y^{(s)}x_r ) $$
+
+where $$ \omega_e $$ is the Earth rotation angle velocity (in rad/s).
+
+![Earth rotation correction]({{ "/assets/images/earth-rotation.png" | absolute_url }})
+_Geometric range and Earth rotation correction [^RTKLIBManual]_
+{: style="text-align: center;"}
+
+Equation $$ \mathbf{h}(\mathbf{x}) $$ is clearly nonlinear due to the presence of the Eucliden norm operator $$ \left\| \cdot \right\| $$. However, this term can be extended by using Taylor series around an initial parameter vector $$ \mathbf{x}_0 $$ as $$ \mathbf{h}(\mathbf{x}) = \mathbf{h}(\mathbf{x}_0) + \mathbf{H}(\mathbf{x}-\mathbf{x}_0) + ... $$, where $$ \mathbf{H}= \frac{\partial \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} = \mathbf{x}_{0} } $$ is a partial derivatives matrix of $$ \mathbf{h}(\mathbf{x}) $$ with respect to $$ \mathbf{x} $$ at $$ \mathbf{x} = \mathbf{x}_{0} $$. Assuming that the initial parameters are adequately near the true values and the second and further terms of the Taylor series can be neglected, equation $$ \mathbf{y} = \mathbf{h}(\mathbf{x}) +  \mathbf{n} $$ can be approximated by $$ \mathbf{y} \approx \mathbf{h}(\mathbf{x}_0) + \mathbf{H}(\mathbf{x}-\mathbf{x}_0) + \mathbf{n} $$, and then we can obtain the following linear equation:
+
+$$ \mathbf{y} - \mathbf{h}(\mathbf{x}_0) = \mathbf{H}(\mathbf{x}-\mathbf{x}_0) + \mathbf{n} $$
+
+which can be solved by a standard weighted iterative least squares method.
+
+Matrix $$ \mathbf{H} $$ can be written as
+
+$$ \mathbf{H} = \left( \begin{array}{cc} -{\mathbf{e}_{r}^{(1)}}^T & 1 \\  -{\mathbf{e}_{r}^{(2)}}^T & 1 \\ -{\mathbf{e}_{r}^{(3)}}^T & 1 \\ \vdots & \vdots \\ -{\mathbf{e}_{r}^{(m)}}^T & 1 \end{array} \right), \quad \text{where } \mathbf{e}_r^{(s)}= \frac{\mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r)  \right\|} $$
+
+and the weighted least squares estimator (LSE) of the unknown state vector is obtained as:
+
+$$ \hat{\mathbf{x}}_{i+1} = \hat{\mathbf{x}}_{i} + \left( \mathbf{H}^T \mathbf{W} \mathbf{H}\right)^{-1} \mathbf{H}^T \mathbf{W} \left(\mathbf{y} - \mathbf{h}(\hat{\mathbf{x}}_{i}) \right) $$
+
+
+For the initial parameter vector $$ \mathbf{x}_0 $$ for the iterated weighted LSE, just all $$ 0 $$ are used for the first epoch of the single point positioning. Once a solution obtained, the position is used for the next epoch initial receiver position. For the weight matrix $$ \mathbf{W} $$, the `RTKLIB_PVT` implementation uses:
+
+$$ \mathbf{W} = \text{diag} \left( \sigma_1^{-2}, \sigma_2^{-2}, \sigma_3^{-2}, ..., \sigma_m^{-2} \right) $$
+
+$$ \sigma_{s}^{2} = F^{(s)} R_r \left( a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin \left( El_r^{(s)} \right)} \right) + \sigma_{eph}^2 + \sigma_{ion}^{2} + \sigma_{trop}^{2} + \sigma_{bias}^2  $$
+
+where:
+
+  - $$ F^{(s)} $$ is the satellite system error factor (1:GPS, Galileo, QZSS and BeiDou, 1.5: GLONASS, 3.0: SBAS)
+
+  - $$ R_r $$ is the code/carrier‐phase error ratio
+
+  - $$ a_{\sigma}, b_{\sigma} $$ is the carrier‐phase error factor $$ a $$ and $$ b $$ (in m).
+
+  - $$ El_r^{(s)} $$ is the elevation angle of satellite direction (in rad).
+
+  - $$ \sigma_{eph} $$ is the standard deviation of ephemeris and clock error (in m).
+
+  - $$ \sigma_{ion} $$ is the standard deviation of ionosphere correction model error (in m). This parameter defaults to $$ $$, and the value can be changed by the option `PVT.sigma_iono`
+
+  - $$ \sigma_{trop} $$ is the standard deviation of troposphere correction model error (in m). `PVT.sigma_trop`
+
+  - $$ \sigma_{bias} $$ is the standard deviation of code bias error (in m). `PVT.sigma_bias`
+
+The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](http://www.navipedia.net/index.php/Time_References_in_GNSS){:target="_blank"}.
+
+
+## Precise Point Positioning
+
+$$ \mathbf{x} = ( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T )^T $$
+
+$$ \mathbf{y} = ( \boldsymbol{\Phi}_{LC}^T, \mathbf{P}_{LC}^T )^T $$
+
+# Troposphere Model
+
+## Saastamoinen
+
+The standard atmosphere can be expressed as:
+
+$$ p = 1013.15 \cdot (1-2.2557 \cdot 10^{-5} \cdot h)^{5.2568} $$
+
+$$ T = 15.0 -6.5 \cdot 10^{-3} \cdot h + 273.15 $$
+
+$$ e = 6.108  \cdot \exp\left\{\frac{17.15 T -4684.0}{T-38.45}\right\} \cdot \frac{h_{rel}}{100} $$   
+
+where $$ p $$ is the total pressure (hPa), $$ T $$ is the absolute temperature (K) of the air, $$ h $$  is the geodetic height above MSL (mean sea level), $$ e $$ is the partial pressure (hPa) of water vapor and $$ h_{rel} $$ is the relative humidity. The tropospheric delay $$ T_{r}^{s} $$ is expressed by the Saastamoinen model with $$ p $$, $$ T $$ and $$ e $$ derived from the standard atmosphere:
+
+$$ T_{r}^{s} = \frac{0.002277}{\cos(z)} \left\{ p+\left( \frac{1255}{T} + 0.05 \right) e - \tan(z)^2  \right\} $$
+
+where $$ z $$ is the zenith angle (rad) as $$ z = \frac{\pi}{2} - El_{r}^{s} $$, where $$ El_{r}^{s} $$ is elevation angle of satellite direction (rad).
+
+The standard atmosphere and the Saastamoinen model are applied in case that the processing option `trop_model` is set to `Saastamoinen`, where the geodetic height is approximated by the ellipsoidal height and the relative humidity is fixed to 70 %.
+
+## SBAS
+
+If the processing option `trop_model` is set to `SBAS`, the SBAS troposphere models defined in the SBAS receiver specifications are applied. The model often called as "MOPS model". Refer to [MOPS reference](http://standards.globalspec.com/std/1014192/rtca-do-229)[^MOPS], A.4.2.4 for details.
+
+
+[^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](http://standards.globalspec.com/std/1014192/rtca-do-229){:target="_blank"}, RTCA Inc., December 13, 2006.
+
+## Estimate the tropospheric zenith total delay
+
+If the processing option `trop_model` is set to `Estimate_ZTD`, a more precise troposphere model is applied with strict mapping functions as:
+
+$$ m(El_{r}^{s}) = m_{W}(El_{r}^{s})\left\{1+\cot(El_{r}^{s}) \right\} $$
+
+$$ T_{r}^{s} =  m_{H}(El_{r}^{s})Z_{H,r} + m(El_{r}^{s}) (Z_{T,r}-Z_{H,r}) $$
+
+where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{s}) $$ is the hydro‐static mapping function and $$ m_{W}(El_{r}^{s}) $$ is the wet mapping function. The tropospheric zenith hydro‐static delay is given by Saastamoinen model described above with the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the mapping function, the software employs the [Niell mapping function](http://www.navipedia.net/index.php/Mapping_of_Niell)[^Niell96]. The zenith total delay $$ Z_{T,r} $$ is estimated as a unknown parameter in the parameter estimation process.
+
+[^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](http://dx.doi.org/10.1029/95JB03048){:target="_blank"}, Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
+
+## Estimate the tropospheric zenith total delay and gradient
+
+If the processing option `trop_model` is set to `Estimate_ZTD_Grad`, a more precise troposphere model is applied with strict mapping functions as:
+
+$$ m(El_{r}^{s}) = m_{W}(El_{r}^{s})\left\{1+\cot(El_{r}^{s}) \left( G_{N,r} \cos(Az_{r}^{s}) + G_{E,r} \sin(Az_{r}^{s})\right) \right\} $$
+
+where $$ Az_{r}^{s} $$ is the azimuth angle of satellite direction (rad), and $$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the tropospheric gradient, respectively. The zenith total delay $$ Z_{T,r} $$ and the gradient parameters $$ G_{E,r} $$ and $$ G_{N,r} $$ are estimated as unknown parameters in the parameter estimation process.
+
+# Ionosphere Model
+
+## Broadcast
+
+For ionosphere correction for single frequency GNSS users, GPS navigation data include the following broadcast ionospheric parameters:
+
+$$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T $$
+
+By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r}^{s} $$ (m) can be derived the following
+procedure [1]. The model is often called as Klobuchar model.
+
+$$ \Psi = \frac{0.0137}{El + 0.11}-0.022 $$
+
+$$ \psi_i = \psi + \Psi \cos(Az) $$
+
+$$ \lambda_i = \lambda + \frac{\Psi \sin(Az)}{\cos(\psi_i)} $$
+
+$$  \psi_m = \psi_i + 0.064 \cos(\lambda_i -1.617) $$
+
+$$ t = 4.32 \cdot 10^4 \lambda_i +t $$
+
+$$ F = 1.0 + 16.0 \cdot (0.43 - El)^3 $$
+
+
+$$ x = \frac{2 \pi (t - 505400)}{ \sum_{n=0}^{3} \beta_n {\psi_m}^n} $$
+
+$$ I_{r}^{s} = \left\{ \begin{array}{cc}  F \cdot 5 \cdot 10 ^{-9} & ( | x | > 1.57) \\ F \cdot \left( 5 \cdot 10^{-9}+ \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left( 1-\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array}   \right. $$
+
+## SBAS
+
+
+# Output formats
+
 Depending on the specific application or service that is exploiting the information provided by GNSS-SDR, different internal data will be required, and thus the receiver needs to provide such data in an adequate, standard formats:
 
 * For Geographic Information Systems, map representation and Earth browsers: [KML](http://www.opengeospatial.org/standards/kml){:target="_blank"} and [GeoJSON](http://geojson.org/){:target="_blank"}.
@@ -38,195 +220,10 @@ In _PVT_ implementations that support it, the TCP/IP server of RTCM messages can
 Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | absolute_url }}){:target="_blank"} page.
 {: .notice--success}
 
-### Implementation: `GPS_L1_CA_PVT`
-
-**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `RTKLIB_PVT` implementation described below.
-{: .notice--danger}
-
-This _PVT_ implementation computes position fixes usign GPS L1 C/A signals and a basic, memoryless Least Squares solution. Those solutions are exported to KML and GeoJSON formats for their graphical representation.
-
-In addition, observation and navigation RINEX files are also generated by default.
-
-If configured, this block delivers NMEA messages in real-time through a serial port.
-
-If configured, this block also generates RTCM messages in real-time, delivered through a TCP server.
-
-This implementation accepts the following parameters:
-
-|----------
-|  **Global Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `GNSS-SDR.SUPL_gps_ephemeris_xml` |  Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml` | Optional |
-|--------------
 
 
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `GPS_L1_CA_PVT` | Mandatory |
-| `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |
-| `averaging_depth` | If `flag_averaging` is set to `true`, size of the buffer performing a moving average. It defaults to 10. | Optional |
-| `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. The minimum is the integration time used in the tracking block. It defaults to 500 ms. | Optional |
-| `display_rate_ms` |  Rate at which PVT solutions will be displayed in the terminal, in ms. It defaults to 500 ms. | Optional |
-| `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
-| `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
-| `nmea_dump_devname` | If `flag_nmea_tty_port` is set to `true`, descriptor of the serial port device.  It defaults to `/dev/tty1`. | Optional |
-| `flag_rtcm_server` |  [`true`, `false`]: If set to `true`, it runs up a TCP server that is serving RTCM messages to the connected clients during the execution of the software receiver. It defaults to `false`. | Optional |
-| `rtcm_tcp_port` | If `flag_rtcm_server` is set to `true`, TCP port from which the RTCM messages will be served. It defaults to 2101. | Optional |
-| `rtcm_station_id` | Station ID reported in the generated RTCM messages. It defaults to 1234. | Optional |
-| `rtcm_MT1019_rate_ms` | Rate at which RTCM Message Type 1019 (GPS Ephemeris data) will be generated, in ms. It defaults to 5000 ms. | Optional |
-| `rtcm_MSM_rate_ms` | Rate at which RTCM Multiple Signal Messages GPS MSM7 (MT1077 - Full GPS observations) will be generated, in ms. It defaults to 1000 ms.  | Optional |
-| `flag_rtcm_tty_port` | [`true`, `false`]: If set to `true`, the generated RTCM messages are also sent to a serial port device. It defaults to `false`. | Optional |
-| `rtcm_dump_devname` |  If `flag_rtcm_tty_port` is set to `true`, descriptor of the serial port device. . It defaults to `/dev/pts/1`. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
-|----------
+# Implementation: `RTKLIB_PVT`
 
-Example:
-
-```ini
-;######### PVT CONFIG ############
-PVT.implementation=GPS_L1_CA_PVT
-PVT.nmea_dump_filename=./gnss_sdr_pvt.nmea ; NMEA log path and filename
-PVT.flag_nmea_tty_port=true ; Enable the NMEA log to a serial TTY port
-PVT.nmea_dump_devname=/dev/pts/4 ; serial device descriptor for NMEA log
-```
-
-
-### Implementation: `Galileo_E1_PVT`
-
-**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `RTKLIB_PVT` implementation described below.
-{: .notice--danger}
-
-This _PVT_ implementation computes position fixes usign Galileo E1B signals and a basic, memoryless Least Squares solution. Those solutions are exported to KML and GeoJSON formats for their graphical representation.
-
-In addition, observation and navigation RINEX files are also generated by default.
-
-If configured, this block delivers NMEA messages in real-time through a serial port.
-
-If configured, this block also generates RTCM messages in real-time, delivered through a TCP server.
-
-This implementation accepts the following parameters:
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `Galileo_E1_PVT` | Mandatory |
-| `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |
-| `averaging_depth` | If `flag_averaging` is set to `true`, size of the buffer performing a moving average. It defaults to 10. | Optional |
-| `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. It defaults to 500 ms. | Optional |
-| `display_rate_ms` |  Rate at which PVT solutions will be displayed in the terminal, in ms. It defaults to 500 ms. | Optional |
-| `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
-| `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
-| `nmea_dump_devname` | If `flag_nmea_tty_port` is set to `true`, descriptor of the serial port device. It defaults to `/dev/tty1`. | Optional |
-| `flag_rtcm_server` |  [`true`, `false`]: If set to `true`, it runs up a TCP server that is serving RTCM messages to the connected clients during the execution of the software receiver. It defaults to `false`. | Optional |
-| `rtcm_tcp_port` | If `flag_rtcm_server` is set to `true`, TCP port from which the RTCM messages will be served. It defaults to 2101. | Optional |
-| `rtcm_station_id` | Station ID reported in the generated RTCM messages. It defaults to 1234. | Optional |
-| `rtcm_MT1045_rate_ms` |  Rate at which RTCM Message Type 1045 (Galileo Ephemeris data) will be generated, in ms. It defaults to 5000 ms.  | Optional |
-| `rtcm_MSM_rate_ms` |  Rate at which RTCM Multiple Signal Messages Galileo MSM7 (MT1097 - Full Galileo observations) will be generated, in ms. It defaults to 1000 ms. | Optional |
-| `flag_rtcm_tty_port` | [`true`, `false`]: If set to `true`, the generated RTCM messages are also sent to a serial port device. It defaults to `false`. | Optional |
-| `rtcm_dump_devname` |  If `flag_rtcm_tty_port` is set to `true`, descriptor of the serial port device. . It defaults to `/dev/pts/1`. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
-|----------
-
-
-Example:
-
-```ini
-;######### PVT CONFIG ############
-PVT.implementation=GALILEO_E1_PVT
-PVT.averaging_depth=100
-PVT.flag_averaging=false
-PVT.output_rate_ms=100;
-PVT.display_rate_ms=500;
-PVT.nmea_dump_filename=./gnss_sdr_pvt.nmea;
-PVT.flag_nmea_tty_port=true;
-PVT.nmea_dump_devname=/dev/pts/4
-PVT.flag_rtcm_server=true;
-PVT.rtcm_tcp_port=2101
-PVT.rtcm_MT1045_rate_ms=5000
-PVT.rtcm_MSM_rate_ms=1000
-```
-
-
-### Implementation: `Hybrid_PVT`
-
-**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `RTKLIB_PVT` implementation described below.
-{: .notice--danger}
-
-This is a _PVT_ implementation that computes position fixes using all the receiver's available signals, and performs a basic, memoryless Least Squares solution. Those solutions are exported to KML and GeoJSON formats for their graphical representation. **You always can use this implementation in your configuration file, since it accepts all kind of (single- or multi-band, single- or multi-constellation) receiver configurations.**
-
-If configured, this block delivers NMEA messages in real-time through a serial port.
-
-If configured, this block also generates RTCM messages in real-time, delivered through a TCP server.
-
-
-This implementation accepts the following parameters:
-
-|----------
-|  **Global Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `GNSS-SDR.SUPL_gps_ephemeris_xml` |  Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml` | Optional |
-|--------------
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `Hybrid_PVT` | Mandatory |
-| `flag_averaging` |  Perfoms averaging over the internally generated results before outputting them. It defaults to `false`. | Optional |
-| `averaging_depth` | If `flag_averaging` is set to `true`, size of the buffer performing a moving average. It defaults to 10. | Optional |
-| `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. It defaults to 500 ms. | Optional |
-| `display_rate_ms` |  Rate at which PVT solutions will be displayed in the terminal, in ms. It defaults to 500 ms. | Optional |
-| `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
-| `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
-| `nmea_dump_devname` | If `flag_nmea_tty_port` is set to `true`, descriptor of the serial port device.  It defaults to `/dev/tty1`. | Optional |
-| `flag_rtcm_server` |  [`true`, `false`]: If set to `true`, it runs up a TCP server that is serving RTCM messages to the connected clients during the execution of the software receiver. It defaults to `false`. | Optional |
-| `rtcm_tcp_port` | If `flag_rtcm_server` is set to `true`, TCP port from which the RTCM messages will be served. It defaults to 2101. | Optional |
-| `rtcm_station_id` | Station ID reported in the generated RTCM messages. It defaults to 1234. | Optional |
-| `rtcm_MT1045_rate_ms` | Rate at which RTCM Message Type 1045 (Galileo Ephemeris data) will be generated, in ms. If set to `0`, mutes this message. It defaults to 5000 ms. | Optional |
-| `rtcm_MT1019_rate_ms` | Rate at which RTCM Message Type 1019 (GPS Ephemeris data) will be generated, in ms. If set to `0`, mutes this message. It defaults to 5000 ms. | Optional |
-| `rtcm_MSM_rate_ms` |  Default rate at which RTCM Multiple Signal Messages will be generated. It defaults to 1000 ms. | Optional |
-| `rtcm_MT1077_rate_ms` | Rate at which RTCM Multiple Signal Messages GPS MSM7 (MT1077 - Full GPS observations) will be generated, in ms. If set to `0`, mutes this message. It defaults to `rtcm_MSM_rate_ms`. | Optional |
-| `rtcm_MT1097_rate_ms` | Rate at which RTCM Multiple Signal Messages Galileo MSM7 (MT1097 - Full Galileo observations) will be generated, in ms. If set to `0`, mutes this message. It defaults to `rtcm_MSM_rate_ms`.  | Optional |
-| `flag_rtcm_tty_port` | [`true`, `false`]: If set to `true`, the generated RTCM messages are also sent to a serial port device. It defaults to `false`. | Optional |
-| `rtcm_dump_devname` |  If `flag_rtcm_tty_port` is set to `true`, descriptor of the serial port device. . It defaults to `/dev/pts/1`. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
-|----------
-
-
-Example:
-
-```ini
-;######### PVT CONFIG ############
-PVT.implementation=Hybrid_PVT
-PVT.averaging_depth=10
-PVT.flag_averaging=false
-PVT.output_rate_ms=100;
-PVT.display_rate_ms=500;
-PVT.flag_rtcm_server=true
-PVT.flag_rtcm_tty_port=false
-PVT.rtcm_dump_devname=/dev/pts/1
-PVT.rtcm_tcp_port=2101
-PVT.rtcm_MT1045_rate_ms=5000
-PVT.rtcm_MT1045_rate_ms=5000
-PVT.rtcm_MT1097_rate_ms=1000
-PVT.rtcm_MT1077_rate_ms=1000
-```
-
-
-
-### Implementation: `RTKLIB_PVT`
-
-
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR source code and will be present in the next stable release.
-{: .notice--danger}
 
 This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
 
@@ -308,3 +305,6 @@ PVT.rtcm_MT1097_rate_ms=1000
 PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 ```
+
+-------------
+# References
