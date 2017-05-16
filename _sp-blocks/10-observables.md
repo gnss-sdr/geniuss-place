@@ -13,21 +13,21 @@ The role of an _Observables_ block is to collect the synchronization data coming
 
 The **pseudorange measurement** is defined as the difference of the time of reception (expressed in the time frame of the receiver) and the time of transmission (expressed in the time frame of the satellite) of a distinct satellite signal. It can be modeled as follows:
 
-$$ P = \rho + c \left( dt_r - dt^s \right) + d_{\text{trop}} + d_{\text{ion}} + d_{\rho} + k_{P_r} - k_{P_s} + d_{P_{\text{multipath}}} + \epsilon_P $$
+$$ P_{r,i}^{(s)} = \rho_{r}^{(s)} + c \left( dt_r - dT^{(s)} \right) +  I_{r,i}^{(s)} + T_{r,i}^{(s)} +O^{(s)} + S_{r} - S_{s} + M_{i}^{(s)} + \epsilon_P $$
 
 where:
 
-  * $$ P $$ is the pseudorange measurement.
-  * $$ \rho $$ is the true range.
+  * $$ P_{r,i}^{(s)} $$ is the pseudorange measurement.
+  * $$ \rho_{r}^{(s}) $$ is the true range.
   * $$ c $$ is the speed of light.
   * $$ dt_r  $$ is the satellite clock offset from GNSS time.
-  * $$ dt^s $$ is the receiver clock offset from GNSS time.
-  * $$ d_{\text{trop}} $$ is the tropospheric delay.
-  * $$ d_{\text{ion}} $$ is the ionospheric delay.
-  * $$ d_{\rho} $$ models satellite orbital errors, since the orbits of the satellites are affected by many factors including the variations in gravity, drag and tidal forces from the sun, the moon etc.
-  * $$ k_{P_r} $$ models receiver's instrumental delays.
-  * $$ k_{P_s} $$ models satellites's instrumental delays.
-  * $$ d_{P_\text{multipath}} $$ models the effect of multipath on code delay estimation.
+  * $$ dT^{(s)} $$ is the receiver clock offset from GNSS time.
+  * $$ I_{r,i}^{(s)} $$ is the ionospheric delay.
+  * $$ T_{r,i}^{(s)} $$ is the tropospheric delay.
+  * $$ O^{(s)} $$ models satellite orbital errors, since the orbits of the satellites are affected by many factors including the variations in gravity, drag and tidal forces from the sun, the moon etc.
+  * $$ S_{r} $$ models receiver's instrumental delays.
+  * $$ S_{s} $$ models satellites's instrumental delays.
+  * $$ M_{i}^{(s)} $$ models the effect of multipath on code delay estimation.
   * $$ \epsilon_P $$ models the receiver's thermal noise.
 
 
@@ -51,14 +51,49 @@ Note that, in the case of a multi-system receiver, all pseudorange observations 
 
 The **carrier phase measurement** is actually a measurement on the beat frequency between the received carrier of the satellite signal and a receiver-generated reference frequency. It can be modeled as:
 
-$$ \Phi = \rho + c \left( dt_r - dt^s \right) +  d_{\text{trop}} - d_{\text{ion}} +  k_{L_r} - k_{L_s} + \lambda_L N_L + \lambda_L \omega + d_{L_{\text{multipath}}}  + \epsilon_L $$
+$$ \begin{array}{ccl}  \phi_{r,i}^{(s)}  & = &\phi_{r,i}(t_r) - \phi_{i}^{(s)} + N_{r,i}^{(s)} + \epsilon_{\phi} \\
+{} & = & (f_i(t_r+dt_r(t_r)-t_0) + \phi_{r,0,i}) - (f_i(t^{(s)} + dT^{(s)}(t^{(s)}) - t_0 ) + \phi_{0,i}^{(s)} ) + N_{r_i}^{(s)} + \epsilon_{\phi}\\
+{} & = &  \frac{c}{\lambda_i} (t_r-t^{(s)})+ \frac{c}{\lambda_i}(dt_r(t_r) - dT^s(t^{(s)})) + (\phi_{r,0,i} - \phi_{0,i} + N_{r,i}^{(s)}) + \epsilon_{\phi} \end{array}$$
+
+where:
+
+  * $$ \phi_{r,i}^{(s)} $$ is the carrier phase measurement (in cycles) for band $$ i $$ and satellite $$ s $$.
+  * $$ \phi_{r,i}(t) $$ is the phase for the $$ i $$-th band of the receiver's local oscillator (in cycles) at time $$ t $$.
+  * $$ \phi_{i}^{(s)}(t) $$ is the phase for the $$ i $$-th band of the transmitted signal (in cycles) at time $$ t $$.
+  * $$ t_r $$ is the navigation signal reception time at the receiver (in s).
+  * $$ t^{(s)} $$ is the navigation signal transmission time at the satellite (in s).
+  * $$ N_{r,i}^{(s)} $$ is the carrier‐phase integer ambiguity (in cycles).
+  * $$ \epsilon_{\phi} $$ is a term modelling carrier phase measurement noise (in cycles).
+  * $$ f_i $$ is the carrier frequency (in Hz).
+  * $$ dt_r(t) $$ is the receiver clock offset (in s) from GPS time at time $$ t $$.
+  * $$ dT^{(s)}(t) $$ is the satellite clock bias (in s) from GPS time at time $$ t $$.
+  * $$ t_0 $$ is the initial time (in s).
+  * $$ \phi_{0,i}^{(s)} $$ is the initial phase for the $$ i $$-th band of the transmitted signal (in cycles) at time $$ t_0 $$.
+  * $$ c $$ is the speed of light (in m/s).
+  * $$ \lambda_i $$ is the carrier wavelength (in m).
+
+This measurement is sometimes given in meters, and it is then referred to as the **phase-range measurement**, defined as the carrier‐phase multiplied by the carrier wavelength $$ \lambda_i $$. It can be expressed as:
+
+$$ \begin{array}{ccl} \Phi_{r,i}^{(s)} & = & \lambda_i \phi_{r,i}^{(s)} \\
+{} & = &c(t_r-t^{(s)}) + c (dt_r(t_r) - dT^s(t^{(s)}))+ \lambda_i(\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \lambda_i \epsilon_{\phi}  \end{array}$$
+
+The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna phase center offsets and variations, station displacement by earth tides, phase windup effect and relativity correction on the satellite clock) that will be useful for more accurate positioning algorithms:
+
+$$ c(t_r-t^{(s)}) = \rho_{r}^{(s)} - I_{r,i}^{(s)} + T{r,i}^{(s)} + \lambda_i(B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} $$
+
+where:
+
+  * $$ B_{r,i}^{(s)} = $$ is
+  * $$ d\Phi_{r,i}^{(s)} = $$ is
+
+$$ \Phi = \rho + c \left( dt_r - dt^{(s)} \right) +  d_{\text{trop}} - d_{\text{ion}} +  k_{L_r} - k_{L_s} + \lambda_L N_L + \lambda_L \omega + d_{L_{\text{multipath}}}  + \epsilon_L $$
 
 where:
 
   * $$ \Phi $$ is the carrier phase measurement.
   * $$ c $$ is the speed of light.
   * $$ dt_r $$ is the satellite clock offset from GNSS time.    
-  * $$ dt^s $$ is the receiver clock offset from GNSS time.
+  * $$ dt^{(s)} $$ is the receiver clock offset from GNSS time.
   * $$ d_{\text{trop}} $$ is the tropospheric delay.
   * $$ d_{\text{ion}} $$ is the ionospheric delay.
   * $$ k_{L_r} $$ models receiver's carrier phase instrumental delays.
