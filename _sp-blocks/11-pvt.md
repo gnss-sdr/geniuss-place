@@ -13,7 +13,7 @@ The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a 
 The role of a _PVT_ block is to compute navigation solutions and deliver information in adequate formats for further processing or data representation.
 {: .notice--info}
 
-# Positioning modes
+## Positioning modes
 
 The positioning problem is generally stated as
 
@@ -21,7 +21,9 @@ $$ \mathbf{y} = \mathbf{h}(\mathbf{x}) +  \mathbf{n} $$
 
 where $$ \mathbf{y} $$ is the measurement vector (that is, the observables obtained from the GNSS signals of a set of $$ m $$ satellites), $$ \mathbf{x} $$ is the state vector to be estimated (at least, the position of the receiver's antenna and the time), $$ \mathbf{h}(\cdot) $$ is the function that relates states with measurements, and $$ \mathbf{n} $$ models measurement noise. Depending on the models, assumptions, available measurements and the availability of *a priori* or externally-provided information, many positioning strategies and algorithms can be devised. It follows a description of the positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}.
 
-## Single Point Positioning
+[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
+
+### Single Point Positioning
 
 The default positiong mode is `PVT.positioning_mode=Single`. In this mode, the vector of unknown states is defined as:
 
@@ -33,24 +35,9 @@ The measurement vector is defined as:
 
 $$ \mathbf{y} = ( P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} )^T $$
 
-The pseudorange is defined as <span style="color: blue">the distance from the receiver antenna to the satellite antenna
-including receiver and satellite clock offsets and other biases, such as atmospheric delays</span>. For a signal from satellite $$ s $$ in the *i*-th band, the pseudorange $$ P_{r,i}^{(s)} $$ can be expressed by using the signal reception time $$ \bar{t}_r $$ (s) measured by the receiver clock and the signal transmission time $$ \bar{t}^{(s)} $$ (s) measured by the satellite clock as:
+As described in the [Observables]({{ "docs/sp-blocks/observables/" | absolute_url }}) block, for a signal from satellite $$ s $$ in the *i*-th band, the pseudorange measurement $$ P_{r,i}^{(s)} $$ can be expressed as:
 
-$$ P_{r,i}^{(s)} = c (\bar{t}_r - \bar{t}^{(s)}) $$
-
-![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | absolute_url }})
-_Pseudorange model [^RTKLIBManual]_
-{: style="text-align: center;"}
-
-[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
-
-The equation can be written by using the geometric range $$ \rho_r^{(s)} $$ between satellite and receiver antennas,
-the receiver and satellite clock biases $$ dt_r $$ and $$ dT^{(s)} $$, the ionospheric and tropospheric delays $$ I_{r,i}^{(s)} $$ and $$ T_r^{(s)} $$ and the measurement error $$ \epsilon_P $$ as:
-
-$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{array}{ccl} P_{r,i}^{(s)} & = & c( (t_r+dt_r(t_r)) - (t^{(s)}+dT^{(s)}(t^{(s)})) )+ \epsilon_P \\
-{} & = & \color{blue}c(t_r - t^{(s)} )\color{dark-grey}+c( dt_r(t_r)-dT^{(s)}(t^{(s)}) )+\epsilon_P \\
-{} & = & \color{blue}\rho_r^{(s)} + I_{r,i}^{(s)} + T_r^{(s)}\color{dark-grey} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) +\epsilon_P \\
-{} & = & \rho_r^{(s)} - c( dt_r(t_r) - dT^{(s)}(t^{(s)}) ) + I_{r,i}^{(s)} + T_r^{(s)} +\epsilon_P \end{array} $$
+$$  P_{r,i}^{(s)} = \rho_r^{(s)} + c( dt_r(t_r) - dT^{(s)}(t^{(s)}) ) + I_{r,i}^{(s)} + T_r^{(s)} +\epsilon_P $$
 
 Hence, the equation that relates pseudorange measurements to the vector of unknown states can be written as:
 
@@ -109,15 +96,63 @@ where:
 The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](http://www.navipedia.net/index.php/Time_References_in_GNSS){:target="_blank"}.
 
 
-## Precise Point Positioning
+### Static / Kinematic
+
+Assuming the use of triple‐frequency GPS/GNSS receivers for both of the rover and the base‐station, the unknown state vector $$ \mathbf{x} $$ to be estimated can be defined as:
+
+$$ \mathbf{x} = \left(\mathbf{r}_{r}^{T}, \mathbf{v}_{r}^{T} ,\mathbf{B}_{1}^{T} ,\mathbf{B}_{2}^{T} ,\mathbf{B}_{5}^{T} \right)^T $$
+
+where $$ \mathbf{B}_{i} = \left ( B_{rb,i}^{(1)}, B_{rb,i}^{(2)}, B_{rb,i}^{(3)}, ..., B_{rb,i}^{(m)} \right) $$ are the single‐difference carrier‐phase biases (in cycles) for the $$ i $$-th band.
+
+
+$$ \mathbf{y} = \left(\boldsymbol{\Phi}_{1}^T, \boldsymbol{\Phi}_{2}^T, \boldsymbol{\Phi}_{3}^T, \mathbf{P}_{1}^T, \mathbf{P}_{2}^T, \mathbf{P}_{5}^T \right)^T  $$
+
+where:
+
+  * $$ \boldsymbol{\Phi}_{i} = \left( \Phi_{rb,i}^{(12)}, \Phi_{rb,i}^{(13)}, \Phi_{rb,i}^{(14)}, ..., \Phi_{rb,i}^{(1m)}\right)^T  $$
+  * $$ \mathbf{P}_{i} =  \left( P_{rb,i}^{(12)}, P_{rb,i}^{(13)}, P_{rb,i}^{(14)}, ..., P_{rb,i}^{(1m)} \right)^T$$
+
+
+$$ \mathbf{h}(\mathbf{x}) = \left( \mathbf{h}_{\Phi,1}^{T}, \mathbf{h}_{\Phi,2}^{T} , \mathbf{h}_{\Phi,5}^{T}, \mathbf{h}_{P,1}^{T}, \mathbf{h}_{P,2}^{T} , \mathbf{h}_{P,5}^{T}  \right)^T $$
+
+where:
+
+  * $$  \mathbf{h}_{\Phi,i} = \left( \begin{array}{c} \rho_{rb}^{(12)} +\lambda_i (B_{rb}^{(1)} -B_{rb}^{(2)} ) \\  \rho_{rb}^{(13)} +\lambda_i (B_{rb}^{(1)} -B_{rb}^{(3)} )\\ \rho_{rb}^{(14)} +\lambda_i (B_{rb}^{(1)} -B_{rb}^{(4)}) \\ \vdots \\ \rho_{rb}^{(1m)} +\lambda_i (B_{rb}^{(1)} -B_{rb}^{(m)} ) \end{array} \right) \quad \mathbf{h}_{P,i} = \left(  \begin{array}{c} \rho_{rb}^{(12)} \\  \rho_{rb}^{(13)} \\ \rho_{rb}^{(14)} \\ \vdots \\ \rho_{rb}^{(1m)} \end{array}\right) $$
+
+
+$$ \mathbf{H}(\mathbf{x}) = \frac{\partial  \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} = \hat{\mathbf{x}} } = \left( \begin{array}{ccccc} -\mathbf{DE} & \mathbf{0} & \lambda_1 \mathbf{D} & \mathbf{0}  & \mathbf{0} \\  -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \lambda_2 \mathbf{D} & \mathbf{0}  \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} &  \mathbf{0} & \lambda_5 \mathbf{D} \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \mathbf{0}  & \mathbf{0} \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \mathbf{0}  & \mathbf{0} \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \mathbf{0}  & \mathbf{0}  \end{array} \right) $$
+
+
+$$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 & 0 & -1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & 0 & 0 & \cdots & -1 \end{array} \right) $$
+
+$$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)}  \right)^T $$
+
+Time update (prediction):
+
+$$ \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k  \hat{\mathbf{x}}_{k-1|k-1} $$
+
+$$ \mathbf{P}_{k|k-1} = \mathbf{F}_k  \mathbf{P}_{k-1|k-1}  \mathbf{F}_k^T + \mathbf{Q}_k $$
+
+Measurement update (estimation):
+
+$$ \mathbf{K}_k = \mathbf{P}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1}) \left( \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})\mathbf{P}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})^T+\mathbf{R}_k \right)^{-1}   $$
+
+$$ \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \left( \mathbf{y}_k - \mathbf{h}_k(\hat{\mathbf{x}}_{k|k-1}) \right) $$
+
+$$ \mathbf{P}_{k|k} = \left( \mathbf{I} -\mathbf{K}_{K} \mathbf{H}_k ( \hat{\mathbf{x}}_{k|k-1} )  \right)\mathbf{P}_{k|k-1} $$
+
+### Precise Point Positioning
 
 $$ \mathbf{x} = ( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T )^T $$
 
 $$ \mathbf{y} = ( \boldsymbol{\Phi}_{LC}^T, \mathbf{P}_{LC}^T )^T $$
 
-# Troposphere Model
 
-## Saastamoinen
+
+
+## Troposphere Model
+
+### Saastamoinen
 
 The standard atmosphere can be expressed as:
 
@@ -135,7 +170,7 @@ where $$ z $$ is the zenith angle (rad) as $$ z = \frac{\pi}{2} - El_{r}^{s} $$,
 
 The standard atmosphere and the Saastamoinen model are applied in case that the processing option `trop_model` is set to `Saastamoinen`, where the geodetic height is approximated by the ellipsoidal height and the relative humidity is fixed to 70 %.
 
-## SBAS
+### SBAS
 
 If the processing option `trop_model` is set to `SBAS`, the SBAS troposphere models defined in the SBAS receiver specifications are applied. The model often called as "MOPS model". Refer to [MOPS reference](http://standards.globalspec.com/std/1014192/rtca-do-229)[^MOPS], A.4.2.4 for details.
 
@@ -162,9 +197,9 @@ $$ m(El_{r}^{s}) = m_{W}(El_{r}^{s})\left\{1+\cot(El_{r}^{s}) \left( G_{N,r} \co
 
 where $$ Az_{r}^{s} $$ is the azimuth angle of satellite direction (rad), and $$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the tropospheric gradient, respectively. The zenith total delay $$ Z_{T,r} $$ and the gradient parameters $$ G_{E,r} $$ and $$ G_{N,r} $$ are estimated as unknown parameters in the parameter estimation process.
 
-# Ionosphere Model
+## Ionosphere Model
 
-## Broadcast
+### Broadcast
 
 For ionosphere correction for single frequency GNSS users, GPS navigation data include the following broadcast ionospheric parameters:
 
@@ -190,10 +225,10 @@ $$ x = \frac{2 \pi (t - 505400)}{ \sum_{n=0}^{3} \beta_n {\psi_m}^n} $$
 
 $$ I_{r}^{s} = \left\{ \begin{array}{cc}  F \cdot 5 \cdot 10 ^{-9} & ( | x | > 1.57) \\ F \cdot \left( 5 \cdot 10^{-9}+ \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left( 1-\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array}   \right. $$
 
-## SBAS
+### SBAS
 
 
-# Output formats
+## Output formats
 
 Depending on the specific application or service that is exploiting the information provided by GNSS-SDR, different internal data will be required, and thus the receiver needs to provide such data in an adequate, standard formats:
 
@@ -222,7 +257,7 @@ Read more about standard output formats at our [**Interoperability**]({{ "/desig
 
 
 
-# Implementation: `RTKLIB_PVT`
+## Implementation: `RTKLIB_PVT`
 
 
 This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
