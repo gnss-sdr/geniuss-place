@@ -134,6 +134,18 @@ $$ \Phi_{r,i}^{(s)} = \rho_{r}^{(s)} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) -  I_{r,i
 
 Notice that the ionospheric term has opposite sign for code and phase. This means that the ionosphere produces an advance of the carrier phase measurement equal to the delay on the code measurements.
 
+## Ionosphere-free combination
+
+According to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay){:target="_blank"}, the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of code or carrier measurements:
+
+
+$$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$
+
+$$ \Phi_{r,LC}^{(s)} = C_i \Phi_{r,i}^{(s)} + C_j \Phi_{r,j}^{(s)} $$
+
+
+with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 - f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$ and $$ L_j $$ measurements.
+
 
 
 ## Implementation: `GPS_L1_CA_Observables`
