@@ -143,11 +143,48 @@ $$ \mathbf{P}_{k|k} = \left( \mathbf{I} -\mathbf{K}_{K} \mathbf{H}_k ( \hat{\mat
 
 ### Precise Point Positioning
 
-$$ \mathbf{x} = ( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T )^T $$
+$$ \mathbf{x} = ( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z_r, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T )^T $$
+
+where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are the north and east components of tropospheric gradients and $$ \mathbf{B}_{LC} = \left(  B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)}   \right)^T $$ is the ionosphere‐free linear combination of zero‐differenced carrier‐phase biases (in m).
+
+
+The measurement vector is defined as:
 
 $$ \mathbf{y} = ( \boldsymbol{\Phi}_{LC}^T, \mathbf{P}_{LC}^T )^T $$
 
+where:
 
+  * $$ \boldsymbol{\Phi}_{LC} = \left(\Phi_{r,LC}^{(1)}, \Phi_{r,LC}^{(2)}, \Phi_{r,LC}^{(3)}, ..., \Phi_{r,LC}^{(m)}, \right)^T $$, with:
+
+    * $$ \Phi_{r,LC}^ {(s)} = C_i \Phi_{r,i}^{(s)} + C_j \Phi_{r,j}^{(s)} $$,
+
+  * $$ \mathbf{P}_{LC} = \left( P_{r,LC}^{(1)}, P_{r,LC}^{(2)}, P_{r,LC}^{(3)}, ..., P_{r,LC}^{(m)},  \right)^T $$, with:
+
+    * $$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$,
+
+
+with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 - f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$ and $$ L_j $$ measurements.
+
+
+
+$$ \mathbf{h}(\mathbf{x}) = \left( \mathbf{h}_{\Phi}^T, \mathbf{h}_{P}^T \right)^T $$
+
+$$ \mathbf{h}_{\Phi} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{t}^{(1)} + B_{r,LC}^{(1)} + d\Phi_{r,LC}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{t}^{(2)} + B_{r,LC}^{(2)} + d\Phi_{r,LC}^{(2)}  \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{t}^{(3)} + B_{r,LC}^{(3)} + d\Phi_{r,LC}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{t}^{(m)} + B_{r,LC}^{(m)} + d\Phi_{r,LC}^{(m)} \end{array}\right) $$
+
+$$ \mathbf{h}_{P} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{t}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{t}^{(2)} \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{t}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{t}^{(m)} \end{array}\right) $$
+
+$$ \mathbf{H}(\mathbf{x}) =  \left( \begin{array}{ccccc} -\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{I} \\ -\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{0} \end{array} \right) $$
+
+$$ \mathbf{M}_T = \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) &  m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\  m_{WG,r}^{(2)} \left( El_r^{(2)} \right) &  m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \cos \left( Az_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \sin \left( Az_r^{(2)} \right) \\  m_{WG,r}^{(3)} \left( El_r^{(3)} \right) &  m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \cos \left( Az_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \sin \left( Az_r^{(3)} \right) \\ \vdots \\  m_{WG,r}^{(m)} \left( El_r^{(m)} \right) &  m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \cos \left( Az_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \sin \left( Az_r^{(m)} \right) \end{array} \right) $$
+
+
+$$ \mathbf{R} = \left( \begin{array}{cc} \mathbf{R}_{\Phi,LC} & \mathbf{0} \\ \mathbf{0} & \mathbf{R}_{P,LC} \end{array}\right) $$
+
+$$ \mathbf{R}_{\Phi,LC} = diag \left( 3{\sigma_{\Phi,1}^{(1)}}^2, 3{\sigma_{\Phi,1}^{(2)}}^2, 3{\sigma_{\Phi,1}^{(3)}}^2, ..., 3{\sigma_{\Phi,1}^{(m)}}^2 \right) $$
+
+$$ \mathbf{R}_{P,LC} = diag \left( 3{\sigma_{P,1}^{(1)}}^2, 3{\sigma_{P,1}^{(2)}}^2, 3{\sigma_{P,1}^{(3)}}^2, ..., 3{\sigma_{P,1}^{(m)}}^2 \right) $$
+
+where $$ \sigma_{\Phi,1}^{(s)} $$ is the standard deviation of L1 phase‐range measurement error (in m), and $$ \sigma_{P,1}^{(s)} $$ is the standard deviation of L1 pseudorange measurement error (in m).
 
 
 ## Troposphere Model
@@ -191,11 +228,14 @@ where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is
 
 ## Estimate the tropospheric zenith total delay and gradient
 
-If the processing option `trop_model` is set to `Estimate_ZTD_Grad`, a more precise troposphere model is applied with strict mapping functions as:
+If the processing option `trop_model` is set to `Estimate_ZTD_Grad`, a more precise troposphere model is applied with strict mapping functions as[^MacMillan95]:
 
 $$ m(El_{r}^{s}) = m_{W}(El_{r}^{s})\left\{1+\cot(El_{r}^{s}) \left( G_{N,r} \cos(Az_{r}^{s}) + G_{E,r} \sin(Az_{r}^{s})\right) \right\} $$
 
 where $$ Az_{r}^{s} $$ is the azimuth angle of satellite direction (rad), and $$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the tropospheric gradient, respectively. The zenith total delay $$ Z_{T,r} $$ and the gradient parameters $$ G_{E,r} $$ and $$ G_{N,r} $$ are estimated as unknown parameters in the parameter estimation process.
+
+
+[^MacMillan95]: D. S. MacMillan, [Atmospheric gradients from very long baseline interferometry observation](http://onlinelibrary.wiley.com/doi/10.1029/95GL00887/abstract){:target="_blank"}, in Geophysical Research Letters, Volume 22, Issue 9, May 1995, pp. 1041-1044.
 
 ## Ionosphere Model
 
