@@ -64,7 +64,7 @@ Note that, in the case of a multi-system receiver, all pseudorange observations 
 The **carrier phase measurement** is actually a measurement on the beat frequency between the received carrier of the satellite signal and a receiver-generated reference frequency. It can be modeled as:
 
 $$ \begin{array}{ccl}  \phi_{r,i}^{(s)}  & = &\phi_{r,i}(t_r) - \phi_{i}^{(s)} + N_{r,i}^{(s)} + \epsilon_{\phi} \\
-{} & = & (f_i(t_r+dt_r(t_r)-t_0) + \phi_{r,0,i}) - (f_i(t^{(s)} + dT^{(s)}(t^{(s)}) - t_0 ) + \phi_{0,i}^{(s)} ) + N_{r_i}^{(s)} + \epsilon_{\phi}\\
+{} & = & \left(f_i(t_r + dt_r(t_r) - t_0) + \phi_{r,0,i}\right) - \left(f_i(t^{(s)} + dT^{(s)}(t^{(s)}) - t_0 ) + \phi_{0,i}^{(s)} \right) + N_{r_i}^{(s)} + \epsilon_{\phi}\\
 {} & = &  \frac{c}{\lambda_i} (t_r-t^{(s)})+ \frac{c}{\lambda_i}(dt_r(t_r) - dT^s(t^{(s)})) + (\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \epsilon_{\phi} \end{array}$$
 
 where:
@@ -76,7 +76,7 @@ where:
   * $$ t^{(s)} $$ is the navigation signal transmission time at the satellite (in s).
   * $$ N_{r,i}^{(s)} $$ is the carrier‐phase integer ambiguity (in cycles).
   * $$ \epsilon_{\phi} $$ is a term modelling carrier phase measurement noise (in cycles).
-  * $$ f_i $$ is the carrier frequency (in Hz).
+  * $$ f_i $$ is the carrier frequency (in Hz) at band $$ i $$.
   * $$ dt_r(t) $$ is the receiver clock offset (in s) from GPS time at time $$ t $$.
   * $$ dT^{(s)}(t) $$ is the satellite clock bias (in s) from GPS time at time $$ t $$.
   * $$ t_0 $$ is the initial time (in s).
@@ -95,7 +95,8 @@ where:
 In order to generate useable phase measurements, the receiver phase observations must maintain a contant integer number of cycles offset from the true carrier phase. That is, if the range increases by one cycle (_i.e._, one wavelength), the integer component of the NCO, denoted as $$ L^{(i)} (t_{r}) $$, also increments by one cycle.
 
 ### Phase-range measurement
-This phase measurement is sometimes given in meters, and it is then referred to as the **phase-range measurement**, defined as the carrier‐phase multiplied by the carrier wavelength $$ \lambda_i $$. It can be expressed as:
+
+Phase measurements are sometimes given in meters. This is referred to as **phase-range measurement**, and it is defined as the carrier phase multiplied by the carrier wavelength $$ \lambda_i $$. It can be expressed as:
 
 $$ \begin{array}{ccl} \Phi_{r,i}^{(s)} & = & \lambda_i \phi_{r,i}^{(s)} \\
 {} & = &c(t_r-t^{(s)}) + c (dt_r(t_r) - dT^s(t^{(s)}))+ \lambda_i(\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \lambda_i \epsilon_{\phi}  \end{array}$$
@@ -116,7 +117,7 @@ where:
     * $$ \mathbf{e}_{r,enu}^{(s)} $$ is the LOS vector from receiver antenna to satellite in local coordinates.
     * $$ \mathbf{e}_r^{(s)} $$ is the LOS vector from receiver antenna to satellite in ECEF.
     * $$ \mathbf{d}_{r,disp} $$ is the displacement by Earth tides at the receiver position in local coordinates (in m).
-    * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect){:target="_blank"} term due to the circular polarization of the electromagnetic signal.
+    * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect){:target="_blank"} term (in cycles) due to the circular polarization of the electromagnetic signal.
 
     ![Antenna phase center]({{ "/assets/images/antenna-phase-center.png" | absolute_url }}){:height="175px" width="175px"} ![Antenna phase center]({{ "/assets/images/satellite-phase-center.png" | absolute_url }}){:height="350px" width="350px"}
     {: style="text-align: center;"}
