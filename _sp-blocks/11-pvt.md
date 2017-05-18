@@ -238,7 +238,7 @@ $$ \mathbf{F}_k = \left(\begin{array}{ccc} \mathbf{I}_{3\times 3} &   \mathbf{I}
 $$  \mathbf{Q}_k = \left(\begin{array}{ccc} \mathbf{0}_{3\times 3} & {} & {} \\ {} &  \mathbf{Q}_{v} & {} \\ {} & {} &  \mathbf{0}_{(3m-3)\times(3m-3)} \end{array} \right) $$
 
 
-$$ \mathbf{Q}_v = \mathbf{E}_r \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the rover velocity system noises (in m/s/$$ \sqrt{s} $$).
+$$ \mathbf{Q}_v = \mathbf{E}_r \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the rover velocity system noises (in m/s/$$ \sqrt{s} $$). Those parameters can be set with the configuration parameters $$ \sigma_{ve} = \sigma_{vn} = $$ `PVT.sigma_acch`, which default to $$ 0.1 $$, and $$ \sigma_{vu} = $$`PVT.sigma_accv`, which defaults to $$ 0.01 $$.
 
 ## Troposphere Model
 
