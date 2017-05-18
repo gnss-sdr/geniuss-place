@@ -149,7 +149,17 @@ $$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$
 $$ \Phi_{r,LC}^{(s)} = C_i \Phi_{r,i}^{(s)} + C_j \Phi_{r,j}^{(s)} $$
 
 
-with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 - f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$ and $$ L_j $$ measurements.
+with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 - f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$ and $$ L_j $$ measurements. Explicitly:
+
+$$ P_{r,LC}^{(s)} =  \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{t}^{(s)} + \epsilon_P $$
+
+$$ \Phi_{r,LC}^{(s)} = \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{t}^{(s)} + B_{r,LC}^{(s)} + d\Phi_{r,LC}^{(s)} + \epsilon_{\Phi}$$
+
+with
+
+$$ B_{r,LC}^{(s)} = C_i  \left( \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} \right) + C_j  \left( \phi_{r,0,j} - \phi_{0,j}^{(s)} + N_{r,j}^{(s)} \right) $$
+
+$$ \begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} +  C_j\mathbf{d}_{pco,j}^{(s)} \right)  \right)^T \mathbf{e}_r^{(s)} + \\ {} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)})+C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) + \left( d_{pcv,i}^{(s)}(\theta) +  d_{pcv,j}^{(s)}(\theta)\right) + \\ {} & {} & - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\left( C_i\lambda_i + C_j \lambda_j \right) \phi_{pw} \end{array}$$
 
 The measurement vector is then defined as:
 
@@ -176,15 +186,15 @@ This is again a nonlinear equation that could be solved with the iterative weigh
 
   $$ \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k  \hat{\mathbf{x}}_{k-1|k-1} $$
 
-  $$ \mathbf{P}_{k|k-1} = \mathbf{F}_k  \mathbf{P}_{k-1|k-1}  \mathbf{F}_k^T + \mathbf{Q}_k $$
+  $$ \boldsymbol{\Sigma}_{k|k-1} = \mathbf{F}_k  \boldsymbol{\Sigma}_{k-1|k-1}  \mathbf{F}_k^T + \mathbf{Q}_k $$
 
   * Measurement update (estimation):
 
-  $$ \mathbf{K}_k = \mathbf{P}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1}) \left( \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})\mathbf{P}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})^T+\mathbf{R}_k \right)^{-1}   $$
+  $$ \mathbf{K}_k = \boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1}) \left( \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})\boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})^T+\mathbf{R}_k \right)^{-1}   $$
 
   $$ \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \left( \mathbf{y}_k - \mathbf{h}_k(\hat{\mathbf{x}}_{k|k-1}) \right) $$
 
-  $$ \mathbf{P}_{k|k} = \left( \mathbf{I} -\mathbf{K}_{K} \mathbf{H}_k ( \hat{\mathbf{x}}_{k|k-1} )  \right)\mathbf{P}_{k|k-1} $$
+  $$ \boldsymbol{\Sigma}_{k|k} = \left( \mathbf{I} -\mathbf{K}_{K} \mathbf{H}_k ( \hat{\mathbf{x}}_{k|k-1} )  \right)\boldsymbol{\Sigma}_{k|k-1} $$
 {% endcapture %}
 
 <div class="notice--success">
