@@ -46,9 +46,9 @@ GNSS-SDR performs pseudorange generation based on setting a **common reception t
 
 The first step performed by the common reception time algorithm is the selection of a reference satellite: it is the satellite with the most recent TOW (which is the nearest satellite), denoted as $$ \text{TOW}_\text{ref} $$, whose associated $$ t_{r_\text{ref}} $$ is taken as the common reception time for all channels. An initial travel time ($$ \tau_\text{ref} = 68.802 $$ ms is assigned to this satellite, but in general it is a value between $$ 65 $$ and $$ 85 $$ milliseconds according to the user altitude) that can be easily converted in meters considering the speed of light. Then, the pseudoranges for all other satellites are derived by adding the relative-arrival times. Each travel time $$ \tau $$ can be computed as:
 
-$$ \tau^{(i)} = \Delta \text{TOW} + \Delta t_r + \tau_\text{ref} = \text{TOW}^{(i)}-\text{TOW}_\text{ref}+t_r^{(i)}-t_{r_\text{ref}} + \tau_\text{ref} $$
+$$ \tau^{(s)} = \Delta \text{TOW}^{(s)} + \Delta t_r^{(s)} + \tau_\text{ref} = \text{TOW}^{(s)}-\text{TOW}_\text{ref}+t_r^{(s)}-t_{r_\text{ref}} + \tau_\text{ref} $$
 
-where $$ \Delta \text{TOW} $$ is the difference between the reference TOW and the current TOW of the $$ i $$-th satellite; $$  \Delta t_r $$ is the time elapsed between the reference $$ t_{r_\text{ref}} $$ and the actual receiver time, when the pseudorange must be computed for the specific satellite. This method is equivalent to taking a snapshot of all the channels' counters at a given time, and thus it can produce pseudoranges at any time, without waiting for a particular bit front on each channel.
+where $$ \Delta \text{TOW}^{(s)} $$ is the difference between the reference $$ -\text{TOW}_\text{ref} $$ and the current TOW of the $$ s $$-th satellite; $$  \Delta t_r^{(s)} $$ is the time elapsed between the reference $$ t_{r_\text{ref}} $$ and the actual receiver time, when the pseudorange must be computed for the specific satellite. This method is equivalent to taking a snapshot of all the channels' counters at a given time, and thus it can produce pseudoranges at any time, without waiting for a particular bit front on each channel.
 
 The block diagram of such approach is shown below:
 
@@ -65,7 +65,7 @@ The **carrier phase measurement** is actually a measurement on the beat frequenc
 
 $$ \begin{array}{ccl}  \phi_{r,i}^{(s)}  & = &\phi_{r,i}(t_r) - \phi_{i}^{(s)} + N_{r,i}^{(s)} + \epsilon_{\phi} \\
 {} & = & \left(f_i(t_r + dt_r(t_r) - t_0) + \phi_{r,0,i}\right) - \left(f_i(t^{(s)} + dT^{(s)}(t^{(s)}) - t_0 ) + \phi_{0,i}^{(s)} \right) + N_{r_i}^{(s)} + \epsilon_{\phi}\\
-{} & = &  \frac{c}{\lambda_i} (t_r-t^{(s)})+ \frac{c}{\lambda_i}(dt_r(t_r) - dT^s(t^{(s)})) + (\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \epsilon_{\phi} \end{array}$$
+{} & = &  \frac{c}{\lambda_i} (t_r-t^{(s)})+ \frac{c}{\lambda_i}(dt_r(t_r) - dT^{(s)}(t^{(s)})) + (\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \epsilon_{\phi} \end{array}$$
 
 where:
 
@@ -99,7 +99,7 @@ In order to generate useable phase measurements, the receiver phase observations
 Phase measurements are sometimes given in meters. This is referred to as **phase-range measurement**, and it is defined as the carrier phase multiplied by the carrier wavelength $$ \lambda_i $$. It can be expressed as:
 
 $$ \begin{array}{ccl} \Phi_{r,i}^{(s)} & = & \lambda_i \phi_{r,i}^{(s)} \\
-{} & = &c(t_r-t^{(s)}) + c (dt_r(t_r) - dT^s(t^{(s)}))+ \lambda_i(\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \lambda_i \epsilon_{\phi}  \end{array}$$
+{} & = &c(t_r-t^{(s)}) + c (dt_r(t_r) - dT^{(s)}(t^{(s)}))+ \lambda_i(\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \lambda_i \epsilon_{\phi}  \end{array}$$
 
 The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna phase center offsets and variations, station displacement by earth tides, phase windup effect and relativity correction on the satellite clock) that will be useful for more accurate positioning algorithms:
 
@@ -119,7 +119,7 @@ where:
     * $$ \mathbf{d}_{r,disp} $$ is the displacement by Earth tides at the receiver position in local coordinates (in m).
     * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect){:target="_blank"} term (in cycles) due to the circular polarization of the electromagnetic signal.
 
-    ![Antenna phase center]({{ "/assets/images/antenna-phase-center.png" | absolute_url }}){:height="175px" width="175px"} ![Antenna phase center]({{ "/assets/images/satellite-phase-center.png" | absolute_url }}){:height="350px" width="350px"}
+    ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | absolute_url }}){:height="175px" width="175px"} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | absolute_url }}){:height="350px" width="350px"}
     {: style="text-align: center;"}
 
     _Receiver and satellite antenna phase center [^RTKLIBManual]_
@@ -133,18 +133,6 @@ Then, the phase-range measurement can be written as:
 $$ \Phi_{r,i}^{(s)} = \rho_{r}^{(s)} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) -  I_{r,i}^{(s)} + T_{r,i}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} +\epsilon_{\Phi} $$
 
 Notice that the ionospheric term has opposite sign for code and phase. This means that the ionosphere produces an advance of the carrier phase measurement equal to the delay on the code measurements.
-
-## Ionosphere-free combination
-
-According to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay){:target="_blank"}, the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of code or carrier measurements:
-
-
-$$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$
-
-$$ \Phi_{r,LC}^{(s)} = C_i \Phi_{r,i}^{(s)} + C_j \Phi_{r,j}^{(s)} $$
-
-
-with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 - f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$ and $$ L_j $$ measurements.
 
 
 
