@@ -13,7 +13,7 @@ The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a 
 The role of a _PVT_ block is to compute navigation solutions and deliver information in adequate formats for further processing or data representation.
 {: .notice--info}
 
-## Positioning modes
+# Positioning modes
 
 The positioning problem is generally stated as
 
@@ -21,9 +21,8 @@ $$ \mathbf{y} = \mathbf{h}(\mathbf{x}) +  \mathbf{n} $$
 
 where $$ \mathbf{y} $$ is the measurement vector (that is, the observables obtained from the GNSS signals of a set of $$ m $$ satellites), $$ \mathbf{x} $$ is the state vector to be estimated (at least, the position of the receiver's antenna and the time), $$ \mathbf{h}(\cdot) $$ is the function that relates states with measurements, and $$ \mathbf{n} $$ models measurement noise. Depending on the models, assumptions, available measurements and the availability of *a priori* or externally-provided information, many positioning strategies and algorithms can be devised. It follows a description of the positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}.
 
-[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
 
-### Single Point Positioning
+## Single Point Positioning
 
 The default positiong mode is `PVT.positioning_mode=Single`. In this mode, the vector of unknown states is defined as:
 
@@ -135,7 +134,7 @@ $$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r
 {:/comment}
 
 
-### Precise Point Positioning
+## Precise Point Positioning
 
 $$ \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z_r, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T \right)^T $$
 
@@ -165,7 +164,7 @@ The measurement vector is then defined as:
 
 $$ \mathbf{y} = \left( \boldsymbol{\Phi}_{LC}^T, \mathbf{P}_{LC}^T \right)^T $$
 
-where $$ \boldsymbol{\Phi}_{LC} = \left(\Phi_{r,LC}^{(1)}, \Phi_{r,LC}^{(2)}, \Phi_{r,LC}^{(3)}, ..., \Phi_{r,LC}^{(m)}, \right)^T $$ and $$ \mathbf{P}_{LC} = \left( P_{r,LC}^{(1)}, P_{r,LC}^{(2)}, P_{r,LC}^{(3)}, ..., P_{r,LC}^{(m)},  \right)^T $$.
+where $$ \boldsymbol{\Phi}_{LC} = \left(\Phi_{r,LC}^{(1)}, \Phi_{r,LC}^{(2)}, \Phi_{r,LC}^{(3)}, ..., \Phi_{r,LC}^{(m)} \right)^T $$ and $$ \mathbf{P}_{LC} = \left( P_{r,LC}^{(1)}, P_{r,LC}^{(2)}, P_{r,LC}^{(3)}, ..., P_{r,LC}^{(m)}  \right)^T $$.
 
 
 The equation $$ \mathbf{h}(\mathbf{x}) $$ that relates measurements and states is:
@@ -228,7 +227,7 @@ $$  \mathbf{Q}_k = \left(\begin{array}{ccc} \mathbf{\infty}_{3\times 3} & {} & {
 
 
 
-## Receiver dynamics
+# Receiver dynamics
 
 Definition of $$ \mathbf{F} $$ and tuning of $$ \mathbf{Q} $$.
 
@@ -240,9 +239,66 @@ $$  \mathbf{Q}_k = \left(\begin{array}{ccc} \mathbf{0}_{3\times 3} & {} & {} \\ 
 
 $$ \mathbf{Q}_v = \mathbf{E}_r \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the rover velocity system noises (in m/s/$$ \sqrt{s} $$). Those parameters can be set with the configuration parameters $$ \sigma_{ve} = \sigma_{vn} = $$ `PVT.sigma_acch`, which default to $$ 0.1 $$, and $$ \sigma_{vu} = $$`PVT.sigma_accv`, which defaults to $$ 0.01 $$.
 
-## Troposphere Model
 
-### Saastamoinen
+
+# Ionosphere Model
+
+The ionosphere is a region of Earth's upper atmosphere, from about 60 km to 1,000 km altitude, surrounding the planet with a shell of electrons and electrically charged atoms and molecules. This part of the atmosphere is ionized by ultraviolet, X-ray and shorter wavelengths of solar radiation, and this affects GNSS signals' propagation speed.
+
+The propagation speed of the GNSS electromagnetic signals through the ionosphere depends on its electron density, which is typically driven by two main processes: during the day, sun radiation causes *ionization* of neutral atoms producing free electrons and ions. During the night, the *recombination* process prevails, where free electrons are recombined with ions to produce neutral particles, which leads to a reduction in the electron density.
+
+The frequency dependence of the ionospheric effect is described by the following expression:
+
+$$ I_{r,i}^{(s)} = \frac{40.3 \cdot \text{TEC} }{c f_i^2} $$
+
+where TEC is the Total Electron Content, which describes the number of free electrons present within one square meter between the receiver and satellite. This dispersive nature (i.e., the ionospheric delay is proportional to the  squared inverse of $$ f_i $$) allows users to remove its effect up to more than 99.9% using two frequency measurements (as in the see ionosphere-free combination for dual frequency receivers shown in the Precise Point Positioning algorithm described above), but single frequency receivers have to apply an ionospheric prediction model to remove (as much as possible) this effect, that can reach up to several tens of meters.
+
+
+## Broadcast
+
+For ionosphere correction for single frequency GNSS users, GPS navigation data include the following broadcast ionospheric parameters:
+
+$$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T $$
+
+By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r,1}^{(s)} $$ (m) can be derived the following
+procedure[^ISGPS200]. The model is often called as the [Klobuchar model](http://www.navipedia.net/index.php/Klobuchar_Ionospheric_Model){:target="_blank"}[^Klobuchar87].
+
+
+$$ \Psi = \frac{0.0137}{El_r^{(s)} + 0.11}-0.022 $$
+
+$$ \psi_i = \psi + \Psi \cos(Az_r^{(s)}) $$
+
+$$ \lambda_i = \lambda + \frac{\Psi \sin(Az_r^{(s)})}{\cos(\psi_i)} $$
+
+$$  \psi_m = \psi_i + 0.064 \cos(\lambda_i -1.617) $$
+
+$$ t = 4.32 \cdot 10^4 \lambda_i +t $$
+
+$$ F = 1.0 + 16.0 \cdot (0.43 - El_r^{(s)})^3 $$
+
+
+$$ x = \frac{2 \pi (t - 505400)}{ \sum_{n=0}^{3} \beta_n {\psi_m}^n} $$
+
+$$ I_{r,1}^{(s)} = \left\{ \begin{array}{cc}  F \cdot 5 \cdot 10 ^{-9} & ( | x | > 1.57) \\ F \cdot \left( 5 \cdot 10^{-9}+ \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left( 1-\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array}   \right. $$
+
+This correction is activated when `PVT.iono_model` is set to `Broadcast`.
+
+## SBAS
+
+SBAS corrections for ionospheric delay is provided by the message type 18 (ionospheric grid point masks) and the message type 26 (ionospheric delay corrections).
+
+
+# Troposphere Model
+
+The troposphere is the lowest portion of Earth's atmosphere, and contains 99% of the total mass of water vapor. The average depths of the troposphere are 20 km in the tropics, 17 km in the mid latitudes, and 7 km in the polar regions in winter. The chemical composition of the troposphere is essentially uniform, with the notable exception of water vapor, which can vary widely. The effect of the troposphere on the GNSS signals appears as an extra delay in the measurement of the signal traveling time from the satellite to the receiver. This delay depends on the temperature, pressure, humidity as well as the transmitter and receiver antennas location, and it is related to [air refractivity](http://aty.sdsu.edu/explain/atmos_refr/air_refr.html){:target="_blank"}, which in turn can be divided in hydrostatic, i.e., dry gases (mainly $$ N_2 $$ and $$ O_2 $$), and wet, i.e., water vapour, components:
+
+  * **Hydrostatic component delay**: Its effect varies with local temperature and atmospheric pressure in quite a predictable manner, besides its variation is less that the 1% in a few hours. The error caused by this component is about 2.3 meters in the zenith direction and 10 meters for lower elevations (10$$ ^{o} $$ approximately).
+
+  * **Wet component delay**: It is caused by the water vapour and condensed water in form of clouds and, thence, it depends on weather conditions. The excess delay is small in this case, only some tens of centimetres, but this component varies faster than the hydrostatic component and a quite randomly way, being very difficult to model.
+
+The troposphere is a non dispersive media with respect to electromagnetic waves up to 15 GHz, so the tropospheric effects are not frequency dependent for the GNSS signals. Thence, the carrier phase and code measurements are affected by the same delay, and this effect can not be removed by combinations of dual frequency measurements.
+
+## Saastamoinen
 
 The standard atmosphere can be expressed as:
 
@@ -252,24 +308,26 @@ $$ T = 15.0 -6.5 \cdot 10^{-3} \cdot h + 273.15 $$
 
 $$ e = 6.108  \cdot \exp\left\{\frac{17.15 T -4684.0}{T-38.45}\right\} \cdot \frac{h_{rel}}{100} $$   
 
-where $$ p $$ is the total pressure (hPa), $$ T $$ is the absolute temperature (K) of the air, $$ h $$  is the geodetic height above MSL (mean sea level), $$ e $$ is the partial pressure (hPa) of water vapor and $$ h_{rel} $$ is the relative humidity. The tropospheric delay $$ T_{r}^{s} $$ is expressed by the Saastamoinen model with $$ p $$, $$ T $$ and $$ e $$ derived from the standard atmosphere:
+where $$ p $$ is the total pressure (in hPa), $$ T $$ is the absolute temperature (in K) of the air, $$ h $$  is the geodetic height above MSL (mean sea level), $$ e $$ is the partial pressure (in hPa) of water vapor and $$ h_{rel} $$ is the relative humidity. The tropospheric delay $$ T_{r}^{(s)} $$ is expressed by the Saastamoinen model with $$ p $$, $$ T $$ and $$ e $$ derived from the standard atmosphere:
 
-$$ T_{r}^{s} = \frac{0.002277}{\cos(z)} \left\{ p+\left( \frac{1255}{T} + 0.05 \right) e - \tan(z)^2  \right\} $$
+$$ T_{r}^{(s)} = \frac{0.002277}{\cos(z^{(s)})} \left\{ p+\left( \frac{1255}{T} + 0.05 \right) e - \tan(z^{(s)})^2  \right\} $$
 
-where $$ z $$ is the zenith angle (rad) as $$ z = \frac{\pi}{2} - El_{r}^{(s)} $$, where $$ El_{r}^{(s)} $$ is elevation angle of satellite direction (rad).
+where $$ z^{(s)} $$ is the zenith angle (rad) as $$ z^{(s)} = \frac{\pi}{2} - El_{r}^{(s)} $$, where $$ El_{r}^{(s)} $$ is elevation angle of satellite direction (rad).
 
-The standard atmosphere and the Saastamoinen model are applied in case that the processing option `trop_model` is set to `Saastamoinen`, where the geodetic height is approximated by the ellipsoidal height and the relative humidity is fixed to 70 %.
-
-### SBAS
-
-If the processing option `trop_model` is set to `SBAS`, the SBAS troposphere models defined in the SBAS receiver specifications are applied. The model often called as "MOPS model". Refer to [MOPS reference](http://standards.globalspec.com/std/1014192/rtca-do-229)[^MOPS], A.4.2.4 for details.
+The standard atmosphere and the Saastamoinen model are applied in case that the processing option `PVT.trop_model` is set to `Saastamoinen`, where the geodetic height is approximated by the ellipsoidal height and the relative humidity is fixed to 70 %.
 
 
-[^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](http://standards.globalspec.com/std/1014192/rtca-do-229){:target="_blank"}, RTCA Inc., December 13, 2006.
+
+## SBAS
+
+If the processing option `PVT.trop_model` is set to `SBAS`, the SBAS troposphere models defined in the SBAS receiver specifications are applied. The model often called as "MOPS model". Refer to [MOPS reference](http://standards.globalspec.com/std/1014192/rtca-do-229)[^MOPS], A.4.2.4 for details.
+
+
+
 
 ## Estimate the tropospheric zenith total delay
 
-If the processing option `trop_model` is set to `Estimate_ZTD`, a more precise troposphere model is applied with strict mapping functions as:
+If the processing option `PVT.trop_model` is set to `Estimate_ZTD`, a more precise troposphere model is applied with strict mapping functions as:
 
 $$ m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(s)}) \right\} $$
 
@@ -277,7 +335,7 @@ $$ T_{r}^{s} =  m_{H}(El_{r}^{(s)})Z_{H,r} + m(El_{r}^{(s)}) (Z_{T,r}-Z_{H,r}) $
 
 where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{(s)}) $$ is the hydro‐static mapping function and $$ m_{W}(El_{r}^{(s)}) $$ is the wet mapping function. The tropospheric zenith hydro‐static delay is given by Saastamoinen model described above with the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the mapping function, the software employs the [Niell mapping function](http://www.navipedia.net/index.php/Mapping_of_Niell)[^Niell96]. The zenith total delay $$ Z_{T,r} $$ is estimated as a unknown parameter in the parameter estimation process.
 
-[^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](http://dx.doi.org/10.1029/95JB03048){:target="_blank"}, Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
+
 
 ## Estimate the tropospheric zenith total delay and gradient
 
@@ -288,40 +346,10 @@ $$ m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(s)}) \left( G_{N,
 where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and $$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the tropospheric gradient, respectively. The zenith total delay $$ Z_{T,r} $$ and the gradient parameters $$ G_{E,r} $$ and $$ G_{N,r} $$ are estimated as unknown parameters in the parameter estimation process.
 
 
-[^MacMillan95]: D. S. MacMillan, [Atmospheric gradients from very long baseline interferometry observation](http://onlinelibrary.wiley.com/doi/10.1029/95GL00887/abstract){:target="_blank"}, in Geophysical Research Letters, Volume 22, Issue 9, May 1995, pp. 1041-1044.
-
-## Ionosphere Model
-
-### Broadcast
-
-For ionosphere correction for single frequency GNSS users, GPS navigation data include the following broadcast ionospheric parameters:
-
-$$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T $$
-
-By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r}^{s} $$ (m) can be derived the following
-procedure [1]. The model is often called as Klobuchar model.
-
-$$ \Psi = \frac{0.0137}{El + 0.11}-0.022 $$
-
-$$ \psi_i = \psi + \Psi \cos(Az) $$
-
-$$ \lambda_i = \lambda + \frac{\Psi \sin(Az)}{\cos(\psi_i)} $$
-
-$$  \psi_m = \psi_i + 0.064 \cos(\lambda_i -1.617) $$
-
-$$ t = 4.32 \cdot 10^4 \lambda_i +t $$
-
-$$ F = 1.0 + 16.0 \cdot (0.43 - El)^3 $$
 
 
-$$ x = \frac{2 \pi (t - 505400)}{ \sum_{n=0}^{3} \beta_n {\psi_m}^n} $$
 
-$$ I_{r}^{s} = \left\{ \begin{array}{cc}  F \cdot 5 \cdot 10 ^{-9} & ( | x | > 1.57) \\ F \cdot \left( 5 \cdot 10^{-9}+ \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left( 1-\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array}   \right. $$
-
-### SBAS
-
-
-## Output formats
+# Output formats
 
 Depending on the specific application or service that is exploiting the information provided by GNSS-SDR, different internal data will be required, and thus the receiver needs to provide such data in an adequate, standard formats:
 
@@ -350,7 +378,7 @@ Read more about standard output formats at our [**Interoperability**]({{ "/desig
 
 
 
-## Implementation: `RTKLIB_PVT`
+# Implementation: `RTKLIB_PVT`
 
 
 This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
@@ -434,3 +462,15 @@ PVT.rinex_version=2
 
 -------------
 # References
+
+[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
+
+[^MacMillan95]: D. S. MacMillan, [Atmospheric gradients from very long baseline interferometry observation](http://onlinelibrary.wiley.com/doi/10.1029/95GL00887/abstract){:target="_blank"}, in Geophysical Research Letters, Volume 22, Issue 9, May 1995, pp. 1041-1044.
+
+[^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](http://dx.doi.org/10.1029/95JB03048){:target="_blank"}, Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
+
+[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf){:target="_blank"}, Dec. 2015.
+
+[^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](http://standards.globalspec.com/std/1014192/rtca-do-229){:target="_blank"}, RTCA Inc., December 13, 2006.
+
+[^Klobuchar87]: J. A. Klobuchar, [Ionospheric time-delay algorithms for single-frequency GPS users](http://ieeexplore.ieee.org/document/4104345/){:target="_blank"}. IEEE Transactions on Aerospace and Electronic Systems, Vol AES-23, no. 3, May 1987, pp. 325-331.
