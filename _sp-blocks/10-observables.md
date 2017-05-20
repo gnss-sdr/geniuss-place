@@ -15,7 +15,7 @@ The role of an _Observables_ block is to collect the synchronization data coming
 
 The **pseudorange measurement** is defined as the difference of the time of reception (expressed in the time frame of the receiver) and the time of transmission (expressed in the time frame of the satellite) of a distinct satellite signal. This corresponds to the distance from the receiver antenna to the satellite antenna, including receiver and satellite clock offsets and other biases, such as atmospheric delays. For a signal from satellite $$ s $$ in the *i*-th band, the pseudorange $$ P_{r,i}^{(s)} $$ can be expressed by using the signal reception time $$ \bar{t}_r $$ (s) measured by the receiver clock and the signal transmission time $$ \bar{t}^{(s)} $$ (s) measured by the satellite clock as:
 
-$$ P_{r,i}^{(s)} = c (\bar{t}_r - \bar{t}^{(s)}) $$
+$$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right) $$
 
 ![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | absolute_url }})
 _Pseudorange model [^RTKLIBManual]_
@@ -25,10 +25,10 @@ _Pseudorange model [^RTKLIBManual]_
 
 The equation can be written by using the geometric range $$ \rho_r^{(s)} $$ between satellite and receiver antennas, the receiver and satellite clock biases $$ dt_r $$ and $$ dT^{(s)} $$, the ionospheric and tropospheric delays $$ I_{r,i}^{(s)} $$ and $$ T_r^{(s)} $$ and the measurement error $$ \epsilon_P $$ as:
 
-$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{array}{ccl} P_{r,i}^{(s)} & = & c\left( (t_r+dt_r(t_r)) - (t^{(s)}+dT^{(s)}(t^{(s)})) \right)+ \epsilon_P \\
-{} & = & \color{blue}c(t_r - t^{(s)} )\color{dark-grey}+c( dt_r(t_r)-dT^{(s)}(t^{(s)}) )+\epsilon_P \\
-{} & = & \color{blue}\rho_r^{(s)} + I_{r,i}^{(s)} + T_r^{(s)}\color{dark-grey} +c\left(dt_r(t_r) - dT^{(s)}(t^{(s)})\right) +\epsilon_P \\
-{} & = & \rho_r^{(s)} + c\left( dt_r(t_r) - dT^{(s)}(t^{(s)}) \right) + I_{r,i}^{(s)} + T_r^{(s)} +\epsilon_P \end{array} $$
+$$ \begin{equation} \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{array}{ccl} P_{r,i}^{(s)} & = & c\left( (t_r+dt_r(t_r)) - (t^{(s)}+dT^{(s)}(t^{(s)})) \right)+ \epsilon_P \\
+{} & = & \color{blue}c(t_r - t^{(s)} )\color{dark-grey}+c \left( dt_r(t_r)-dT^{(s)}(t^{(s)}) \right)+\epsilon_P \\
+{} & = & \color{blue}\rho_r^{(s)} + I_{r,i}^{(s)} + T_r^{(s)}\color{dark-grey} +c \left(dt_r(t_r) - dT^{(s)}(t^{(s)})\right) +\epsilon_P \\
+{} & = & \rho_r^{(s)} + c\left( dt_r(t_r) - dT^{(s)}(t^{(s)}) \right) + I_{r,i}^{(s)} + T_r^{(s)} +\epsilon_P \end{array} \end{equation} $$
 
 where:
 
@@ -38,7 +38,7 @@ where:
   * $$ dt_r  $$ is the receiver clock offset from GNSS time (in s).
   * $$ dT^{(s)} $$ is the satellite clock offset from GNSS time (in s).
   * $$ I_{r,i}^{(s)} $$ is the ionospheric delay (in m).
-  * $$ T_{r,i}^{(s)} $$ is the tropospheric delay (in m).
+  * $$ T_{r}^{(s)} $$ is the tropospheric delay (in m).
   * $$ \epsilon_P $$ models measurement noise, including satellite orbital errors, receiver's and satellite's instrumental delays, effects of multipath propagation and thermal noise (in m).
 
 
@@ -63,9 +63,9 @@ Note that, in the case of a multi-system receiver, all pseudorange observations 
 
 The **carrier phase measurement** is actually a measurement on the beat frequency between the received carrier of the satellite signal and a receiver-generated reference frequency. It can be modeled as:
 
-$$ \begin{array}{ccl}  \phi_{r,i}^{(s)}  & = &\phi_{r,i}(t_r) - \phi_{i}^{(s)}(t^{(s)}) + N_{r,i}^{(s)} + \epsilon_{\phi} \\
+$$ \begin{equation} \begin{array}{ccl}  \phi_{r,i}^{(s)}  & = &\phi_{r,i}(t_r) - \phi_{i}^{(s)}(t^{(s)}) + N_{r,i}^{(s)} + \epsilon_{\phi} \\
 {} & = & \left(f_i(t_r + dt_r(t_r) - t_0) + \phi_{r,0,i}\right) - \left(f_i(t^{(s)} + dT^{(s)}(t^{(s)}) - t_0 ) + \phi_{0,i}^{(s)} \right) + N_{r_i}^{(s)} + \epsilon_{\phi}\\
-{} & = &  \frac{c}{\lambda_i} (t_r-t^{(s)})+ \frac{c}{\lambda_i}(dt_r(t_r) - dT^{(s)}(t^{(s)})) + (\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \epsilon_{\phi} \end{array}$$
+{} & = &  \frac{c}{\lambda_i} (t_r-t^{(s)})+ \frac{c}{\lambda_i}(dt_r(t_r) - dT^{(s)}(t^{(s)})) + (\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \epsilon_{\phi} \end{array} \end{equation} $$
 
 where:
 
@@ -103,7 +103,7 @@ $$ \begin{array}{ccl} \Phi_{r,i}^{(s)} & = & \lambda_i \phi_{r,i}^{(s)} \\
 
 The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna phase center offsets and variations, station displacement by earth tides, phase windup effect and relativity correction on the satellite clock) that will be useful for more accurate positioning algorithms:
 
-$$ c(t_r-t^{(s)}) = \rho_{r}^{(s)} - I_{r,i}^{(s)} + T_{r,i}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} $$
+$$ c(t_r-t^{(s)}) = \rho_{r}^{(s)} - I_{r,i}^{(s)} + T_{r}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} $$
 
 where:
 
@@ -130,11 +130,38 @@ where:
 
 Then, the phase-range measurement can be written as:
 
-$$ \Phi_{r,i}^{(s)} = \rho_{r}^{(s)} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) -  I_{r,i}^{(s)} + T_{r,i}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} +\epsilon_{\Phi} $$
+\begin{equation}
+\Phi_{r,i}^{(s)} = \rho_{r}^{(s)} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) -  I_{r,i}^{(s)} + T_{r}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} +\epsilon_{\Phi}
+\end{equation}
 
 Notice that the ionospheric term has opposite sign for code and phase. This means that the ionosphere produces an advance of the carrier phase measurement equal to the delay on the code measurements.
 
+## Doppler shift measurement
 
+The Doppler effect[^Doppler] (or the Doppler shift) is the change in frequency for an observer (in this case, the GNSS receiver) moving relative to its source (in this case, a given GNSS satellite $$ s $$). The relationship between observed frequency $$ f $$ and emitted frequency $$ f_i $$ is given by:
+
+$$ f = \left( \frac{c+v_r}{c+v^{(s)}}\right)f_i $$
+
+Since the speeds of the receiver $$ \mathbf{v}_r(t) $$ and the satellite $$ \mathbf{v}^{(s)} $$ are small compared to the speed of the wave, the difference between the observed frequency $$ f $$ and emitted frequency $$ f_i $$ can be approximated by:
+
+
+$$ f_{d_{i}}^{(s)} = -f_i\frac{\partial \tau^{(s)}(t)}{\partial t} $$
+
+Then, the **Doppler shift measurement** can be written as:
+
+$$ \begin{equation}\begin{array}{ccl} f_{d_{i}}^{(s)} & = & -f_i \frac{\partial (t_r- t^{(s)}) }{\partial t} \\
+{} & = &  -f_i \frac{\partial \left( \frac{1}{c} \left(\rho_r^{(s)} + I_{r,i}^{(s)} + T_r^{(s)}\right) + dt_r(t_r) - dT^{(s)}(t^{(s)}) \right)}{\partial t} \\
+{} & = & -\frac{f_i}{c}\frac{\partial \left( \left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\| +I_{r,i}^{(s)} + T_{r}^{(s)}+c(dt_r(t_r) - dT^{(s)}(t^{(s)}))  \right)}{\partial t}  \\
+{} & = & -\frac{f_i}{c} \left( \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \frac{\left( \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right)   }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\|} + \frac{\partial  I_{r,i}^{(s)}}{\partial t} + \frac{\partial  T_{r}^{(s)}}{\partial t} + c\frac{\partial dt_r(t_r)}{\partial t} -  c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right) \\ {} & =  & -\frac{f_i}{c} \left( \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)}  +  c\frac{\partial dt_r(t_r)}{\partial t} -  c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right) + \epsilon_{f_{d}} \end{array} \end{equation} $$
+
+where $$ \mathbf{r}_r(t) $$ and $$ \mathbf{v}_r(t) $$ are the position and velocity of the receiver at the instant $$ t $$. The term $$  \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} $$ is the radial velocity from the receiver relative to the satellite, and $$ \frac{\partial dt_r(t_r)}{\partial t} $$ and $$ \frac{\partial dT^{(s)}(t^{(s)})}{\partial t} $$ are the receiver and satellite clocks drift, respectively. The Doppler shift measurement is given in Hz.
+
+### Pseudorange rate measurement
+
+
+Doppler shift measurements are sometimes given in m/s. This is referred to as **pseudorange rate measurement**, and it is defined as the Doppler shift multiplied by the negative of carrier wavelength $$ \lambda_i $$.
+
+$$ \begin{equation} \dot{P}_{r,i}^{(s)} = -\lambda_i f_{d_{i}}^{(s)} = \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c \left( \frac{\partial dt_r(t_r)}{\partial t} - \frac{\partial dT^{(s)}(t^{(s)})}{\partial t}\right) + \epsilon_{\dot{P}}\end{equation} $$
 
 ## Implementation: `GPS_L1_CA_Observables`
 
@@ -294,3 +321,5 @@ Example:
 [^Petovello12]: M. Petovello, M. Rao, G. Falca, [_Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?_](http://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf){:target="_blank"}, Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
 
 [^Petovello10]: M. Petovello, C. O'Driscoll, [_Carrier phase and its measurements for GNSS: What is the carrier phase measurement? How is it generated in GNSS receivers?_](http://www.insidegnss.com/auto/julaug10-solutions.pdf){:target="_blank"} Inside GNSS, vol. 5, no. 5, pp. 18–22, Jul./Aug. 2010.
+
+[^Doppler]: C. Doppler, "[&#220;ber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels](https://archive.org/details/ueberdasfarbigel00doppuoft){:target="_blank"} (On the colored light of the double stars and certain other stars of the heavens), Abh. Kniglich Bhmischen Ges. Wiss., vol. 2, pp. 467–482, 1842.
