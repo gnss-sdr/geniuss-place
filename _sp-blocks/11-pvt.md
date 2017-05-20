@@ -17,7 +17,7 @@ The role of a _PVT_ block is to compute navigation solutions and deliver informa
 
 The positioning problem is generally stated as
 
-$$ \mathbf{y} = \mathbf{h}(\mathbf{x}) +  \mathbf{n} $$
+$$ \begin{equation} \mathbf{y} = \mathbf{h}(\mathbf{x}) +  \mathbf{n} \end{equation} $$
 
 where $$ \mathbf{y} $$ is the measurement vector (that is, the observables obtained from the GNSS signals of a set of $$ m $$ satellites), $$ \mathbf{x} $$ is the state vector to be estimated (at least, the position of the receiver's antenna and the time), $$ \mathbf{h}(\cdot) $$ is the function that relates states with measurements, and $$ \mathbf{n} $$ models measurement noise. Depending on the models, assumptions, available measurements and the availability of *a priori* or externally-provided information, many positioning strategies and algorithms can be devised. It follows a description of the positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}.
 
@@ -26,13 +26,13 @@ where $$ \mathbf{y} $$ is the measurement vector (that is, the observables obtai
 
 The default positiong mode is `PVT.positioning_mode=Single`. In this mode, the vector of unknown states is defined as:
 
-$$ \mathbf{x} = ( \mathbf{r}_r^T, cdt_r)^T $$
+$$ \begin{equation} \mathbf{x} = ( \mathbf{r}_r^T, cdt_r)^T \end{equation} $$
 
 where $$ \mathbf{r}_r $$ is the receiver's antenna position in an earth-centered, earth-fixed (ECEF) coordinate system (in meters), $$ c $$ is the speed of light and $$ dt_r $$ is the receiver clock bias (in seconds).
 
 The measurement vector is defined as:
 
-$$ \mathbf{y} = ( P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} )^T $$
+$$ \begin{equation} \mathbf{y} = ( P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} )^T \end{equation} $$
 
 As described in the [Observables]({{ "docs/sp-blocks/observables/" | absolute_url }}) block, for a signal from satellite $$ s $$ in the *i*-th band, the pseudorange measurement $$ P_{r,i}^{(s)} $$ can be expressed as:
 
@@ -40,7 +40,7 @@ $$  P_{r,i}^{(s)} = \rho_r^{(s)} + c( dt_r(t_r) - dT^{(s)}(t^{(s)}) ) + I_{r,i}^
 
 Hence, the equation that relates pseudorange measurements to the vector of unknown states can be written as:
 
-$$ \mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(1)} + cdt_r - cdT^{(1)} + I_{r}^{(1)} + T_{r}^{(1)} \\  \rho_{r}^{(2)} + cdt_r - cdT^{(2)} + I_{r}^{(2)} + T_{r}^{(2)}  \\ \rho_{r}^{(3)} + cdt_r - cdT^{(3)} + I_{r}^{(3)} + T_{r}^{(3)}  \\ \vdots \\ \rho_{r}^{(m)} + cdt_r - cdT^{(m)} + I_{r}^{(m)} + T_{r}^{(m)} \end{array} \right) $$
+$$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(1)} + cdt_r - cdT^{(1)} + I_{r}^{(1)} + T_{r}^{(1)} \\  \rho_{r}^{(2)} + cdt_r - cdT^{(2)} + I_{r}^{(2)} + T_{r}^{(2)}  \\ \rho_{r}^{(3)} + cdt_r - cdT^{(3)} + I_{r}^{(3)} + T_{r}^{(3)}  \\ \vdots \\ \rho_{r}^{(m)} + cdt_r - cdT^{(m)} + I_{r}^{(m)} + T_{r}^{(m)} \end{array} \right) \end{equation} $$
 
 
 The geometric range $$ \rho_r^{(s)} $$ is defined as the physical distance between the satellite antenna phase center position and the receiver antenna phase center position in the inertial coordinates. For the expression in the ECEF coordinates, the earth rotation effect has to be incorporated. This is known as the <span style="color: orange">Sagnac effect</span> and it can be approximated by:
@@ -55,18 +55,18 @@ _Geometric range and Earth rotation correction [^RTKLIBManual]_
 
 Equation $$ \mathbf{h}(\mathbf{x}) $$ is clearly nonlinear due to the presence of the Euclidean norm operator $$ \left\| \cdot \right\| $$. However, this term can be extended by using Taylor series around an initial parameter vector $$ \mathbf{x}_0 $$ as $$ \mathbf{h}(\mathbf{x}) = \mathbf{h}(\mathbf{x}_0) + \mathbf{H}(\mathbf{x}-\mathbf{x}_0) + ... $$, where $$ \mathbf{H}= \frac{\partial \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} = \mathbf{x}_{0} } $$ is a partial derivatives matrix of $$ \mathbf{h}(\mathbf{x}) $$ with respect to $$ \mathbf{x} $$ at $$ \mathbf{x} = \mathbf{x}_{0} $$. Assuming that the initial parameters are adequately near the true values and the second and further terms of the Taylor series can be neglected, equation $$ \mathbf{y} = \mathbf{h}(\mathbf{x}) +  \mathbf{n} $$ can be approximated by $$ \mathbf{y} \approx \mathbf{h}(\mathbf{x}_0) + \mathbf{H}(\mathbf{x}-\mathbf{x}_0) + \mathbf{n} $$, and then we can obtain the following linear equation:
 
-$$ \mathbf{y} - \mathbf{h}(\mathbf{x}_0) = \mathbf{H}(\mathbf{x}-\mathbf{x}_0) + \mathbf{n} $$
+$$ \begin{equation} \mathbf{y} - \mathbf{h}(\mathbf{x}_0) = \mathbf{H}(\mathbf{x}-\mathbf{x}_0) + \mathbf{n} \end{equation} $$
 
 which can be solved by a standard iterative [weighted least squares](https://en.wikipedia.org/wiki/Least_squares#Weighted_least_squares){:target="_blank"} method.
 
 Matrix $$ \mathbf{H} $$ can be written as:
 
-$$ \mathbf{H} = \left( \begin{array}{cc} -{\mathbf{e}_{r}^{(1)}}^T & 1 \\  -{\mathbf{e}_{r}^{(2)}}^T & 1 \\ -{\mathbf{e}_{r}^{(3)}}^T & 1 \\ \vdots & \vdots \\ -{\mathbf{e}_{r}^{(m)}}^T & 1 \end{array} \right), \quad \text{where } \mathbf{e}_r^{(s)}= \frac{\mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r)  \right\|} $$
+$$ \begin{equation}  \mathbf{H} = \left( \begin{array}{cc} -{\mathbf{e}_{r}^{(1)}}^T & 1 \\  -{\mathbf{e}_{r}^{(2)}}^T & 1 \\ -{\mathbf{e}_{r}^{(3)}}^T & 1 \\ \vdots & \vdots \\ -{\mathbf{e}_{r}^{(m)}}^T & 1 \end{array} \right), \quad \text{where } \mathbf{e}_r^{(s)}= \frac{\mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r)  \right\|} \end{equation} $$
 
 and the weighted least squares estimator (LSE) of the unknown state vector is obtained as:
 
 {% capture lse %}
-$$ \hat{\mathbf{x}}_{i+1} = \hat{\mathbf{x}}_{i} + \left( \mathbf{H}^T \mathbf{W} \mathbf{H}\right)^{-1} \mathbf{H}^T \mathbf{W} \left(\mathbf{y} - \mathbf{h}(\hat{\mathbf{x}}_{i}) \right) $$
+$$ \begin{equation} \hat{\mathbf{x}}_{i+1} = \hat{\mathbf{x}}_{i} + \left( \mathbf{H}^T \mathbf{W} \mathbf{H}\right)^{-1} \mathbf{H}^T \mathbf{W} \left(\mathbf{y} - \mathbf{h}(\hat{\mathbf{x}}_{i}) \right) \end{equation} $$
 {% endcapture %}
 
 <div class="notice--success">
@@ -76,7 +76,7 @@ $$ \hat{\mathbf{x}}_{i+1} = \hat{\mathbf{x}}_{i} + \left( \mathbf{H}^T \mathbf{W
 
 For the initial parameter vector $$ \mathbf{x}_0 $$ for the iterated weighted LSE, just all $$ 0 $$ are used for the first epoch of the single point positioning. Once a solution obtained, the position is used for the next epoch initial receiver position. For the weight matrix $$ \mathbf{W} $$, the `RTKLIB_PVT` implementation uses:
 
-$$ \mathbf{W} = \text{diag} \left( \sigma_1^{-2}, \sigma_2^{-2}, \sigma_3^{-2}, ..., \sigma_m^{-2} \right) $$
+$$ \begin{equation} \mathbf{W} = \text{diag} \left( \sigma_1^{-2}, \sigma_2^{-2}, \sigma_3^{-2}, ..., \sigma_m^{-2} \right) \end{equation} $$
 
 $$ \sigma_{s}^{2} = F^{(s)} R_r \left( a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin \left( El_r^{(s)} \right)} \right) + \sigma_{eph}^2 + \sigma_{ion}^{2} + \sigma_{trop}^{2} + \sigma_{bias}^2  $$
 
@@ -84,19 +84,19 @@ where:
 
   - $$ F^{(s)} $$ is the satellite system error factor (1:GPS, Galileo, QZSS and BeiDou, 1.5: GLONASS, 3.0: SBAS)
 
-  - $$ R_r $$ is the code/carrier‐phase error ratio
+  - $$ R_r $$ is the code/carrier‐phase error ratio. This value is set to $$ R_R = 100 $$.
 
-  - $$ a_{\sigma}, b_{\sigma} $$ is the carrier‐phase error factor $$ a $$ and $$ b $$ (in m).
+  - $$ a_{\sigma}, b_{\sigma} $$ is the carrier‐phase error factor $$ a $$ and $$ b $$ (in m). They are set to $$ a_{\sigma} = b_{\sigma} = 0.003 $$.
 
   - $$ El_r^{(s)} $$ is the elevation angle of satellite direction (in rad).
 
-  - $$ \sigma_{eph} $$ is the standard deviation of ephemeris and clock error (in m).
+  - $$ \sigma_{eph} $$ is the standard deviation of ephemeris and clock error (in m). This is derived by the [URA values](http://www.gps.gov/technical/icwg/meetings/2011/09/13/WAS-IS-FINAL_URA_Definition_6May2011.pdf){:target="_blank"} in the navigation message.
 
-  - $$ \sigma_{ion} $$ is the standard deviation of ionosphere correction model error (in m). This parameter defaults to $$ $$, and the value can be changed by the option `PVT.sigma_iono`
+  - $$ \sigma_{ion} $$ is the standard deviation of ionosphere correction model error (in m). This parameter defaults to $$ 0.001 $$, and the value can be changed by the option `PVT.sigma_iono`.
 
-  - $$ \sigma_{trop} $$ is the standard deviation of troposphere correction model error (in m). `PVT.sigma_trop`
+  - $$ \sigma_{trop} $$ is the standard deviation of troposphere correction model error (in m). This parameter defaults to $$ 0.0001 $$, and the value can be changed by the option `PVT.sigma_trop`.
 
-  - $$ \sigma_{bias} $$ is the standard deviation of code bias error (in m). `PVT.sigma_bias`
+  - $$ \sigma_{bias} $$ is the standard deviation of code bias error (in m). This parameter defaults to $$ 0.0001 $$, and the value can be changed by the option `PVT.sigma_bias`.
 
 The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](http://www.navipedia.net/index.php/Time_References_in_GNSS){:target="_blank"}.
 
@@ -136,9 +136,11 @@ $$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r
 
 ## Precise Point Positioning
 
-$$ \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z_r, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T \right)^T $$
+When the `PVT.posiioning_mode` option is set to `PPP_Static` or ```PPP_Kinematic```, a Precise Point Positioning algorithm is used to solve the positioning problem. In this positioning mode, the state vector to be estimated is defined as:
 
-where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are the north and east components of tropospheric gradients and $$ \mathbf{B}_{LC} = \left(  B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)}   \right)^T $$ is the ionosphere‐free linear combination of zero‐differenced carrier‐phase biases (in m).
+$$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z_r, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T \right)^T \end{equation} $$
+
+where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are the north and east components of tropospheric gradients (see the tropospheric model below) and $$ \mathbf{B}_{LC} = \left(  B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)} \right)^T $$ is the ionosphere‐free linear combination of zero‐differenced carrier‐phase biases (in m), defined below in Equation ($$ \ref{eq:bias-lc} $$).
 
 The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay){:target="_blank"}, the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/" | absolute_url }}) apply):
 
@@ -150,26 +152,26 @@ $$ \Phi_{r,LC}^{(s)} = C_i \Phi_{r,i}^{(s)} + C_j \Phi_{r,j}^{(s)} $$
 
 with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 - f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$ and $$ L_j $$ measurements. Explicitly:
 
-$$ P_{r,LC}^{(s)} =  \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{t}^{(s)} + \epsilon_P $$
+$$ \begin{equation} P_{r,LC}^{(s)} =  \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{r}^{(s)} + \epsilon_P \end{equation} $$
 
-$$ \Phi_{r,LC}^{(s)} = \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{t}^{(s)} + B_{r,LC}^{(s)} + d\Phi_{r,LC}^{(s)} + \epsilon_{\Phi}$$
+$$ \begin{equation} \Phi_{r,LC}^{(s)} = \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{r}^{(s)} + B_{r,LC}^{(s)} + d\Phi_{r,LC}^{(s)} + \epsilon_{\Phi} \end{equation} $$
 
 with
 
-$$ B_{r,LC}^{(s)} = C_i  \left( \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} \right) + C_j  \left( \phi_{r,0,j} - \phi_{0,j}^{(s)} + N_{r,j}^{(s)} \right) $$
+$$ \begin{equation} \label{eq:bias-lc} B_{r,LC}^{(s)} = C_i  \left( \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} \right) + C_j  \left( \phi_{r,0,j} - \phi_{0,j}^{(s)} + N_{r,j}^{(s)} \right) \end{equation} $$
 
-$$ \begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} +  C_j\mathbf{d}_{pco,j}^{(s)} \right)  \right)^T \mathbf{e}_r^{(s)} + \\ {} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)})+C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) + \left( d_{pcv,i}^{(s)}(\theta) +  d_{pcv,j}^{(s)}(\theta)\right) + \\ {} & {} & - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\left( C_i\lambda_i + C_j \lambda_j \right) \phi_{pw} \end{array}$$
+$$ \begin{equation} \begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} +  C_j\mathbf{d}_{pco,j}^{(s)} \right)  \right)^T \mathbf{e}_r^{(s)} + \\ {} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)})+C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) + \left( d_{pcv,i}^{(s)}(\theta) +  d_{pcv,j}^{(s)}(\theta)\right) + \\ {} & {} & - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\left( C_i\lambda_i + C_j \lambda_j \right) \phi_{pw} \end{array} \end{equation} $$
 
 The measurement vector is then defined as:
 
-$$ \mathbf{y} = \left( \boldsymbol{\Phi}_{LC}^T, \mathbf{P}_{LC}^T \right)^T $$
+$$ \begin{equation} \mathbf{y} = \left( \boldsymbol{\Phi}_{LC}^T, \mathbf{P}_{LC}^T \right)^T \end{equation} $$
 
 where $$ \boldsymbol{\Phi}_{LC} = \left(\Phi_{r,LC}^{(1)}, \Phi_{r,LC}^{(2)}, \Phi_{r,LC}^{(3)}, ..., \Phi_{r,LC}^{(m)} \right)^T $$ and $$ \mathbf{P}_{LC} = \left( P_{r,LC}^{(1)}, P_{r,LC}^{(2)}, P_{r,LC}^{(3)}, ..., P_{r,LC}^{(m)}  \right)^T $$.
 
 
 The equation $$ \mathbf{h}(\mathbf{x}) $$ that relates measurements and states is:
 
-$$ \mathbf{h}(\mathbf{x}) = \left( \mathbf{h}_{\Phi}^T, \mathbf{h}_{P}^T \right)^T $$
+$$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \mathbf{h}_{\Phi}^T, \mathbf{h}_{P}^T \right)^T \end{equation} $$
 
 where:
 
@@ -177,23 +179,36 @@ $$ \mathbf{h}_{\Phi} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)
 
 $$ \mathbf{h}_{P} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{t}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{t}^{(2)} \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{t}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{t}^{(m)} \end{array}\right) $$
 
-This is again a nonlinear equation that could be solved with the iterative weighted least squares estimator as in the case of the Single Point Positing case. However, here we want to incorporate some *a priori* information, such as a basic dynamic model for the receiver, and some statistical knowledge about the status of the troposphere. The [Extended Kalman Filter](https://en.wikipedia.org/wiki/Extended_Kalman_filter){:target="_blank"} offers a suitable framework for that. The Precise Point Positioning solution is computed as follows:
+This is again a nonlinear equation that could be solved with the iterative weighted least squares estimator as in the case of the Single Point Positing case. However, here we want to incorporate some *a priori* information, such as a basic dynamic model for the receiver, and some statistical knowledge about the status of the troposphere. The [Extended Kalman Filter](https://en.wikipedia.org/wiki/Extended_Kalman_filter){:target="_blank"} offers a suitable framework for that.
+
+The partial derivatives matrix $$ \mathbf{H}= \frac{\partial \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} = \mathbf{x}_{0} } $$ can be written as:
+
+$$ \begin{equation} \mathbf{H}(\mathbf{x}) =  \left( \begin{array}{ccccc} -\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{I} \\ -\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{0} \end{array} \right) \end{equation} $$
+
+where $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 & 0 & -1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & 0 & 0 & \cdots & -1 \end{array} \right) $$ is known as the single‐differencing matrix,  $$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)}  \right)^T $$ with $$ \mathbf{e}_{r}^{(s)} $$ defined as above, and
+
+
+$$ \begin{equation} \mathbf{M}_T = \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) &  m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\  m_{WG,r}^{(2)} \left( El_r^{(2)} \right) &  m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \cos \left( Az_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \sin \left( Az_r^{(2)} \right) \\  m_{WG,r}^{(3)} \left( El_r^{(3)} \right) &  m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \cos \left( Az_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \sin \left( Az_r^{(3)} \right) \\ \vdots \\  m_{WG,r}^{(m)} \left( El_r^{(m)} \right) &  m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \cos \left( Az_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \sin \left( Az_r^{(m)} \right) \end{array} \right) \end{equation} $$
+
+is a matrix related to the tropospheric model (see below).
+
+With all those definitions, the Precise Point Positioning solution is computed as follows:
 
 {% capture ekf %}
 
   * Time update (prediction):
 
-  $$ \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k  \hat{\mathbf{x}}_{k-1|k-1} $$
+  $$ \begin{equation} \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k  \hat{\mathbf{x}}_{k-1|k-1} \end{equation} $$
 
-  $$ \boldsymbol{\Sigma}_{k|k-1} = \mathbf{F}_k  \boldsymbol{\Sigma}_{k-1|k-1}  \mathbf{F}_k^T + \mathbf{Q}_k $$
+  $$ \begin{equation} \boldsymbol{\Sigma}_{k|k-1} = \mathbf{F}_k  \boldsymbol{\Sigma}_{k-1|k-1}  \mathbf{F}_k^T + \mathbf{Q}_k \end{equation} $$
 
   * Measurement update (estimation):
 
-  $$ \mathbf{K}_k = \boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1}) \left( \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})\boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})^T+\mathbf{R}_k \right)^{-1}   $$
+  $$ \begin{equation} \mathbf{K}_k = \boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1}) \left( \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})\boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})^T+\mathbf{R}_k \right)^{-1} \end{equation} $$
 
-  $$ \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \left( \mathbf{y}_k - \mathbf{h}_k(\hat{\mathbf{x}}_{k|k-1}) \right) $$
+  $$ \begin{equation} \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \left( \mathbf{y}_k - \mathbf{h}_k(\hat{\mathbf{x}}_{k|k-1}) \right) \end{equation} $$
 
-  $$ \boldsymbol{\Sigma}_{k|k} = \left( \mathbf{I} -\mathbf{K}_{K} \mathbf{H}_k ( \hat{\mathbf{x}}_{k|k-1} )  \right)\boldsymbol{\Sigma}_{k|k-1} $$
+  $$ \begin{equation} \boldsymbol{\Sigma}_{k|k} = \left( \mathbf{I} -\mathbf{K}_{K} \mathbf{H}_k ( \hat{\mathbf{x}}_{k|k-1} )  \right)\boldsymbol{\Sigma}_{k|k-1} \end{equation} $$
 {% endcapture %}
 
 <div class="notice--success">
@@ -201,17 +216,10 @@ This is again a nonlinear equation that could be solved with the iterative weigh
   {{ ekf | markdownify }}
 </div>
 
-The partial derivatives matrix $$ \mathbf{H}= \frac{\partial \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} = \mathbf{x}_{0} } $$ can be written as:
-
-$$ \mathbf{H}(\mathbf{x}) =  \left( \begin{array}{ccccc} -\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{I} \\ -\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{0} \end{array} \right) $$
-
-where $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 & 0 & -1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & 0 & 0 & \cdots & -1 \end{array} \right) $$ is known as the single‐differencing matrix,  $$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)}  \right)^T $$ with $$ \mathbf{e}_{r}^{(s)} $$ defined as above and
 
 
-$$ \mathbf{M}_T = \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) &  m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\  m_{WG,r}^{(2)} \left( El_r^{(2)} \right) &  m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \cos \left( Az_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \sin \left( Az_r^{(2)} \right) \\  m_{WG,r}^{(3)} \left( El_r^{(3)} \right) &  m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \cos \left( Az_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \sin \left( Az_r^{(3)} \right) \\ \vdots \\  m_{WG,r}^{(m)} \left( El_r^{(m)} \right) &  m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \cos \left( Az_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \sin \left( Az_r^{(m)} \right) \end{array} \right) $$
 
-
-$$ \mathbf{R} = \left( \begin{array}{cc} \mathbf{R}_{\Phi,LC} & \mathbf{0} \\ \mathbf{0} & \mathbf{R}_{P,LC} \end{array}\right) $$
+$$ \begin{equation} \mathbf{R} = \left( \begin{array}{cc} \mathbf{R}_{\Phi,LC} & \mathbf{0} \\ \mathbf{0} & \mathbf{R}_{P,LC} \end{array}\right) \end{equation} $$
 
 $$ \mathbf{R}_{\Phi,LC} = \text{diag} \left( 3{\sigma_{\Phi,1}^{(1)}}^2, 3{\sigma_{\Phi,1}^{(2)}}^2, 3{\sigma_{\Phi,1}^{(3)}}^2, ..., 3{\sigma_{\Phi,1}^{(m)}}^2 \right) $$
 
@@ -225,7 +233,46 @@ $$ \mathbf{F}_k = \left(\begin{array}{ccc} \mathbf{I}_{3\times 3} & {} & {} \\ {
 
 $$  \mathbf{Q}_k = \left(\begin{array}{ccc} \mathbf{\infty}_{3\times 3} & {} & {} \\ {} &  \mathbf{0} & {} \\ {} & {} &  \mathbf{0}_{(3m-3)\times(3m-3)} \end{array} \right) $$
 
+{::comment}
+## Integer ambiguity resolution
 
+Once the estimated states obtained in the EKF measurement update, the float carrier‐phase ambiguities can be resolved into integer values in order to improve accuracy and convergence time.
+
+At first, the estimated states and their covariance matrix are transformed to double difference forms by:
+
+$$ \hat{\mathbf{x}}_{k|k}^\prime = \mathbf{G} \hat{\mathbf{x}}_{k|k} = \left( \hat{\mathbf{r}}_r^T, \hat{\mathbf{v}}_r^T, \hat{\mathbf{N}}^T \right)^T $$
+
+$$ \boldsymbol{\Sigma}_{k|k}^\prime =  \mathbf{G} \boldsymbol{\Sigma}_{k|k} \mathbf{G}^T = \left( \begin{array}{cc} \mathbf{Q}_R & \mathbf{Q}_{NR} \\ \mathbf{Q}_{RN} & \mathbf{Q}_{N} \end{array} \right) $$
+
+where:
+
+$$ \mathbf{G} = \left( \begin{array}{cccc} \mathbf{I}_{6 \times 6} & {} & {} & \\ {} & \mathbf{D} & {} & {} \\ {} & {} & \mathbf{D} & {} \\ {} & {} & {} & \mathbf{D} \end{array} \right) $$ is the single difference to double difference transformation matrix.
+
+In this transformation, the single difference carrier‐phase biases are transferred to the double difference carrier‐phase form in order to eliminate receiver initial phase terms to obtain integer ambiguities $$ \hat{N} $$ and their covariance $$ \mathbf{Q}_N $$. In these formulas, the most appropriate integer vector $$ \breve{N} $$ for the integer ambiguities is obtained
+by solving an ILS (integer least square) problem expressed as:
+
+$$ \breve{\mathbf{N}} =  \underset{\mathbf{N} \in \mathbb{Z}^m}{\arg\min} \left( \left( \mathbf{N} -  \hat{\mathbf{N}} \right)^T \mathbf{Q}_{N}^{-1} \left( \mathbf{N} -  \hat{\mathbf{N}} \right) \right) $$
+
+To solve the ILS problem, a well‐known efficient search strategy LAMBDA[^Teunissen95] and its extension
+MLAMBDA[^Chang05] are employed in the `PVT.RTKLIB_PVT` implementation. LAMBDA and MLAMBDA offer the combination of a linear
+transformation to shrink the integer vector search space and a skillful tree‐search procedure in the
+transformed space.
+
+The integer vector solution by these procedures is validated by the following simple Ratio‐Test:
+
+$$ R = \frac{\left(\breve{\mathbf{N}}_2 - \hat{\mathbf{N}} \right)^T \mathbf{Q}_N^{-1} \left( \breve{\mathbf{N}}_2 - \hat{\mathbf{N}} \right) }{ \left(\breve{\mathbf{N}} - \hat{\mathbf{N}} \right) \mathbf{Q}_N^{-1}  \left( \breve{\mathbf{N}} - \hat{\mathbf{N}} \right)} > R_{thres} $$
+
+In this Ratio‐Test, the ratio‐factor $$ R $$, defined as the ratio of the weighted sum of the squared residuals by the second best solution $$ \breve{\mathbf{N}}_2 $$  to one by the best $$ \breve{\mathbf{N}} $$, is used to check the reliability of the solution. The validation threshold $$ R_{thres} $$ can be set by the processing option `PVT.min_ratio_to_fix_ambiguity`, and it defaults to $$ 3.0 $$.
+
+After the validation, the ʺFIXEDʺ solution of the rover antenna position and velocity $$ \breve{\mathbf{r}}_r $$ and $$ \breve{\mathbf{v}}_r $$ obtained by solving the following equation:
+
+$$ \left( \begin{array}{c} \breve{\mathbf{r}}_r \\ \breve{\mathbf{v}}_r \end{array} \right) = \left( \begin{array}{c} \hat{\mathbf{r}}_r \\ \hat{\mathbf{v}}_r \end{array} \right) - \mathbf{Q}_{RN} \mathbf{Q}_{N}^{-1} \left( \hat{\mathbf{N}} -  \breve{\mathbf{N}} \right) $$
+
+If the validation failed, RTKLIB outputs the ʺFLOATʺ solution $$ \hat{\mathbf{r}}_r $$ and $$ \hat{\mathbf{v}}_r $$ instead.
+
+### Fix and Hold option
+
+{:/comment}
 
 # Receiver dynamics
 
@@ -237,7 +284,8 @@ $$ \mathbf{F}_k = \left(\begin{array}{ccc} \mathbf{I}_{3\times 3} &   \mathbf{I}
 $$  \mathbf{Q}_k = \left(\begin{array}{ccc} \mathbf{0}_{3\times 3} & {} & {} \\ {} &  \mathbf{Q}_{v} & {} \\ {} & {} &  \mathbf{0}_{(3m-3)\times(3m-3)} \end{array} \right) $$
 
 
-$$ \mathbf{Q}_v = \mathbf{E}_r \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the rover velocity system noises (in m/s/$$ \sqrt{s} $$). Those parameters can be set with the configuration parameters $$ \sigma_{ve} = \sigma_{vn} = $$ `PVT.sigma_acch`, which default to $$ 0.1 $$, and $$ \sigma_{vu} = $$`PVT.sigma_accv`, which defaults to $$ 0.01 $$.
+$$ \mathbf{Q}_v = \mathbf{E}_r \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the rover velocity system noises (in m/s/$$ \sqrt{s} $$). Those parameters can be set with the configuration parameters $$ \sigma_{ve} = \sigma_{vn} = $$ `PVT.sigma_acch`, which default to $$ 0.1 $$, and $$ \sigma_{vu} = $$`PVT.sigma_accv`, which defaults to $$ 03.01 $$.
+
 
 
 
@@ -247,11 +295,11 @@ The ionosphere is a region of Earth's upper atmosphere, from about 60 km to 1,00
 
 The propagation speed of the GNSS electromagnetic signals through the ionosphere depends on its electron density, which is typically driven by two main processes: during the day, sun radiation causes *ionization* of neutral atoms producing free electrons and ions. During the night, the *recombination* process prevails, where free electrons are recombined with ions to produce neutral particles, which leads to a reduction in the electron density.
 
-The frequency dependence of the ionospheric effect is described by the following expression:
+The frequency dependence of the ionospheric effect (in s) is described by the following expression:
 
-$$ I_{r,i}^{(s)} = \frac{40.3 \cdot \text{TEC} }{c f_i^2} $$
+$$ \begin{equation} I_{r,i}^{(s)} = \frac{1}{c}\frac{40.3 \cdot \text{TEC} }{f_i^2} \end{equation} $$
 
-where TEC is the Total Electron Content, which describes the number of free electrons present within one square meter between the receiver and satellite. This dispersive nature (i.e., the ionospheric delay is proportional to the  squared inverse of $$ f_i $$) allows users to remove its effect up to more than 99.9% using two frequency measurements (as in the see ionosphere-free combination for dual frequency receivers shown in the Precise Point Positioning algorithm described above), but single frequency receivers have to apply an ionospheric prediction model to remove (as much as possible) this effect, that can reach up to several tens of meters.
+where TEC is the Total Electron Content, which describes the number of free electrons present within one square meter between the receiver and satellite $$ s $$. This dispersive nature (i.e., the ionospheric delay is proportional to the squared inverse of $$ f_i $$) allows users to remove its effect up to more than 99.9% using two frequency measurements (as in the see ionosphere-free combination for dual frequency receivers shown in the Precise Point Positioning algorithm described above), but single frequency receivers have to apply an ionospheric prediction model to remove (as much as possible) this effect, that can reach up to several tens of meters.
 
 
 ## Broadcast
@@ -312,7 +360,7 @@ where $$ p $$ is the total pressure (in hPa), $$ T $$ is the absolute temperatur
 
 $$ T_{r}^{(s)} = \frac{0.002277}{\cos(z^{(s)})} \left\{ p+\left( \frac{1255}{T} + 0.05 \right) e - \tan(z^{(s)})^2  \right\} $$
 
-where $$ z^{(s)} $$ is the zenith angle (rad) as $$ z^{(s)} = \frac{\pi}{2} - El_{r}^{(s)} $$, where $$ El_{r}^{(s)} $$ is elevation angle of satellite direction (rad).
+where $$ z^{(s)} $$ is the zenith angle (rad) as $$ z^{(s)} = \frac{\pi}{2} - El_{r}^{(s)} $$, where $$ El_{r}^{(s)} $$ is elevation angle of satellite direction (rad). The term $$  T_{r}^{(s)} $$ is given in seconds.
 
 The standard atmosphere and the Saastamoinen model are applied in case that the processing option `PVT.trop_model` is set to `Saastamoinen`, where the geodetic height is approximated by the ellipsoidal height and the relative humidity is fixed to 70 %.
 
@@ -401,13 +449,8 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `num_bands` | [`1`: L1 Single frequency, `2`: L1 and L2 Dual‐frequency, `3`: L1, L2 and L5 Triple‐frequency] This option is automatically configured according to the Channels configuration. This option can be useful to force some configuration (*e.g.*, single-band solution in a dual frequency receiver).  | Optional |
 | `elevation_mask` | Set the elevation mask angle, in degrees. It defaults to $$ 15^{o} $$.  | Optional |
 | `dynamics_model` | [`0`: none, `1`: velocity, `3`: acceleration] Set the dynamics model of the rover receiver. It defaults to $$ 0 $$ (no dynamics model). | Optional |
-| `iono_model` |  [`OFF`, `Broadcast`, `SBAS`, `Iono-Free-LC`, `Estimate_STEC`, `IONEX`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `SBAS`: Apply SBAS ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS/GLONASS/QZSS or L1‐L5 for Galileo) measurements is used for ionospheric correction. `Estimate_STEC`:  Estimate ionospheric parameter STEC (slant total electron content). `IONEX`: Use IONEX TEC grid data. It defaults to `OFF` (no ionospheric model) | Optional |
-| `trop_model` | [`OFF`, `Saastamoinen`, `SBAS`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `SBAS`: Apply SBAS tropospheric model (MOPS). `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no dynamics model). | Optional |
-| `AR_GPS` | [`OFF`, `Continuous`, `Instantaneous`, `Fix-and-Hold`, `PPP-AR`]. Set the strategy of integer ambiguity resolution for GPS. `OFF`: No ambiguity resolution, `Continuous`: Continuously static integer ambiguities are estimated and resolved, `Instantaneous`: Integer ambiguity is estimated and resolved by epoch‐by‐epoch basis, `Fix-and-Hold`: Continuously static integer ambiguities are estimated and resolved. If the validation OK, the ambiguities are tightly constrained to the resolved values, `PPP-AR`: Ambiguity resolution in PPP (experimental, only applicable to PPP‐* modes). It defaults to `OFF`. | Optional |
-| `min_ratio_to_fix_ambiguity` | Set the integer ambiguity validation threshold for ratio‐test, which uses the ratio  of squared residuals of the best integer vector to the second‐best vector. It defaults to $$ 3.0 $$. | Optional |
-| `min_lock_to_fix_ambiguity` | Set the minimum lock count to fix integer ambiguity. If the lock count is less than the value, the ambiguity is excluded from the fixed integer vector. | Optional |
-| `min_elevation_to_fix_ambiguity` | Set the minimum elevation angle (in degrees) to fix integer ambiguity. If the elevation angle is less than the value, the ambiguity is excluded from the fixed integer vector. It defaults to $$ 0^{o} $$. | Optional |
-| `outage_reset_ambiguity` | Set the outage count to reset ambiguity. If the data outage count is over the value, the estimated ambiguity is reset to the initial value. It defaults to $$ 5 $$. | Optional |
+| `iono_model` |  [`OFF`, `Broadcast`, `SBAS`, `Iono-Free-LC`, `Estimate_STEC`, `IONEX`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `SBAS`: Apply SBAS ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS/GLONASS/QZSS or L1‐L5 for Galileo) measurements is used for ionospheric correction. `Estimate_STEC`:  Estimate ionospheric parameter STEC (slant total electron content). `IONEX`: Use IONEX TEC grid data. It defaults to `OFF` (no ionospheric correction) | Optional |
+| `trop_model` | [`OFF`, `Saastamoinen`, `SBAS`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `SBAS`: Apply SBAS tropospheric model (MOPS). `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
 | `slip_threshold` | Set the cycle‐slip threshold (m) of geometry‐free LC carrier‐phase difference between epochs. It defaults to $$ 0.05 $$. | Optional |
 | `threshold_reject_GDOP` | Set the reject threshold of GDOP. If the GDOP is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$. | Optional |
 | `threshold_reject_innovation` | Set the reject threshold of innovation (pre‐fit residual) (m). If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$. | Optional |
@@ -437,6 +480,14 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
 |----------
+
+{::comment}
+| `AR_GPS` | [`OFF`, `Continuous`, `Instantaneous`, `Fix-and-Hold`, `PPP-AR`]. Set the strategy of integer ambiguity resolution for GPS. `OFF`: No ambiguity resolution, `Continuous`: Continuously static integer ambiguities are estimated and resolved, `Instantaneous`: Integer ambiguity is estimated and resolved by epoch‐by‐epoch basis, `Fix-and-Hold`: Continuously static integer ambiguities are estimated and resolved. If the validation OK, the ambiguities are tightly constrained to the resolved values, `PPP-AR`: Ambiguity resolution in PPP (experimental, only applicable to PPP‐* modes). It defaults to `OFF`. | Optional |
+| `min_ratio_to_fix_ambiguity` | Set the integer ambiguity validation threshold for ratio‐test, which uses the ratio  of squared residuals of the best integer vector to the second‐best vector. It defaults to $$ 3.0 $$. | Optional |
+| `min_lock_to_fix_ambiguity` | Set the minimum lock count to fix integer ambiguity. If the lock count is less than the value, the ambiguity is excluded from the fixed integer vector. | Optional |
+| `min_elevation_to_fix_ambiguity` | Set the minimum elevation angle (in degrees) to fix integer ambiguity. If the elevation angle is less than the value, the ambiguity is excluded from the fixed integer vector. It defaults to $$ 0^{o} $$. | Optional |
+| `outage_reset_ambiguity` | Set the outage count to reset ambiguity. If the data outage count is over the value, the estimated ambiguity is reset to the initial value. It defaults to $$ 5 $$. | Optional |
+{:/comment}
 
 Example:
 
@@ -474,3 +525,7 @@ PVT.rinex_version=2
 [^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](http://standards.globalspec.com/std/1014192/rtca-do-229){:target="_blank"}, RTCA Inc., December 13, 2006.
 
 [^Klobuchar87]: J. A. Klobuchar, [Ionospheric time-delay algorithms for single-frequency GPS users](http://ieeexplore.ieee.org/document/4104345/){:target="_blank"}. IEEE Transactions on Aerospace and Electronic Systems, Vol AES-23, no. 3, May 1987, pp. 325-331.
+
+[^Teunissen95]: P. J. G. Teunissen, [The least‐square ambiguity decorrelation adjustment: a method for fast GPS ambiguity estimation](https://www.researchgate.net/publication/224969472_The_least-squares_ambiguity_decorrelation_adjustment_A_method_for_fast_GPS_integer_ambiguity_estimation){:target="_blank"}, Journal of Geodesy, vol. 70, no. 1, 1995, pp. 65-82.
+
+[^Chang05]: X.‐W. Chang, X. Yang, and T. Zhou, [MLAMBDA: A modified LAMBDA method for integer least‐squares estimation](http://www.cs.mcgill.ca/~chang/pub/MLAMBDA.pdf){:target="_blank"}, Journal of Geodesy, vol. 79, no. 9, 2005, pp. 552-565.
