@@ -61,7 +61,7 @@ which can be solved by a standard iterative [weighted least squares](https://en.
 
 Matrix $$ \mathbf{H} $$ can be written as:
 
-$$ \begin{equation}  \mathbf{H} = \left( \begin{array}{cc} -{\mathbf{e}_{r}^{(1)}}^T & 1 \\  -{\mathbf{e}_{r}^{(2)}}^T & 1 \\ -{\mathbf{e}_{r}^{(3)}}^T & 1 \\ \vdots & \vdots \\ -{\mathbf{e}_{r}^{(m)}}^T & 1 \end{array} \right), \quad \text{where } \mathbf{e}_r^{(s)}= \frac{\mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r)  \right\|} \end{equation} $$
+$$ \begin{equation} \label{eq:H-single} \mathbf{H} = \left( \begin{array}{cc} -{\mathbf{e}_{r}^{(1)}}^T & 1 \\  -{\mathbf{e}_{r}^{(2)}}^T & 1 \\ -{\mathbf{e}_{r}^{(3)}}^T & 1 \\ \vdots & \vdots \\ -{\mathbf{e}_{r}^{(m)}}^T & 1 \end{array} \right), \quad \text{where } \mathbf{e}_r^{(s)}= \frac{\mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r)  \right\|} \end{equation} $$
 
 and the weighted least squares estimator (LSE) of the unknown state vector is obtained as:
 
@@ -78,25 +78,25 @@ For the initial parameter vector $$ \mathbf{x}_0 $$ for the iterated weighted LS
 
 $$ \begin{equation} \mathbf{W} = \text{diag} \left( \sigma_1^{-2}, \sigma_2^{-2}, \sigma_3^{-2}, ..., \sigma_m^{-2} \right) \end{equation} $$
 
-$$ \sigma_{s}^{2} = F^{(s)} R_r \left( a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin \left( El_r^{(s)} \right)} \right) + \sigma_{eph}^2 + \sigma_{ion}^{2} + \sigma_{trop}^{2} + \sigma_{bias}^2  $$
+$$ \sigma_{s}^{2} = F^{(s)} R_r \left( a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin \left( El_r^{(s)} \right)} \right) + \sigma_{eph,s}^2 + \sigma_{ion,s}^{2} + \sigma_{trop,s}^{2} + \sigma_{cbias}^2  $$
 
 where:
 
-  - $$ F^{(s)} $$ is the satellite system error factor (1:GPS, Galileo, QZSS and BeiDou, 1.5: GLONASS, 3.0: SBAS)
+  - $$ F^{(s)} $$ is the satellite system error factor. This parameter is set to $$ F^{(s)} = 1 $$ for GPS and Galileo.
 
-  - $$ R_r $$ is the code/carrier‐phase error ratio. This value is set to $$ R_R = 100 $$.
+  - $$ R_r $$ is the code/carrier‐phase error ratio. This value is set to $$ R_r = 100 $$.
 
-  - $$ a_{\sigma}, b_{\sigma} $$ is the carrier‐phase error factor $$ a $$ and $$ b $$ (in m). They are set to $$ a_{\sigma} = b_{\sigma} = 0.003 $$.
+  - $$ a_{\sigma}, b_{\sigma} $$ is the carrier‐phase error factor $$ a $$ and $$ b $$ (in m). They are set to $$ a_{\sigma} = b_{\sigma} = 0.003 $$ m.
 
   - $$ El_r^{(s)} $$ is the elevation angle of satellite direction (in rad).
 
-  - $$ \sigma_{eph} $$ is the standard deviation of ephemeris and clock error (in m). This is derived by the [URA values](http://www.gps.gov/technical/icwg/meetings/2011/09/13/WAS-IS-FINAL_URA_Definition_6May2011.pdf){:target="_blank"} in the navigation message.
+  - $$ \sigma_{eph,s} $$ is the standard deviation of ephemeris and clock error (in m). This is derived by the [URA values](http://www.gps.gov/technical/icwg/meetings/2011/09/13/WAS-IS-FINAL_URA_Definition_6May2011.pdf){:target="_blank"} in the navigation message.
 
-  - $$ \sigma_{ion} $$ is the standard deviation of ionosphere correction model error (in m). This parameter defaults to $$ 0.001 $$, and the value can be changed by the option `PVT.sigma_iono`.
+  - $$ \sigma_{ion,s} $$ is the standard deviation of ionosphere correction model error (in m). This parameter is set to $$ \sigma_{ion} = 5 $$ m by default (`PVT.iono_model=OFF`) and $$ \sigma_{ion} = 0.5 \cdot I_{r,i}^{(s)} $$ m when the option `PVT.iono_model=Broadcast` is set in the configuration file.
 
-  - $$ \sigma_{trop} $$ is the standard deviation of troposphere correction model error (in m). This parameter defaults to $$ 0.0001 $$, and the value can be changed by the option `PVT.sigma_trop`.
+  - $$ \sigma_{trop,s} $$ is the standard deviation of troposphere correction model error (in m). This parameter is set to $$ \sigma_{trop} = 3 $$ m by default (`PVT.trop_model=OFF`) and $$ \sigma_{trop} = 0.3 / \left(\sin(El_r^{(s)}) + 0.1\right) $$  m when the option `PVT.trop_model=Saastamoinen`, `PVT.trop_model=Estimate_ZTD` or  `PVT.trop_model=Estimate_ZTD_Grad` is set in the configuration file.
 
-  - $$ \sigma_{bias} $$ is the standard deviation of code bias error (in m). This parameter defaults to $$ 0.0001 $$, and the value can be changed by the option `PVT.sigma_bias`.
+  - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m). This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
 
 The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](http://www.navipedia.net/index.php/Time_References_in_GNSS){:target="_blank"}.
 
@@ -136,13 +136,13 @@ $$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r
 
 ## Precise Point Positioning
 
-When the `PVT.posiioning_mode` option is set to `PPP_Static` or ```PPP_Kinematic```, a Precise Point Positioning algorithm is used to solve the positioning problem. In this positioning mode, the state vector to be estimated is defined as:
+When the `PVT.positioning_mode` option is set to `PPP_Static` or ```PPP_Kinematic``` in the configuration file, a Precise Point Positioning algorithm is used to solve the positioning problem. In this positioning mode, the state vector to be estimated is defined as:
 
 $$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z_r, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T \right)^T \end{equation} $$
 
-where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are the north and east components of tropospheric gradients (see the tropospheric model below) and $$ \mathbf{B}_{LC} = \left(  B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)} \right)^T $$ is the ionosphere‐free linear combination of zero‐differenced carrier‐phase biases (in m), defined below in Equation ($$ \ref{eq:bias-lc} $$).
+where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are the north and east components of tropospheric gradients (see the tropospheric model [below](#troposphere-model)) and $$ \mathbf{B}_{LC} = \left(  B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)} \right)^T $$ is the ionosphere‐free linear combination of zero‐differenced carrier‐phase biases (in m), defined below in Equation ($$ \ref{eq:bias-lc} $$).
 
-The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay){:target="_blank"}, the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/" | absolute_url }}) apply):
+The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay){:target="_blank"}, the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/#phase-range-measurement" | absolute_url }}) apply):
 
 
 $$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$
@@ -190,7 +190,7 @@ where $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 &
 
 $$ \begin{equation} \mathbf{M}_T = \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) &  m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\  m_{WG,r}^{(2)} \left( El_r^{(2)} \right) &  m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \cos \left( Az_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \sin \left( Az_r^{(2)} \right) \\  m_{WG,r}^{(3)} \left( El_r^{(3)} \right) &  m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \cos \left( Az_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \sin \left( Az_r^{(3)} \right) \\ \vdots \\  m_{WG,r}^{(m)} \left( El_r^{(m)} \right) &  m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \cos \left( Az_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \sin \left( Az_r^{(m)} \right) \end{array} \right) \end{equation} $$
 
-is a matrix related to the tropospheric model (see below).
+is a matrix related to the tropospheric model (see [below](#troposphere-model)).
 
 With all those definitions, the Precise Point Positioning solution is computed as follows:
 
@@ -216,10 +216,41 @@ With all those definitions, the Precise Point Positioning solution is computed a
   {{ ekf | markdownify }}
 </div>
 
+The transition matrix $$ \mathbf{F}_k $$ models the receiver movement:
+
+  * If `PVT.positioning_mode=PPP_Static`:
+
+  $$ \begin{equation} \mathbf{F}_k = \left(\begin{array}{ccccc} \mathbf{I}_{3\times 3} & {} & {} & {} & {} \\ {} &  \mathbf{I}_{3\times 3} & {} & {} & {} \\ {} & {} & 1 & {} & {} \\ {} & {} & {} & \mathbf{I}_{3 \times 3} & {} \\  {} & {} & {} & {} & \mathbf{I}_{m \times m}  \end{array} \right) \end{equation} $$
+
+  * If `PVT.positioning_mode=PPP_Kinematic`:
+
+  $$ \begin{equation} \mathbf{F}_k = \left(\begin{array}{ccccc} \mathbf{I}_{3\times 3} & \mathbf{I}_{3\times 3} \Delta_k  & {} & {} & {} \\ {} &  \mathbf{I}_{3\times 3} & {} & {} & {} \\ {} & {} & 1 & {} & {} \\ {} & {} & {} & \mathbf{I}_{3 \times 3} & {} \\  {} & {} & {} & {} & \mathbf{I}_{m \times m}  \end{array} \right) \end{equation} $$
+
+  where $$ \Delta_k = t_{k+1} - t_k $$ is the time between GNSS measurements, in s.
 
 
+The dynamics model noise covariance matrix $$ \mathbf{Q}_k $$ is set to:
+
+$$ \begin{equation} \mathbf{Q}_k = \left(\begin{array}{ccccc} \mathbf{Q}_{r} & {} & {} & {} & {} \\ {} &  \mathbf{Q}_{v} & {} & {} & {} \\ {} & {} & \sigma_{dt_{r}}^2 & {} & {} \\ {} & {} & {} & \mathbf{Q}_{T} & {} \\  {} & {} & {} & {} & \sigma_{bias}^2 \Delta_k \mathbf{I}_{m\times m} \end{array} \right) \end{equation} $$
+
+with:
+
+  * $$ \mathbf{Q}_r = \mathbf{E}_r^T \text{diag} \left( \sigma_{re}^2 , \sigma_{rn}^2 , \sigma_{ru}^2 \right) \mathbf{E}_r $$, where  $$ \mathbf{E}_r$$ is the coordinates rotation matrix from ECEF to local coordinates at the receiver antenna position (defined below), and  $$ \sigma_{re} $$, $$  \sigma_{rn} $$ and $$ \sigma_{ru} $$ are the standard deviations of east, north and up components of the receiver position model noises (in m).
+    * If the positioning mode is set to `PVT.positioning_mode=PPP_Static`, these values are initialized to $$ \sigma_{re} =  \sigma_{rn} =  \sigma_{ru} = 100 $$ m in the first epoch and then set to $$ 0 $$ in the following time updates.
+    * If the positioning mode is set to `PVT.positioning_mode=PPP_Kinematic`, these values are set to $$ \sigma_{re} = \sigma_{rn} =  \sigma_{ru} = 100 $$ m for all time updates.
+  * $$ \mathbf{Q}_v = \mathbf{E}_r^T \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) \mathbf{E}_r $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the receiver velocity model noises (in m/s/$$ \sqrt{s} $$). Those parameters can be set with the configuration parameters $$ \sigma_{ve} = \sigma_{vn} = $$ `PVT.sigma_acch`, which default to $$ 0.1 $$, and $$ \sigma_{vu} = $$`PVT.sigma_accv`, which defaults to $$ 0.01 $$ m/s/$$ \sqrt{s} $$.
+  * $$ \sigma_{dt_{r}} $$ is the standard deviation of the receiver clock offset (in m). This value is set to $$ \sigma_{dt_{r}} = 100 $$ m.
+  * $$ \mathbf{Q}_{T} = \text{diag} \left( \sigma_{Z}^2 \Delta_k, \sigma_{G_{N}}^2 \Delta_k,  \sigma_{G_{E}}^2 \Delta_k \right) $$ is the noise covariance matrix of the troposphere terms. These values are set to $$ \sigma_{Z} = 0.0001 $$, and $$ \sigma_{G_{N}} = \sigma_{G_{E}} $$ are initialized to $$ sigma_{G_{N}} = \sigma_{G_{E}} = 0.001 $$ m/$$ \sqrt{s} $$ in the first epoch and then set to $$ sigma_{G_{N}} = \sigma_{G_{E}} = 0.1 \cdot \sigma_{Z} $$ in the following time updates. The default value of $$ \sigma_{Z} = 0.0001 $$ m/$$ \sqrt{s} $$ can be configured with the `PVT.sigma_trop` option.
+  * $$ \sigma_{bias} $$ is the standard deviation of the ionosphere-free carrier-phase bias measurements, in m/$$ \sqrt{s} $$. This value is initialized at the first epoch and after a cycle slip to $$ \sigma_{bias} = 100$$ m/$$ \sqrt{s} $$, and then is set to a default value of $$ \sigma_{bias} = 0.0001 $$ m/$$ \sqrt{s} $$ in the following time updates. This value and can be configured with the option `PVT.sigma_bias`.
+  * $$ \mathbf{E}_r = \left( \begin{array}{ccc} -\sin(\theta_r)  & \cos (\theta_r) & 0 \\ -\sin (\psi_r) \cos(\theta_r) & -\sin (\psi_r)\sin(\theta_r) &  \cos (\psi_r)\\ \cos(\psi_r)\cos(\theta_r) & \cos(\psi_r)\sin(\theta_r) & \sin(\psi_r)\end{array} \right) $$ is the rotation matrix of the ECEF coordinates to the local coordinates, where where $$ \psi_r $$ and $$ \theta_r $$ are the geodetic latitude and the longitude of the receiver position.
+
+
+
+The measurement model noise covariance matrix $$ \mathbf{R}_k $$ is set to a fixed value defined by:
 
 $$ \begin{equation} \mathbf{R} = \left( \begin{array}{cc} \mathbf{R}_{\Phi,LC} & \mathbf{0} \\ \mathbf{0} & \mathbf{R}_{P,LC} \end{array}\right) \end{equation} $$
+
+where:
 
 $$ \mathbf{R}_{\Phi,LC} = \text{diag} \left( 3{\sigma_{\Phi,1}^{(1)}}^2, 3{\sigma_{\Phi,1}^{(2)}}^2, 3{\sigma_{\Phi,1}^{(3)}}^2, ..., 3{\sigma_{\Phi,1}^{(m)}}^2 \right) $$
 
@@ -227,11 +258,11 @@ $$ \mathbf{R}_{P,LC} = \text{diag} \left( 3{\sigma_{P,1}^{(1)}}^2, 3{\sigma_{P,1
 
 where $$ \sigma_{\Phi,1}^{(s)} $$ is the standard deviation of L1 phase‐range measurement error (in m), and $$ \sigma_{P,1}^{(s)} $$ is the standard deviation of L1 pseudorange measurement error (in m).
 
+  * $$ \sigma_{\Phi,1}^{(s)} = 0.003^2 + \frac{0.003^2}{\sin(E_r^{(s)})^2} + \sigma_{eph}^2 + \sigma_{bclock}^2 + \sigma_{trop}^2 $$, where $$ \sigma_{eph} = 0.5 $$ m is the standard deviation of the broadcast ephemeris, $$ \sigma_{bclock} = 30 $$ is the standard deviation of the broadcast clock, and $$ \sigma_{trop} $$ is the standard deviation of the troposphere correction model error (in m). This parameter is set to $$ \sigma_{trop} = 3 $$ m when `PVT.trop_model=OFF` and $$ \sigma_{trop} = 0.3 / \left(\sin(El_r^{(s)}) + 0.1\right) $$  m when `PVT.trop_model=Saastamoinen`, `PVT.trop_model=Estimate_ZTD` or  `PVT.trop_model=Estimate_ZTD_Grad`.
+
+  * $$ \sigma_{P,1}^{(s)} = R_r \cdot \left( 0.003^2 + \frac{0.003^2}{\sin(E_r^{(s)})^2} \right) + \sigma_{eph}^2 + \sigma_{cbias}^2 + \sigma_{bclock}^2 + \sigma_{trop}^2 $$, where $$ R_r = 100 $$ and $$ \sigma_{cbias} = 0.3 $$ m.
 
 
-$$ \mathbf{F}_k = \left(\begin{array}{ccc} \mathbf{I}_{3\times 3} & {} & {} \\ {} &  \mathbf{I}_{3\times 3} & {} \\ {} & {} &  \mathbf{I}_{(3m-3)\times(3m-3)} \end{array} \right) $$
-
-$$  \mathbf{Q}_k = \left(\begin{array}{ccc} \mathbf{\infty}_{3\times 3} & {} & {} \\ {} &  \mathbf{0} & {} \\ {} & {} &  \mathbf{0}_{(3m-3)\times(3m-3)} \end{array} \right) $$
 
 {::comment}
 ## Integer ambiguity resolution
@@ -274,19 +305,6 @@ If the validation failed, RTKLIB outputs the ʺFLOATʺ solution $$ \hat{\mathbf{
 
 {:/comment}
 
-# Receiver dynamics
-
-Definition of $$ \mathbf{F} $$ and tuning of $$ \mathbf{Q} $$.
-
-
-$$ \mathbf{F}_k = \left(\begin{array}{ccc} \mathbf{I}_{3\times 3} &   \mathbf{I}_{3\times 3} \Delta_k & {} \\ {} &  \mathbf{I}_{3\times 3} & {} \\ {} & {} &  \mathbf{I}_{(3m-3)\times(3m-3)} \end{array} \right) $$
-
-$$  \mathbf{Q}_k = \left(\begin{array}{ccc} \mathbf{0}_{3\times 3} & {} & {} \\ {} &  \mathbf{Q}_{v} & {} \\ {} & {} &  \mathbf{0}_{(3m-3)\times(3m-3)} \end{array} \right) $$
-
-
-$$ \mathbf{Q}_v = \mathbf{E}_r \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the rover velocity system noises (in m/s/$$ \sqrt{s} $$). Those parameters can be set with the configuration parameters $$ \sigma_{ve} = \sigma_{vn} = $$ `PVT.sigma_acch`, which default to $$ 0.1 $$, and $$ \sigma_{vu} = $$`PVT.sigma_accv`, which defaults to $$ 03.01 $$.
-
-
 
 
 # Ionosphere Model
@@ -295,11 +313,13 @@ The ionosphere is a region of Earth's upper atmosphere, from about 60 km to 1,00
 
 The propagation speed of the GNSS electromagnetic signals through the ionosphere depends on its electron density, which is typically driven by two main processes: during the day, sun radiation causes *ionization* of neutral atoms producing free electrons and ions. During the night, the *recombination* process prevails, where free electrons are recombined with ions to produce neutral particles, which leads to a reduction in the electron density.
 
-The frequency dependence of the ionospheric effect (in s) is described by the following expression:
+The frequency dependence of the ionospheric effect (in m) is described by the following expression:
 
-$$ \begin{equation} I_{r,i}^{(s)} = \frac{1}{c}\frac{40.3 \cdot \text{TEC} }{f_i^2} \end{equation} $$
+$$ \begin{equation} I_{r,i}^{(s)} = \frac{40.3 \cdot \text{STEC} }{f_i^2} \end{equation} $$
 
-where TEC is the Total Electron Content, which describes the number of free electrons present within one square meter between the receiver and satellite $$ s $$. This dispersive nature (i.e., the ionospheric delay is proportional to the squared inverse of $$ f_i $$) allows users to remove its effect up to more than 99.9% using two frequency measurements (as in the see ionosphere-free combination for dual frequency receivers shown in the Precise Point Positioning algorithm described above), but single frequency receivers have to apply an ionospheric prediction model to remove (as much as possible) this effect, that can reach up to several tens of meters.
+where STEC is the Slant Total Electron Content, which describes the number of free electrons present within one square meter between the receiver and satellite $$ s $$. It is often reported in multiples of the so-called TEC unit, defined as $$ \text{TECU} = 10^{16} $$ el/m$$ ^2 $$.  Ionospheric effects on the phase and code measurements have the opposite signs and have approximately the same amount. It causes a positive delay on code measurements (so it is included with a positive sign in the [pseudorange measurement model]({{ "docs/sp-blocks/observables/#pseudorange-measurement" | absolute_url }})) and a *negative delay*, or phase advance, in phase measurements (so it is included with a negative sign in the [phase-range measurement model]({{ "docs/sp-blocks/observables/#phase-range-measurement" | absolute_url }})).
+
+This dispersive nature (i.e., the ionospheric delay is proportional to the squared inverse of $$ f_i $$) allows users to remove its effect up to more than 99.9% using two frequency measurements (as in the see ionosphere-free combination for dual frequency receivers shown in the Precise Point Positioning algorithm described above), but single frequency receivers have to apply an ionospheric prediction model to remove (as much as possible) this effect, that can reach up to several tens of meters.
 
 
 ## Broadcast
@@ -308,33 +328,34 @@ For ionosphere correction for single frequency GNSS users, GPS navigation data i
 
 $$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T $$
 
-By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r,1}^{(s)} $$ (m) can be derived the following
+By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r,1}^{(s)} $$ (in m) can be derived the following
 procedure[^ISGPS200]. The model is often called as the [Klobuchar model](http://www.navipedia.net/index.php/Klobuchar_Ionospheric_Model){:target="_blank"}[^Klobuchar87].
 
 
-$$ \Psi = \frac{0.0137}{El_r^{(s)} + 0.11}-0.022 $$
+$$ \begin{equation} \Psi = \frac{0.0137}{El_r^{(s)} + 0.11}-0.022 \end{equation} $$
 
-$$ \psi_i = \psi + \Psi \cos(Az_r^{(s)}) $$
+$$ \begin{equation} \psi_i = \psi + \Psi \cos(Az_r^{(s)}) \end{equation} $$
 
-$$ \lambda_i = \lambda + \frac{\Psi \sin(Az_r^{(s)})}{\cos(\psi_i)} $$
+$$ \begin{equation} \lambda_i = \lambda + \frac{\Psi \sin(Az_r^{(s)})}{\cos(\psi_i)} \end{equation} $$
 
-$$  \psi_m = \psi_i + 0.064 \cos(\lambda_i -1.617) $$
+$$ \begin{equation}  \psi_m = \psi_i + 0.064 \cos(\lambda_i -1.617) \end{equation} $$
 
-$$ t = 4.32 \cdot 10^4 \lambda_i +t $$
+$$ \begin{equation} t = 4.32 \cdot 10^4 \lambda_i +t \end{equation} $$
 
-$$ F = 1.0 + 16.0 \cdot (0.43 - El_r^{(s)})^3 $$
+$$ \begin{equation} F = 1.0 + 16.0 \cdot (0.43 - El_r^{(s)})^3 \end{equation} $$
 
 
-$$ x = \frac{2 \pi (t - 505400)}{ \sum_{n=0}^{3} \beta_n {\psi_m}^n} $$
+$$ \begin{equation} x = \frac{2 \pi (t - 505400)}{ \sum_{n=0}^{3} \beta_n {\psi_m}^n} \end{equation} $$
 
-$$ I_{r,1}^{(s)} = \left\{ \begin{array}{cc}  F \cdot 5 \cdot 10 ^{-9} & ( | x | > 1.57) \\ F \cdot \left( 5 \cdot 10^{-9}+ \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left( 1-\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array}   \right. $$
+$$ \begin{equation} I_{r,1}^{(s)} = \left\{ \begin{array}{cc}  F \cdot 5 \cdot 10 ^{-9} & ( | x | > 1.57) \\ F \cdot \left( 5 \cdot 10^{-9}+ \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left( 1-\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array}   \right. \end{equation} $$
 
 This correction is activated when `PVT.iono_model` is set to `Broadcast`.
 
+{::comment}
 ## SBAS
 
 SBAS corrections for ionospheric delay is provided by the message type 18 (ionospheric grid point masks) and the message type 26 (ionospheric delay corrections).
-
+{:/comment}
 
 # Troposphere Model
 
@@ -350,26 +371,26 @@ The troposphere is a non dispersive media with respect to electromagnetic waves 
 
 The standard atmosphere can be expressed as:
 
-$$ p = 1013.15 \cdot (1-2.2557 \cdot 10^{-5} \cdot h)^{5.2568} $$
+$$ \begin{equation} p = 1013.15 \cdot (1-2.2557 \cdot 10^{-5} \cdot h)^{5.2568} \end{equation} $$
 
-$$ T = 15.0 -6.5 \cdot 10^{-3} \cdot h + 273.15 $$
+$$ \begin{equation} T = 15.0 -6.5 \cdot 10^{-3} \cdot h + 273.15 \end{equation} $$
 
-$$ e = 6.108  \cdot \exp\left\{\frac{17.15 T -4684.0}{T-38.45}\right\} \cdot \frac{h_{rel}}{100} $$   
+$$ \begin{equation} e = 6.108  \cdot \exp\left\{\frac{17.15 T -4684.0}{T-38.45}\right\} \cdot \frac{h_{rel}}{100} \end{equation} $$   
 
-where $$ p $$ is the total pressure (in hPa), $$ T $$ is the absolute temperature (in K) of the air, $$ h $$  is the geodetic height above MSL (mean sea level), $$ e $$ is the partial pressure (in hPa) of water vapor and $$ h_{rel} $$ is the relative humidity. The tropospheric delay $$ T_{r}^{(s)} $$ is expressed by the Saastamoinen model with $$ p $$, $$ T $$ and $$ e $$ derived from the standard atmosphere:
+where $$ p $$ is the total pressure (in hPa), $$ T $$ is the absolute temperature (in K) of the air, $$ h $$  is the geodetic height above MSL (mean sea level), $$ e $$ is the partial pressure (in hPa) of water vapor and $$ h_{rel} $$ is the relative humidity. The tropospheric delay $$ T_{r}^{(s)} $$ (in m) is expressed by the Saastamoinen model with $$ p $$, $$ T $$ and $$ e $$ derived from the standard atmosphere:
 
-$$ T_{r}^{(s)} = \frac{0.002277}{\cos(z^{(s)})} \left\{ p+\left( \frac{1255}{T} + 0.05 \right) e - \tan(z^{(s)})^2  \right\} $$
+$$ \begin{equation} T_{r}^{(s)} = \frac{0.002277}{\cos(z^{(s)})} \left\{ p+\left( \frac{1255}{T} + 0.05 \right) e - \tan(z^{(s)})^2  \right\} \end{equation} $$
 
-where $$ z^{(s)} $$ is the zenith angle (rad) as $$ z^{(s)} = \frac{\pi}{2} - El_{r}^{(s)} $$, where $$ El_{r}^{(s)} $$ is elevation angle of satellite direction (rad). The term $$  T_{r}^{(s)} $$ is given in seconds.
+where $$ z^{(s)} $$ is the zenith angle (rad) as $$ z^{(s)} = \frac{\pi}{2} - El_{r}^{(s)} $$, where $$ El_{r}^{(s)} $$ is elevation angle of satellite direction (rad).
 
 The standard atmosphere and the Saastamoinen model are applied in case that the processing option `PVT.trop_model` is set to `Saastamoinen`, where the geodetic height is approximated by the ellipsoidal height and the relative humidity is fixed to 70 %.
 
 
-
+{::comment}
 ## SBAS
 
 If the processing option `PVT.trop_model` is set to `SBAS`, the SBAS troposphere models defined in the SBAS receiver specifications are applied. The model often called as "MOPS model". Refer to [MOPS reference](http://standards.globalspec.com/std/1014192/rtca-do-229)[^MOPS], A.4.2.4 for details.
-
+{:/comment}
 
 
 
@@ -377,9 +398,9 @@ If the processing option `PVT.trop_model` is set to `SBAS`, the SBAS troposphere
 
 If the processing option `PVT.trop_model` is set to `Estimate_ZTD`, a more precise troposphere model is applied with strict mapping functions as:
 
-$$ m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(s)}) \right\} $$
+$$ \begin{equation} m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(s)}) \right\} \end{equation} $$
 
-$$ T_{r}^{s} =  m_{H}(El_{r}^{(s)})Z_{H,r} + m(El_{r}^{(s)}) (Z_{T,r}-Z_{H,r}) $$
+$$ \begin{equation} T_{r}^{s} =  m_{H}(El_{r}^{(s)})Z_{H,r} + m(El_{r}^{(s)}) (Z_{T,r}-Z_{H,r}) \end{equation} $$
 
 where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{(s)}) $$ is the hydro‐static mapping function and $$ m_{W}(El_{r}^{(s)}) $$ is the wet mapping function. The tropospheric zenith hydro‐static delay is given by Saastamoinen model described above with the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the mapping function, the software employs the [Niell mapping function](http://www.navipedia.net/index.php/Mapping_of_Niell)[^Niell96]. The zenith total delay $$ Z_{T,r} $$ is estimated as a unknown parameter in the parameter estimation process.
 
@@ -389,7 +410,7 @@ where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is
 
 If the processing option `trop_model` is set to `Estimate_ZTD_Grad`, a more precise troposphere model is applied with strict mapping functions as[^MacMillan95]:
 
-$$ m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(s)}) \left( G_{N,r} \cos(Az_{r}^{(s)}) + G_{E,r} \sin(Az_{r}^{(s)})\right) \right\} $$
+$$ \begin{equation} m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(s)}) \left( G_{N,r} \cos(Az_{r}^{(s)}) + G_{E,r} \sin(Az_{r}^{(s)})\right) \right\} \end{equation} $$
 
 where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and $$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the tropospheric gradient, respectively. The zenith total delay $$ Z_{T,r} $$ and the gradient parameters $$ G_{E,r} $$ and $$ G_{N,r} $$ are estimated as unknown parameters in the parameter estimation process.
 
@@ -401,21 +422,11 @@ where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and 
 
 Depending on the specific application or service that is exploiting the information provided by GNSS-SDR, different internal data will be required, and thus the receiver needs to provide such data in an adequate, standard formats:
 
-* For Geographic Information Systems, map representation and Earth browsers: [KML](http://www.opengeospatial.org/standards/kml){:target="_blank"} and [GeoJSON](http://geojson.org/){:target="_blank"}.
-* For sensor integration: [NMEA-0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"}.
-* For post-processing applications: RINEX [2.11](https://igscb.jpl.nasa.gov/igscb/data/format/rinex211.txt){:target="_blank"} and [3.02](ftp://igs.org/pub/data/format/rinex302.pdf){:target="_blank"}.
-* For real-time, possibly networked processing: [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php){:target="_blank"} messages, v3.2.
+* For Geographic Information Systems, map representation and Earth browsers: [KML](http://www.opengeospatial.org/standards/kml){:target="_blank"} and [GeoJSON](http://geojson.org/){:target="_blank"} files are generated by default, upon the computation of the first position fix.
+* For sensor integration: [NMEA-0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"}. A text file containing NMEA messages is stored with a default name of `gnss_sdr_pvt.nmea`, configurable via `PVT.nmea_dump_filename`. In addition, NMEA messages can be forwarded to a serial port by setting `PVT.flag_nmea_tty_port=true`. The default port is `/dev/tty1`, and can be configured via `PVT.nmea_dump_devname`.
+* For post-processing applications: RINEX [2.11](https://igscb.jpl.nasa.gov/igscb/data/format/rinex211.txt){:target="_blank"} and [3.02](ftp://igs.org/pub/data/format/rinex302.pdf){:target="_blank"}. Version 3.02 is generated by default, and version 2.11 can be requested by setting `PVT.rinex_version=2` in the configuration file.
+* For real-time, possibly networked processing: [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php){:target="_blank"} messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting ```PVT.flag_rtcm_server=true``` in the configuration file, and will be active during the execution of the software receiver. By default, the server will operate on port 2101 (which is the recommended port for RTCM services according to the Internet Assigned Numbers Authority, [IANA](http://www.iana.org/assignments/service-names-port-numbers "Service Name and Transport Protocol Port Number Registry"){:target="_blank"}), and will identify the Reference Station with ID= $$ 1234 $$. These values can be changed with `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration file.
 
-
-In _PVT_ implementations that support it, KML files are generated automatically by default, upon the computation of the first position fix.
-
-In _PVT_ implementations that support it, GNSS-SDR by default generates RINEX version [3.02](https://igscb.jpl.nasa.gov/igscb/data/format/rinex302.pdf){:target="_blank"}. If [2.11](https://igscb.jpl.nasa.gov/igscb/data/format/rinex211.txt){:target="_blank"} is needed, it can be requested through a commandline flag when invoking the software receiver:
-
-   ```
-   $ gnss-sdr --RINEX_version=2
-   ```
-
-In _PVT_ implementations that support it, the TCP/IP server of RTCM messages can be enabled by setting ```PVT.flag_rtcm_server=true``` in the configuration file, and will be active during the execution of the software receiver. By default, the server will operate on port 2101 (which is the recommended port for RTCM services according to the Internet Assigned Numbers Authority, [IANA](http://www.iana.org/assignments/service-names-port-numbers "Service Name and Transport Protocol Port Number Registry"){:target="_blank"}), and will identify the Reference Station with ID=1234. This behaviour can be changed through the configuration file.
 
 
 **Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
@@ -448,22 +459,18 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `positioning_mode` | [`Single`, `PPP_Static`, `PPP_Kinematic`] Set positioning mode. `Single`: Single point positioning.  `PPP_Static`: Precise Point Positioning with static mode. `PPP_Kinematic`: Precise Point Positioning for a moving receiver. It defaults to `Single`. | Optional |
 | `num_bands` | [`1`: L1 Single frequency, `2`: L1 and L2 Dual‐frequency, `3`: L1, L2 and L5 Triple‐frequency] This option is automatically configured according to the Channels configuration. This option can be useful to force some configuration (*e.g.*, single-band solution in a dual frequency receiver).  | Optional |
 | `elevation_mask` | Set the elevation mask angle, in degrees. It defaults to $$ 15^{o} $$.  | Optional |
-| `dynamics_model` | [`0`: none, `1`: velocity, `3`: acceleration] Set the dynamics model of the rover receiver. It defaults to $$ 0 $$ (no dynamics model). | Optional |
-| `iono_model` |  [`OFF`, `Broadcast`, `SBAS`, `Iono-Free-LC`, `Estimate_STEC`, `IONEX`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `SBAS`: Apply SBAS ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS/GLONASS/QZSS or L1‐L5 for Galileo) measurements is used for ionospheric correction. `Estimate_STEC`:  Estimate ionospheric parameter STEC (slant total electron content). `IONEX`: Use IONEX TEC grid data. It defaults to `OFF` (no ionospheric correction) | Optional |
-| `trop_model` | [`OFF`, `Saastamoinen`, `SBAS`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `SBAS`: Apply SBAS tropospheric model (MOPS). `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
+| `dynamics_model` | [`0`: none, `1`: velocity] Set the dynamics model of the receiver. It defaults to $$ 0 $$ (no dynamics model). | Optional |
+| `iono_model` |  [`OFF`, `Broadcast`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS or L1‐L5 for Galileo) measurements is used for ionospheric correction. It defaults to `OFF` (no ionospheric correction) | Optional |
+| `trop_model` | [`OFF`, `Saastamoinen`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
 | `slip_threshold` | Set the cycle‐slip threshold (m) of geometry‐free LC carrier‐phase difference between epochs. It defaults to $$ 0.05 $$. | Optional |
 | `threshold_reject_GDOP` | Set the reject threshold of GDOP. If the GDOP is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$. | Optional |
 | `threshold_reject_innovation` | Set the reject threshold of innovation (pre‐fit residual) (m). If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$. | Optional |
 | `number_filter_iter` | Set the number of iteration in the measurement update of the estimation filter. If the baseline length is very short like 1 m, the iteration may be effective to handle the nonlinearity of measurement equation. It defaults to 1. | Optional |
-| `bias_0` | Set the process noise initial bias of carrier‐phase bias (ambiguity), in m. It defaults to 30 m. | Optional |
-| `iono_0` | Set the process noise initial bias of vertical ionospheric delay per 10 km baseline, in m. It defaults to 0.03 m. | Optional |
-| `trop_0` | Set the process noise initial bias of zenith tropospheric delay, in m. It defaults to 0.3 m. | Optional |
-| `sigma_bias` | Set the process noise standard deviation of carrier‐phase bias (ambiguity), in $$ cycle/ \sqrt{s} $$. It defaults to $$ 1e-4 $$. | Optional |
-| `sigma_iono` | Set the process noise standard deviation of vertical ionospheric delay per 10 km baseline, in $$ m/ \sqrt{s} $$. It defaults to $$ 1e-3 $$. | Optional |
-| `sigma_trop` | Set the process noise standard deviation of zenith tropospheric delay, in  $$ m/ \sqrt{s} $$. It defaults to $$ 1e-4 $$. | Optional |
-| `sigma_acch` | Set the process noise standard deviation of the receiver acceleration as the horizontal component, in $$ m/s^2/ \sqrt{s} $$. It defaults to $$ 1e-1 $$. If Receiver Dynamics is set to OFF, this parameter is not used.| Optional |
-| `sigma_accv` | Set the process noise standard deviation of the receiver acceleration as the vertical component, in $$ m/s^2/ \sqrt{s} $$. It defaults to $$ 1e-2 $$. If Receiver Dynamics is set to OFF, this parameter is not used. | Optional |
-| `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3.02. | Optional |
+| `sigma_bias` | Set the process noise standard deviation of carrier‐phase bias $$ \sigma_{bias} $$, in cycles$$/ \sqrt{s} $$. It defaults to $$ 0.0001 $$ cycles/$$ \sqrt{s} $$. | Optional |
+| `sigma_trop` | Set the process noise standard deviation of zenith tropospheric delay $$ \sigma_{Z} $$, in m/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ m/$$ \sqrt{s} $$. | Optional |
+| `sigma_acch` | Set the process noise standard deviation of the receiver acceleration as the horizontal component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.1 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used.| Optional |
+| `sigma_accv` | Set the process noise standard deviation of the receiver acceleration as the vertical component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.01 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used. | Optional |
+| `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
 | `nmea_dump_devname` | If `flag_nmea_tty_port` is set to `true`, descriptor of the serial port device.  It defaults to `/dev/tty1`. | Optional |
@@ -482,11 +489,15 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 |----------
 
 {::comment}
+| `sigma_iono` | Set the process noise standard deviation of vertical ionospheric delay per 10 km baseline, in m/$$ \sqrt{s} $$. It defaults to $$ 0.001 $$. | Optional |
 | `AR_GPS` | [`OFF`, `Continuous`, `Instantaneous`, `Fix-and-Hold`, `PPP-AR`]. Set the strategy of integer ambiguity resolution for GPS. `OFF`: No ambiguity resolution, `Continuous`: Continuously static integer ambiguities are estimated and resolved, `Instantaneous`: Integer ambiguity is estimated and resolved by epoch‐by‐epoch basis, `Fix-and-Hold`: Continuously static integer ambiguities are estimated and resolved. If the validation OK, the ambiguities are tightly constrained to the resolved values, `PPP-AR`: Ambiguity resolution in PPP (experimental, only applicable to PPP‐* modes). It defaults to `OFF`. | Optional |
 | `min_ratio_to_fix_ambiguity` | Set the integer ambiguity validation threshold for ratio‐test, which uses the ratio  of squared residuals of the best integer vector to the second‐best vector. It defaults to $$ 3.0 $$. | Optional |
 | `min_lock_to_fix_ambiguity` | Set the minimum lock count to fix integer ambiguity. If the lock count is less than the value, the ambiguity is excluded from the fixed integer vector. | Optional |
 | `min_elevation_to_fix_ambiguity` | Set the minimum elevation angle (in degrees) to fix integer ambiguity. If the elevation angle is less than the value, the ambiguity is excluded from the fixed integer vector. It defaults to $$ 0^{o} $$. | Optional |
 | `outage_reset_ambiguity` | Set the outage count to reset ambiguity. If the data outage count is over the value, the estimated ambiguity is reset to the initial value. It defaults to $$ 5 $$. | Optional |
+| `bias_0` | Set the process noise initial bias of carrier‐phase bias (ambiguity), in m. It defaults to 30 m. | Optional |
+| `iono_0` | Set the process noise initial bias of vertical ionospheric delay per 10 km baseline, in m. It defaults to 0.03 m. | Optional |
+| `trop_0` | Set the process noise initial bias of zenith tropospheric delay, in m. It defaults to 0.3 m. | Optional |
 {:/comment}
 
 Example:
@@ -499,7 +510,6 @@ PVT.output_rate_ms=100
 PVT.display_rate_ms=500
 PVT.iono_model=Broadcast
 PVT.trop_model=Saastamoinen
-PVT.AR_GPS=Continuous
 PVT.flag_rtcm_server=true
 PVT.flag_rtcm_tty_port=false
 PVT.rtcm_dump_devname=/dev/pts/1

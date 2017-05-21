@@ -25,9 +25,8 @@ _Pseudorange model [^RTKLIBManual]_
 
 The equation can be written by using the geometric range $$ \rho_r^{(s)} $$ between satellite and receiver antennas, the receiver and satellite clock biases $$ dt_r $$ and $$ dT^{(s)} $$, the ionospheric and tropospheric delays $$ I_{r,i}^{(s)} $$ and $$ T_r^{(s)} $$ and the measurement error $$ \epsilon_P $$ as:
 
-$$ \begin{equation} \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{array}{ccl} P_{r,i}^{(s)} & = & c\left( (t_r+dt_r(t_r)) - (t^{(s)}+dT^{(s)}(t^{(s)})) \right)+ \epsilon_P \\
-{} & = & \color{blue}c(t_r - t^{(s)} )\color{dark-grey}+c \left( dt_r(t_r)-dT^{(s)}(t^{(s)}) \right)+\epsilon_P \\
-{} & = & \color{blue}\rho_r^{(s)} + I_{r,i}^{(s)} + T_r^{(s)}\color{dark-grey} +c \left(dt_r(t_r) - dT^{(s)}(t^{(s)})\right) +\epsilon_P \\
+$$ \begin{equation} \begin{array}{ccl} P_{r,i}^{(s)} & = & c\left( (t_r+dt_r(t_r)) - (t^{(s)}+dT^{(s)}(t^{(s)})) \right)+ \epsilon_P \\
+{} & = & c(t_r - t^{(s)} )+c \left( dt_r(t_r)-dT^{(s)}(t^{(s)}) \right)+\epsilon_P \\
 {} & = & \rho_r^{(s)} + c\left( dt_r(t_r) - dT^{(s)}(t^{(s)}) \right) + I_{r,i}^{(s)} + T_r^{(s)} +\epsilon_P \end{array} \end{equation} $$
 
 where:
@@ -75,7 +74,7 @@ where:
   * $$ t_r $$ is the navigation signal reception time at the receiver (in s).
   * $$ t^{(s)} $$ is the navigation signal transmission time at the satellite (in s).
   * $$ N_{r,i}^{(s)} $$ is the carrier‐phase integer ambiguity (in cycles).
-  * $$ \epsilon_{\phi} $$ is a term modelling carrier phase measurement noise (in cycles).
+  * $$ \epsilon_{\phi} $$ is a term modelling carrier phase measurement noise, including satellite orbital errors, receiver's and satellite's instrumental delays, effects of multipath propagation and thermal noise (in cycles).
   * $$ f_i $$ is the carrier frequency (in Hz) at band $$ i $$.
   * $$ dt_r(t) $$ is the receiver clock offset (in s) from GPS time at time $$ t $$.
   * $$ dT^{(s)}(t) $$ is the satellite clock bias (in s) from GPS time at time $$ t $$.
@@ -101,12 +100,13 @@ Phase measurements are sometimes given in meters. This is referred to as **phase
 $$ \begin{array}{ccl} \Phi_{r,i}^{(s)} & = & \lambda_i \phi_{r,i}^{(s)} \\
 {} & = &c(t_r-t^{(s)}) + c (dt_r(t_r) - dT^{(s)}(t^{(s)}))+ \lambda_i(\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \lambda_i \epsilon_{\phi}  \end{array}$$
 
-The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna phase center offsets and variations, station displacement by earth tides, phase windup effect and relativity correction on the satellite clock) that will be useful for more accurate positioning algorithms:
+The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna phase center offsets and variations, station displacement by earth tides, phase windup effect and relativity correction on the satellite clock) that will be useful for [precise point positioning]({{ "/docs/sp-blocks/pvt/#precise-point-positioning" | absolute_url }}) algorithms. The phase-range measurement can then be modeled as:
 
-$$ c(t_r-t^{(s)}) = \rho_{r}^{(s)} - I_{r,i}^{(s)} + T_{r}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} $$
+$$ \begin{equation} \Phi_{r,i}^{(s)} =  \rho_{r}^{(s)} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) -  I_{r,i}^{(s)} + T_{r}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} +\epsilon_{\Phi} \end{equation} $$
 
 where:
 
+  * The ionospheric term $$ I_{r,i}^{(s)} $$ is included with a negative sign due to the phase advancement effect on electromagnetic waves going through a plasmatic media.
   * $$ B_{r,i}^{(s)} = \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} $$ is the carrier‐phase bias for the $$ i $$-th band (in cycles).
   * $$ d\Phi_{r,i}^{(s)} = \mathbf{d}_{r,pco,i}^T \mathbf{e}_{r,enu}^{(s)} + \left( \mathbf{E}^{(s)} \mathbf{d}_{pco,i}^{(s)}  \right)^T \mathbf{e}_r^{(s)} + d_{r,pcv,i}(El)+ d_{pcv,i}^{(s)}(\theta)- \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\lambda_i \phi_{pw} $$, where:
 
@@ -117,7 +117,7 @@ where:
     * $$ \mathbf{e}_{r,enu}^{(s)} $$ is the LOS vector from receiver antenna to satellite in local coordinates.
     * $$ \mathbf{e}_r^{(s)} $$ is the LOS vector from receiver antenna to satellite in ECEF.
     * $$ \mathbf{d}_{r,disp} $$ is the displacement by Earth tides at the receiver position in local coordinates (in m).
-    * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect){:target="_blank"} term (in cycles) due to the circular polarization of the electromagnetic signal.
+    * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect){:target="_blank"} term (in cycles) due to the circular polarization of the GNSS electromagnetic signals. For a receiver with fixed coordinates, the wind-up is due to the satellite orbital motion. As the satellite moves along its orbital path it must perform a rotation to keep its solar panels pointing to the Sun direction in order to obtain the maximum energy while the satellite antenna keeps pointing to the earth's centre. This rotation causes a phase variation that the receiver misunderstands as a range variation.
 
     ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | absolute_url }}){:height="175px" width="175px"} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | absolute_url }}){:height="350px" width="350px"}
     {: style="text-align: center;"}
@@ -125,16 +125,6 @@ where:
     _Receiver and satellite antenna phase center [^RTKLIBManual]_
     {: style="text-align: center;"}
 
-[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
-
-
-Then, the phase-range measurement can be written as:
-
-\begin{equation}
-\Phi_{r,i}^{(s)} = \rho_{r}^{(s)} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) -  I_{r,i}^{(s)} + T_{r}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} +\epsilon_{\Phi}
-\end{equation}
-
-Notice that the ionospheric term has opposite sign for code and phase. This means that the ionosphere produces an advance of the carrier phase measurement equal to the delay on the code measurements.
 
 ## Doppler shift measurement
 
@@ -323,3 +313,5 @@ Example:
 [^Petovello10]: M. Petovello, C. O'Driscoll, [_Carrier phase and its measurements for GNSS: What is the carrier phase measurement? How is it generated in GNSS receivers?_](http://www.insidegnss.com/auto/julaug10-solutions.pdf){:target="_blank"} Inside GNSS, vol. 5, no. 5, pp. 18–22, Jul./Aug. 2010.
 
 [^Doppler]: C. Doppler, "[&#220;ber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels](https://archive.org/details/ueberdasfarbigel00doppuoft){:target="_blank"} (On the colored light of the double stars and certain other stars of the heavens), Abh. Kniglich Bhmischen Ges. Wiss., vol. 2, pp. 467–482, 1842.
+
+[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
