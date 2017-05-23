@@ -82,19 +82,19 @@ For the initial parameter vector $$ \mathbf{x}_0 $$ for the iterated weighted LS
 
 $$ \begin{equation} \mathbf{W} = \text{diag} \left( \sigma_1^{-2}, \sigma_2^{-2}, \sigma_3^{-2}, ..., \sigma_m^{-2} \right) \end{equation} $$
 
-$$ \sigma_{s}^{2} = F^{(s)} R_r \left( a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin \left( El_r^{(s)} \right)} \right) + \sigma_{eph,s}^2 + \sigma_{ion,s}^{2} + \sigma_{trop,s}^{2} + \sigma_{cbias}^2  $$
+$$ \sigma_{s}^{2} = F^{(s)} R_r \left( a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin \left( El_r^{(s)} \right)} \right) + \sigma_{bclock,s}^2 + \sigma_{ion,s}^{2} + \sigma_{trop,s}^{2} + \sigma_{cbias}^2  $$
 
 where:
 
   - $$ F^{(s)} $$ is the satellite system error factor. This parameter is set to $$ F^{(s)} = 1 $$ for GPS and Galileo.
 
-  - $$ R_r $$ is the code/carrier‐phase error ratio. This value is set to $$ R_r = 100 $$.
+  - $$ R_r $$ is the code/carrier‐phase error ratio. This value is set by default to $$ R_r = 100 $$, and can be configured with the `PVT.code_phase_error_ratio_l1` option.
 
-  - $$ a_{\sigma}, b_{\sigma} $$ is the carrier‐phase error factor $$ a $$ and $$ b $$ (in m). They are set to $$ a_{\sigma} = b_{\sigma} = 0.003 $$ m.
+  - $$ a_{\sigma}, b_{\sigma} $$ is the carrier‐phase error factor $$ a $$ and $$ b $$ (in m). They are set by default to $$ a_{\sigma} = b_{\sigma} = 0.003 $$ m, and can be configured with the `PVT.carrier_phase_error_factor_a` and `PVT.carrier_phase_error_factor_b` options, respectively.
 
   - $$ El_r^{(s)} $$ is the elevation angle of satellite direction (in rad).
 
-  - $$ \sigma_{eph,s} $$ is the standard deviation of ephemeris and clock error (in m). This is derived by the [URA values](http://www.gps.gov/technical/icwg/meetings/2011/09/13/WAS-IS-FINAL_URA_Definition_6May2011.pdf){:target="_blank"} in the navigation message.
+  - $$ \sigma_{bclock,s} = 30 $ is the standard deviation of the broadcast clock error (in m).
 
   - $$ \sigma_{ion,s} $$ is the standard deviation of ionosphere correction model error (in m). This parameter is set to $$ \sigma_{ion} = 5 $$ m by default (`PVT.iono_model=OFF`) and $$ \sigma_{ion} = 0.5 \cdot I_{r,i}^{(s)} $$ m when the option `PVT.iono_model=Broadcast` is set in the configuration file.
 
@@ -262,15 +262,15 @@ The transition matrix $$ \mathbf{F}_k $$ models the receiver movement:
 
 The dynamics model noise covariance matrix $$ \mathbf{Q}_k $$ is set to:
 
-$$ \begin{equation} \mathbf{Q}_k = \left(\begin{array}{ccccc} \mathbf{Q}_{r} & {} & {} & {} & {} \\ {} &  \mathbf{Q}_{v} & {} & {} & {} \\ {} & {} & \sigma_{dt_{r}}^2 & {} & {} \\ {} & {} & {} & \mathbf{Q}_{T} & {} \\  {} & {} & {} & {} & \sigma_{bias}^2 \Delta_k \mathbf{I}_{m\times m} \end{array} \right) \end{equation} $$
+$$ \begin{equation} \mathbf{Q}_k = \left(\begin{array}{ccccc} \mathbf{Q}_{r} & {} & {} & {} & {} \\ {} &  \mathbf{Q}_{v} & {} & {} & {} \\ {} & {} & \sigma_{cdt_{r}}^2 & {} & {} \\ {} & {} & {} & \mathbf{Q}_{T} & {} \\  {} & {} & {} & {} & \sigma_{bias}^2 \Delta_k \mathbf{I}_{m\times m} \end{array} \right) \end{equation} $$
 
 with:
 
   * $$ \mathbf{Q}_r = \mathbf{E}_r^T \text{diag} \left( \sigma_{re}^2 , \sigma_{rn}^2 , \sigma_{ru}^2 \right) \mathbf{E}_r $$, where  $$ \mathbf{E}_r$$ is the coordinates rotation matrix from ECEF to local coordinates at the receiver antenna position (defined below), and  $$ \sigma_{re} $$, $$  \sigma_{rn} $$ and $$ \sigma_{ru} $$ are the standard deviations of east, north and up components of the receiver position model noises (in m).
     * If the positioning mode is set to `PVT.positioning_mode=PPP_Static`, these values are initialized to $$ \sigma_{re} =  \sigma_{rn} =  \sigma_{ru} = 100 $$ m in the first epoch and then set to $$ 0 $$ in the following time updates.
     * If the positioning mode is set to `PVT.positioning_mode=PPP_Kinematic`, these values are set to $$ \sigma_{re} = \sigma_{rn} =  \sigma_{ru} = 100 $$ m for all time updates.
-  * $$ \mathbf{Q}_v = \mathbf{E}_r^T \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) \mathbf{E}_r $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the receiver velocity model noises (in m/s/$$ \sqrt{s} $$). Those parameters can be set with the configuration parameters $$ \sigma_{ve} = \sigma_{vn} = $$ `PVT.sigma_acch`, which default to $$ 0.1 $$, and $$ \sigma_{vu} = $$`PVT.sigma_accv`, which defaults to $$ 0.01 $$ m/s/$$ \sqrt{s} $$.
-  * $$ \sigma_{dt_{r}} $$ is the standard deviation of the receiver clock offset (in m). This value is set to $$ \sigma_{dt_{r}} = 100 $$ m.
+  * $$ \mathbf{Q}_v = \mathbf{E}_r^T \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) \mathbf{E}_r $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the receiver velocity model noises (in m/s/$$ \sqrt{s} $$). In the current implementation, those parameters are set to $$ \sigma_{ve} = \sigma_{vn} = \sigma_{vu} = 0 $$.
+  * $$ \sigma_{cdt_{r}} $$ is the standard deviation of the receiver clock offset (in m). This value is set to $$ \sigma_{cdt_{r}} = 100 $$ m.
   * $$ \mathbf{Q}_{T} = \text{diag} \left( \sigma_{Z}^2 \Delta_k, \sigma_{G_{N}}^2 \Delta_k,  \sigma_{G_{E}}^2 \Delta_k \right) $$ is the noise covariance matrix of the troposphere terms. These values are set to $$ \sigma_{Z} = 0.0001 $$, and $$ \sigma_{G_{N}} = \sigma_{G_{E}} $$ are initialized to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.001 $$ m/$$ \sqrt{s} $$ in the first epoch and then set to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.1 \cdot \sigma_{Z} $$ in the following time updates. The default value of $$ \sigma_{Z} = 0.0001 $$ m/$$ \sqrt{s} $$ can be configured with the `PVT.sigma_trop` option.
   * $$ \sigma_{bias} $$ is the standard deviation of the ionosphere-free carrier-phase bias measurements, in m/$$ \sqrt{s} $$. This value is initialized at the first epoch and after a cycle slip to $$ \sigma_{bias} = 100$$ m/$$ \sqrt{s} $$, and then is set to a default value of $$ \sigma_{bias} = 0.0001 $$ m/$$ \sqrt{s} $$ in the following time updates. This value and can be configured with the option `PVT.sigma_bias`.
   * $$ \mathbf{E}_r = \left( \begin{array}{ccc} -\sin(\theta_r)  & \cos (\theta_r) & 0 \\ -\sin (\psi_r) \cos(\theta_r) & -\sin (\psi_r)\sin(\theta_r) &  \cos (\psi_r)\\ \cos(\psi_r)\cos(\theta_r) & \cos(\psi_r)\sin(\theta_r) & \sin(\psi_r)\end{array} \right) $$ is the rotation matrix of the ECEF coordinates to the local coordinates, where where $$ \psi_r $$ and $$ \theta_r $$ are the geodetic latitude and the longitude of the receiver position.
@@ -283,15 +283,23 @@ $$ \begin{equation} \mathbf{R} = \left( \begin{array}{cc} \mathbf{R}_{\Phi,LC} &
 
 where:
 
-$$ \mathbf{R}_{\Phi,LC} = \text{diag} \left( 3{\sigma_{\Phi,1}^{(1)}}^2, 3{\sigma_{\Phi,1}^{(2)}}^2, 3{\sigma_{\Phi,1}^{(3)}}^2, ..., 3{\sigma_{\Phi,1}^{(m)}}^2 \right) $$
+$$ \mathbf{R}_{\Phi,LC} = \text{diag} \left( {\sigma_{\Phi,1}^{(1)}}^2, {\sigma_{\Phi,1}^{(2)}}^2, {\sigma_{\Phi,1}^{(3)}}^2, ..., {\sigma_{\Phi,1}^{(m)}}^2 \right) $$
 
-$$ \mathbf{R}_{P,LC} = \text{diag} \left( 3{\sigma_{P,1}^{(1)}}^2, 3{\sigma_{P,1}^{(2)}}^2, 3{\sigma_{P,1}^{(3)}}^2, ..., 3{\sigma_{P,1}^{(m)}}^2 \right) $$
+$$ \mathbf{R}_{P,LC} = \text{diag} \left( {\sigma_{P,1}^{(1)}}^2, {\sigma_{P,1}^{(2)}}^2, {\sigma_{P,1}^{(3)}}^2, ..., {\sigma_{P,1}^{(m)}}^2 \right) $$
 
-where $$ \sigma_{\Phi,1}^{(s)} $$ is the standard deviation of L1 phase‐range measurement error (in m), and $$ \sigma_{P,1}^{(s)} $$ is the standard deviation of L1 pseudorange measurement error (in m).
+where $$ \sigma_{\Phi,1}^{(s)} $$ is the standard deviation of L1 phase‐range measurement error (in m), and $$ \sigma_{P,1}^{(s)} $$ is the standard deviation of L1 pseudorange measurement error (in m). These quantities are estimated as:
 
-  * $$ \sigma_{\Phi,1}^{(s)} = 0.003^2 + \frac{0.003^2}{\sin(E_r^{(s)})^2} + \sigma_{eph}^2 + \sigma_{bclock}^2 + \sigma_{trop}^2 $$, where $$ \sigma_{eph} = 0.5 $$ m is the standard deviation of the broadcast ephemeris, $$ \sigma_{bclock} = 30 $$ is the standard deviation of the broadcast clock, and $$ \sigma_{trop} $$ is the standard deviation of the troposphere correction model error (in m). This parameter is set to $$ \sigma_{trop} = 3 $$ m when `PVT.trop_model=OFF` and $$ \sigma_{trop} = 0.3 / \left(\sin(El_r^{(s)}) + 0.1\right) $$  m when `PVT.trop_model=Saastamoinen`, `PVT.trop_model=Estimate_ZTD` or  `PVT.trop_model=Estimate_ZTD_Grad`.
+  * $$ {\sigma_{\Phi,1}^{(s)}}^2 = a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin(E_r^{(s)})^2} + \sigma_{ion,s}^2 + \sigma_{bclock}^2 + \sigma_{trop,s}^2$$, where:
+    - $$ a_{\sigma} = 0.003 $$ and $$ b_{\sigma} = 0.003 $$ are the carrier phase error factors (configurable via `PVT.carrier_phase_error_factor_a` and `PVT.carrier_phase_error_factor_b`),
+    -  $$ \sigma_{ion,s} $$ is the standard deviation of ionosphere correction model error (in m). This parameter is set to $$ \sigma_{ion} = 5 $$ m by default (`PVT.iono_model=OFF`) and $$ \sigma_{ion} = 0.5 \cdot I_{r,i}^{(s)} $$ m when the option `PVT.iono_model=Broadcast` is set in the configuration file.
+    - $$ \sigma_{bclock} = 30 $$ m is the standard deviation of the broadcast clock,
+    - $$ \sigma_{trop} $$ is the standard deviation of the troposphere correction model error (in m). This parameter is set to $$ \sigma_{trop} = 3 $$ m when `PVT.trop_model=OFF` and $$ \sigma_{trop,s} = 0.3 / \left(\sin(El_r^{(s)}) + 0.1\right) $$  m when `PVT.trop_model=Saastamoinen`, `PVT.trop_model=Estimate_ZTD` or  `PVT.trop_model=Estimate_ZTD_Grad`.
 
-  * $$ \sigma_{P,1}^{(s)} = R_r \cdot \left( 0.003^2 + \frac{0.003^2}{\sin(E_r^{(s)})^2} \right) + \sigma_{eph}^2 + \sigma_{cbias}^2 + \sigma_{bclock}^2 + \sigma_{trop}^2 $$, where $$ R_r = 100 $$ and $$ \sigma_{cbias} = 0.3 $$ m.
+  * $$ {\sigma_{P,1}^{(s)}}^2 = R_r \cdot \left( a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin(E_r^{(s)})^2} \right) + \sigma_{ion,s}^2 + \sigma_{bclock}^2 + \sigma_{trop,s}^2 + \sigma_{cbias}^2 $$, where:
+    - $$ R_r = 100 $$ (configurable via `PVT.code_phase_error_ratio_l1`),
+    - $$ a_{\sigma} = b_{\sigma} = 0.003 $$ m (configurable via `PVT.carrier_phase_error_factor_a` and `PVT.carrier_phase_error_factor_b`),
+    - $$ \sigma_{ion,s} $$, $$ \sigma_{bclock} $$ and $$ \sigma_{trop,s} $$ defined as above.
+    - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m). This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
 
 **Outlier rejection**
 
@@ -493,17 +501,18 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `positioning_mode` | [`Single`, `PPP_Static`, `PPP_Kinematic`] Set positioning mode. `Single`: Single point positioning.  `PPP_Static`: Precise Point Positioning with static mode. `PPP_Kinematic`: Precise Point Positioning for a moving receiver. It defaults to `Single`. | Optional |
 | `num_bands` | [`1`: L1 Single frequency, `2`: L1 and L2 Dual‐frequency, `3`: L1, L2 and L5 Triple‐frequency] This option is automatically configured according to the Channels configuration. This option can be useful to force some configuration (*e.g.*, single-band solution in a dual frequency receiver).  | Optional |
 | `elevation_mask` | Set the elevation mask angle, in degrees. It defaults to $$ 15^{o} $$.  | Optional |
-| `dynamics_model` | [`0`: none, `1`: velocity] Set the dynamics model of the receiver. It defaults to $$ 0 $$ (no dynamics model). | Optional |
+| `dynamics_model` | [`0`: Off, `1`: On] Set the dynamics model of the receiver. If set to $$ 1 $$ and `PVT.positioning_mode=PPP_Kinematic`, the receiver position is predicted with the estimated velocity and acceleration. It defaults to $$ 0 $$ (no dynamics model).  | Optional |
 | `iono_model` |  [`OFF`, `Broadcast`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS or L1‐L5 for Galileo) measurements is used for ionospheric correction. It defaults to `OFF` (no ionospheric correction) | Optional |
 | `trop_model` | [`OFF`, `Saastamoinen`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
+| `code_phase_error_ratio_l1` | Code/phase error ratio $$ R_r $$ for the L1 band. It defaults to $$ 100 $$.
+| `carrier_phase_error_factor_a` | Carier phase error factor $$ a_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
+| `carrier_phase_error_factor_b` | Carier phase error factor $$ b_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
 | `slip_threshold` | Set the cycle‐slip threshold (m) of geometry‐free LC carrier‐phase difference between epochs. It defaults to $$ 0.05 $$. | Optional |
 | `threshold_reject_GDOP` | Set the reject threshold of GDOP. If the GDOP is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$. | Optional |
 | `threshold_reject_innovation` | Set the reject threshold of innovation (pre‐fit residual) (m). If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$ m. | Optional |
 | `number_filter_iter` | Set the number of iteration in the measurement update of the estimation filter. If the baseline length is very short like 1 m, the iteration may be effective to handle the nonlinearity of measurement equation. It defaults to 1. | Optional |
 | `sigma_bias` | Set the process noise standard deviation of carrier‐phase bias $$ \sigma_{bias} $$, in cycles$$/ \sqrt{s} $$. It defaults to $$ 0.0001 $$ cycles/$$ \sqrt{s} $$. | Optional |
 | `sigma_trop` | Set the process noise standard deviation of zenith tropospheric delay $$ \sigma_{Z} $$, in m/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ m/$$ \sqrt{s} $$. | Optional |
-| `sigma_acch` | Set the process noise standard deviation of the receiver acceleration as the horizontal component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.1 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used.| Optional |
-| `sigma_accv` | Set the process noise standard deviation of the receiver acceleration as the vertical component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.01 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used. | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
@@ -523,6 +532,8 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 |----------
 
 {::comment}
+| `sigma_acch` | Set the process noise standard deviation of the receiver acceleration as the horizontal component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.1 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used.| Optional |
+| `sigma_accv` | Set the process noise standard deviation of the receiver acceleration as the vertical component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.01 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used. | Optional |
 | `sigma_iono` | Set the process noise standard deviation of vertical ionospheric delay per 10 km baseline, in m/$$ \sqrt{s} $$. It defaults to $$ 0.001 $$. | Optional |
 | `AR_GPS` | [`OFF`, `Continuous`, `Instantaneous`, `Fix-and-Hold`, `PPP-AR`]. Set the strategy of integer ambiguity resolution for GPS. `OFF`: No ambiguity resolution, `Continuous`: Continuously static integer ambiguities are estimated and resolved, `Instantaneous`: Integer ambiguity is estimated and resolved by epoch‐by‐epoch basis, `Fix-and-Hold`: Continuously static integer ambiguities are estimated and resolved. If the validation OK, the ambiguities are tightly constrained to the resolved values, `PPP-AR`: Ambiguity resolution in PPP (experimental, only applicable to PPP‐* modes). It defaults to `OFF`. | Optional |
 | `min_ratio_to_fix_ambiguity` | Set the integer ambiguity validation threshold for ratio‐test, which uses the ratio  of squared residuals of the best integer vector to the second‐best vector. It defaults to $$ 3.0 $$. | Optional |
