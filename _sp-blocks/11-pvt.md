@@ -13,6 +13,8 @@ The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a 
 The role of a _PVT_ block is to compute navigation solutions and deliver information in adequate formats for further processing or data representation.
 {: .notice--info}
 
+It follows a description of the available positioning algorithms and their parameters, the available output formats and the description of the configuration options for this block.
+
 # Positioning modes
 
 The positioning problem is generally stated as
@@ -68,7 +70,7 @@ $$ \begin{equation} \label{eq:H-single} \mathbf{H} = \left( \begin{array}{cc} -{
 and the weighted least squares estimator (LSE) of the unknown state vector is obtained as:
 
 {% capture lse %}
-$$ \begin{equation} \hat{\mathbf{x}}_{i+1} = \hat{\mathbf{x}}_{i} + \left( \mathbf{H}^T \mathbf{W} \mathbf{H}\right)^{-1} \mathbf{H}^T \mathbf{W} \left(\mathbf{y} - \mathbf{h}(\hat{\mathbf{x}}_{i}) \right) \end{equation} $$
+$$ \begin{equation} \label{eq:lse} \hat{\mathbf{x}}_{i+1} = \hat{\mathbf{x}}_{i} + \left( \mathbf{H}^T \mathbf{W} \mathbf{H}\right)^{-1} \mathbf{H}^T \mathbf{W} \left(\mathbf{y} - \mathbf{h}(\hat{\mathbf{x}}_{i}) \right) \end{equation} $$
 {% endcapture %}
 
 <div class="notice--success">
@@ -135,6 +137,32 @@ $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 & 0 & -
 $$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)}  \right)^T $$
 {:/comment}
 
+**Solution validation**
+
+The estimated receiver positions described in ($$ \ref{eq:lse} $$) might include invalid solutions due to unmodeled measurement errors. To test whether the solution is valid or not, and to reject the invalid solutions, the `RTKLIB_PVT` applies the following validation tests after obtaining the receiver's position estimate:
+
+**1) Residuals Test**
+
+Defining the residuals vector $$ \boldsymbol{\nu} = \left( \nu_1, \nu_2, \nu_3, ..., \nu_m \right)^T $$ with:
+
+$$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} +c \hat{dt}_r - cdT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s} $$
+
+the residuals test is defined as:
+
+$$ \frac{\boldsymbol{\nu}^T \boldsymbol{\nu}}{m-n-1} < \chi_{\alpha}^2 (m-n-1) $$
+
+where $$ n $$ is the number of estimated parameters, $$ m $$ is the number of measurements, $$ \chi_{\alpha}^2(n) $$ is the chi‐square distribution of degree of freedom $$ n $$ and with a significance level of $$ \alpha=0.001 $$ (that is, $$ prob > 0.001 $$).
+
+
+**2) GDOP Test**
+
+The Geometric Dilution of Precision, defined as $$ \text{GDOP} = \sqrt{\sigma_{r_{x}}^2+ \sigma_{r_{y}}^2 + \sigma_{r_{z}}^2 + \sigma_{cdt}^2 } $$, must be better (that is, lower) than a certain threshold:
+
+$$ \text{GDOP} < \text{GDOP}_{\text{threshold}} $$
+
+The threshold value is set by default to $$ \text{GDOP}_{\text{threshold}} = 30$$, and it can be configured via the option `PVT.threshold_reject_GDOP` in the configuration file.
+
+If any of the validation fails, the solution is rejected as an outlier (that is, no solution is provided).
 
 ## Precise Point Positioning
 
@@ -201,7 +229,7 @@ With all those definitions, the Precise Point Positioning solution is computed a
 
   * Time update (prediction):
 
-  $$ \begin{equation} \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k  \hat{\mathbf{x}}_{k-1|k-1} \end{equation} $$
+  $$ \begin{equation} \label{eq:state-update} \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k  \hat{\mathbf{x}}_{k-1|k-1} \end{equation} $$
 
   $$ \begin{equation} \boldsymbol{\Sigma}_{k|k-1} = \mathbf{F}_k  \boldsymbol{\Sigma}_{k-1|k-1}  \mathbf{F}_k^T + \mathbf{Q}_k \end{equation} $$
 
@@ -211,7 +239,7 @@ With all those definitions, the Precise Point Positioning solution is computed a
 
   $$ \begin{equation} \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \left( \mathbf{y}_k - \mathbf{h}_k(\hat{\mathbf{x}}_{k|k-1}) \right) \end{equation} $$
 
-  $$ \begin{equation} \boldsymbol{\Sigma}_{k|k} = \left( \mathbf{I} -\mathbf{K}_{K} \mathbf{H}_k ( \hat{\mathbf{x}}_{k|k-1} )  \right)\boldsymbol{\Sigma}_{k|k-1} \end{equation} $$
+  $$ \begin{equation} \label{eq:meas-cov-update}\boldsymbol{\Sigma}_{k|k} = \left( \mathbf{I} -\mathbf{K}_{K} \mathbf{H}_k ( \hat{\mathbf{x}}_{k|k-1} )  \right)\boldsymbol{\Sigma}_{k|k-1} \end{equation} $$
 {% endcapture %}
 
 <div class="notice--success">
@@ -249,7 +277,7 @@ with:
 
 
 
-The measurement model noise covariance matrix $$ \mathbf{R}_k $$ is set to a fixed value defined by:
+The measurement model noise covariance matrix $$ \mathbf{R}_k $$ is defined as:
 
 $$ \begin{equation} \mathbf{R} = \left( \begin{array}{cc} \mathbf{R}_{\Phi,LC} & \mathbf{0} \\ \mathbf{0} & \mathbf{R}_{P,LC} \end{array}\right) \end{equation} $$
 
@@ -265,6 +293,9 @@ where $$ \sigma_{\Phi,1}^{(s)} $$ is the standard deviation of L1 phase‐range 
 
   * $$ \sigma_{P,1}^{(s)} = R_r \cdot \left( 0.003^2 + \frac{0.003^2}{\sin(E_r^{(s)})^2} \right) + \sigma_{eph}^2 + \sigma_{cbias}^2 + \sigma_{bclock}^2 + \sigma_{trop}^2 $$, where $$ R_r = 100 $$ and $$ \sigma_{cbias} = 0.3 $$ m.
 
+**Outlier rejection**
+
+In each of the executions of the Extended Kalman Filter defined in ($$ \ref{eq:state-update} $$)-($$ \ref{eq:meas-cov-update} $$), if a residual $$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} +c \hat{dt}_r - cdT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s} $$ for a satellite $$ s $$ is above a certain threshold, that observation is rejected as an outlier. The default threshold is set to $$ 30 $$ m and can be configured via the option `PVT.threshold_reject_innovation`.
 
 
 {::comment}
@@ -467,7 +498,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `trop_model` | [`OFF`, `Saastamoinen`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
 | `slip_threshold` | Set the cycle‐slip threshold (m) of geometry‐free LC carrier‐phase difference between epochs. It defaults to $$ 0.05 $$. | Optional |
 | `threshold_reject_GDOP` | Set the reject threshold of GDOP. If the GDOP is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$. | Optional |
-| `threshold_reject_innovation` | Set the reject threshold of innovation (pre‐fit residual) (m). If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$. | Optional |
+| `threshold_reject_innovation` | Set the reject threshold of innovation (pre‐fit residual) (m). If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$ m. | Optional |
 | `number_filter_iter` | Set the number of iteration in the measurement update of the estimation filter. If the baseline length is very short like 1 m, the iteration may be effective to handle the nonlinearity of measurement equation. It defaults to 1. | Optional |
 | `sigma_bias` | Set the process noise standard deviation of carrier‐phase bias $$ \sigma_{bias} $$, in cycles$$/ \sqrt{s} $$. It defaults to $$ 0.0001 $$ cycles/$$ \sqrt{s} $$. | Optional |
 | `sigma_trop` | Set the process noise standard deviation of zenith tropospheric delay $$ \sigma_{Z} $$, in m/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ m/$$ \sqrt{s} $$. | Optional |

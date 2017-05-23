@@ -8,8 +8,10 @@ last_modified_at: 2017-05-10T15:54:02-04:00
 ---
 {% include toc %}
 
-The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange** and **carrier phase**.
+The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange**, **carrier phase** (or its **phase-range** version) and **Doppler shift** (or its **pseudorange rate** version).
 {: .notice--info}
+
+It follows the description of mathematical models for the obtained measurements, with a physical interpretation. Those models will be used in the computation of the [Position-Velocity-Time]({{ "/docs/sp-blocks/pvt/" | absolute_url }}) solution.
 
 ## Pseudorange measurement
 
@@ -18,7 +20,7 @@ The **pseudorange measurement** is defined as the difference of the time of rece
 $$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right) $$
 
 ![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | absolute_url }})
-_Pseudorange model [^RTKLIBManual]_
+_Pseudorange measurement (from the RTKLIB Manual)[^RTKLIBManual]_
 {: style="text-align: center;"}
 
 [^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
@@ -122,7 +124,7 @@ where:
     ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | absolute_url }}){:height="175px" width="175px"} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | absolute_url }}){:height="350px" width="350px"}
     {: style="text-align: center;"}
 
-    _Receiver and satellite antenna phase center [^RTKLIBManual]_
+    _Receiver and satellite antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
     {: style="text-align: center;"}
 
 
@@ -149,7 +151,7 @@ where $$ \mathbf{r}_r(t) $$ and $$ \mathbf{v}_r(t) $$ are the position and veloc
 ### Pseudorange rate measurement
 
 
-Doppler shift measurements are sometimes given in m/s. This is referred to as **pseudorange rate measurement**, and it is defined as the Doppler shift multiplied by the negative of carrier wavelength $$ \lambda_i $$.
+Doppler shift measurements are sometimes given in m/s. This is referred to as **pseudorange rate measurement**, and it is defined as the Doppler shift multiplied by the negative of carrier wavelength $$ \lambda_i $$. Its model can be writen as:
 
 $$ \begin{equation} \dot{P}_{r,i}^{(s)} = -\lambda_i f_{d_{i}}^{(s)} = \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c \left( \frac{\partial dt_r(t_r)}{\partial t} - \frac{\partial dT^{(s)}(t^{(s)})}{\partial t}\right) + \epsilon_{\dot{P}}\end{equation} $$
 
