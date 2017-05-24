@@ -164,6 +164,12 @@ The threshold value is set by default to $$ \text{GDOP}_{\text{threshold}} = 30$
 
 If any of the validation fails, the solution is rejected as an outlier (that is, no solution is provided).
 
+**Receiver Autonomous Integrity Monitoring (RAIM)**
+
+In addition to the solution validation described above, RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) function can be activated. If the chi-squared test described above fails and the option `PVT.raim_fde` is set to $$ 1 $$, the implementation retries the estimation by excluding one by one of the visible satellites. After all of retries, the estimated receiver position with the minimum normalized squared residuals $$ \boldsymbol{\nu}^T \boldsymbol{\nu} $$ is selected as the final solution. In such scheme, an invalid measurement, which might be due to satellite malfunction, receiver fault or large multipath, is excluded as an outlier. Note that this feature is not effective with two or more invalid measurements. It also needs two redundant visible satellites, that means at least 6 visible satellites are necessary to obtain the final solution.
+
+
+
 ## Precise Point Positioning
 
 When the `PVT.positioning_mode` option is set to `PPP_Static` or ```PPP_Kinematic``` in the configuration file, a Precise Point Positioning algorithm is used to solve the positioning problem. In this positioning mode, the state vector to be estimated is defined as:
@@ -191,6 +197,8 @@ with
 $$ \begin{equation} \label{eq:bias-lc} B_{r,LC}^{(s)} = C_i  \left( \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} \right) + C_j  \left( \phi_{r,0,j} - \phi_{0,j}^{(s)} + N_{r,j}^{(s)} \right) \end{equation} $$
 
 $$ \begin{equation} \begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} +  C_j\mathbf{d}_{pco,j}^{(s)} \right)  \right)^T \mathbf{e}_r^{(s)} + \\ {} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)})+C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) + \left( d_{pcv,i}^{(s)}(\theta) +  d_{pcv,j}^{(s)}(\theta)\right) + \\ {} & {} & - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\left( C_i\lambda_i + C_j \lambda_j \right) \phi_{pw} \end{array} \end{equation} $$
+
+In the current implementation, satellites and receiver antennas offset and variation are not applied, so $$ \mathbf{d}_{r,pco,i} = \mathbf{d}_{pco,i}^{(s)} = \mathbf{0} $$ and $$ d_{r,pcv,i} = d_{pcv,j}^{(s)} = 0 $$. The correction terms for the Earth tide $$ \mathbf{d}_{r,disp} $$ and the phase windup effect $$ \phi_{pw} $$ are deactivated by default, and can be activated through the `PVT.earth_tide` and `PVT.phwindup` options, respectively.
 
 The measurement vector is then defined as:
 
@@ -513,6 +521,10 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `number_filter_iter` | Set the number of iteration in the measurement update of the estimation filter. If the baseline length is very short like 1 m, the iteration may be effective to handle the nonlinearity of measurement equation. It defaults to 1. | Optional |
 | `sigma_bias` | Set the process noise standard deviation of carrier‐phase bias $$ \sigma_{bias} $$, in cycles$$/ \sqrt{s} $$. It defaults to $$ 0.0001 $$ cycles/$$ \sqrt{s} $$. | Optional |
 | `sigma_trop` | Set the process noise standard deviation of zenith tropospheric delay $$ \sigma_{Z} $$, in m/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ m/$$ \sqrt{s} $$. | Optional |
+| `raim_fde`| [`0`, `1`]: Set whether RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) feature is enabled or not. It defaults to $$ 0 $$ (RAIM not enabled) | Optional |
+| `reject_GPS_IIA` | [`0`, `1`]: Set whether the GPS Block IIA satellites are excluded or not. Those satellites often degrade the PPP solutions due to unpredicted behavior of yaw‐attitude. It defaults to $$ 0 $$ (no rejection). | Optional |
+| `phwindup` | [`0`, `1`]: Set whether the phase windup correction $$ \phi_{pw} $$ for PPP modes is applied or not. It defaults to $$ 0 $$ (no phase windup correction). | Optional |
+| `earth_tide` | [`0`, `1`]: Set whether earth tides correction is applied or not. If set to $$ 1$$, the solid earth tides correction[^McCarthy04] $$ \mathbf{d}_{r,disp} $$ is applied to the PPP solution. It defaults to $$ 0 $$ (no Earth tide correction). | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
@@ -584,3 +596,5 @@ PVT.rinex_version=2
 [^Teunissen95]: P. J. G. Teunissen, [The least‐square ambiguity decorrelation adjustment: a method for fast GPS ambiguity estimation](https://www.researchgate.net/publication/224969472_The_least-squares_ambiguity_decorrelation_adjustment_A_method_for_fast_GPS_integer_ambiguity_estimation){:target="_blank"}, Journal of Geodesy, vol. 70, no. 1, 1995, pp. 65-82.
 
 [^Chang05]: X.‐W. Chang, X. Yang, and T. Zhou, [MLAMBDA: A modified LAMBDA method for integer least‐squares estimation](http://www.cs.mcgill.ca/~chang/pub/MLAMBDA.pdf){:target="_blank"}, Journal of Geodesy, vol. 79, no. 9, 2005, pp. 552-565.
+
+[^McCarthy04]: D. McCarthy, G. Petit (Eds.), IERS Conventions (2003), [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html){:target="_blank"}, International Earth Rotation and Reference Systems Service, Frankfurt (Germany), 2004.
