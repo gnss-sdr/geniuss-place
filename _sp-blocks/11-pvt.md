@@ -94,7 +94,7 @@ where:
 
   - $$ El_r^{(s)} $$ is the elevation angle of satellite direction (in rad).
 
-  - $$ \sigma_{bclock,s} = 30 $ is the standard deviation of the broadcast clock error (in m).
+  - $$ \sigma_{bclock,s} = 30 $$ is the standard deviation of the broadcast clock error (in m).
 
   - $$ \sigma_{ion,s} $$ is the standard deviation of ionosphere correction model error (in m). This parameter is set to $$ \sigma_{ion} = 5 $$ m by default (`PVT.iono_model=OFF`) and $$ \sigma_{ion} = 0.5 \cdot I_{r,i}^{(s)} $$ m when the option `PVT.iono_model=Broadcast` is set in the configuration file.
 
