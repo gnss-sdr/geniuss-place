@@ -47,7 +47,7 @@ Hence, the equation that relates pseudorange measurements to the vector of unkno
 $$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(1)} + cdt_r - cdT^{(1)} + I_{r}^{(1)} + T_{r}^{(1)} \\  \rho_{r}^{(2)} + cdt_r - cdT^{(2)} + I_{r}^{(2)} + T_{r}^{(2)}  \\ \rho_{r}^{(3)} + cdt_r - cdT^{(3)} + I_{r}^{(3)} + T_{r}^{(3)}  \\ \vdots \\ \rho_{r}^{(m)} + cdt_r - cdT^{(m)} + I_{r}^{(m)} + T_{r}^{(m)} \end{array} \right) \end{equation} $$
 
 
-The geometric range $$ \rho_r^{(s)} $$ is defined as the physical distance between the satellite antenna phase center position and the receiver antenna phase center position in the inertial coordinates. For the expression in the ECEF coordinates, the earth rotation effect has to be incorporated. This is known as the <span style="color: orange">Sagnac effect</span> and it can be approximated by:
+The geometric range $$ \rho_r^{(s)} $$ is defined as the physical distance between the satellite antenna phase center position and the receiver antenna phase center position in the inertial coordinates. For the expression in the ECEF coordinates, the earth rotation effect has to be incorporated. This is known as the <span style="color: orange">Sagnac effect</span>[^Ashby04], and it can be approximated by:
 
 $$ \definecolor{dark-orange}{RGB}{255,165,0} \color{dark-grey} \rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + \color{dark-orange} \frac{\omega_e}{c}(x^{(s)}y_r - y^{(s)}x_r ) $$
 
@@ -214,9 +214,9 @@ $$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \mathbf{h}_{\Phi}^T, \mathbf
 
 where:
 
-$$ \mathbf{h}_{\Phi} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{t}^{(1)} + B_{r,LC}^{(1)} + d\Phi_{r,LC}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{t}^{(2)} + B_{r,LC}^{(2)} + d\Phi_{r,LC}^{(2)}  \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{t}^{(3)} + B_{r,LC}^{(3)} + d\Phi_{r,LC}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{t}^{(m)} + B_{r,LC}^{(m)} + d\Phi_{r,LC}^{(m)} \end{array}\right) $$
+$$ \mathbf{h}_{\Phi} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{r}^{(1)} + B_{r,LC}^{(1)} + d\Phi_{r,LC}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{r}^{(2)} + B_{r,LC}^{(2)} + d\Phi_{r,LC}^{(2)}  \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{r}^{(3)} + B_{r,LC}^{(3)} + d\Phi_{r,LC}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{r}^{(m)} + B_{r,LC}^{(m)} + d\Phi_{r,LC}^{(m)} \end{array}\right) $$
 
-$$ \mathbf{h}_{P} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{t}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{t}^{(2)} \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{t}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{t}^{(m)} \end{array}\right) $$
+$$ \mathbf{h}_{P} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{r}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{r}^{(2)} \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{r}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{r}^{(m)} \end{array}\right) $$
 
 This is again a nonlinear equation that could be solved with the iterative weighted least squares estimator as in the case of the Single Point Positing case. However, here we want to incorporate some *a priori* information, such as a basic dynamic model for the receiver, and some statistical knowledge about the status of the troposphere. The [Extended Kalman Filter](https://en.wikipedia.org/wiki/Extended_Kalman_filter){:target="_blank"} offers a suitable framework for that.
 
@@ -311,7 +311,7 @@ where $$ \sigma_{\Phi,1}^{(s)} $$ is the standard deviation of L1 phase‐range 
 
 **Outlier rejection**
 
-In each of the executions of the Extended Kalman Filter defined in ($$ \ref{eq:state-update} $$)-($$ \ref{eq:meas-cov-update} $$), if a residual $$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} +c \hat{dt}_r - cdT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s} $$ for a satellite $$ s $$ is above a certain threshold, that observation is rejected as an outlier. The default threshold is set to $$ 30 $$ m and can be configured via the option `PVT.threshold_reject_innovation`.
+In each of the executions of the Extended Kalman Filter defined in ($$ \ref{eq:state-update} $$)-($$ \ref{eq:meas-cov-update} $$), if the absolute value of a residual $$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} +c \hat{dt}_r - cdT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s} $$ for a satellite $$ s $$ is above a certain threshold, that observation is rejected as an outlier. The default threshold is set to $$ 30 $$ m and can be configured via the option `PVT.threshold_reject_innovation`.
 
 
 {::comment}
@@ -411,15 +411,15 @@ SBAS corrections for ionospheric delay is provided by the message type 18 (ionos
 
 The troposphere is the lowest portion of Earth's atmosphere, and contains 99% of the total mass of water vapor. The average depths of the troposphere are 20 km in the tropics, 17 km in the mid latitudes, and 7 km in the polar regions in winter. The chemical composition of the troposphere is essentially uniform, with the notable exception of water vapor, which can vary widely. The effect of the troposphere on the GNSS signals appears as an extra delay in the measurement of the signal traveling time from the satellite to the receiver. This delay depends on the temperature, pressure, humidity as well as the transmitter and receiver antennas location, and it is related to [air refractivity](http://aty.sdsu.edu/explain/atmos_refr/air_refr.html){:target="_blank"}, which in turn can be divided in hydrostatic, i.e., dry gases (mainly $$ N_2 $$ and $$ O_2 $$), and wet, i.e., water vapour, components:
 
-  * **Hydrostatic component delay**: Its effect varies with local temperature and atmospheric pressure in quite a predictable manner, besides its variation is less that the 1% in a few hours. The error caused by this component is about 2.3 meters in the zenith direction and 10 meters for lower elevations (10$$ ^{o} $$ approximately).
+  * **Hydrostatic component delay**: Its effect varies with local temperature and atmospheric pressure in quite a predictable manner, besides its variation is less that the 1% in a few hours. The error caused by this component is about $$ 2.3 $$ meters in the zenith direction and $$ 10 $$ meters for lower elevations ($$ 10^{o} $$ approximately).
 
-  * **Wet component delay**: It is caused by the water vapour and condensed water in form of clouds and, thence, it depends on weather conditions. The excess delay is small in this case, only some tens of centimetres, but this component varies faster than the hydrostatic component and a quite randomly way, being very difficult to model.
+  * **Wet component delay**: It is caused by the water vapour and condensed water in form of clouds and, thence, it depends on weather conditions. The excess delay is small in this case, only some tens of centimetres, but this component varies faster than the hydrostatic component and in a quite randomly way, being very difficult to model.
 
 The troposphere is a non dispersive media with respect to electromagnetic waves up to 15 GHz, so the tropospheric effects are not frequency dependent for the GNSS signals. Thence, the carrier phase and code measurements are affected by the same delay, and this effect can not be removed by combinations of dual frequency measurements.
 
 ## Saastamoinen
 
-The standard atmosphere can be expressed as:
+The standard atmosphere can be expressed as:[^Bevis94]
 
 $$ \begin{equation} p = 1013.15 \cdot (1-2.2557 \cdot 10^{-5} \cdot h)^{5.2568} \end{equation} $$
 
@@ -512,7 +512,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `dynamics_model` | [`0`: Off, `1`: On] Set the dynamics model of the receiver. If set to $$ 1 $$ and `PVT.positioning_mode=PPP_Kinematic`, the receiver position is predicted with the estimated velocity and acceleration. It defaults to $$ 0 $$ (no dynamics model).  | Optional |
 | `iono_model` |  [`OFF`, `Broadcast`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS or L1‐L5 for Galileo) measurements is used for ionospheric correction. It defaults to `OFF` (no ionospheric correction) | Optional |
 | `trop_model` | [`OFF`, `Saastamoinen`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
-| `code_phase_error_ratio_l1` | Code/phase error ratio $$ R_r $$ for the L1 band. It defaults to $$ 100 $$.
+| `code_phase_error_ratio_l1` | Code/phase error ratio $$ R_r $$ for the L1 band. It defaults to $$ 100 $$. | Optional |
 | `carrier_phase_error_factor_a` | Carier phase error factor $$ a_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
 | `carrier_phase_error_factor_b` | Carier phase error factor $$ b_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
 | `slip_threshold` | Set the cycle‐slip threshold (m) of geometry‐free LC carrier‐phase difference between epochs. It defaults to $$ 0.05 $$. | Optional |
@@ -524,7 +524,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `raim_fde`| [`0`, `1`]: Set whether RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) feature is enabled or not. It defaults to $$ 0 $$ (RAIM not enabled) | Optional |
 | `reject_GPS_IIA` | [`0`, `1`]: Set whether the GPS Block IIA satellites are excluded or not. Those satellites often degrade the PPP solutions due to unpredicted behavior of yaw‐attitude. It defaults to $$ 0 $$ (no rejection). | Optional |
 | `phwindup` | [`0`, `1`]: Set whether the phase windup correction $$ \phi_{pw} $$ for PPP modes is applied or not. It defaults to $$ 0 $$ (no phase windup correction). | Optional |
-| `earth_tide` | [`0`, `1`]: Set whether earth tides correction is applied or not. If set to $$ 1 $$, the solid earth tides correction $$ \mathbf{d}_{r,disp} $$ is applied to the PPP solution, following the description in IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html){:target="_blank"}[^McCarthy04], Chapter 7. It defaults to $$ 0 $$ (no Earth tide correction). | Optional |
+| `earth_tide` | [`0`, `1`]: Set whether earth tides correction is applied or not. If set to $$ 1 $$, the solid earth tides correction $$ \mathbf{d}_{r,disp} $$ is applied to the PPP solution, following the description in [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html){:target="_blank"}[^McCarthy04], Chapter 7. It defaults to $$ 0 $$ (no Earth tide correction). | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
@@ -599,4 +599,8 @@ PVT.rinex_version=2
 
 [^McCarthy04]: D. McCarthy, G. Petit (Eds.), IERS Conventions (2003), [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html){:target="_blank"}, International Earth Rotation and Reference Systems Service, Frankfurt (Germany), 2004.
 
-[^Kouba01]: Kouba, P. H&eacute;roux, [Precise Point Positioning Using IGS Orbit and Clock Products](http://link.springer.com/article/10.1007/PL00012883), GPS Solutions, Vol. 5, no. 2, 2001, pp. 12-28.
+[^Kouba01]: Kouba, P. H&eacute;roux, [Precise Point Positioning Using IGS Orbit and Clock Products](http://link.springer.com/article/10.1007/PL00012883){:target="_blank"}, GPS Solutions, Vol. 5, no. 2, 2001, pp. 12-28.
+
+[^Bevis94]: M. Bevis, S. Businger, S. Chiswell, T. A. Herring, R. A. Anthes, C. Rocken, R. H. Ware, [GPS Meteorology: Mapping Zenith Delay onto Precipitable Water](http://dx.doi.org/10.1175/1520-0450(1994)033%3C0379:GMMZWD%3E2.0.CO;2){:target="_blank"}, American Meteorological Society, vol. 33, March 1994, pp. 379-386.
+
+[^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](http://areeweb.polito.it/ricerca/relgrav/solciclos/ashby_d.pdf){:target="_blank"}, Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](http://www.springer.com/gp/book/9781402018053){:target="_blank"}, G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
