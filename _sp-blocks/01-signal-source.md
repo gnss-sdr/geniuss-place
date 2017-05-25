@@ -83,7 +83,7 @@ the Signal Conditioner block with its `IF` parameter.
 
 ### Implementation: `File_Signal_Source`
 
-This _Signal Source_ implementation reads raw signal samples stored in a file, as long as they are atored in one of the following formats: `byte`, `ibyte`, `short`, `ishort`, `float` or `gr_complex`. Their definition is as follows:
+This _Signal Source_ implementation reads raw signal samples stored in a file, as long as they are stored in one of the following formats: `byte`, `ibyte`, `short`, `ishort`, `float` or `gr_complex`. Their definition is as follows:
 
 |----------
 | **Type name in GNSS-SDR conf files** | **Definition** | **Sample stream**
