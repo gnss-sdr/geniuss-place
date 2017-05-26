@@ -40,6 +40,7 @@ According to the name and the quality of the theme this website is based upon, a
 - Greedy Navigation - [lukejacksonn](http://codepen.io/lukejacksonn/pen/PwmwWV)
 - [jQuery Smooth Scroll](https://github.com/kswedberg/jquery-smooth-scroll)
 - [Sass](http://sass-lang.com/)
+- [Tipue Search](http://www.tipue.com/search/)
 
 ---
 

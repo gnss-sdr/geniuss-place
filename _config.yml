@@ -222,6 +222,13 @@ permalink: /:categories/:title/
 # paginate_path: /page:num/
 timezone: Europe/Madrid # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
+tipue_search:
+  include:
+    pages: true
+    posts: true
+    collections: [docs, quick-start, geniuss-place, sp-blocks, design-forces]
+  exclude:
+    files: [search.html]
 
 # Plugins
 gems:
