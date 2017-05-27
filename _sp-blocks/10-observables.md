@@ -141,7 +141,7 @@ where:
     {: style="text-align: center;"}
 
     * $$ \mathbf{r}_{sun} $$ is the sun position in ECEF coordinates.
-    * $$ \mathbf{e}^{(s)} = \frac{\mathbf{r}_{sun}-\mathbf{r}^{(s)} }{\left\| \mathbf{r}_{sun}-\mathbf{r}^{(s)}\right\| } $$ is a unit vector pointing form satellite $$ s $$ towards the sun.
+    * $$ \mathbf{e}^{(s)} = \frac{\mathbf{r}_{sun}-\mathbf{r}^{(s)} }{\left\| \mathbf{r}_{sun}-\mathbf{r}^{(s)}\right\| } $$ is a unit vector pointing from satellite $$ s $$ towards the sun.
     * $$ \mathbf{e}_{z}^{(s)} = \frac{\mathbf{r}^{(s)}}{\left\| \mathbf{r}^{(s)} \right\|} $$ is a unit vector from the satellite to the [nadir](https://en.wikipedia.org/wiki/Nadir){:target="_blank"} direction.
     * $$ \mathbf{e}_{y}^{(s)} = \frac{\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} }{\left\|\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} \right\|} $$, where $$ \times $$ denotes the [cross-product](https://en.wikipedia.org/wiki/Cross_product){:target="_blank"} operator.
     * $$ \mathbf{e}_{x}^{(s)} = \mathbf{e}_{y}^{(s)} \times \mathbf{e}_{z}^{(s)} $$.
