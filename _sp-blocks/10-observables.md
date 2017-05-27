@@ -113,19 +113,40 @@ where:
   * $$ d\Phi_{r,i}^{(s)} = \mathbf{d}_{r,pco,i}^T \mathbf{e}_{r,enu}^{(s)} + \left( \mathbf{E}^{(s)} \mathbf{d}_{pco,i}^{(s)}  \right)^T \mathbf{e}_r^{(s)} + d_{r,pcv,i}(El)+ d_{pcv,i}^{(s)}(\theta)- \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\lambda_i \phi_{pw} $$, where:
 
     * $$ \mathbf{d}_{r,pco,i} $$ is the receiver's $$ i $$-th band antenna phase center offset in local coordinates (in m).
-    * $$ \mathbf{d}_{pco,i}^{(s)} $$ is the satellite's  $$ i $$-th band antenna phase center offset in satellite body‐fixed coordinates (in m).
     * $$ d_{r,pcv,i} $$ is the receiver's $$ i $$-th band antenna phase center variation (in m).
+
+    ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | absolute_url }}){:height="200px" width="200px"}
+    {: style="text-align: center;"}
+
+    _Receiver antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
+    {: style="text-align: center;"}
+
+    * $$ \mathbf{d}_{pco,i}^{(s)} $$ is the satellite's  $$ i $$-th band antenna phase center offset in satellite body‐fixed coordinates (in m).
     * $$ d_{pcv,i}^{(s)} $$ is the satellite's antenna phase center variation (in m).
+
+    ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | absolute_url }}){:height="350px" width="350px"}
+    {: style="text-align: center;"}
+
+    _Satellite antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
+    {: style="text-align: center;"}
+
     * $$ \mathbf{e}_{r,enu}^{(s)} $$ is the LOS vector from receiver antenna to satellite in local coordinates.
     * $$ \mathbf{e}_r^{(s)} $$ is the LOS vector from receiver antenna to satellite in ECEF.
+    * $$ \mathbf{E}^{(s)} = \left( {\mathbf{e}_{x}^{(s)}}^T, {\mathbf{e}_{y}^{(s)}}^T, {\mathbf{e}_{z}^{(s)}}^T \right)^T $$ is the coordinates transformation matrix from the satellite body‐fixed coordinates to ECEF coordinates, with:
+
+    ![Satellite body-fixed coordinate system]({{ "/assets/images/satellite-coordinate-frame.png" | absolute_url }}){:height="350px" width="350px"}
+    {: style="text-align: center;"}
+
+    _Satellite body-fixed coordinate system (from the RTKLIB Manual)[^RTKLIBManual]_
+    {: style="text-align: center;"}
+
+    * $$ \mathbf{r}_{sun} $$ is the sun position in ECEF coordinates.
+    * $$ \mathbf{e}^{(s)} = \frac{\mathbf{r}_{sun}-\mathbf{r}^{(s)} }{\left\| \mathbf{r}_{sun}-\mathbf{r}^{(s)}\right\| } $$ is a unit vector pointing form satellite $$ s $$ towards the sun.
+    * $$ \mathbf{e}_{z}^{(s)} = \frac{\mathbf{r}^{(s)}}{\left\| \mathbf{r}^{(s)} \right\|} $$ is a unit vector from the satellite to the [nadir](https://en.wikipedia.org/wiki/Nadir){:target="_blank"} direction.
+    * $$ \mathbf{e}_{y}^{(s)} = \frac{\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} }{\left\|\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} \right\|} $$, where $$ \times $$ denotes the [cross-product](https://en.wikipedia.org/wiki/Cross_product){:target="_blank"} operator.
+    * $$ \mathbf{e}_{x}^{(s)} = \mathbf{e}_{y}^{(s)} \times \mathbf{e}_{z}^{(s)} $$.
     * $$ \mathbf{d}_{r,disp} $$ is the displacement by Earth tides at the receiver position in local coordinates (in m).
     * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect){:target="_blank"} term (in cycles) due to the circular polarization of the GNSS electromagnetic signals. For a receiver with fixed coordinates, the wind-up is due to the satellite orbital motion. As the satellite moves along its orbital path it must perform a rotation to keep its solar panels pointing to the Sun direction in order to obtain the maximum energy while the satellite antenna keeps pointing to the earth's centre. This rotation causes a phase variation that the receiver misunderstands as a range variation.
-
-    ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | absolute_url }}){:height="175px" width="175px"} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | absolute_url }}){:height="350px" width="350px"}
-    {: style="text-align: center;"}
-
-    _Receiver and satellite antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
-    {: style="text-align: center;"}
 
 
 ## Doppler shift measurement
