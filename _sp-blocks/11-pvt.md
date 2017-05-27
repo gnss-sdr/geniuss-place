@@ -489,6 +489,8 @@ Read more about standard output formats at our [**Interoperability**]({{ "/desig
 
 # Implementation: `RTKLIB_PVT`
 
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR source code, so it is **not** present in the current stable release.
+{: .notice--info}
 
 This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
 
