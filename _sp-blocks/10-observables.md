@@ -4,7 +4,7 @@ permalink: docs/sp-blocks/observables/
 excerpt: "Documentation for the Observables block"
 sidebar:
   nav: "sp-block"
-last_modified_at: 2017-05-10T15:54:02-04:00
+last_modified_at: 2017-05-27T15:54:02-04:00
 ---
 {% include toc %}
 
@@ -338,3 +338,5 @@ Example:
 [^Doppler]: C. Doppler, "[&#220;ber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels](https://archive.org/details/ueberdasfarbigel00doppuoft){:target="_blank"} (On the colored light of the double stars and certain other stars of the heavens), Abh. Kniglich Bhmischen Ges. Wiss., vol. 2, pp. 467–482, 1842.
 
 [^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
+
+<link rel="prerender" href="{{ "/docs/sp-blocks/pvt/" | absolute_url }}">

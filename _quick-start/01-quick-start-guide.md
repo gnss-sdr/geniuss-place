@@ -69,6 +69,10 @@ Here you will find:
 
 ---
 
+<link rel="prerender" href="{{ "/requirements/" | absolute_url }}">
+<link rel="prerender" href="{{ "/build-and-install/" | absolute_url }}">
+<link rel="prerender" href="{{ "/my-first-fix/" | absolute_url }}">
+
 {::comment}
 ![Introducing GeNiuSS]({{ "/assets/images/geniuss.jpg" | absolute_url }}){:height="250px" width="250x"}{: style="text-align: center;"}
 This is GeNiuSS. You will see him here and there.

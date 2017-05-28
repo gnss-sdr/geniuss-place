@@ -6,7 +6,8 @@ Tipue Search is released under the MIT License
 http://www.tipue.com/search
 */
 
-var tipuesearch_pages = ["http://gnss-sdr.org/", "http://gnss-sdr.org/about/", "http://gnss-sdr.org/docs/sp-blocks/", "http://gnss-sdr.org/design-forces/accuracy/", "http://gnss-sdr.org/design-forces/availability/", "http://gnss-sdr.org/design-forces/efficiency/", "http://gnss-sdr.org/design-forces/flexibility/", "http://gnss-sdr.org/design-forces/interoperability/", "http://gnss-sdr.org/design-forces/maintainability", "http://gnss-sdr.org/design-forces/marketability/", "http://gnss-sdr.org/design-forces/portability/", "http://gnss-sdr.org/design-forces/popularity/", "http://gnss-sdr.org/design-forces/reliability/", "http://gnss-sdr.org/design-forces/repeatability/", "http://gnss-sdr.org/design-forces/reproducibility/", "http://gnss-sdr.org/design-forces/scalability/", "http://gnss-sdr.org/design-forces/testability/", "http://gnss-sdr.org/design-forces/openness/", "http://gnss-sdr.org/design-forces/usability/", "http://gnss-sdr.org/docs/", "http://gnss-sdr.org/docs/overview/", "http://gnss-sdr.org/docs/fundamentals/", "http://gnss-sdr.org/docs/control-plane/", "http://gnss-sdr.org/design-forces/", "http://gnss-sdr.org/contribute/", "http://gnss-sdr.org/coding-style/", "http://gnss-sdr.org/code-of-conduct/", "http://gnss-sdr.org/first-positioning-fix-using-galileo/", "http://gnss-sdr.org/google-summer-code-2013-ideas-list/", "http://gnss-sdr.org/esa-summer-code-space-2013-ideas-list/", "http://gnss-sdr.org/how-profile-code/", "http://gnss-sdr.org/google-summer-code-2014-ideas-list/", "http://gnss-sdr.org/esa-summer-code-space-2014-ideas-list/", "http://gnss-sdr.org/google-summer-code-2015-ideas-list/", "http://gnss-sdr.org/esa-summer-code-space-2015-ideas-list/", "http://gnss-sdr.org/", "http://gnss-sdr.org/google-summer-code-2016-ideas-list/", "http://gnss-sdr.org/docs/tutorials/gnss-sdr-operation-realtek-rtl2832u-usb-dongle-dvb-t-receiver/", "http://gnss-sdr.org/docs/tutorials/using-git/", "http://gnss-sdr.org//docs/tutorials/understanding-data-types/", "http://gnss-sdr.org/docs/tutorials/gnss-signals/", "http://gnss-sdr.org/docs/tutorials/cross-compiling/", "http://gnss-sdr.org/google-summer-code-2017-ideas-list/", "http://gnss-sdr.org/docs/tutorials/configuration-options-building-time/", "http://gnss-sdr.org/quick-start-guide/", "http://gnss-sdr.org/requirements/", "http://gnss-sdr.org/build-and-install/", "http://gnss-sdr.org/my-first-fix/", "http://gnss-sdr.org/conf/", "http://gnss-sdr.org/docs/sp-blocks/signal-source/", "http://gnss-sdr.org/docs/sp-blocks/signal-conditioner/", "http://gnss-sdr.org/docs/sp-blocks/data-type-adapter/", "http://gnss-sdr.org/docs/sp-blocks/input-filter/", "http://gnss-sdr.org/docs/sp-blocks/resampler/", "http://gnss-sdr.org/docs/sp-blocks/channels/", "http://gnss-sdr.org/docs/sp-blocks/acquisition/", "http://gnss-sdr.org/docs/sp-blocks/tracking/", "http://gnss-sdr.org/docs/sp-blocks/telemetry-decoder/", "http://gnss-sdr.org/docs/sp-blocks/observables/", "http://gnss-sdr.org/docs/sp-blocks/pvt/", "http://gnss-sdr.org/acks/", "http://gnss-sdr.org/geniuss-place/", "http://gnss-sdr.org/publications/", "http://gnss-sdr.org/team/", "http://gnss-sdr.org/docs/tutorials/"];
+var tipuesearch_pages = ["http://gnss-sdr.org/design-forces/accuracy/", "http://gnss-sdr.org/design-forces/availability/", "http://gnss-sdr.org/design-forces/efficiency/", "http://gnss-sdr.org/design-forces/flexibility/", "http://gnss-sdr.org/design-forces/interoperability/", "http://gnss-sdr.org/design-forces/maintainability", "http://gnss-sdr.org/design-forces/marketability/", "http://gnss-sdr.org/design-forces/portability/", "http://gnss-sdr.org/design-forces/popularity/", "http://gnss-sdr.org/design-forces/reliability/", "http://gnss-sdr.org/design-forces/repeatability/", "http://gnss-sdr.org/design-forces/reproducibility/", "http://gnss-sdr.org/design-forces/scalability/", "http://gnss-sdr.org/design-forces/testability/", "http://gnss-sdr.org/design-forces/openness/", "http://gnss-sdr.org/design-forces/usability/", "http://gnss-sdr.org/docs/overview/", "http://gnss-sdr.org/docs/fundamentals/", "http://gnss-sdr.org/docs/control-plane/", "http://gnss-sdr.org/design-forces/", "http://gnss-sdr.org/contribute/", "http://gnss-sdr.org/coding-style/", "http://gnss-sdr.org/code-of-conduct/", "http://gnss-sdr.org/first-positioning-fix-using-galileo/", "http://gnss-sdr.org/how-profile-code/", "http://gnss-sdr.org/docs/tutorials/gnss-sdr-operation-realtek-rtl2832u-usb-dongle-dvb-t-receiver/", "http://gnss-sdr.org/docs/tutorials/using-git/", "http://gnss-sdr.org//docs/tutorials/understanding-data-types/", "http://gnss-sdr.org/docs/tutorials/gnss-signals/", "http://gnss-sdr.org/docs/tutorials/cross-compiling/", "http://gnss-sdr.org/google-summer-code-2017-ideas-list/", "http://gnss-sdr.org/docs/tutorials/configuration-options-building-time/", "http://gnss-sdr.org/quick-start-guide/", "http://gnss-sdr.org/requirements/", "http://gnss-sdr.org/build-and-install/", "http://gnss-sdr.org/my-first-fix/", "http://gnss-sdr.org/conf/", "http://gnss-sdr.org/docs/sp-blocks/signal-source/", "http://gnss-sdr.org/docs/sp-blocks/signal-conditioner/", "http://gnss-sdr.org/docs/sp-blocks/data-type-adapter/", "http://gnss-sdr.org/docs/sp-blocks/input-filter/", "http://gnss-sdr.org/docs/sp-blocks/resampler/", "http://gnss-sdr.org/docs/sp-blocks/channels/", "http://gnss-sdr.org/docs/sp-blocks/acquisition/", "http://gnss-sdr.org/docs/sp-blocks/tracking/", "http://gnss-sdr.org/docs/sp-blocks/telemetry-decoder/", "http://gnss-sdr.org/docs/sp-blocks/observables/", "http://gnss-sdr.org/docs/sp-blocks/pvt/", "http://gnss-sdr.org/about/", "http://gnss-sdr.org/acks/", "http://gnss-sdr.org/publications/", "http://gnss-sdr.org/team/"];
+
 
 /*
 Stop words
@@ -20,8 +21,8 @@ var tipuesearch_stop_words = ["a", "about", "above", "after", "again", "against"
 
 var tipuesearch_replace = {'words': [
      {'word': 'gnus', 'replace_with': 'gnss'},
-     {'word': 'javscript', 'replace_with': 'javascript'},
-     {'word': 'jqeury', 'replace_with': 'jquery'}
+     {'word': 'crosscompiling', 'replace_with': 'cross-compiling'},
+     {'word': 'crosscompilation', 'replace_with': 'cross-compilation'}
 ]};
 
 
@@ -38,18 +39,14 @@ var tipuesearch_weight = {'weight': [
 
 var tipuesearch_stem = {'words': [
      {'word': 'e-mail', 'stem': 'email'},
-     {'word': 'javascript', 'stem': 'jquery'},
-     {'word': 'javascript', 'stem': 'js'}
+     {'word': 'gps', 'stem': 'signals'}
 ]};
 
 
 // Related searches
 
 var tipuesearch_related = {'searches': [
-     {'search': 'tipue', 'related': 'Tipue Search'},
-     {'search': 'tipue', 'before': 'Tipue Search', 'related': 'Getting Started'},
-     {'search': 'tipue', 'before': 'Tipue', 'related': 'jQuery'},
-     {'search': 'tipue', 'before': 'Tipue', 'related': 'Blog'}
+     {'search': 'gnss-sdr', 'related': 'Overview'}
 ]};
 
 
