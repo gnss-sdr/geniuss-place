@@ -95,3 +95,13 @@ intro:
 
 [![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Learn more]({{ "/docs/" | absolute_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
+
+<link rel="prefetch" href="{{ "/assets/js/main.min.js" | absolute_url }}">
+<link rel="prefetch" href="{{ "/assets/tipuesearch/css/normalize.css" | absolute_url }}">
+<link rel="prefetch" href="{{ "/assets/tipuesearch/tipuesearch_content.js" | absolute_url }}">
+<link rel="prefetch" href="{{ "/assets/tipuesearch/tipuesearch_set.js" | absolute_url }}">
+<link rel="prefetch" href="{{ "/assets/tipuesearch/tipuesearch.min.js" | absolute_url }}">
+<link rel="prerender" href="{{ "/search/" | absolute_url }}">
+<link rel="prerender" href="{{ "/quick-start-guide/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/" | absolute_url }}">
+<link rel="prerender" href="{{ "/build-and-install/" | absolute_url }}">

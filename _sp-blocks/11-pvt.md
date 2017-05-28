@@ -4,7 +4,7 @@ permalink: /docs/sp-blocks/pvt/
 excerpt: "Documentation for the PVT block"
 sidebar:
   nav: "sp-block"
-last_modified_at: 2017-05-103T15:54:02-04:00
+last_modified_at: 2017-05-27T15:54:02-04:00
 ---
 {% include toc %}
 
@@ -791,3 +791,6 @@ PVT.rtcm_MT1077_rate_ms=1000
 [^Bevis94]: M. Bevis, S. Businger, S. Chiswell, T. A. Herring, R. A. Anthes, C. Rocken, R. H. Ware, [GPS Meteorology: Mapping Zenith Delay onto Precipitable Water](http://dx.doi.org/10.1175/1520-0450(1994)033%3C0379:GMMZWD%3E2.0.CO;2){:target="_blank"}, American Meteorological Society, vol. 33, March 1994, pp. 379-386.
 
 [^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](http://areeweb.polito.it/ricerca/relgrav/solciclos/ashby_d.pdf){:target="_blank"}, Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](http://www.springer.com/gp/book/9781402018053){:target="_blank"}, G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
+
+
+<link rel="prerender" href="{{ "/docs/sp-blocks/observables/" | absolute_url }}">

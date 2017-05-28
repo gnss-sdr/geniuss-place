@@ -18,3 +18,6 @@ In GNSS-SDR, each configuration file defines a receiver. This page documents the
   {% include archive-single.html %}
 {% endfor %}
 </td> </tr> </table> </body> </html>
+
+
+<link rel="prerender" href="{{ "/sp-blocks/signal-source/" | absolute_url }}">

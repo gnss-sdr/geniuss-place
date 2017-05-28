@@ -234,3 +234,5 @@ Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | absolut
 
 
 ----
+
+<link rel="prerender" href="{{ "/my-first-fix/" | absolute_url }}">

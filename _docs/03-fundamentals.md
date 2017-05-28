@@ -145,3 +145,6 @@ Up to this point, we have described a software design that accounts both for eff
 ----
 
 ## References
+
+
+<link rel="prerender" href="{{ "/docs/control-plane/" | absolute_url }}">
