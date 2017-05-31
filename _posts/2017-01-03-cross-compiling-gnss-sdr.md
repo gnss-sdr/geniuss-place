@@ -43,12 +43,12 @@ The following table lists the available SDK versions:
 | Version | Status | Download | md5 | Manifest |
 |:-|:-:|:-:|:-|:-:|
 | Morty | Development | [SDK](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | f2abf51e5f438dc30eb0261566f2066b | [Host](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
-| Krogoth | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 837044c6d475d8ffe21e73a5a7e2d2d4 | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
+| Krogoth | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1467ba96dd6f5ca9f6b278e71a9fd334 | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
 | Jethro | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh"} | 81cba6254f63e23394edae847fd60e0a | [Host](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
 
 
 
-Please note that the SDK scripts provided in this table take about 1.5 GB. Check out the manifest files to see the full list of packages and versions each SDK will install in the root filesystem of your device. Releases are listed from the most recent (top) to the oldest (bottom). For a smoother, more tested experience, pick a stable release.
+Please note that the SDK scripts provided in this table take about 1.5 GB. Check out the manifest files to see the full list of packages and versions each SDK will install in the root filesystem of your device. Releases are listed from the most recent (top) to the oldest (bottom). For a smoother, more tested experience, the Krogoth release is highly recommended.
 
 
 ### Option 2: Building your own SDK
