@@ -68,7 +68,7 @@ Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github
 
 3) Initialize ```repo```, download the required tools and prepare your building environment:
 
-     $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b jethro
+     $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b krogoth
      $ repo sync
      $ TEMPLATECONF=`pwd`/meta-gnss-sdr/conf source ./oe-core/oe-init-build-env ./build ./bitbake
 
