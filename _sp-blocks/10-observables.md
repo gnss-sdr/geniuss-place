@@ -172,7 +172,7 @@ where $$ \mathbf{r}_r(t) $$ and $$ \mathbf{v}_r(t) $$ are the position and veloc
 ### Pseudorange rate measurement
 
 
-Doppler shift measurements are sometimes given in m/s. This is referred to as **pseudorange rate measurement**, and it is defined as the Doppler shift multiplied by the negative of carrier wavelength $$ \lambda_i $$. Its model can be writen as:
+Doppler shift measurements are sometimes given in m/s. This is referred to as **pseudorange rate measurement**, and it is defined as the Doppler shift multiplied by the negative of carrier wavelength $$ \lambda_i $$. Its model can be written as:
 
 $$ \begin{equation} \dot{P}_{r,i}^{(s)} = -\lambda_i f_{d_{i}}^{(s)} = \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c \left( \frac{\partial dt_r(t_r)}{\partial t} - \frac{\partial dT^{(s)}(t^{(s)})}{\partial t}\right) + \epsilon_{\dot{P}}\end{equation} $$
 
