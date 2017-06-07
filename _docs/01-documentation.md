@@ -50,3 +50,4 @@ In addition, there is a set of tutorials providing more information in particula
 
 <link rel="prerender" href="{{ "/docs/sp-blocks/" | absolute_url }}">
 <link rel="prerender" href="{{ "/docs/overview/" | absolute_url }}">
+<link rel="prerender" href="{{ "/quick-start-guide/" | absolute_url }}">

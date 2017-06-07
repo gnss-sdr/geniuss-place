@@ -376,3 +376,7 @@ Now you can examine the files created in your working folder.
 </div>
 
  * Play with configuration parameters!
+
+
+<link rel="prerender" href="{{ "/docs/overview/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/" | absolute_url }}">
