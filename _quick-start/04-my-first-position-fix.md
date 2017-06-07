@@ -2,7 +2,7 @@
 title: "My first position fix"
 permalink: /my-first-fix/
 excerpt: "How to quickly get a position fix with GNSS-SDR."
-last_modified_at: 2016-09-10T15:54:02-04:00
+last_modified_at: 2017-06-07T15:54:02+02:00
 header:
   teaser: "/assets/images/gn3s_pvt_4_sats.jpg"
 sidebar:
@@ -27,7 +27,7 @@ you should see something similar to:
 $ gnss-sdr --version
 linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010
 
-gnss-sdr version 0.0.8
+gnss-sdr version 0.0.9
 $
 ```
 
@@ -108,7 +108,7 @@ Acquisition_1C.doppler_max=10000
 Acquisition_1C.doppler_step=250
 
 ;######### TRACKING GLOBAL CONFIG ############
-Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_C_Aid_Tracking
+Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
 Tracking_1C.item_type=gr_complex
 Tracking_1C.pll_bw_hz=40.0;
 Tracking_1C.dll_bw_hz=4.0;
@@ -234,3 +234,7 @@ Now you can examine the processing outputs in the folder from which you invoked 
  * Observation and Navigation RINEX files.
 
 ... play with the configuration parameters or try out more challenging [configurations]({{ "/conf/" | absolute_url }}).
+
+<link rel="prerender" href="{{ "/conf/" | absolute_url }}">
+<link rel="prerender" href="{{ "/build-and-install/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/" | absolute_url }}">

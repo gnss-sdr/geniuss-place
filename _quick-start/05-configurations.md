@@ -253,7 +253,7 @@ You should see something similar to:
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
 linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010.git-0-2d68f228
 
-Initializing GNSS-SDR v0.0.8 ... Please wait.
+Initializing GNSS-SDR v0.0.9 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 -- X300 initialization sequence...
@@ -376,3 +376,7 @@ Now you can examine the files created in your working folder.
 </div>
 
  * Play with configuration parameters!
+
+
+<link rel="prerender" href="{{ "/docs/overview/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/" | absolute_url }}">
