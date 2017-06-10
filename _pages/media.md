@@ -13,10 +13,17 @@ last_modified_at: 2016-06-21T16:39:37-04:00
 
 GeNiuSS debut film:
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/fwmqiP8kPRE?controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/fwmqiP8kPRE?showinfo=0" frameborder="0" allowfullscreen></iframe>
 
 
 This movie was beautifully crafted by [les3ines](https://www.facebook.com/las3inas-375322972611875/){:target="_blank"}, and it also available in [Spanish](https://www.youtube.com/watch?v=L00QZ-iozPs){:target="_blank"} and [Catalan](https://www.youtube.com/watch?v=Ga-0pQQuR3k){:target="_blank"}.
+
+
+Team at work:
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/zkWvXU3oMs4?showinfo=0" frameborder="0" allowfullscreen></iframe>
+
+Visualization created with [gource](http://gource.io/){:target="_blank"} and based on the upstream repository [https://github.com/gnss-sdr/gnss-sdr.git](https://github.com/gnss-sdr/gnss-sdr.git).
 
 ----
 
