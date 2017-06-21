@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2017-01-05T15:54:02+02:00
+last_modified_at: 2017-06-21T20:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -230,8 +230,40 @@ We provide a Software Development Kit (SDK) based on [OpenEmbedded](http://www.o
 
 Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | absolute_url }}){:target="_blank"} for instructions on cross-compiling GNSS-SDR for embedded systems.
 
+## Using Ninja
 
+[Ninja](https://ninja-build.org/){:target="_blank"} is a small build system with a focus on speed, that can be seen as a replacement for ```make```. If the parameter ```-GNinja``` is passed to CMake, it generates a ```build.ninja``` file (instead of a ```Makefile```) that is used by the Ninja build system to compile and link the source code. Thus, after cloning the repository, the build workflow is:
 
+```
+$ cd gnss-sdr/build
+$ git checkout next
+$ cmake -GNinja ..
+$ ninja
+$ sudo ninja install
+```
+
+In general, the compilation time when using Ninja is comparable to that when using Make for a full build, although its performance is quite platform-dependant. Ninja is specially targeted to improve performance in large projects and for incremental builds, so it seems to be a good replacement for Make especially for developers who need to often recompile the source code. In Debian-based GNU/Linux distributions, it can be installed by doing:
+
+```
+$ sudo apt-get install ninja-build
+```
+
+On macOS, Ninja can be installed using Macports:
+
+```
+$ sudo port install ninja
+```
+
+or Homebrew:
+
+```
+$ brew install ninja
+```
+
+More information about Ninja usage can be found in the [Ninja Manual](https://ninja-build.org/manual.html){:target="_blank"}.
+
+**NOTE**: Ninja usage is only available in the ```next``` branch of the GNSS-SDR repository. This feature will be present on the next stable release.
+{: .notice--warning}
 
 ----
 
