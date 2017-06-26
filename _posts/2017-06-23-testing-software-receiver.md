@@ -15,6 +15,36 @@ last_modified_at: 2017-06-23T09:37:02+02:00
 {% include toc %}
 
 
+## The Science of Improvement
+
+Improvement has meaning only in terms of observation based on a given criteria. That is, improvement is useful and has meaning when it is defined by characteristics such as more efficient, more accurate, more reliable, and so on. Thus, we need to identify the dimensions in which a software-defined GNSS receiver can be improved, and to define adequate metrics, measurement procedures and feedback mechanisms for each of those dimensions (referred to as “Design Forces” in this document), in order to objectively assess improvement.
+
+The concepts of improvement and change are strongly connected. Although change will not always result in improvement, all improvement requires change.
+
+Langley _et al._[^Langley09] described the principles to maximize the results of improvement efforts:
+
+  * Knowing why you need to improve (focused aim).
+  * Having a feedback mechanism to tell you if improvements are occurring.
+  * Developing effective ideas for changes that will result in improvement.
+  * Testing and adapting changes before attempting to implement.
+  * Knowing when and how to make changes sustainable through effective implementation to integrate the changes in the system of interest.
+
+It is then of the utmost importance to define a development methodology and adequate tools to measure improvement and to integrate changes into the system in a transparent, controlled and distributed fashion.
+
+Authors in Langley _et al._[^Langley09] claim that the Plan-Do-Study-Act (PDSA) cycles constitute an approach that is aligned with the scientific method. Those cycles were made popular by Deming in the early 1950s as PDCA (Plan-Do-Check-Act), and at a later stage the same author replaced “Check” by “Study” to emphasize the importance of observing and learning from the “Do” step results[^Deming93]. Those four steps are described as:
+
+ * **PLAN**: Establish the objectives and processes necessary to deliver results in accordance with the expected output (the target or goals). By establishing output expectations, the completeness and accuracy of the spec is also a part of the targeted improvement. When possible start on a small scale to test possible effects.
+ * **DO**: Implement the plan, execute the process, make the product. Collect data for charting and analysis in the following "CHECK" and "ACT" steps.
+ * **CHECK**: Study the actual results (measured and collected in "DO" above) and compare against the expected results (targets or goals from the "PLAN") to ascertain any differences. Look for deviation in implementation from the plan and also look for the appropriateness and completeness of the plan to enable the execution, i.e., "Do". Emphasize the STUDY of the results: What did we learn? What went wrong?
+ * **ACT**: If the CHECK shows that the PLAN that was implemented in DO is an improvement to the prior standard (baseline), then that becomes the new standard (baseline) for how the organization should ACT going forward (new standards are enACTed). If the CHECK shows that the PLAN that was implemented in DO is not an improvement, then the existing standard (baseline) will remain in place.
+
+
+![PDCA and Git]({{ "/assets/images/PDCA-Git.png" | absolute_url }}) _A graphical representation of the integration of Git and PDCA cycles_.
+ {: style="text-align: center;"}
+
+As shown in the Figure above, Git integrates PDCA cycles in the development process in a seamless and natural way. The PLAN step begins by creating a new branch of development from the current baseline (that is, the `next` branch). This new branch accommodates testing code for the new improvement, the actual new development work, and eventual test passing and code refactoring in the DO step. Then, CHECK/STUDY step is related to merging the new code with the existing baseline and run all the existing tests, in order to ensure that no integration issues arise. In the case they exist, there is a step back to the DO step and fix the integration issues. In the case that the taken approach in the particular PDCA cycle results in not contributing to an actual improvement, the development branch can be kept for documentation purposes without affecting the baseline. Once the developer has absolute confidence that the change is an objective improvement, he or she ACTs and pushes the change to the reference repository, and the new version incorporating the improvement becomes the new current baseline.
+
+
 ## Test Driven Development
 
 Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test case that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards. It is an Agile-based approach to building complex systems where unit test (and in some cases inter-component integration tests) are built in advance of the product software and are used exercised upon component implementation. This methodology is claimed to offer valuable benefits to software development: it facilitates change, simplifies integration, automatizes documentation, helps separate the interface from the implementation, increases developers productivity, and plays a central role in the software quality assurance process[^Shore08].
@@ -97,8 +127,8 @@ In order to execute the tests, you must build GNSS-SDR from source. If the Googl
 
 GNSS-SDR are divided in two categories:
 
- * Unit Tests:
- * System Tests:
+ * **Unit Tests**: checking of certain functions and areas - or _units_ - of the source code.
+ * **System Tests**: checking conducted on a complete, integrated system to evaluate the system's compliance with its specified requirements.
 
 By default, only (a large) subset of unit tests are compiled by default. So, when doing:
 
@@ -266,27 +296,103 @@ All these examples produce the following report:
 
 ### Unit Tests
 
+The generation of some unit test cases are enabled by default, and gathered in the test program `run_tests`.
+
+ * Unit Test Cases for arithmetics:
+    - CodeGenerationTest
+    - ComplexCarrierTest
+    - ConjugateTest
+    - FFTLengthTest
+    - MagnitudeSquaredTests
+    - MultiplyTests
+
+* Unit Test Cases for the control plane:
+    - ControlMessageFactoryTest
+    - ControlThreadTest
+    - FileConfigurationTest
+    - GNSSBlockFactoryTest
+    - GNSSFlowgraph
+    - InMemoryConfiguration
+    - StringConverterTest
+
+ * Unit Test Cases for signal processing blocks:
+    - Signal sources
+      - FileSignalSource
+      - ValveTest
+    - Data Type Adapter
+      - PassThroughTest
+    - Input filter
+      - FirFilterTest
+    - Resampler
+      - DirectResamplerConditionerCcTest
+    - Acquisition
+    - Tracking
+      - CpuMulticorrelatorTest
+      - GalileoE1DllPllVemlTrackingInternalTest
+      - GalileoE5aTrackingTest
+      - TrackingLoopFilterTest
+    - Telemetry Decoder
+      - InstantiateGpsL1CaTelemetryDecoder
+    - Observables
+      - HybridObservablesTest
+    - PVT
+      - RinexPrinterTest
+      - RtcmTest
+      - RtcmPrinterTest
 
 ### Extra Unit Tests
+
+This option builds some extra unit tests cases that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
 ```
 $ cmake -DENABLE_UNIT_TESTING_EXTRA=ON ..
 $ make
 ```
 
+This option will download, build and link (at building time) the following tools:
+
+ * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim){:target="_blank"} and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator){:target="_blank"}
+ * The [GPSTk project](http://www.gpstk.org){:target="_blank"}, an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](http://sgl.arlut.utexas.edu){:target="_blank"}, within the [Applied Research Laboratories](http://www.arlut.utexas.edu){:target="_blank"} at the [University of Texas at Austin](https://www.utexas.edu){:target="_blank"} (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk){:target="_blank"}.
+
+
+The following Unit Test Cases are added to the executable `run_tests`:
+
+* GpsL2MPcpsAcquisitionTest
+* GpsL1CADllPllTrackingTest
+* GpsL2MDllPllTrackingTest
+* GpsL1CATelemetryDecoderTest
+* HybridObservablesTest
+
+
 ### System Tests
+
+This option builds some extra system test programs that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
 ```
 $ cmake -DENABLE_SYSTEM_TESTING=ON ..
 $ make
 ```
 
+This option generates the following system test program:
+
+* ttff
+
 ### Extra System Tests
+
+This option builds some extra system test programs that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
 ```
 $ cmake -DENABLE_SYSTEM_TESTING_EXTRA=ON ..
 $ make
 ```
+
+As in the case of the `-DENABLE_UNIT_TESTING_EXTRA=ON`, this option will also download, build and link the software-defined GNSS signal generator and the GPSTk library.
+
+This option generates the following system test programs:
+
+* obs_gps_l1_system_test
+* position_test
+
 
 ## How to write a new test
 
@@ -341,3 +447,7 @@ For more details, check out the Google C++ Testing Framework [Documentation](htt
 [^Beck02]: K. Beck, [Test Driven Development: By Example](http://www.eecs.yorku.ca/course_archive/2003-04/W/3311/sectionM/case_studies/money/KentBeck_TDD_byexample.pdf){:target="_blank"}, Addison-Wesley Professional, Boston, MA, 2002.
 
 [^Shore08]: J. Shore and S. Warden, [The Art of Agile Development](http://www.jamesshore.com/Agile-Book/){:target="_blank"}, O'Really, Sebastopol, CA, 2008.
+
+[^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0470192410.html){:target="_blank"}, Jossey-Bass, San Francisco, CA, 2009.
+
+[^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education){:target="_blank"}, MIT Press, Cambridge, MA, 1993.
