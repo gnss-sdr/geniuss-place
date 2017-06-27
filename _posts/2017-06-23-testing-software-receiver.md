@@ -7,6 +7,7 @@ header:
   teaser: /assets/images/PDCA.png
 tags:
   - tutorial
+  - Git
 sidebar:
   nav: "docs"
 last_modified_at: 2017-06-23T09:37:02+02:00
@@ -14,14 +15,18 @@ last_modified_at: 2017-06-23T09:37:02+02:00
 
 {% include toc %}
 
+Testing is a concept intimately related to inquiry, creativity, design, methodology, tools, best practices and, ultimately, quality. People from Design Thinking[^Avital09] understand testing in the sense of prototyping, of trying out something that could be useful for someone else whose needs we have empathized with, and as a source of innovation.  People from Quality Assurance[^Beck02] understand testing as the detailed procedure that leads to a pass/fail decision based upon some pre-defined requirements. A <strike>humble</strike>distinguished developer just wants to know if his or her code works as expected.  Hence, it it important to recognize that _the code developed to test the functionality of a given piece of source code is as valuable as the implementation itself_, constituting an inalienable part of the project's source code tree. This page provides an overview on the philosophy behind the approach undertaken by the GNSS-SDR project, it documents the currently available testing procedures, and describes how to add new ones.
 
 ## The Science of Improvement
 
-Improvement has meaning only in terms of observation based on a given criteria. That is, improvement is useful and has meaning when it is defined by characteristics such as more efficient, more accurate, more reliable, and so on. Thus, we need to identify the dimensions in which a software-defined GNSS receiver can be improved, and to define adequate metrics, measurement procedures and feedback mechanisms for each of those dimensions (referred to as “Design Forces” in this document), in order to objectively assess improvement.
+Improvement has meaning only in terms of observation based on a given criteria. That is, improvement is useful and has meaning when it is defined by characteristics such as more efficient, more accurate, more reliable, and so on. Thus, we need to identify the dimensions (or _design forces_) in which a software-defined GNSS receiver can be improved, and to define adequate metrics, measurement procedures and feedback mechanisms for each of those dimensions, in order to objectively assess improvement.
+
+A proposal of an open discussion about the definition of quality metrics and testing procedures for _any_ software-defined GNSS receiver is available at [**16 Design Forces for software-defined GNSS receivers**]({{ "/design-forces/" | absolute_url }}).
+{: .notice--info}
 
 The concepts of improvement and change are strongly connected. Although change will not always result in improvement, all improvement requires change.
 
-Langley _et al._[^Langley09] described the principles to maximize the results of improvement efforts:
+Langley _et al._[^Langley09] described the principles to maximize the results of improvement efforts as:
 
   * Knowing why you need to improve (focused aim).
   * Having a feedback mechanism to tell you if improvements are occurring.
@@ -31,19 +36,31 @@ Langley _et al._[^Langley09] described the principles to maximize the results of
 
 It is then of the utmost importance to define a development methodology and adequate tools to measure improvement and to integrate changes into the system in a transparent, controlled and distributed fashion.
 
-Authors in Langley _et al._[^Langley09] claim that the Plan-Do-Study-Act (PDSA) cycles constitute an approach that is aligned with the scientific method. Those cycles were made popular by Deming in the early 1950s as PDCA (Plan-Do-Check-Act), and at a later stage the same author replaced “Check” by “Study” to emphasize the importance of observing and learning from the “Do” step results[^Deming93]. Those four steps are described as:
+Authors in Langley _et al._[^Langley09] claim that the Plan-Do-Study-Act (PDSA) cycles constitute an approach that is aligned with the scientific method. Those cycles were made popular by W. E. Deming in the early 1950s as PDCA (Plan-Do-Check-Act), and at a later stage the same author replaced "Check" by "Study" to emphasize the importance of observing and learning from the “Do” step results[^Deming93]. Those four steps are described as:
 
  * **PLAN**: Establish the objectives and processes necessary to deliver results in accordance with the expected output (the target or goals). By establishing output expectations, the completeness and accuracy of the spec is also a part of the targeted improvement. When possible start on a small scale to test possible effects.
  * **DO**: Implement the plan, execute the process, make the product. Collect data for charting and analysis in the following "CHECK" and "ACT" steps.
- * **CHECK**: Study the actual results (measured and collected in "DO" above) and compare against the expected results (targets or goals from the "PLAN") to ascertain any differences. Look for deviation in implementation from the plan and also look for the appropriateness and completeness of the plan to enable the execution, i.e., "Do". Emphasize the STUDY of the results: What did we learn? What went wrong?
- * **ACT**: If the CHECK shows that the PLAN that was implemented in DO is an improvement to the prior standard (baseline), then that becomes the new standard (baseline) for how the organization should ACT going forward (new standards are enACTed). If the CHECK shows that the PLAN that was implemented in DO is not an improvement, then the existing standard (baseline) will remain in place.
+ * **CHECK**: Study the actual results (measured and collected in "DO" above) and compare against the expected results (targets or goals from the "PLAN") to ascertain any differences. Look for deviation in implementation from the plan and also look for the appropriateness and completeness of the plan to enable the execution, i.e., "DO". Emphasize the **STUDY** of the results: What did we learn? What went wrong?
+ * **ACT**: If the "CHECK" shows that the "PLAN" that was implemented in "DO" is an improvement to the prior standard (baseline), then that becomes the new standard (baseline) for how the project should "ACT" going forward (new standards are enACTed). If the "CHECK" shows that the "PLAN" that was implemented in "DO" is not an improvement, then the existing standard (baseline) will remain in place.
 
 
-![PDCA and Git]({{ "/assets/images/PDCA-Git.png" | absolute_url }}) _A graphical representation of the integration of Git and PDCA cycles_.
- {: style="text-align: center;"}
+![PDCA and Git]({{ "/assets/images/PDCA-Git.png" | absolute_url }})
+_A graphical representation of Git and PDCA cycles integration_.
+{: style="text-align: center;"}
 
-As shown in the Figure above, Git integrates PDCA cycles in the development process in a seamless and natural way. The PLAN step begins by creating a new branch of development from the current baseline (that is, the `next` branch). This new branch accommodates testing code for the new improvement, the actual new development work, and eventual test passing and code refactoring in the DO step. Then, CHECK/STUDY step is related to merging the new code with the existing baseline and run all the existing tests, in order to ensure that no integration issues arise. In the case they exist, there is a step back to the DO step and fix the integration issues. In the case that the taken approach in the particular PDCA cycle results in not contributing to an actual improvement, the development branch can be kept for documentation purposes without affecting the baseline. Once the developer has absolute confidence that the change is an objective improvement, he or she ACTs and pushes the change to the reference repository, and the new version incorporating the improvement becomes the new current baseline.
+As shown in the figure above, [Git](https://git-scm.com/){:target="_blank"} integrates PDCA cycles in the development process in a seamless and natural way. The PLAN step begins by creating a new branch of development from the current baseline (that is, the `next` branch). This new branch accommodates testing code for the new improvement, the actual new development work, and eventual test passing and code refactoring in the DO step. Then, CHECK/STUDY step is related to merging the new code with the existing baseline and run all the existing tests, in order to ensure that no integration issues arise. In the case they exist, there is a step back to the DO step and fix the integration issues. In the case that the taken approach in the particular PDCA cycle results in not contributing to an actual improvement, the development branch can be kept for documentation purposes without affecting the baseline. Once the developer has absolute confidence that the change is an objective improvement, he or she ACTs and pushes the change to the reference repository, and the new version incorporating the improvement becomes the new current baseline.
 
+{% capture pdca_cycles %}
+By engaging rapid cycles of the PDCA workflow, the GNSS-SDR project aims to learn fast, fail fast, and improve quickly. That failures may occur is not the problem; that we fail to learn from them is. Rate of change, that is, rate of improvement, is a key competitive factor in today's world. PDCA cycles allow for:
+  * major "jumps" in performance ("breakthroughs," as the addition of a new GNSS signal receiver chain or an important new feature), which are very much appreciated in the Western culture,
+  * as well as Kaizen (Japanese for “improvement”, frequent small improvements such as fixes enhancing correctness in the usage of the programming language, small bug fixes and typos, code cleaning and refactoring, small changes in the building system to extend portability, etc.), which is a key concept about quality deeply rooted in the Eastern culture.
+{% endcapture %}
+
+ <div class="notice--info">
+   {{ pdca_cycles | markdownify }}
+ </div>
+
+This means that all kind of contributions, from fixing a typo in a source code's comment to the addition of a whole new GNSS signal processing chain, are very welcome and greatly appreciated since all of them point towards improved quality, no matter the step size. More details on the _howtos_ in the context of GNSS-SDR are available in our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}) and in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md){:target="_blank"} file.
 
 ## Test Driven Development
 
@@ -113,7 +130,7 @@ GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googl
 
 When using Google Test, developers write [_assertions_](https://github.com/google/googletest/blob/master/googletest/docs/Primer.md#assertions){:target="_blank"}, which are statements that check whether a condition is true. An assertion's result can be _success_, _nonfatal failure_, or _fatal failure_. If a fatal failure occurs, it aborts the current function; otherwise the program continues normally.
 
-_Tests_ use assertions to verify the tested code's behavior. If a test crashes or has a failed assertion, then it _fails_; otherwise it _succeeds_.
+_Tests_ use assertions to verify the tested code's behavior. If a test crashes or has a failed assertion, then it _<span style="color: #E74C3C">fails</span>_; otherwise it _<span style="color: #2ECC71">succeeds</span>_.
 
 A _Test Case_ contains one or many tests. You should group your tests into test cases that reflect the structure of the tested code. When multiple tests in a test case need to share common objects and subroutines, you can put them into a [_Test Fixture_](https://github.com/google/googletest/blob/master/googletest/docs/Primer.md#test-fixtures-using-the-same-data-configuration-for-multiple-tests){:target="_blank"} class.
 
@@ -130,7 +147,7 @@ GNSS-SDR are divided in two categories:
  * **Unit Tests**: checking of certain functions and areas - or _units_ - of the source code.
  * **System Tests**: checking conducted on a complete, integrated system to evaluate the system's compliance with its specified requirements.
 
-By default, only (a large) subset of unit tests are compiled by default. So, when doing:
+By default, only (a large) subset of unit tests are compiled. So, when doing:
 
 ```
 $ cd gnss-sdr/build
@@ -156,7 +173,7 @@ Running GNSS-SDR Tests...
 
 ...
 
-----------] Global test environment tear-down
+[----------] Global test environment tear-down
 [==========] 164 tests from 38 test cases ran. (69412 ms total)
 [  PASSED  ] 164 tests.
 
@@ -451,3 +468,5 @@ For more details, check out the Google C++ Testing Framework [Documentation](htt
 [^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0470192410.html){:target="_blank"}, Jossey-Bass, San Francisco, CA, 2009.
 
 [^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education){:target="_blank"}, MIT Press, Cambridge, MA, 1993.
+
+[^Avital09]: M. Avital and D. Te'eni, _From generative fit to generative capacity: Exploring an emerging dimension of information systems design and task performance_, Information Systems Journal 19(4), pp. 345-367, July 2009. DOI: [10.1111/j.1365-2575.2007.00291.x](http://dx.doi.org/10.1111/j.1365-2575.2007.00291.x){:target="_blank"}.
