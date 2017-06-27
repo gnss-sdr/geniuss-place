@@ -37,7 +37,7 @@ where $$ E_{ref} $$ is the East coordinate of the reference location. Similar ex
 
 $$ \sigma_N^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- N_{ref}\right)^2} ,$$
 
-$$ \sigma_E^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- U_{ref}\right)^2} .$$
+$$ \sigma_U^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- U_{ref}\right)^2} .$$
 
 Ideally, static position measurements should be averaged over 24 hours and performed on a clear-sky environment.
 
