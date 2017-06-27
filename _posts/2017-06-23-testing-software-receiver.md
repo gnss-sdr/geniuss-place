@@ -15,7 +15,7 @@ last_modified_at: 2017-06-23T09:37:02+02:00
 
 {% include toc %}
 
-Testing is a concept intimately related to inquiry, creativity, design, methodology, tools, best practices and, ultimately, quality. People from Design Thinking[^Avital09] understand testing in the sense of prototyping, of trying out something that could be useful for someone else whose needs we have empathized with, and as a source of innovation.  People from Quality Assurance[^Beck02] understand testing as the detailed procedure that leads to a pass/fail decision based upon some pre-defined requirements. A <strike>humble</strike>distinguished developer just wants to know if his or her code works as expected.  Hence, it it important to recognize that _the code developed to test the functionality of a given piece of source code is as valuable as the implementation itself_, constituting an inalienable part of the project's source code tree. This page provides an overview on the philosophy behind the approach undertaken by the GNSS-SDR project, it documents the currently available testing procedures, and describes how to add new ones.
+Testing is a concept intimately related to inquiry, creativity, design, methodology, tools, best practices and, ultimately, quality. People from Design Thinking[^Plattner11] understand testing in the sense of prototyping, of trying out something that could be useful for someone else whose needs we have empathized with, and as a source of innovation.  People from Quality Assurance[^Beck02] understand testing as the detailed procedure that leads to a pass/fail decision based upon some pre-defined requirements. A <strike>humble</strike>distinguished developer just wants to know if his or her code works as expected.  Hence, it is important to recognize that _the code developed to test the functionality of a given piece of source code is as valuable as the implementation itself_, constituting an inalienable part of the project's source code tree. This page provides an overview on the philosophy behind the approach undertaken by the GNSS-SDR project, it documents the currently available testing procedures, and describes how to add new ones.
 
 ## The Science of Improvement
 
@@ -343,6 +343,18 @@ The generation of some unit test cases are enabled by default, and gathered in t
     - Resampler
       - DirectResamplerConditionerCcTest
     - Acquisition
+      - GpsL1CaPcpsAcquisitionTest
+      - GpsL1CaPcpsAcquisitionGSoC2013Test
+      - GpsL1CaPcpsTongAcquisitionGSoC2013Test
+      - GpsL1CaPcpsQuickSyncAcquisitionGSoC2014Test
+      - GalileoE1PcpsAmbiguousAcquisitionTest
+      - GalileoE1PcpsAmbiguousAcquisitionGSoCTest
+      - GalileoE1PcpsAmbiguousAcquisitionGSoC2013Test
+      - GalileoE1Pcps8msAmbiguousAcquisitionGSoC2013Test
+      - GalileoE1PcpsTongAmbiguousAcquisitionGSoC2013Test
+      - GalileoE1PcpsCccwsrAmbiguousAcquisitionTest
+      - GalileoE1PcpsQuickSyncAmbiguousAcquisitionGSoC2014Test
+      - GalileoE5aPcpsAcquisitionGSoC2014GensourceTest
     - Tracking
       - CpuMulticorrelatorTest
       - GalileoE1DllPllVemlTrackingInternalTest
@@ -366,19 +378,25 @@ $ cmake -DENABLE_UNIT_TESTING_EXTRA=ON ..
 $ make
 ```
 
-This option will download, build and link (at building time) the following tools:
+This option will download, build and link (at building time) the following tools and files:
 
  * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim){:target="_blank"} and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator){:target="_blank"}
  * The [GPSTk project](http://www.gpstk.org){:target="_blank"}, an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](http://sgl.arlut.utexas.edu){:target="_blank"}, within the [Applied Research Laboratories](http://www.arlut.utexas.edu){:target="_blank"} at the [University of Texas at Austin](https://www.utexas.edu){:target="_blank"} (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk){:target="_blank"}.
+ * It downloads `gps_l2c_m_prn7_5msps.dat`, a file containing raw GNSS signal samples that is used by some tests as input data.
 
 
 The following Unit Test Cases are added to the executable `run_tests`:
 
-* GpsL2MPcpsAcquisitionTest
-* GpsL1CADllPllTrackingTest
-* GpsL2MDllPllTrackingTest
-* GpsL1CATelemetryDecoderTest
-* HybridObservablesTest
+* Extra Unit Test Cases
+  - Acquisition
+    - GpsL2MPcpsAcquisitionTest
+  - Tracking
+    - GpsL1CADllPllTrackingTest
+    - GpsL2MDllPllTrackingTest
+  - Telemetry Decoder
+    - GpsL1CATelemetryDecoderTest
+  - Observables
+    - HybridObservablesTest
 
 
 ### System Tests
@@ -392,7 +410,50 @@ $ make
 
 This option generates the following system test program:
 
-* ttff
+* **ttff**: This program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | absolute_url }}). The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. This program accepts the following commandline flags:
+
+|----------
+|  **Flag**  |  **Default value** | **Description** |
+|:--|:-:|:--|
+| &#x2011;&#x2011;fs_in | $$ 4000000 $$ | Sampling rate, in Samples/s. |
+| &#x2011;&#x2011;max_measurement_duration | $$ 90 $$ | Maximum time waiting for a position fix, in seconds. |
+| &#x2011;&#x2011;num_measurements | $$ 2 $$ | Number of measurements (M). |
+| &#x2011;&#x2011;device_address | 192.168.40.2 | USRP device IP address. |
+| &#x2011;&#x2011;subdevice | A:0 | USRP subdevice. |
+| &#x2011;&#x2011;config_file_ttff | empty | File containing the configuration parameters for the TTFF test. |
+|--------------
+
+For TTFF measurements, it makes sense to use real-life GNSS signals. Just prepare a configuration file according to your hardware setup and pass it to the receiver with the `--config_file_ttff` file, in the same way that you invoke `gnss-sdr` with `--config_file`.
+
+Each TTFF sample is computed as the time interval starting with the invocation of the receiver's executable and ending with the first valid navigation data point derived from live or simulated satellite signals. The start times of the test samples are not synchronized to any UTC time boundary and they should be randomly spread within the 24 hour UTC day and within the GNSS data collection interval. The program starts the receiver, it processes signal until the first fix, and then annotates the elapsed time, shuts down the receiver, waits for a random number of seconds (from 5 to 30 s), and starts the receiver again. This is done a total of M times, and this number can be controlled by the `--num_measurements` flag.
+
+So an example of running this test could be:
+
+```
+$ ./ttff --config_file_ttff=my_GPS_rx.conf --num_measurements=50
+```
+
+
+The results of the experiment are reported as follows:
+
+|----------
+|  **Reported parameter**  |  **Description** |
+|:-:|:--|
+|--------------
+|  **Mean TTFF**  | Average of the obtained measurements, computed as $$  \frac{1}{L}\sum_{j=1}^L TTFF_j $$. Units: seconds. |
+|  **Max TTFF**  | Maximum of the obtained valid measurements. Units: seconds |
+|  **Min TTFF**  | Minimum of the obtained valid measurements. Units: seconds |
+|  **Sample Dev / Size** |  The standard deviation of the sample set is computed as $$ \sigma_{TTFF} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( TTFF_i - \frac{1}{L}\sum_{j=1}^L TTFF_j \right)^2 } $$, in seconds. / Number of valid measurements (L) over the total number of measurements (M), expressed as (L of M). |
+| **Init. status** | [`cold`, `warm`, `hot`]: Initial receiver status, as defined above.  |
+| **Nav. mode** | [`2D`, `3D`]: `3D` Navigation mode in which at least four satellite signals are received and are used to compute positioning data containing as a minimum: time tagged latitude, longitude, and altitude referenced to a given coordinate system.  / `2D` Navigation mode in which no fewer than three satellite signals and fixed altitude are received and used to compute positioning data containing as a minimum: time tagged latitude, longitude, and fixed altitude referenced to a given system.    |
+|  **DGNSS**  | [`Y`, `N`]: `Y` if an external system is providing ephemeris data, `N` if the receiver is not receiving external information. |
+| **Signal** | Targeted GNSS signal(s) during the test. |
+| **Source** | [`Live`, `Sim`, `File`]: `Live` for GNSS signals from space, `Sim` for or simulated GNSS signals generated at RF, `File` for a pre-defined set of signal inputs, stored in files. |
+| **Processing platform**  | Brand and model of the processing platform performing the test. |
+| **Operating system**  | Brand and release of the operating system in which the software receiver undergoing the test was executed. |
+| **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
+|--------------
+
 
 ### Extra System Tests
 
@@ -408,7 +469,58 @@ As in the case of the `-DENABLE_UNIT_TESTING_EXTRA=ON`, this option will also do
 This option generates the following system test programs:
 
 * obs_gps_l1_system_test
-* position_test
+* **position_test**
+
+|----------
+|  **Flag**  |  **Default value** | **Description** |
+|:--|:-:|:--|
+| &#x2011;&#x2011;rinex_nav_file| "brdc3540.14n" | Input RINEX navigation file |
+| &#x2011;&#x2011;filename_rinex_obs | "sim.16o" | Filename of output RINEX navigation file. |
+| &#x2011;&#x2011;filename_raw_data | "signal_out.bin" | Filename of raw samples data file. |
+| &#x2011;&#x2011;static_position | "30.286502,120.032669,100" | Static receiver position [log,lat,height] |
+| &#x2011;&#x2011;dynamic_position | -- | Observer positions file, in .csv or .nmea format. |
+| &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
+| &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = 300]. |
+| &#x2011;&#x2011;config_file_ptest | empty | File containing the configuration parameters for the position test. |
+|----------
+
+
+[Accuracy]({{ "/design-forces/accuracy/" | absolute_url }}) and [precision]({{ "/design-forces/repeatability/" | absolute_url }}) metrics for 2D and 3D positioning, expressed in a local ENU reference frame, are defined as:
+
+|----------
+|  **Measure**  |  **Formula** | **Confidence region probability** | **Definition** |
+|:-:|:-:|:-:|:--|  
+|--------------
+|  **2DRMS** | $$ 2\sqrt{\sigma_E^2+\sigma_N^2} $$ | 95 % | Twice the DRMS of the horizontal position errors, defining the radius of circle centered at the true position, containing the horizontal position estimate with probability of 95 %. |
+|  **DRMS**  | $$ \sqrt{\sigma_E^2+\sigma_N^2} $$  | 65 % | The square root of the average of the squared horizontal position errors, defining the radius of circle centered at the true position, containing the horizontal position estimate with probability of 65 %. |
+|  **CEP**   | $$ 0.62\sigma_N+0.56\sigma_E $$, accurate if $$ \frac{\sigma_N}{\sigma_E}>0.3 $$ | 50 % | The radius of circle centered at the true position, containing the horizontal position estimate with probability of 50 %. |
+|  **99 % Spherical Accuracy Standard** | $$ 1.122 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 99 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 99 %  |
+|  **90 % Spherical Accuracy Standard** | $$ 0.833 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 90 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 90 %  |
+|  **MRSE**  | $$ \sqrt{\sigma_E^2+\sigma_N^2+\sigma_U^2} $$ | 61 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 61 % |
+|  **SEP**   | $$ 0.51 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 50 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 50 % |
+|-----
+
+where:
+
+$$ \sigma_E^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- E_{ref}\right)^2} ,$$
+
+$$ \sigma_N^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- N_{ref}\right)^2} ,$$
+
+$$ \sigma_U^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- U_{ref}\right)^2} ,$$
+
+with $$ E_{ref} $$, $$ N_{ref} $$ and $$ U_{ref} $$ are the East, North and Up coordinates of the reference location, respectively.
+
+In case of precision measurements:
+
+$$ \sigma_{E}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- \hat{E}\right)^2} , $$
+
+$$ \sigma_{N}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- \hat{N}\right)^2} , $$
+
+and
+
+$$ \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U}\right)^2} , $$
+
+where $$ \hat{E}=\frac{1}{L}\sum_{l=1}^{L}E[l] $$, $$ \hat{N}=\frac{1}{L}\sum_{l=1}^{L}N[l] $$, and $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.
 
 
 ## How to write a new test
@@ -469,4 +581,4 @@ For more details, check out the Google C++ Testing Framework [Documentation](htt
 
 [^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education){:target="_blank"}, MIT Press, Cambridge, MA, 1993.
 
-[^Avital09]: M. Avital and D. Te'eni, _From generative fit to generative capacity: Exploring an emerging dimension of information systems design and task performance_, Information Systems Journal 19(4), pp. 345-367, July 2009. DOI: [10.1111/j.1365-2575.2007.00291.x](http://dx.doi.org/10.1111/j.1365-2575.2007.00291.x){:target="_blank"}.
+[^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Understand - Improve - Apply](http://www.springer.com/gp/book/9783642137563){:target="_blank"}, Springer-Verlag, Berlin, Germany, 2011.
