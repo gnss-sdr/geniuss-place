@@ -410,7 +410,7 @@ $ make
 
 This option generates the following system test program:
 
-* **ttff**: This program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | absolute_url }}). The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. This program accepts the following commandline flags:
+* **ttff**: This test program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | absolute_url }}). The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. This program accepts the following commandline flags:
 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
@@ -469,7 +469,7 @@ As in the case of the `-DENABLE_UNIT_TESTING_EXTRA=ON`, this option will also do
 This option generates the following system test programs:
 
 * obs_gps_l1_system_test
-* **position_test**
+* **position_test**: This test program computes metrics of accuracy and precision. It can use either a software-defined signal generator (GPS L1 only) or accept any other receiver configuration obtaining PVT fixes. It accepts the following commandline flags:
 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
@@ -484,8 +484,29 @@ This option generates the following system test programs:
 | &#x2011;&#x2011;config_file_ptest | empty | File containing the configuration parameters for the position test. |
 |----------
 
+So an example of running this test could be:
 
-[Accuracy]({{ "/design-forces/accuracy/" | absolute_url }}) and [precision]({{ "/design-forces/repeatability/" | absolute_url }}) metrics for 2D and 3D positioning, expressed in a local ENU reference frame, are defined as:
+```
+$ ./position_test
+```
+
+By default, the program triggers a software-defined GPS L1 C/A signal generator, which takes the default RINEX navigation file (brdc3540.14n, already included in the files automatically downloaded by CMake's `-DENABLE_SYSTEM_TESTING_EXTRA=ON` option) and the default reference location (longitude $$30.286502^o $$, latitude $$ 120.032669^o $$, height $$ 100 $$ m), and generates a RINEX observation file and a raw signal sample file, with a duration of $$ 100 $ s. Then, it triggers the software receiver and processes such raw data file. At the end of the processing, the program reports several metrics for accuracy and precision. SInce the generation of the raw samples file only needs to be executed once, the next time you execute this program, the generation can be skipped by:
+
+```
+$ ./position_test --disable_generator
+```
+
+
+You can use your own configuration file:
+
+```
+$ ./position_test --config_file_ptest=my_GPS_rx.conf --static_position="0.000000,000000,0"
+```
+
+changing "0.000000,000000,0" by your reference longitude, latitude and height (expressed in WGS-84 coordinates). In case of processing live data, please remember to terminate the receiver execution with key `q`and then `[Enter]`.
+
+
+When the software receiver terminates, the program reports [Accuracy]({{ "/design-forces/accuracy/" | absolute_url }}) and [precision]({{ "/design-forces/repeatability/" | absolute_url }}) metrics for 2D and 3D positioning, expressed in a local ENU (East-North-Up) reference frame and defined as:
 
 |----------
 |  **Measure**  |  **Formula** | **Confidence region probability** | **Definition** |
@@ -500,7 +521,7 @@ This option generates the following system test programs:
 |  **SEP**   | $$ 0.51 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 50 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 50 % |
 |-----
 
-where:
+For accuracy measurements, the standard deviation of the error in the three local coordinates (in m) are computed as:
 
 $$ \sigma_E^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- E_{ref}\right)^2} ,$$
 
@@ -515,8 +536,6 @@ In case of precision measurements:
 $$ \sigma_{E}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- \hat{E}\right)^2} , $$
 
 $$ \sigma_{N}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- \hat{N}\right)^2} , $$
-
-and
 
 $$ \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U}\right)^2} , $$
 
