@@ -15,7 +15,7 @@ last_modified_at: 2017-06-23T09:37:02+02:00
 
 {% include toc %}
 
-Testing is a concept intimately related to inquiry, creativity, design, methodology, tools, best practices and, ultimately, quality. People from Design Thinking[^Plattner11] understand testing in the sense of prototyping, of trying out something that could be useful for someone else whose needs we have empathized with, and as a source of innovation.  People from Quality Assurance[^Beck02] understand testing as the detailed procedure that leads to a pass/fail decision based upon some pre-defined requirements. A <strike>humble</strike>distinguished developer just wants to know if his or her code works as expected.  Hence, it is important to recognize that _the code developed to test the functionality of a given piece of source code is as valuable as the implementation itself_, constituting an inalienable part of the project's source code tree. This page provides an overview on the philosophy behind the approach undertaken by the GNSS-SDR project, it documents the currently available testing procedures, and describes how to add new ones.
+Testing is a concept intimately related to inquiry, creativity, design, methodology, tools, best practices and, ultimately, quality. People from Design Thinking[^Plattner11]$$ ^, $$[^Cross11] understand testing in the sense of prototyping, of trying out something that could be useful for someone else whose needs we have empathized with, and as a source of innovation.  People from Quality Assurance[^Beck02]$$ ^, $$[^IEEE730] understand testing as the detailed procedure that leads to a pass/fail decision based upon some pre-defined requirements. A <strike>humble</strike>distinguished developer just wants to know if his or her code works as expected.  Hence, it is important to recognize that _the code developed to test the functionality of a given piece of source code is as valuable as the implementation itself_, constituting an inalienable part of the project's source code tree. This page provides an overview on the philosophy behind the approach undertaken by the GNSS-SDR project, it documents the currently available testing procedures, and describes how to add new ones.
 
 ## The Science of Improvement
 
@@ -601,3 +601,7 @@ For more details, check out the Google C++ Testing Framework [Documentation](htt
 [^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education){:target="_blank"}, MIT Press, Cambridge, MA, 1993.
 
 [^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Understand - Improve - Apply](http://www.springer.com/gp/book/9783642137563){:target="_blank"}, Springer-Verlag, Berlin, Germany, 2011.
+
+[^Cross11]: N. Cross, [Design Thinking: Understanding How Designers Think and Work](https://books.google.es/books/about/Design_Thinking.html?id=F4SUVT1XCCwC){:target="_blank"}, Berg Publishers, Oxford, UK, 2011.
+
+[^IEEE730]: IEEE Computer Society, [730-2014 - IEEE Standard for Software Quality Assurance Processes](http://ieeexplore.ieee.org/document/6835311/){:target="_blank"}, New York, NY, 2014.
