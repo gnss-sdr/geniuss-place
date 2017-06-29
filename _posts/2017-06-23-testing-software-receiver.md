@@ -21,7 +21,7 @@ Testing is a concept intimately related to inquiry, creativity, design, methodol
 
 Improvement has meaning only in terms of observation based on a given criteria. That is, improvement is useful and has meaning when it is defined by characteristics such as more efficient, more accurate, more reliable, and so on. Thus, we need to identify the dimensions (or _design forces_) in which a software-defined GNSS receiver can be improved, and to define adequate metrics, measurement procedures and feedback mechanisms for each of those dimensions, in order to objectively assess improvement.
 
-A proposal of an open discussion about the definition of quality metrics and testing procedures for _any_ software-defined GNSS receiver is available at [**16 Design Forces for software-defined GNSS receivers**]({{ "/design-forces/" | absolute_url }}).
+A proposal of an open discussion about the definition of quality metrics and testing procedures for _any_ software-defined GNSS receiver is available at [**16 Design Forces for software-defined GNSS receivers**]({{ "/design-forces/" | absolute_url }}). Based on that taxonomy, this page describes GNSS-SDR's particular approach and implementation.
 {: .notice--info}
 
 The concepts of improvement and change are strongly connected. Although change will not always result in improvement, all improvement requires change.
@@ -140,7 +140,7 @@ A _Test Program_ can contain multiple test cases.
 
 ## Running GNSS-SDR Tests
 
-In order to execute the tests, you must build GNSS-SDR from source. If the Google C++ Testing Framework source code is not already present in your system (and pointing the `GTEST_DIR` environment variable to the root of the souce code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt-get install libgtest-dev`), it will be automatically downloaded from its Git repository, compiled and linked to GNSS-SDR at building time.
+In order to execute the tests, you must build GNSS-SDR from source. If the Google C++ Testing Framework source code is not already present in your system (and pointing the `GTEST_DIR` environment variable to the root of the souce code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt-get install libgtest-dev`), it will be automatically downloaded from its Git repository, compiled and linked to GNSS-SDR at building time. The CMake script automatizes all those steps for you.
 
 GNSS-SDR are divided in two categories:
 
@@ -156,7 +156,7 @@ $ cmake ..
 $ make
 ```
 
-this process will end up generating some executables at the `gnss-sdr/install` folder. Among them, a test program called `run_tests`. This executable gathers most of the GNSS-SDR available unit tests. It can be run by doing:
+this process will end up generating some executables at the `gnss-sdr/install` folder. Among them, a test program called `run_tests`. This executable gathers all the available GNSS-SDR's unit tests. It can be run by doing:
 
 ```
 $ cd ../install
@@ -180,7 +180,7 @@ Running GNSS-SDR Tests...
 ```
 
 
-Other unit and system tests require from external tools, libraries and data files not included in the GNSS-SDR's source tree. They can be build by passing options to CMake:
+Other unit and system tests require from external tools, libraries and data files not included in the GNSS-SDR's source tree. As in the case of the Google C++ Testing Framework source code, they can be automatically downloaded and built by passing the following option flags to CMake:
 
 |----------
 |  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
@@ -380,7 +380,7 @@ $ make
 
 This option will download, build and link (at building time) the following tools and files:
 
- * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim){:target="_blank"} and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator){:target="_blank"}
+ * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim){:target="_blank"} and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator){:target="_blank"}, which includes some sample RINEX and trajectory (.cvs) files used by optional tests.
  * The [GPSTk project](http://www.gpstk.org){:target="_blank"}, an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](http://sgl.arlut.utexas.edu){:target="_blank"}, within the [Applied Research Laboratories](http://www.arlut.utexas.edu){:target="_blank"} at the [University of Texas at Austin](https://www.utexas.edu){:target="_blank"} (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk){:target="_blank"}.
  * It downloads `gps_l2c_m_prn7_5msps.dat`, a file containing raw GNSS signal samples that is used by some tests as input data.
 
@@ -468,17 +468,49 @@ As in the case of the `-DENABLE_UNIT_TESTING_EXTRA=ON`, this option will also do
 
 This option generates the following system test programs:
 
-* obs_gps_l1_system_test
-* **position_test**: This test program computes metrics of accuracy and precision. It can use either a software-defined signal generator (GPS L1 only) or accept any other receiver configuration obtaining PVT fixes. It accepts the following commandline flags:
+* **obs_gps_l1_system_test**: This test program calls the software-defined signal generator, which generates a file of raw GNSS signals based on the passed RINEX navigation file and a given receiver position. Then, the software receiver processes it, generating its own RINEX observbles and navigation files. Then, the program compares the observables obtained by the software receiver to the ones in a RINEX observation file, making use of the GPSTK library. This program accepts the following commandline flags:
 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
 |:--|:-:|:--|
 | &#x2011;&#x2011;rinex_nav_file| "brdc3540.14n" | Input RINEX navigation file |
 | &#x2011;&#x2011;filename_rinex_obs | "sim.16o" | Filename of output RINEX navigation file. |
-| &#x2011;&#x2011;filename_raw_data | "signal_out.bin" | Filename of raw samples data file. |
+| &#x2011;&#x2011;filename_raw_data | "signal_out.bin" | Filename of raw signal samples file (internally genetaed by software). |
 | &#x2011;&#x2011;static_position | "30.286502,120.032669,100" | Static receiver position [log,lat,height] |
 | &#x2011;&#x2011;dynamic_position | -- | Observer positions file, in .csv or .nmea format. |
+| &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = 300]. |
+| &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
+|----------
+
+So an example of running this test could be:
+
+```
+$ ./obs_gps_l1_system_test
+```
+
+The first run will generate a `signal_out.bin` file (taking some time). The next time you execute this test, signal generation cam be skipped by:
+
+```
+$ ./obs_gps_l1_system_test --disable_generator
+```
+
+If you have a professional GNSS signal receiver that generates RINEX files, or you download them from a server, you can use the RINEX navigation file and your best guess of your position:
+
+```
+$ ./position_test --rinex_nav_file=my_RINEX.17n --static_position="0.000000,000000,0"
+```
+
+This expects a `my_RINEX.17n` and a `my_RINEX.17o` files and a valid position.
+
+* **position_test**: This test program computes metrics of static accuracy and precision. It can use either a software-defined signal generator (GPS L1 only) or accept any other receiver configuration obtaining PVT fixes. It accepts the following commandline flags:
+
+|----------
+|  **Flag**  |  **Default value** | **Description** |
+|:--|:-:|:--|
+| &#x2011;&#x2011;rinex_nav_file| "brdc3540.14n" | Input RINEX navigation file |
+| &#x2011;&#x2011;filename_rinex_obs | "sim.16o" | Filename of output RINEX navigation file. |
+| &#x2011;&#x2011;filename_raw_data | "signal_out.bin" | Filename of raw signal samples file (internally genetaed by software). |
+| &#x2011;&#x2011;static_position | "30.286502,120.032669,100" | Static receiver position [log,lat,height] |
 | &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
 | &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = 300]. |
 | &#x2011;&#x2011;config_file_ptest | empty | File containing the configuration parameters for the position test. |
