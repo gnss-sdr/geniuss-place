@@ -305,7 +305,7 @@ All these examples produce the following report:
 </testsuites>
 ```
 
- 
+
 # Description of available tests
 
 ## Unit Tests
@@ -377,7 +377,7 @@ $ make
 
 This option will download, build and link (at building time) the following tools and files:
 
- * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim){:target="_blank"} and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator){:target="_blank"}, which includes some sample RINEX and trajectory (.cvs) files used by optional tests.
+ * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim){:target="_blank"} and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator){:target="_blank"}, which includes some sample RINEX and trajectory (.csv) files used by optional tests.
  * The [GPSTk project](http://www.gpstk.org){:target="_blank"}, an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](http://sgl.arlut.utexas.edu){:target="_blank"}, within the [Applied Research Laboratories](http://www.arlut.utexas.edu){:target="_blank"} at the [University of Texas at Austin](https://www.utexas.edu){:target="_blank"} (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk){:target="_blank"}.
  * It downloads `gps_l2c_m_prn7_5msps.dat`, a file containing raw GNSS signal samples that is used by some tests as input data.
 
@@ -468,7 +468,8 @@ As in the case of the `-DENABLE_UNIT_TESTING_EXTRA=ON`, this option will also do
 This option generates the following system test programs:
 
 ### `obs_gps_l1_system_test`
-* **obs_gps_l1_system_test**: This test program calls the software-defined signal generator, which generates a file of raw GNSS signals based on the passed RINEX navigation file and a given receiver position. Then, the software receiver processes it, generating its own RINEX observbles and navigation files. Then, the program compares the observables obtained by the software receiver to the ones in a RINEX observation file, making use of the GPSTK library. This program accepts the following commandline flags:
+
+This test program calls the software-defined signal generator, which generates a file of raw GNSS signals based on the passed RINEX navigation file and a given receiver position. Then, the software receiver processes it, generating its own RINEX observbles and navigation files. Then, the program compares the observables obtained by the software receiver to the ones in a RINEX observation file, making use of the GPSTK library. This program accepts the following commandline flags:
 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
@@ -504,7 +505,7 @@ This expects a `my_RINEX.17n` and a `my_RINEX.17o` files and a valid position.
 
 ### `position_test`
 
-* **position_test**: This test program computes metrics of static accuracy and precision. It can use either a software-defined signal generator (GPS L1 only) or accept any other receiver configuration obtaining PVT fixes. It accepts the following commandline flags:
+This test program computes metrics of static accuracy and precision. It can use either a software-defined signal generator (GPS L1 only) or accept any other receiver configuration obtaining PVT fixes. It accepts the following commandline flags:
 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
@@ -524,7 +525,7 @@ So an example of running this test could be:
 $ ./position_test
 ```
 
-By default, the program triggers a software-defined GPS L1 C/A signal generator, which takes the default RINEX navigation file (brdc3540.14n, already included in the files automatically downloaded by CMake's `-DENABLE_SYSTEM_TESTING_EXTRA=ON` option) and the default reference location (longitude $$30.286502^o $$, latitude $$ 120.032669^o $$, height $$ 100 $$ m), and generates a RINEX observation file and a raw signal sample file, with a duration of $$ 100 $ s. Then, it triggers the software receiver and processes such raw data file. At the end of the processing, the program reports several metrics for accuracy and precision. SInce the generation of the raw samples file only needs to be executed once, the next time you execute this program, the generation can be skipped by:
+By default, the program triggers a software-defined GPS L1 C/A signal generator, which takes the default RINEX navigation file (brdc3540.14n, already included in the files automatically downloaded by CMake's `-DENABLE_SYSTEM_TESTING_EXTRA=ON` option) and the default reference location (longitude $$30.286502^o $$, latitude $$ 120.032669^o $$, height $$ 100 $$ m), and generates a RINEX observation file and a raw signal sample file, with a duration of $$ 100 $ s. Then, it triggers the software receiver and processes such raw data file. At the end of the processing, the program reports several metrics for accuracy and precision. Since the generation of the raw samples file only needs to be executed once, the next time you execute this program, the generation can be skipped by:
 
 ```
 $ ./position_test --disable_generator
@@ -537,7 +538,7 @@ You can use your own configuration file:
 $ ./position_test --config_file_ptest=my_GPS_rx.conf --static_position="0.000000,000000,0"
 ```
 
-changing "0.000000,000000,0" by your reference longitude, latitude and height (expressed in WGS-84 coordinates). In case of processing live data, please remember to terminate the receiver execution with key `q`and then `[Enter]`.
+changing "0.000000,000000,0" by your reference longitude, latitude and height (expressed in WGS-84 coordinates). In case of processing live data, please remember to terminate the receiver execution with key `q` and then `[Enter]`.
 
 
 When the software receiver terminates, the program reports [Accuracy]({{ "/design-forces/accuracy/" | absolute_url }}) and [precision]({{ "/design-forces/repeatability/" | absolute_url }}) metrics for 2D and 3D positioning, expressed in a local ENU (East-North-Up) reference frame and defined as:
