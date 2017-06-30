@@ -17,7 +17,7 @@ last_modified_at: 2017-06-23T09:37:02+02:00
 
 Testing is a concept intimately related to inquiry, creativity, design, methodology, tools, best practices and, ultimately, quality. People from Design Thinking[^Plattner11]$$ ^, $$[^Cross11] understand testing in the sense of prototyping, of trying out something that could be useful for someone else whose needs we have empathized with, and as a source of innovation.  People from Quality Assurance[^Beck02]$$ ^, $$[^IEEE730] understand testing as the detailed procedure that leads to a pass/fail decision based upon some pre-defined requirements. A <strike>humble</strike>distinguished developer just wants to know if his or her code works as expected.  Hence, it is important to recognize that _the code developed to test the functionality of a given piece of source code is as valuable as the implementation itself_, constituting an inalienable part of the project's source code tree. This page provides an overview on the philosophy behind the approach undertaken by the GNSS-SDR project, it documents the currently available testing procedures, and describes how to add new ones.
 
-## The Science of Improvement
+# The Science of Improvement
 
 Improvement has meaning only in terms of observation based on a given criteria. That is, improvement is useful and has meaning when it is defined by characteristics such as more efficient, more accurate, more reliable, and so on. Thus, we need to identify the dimensions (or _design forces_) in which a software-defined GNSS receiver can be improved, and to define adequate metrics, measurement procedures and feedback mechanisms for each of those dimensions, in order to objectively assess improvement.
 
@@ -62,7 +62,7 @@ By engaging rapid cycles of the PDCA workflow, the GNSS-SDR project aims to lear
 
 This means that all kind of contributions, from fixing a typo in a source code's comment to the addition of a whole new GNSS signal processing chain, are very welcome and greatly appreciated since all of them point towards improved quality, no matter the step size. More details on the _howtos_ in the context of GNSS-SDR are available in our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}) and in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md){:target="_blank"} file.
 
-## Test Driven Development
+# Test Driven Development
 
 Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test case that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards. It is an Agile-based approach to building complex systems where unit test (and in some cases inter-component integration tests) are built in advance of the product software and are used exercised upon component implementation. This methodology is claimed to offer valuable benefits to software development: it facilitates change, simplifies integration, automatizes documentation, helps separate the interface from the implementation, increases developers productivity, and plays a central role in the software quality assurance process[^Shore08].
 
@@ -117,7 +117,7 @@ The key areas in which this approach can contribute are:
  * Ease deployment and manage target environment complexity.
  * Direct facilitation of development team communication and coordination.
 
-## The Testing Framework
+# The Testing Framework
 
 GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googletest){:target="_blank"} (usually referred to as Google Test) for its testing code. This framework provides the following features:
 
@@ -138,7 +138,7 @@ A _Test Program_ can contain multiple test cases.
 
 
 
-## Running GNSS-SDR Tests
+# Running GNSS-SDR Tests
 
 In order to execute the tests, you must build GNSS-SDR from source. If the Google C++ Testing Framework source code is not already present in your system (and pointing the `GTEST_DIR` environment variable to the root of the souce code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt-get install libgtest-dev`), it will be automatically downloaded from its Git repository, compiled and linked to GNSS-SDR at building time. The CMake script automatizes all those steps for you.
 
@@ -198,7 +198,7 @@ Those extra tests are described below.
 
 Tests programs generated with the Google C++ Testing Framework accepts a number of interesting commandline flags. Hereafer we describe some of the most relevant.
 
-### Listing Tests names
+## Listing Tests names
 
 Sometimes it is necessary to list the available tests in a program before running them so that a filter may be applied if needed. Including the flag `--gtest_list_tests` overrides all other flags and lists tests in the following format:
 
@@ -218,7 +218,7 @@ $ ./run_tests --gtest_list_tests
 
 will get the currently available unit Test Cases and unit Test Names.
 
-###  Running a Subset of the Tests
+##  Running a Subset of the Tests
 
 By default, a Google Test program runs all tests the user has defined. Sometimes, you want to run only a subset of the tests (e.g. for debugging or quickly verifying a change). If you set the `GTEST_FILTER` environment variable or the `--gtest_filter` flag to a filter string, Google Test will only run the tests whose full names (in the form of TestCaseName.TestName) match the filter.
 
@@ -235,7 +235,7 @@ For example:
  * `$ ./run_tests --gtest_filter=-*Acquisition*` Runs all non-Acquisition tests.
  * `$ ./run_tests --gtest_filter=GpsL1CaPcpsAcquisitionTest.*-GpsL1CaPcpsAcquisitionTest.ValidationOfResults` Runs everything in test case GpsL1CaPcpsAcquisitionTest except GpsL1CaPcpsAcquisitionTest.ValidationOfResults.
 
-### Repeating the Tests
+## Repeating the Tests
 
 The `--gtest_repeat` flag allows you to repeat all (or selected) test methods in a program many times.
 
@@ -248,7 +248,7 @@ $ ./run_tests --gtest_filter=CpuMulticorrelatorTest.* --gtest_repeat=10
 executes all the tests in the Test Case CpuMulticorrelatorTest ten times.
 
 
-### Generating an XML Report
+## Generating an XML Report
 
 Google Test can emit a detailed XML report to a file in addition to its normal textual output. To generate the XML report, set the `GTEST_OUTPUT` environment variable or the `--gtest_output` flag to the string "`xml:_path_to_output_file_`", which will create the file at the given location. You can also just use the string "`xml`", in which case the output can be found in the `test_detail.xml` file in the current directory.
 
@@ -305,13 +305,10 @@ All these examples produce the following report:
 </testsuites>
 ```
 
+ 
+# Description of available tests
 
-
-## Description of available tests
-
-
-
-### Unit Tests
+## Unit Tests
 
 The generation of some unit test cases are enabled by default, and gathered in the test program `run_tests`.
 
@@ -369,7 +366,7 @@ The generation of some unit test cases are enabled by default, and gathered in t
       - RtcmTest
       - RtcmPrinterTest
 
-### Extra Unit Tests
+## Extra Unit Tests
 
 This option builds some extra unit tests cases that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
@@ -399,7 +396,7 @@ The following Unit Test Cases are added to the executable `run_tests`:
     - HybridObservablesTest
 
 
-### System Tests
+## System Tests
 
 This option builds some extra system test programs that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
@@ -410,7 +407,9 @@ $ make
 
 This option generates the following system test program:
 
-* **ttff**: This test program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | absolute_url }}). The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. This program accepts the following commandline flags:
+### `ttff`
+
+This test program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | absolute_url }}). The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. This program accepts the following commandline flags:
 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
@@ -455,7 +454,7 @@ The results of the experiment are reported as follows:
 |--------------
 
 
-### Extra System Tests
+## Extra System Tests
 
 This option builds some extra system test programs that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
@@ -468,6 +467,7 @@ As in the case of the `-DENABLE_UNIT_TESTING_EXTRA=ON`, this option will also do
 
 This option generates the following system test programs:
 
+### `obs_gps_l1_system_test`
 * **obs_gps_l1_system_test**: This test program calls the software-defined signal generator, which generates a file of raw GNSS signals based on the passed RINEX navigation file and a given receiver position. Then, the software receiver processes it, generating its own RINEX observbles and navigation files. Then, the program compares the observables obtained by the software receiver to the ones in a RINEX observation file, making use of the GPSTK library. This program accepts the following commandline flags:
 
 |----------
@@ -501,6 +501,8 @@ $ ./position_test --rinex_nav_file=my_RINEX.17n --static_position="0.000000,0000
 ```
 
 This expects a `my_RINEX.17n` and a `my_RINEX.17o` files and a valid position.
+
+### `position_test`
 
 * **position_test**: This test program computes metrics of static accuracy and precision. It can use either a software-defined signal generator (GPS L1 only) or accept any other receiver configuration obtaining PVT fixes. It accepts the following commandline flags:
 
@@ -574,12 +576,12 @@ $$ \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U
 where $$ \hat{E}=\frac{1}{L}\sum_{l=1}^{L}E[l] $$, $$ \hat{N}=\frac{1}{L}\sum_{l=1}^{L}N[l] $$, and $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.
 
 
-## How to write a new test
+# How to write a new test
 
 For more details, check out the Google C++ Testing Framework [Documentation](https://github.com/google/googletest/blob/master/googletest/docs/Documentation.md){:target="_blank"}
 
 
-### Tests in the source tree
+## Tests in the source tree
 
 ```
 ├── src
@@ -609,18 +611,18 @@ For more details, check out the Google C++ Testing Framework [Documentation](htt
 
 
 
-### Writing a test
+## Writing a test
 
 
 
 
-### Listing the test
+## Listing the test
 
-### Running the test
+## Running the test
 
 ------
 
-## References
+# References
 
 [^Beck99]: K. Beck, C. Andres, [Extreme Programming Explained: Embrace Change](http://www.goodreads.com/book/show/67833.Extreme_Programming_Explained){:target="_blank"}, Addison-Wesley Professional, Boston, MA, 1999.
 
