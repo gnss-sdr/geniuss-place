@@ -497,7 +497,7 @@ $ ./obs_gps_l1_system_test --disable_generator
 If you have a professional GNSS signal receiver that generates RINEX files, or you download them from a server, you can use the RINEX navigation file and your best guess of your position:
 
 ```
-$ ./position_test --rinex_nav_file=my_RINEX.17n --static_position="0.000000,000000,0"
+$ ./obs_gps_l1_system_test --rinex_nav_file=my_RINEX.17n --static_position="0.000000,000000,0"
 ```
 
 This expects a `my_RINEX.17n` and a `my_RINEX.17o` files and a valid position.
