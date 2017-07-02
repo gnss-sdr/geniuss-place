@@ -62,6 +62,8 @@ By engaging rapid cycles of the PDCA workflow, the GNSS-SDR project aims to lear
 
 This means that all kind of contributions, from fixing a typo in a source code's comment to the addition of a whole new GNSS signal processing chain, are very welcome and greatly appreciated since all of them point towards improved quality, no matter the step size. More details on the _howtos_ in the context of GNSS-SDR are available in our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}) and in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md){:target="_blank"} file.
 
+&nbsp;
+
 # Test Driven Development
 
 Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test case that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards. It is an Agile-based approach to building complex systems where unit test (and in some cases inter-component integration tests) are built in advance of the product software and are used exercised upon component implementation. This methodology is claimed to offer valuable benefits to software development: it facilitates change, simplifies integration, automatizes documentation, helps separate the interface from the implementation, increases developers productivity, and plays a central role in the software quality assurance process[^Shore08].
@@ -117,6 +119,8 @@ The key areas in which this approach can contribute are:
  * Ease deployment and manage target environment complexity.
  * Direct facilitation of development team communication and coordination.
 
+&nbsp;
+
 # The Testing Framework
 
 GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googletest){:target="_blank"} (usually referred to as Google Test) for its testing code. This framework provides the following features:
@@ -136,7 +140,7 @@ A _Test Case_ contains one or many tests. You should group your tests into test 
 
 A _Test Program_ can contain multiple test cases.
 
-
+&nbsp;
 
 # Running GNSS-SDR Tests
 
@@ -147,7 +151,7 @@ GNSS-SDR are divided in two categories:
  * **Unit Tests**: checking of certain functions and areas - or _units_ - of the source code.
  * **System Tests**: checking conducted on a complete, integrated system to evaluate the system's compliance with its specified requirements.
 
-By default, only (a large) subset of unit tests are compiled. So, when doing:
+By default, only (a large) subset of unit tests are compiled (see details [below]({{ "#unit-tests" }})). So, when doing:
 
 ```
 $ cd gnss-sdr/build
@@ -305,6 +309,8 @@ All these examples produce the following report:
 </testsuites>
 ```
 
+&nbsp;
+
 
 # Description of available tests
 
@@ -313,58 +319,80 @@ All these examples produce the following report:
 The generation of some unit test cases are enabled by default, and gathered in the test program `run_tests`.
 
  * Unit Test Cases for arithmetics:
-    - CodeGenerationTest
-    - ComplexCarrierTest
-    - ConjugateTest
-    - FFTLengthTest
-    - MagnitudeSquaredTests
-    - MultiplyTests
+    - `CodeGenerationTest`: set of tests for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of PRN code generation.
+    - `ComplexCarrierTest`: set of tests for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of complex carrier generation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_carrier_test`. You can try a different length by doing:
+    ```
+    $ ./run_tests --gtest_filter=ComplexCarrier* --size_carrier_test=1000000
+    ```
+    - `ConjugateTest`: set of tests measuring the execution time of various implementations of vector conjugation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_conjugate_test`. You can try a different length by doing:
+    ```
+    $ ./run_tests --gtest_filter=Conjugate* --size_conjugate_test=1000000
+    ```
+    - `FFTLengthTest`: set of tests measuring the execution time for several FFT lengths. The default number of averaged iterations is $$ 1000 $$, but this test case accepts the flag `--fft_iterations_test`. You can try a different number of iterations by doing:
+    ```
+    $ ./run_tests --gtest_filter=FFT* --fft_iterations_test=10000
+    ```
+    - `MagnitudeSquaredTest`: set of tests measuring the execution time of various implementations of vector square magnitude computation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_magnitude_test`. You can try a different length by doing:
+    ```
+    $ ./run_tests --gtest_filter=Magnitude* --size_magnitude_test=1000000
+    ```
+    - `MultiplyTest`: set of tests measuring the execution time of various implementations of vector (element-by-element) multiplication. The default vector length is $$ 10000 $$, but this test case accepts the flag `--size_multiply_test`. You can try a different length by doing:
+    ```
+    $ ./run_tests --gtest_filter=Multiply* --size_multiply_test=100000
+    ```
 
 * Unit Test Cases for the control plane:
-    - ControlMessageFactoryTest
-    - ControlThreadTest
-    - FileConfigurationTest
-    - GNSSBlockFactoryTest
-    - GNSSFlowgraph
-    - InMemoryConfiguration
-    - StringConverterTest
+    - `ControlMessageFactoryTest`: set of tests for [control_message_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_message_factory.h){:target="_blank"}
+    - `ControlThreadTest`: set of tests for [control_thread.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_thread.h){:target="_blank"}
+    - `FileConfigurationTest`: set of tests for [file_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/file_configuration.h){:target="_blank"}
+    - `GNSSBlockFactoryTest`: set of tests for [gnss_block_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_block_factory.h){:target="_blank"}
+    - `GNSSFlowgraph`: set of tests for [gnss_flowgraph.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_flowgraph.h){:target="_blank"}
+    - `InMemoryConfiguration`: set of tests for [in_memory_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/in_memory_configuration.h){:target="_blank"}
+    - `StringConverterTest`: set of tests for [string_converter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/libs/string_converter.h){:target="_blank"}
 
  * Unit Test Cases for signal processing blocks:
     - Signal sources
-      - FileSignalSource
-      - ValveTest
+      - `FileSignalSource`: set of tests for [file_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/adapters/file_signal_source.h){:target="_blank"}
+      - `ValveTest`: set of tests for [gnss_sdr_valve.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_sdr_valve.h){:target="_blank"}
     - Data Type Adapter
-      - PassThroughTest
+      - `PassThroughTest`: set of tests for [pass_through.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/pass_through.h){:target="_blank"}
     - Input filter
-      - FirFilterTest
+      - `FirFilterTest`: set of tests for [fir_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/input_filter/adapters/fir_filter.h){:target="_blank"}
     - Resampler
-      - DirectResamplerConditionerCcTest
+      - `DirectResamplerConditionerCcTest`: set of tests for [direct_resampler_conditioner_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/resampler/gnuradio_blocks/direct_resampler_conditioner_cc.h){:target="_blank"}
     - Acquisition
-      - GpsL1CaPcpsAcquisitionTest
-      - GpsL1CaPcpsAcquisitionGSoC2013Test
-      - GpsL1CaPcpsTongAcquisitionGSoC2013Test
-      - GpsL1CaPcpsQuickSyncAcquisitionGSoC2014Test
-      - GalileoE1PcpsAmbiguousAcquisitionTest
-      - GalileoE1PcpsAmbiguousAcquisitionGSoCTest
-      - GalileoE1PcpsAmbiguousAcquisitionGSoC2013Test
-      - GalileoE1Pcps8msAmbiguousAcquisitionGSoC2013Test
-      - GalileoE1PcpsTongAmbiguousAcquisitionGSoC2013Test
-      - GalileoE1PcpsCccwsrAmbiguousAcquisitionTest
-      - GalileoE1PcpsQuickSyncAmbiguousAcquisitionGSoC2014Test
-      - GalileoE5aPcpsAcquisitionGSoC2014GensourceTest
+      - `GpsL1CaPcpsAcquisitionTest`: set of tests for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h){:target="_blank"}
+      - `GpsL1CaPcpsAcquisitionGSoC2013Test`: set of tests for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h){:target="_blank"} developed during GSoC 2013.
+      - `GpsL1CaPcpsTongAcquisitionGSoC2013Test`: set of tests for [gps_l1_ca_pcps_tong_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_tong_acquisition.h){:target="_blank"}
+      - `GpsL1CaPcpsQuickSyncAcquisitionGSoC2014Test`: set of tests for [gps_l1_ca_pcps_quicksync_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_quicksync_acquisition.h){:target="_blank"}
+      - `GalileoE1PcpsAmbiguousAcquisitionTest`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h){:target="_blank"}
+      - `GalileoE1PcpsAmbiguousAcquisitionGSoCTest`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2012.
+      - `GalileoE1PcpsAmbiguousAcquisitionGSoC2013Test`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2012.
+      - `GalileoE1Pcps8msAmbiguousAcquisitionGSoC2013Test`: set of tests for [galileo_e1_pcps_8ms_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_8ms_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2013.
+      - `GalileoE1PcpsTongAmbiguousAcquisitionGSoC2013Test`: set of tests for [galileo_e1_pcps_tong_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_tong_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2013.
+      - `GalileoE1PcpsCccwsrAmbiguousAcquisitionTest`: set of tests for [galileo_e1_pcps_cccwsr_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_cccwsr_ambiguous_acquisition.h){:target="_blank"}
+      - `GalileoE1PcpsQuickSyncAmbiguousAcquisitionGSoC2014Test`: set of tests for [galileo_e1_pcps_quicksync_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_quicksync_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2014.
+      - `GalileoE5aPcpsAcquisitionGSoC2014GensourceTest`: set of tests for [galileo_e5a_noncoherent_iq_acquisition_caf.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e5a_noncoherent_iq_acquisition_caf.h){:target="_blank"} developed during GSoC 2014.
     - Tracking
-      - CpuMulticorrelatorTest
-      - GalileoE1DllPllVemlTrackingInternalTest
-      - GalileoE5aTrackingTest
-      - TrackingLoopFilterTest
+      - `CpuMulticorrelatorTest`: set of tests for [cpu_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cpu_multicorrelator.h){:target="_blank"} that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--cpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--cpu_multicorrelator_max_threads_test`. A possible call for this test could be:
+      ```
+      ./run_tests --gtest_filter=Cpu* --cpu_multicorrelator_iterations_test=10000 --cpu_multicorrelator_max_threads_test=2
+      ```
+      - `GpuMulticorrelatorTest`: set of tests for [cuda_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cuda_multicorrelator.h){:target="_blank"} that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$ executed in the GPU. The availability of this test case requires the [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads){:target="_blank"} installed in your system, a GPU [supporting CUDA](https://developer.nvidia.com/cuda-gpus){:target="_blank"}, and have passed the option `-DENABLE_CUDA=ON` to CMake. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--gpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--gpu_multicorrelator_max_threads_test`. A possible call for this test could be:
+      ```
+      $ ./run_tests --gtest_filter=Gpu* --gpu_multicorrelator_iterations_test=10000 --gpu_multicorrelator_max_threads_test=2
+      ```
+      - `GalileoE1DllPllVemlTrackingInternalTest`: set of tests for [galileo_e1_dll_pll_veml_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e1_dll_pll_veml_tracking.h){:target="_blank"}
+      - `GalileoE5aTrackingTest`: set of tests for [galileo_e5a_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e5a_dll_pll_tracking.h){:target="_blank"}
+      - `TrackingLoopFilterTest`: set of tests for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h){:target="_blank"}
     - Telemetry Decoder
-      - InstantiateGpsL1CaTelemetryDecoder
+      - `InstantiateGpsL1CaTelemetryDecoder`:
     - Observables
-      - HybridObservablesTest
+      - -
     - PVT
-      - RinexPrinterTest
-      - RtcmTest
-      - RtcmPrinterTest
+      - `RinexPrinterTest`: set of tests for [rinex_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rinex_printer.h){:target="_blank"}
+      - `RtcmTest`: set of tests for [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h){:target="_blank"}
+      - `RtcmPrinterTest`: set of tests for [rtcm_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm_printer.h){:target="_blank"}
 
 ## Extra Unit Tests
 
@@ -386,14 +414,14 @@ The following Unit Test Cases are added to the executable `run_tests`:
 
 * Extra Unit Test Cases
   - Acquisition
-    - GpsL2MPcpsAcquisitionTest
+    - `GpsL2MPcpsAcquisitionTest`: set of tests for [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h){:target="_blank"} that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
   - Tracking
-    - GpsL1CADllPllTrackingTest
-    - GpsL2MDllPllTrackingTest
+    - GpsL1CADllPllTrackingTest: set of tests for [gps_l1_ca_dll_pll_c_aid_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_c_aid_tracking.h){:target="_blank"}
+    - GpsL2MDllPllTrackingTest: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h){:target="_blank"}
   - Telemetry Decoder
-    - GpsL1CATelemetryDecoderTest
+    - GpsL1CATelemetryDecoderTest: set of tests for [gps_l1_ca_telemetry_decoder.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/gps_l1_ca_telemetry_decoder.h){:target="_blank"}
   - Observables
-    - HybridObservablesTest
+    - HybridObservablesTest: set of tests for [hybrid_observables.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/observables/adapters/hybrid_observables.h)
 
 
 ## System Tests
@@ -439,11 +467,11 @@ The results of the experiment are reported as follows:
 |  **Reported parameter**  |  **Description** |
 |:-:|:--|
 |--------------
-|  **Mean TTFF**  | Average of the obtained measurements, computed as $$  \frac{1}{L}\sum_{j=1}^L TTFF_j $$. Units: seconds. |
+|  **Mean TTFF**  | Average of the $$ L $$ obtained valid measurements, computed as $$  \frac{1}{L}\sum_{j=1}^L TTFF_j $$. Units: seconds. |
 |  **Max TTFF**  | Maximum of the obtained valid measurements. Units: seconds |
 |  **Min TTFF**  | Minimum of the obtained valid measurements. Units: seconds |
 |  **Sample Dev / Size** |  The standard deviation of the sample set is computed as $$ \sigma_{TTFF} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( TTFF_i - \frac{1}{L}\sum_{j=1}^L TTFF_j \right)^2 } $$, in seconds. / Number of valid measurements (L) over the total number of measurements (M), expressed as (L of M). |
-| **Init. status** | [`cold`, `warm`, `hot`]: Initial receiver status, as defined above.  |
+| **Init. status** | [`cold`, `warm`, `hot`]: Initial receiver status, as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | absolute_url }}).  |
 | **Nav. mode** | [`2D`, `3D`]: `3D` Navigation mode in which at least four satellite signals are received and are used to compute positioning data containing as a minimum: time tagged latitude, longitude, and altitude referenced to a given coordinate system.  / `2D` Navigation mode in which no fewer than three satellite signals and fixed altitude are received and used to compute positioning data containing as a minimum: time tagged latitude, longitude, and fixed altitude referenced to a given system.    |
 |  **DGNSS**  | [`Y`, `N`]: `Y` if an external system is providing ephemeris data, `N` if the receiver is not receiving external information. |
 | **Signal** | Targeted GNSS signal(s) during the test. |
@@ -479,7 +507,7 @@ This test program calls the software-defined signal generator, which generates a
 | &#x2011;&#x2011;filename_raw_data | "signal_out.bin" | Filename of raw signal samples file (internally genetaed by software). |
 | &#x2011;&#x2011;static_position | "30.286502,120.032669,100" | Static receiver position [log,lat,height] |
 | &#x2011;&#x2011;dynamic_position | -- | Observer positions file, in .csv or .nmea format. |
-| &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = 300]. |
+| &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = $$ 300 $$]. |
 | &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
 |----------
 
@@ -515,7 +543,7 @@ This test program computes metrics of static accuracy and precision. It can use 
 | &#x2011;&#x2011;filename_raw_data | "signal_out.bin" | Filename of raw signal samples file (internally genetaed by software). |
 | &#x2011;&#x2011;static_position | "30.286502,120.032669,100" | Static receiver position [log,lat,height] |
 | &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
-| &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = 300]. |
+| &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = $$ 300 $$]. |
 | &#x2011;&#x2011;config_file_ptest | empty | File containing the configuration parameters for the position test. |
 |----------
 
@@ -525,7 +553,7 @@ So an example of running this test could be:
 $ ./position_test
 ```
 
-By default, the program triggers a software-defined GPS L1 C/A signal generator, which takes the default RINEX navigation file (brdc3540.14n, already included in the files automatically downloaded by CMake's `-DENABLE_SYSTEM_TESTING_EXTRA=ON` option) and the default reference location (longitude $$30.286502^o $$, latitude $$ 120.032669^o $$, height $$ 100 $$ m), and generates a RINEX observation file and a raw signal sample file, with a duration of $$ 100 $ s. Then, it triggers the software receiver and processes such raw data file. At the end of the processing, the program reports several metrics for accuracy and precision. Since the generation of the raw samples file only needs to be executed once, the next time you execute this program, the generation can be skipped by:
+By default, the program triggers a software-defined GPS L1 C/A signal generator, which takes the default RINEX navigation file (brdc3540.14n, already included in the files automatically downloaded by CMake's `-DENABLE_SYSTEM_TESTING_EXTRA=ON` option) and the default reference location (longitude $$30.286502^o $$, latitude $$ 120.032669^o $$, height $$ 100 $$ m), and generates a RINEX observation file and a raw signal sample file, with a duration of $$ 100 $$ s. Then, it triggers the software receiver and processes such raw data file. At the end of the processing, the program reports several metrics for accuracy and precision. Since the generation of the raw samples file only needs to be executed once, the next time you execute this program, the generation can be skipped by:
 
 ```
 $ ./position_test --disable_generator
@@ -576,10 +604,16 @@ $$ \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U
 
 where $$ \hat{E}=\frac{1}{L}\sum_{l=1}^{L}E[l] $$, $$ \hat{N}=\frac{1}{L}\sum_{l=1}^{L}N[l] $$, and $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.
 
+&nbsp;
 
 # How to write a new test
 
-For more details, check out the Google C++ Testing Framework [Documentation](https://github.com/google/googletest/blob/master/googletest/docs/Documentation.md){:target="_blank"}
+Tests behave very much like system "clients": unit tests imitate the behavior of a corresponding client-class or classes invoking target class methods, and system tests imitate the user behavior. Thinking in how to test a class _before_ actually writing it helps developers to focus in what really matters, and to design better interfaces. In other words, it enforces Design for Testability.
+
+The Google C++ Testing Framework provides an implementation of all those testing concepts described in the [TDD process]({{ "#test-driven-development" }}).
+
+
+
 
 
 ## Tests in the source tree
@@ -615,9 +649,13 @@ For more details, check out the Google C++ Testing Framework [Documentation](htt
 ## Writing a test
 
 
-
+For more details, check out the Google C++ Testing Framework [Documentation](https://github.com/google/googletest/blob/master/googletest/docs/Documentation.md){:target="_blank"}
 
 ## Listing the test
+
+ * If your test is a Unit Test, please `#include` it in the file [gnss-sdr/src/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/test_main.cc){:target="_blank"} and rebuild the source code. It should be get included in the test program `run_tests`.
+
+ * If you test is a System Test, please modify accordingly the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt){:target="_blank"} to get the new executable and rebuild the source code.
 
 ## Running the test
 
