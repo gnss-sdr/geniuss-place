@@ -8,14 +8,15 @@ header:
 tags:
   - tutorial
   - Git
+  - Testing
 sidebar:
   nav: "docs"
-last_modified_at: 2017-06-23T09:37:02+02:00
+last_modified_at: 2017-07-03T09:37:02+02:00
 ---
 
 {% include toc %}
 
-Testing is a concept intimately related to inquiry, creativity, design, methodology, tools, best practices and, ultimately, quality. People from Design Thinking[^Plattner11]$$ ^, $$[^Cross11] understand testing in the sense of prototyping, of trying out something that could be useful for someone else whose needs we have empathized with, and as a source of innovation.  People from Quality Assurance[^Beck02]$$ ^, $$[^IEEE730] understand testing as the detailed procedure that leads to a pass/fail decision based upon some pre-defined requirements. A <strike>humble</strike>distinguished developer just wants to know if his or her code works as expected.  Hence, it is important to recognize that _the code developed to test the functionality of a given piece of source code is as valuable as the implementation itself_, constituting an inalienable part of the project's source code tree. This page provides an overview on the philosophy behind the approach undertaken by the GNSS-SDR project, it documents the currently available testing procedures, and describes how to add new ones.
+Testing is a concept intimately related to inquiry, creativity, design, methodology, tools, best practices and, ultimately, quality. People from Design Thinking[^Plattner11]$$ ^, $$[^Cross11] understand testing in the sense of prototyping, of trying out something that could be useful for someone else whose needs we have empathized with, and as a source of innovation.  People from Quality Assurance[^Beck02]$$ ^, $$[^IEEE730] understand testing as the detailed procedure that leads to a pass/fail decision based upon some pre-defined requirements. A <strike>humble</strike> distinguished developer just wants to know if his or her code works as expected.  Hence, it is important to recognize that _the code developed to test the functionality of a given piece of source code is as valuable as the implementation itself_, constituting an inalienable part of the project's source code tree. This page provides an overview on the philosophy behind the approach undertaken by the GNSS-SDR project, it documents the currently available testing procedures, and describes how to add new ones.
 
 # The Science of Improvement
 
@@ -69,7 +70,7 @@ This means that all kind of contributions, from fixing a typo in a source code's
 Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test case that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards. It is an Agile-based approach to building complex systems where unit test (and in some cases inter-component integration tests) are built in advance of the product software and are used exercised upon component implementation. This methodology is claimed to offer valuable benefits to software development: it facilitates change, simplifies integration, automatizes documentation, helps separate the interface from the implementation, increases developers productivity, and plays a central role in the software quality assurance process[^Shore08].
 
 ![TDD lifecycle]({{ "/assets/images/TDD_Global_Lifecycle.png" | absolute_url }})
-_A graphical representation of the Test-Driven Development lifecycle. Source: [Wikipedia](https://en.wikipedia.org/wiki/Test-driven_development){:target="_blank"}. Author: Xavier Pigeon_.
+_A graphical representation of the Test-Driven Development lifecycle. Source: [Wikipedia](https://en.wikipedia.org/wiki/Test-driven_development){:target="_blank"}_.
 {: style="text-align: center;"}
 
 A typical test-driven development cycle, as described by Beck[^Beck02], can be summarized as:
@@ -123,7 +124,7 @@ The key areas in which this approach can contribute are:
 
 # The Testing Framework
 
-GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googletest){:target="_blank"} (usually referred to as Google Test) for its testing code. This framework provides the following features:
+GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googletest){:target="_blank"} (usually referred to as Google Test) for its testing code. This framework is based on the following premises:
 
  * **Tests should be independent and repeatable**. It is a pain to debug a test that succeeds or fails as a result of other tests. Google C++ Testing Framework isolates the tests by running each of them on a different object. When a test fails, Google C++ Testing Framework allows you to run it in isolation for quick debugging.
  * **Tests should be well organized and reflect the structure of the tested code**. Google C++ Testing Framework groups related tests into test cases that can share data and subroutines. This common pattern is easy to recognize and makes tests easy to maintain. Such consistency is especially helpful when people switch projects and start to work on a new code base.
@@ -158,6 +159,7 @@ $ cd gnss-sdr/build
 $ git checkout next
 $ cmake ..
 $ make
+$ make check  # THIS STEP IS OPTIONAL. It builds and runs a subset of tests.
 ```
 
 this process will end up generating some executables at the `gnss-sdr/install` folder. Among them, a test program called `run_tests`. This executable gathers all the available GNSS-SDR's unit tests. It can be run by doing:
@@ -198,9 +200,9 @@ Other unit and system tests require from external tools, libraries and data file
 | &#x2011;DENABLE_INSTALL_TESTS | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder ```gnss-sdr/install```. If this option is set to ON, test binaries and auxiliary files will not be copied to  ```gnss-sdr/install``` but installed in the system path when doing ```make install```.  |
 |----------
 
-Those extra tests are described below.
+Those extra tests are described [below]({{ "#extra-unit-tests" }}).
 
-Tests programs generated with the Google C++ Testing Framework accepts a number of interesting commandline flags. Hereafer we describe some of the most relevant.
+Tests programs generated with the Google C++ Testing Framework accepts a number of interesting commandline flags. Hereafter we describe some of the most relevant ones.
 
 ## Listing Tests names
 
@@ -249,7 +251,7 @@ For example:
 $ ./run_tests --gtest_filter=CpuMulticorrelatorTest.* --gtest_repeat=10
 ```
 
-executes all the tests in the Test Case CpuMulticorrelatorTest ten times.
+executes all the tests in the Test Case `CpuMulticorrelatorTest` ten times.
 
 
 ## Generating an XML Report
@@ -386,7 +388,7 @@ The generation of some unit test cases are enabled by default, and gathered in t
       - `GalileoE5aTrackingTest`: set of tests for [galileo_e5a_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e5a_dll_pll_tracking.h){:target="_blank"}
       - `TrackingLoopFilterTest`: set of tests for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h){:target="_blank"}
     - Telemetry Decoder
-      - `InstantiateGpsL1CaTelemetryDecoder`:
+      - -
     - Observables
       - -
     - PVT
@@ -416,12 +418,12 @@ The following Unit Test Cases are added to the executable `run_tests`:
   - Acquisition
     - `GpsL2MPcpsAcquisitionTest`: set of tests for [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h){:target="_blank"} that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
   - Tracking
-    - GpsL1CADllPllTrackingTest: set of tests for [gps_l1_ca_dll_pll_c_aid_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_c_aid_tracking.h){:target="_blank"}
-    - GpsL2MDllPllTrackingTest: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h){:target="_blank"}
+    - `GpsL1CADllPllTrackingTest`: set of tests for [gps_l1_ca_dll_pll_c_aid_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_c_aid_tracking.h){:target="_blank"} that make use of the software-defined signal generator.
+    - `GpsL2MDllPllTrackingTest`: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h){:target="_blank"} that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
   - Telemetry Decoder
-    - GpsL1CATelemetryDecoderTest: set of tests for [gps_l1_ca_telemetry_decoder.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/gps_l1_ca_telemetry_decoder.h){:target="_blank"}
+    - `GpsL1CATelemetryDecoderTest`: set of tests for [gps_l1_ca_telemetry_decoder.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/gps_l1_ca_telemetry_decoder.h){:target="_blank"} that make use of the software-defined signal generator.
   - Observables
-    - HybridObservablesTest: set of tests for [hybrid_observables.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/observables/adapters/hybrid_observables.h)
+    - `HybridObservablesTest`: set of tests for [hybrid_observables.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/observables/adapters/hybrid_observables.h){:target="_blank"} that make use of the software-defined signal generator.
 
 
 ## System Tests
@@ -510,6 +512,8 @@ This test program calls the software-defined signal generator, which generates a
 | &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = $$ 300 $$]. |
 | &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
 |----------
+
+
 
 So an example of running this test could be:
 
@@ -610,13 +614,43 @@ where $$ \hat{E}=\frac{1}{L}\sum_{l=1}^{L}E[l] $$, $$ \hat{N}=\frac{1}{L}\sum_{l
 
 Tests behave very much like system "clients": unit tests imitate the behavior of a corresponding client-class or classes invoking target class methods, and system tests imitate the user behavior. Thinking in how to test a class _before_ actually writing it helps developers to focus in what really matters, and to design better interfaces. In other words, it enforces Design for Testability.
 
-The Google C++ Testing Framework provides an implementation of all those testing concepts described in the [TDD process]({{ "#test-driven-development" }}).
+The Google C++ Testing Framework provides an implementation of all those testing concepts described in the [TDD process]({{ "#test-driven-development" }}), allowing developers to concentrate in the testing code.
 
+In order to create a new test:
 
+ 1. Use the ```TEST()``` macro to define and name a test function. These are ordinary C++ functions that do not return a value.
+ 2. In this function, along with any valid C++ statements you want to include, use the various Google Test assertions to check values.
+ 3. The test's result is determined by the assertions; if any assertion in the test fails (either fatally or non-fatally), or if the test crashes, the entire test fails. Otherwise, it succeeds.
 
+```cpp
+TEST(test_case_name, test_name)
+{
+    ... test body ...
+}
+```
 
+An example of this would be:
 
-## Tests in the source tree
+```cpp
+#include <gtest/gtest.h>  // Include Google Test headers
+#include "rtcm.h"         // Include header under test
+
+TEST(RtcmTest, HexToInt)  // RtcmTest is the name of the Test Case
+                          // HexToInt is the name of this test
+{
+    auto rtcm = std::make_shared<Rtcm>();  
+    std::string test1 = "2A";
+    long int test1_int = rtcm->hex_to_int(test1);
+    long int expected1 = 42;
+    EXPECT_EQ(expected1, test1_int);
+}
+```
+
+This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h){:target="_blank"}) and wraps it into a shared pointer that will deallocate memory at the end of the test. Then, it tests the class member function `hex_to_bin` and evaluates the result in an assertion, checking that the obtained result is actually the expected one.
+
+For more details details about the usage of the Google C++ Testing Framework and its available features, please check out its  [Documentation](https://github.com/google/googletest/blob/master/googletest/docs/Documentation.md){:target="_blank"}.
+
+The existing tests are also a source of examples on how to write tests. Please place your testing code in an adequate folder from the GNSS-SDR source tree:
 
 ```
 ├── src
@@ -645,19 +679,36 @@ The Google C++ Testing Framework provides an implementation of all those testing
 ```
 
 
-
-## Writing a test
-
-
-For more details, check out the Google C++ Testing Framework [Documentation](https://github.com/google/googletest/blob/master/googletest/docs/Documentation.md){:target="_blank"}
-
-## Listing the test
+Once the test code is written, you need to build and link it against the Google Test library. This process is managed in the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt){:target="_blank"}. You will need to list your new test in the appropriate place in order to include it in the building:
 
  * If your test is a Unit Test, please `#include` it in the file [gnss-sdr/src/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/test_main.cc){:target="_blank"} and rebuild the source code. It should be get included in the test program `run_tests`.
 
- * If you test is a System Test, please modify accordingly the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt){:target="_blank"} to get the new executable and rebuild the source code.
+ * If you test is a System Test, please modify accordingly the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt){:target="_blank"} to define a new target and then rebuild the source code to get the new executable.
 
-## Running the test
+
+At the end of the building, we should be able to run your new test. In the example provided above, this would be:
+
+```
+$ ./run_tests --gtest_filter=RtcmTest.HexToInt*
+```
+
+with the following output:
+
+```
+Running GNSS-SDR Tests...
+Note: Google Test filter = RtcmTest.HexToInt*
+[==========] Running 1 test from 1 test case.
+[----------] Global test environment set-up.
+[----------] 1 test from RtcmTest
+[ RUN      ] RtcmTest.HexToInt
+[       OK ] RtcmTest.HexToInt (1 ms)
+[----------] 1 test from RtcmTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test case ran. (2 ms total)
+[  PASSED  ] 1 test.
+```
+
 
 ------
 
