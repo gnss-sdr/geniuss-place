@@ -48,7 +48,7 @@ You can specify any number of variables:
 This page documents the available GNSS-SDR configuration options at bulding time.
 
 
-**NOTE**: Options in orange are currently available only in the ```next``` branch of GNSS-SDR, and they will be part of the next release. More info on how to access the ```next``` branch can be found in our brief [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}).
+**NOTE**: Options in orange are currently available only in the ```next``` branch of GNSS-SDR, and they will be part of the next stable release. More info on how to access the ```next``` branch can be found in our brief [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}).
 {: .notice--warning}
 
 
@@ -67,6 +67,7 @@ The building system honors the usual [CMake variables](https://cmake.org/cmake/h
 | &#x2011;DCMAKE_LIBRARY_PATH  | System path | System-dependant. | This is used when searching for libraries *e.g.* using the FIND_LIBRARY() command in the CMakeLists.txt files. If you have libraries in non-standard locations, it may be useful to set this variable to this directory. If you need several directories, separate them by the platform specific separators (*e.g.* ":" on UNIX). |
 | &#x2011;DCMAKE_PREFIX_PATH  | System path | System-dependant. | This is used when searching for include files, binaries, or libraries using either the FIND_PACKAGE(), FIND_PATH(), FIND_PROGRAM(), or FIND_LIBRARY() commands in the CMakeLists.txt files. For each path in the CMAKE_PREFIX_PATH list, CMake will check "PATH/include" and "PATH" when FIND_PATH() is called, "PATH/bin" and "PATH" when FIND_PROGRAM() is called, and "PATH/lib" and "PATH" when FIND_LIBRARY() is called. |
 | &#x2011;DCMAKE_TOOLCHAIN_FILE |  Path to a CMake toolchain file  | None | This variable is specified on the command line when cross-compiling with CMake. It is the path to a file which is read early in the CMake run and which specifies locations for compilers and toolchain utilities, and other target platform and compiler related information. For an example of usage, see [cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | absolute_url }}). |
+| <span style="color: DarkOrange">&#x2011;GNinja</span> | <span style="color: DarkOrange">-</span> | <span style="color: DarkOrange">-</span> | <span style="color: DarkOrange">If ```-GNinja``` is passed to CMake, it generates input files for [Ninja](https://ninja-build.org/), a small build system designed for speed that can be seen as a replacement for ```make```. Thus, the code will be compiled by doing ```ninja``` in the command line after running CMake, and the program will be installed by doing ```sudo ninja install```.</span> |
 |----------
 
 In addition, if the ```DESTDIR``` environment variable is set, it will be prefixed to ```CMAKE_INSTALL_PREFIX``` in places where it is used to access files during installation. This allows the files to be installed in an intermediate directory tree without changing the final installation path name. For instance:
