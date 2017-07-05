@@ -16,11 +16,11 @@ feature_row:
     excerpt: "Filling the gap between the antenna and the software receiver."
     url: "/rf-frontends/"
     btn_label: "Read more"
-  - image_path: /assets/images/makers.png
+  - image_path: /assets/images/binder.png
     alt: "Enclosures"
-    title: "Make your own GNSS receiver"
-    excerpt: "Designs of nice enclosures for your gear that you can print in 3D."
-    url: "/enclosures/"
+    title: "Configuring processing blocks"
+    excerpt: "Documentation on available signal processing blocks' configuration options."
+    url: "/docs/sp-blocks/"
     btn_label: "Read more"
   - image_path: /assets/images/radar-chart.png
     alt: "KPIs"
@@ -106,5 +106,5 @@ intro:
 <link rel="prerender" href="{{ "/docs/" | absolute_url }}">
 <link rel="prerender" href="{{ "/build-and-install/" | absolute_url }}">
 <link rel="prerender" href="{{ "/rf-frontends/" | absolute_url }}">
-<link rel="prerender" href="{{ "/enclosures/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/" | absolute_url }}">
 <link rel="prerender" href="{{ "/design-forces/" | absolute_url }}">
