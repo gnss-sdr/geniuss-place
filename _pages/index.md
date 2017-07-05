@@ -12,7 +12,7 @@ excerpt: 'An open source Global Navigation Satellite Systems software-defined re
 feature_row:
   - image_path: /assets/images/fix.png
     alt: "Using the software-defined receiver"
-    title: "How to get a position fix"
+    title: "Using the software receiver"
     excerpt: "Get your first position fix using GNSS-SDR and a file containing raw signal samples."
     url: "/my-first-fix/"
     btn_label: "Read more"
