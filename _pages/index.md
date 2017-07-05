@@ -10,14 +10,14 @@ header:
   caption:
 excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.9](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.9){:target="_blank"}</small> <br /><br /> ' # {::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 feature_row:
-  - image_path: /assets/images/pcb.png
-    alt: "RF front-ends"
-    title: "Open Design of RF front-ends"
-    excerpt: "Filling the gap between the antenna and the software receiver."
-    url: "/rf-frontends/"
+  - image_path: /assets/images/fix.png
+    alt: "Using the software-defined receiver"
+    title: "How to get a position fix"
+    excerpt: "Get your first position fix using GNSS-SDR and a file containing raw signal samples."
+    url: "/my-first-fix/"
     btn_label: "Read more"
   - image_path: /assets/images/binder.png
-    alt: "Enclosures"
+    alt: "Documentation"
     title: "Configuring processing blocks"
     excerpt: "Documentation on available signal processing blocks' configuration options."
     url: "/docs/sp-blocks/"
