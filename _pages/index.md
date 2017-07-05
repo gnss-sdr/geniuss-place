@@ -105,6 +105,6 @@ intro:
 <link rel="prerender" href="{{ "/quick-start-guide/" | absolute_url }}">
 <link rel="prerender" href="{{ "/docs/" | absolute_url }}">
 <link rel="prerender" href="{{ "/build-and-install/" | absolute_url }}">
-<link rel="prerender" href="{{ "/rf-frontends/" | absolute_url }}">
+<link rel="prerender" href="{{ "/my-first-fix/" | absolute_url }}">
 <link rel="prerender" href="{{ "/docs/sp-blocks/" | absolute_url }}">
 <link rel="prerender" href="{{ "/design-forces/" | absolute_url }}">
