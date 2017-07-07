@@ -248,10 +248,10 @@ The `--gtest_repeat` flag allows you to repeat all (or selected) test methods in
 For example:
 
 ```
-$ ./run_tests --gtest_filter=CpuMulticorrelatorTest.* --gtest_repeat=10
+$ ./run_tests --gtest_filter=GpsL1CaPcpsAcquisitionTest.* --gtest_repeat=10
 ```
 
-executes all the tests in the Test Case `CpuMulticorrelatorTest` ten times.
+executes all the tests in the Test Case `GpsL1CaPcpsAcquisitionTest` ten times.
 
 
 ## Generating an XML Report
