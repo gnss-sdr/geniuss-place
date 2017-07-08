@@ -2,7 +2,7 @@
 title: "Data Type Adapter"
 permalink: /docs/sp-blocks/data-type-adapter/
 excerpt: "Documentation for the Data Type Adapter block"
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2017-07-08T15:54:02-04:00
 sidebar:
   nav: "sp-block"
 ---
@@ -40,8 +40,8 @@ This block provide several implementations of data type conversions. Next table 
 | **Type name in GNSS-SDR conf files** |  **Definition** | **Sample stream** |
 |:-:|:-|:-|
 |----------
-| `byte` | Signed integer, 8-bit two’s complement number ranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
-| `short` |   Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
+| `byte` | Signed integer, 8-bit two’s complement number ranging from $$ -128 $$ to $$ 127 $$. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
+| `short` |   Signed integer, 16-bit two’s complement number ranging from $$ -32768 $$ to $$ 32767 $$. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
 | `float` |  Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
 | `ibyte` |   Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
 | `ishort` |  Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
