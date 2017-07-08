@@ -33,7 +33,22 @@ kind of source can deliver data in different formats.
 
     -   Complex samples: `cbyte`, `cshort`, `gr_complex` (8+8, 16+16 and 32+32 bits, respectively).
 
-This block provide several implementations of data type conversions.
+This block provide several implementations of data type conversions. Next table summarizes their characteristics:
+
+
+|----------
+| **Type name in GNSS-SDR conf files** |  **Definition** | **Sample stream** |
+|:-:|:-|:-|
+|----------
+| `byte` | Signed integer, 8-bit two’s complement number ranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
+| `short` |   Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
+| `float` |  Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
+| `ibyte` |   Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
+| `ishort` |  Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
+| `cbyte` |  Complex samples, with real and imaginary parts of type `byte`. C++ type name: `lv_8sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+| `cshort` |  Complex samples, with real and imaginary parts of type `short`. C++ type name: `lv_16sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+| `gr_complex` | Complex samples, with real and imaginary parts of type `float`.  C++ type name: `std::complex<float>` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
+|----------
 
 For more details about sample data types and their usage in GNSS-SDR, please check out our [tutorial on data types]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}).
 
