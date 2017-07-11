@@ -150,6 +150,8 @@ This is a good way to check if the USRP is correctly connected to your computer.
 Copy the configuration below into you favorite plain text editor and save it with a name such as `my_GPS_receiver.conf` in your favorite working directory.
 
 ```ini
+[GNSS-SDR]
+
 ;######### GLOBAL OPTIONS ##################
 GNSS-SDR.internal_fs_hz=4000000
 

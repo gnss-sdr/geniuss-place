@@ -10,17 +10,17 @@ header:
   caption:
 excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.9](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.9){:target="_blank"}</small> <br /><br /> ' # {::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
 feature_row:
-  - image_path: /assets/images/pcb.png
-    alt: "RF front-ends"
-    title: "Open Design of RF front-ends"
-    excerpt: "Filling the gap between the antenna and the software receiver."
-    url: "/rf-frontends/"
+  - image_path: /assets/images/fix.png
+    alt: "Using the software-defined receiver"
+    title: "Using the software receiver"
+    excerpt: "Get your first position fix using GNSS-SDR and a file containing raw signal samples."
+    url: "/my-first-fix/"
     btn_label: "Read more"
-  - image_path: /assets/images/makers.png
-    alt: "Enclosures"
-    title: "Make your own GNSS receiver"
-    excerpt: "Designs of nice enclosures for your gear that you can print in 3D."
-    url: "/enclosures/"
+  - image_path: /assets/images/binder.png
+    alt: "Documentation"
+    title: "Configuring processing blocks"
+    excerpt: "Documentation on available signal processing blocks' configuration options."
+    url: "/docs/sp-blocks/"
     btn_label: "Read more"
   - image_path: /assets/images/radar-chart.png
     alt: "KPIs"
@@ -97,14 +97,10 @@ intro:
 {: style="text-align: center;"}
 
 <link rel="prefetch" href="{{ "/assets/js/main.min.js" | absolute_url }}">
-<link rel="prefetch" href="{{ "/assets/tipuesearch/css/normalize.css" | absolute_url }}">
-<link rel="prefetch" href="{{ "/assets/tipuesearch/tipuesearch_content.js" | absolute_url }}">
-<link rel="prefetch" href="{{ "/assets/tipuesearch/tipuesearch_set.js" | absolute_url }}">
-<link rel="prefetch" href="{{ "/assets/tipuesearch/tipuesearch.min.js" | absolute_url }}">
 <link rel="prerender" href="{{ "/search/" | absolute_url }}">
 <link rel="prerender" href="{{ "/quick-start-guide/" | absolute_url }}">
 <link rel="prerender" href="{{ "/docs/" | absolute_url }}">
 <link rel="prerender" href="{{ "/build-and-install/" | absolute_url }}">
-<link rel="prerender" href="{{ "/rf-frontends/" | absolute_url }}">
-<link rel="prerender" href="{{ "/enclosures/" | absolute_url }}">
+<link rel="prerender" href="{{ "/my-first-fix/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/" | absolute_url }}">
 <link rel="prerender" href="{{ "/design-forces/" | absolute_url }}">
