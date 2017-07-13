@@ -94,7 +94,7 @@ According to Beck[^Beck02], software tests must be:
  * **Easy to read for programmers**: The tests will be more valuable if they are readable, giving an interesting second perspective on the messages hidden in the source code.
  * **Quick to execute**: If the tests do not run fast, they will not get run. If they do not get run, they will not be valuable. If they are not valuable, they will not continue to be written.
  * **Order independent**: If one test breaks, we would like the other to succeed or fail independently.
- * **Deterministic**: Tests that run one time and do not run the next give negative information. The times they run you have unwarranted confidence in the system. This implies that TDD as described in this Deliverable is not suitable for the synchronization parts of multi-thread programming.
+ * **Deterministic**: Tests that run one time and do not run the next give negative information. The times they run you have unwarranted confidence in the system. This implies that TDD as described in this page is not suitable for the synchronization parts of multi-thread programming.
  * **Piecemeal**: We would like to be able to write the tests a few at a time.
  * **Composable**: We would like to be able to run tests in any combination.
  * **Versionable**: The source of the tests should play nicely with the rest of the source in the
