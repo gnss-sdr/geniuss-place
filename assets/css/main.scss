@@ -10,16 +10,12 @@
  *
 */
 
-/*
-   Variables
-   ========================================================================== */
+@charset "utf-8";
 
+/* Variables */
 @import "variables";
 
-
-/*
-   Vendor
-   ========================================================================== */
+/* Mixins and functions */
 
 /* Breakpoint - media query mixins */
 @import "vendor/breakpoint/breakpoint";
@@ -29,50 +25,33 @@
 @import "vendor/font-awesome/font-awesome";
 
 /* Magnific Popup - responsive lightbox */
-@import "vendor/magnific-popup/magnific-popup"; // Magnific Popup
+@import "vendor/magnific-popup/magnific-popup";
 
-/* Susy - grid mixins */
-$susy: (
-  columns: 12,
-  gutters: 1/4,
-  math: fluid,
-  output: float,
-  gutter-position: after,
-  container: $large,
-  global-box-sizing: border-box,
-  // debug: (
-  //   image: show,
-  //   color: blue,
-  //   output: overlay,
-  //   toggle: top right,
-  // ),
-);
+/* Sysy - responsive grid layouts */
 @import "vendor/susy/susy";
 
-
-/*
-   Base
-   ========================================================================== */
-
 @import "mixins";
+
+
+/* Core CSS */
 @import "reset";
 @import "base";
-@import "utilities";
-@import "animations";
+@import "forms";
 @import "tables";
+@import "animations";
+
+/* Components */
 @import "buttons";
 @import "notices";
 @import "masthead";
 @import "navigation";
 @import "footer";
 @import "syntax";
-@import "forms";
 
+/* Utility classes */
+@import "utilities";
 
-/*
-   Layout specific
-   ========================================================================== */
-
+/* Layout specific */
 @import "page";
 @import "archive";
 @import "sidebar";
