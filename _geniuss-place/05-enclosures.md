@@ -6,6 +6,7 @@ comments: true
 header:
   image: /assets/images/usrp-enclosure-header.jpg
   teaser: /assets/images/usrp-enclosure-header.jpg
+  image_description: "Enclosure done with a 3D printer"
 sidebar:
     nav: "geniuss-place"
 ---

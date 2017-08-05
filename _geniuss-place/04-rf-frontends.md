@@ -5,6 +5,7 @@ permalink: "/rf-frontends/"
 header:
   image: /assets/images/frontend-gsoc-header.jpg
   teaser: /assets/images/frontend-gsoc-header.jpg
+  image_description: "Radio Frequency front-end prototype"
 sidebar:
   nav: "geniuss-place"
 ---
