@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2017-06-21T20:13:02+02:00
+last_modified_at: 2017-08-07T20:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -196,39 +196,7 @@ and then CMake will add the debug flags appropriate for your compiler. There are
 
 If everything went fine in the building process, now you can jump into how to get your [first position fix]({{ "/my-first-fix/" | absolute_url }}).
 
-# Other builds
-
-## Snap packages
-
-<figure style="width: 64px" class="align-left">
-  <img src="{{ "/assets/images/logo-snappy.png" | absolute_url }}" alt="Snappy logo">
-</figure>
-
-[Snaps](http://snapcraft.io){:target="_blank"} are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
-
-Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox){:target="_blank"} for instructions on building your own snap package of GNSS-SDR.
-
-## Docker
-
-<figure style="width: 64px; height: 64px" class="align-left">
-  <img src="{{ "/assets/images/docker_logo.png" | absolute_url }}" alt="Docker logo">
-</figure>
-
-[Docker](https://www.docker.com){:target="_blank"} is an open source tool designed to make it easier to create, deploy, and run applications by using *containers*. Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools and system libraries, and ship it all out as one package. This guarantees that the software will always run the same, regardless of any customized settings that the executing machine might have that could differ from the machine used for writing and testing the code. Using containers is another way of packing applications, in a much lighter weight and with a much faster delivery model than using Virtual Machines.
-
-Visit [https://github.com/carlesfernandez/docker-pybombs-gnsssdr](https://github.com/carlesfernandez/docker-pybombs-gnsssdr){:target="_blank"} for instructions on building your own Docker image containing GNSS-SDR.
-
-
-## GNSS-SDR in embedded platforms
-
-<figure style="width: 64px" class="align-left">
-  <img src="{{ "/assets/images/oe-logo.png" | absolute_url }}" alt="Openembedded logo">
-</figure>
-
-We provide a Software Development Kit (SDK) based on [OpenEmbedded](http://www.openembedded.org/wiki/Main_Page){:target="_blank"} for cross-compiling GNSS-SDR in your desktop computer, producing executables that can run in embedded platforms, such as a Zedboard or a Raspberry Pi 3. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.
-
-
-Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | absolute_url }}){:target="_blank"} for instructions on cross-compiling GNSS-SDR for embedded systems.
+# Alternative tools
 
 ## Using Ninja
 
@@ -264,6 +232,72 @@ More information about Ninja usage can be found in the [Ninja Manual](https://ni
 
 **NOTE**: Ninja usage is only available in the ```next``` branch of the GNSS-SDR repository. This feature will be present on the next stable release.
 {: .notice--warning}
+
+
+## Using Clang
+
+[Clang](https://clang.llvm.org/){:target="_blank"} is a compiler front end for C, C++ and other programming languages. It uses [LLVM](https://llvm.org/){:target="_blank"} as its back end, and it is designed to be able to replace the full GNU Compiler Collection ([GCC](https://gcc.gnu.org/){:target="_blank"}).  Under macOS, this compiler is used by default. In GNU/Linux, it can be used to build GNSS-SDR in replacement of GCC.
+
+In Debian/Ubuntu-based distributions, Clang can be installed by doing:
+
+```
+$ sudo apt-get install clang
+```
+
+Other packages specifying the Clang version, such as ```clang-3.4```, ```clang-3.8``` or ```clang-4.0``` could exist for your distribution, check its documentation.  Once installed, its use can be configured by passing the following parameters to CMake:
+
+```
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 ..
+```
+
+of course replacing ```3.8``` by the actual version installed in your machine.
+
+If you have the Ninja build system installed, you can build GNSS-SDR replacing GCC and ```make``` by Clang and Ninja:
+
+```
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 -GNinja ..
+```
+
+**NOTE**: The usage of Clang on GNU/Linux is only available in the ```next``` branch of the GNSS-SDR repository. This feature will be present on the next stable release.
+{: .notice--warning}
+
+
+
+# Other builds
+
+## Snap packages
+
+<figure style="width: 64px" class="align-left">
+  <img src="{{ "/assets/images/logo-snappy.png" | absolute_url }}" alt="Snappy logo">
+</figure>
+
+[Snaps](http://snapcraft.io){:target="_blank"} are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
+
+Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox){:target="_blank"} for instructions on building your own snap package of GNSS-SDR.
+
+## Docker
+
+<figure style="width: 64px; height: 64px" class="align-left">
+  <img src="{{ "/assets/images/docker_logo.png" | absolute_url }}" alt="Docker logo">
+</figure>
+
+[Docker](https://www.docker.com){:target="_blank"} is an open source tool designed to make it easier to create, deploy, and run applications by using *containers*. Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools and system libraries, and ship it all out as one package. This guarantees that the software will always run the same, regardless of any customized settings that the executing machine might have that could differ from the machine used for writing and testing the code. Using containers is another way of packing applications, in a much lighter weight and with a much faster delivery model than using Virtual Machines.
+
+Visit [https://github.com/carlesfernandez/docker-pybombs-gnsssdr](https://github.com/carlesfernandez/docker-pybombs-gnsssdr){:target="_blank"} for instructions on building your own Docker image containing GNSS-SDR.
+
+
+## GNSS-SDR in embedded platforms
+
+<figure style="width: 64px" class="align-left">
+  <img src="{{ "/assets/images/oe-logo.png" | absolute_url }}" alt="Openembedded logo">
+</figure>
+
+We provide a Software Development Kit (SDK) based on [OpenEmbedded](http://www.openembedded.org/wiki/Main_Page){:target="_blank"} for cross-compiling GNSS-SDR in your desktop computer, producing executables that can run in embedded platforms, such as a Zedboard or a Raspberry Pi 3. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.
+
+
+Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | absolute_url }}){:target="_blank"} for instructions on cross-compiling GNSS-SDR for embedded systems.
+
+
 
 ----
 
