@@ -38,7 +38,7 @@ The rules can be violated if there are strong personal objections against them.
 The attempt is to make a guideline, not to force a particular coding style onto individuals. Experienced programmers normally want to adopt a style like this anyway, but having one, and at least requiring everyone to get familiar with it, usually makes people start thinking about programming styling and evaluate their own habits in this area. On the other hand, new and inexperienced programmers normally use a style guide as a convenience of getting into the programming jargon more easily.
 
 
-**Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl){:target="_blank"}. Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html){:target="_blank"} and the [MISRA C++](http://frey.notk.org/books/MISRA-Cpp-2008.pdf){:target="_blank"} Guidelines for the use of the C++ language in critical systems.
+**Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl){:target="_blank"}. Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html){:target="_blank"} and the [High Integrity C++ Coding Standard Version 4.0](http://www.codingstandard.com){:target="_blank"} Guidelines for the use of the C++ language in critical systems.
 {: .notice--primary}
 
 -------
@@ -854,6 +854,24 @@ void my_handler ( int32_t );
 void f1 ( )
 {
     signal ( 1, my_handler );   // Non-compliant
+}
+```
+
+
+### Do not use `std::vector<bool>`
+
+The `std::vector<bool>` specialization does not conform to the requirements of a container and does not work as expected in all STL algorithms.
+
+In particular `&v[0]` does not return a contiguous array of elements as it does for other vector types. Additionally, the C++ Language Standard guarantees that different elements of an STL container can safely be modified concurrently, except for a container of `std::vector<bool>` type.
+
+Example:
+```cpp
+#include <cstdint>
+#include <vector>
+void foo ()
+{
+    std::vector <int32_t> vi; // Compliant
+    std::vector <bool> vb;    // Non-Compliant
 }
 ```
 
