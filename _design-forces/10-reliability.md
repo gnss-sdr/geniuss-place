@@ -17,6 +17,16 @@ Reliability is about the overall consistency of a measure. It is a concept that 
 * a **_protection level_**, defined as the statistical bound error computed so as to guarantee that the probability of the absolute position error exceeding said number is smaller than or equal to the target integrity risk.
 
 
+Specifically, software reliability is also related to the usage of the programming language. Certain coding practices are considered unsafe, in the sense that they an lead to _undefined_ or _unspecified_ behaviors under certain conditions, which is an undesirable feature.
+
+For instance, the software industry has created several specifications for the C++ language, banning the usage of a set of libraries and functions from the standard library, as well as defining a list of coding rules. Examples:
+
+* _SEI CERT C++ Coding Standard: Rules for Developing Safe, Reliable, and Secure Systems in C++ [(2016 Edition)](http://cert.org/secure-coding/products-services/secure-coding-cpp-download-2016.cfm){:target="_blank"}_, based on the [ISO/IEC 14882-2014](https://www.iso.org/standard/64029.html){:target="_blank"} standard.
+
+* _High Integrity C++ Coding Standard [Version 4.0](http://www.codingstandard.com){:target="_blank"}_, released on 3 October 2013. It is based on the [ISO/IEC 14882:2011](https://www.iso.org/standard/50372.html){:target="_blank"} standard.
+
+* _[MISRA C++](https://www.misra.org.uk/Activities/MISRAC/tabid/171/Default.aspx){:target="_blank"} Guidelines for the use of the C++ language in critical systems_, published and officially launched on 5 June 2008. It is based on the [ISO/IEC 14882:2003](https://www.iso.org/standard/38110.html){:target="_blank"} standard.
+
 
 ## Indicators of Reliability
 
@@ -42,6 +52,9 @@ It follows a list of possible reliability indicators for a software-defined GNSS
   - Time to authentication.
 
 * Safety-critical software certifications (_e.g._, [DO--178B](https://en.wikipedia.org/wiki/DO-178B){:target="_blank"}).
+
+* Observation of coding standards.
+  - Availability of coding standard checker tools.
 
 -----
 
