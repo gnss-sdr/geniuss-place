@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2017-01-03T15:54:02+02:00
+last_modified_at: 2017-08-03T13:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -38,7 +38,7 @@ The rules can be violated if there are strong personal objections against them.
 The attempt is to make a guideline, not to force a particular coding style onto individuals. Experienced programmers normally want to adopt a style like this anyway, but having one, and at least requiring everyone to get familiar with it, usually makes people start thinking about programming styling and evaluate their own habits in this area. On the other hand, new and inexperienced programmers normally use a style guide as a convenience of getting into the programming jargon more easily.
 
 
-**Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl){:target="_blank"}. Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html){:target="_blank"}.
+**Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl){:target="_blank"}. Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html){:target="_blank"} and the [MISRA C++](http://frey.notk.org/books/MISRA-Cpp-2008.pdf){:target="_blank"} Guidelines for the use of the C++ language in critical systems.
 {: .notice--primary}
 
 -------
@@ -55,7 +55,7 @@ my_variable_name
 ```
 
 ### Naming rules for files
-Files are named using lower-case letters and words are separated using under-score. Abbreviations, when used in file names, are also written in lower-case letters. Source files are named using ```.cc``` suffix, whereas header files end with ```.h``` extension. Examples:
+Files are named using lower-case letters and words are separated using under-score. Abbreviations, when used in file names, are also written in lower-case letters. Source files are named using `.cc` suffix, whereas header files end with `.h` extension. Examples:
 
 ```cpp
 my_file.h
@@ -382,7 +382,7 @@ Example:
 ...
 ```
 
-### System header files should be included with `<>` and project headers with ``
+### System header files should be included with `<>` and project headers with `""`
 
 ### Put \#include directives at the top of files
 
@@ -747,6 +747,152 @@ is being performed.
 -   Do not use `dynamic_cast` except in test code. If you need to know
     type information at runtime in this way outside of a unittest, you
     probably have a design flaw.
+
+## Language support library
+
+### The C library should not be used.
+
+Some C++ libraries (e.g. `<cstdio>`) also have corresponding C versions (e.g. `<stdio.h>`). This rule requires that the C++ version is used.
+
+### The library functions `atof`, `atoi` and `atol` from library `<cstdlib>` should not be used.
+
+These functions have _undefined behaviour_ associated with them when the string cannot be converted.
+
+Example:
+```cpp
+#include <cstdlib>
+int32_t f ( const char_t * numstr )
+{
+    return atoi ( numstr );  // Non-compliant
+}
+```
+
+### The library functions `abort`, `exit`, `getenv` and `system` from library `<cstdlib>` should not be used.
+
+The use of these functions leads to _implementation-defined behaviour_.
+
+Example:
+```cpp
+#include <cstdlib>
+void f ( )
+{
+    exit(0); // Non-compliant
+}
+```
+
+### The time handling functions of library `<ctime>` should not be used.
+
+Various aspects are _implementation-defined_ or _unspecified_, such as the formats of times.
+
+Example:
+```cpp
+#include <ctime>
+void f ( )
+{
+    clock(); // Non-compliant
+}
+```
+
+### The unbounded functions of library `<cstring>` should not be used.
+
+The `strcpy`, `strcmp`, `strcat`, `strchr`, `strspn`, `strcspn`, `strpbrk`, `strrchr`, `strstr`, `strtok` and `strlen` functions within the `<cstring>` library can read or write beyond the end of a buffer, resulting in _undefined behaviour_.
+
+Ideally, a safe string handling library should be used.
+
+Example:
+```cpp
+#include <cstring>
+void fn ( const char_t * pChar )
+{
+    char_t array [ 10 ];
+    strcpy ( array, pChar );  // Non-compliant
+}
+```
+
+### The macro `offsetof` should not be used.
+
+Use of this macro can lead to _undefined behaviour_ when the types of the operands are incompatible, or when bit fields are used.
+
+Example:
+```cpp
+#include <cstddef>
+struct A
+{
+    int32_t i;
+};
+void f1 ( )
+{
+    offsetof ( A, i );  // Non-compliant
+}
+```
+
+### Dynamic heap memory allocation should not be used.
+
+The use of dynamic memory can lead to out-of-storage run-time failures, which are undesirable. The built-in `new` and `delete` operators, other than the placement versions, use dynamic heap memory. The functions `calloc`, `malloc`, `realloc` and `free` also use dynamic heap memory.
+
+There is a range of _unspecified_, _undefined_ and _implementation-defined behaviour_ associated with dynamic memory allocation, as well as a number of other potential pitfalls. Dynamic heap memory allocation may lead to memory leaks, data inconsistency, memory exhaustion, non-deterministic behaviour, etc.
+
+Note that some implementations may use dynamic heap memory allocation to implement other functions (for example, functions in the library `cstring`). If this is the case, then these functions should also be avoided.
+
+Example:
+```cpp
+void f1 ( )
+{
+    int32_t * i = new int32_t;  // Non-compliant
+    delete i;
+}
+```
+
+### The signal handling facilities of `<csignal>` should not be used.
+
+Signal handling contains _implementation-defined_ and _undefined behaviour_.
+
+Example:
+```cpp
+#include <csignal>
+void my_handler ( int32_t );
+void f1 ( )
+{
+    signal ( 1, my_handler );   // Non-compliant
+}
+```
+
+### The error indicator errno should not be used.
+
+`errno` is a facility of C++ which should in theory be useful, but which in practice is poorly defined by ISO/IEC 14882:2014.  A non-zero value may or may not indicate that a problem has occurred; therefore `errno` should not be used.
+
+Even for those functions for which the behaviour of `errno` is well defined, it is preferable to check the values of inputs before calling the function rather than relying on using `errno` to trap errors.
+
+Example:
+
+```cpp
+#include <cstdlib>
+#include <cerrno>
+void f1 ( const char_t * str )
+{
+    errno = 0;          // Non-compliant
+    int32_t i = atoi ( str );
+    if ( 0 != errno )   // Non-compliant
+        {
+            // handle error case???
+        }
+}
+```
+
+### The stream input/output library `<cstdio>` should not be used.
+
+This includes file and I/O functions `fgetpos`, `fopen`, `ftell`, `gets`, `perror`, `remove`, `rename`, etc. Streams and file I/O have a large number of _unspecified_, _undefined_ and _implementation-defined_ behaviours associated with them.
+
+Example:
+```cpp
+#include <cstdio>     // Non-compliant
+void fn ( )
+{
+    char_t array [ 10 ];
+    gets ( array );   // Can lead to buffer over-run
+}
+```
+
 
 ## Other recommendations
 
