@@ -328,6 +328,7 @@ This implementation accepts the following parameters:
 | `RF_channels` | Number of RF channels present in the front-end device. It defaults to 1. | Optional |
 | `clock_source` | [`internal`, `external`, `MIMO`]: Set the clock source for the USRP device. It defaults to `internal`. | Optional |
 | `item_type` | [`cbyte`, `cshort`, `gr_complex`]: data type for each sample. The type `cbyte` (_i.e._, complex signed 8-bit integers) is not available in USRP devices with their default configurations. This parameter defaults to `cshort`. | Optional |
+| `device_serial` | Filter the device by serial number if required (useful for USB devices). It is empty by default | Optional |
 |-------
 
 If `RF_channels` is set to `1`, then:
