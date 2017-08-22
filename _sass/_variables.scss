@@ -91,7 +91,9 @@ $vimeo-color                : #1ab7ea !default;
 $vine-color                 : #00bf8f !default;
 $youtube-color              : #bb0000 !default;
 $xing-color                 : #006567 !default;
-
+$orcid-color                : #a6ce39 !default;
+$google-scholar-color       : #4285f4 !default;
+$researchgate-color         : #00ccbb !default;
 
 /* links */
 $link-color                 : $info-color !default;
@@ -99,7 +101,7 @@ $link-color-hover           : mix(#000, $link-color, 25%) !default;
 $link-color-visited         : mix(#fff, $link-color, 25%) !default;
 $masthead-link-color        : $primary-color !default;
 $masthead-link-color-hover  : mix(#000, $primary-color, 25%) !default;
-
+$navicon-link-color-hover   : mix(#fff, $primary-color, 75%) !default;
 
 /*
    Breakpoints
@@ -132,3 +134,4 @@ $box-shadow                 : 0 1px 1px rgba(0, 0, 0, 0.125) !default;
 $navicon-width              : 1.5rem !default;
 $navicon-height             : 0.25rem !default;
 $global-transition          : all 0.2s ease-in-out !default;
+$intro-transition           : intro 0.3s both !default;

@@ -23,6 +23,12 @@
     &:hover {
       opacity: 1;
     }
+
+    &.sticky {
+      overflow-y: auto;
+      /* calculate height of nav list */
+      height: calc(100vh - 90px - 2em); // viewport height - approx. masthead height - main content top margin
+    }
   }
 
   @include breakpoint($x-large) {
@@ -173,6 +179,10 @@
   z-index: -1;
   box-shadow: 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
   cursor: default;
+
+  &.is--visible {
+    display: block;
+  }
 
   @include breakpoint($large) {
     display: block;

@@ -4,12 +4,12 @@ permalink: /design-forces/reliability/
 excerpt: "The ability of a system or component to function under stated conditions for a specified period of time."
 header:
   teaser: /assets/images/design-force-teaser.png
-last_modified_at: 2017-04-04T07:54:02-02:00
+last_modified_at: 2017-08-14T14:54:02+02:00
 ---
 
 _Reliability_ describes the ability of a system or component to function under stated conditions for a specified period of time. Reliability refers to the consistency of the results provided by a system; internal and external reliability are, respectively, the ability to detect gross errors and the effect of an undetected blunder on the solution.
 
-Reliability is about the overall consistency of a measure. It is a concept that encompasses service continuity, and thus it is related to satellite availability, to those indicators described at [availability]({{ "/design-forces/availability/" | absolute_url }}), [accuracy]({{ "/design-forces/accuracy/" | absolute_url }}) and [repeatability]({{ "/design-forces/repeatability/" | absolute_url }}), and to _integrity_. The latter requires the definition, for each measurement of interest, of:
+Reliability is about the overall consistency of a measure. It is a concept that encompasses service continuity, and thus it is related to satellite availability, to those indicators described at [availability]({{ "/design-forces/availability/" | absolute_url }}), [accuracy]({{ "/design-forces/accuracy/" | absolute_url }}), [portability]({{ "/design-forces/portability/" | absolute_url }}) and [repeatability]({{ "/design-forces/repeatability/" | absolute_url }}), in addition to _integrity_. The latter requires the definition, for each measurement of interest, of:
 
 * an **_alert limit_**, defined as the error tolerance not to be exceeded without issuing an alert,
 * a **_time to alert_**, defined as the maximum allowable time elapsed from the onset of the navigation system being out of tolerance until the equipment enunciates the alert,
@@ -17,6 +17,34 @@ Reliability is about the overall consistency of a measure. It is a concept that 
 * a **_protection level_**, defined as the statistical bound error computed so as to guarantee that the probability of the absolute position error exceeding said number is smaller than or equal to the target integrity risk.
 
 
+Specifically, software reliability is also related to the usage of the programming language. Certain coding practices are considered unsafe, in the sense that they can lead to _undefined_,  _unspecified_ or _implementation-defined_ behaviors under certain conditions, which is an undesirable feature (see definitions below).
+
+As examples of programming languages for high-reliability systems, we can mention [Ada](https://en.wikipedia.org/wiki/Ada_(programming_language)){:target="_blank"} and [SPARK](https://en.wikipedia.org/wiki/SPARK_(programming_language)){:target="_blank"} (which is an Ada dialect with some hooks for static verification), which are used in aerospace circles for building high reliability software such as avionics systems, and [Erlang](http://www.erlang.org){:target="_blank"}, which was designed from the ground up for writing high-reliability telecommunications code. Functional languages such as [Haskell](https://wiki.haskell.org/Haskell){:target="_blank"} can be subjected to formal proofs by automated systems due to the declarative nature of the language. However, these languages are garbage collected, and garbage collection is not normally predictable enough for hard real-time applications, although there is a body of ongoing research in time bounded incremental garbage collectors.
+
+Although C and C++ were not specifically designed for this type of application, they are widely used for embedded and safety-critical software for several reasons. The main properties of note are control over memory management (which allows you to avoid having to garbage collect, for example), simple, well debugged core run-time libraries and mature tool support. A lot of the embedded development tool chains in use today were first developed in the 1980s and 1990s when this was current technology and come from the Unix culture that was prevalent at that time, so these tools remain popular for this sort of work. While manual memory management code must be carefully checked to avoid errors, it allows a degree of control over application response times that is not available with languages that depend on garbage collection. The core run time libraries of C and C++ languages are relatively simple, mature and well understood, so they are amongst the most stable platforms available[^StackOverflow].
+
+In the case of the C++ language, the software industry has created several specifications for enhanced reliability, banning the usage of a set of libraries and functions from the standard library, as well as defining a list of coding rules. Examples:
+
+* _SEI CERT C++ Coding Standard: Rules for Developing Safe, Reliable, and Secure Systems in C++ [(2016 Edition)](http://cert.org/secure-coding/products-services/secure-coding-cpp-download-2016.cfm){:target="_blank"}_, based on the [ISO/IEC 14882-2014](https://www.iso.org/standard/64029.html){:target="_blank"} standard.
+
+* _High Integrity C++ Coding Standard [Version 4.0](http://www.codingstandard.com){:target="_blank"}_, released on 3 October 2013. It is based on the [ISO/IEC 14882:2011](https://www.iso.org/standard/50372.html){:target="_blank"} standard.
+
+* _[MISRA C++](https://www.misra.org.uk/Activities/MISRAC/tabid/171/Default.aspx){:target="_blank"} Guidelines for the use of the C++ language in critical systems_, published and officially launched on 5 June 2008. It is based on the [ISO/IEC 14882:2003](https://www.iso.org/standard/38110.html){:target="_blank"} standard.
+
+The ultimate objective of those coding standards is to prevent from the undesired behaviors described below:
+
+{% capture bad-behaviors %}
+* **Undefined behavior** is behavior, such as might arise upon use of an erroneous program construct or erroneous data, for which the C++ Standard imposes no requirements. Undefined behavior may also be expected when the C++ Standard omits the description of any explicit definition of behavior or defines the behavior to be ill-formed, with no diagnostic required.
+* **Unspecified behavior** is behavior, for a well-formed program construct and correct data, that depends on the implementation. The implementation is not required to document which behavior occurs.
+* **Implementation-defined behavior** is behavior, for a well-formed program construct and correct data, that depends on the implementation and that each implementation documents.
+{% endcapture %}
+
+<div class="notice--danger">
+  <h4>Definitions from the ISO/IEC 14882-2014 standard</h4>
+  {{ bad-behaviors | markdownify }}
+</div>
+
+_Unspecified_ and _implementation-defined behaviors_ are issues also related to [portability]({{ "/design-forces/portability/" | absolute_url }}).
 
 ## Indicators of Reliability
 
@@ -43,9 +71,16 @@ It follows a list of possible reliability indicators for a software-defined GNSS
 
 * Safety-critical software certifications (_e.g._, [DO--178B](https://en.wikipedia.org/wiki/DO-178B){:target="_blank"}).
 
+* If the programming language is C++: Coding Standard certifications (_e.g._, [SEI CERT C++ Coding Standard](http://www.cert.org/go/secure-coding/){:target="_blank"}, [High Integrity C++](http://www.programmingresearch.com/coding-standards/high-integrity-cpp/){:target="_blank"}, MISRA C++:2008, others)
+
+* Observation of coding standards.
+  - Use of static checking tools to enforce compliance with the allowed language subset.
+
 -----
 
 
 ## References
+
+[^StackOverflow]: Stack Overflow, [Which languages are used for safety-critical software?]( https://stackoverflow.com/questions/243387/which-languages-are-used-for-safety-critical-software/243573#243573){:target="_blank"}
 
 [^Fernandez16]: C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas, [_Robust GNSS Receivers by Array Signal Processing: Theory and Implementation_](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7444116){:target="_blank"}, Proceedings of the IEEE, Vol. 104, No. 6, pp. 1207 - 1220, June 2016.

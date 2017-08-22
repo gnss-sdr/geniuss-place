@@ -5,7 +5,7 @@ title: "Acknowledgements"
 excerpt: "List of public and private organizations that have helped in the development of GNSS-SDR."
 sidebar:
     nav: "about"
-last_modified_at: 2016-07-28T18:38:52+00:00
+last_modified_at: 2017-08-05T18:38:52+00:00
 ---
 
 This project has been mainly developed on a volunteer basis, for education and research purposes. The main [Developer Team]({{ "/team/" | absolute_url }}){:target="_blank"} is a group of researchers at CTTC, a non-profit research institution, and they use to be quite busy developing amazing new concepts and practical developments for advanced wireless communication systems and serving the industry in actually deploying them. Only some selected students  got a stipend (through their participation in Google Summer of Code and ESA Summer of Code In Space programs) for their direct work on GNSS-SDR.  
@@ -128,15 +128,4 @@ The Authors are proud to be supported by the following public institutions, priv
 * [Xilinx](http://www.xilinx.com){:target="_blank"} is a worldwide renowned supplier of programmable logic devices. It is known for inventing the field-programmable gate array (FPGA) and as the first semiconductor company with a fabless manufacturing model.
 
 Through their [**Xilinx University Program (XUP)**](https://www.xilinx.com/support/university.html){:target="_blank"}, Xilinx is supporting GNSS-SDR with the donation of four Zedboard development kits and a full license of the Vivado Design Suite, a software tool for synthesis and analysis of HDL designs.
-{: .notice--success}
-
-
--------
-
-[![JetBrains logo](http://resources.jetbrains.com/assets/media/open-graph/jetbrains_250x250.png){:height="250px" width="250x"}](https://www.jetbrains.com){:target="_blank"}
-{: style="text-align: center;"}
-
-* [JetBrains](https://www.jetbrains.com){:target="_blank"} is a technology-leading software vendor specializing in the creation of intelligent development tools.
-
-[**JetBrains**](https://www.jetbrains.com){:target="_blank"} is supporting the development of GNSS-SDR by providing free licenses for their products as long their are used for open source projects. We specially like [CLion](https://www.jetbrains.com/clion/){:target="_blank"}, a smart cross-platform IDE for C and C++.
 {: .notice--success}

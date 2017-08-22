@@ -6,6 +6,7 @@ comments: true
 header:
   image: /assets/images/kpi-header.jpg
   teaser: /assets/images/kpi-header.jpg
+  image_description: "Design Forces"
 sidebar:
   nav: "geniuss-place"
 ---

@@ -4,7 +4,7 @@ permalink: /docs/overview/
 excerpt: "A brief introduction to GNSS-SDR, a free and open source Global Navigation Satellite System software-defined receiver."
 header:
   teaser: /assets/images/what-is-gnss-sdr.jpg
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2017-08-11T05:34:02+02:00
 redirect_from:
   - /documentation/general-overview
   - /project
@@ -63,9 +63,8 @@ int main(int argc, char** argv)
     std::unique_ptr<ControlThread> control_thread(new ControlThread());
 
     // record startup time
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    long long int begin = tv.tv_sec * 1000000 + tv.tv_usec;
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+    start = std::chrono::system_clock::now();
 
     // run the software receiver until it stops
     try
@@ -78,10 +77,10 @@ int main(int argc, char** argv)
     }
 
     // report the elapsed time
-    gettimeofday(&tv, NULL);
-    long long int end = tv.tv_sec * 1000000 + tv.tv_usec;
-    std::cout << "Total GNSS-SDR run time "
-              << (static_cast<double>(end - begin)) / 1000000.0
+    end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end - start;
+    std::cout << "Total GNSS-SDR run time: "
+              << elapsed_seconds.count()
               << " [seconds]" << std::endl;
 
     // Say goodbye

@@ -4,7 +4,7 @@ permalink: /design-forces/portability/
 excerpt: "It refers to the usability of the same software in different environments."
 header:
   teaser: /assets/images/design-force-teaser.png
-last_modified_at: 2016-07-29T15:54:02-04:00
+last_modified_at: 2017-08-09T15:54:02-04:00
 ---
 {% include toc %}
 
@@ -77,7 +77,29 @@ Applications that do not need an operating system are called _bare metal_ applic
 
 *  **Microsoft Windows** is a family of proprietary operating systems designed by Microsoft Corporation and primarily targeted to Intel architecture based computers, with a [relevant percent total usage share](https://en.wikipedia.org/wiki/Usage_share_of_operating_systems){:target="_blank"} on Web connected computers. Latest version is [Windows 10](https://en.wikipedia.org/wiki/Windows_10){:target="_blank"}, which was preceded by [Windows 7](https://en.wikipedia.org/wiki/Windows_7){:target="_blank"}, [Windows Vista](https://en.wikipedia.org/wiki/Windows_Vista){:target="_blank"} and [Windows XP](https://en.wikipedia.org/wiki/Windows_XP){:target="_blank"}.
 
-* **Real-Time Operating Systems** such as [VxWorks](http://windriver.com/products/vxworks/){:target="_blank"}, [eCos](http://ecos.sourceware.org/){:target="_blank"}, [QNX](http://www.qnx.com/){:target="_blank"}, [MontaVista Linux](http://www.mvista.com/){:target="_blank"} and [RTLinux](http://www.rtlinux.org/){:target="_blank"}.
+* **Real-Time Operating Systems** such as [VxWorks](http://windriver.com/products/vxworks/){:target="_blank"}, [eCos](http://ecos.sourceware.org/){:target="_blank"}, [QNX](http://www.qnx.com/){:target="_blank"}, [MontaVista Linux](http://www.mvista.com/){:target="_blank"}, [RTLinux](http://www.rtlinux.org/){:target="_blank"} and Real-Time Executive for Multiprocessor Systems ([RTEMS](https://www.rtems.org/){:target="_blank"}).
+
+
+
+## Building tools
+
+In case of using compiled programming languages, software libraries and executables are generated from the source code through three kind of tools:
+
+  * **Build system generators**, which automatically generate _build files_ from human-written configuration files. Popular examples of those tools are the [GNU Build System](https://en.wikipedia.org/wiki/GNU_Build_System){:target="_blank"} (also known as Autotools), [CMake](https://cmake.org){:target="_blank"} and [SCons](http://scons.org){:target="_blank"}.
+  * **Build automation tools**, which automatically build executable programs and libraries from the source code with the aid of _build files_ that contains _rules_ describing targets, components and dependencies. Example are [GNU Make](https://www.gnu.org/software/make/){:target="_blank"}, Unix’s [make](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html){:target="_blank"}, [Ninja](https://ninja-build.org){:target="_blank"} and [others](https://en.wikipedia.org/wiki/List_of_build_automation_software){:target="_blank"}.     
+  * **Compilers**, which are programs that convert instructions into a machine-code or lower-level form so that they can be read and executed by a computer. In general, it is desirable to be able to build the source code with different compilers, since  it improves the overall quality of code by providing different checks and alerts. Examples of compilers are:
+    * the [GNU Compiler Collection](https://gcc.gnu.org){:target="_blank"}, which provides front ends for C (```gcc```), C++ (```g++```), Fortran (```gfortran```), Java (```gcj```) and other languages;
+    * the [LLVM](http://llvm.org){:target="_blank"} project, which provides front-ends for C / Objective-C (```clang```) and C++ (```clang++```), while other external projects allow the compilation of Ruby, Python, Haskell, Java, D, PHP, Pure, Lua, and a number of other languages.
+    * Those included in [Microsoft Visual Studio](https://www.visualstudio.com/){:target="_blank"}, such as the Microsoft C++ Compiler (MSVC) provided by [Microsoft Visual C++](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B){:target="_blank"}; ```vbc.exe```, the Visual Basic .NET compiler; and ```csc.exe```, the C# compiler, among others;
+    * [other compilers](https://en.wikipedia.org/wiki/List_of_compilers){:target="_blank"}.
+    * In case of targeting embedded platforms, it is desirable the availability of cross-compilers, which are compilers capable of creating executable code for a platform other than the one on which the compiler is running. Examples are GCC and the .NET Framework compiler.
+
+Using popular, widely available cross-platform tools helps to ensure portability among different systems and architectures.
+
+In case of using interpreted programming languages, portability is determined by the availability of a language interpreter above the minimal required version in the targeted platform(s).
+   * Examples of interpreted languages are GNU Octave, Matlab, Mathematica, Maple, Tcl, Haskell, Perl and Excel spreadsheets.
+   * Other interpreted languages use an intermediate representation, which combines compiling and interpreting. This is the case of Java, Python or Ruby, among others.
+
 
 
 ## Indicators of Portability
@@ -86,19 +108,37 @@ It follows a list of possible portability indicators for a software-defined GNSS
 
 * Number of supported processor architectures (specify distribution and release).
 
-* Supported SIMD technologies.
-
-* Support of GPU offloading (define GPU's vendor/model).
-
-* Support of FPGA offloading (define FPGA's vendor/model).
-
 * Number of supported operating systems:
-  - GNU/Linux: specify distributions and versions.
-  - OS X: specify versions.
-  - Microsoft Windows: specify versions.
-  - Real Time Operating System (specify).
+  - GNU/Linux: specify distributions and minimum working version.
+  - OS X: specify minimum working version.
+  - Microsoft Windows: specify minimum working version.
+  - Real Time Operating System (specify OS and minimum working version).
   - Others (define) / None (bare metal program).
 
-* Other software dependencies (define).
+* Number of supported building toolchains:
+  - Use of cross-platform build system generators such as Autotools or CMake (specify minimum working version).
+  - Use of cross-platform build automation tools such as Make or Ninja (specify minimum working version).
+  - Use of cross-platform compiler(s) or language interpreter(s) (specify minimum working versions).
+    - Possibility to build the code with more than one build automation tool and/or compiler.
+  - Availability of cross-compilation toolchains.
+    - Provision of a cross-compilation Software Developer Kit (SDK) for developers.
+
+* Supported SIMD technologies.
+  - In x86-based architectures: SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, FMA, AVX-512 family.
+  - In ARM architecures: NEON, AArch64 NEON.
+
+* Support of GPU offloading (define GPU's vendor/model).
+  - Through OpenCL.
+  - Through CUDA.
+  - Others.
+
+* Support of FPGA offloading (define FPGA's vendor/model).
+  - [Xilinx](https://www.xilinx.com/){:target="_blank"}
+  - [Altera](https://www.altera.com/){:target="_blank"}
+  - [Microsemi (formerly Actel)](https://www.microsemi.com/products/fpga-soc/fpga-and-soc){:target="_blank"}
+  - Others.
+
+* Other software dependencies (define required minimal versions).
+  - Availability of software dependencies in the targeted platform(s).
 
 * Minimal memory and storage requirements.
