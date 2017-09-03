@@ -2,7 +2,7 @@
 title: "My first position fix"
 permalink: /my-first-fix/
 excerpt: "How to quickly get a position fix with GNSS-SDR."
-last_modified_at: 2017-06-07T15:54:02+02:00
+last_modified_at: 2017-09-03T13:54:02+02:00
 header:
   teaser: "/assets/images/gn3s_pvt_4_sats.jpg"
 sidebar:
@@ -30,6 +30,9 @@ linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010
 gnss-sdr version 0.0.9
 $
 ```
+
+Please check that your installed version is 0.0.9 (or something like 0.0.9.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnsss-sdr` and you got a version earlier to 0.0.9, please do `sudo apt-get remove gnsss-sdr` and [build it from source]({{ "/build-and-install/#build" | absolute_url }}).
+{: .notice--warning}
 
 If you see something like:
 
