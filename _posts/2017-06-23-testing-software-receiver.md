@@ -49,7 +49,7 @@ Authors in Langley _et al._[^Langley09] claim that the Plan-Do-Study-Act (PDSA) 
 _A graphical representation of Git and PDCA cycles integration_.
 {: style="text-align: center;"}
 
-As shown in the figure above, [Git](https://git-scm.com/){:target="_blank"} integrates PDCA cycles in the development process in a seamless and natural way. The PLAN step begins by creating a new branch of development from the current baseline (that is, the `next` branch). This new branch accommodates testing code for the new improvement, the actual new development work, and eventual test passing and code refactoring in the DO step. Then, CHECK/STUDY step is related to merging the new code with the existing baseline and run all the existing tests, in order to ensure that no integration issues arise. In the case they exist, there is a step back to the DO step and fix the integration issues. In the case that the taken approach in the particular PDCA cycle results in not contributing to an actual improvement, the development branch can be kept for documentation purposes without affecting the baseline. Once the developer has absolute confidence that the change is an objective improvement, he or she ACTs and pushes the change to the reference repository, and the new version incorporating the improvement becomes the new current baseline.
+As shown in the figure above, [Git](https://git-scm.com/) integrates PDCA cycles in the development process in a seamless and natural way. The PLAN step begins by creating a new branch of development from the current baseline (that is, the `next` branch). This new branch accommodates testing code for the new improvement, the actual new development work, and eventual test passing and code refactoring in the DO step. Then, CHECK/STUDY step is related to merging the new code with the existing baseline and run all the existing tests, in order to ensure that no integration issues arise. In the case they exist, there is a step back to the DO step and fix the integration issues. In the case that the taken approach in the particular PDCA cycle results in not contributing to an actual improvement, the development branch can be kept for documentation purposes without affecting the baseline. Once the developer has absolute confidence that the change is an objective improvement, he or she ACTs and pushes the change to the reference repository, and the new version incorporating the improvement becomes the new current baseline.
 
 {% capture pdca_cycles %}
 By engaging rapid cycles of the PDCA workflow, the GNSS-SDR project aims to learn fast, fail fast, and improve quickly. That failures may occur is not the problem; that we fail to learn from them is. Rate of change, that is, rate of improvement, is a key competitive factor in today's world. PDCA cycles allow for:
@@ -61,7 +61,7 @@ By engaging rapid cycles of the PDCA workflow, the GNSS-SDR project aims to lear
    {{ pdca_cycles | markdownify }}
  </div>
 
-This means that all kind of contributions, from fixing a typo in a source code's comment to the addition of a whole new GNSS signal processing chain, are very welcome and greatly appreciated since all of them point towards improved quality, no matter the step size. More details on the _howtos_ in the context of GNSS-SDR are available in our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}) and in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md){:target="_blank"} file.
+This means that all kind of contributions, from fixing a typo in a source code's comment to the addition of a whole new GNSS signal processing chain, are very welcome and greatly appreciated since all of them point towards improved quality, no matter the step size. More details on the _howtos_ in the context of GNSS-SDR are available in our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}) and in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) file.
 
 &nbsp;
 
@@ -70,7 +70,7 @@ This means that all kind of contributions, from fixing a typo in a source code's
 Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test case that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards. It is an Agile-based approach to building complex systems where unit test (and in some cases inter-component integration tests) are built in advance of the product software and are used exercised upon component implementation. This methodology is claimed to offer valuable benefits to software development: it facilitates change, simplifies integration, automatizes documentation, helps separate the interface from the implementation, increases developers productivity, and plays a central role in the software quality assurance process[^Shore08].
 
 ![TDD lifecycle]({{ "/assets/images/TDD_Global_Lifecycle.png" | absolute_url }})
-_A graphical representation of the Test-Driven Development lifecycle. Source: [Wikipedia](https://en.wikipedia.org/wiki/Test-driven_development){:target="_blank"}_.
+_A graphical representation of the Test-Driven Development lifecycle. Source: [Wikipedia](https://en.wikipedia.org/wiki/Test-driven_development)_.
 {: style="text-align: center;"}
 
 A typical test-driven development cycle, as described by Beck[^Beck02], can be summarized as:
@@ -124,7 +124,7 @@ The key areas in which this approach can contribute are:
 
 # The Testing Framework
 
-GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googletest){:target="_blank"} (usually referred to as Google Test) for its testing code. This framework is based on the following premises:
+GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googletest) (usually referred to as Google Test) for its testing code. This framework is based on the following premises:
 
  * **Tests should be independent and repeatable**. It is a pain to debug a test that succeeds or fails as a result of other tests. Google C++ Testing Framework isolates the tests by running each of them on a different object. When a test fails, Google C++ Testing Framework allows you to run it in isolation for quick debugging.
  * **Tests should be well organized and reflect the structure of the tested code**. Google C++ Testing Framework groups related tests into test cases that can share data and subroutines. This common pattern is easy to recognize and makes tests easy to maintain. Such consistency is especially helpful when people switch projects and start to work on a new code base.
@@ -133,11 +133,11 @@ GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googl
  * **The testing framework should liberate test writers from housekeeping chores and let them focus on the test content**. Google C++ Testing Framework automatically keeps track of all tests defined, and does not require the user to enumerate them in order to run them.
  * **Tests should be fast**. With Google C++ Testing Framework, you can reuse shared resources across tests and pay for the set-up/tear-down only once, without making tests depend on each other.
 
-When using Google Test, developers write [_assertions_](https://github.com/google/googletest/blob/master/googletest/docs/Primer.md#assertions){:target="_blank"}, which are statements that check whether a condition is true. An assertion's result can be _success_, _nonfatal failure_, or _fatal failure_. If a fatal failure occurs, it aborts the current function; otherwise the program continues normally.
+When using Google Test, developers write [_assertions_](https://github.com/google/googletest/blob/master/googletest/docs/Primer.md#assertions), which are statements that check whether a condition is true. An assertion's result can be _success_, _nonfatal failure_, or _fatal failure_. If a fatal failure occurs, it aborts the current function; otherwise the program continues normally.
 
 _Tests_ use assertions to verify the tested code's behavior. If a test crashes or has a failed assertion, then it _<span style="color: #E74C3C">fails</span>_; otherwise it _<span style="color: #2ECC71">succeeds</span>_.
 
-A _Test Case_ contains one or many tests. You should group your tests into test cases that reflect the structure of the tested code. When multiple tests in a test case need to share common objects and subroutines, you can put them into a [_Test Fixture_](https://github.com/google/googletest/blob/master/googletest/docs/Primer.md#test-fixtures-using-the-same-data-configuration-for-multiple-tests){:target="_blank"} class.
+A _Test Case_ contains one or many tests. You should group your tests into test cases that reflect the structure of the tested code. When multiple tests in a test case need to share common objects and subroutines, you can put them into a [_Test Fixture_](https://github.com/google/googletest/blob/master/googletest/docs/Primer.md#test-fixtures-using-the-same-data-configuration-for-multiple-tests) class.
 
 A _Test Program_ can contain multiple test cases.
 
@@ -193,10 +193,10 @@ Other unit and system tests require from external tools, libraries and data file
 |:--|:-:|:-:|:--|
 |--------------
 | &#x2011;DENABLE_UNIT_TESTING | ON / OFF | ON  |  If set to OFF, it disables the building of unit tests. This can be useful in memory-limited systems. |
-| &#x2011;DENABLE_UNIT_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external raw sample files files and other software tools (among them, [GPSTk](http://www.gpstk.org/){:target="_blank"}, if it is not already found in your system), and builds some extra unit tests that are added to the ```run_tests``` executable.  |
+| &#x2011;DENABLE_UNIT_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external raw sample files files and other software tools (among them, [GPSTk](http://www.gpstk.org/), if it is not already found in your system), and builds some extra unit tests that are added to the ```run_tests``` executable.  |
 | &#x2011;DENABLE_SYSTEM_TESTING | ON / OFF |  OFF |  If set to ON, it builds system tests (each one with its own executable test program) at the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option.  |
-| &#x2011;DENABLE_SYSTEM_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](http://www.gpstk.org/){:target="_blank"}, if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
-| &#x2011;DENABLE_OWN_GPSTK | ON / OFF |  OFF | If set to ON, it forces to download, build and link [GPSTk](http://www.gpstk.org/){:target="_blank"} for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.9) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
+| &#x2011;DENABLE_SYSTEM_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](http://www.gpstk.org/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
+| &#x2011;DENABLE_OWN_GPSTK | ON / OFF |  OFF | If set to ON, it forces to download, build and link [GPSTk](http://www.gpstk.org/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.9) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
 | &#x2011;DENABLE_INSTALL_TESTS | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder ```gnss-sdr/install```. If this option is set to ON, test binaries and auxiliary files will not be copied to  ```gnss-sdr/install``` but installed in the system path when doing ```make install```.  |
 |----------
 
@@ -344,59 +344,59 @@ The generation of some unit test cases are enabled by default, and gathered in t
     ```
 
 * Unit Test Cases for the control plane:
-    - `ControlMessageFactoryTest`: set of tests for [control_message_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_message_factory.h){:target="_blank"}
-    - `ControlThreadTest`: set of tests for [control_thread.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_thread.h){:target="_blank"}
-    - `FileConfigurationTest`: set of tests for [file_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/file_configuration.h){:target="_blank"}
-    - `GNSSBlockFactoryTest`: set of tests for [gnss_block_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_block_factory.h){:target="_blank"}
-    - `GNSSFlowgraph`: set of tests for [gnss_flowgraph.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_flowgraph.h){:target="_blank"}
-    - `InMemoryConfiguration`: set of tests for [in_memory_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/in_memory_configuration.h){:target="_blank"}
-    - `StringConverterTest`: set of tests for [string_converter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/libs/string_converter.h){:target="_blank"}
+    - `ControlMessageFactoryTest`: set of tests for [control_message_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_message_factory.h)
+    - `ControlThreadTest`: set of tests for [control_thread.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_thread.h)
+    - `FileConfigurationTest`: set of tests for [file_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/file_configuration.h)
+    - `GNSSBlockFactoryTest`: set of tests for [gnss_block_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_block_factory.h)
+    - `GNSSFlowgraph`: set of tests for [gnss_flowgraph.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_flowgraph.h)
+    - `InMemoryConfiguration`: set of tests for [in_memory_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/in_memory_configuration.h)
+    - `StringConverterTest`: set of tests for [string_converter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/libs/string_converter.h)
 
  * Unit Test Cases for signal processing blocks:
     - Signal sources
-      - `FileSignalSource`: set of tests for [file_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/adapters/file_signal_source.h){:target="_blank"}
-      - `ValveTest`: set of tests for [gnss_sdr_valve.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_sdr_valve.h){:target="_blank"}
-      - `Unpack2bitSamplesTest`: set of tests for [unpack_2bit_samples.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/gnuradio_blocks/unpack_2bit_samples.h){:target="_blank"}
+      - `FileSignalSource`: set of tests for [file_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/adapters/file_signal_source.h)
+      - `ValveTest`: set of tests for [gnss_sdr_valve.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_sdr_valve.h)
+      - `Unpack2bitSamplesTest`: set of tests for [unpack_2bit_samples.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/gnuradio_blocks/unpack_2bit_samples.h)
     - Data Type Adapter
-      - `PassThroughTest`: set of tests for [pass_through.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/pass_through.h){:target="_blank"}
-      - `DataTypeAdapter`: set of test for data type adapters [byte_to_short.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/byte_to_short.h){:target="_blank"}, [ibyte_to_cbyte.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_cbyte.h){:target="_blank"}, [ibyte_to_complex.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_complex.h){:target="_blank"}, [ibyte_to_cshort.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_cshort.h){:target="_blank"}, [ishort_to_complex.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ishort_to_complex.h){:target="_blank"} and [ishort_to_cshort.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ishort_to_cshort.h){:target="_blank"}
+      - `PassThroughTest`: set of tests for [pass_through.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/pass_through.h)
+      - `DataTypeAdapter`: set of test for data type adapters [byte_to_short.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/byte_to_short.h), [ibyte_to_cbyte.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_cbyte.h), [ibyte_to_complex.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_complex.h), [ibyte_to_cshort.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_cshort.h), [ishort_to_complex.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ishort_to_complex.h) and [ishort_to_cshort.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ishort_to_cshort.h)
     - Input filter
-      - `FirFilterTest`: set of tests for [fir_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/input_filter/adapters/fir_filter.h){:target="_blank"}
+      - `FirFilterTest`: set of tests for [fir_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/input_filter/adapters/fir_filter.h)
     - Resampler
-      - `DirectResamplerConditionerCcTest`: set of tests for [direct_resampler_conditioner_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/resampler/gnuradio_blocks/direct_resampler_conditioner_cc.h){:target="_blank"}
+      - `DirectResamplerConditionerCcTest`: set of tests for [direct_resampler_conditioner_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/resampler/gnuradio_blocks/direct_resampler_conditioner_cc.h)
     - Acquisition
-      - `GpsL1CaPcpsAcquisitionTest`: set of tests for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h){:target="_blank"}
-      - `GpsL1CaPcpsAcquisitionGSoC2013Test`: set of tests for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h){:target="_blank"} developed during GSoC 2013.
-      - `GpsL1CaPcpsTongAcquisitionGSoC2013Test`: set of tests for [gps_l1_ca_pcps_tong_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_tong_acquisition.h){:target="_blank"}
-      - `GpsL1CaPcpsQuickSyncAcquisitionGSoC2014Test`: set of tests for [gps_l1_ca_pcps_quicksync_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_quicksync_acquisition.h){:target="_blank"}
-      - `GalileoE1PcpsAmbiguousAcquisitionTest`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h){:target="_blank"}
-      - `GalileoE1PcpsAmbiguousAcquisitionGSoCTest`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2012.
-      - `GalileoE1PcpsAmbiguousAcquisitionGSoC2013Test`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2012.
-      - `GalileoE1Pcps8msAmbiguousAcquisitionGSoC2013Test`: set of tests for [galileo_e1_pcps_8ms_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_8ms_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2013.
-      - `GalileoE1PcpsTongAmbiguousAcquisitionGSoC2013Test`: set of tests for [galileo_e1_pcps_tong_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_tong_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2013.
-      - `GalileoE1PcpsCccwsrAmbiguousAcquisitionTest`: set of tests for [galileo_e1_pcps_cccwsr_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_cccwsr_ambiguous_acquisition.h){:target="_blank"}
-      - `GalileoE1PcpsQuickSyncAmbiguousAcquisitionGSoC2014Test`: set of tests for [galileo_e1_pcps_quicksync_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_quicksync_ambiguous_acquisition.h){:target="_blank"} developed during GSoC 2014.
-      - `GalileoE5aPcpsAcquisitionGSoC2014GensourceTest`: set of tests for [galileo_e5a_noncoherent_iq_acquisition_caf.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e5a_noncoherent_iq_acquisition_caf.h){:target="_blank"} developed during GSoC 2014.
+      - `GpsL1CaPcpsAcquisitionTest`: set of tests for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h)
+      - `GpsL1CaPcpsAcquisitionGSoC2013Test`: set of tests for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h) developed during GSoC 2013.
+      - `GpsL1CaPcpsTongAcquisitionGSoC2013Test`: set of tests for [gps_l1_ca_pcps_tong_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_tong_acquisition.h)
+      - `GpsL1CaPcpsQuickSyncAcquisitionGSoC2014Test`: set of tests for [gps_l1_ca_pcps_quicksync_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_quicksync_acquisition.h)
+      - `GalileoE1PcpsAmbiguousAcquisitionTest`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h)
+      - `GalileoE1PcpsAmbiguousAcquisitionGSoCTest`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h) developed during GSoC 2012.
+      - `GalileoE1PcpsAmbiguousAcquisitionGSoC2013Test`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h) developed during GSoC 2012.
+      - `GalileoE1Pcps8msAmbiguousAcquisitionGSoC2013Test`: set of tests for [galileo_e1_pcps_8ms_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_8ms_ambiguous_acquisition.h) developed during GSoC 2013.
+      - `GalileoE1PcpsTongAmbiguousAcquisitionGSoC2013Test`: set of tests for [galileo_e1_pcps_tong_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_tong_ambiguous_acquisition.h) developed during GSoC 2013.
+      - `GalileoE1PcpsCccwsrAmbiguousAcquisitionTest`: set of tests for [galileo_e1_pcps_cccwsr_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_cccwsr_ambiguous_acquisition.h)
+      - `GalileoE1PcpsQuickSyncAmbiguousAcquisitionGSoC2014Test`: set of tests for [galileo_e1_pcps_quicksync_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_quicksync_ambiguous_acquisition.h) developed during GSoC 2014.
+      - `GalileoE5aPcpsAcquisitionGSoC2014GensourceTest`: set of tests for [galileo_e5a_noncoherent_iq_acquisition_caf.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e5a_noncoherent_iq_acquisition_caf.h) developed during GSoC 2014.
     - Tracking
-      - `CpuMulticorrelatorTest`: set of tests for [cpu_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cpu_multicorrelator.h){:target="_blank"} that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--cpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--cpu_multicorrelator_max_threads_test`. A possible call for this test could be:
+      - `CpuMulticorrelatorTest`: set of tests for [cpu_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cpu_multicorrelator.h) that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--cpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--cpu_multicorrelator_max_threads_test`. A possible call for this test could be:
       ```
       ./run_tests --gtest_filter=Cpu* --cpu_multicorrelator_iterations_test=10000 --cpu_multicorrelator_max_threads_test=2
       ```
-      - `GpuMulticorrelatorTest`: set of tests for [cuda_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cuda_multicorrelator.h){:target="_blank"} that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$ executed in the GPU. The availability of this test case requires the [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads){:target="_blank"} installed in your system, a GPU [supporting CUDA](https://developer.nvidia.com/cuda-gpus){:target="_blank"}, and have passed the option `-DENABLE_CUDA=ON` to CMake. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--gpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--gpu_multicorrelator_max_threads_test`. A possible call for this test could be:
+      - `GpuMulticorrelatorTest`: set of tests for [cuda_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cuda_multicorrelator.h) that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$ executed in the GPU. The availability of this test case requires the [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads) installed in your system, a GPU [supporting CUDA](https://developer.nvidia.com/cuda-gpus), and have passed the option `-DENABLE_CUDA=ON` to CMake. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--gpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--gpu_multicorrelator_max_threads_test`. A possible call for this test could be:
       ```
       $ ./run_tests --gtest_filter=Gpu* --gpu_multicorrelator_iterations_test=10000 --gpu_multicorrelator_max_threads_test=2
       ```
-      - `GalileoE1DllPllVemlTrackingInternalTest`: set of tests for [galileo_e1_dll_pll_veml_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e1_dll_pll_veml_tracking.h){:target="_blank"}
-      - `GalileoE5aTrackingTest`: set of tests for [galileo_e5a_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e5a_dll_pll_tracking.h){:target="_blank"}
-      - `TrackingLoopFilterTest`: set of tests for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h){:target="_blank"}
+      - `GalileoE1DllPllVemlTrackingInternalTest`: set of tests for [galileo_e1_dll_pll_veml_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e1_dll_pll_veml_tracking.h)
+      - `GalileoE5aTrackingTest`: set of tests for [galileo_e5a_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e5a_dll_pll_tracking.h)
+      - `TrackingLoopFilterTest`: set of tests for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h)
     - Telemetry Decoder
       - -
     - Observables
       - -
     - PVT
-      - `RinexPrinterTest`: set of tests for [rinex_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rinex_printer.h){:target="_blank"}
-      - `RtcmTest`: set of tests for [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h){:target="_blank"}
-      - `RtcmPrinterTest`: set of tests for [rtcm_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm_printer.h){:target="_blank"}
+      - `RinexPrinterTest`: set of tests for [rinex_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rinex_printer.h)
+      - `RtcmTest`: set of tests for [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h)
+      - `RtcmPrinterTest`: set of tests for [rtcm_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm_printer.h)
 
 ## Extra Unit Tests
 
@@ -409,8 +409,8 @@ $ make
 
 This option will download, build and link (at building time) the following tools and files:
 
- * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim){:target="_blank"} and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator){:target="_blank"}, which includes some sample RINEX and trajectory (.csv) files used by optional tests.
- * The [GPSTk project](http://www.gpstk.org){:target="_blank"}, an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](http://sgl.arlut.utexas.edu){:target="_blank"}, within the [Applied Research Laboratories](http://www.arlut.utexas.edu){:target="_blank"} at the [University of Texas at Austin](https://www.utexas.edu){:target="_blank"} (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk){:target="_blank"}.
+ * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim) and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator), which includes some sample RINEX and trajectory (.csv) files used by optional tests.
+ * The [GPSTk project](http://www.gpstk.org), an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](http://sgl.arlut.utexas.edu), within the [Applied Research Laboratories](http://www.arlut.utexas.edu) at the [University of Texas at Austin](https://www.utexas.edu) (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk).
  * It downloads `gps_l2c_m_prn7_5msps.dat`, a file containing raw GNSS signal samples that is used by some tests as input data.
 
 
@@ -418,14 +418,14 @@ The following Unit Test Cases are added to the executable `run_tests`:
 
 * Extra Unit Test Cases
   - Acquisition
-    - `GpsL2MPcpsAcquisitionTest`: set of tests for [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h){:target="_blank"} that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
+    - `GpsL2MPcpsAcquisitionTest`: set of tests for [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
   - Tracking
-    - `GpsL1CADllPllTrackingTest`: set of tests for [gps_l1_ca_dll_pll_c_aid_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_c_aid_tracking.h){:target="_blank"} that make use of the software-defined signal generator.
-    - `GpsL2MDllPllTrackingTest`: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h){:target="_blank"} that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
+    - `GpsL1CADllPllTrackingTest`: set of tests for [gps_l1_ca_dll_pll_c_aid_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_c_aid_tracking.h) that make use of the software-defined signal generator.
+    - `GpsL2MDllPllTrackingTest`: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
   - Telemetry Decoder
-    - `GpsL1CATelemetryDecoderTest`: set of tests for [gps_l1_ca_telemetry_decoder.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/gps_l1_ca_telemetry_decoder.h){:target="_blank"} that make use of the software-defined signal generator.
+    - `GpsL1CATelemetryDecoderTest`: set of tests for [gps_l1_ca_telemetry_decoder.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/gps_l1_ca_telemetry_decoder.h) that make use of the software-defined signal generator.
   - Observables
-    - `HybridObservablesTest`: set of tests for [hybrid_observables.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/observables/adapters/hybrid_observables.h){:target="_blank"} that make use of the software-defined signal generator.
+    - `HybridObservablesTest`: set of tests for [hybrid_observables.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/observables/adapters/hybrid_observables.h) that make use of the software-defined signal generator.
 
 
 ## System Tests
@@ -648,9 +648,9 @@ TEST(RtcmTest, HexToInt)  // RtcmTest is the name of the Test Case
 }
 ```
 
-This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h){:target="_blank"}) and wraps it into a shared pointer that will deallocate memory at the end of the test. Then, it tests the class member function `hex_to_bin` and evaluates the result in an assertion, checking that the obtained result is actually the expected one.
+This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h)) and wraps it into a shared pointer that will deallocate memory at the end of the test. Then, it tests the class member function `hex_to_bin` and evaluates the result in an assertion, checking that the obtained result is actually the expected one.
 
-For more details details about the usage of the Google C++ Testing Framework and its available features, please check out its  [Documentation](https://github.com/google/googletest/blob/master/googletest/docs/Documentation.md){:target="_blank"}.
+For more details details about the usage of the Google C++ Testing Framework and its available features, please check out its  [Documentation](https://github.com/google/googletest/blob/master/googletest/docs/Documentation.md).
 
 The existing tests are also a source of examples on how to write tests. Please place your testing code in an adequate folder from the GNSS-SDR source tree:
 
@@ -681,11 +681,11 @@ The existing tests are also a source of examples on how to write tests. Please p
 ```
 
 
-Once the test code is written, you need to build and link it against the Google Test library. This process is managed in the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt){:target="_blank"}. You will need to list your new test in the appropriate place in order to include it in the building:
+Once the test code is written, you need to build and link it against the Google Test library. This process is managed in the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt). You will need to list your new test in the appropriate place in order to include it in the building:
 
- * If your test is a Unit Test, please `#include` it in the file [gnss-sdr/src/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/test_main.cc){:target="_blank"} and rebuild the source code. It should be get included in the test program `run_tests`.
+ * If your test is a Unit Test, please `#include` it in the file [gnss-sdr/src/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/test_main.cc) and rebuild the source code. It should be get included in the test program `run_tests`.
 
- * If you test is a System Test, please modify accordingly the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt){:target="_blank"} to define a new target and then rebuild the source code to get the new executable.
+ * If you test is a System Test, please modify accordingly the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt) to define a new target and then rebuild the source code to get the new executable.
 
 
 At the end of the building, we should be able to run your new test. In the example provided above, this would be:
@@ -716,18 +716,18 @@ Note: Google Test filter = RtcmTest.HexToInt*
 
 # References
 
-[^Beck99]: K. Beck, C. Andres, [Extreme Programming Explained: Embrace Change](http://www.goodreads.com/book/show/67833.Extreme_Programming_Explained){:target="_blank"}, Addison-Wesley Professional, Boston, MA, 1999.
+[^Beck99]: K. Beck, C. Andres, [Extreme Programming Explained: Embrace Change](http://www.goodreads.com/book/show/67833.Extreme_Programming_Explained), Addison-Wesley Professional, Boston, MA, 1999.
 
-[^Beck02]: K. Beck, [Test Driven Development: By Example](http://www.eecs.yorku.ca/course_archive/2003-04/W/3311/sectionM/case_studies/money/KentBeck_TDD_byexample.pdf){:target="_blank"}, Addison-Wesley Professional, Boston, MA, 2002.
+[^Beck02]: K. Beck, [Test Driven Development: By Example](http://www.eecs.yorku.ca/course_archive/2003-04/W/3311/sectionM/case_studies/money/KentBeck_TDD_byexample.pdf), Addison-Wesley Professional, Boston, MA, 2002.
 
-[^Shore08]: J. Shore and S. Warden, [The Art of Agile Development](http://www.jamesshore.com/Agile-Book/){:target="_blank"}, O'Really, Sebastopol, CA, 2008.
+[^Shore08]: J. Shore and S. Warden, [The Art of Agile Development](http://www.jamesshore.com/Agile-Book/), O'Really, Sebastopol, CA, 2008.
 
-[^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0470192410.html){:target="_blank"}, Jossey-Bass, San Francisco, CA, 2009.
+[^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0470192410.html), Jossey-Bass, San Francisco, CA, 2009.
 
-[^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education){:target="_blank"}, MIT Press, Cambridge, MA, 1993.
+[^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education), MIT Press, Cambridge, MA, 1993.
 
-[^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Understand - Improve - Apply](http://www.springer.com/gp/book/9783642137563){:target="_blank"}, Springer-Verlag, Berlin, Germany, 2011.
+[^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Usnderstand - Improve - Apply](http://www.springer.com/gp/book/9783642137563), Springer-Verlag, Berlin, Germany, 2011.
 
-[^Cross11]: N. Cross, [Design Thinking: Understanding How Designers Think and Work](https://books.google.es/books/about/Design_Thinking.html?id=F4SUVT1XCCwC){:target="_blank"}, Berg Publishers, Oxford, UK, 2011.
+[^Cross11]: N. Cross, [Design Thinking: Understanding How Designers Think and Work](https://books.google.es/books/about/Design_Thinking.html?id=F4SUVT1XCCwC), Berg Publishers, Oxford, UK, 2011.
 
-[^IEEE730]: IEEE Computer Society, [730-2014 - IEEE Standard for Software Quality Assurance Processes](http://ieeexplore.ieee.org/document/6835311/){:target="_blank"}, New York, NY, 2014.
+[^IEEE730]: IEEE Computer Society, [730-2014 - IEEE Standard for Software Quality Assurance Processes](http://ieeexplore.ieee.org/document/6835311/), New York, NY, 2014.

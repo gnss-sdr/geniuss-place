@@ -64,9 +64,9 @@ compiler select the best library version (implemented using SIMD or any
 other processor-specific technology) of the required routines for a
 given processor.
 
-For more details about sample formats, please check out our tutorial on [data types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}){:target="_blank"}.
+For more details about sample formats, please check out our tutorial on [data types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}).
 
-The more kinds of signal souces GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" | absolute_url }}){:target="_blank"}.
+The more kinds of signal souces GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" | absolute_url }}).
 {: .notice--success}
 
 ## Reading data from a file
@@ -78,7 +78,7 @@ captured.
 
 Real signals sampled at an intermediate frequency can be downshifted to
 baseband (and thus expressed as complex samples) by the
-`Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }}){:target="_blank"} present at
+`Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }}) present at
 the Signal Conditioner block with its `IF` parameter.
 
 ### Implementation: `File_Signal_Source`
@@ -123,8 +123,8 @@ This implementation accepts the following parameters:
 This implementation assumes that the center frequency is the nominal
 corresponding to the GNSS frequency band. Any known
 deviation from that value can be compensated by using the `IF` parameter
-of the `Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }}){:target="_blank"}
-present at the Signal Conditioner block, or later on in the flow graph at the [Acquisition]({{ "/docs/sp-blocks/acquisition/" | absolute_url }}){:target="_blank"} and [Tracking]({{ "/docs/sp-blocks/tracking/" | absolute_url }}){:target="_blank"} blocks with their `if` parameter.
+of the `Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }})
+present at the Signal Conditioner block, or later on in the flow graph at the [Acquisition]({{ "/docs/sp-blocks/acquisition/" | absolute_url }}) and [Tracking]({{ "/docs/sp-blocks/tracking/" | absolute_url }}) blocks with their `if` parameter.
 
 It follows an example of a Signal Source block
 configured with the `File_Signal_Source` implementation:
@@ -313,7 +313,7 @@ specified in `SignalSource.filename`.
 
 ### Implementation: `UHD_Signal_Source`
 
-[![Ettus Research](http://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com){:target="_blank"} The USRP Hardware Driver ([UHD](http://files.ettus.com/manual/){:target="_blank"}) software API supports application development on all Ettus Research [USRP](https://www.ettus.com/product){:target="_blank"} Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
+[![Ettus Research](http://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com) The USRP Hardware Driver ([UHD](http://files.ettus.com/manual/)) software API supports application development on all [Ettus Research](https://www.ettus.com)'s [USRP](https://www.ettus.com/product) Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
 
 This implementation accepts the following parameters:
 
@@ -406,8 +406,8 @@ For instance, if `RF_channels` is set to `2`, then:
 
 ### Implementation: `Osmosdr_Signal_Source`
 
-[![OsmoSDR](http://sdr.osmocom.org/osmocom/osmocom_sdr.png){:height="250px" width="250x"}{: .align-right}](http://sdr.osmocom.org/trac/){:target="_blank"}
-OsmoSDR is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
+[![OsmoSDR](http://sdr.osmocom.org/osmocom/osmocom_sdr.png){:height="250px" width="250x"}{: .align-right}](http://sdr.osmocom.org/trac/)
+[OsmoSDR](http://sdr.osmocom.org/trac/) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
 project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. It provides a driver for several front-ends, such as RTL-based
 dongles, HackRF, bladeRF, etc.
 

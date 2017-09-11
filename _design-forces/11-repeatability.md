@@ -13,7 +13,7 @@ The difference between [accuracy]({{ "/design-forces/accuracy/" | absolute_url }
 
 ![Accuracy vs Precision]({{ "/assets/images/accuracy-and-precision.png" | absolute_url }}){:width="520x"}
 {: style="text-align: center;"}
-_Although the two words precision and accuracy can be synonymous in colloquial use, they are deliberately contrasted in the context of the scientific method. Source: [Wikipedia](https://en.wikipedia.org/wiki/Accuracy_and_precision){:target="_blank"}._
+_Although the two words precision and accuracy can be synonymous in colloquial use, they are deliberately contrasted in the context of the scientific method. Source: [Wikipedia](https://en.wikipedia.org/wiki/Accuracy_and_precision)._
 {: style="text-align: center;"}
 
 
@@ -65,4 +65,4 @@ It follows a list of possible repeatability indicators for a software-defined GN
 
 ## References
 
-[^Fernandez13]: C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas, [_Turning a Television into a GNSS Receiver_](http://www.cttc.es/wp-content/uploads/2013/09/Turning_TV_into_GNSS_Rx1.pdf){:target="_blank"}, in Proc. of the 26th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2013), Nashville, TN, Sep. 2013, pp. 1492 - 1507.
+[^Fernandez13]: C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas, [_Turning a Television into a GNSS Receiver_](http://www.cttc.es/wp-content/uploads/2013/09/Turning_TV_into_GNSS_Rx1.pdf), in Proc. of the 26th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2013), Nashville, TN, Sep. 2013, pp. 1492 - 1507.

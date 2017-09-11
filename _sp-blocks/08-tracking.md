@@ -36,12 +36,12 @@ $$ 0.1T_c $$ to $$ 0.5T_c $$, and then computes a timing error with some
 combination of those samples, known as _discriminator_ functions. The result is low-pass filtered and reinjected back to the matched filter, as shown in the figure below:
 
 ![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
-_Typical diagram of a tracking block. Colored boxes indicate functions implemented in the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library._
+_Typical diagram of a tracking block. Colored boxes indicate functions implemented in the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr) library._
 {: style="text-align: center;"}
 
-GNSS-SDR's _Tracking_ implementations make heavy use of [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"}, an extension module of the original [VOLK](http://libvolk.org/){:target="_blank"} library which contains some functions that are specially useful in the context of a GNSS receiver (some examples in the figure above).
+GNSS-SDR's _Tracking_ implementations make heavy use of [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr), an extension module of the original [VOLK](http://libvolk.org/) library which contains some functions that are specially useful in the context of a GNSS receiver (some examples in the figure above).
 
-The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library addresses [**Efficiency**]({{ "/design-forces/efficiency/" | absolute_url }}){:target="_blank"} and [**Portability**]({{ "/design-forces/portability/" | absolute_url }}){:target="_blank"} at the same time, by providing several implementations of the same functions in different SIMD technologies, benchmarking them and selecting the fastest in your machine at runtime.
+The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr) library addresses [**Efficiency**]({{ "/design-forces/efficiency/" | absolute_url }}) and [**Portability**]({{ "/design-forces/portability/" | absolute_url }}) at the same time, by providing several implementations of the same functions in different SIMD technologies, benchmarking them and selecting the fastest in your machine at runtime.
 {: .notice--success}
 
 ## GPS L1 C/A signal tracking
@@ -133,7 +133,7 @@ Tracking_1C.dll_bw_hz=4.0;
 
 GPU-accelerated computing consists in the use of a graphics processing unit (GPU) together with a CPU to accelerate the execution of a software application, by offloading computation-intensive portions of the application to the GPU, while the remainder of the code still runs on the CPU. The key idea is to utilize the computation power of both CPU cores and GPU execution units in tandem for better utilization of available computing power.
 
-This implementation follows the CUDA programming model and targets NVIDIA's GPU computing platform. Thus, you will need a [CUDA-enabled GPU](https://developer.nvidia.com/cuda-gpus){:target="_blank"} and the [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit){:target="_blank"} installed. Moreover, it is only available if GNSS-SDR has been built from source and compiled with the flag `ENABLE_CUDA` set to `ON`:
+This implementation follows the CUDA programming model and targets NVIDIA's GPU computing platform. Thus, you will need a [CUDA-enabled GPU](https://developer.nvidia.com/cuda-gpus) and the [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) installed. Moreover, it is only available if GNSS-SDR has been built from source and compiled with the flag `ENABLE_CUDA` set to `ON`:
 
 ```
 $ cmake -DENABLE_CUDA=ON ../ && make && sudo make install
@@ -280,7 +280,7 @@ indicators of the tracking performance.
 
 The implementation of this block is described in Algorithm
 below. The computation of the complex values VE, E, P, L and VL
-in step $$ 5 $$ was implemented using the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr){:target="_blank"} library. The
+in step $$ 5 $$ was implemented using the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr) library. The
 PLL discriminator implemented in step $$ 6 $$  is the extended
 arctangent (four-quadrant) discriminator, and for the DLL we used the
 normalized Very Early Minus Late Power discriminator (step $$ 10 $$ ). For code lock detection
@@ -488,8 +488,8 @@ Tracking_5X.early_late_space_chips=0.5
 
 ## References
 
-[^Petovello10]: M. Petovello, E. Falletti, M. Pini, L. Lo Presti, [_Are Carrier-to-Noise algorithms equivalent in all situations?_](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf){:target="_blank"}. Inside GNSS, Vol. 5, no. 1, pp. 20-27, Jan.-Feb. 2010.
+[^Petovello10]: M. Petovello, E. Falletti, M. Pini, L. Lo Presti, [Are Carrier-to-Noise algorithms equivalent in all situations?](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf). Inside GNSS, Vol. 5, no. 1, pp. 20-27, Jan.-Feb. 2010.
 
 [^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from “Global Positioning System: Theory and Applications”, Volume I, Edited by B. W. Parkinson, J. J. Spilker Jr.
 
-[^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [_An Open Source Galileo E1 Software Receiver_](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf){:target="_blank"}, in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
+[^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).

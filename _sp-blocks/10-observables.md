@@ -23,7 +23,7 @@ $$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right) $$
 _Pseudorange measurement (from the RTKLIB Manual)[^RTKLIBManual]_
 {: style="text-align: center;"}
 
-[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
+[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf). April 29, 2013.
 
 The equation can be written by using the geometric range $$ \rho_r^{(s)} $$ between satellite and receiver antennas, the receiver and satellite clock biases $$ dt_r $$ and $$ dT^{(s)} $$, the ionospheric and tropospheric delays $$ I_{r,i}^{(s)} $$ and $$ T_r^{(s)} $$ and the measurement error $$ \epsilon_P $$ as:
 
@@ -142,11 +142,11 @@ where:
 
     * $$ \mathbf{r}_{sun} $$ is the sun position in ECEF coordinates.
     * $$ \mathbf{e}^{(s)} = \frac{\mathbf{r}_{sun}-\mathbf{r}^{(s)} }{\left\| \mathbf{r}_{sun}-\mathbf{r}^{(s)}\right\| } $$ is a unit vector pointing from satellite $$ s $$ towards the sun.
-    * $$ \mathbf{e}_{z}^{(s)} = \frac{\mathbf{r}^{(s)}}{\left\| \mathbf{r}^{(s)} \right\|} $$ is a unit vector from the satellite to the [nadir](https://en.wikipedia.org/wiki/Nadir){:target="_blank"} direction.
-    * $$ \mathbf{e}_{y}^{(s)} = \frac{\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} }{\left\|\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} \right\|} $$, where $$ \times $$ denotes the [cross-product](https://en.wikipedia.org/wiki/Cross_product){:target="_blank"} operator.
+    * $$ \mathbf{e}_{z}^{(s)} = \frac{\mathbf{r}^{(s)}}{\left\| \mathbf{r}^{(s)} \right\|} $$ is a unit vector from the satellite to the [nadir](https://en.wikipedia.org/wiki/Nadir) direction.
+    * $$ \mathbf{e}_{y}^{(s)} = \frac{\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} }{\left\|\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} \right\|} $$, where $$ \times $$ denotes the [cross-product](https://en.wikipedia.org/wiki/Cross_product) operator.
     * $$ \mathbf{e}_{x}^{(s)} = \mathbf{e}_{y}^{(s)} \times \mathbf{e}_{z}^{(s)} $$.
     * $$ \mathbf{d}_{r,disp} $$ is the displacement by Earth tides at the receiver position in local coordinates (in m).
-    * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect){:target="_blank"} term (in cycles) due to the circular polarization of the GNSS electromagnetic signals. For a receiver with fixed coordinates, the wind-up is due to the satellite orbital motion. As the satellite moves along its orbital path it must perform a rotation to keep its solar panels pointing to the Sun direction in order to obtain the maximum energy while the satellite antenna keeps pointing to the earth's centre. This rotation causes a phase variation that the receiver misunderstands as a range variation.
+    * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect) term (in cycles) due to the circular polarization of the GNSS electromagnetic signals. For a receiver with fixed coordinates, the wind-up is due to the satellite orbital motion. As the satellite moves along its orbital path it must perform a rotation to keep its solar panels pointing to the Sun direction in order to obtain the maximum energy while the satellite antenna keeps pointing to the earth's centre. This rotation causes a phase variation that the receiver misunderstands as a range variation.
 
 
 ## Doppler shift measurement
@@ -329,14 +329,14 @@ Example:
 
 ## References
 
-[^Arribas14]: J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas, [_Fastening GPS and Galileo Tight with a Software Receiver_](https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428){:target="_blank"}, in Proc. of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014), Tampa, Florida, Sep. 2014, pp. 1383 - 1395.
+[^Arribas14]: J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas, [Fastening GPS and Galileo Tight with a Software Receiver](https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428), in Proc. of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014), Tampa, Florida, Sep. 2014, pp. 1383 - 1395.
 
-[^Petovello12]: M. Petovello, M. Rao, G. Falca, [_Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?_](http://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf){:target="_blank"}, Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
+[^Petovello12]: M. Petovello, M. Rao, G. Falca, [Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?](http://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf), Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
 
-[^Petovello10]: M. Petovello, C. O'Driscoll, [_Carrier phase and its measurements for GNSS: What is the carrier phase measurement? How is it generated in GNSS receivers?_](http://www.insidegnss.com/auto/julaug10-solutions.pdf){:target="_blank"} Inside GNSS, vol. 5, no. 5, pp. 18–22, Jul./Aug. 2010.
+[^Petovello10]: M. Petovello, C. O'Driscoll, [Carrier phase and its measurements for GNSS: What is the carrier phase measurement? How is it generated in GNSS receivers?](http://www.insidegnss.com/auto/julaug10-solutions.pdf) Inside GNSS, vol. 5, no. 5, pp. 18–22, Jul./Aug. 2010.
 
-[^Doppler]: C. Doppler, "[&#220;ber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels](https://archive.org/details/ueberdasfarbigel00doppuoft){:target="_blank"} (On the colored light of the double stars and certain other stars of the heavens), Abh. Kniglich Bhmischen Ges. Wiss., vol. 2, pp. 467–482, 1842.
+[^Doppler]: C. Doppler, [&#220;ber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels](https://archive.org/details/ueberdasfarbigel00doppuoft) (On the colored light of the double stars and certain other stars of the heavens), Abh. Kniglich Bhmischen Ges. Wiss., vol. 2, pp. 467–482, 1842.
 
-[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
+[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf). April 29, 2013.
 
 <link rel="prerender" href="{{ "/docs/sp-blocks/pvt/" | absolute_url }}">

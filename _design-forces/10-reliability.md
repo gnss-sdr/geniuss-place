@@ -19,17 +19,17 @@ Reliability is about the overall consistency of a measure. It is a concept that 
 
 Specifically, software reliability is also related to the usage of the programming language. Certain coding practices are considered unsafe, in the sense that they can lead to _undefined_,  _unspecified_ or _implementation-defined_ behaviors under certain conditions, which is an undesirable feature (see definitions below).
 
-As examples of programming languages for high-reliability systems, we can mention [Ada](https://en.wikipedia.org/wiki/Ada_(programming_language)){:target="_blank"} and [SPARK](https://en.wikipedia.org/wiki/SPARK_(programming_language)){:target="_blank"} (which is an Ada dialect with some hooks for static verification), which are used in aerospace circles for building high reliability software such as avionics systems, and [Erlang](http://www.erlang.org){:target="_blank"}, which was designed from the ground up for writing high-reliability telecommunications code. Functional languages such as [Haskell](https://wiki.haskell.org/Haskell){:target="_blank"} can be subjected to formal proofs by automated systems due to the declarative nature of the language. However, these languages are garbage collected, and garbage collection is not normally predictable enough for hard real-time applications, although there is a body of ongoing research in time bounded incremental garbage collectors.
+As examples of programming languages for high-reliability systems, we can mention [Ada](https://en.wikipedia.org/wiki/Ada_(programming_language)) and [SPARK](https://en.wikipedia.org/wiki/SPARK_(programming_language)) (which is an Ada dialect with some hooks for static verification), which are used in aerospace circles for building high reliability software such as avionics systems, and [Erlang](http://www.erlang.org), which was designed from the ground up for writing high-reliability telecommunications code. Functional languages such as [Haskell](https://wiki.haskell.org/Haskell) can be subjected to formal proofs by automated systems due to the declarative nature of the language. However, these languages are garbage collected, and garbage collection is not normally predictable enough for hard real-time applications, although there is a body of ongoing research in time bounded incremental garbage collectors.
 
 Although C and C++ were not specifically designed for this type of application, they are widely used for embedded and safety-critical software for several reasons. The main properties of note are control over memory management (which allows you to avoid having to garbage collect, for example), simple, well debugged core run-time libraries and mature tool support. A lot of the embedded development tool chains in use today were first developed in the 1980s and 1990s when this was current technology and come from the Unix culture that was prevalent at that time, so these tools remain popular for this sort of work. While manual memory management code must be carefully checked to avoid errors, it allows a degree of control over application response times that is not available with languages that depend on garbage collection. The core run time libraries of C and C++ languages are relatively simple, mature and well understood, so they are amongst the most stable platforms available[^StackOverflow].
 
 In the case of the C++ language, the software industry has created several specifications for enhanced reliability, banning the usage of a set of libraries and functions from the standard library, as well as defining a list of coding rules. Examples:
 
-* _SEI CERT C++ Coding Standard: Rules for Developing Safe, Reliable, and Secure Systems in C++ [(2016 Edition)](http://cert.org/secure-coding/products-services/secure-coding-cpp-download-2016.cfm){:target="_blank"}_, based on the [ISO/IEC 14882-2014](https://www.iso.org/standard/64029.html){:target="_blank"} standard.
+* _SEI CERT C++ Coding Standard: Rules for Developing Safe, Reliable, and Secure Systems in C++ [(2016 Edition)](http://cert.org/secure-coding/products-services/secure-coding-cpp-download-2016.cfm)_, based on the [ISO/IEC 14882-2014](https://www.iso.org/standard/64029.html) standard.
 
-* _High Integrity C++ Coding Standard [Version 4.0](http://www.codingstandard.com){:target="_blank"}_, released on 3 October 2013. It is based on the [ISO/IEC 14882:2011](https://www.iso.org/standard/50372.html){:target="_blank"} standard.
+* _High Integrity C++ Coding Standard [Version 4.0](http://www.codingstandard.com)_, released on 3 October 2013. It is based on the [ISO/IEC 14882:2011](https://www.iso.org/standard/50372.html) standard.
 
-* _[MISRA C++](https://www.misra.org.uk/Activities/MISRAC/tabid/171/Default.aspx){:target="_blank"} Guidelines for the use of the C++ language in critical systems_, published and officially launched on 5 June 2008. It is based on the [ISO/IEC 14882:2003](https://www.iso.org/standard/38110.html){:target="_blank"} standard.
+* _[MISRA C++](https://www.misra.org.uk/Activities/MISRAC/tabid/171/Default.aspx) Guidelines for the use of the C++ language in critical systems_, published and officially launched on 5 June 2008. It is based on the [ISO/IEC 14882:2003](https://www.iso.org/standard/38110.html) standard.
 
 The ultimate objective of those coding standards is to prevent from the undesired behaviors described below:
 
@@ -59,7 +59,7 @@ It follows a list of possible reliability indicators for a software-defined GNSS
 * Horizontal / Vertical Protection Limits (HPL / VPL):  radius of circles which are centered on the GNSS position solution and are guaranteed to contain the true position of the receiver to within the specifications of the RAIM scheme (_i.e._, which meets specified false alarm and  missed detection probabilities).
 
 * Availability of mechanisms providing robustness against RF interferences and multipath:
-  - Out-of-band rejection of RF interferences (see [ETSI EN 303 413 Standard](https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=48239){:target="_blank"}).
+  - Out-of-band rejection of RF interferences (see [ETSI EN 303 413 Standard](https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=48239)).
   - In-band rejection techniques for continuous wave, pulsed, and wideband interferences.
   - Countermeasures against spoofing, meaconing, and fake assisted and differential data.
   - Spatial diversity: Fixed / Controlled Reception Pattern Antennas[^Fernandez16].
@@ -69,9 +69,9 @@ It follows a list of possible reliability indicators for a software-defined GNSS
   - Probability of failure.
   - Time to authentication.
 
-* Safety-critical software certifications (_e.g._, [DO--178B](https://en.wikipedia.org/wiki/DO-178B){:target="_blank"}).
+* Safety-critical software certifications (_e.g._, [DO--178B](https://en.wikipedia.org/wiki/DO-178B)).
 
-* If the programming language is C++: Coding Standard certifications (_e.g._, [SEI CERT C++ Coding Standard](http://www.cert.org/go/secure-coding/){:target="_blank"}, [High Integrity C++](http://www.programmingresearch.com/coding-standards/high-integrity-cpp/){:target="_blank"}, MISRA C++:2008, others)
+* If the programming language is C++: Coding Standard certifications (_e.g._, [SEI CERT C++ Coding Standard](http://www.cert.org/go/secure-coding/), [High Integrity C++](http://www.programmingresearch.com/coding-standards/high-integrity-cpp/), MISRA C++:2008, others)
 
 * Observation of coding standards.
   - Use of static checking tools to enforce compliance with the allowed language subset.
@@ -81,6 +81,6 @@ It follows a list of possible reliability indicators for a software-defined GNSS
 
 ## References
 
-[^StackOverflow]: Stack Overflow, [Which languages are used for safety-critical software?]( https://stackoverflow.com/questions/243387/which-languages-are-used-for-safety-critical-software/243573#243573){:target="_blank"}
+[^StackOverflow]: Stack Overflow, [Which languages are used for safety-critical software?]( https://stackoverflow.com/questions/243387/which-languages-are-used-for-safety-critical-software/243573#243573)
 
-[^Fernandez16]: C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas, [_Robust GNSS Receivers by Array Signal Processing: Theory and Implementation_](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7444116){:target="_blank"}, Proceedings of the IEEE, Vol. 104, No. 6, pp. 1207 - 1220, June 2016.
+[^Fernandez16]: C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas, [_Robust GNSS Receivers by Array Signal Processing: Theory and Implementation_](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7444116), Proceedings of the IEEE, Vol. 104, No. 6, pp. 1207 - 1220, June 2016.

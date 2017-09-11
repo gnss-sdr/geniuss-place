@@ -37,7 +37,7 @@ For the computing platform executing the software receiver:
 * For physical devices:
   - Computer form factor, shape, size and weight.
   - Power consumption / battery autonomy.
-  - Degrees of protection from solid objects and liquids, given by the [Ingress Protection](https://en.wikipedia.org/wiki/IP_Code){:target="_blank"} rating system. Examples:
+  - Degrees of protection from solid objects and liquids, given by the [Ingress Protection](https://en.wikipedia.org/wiki/IP_Code) rating system. Examples:
       * IP65: protection from dust and from low pressure jets of water in all directions. Limited water ingress permitted.
       * IP67: protection from dust and against the effects of immersion in water to depth between 15 cm and 1 meter.
   - Temperature / humidity / vibration operative ranges.

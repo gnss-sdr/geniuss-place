@@ -44,7 +44,7 @@ If everything went fine, you can directly jump into how to get your [first posit
 
 ## macOS / Mac OS X using Macports
 
-If you are using macOS Sierra (or Mac OS X 10.9 and above), and the [Macports](https://www.macports.org/){:target="_blank"} package manager, GNSS-SDR can be installed by typing in a Terminal:
+If you are using macOS Sierra (or Mac OS X 10.9 and above), and the [Macports](https://www.macports.org/) package manager, GNSS-SDR can be installed by typing in a Terminal:
 
     $ sudo port install gnss-sdr
 
@@ -71,7 +71,7 @@ $ sudo port install gnss-sdr-next
   {{ mac-os-text | markdownify }}
 </div>
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ "/my-first-fix/" | absolute_url }}"). Or maybe you might prefer other options, such as using [Homebrew](http://brew.sh/){:target="_blank"} instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on macOS Sierra or Mac OS X, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x){:target="_blank"} file.
+If everything went fine, you can directly jump into how to get your [first position fix]({{ "/my-first-fix/" | absolute_url }}"). Or maybe you might prefer other options, such as using [Homebrew](http://brew.sh/) instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on macOS Sierra or Mac OS X, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x) file.
 
 # Building from source
 
@@ -122,7 +122,7 @@ Once you have installed these packages, you can jump directly to [clone, build a
 
 ### Install dependencies using PyBOMBS
 
-This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend to use [PyBOMBS](http://gnuradio.org/pybombs "Python Build Overlay Managed Bundle System wiki"){:target="_blank"} (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs){:target="_blank"}. Here we provide a quick step-by-step tutorial.
+This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend to use [PyBOMBS](http://gnuradio.org/pybombs "Python Build Overlay Managed Bundle System wiki") (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs). Here we provide a quick step-by-step tutorial.
 
 First of all, install some basic packages:
 
@@ -170,7 +170,7 @@ In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR 
 $ pybombs install armadillo gflags glog gnutls
 ~~~~~~
 
-or manually, just donwloading, building and installing them. More details are available in the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#manual-installation-of-other-required-dependencies){:target="_blank"} file.
+or manually, just donwloading, building and installing them. More details are available in the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#manual-installation-of-other-required-dependencies) file.
 
 ## Clone, build and install GNSS-SDR
 
@@ -200,7 +200,7 @@ If everything went fine in the building process, now you can jump into how to ge
 
 ## Using Ninja
 
-[Ninja](https://ninja-build.org/){:target="_blank"} is a small build system with a focus on speed, that can be seen as a replacement for ```make```. If the parameter ```-GNinja``` is passed to CMake, it generates a ```build.ninja``` file (instead of a ```Makefile```) that is used by the Ninja build system to compile and link the source code. Thus, after cloning the repository, the build workflow is:
+[Ninja](https://ninja-build.org/) is a small build system with a focus on speed, that can be seen as a replacement for ```make```. If the parameter ```-GNinja``` is passed to CMake, it generates a ```build.ninja``` file (instead of a ```Makefile```) that is used by the Ninja build system to compile and link the source code. Thus, after cloning the repository, the build workflow is:
 
 ```
 $ cd gnss-sdr/build
@@ -228,7 +228,7 @@ or Homebrew:
 $ brew install ninja
 ```
 
-More information about Ninja usage can be found in the [Ninja Manual](https://ninja-build.org/manual.html){:target="_blank"}.
+More information about Ninja usage can be found in the [Ninja Manual](https://ninja-build.org/manual.html).
 
 **NOTE**: Ninja usage is only available in the ```next``` branch of the GNSS-SDR repository. This feature will be present on the next stable release.
 {: .notice--warning}
@@ -236,7 +236,7 @@ More information about Ninja usage can be found in the [Ninja Manual](https://ni
 
 ## Using Clang
 
-[Clang](https://clang.llvm.org/){:target="_blank"} is a compiler front end for C, C++ and other programming languages. It uses [LLVM](https://llvm.org/){:target="_blank"} as its back end, and it is designed to be able to replace the full GNU Compiler Collection ([GCC](https://gcc.gnu.org/){:target="_blank"}).  Under macOS, this compiler is used by default. In GNU/Linux, it can be used to build GNSS-SDR in replacement of GCC.
+[Clang](https://clang.llvm.org/) is a compiler front end for C, C++ and other programming languages. It uses [LLVM](https://llvm.org/) as its back end, and it is designed to be able to replace the full GNU Compiler Collection ([GCC](https://gcc.gnu.org/)).  Under macOS, this compiler is used by default. In GNU/Linux, it can be used to build GNSS-SDR in replacement of GCC.
 
 In Debian/Ubuntu-based distributions, Clang can be installed by doing:
 
@@ -271,9 +271,9 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/cl
   <img src="{{ "/assets/images/logo-snappy.png" | absolute_url }}" alt="Snappy logo">
 </figure>
 
-[Snaps](http://snapcraft.io){:target="_blank"} are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
+[Snaps](http://snapcraft.io) are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
 
-Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox){:target="_blank"} for instructions on building your own snap package of GNSS-SDR.
+Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox) for instructions on building your own snap package of GNSS-SDR.
 
 ## Docker
 
@@ -281,9 +281,9 @@ Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/
   <img src="{{ "/assets/images/docker_logo.png" | absolute_url }}" alt="Docker logo">
 </figure>
 
-[Docker](https://www.docker.com){:target="_blank"} is an open source tool designed to make it easier to create, deploy, and run applications by using *containers*. Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools and system libraries, and ship it all out as one package. This guarantees that the software will always run the same, regardless of any customized settings that the executing machine might have that could differ from the machine used for writing and testing the code. Using containers is another way of packing applications, in a much lighter weight and with a much faster delivery model than using Virtual Machines.
+[Docker](https://www.docker.com) is an open source tool designed to make it easier to create, deploy, and run applications by using *containers*. Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools and system libraries, and ship it all out as one package. This guarantees that the software will always run the same, regardless of any customized settings that the executing machine might have that could differ from the machine used for writing and testing the code. Using containers is another way of packing applications, in a much lighter weight and with a much faster delivery model than using Virtual Machines.
 
-Visit [https://github.com/carlesfernandez/docker-pybombs-gnsssdr](https://github.com/carlesfernandez/docker-pybombs-gnsssdr){:target="_blank"} for instructions on building your own Docker image containing GNSS-SDR.
+Visit [https://github.com/carlesfernandez/docker-pybombs-gnsssdr](https://github.com/carlesfernandez/docker-pybombs-gnsssdr) for instructions on building your own Docker image containing GNSS-SDR.
 
 
 ## GNSS-SDR in embedded platforms
@@ -292,10 +292,10 @@ Visit [https://github.com/carlesfernandez/docker-pybombs-gnsssdr](https://github
   <img src="{{ "/assets/images/oe-logo.png" | absolute_url }}" alt="Openembedded logo">
 </figure>
 
-We provide a Software Development Kit (SDK) based on [OpenEmbedded](http://www.openembedded.org/wiki/Main_Page){:target="_blank"} for cross-compiling GNSS-SDR in your desktop computer, producing executables that can run in embedded platforms, such as a Zedboard or a Raspberry Pi 3. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.
+We provide a Software Development Kit (SDK) based on [OpenEmbedded](http://www.openembedded.org/wiki/Main_Page) for cross-compiling GNSS-SDR in your desktop computer, producing executables that can run in embedded platforms, such as a Zedboard or a Raspberry Pi 3. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.
 
 
-Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | absolute_url }}){:target="_blank"} for instructions on cross-compiling GNSS-SDR for embedded systems.
+Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | absolute_url }}) for instructions on cross-compiling GNSS-SDR for embedded systems.
 
 
 

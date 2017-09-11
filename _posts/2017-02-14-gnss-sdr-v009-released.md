@@ -97,7 +97,7 @@ This release has several improvements, addition of new features and bug fixes in
 -----
 
 
-As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.9){:target="_blank"} and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/){:target="_blank"}.
+As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.9) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
 
-<a href="http://dx.doi.org/10.5281/zenodo.291371" target="_blank"><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq){:target="_blank"}. The DOI for GNSS-SDR v0.0.9 is [10.5281/zenodo.291371](http://dx.doi.org/10.5281/zenodo.291371){:target="_blank"}.
+<a href="http://dx.doi.org/10.5281/zenodo.291371" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.9 is [10.5281/zenodo.291371](http://dx.doi.org/10.5281/zenodo.291371).
 {: .notice--info}
