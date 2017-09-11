@@ -28,7 +28,7 @@ GNSS-SDR v0.0.8 has been released. This is a maintenance and bug fix release wit
  * VOLK_GNSSSDR: Added an option to trigger profiling at building time.
  * VOLK_GNSSSDR: Fix the CMake-based check for posix_memalign.
 
-As always, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.8){:target="_blank"} and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/){:target="_blank"}.
+As always, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.8) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
 
-<a href="http://dx.doi.org/10.5281/zenodo.57022" target="_blank"><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq){:target="_blank"}. The DOI for GNSS-SDR v0.0.8 is [10.5281/zenodo.57022](http://dx.doi.org/10.5281/zenodo.57022){:target="_blank"}.
+<a href="http://dx.doi.org/10.5281/zenodo.57022" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.8 is [10.5281/zenodo.57022](http://dx.doi.org/10.5281/zenodo.57022).
 {: .notice--info}

@@ -97,6 +97,15 @@
     }
   }
 
+  /*
+  a[href^="https://"]:not([href*="gnss-sdr.org"]):not([href*="github.com/carlesfernandez"]):not([href*="github.com/gnss-sdr"]):after,
+  a[href^="http://"]:not([href*="gnss-sdr.org"]):not([href*="localhost:4000"]):after {
+      content: " \F08E";
+      font-family: FontAwesome;
+      font-size: 0.8em;
+  }
+  */
+
   dt {
     margin-top: 1em;
     font-family: $sans-serif;

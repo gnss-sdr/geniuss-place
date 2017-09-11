@@ -9,7 +9,7 @@ sidebar:
 
 {% include toc %}
 
-The _Data Type Adapter_ is the first processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}){:target="_blank"} implementation.
+The _Data Type Adapter_ is the first processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}) implementation.
 
 
 

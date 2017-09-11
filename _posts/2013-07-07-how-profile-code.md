@@ -14,7 +14,7 @@ Profiling is a dynamic program analysis that measures the usage of memory, the u
 
 ## Statistical profilers
 
-GNSS-SDR can use [gperftools](https://github.com/gperftools/gperftools){:target="_blank"}, a set of performance analysis tools for multi-threaded application developments in C++. Gperftools includes a high-performance, multi-threaded memory allocation implementation called thread-caching malloc (tcmalloc), plus a CPU profiler (measures CPU time consumption), a heap profiler (measures memory usage) and heap checker (detects memory leaks).
+GNSS-SDR can use [gperftools](https://github.com/gperftools/gperftools), a set of performance analysis tools for multi-threaded application developments in C++. Gperftools includes a high-performance, multi-threaded memory allocation implementation called thread-caching malloc (tcmalloc), plus a CPU profiler (measures CPU time consumption), a heap profiler (measures memory usage) and heap checker (detects memory leaks).
 
 A cool feature of these tools is that they are non code-intrusive, in the sense that they do not require modifications in the source code. In fact, the CPU profiler, the heap checker, and the heap profiler will remain inactive, using no memory or CPU, until you turn them on by defining certain environment variables.
 
@@ -46,7 +46,7 @@ $ CPUPROFILE_FREQUENCY=100000000000 CPUPROFILE=/tmp/gnss-sdr-cpu.prof /path/to/g
 $ pprof --gv --nodefraction=0.000000000001 --edgefraction=0.000000000001 ./gnss-sdr /tmp/gnss-sdr-cpu.prof
 ```
 
-Please see more details on fine control of the [CPU profiler’s behavior and output analysis options](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/cpuprofile.html){:target="_blank"}.
+Please see more details on fine control of the [CPU profiler’s behavior and output analysis options](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/cpuprofile.html).
 
 ### Heap checker
 
@@ -62,7 +62,7 @@ $ HEAPCHECK=1 /path/to/gnss-sdr
 
 Other values for HEAPCHECK: `normal` (equivalent to `1`), `strict`, `draconian`.
 
-Please see more details on the [heap checker options](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/heap_checker.html){:target="_blank"}.
+Please see more details on the [heap checker options](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/heap_checker.html).
 
 
 ### Heap profiler
@@ -81,7 +81,7 @@ $ pprof <path/to/binary> /tmp/gnss-sdr.heap.prof.0045.heap # run 'ls' to see opt
 $ pprof --gv <path/to/binary> /tmp/gnss-sdr.heap.prof.0045.heap
 ```
 
-Please see more details on the [heap profiler options](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/heapprofile.html){:target="_blank"}.
+Please see more details on the [heap profiler options](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/heapprofile.html).
 
 ### A quick note about how to use it
 
@@ -123,7 +123,7 @@ $ pprof --gv ./gnss-sdr /tmp/prof.gnss-sdr.0045.heap
 
 ## Instrumenting profilers
 
-Another king of profilers instrument (that is, monitor or measure) the target program with additional instructions to collect the required information about software performace. [Valgrind](http://valgrind.org/){:target="_blank"} is an instrumentation framework for building dynamic analysis tools. There are Valgrind tools that can automatically detect many memory management and threading bugs, and profile  programs in detail. One of these tools is Callgrind, a cache profiler. Available separately is an amazing visualisation tool, [KCachegrind](https://kcachegrind.github.io/html/Home.html){:target="_blank"}, which gives a much better overview of the data that Callgrind collects.
+Another king of profilers instrument (that is, monitor or measure) the target program with additional instructions to collect the required information about software performace. [Valgrind](http://valgrind.org/) is an instrumentation framework for building dynamic analysis tools. There are Valgrind tools that can automatically detect many memory management and threading bugs, and profile  programs in detail. One of these tools is Callgrind, a cache profiler. Available separately is an amazing visualisation tool, [KCachegrind](https://kcachegrind.github.io/html/Home.html), which gives a much better overview of the data that Callgrind collects.
 
 When you use Callgrind to profile an application, your application is transformed in an intermediate language and then ran in a virtual processor emulated by Valgrind. This has a huge run-time overhead, but the precision is really good and your profiling data is complete. An application running in Callgrind can be 10 to 50 times slower than normally. The output of Callgrind is flat cal graph that is not really usable directly, but we can use KCachegrind to display the informations about the profiling of the analyzed application.
 
@@ -149,6 +149,6 @@ $ kcachegrind &
 
 and then we have to open the file `callgrind.out.XXX` we obtained before.
 
-The Valgrind framework offers other interesting tools such as Memcheck, a memory error detector. See the [Memcheck manual](http://valgrind.org/docs/manual/mc-manual.html){:target="_blank"} for more details.
+The Valgrind framework offers other interesting tools such as Memcheck, a memory error detector. See the [Memcheck manual](http://valgrind.org/docs/manual/mc-manual.html) for more details.
 
-To know more, a good place to start is the [Valgrind homepage](http://valgrind.org/){:target="_blank"} and a list of [research papers about Valgrind](http://valgrind.org/docs/pubs.html){:target="_blank"}.
+To know more, a good place to start is the [Valgrind homepage](http://valgrind.org/) and a list of [research papers about Valgrind](http://valgrind.org/docs/pubs.html).

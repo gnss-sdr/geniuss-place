@@ -22,7 +22,7 @@ Some radio frequency front-ends have jumpers, or some other configurable mode, f
 
 ## GPS L1 C/A receiver using a USRP
 
-This in an example of an eight-channel GPS L1 C/A receiver, working at 4 MS/s (baseband, _i.e._ complex samples), and using a device from the [USRP family](https://www.ettus.com/product){:target="_blank"} as the "air-to-computer" interface.
+This in an example of an eight-channel GPS L1 C/A receiver, working at 4 MS/s (baseband, _i.e._ complex samples), and using a device from the [USRP family](https://www.ettus.com/product) as the "air-to-computer" interface.
 
 ### Required equipment
 
@@ -41,7 +41,7 @@ In order to get real-time position fixes, you will need:
   | X300, X310 | Up to $$ 120 $$ MHz | See daughterboard |  $$ 200 $$ MS/s | 10 Gigabit Ethernet | $$ 200 $$ MS/s |
   |--------------
 
-  _Some USRP models and features. The ADC processing bandwidth is the sample rate provided by the ADCs on the USRP motherboard, and the host sample rate refers to the sample stream between the FPGA of a USRP device, and a host PC. Some USRP models also provide to option to stream 8-bit samples, effectively doubling the host-bandwidth in terms of samples/second. Source: [Ettus Research Knowledge Base](https://kb.ettus.com/About_USRP_Bandwidths_and_Sampling_Rates){:target="_blank"}._
+  _Some USRP models and features. The ADC processing bandwidth is the sample rate provided by the ADCs on the USRP motherboard, and the host sample rate refers to the sample stream between the FPGA of a USRP device, and a host PC. Some USRP models also provide to option to stream 8-bit samples, effectively doubling the host-bandwidth in terms of samples/second. Source: [Ettus Research Knowledge Base](https://kb.ettus.com/About_USRP_Bandwidths_and_Sampling_Rates)._
   {: style="text-align: center;"}
 
   * The USRP family features a modular architecture with interchangeable daughterboard modules that serve as the RF front end. In case of using a USRP without an embedded transceiver, you will need **a daughterboard** allowing the reception of signals around 1.5 GHz. That is: DBSRX2, WBX, SBX, CBX and UBX daughterboards can work for you. You will not need a daughterboard if you are using USRP B200, B210 or E310, which ship an Analog Devices AD9361 RFIC as an integrated wideband transceiver.
@@ -61,7 +61,7 @@ In order to get real-time position fixes, you will need:
   | DBSRX2 | 800 MHz - 2.3 GHz | Configurable: 8 MHz to 80 MHz | GC1 from $$ 0 $$ to $$ 73 $$ dB, and BBC from $$ 0 $$ to $$ 15 $$ dB |
   |--------------
 
-  _Daugtherboards allowing GNSS signal reception. Note that WBX-120, CBX-120 and SBX-120 daughterboards were designed to work with USRP X300/X310 and any future products with sufficient ADC/DAC sample rates. These boards are not compatible with devices that incorporate lower rate ADC/DAC below 200 MS/s. Source: [Ettus Research Knowledge Base](https://kb.ettus.com/About_USRP_Bandwidths_and_Sampling_Rates){:target="_blank"}._
+  _Daugtherboards allowing GNSS signal reception. Note that WBX-120, CBX-120 and SBX-120 daughterboards were designed to work with USRP X300/X310 and any future products with sufficient ADC/DAC sample rates. These boards are not compatible with devices that incorporate lower rate ADC/DAC below 200 MS/s. Source: [Ettus Research Knowledge Base](https://kb.ettus.com/About_USRP_Bandwidths_and_Sampling_Rates)._
   {: style="text-align: center;"}
 
 
@@ -69,7 +69,7 @@ In order to get real-time position fixes, you will need:
 
 ### Setting up the front-end
 
-The first thing to do is to install a suitable daughterboard into the USRP. As a example, you can check Ettus Research's detailed [step-by-step guide to install a daughterboard into the USRP N200/N210](https://kb.ettus.com/USRP_N_Series_Quick_Start_(Daughterboard_Installation)){:target="_blank"}. In USRPs with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labelled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
+The first thing to do is to install a suitable daughterboard into the USRP. As a example, you can check Ettus Research's detailed [step-by-step guide to install a daughterboard into the USRP N200/N210](https://kb.ettus.com/USRP_N_Series_Quick_Start_(Daughterboard_Installation)). In USRPs with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labelled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
 
 Then, you will need to feed your GNSS active antenna.
 
@@ -79,21 +79,21 @@ Then, you will need to feed your GNSS active antenna.
 In case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper in order to feed the antenna.
 
 ![DBSRX2](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/DBSRX2_scale.jpg){: .align-center}
-_DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the injection of current towards the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
+_DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the injection of current towards the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 If this feature is not available (_e.g._, WBX daughterboards), you will need a bias-T between the USRP and the antenna, and to connect it to a power source delivering the voltage required by your antenna (usually, 3 V or 5 V).
 
 ![Bias-T](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/bias_tee_scale.jpg){: .align-center}
-_Bias-T allowing the injection of DC voltage to the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
+_Bias-T allowing the injection of DC voltage to the antenna. Source: [Radio Adventures ](http://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 
 ![Setup](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/whole_hw_scaled.jpeg){: .align-center}
-_USRP N210 with the bias-T and the GPS antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/){:target="_blank"}._
+_USRP N210 with the bias-T and the GPS antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
-Depending on the specific USRP model you are using, the connection to the host computer in charge of the execution of the software receiver can be through USB (2.0 or 3.0) or Ethernet (1 GigE or 10 GigE). Once connected, every USRP device has [several ways of identifying it](http://files.ettus.com/manual/page_identification.html){:target="_blank"} on the host system:
+Depending on the specific USRP model you are using, the connection to the host computer in charge of the execution of the software receiver can be through USB (2.0 or 3.0) or Ethernet (1 GigE or 10 GigE). Once connected, every USRP device has [several ways of identifying it](http://files.ettus.com/manual/page_identification.html) on the host system:
 
 |----------
 |  **Identifier**  |  **Key** | **Notes** | **Example** |
@@ -105,7 +105,7 @@ Depending on the specific USRP model you are using, the connection to the host c
 | Name | `name` | optional user-set identifier | lab1_usrp3 |
 |--------------
 
- _Common device identifiers. Source: [Identifying USRP Devices](http://files.ettus.com/manual/page_identification.html){:target="_blank"}._
+ _Common device identifiers. Source: [Identifying USRP Devices](http://files.ettus.com/manual/page_identification.html)._
  {: style="text-align: center;"}
 
 Devices attached to your system can be discovered using the `uhd_find_devices` program. This program scans your system for supported devices and prints out an enumerated list of discovered devices and their addresses. If you type `uhd_find_devices --help` in a terminal, you should see something similar to this:
@@ -143,7 +143,7 @@ or by typing:
 $ uhd_find_devices --args type=usrp1
 ```
 
-This is a good way to check if the USRP is correctly connected to your computer. After this check, we can proceed to configure the software receiver. The [USRP Hardware Driver and USRP Manual](http://files.ettus.com/manual/page_devices.html){:target="_blank"} provides more information about the configuration and usage of those devices.
+This is a good way to check if the USRP is correctly connected to your computer. After this check, we can proceed to configure the software receiver. The [USRP Hardware Driver and USRP Manual](http://files.ettus.com/manual/page_devices.html) provides more information about the configuration and usage of those devices.
 
 ### Setting up the software receiver
 
@@ -237,9 +237,9 @@ PVT.flag_rtcm_server=true
 You will need to adjust the values for at least two parameters:
 
   * Check that `SignalSource.device_address` points to the actual IP address of your USRP, if you are connected through Ethernet, or leave it empty for USB.
-  * Check that `SignalSource.subdevice` is set to the receiving slot in which you actually inserted your daughterboard with the antenna. In USRPs with only one receiving slot, leave it as `A:0`. Please check more details on [how to specify the subdevice](http://files.ettus.com/manual/page_configuration.html#config_subdev){:target="_blank"}.
+  * Check that `SignalSource.subdevice` is set to the receiving slot in which you actually inserted your daughterboard with the antenna. In USRPs with only one receiving slot, leave it as `A:0`. Please check more details on [how to specify the subdevice](http://files.ettus.com/manual/page_configuration.html#config_subdev).
 
-The [Signal Processing Blocks documentation]({{ "/docs/sp-blocks/" | absolute_url }}){:target="_blank"} provides definitions and more details about the configuration parameters.
+The [Signal Processing Blocks documentation]({{ "/docs/sp-blocks/" | absolute_url }}) provides definitions and more details about the configuration parameters.
 
 ### Run it!
 
@@ -361,7 +361,7 @@ Now you can examine the files created in your working folder.
 
 * Check out that the GNSS antenna is actually fed and that it is placed in a location with a good sky visibility.
 
-* Check out Ettus Research's [getting starting guide](https://kb.ettus.com/Getting_Started_Guides){:target="_blank"} for your particular hardware configuration.
+* Check out Ettus Research's [getting starting guide](https://kb.ettus.com/Getting_Started_Guides) for your particular hardware configuration.
 
 * Watch out for overflows! Maybe your host computer is not able to sustain the required computational load for this particular implementation.
 

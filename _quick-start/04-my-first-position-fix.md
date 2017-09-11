@@ -42,7 +42,7 @@ gnss-sdr: command not found
 $
 ```
 
-please check out the [building guide]({{ "/build-and-install/" | absolute_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md){:target="_blank"} file for more details on how to install GNSS-SDR.
+please check out the [building guide]({{ "/build-and-install/" | absolute_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file for more details on how to install GNSS-SDR.
 
 In order to take advantage of the SIMD instruction sets present in your processor, you will need to run the prolifer tools of the VOLK and VOLK_GNSSSDR libraries (these operations only need to be done once, and can take a while):
 
@@ -133,7 +133,7 @@ PVT.display_rate_ms=500
 **NOTE:** Check that the parameter `SignalSource.filename` actually points to the name and path of your raw data file.
 {: .notice--warning}
 
-**NOTE:** For more details about the configuration options for each block, check out the [**Signal Processing Blocks**]({{ "/docs/sp-blocks/" | absolute_url }}){:target="_blank"} documentation.
+**NOTE:** For more details about the configuration options for each block, check out the [**Signal Processing Blocks**]({{ "/docs/sp-blocks/" | absolute_url }}) documentation.
 {: .notice--info}
 
 Save the file as `my-first-GNSS-SDR-receiver.conf` (or any other name of your choice).

@@ -9,14 +9,14 @@ sidebar:
 
 {% include toc %}
 
-The _Input Filter_ is the second processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}){:target="_blank"} implementation.
+The _Input Filter_ is the second processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}) implementation.
 
 The role on an _Input Filter_ block is to filter the incoming signal.
 {: .notice--info}
 
 ### Implementation: `Fir_Filter`
 
-This implementation, based on the [Parks-McClellan algorithm](https://en.wikipedia.org/wiki/Parks%E2%80%93McClellan_filter_design_algorithm){:target="_blank"}, computes
+This implementation, based on the [Parks-McClellan algorithm](https://en.wikipedia.org/wiki/Parks%E2%80%93McClellan_filter_design_algorithm), computes
 the optimal (in the Chebyshev/minimax sense) FIR filter impulse response
 given a set of band edges, the desired response on those bands, and the
 weight given to the error in those bands. The Parks-McClellan algorithm

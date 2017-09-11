@@ -45,7 +45,7 @@ $$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ is the chip period.
 
 Particularizations of such signal structure for the different existing systems[^Fernandez11] are described below.
 
-[^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5942139){:target="_blank"}, Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](http://dx.doi.org/10.1109/JPROC.2011.2158032).
+[^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5942139), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](http://dx.doi.org/10.1109/JPROC.2011.2158032).
 
 ## Global Positioning System (GPS)
 
@@ -60,7 +60,7 @@ worldwide basis. Two GPS services are provided:
 
 -   the Standard Positioning Service (SPS) open to civilian users.
 
-The most updated and authorized source is the [Official U.S. Government website about GPS and related topics](http://www.gps.gov/){:target="_blank"}.
+The most updated and authorized source is the [Official U.S. Government website about GPS and related topics](http://www.gps.gov/).
 
 ### GPS L1
 
@@ -106,12 +106,12 @@ Non-standard codes are not for utilization by the users and, therefore,
 are not defined in IS-GPS-800D.
 
 ![Spectra GPS Signals L1](http://www.navipedia.net/images/thumb/4/41/Chapter_2_Spectra_GPS_Signals_L1.png/800px-Chapter_2_Spectra_GPS_Signals_L1.png)
-_GPS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan){:target="_blank"}_.
+_GPS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf){:target="_blank"}, Dec. 2015.
+[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf), Dec. 2015.
 
-[^ISGPS800]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-800D: Navstar GPS Space Segment/User Segment L1C Interface](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf){:target="_blank"}, Sept. 2013.
+[^ISGPS800]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-800D: Navstar GPS Space Segment/User Segment L1C Interface](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf), Sept. 2013.
 
 ### GPS L2C
 
@@ -147,7 +147,7 @@ transmitted at $$ 25 $$ bps with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ sps.
 
 ![Spectra GPS Signals L2](http://www.navipedia.net/images/c/c4/Chapter_2_Spectra_GPS_Signals_L2.png)
-_GPS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan){:target="_blank"}_.
+_GPS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
 GPS L2C is only available on Block IIR–M and subsequent satellite blocks.
@@ -173,10 +173,10 @@ GPS L5 civil navigation data $$ D_{\text{CNAV}} $$, and the L5Q component
 has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
 
 ![Spectra GPS Signals L5](http://www.navipedia.net/images/7/7a/Chapter_2_Spectra_GPS_Signals_L5.png)
-_GPS signals spectra in L5. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan){:target="_blank"}_.
+_GPS signals spectra in L5. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^ISGPS705]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-705D: Navstar GPS Space Segment/User Segment L5 Interfaces](http://www.gps.gov/technical/icwg/IS-GPS-705D.pdf){:target="_blank"}, Sept. 2013.
+[^ISGPS705]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-705D: Navstar GPS Space Segment/User Segment L5 Interfaces](http://www.gps.gov/technical/icwg/IS-GPS-705D.pdf), Sept. 2013.
 
 
 ## GLONASS
@@ -190,7 +190,7 @@ $$ 15 $$ minutes, and $$ 45 $$ seconds. The orbital planes are separated by
 $$ 120^o $$ right ascension of the ascending node. Eight satellites are
 equally spaced in each plane with $$ 45^o $$ argument of latitude. Moreover,
 the orbital planes have an argument of latitude displacement of $$ 15^o $$
-relative to each other. The current constellation status can be checked at the Russian [Information and Analysis Center for Positioning, Navigation and Timing website](https://www.glonass-iac.ru/en/){:target="_blank"}.
+relative to each other. The current constellation status can be checked at the Russian [Information and Analysis Center for Positioning, Navigation and Timing website](https://www.glonass-iac.ru/en/).
 
 The ground control segment of GLONASS is almost entirely located within
 former Soviet Union territory, except for a station in Brasilia, Brazil.
@@ -212,7 +212,7 @@ simultaneously by a ground–based user.
 
 The modernization of GLONASS includes the adoption of the CDMA scheme[^GLONASS16], with new open signals called L1OC, L2OC and L3OC.
 
-[^GLONASS16]: Global Navigation Satellite System GLONASS. [General description of the system with code division of signals](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD.-Obshh.-opis.-Red.-1.0-2016.pdf){:target="_blank"}. Revision 1.0, Moscow, Russia, 2016. (In Russian).
+[^GLONASS16]: Global Navigation Satellite System GLONASS. [General description of the system with code division of signals](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD.-Obshh.-opis.-Red.-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
 ### GLONASS L1
 
@@ -239,7 +239,7 @@ disclosed.
 
 
 ![Spectra GLONASS Signals L1](http://www.navipedia.net/images/2/2e/GLONASS_Sig_Plan_Fig_2.png)
-_GLONASS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan){:target="_blank"}_.
+_GLONASS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
 The use of FDMA techniques, in which the same code is used to broadcast
@@ -251,9 +251,9 @@ receivers, particularly low–cost equipment for mass–market applications.
 In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1600.99 $$ MHz, referred to as L1OC, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, to be launched from 2018. This documentation is only available in Russian [^GLONASS16-1].
 
 
-[^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf){:target="_blank"}. Edition 5.1, Moscow, Russia, 2008.
+[^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf). Edition 5.1, Moscow, Russia, 2008.
 
-[^GLONASS16-1]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L1 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}. Revision 1.0, Moscow, Russia, 2016. (In Russian).
+[^GLONASS16-1]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L1 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
 
 
@@ -264,7 +264,7 @@ first launched in 2001, a second civil signal is available using the
 same SP code than the one in the L1 band but centered at $$ 1246 $$ MHz.
 
 ![Spectra GLONASS Signals L2](http://www.navipedia.net/images/4/41/GLONASS_Sig_Plan_Fig_4.png)
-_GLONASS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan){:target="_blank"}_.
+_GLONASS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
 Future plans of modernization are intended to increase compatibility and
@@ -272,18 +272,18 @@ interoperability with other GNSS, and include the addition of a
 code–division multiple access (CDMA) structure.
 
 On July 2, 2013, a Russian Proton-M rocket carrying three GLONASS–M
-navigation satellites [crashed](https://www.youtube.com/watch?v=HpBYCLu6kXA){:target="_blank"} soon after liftoff today from Kazakhstan’ Baikonur cosmodrome.
+navigation satellites [crashed](https://www.youtube.com/watch?v=HpBYCLu6kXA) soon after liftoff today from Kazakhstan’ Baikonur cosmodrome.
 
 In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1248.06 $$ MHz, referred to as L2OC and featuring a BOC(1,1) modulation, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, to be launched from 2018. This documentation is only available in Russian [^GLONASS16-2].
 
-[^GLONASS16-2]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L2 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}. Revision 1.0, Moscow, Russia, 2016. (In Russian).
+[^GLONASS16-2]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L2 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
 
 ### GLONASS L3
 
 In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1202.025 $$ MHz, referred to as L3OC and featuring a BPSK(10) modulation, to be broadcast by GLONASS satellites starting by Glonass-M, in production since 2014. This documentation is only available in Russian [^GLONASS16-3].
 
-[^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}. Revision 1.0, Moscow, Russia, 2016. (In Russian).
+[^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
 ## Galileo
 
@@ -297,7 +297,7 @@ Galileo satellites are placed in quasi–circular Earth orbits with a
 nominal semi–major axis of about $$ 30,000 $$ km and an approximate
 revolution period of $$ 14 $$ hours. The Control segment full infrastructure
 will be composed of $$ 30-40 $$ sensor stations, $$ 3 $$ control centers, $$ 9 $$
-Mission Uplink stations, and $$ 5 $$ TT&C stations. The current constellation status can be checked at the [European GNSS Service Centre website](http://www.gsc-europa.eu/system-status/Constellation-Information){:target="_blank"}.
+Mission Uplink stations, and $$ 5 $$ TT&C stations. The current constellation status can be checked at the [European GNSS Service Centre website](http://www.gsc-europa.eu/system-status/Constellation-Information).
 
 Galileo’s Open Service is defined in Galileo's ICD[^GalileoICD], where the following
 signal structures are specified:
@@ -340,10 +340,10 @@ structure of the navigation message have not been made public.
 
 ![Spectra of Galileo signals in E1. Source:
 Navipedia.](http://www.navipedia.net/images/2/23/Galileo_Signal_Plan_Fig_2.png)
-_Galileo signals spectra in E1. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan){:target="_blank"}_.
+_Galileo signals spectra in E1. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf){:target="_blank"}, Issue 1.3, Dec. 2016.
+[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
 
 ### Galileo E6
 
@@ -373,7 +373,7 @@ publicly available.
 
 ![Spectra of Galileo signals in E6. Source:
 Navipedia.](http://www.navipedia.net/images/e/e7/Galileo_Signal_Plan_Fig_5.png)
-_Galileo signals spectra in E6. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan){:target="_blank"}_.
+_Galileo signals spectra in E6. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
 
@@ -475,7 +475,7 @@ processing of the whole E5 band.
 
 ![Spectra of Galileo signals in E5. Source:
 Navipedia.](http://www.navipedia.net/images/e/e2/Galileo_Signal_Plan_Fig_7.png)
-_Galileo signals spectra in E5. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan){:target="_blank"}_.
+_Galileo signals spectra in E5. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
 
@@ -515,7 +515,7 @@ On December 27, 2012, the Chinese government released the first version
 of BeiDou’s Interface Control Document (ICD), a 77-page
 document that included details of the navigation message, including
 parameters of the satellite almanacs and ephemerides that were missing
-from a “test version” of the ICD released exactly one year before. One year later cersion 2.0 was released, and version 2.1 followed in November 2016[^Beidou]. The wonderful Navipedia keeps track of [BeiDou status](http://www.navipedia.net/index.php/BeiDou_Future_and_Evolutions){:target="_blank"}.
+from a “test version” of the ICD released exactly one year before. One year later cersion 2.0 was released, and version 2.1 followed in November 2016[^Beidou]. The wonderful Navipedia keeps track of [BeiDou status](http://www.navipedia.net/index.php/BeiDou_Future_and_Evolutions).
 
 ![BeiDou Logo](http://www.gpsworld.com/wp-content/uploads/2013/01/BeiDou-Logo.png){:height="250px" width="250x"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
 official logo of the BeiDou system, the design of which incorporates the
@@ -535,9 +535,9 @@ of the ICD, Ran Chengqi, director of China Satellite Navigation Office,
 said the English designation will henceforth be BeiDou Navigation
 Satellite System with the abbreviation BDS.
 
-[^Beidou]: [BeiDou Navigation Satellite System Signal In Space Interface Control Document](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf){:target="_blank"}. Open Service Signal (Version 2.1). China Satellite Navigation Office, November 2016.
+[^Beidou]: [BeiDou Navigation Satellite System Signal In Space Interface Control Document](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf). Open Service Signal (Version 2.1). China Satellite Navigation Office, November 2016.
 
-Updated information can be found at the [Beidou Navigation Satellite System website](http://en.beidou.gov.cn/){:target="_blank"}.
+Updated information can be found at the [Beidou Navigation Satellite System website](http://en.beidou.gov.cn/).
 
 ### BeiDou B1
 
@@ -566,7 +566,7 @@ Next figure shows the power spectral densities of the BeiDou signals in B2.
 
 ![Spectra of BeiDou signals in B2. Source:
 Navipedia.](http://www.navipedia.net/images/e/ec/Compass_Sig_Plan_Fig_3.png)
-_BeiDou signals spectra in B2. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan){:target="_blank"}_.
+_BeiDou signals spectra in B2. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan)_.
 {: style="text-align: center;"}
 
 
@@ -581,7 +581,7 @@ Next figure shows the power spectral densities of the proposed BeiDou signals in
 
 ![Spectra of BeiDou signals in B3. Source:
 Navipedia.](http://www.navipedia.net/images/d/de/Compass_Sig_Plan_Fig_5.png)
-_BeiDou signals spectra in B3. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan){:target="_blank"}_.
+_BeiDou signals spectra in B3. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan)_.
 {: style="text-align: center;"}
 
 
@@ -593,20 +593,20 @@ The following table lists the GNSS signals providing Open Service.
 |  **GNSS Signal**  |  **Center Freq.** |  **Modulation** |
 |:-:|:-:|:-:|    
 |--------------
-| [GPS L5](http://www.gps.gov/technical/icwg/IS-GPS-705D.pdf){:target="_blank"}$$ ^{(*)} $$ | $$1176.45 $$ MHz  |  BPSK(10)  |
-| [Galileo E5a](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf){:target="_blank"}   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
-| [GLONASS L3OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
-| [Galileo E5b](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf){:target="_blank"}   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
-| [BeiDou B2I](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf){:target="_blank"}    | $$ 1207.14 $$ MHz |  BPSK(2)   |
-| [GPS L2C](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf){:target="_blank"}$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
-| [GLONASS L2OF](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf){:target="_blank"}  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
-| [GLONASS L2OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
-| [BeiDou B1](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf){:target="_blank"}     | $$ 1561.098 $$ MHz | BPSK(2) |
-| [GPS L1 C/A](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf){:target="_blank"}    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
-| [GPS L1C](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf){:target="_blank"}$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
-| [Galileo E1b/c](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf){:target="_blank"} | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
-| [GLONASS L1OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf){:target="_blank"}$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
-| [GLONASS L1OF](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf){:target="_blank"}  | $$ 1602.00 $$ MHz | BPSK(0.5) |
+| [GPS L5](http://www.gps.gov/technical/icwg/IS-GPS-705D.pdf)$$ ^{(*)} $$ | $$1176.45 $$ MHz  |  BPSK(10)  |
+| [Galileo E5a](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
+| [GLONASS L3OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
+| [Galileo E5b](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
+| [BeiDou B2I](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf)    | $$ 1207.14 $$ MHz |  BPSK(2)   |
+| [GPS L2C](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
+| [GLONASS L2OF](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
+| [GLONASS L2OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
+| [BeiDou B1](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf)     | $$ 1561.098 $$ MHz | BPSK(2) |
+| [GPS L1 C/A](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
+| [GPS L1C](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
+| [Galileo E1b/c](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
+| [GLONASS L1OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
+| [GLONASS L1OF](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1602.00 $$ MHz | BPSK(0.5) |
 |--------------
 
 (*): Modernized signal not broadcast by all satellites.

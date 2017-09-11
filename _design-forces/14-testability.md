@@ -19,7 +19,7 @@ _Design for Testability_ is a concept used in electronic hardware design for ove
 
 A primary purpose of testing is to detect software failures so that defects may be discovered and corrected. Testing cannot establish that a product functions properly under all conditions but can only establish that it does not function properly under specific conditions.
 
-But such design for testability has also an impact on System Architecture design, since it typically drives a clear separation of concerns, layered architecture or service orientation, and high cohesiveness of entities in the code. Tests behave very much like system "clients": unit tests imitate the behaviour of a corresponding client-class or classes invoking target class methods; component test imitate the behaviour of client-components; functional tests imitate the end user[^Yakima]. Designing for testability implies providing for clear and understandable interfaces between classes, components, services, and, ultimately, the user interface and the rest of the system. Design patterns[^GoF94]$$ ^{,} $$[^Fowler02] as [fa&ccedil;ade](https://en.wikipedia.org/wiki/Facade_pattern){:target="_blank"}, [gateway](http://martinfowler.com/eaaCatalog/gateway.html){:target="_blank"}, or [observer](https://en.wikipedia.org/wiki/Observer_pattern){:target="_blank"} foster testability. Logging, abstract interfaces, verbose output modes and a flexible configuration system are other desirable features that enable testability.
+But such design for testability has also an impact on System Architecture design, since it typically drives a clear separation of concerns, layered architecture or service orientation, and high cohesiveness of entities in the code. Tests behave very much like system "clients": unit tests imitate the behaviour of a corresponding client-class or classes invoking target class methods; component test imitate the behaviour of client-components; functional tests imitate the end user[^Yakima]. Designing for testability implies providing for clear and understandable interfaces between classes, components, services, and, ultimately, the user interface and the rest of the system. Design patterns[^GoF94]$$ ^{,} $$[^Fowler02] as [fa&ccedil;ade](https://en.wikipedia.org/wiki/Facade_pattern), [gateway](http://martinfowler.com/eaaCatalog/gateway.html), or [observer](https://en.wikipedia.org/wiki/Observer_pattern) foster testability. Logging, abstract interfaces, verbose output modes and a flexible configuration system are other desirable features that enable testability.
 
 Software tests have the following desirable features[^Whittaker12]:
 
@@ -55,10 +55,10 @@ It follows a list of possible testability indicators for a software-defined GNSS
 
 ## References
 
-[^Yakima]: A. Yakima, [_Design for Testability: A Vital Aspect of the System Architect Role in SAFe._](http://scaledagileframework.com/design-for-testability-a-vital-aspect-of-the- system-architect-role-in-safe/){:target="_blank"}, Scaled Agile, Inc., 2015.
+[^Yakima]: A. Yakima, [_Design for Testability: A Vital Aspect of the System Architect Role in SAFe._](http://scaledagileframework.com/design-for-testability-a-vital-aspect-of-the- system-architect-role-in-safe/), Scaled Agile, Inc., 2015.
 
 [^Whittaker12]: J. Whittaker, J. Arbon, J. Carollo, _How Google Tests Software_, Westford, Massachusetts: Pearson Education, 2012.
 
 [^GoF94]: E. Gamma, R. Helm, R. Johnson, J. Vlissides, _Design Patterns: Elements of Reusable Object-Oriented Software_, Addison-Wesley Professional, 1994.
 
-[^Fowler02]: M. Fowler, [_Patterns of Enterprise Application Architecture_](http://martinfowler.com/books/eaa.html){:target="_blank"}, Addison-Wesley Professional; 1 edition (November 15, 2002).
+[^Fowler02]: M. Fowler, [_Patterns of Enterprise Application Architecture_](http://martinfowler.com/books/eaa.html), Addison-Wesley Professional; 1 edition (November 15, 2002).

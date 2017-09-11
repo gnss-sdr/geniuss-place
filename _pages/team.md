@@ -36,7 +36,7 @@ redirect_from:
 ## Contributors
 
 
-Check out the full [list of contributors to the source code in GitHub](https://github.com/gnss-sdr/gnss-sdr/graphs/contributors){:target="_blank"}.
+Check out the full [list of contributors to the source code in GitHub](https://github.com/gnss-sdr/gnss-sdr/graphs/contributors).
 
 See them at work:
 

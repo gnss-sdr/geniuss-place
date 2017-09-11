@@ -123,7 +123,7 @@ ulong l2;
 
 ## Data types in GNSS-SDR
 
-In the C and C++ programming languages, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h){:target="_blank"} is the name of the
+In the C and C++ programming languages, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) is the name of the
 header file that allows programmers to write more portable code by
 providing a set of typedefs that specify exact-width integer types,
 together with the defined minimum and maximum allowable values for each
@@ -132,7 +132,7 @@ often involves considerable manipulation of hardware specific I/O
 registers requiring integer data of fixed widths, specific locations and
 exact alignments. The naming convention for exact-width integer types is
 `intN_t` for `signed int` and `uintN_t` for `unsigned int`. Among
-others, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h){:target="_blank"} defines the following typedefs:
+others, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) defines the following typedefs:
 
 -   `int8_t` Signed integer type with a width of *exactly* 8 bits.
 
@@ -141,7 +141,7 @@ others, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/std
 -   `int32_t` Signed integer type with a width of *exactly* 32 bits.
 
 Building upon these definitions, the [Vector-Optimized Library of Kernels
-(VOLK)](http://libvolk.org/){:target="_blank"} library defines complex data types. As shown below, it loads the header [`<complex>`](http://en.cppreference.com/w/cpp/header/complex){:target="_blank"}, a file that defines
+(VOLK)](http://libvolk.org/) library defines complex data types. As shown below, it loads the header [`<complex>`](http://en.cppreference.com/w/cpp/header/complex), a file that defines
 functionality for complex arithmetic (i.e. basic, arithmetic,
 trigonometric and hyperbolic operations, but only for floating-point
 data types: `float`, `double` and `long double`. This means that complex
@@ -150,7 +150,7 @@ instantiation of an object of type `std::complex<int8_t>` has undefined
 behavior. The VOLK library provides definitions for those data types
 that are missing in C++ in a portable manner.
 
-Those data type definitions can be seen at [volk/include/volk/volk_complex.h](https://github.com/gnuradio/volk/blob/master/include/volk/volk_complex.h){:target="_blank"}. We reproduce here a snippet to make those definitions more obvious:
+Those data type definitions can be seen at [volk/include/volk/volk_complex.h](https://github.com/gnuradio/volk/blob/master/include/volk/volk_complex.h). We reproduce here a snippet to make those definitions more obvious:
 
 ```cpp
 ...
@@ -257,4 +257,4 @@ The following Table shows some of the possible configurations when bringing samp
 
 ### What happens after Channels?
 
-Your duty as user when configuring GNSS-SDR, in the matters related to data types, ends when delivering samples to _Channels_. After that, all the information is handled by an object of an internal class ([check out its API](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/system_parameters/gnss_synchro.h){:target="_blank"} if you are curious) and the results of the whole processing are then delivered in standard formats such as [RINEX](https://en.wikipedia.org/wiki/RINEX){:target="_blank"}, [RTCM 104](https://en.wikipedia.org/wiki/RTCM){:target="_blank"} or [KML](https://en.wikipedia.org/wiki/Keyhole_Markup_Language){:target="_blank"}, among others.
+Your duty as user when configuring GNSS-SDR, in the matters related to data types, ends when delivering samples to _Channels_. After that, all the information is handled by an object of an internal class ([check out its API](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/system_parameters/gnss_synchro.h) if you are curious) and the results of the whole processing are then delivered in standard formats such as [RINEX](https://en.wikipedia.org/wiki/RINEX), [RTCM 104](https://en.wikipedia.org/wiki/RTCM) or [KML](https://en.wikipedia.org/wiki/Keyhole_Markup_Language), among others.
