@@ -148,6 +148,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| <span style="color: DarkOrange">`blocking`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to `true`.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -304,6 +305,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| <span style="color: DarkOrange">`blocking`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to `true`.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -381,6 +383,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| <span style="color: DarkOrange">`blocking`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to `true`.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -506,7 +509,7 @@ Acquisition_5X.doppler_step=250
 ```
 
 
-## Assisted acquisition
+
 
 
 -------
