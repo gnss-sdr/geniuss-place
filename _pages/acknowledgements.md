@@ -31,7 +31,10 @@ The Authors are proud to be supported by the following public institutions, priv
   This project has received funding from the [**European GNSS Agency**](http://www.gsa.europa.eu/) under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](http://cordis.europa.eu/project/rcn/199301_en.html).
   {: .notice--success}
 
+* Support of the Spanish Ministry of Economy and Competitiveness.
 
+  **The Spanish Ministry of Economy and Competitiveness**, through project ADVENTURE (Ref. TEC2015-69868-C2-2-R), provides partial support for registrations and travel expenses to well-established scientific conferences, as well as publication fees.
+  {: .notice--success}
 
 * Support of Research Groups by the Government of Catalonia (Grant 2014--SGR--1567).
 
