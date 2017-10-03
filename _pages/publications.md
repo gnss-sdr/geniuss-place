@@ -129,7 +129,7 @@ month   = {Sep.}
 <ul class="biblist">
     <!-- Item: GNSS-SDR17b -->
     <li ><p>
-    J. Arribas, A. Ramos de Torres, J. Vil&agrave;-Valls, P. Closas
+    J. Arribas, A. Ramos de Torres, C. Fern&aacute;ndez-Prades, J. Vil&agrave;-Valls, P. Closas
     <br><b>Air Traffic Radar Interference Event in the Galileo E6 Band: Detection, Analysis and Mitigation</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
 Portland, OR, Sept. 2017, in Press.
