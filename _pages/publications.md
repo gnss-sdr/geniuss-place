@@ -162,6 +162,7 @@ Portland, OR, Sept. 2017, in Press.
     <br />
     <a href="javascript:toggleBibtex('Fernandez17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=5293" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/a-cloud-optical-access-network-for-virtualized-gnss-receivers/zhgrtpqstxrx" >Slides</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez17a" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez17a,
