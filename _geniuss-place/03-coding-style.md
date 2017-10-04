@@ -38,7 +38,7 @@ The rules can be violated if there are strong personal objections against them.
 The attempt is to make a guideline, not to force a particular coding style onto individuals. Experienced programmers normally want to adopt a style like this anyway, but having one, and at least requiring everyone to get familiar with it, usually makes people start thinking about programming styling and evaluate their own habits in this area. On the other hand, new and inexperienced programmers normally use a style guide as a convenience of getting into the programming jargon more easily.
 
 
-**Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl){:target="_blank"}. Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html){:target="_blank"} and the [High Integrity C++ Coding Standard Version 4.0](http://www.codingstandard.com){:target="_blank"} Guidelines for the use of the C++ language in critical systems.
+**Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) and the [High Integrity C++ Coding Standard Version 4.0](http://www.codingstandard.com) Guidelines for the use of the C++ language in critical systems.
 {: .notice--primary}
 
 -------
@@ -221,7 +221,7 @@ Be consistent and use the `// ...` style comments.
 The comment styles `///` and `/** ... */` are used by JavaDoc, Doxygen
 and some other code documenting tools.
 
-For a complete description on how to document the code, see the [Doxygen Manual](http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html){:target="_blank"}
+For a complete description on how to document the code, see the [Doxygen Manual](http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html)
 
 All classes in GNSS-SDR should be properly documented with Doxygen
 comments in include (`.h`) files. Source (`.cc`) files should be documented
@@ -289,7 +289,7 @@ private:
 
 ### Include formulae
 
-Follow this link to see how can [include formulae](http://www.stack.nl/~dimitri/doxygen/manual/formulas.html){:target="_blank"}.
+Follow this link to see how can [include formulae](http://www.stack.nl/~dimitri/doxygen/manual/formulas.html).
 
 ### Multiple line comments should be split in one comment per line, each having the `/*` and `*/` markers on the same line
 
@@ -916,7 +916,7 @@ void fn ( )
 
 ### Use of Boost libraries is encouraged
 
-[Boost](http://www.boost.org){:target="_blank"} is a set of free, expertly designed, peer–reviewed portable
+[Boost](http://www.boost.org) is a set of free, expertly designed, peer–reviewed portable
 C++ source libraries. Boost provides reference implementations that are
 suitable for eventual standardization. Actually, some of the Boost
 libraries are already included in the current C++ standard and several

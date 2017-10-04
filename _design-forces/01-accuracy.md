@@ -11,7 +11,7 @@ In this context, it refers to how close a position solution delivered by the sof
 
 The definition of the reference point implies the agreement on some reference coordinate systems for the satellite system and the reference position:
 
-*  GNSS satellite coordinate reference system: The International Earth Rotation and Reference Sytems Service ([IERS](https://www.iers.org/IERS/EN/Home/home_node.html){:target="_blank"}) recommend to express it as "ITRFyy at epoch yyyy.y"[^Petit10]
+*  GNSS satellite coordinate reference system: The International Earth Rotation and Reference Sytems Service ([IERS](https://www.iers.org/IERS/EN/Home/home_node.html)) recommend to express it as "ITRFyy at epoch yyyy.y"[^Petit10]
 * A local geographic coordinate reference system (providing transformation parameters, if applicable).
 * An East-North-Up (ENU) reference frame with origin in the _reference point_.
 * In case of differential GNSS configurations, datum of the differential source.
@@ -86,4 +86,4 @@ it follows a list of possible accuracy indicators for a software-defined GNSS re
 
 ## References
 
-[^Petit10]: G. Petit and B. Luzum, Eds., [_IERS Conventions (2010)_](https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36.pdf?__blob=publicationFile&v=1){:target="_blank"}, Verlag des Bundesamts f&uuml;r Kartographie und Geod&auml;sie, Frankfurt, Germany, 2010, IERS Technical Note 36. ISBN 3-89888-989-6.
+[^Petit10]: G. Petit and B. Luzum, Eds., [_IERS Conventions (2010)_](https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36.pdf?__blob=publicationFile&v=1), Verlag des Bundesamts f&uuml;r Kartographie und Geod&auml;sie, Frankfurt, Germany, 2010, IERS Technical Note 36. ISBN 3-89888-989-6.

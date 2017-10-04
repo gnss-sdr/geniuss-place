@@ -84,7 +84,7 @@ A driver communicates with the device through the computer bus or communications
 
 ## Interoperability with data collection topologies
 
-For raw GNSS (and possibly other sensors) data stored digitally, the software receiver should support the fundamental data collection topologies, as defined by the [ION GNSS SDR Standard Working Group](https://github.com/IonMetadataWorkingGroup){:target="_blank"} (which, by the way, is _not_ related to GNSS-SDR):
+For raw GNSS (and possibly other sensors) data stored digitally, the software receiver should support the fundamental data collection topologies, as defined by the [ION GNSS SDR Standard Working Group](https://github.com/IonMetadataWorkingGroup) (which, by the way, is _not_ related to GNSS-SDR):
 
 * Single band, single-stream, single file.
 * Multi-band, single-stream, single file.
@@ -99,7 +99,7 @@ Support of sample formats for the exchange of raw GNSS data:
 * Quantization: 1, 2, 4, 8, 16, 32 or 64 bits per sample.
 * Encoding: sign, sign-magnitude, signed integer, offset binary or floating point.
 
-More details in the initial draft of the [Global Navigation Satellite Systems Software Defined Radio Sampled Data Metadata Standard](https://github.com/IonMetadataWorkingGroup/MetadataSpec/blob/master/documentation/DraftMetadataStd_0_1_150125.pdf){:target="_blank"}.
+More details in the initial draft of the [Global Navigation Satellite Systems Software Defined Radio Sampled Data Metadata Standard](https://github.com/IonMetadataWorkingGroup/MetadataSpec/blob/master/documentation/DraftMetadataStd_0_1_150125.pdf).
 
 ## Support of output formats
 
@@ -107,7 +107,7 @@ More details in the initial draft of the [Global Navigation Satellite Systems So
 
 The software receiver should deliver the results of the processing in several standard output formats:
 
-* GIS-oriented formats: [KML](http://www.opengeospatial.org/standards/kml){:target="_blank"}, [GeoJSON](http://geojson.org/){:target="_blank"}, [SHP](https://en.wikipedia.org/wiki/Shapefile){:target="_blank"}.
+* GIS-oriented formats: [KML](http://www.opengeospatial.org/standards/kml), [GeoJSON](http://geojson.org/), [SHP](https://en.wikipedia.org/wiki/Shapefile).
 
     **KML** (Keyhole Markup Language) is an XML grammar used to encode and transport representations of geographic data for display in an earth browser. KML is an open standard officially named the OpenGIS KML Encoding Standard (OGC KML), and it is maintained by the Open Geospatial Consortium, Inc. (OGC). KML files can be displayed in geobrowsers such as [Google Earth](https://www.google.com/earth/), [Marble](https://marble.kde.org), [osgEarth](http://osgearth.org), or used with the [NASA World Wind SDK for Java](http://worldwind.arc.nasa.gov/java/).
     {: .notice--info}
@@ -115,10 +115,10 @@ The software receiver should deliver the results of the processing in several st
     **GeoJSON** is a geospatial data interchange format based on JavaScript Object Notation (JSON) supported by numerous mapping and GIS software packages, including [OpenLayers](http://openlayers.org), [Leaflet](http://leafletjs.com), [MapServer](http://www.mapserver.org), [GeoServer](http://geoserver.org), [GeoDjango](https://www.djangoproject.com), [GDAL](http://www.gdal.org), and [CartoDB](https://cartodb.com). It is also possible to use GeoJSON with [PostGIS](http://postgis.net) and [Mapnik](http://mapnik.org), both of which handle the format via the GDAL OGR conversion library. The [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/) v3 directly supports the [integration of GeoJSON data layers](https://developers.google.com/maps/documentation/javascript/examples/layer-data-simple), and [GitHub also supports GeoJSON rendering](https://github.com/blog/1528-there-s-a-map-for-that).
     {: .notice--info}
 
-    **Shapefile** is a digital vector storage format for storing geometric location and associated attribute information. It is a popular format for geographic information system (GIS) software. It is developed and regulated by [Esri](http://www.esri.com/){:target="_blank"} as a (mostly) open specification for data interoperability among Esri and other GIS software products. The shapefile format can spatially describe vector features: points, lines, and polygons, representing, for example, water wells, rivers, and lakes. Each item usually has attributes that describe it, such as _name_ or _temperature_.
+    **Shapefile** is a digital vector storage format for storing geometric location and associated attribute information. It is a popular format for geographic information system (GIS) software. It is developed and regulated by [Esri](http://www.esri.com/) as a (mostly) open specification for data interoperability among Esri and other GIS software products. The shapefile format can spatially describe vector features: points, lines, and polygons, representing, for example, water wells, rivers, and lakes. Each item usually has attributes that describe it, such as _name_ or _temperature_.
     {: .notice--info}
 
-* Application-specific messages (_e.g._, NMEA [0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"} / [2000](https://en.wikipedia.org/wiki/NMEA_2000){:target="_blank"}, [GPX](http://www.topografix.com/gpx.asp),  [ISOBUS](https://en.wikipedia.org/wiki/ISO_11783), proprietary / custom, etc.).
+* Application-specific messages (_e.g._, NMEA [0183](https://en.wikipedia.org/wiki/NMEA_0183) / [2000](https://en.wikipedia.org/wiki/NMEA_2000), [GPX](http://www.topografix.com/gpx.asp),  [ISOBUS](https://en.wikipedia.org/wiki/ISO_11783), proprietary / custom, etc.).
 
     **NMEA 0183** is a combined electrical and data specification for communication between marine electronics such as echo sounder, sonars, anemometer, gyrocompass, autopilot, GPS receivers and many other types of instruments. It has been defined by, and is controlled by, the U.S. [National Marine Electronics Association](http://www.nmea.org/). The NMEA 0183 standard uses a simple ASCII, serial communications protocol that defines how data are transmitted in a *sentence* from one *talker* to multiple *listeners* at a time. Through the use of intermediate expanders, a talker can have a unidirectional conversation with a nearly unlimited number of listeners, and using multiplexers, multiple sensors can talk to a single computer port. At the application layer, the standard also defines the contents of each sentence (message) type, so that all listeners can parse messages accurately. Those messages can be sent through the serial port (that could be for instance a Bluetooth link) and be used/displayed by a number of software applications such as [gpsd](http://www.catb.org/gpsd/ "The UNIX GPS daemon"), [JOSM](https://josm.openstreetmap.de/ "The Java OpenStreetMap Editor"), [OpenCPN](http://opencpn.org/ocpn/ "Open Chart Plotter Navigator"), and many others (and maybe running on other devices).
     {: .notice--info}
@@ -126,12 +126,12 @@ The software receiver should deliver the results of the processing in several st
     **GPX** (the GPS Exchange Format) is a light-weight XML data format for the interchange of GPS data (waypoints, routes, and tracks) between applications and Web services on the Internet. The format is open and can be used without the need to pay license fees, and it is supported by a [large list of software tools](http://www.topografix.com/gpx_resources.asp).
     {: .notice--info}
 
-* [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php){:target="_blank"} messages (specify version, type and rate). RTCM messages should be streamed over a communication network as defined by the Networked Transport of RTCM via Internet Protocol (NTRIP [1.0](http://epsagnss.usal.es/documentos/ntripdocumentation.pdf){:target="_blank"}, [2.0](https://ssl29.pair.com/dmarkle/puborder.php?show=3){:target="_blank"}).
+* [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php) messages (specify version, type and rate). RTCM messages should be streamed over a communication network as defined by the Networked Transport of RTCM via Internet Protocol (NTRIP [1.0](http://epsagnss.usal.es/documentos/ntripdocumentation.pdf), 2.0).
 
     **RTCM SC-104** provides standards that define the data structure for differential GNSS correction information for a variety of differential correction applications. Developed by the Radio Technical Commission for Maritime Services ([RTCM](http://www.rtcm.org/overview.php#Standards "Radio Technical Commission for Maritime Services")), they have become an industry standard for communication of correction information. GNSS-SDR implements RTCM version 3.2, defined in the document *RTCM 10403.2, Differential GNSS (Global Navigation Satellite Systems) Services - Version 3* (February 1, 2013), which can be [purchased online](https://ssl29.pair.com/dmarkle/puborder.php?show=3 "RTCM Online Publication Order Form"). The software receiver should implement a TCP/IP server, acting as an NTRIP source that can feed an NTRIP server. NTRIP (Networked Transport of RTCM via Internet Protocol) is an open standard protocol that can be freely download from [BKG](http://igs.bkg.bund.de/root_ftp/NTRIP/documentation/NtripDocumentation.pdf "Networked Transport of RTCM via Internet Protocol (Ntrip) Version 1.0"), and it is designed for disseminating differential correction data (_e.g._ in the RTCM-104 format) or other kinds of GNSS streaming data to stationary or mobile users over the Internet.
     {: .notice--info}
 
-* RINEX observation and navigation data files. Specify version: [2.10](https://igscb.jpl.nasa.gov/igscb/data/format/rinex210.txt){:target="_blank"}, [2.11](https://igscb.jpl.nasa.gov/igscb/data/format/rinex211.txt){:target="_blank"}, [3.00](https://igscb.jpl.nasa.gov/igscb/data/format/rinex300.pdf){:target="_blank"}, [3.02](ftp://igs.org/pub/data/format/rinex302.pdf){:target="_blank"}, [3.03](ftp://igs.org/pub/data/format/rinex303.pdf){:target="_blank"}.
+* RINEX observation and navigation data files. Specify version: [2.10](https://igscb.jpl.nasa.gov/igscb/data/format/rinex210.txt), [2.11](https://igscb.jpl.nasa.gov/igscb/data/format/rinex211.txt), [3.00](https://igscb.jpl.nasa.gov/igscb/data/format/rinex300.pdf), [3.02](ftp://igs.org/pub/data/format/rinex302.pdf), [3.03](ftp://igs.org/pub/data/format/rinex303.pdf).
 
     **RINEX** (Receiver Independent Exchange Format) is an interchange format for raw satellite navigation system data, covering observables and the information contained in the navigation message broadcast by GNSS satellites. This allows the user to post-process the received data to produce a more accurate result (usually with other data unknown to the original receiver, such as better models of the atmospheric conditions at time of measurement). RINEX files can be used by software packages such as [GPSTk](http://www.gpstk.org), [RTKLIB](http://www.rtklib.com/) and [gLAB](http://gage14.upc.es/gLAB/), among many others.
     {: .notice--info}
@@ -162,9 +162,9 @@ It follows a list of possible interoperability indicators for a software-defined
 * Number of supported combinations of data collection topologies and formats.
 
 * Number of supported standard output formats.
-  * GIS formats: [KML](http://www.opengeospatial.org/standards/kml){:target="_blank"}, [GeoJSON](http://geojson.org/){:target="_blank"}, [Shapefile](https://en.wikipedia.org/wiki/Shapefile){:target="_blank"}, others.
-  * Application-specific formats: NMEA  [0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"} / [2000](https://en.wikipedia.org/wiki/NMEA_2000){:target="_blank"}, [GPX](http://www.topografix.com/gpx.asp), others. Specify version.
-  * Geodesic formats: [RINEX](https://en.wikipedia.org/wiki/RINEX){:target="_blank"}, [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php){:target="_blank"}.
+  * GIS formats: [KML](http://www.opengeospatial.org/standards/kml), [GeoJSON](http://geojson.org/), [Shapefile](https://en.wikipedia.org/wiki/Shapefile), others.
+  * Application-specific formats: NMEA  [0183](https://en.wikipedia.org/wiki/NMEA_0183) / [2000](https://en.wikipedia.org/wiki/NMEA_2000), [GPX](http://www.topografix.com/gpx.asp), others. Specify version.
+  * Geodesic formats: [RINEX](https://en.wikipedia.org/wiki/RINEX), [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php).
     * Generation of RINEX observation and navigation data files. Specify version.
     * Real-time generation of RTCM messages in real-time. Type and frequency of real-time generated RTCM messages. Specify RTCM version.
 

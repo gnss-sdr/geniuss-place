@@ -15,16 +15,16 @@ sidebar:
 
 An **embedded system** is defined as a computer system with a specific function within a larger mechanical or electrical system. Examples of properties of embedded computers when compared with general-purpose counterparts are low power consumption, small size, rugged operating ranges, and low per-unit cost, at the price of limited processing resources.
 
-This page is devoted to the development cycle for building and executing GNSS-SDR in an embedded computer. In this example we are working with a [Zedboard](https://www.xilinx.com/products/boards-and-kits/1-elhabt.html){:target="_blank"} (a development board that ships a [Xilinx Zynq-7000](https://www.xilinx.com/products/silicon-devices/soc/zynq-7000.html){:target="_blank"} all-programmable [SoC](https://en.wikipedia.org/wiki/System_on_a_chip){:target="_blank"}, which houses two ARM and one FPGA processor in a single chip), but this procedure is applicable to other embedded platforms without much modification.
+This page is devoted to the development cycle for building and executing GNSS-SDR in an embedded computer. In this example we are working with a [Zedboard](https://www.xilinx.com/products/boards-and-kits/1-elhabt.html) (a development board that ships a [Xilinx Zynq-7000](https://www.xilinx.com/products/silicon-devices/soc/zynq-7000.html) all-programmable [SoC](https://en.wikipedia.org/wiki/System_on_a_chip), which houses two ARM and one FPGA processor in a single chip), but this procedure is applicable to other embedded platforms without much modification.
 
 Once all the required dependencies are already installed, GNSS-SDR can be built from source in ARM processors without hassle. However, this building process can easily take more than 10 hours if it is executed on the Zynq device. Thus, in order to speed up the development cycle from a change in the source code to the execution in an embedded platform, we need to resort to cross-compilation.
 
 **Cross-compilation** consists of a building framework capable of creating executable code for a platform other than the one on which the compiler is running. In our example, we would like to build GNSS-SDR with the powerful, fast processor of a general-purpose desktop computer, and to generate binaries that can be directly executed by the Zynq device.
 
-  By using cross-compilation, we can shorten the building time from more than 10 hours to less than 10 minutes. This improves [**Testability**]({{ "/design-forces/testability/" | absolute_url }}){:target="_blank"}, as one of its requirements is that a testing cycle has to be *fast*.
+  By using cross-compilation, we can shorten the building time from more than 10 hours to less than 10 minutes. This improves [**Testability**]({{ "/design-forces/testability/" | absolute_url }}), as one of its requirements is that a testing cycle has to be *fast*.
   {: .notice--success}
 
-The cross-compilation environment proposed here is based on [OpenEmbedded](http://www.openembedded.org){:target="_blank"}, a building framework for embedded Linux. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.
+The cross-compilation environment proposed here is based on [OpenEmbedded](http://www.openembedded.org), a building framework for embedded Linux. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.
 
 Below we provide a software developer kit (SDK) that installs a ready-to-use cross-compilation environment in your computer.
 
@@ -35,16 +35,16 @@ We offer two options here: you can either download a script that will install th
 
 ### Option 1: Downloading the SDK
 
-You can download the SDK from the links below. Version names (Jethro, Krogoth, Morty, ...) follow those of the [Yocto Project Releases](https://wiki.yoctoproject.org/wiki/Releases){:target="_blank"}.
+You can download the SDK from the links below. Version names (Jethro, Krogoth, Morty, ...) follow those of the [Yocto Project Releases](https://wiki.yoctoproject.org/wiki/Releases).
 
 The following table lists the available SDK versions:
 
 
 | Version | Status | Download | md5 | Manifest |
 |:-|:-:|:-:|:-|:-:|
-| Morty | Development | [SDK](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | f2abf51e5f438dc30eb0261566f2066b | [Host](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
-| Krogoth | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1467ba96dd6f5ca9f6b278e71a9fd334 | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
-| Jethro | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh"} | 81cba6254f63e23394edae847fd60e0a | [Host](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest){:target="_blank"}, [Target](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest){:target="_blank"} |
+| Morty | Development | [SDK](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | f2abf51e5f438dc30eb0261566f2066b | [Host](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Krogoth | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1467ba96dd6f5ca9f6b278e71a9fd334 | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Jethro | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh"} | 81cba6254f63e23394edae847fd60e0a | [Host](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest) |
 
 
 
@@ -53,7 +53,7 @@ Please note that the SDK scripts provided in this table take about 1.5 GB. Check
 
 ### Option 2: Building your own SDK
 
-Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github.com/carlesfernandez/oe-gnss-sdr-manifest){:target="_blank"} and follow instructions there. Make sure you have plenty of space in your hard drive (25 GB minimum). In summary, the process is as follows:
+Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github.com/carlesfernandez/oe-gnss-sdr-manifest) and follow instructions there. Make sure you have plenty of space in your hard drive (25 GB minimum). In summary, the process is as follows:
 
 1) Install ```repo```:
 
@@ -199,4 +199,4 @@ References
 
  * More information about the development environment and the usage of BitBake can be found in the [Yocto Project Documentation](https://www.yoctoproject.org/documentation).
 
- * This work is heavily based on [Embedded Developments with GNU Radio](http://gnuradio.org/redmine/projects/gnuradio/wiki/Embedded){:target="_blank"} and the work by Philip Balister (and others) on the [oe-gnuradio-manifest](https://github.com/balister/oe-gnuradio-manifest){:target="_blank"} and the [meta-sdr](https://github.com/balister/meta-sdr){:target="_blank"} layer.
+ * This work is heavily based on [Embedded Developments with GNU Radio](http://gnuradio.org/redmine/projects/gnuradio/wiki/Embedded) and the work by Philip Balister (and others) on the [oe-gnuradio-manifest](https://github.com/balister/oe-gnuradio-manifest) and the [meta-sdr](https://github.com/balister/meta-sdr) layer.

@@ -13,7 +13,7 @@ _Reproducibility_ refers to the ability of an entire experiment or study to be r
 
 It follows a list of possible reproducibility indicators for a software-defined GNSS receiver:
 
-* Meet the requirements of [Reproducible Builds](https://reproducible-builds.org){:target="_blank"}, a set of software development practices which create a verifiable path from human readable source code to the binary code used by computers. This includes[^Bobbio15]:
+* Meet the requirements of [Reproducible Builds](https://reproducible-builds.org), a set of software development practices which create a verifiable path from human readable source code to the binary code used by computers. This includes[^Bobbio15]:
   - The build system needs to be made entirely deterministic: transforming a given source must always create the same result. Typically, the current date and time must not be recorded and output always has to be written in the same order.
   - The set of tools used to perform the build and more generally the build environment should either be recorded or pre-defined.
   - Users should be given a way to recreate a close enough build environment, perform the build process, and verify that the output matches the original build.
@@ -28,4 +28,4 @@ It follows a list of possible reproducibility indicators for a software-defined 
 
 ## References
 
-[^Bobbio15]: J. Bobbio, "[How to make your software build reproducibly](https://reproducible.alioth.debian.org/presentations/2015-08-13-CCCamp15.pdf){:target="_blank"}," in Chaos Communication Camp, Mildenberg, Germany, 2015.
+[^Bobbio15]: J. Bobbio, [How to make your software build reproducibly](https://reproducible.alioth.debian.org/presentations/2015-08-13-CCCamp15.pdf), in Chaos Communication Camp, Mildenberg, Germany, 2015.

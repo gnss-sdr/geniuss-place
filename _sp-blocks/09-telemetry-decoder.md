@@ -30,7 +30,7 @@ $$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{L1I}(t) =  \su
 The GPS NAV message $$ D_{\text{NAV}} \in \{ 1, -1 \} $$ is modulated at 50 bits per second. The whole message contains 25 pages (or "frames") of 30 seconds each, forming the master frame that takes 12,5 minutes to be transmitted. Every frame is subdivided into 5 sub-frames of 6 seconds each; in turn, every sub-frame consists of 10 words, with 30 bits per word:
 
 ![GPS NAV message](http://www.navipedia.net/images/f/fe/Navigation_Message.png)
-_GPS NAV message. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message){:target="_blank"}_.
+_GPS NAV message. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
 The content of every sub-frame is as follows:

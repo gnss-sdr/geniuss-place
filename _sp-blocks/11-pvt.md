@@ -21,7 +21,7 @@ The positioning problem is generally stated as
 
 $$ \begin{equation} \mathbf{y} = \mathbf{h}(\mathbf{x}) +  \mathbf{n} \end{equation} $$
 
-where $$ \mathbf{y} $$ is the measurement vector (that is, the observables obtained from the GNSS signals of a set of $$ m $$ satellites), $$ \mathbf{x} $$ is the state vector to be estimated (at least, the position of the receiver's antenna and the time), $$ \mathbf{h}(\cdot) $$ is the function that relates states with measurements, and $$ \mathbf{n} $$ models measurement noise. Depending on the models, assumptions, available measurements and the availability of *a priori* or externally-provided information, many positioning strategies and algorithms can be devised. It follows a description of the positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}.
+where $$ \mathbf{y} $$ is the measurement vector (that is, the observables obtained from the GNSS signals of a set of $$ m $$ satellites), $$ \mathbf{x} $$ is the state vector to be estimated (at least, the position of the receiver's antenna and the time), $$ \mathbf{h}(\cdot) $$ is the function that relates states with measurements, and $$ \mathbf{n} $$ models measurement noise. Depending on the models, assumptions, available measurements and the availability of *a priori* or externally-provided information, many positioning strategies and algorithms can be devised. It follows a description of the positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
 
 
 ## Single Point Positioning
@@ -61,7 +61,7 @@ Equation $$ \mathbf{h}(\mathbf{x}) $$ is clearly nonlinear due to the presence o
 
 $$ \begin{equation} \mathbf{y} - \mathbf{h}(\mathbf{x}_0) = \mathbf{H}(\mathbf{x}-\mathbf{x}_0) + \mathbf{n} \end{equation} $$
 
-which can be solved by a standard iterative [weighted least squares](https://en.wikipedia.org/wiki/Least_squares#Weighted_least_squares){:target="_blank"} method.
+which can be solved by a standard iterative [weighted least squares](https://en.wikipedia.org/wiki/Least_squares#Weighted_least_squares) method.
 
 Matrix $$ \mathbf{H} $$ can be written as:
 
@@ -102,7 +102,7 @@ where:
 
   - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m). This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
 
-The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](http://www.navipedia.net/index.php/Time_References_in_GNSS){:target="_blank"}.
+The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](http://www.navipedia.net/index.php/Time_References_in_GNSS).
 
 {::comment}
 ### Static / Kinematic
@@ -178,7 +178,7 @@ $$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z
 
 where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are the north and east components of tropospheric gradients (see the tropospheric model [below](#troposphere-model)) and $$ \mathbf{B}_{LC} = \left(  B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)} \right)^T $$ is the ionosphere‐free linear combination of zero‐differenced carrier‐phase biases (in m), defined below in Equation ($$ \ref{eq:bias-lc} $$).
 
-The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay){:target="_blank"}, the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/#phase-range-measurement" | absolute_url }}) apply):
+The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay), the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/#phase-range-measurement" | absolute_url }}) apply):
 
 
 $$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$
@@ -218,7 +218,7 @@ $$ \mathbf{h}_{\Phi} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)
 
 $$ \mathbf{h}_{P} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{r}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{r}^{(2)} \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{r}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{r}^{(m)} \end{array}\right) $$
 
-This is again a nonlinear equation that could be solved with the iterative weighted least squares estimator as in the case of the Single Point Positing case. However, here we want to incorporate some *a priori* information, such as a basic dynamic model for the receiver, and some statistical knowledge about the status of the troposphere. The [Extended Kalman Filter](https://en.wikipedia.org/wiki/Extended_Kalman_filter){:target="_blank"} offers a suitable framework for that.
+This is again a nonlinear equation that could be solved with the iterative weighted least squares estimator as in the case of the Single Point Positing case. However, here we want to incorporate some *a priori* information, such as a basic dynamic model for the receiver, and some statistical knowledge about the status of the troposphere. The [Extended Kalman Filter](https://en.wikipedia.org/wiki/Extended_Kalman_filter) offers a suitable framework for that.
 
 The partial derivatives matrix $$ \mathbf{H}= \frac{\partial \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} = \mathbf{x}_{0} } $$ can be written as:
 
@@ -379,7 +379,7 @@ For ionosphere correction for single frequency GNSS users, GPS navigation data i
 $$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T $$
 
 By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r,1}^{(s)} $$ (in m) can be derived the following
-procedure[^ISGPS200]. The model is often called as the [Klobuchar model](http://www.navipedia.net/index.php/Klobuchar_Ionospheric_Model){:target="_blank"}[^Klobuchar87].
+procedure[^ISGPS200]. The model is often called as the [Klobuchar model](http://www.navipedia.net/index.php/Klobuchar_Ionospheric_Model)[^Klobuchar87].
 
 
 $$ \begin{equation} \Psi = \frac{0.0137}{El_r^{(s)} + 0.11}-0.022 \end{equation} $$
@@ -409,7 +409,7 @@ SBAS corrections for ionospheric delay is provided by the message type 18 (ionos
 
 # Troposphere Model
 
-The troposphere is the lowest portion of Earth's atmosphere, and contains 99% of the total mass of water vapor. The average depths of the troposphere are 20 km in the tropics, 17 km in the mid latitudes, and 7 km in the polar regions in winter. The chemical composition of the troposphere is essentially uniform, with the notable exception of water vapor, which can vary widely. The effect of the troposphere on the GNSS signals appears as an extra delay in the measurement of the signal traveling time from the satellite to the receiver. This delay depends on the temperature, pressure, humidity as well as the transmitter and receiver antennas location, and it is related to [air refractivity](http://aty.sdsu.edu/explain/atmos_refr/air_refr.html){:target="_blank"}, which in turn can be divided in hydrostatic, i.e., dry gases (mainly $$ N_2 $$ and $$ O_2 $$), and wet, i.e., water vapour, components:
+The troposphere is the lowest portion of Earth's atmosphere, and contains 99% of the total mass of water vapor. The average depths of the troposphere are 20 km in the tropics, 17 km in the mid latitudes, and 7 km in the polar regions in winter. The chemical composition of the troposphere is essentially uniform, with the notable exception of water vapor, which can vary widely. The effect of the troposphere on the GNSS signals appears as an extra delay in the measurement of the signal traveling time from the satellite to the receiver. This delay depends on the temperature, pressure, humidity as well as the transmitter and receiver antennas location, and it is related to [air refractivity](http://aty.sdsu.edu/explain/atmos_refr/air_refr.html), which in turn can be divided in hydrostatic, i.e., dry gases (mainly $$ N_2 $$ and $$ O_2 $$), and wet, i.e., water vapour, components:
 
   * **Hydrostatic component delay**: Its effect varies with local temperature and atmospheric pressure in quite a predictable manner, besides its variation is less that the 1% in a few hours. The error caused by this component is about $$ 2.3 $$ meters in the zenith direction and $$ 10 $$ meters for lower elevations ($$ 10^{o} $$ approximately).
 
@@ -472,17 +472,17 @@ where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and 
 
 Depending on the specific application or service that is exploiting the information provided by GNSS-SDR, different internal data will be required, and thus the receiver needs to provide such data in an adequate, standard formats:
 
-* For Geographic Information Systems, map representation and Earth browsers: [KML](http://www.opengeospatial.org/standards/kml){:target="_blank"} and [GeoJSON](http://geojson.org/){:target="_blank"} files are generated by default, upon the computation of the first position fix.
-* For sensor integration: [NMEA-0183](https://en.wikipedia.org/wiki/NMEA_0183){:target="_blank"}. A text file containing NMEA messages is stored with a default name of `gnss_sdr_pvt.nmea`, configurable via `PVT.nmea_dump_filename`. In addition, NMEA messages can be forwarded to a serial port by setting `PVT.flag_nmea_tty_port=true`. The default port is `/dev/tty1`, and can be configured via `PVT.nmea_dump_devname`.
-* For post-processing applications: RINEX [2.11](https://igscb.jpl.nasa.gov/igscb/data/format/rinex211.txt){:target="_blank"} and [3.02](ftp://igs.org/pub/data/format/rinex302.pdf){:target="_blank"}. Version 3.02 is generated by default, and version 2.11 can be requested by setting `PVT.rinex_version=2` in the configuration file.
-* For real-time, possibly networked processing: [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php){:target="_blank"} messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting ```PVT.flag_rtcm_server=true``` in the configuration file, and will be active during the execution of the software receiver. By default, the server will operate on port 2101 (which is the recommended port for RTCM services according to the Internet Assigned Numbers Authority, [IANA](http://www.iana.org/assignments/service-names-port-numbers "Service Name and Transport Protocol Port Number Registry"){:target="_blank"}), and will identify the Reference Station with ID= $$ 1234 $$. These values can be changed with `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration file.
+* For Geographic Information Systems, map representation and Earth browsers: [KML](http://www.opengeospatial.org/standards/kml) and [GeoJSON](http://geojson.org/) files are generated by default, upon the computation of the first position fix.
+* For sensor integration: [NMEA-0183](https://en.wikipedia.org/wiki/NMEA_0183). A text file containing NMEA messages is stored with a default name of `gnss_sdr_pvt.nmea`, configurable via `PVT.nmea_dump_filename`. In addition, NMEA messages can be forwarded to a serial port by setting `PVT.flag_nmea_tty_port=true`. The default port is `/dev/tty1`, and can be configured via `PVT.nmea_dump_devname`.
+* For post-processing applications: RINEX [2.11](https://igscb.jpl.nasa.gov/igscb/data/format/rinex211.txt) and [3.02](ftp://igs.org/pub/data/format/rinex302.pdf). Version 3.02 is generated by default, and version 2.11 can be requested by setting `PVT.rinex_version=2` in the configuration file.
+* For real-time, possibly networked processing: [RTCM-104](http://www.rtcm.org/Pub-DGNSS.php) messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting ```PVT.flag_rtcm_server=true``` in the configuration file, and will be active during the execution of the software receiver. By default, the server will operate on port 2101 (which is the recommended port for RTCM services according to the Internet Assigned Numbers Authority, [IANA](http://www.iana.org/assignments/service-names-port-numbers "Service Name and Transport Protocol Port Number Registry")), and will identify the Reference Station with ID= $$ 1234 $$. These values can be changed with `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration file.
 
 
 
 **Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
 {: .notice--warning}
 
-Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | absolute_url }}){:target="_blank"} page.
+Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | absolute_url }}) page.
 {: .notice--success}
 
 
@@ -526,7 +526,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `raim_fde`| [`0`, `1`]: Set whether RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) feature is enabled or not. It defaults to $$ 0 $$ (RAIM not enabled) | Optional |
 | `reject_GPS_IIA` | [`0`, `1`]: Set whether the GPS Block IIA satellites are excluded or not. Those satellites often degrade the PPP solutions due to unpredicted behavior of yaw‐attitude. It defaults to $$ 0 $$ (no rejection). | Optional |
 | `phwindup` | [`0`, `1`]: Set whether the phase windup correction $$ \phi_{pw} $$ for PPP modes is applied or not. It defaults to $$ 0 $$ (no phase windup correction). | Optional |
-| `earth_tide` | [`0`, `1`]: Set whether earth tides correction is applied or not. If set to $$ 1 $$, the solid earth tides correction $$ \mathbf{d}_{r,disp} $$ is applied to the PPP solution, following the description in [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html){:target="_blank"}[^McCarthy04], Chapter 7. It defaults to $$ 0 $$ (no Earth tide correction). | Optional |
+| `earth_tide` | [`0`, `1`]: Set whether earth tides correction is applied or not. If set to $$ 1 $$, the solid earth tides correction $$ \mathbf{d}_{r,disp} $$ is applied to the PPP solution, following the description in [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html)[^McCarthy04], Chapter 7. It defaults to $$ 0 $$ (no Earth tide correction). | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
@@ -768,29 +768,29 @@ PVT.rtcm_MT1077_rate_ms=1000
 -------------
 # References
 
-[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf){:target="_blank"}. April 29, 2013.
+[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf). April 29, 2013.
 
-[^MacMillan95]: D. S. MacMillan, [Atmospheric gradients from very long baseline interferometry observation](http://onlinelibrary.wiley.com/doi/10.1029/95GL00887/abstract){:target="_blank"}, in Geophysical Research Letters, Volume 22, Issue 9, May 1995, pp. 1041-1044.
+[^MacMillan95]: D. S. MacMillan, [Atmospheric gradients from very long baseline interferometry observation](http://onlinelibrary.wiley.com/doi/10.1029/95GL00887/abstract), in Geophysical Research Letters, Volume 22, Issue 9, May 1995, pp. 1041-1044.
 
-[^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](http://dx.doi.org/10.1029/95JB03048){:target="_blank"}, Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
+[^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](http://dx.doi.org/10.1029/95JB03048), Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
 
-[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf){:target="_blank"}, Dec. 2015.
+[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf), Dec. 2015.
 
-[^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](http://standards.globalspec.com/std/1014192/rtca-do-229){:target="_blank"}, RTCA Inc., December 13, 2006.
+[^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](http://standards.globalspec.com/std/1014192/rtca-do-229), RTCA Inc., December 13, 2006.
 
-[^Klobuchar87]: J. A. Klobuchar, [Ionospheric time-delay algorithms for single-frequency GPS users](http://ieeexplore.ieee.org/document/4104345/){:target="_blank"}. IEEE Transactions on Aerospace and Electronic Systems, Vol AES-23, no. 3, May 1987, pp. 325-331.
+[^Klobuchar87]: J. A. Klobuchar, [Ionospheric time-delay algorithms for single-frequency GPS users](http://ieeexplore.ieee.org/document/4104345/). IEEE Transactions on Aerospace and Electronic Systems, Vol AES-23, no. 3, May 1987, pp. 325-331.
 
-[^Teunissen95]: P. J. G. Teunissen, [The least‐square ambiguity decorrelation adjustment: a method for fast GPS ambiguity estimation](https://www.researchgate.net/publication/224969472_The_least-squares_ambiguity_decorrelation_adjustment_A_method_for_fast_GPS_integer_ambiguity_estimation){:target="_blank"}, Journal of Geodesy, vol. 70, no. 1, 1995, pp. 65-82.
+[^Teunissen95]: P. J. G. Teunissen, [The least‐square ambiguity decorrelation adjustment: a method for fast GPS ambiguity estimation](https://www.researchgate.net/publication/224969472_The_least-squares_ambiguity_decorrelation_adjustment_A_method_for_fast_GPS_integer_ambiguity_estimation), Journal of Geodesy, vol. 70, no. 1, 1995, pp. 65-82.
 
-[^Chang05]: X.‐W. Chang, X. Yang, and T. Zhou, [MLAMBDA: A modified LAMBDA method for integer least‐squares estimation](http://www.cs.mcgill.ca/~chang/pub/MLAMBDA.pdf){:target="_blank"}, Journal of Geodesy, vol. 79, no. 9, 2005, pp. 552-565.
+[^Chang05]: X.‐W. Chang, X. Yang, and T. Zhou, [MLAMBDA: A modified LAMBDA method for integer least‐squares estimation](http://www.cs.mcgill.ca/~chang/pub/MLAMBDA.pdf), Journal of Geodesy, vol. 79, no. 9, 2005, pp. 552-565.
 
-[^McCarthy04]: D. McCarthy, G. Petit (Eds.), IERS Conventions (2003), [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html){:target="_blank"}, International Earth Rotation and Reference Systems Service, Frankfurt (Germany), 2004.
+[^McCarthy04]: D. McCarthy, G. Petit (Eds.), IERS Conventions (2003), [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html), International Earth Rotation and Reference Systems Service, Frankfurt (Germany), 2004.
 
-[^Kouba01]: Kouba, P. H&eacute;roux, [Precise Point Positioning Using IGS Orbit and Clock Products](http://link.springer.com/article/10.1007/PL00012883){:target="_blank"}, GPS Solutions, Vol. 5, no. 2, 2001, pp. 12-28.
+[^Kouba01]: Kouba, P. H&eacute;roux, [Precise Point Positioning Using IGS Orbit and Clock Products](http://link.springer.com/article/10.1007/PL00012883), GPS Solutions, Vol. 5, no. 2, 2001, pp. 12-28.
 
-[^Bevis94]: M. Bevis, S. Businger, S. Chiswell, T. A. Herring, R. A. Anthes, C. Rocken, R. H. Ware, [GPS Meteorology: Mapping Zenith Delay onto Precipitable Water](http://dx.doi.org/10.1175/1520-0450(1994)033%3C0379:GMMZWD%3E2.0.CO;2){:target="_blank"}, American Meteorological Society, vol. 33, March 1994, pp. 379-386.
+[^Bevis94]: M. Bevis, S. Businger, S. Chiswell, T. A. Herring, R. A. Anthes, C. Rocken, R. H. Ware, [GPS Meteorology: Mapping Zenith Delay onto Precipitable Water](http://dx.doi.org/10.1175/1520-0450(1994)033%3C0379:GMMZWD%3E2.0.CO;2), American Meteorological Society, vol. 33, March 1994, pp. 379-386.
 
-[^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](http://areeweb.polito.it/ricerca/relgrav/solciclos/ashby_d.pdf){:target="_blank"}, Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](http://www.springer.com/gp/book/9781402018053){:target="_blank"}, G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
+[^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](http://areeweb.polito.it/ricerca/relgrav/solciclos/ashby_d.pdf), Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](http://www.springer.com/gp/book/9781402018053), G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
 
 
 <link rel="prerender" href="{{ "/docs/sp-blocks/observables/" | absolute_url }}">
