@@ -165,7 +165,7 @@ Portland, OR, Sept. 2017, in Press.
     </p>
     <div id="bib_Fernandez17a" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez17a,
-author  = {C.~{Fern\'{a}ndez-Prades} and C.~Pomar and J.~Arribas and J.M.~F\`{a}brega and J.~{Vil\`{a}-Valls} and M.~{Svaluto~Moreolo} and R.~Casellas and R.~Mart\'{i}nez and M.~Navarro and F.J.~V\'{i}lchez and R. Mu\~{n}oz and R.~Vilalta and L.~Nadal and A.~Mayoral},
+author  = {C.~{Fern\'{a}ndez-Prades} and C.~Pomar and J.~Arribas and J.M.~F\`{a}brega and J.~{Vil\`{a}-Valls} and M.~{Svaluto~Moreolo} and R.~Casellas and R.~Mart\'{i}nez and M.~Navarro and F.J.~V\'{i}lchez and R. Mu{\~{n}}oz and R.~Vilalta and L.~Nadal and A.~Mayoral},
 title   = {A Cloud Optical Access Network for Virtualized {GNSS} Receivers},
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
