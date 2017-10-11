@@ -43,9 +43,9 @@ $$ \sigma_U^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U
 
 Ideally, static position measurements should be averaged over 24 hours and performed on a clear-sky environment.
 
-In the case of a dynamic receiver, position measurements and references will have a time index. In order to mitigate differences due to satellite visibility and geometry, averaging on different trajectories and locations, performed at different time schedules, is encouraged.
+In the case of a dynamic receiver, position measurements and references will have a time index. In order to mitigate differences due to satellite visibility and geometry, averaging realizations of the same trajectory and location, performed at different time schedules, is encouraged.
 
-For collections of $$ K_r $$ position measurements delivered at instants $$ t_{k_r} $$, and performed over $$ r=0,...,R-1 $$ different trajectories and time schedules:
+For collections of $$ K_r $$ position measurements delivered at instants $$ t_{k_r} $$, and performed over $$ r=0,...,R-1 $$ repetitions of the same trajectory at the same pace:
 
 $$ \sigma_E^{(\text{dynamic accuracy})} = \frac{1}{R}\sum_{r=0}^{R-1} \sqrt{\frac{1}{K_r-1}\sum_{k=0}^{K_r-1} \left(E_r(t_{k_r})- E_{r_{ref}}(t_{k_r})\right)^2} ,$$
 
