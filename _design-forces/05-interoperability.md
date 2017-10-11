@@ -99,7 +99,7 @@ Support of sample formats for the exchange of raw GNSS data:
 * Quantization: 1, 2, 4, 8, 16, 32 or 64 bits per sample.
 * Encoding: sign, sign-magnitude, signed integer, offset binary or floating point.
 
-More details in the initial draft of the [Global Navigation Satellite Systems Software Defined Radio Sampled Data Metadata Standard](https://github.com/IonMetadataWorkingGroup/MetadataSpec/blob/master/documentation/DraftMetadataStd_0_1_150125.pdf).
+More details in the version 1.0 of the [Global Navigation Satellite Systems Software Defined Radio Sampled Data Metadata Standard](https://github.com/IonMetadataWorkingGroup/GNSS-Metadata-Standard/blob/master/Specifications/documentation/DraftMetadataStd.pdf).
 
 ## Support of output formats
 
