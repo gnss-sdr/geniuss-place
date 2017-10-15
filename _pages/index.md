@@ -15,18 +15,21 @@ feature_row:
     title: "Using the software receiver"
     excerpt: "Get your first position fix using GNSS-SDR and a file containing raw signal samples."
     url: "/my-first-fix/"
+    btn_class: "btn--geniuss"
     btn_label: "Read more"
   - image_path: /assets/images/binder.png
     alt: "Documentation"
     title: "Configuring processing blocks"
     excerpt: "Documentation on available signal processing blocks' configuration options."
     url: "/docs/sp-blocks/"
+    btn_class: "btn--geniuss"
     btn_label: "Read more"
   - image_path: /assets/images/radar-chart.png
     alt: "KPIs"
     title: "Key Performance Indicators"
     excerpt: "A discussion on the assessment of software-defined GNSS receivers."
     url: "/design-forces/"
+    btn_class: "btn--geniuss"
     btn_label: "Read more"
 # github:
 #  - excerpt: '{::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="158px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'
@@ -38,9 +41,9 @@ intro:
 
 {% include feature_row %}
 
-![GeNiuSS]({{ "/assets/images/geniuss.jpg" | absolute_url }}){: width="300px"}
+![GeNiuSS]({{ "/assets/images/geniuss.png" | absolute_url }}){: width="300px"}
 {: style="text-align: center;"}
-[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Get Started]({{ "/quick-start-guide/" | absolute_url }}){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Get Started]({{ "/quick-start-guide/" | absolute_url }}){: .btn .btn--primary .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 ---

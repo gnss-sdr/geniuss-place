@@ -5,6 +5,8 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
+minimal_mistakes_skin    : "default" # "air", "contrast", "dark", "dirt", "mint", "sunrise"
+
 # Site Settings
 locale                   : "en-US"
 title                    : "GNSS-SDR"
@@ -21,6 +23,8 @@ comments:
   provider               : disqus # false (default), "disqus", "discourse", "facebook", "google-plus", custom"
   disqus:
     shortname            : geniussplace
+atom_feed:
+  path                   : # blank (default) uses feed.xml
 
 # SEO Related
 google_site_verification : "googlefb1532d2ac258689"

@@ -8,7 +8,7 @@ table {
   font-family: $global-font-family;
   font-size: $type-size-6;
   border-collapse: collapse;
-  border: 1px solid $light-gray;
+  border: 1px solid mix(#000, $border-color, 25%);
 
   & + table {
     margin-top: 1em;
@@ -16,21 +16,21 @@ table {
 }
 
 thead {
-  background-color: $lighter-gray;
-  border-bottom: 1px solid $light-gray;
+  background-color: $border-color;
+  border-bottom: 1px solid mix(#000, $border-color, 25%);
 }
 
 th {
   padding: 0.5em;
   font-weight: bold;
   text-align: left;
-  border-right: 1px solid $light-gray;
+  border-right: 1px solid mix(#000, $border-color, 25%);
 }
 
 td {
   padding: 0.5em;
-  border-bottom: 1px solid $light-gray;
-  border-right: 1px solid $light-gray;
+  border-bottom: 1px solid mix(#000, $border-color, 25%);
+  border-right: 1px solid mix(#000, $border-color, 25%);
 }
 
 tr, td, th {
@@ -40,9 +40,9 @@ tr, td, th {
 #authortable {
   padding: 0.5em;
   font-size: $type-size-4;
-  border: 0px hidden $body-color;
-  border-bottom: 0px hidden $body-color;
-  border-right: 0px hidden $body-color;
+  border: 0px hidden $background-color;
+  border-bottom: 0px hidden $background-color;
+  border-right: 0px hidden $background-color;
   text-align: center;
   vertical-align: top;
 }
@@ -51,9 +51,9 @@ tr, td, th {
 #forcetable {
   padding: 0.5em;
   font-size: $type-size-4;
-  border: 0px hidden $body-color;
-  border-bottom: 0px hidden $body-color;
-  border-right: 0px hidden $body-color;
+  border: 0px hidden $background-color;
+  border-bottom: 0px hidden $background-color;
+  border-right: 0px hidden $background-color;
   text-align: left;
   vertical-align: top;
 
@@ -71,21 +71,21 @@ tr, td, th {
 #forcetable2 {
   padding: 0.5em;
   font-size: $type-size-4;
-  border: 0px hidden $body-color;
-  border-bottom: 0px hidden $body-color;
-  border-right: 0px hidden $body-color;
+  border: 0px hidden $background-color;
+  border-bottom: 0px hidden $background-color;
+  border-right: 0px hidden $background-color;
   text-align: left;
   vertical-align: top;
 
   a {
-    color: $dark-gray;
+    color: $text-color;
     text-decoration: none;
-    border-bottom: 0px solid $body-color;
+    border-bottom: 0px solid $background-color;
     transition: $global-transition;
 
     &:hover {
-      color: #000;
-      border-bottom-color: #000;
+      color: mix(#000, $text-color, 50%);
+      border-bottom-color: $background-color;
     }
   }
 
@@ -102,20 +102,20 @@ tr, td, th {
 #gridtable {
   padding: 0.5em;
   font-size: $type-size-4;
-  border: 0px hidden $body-color;
-  border-bottom: 0px hidden $body-color;
-  border-right: 0px hidden $body-color;
+  border: 0px hidden $background-color;
+  border-bottom: 0px hidden $background-color;
+  border-right: 0px hidden $background-color;
   text-align: left;
   vertical-align: top;
   a {
-    color: $dark-gray;
+    color: $text-color;
     text-decoration: none;
-    border-bottom: 1px solid $body-color;
+    border-bottom: 1px solid $background-color;
     transition: $global-transition;
 
     &:hover {
-      color: #000;
-      border-bottom-color: $body-color;
+      color: mix(#000, $text-color, 50%);
+      border-bottom-color: $background-color;
     }
   }
 }

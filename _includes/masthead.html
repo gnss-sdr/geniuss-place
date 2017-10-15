@@ -2,7 +2,12 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="{{ '/' | absolute_url }}"><img src="{{ "/assets/images/logo-gnss-sdr.png" | absolute_url }}" alt="GNSS-SDR logo"></img> </a>
+          {% if site.minimal_mistakes_skin contains 'dark' %}
+            {% assign logo = "/assets/images/logo-gnss-sdr-invert.png" %}
+          {% else %}
+            {% assign logo = "/assets/images/logo-gnss-sdr.png" %}
+          {% endif %}
+        <a class="site-title" href="{{ '/' | absolute_url }}"><img src="{{ logo | absolute_url }}" alt="GNSS-SDR logo"></img> </a>
         <ul class="visible-links">
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
