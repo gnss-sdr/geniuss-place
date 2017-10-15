@@ -2,7 +2,7 @@
 title: "GNSS-SDR v0.0.8 accepted into Debian testing"
 excerpt: "GNSS-SDR v0.0.8 is already in Debian stretch and Ubuntu 16.10."
 header:
-  teaser: /assets/images/Debian-logo-th.jpg
+  teaser: /assets/images/Debian-logo-th.png
 tags:
   - news
   - Debian
