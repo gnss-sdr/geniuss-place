@@ -19,11 +19,9 @@ The **pseudorange measurement** is defined as the difference of the time of rece
 
 $$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right) $$
 
-![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | absolute_url }})
+![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | absolute_url }})<br />
 _Pseudorange measurement (from the RTKLIB Manual)[^RTKLIBManual]_
 {: style="text-align: center;"}
-
-[^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf). April 29, 2013.
 
 The equation can be written by using the geometric range $$ \rho_r^{(s)} $$ between satellite and receiver antennas, the receiver and satellite clock biases $$ dt_r $$ and $$ dT^{(s)} $$, the ionospheric and tropospheric delays $$ I_{r,i}^{(s)} $$ and $$ T_r^{(s)} $$ and the measurement error $$ \epsilon_P $$ as:
 
