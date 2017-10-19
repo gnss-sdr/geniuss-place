@@ -40,7 +40,7 @@ where:
   * $$ i(t) $$ is the interference signal, and
   * $$ \eta(t) $$ is a noise term usually modeled as a complex circularly symmetric Gaussian random process. The samples are assumed independent and identically distributed.
 
-The sequence $$ y[n] $$ is obtained by filtering, down converting and digitizing the analog signal $$ y(t) $$ with a sampling frequency $$ f_s $$.
+The sequence $$ y[n] $$ is obtained by amplifying, down-converting and digitizing the analog signal $$ y(t) $$ with a sampling frequency $$ f_s $$.
 
 Interference Cancellation consists of removing $$ i[n] $$ from $$ y[n] $$ by means of a signal processing algorithm. The underlying idea seems straightforward, but in practice Interference Cancellation becomes a complicated matter due to the huge variety of interference sources that may coexist within the GNSS signal band. For instance, the interference may be pulsed or continuous. In the first case, the period between pulses, time duration, intensity and bandwidth of the pulses can be constant or vary along time. In the second case, the intensity, instantaneous frequency and frequency rate of the interference may also behave randomly. For this reason, there is no single algorithm for interference mitigation. Furthermore, during last years research literature has been populated with new signal processing techniques that perform many kinds of Interference Cancellation.[^Dovis15]
 
@@ -248,6 +248,9 @@ InputFilter.sampling_frequency=8000000
 
 ### Implementation: `Pulse_Blanking_Filter`
 
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--info}
+
 The first step of any interference mitigation algorithm consists in determining whether the interference is present within the receiver's band. A simple method is to calculate the input signal power and compare it against a certain threshold. This threshold should be set according with the signal level in absence of the interference signal.
 Since the power of the GNSS useful signal components at the receiver's antenna is extremely weak (several tens of dB below the background noise), the input signal power when the interference source is switched off is in practice the same as the background noise power. This is
 
@@ -306,6 +309,9 @@ InputFilter.segments_est=5000
 ```
 
 ### Implementation: `Notch_Filter`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--info}
 
 The aim of the Notch filter is to eliminate jamming signals who are instantaneously narrowband and, also, their instantaneous frequency changes along time.
 
@@ -371,6 +377,9 @@ InputFilter.segments_est=5000
 
 
 ### Implementation: `Notch_Filter_Lite`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--info}
 
 This is an implementation of a notch filter in which the user can choose the updating rate of the filter central frequency estimation. This requires lower computational resources since the Prony estimation is no longer performed sample by sample.
 
