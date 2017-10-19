@@ -320,7 +320,7 @@ where $$ A[n] $$ and $$ \varphi[n] $$ are two real signals with $$ A[n] \in [0,+
 
 $$ \begin{equation} f_i[n] = \frac{1}{2\pi} \left( \varphi[n] - \varphi[n-1] \right) . \end{equation} $$
 
-This block implements a simple, single-sample Prony's frequency estimator. The interference frequency is estimated as
+This block implements a simple, single-sample Prony's frequency estimator[^Prony95]. The interference frequency is estimated as
 
 $$ \begin{equation} \hat{f}_i[n] = \frac{1}{2\pi} \angle \{ y[n] y^{*}[n-1] \} . \end{equation} $$
 
@@ -449,4 +449,6 @@ InputFilter.item_type=cshort
 
 [^Borio14]: D. Borio, [A Multi-State Notch Filter for GNSS Jamming Mitigation](http://ieeexplore.ieee.org/document/6934175/), in Proc. of the International Conference on Localization and GNSS (ICL-GNSS), pp. 1-6, June 2014, Helsinki, Finland. DOI: 10.1109/ICL-GNSS.2014.6934175.
 
-[^Dovis15]: F. Dovis, Ed. [GNSS Interference Threats and Countermeasures](http://us.artechhouse.com/GNSS-Interference-Threats-Countermeasures-P1710.aspx), Artech House, Noordwood, Ma, 2015.
+[^Dovis15]: F. Dovis, Ed. [GNSS Interference Threats and Countermeasures](http://us.artechhouse.com/GNSS-Interference-Threats-Countermeasures-P1710.aspx), Artech House, Noordwood, MA, 2015.
+
+[^Prony95]: C. Prony, [Essai exp&eacute;rimental et analytique sur les lois de la dilabilit&eacute; des fluides &eacute;lastiques, et sur celles de la force expansive de la vapeur de l’eau et de la vapeur de l’alkool, &agrave; diff&eacute;rentes temp&eacute;ratures](http://users.polytech.unice.fr/~leroux/PRONY.pdf), Journal de l'&Eacute;cole Polytechnique Flor&eacute;al et Plairial, Vol. 1, no. 22, pp. 24–76, 1795.
