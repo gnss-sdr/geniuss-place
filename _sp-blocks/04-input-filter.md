@@ -2,7 +2,7 @@
 title: "Input Filter"
 permalink: /docs/sp-blocks/input-filter/
 excerpt: "Documentation for the Input Filter block"
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2017-10-19T15:54:02+02:00
 sidebar:
   nav: "sp-block"
 ---
@@ -42,7 +42,7 @@ where:
 
 The sequence $$ y[n] $$ is obtained by filtering, down converting and digitizing the analog signal $$ y(t) $$ with a sampling frequency $$ f_s $$.
 
-Interference Cancellation consists of removing $$ i[n] $$ from $$ y[n] $$ by means of a signal processing algorithm. The underlying idea seems straightforward, but in practice Interference Cancellation becomes a complicated matter due to the huge variety of interference sources that may coexist within the GNSS signal band. For instance, the interference may be pulsed or continuous. In the first case, the period between pulses, time duration, intensity and bandwidth of the pulses can be constant or vary along time. In the second case, the intensity, instantaneous frequency and frequency rate of the interference may also behave randomly. For this reason, there is no single algorithm in order to mitigate the interferences. Furthermore, during last years research literature has been populated with new signal processing techniques that perform many kinds of Interference Cancellation.[^Dovis15]
+Interference Cancellation consists of removing $$ i[n] $$ from $$ y[n] $$ by means of a signal processing algorithm. The underlying idea seems straightforward, but in practice Interference Cancellation becomes a complicated matter due to the huge variety of interference sources that may coexist within the GNSS signal band. For instance, the interference may be pulsed or continuous. In the first case, the period between pulses, time duration, intensity and bandwidth of the pulses can be constant or vary along time. In the second case, the intensity, instantaneous frequency and frequency rate of the interference may also behave randomly. For this reason, there is no single algorithm for interference mitigation. Furthermore, during last years research literature has been populated with new signal processing techniques that perform many kinds of Interference Cancellation.[^Dovis15]
 
 ### Implementation: `Fir_Filter`
 
@@ -451,4 +451,4 @@ InputFilter.item_type=cshort
 
 [^Dovis15]: F. Dovis, Ed. [GNSS Interference Threats and Countermeasures](http://us.artechhouse.com/GNSS-Interference-Threats-Countermeasures-P1710.aspx), Artech House, Noordwood, MA, 2015.
 
-[^Prony95]: C. Prony, [Essai exp&eacute;rimental et analytique sur les lois de la dilabilit&eacute; des fluides &eacute;lastiques, et sur celles de la force expansive de la vapeur de l’eau et de la vapeur de l’alkool, &agrave; diff&eacute;rentes temp&eacute;ratures](http://users.polytech.unice.fr/~leroux/PRONY.pdf), Journal de l'&Eacute;cole Polytechnique Flor&eacute;al et Plairial, Vol. 1, no. 22, pp. 24–76, 1795.
+[^Prony95]: C. Prony, [Essai exp&eacute;rimental et analytique sur les lois de la dilabilit&eacute; des fluides &eacute;lastiques, et sur celles de la force expansive de la vapeur de l’eau et de la vapeur de l’alkool, &agrave; diff&eacute;rentes temp&eacute;ratures](http://users.polytech.unice.fr/~leroux/PRONY.pdf), Journal de l'&Eacute;cole Polytechnique, Flor&eacute;al et Prairial, Vol. 1, no. 22, pp. 24–76, 1795.
