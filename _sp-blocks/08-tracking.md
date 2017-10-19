@@ -30,7 +30,7 @@ maximum using feedback loops that employ the derivative
 $$ \frac{dR_{xd}(\tau)}{d\tau} $$ zero-crossing as a timing error detector.
 This is the case of the Delay Lock Loop (DLL) architecture and its wide
 range of variants, where the receiver computes three samples of $$ R_{xd} $$, usually referred to as *Early*
-$$ E=R_{xd}(\hat{\tau}-\epsilon) $$, *Prompt* $$ P=R_{xd}(\hat{\tau}) $$ and
+$$ E=R_{xd}(\hat{\tau}+\epsilon) $$, *Prompt* $$ P=R_{xd}(\hat{\tau}) $$ and
 *Late* $$ L=R_{xd}(\hat{\tau}-\epsilon) $$, with $$ \epsilon $$ ranging from
 $$ 0.1T_c $$ to $$ 0.5T_c $$, and then computes a timing error with some
 combination of those samples, known as _discriminator_ functions. The result is low-pass filtered and reinjected back to the matched filter, as shown in the figure below:
