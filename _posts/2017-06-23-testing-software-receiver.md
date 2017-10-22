@@ -147,7 +147,7 @@ A _Test Program_ can contain multiple test cases.
 
 In order to execute the tests, you must build GNSS-SDR from source. If the Google C++ Testing Framework source code is not already present in your system (and pointing the `GTEST_DIR` environment variable to the root of the source code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt-get install libgtest-dev`), it will be automatically downloaded from its Git repository, compiled and linked to GNSS-SDR at building time. The CMake script automatizes all those steps for you.
 
-**Tip:** some tests can optionally output plots if [Gnuplot](http://www.gnuplot.info/), a portable command-line driven graphing utility, is installed in your system. If you want to use this feature, install Gnuplot (by doing `sudo apt-get install gnuplot` in Debian-based Linux distributions, or `sudo port install gnuplot` using Macports in macOS) before building GNSS-SDR, and then activate the corresponding flag in the tests in which it is allowed (those flags start with `--plot_...`). This will display figures in new windows and will save [PostScript](https://en.wikipedia.org/wiki/PostScript) files (.ps) in the folder where the test was called.
+**Tip:** some tests can optionally output plots if [Gnuplot](http://www.gnuplot.info/), a portable command-line driven graphing utility, is installed in your system. If you want to use this feature, install Gnuplot (by doing `sudo apt-get install gnuplot` in Debian-based Linux distributions, or `sudo port install gnuplot` using Macports in macOS) before building GNSS-SDR, and then activate the corresponding flag in the tests in which it is allowed (those flags start with `--plot_...`). This will display figures in new windows and will save them as [PostScript](https://en.wikipedia.org/wiki/PostScript) and PDF files in the folder where the test was called.
 {: .notice--info}
 
 GNSS-SDR are divided in two categories:
@@ -554,7 +554,7 @@ This test program computes metrics of static accuracy and precision. It can use 
 | &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
 | &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = $$ 300 $$]. |
 | &#x2011;&#x2011;config_file_ptest | empty | File containing the configuration parameters for the position test. |
-| &#x2011;&#x2011;plot_position_test | false | If set to "true", and [Gnuplot](http://www.gnuplot.info/) is installed in your system, it generates some plots of the obtained results. It will display them in windows and will save them as .ps files. |
+| &#x2011;&#x2011;plot_position_test | false | If set to "true", and [Gnuplot](http://www.gnuplot.info/) is installed in your system, it generates some plots of the obtained results. It will display them in windows and will save them as .ps and .pdf files. |
 |----------
 
 So an example of running this test could be:
