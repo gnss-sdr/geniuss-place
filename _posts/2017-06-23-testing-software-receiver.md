@@ -11,7 +11,7 @@ tags:
   - Testing
 sidebar:
   nav: "docs"
-last_modified_at: 2017-07-03T09:37:02+02:00
+last_modified_at: 2017-10-22T20:37:02+02:00
 ---
 
 {% include toc %}
@@ -145,7 +145,10 @@ A _Test Program_ can contain multiple test cases.
 
 # Running GNSS-SDR Tests
 
-In order to execute the tests, you must build GNSS-SDR from source. If the Google C++ Testing Framework source code is not already present in your system (and pointing the `GTEST_DIR` environment variable to the root of the souce code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt-get install libgtest-dev`), it will be automatically downloaded from its Git repository, compiled and linked to GNSS-SDR at building time. The CMake script automatizes all those steps for you.
+In order to execute the tests, you must build GNSS-SDR from source. If the Google C++ Testing Framework source code is not already present in your system (and pointing the `GTEST_DIR` environment variable to the root of the source code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt-get install libgtest-dev`), it will be automatically downloaded from its Git repository, compiled and linked to GNSS-SDR at building time. The CMake script automatizes all those steps for you.
+
+**Tip:** some tests can optionally output plots if [Gnuplot](http://www.gnuplot.info/), a portable command-line driven graphing utility, is installed in your system. If you want to use this feature, install Gnuplot (by doing `sudo apt-get install gnuplot` in Debian-based Linux distributions, or `sudo port install gnuplot` using Macports in macOS) before building GNSS-SDR, and then activate the corresponding flag in the tests in which it is allowed (those flags start with `--plot_...`). This will display figures in new windows and will save [PostScript](https://en.wikipedia.org/wiki/PostScript) files (.ps) in the folder where the test was called.
+{: .notice--info}
 
 GNSS-SDR are divided in two categories:
 
@@ -226,7 +229,7 @@ will get the currently available unit Test Cases and unit Test Names.
 
 ##  Running a Subset of the Tests
 
-By default, a Google Test program runs all tests the user has defined. Sometimes, you want to run only a subset of the tests (e.g. for debugging or quickly verifying a change). If you set the `GTEST_FILTER` environment variable or the `--gtest_filter` flag to a filter string, Google Test will only run the tests whose full names (in the form of TestCaseName.TestName) match the filter.
+By default, a Google Test program runs all tests the user has defined. Sometimes, you want to run only a subset of the tests (_e.g._ for debugging or quickly verifying a change). If you set the `GTEST_FILTER` environment variable or the `--gtest_filter` flag to a filter string, Google Test will only run the tests whose full names (in the form of TestCaseName.TestName) match the filter.
 
 The format of a filter is a '`:`'-separated list of wildcard patterns (called the positive patterns) optionally followed by a '`-`' and another '`:`'-separated pattern list (called the negative patterns). A test matches the filter if and only if it matches any of the positive patterns but does not match any of the negative patterns.
 
@@ -258,7 +261,7 @@ executes all the tests in the Test Case `GpsL1CaPcpsAcquisitionTest` ten times.
 
 Google Test can emit a detailed XML report to a file in addition to its normal textual output. To generate the XML report, set the `GTEST_OUTPUT` environment variable or the `--gtest_output` flag to the string "`xml:_path_to_output_file_`", which will create the file at the given location. You can also just use the string "`xml`", in which case the output can be found in the `test_detail.xml` file in the current directory.
 
-If you specify a directory (for example, "`xml:output/directory/`"), Google Test will create the XML file in that directory, named after the test executable (e.g. `run_tests.xml` for test program `run_tests`). If the file already exists (perhaps left over from a previous run), Google Test will pick a different name (e.g. `run_tests_1.xml`) to avoid overwriting it.
+If you specify a directory (for example, "`xml:output/directory/`"), Google Test will create the XML file in that directory, named after the test executable (_e.g._ `run_tests.xml` for test program `run_tests`). If the file already exists (perhaps left over from a previous run), Google Test will pick a different name (_e.g._ `run_tests_1.xml`) to avoid overwriting it.
 
 The format of the report is as follows:
 
@@ -330,9 +333,9 @@ The generation of some unit test cases are enabled by default, and gathered in t
     ```
     $ ./run_tests --gtest_filter=Conjugate* --size_conjugate_test=1000000
     ```
-    - `FFTLengthTest`: set of tests measuring the execution time for several FFT lengths. The default number of averaged iterations is $$ 1000 $$, but this test case accepts the flag `--fft_iterations_test`. You can try a different number of iterations by doing:
+    - `FFTLengthTest`: set of tests measuring the execution time for several FFT lengths. The default number of averaged iterations is $$ 1000 $$, but this test case accepts the flag `--fft_iterations_test`. If you have [Gnuplot](http://www.gnuplot.info/) installed in your system, you can get some plots by adding the flag `--plot_fft_length_test`. You can try a different number of iterations and get some plots by doing:
     ```
-    $ ./run_tests --gtest_filter=FFT* --fft_iterations_test=10000
+    $ ./run_tests --gtest_filter=FFT* --fft_iterations_test=10000 --plot_fft_length_test
     ```
     - `MagnitudeSquaredTest`: set of tests measuring the execution time of various implementations of vector square magnitude computation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_magnitude_test`. You can try a different length by doing:
     ```
@@ -551,6 +554,7 @@ This test program computes metrics of static accuracy and precision. It can use 
 | &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
 | &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = $$ 300 $$]. |
 | &#x2011;&#x2011;config_file_ptest | empty | File containing the configuration parameters for the position test. |
+| &#x2011;&#x2011;plot_position_test | false | If set to "true", and [Gnuplot](http://www.gnuplot.info/) is installed in your system, it generates some plots of the obtained results. It will display them in windows and will save them as .ps files. |
 |----------
 
 So an example of running this test could be:
@@ -565,6 +569,12 @@ By default, the program triggers a software-defined GPS L1 C/A signal generator,
 $ ./position_test --disable_generator
 ```
 
+If you have [Gnuplot](http://www.gnuplot.info/) installed in your system, you can get some plots by adding the flag `--plot_position_test`:
+
+
+```
+$ ./position_test --plot_position_test
+```
 
 You can use your own configuration file:
 
