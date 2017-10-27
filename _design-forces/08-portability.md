@@ -4,9 +4,9 @@ permalink: /design-forces/portability/
 excerpt: "It refers to the usability of the same software in different environments."
 header:
   teaser: /assets/images/design-force-teaser.png
+toc: true
 last_modified_at: 2017-08-09T15:54:02-04:00
 ---
-{% include toc %}
 
 _Portability_  refers to the usability of the same software in different computing environments. In this context, a _computer environment_ is defined by its hardware architecture, operating system and runtime libraries.
 

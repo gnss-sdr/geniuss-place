@@ -4,9 +4,9 @@ permalink: /docs/sp-blocks/acquisition/
 excerpt: "Documentation for the Acquisition block"
 sidebar:
   nav: "sp-block"
+toc: true
 last_modified_at: 2016-04-13T15:54:02-04:00
 ---
-{% include toc %}
 
 The role of an _Acquisition_ block is the detection of presence/absence
 of signals coming from a given GNSS satellite. In case of a positive

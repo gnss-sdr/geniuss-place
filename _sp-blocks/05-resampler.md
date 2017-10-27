@@ -4,10 +4,10 @@ permalink: /docs/sp-blocks/resampler/
 excerpt: "Documentation for the Resampler block"
 sidebar:
   nav: "sp-block"
+toc: true
 last_modified_at: 2016-04-13T15:54:02-04:00
 ---
 
-{% include toc %}
 
 The _Resampler_ is the third processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}) implementation.
 

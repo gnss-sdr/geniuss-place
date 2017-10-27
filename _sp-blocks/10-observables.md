@@ -4,9 +4,9 @@ permalink: docs/sp-blocks/observables/
 excerpt: "Documentation for the Observables block"
 sidebar:
   nav: "sp-block"
+toc: true
 last_modified_at: 2017-05-27T15:54:02-04:00
 ---
-{% include toc %}
 
 The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange**, **carrier phase** (or its **phase-range** version) and **Doppler shift** (or its **pseudorange rate** version).
 {: .notice--info}

@@ -9,9 +9,9 @@ tags:
   - tutorial
 sidebar:
   nav: "docs"
+toc: true
 ---
 
-{% include toc %}
 
 ## Data ingestion in GNSS-SDR
 

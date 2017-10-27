@@ -4,9 +4,10 @@ permalink: /docs/sp-blocks/tracking/
 excerpt: "Documentation for the Tracking block"
 sidebar:
   nav: "sp-block"
+toc: true
 last_modified_at: 2016-04-13T15:54:02-04:00
 ---
-{% include toc %}
+
 
 The _Tracking_ block is continually receiving the data stream
 $$ x_\text{IN} $$, but does nothing until it receives a “positive

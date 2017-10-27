@@ -8,9 +8,9 @@ header:
   teaser: "http://exploreflask.com/en/latest/_images/configuration.png"
 sidebar:
   nav: "start"
+toc: true
 ---
 
-{% include toc %}
 
 Obtaining position fixes from a file is nice and useful, but the real deal for a software-defined receiver is to play with live GNSS signals in real-time. This page describes examples of hardware setups, software configurations and general tips for obtaining position fixes (and a collection of side data, delivered in standard formats) with GNSS-SDR.
 

@@ -4,9 +4,9 @@ permalink: /docs/sp-blocks/pvt/
 excerpt: "Documentation for the PVT block"
 sidebar:
   nav: "sp-block"
+toc: true
 last_modified_at: 2017-05-27T15:54:02-04:00
 ---
-{% include toc %}
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a signal sink, since the stream of data flowing along the receiver ends here.
 
@@ -489,7 +489,7 @@ Read more about standard output formats at our [**Interoperability**]({{ "/desig
 
 # Implementation: `RTKLIB_PVT`
 
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR source code, so it is **not** present in the current stable release.
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
 {: .notice--info}
 
 This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:

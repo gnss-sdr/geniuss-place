@@ -7,9 +7,9 @@ header:
   teaser: "/assets/images/checklist.jpg"
 sidebar:
   nav: "start"
+toc: true
 ---
 
-{% include toc %}
 
 In order to execute GNSS-SDR, you will need:
 

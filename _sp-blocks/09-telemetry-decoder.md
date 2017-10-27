@@ -4,10 +4,10 @@ permalink: /docs/sp-blocks/telemetry-decoder/
 excerpt: "Documentation for the Telemetry Decoder block"
 sidebar:
   nav: "sp-block"
+toc: true
 last_modified_at: 2016-04-13T15:54:02-04:00
 ---
 
-{% include toc %}
 
 The role of a _Telemetry Decoder_ block is to obtain the data bits from the navigation message broadcast by GNSS satellites.
 {: .notice--info}
