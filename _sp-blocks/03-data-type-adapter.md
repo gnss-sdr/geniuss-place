@@ -2,12 +2,12 @@
 title: "Data Type Adapter"
 permalink: /docs/sp-blocks/data-type-adapter/
 excerpt: "Documentation for the Data Type Adapter block"
-last_modified_at: 2017-07-08T15:54:02-04:00
 sidebar:
   nav: "sp-block"
+toc: true
+last_modified_at: 2017-07-08T15:54:02-04:00
 ---
 
-{% include toc %}
 
 The _Data Type Adapter_ is the first processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}) implementation.
 

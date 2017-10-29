@@ -9,10 +9,10 @@ tags:
   - tutorial
 sidebar:
   nav: "docs"
+toc: true
 last_modified_at: 2017-04-03T09:37:02+02:00
----
 
-{% include toc %}
+---
 
 
 A _generic_ GNSS complex baseband signal transmitted by a given GNSS space vehicle $$ i $$ can be described as

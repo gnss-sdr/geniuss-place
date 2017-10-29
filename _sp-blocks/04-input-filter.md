@@ -2,12 +2,12 @@
 title: "Input Filter"
 permalink: /docs/sp-blocks/input-filter/
 excerpt: "Documentation for the Input Filter block"
-last_modified_at: 2017-10-19T15:54:02+02:00
 sidebar:
   nav: "sp-block"
+toc: true
+last_modified_at: 2017-10-19T15:54:02+02:00
 ---
 
-{% include toc %}
 
 The _Input Filter_ is the second processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | absolute_url }}) implementation.
 

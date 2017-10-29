@@ -4,10 +4,10 @@ permalink: /docs/sp-blocks/signal-conditioner/
 excerpt: "Documentation for the Signal Conditioner block"
 sidebar:
   nav: "sp-block"
+toc: true
 last_modified_at: 2016-04-13T15:54:02-04:00
 ---
 
-{% include toc %}
 
 
 A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering.

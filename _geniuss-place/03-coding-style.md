@@ -6,9 +6,8 @@ last_modified_at: 2017-08-03T13:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
+toc: true
 ---
-
-{% include toc %}
 
 
 Since the seminal work by Kernighan _et al_. in 1974[^Kernighan74], there is a clear concern on the style in writing software and its impact in the final quality of the product. Following programming guidelines and code conventions not only helps to avoid introducing errors, but cuts maintenance costs and favors effective code reuse.

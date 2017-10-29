@@ -7,12 +7,11 @@ header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
   nav: "start"
+toc: true
 redirect_from:
   - /documentation/building-guide
   - /node/45
 ---
-
-{% include toc %}
 
 This page describes several ways to build and install GNSS-SDR.
 

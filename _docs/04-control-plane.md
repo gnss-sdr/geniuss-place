@@ -4,9 +4,10 @@ permalink: /docs/control-plane/
 excerpt: "Configuring and managing a network of connected signal processing blocks from the signal source up to the position fix."
 header:
   teaser: /assets/images/multi-band-multi-system-flow-graph-th.png
+toc: true
 last_modified_at: 2016-04-13T15:54:02-04:00
 ---
-{% include toc %}
+
 
 The Control Plane is in charge of creating a flow graph according to the configuration and then managing the processing blocks. It consists of four main components:
 

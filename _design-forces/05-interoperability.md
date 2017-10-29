@@ -4,9 +4,9 @@ permalink: /design-forces/interoperability/
 excerpt: "The ability of making systems work together."
 header:
   teaser: /assets/images/design-force-teaser.png
+toc: true
 last_modified_at: 2017-01-02T08:31:02+02:00
 ---
-{% include toc %}
 
 _Interoperability_ refers to the ability of making systems work together. In particular, the possibility to exchange information with other free and proprietary software, devices and systems, including GNSS signals, RF front-ends, external assistance, and all sort of information-displaying or sensor data fusion applications via standard outputs.
 

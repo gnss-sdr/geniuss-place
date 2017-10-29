@@ -6,13 +6,14 @@ last_modified_at: 2016-09-25T08:54:02+02:00
 header:
   teaser: "/assets/images/geniuss-contribute.png"
 comments: true
+toc: true
 redirect_from:
   - /node/19
   - /participate
   - /documentation/how-contribute-source-code
   - /documentation/how-report-bugs
 ---
-{% include toc %}
+
 
 ![Contributing]({{ "/assets/images/geniuss-contribute.png" | absolute_url }}){:height="250px" width="250x"}
 

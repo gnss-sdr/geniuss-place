@@ -2,12 +2,11 @@
 title: "Signal Source"
 permalink: /docs/sp-blocks/signal-source/
 excerpt: "Documentation for the Signal Source block"
-last_modified_at: 2016-04-13T15:54:02-04:00
 sidebar:
   nav: "sp-block"
+toc: true
+last_modified_at: 2016-04-13T15:54:02-04:00
 ---
-
-{% include toc %}
 
 {% capture fig_img2 %}
   ![Front-end]({{ "/assets/images/frontend.png" | absolute_url }})

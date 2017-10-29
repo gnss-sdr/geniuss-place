@@ -4,9 +4,9 @@ permalink: /docs/sp-blocks/channels/
 excerpt: "Documentation for the Channel block"
 sidebar:
   nav: "sp-block"
+toc: true
 last_modified_at: 2016-04-13T15:54:02-04:00
 ---
-{% include toc %}
 
 
 Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/acquisition/" | absolute_url }}), [tracking]({{ "/docs/sp-blocks/tracking/" | absolute_url }}) and [demodulation of the navigation message]({{ "/docs/sp-blocks/telemetry-decoder/" | absolute_url }}) for a single satellite. These abstract interfaces can be populated with different algorithms addressing any suitable GNSS signal. The user can define the number of parallel channels to be instantiated by the software receiver, and the thread-per-block scheduler imposed by GNU Radio automatically manages the multitasking capabilities of modern multi-core processors. This is done through the configuration file with the ```Channels_XX.count``` parameter, where ```XX``` is one of the following signal identifiers:

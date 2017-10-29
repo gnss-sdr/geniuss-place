@@ -13,9 +13,9 @@ sidebar:
 redirect_from:
   - /documentation/sige-gn3s-sampler-v2-usb-front-end
   - /node/51
+toc: true
 ---
 
-{% include toc %}
 
 {% capture fig_img1 %}
   ![SiGe GN3S Sampler v2]({{ "/assets/images/sige_v2.jpg" | absolute_url }})
