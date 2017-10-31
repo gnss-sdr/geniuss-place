@@ -165,7 +165,7 @@ InputFilter.grid_density=16
 ### Implementation: `Freq_Xlating_Fir_Filter`
 
 This implementation features a frequency-translating FIR filter. This is
-often used when input data is art an intermediate frequency, as it
+often used when input data is at an intermediate frequency, as it
 performs frequency translation, filtering and decimation in one step.
 The basic principle of this block is to perform:
 
