@@ -5,7 +5,7 @@ excerpt: "Documentation for the Signal Source block"
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2017-11-01T15:54:02-04:00
 ---
 
 {% capture fig_img2 %}
@@ -18,6 +18,10 @@ last_modified_at: 2016-04-13T15:54:02-04:00
 
 {% capture fig_img4 %}
   ![Multiple sources]({{ "/assets/images/multisource.png" | absolute_url }})
+{% endcapture %}
+
+{% capture fig_img5 %}
+  ![AD9361 Rx Signal Path]( {{ "/assets/images/AD9361_rx_signal_path.png" | absolute_url }})
 {% endcapture %}
 
 A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kind of sources, from samples stored in files (in a variety of formats) to multiple sample streams delivered in real-time by radio frequency front-ends.
@@ -436,7 +440,7 @@ This implementation accepts the following parameters:
 | `item_type` | [`gr_complex`]: Set the output data type. Only  `gr_complex` is allowed in this version, so it is set by default. | Optional |
 | `osmosdr_args` | Pass arguments to the OsmoSDR driver.  | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
-| `dump_filename` | If `dump1` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+| `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
 
 Please note that not all the OsmoSDR-compatible devices can work as radio frequency front-ends for proper GNSS signal reception, please check the specifications. For suitable RF front-ends, you can use:
@@ -496,7 +500,182 @@ SignalSource.swap_iq=false
 ```
 
 
+### Implementation: `Fmcomms2_Signal_Source`
 
+[![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | absolute_url }}){:height="250px" width="250x"}{: .align-right}](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
+The [AD-FMCOMMS2-EBZ](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html) is an FPGA Mezzanine Card ([FMC](https://fmchub.github.io/appendix/VITA57_FMC_HPC_LPC_SIGNALS_AND_PINOUT.html)) board for the [AD9361](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/ad9361.html), a highly integrated RF transceiver originally designed for use in 3G and 4G base station applications.  Its programmability and wideband capability make it ideal for a broad range of applications, since the device combines a RF front end with a flexible mixed-signal baseband section and integrated frequency synthesizers, providing a configurable digital interface. The AD9361 receiver's local oscillator can operate from $$ 70 $$ MHz to $$ 6.0 $$ GHz, and channel bandwidths from less than $$ 200 $$ kHz to $$ 56 $$ MHz are supported. The two independent direct conversion receivers have state-of-the-art noise figure and linearity. Each receive (RX) subsystem includes independent automatic gain control (AGC), dc offset correction, quadrature correction, and digital filtering, thereby eliminating the need for these functions in the digital baseband. Two high dynamic range analog-to-digital converters (ADCs) per channel digitize the received I and Q signals and pass them through configurable decimation filters and 128-tap finite impulse response (FIR) filters to produce a 12-bit output signal at the appropriate sample rate.
+
+The AD9361 RX signal path passes downconverted signals (I and Q) to the baseband receiver section. The baseband RX signal path is composed of two programmable analog low-pass filters, a 12-bit ADC, and four stages of digital decimating filters. Each of the four decimating filters can be bypassed. The figure below shows a block diagram for the AD9361 RX signal path after downconversion. Note that both the I and Q paths are schematically identical to each other.
+
+<figure>
+  {{ fig_img5 | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Block diagram for the AD9361 RX signal path after downconversion, composed of two programmable analog low-pass filters, a 12-bit ADC, and four stages of digital decimating filters.</figcaption>
+</figure>
+
+In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies:
+
+```bash
+$ sudo apt-get install libxml2-dev bison flex
+$ git clone https://github.com/analogdevicesinc/libiio
+$ cd libiio
+$ mkdir build && cd build && cmake .. && make && sudo make install
+$ cd ../..
+$ git clone https://github.com/analogdevicesinc/libad9361-iio
+$ cd libad9361-iio
+$ mkdir build && cd build && cmake .. && make && sudo make install
+$ cd ../..
+$ git clone https://github.com/analogdevicesinc/gr-iio
+$ cd gr-iio
+$ mkdir build && cd build && cmake .. && make && sudo make install
+```
+
+Starting in Ubuntu 18.04 and Debian 10 (warning: do **not** use gr-iio < 0.2 packaged in previous versions), all those components can be installed with a single line in a terminal via package manager:
+```bash
+$ sudo apt-get install gr-iio
+```
+
+Once gr-iio is installed, build GNSS-SDR passing the flag ```-DENABLE_FMCOMMS2=ON``` at configure time:
+
+```bash
+$ cd gnss-sdr/build
+$ git checkout next
+$ git pull upstream next
+$ cmake -DENABLE_FMCOMMS2=ON ..
+$ make && sudo make install
+```
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Fmcomms2_Signal_Source` | Mandatory |
+| `device_address` | Set to `local:` if using GNSS-SDR locally on the target (_e.g._, in a Zedboard). If using GNSS-SDR remotely on a PC, set the target IP address using `ip:XXX.XXX.XXX.XXX` or via USB using the URI `usb:XX.XX.XX`. It defaults to `192.168.2.1` | Mandatory |
+| `freq` | Selects the RX local oscillator frequency, in Hz. It defaults to $$ f_{\text{GPS L1}}=1575420000 $$ Hz. | Optional |
+| `sampling_frequency` | Defines the sampling rate, in samples per second (Sps). It defaults to $$ f_s = 2600000 $$ Sps. | Optional |
+| `bandwidth` |  Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz. | Optional |
+| `item_type` | [`gr_complex`]: Set the output data type. Only  `gr_complex` is allowed in this version, so it is set by default. | Optional |
+| `rx1_enable` | [`true`, `false`]. If set to `true`, it enables the RX1 chain. It defaults to `true`. | Optional |
+| `rx2_enable` | [`true`, `false`]. If set to `true`, it enables the RX2 chain. It defaults to `false`. | Optional |
+| `buffer_size` |  Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
+| `decimation` | Sets the decimation rate of the FIR filter, up to $$ 48 $$. It defaults to $$ 1 $$. | Optional |
+| `quadrature` | [`true`, `false`]. If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
+| `rf_dc` | [`true`, `false`]. If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
+| `bb_dc` |  [`true`, `false`]. If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
+| `gain_mode_rx1` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `manual`. | Optional |
+| `gain_mode_rx2` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `manual`. | Optional |
+| `gain_rx1` | If `gain_mode_rx1` is set to `manual`, it sets the gain of the RX1 chain, in dB. It defaults to $$ 64 $$ dB. | Optional |
+| `gain_rx2` | If `gain_mode_rx2` is set to `manual`, it sets the gain of the RX2 chain, in dB. It defaults to $$ 64 $$ dB. | Optional |
+| `rf_port_select` | Selects the RF port to be used ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#rf_port_selection) and [more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361-customization?&#rf_port_select)). It defaults to `A_BALANCED`. | Optional |
+| `filter_file` | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty). | Optional |
+| `filter_auto` | [`true`, `false`]. If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
+| `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
+| `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
+| `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+|-------
+
+  _Signal Source implementation:_ **`Fmcomms2_Signal_Source`**
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+SignalSource.implementation=Fmcomms2_Signal_Source
+SignalSource.device_address=10.42.0.196  ; <- PUT YOUR DEVICE ADDRESS HERE
+SignalSource.sampling_frequency=2000000
+SignalSource.freq=1575420000
+SignalSource.bandwidth=2000000
+SignalSource.decimation=0
+SignalSource.rx1_enable=true
+SignalSource.gain_mode_rx1=manual
+SignalSource.gain_rx1=64
+SignalSource.rf_port_select=A_BALANCED
+```
+
+### Implementation: `Plutosdr_Signal_Source`
+
+[![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | absolute_url }}){:height="250px" width="250x"}{: .align-right}](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
+The [ADALM-Pluto](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html) is a learning module which helps introduce electrical engineering students to the fundamentals of software-defined radio (SDR), radio frequency (RF), and wireless communications. Based on the [AD9363](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/AD9363.html), it offers one receive channel and one transmit channel which can be operated in full duplex, capable of generating or measuring RF analog signals from $$ 325 $$ to $$ 3800 $$ MHz, with a $$ 20 $$ MHz bandwidth, at up to $$ 61.44 $$ Mega Samples per second (MSps) with a 12-bit ADC and DAC.
+
+In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies:
+
+```bash
+$ sudo apt-get install libxml2-dev bison flex
+$ git clone https://github.com/analogdevicesinc/libiio
+$ cd libiio
+$ mkdir build && cd build && cmake .. && make && sudo make install
+$ cd ../..
+$ git clone https://github.com/analogdevicesinc/libad9361-iio
+$ cd libad9361-iio
+$ mkdir build && cd build && cmake .. && make && sudo make install
+$ cd ../..
+$ git clone https://github.com/analogdevicesinc/gr-iio
+$ cd gr-iio
+$ mkdir build && cd build && cmake .. && make && sudo make install
+```
+
+Starting in Ubuntu 18.04 and Debian 10 (warning: do **not** use gr-iio < 0.2 packaged in previous versions), all those components can be installed with a single line in a terminal via package manager:
+```bash
+$ sudo apt-get install gr-iio
+```
+
+Once gr-iio is installed, build GNSS-SDR passing the flag ```-DENABLE_PLUTOSDR=ON``` at configure time:
+
+```bash
+$ cd gnss-sdr/build
+$ git checkout next
+$ git pull upstream next
+$ cmake -DENABLE_PLUTOSDR=ON ..
+$ make && sudo make install
+```
+
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Plutosdr_Signal_Source` | Mandatory |
+| `device_address` | Set to `local:` if using GNSS-SDR locally on the target (_e.g._, in a Zedboard). If using GNSS-SDR remotely on a PC, set the target IP address using `ip:XXX.XXX.XXX.XXX` or via USB using the URI `usb:XX.XX.XX`. It defaults to `192.168.2.1` | Mandatory |
+| `freq` | Selects the RX local oscillator frequency, in Hz. It defaults to $$ f_{\text{GPS L1}}=1575420000 $$ Hz. | Optional |
+| `sampling_frequency` | Defines the sampling rate, in samples per second (Sps). It defaults to $$ f_s = 3000000 $$ Sps. | Optional |
+| `bandwidth` |  Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz. | Optional |
+| `item_type` | [`gr_complex`]: Set the output data type. Only  `gr_complex` is allowed in this version, so it is set by default. | Optional |
+| `buffer_size` |  Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
+| `decimation` | Sets the decimation rate of the FIR filter. It defaults to $$ 1 $$. | Optional |
+| `quadrature` | [`true`, `false`]. If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
+| `rf_dc` | [`true`, `false`]. If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
+| `bb_dc` |  [`true`, `false`]. If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
+| `gain_mode` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `manual`. | Optional |
+| `gain` | If `gain_mode` is set to `manual`, it sets the gain of the RX chain, in dB. It defaults to $$ 50 $$ dB. | Optional |
+| `filter_file` | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty). | Optional |
+| `filter_auto` | [`true`, `false`]. If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
+| `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
+| `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
+| `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+|-------
+
+  _Signal Source implementation:_ **`Plutosdr_Signal_Source`**
+  {: style="text-align: center;"}
+
+Example:
+```ini
+SignalSource.implementation=Plutosdr_Signal_Source
+SignalSource.device_address=192.168.2.1   ; <- PUT YOUR DEVICE ADDRESS HERE
+SignalSource.freq=1575420000
+SignalSource.bandwidth=2600000
+SignalSource.sampling_frequency=3000000
+SignalSource.item_size=gr_complex
+SignalSource.decimation=0
+SignalSource.gain_mode=manual
+SignalSource.gain=30
+SignalSource.samples=0
+SignalSource.buffer_size=65000
+SignalSource.dump=false
+SignalSource.dump_filename=./capture.dat
+```
 
 
 Multiple radio frequency chains

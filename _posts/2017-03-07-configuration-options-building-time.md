@@ -1,7 +1,7 @@
 ---
 title: "Configuration options at building time"
 permalink: /docs/tutorials/configuration-options-building-time/
-excerpt: "Description of the available GNSS-SDR configuration options at bulding time."
+excerpt: "Description of the available GNSS-SDR configuration options at building time."
 author_profile: false
 header:
   teaser: /assets/images/Cmake-logo.png
@@ -10,7 +10,7 @@ tags:
 sidebar:
   nav: "docs"
 toc: true
-last_modified_at: 2017-03-07T09:37:02+02:00
+last_modified_at: 2017-11-01T09:37:02+02:00
 ---
 
 
@@ -45,7 +45,7 @@ You can specify any number of variables:
     $ cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_OSMOSDR=ON ..
 
 
-This page documents the available GNSS-SDR configuration options at bulding time.
+This page documents the available GNSS-SDR configuration options at building time.
 
 
 **NOTE**: Options in orange are currently available only in the ```next``` branch of GNSS-SDR, and they will be part of the next stable release. More info on how to access the ```next``` branch can be found in our brief [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}).
@@ -89,6 +89,8 @@ For more details, the [CMake official documentation](https://cmake.org/documenta
 |--------------
 | &#x2011;DENABLE_OSMOSDR | ON / OFF | OFF  | If set to ON, it enables the use of [OsmoSDR](http://sdr.osmocom.org/trac/) and other front-ends ([RTL-based dongles](http://www.rtl-sdr.com/), [HackRF](https://greatscottgadgets.com/hackrf/), [BladeRF](http://nuand.com), etc.) as a signal source. Specifically, the ```Osmosdr_Signal_Source``` and ```RtlTcp_Signal_Source``` implementations of [Signal Source]({{ "/docs/sp-blocks/signal-source/" | absolute_url }}) blocks become available. This option requires [gr-osmosdr](http://osmocom.org/projects/sdr/wiki/GrOsmoSDR) already installed in your system.  See an example of use at the [Realtek RTL2832U USB dongle tutorial]({{ "/docs/tutorials/gnss-sdr-operation-realtek-rtl2832u-usb-dongle-dvb-t-receiver/" | absolute_url }}). |
 | &#x2011;DENABLE_GN3S | ON / OFF | OFF  |  If set to ON, it enables the use of the [SiGe GN3S Sampler v2](https://www.sparkfun.com/products/retired/8238) as signal source (experimental). Specifically, the ```Gn3sSignalSource``` implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | absolute_url }}) block becomes available. This option requires [gr-gn3s](https://github.com/gnss-sdr/gr-gn3s) already installed in your system. See the [SiGe GN3S Sampler v2 USB front-end tutorial]({{ "/docs/tutorials/sige-gn3s-sampler-v2-usb-front-end/" | absolute_url }}) for an example of its usage with GNSS-SDR. |
+| <span style="color: DarkOrange">&#x2011;DENABLE_FMCOMMS2</span> | <span style="color: DarkOrange">ON / OFF</span> | <span style="color: DarkOrange">OFF</span>  | <span style="color: DarkOrange">If set to ON, it enables the use of [AD-FMCOMMS2-EBZ](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html), an FPGA Mezzanine Card (FMC) board for the Analog Devices' [AD9361](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/ad9361.html), a highly integrated RF transceiver. This option requires [gr-iio](https://github.com/analogdevicesinc/gr-iio) already installed in your system. Specifically, the ```Fmcomms2_Signal_Source``` implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | absolute_url }}) block becomes available. </span> |
+| <span style="color: DarkOrange">&#x2011;DENABLE_PLUTOSDR</span> | <span style="color: DarkOrange">ON / OFF</span> | <span style="color: DarkOrange">OFF</span>  | <span style="color: DarkOrange">If set to ON, it enables the use of [ADALM-Pluto](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html), a learning module based on Analog Devices' [AD9363](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/AD9363.html), a highly integrated RF agile transceiver. This option requires [gr-iio](https://github.com/analogdevicesinc/gr-iio) already installed in your system. Specifically, the ```Plutosdr_Signal_Source``` implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | absolute_url }}) block becomes available. </span> |
 |----------
 
 Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb package (```sudo apt-get install gnss-sdr```), the option ```ENABLE_OSMOSDR``` is set to ON, and the required drivers are already installed.
