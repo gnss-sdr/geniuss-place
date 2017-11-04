@@ -554,22 +554,22 @@ This implementation accepts the following parameters:
 | `device_address` | Set to `local:` if using GNSS-SDR locally on the target (_e.g._, in a Zedboard). If using GNSS-SDR remotely on a PC, set the target IP address using `ip:XXX.XXX.XXX.XXX` or via USB using the URI `usb:XX.XX.XX`. It defaults to `192.168.2.1` | Mandatory |
 | `freq` | Selects the RX local oscillator frequency, in Hz. It defaults to $$ f_{\text{GPS L1}}=1575420000 $$ Hz. | Optional |
 | `sampling_frequency` | Defines the sampling rate, in samples per second (Sps). It defaults to $$ f_s = 2600000 $$ Sps. | Optional |
-| `bandwidth` |  Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz. | Optional |
-| `item_type` | [`gr_complex`]: Set the output data type. Only  `gr_complex` is allowed in this version, so it is set by default. | Optional |
-| `rx1_enable` | [`true`, `false`]. If set to `true`, it enables the RX1 chain. It defaults to `true`. | Optional |
-| `rx2_enable` | [`true`, `false`]. If set to `true`, it enables the RX2 chain. It defaults to `false`. | Optional |
-| `buffer_size` |  Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
+| `bandwidth` | Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz. | Optional |
+| `item_type` | [`gr_complex`]: Set the output data type. Only `gr_complex` is allowed in this version, so it is set by default. | Optional |
+| `rx1_enable` | [`true`, `false`]: If set to `true`, it enables the RX1 chain. It defaults to `true`. | Optional |
+| `rx2_enable` | [`true`, `false`]: If set to `true`, it enables the RX2 chain. It defaults to `false`. | Optional |
+| `buffer_size` | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
 | `decimation` | Sets the decimation rate of the FIR filter, up to $$ 48 $$. It defaults to $$ 1 $$. | Optional |
-| `quadrature` | [`true`, `false`]. If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
-| `rf_dc` | [`true`, `false`]. If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
-| `bb_dc` |  [`true`, `false`]. If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
+| `quadrature` | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
+| `rf_dc` | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
+| `bb_dc` | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `gain_mode_rx1` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `manual`. | Optional |
 | `gain_mode_rx2` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `manual`. | Optional |
-| `gain_rx1` | If `gain_mode_rx1` is set to `manual`, it sets the gain of the RX1 chain, in dB. It defaults to $$ 64 $$ dB. | Optional |
-| `gain_rx2` | If `gain_mode_rx2` is set to `manual`, it sets the gain of the RX2 chain, in dB. It defaults to $$ 64 $$ dB. | Optional |
+| `gain_rx1` | If `gain_mode_rx1` is set to `manual`, it sets the gain of the RX1 chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain_rx1`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB. | Optional |
+| `gain_rx2` | If `gain_mode_rx2` is set to `manual`, it sets the gain of the RX2 chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain_rx2`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB. | Optional |
 | `rf_port_select` | [`A_BALANCED`, `B_BALANCED`, `C_BALANCED`, `A_N`, `A_P`, `B_N`, `B_P`, `C_N`, `C_P`]: Selects the RF port to be used ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#rf_port_selection) and [more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361-customization?&#rf_port_select)). It defaults to `A_BALANCED`. | Optional |
 | `filter_file` | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty). | Optional |
-| `filter_auto` | [`true`, `false`]. If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
+| `filter_auto` | [`true`, `false`]: If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
 | `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
@@ -641,18 +641,18 @@ This implementation accepts the following parameters:
 | `device_address` | Set to `local:` if using GNSS-SDR locally on the target (_e.g._, in a Zedboard). If using GNSS-SDR remotely on a PC, set the target IP address using `ip:XXX.XXX.XXX.XXX` or via USB using the URI `usb:XX.XX.XX`. It defaults to `192.168.2.1` | Mandatory |
 | `freq` | Selects the RX local oscillator frequency, in Hz. It defaults to $$ f_{\text{GPS L1}}=1575420000 $$ Hz. | Optional |
 | `sampling_frequency` | Defines the sampling rate, in samples per second (Sps). It defaults to $$ f_s = 3000000 $$ Sps. | Optional |
-| `bandwidth` |  Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz. | Optional |
-| `item_type` | [`gr_complex`]: Set the output data type. Only  `gr_complex` is allowed in this version, so it is set by default. | Optional |
-| `buffer_size` |  Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
+| `bandwidth` | Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz. | Optional |
+| `item_type` | [`gr_complex`]: Set the output data type. Only `gr_complex` is allowed in this version, so it is set by default. | Optional |
+| `buffer_size` | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
 | `decimation` | Sets the decimation rate of the FIR filter. It defaults to $$ 1 $$. | Optional |
-| `quadrature` | [`true`, `false`]. If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
-| `rf_dc` | [`true`, `false`]. If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
-| `bb_dc` |  [`true`, `false`]. If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
+| `quadrature` | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
+| `rf_dc` | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
+| `bb_dc` |  [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `gain_mode` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `manual`. | Optional |
-| `gain` | If `gain_mode` is set to `manual`, it sets the gain of the RX chain, in dB. It defaults to $$ 50 $$ dB. | Optional |
+| `gain` | If `gain_mode` is set to `manual`, it sets the gain of the RX chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain`$$ < 72 $$ dB. It defaults to $$ 50 $$ dB. | Optional |
 | `filter_file` | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty). | Optional |
-| `filter_auto` | [`true`, `false`]. If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
-| `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
+| `filter_auto` | [`true`, `false`]: If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
+| `samples` | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
 | `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
