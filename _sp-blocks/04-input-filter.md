@@ -5,7 +5,7 @@ excerpt: "Documentation for the Input Filter block"
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2017-10-19T15:54:02+02:00
+last_modified_at: 2017-11-06T15:54:02+02:00
 ---
 
 
@@ -187,7 +187,7 @@ This implementation accepts the following parameters:
 | `input_item_type` |  [`byte`, `short`, `float`, `gr_complex`]: This implementation accepts as input data type real samples. It also accepts complex samples of the type `gr_complex`, assuming the presence of an intermediate frequency. The filter also works with `IF=0`. | Mandatory |
 | `output_item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Output data type. You can use this implementation to upcast the data type. | Mandatory |
 | `sampling_frequency` |  Specifies the sample rate $$ f_s $$, in samples per second. | Mandatory |
-| `IF` |  Specifies the intermediate frequency $$ f_{IF} $$, in Hz. It defaults to $$ 0 $$. | Optional |
+| `IF` |  Specifies the intermediate frequency $$ f_{IF} $$ to be removed, in Hz. It defaults to $$ 0 $$ Hz (_i.e._, baseband complex signal). | Optional |
 | `decimation_factor` |  Decimation factor (defaults to 1). Needs to be an integer. | Optional |
 | `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. | Mandatory |
@@ -293,6 +293,10 @@ The implementation of this block provides the following interface:
 | `item_type` | Data type. This implementation only accepts `gr_complex`. It defaults to `gr_complex`. | Optional |
 | `segments_est` | Number of signal segments in a noise floor estimation epoch. It defaults to $$ 12500 $$. | Optional |
 | `segments_reset` | Number of signal segments between two consecutive noise floor estimations. It defaults to $$ 5000000 $$. | Optional |
+| `IF` | Specifies the intermediate frequency $$ f_{IF} $$ to be removed, in Hz. It defaults to $$ 0 $$ Hz (_i.e._, baseband complex signal). | Optional |
+| `sampling_frequency` | If `IF` is set to any value below or above $$ \pm 1 $$ Hz, `sampling_frequency` specifies the sample rate $$ f_s $$, in samples per second. If `IF` is not set, this parameter has no effect. It defaults to $$ f_s = 4000000 $$ Sps. | Optional |
+| `bw` | If `IF` is set to any value below or above $$ \pm 1 $$ Hz, `bw` specifies the cut-off frequency, in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `IF` is not set, this parameter has no effect. It defaults to $$ 2000000 $$ Hz. | Optional |
+| `tw` | If `IF` is set to any value above $$ 1 $$ Hz, `tw` specifies the width of the transition band (centered at `bw`), in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `IF` is not set, this parameter has no effect. It defaults to $$ \frac{\text{bw}}{10} $$. | Optional |
 | `dump` | [`true`, `false`]. Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
 | `dump_filename` | If dump is set to `true`, path to the file where output data is stored. | Optional |
 |----
