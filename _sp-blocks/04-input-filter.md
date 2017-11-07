@@ -169,12 +169,11 @@ often used when input data is at an intermediate frequency, as it
 performs frequency translation, filtering and decimation in one step.
 The basic principle of this block is to perform:
 
-Input signal $$ \rightarrow $$ BPF $$ \rightarrow $$ decim $$ \rightarrow $$ (mult
-by $$ 2 \pi \frac{f_{IF}}{f_s} $$ · decim) $$ \rightarrow $$ Output signal.
+Input signal $$ \rightarrow $$ decim $$ \rightarrow $$ (mult by $$ 2 \pi \frac{f_{IF}}{f_s} $$ · decim) $$ \rightarrow $$ Filtering $$ \rightarrow $$ Output signal.
 
-The BPF is the baseband filter (LPF) moved up to the center frequency
-$$ 2 \pi \frac{f_{IF}}{f_s} $$. The block then applies a derotator with
-$$ -2 \pi \frac{f_{IF}}{f_s} $$ to downshift the signal to baseband.
+It is ideally suited for a "channel selection filter" and can be efficiently
+used to select and decimate a narrow band signal out of wide bandwidth input.
+The frequency translation comes before the filtering operation.
 
 This implementation accepts the following parameters:
 
@@ -184,26 +183,28 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Freq_Xlating_Fir_Filter` | Mandatory |
+| `filter_type` |  [`lowpass`, `bandpass`, `hilbert`, `differentiator`]: type of filter to be used after the frequency translation.  | Mandatory |
 | `input_item_type` |  [`byte`, `short`, `float`, `gr_complex`]: This implementation accepts as input data type real samples. It also accepts complex samples of the type `gr_complex`, assuming the presence of an intermediate frequency. The filter also works with `IF=0`. | Mandatory |
 | `output_item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Output data type. You can use this implementation to upcast the data type. | Mandatory |
 | `sampling_frequency` |  Specifies the sample rate $$ f_s $$, in samples per second. | Mandatory |
 | `IF` |  Specifies the intermediate frequency $$ f_{IF} $$ to be removed, in Hz. It defaults to $$ 0 $$ Hz (_i.e._, baseband complex signal). | Optional |
 | `decimation_factor` |  Decimation factor (defaults to 1). Needs to be an integer. | Optional |
 | `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Mandatory |
-| `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. | Mandatory |
-| `number_of_bands` |  Number of frequency bands in the filter. | Mandatory |
-| `band1_begin` |  Frequency at the band edges [ <span style="color: blue">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. | Mandatory |
-| `band1_end` |  Frequency at the band edges [ b1 <span style="color: blue">**e1**</span> b2 e2 b3 e3 ...] | Mandatory |
-| `band2_begin` |  Frequency at the band edges [ b1 e1 <span style="color: blue">**b2**</span> e2 b3 e3 ...] | Mandatory |
-| `band2_end` |  Frequency at the band edges [ b1 e1 b2 <span style="color: blue">**e2**</span> b3 e3 ...] | Mandatory |
-| `ampl1_begin` |  Desired amplitude at the band edges [ <span style="color: blue">**a(b1)**</span> a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands. | Mandatory |
-| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) <span style="color: blue">**a(e1)**</span> a(b2) a(e2) ...]. | Mandatory |
-| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) <span style="color: blue">**a(b2)**</span> a(e2) ...]. | Mandatory |
-| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) <span style="color: blue">**a(e2)**</span> ...]. | Mandatory |
-| `band1_error` |  Weighting applied to band 1 (usually 1). | Mandatory |
-| `band2_error` |  Weighting applied to band 2 (usually 1). | Mandatory |
-| `filter_type` |  [`bandpass`, `hilbert`, `differentiator`]: type of filter to be used.  | Mandatory |
-| `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values makes the filter slower to compute, but often results in filters that more exactly match an equiripple filter. | Mandatory |
+| `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `number_of_bands` |  Number of frequency bands in the filter. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band1_begin` |  Frequency at the band edges [ <span style="color: blue">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band1_end` |  Frequency at the band edges [ b1 <span style="color: blue">**e1**</span> b2 e2 b3 e3 ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band2_begin` |  Frequency at the band edges [ b1 e1 <span style="color: blue">**b2**</span> e2 b3 e3 ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band2_end` |  Frequency at the band edges [ b1 e1 b2 <span style="color: blue">**e2**</span> b3 e3 ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `ampl1_begin` |  Desired amplitude at the band edges [ <span style="color: blue">**a(b1)**</span> a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands.  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) <span style="color: blue">**a(e1)**</span> a(b2) a(e2) ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) <span style="color: blue">**a(b2)**</span> a(e2) ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) <span style="color: blue">**a(e2)**</span> ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band1_error` |  Weighting applied to band 1 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band2_error` |  Weighting applied to band 2 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values makes the filter slower to compute, but often results in filters that more exactly match an equiripple filter.  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `bw` |  Specifies the cut-off frequency, in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to 2000000 Hz. | Optional |
+| `tw` |  Specifies the width of the transition band (centered at `bw`), in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to $$ \frac{\text{bw}}{10} $$ . | Optional |
 | `dump` |  [`false`, `true`]: Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, path to the file where data will be stored. | Optional |
 |----------
