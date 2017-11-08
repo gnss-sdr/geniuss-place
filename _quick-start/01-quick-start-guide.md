@@ -1,4 +1,5 @@
 ---
+layout: archive
 title: "Quick-Start Guide"
 permalink: /quick-start-guide/
 excerpt: "Start here to get a general idea on what is all about."
