@@ -28,7 +28,7 @@ The proposed software receiver runs in a common personal computer and provides i
 
 
 ![](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/docs/doxygen/images/GeneralBlockDiagram.png)
-{: style="text-align: center;"}
+{: style="text-align: center; width: 800px;"}
 
 
 A GNSS software receiver is a complex system, which description needs to be addressed at different abstraction layers. Hereafter, we describe the software architecture implemented in GNSS-SDR, which is based on [GNU Radio](http://gnuradio.org), a well-established framework that provides the signal processing runtime and processing blocks to implement software radio applications.
