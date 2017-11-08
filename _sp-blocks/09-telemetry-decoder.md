@@ -1,7 +1,7 @@
 ---
 title: "Telemetry Decoder"
 permalink: /docs/sp-blocks/telemetry-decoder/
-excerpt: "Documentation for the Telemetry Decoder block"
+excerpt: "Documentation for the Telemetry Decoder block."
 sidebar:
   nav: "sp-block"
 toc: true

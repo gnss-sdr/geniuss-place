@@ -57,7 +57,7 @@ body:hover .visually-hidden button {
   background: #fff;
   z-index: 100000;
   text-decoration: none;
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
 }
 
 
@@ -114,9 +114,9 @@ body:hover .visually-hidden button {
 .cf { clear: both; }
 
 .wrapper {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 
@@ -465,7 +465,7 @@ body:hover .visually-hidden button {
 
   ol, li, p {
     margin-bottom: 0;
-    font-size: $type-size-5;
+    font-size: $type-size-5; //
   }
 }
 
@@ -522,7 +522,7 @@ a.reversefootnote {
   }
 }
 
-/* full screen video fixes */
+// full screen video fixes
 :-webkit-full-screen-ancestor {
    .masthead,
    .page__footer {

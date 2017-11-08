@@ -1,7 +1,7 @@
 ---
 title: "Resampler"
 permalink: /docs/sp-blocks/resampler/
-excerpt: "Documentation for the Resampler block"
+excerpt: "Documentation for the Resampler block."
 sidebar:
   nav: "sp-block"
 toc: true

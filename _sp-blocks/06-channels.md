@@ -1,7 +1,7 @@
 ---
 title: "Channels"
 permalink: /docs/sp-blocks/channels/
-excerpt: "Documentation for the Channel block"
+excerpt: "Documentation for the Channel block."
 sidebar:
   nav: "sp-block"
 toc: true

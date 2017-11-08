@@ -1,7 +1,7 @@
 ---
 title: "Observables"
 permalink: docs/sp-blocks/observables/
-excerpt: "Documentation for the Observables block"
+excerpt: "Documentation for the Observables block."
 sidebar:
   nav: "sp-block"
 toc: true

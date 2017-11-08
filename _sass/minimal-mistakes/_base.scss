@@ -2,6 +2,12 @@
    BASE ELEMENTS
    ========================================================================== */
 
+html {
+  /* sticky footer fix */
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -117,7 +123,7 @@ a {
   }
 
   &:visited {
-     color: $link-color-visited;
+    color: $link-color-visited;
   }
 }
 
@@ -285,8 +291,6 @@ nav {
   }
 
   a {
-    display: block;
-    padding-bottom: 0.25em;
     text-decoration: none;
   }
 

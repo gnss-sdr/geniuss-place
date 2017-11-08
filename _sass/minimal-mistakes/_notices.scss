@@ -15,18 +15,17 @@
   padding: 1em;
   color: $dark-gray;
   font-family: $global-font-family;
-  font-size: $type-size-5 !important;
+  font-size: $type-size-5 !important; //
   text-indent: initial; /* override*/
   background-color: mix(#fff, $notice-color, 90%);
-  border-top: 0.25em solid mix(#fff, $notice-color, 50%);
-  border-bottom: 0.25em solid mix(#fff, $notice-color, 50%);
+  border-top: 0.25em solid mix(#fff, $notice-color, 50%); //
+  border-bottom: 0.25em solid mix(#fff, $notice-color, 50%); //
   border-radius: $border-radius;
   box-shadow: 0 1px 1px rgba($notice-color, 0.25);
 
   h4 {
     margin-top: 0 !important; /* override*/
     margin-bottom: 0.75em;
-    line-height: 1 !important; /* override*/
   }
 
   @at-root .page__content #{&} h4 {
@@ -35,20 +34,9 @@
     font-size: 1em;
   }
 
-  @at-root .page-content #{&} a {
-    border-bottom-width: 2px;
-    box-shadow: none !important; // override
-
-    &:hover {
-      background-color: transparent !important; // override
-    }
-  }
-
   p {
-    margin-bottom: 0;
-
-    a {
-      border-bottom: 1px solid mix(#fff, $notice-color, 50%) !important; // override
+    &:last-child {
+      margin-bottom: 0 !important; /* override*/
     }
   }
 

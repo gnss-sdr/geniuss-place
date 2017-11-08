@@ -7,15 +7,20 @@
    ========================================================================== */
 
 .sidebar {
+  @include clearfix();
+  margin-bottom: 1em;
   -webkit-transform: translate3d(0, 0 , 0);
           transform: translate3d(0, 0 , 0);
 
-  @include clearfix();
-  margin-bottom: 1em;
+  @include breakpoint(max-width $large) {
+    /* fix z-index order of follow links */
+    position: relative;
+    z-index: 10;
+  }
 
   @include breakpoint($large) {
     float: left;
-    width: span(2 of 12);
+    width: calc(#{$right-sidebar-width-narrow} - 1em);
     opacity: 0.75;
     -webkit-transition: opacity 0.2s ease-in-out;
             transition: opacity 0.2s ease-in-out;
@@ -32,25 +37,18 @@
   }
 
   @include breakpoint($x-large) {
-    padding-right: 0;
+    width: calc(#{$right-sidebar-width} - 1em);
   }
 
   h2, h3, h4, h5, h6 {
     margin-bottom: 0;
     font-family: $sans-serif-narrow;
-    font-size: $type-size-6;
   }
 
   p, li {
     font-family: $sans-serif;
     font-size: $type-size-5-5;
     line-height: 1.5;
-  }
-
-  a {
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   img {
@@ -62,15 +60,31 @@
   margin-bottom: 1em;
 
   @include breakpoint($large) {
-    position: relative;
-    float: right;
-    width: $right-sidebar-width-toc;
-    margin-left: span(0.5 of 12);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $right-sidebar-width-narrow;
+    margin-right: -1 * $right-sidebar-width-narrow;
+    padding-left: 1em;
     z-index: 10;
   }
 
   @include breakpoint($x-large) {
-    width: $right-sidebar-width-toc;
+    width: $right-sidebar-width;
+    margin-right: -1 * $right-sidebar-width;
+  }
+}
+
+.splash .sidebar__right {
+
+  @include breakpoint($large) {
+    position: relative;
+    float: right;
+    margin-right: 0;
+  }
+
+  @include breakpoint($x-large) {
+    margin-right: 0;
   }
 }
 
@@ -177,7 +191,7 @@
   border-radius: $border-radius;
   background: $background-color;
   z-index: -1;
-  box-shadow: 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
+  box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
   cursor: default;
 
   &.is--visible {

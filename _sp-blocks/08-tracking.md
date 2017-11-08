@@ -1,7 +1,7 @@
 ---
 title: "Tracking"
 permalink: /docs/sp-blocks/tracking/
-excerpt: "Documentation for the Tracking block"
+excerpt: "Documentation for the Tracking block."
 sidebar:
   nav: "sp-block"
 toc: true

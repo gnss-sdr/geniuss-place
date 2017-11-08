@@ -3,17 +3,17 @@
    ========================================================================== */
 
 #main {
-    @include clearfix;
-      margin-left: auto;
-      margin-top: 2em;
-      margin-right: auto;
-      padding-left: 1em;
-      padding-right: 1em;
-      max-width: 100%;
-      -webkit-animation: $intro-transition;
-              animation: $intro-transition;
-      -webkit-animation-delay: 0.35s;
-              animation-delay: 0.35s;
+  @include clearfix;
+  margin-left: auto;
+  margin-top: 2em;
+  margin-right: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  -webkit-animation: $intro-transition;
+          animation: $intro-transition;
+  max-width: 100%;
+  -webkit-animation-delay: 0.35s;
+          animation-delay: 0.35s;
 
   @include breakpoint($x-large) {
     max-width: $x-large;
@@ -21,11 +21,16 @@
 }
 
 .page {
+
   @include breakpoint($large) {
     float: right;
-    width: span(10 of 12);
-    padding-left: gutter(0.5 of 12);
-    padding-right: gutter(2 of 12);
+    width: calc(100% - #{$right-sidebar-width-narrow});
+    padding-right: $right-sidebar-width-narrow;
+  }
+
+  @include breakpoint($x-large) {
+    width: calc(100% - #{$right-sidebar-width});
+    padding-right: $right-sidebar-width;
   }
 
   .page__inner-wrap {
@@ -38,6 +43,7 @@
     .page__content,
     .page__meta,
     .page__share {
+      position: relative;
       float: left;
       margin-left: 0;
       margin-right: 0;
@@ -85,9 +91,8 @@
     }
   }
 
- a:not(.btn) {
-    text-decoration: none;
-
+  a:not(.btn) {
+    text-decoration: none; //
     &:hover {
       text-decoration: underline;
 
@@ -96,15 +101,6 @@
       }
     }
   }
-
-  /*
-  a[href^="https://"]:not([href*="gnss-sdr.org"]):not([href*="github.com/carlesfernandez"]):not([href*="github.com/gnss-sdr"]):after,
-  a[href^="http://"]:not([href*="gnss-sdr.org"]):not([href*="localhost:4000"]):after {
-      content: " \F08E";
-      font-family: FontAwesome;
-      font-size: 0.8em;
-  }
-  */
 
   dt {
     margin-top: 1em;
@@ -308,11 +304,11 @@
    ========================================================================== */
 
 .page__comments {
-    float: left;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-    clear: both;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  clear: both;
 }
 
 .page__comments-title {
@@ -415,9 +411,11 @@
 
   @include breakpoint($large) {
     float: right;
-    width: span(10 of 12);
-    padding-left: gutter(0.5 of 12);
-    padding-right: gutter(2 of 12);
+    width: calc(100% - #{$right-sidebar-width-narrow});
+  }
+
+  @include breakpoint($x-large) {
+    width: calc(100% - #{$right-sidebar-width});
   }
 
   a {

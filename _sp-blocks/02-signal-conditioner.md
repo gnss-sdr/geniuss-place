@@ -1,7 +1,7 @@
 ---
 title: "Signal Conditioner"
 permalink: /docs/sp-blocks/signal-conditioner/
-excerpt: "Documentation for the Signal Conditioner block"
+excerpt: "Documentation for the Signal Conditioner block."
 sidebar:
   nav: "sp-block"
 toc: true
