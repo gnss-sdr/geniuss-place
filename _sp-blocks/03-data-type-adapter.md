@@ -1,7 +1,7 @@
 ---
 title: "Data Type Adapter"
 permalink: /docs/sp-blocks/data-type-adapter/
-excerpt: "Documentation for the Data Type Adapter block"
+excerpt: "Documentation for the Data Type Adapter block."
 sidebar:
   nav: "sp-block"
 toc: true

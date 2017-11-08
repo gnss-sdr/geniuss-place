@@ -1,7 +1,7 @@
 ---
 title: "Signal Source"
 permalink: /docs/sp-blocks/signal-source/
-excerpt: "Documentation for the Signal Source block"
+excerpt: "Documentation for the Signal Source block."
 sidebar:
   nav: "sp-block"
 toc: true

@@ -1,7 +1,7 @@
 ---
 title: "PVT"
 permalink: /docs/sp-blocks/pvt/
-excerpt: "Documentation for the PVT block"
+excerpt: "Documentation for the PVT block."
 sidebar:
   nav: "sp-block"
 toc: true

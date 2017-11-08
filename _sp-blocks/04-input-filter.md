@@ -1,7 +1,7 @@
 ---
 title: "Input Filter"
 permalink: /docs/sp-blocks/input-filter/
-excerpt: "Documentation for the Input Filter block"
+excerpt: "Documentation for the Input Filter block."
 sidebar:
   nav: "sp-block"
 toc: true
