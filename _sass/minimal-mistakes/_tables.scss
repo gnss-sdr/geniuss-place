@@ -1,0 +1,121 @@
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+
+table {
+  margin-bottom: 1em;
+  width: 100%;
+  font-family: $global-font-family;
+  font-size: $type-size-6;
+  border-collapse: collapse;
+  border: 1px solid mix(#000, $border-color, 25%);
+
+  & + table {
+    margin-top: 1em;
+  }
+}
+
+thead {
+  background-color: $border-color;
+  border-bottom: 1px solid mix(#000, $border-color, 25%);
+}
+
+th {
+  padding: 0.5em;
+  font-weight: bold;
+  text-align: left;
+  border-right: 1px solid mix(#000, $border-color, 25%);
+}
+
+td {
+  padding: 0.5em;
+  border-bottom: 1px solid mix(#000, $border-color, 25%);
+  border-right: 1px solid mix(#000, $border-color, 25%);
+}
+
+tr, td, th {
+  vertical-align: middle;
+}
+
+#authortable {
+  padding: 0.5em;
+  font-size: $type-size-4;
+  border: 0px hidden $background-color;
+  border-bottom: 0px hidden $background-color;
+  border-right: 0px hidden $background-color;
+  text-align: center;
+  vertical-align: top;
+}
+
+
+#forcetable {
+  padding: 0.5em;
+  font-size: $type-size-4;
+  border: 0px hidden $background-color;
+  border-bottom: 0px hidden $background-color;
+  border-right: 0px hidden $background-color;
+  text-align: left;
+  vertical-align: top;
+
+  .archive__item-excerpt {
+    margin-top: 0;
+    font-size: $type-size-5;
+
+    & + p {
+      text-indent: 0;
+    }
+  }
+}
+
+
+#forcetable2 {
+  padding: 0.5em;
+  font-size: $type-size-4;
+  border: 0px hidden $background-color;
+  border-bottom: 0px hidden $background-color;
+  border-right: 0px hidden $background-color;
+  text-align: left;
+  vertical-align: top;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+    border-bottom: 0px solid $background-color;
+    transition: $global-transition;
+
+    &:hover {
+      color: mix(#000, $text-color, 50%);
+      border-bottom-color: $background-color;
+    }
+  }
+
+  .archive__item-excerpt {
+    margin-top: 0;
+    font-size: $type-size-5;
+
+    & + p {
+      text-indent: 0;
+    }
+  }
+}
+
+#gridtable {
+  padding: 0.5em;
+  font-size: $type-size-4;
+  border: 0px hidden $background-color;
+  border-bottom: 0px hidden $background-color;
+  border-right: 0px hidden $background-color;
+  text-align: left;
+  vertical-align: top;
+  a {
+    color: $text-color;
+    text-decoration: none;
+    border-bottom: 1px solid $background-color;
+    transition: $global-transition;
+
+    &:hover {
+      color: mix(#000, $text-color, 50%);
+      border-bottom-color: $background-color;
+    }
+  }
+}
