@@ -28,7 +28,7 @@ $ gnss-sdr --version
 linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010
 
 gnss-sdr version 0.0.9
-$
+$  
 ```
 
 Please check that your installed version is 0.0.9 (or something like 0.0.9.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnsss-sdr` and you got a version earlier to 0.0.9, please do `sudo apt-get remove gnsss-sdr` and [build it from source]({{ "/build-and-install/#build" | absolute_url }}).
@@ -36,10 +36,10 @@ Please check that your installed version is 0.0.9 (or something like 0.0.9.git-`
 
 If you see something like:
 
-```
+```bash
 $ gnss-sdr --version
 gnss-sdr: command not found
-$
+$  
 ```
 
 please check out the [building guide]({{ "/build-and-install/" | absolute_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file for more details on how to install GNSS-SDR.
@@ -60,7 +60,7 @@ $ volk_gnsssdr_profile
 
 Now it's time to download the file containing the GNSS raw signal samples. This can be done directly from the terminal:
 
-```
+```bash
 $ mkdir work
 $ cd work
 $ wget https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz

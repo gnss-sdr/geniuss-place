@@ -10,14 +10,10 @@ last_modified_at: 2016-04-13T15:54:02-04:00
 
 In GNSS-SDR, each configuration file defines a receiver. This page documents the available implementations for each of the _GNSS processing blocks_, represented as blue boxes in the figure below, and their parameters.
 
-<img src="https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/docs/doxygen/images/GeneralBlockDiagram.png" alt="General Block Diagram">
-{: style="text-align: center;"}
-
-<!--
 <img src="https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/docs/doxygen/images/GeneralBlockDiagram.png" alt="General Block Diagram" usemap="#sp-map">
-{: style="text-align: center;"}
+{: style="text-align: center; width: 800px;"}
 
-<!--
+
 <map name="sp-map" id="Diagram-sp-map">
  <area alt="Signal source" title="Signal source" href="{{ "/docs/sp-blocks/signal-source/" | absolute_url }}" shape="rect" coords="140,146,190,179" style="outline:none;" target="_self" />
  <area alt="Signal Conditioner" title="Signal Conditioner" href="{{ "/docs/sp-blocks/signal-conditioner/" | absolute_url }}" shape="rect" coords="200,149,278,177" style="outline:none;" target="_self" />
@@ -30,7 +26,7 @@ In GNSS-SDR, each configuration file defines a receiver. This page documents the
  <area shape="rect" coords="798,495,800,497" alt="Block Diagram" style="outline:none;" title="Image Map" href="{{ "/docs/sp-blocks/" | absolute_url }}" />
 </map>
 
--->
+
 
 <html> <body> <table> <tr> <td id="forcetable">  
 {% for post in site.sp-blocks %}
