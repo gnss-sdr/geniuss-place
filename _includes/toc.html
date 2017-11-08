@@ -1,5 +1,7 @@
 {% capture tocWorkspace %}
     {%- comment -%}
+        Version 1.0.2
+
         "...like all things liquid - where there's a will, and ~36 hours to spare, there's usually a/some way" ~jaybe
 
         Usage:
@@ -24,38 +26,50 @@
     {% assign maxHeader = include.h_max | default: 6 %}
     {% assign nodes = include.html | split: '<h' %}
     {% assign firstHeader = true %}
+
     {% for node in nodes %}
         {% if node == "" %}
             {% continue %}
         {% endif %}
+
         {% assign headerLevel = node | replace: '"', '' | slice: 0, 1 | times: 1 %}
+
         {% if headerLevel < minHeader or headerLevel > maxHeader %}
             {% continue %}
         {% endif %}
+
         {% if firstHeader %}
             {% assign firstHeader = false %}
             {% assign minHeader = headerLevel %}
         {% endif %}
+
         {% assign indentAmount = headerLevel | minus: minHeader | add: 1 %}
         {% assign _workspace = node | split: '</h' %}
-        {% assign _idWorkspace = _workspace[0] | split: '"' %}
-        {% assign html_id = _idWorkspace[1] %}
-        {% capture _hAttrToStrip %}{{ headerLevel }} id="{{ html_id }}">{% endcapture %}
+
+        {% assign _idWorkspace = _workspace[0] | split: 'id="' %}
+        {% assign _idWorkspace = _idWorkspace[1] | split: '"' %}
+        {% assign html_id = _idWorkspace[0] %}
+
+        {% capture _hAttrToStrip %}{{ _workspace[0] | split: '>' | first }}>{% endcapture %}
         {% assign header = _workspace[0] | replace: _hAttrToStrip, '' %}
+
         {% assign space = '' %}
         {% for i in (1..indentAmount) %}
             {% assign space = space | prepend: '  ' %}
         {% endfor %}
+
         {% capture my_toc %}{{ my_toc }}
 {{ space }}- [{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}](#{{ html_id }}){% endcapture %}
+
     {% endfor %}
+
     {% if include.class %}
         {% capture my_toc %}{:.{{ include.class }}}
 {{ my_toc | lstrip }}{% endcapture %}
     {% endif %}
+
     {% if include.id %}
         {% capture my_toc %}{: #{{ include.id }}}
 {{ my_toc | lstrip }}{% endcapture %}
     {% endif %}
-{% endcapture %}{% assign tocWorkspace = '' %}
-{{ my_toc | markdownify }}
+{% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc | markdownify | strip }}
