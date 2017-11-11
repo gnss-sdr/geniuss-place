@@ -19,13 +19,13 @@ By exploiting the concepts and methodology of estimation theory, it is possible 
 show that the maximum likelihood (ML) estimates of $$ f_d $$ and $$ \tau $$ can
 be obtained by maximizing the function
 
-$$
-\hat{f}_{d_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_d,\tau} \left\{   \left| \hat{R}_{xd}(f_d,\tau)\right|^2\right\}~, $$
+$$ \begin{equation}
+\hat{f}_{d_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_d,\tau} \left\{ \left| \hat{R}_{xd}(f_d,\tau)\right|^2\right\}~, \end{equation} $$
 
 where
 
-$$
-\hat{R}_{xd}(f_d,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_d nT_s}~, $$
+$$ \begin{equation}
+\hat{R}_{xd}(f_d,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_d nT_s}~, \end{equation} $$
 
 $$ x_{\text{IN}}[n] $$ is a complex vector containing I&Q samples of the
 received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase
@@ -57,7 +57,7 @@ synchronization parameters by their ML estimators in the NP detector,
 one obtains the Generalized Likelihood Ratio Test (GLRT) function, that
 can be written as:
 
-$$ T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right)=\max_{f_d,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_d,\tau) \right|^2}{\hat{R}_{xx}} \right\}~, $$
+$$ \begin{equation} T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right)=\max_{f_d,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_d,\tau) \right|^2}{\hat{R}_{xx}} \right\}~, \end{equation} $$
 
 where $$ \hat{R}_{xx} $$ is an estimation of the input signal power. It can
 be shown that this acquisition test statistic is a Constant False
@@ -335,16 +335,16 @@ by a sinBOC modulation with very small performance penalty[^Lohan11]. For
 the E1B signal component, the reference signals available in our
 implementation are:
 
-$$ d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty}   C_{E1B}\Big[|l|_{4092}\Big]  p(t  -  lT_{c,E1B}) \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~, $$
+$$ \begin{equation} d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty}   C_{E1B}\Big[|l|_{4092}\Big]  p(t  -  lT_{c,E1B}) \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~, \end{equation} $$
 
-$$ \label{eq:dE1BsinBOC}
-d_{E1B}^{(\text{sinBOC})}[n]= \sum_{l=-\infty}^{+\infty}  C_{E1B}\Big[|l|_{4092}\Big] p(t  -  lT_{c,E1B})  sc_A[n]~, $$
+$$ \begin{equation} \label{eq:dE1BsinBOC}
+d_{E1B}^{(\text{sinBOC})}[n]= \sum_{l=-\infty}^{+\infty}  C_{E1B}\Big[|l|_{4092}\Big] p(t  -  lT_{c,E1B})  sc_A[n]~, \end{equation} $$
 
 while for E1C, users can choose among:
 
-$$ d_{E1C}^{(\text{CBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~, $$
+$$ \begin{equation} d_{E1C}^{(\text{CBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~, \end{equation} $$
 
-$$ \nonumber d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big]   \! \cdot  \!   p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n]. $$
+$$ \begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big]   \! \cdot  \!   p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n], \end{equation} $$
 
 where the subcarriers are defined as
 $$ sc_A(t)= \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big) $$ and

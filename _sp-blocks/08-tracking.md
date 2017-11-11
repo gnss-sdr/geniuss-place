@@ -224,29 +224,29 @@ Tracking_2S.early_late_space_chips=0.4
 
 The Maximum likelihood (ML) estimates of $$ f_d $$ and $$ \tau $$ can be obtained by maximizing the function
 
-$$
-\hat{f}_{d_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_d,\tau} \left\{   \left| \hat{R}_{xd}(f_d,\tau)\right|^2\right\}~,
+$$ \begin{equation}
+\hat{f}_{d_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_d,\tau} \left\{   \left| \hat{R}_{xd}(f_d,\tau)\right|^2\right\}~, \end{equation}
 $$
 
 where
 
-$$
-\hat{R}_{xd}(f_d,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_d nT_s}~,
+$$ \begin{equation}
+\hat{R}_{xd}(f_d,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_d nT_s}~, \end{equation}
 $$
 
 $$ x_{\text{IN}}[n] $$ is a complex vector containing I&Q samples of the received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase of the received signal with respect to a local reference,  $$ f_d $$ is the Doppler shift, $$ N $$ is the number of samples in a spreading code (4 ms for E1), and $$ d[n] $$ is a locally generated reference. The user can also configure the shape of $$ d[n] $$, allowing simplifications that reduce the computational load. For the E1B signal component, the reference signals available in our implementation are:
 
-$$ d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t  -  lT_{c,E1B})\cdot  \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~,$$
+$$ \begin{equation} d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t  -  lT_{c,E1B})\cdot  \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~, \end{equation} $$
 
-$$ d_{E1B}^{(\text{sinBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B}) sc_A[n]~,
+$$ \begin{equation} d_{E1B}^{(\text{sinBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B}) sc_A[n]~, \end{equation}
 $$
 
 while for E1C, users can choose among:
 
-$$ d_{E1C}^{(\text{CBOC})}[n] = \sum_{m=-\infty}^{+\infty} \sum_{l=1}^{4092} C_{E1Cp}\Big[ l \Big] \cdot  p[n- mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~,
+$$ \begin{equation} d_{E1C}^{(\text{CBOC})}[n] = \sum_{m=-\infty}^{+\infty} \sum_{l=1}^{4092} C_{E1Cp}\Big[ l \Big] \cdot  p[n- mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~,  \end{equation}
 $$
 
-$$ d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n].
+$$ \begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n]. \end{equation}
 $$
 
 
@@ -431,13 +431,13 @@ The AltBOC modulation in the Galileo E5 band allows the approximation to two sub
 
 The baseband signal at E5a can then be approximated by:
 
-$$ e_{E5a}(t) = e_{E5aI}(t)+je_{E5aQ}(t)~, $$
+$$ \begin{equation} e_{E5a}(t) = e_{E5aI}(t)+je_{E5aQ}(t)~, \end{equation} $$
 
 where the signal components are defined as:
 
-$$ e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, $$
+$$ \begin{equation} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation} $$
 
-$$ e_{E5aQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, $$
+$$ \begin{equation} e_{E5aQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation}$$
 
 where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s.
 
