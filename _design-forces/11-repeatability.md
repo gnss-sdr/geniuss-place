@@ -34,13 +34,17 @@ Most common precision metrics are defined below:
 
 which are the same expressions than those defined for [accuracy]({{ "/design-forces/accuracy/" | absolute_url }}), but now the standard deviations are not referred to a _reference value_ but to the mean of the obtained results:
 
-$$ \sigma_{E}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- \hat{E}\right)^2} $$
+$$ \begin{equation} \sigma_{E}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- \hat{E}\right)^2} \end{equation} $$
 
 where $$ \hat{E}=\frac{1}{L}\sum_{l=1}^{L}E[l] $$ is the mean of all the $$ E $$ coordinates of the obtained positioning solutions, $$ E[l] $$ are the East coordinates of the obtained positioning solutions, and $$ L $$ is the number of available position fixes. Similar expressions can be defined for the North and Up coordinates:
 
-$$ \sigma_{N}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- \hat{N}\right)^2} $$, where $$ \hat{N}=\frac{1}{L}\sum_{l=1}^{L}N[l] $$, and
+$$ \begin{equation} \sigma_{N}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- \hat{N}\right)^2}, \end{equation} $$
 
-$$ \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U}\right)^2} $$, where $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.
+where $$ \hat{N}=\frac{1}{L}\sum_{l=1}^{L}N[l] $$, and
+
+$$ \begin{equation} \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U}\right)^2}, \end{equation} $$
+
+where $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.
 
 Example:
 
