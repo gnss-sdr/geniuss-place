@@ -20,7 +20,7 @@ The role of a _Telemetry Decoder_ block is to obtain the data bits from the navi
 
 The GPS L1 C/A baseband signal can be written as:
 
-$$ s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~,$$
+$$ \begin{equation} s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{equation} $$
 
 with
 
@@ -72,7 +72,7 @@ TelemetryDecoder_1C.dump=false
 
 The GPS L2C baseband signal can be written as:
 
-$$ s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~,$$
+$$ \begin{equation} s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~, \end{equation} $$
 
 with the Quadrature–phase component defined as:
 
@@ -116,7 +116,7 @@ TelemetryDecoder_2S.dump=true
 
 The Galileo E1 baseband signal can be written as:
 
-$$ s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, $$
+$$ \begin{equation} s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{equation} $$
 
 where $$ sc_A(t) $$ and $$ sc_B(t) $$ are the Composite Binary Offset Carrier (CBOC) square subcarriers, and:
 
@@ -173,7 +173,7 @@ This implementation accepts the following parameters:
 
 The Galileo E5 baseband signal can be written as:
 
-$$ s^{\text{(Gal E5)}}_{T}(t) = e_{E5a}(t) ssc_s^{*}(t)+ e_{E5b}(t) ssc_s(t) +\bar{e}_{E5a}(t)ssc_p^{*}(t)+\bar{e}_{E5b}(t)ssc_p(t)~, $$
+$$ \begin{equation} s^{\text{(Gal E5)}}_{T}(t) = e_{E5a}(t) ssc_s^{*}(t)+ e_{E5b}(t) ssc_s(t) +\bar{e}_{E5a}(t)ssc_p^{*}(t)+\bar{e}_{E5b}(t)ssc_p(t)~, \end{equation} $$
 
 where $$ ssc_s(t) $$ and $$ ssc_p(t) $$ are the single and product side–band signal subcarriers. However, sub-band E5a can be approximated by a QPSK signal. Galileo's F/NAV navigation message $$ D_{\text{F/NAV}} \in \{ 1, -1 \} $$ modulates the I component of the E5a signal, which can be expressed as:
 
