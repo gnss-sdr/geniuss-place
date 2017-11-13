@@ -45,7 +45,7 @@ According to the name and the quality of the theme this website is based upon, a
 
 ### Contributing
 
-Found a typo in this website? Interested in adding documentation of new a feature or a website enhancement? Please check out the [contributing guidelines](CONTRIBUTING.md). This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+Found a typo in this website? Interested in adding documentation of new a feature or a website enhancement? Please check out the [contributing guidelines](CONTRIBUTING.md). This project adheres to the Contributor Covenant [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
 
 
