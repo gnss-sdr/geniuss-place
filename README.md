@@ -21,7 +21,7 @@ According to the name and the quality of the theme this website is based upon, a
 
 - [Font Awesome](http://fortawesome.github.io/Font-Awesome/).
 - [Academicons](https://jpswalsh.github.io/academicons/).
-- Icons made by [Madebyoliver](http://www.flaticon.com/authors/madebyoliver), [Butterflytronics](http://www.flaticon.com/authors/butterflytronics), [SimpleIcon](http://www.flaticon.com/authors/simpleicon) and [Freepik](http://www.freepik.com) from [Flaticon](http://www.flaticon.com) are licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
+- Icons made by [Madebyoliver](http://www.flaticon.com/authors/madebyoliver), [Butterflytronics](https://www.flaticon.com/authors/butterflytronics), [SimpleIcon](https://www.flaticon.com/authors/simpleicon) and [Freepik](https://www.freepik.com) from [Flaticon](https://www.flaticon.com) are licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
 
 
 #### Font
@@ -31,7 +31,7 @@ According to the name and the quality of the theme this website is based upon, a
 
 #### Other
 
-- [Jekyll](http://jekyllrb.com/)
+- [Jekyll](https://jekyllrb.com/)
 - [jQuery](http://jquery.com/)
 - [Susy](http://susy.oddbird.net/)
 - [Breakpoint](http://breakpoint-sass.com/)
