@@ -12,7 +12,7 @@ This repository contains the source code from which [http://gnss-sdr.org](http:/
 
 - [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/)
 
-According to the name and the quality of the theme this website is based upon, all the mistakes are from our side.
+According to the name and the quality of the theme this website is based upon, all mistakes are from our side.
 
 
 ### Math
