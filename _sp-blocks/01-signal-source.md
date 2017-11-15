@@ -527,9 +527,10 @@ $ cd ../..
 $ git clone https://github.com/analogdevicesinc/gr-iio
 $ cd gr-iio
 $ mkdir build && cd build && cmake .. && make && sudo make install
+$ cd ../..
 ```
 
-Starting in Ubuntu 18.04 and Debian 10 (warning: do **not** use gr-iio < 0.2 packaged in previous versions), all those components can be installed with a single line in a terminal via package manager:
+Alternatively, starting in Ubuntu 18.04 and Debian 10 (warning: do **not** use gr-iio < 0.2 packaged in previous versions), all those components can be installed with a single line in a terminal via package manager:
 ```bash
 $ sudo apt-get install gr-iio
 ```
@@ -613,9 +614,10 @@ $ cd ../..
 $ git clone https://github.com/analogdevicesinc/gr-iio
 $ cd gr-iio
 $ mkdir build && cd build && cmake .. && make && sudo make install
+$ cd ../..
 ```
 
-Starting in Ubuntu 18.04 and Debian 10 (warning: do **not** use gr-iio < 0.2 packaged in previous versions), all those components can be installed with a single line in a terminal via package manager:
+Alternatively, starting in Ubuntu 18.04 and Debian 10 (warning: do **not** use gr-iio < 0.2 packaged in previous versions), all those components can be installed with a single line in a terminal via package manager:
 ```bash
 $ sudo apt-get install gr-iio
 ```
