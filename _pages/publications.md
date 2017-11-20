@@ -136,6 +136,7 @@ Portland, OR, Sept. 2017, in Press.
     <br />
     <a href="javascript:toggleBibtex('Arribas17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=5073" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037280" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Arribas17a" class="bibtex noshow">
     <pre>@inproceedings{ Arribas17a,
@@ -162,7 +163,8 @@ Portland, OR, Sept. 2017, in Press.
     <br />
     <a href="javascript:toggleBibtex('Fernandez17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=5293" >Online</a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/a-cloud-optical-access-network-for-virtualized-gnss-receivers/zhgrtpqstxrx" >Slides</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037906" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/a-cloud-optical-access-network-for-virtualized-gnss-receivers/zhgrtpqstxrx" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez17a" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez17a,
@@ -293,7 +295,7 @@ Portland, OR, Sept. 2016, pp. 44-61.<br>
     <br />
     <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/266493" >Online  <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/accelerating-gnss-software-receivers/ywcwtdjwgnky.pdf" >Slides</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/accelerating-gnss-software-receivers/ywcwtdjwgnky" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez16b" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez16b,

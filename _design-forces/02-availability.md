@@ -180,19 +180,19 @@ Sensitivity is one of the most important measurements of a GNSS receiver's capab
 
 A receiver's sensitivity is highly dependent on the noise figure of the RF front-end. This relation can be written as:
 
-$$ \text{Sensitivity} =  N_{\text{dBm}} + {C/N_0}_{\text{min}} + NF_{\text{Rx}} $$
+$$ \begin{equation} \text{Sensitivity} =  N_{\text{dBm}} + {C/N_0}_{\text{min}} + \text{NF}_{\text{Rx}} \end{equation} $$
 
 where:
 
   * $$  N_{\text{dBm}} = 10 \cdot log_{10}(k \times T_0  \times 1000) $$ is the noise power, in dBm, where $$ k = 1.38 \cdot 10^{-23} $$  Joules per Kelvin is the Boltzmann's constant and $$ T_0 $$ is the temperature of the receiver system in Kelvin. Assuming that the physical temperature of the system is 290 Kelvin, $$ N_{\text{dBm}} = -174 $$ dBm.
   * $$ {C/N_0}_{\text{min}} $$ is the minimum $$ C/N_0 $$ required for signal acquisition, in dB-Hz.
-  * $$ NF_{\text{Rx}} $$ is the receiver's noise figure, in dB.
+  * $$ \text{NF}_{\text{Rx}} $$ is the receiver's noise figure, in dB.
 
 When performing  sensitivity measurements, RF power-level accuracy is one of the most important characteristics of the signal generator. Because receivers report $$ C/N_0 $$ to within $$ 0 $$ digits of precision (for instance: $$ 34 $$ dB-Hz), sensitivity measurements in production test are made within $$ \pm 0.5 $$ dB of power accuracy.
 
 Thus, it is important to ensure that your instrumentation  for RF signal generation has equal or better performance. Because general-purpose RF instrumentation is specified for operation across a broad range of power levels, frequency ranges, and temperature conditions, you can often achieve measurement repeatability that is much better than the specified instrument performance by implementing a basic system calibration.
 
-Hence, only the $$ {C/N_0}_{\text{min}} $$ term is responsability of the software receiver, whereas the noise figure is related to the hardware implementation of the RF front-end. From a digital signal processing perspective, the usual approach for improving acquisition sensitivity is the extension of the coherent integration time $$ T_{\text{int}} $$. However, there are several limitations to this method:
+Hence, only the $$ {C/N_0}_{\text{min}} $$ term is responsibility of the software receiver, whereas the noise figure is related to the hardware implementation of the RF front-end. From a digital signal processing perspective, the usual approach for improving acquisition sensitivity is the extension of the coherent integration time $$ T_{\text{int}} $$. However, there are several limitations to this method:
 
   * **The presence of data-bit transitions modulating the ranging code**. Each transition introduces a sign reversal in successive correlation blocks, such that their coherent accumulation leads to the potential loss of the correlation peak. Therefore, the availability of an external-aiding source is crucial to extend $$ T_{\text{int}} $$ to be larger than the data bit duration. This approach is referred to as the aided (or assisted) signal acquisition, and it is a part of the Assisted GNSS (A-GNSS) positioning method defined by different standardization bodies such as 3GPP and OMA.
   * **Local oscillator stability**. The uncertainty on the actual frequency value delivered by the front-end's local oscillator gives rise to effects very similar to those caused by a Doppler shift, and hence to an additional correlation loss. Using a simple model for time deviation between the clock with the true oscillator and an ideal clock,
