@@ -202,4 +202,4 @@ References
 
  * More information about the development environment and the usage of BitBake can be found in the [Yocto Project Documentation](https://www.yoctoproject.org/documentation).
 
- * This work is heavily based on [Embedded Developments with GNU Radio](http://gnuradio.org/redmine/projects/gnuradio/wiki/Embedded) and the work by Philip Balister (and others) on the [oe-gnuradio-manifest](https://github.com/balister/oe-gnuradio-manifest) and the [meta-sdr](https://github.com/balister/meta-sdr) layer.
+ * This work is heavily based on [Embedded Developments with GNU Radio](https://wiki.gnuradio.org/index.php/Embedded_Development_with_GNU_Radio) and the work by Philip Balister (and others) on the [oe-gnuradio-manifest](https://github.com/balister/oe-gnuradio-manifest) and the [meta-sdr](https://github.com/balister/meta-sdr) layer.
