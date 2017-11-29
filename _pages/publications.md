@@ -104,22 +104,23 @@ note     = { {DOI}: 10.1186/1687-6180-2013-143}
 <ul class="biblist">
     <!-- Item: GNSS-SDR17a -->
     <li ><p>
-    C. O'Driscoll
+    C. O'Driscoll, J. T. Curran
     <br><b>Codeless Processing of BOC(10,5) Signals</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
-Portland, OR, Sept. 2017, in Press.
+Portland, OR, Sept. 2017, pp. 3508-3518.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll17')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=5206" >Online</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Odriscoll17" class="bibtex noshow">
     <pre>@inproceedings{ Odriscoll17,
-author  = {C.~{O'Driscoll}},
+author  = {C.~{O'Driscoll} and J.~T.~Curran},
 title   = {Codeless Processing of {BOC}(10,5) Signals},
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
 address = {Portland, OR},
-month   = {Sep.}
+month   = {Sep.},
+pages   = {3508--3518}
 }</pre>
     </div>
     </li>
@@ -132,7 +133,7 @@ month   = {Sep.}
     J. Arribas, A. Ramos de Torres, C. Fern&aacute;ndez-Prades, J. Vil&agrave;-Valls, P. Closas
     <br><b>Air Traffic Radar Interference Event in the Galileo E6 Band: Detection, Analysis and Mitigation</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
-Portland, OR, Sept. 2017, in Press.
+Portland, OR, Sept. 2017, pp 1204-1228.
     <br />
     <a href="javascript:toggleBibtex('Arribas17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=5073" >Online</a><span style="color: #52adc8">]</span>
@@ -145,7 +146,8 @@ title   = {Air Traffic Radar Interference Event in the {G}alileo {E}6 Band: {D}e
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
 address = {Portland, OR},
-month   = {Sep.}
+month   = {Sep.},
+pages   = {1204--1228}
 }</pre>
     </div>
     </li>
@@ -159,7 +161,7 @@ month   = {Sep.}
     C. Fern&aacute;ndez-Prades, C. Pomar, J. Arribas, J.M. F&agrave;brega, J. Vil&agrave;-Valls, M. Svaluto Moreolo, R. Casellas, R. Mart&iacute;nez, M. Navarro, F.J. V&iacute;lchez, R. Mu&ntilde;oz, R. Vilalta, L. Nadal, A. Mayoral
     <br><b>A Cloud Optical Access Network for Virtualized GNSS Receivers</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
-Portland, OR, Sept. 2017, in Press.
+Portland, OR, Sept. 2017, pp. 3796-3815.
     <br />
     <a href="javascript:toggleBibtex('Fernandez17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=5293" >Online</a><span style="color: #52adc8">]</span>
@@ -173,7 +175,8 @@ title   = {A Cloud Optical Access Network for Virtualized {GNSS} Receivers},
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
 address = {Portland, OR},
-month   = {Sep.}
+month   = {Sep.},
+pages   = {3796--3815}
 }</pre>
     </div>
     </li>
