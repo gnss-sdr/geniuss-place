@@ -7,7 +7,7 @@ header:
   teaser: "https://scontent-mad1-1.cdninstagram.com/t51.2885-15/e15/11190810_1446633488967530_1154530547_n.jpg"
 sidebar:
     nav: "about"
-last_modified_at: 2017-03-05T18:38:52+00:00
+last_modified_at: 2017-11-30T18:38:52+00:00
 redirect_from:
   - /documentation/publications
 ---
@@ -20,7 +20,7 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 <ul class="biblist">
     <!-- Item: Lestarquit16 -->
     <li ><p>
-    L. Lestarquit, M. Peyrezabes, J. Darrozes, E. Motte, N. Roussel, G. Wautelet, F. Frappart, G. Ramillien, R. Biancale and M. Zribi
+    L.&nbsp;Lestarquit, M.&nbsp;Peyrezabes, J.&nbsp;Darrozes, E.&nbsp;Motte, N.&nbsp;Roussel, G.&nbsp;Wautelet, F.&nbsp;Frappart, G.&nbsp;Ramillien, R.&nbsp;Biancale and M.&nbsp;Zribi
     <br><b>Reflectometry With an Open-Source Software GNSS Receiver: Use Case With Carrier Phase Altimetry</b><br>
 <i>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</i>, Vol. 9, No. 10, pp. 4843-4853, Oct. 2016.
     <br />
@@ -48,7 +48,7 @@ note    = { {DOI}: 10.1109/JSTARS.2016.2568742}
 <ul class="biblist">
     <!-- Item: Fernandez16 -->
     <li ><p>
-    C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+    C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas and P.&nbsp;Closas
     <br><b>Robust GNSS Receivers by Array Signal Processing: Theory and Implementation</b><br>
 <i>Proceedings of the IEEE</i>, Vol. 104, No. 6, pp. 1207-1220, June 2016.
     <br />
@@ -76,7 +76,7 @@ note    = { {DOI}: 10.1109/JPROC.2016.2532963}
 <ul class="biblist">
     <!-- Item: Arribas13 -->
     <li ><p>
-    J. Arribas, C. Fern&aacute;ndez-Prades and P. Closas
+    J.&nbsp;Arribas, C.&nbsp;Fern&aacute;ndez-Prades and P.&nbsp;Closas
     <br><b>Multi-antenna Techniques for Interference Mitigation in GNSS Signal Acquisition</b><br>
 <i>EURASIP Journal on Advances in Signal Processing</i>, Vol. 2013, No. 143, Sep. 2013.
     <br />
@@ -104,7 +104,7 @@ note     = { {DOI}: 10.1186/1687-6180-2013-143}
 <ul class="biblist">
     <!-- Item: GNSS-SDR17a -->
     <li ><p>
-    C. O'Driscoll, J. T. Curran
+    C.&nbsp;O'Driscoll and J.&nbsp;T.&nbsp;Curran
     <br><b>Codeless Processing of BOC(10,5) Signals</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
 Portland, OR, Sept. 2017, pp. 3508-3518.
@@ -130,7 +130,7 @@ pages   = {3508--3518}
 <ul class="biblist">
     <!-- Item: GNSS-SDR17b -->
     <li ><p>
-    J. Arribas, A. Ramos de Torres, C. Fern&aacute;ndez-Prades, J. Vil&agrave;-Valls, P. Closas
+    J.&nbsp;Arribas, A.&nbsp;Ramos&nbsp;de&nbsp;Torres, C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Vil&agrave;-Valls and P.&nbsp;Closas
     <br><b>Air Traffic Radar Interference Event in the Galileo E6 Band: Detection, Analysis and Mitigation</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
 Portland, OR, Sept. 2017, pp. 1204-1228.
@@ -158,7 +158,7 @@ pages   = {1204--1228}
 <ul class="biblist">
     <!-- Item: GNSS-SDR17c -->
     <li ><p>
-    C. Fern&aacute;ndez-Prades, C. Pomar, J. Arribas, J.M. F&agrave;brega, J. Vil&agrave;-Valls, M. Svaluto Moreolo, R. Casellas, R. Mart&iacute;nez, M. Navarro, F.J. V&iacute;lchez, R. Mu&ntilde;oz, R. Vilalta, L. Nadal, A. Mayoral
+    C.&nbsp;Fern&aacute;ndez-Prades, C.&nbsp;Pomar, J.&nbsp;Arribas, J.M.&nbsp;F&agrave;brega, J.&nbsp;Vil&agrave;-Valls, M.&nbsp;Svaluto&nbsp;Moreolo, R.&nbsp;Casellas, R.&nbsp;Mart&iacute;nez, M.&nbsp;Navarro, F.J.&nbsp;V&iacute;lchez, R.&nbsp;Mu&ntilde;oz, R.&nbsp;Vilalta, L.&nbsp;Nadal and A.&nbsp;Mayoral
     <br><b>A Cloud Optical Access Network for Virtualized GNSS Receivers</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
 Portland, OR, Sept. 2017, pp. 3796-3815.
@@ -170,7 +170,7 @@ Portland, OR, Sept. 2017, pp. 3796-3815.
     </p>
     <div id="bib_Fernandez17a" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez17a,
-author  = {C.~{Fern\'{a}ndez-Prades} and C.~Pomar and J.~Arribas and J.M.~F\`{a}brega and J.~{Vil\`{a}-Valls} and M.~{Svaluto~Moreolo} and R.~Casellas and R.~Mart\'{i}nez and M.~Navarro and F.J.~V\'{i}lchez and R. Mu{\~{n}}oz and R.~Vilalta and L.~Nadal and A.~Mayoral},
+author  = {C.~{Fern\'{a}ndez-Prades} and C.~Pomar and J.~Arribas and J.M.~F\`{a}brega and J.~{Vil\`{a}-Valls} and M.~{Svaluto~Moreolo} and R.~Casellas and R.~Mart\'{i}nez and M.~Navarro and F.J.~V\'{i}lchez and R.~Mu{\~{n}}oz and R.~Vilalta and L.~Nadal and A.~Mayoral},
 title   = {A Cloud Optical Access Network for Virtualized {GNSS} Receivers},
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
@@ -186,7 +186,7 @@ pages   = {3796--3815}
 <ul class="biblist">
     <!-- Item: GNSS-SDR16c -->
     <li ><p>
-    C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+    C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas and P.&nbsp;Closas
     <br><b>Assessment of Software-Defined GNSS Receivers</b><br>
 <i>Proceedings of the 8th edition of NAVITEC</i>,
 ESA/ESTEC, Noordwijk, The Netherlands, Dec. 14-16, 2016, pp. 1-9.
@@ -213,7 +213,7 @@ note     = { {DOI}: 10.1109/NAVITEC.2016.7931740}
 <ul class="biblist">
     <!-- Item: Lopez16 -->
     <li ><p>
-    E. L&oacute;pez, J. Dom&iacute;nguez, B. Quijano, C. Fern&aacute;ndez-Prades, J. Arribas, M. Hern&aacute;ndez-Pajares, A. Garc&iacute;a-Rigo, M. Schmidt,  A. Goss, E. Spaltro, J. Grosso, M. Symeonidou, S. Fountas, Z. Tsiropoulos, F. Van Evert, P. Blok and D. Roma
+    E. L&oacute;pez, J.&nbsp;Dom&iacute;nguez, B.&nbsp;Quijano, C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas, M.&nbsp;Hern&aacute;ndez-Pajares, A.&nbsp;Garc&iacute;a-Rigo, M.&nbsp;Schmidt,  A.&nbsp;Goss, E.&nbsp;Spaltro, J.&nbsp;Grosso, M.&nbsp;Symeonidou, S.&nbsp;Fountas, Z.&nbsp;Tsiropoulos, F.&nbsp;Van&nbsp;Evert, P.&nbsp;Blok and D.&nbsp;Roma
     <br><b>Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network (AUDITOR)</b><br>
 <i>Proceedings of the Global Wireless Summit</i>,
 Aarhus, Denmark, Nov. 27-30, 2016, pp. 1-6.
@@ -238,7 +238,7 @@ month   = {Nov.}
 <ul class="biblist">
     <!-- Item: SPREE -->
     <li ><p>
-    A. Ranganathan, H. &Oacute;lafsd&oacute;ttir and S. Capkun
+    A.&nbsp;Ranganathan, H.&nbsp;&Oacute;lafsd&oacute;ttir and S.&nbsp;Capkun
     <br><b>SPREE: A Spoofing Resistant GPS Receiver</b><br>
 <i>Proceedings of the 22nd Annual International Conference on Mobile Computing and Networking</i>,
 New York, Oct. 3-7, 2016, pp. 348-360.
@@ -248,7 +248,7 @@ New York, Oct. 3-7, 2016, pp. 348-360.
     </p>
     <div id="bib_SPREE" class="bibtex noshow">
     <pre>@inproceedings{ SPREE,
-author  = {A. Ranganathan and H. \'{O}lafsd\'{o}ttir and S. Capkun},
+author  = {A.~Ranganathan and H.~\'{O}lafsd\'{o}ttir and S.~Capkun},
 title   = { {SPREE}: {A} Spoofing Resistant {GPS} Receiver},
 booktitle = {Proc. 22nd Annual International Conference on Mobile Computing and Networking},
 year    = {2016},
@@ -264,7 +264,7 @@ month   = {Oct.}
 <ul class="biblist">
     <!-- Item: GNSS-SDR16a -->
     <li ><p>
-    C. O'Driscoll and J. T. Curran
+    C.&nbsp;O'Driscoll and J.&nbsp;T. Curran
     <br><b>Codeless Code Tracking of BOC Signals</b><br>
 <i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
 Portland, OR, Sept. 2016, pp. 497-508.
@@ -290,7 +290,7 @@ note    = { {ISSN}: 2331-5911}
 <ul class="biblist">
     <!-- Item: GNSS-SDR16b -->
     <li ><p>
-    C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+    C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas and P.&nbsp;Closas
     <br><b>Accelerating GNSS Software Receivers</b><br>
 <i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
 Portland, OR, Sept. 2016, pp. 44-61.<br>
@@ -318,7 +318,7 @@ note    = { {ISSN}: 2331-5911}
 <ul class="biblist">
     <!-- Item: GNSS-SDR15 -->
     <li ><p>
-    J. Arribas, C. Fern&aacute;ndez-Prades and P. Closas
+    J.&nbsp;Arribas, C.&nbsp;Fern&aacute;ndez-Prades and P.&nbsp;Closas
     <br><b>GESTALT: A Testbed for Experimentation and Validation of GNSS Software Receivers</b><br>
 <i>Proceedings of the 28th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2015)</i>,
 Tampa, Florida, Sep. 2015, pp. 3222-3234.
@@ -344,7 +344,7 @@ month   = {Sep.}
 <ul class="biblist">
     <!-- Item: Branzanti15 -->
     <li ><p>
-    M. Branzanti, J. Arribas, C. Fern&aacute;ndez-Prades and M. Crespi
+    M.&nbsp;Branzanti, J.&nbsp;Arribas, C.&nbsp;Fern&aacute;ndez-Prades and M.&nbsp;Crespi
     <br><b>Software Defined Receivers in GNSS scientific applications: variometric approach to exploit GNSS-SDR phase observations</b><br>
 <i>Proceedings of the European Free and Open Source Software for Geospatial Conference (FOSS4G Europe)</i>,
 Como, Italy, Jul. 14-17, 2015, pp. 405-416.
@@ -370,7 +370,7 @@ month   = {Jul.}
 <ul class="biblist">
     <!-- Item: Martinez15 -->
     <li ><p>
-    J.-M. Friedt
+    J.-M.&nbsp;Friedt
     <br><b>The power of cross-correlating: from GPS reception to passive RADAR using SDR</b><br>
 <i>Presentation at Free and Open Source Software Developers' European Meeting (FOSDEM)</i>,
 Brussels, Belgium, Jan.-Feb. 2015.
@@ -397,7 +397,7 @@ month   = {Jan.-Feb.}
 <ul class="biblist">
     <!-- Item: Fabra14 -->
     <li ><p>
-    F. Fabra, C. Calvin, A. Rius, J. Arribas and C. Fern&aacute;ndez-Prades
+    F. Fabra, C.&nbsp;Calvin, A.&nbsp;Rius, J.&nbsp;Arribas and C.&nbsp;Fern&aacute;ndez-Prades
     <br><b>Processing Aspects of the Software PARIS Interferometric Receiver</b><br>
 <i>Proceedings of the Workshop on Advanced RF Sensors and Remote Sensing Instruments (ARSI)</i>,
 ESA-ESTEC, Noordwijk, The Netherlands, 2014, pp. 1-3.
@@ -407,7 +407,7 @@ ESA-ESTEC, Noordwijk, The Netherlands, 2014, pp. 1-3.
     </p>
     <div id="bib_Fabra14" class="bibtex noshow">
     <pre>@inproceedings{ Fabra14,
-author  = {F.~Fabra and C.~Calvin and A.~Rius and J.~Arribas and C. Fern\'{a}ndez-Prades},
+author  = {F.~Fabra and C.~Calvin and A.~Rius and J.~Arribas and C.&nbsp;Fern\'{a}ndez-Prades},
 title   = {Processing Aspects of the Software {PARIS} Interferometric Receiver},
 booktitle = {Proc. Workshop on Advanced RF Sensors and Remote Sensing Instruments (ARSI)},
 year    = {2014},
@@ -423,7 +423,7 @@ month   = {Nov.}
 <ul class="biblist">
     <!-- Item: GNSS-SDR14b -->
     <li ><p>
-    J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas
+    J.&nbsp;Arribas, M.&nbsp;Branzanti, C.&nbsp;Fern&aacute;ndez-Prades and P.&nbsp;Closas
     <br><b>Fastening GPS and Galileo Tight with a Software Receiver</b><br>
 <i>Proceedings of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014)</i>,
 Tampa, Florida, Sep. 2014, pp. 1383-1395.
@@ -449,7 +449,7 @@ month   = {Sep.}
 <ul class="biblist">
         <!-- Item: GNSS-SDR14a -->
         <li ><p>
-        J. Arribas, P. Closas and C. Fern&aacute;ndez-Prades
+        J.&nbsp;Arribas, P.&nbsp;Closas and C.&nbsp;Fern&aacute;ndez-Prades
         <br><b>Interference Mitigation in GNSS Receivers by Array Signal Processing: A Software Radio Approach</b><br>
         <i>Proceedings of the 8th IEEE Sensor Array and Multichannel Signal Processing Workshop</i>,
     A Coru&ntilde;a, Spain, June 2014, pp. 121-124.
@@ -476,7 +476,7 @@ note    = { {DOI}: 10.1109/SAM.2014.6882355}
 <ul class="biblist">
         <!-- Item: Falone14 -->
         <li ><p>
-        R. Falone, C. Stallo, E. Gambi and S. Spinsante
+        R.&nbsp;Falone, C.&nbsp;Stallo, E.&nbsp;Gambi and S.&nbsp;Spinsante
         <br><b>SDR GNSS receivers: A comparative overview of different approaches</b><br>
         <i>Proceedings of the IEEE International Workshop on Metrology for Aerospace</i>,
     Benevento, Italy, May 29-30, 2014.
@@ -502,7 +502,7 @@ note    = { {DOI}: 10.1109/MetroAeroSpace.2014.6865943}
 <ul class="biblist">
         <!-- Item: Angeletti14 -->
         <li ><p>
-        P. Angeletti, M. Lisi and P. Tognolatti
+        P.&nbsp;Angeletti, M.&nbsp;Lisi and P.&nbsp;Tognolatti
         <br><b>Software Defined Radio: A key technology for flexibility and reconfigurability in space applications</b><br>
         <i>Proceedings of the IEEE International Workshop on Metrology for Aerospace</i>,
     Benevento, Italy, May 29-30, 2014.
@@ -528,7 +528,7 @@ note    = { {DOI}: 10.1109/MetroAeroSpace.2014.6865957}
 <ul class="biblist">
         <!-- Item: GNSS-SDR13 -->
         <li ><p>
-        C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+        C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas and P.&nbsp;Closas
         <br><b>Turning a Television into a GNSS Receiver</b><br>
     <i>Proceedings of the 26th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2013)</i>,
     Nashville, TN, Sep. 2013, pp. 1492-1507.
@@ -553,7 +553,7 @@ month   = {Sep.}
 <ul class="biblist">
         <!-- Item: GNSS-SDR12 -->
         <li ><p>
-        J. Arribas, P. Closas and C. Fern&aacute;ndez-Prades
+        J.&nbsp;Arribas, P.&nbsp;Closas and C.&nbsp;Fern&aacute;ndez-Prades
         <br><b>An Open Source Galileo E1 Software Receiver</b><br>
         <i>Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies</i>,
     ESTEC, Noordwijk, The Netherlands, Dec. 2012, pp. 1-8.
@@ -579,7 +579,7 @@ note    = { {DOI}: 10.1109/NAVITEC.2012.6423057}
 <ul class="biblist">
         <!-- Item: Hassanieh12 -->
         <li ><p>
-        H. Hassanieh, F. Adib, D. Katabi and P. Indyk
+        H.&nbsp;Hassanieh, F.&nbsp;Adib, D.&nbsp;Katabi and P.&nbsp;Indyk
         <br><b>Faster GPS via the Sparse Fourier Transform</b><br>
         <i>Proceedings of the 18th Annual International Conference on Mobile Computing and Networking</i>,
     Istanbul, Turkey, Aug. 22-26, 2012, pp. 353-364.
@@ -589,7 +589,7 @@ note    = { {DOI}: 10.1109/NAVITEC.2012.6423057}
         </p>
         <div id="bib_Hassanieh12" class="bibtex noshow">
         <pre>@inproceedings{ Hassanieh12,
-author  = {H. Hassanieh, F. Adib, D. Katabi, P. Indyk},
+author  = {H.~Hassanieh and F.~Adib and D.~Katabi and P.~Indyk},
 title   = {Faster {GPS} via the Sparse {F}ourier Transform},
 booktitle = {Proc. of the 18th Annual Intl. Conf. on Mobile Computing and Networking},
 year    = {2012},
@@ -605,7 +605,7 @@ note    = { {DOI}: 10.1109/NAVITEC.2012.6423057}
 <ul class="biblist">
         <!-- Item: GNSS-SDR11 -->
         <li ><p>
-        C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas
+        C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas and P.&nbsp;Closas
         <br><b>GNSS-SDR: An Open Source Tool For Researchers and Developers</b><br>
     <i>Proceedings of the 24th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS 2011)</i>,
     Portland, OR, Sep. 2011, pp. 780-794.
@@ -630,7 +630,7 @@ month   = {Sep.}
 <ul class="biblist">
         <!-- Item: GNSS-SDR10 -->
         <li ><p>
-        C. Fern&aacute;ndez-Prades, C. Avil&eacute;s, L. Esteve, J. Arribas and P. Closas
+        C.&nbsp;Fern&aacute;ndez-Prades, C.&nbsp;Avil&eacute;s, L.&nbsp;Esteve, J.&nbsp;Arribas and P.&nbsp;Closas
         <br><b>Design patterns for GNSS software receivers</b><br>
         <i>Proceedings of the 5th ESA Workshop on Satellite Navigation Technologies</i>,
     ESTEC, Noordwijk, The Netherlands, Dec. 2010, pp. 1-8.
@@ -706,7 +706,7 @@ month = {Feb.}
 <ul class="biblist">
 <!-- Item: Arribas12 -->
 <li ><p>
-J. Arribas
+J.&nbsp;Arribas
 <br><b>GNSS Array-based Acquisition: Theory and Implementation</b><br>
 <i>PhD Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, June 2012.</i>
 <br><i class="fa fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="http://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
@@ -758,7 +758,7 @@ month = {Dec.}
 <ul class="biblist">
 <!-- Item: Esteve11 -->
 <li ><p>
-L. Esteve-Elfau
+L.&nbsp;Esteve-Elfau
 <br><b>Contribuci&oacute;n al dise&ntilde;o de GNSS-SDR. Un receptor GNSS de c&oacute;digo abierto</b> (<i>In Spanish</i>)<br>
 <i>MS Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, July 2011.</i>
 <br />
@@ -782,7 +782,7 @@ month = {July}
 <ul class="biblist">
 <!-- Item: Aviles10 -->
 <li ><p>
-C. Avil&eacute;s
+C.&nbsp;Avil&eacute;s
 <br><b>Global Navigation Satellite Systems - Software Defined Radio (GNSS-SDR)</b><br>
 <i>MS Thesis, Universitat Oberta de Catalunya, Faculty of Computer Science, Multimedia and Telecommunications, Barcelona, Spain, June 2010.</i>
 <br />
