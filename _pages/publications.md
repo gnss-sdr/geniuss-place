@@ -264,7 +264,7 @@ month   = {Oct.}
 <ul class="biblist">
     <!-- Item: GNSS-SDR16a -->
     <li ><p>
-    C.&nbsp;O'Driscoll and J.&nbsp;T. Curran
+    C.&nbsp;O'Driscoll and J.&nbsp;T.&nbsp;Curran
     <br><b>Codeless Code Tracking of BOC Signals</b><br>
 <i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
 Portland, OR, Sept. 2016, pp. 497-508.
@@ -407,7 +407,7 @@ ESA-ESTEC, Noordwijk, The Netherlands, 2014, pp. 1-3.
     </p>
     <div id="bib_Fabra14" class="bibtex noshow">
     <pre>@inproceedings{ Fabra14,
-author  = {F.~Fabra and C.~Calvin and A.~Rius and J.~Arribas and C.&nbsp;Fern\'{a}ndez-Prades},
+author  = {F.~Fabra and C.~Calvin and A.~Rius and J.~Arribas and C.~{Fern\'{a}ndez-Prades}},
 title   = {Processing Aspects of the Software {PARIS} Interferometric Receiver},
 booktitle = {Proc. Workshop on Advanced RF Sensors and Remote Sensing Instruments (ARSI)},
 year    = {2014},
@@ -553,7 +553,7 @@ month   = {Sep.}
 <ul class="biblist">
         <!-- Item: GNSS-SDR12 -->
         <li ><p>
-        J.&nbsp;Arribas, P.&nbsp;Closas and C.&nbsp;Fern&aacute;ndez-Prades
+        C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas, L.&nbsp;Esteve, D.&nbsp;Pubill and P.&nbsp;Closas
         <br><b>An Open Source Galileo E1 Software Receiver</b><br>
         <i>Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies</i>,
     ESTEC, Noordwijk, The Netherlands, Dec. 2012, pp. 1-8.
@@ -692,7 +692,7 @@ H. Al Hassanieh
 <div id="bib_Hassanieh16" class="bibtex noshow">
 <pre>@phdthesis{ Hassanieh16,
 author = {H.~{Al~Hassanieh}},
-title = {The Sparse {F}ourier Transform: {T}heory \& Practice},
+title = {The Sparse {F}ourier Transform: {T}heory \& {P}ractice},
 school = {Massachusetts Institute of Technology, Department of Electrical Engineering and Computer Science},
 year = {2016},
 address = {Cambridge, MA},
@@ -717,7 +717,7 @@ J.&nbsp;Arribas
 <div id="bib_Arribas12" class="bibtex noshow">
 <pre>@phdthesis{ Arribas12,
 author = {J.~Arribas},
-title = { {GNSS} Array-based Acquisition: Theory and Implementation },
+title = { {GNSS} Array-based Acquisition: {T}heory and Implementation },
 school = {Universitat Polit\`{e}cnica de Catalunya, Department of Signal Theory and Communications},
 year = {2012},
 address = {Barcelona, Spain},
