@@ -458,6 +458,17 @@ SignalSource.enable_throttle_control=false
 SignalSource.osmosdr_args=rtl_tcp,offset_tune=1
 ```
 
+{% capture bias-tee-rtlsdrv3 %}
+**Tip:** Please note that the new [RTL-SDR Blog V3](https://www.rtl-sdr.com/wp-content/uploads/2017/06/RTL-SDR-Blog-V3-Datasheet.pdf) dongles ship a < 1 PPM temperature compensated oscillator (TCXO), which is well suited for GNSS signal processing, and a 4.5 V powered bias-tee to feed an active antenna. Whether the bias-tee is turned off before reception depends on which version of [gr-osmosdr](https://github.com/osmocom/gr-osmosdr) was used when compiling GNSS-SDR. With an old version (for example, v0.1.4-8), the utility [rtl_biast](https://github.com/OrbitTheSun/rtl_biast) may be used to switch the bias-tee, and then call gnss-sdr.  After reception the bias-tee is switched off automatically by the program. With newer versions of gr-osmosdr (>= 0.1.4-13), the bias-tee can be activated by passing the following parameters to the configuration:
+
+```ini
+SignalSource.osmosdr_args=rtl,bias=1
+```
+{% endcapture %}
+
+<div class="notice--warning">
+  {{ bias-tee-rtlsdrv3 | markdownify }}
+</div>
 
 ### Implementation: `RtlTcp_Signal_Source`
 
