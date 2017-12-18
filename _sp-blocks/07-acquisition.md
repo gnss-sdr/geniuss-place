@@ -166,7 +166,7 @@ Acquisition_1C.doppler_step=250
 Acquisition_1C.pfa=0.0001
 ```
 
-### Implementation: `GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`
+### Implementation: `GPS_L1_CA_PCPS_Acquisition_Fine_Doppler`
 
 This implementation accepts the following parameters:
 
@@ -182,7 +182,7 @@ This implementation accepts the following parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `implementation` | `GPS_L1_CA_PCPS_Fine_Doppler_Acquisition` | Mandatory |
+| `implementation` | `GPS_L1_CA_PCPS_Acquisition_Fine_Doppler` | Mandatory |
 | `item_type` | [`gr_complex`]: Set the sample data type expected at the block input. Only `gr_complex` is defined in this version. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to $$ 5000 $$ Hz. | Optional |
