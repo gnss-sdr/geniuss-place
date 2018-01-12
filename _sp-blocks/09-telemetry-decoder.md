@@ -93,7 +93,7 @@ This implementation accepts the following parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `implementation` | `GPS_L2_M_Telemetry_Decoder` | Mandatory |
+| `implementation` | `GPS_L2C_Telemetry_Decoder` | Mandatory |
 | `decimation_factor` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
