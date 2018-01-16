@@ -110,6 +110,49 @@ TelemetryDecoder_2S.implementation=GPS_L2C_Telemetry_Decoder
 TelemetryDecoder_2S.dump=true
 ```
 
+### Implementation: `GPS_L5_Telemetry_Decoder`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
+The GPS L5 baseband signal can be written as:
+
+$$ \begin{equation} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{equation} $$
+
+where:
+
+$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{equation} e_{L5I}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ \color{blue} D_{\text{CNAV}}\Big[ [m]_{10}\Big] \color{dark-grey} \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big]  p(t - m T_{c,nh} - lT_{c,L5}) ~,\end{equation} $$
+
+$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{equation} e_{L5Q}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{20}} \Big[ |m|_{20}\Big]   \oplus  \sum_{l=1}^{102300}C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, \end{equation} $$
+
+with $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
+component contains a synchronization sequence $$ C_{nh_{10}} $$ that modulates each $$ 100 $$ symbols of the
+GPS L5 civil navigation data $$ D_{\text{CNAV}} $$. The L5Q component
+has another synchronization sequence $$ C_{nh_{20}} $$.
+
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GPS_L5_Telemetry_Decoder` | Mandatory |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+|--------------
+
+  _Telemetry Decoder implementation:_ **`GPS_L5_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER GPS L5 CONFIG ############
+TelemetryDecoder_L5.implementation=GPS_L5_Telemetry_Decoder
+TelemetryDecoder_L5.dump=true
+```
+
 ## Galileo navigation message
 
 ### Implementation: `Galileo_E1B_Telemetry_Decoder`

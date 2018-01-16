@@ -324,6 +324,58 @@ Acquisition_2S.doppler_step=60
 Acquisition_2S.max_dwells=2
 ```
 
+## GPS L5 signal acquisition
+
+### Implementation: `GPS_L5i_PCPS_Acquisition`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GPS_L5i_PCPS_Acquisition` | Mandatory |
+| `item_type` | [`gr_complex`, `cshort`, `cbyte`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
+| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
+| `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
+| `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`GPS_L5i_PCPS_Acquisition`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+Acquisition_L5.implementation=GPS_L5i_PCPS_Acquisition
+Acquisition_L5.item_type=cshort
+Acquisition_L5.threshold=0.0015
+Acquisition_L5.doppler_max=6000
+Acquisition_L5.doppler_step=60
+Acquisition_L5.max_dwells=2
+```
+
+
 ## Galileo E1B signal acquisition
 
 ### Implementation: `Galileo_E1_PCPS_Ambiguous_Acquisition`
@@ -483,7 +535,7 @@ This implementation accepts the following parameters:
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
-| `CAF_window_hz` | Resolves Doppler ambiguity by veraging the specified bandwidth (in Hz) in the winner code delay. If set to $$ 0 $$, the CAF filter is deactivated. Recommended value: $$ 3000 $$ Hz. It defaults to 0 Hz. | Optional |
+| `CAF_window_hz` | Resolves Doppler ambiguity by averaging the specified bandwidth (in Hz) in the winner code delay. If set to $$ 0 $$, the CAF filter is deactivated. Recommended value: $$ 3000 $$ Hz. It defaults to 0 Hz. | Optional |
 | `Zero_padding` |  If set to a $$ 1 $$, it avoids power loss and doppler ambiguity in bit transitions by correlating one code with twice the input data length, ensuring that at least one full code is present without transitions. It defaults to $$ 0 $$ (_i.e._, deactivated). | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
@@ -507,7 +559,6 @@ Acquisition_5X.threshold=0.002
 Acquisition_5X.doppler_max=10000
 Acquisition_5X.doppler_step=250
 ```
-
 
 
 
