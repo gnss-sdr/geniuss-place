@@ -218,6 +218,50 @@ Tracking_2S.dll_bw_hz=4.0;
 Tracking_2S.early_late_space_chips=0.4
 ```
 
+## GPS L5 signal tracking
+
+### Implementation: `GPS_L5i_DLL_PLL_Tracking`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GPS_L5i_DLL_PLL_Tracking` | Mandatory |
+| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
+|--------------
+
+  _Tracking implementation:_ **`GPS_L5i_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_L5.implementation=GPS_L5i_DLL_PLL_Tracking
+Tracking_L5.pll_bw_hz=30.0
+Tracking_L5.dll_bw_hz=4.0
+Tracking_L5.early_late_space_chips=0.5
+```
+
+
 ## Galileo E1B signal tracking
 
 ### Implementation: `Galileo_E1_DLL_PLL_VEML_Tracking`
@@ -485,12 +529,14 @@ Tracking_5X.dll_bw_hz=4.0
 Tracking_5X.early_late_space_chips=0.5
 ```
 
+
+
 -------
 
 ## References
 
 [^Petovello10]: M. Petovello, E. Falletti, M. Pini, L. Lo Presti, [Are Carrier-to-Noise algorithms equivalent in all situations?](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf). Inside GNSS, Vol. 5, no. 1, pp. 20-27, Jan.-Feb. 2010.
 
-[^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from “Global Positioning System: Theory and Applications”, Volume I, Edited by B. W. Parkinson, J. J. Spilker Jr.
+[^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from “Global Positioning System: Theory and Applications”, Volume I, Edited by B. W. Parkinson and J. J. Spilker Jr. American Institute of Aeronautics and Astronautics, 1996.
 
 [^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).

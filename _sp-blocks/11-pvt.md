@@ -479,7 +479,7 @@ Depending on the specific application or service that is exploiting the informat
 
 
 
-**Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
+**IMPORTANT**: In order to get well-formatted GeoJSON, KML and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
 {: .notice--warning}
 
 Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | absolute_url }}) page.
@@ -490,7 +490,7 @@ Read more about standard output formats at our [**Interoperability**]({{ "/desig
 # Implementation: `RTKLIB_PVT`
 
 **IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--info}
+{: .notice--warning}
 
 This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
 
