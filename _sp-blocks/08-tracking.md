@@ -465,6 +465,8 @@ This implementation accepts the following parameters:
   _Tracking implementation:_ **`Galileo_E1_DLL_PLL_VEML_Tracking`**.
   {: style="text-align: center;"}
 
+<span style="color: DarkOrange">Please note that parameters in orange text are only available in the `next` branch of the upstream repository.</span>
+
 Example:
 
 ```ini
