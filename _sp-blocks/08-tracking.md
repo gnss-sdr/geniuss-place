@@ -5,7 +5,7 @@ excerpt: "Documentation for the Tracking block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2018-01-17T15:54:02-04:00
 ---
 
 
@@ -448,10 +448,16 @@ This implementation accepts the following parameters:
 | `implementation` | `Galileo_E1_DLL_PLL_VEML_Tracking` | Mandatory |
 | `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| <span style="color: DarkOrange">`track_pilot`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E1C and enables an extra prompt correlator (slave to pilot's prompt) in the data component E1B. It defaults to `false`.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`extend_correlation_symbols`</span> | <span style="color: DarkOrange">Number of correlation symbols to be extended after the secondary code $$ C_{E1C_{s}} $$ is removed from the pilot signal, in number of symbols. It defaults to 1.</span> | <span style="color: DarkOrange">Optional</span> |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 5 Hz. This implementation uses a Costas loop. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 0.5 Hz. | Optional |
+| <span style="color: DarkOrange">`pll_bw_narrow_hz`</span> |  <span style="color: DarkOrange">Bandwidth of the PLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$, in Hz. It defaults to 2 Hz. This implementation uses a four-quadrant arctangent discriminator (atan2).</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`dll_bw_narrow_hz`</span> |  <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the DLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, in Hz. It defaults to 0.25 Hz.</span> | <span style="color: DarkOrange">Optional</span> |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$. | Optional |
 | `very_early_late_space_chips` | Spacing between Very Early and Prompt and between Prompt and Very Late correlators, normalized by the chip period $$ T_c $$ It defaults to $$ 0.6 $$. | Optional |
+| <span style="color: DarkOrange">`early_late_space_narrow_chips`</span> | <span style="color: DarkOrange">Spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`very_early_late_space_narrow_chips`</span> | <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Very Early and Prompt and between Prompt and Very Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, normalized by the chip period $$ T_c $$. It defaults to $$ 0.6 $$.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging.  Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
