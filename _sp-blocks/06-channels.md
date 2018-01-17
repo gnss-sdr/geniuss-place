@@ -5,7 +5,7 @@ excerpt: "Documentation for the Channel block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2018-01-16T15:54:02-04:00
 ---
 
 
