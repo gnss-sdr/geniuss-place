@@ -309,19 +309,41 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Hybrid_Observables` | Mandatory |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. <span style="color: DarkOrange">Storage in .mat files readable from Matlab, Octave and Python is available in the `next` branch, see below.</span> It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
 
   _Observables implementation:_ **`Hybrid_Observables`**.
   {: style="text-align: center;"}
 
+{% capture savemat %}
+  If `dump=true`, the logging of data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with same name than `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format which can be easily read with Matlab or Octave, by doing `load observables.mat`, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library.  The stored variables are matrices with a number of rows equal to the total number of channels set up in the configuration file, and a number of columns equal to the number of epochs (that is, tracking integration times). This block stores the following variables:
+
+  * `Carrier_Doppler_hz`: Doppler estimation in each channel, in [Hz].
+  * `Carrier_phase_cycles`: Carrier phase estimation in each channel, in [cycles].
+  * `Flag_valid_pseudorange`: Pseudorange computation status in each channel.
+  * `PRN`: Satellite ID processed in each channel.
+  * `Pseudorange_m`: Pseudorange computation in each channel, in [m].
+  * `RX_time`: Receiving time in each channel, in seconds after the start of the week.
+  * `TOW_at_current_symbol_s`: Time of week of the current symbol, in [s].
+
+  **THIS FEATURE IS NOW ONLY AVAILABLE IN THE `next` BRANCH, AND WILL FORM PART OF THE NEXT STABLE RELEASE.**
+{% endcapture %}
+
+<div class="notice--warning">
+  {{ savemat | markdownify }}
+</div>
+
+
 Example:
 
 ```ini
     ;######### OBSERVABLES CONFIG ############
     Observables.implementation=Hybrid_Observables
+    Observables.dump=true
 ```
+
+
 
 ----
 
