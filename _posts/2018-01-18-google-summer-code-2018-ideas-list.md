@@ -44,16 +44,12 @@ Good understanding of statistical signal processing and C++ programming (familia
 Dr. Jordi Vil&agrave;-Valls
 
 
-## More ideas...
 
-![Coming soon]({{ "/assets/images/coming-soon.jpg" | absolute_url }}){: .align-center}
-
-{% comment %}
 ## Graphical User Interface for GNSS-SDR configuration
 
 ### Description:
 
-The configuration mechanism of GNSS-SDR allows users to define and configure each of the receiver's signal processing blocks in a single file. Those configuration files constitute full receiver definitions, since they specify the implementation and parameters to be used in the receiver chain. However, the configuration process is poorly documented and only few baseline examples are provided. The objective of this project is to create a Graphical User Interface for the generation of such configuration files, allowing for an intuitive, user-friendly software receiver definition.
+The configuration mechanism of GNSS-SDR allows users to define and configure each of the receiver's signal processing blocks in a single file. Those configuration files constitute full receiver definitions, since they specify the implementation and parameters to be used in the receiver chain. However, the configuration process is poorly documented and only few baseline examples are provided. The objective of this project is to continue the development started in GSoC 2017 on a Graphical User Interface for the generation of such configuration files, allowing for an intuitive, user-friendly software receiver definition. That work is now in the `gui` branch of the (upstream repository)[https://github/gnss-sdr/gnss-sdr].
 
 ### Skills required:
 
@@ -65,6 +61,11 @@ Dr. Javier Arribas,  Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades
 
 
 
+## More ideas...
+
+![Coming soon]({{ "/assets/images/coming-soon.jpg" | absolute_url }}){: .align-center}
+
+{% comment %}
 
 
 ## Coding aspects of secure and robust GNSS receivers
