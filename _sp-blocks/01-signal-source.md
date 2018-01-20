@@ -514,7 +514,7 @@ SignalSource.swap_iq=false
 ### Implementation: `Fmcomms2_Signal_Source`
 
 [![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | absolute_url }}){:height="250px" width="250x"}{: .align-right}](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
-The [AD-FMCOMMS2-EBZ](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html) is an FPGA Mezzanine Card ([FMC](https://fmchub.github.io/appendix/VITA57_FMC_HPC_LPC_SIGNALS_AND_PINOUT.html)) board for the [AD9361](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/ad9361.html), a highly integrated RF transceiver originally designed for use in 3G and 4G base station applications.  Its programmability and wideband capability make it ideal for a broad range of applications, since the device combines a RF front end with a flexible mixed-signal baseband section and integrated frequency synthesizers, providing a configurable digital interface. The AD9361 receiver's local oscillator can operate from $$ 70 $$ MHz to $$ 6.0 $$ GHz, and channel bandwidths from less than $$ 200 $$ kHz to $$ 56 $$ MHz are supported. The two independent direct conversion receivers have state-of-the-art noise figure and linearity. Each receive (RX) subsystem includes independent automatic gain control (AGC), dc offset correction, quadrature correction, and digital filtering, thereby eliminating the need for these functions in the digital baseband. Two high dynamic range analog-to-digital converters (ADCs) per channel digitize the received I and Q signals and pass them through configurable decimation filters and 128-tap finite impulse response (FIR) filters to produce a 12-bit output signal at the appropriate sample rate.
+The [AD-FMCOMMS2-EBZ](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html) is an FPGA Mezzanine Card ([FMC](https://fmchub.github.io/appendix/VITA57_FMC_HPC_LPC_SIGNALS_AND_PINOUT.html)) board for the [AD9361](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/ad9361.html), a highly integrated RF transceiver originally designed for use in 3G and 4G base station applications.  Its programmability and wideband capability make it ideal for a broad range of applications, since the device combines a RF front end with a flexible mixed-signal baseband section and integrated frequency synthesizers, providing a configurable digital interface. The AD9361 receiver's local oscillator can operate from $$ 70 $$ MHz to $$ 6.0 $$ GHz, and channel bandwidths from less than $$ 200 $$ kHz to $$ 56 $$ MHz are supported. The two independent direct conversion receivers have state-of-the-art noise figure and linearity. Each receive (RX) subsystem includes independent automatic gain control (AGC), dc offset correction, quadrature correction, and digital filtering, thereby eliminating the need for these functions in the digital baseband. Two high dynamic range analog-to-digital converters (ADCs) per channel digitize the received I and Q signals and pass them through decimation filters and 128-tap finite impulse response (FIR) filters to produce a 12-bit output signal at the appropriate sample rate.
 
 The AD9361 RX signal path passes downconverted signals (I and Q) to the baseband receiver section. The baseband RX signal path is composed of two programmable analog low-pass filters, a 12-bit ADC, and four stages of digital decimating filters. Each of the four decimating filters can be bypassed. The figure below shows a block diagram for the AD9361 RX signal path after downconversion. Note that both the I and Q paths are schematically identical to each other.
 
@@ -541,10 +541,7 @@ $ mkdir build && cd build && cmake .. && make && sudo make install
 $ cd ../..
 ```
 
-Alternatively, starting in Ubuntu 18.04 and Debian 10 (warning: do **not** use gr-iio < 0.2 packaged in previous versions), all those components can be installed with a single line in a terminal via package manager:
-```bash
-$ sudo apt-get install gr-iio
-```
+**Warning**: do **not** use gr-iio < 0.3 packaged in some Debian and Ubuntu distributions.
 
 Once gr-iio is installed, build GNSS-SDR passing the flag ```-DENABLE_FMCOMMS2=ON``` at configure time:
 
@@ -571,7 +568,6 @@ This implementation accepts the following parameters:
 | `rx1_enable` | [`true`, `false`]: If set to `true`, it enables the RX1 chain. It defaults to `true`. | Optional |
 | `rx2_enable` | [`true`, `false`]: If set to `true`, it enables the RX2 chain. It defaults to `false`. | Optional |
 | `buffer_size` | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
-| `decimation` | Sets the decimation rate of the FIR filter, up to $$ 48 $$. It defaults to $$ 1 $$. | Optional |
 | `quadrature` | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
 | `rf_dc` | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `bb_dc` | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
@@ -598,7 +594,6 @@ SignalSource.device_address=10.42.0.196  ; <- PUT YOUR DEVICE ADDRESS HERE
 SignalSource.sampling_frequency=2000000
 SignalSource.freq=1575420000
 SignalSource.bandwidth=2000000
-SignalSource.decimation=0
 SignalSource.rx1_enable=true
 SignalSource.gain_mode_rx1=manual
 SignalSource.gain_rx1=64
@@ -628,10 +623,7 @@ $ mkdir build && cd build && cmake .. && make && sudo make install
 $ cd ../..
 ```
 
-Alternatively, starting in Ubuntu 18.04 and Debian 10 (warning: do **not** use gr-iio < 0.2 packaged in previous versions), all those components can be installed with a single line in a terminal via package manager:
-```bash
-$ sudo apt-get install gr-iio
-```
+**Warning**: do **not** use gr-iio < 0.3 packaged in some Debian and Ubuntu distributions.
 
 Once gr-iio is installed, build GNSS-SDR passing the flag ```-DENABLE_PLUTOSDR=ON``` at configure time:
 
@@ -657,7 +649,6 @@ This implementation accepts the following parameters:
 | `bandwidth` | Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz. | Optional |
 | `item_type` | [`gr_complex`]: Set the output data type. Only `gr_complex` is allowed in this version, so it is set by default. | Optional |
 | `buffer_size` | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
-| `decimation` | Sets the decimation rate of the FIR filter. It defaults to $$ 1 $$. | Optional |
 | `quadrature` | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
 | `rf_dc` | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `bb_dc` |  [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
@@ -681,7 +672,6 @@ SignalSource.freq=1575420000
 SignalSource.bandwidth=2600000
 SignalSource.sampling_frequency=3000000
 SignalSource.item_size=gr_complex
-SignalSource.decimation=0
 SignalSource.gain_mode=manual
 SignalSource.gain=30
 SignalSource.samples=0
