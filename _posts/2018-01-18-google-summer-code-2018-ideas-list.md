@@ -15,7 +15,7 @@ This year, GNSS-SDR is applying again to serve as a mentoring organization for [
 
 If you are an eligible and interested student, read through the list and note the projects you are interested in. You, as the student programmer, then submit a proposal to Google, using the [GSoC 2018 website](https://summerofcode.withgoogle.com/). If GNSS-SDR is among the accepted mentoring organization, the application form for students will be open from March 12 16:00 UTC until March 27 16:00 UTC. We recommend you to submit your application early. By doing so, it will be given a greater share of attention than is possible for applications submitted at the last minute.
 
-You might submit a proposal following the guidelines below, or you might want to adapt it. Changes to the proposal could include:
+You might submit a proposal following the guidelines below, or you might want to adapt them to your needs. Changes to the proposal could include:
 
   * You think the project as suggested is too large and you can only feasibly complete part of it; if so, make sure your proposal covers a reasonable subset of the functionality (that is, something which is useful without the rest of the project being implemented).
 
@@ -27,6 +27,7 @@ Your proposal should include the following: your project proposal, why you would
 
 Hereafter we list, in no particular order, some proposals for projects to be carried out by the students participating in GSoC 2018. This is by no means a closed list, so the students can feel free to propose alternative activities related to the project.
 
+-------
 
 ## Robust Kalman Filter-based Tracking Techniques for Advanced GNSS Receivers
 
@@ -44,22 +45,7 @@ Good understanding of statistical signal processing and C++ programming (familia
 
 Dr. Jordi Vil&agrave;-Valls, Dr. Pau Closas.
 
-
-
-## Graphical User Interface for GNSS-SDR configuration
-
-### Description:
-
-The configuration mechanism of GNSS-SDR allows users to define and configure each of the receiver's signal processing blocks in a single file. Those configuration files constitute full receiver definitions, since they specify the implementation and parameters to be used in the receiver chain. However, the configuration process is poorly documented and only few baseline examples are provided. The objective of this project is to continue the development started in GSoC 2017 on a Graphical User Interface for the generation of such configuration files, allowing for an intuitive, user-friendly software receiver definition. That work is now in the `gui` branch of the [upstream repository](https://github.com/gnss-sdr/gnss-sdr).
-
-### Skills required:
-
-Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework and [Qt](https://www.qt.io) is a plus).
-
-### Potential mentor(s):
-
-Dr. Javier Arribas,  Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
-
+-------
 
 
 ## Robust Cross-ambiguity function for anti-jamming
@@ -76,6 +62,7 @@ Basic knowledge on digital signal processing and C++ programming (familiarity wi
 
 Dr. Pau Closas, Dr. Carles Fern&aacute;ndez-Prades, Dr. Jordi Vil&agrave;-Valls.
 
+-------
 
 
 ## Optimal frame synchronization detection
@@ -94,8 +81,40 @@ Basic knowledge on digital signal processing and C++ programming (familiarity wi
 
 Dr. Pau Closas, Dr. Jordi Vil&agrave;-Valls.
 
+-------
+
+## Acquisition and Tracking GNU Radio blocks for different data types
+
+### Description:
+
+As discussed at [Issue#75](https://github.com/gnss-sdr/gnss-sdr/issues/75), it would be nice to have a mechanism to avoid duplication of code when implementing Acquisition and Tracking blocks for different data types. This project consists of designing a suitable solution (based on templates or any other proposed approach, to be discussed) and implementing it for the existing blocks. Including a first draft of such design and discussing its Pros and Cons in the proposal will be highly appreciated.
+
+### Skills required:
+
+Solid knowledge on C++ programming (familiarity with the GNU Radio framework is a plus).
+
+### Potential mentor(s):
+
+Dr. Carles Fern&aacute;ndez-Prades, Dr. Javier Arribas.
+
+-------
+
+## Graphical User Interface for GNSS-SDR configuration
+
+### Description:
+
+The configuration mechanism of GNSS-SDR allows users to define and configure each of the receiver's signal processing blocks in a single file. Those configuration files constitute full receiver definitions, since they specify the implementation and parameters to be used in the receiver chain. However, the configuration process is poorly documented and only few baseline examples are provided. The objective of this project is to continue the development started in GSoC 2017 on a Graphical User Interface for the generation of such configuration files, allowing for an intuitive, user-friendly software receiver definition. That work is now in the `gui` branch of the [upstream repository](https://github.com/gnss-sdr/gnss-sdr).
+
+### Skills required:
+
+Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework and [Qt](https://www.qt.io) is a plus).
+
+### Potential mentor(s):
+
+Dr. Javier Arribas,  Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
 
 
+-------
 
 
 ## Proposal template:
