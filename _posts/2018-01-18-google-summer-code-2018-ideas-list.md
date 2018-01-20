@@ -41,7 +41,7 @@ Good understanding of statistical signal processing and C++ programming (familia
 
 ### Potential mentor(s):
 
-Dr. Jordi Vil&agrave;-Valls.
+Dr. Jordi Vil&agrave;-Valls, Dr. Pau Closas.
 
 
 
