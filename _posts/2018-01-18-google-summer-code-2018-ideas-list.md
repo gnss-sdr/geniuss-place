@@ -41,7 +41,7 @@ Good understanding of statistical signal processing and C++ programming (familia
 
 ### Potential mentor(s):
 
-Dr. Jordi Vil&agrave;-Valls
+Dr. Jordi Vil&agrave;-Valls.
 
 
 
@@ -57,36 +57,44 @@ Good understanding of digital signal processing and C++ programming (familiarity
 
 ### Potential mentor(s):
 
-Dr. Javier Arribas,  Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades
+Dr. Javier Arribas,  Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
 
 
 
-## More ideas...
-
-![Coming soon]({{ "/assets/images/coming-soon.jpg" | absolute_url }}){: .align-center}
-
-{% comment %}
-
-
-## Coding aspects of secure and robust GNSS receivers
+## Robust Cross-ambiguity function for anti-jamming
 
 ### Description:
 
-Applications that rely on accurate positioning are demanding higher security, reliability and resilience against possible attacks. Interference signals can cause GNSS signal degradation, denial of service, or mislead the receiver positioning solution with fake transmissions. Understanding jamming attacks and devising receiver algorithm against them has been an active area of research and development within GNSS community. The focus has primarily been on developing countermeasures addressing front-end receiver stages. In contrast, the effects of interferences on the decoding performance of the receiver have received less attention. However, explicitly exploiting the presence of channel coding and its properties can help to increase robustness against intentional and unintentional interferences.
-The main goal of this project is to implement and characterize state-of-the art receiver algorithms for reliable message decoding under jamming attacks and propose improvements. Evaluation of these advanced techniques will be done using real signals.
-
+Although strong jamming can overwhelm much weaker GNSS signals, receiver performance can be significantly improved by implementing interference mitigation techniques. Robust statistics was recently explored as a mitigation technique that requires minimal receiver modifications, while providing unprecedented anti-jamming rejection capabilities. The main required modification is on the generation of a robust cross-ambiguity function (CAF) which is later used in the correlation process, both in acquisition and tracking modes. This project would encompass implementation and testing of such approach, including some of the variants and real signal processing. A reference article might be downloaded from [here](http://www.insidegnss.com/auto/sepoct17-BORIO_0.pdf).   
 
 ### Skills required:
 
-Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework is a plus).
+Basic knowledge on digital signal processing and C++ programming (familiarity with the GNU Radio framework is a plus).
 
 ### Potential mentor(s):
 
-Dr. Monica Navarro, Dr. Pau Closas.
+Dr. Pau Closas, Dr. Carles Fern&aacute;ndez-Prades.
 
-{% endcomment %}
 
---------
+
+## Optimal frame synchronization detection
+
+### Description:
+
+GNSS data demodulation is preceded by frame synchronization. This process is critical, since it may prevent data recovery if not sufficiently reliable. Currently, GNSS-SDR implements a hard correlation scheme where correlation with the known pattern is performed. Although useful due to is simplicity, there are no performance guarantees for such approach. Particularly, in low signal-to-noise ratio (SNR) situations the performance of such correlation may degrade. This situations occur, for instance, in the presence of jamming signals. The goal of the project will be to implement an optimal detector, based on Massey's frame synchronization metric. Characterization of its performance and comparison to the current method in a number of SNR conditions.
+
+J. L. Massey, [Optimum frame synchronization](http://www.isiweb.ee.ethz.ch/archive/massey_pub/pdf/BI417.pdf), IEEE Trans. Commun., vol. 20, no. 2, pp. 115–119, April 1972.
+
+### Skills required:
+
+Basic knowledge on digital signal processing and C++ programming (familiarity with the GNU Radio framework is a plus).
+
+### Potential mentor(s):
+
+Dr. Pau Closas.
+
+
+
 
 
 ## Proposal template:
