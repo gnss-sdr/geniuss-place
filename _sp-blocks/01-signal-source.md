@@ -233,7 +233,7 @@ Example:
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=Two_Bit_Packed_File_Signal_Source
-SignalSource.filename=/data/my_capture.datz
+SignalSource.filename=/data/my_capture.dat
 SignalSource.item_type=short
 SignalSource.sampling_frequency=60000000
 SignalSource.samples=6000000000  ; Notice that 0 indicates the entire file.
