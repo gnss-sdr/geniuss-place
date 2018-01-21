@@ -79,7 +79,7 @@ Basic knowledge on digital signal processing and C++ programming (familiarity wi
 
 ### Potential mentor(s):
 
-Dr. Pau Closas, Dr. Jordi Vil&agrave;-Valls.
+Dr. Pau Closas, Dr. Jordi Vil&agrave;-Valls, Dr. Monica Navarro.
 
 -------
 
@@ -87,7 +87,7 @@ Dr. Pau Closas, Dr. Jordi Vil&agrave;-Valls.
 
 ### Description:
 
-As discussed at [Issue#75](https://github.com/gnss-sdr/gnss-sdr/issues/75), it would be nice to have a mechanism to avoid duplication of code when implementing Acquisition and Tracking blocks for different data types. This project consists of designing a suitable solution (based on templates or any other proposed approach, to be discussed) and implementing it for the existing blocks. Including a first draft of such design and discussing its Pros and Cons in the proposal will be highly appreciated.
+As discussed at [Issue #75](https://github.com/gnss-sdr/gnss-sdr/issues/75), it would be nice to have a mechanism to avoid duplication of code when implementing Acquisition and Tracking blocks for different data types. This project consists of designing a suitable solution (based on templates or any other proposed approach, to be discussed) and implementing it for the existing blocks. Including a first draft of such design and discussing its Pros and Cons in the proposal will be highly appreciated.
 
 ### Skills required:
 
