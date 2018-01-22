@@ -262,7 +262,7 @@ Tracking_L5.early_late_space_chips=0.5
 ```
 
 
-## Galileo E1B signal tracking
+## Galileo E1 signal tracking
 
 ### Implementation: `Galileo_E1_DLL_PLL_VEML_Tracking`
 
@@ -278,21 +278,7 @@ $$ \begin{equation}
 \hat{R}_{xd}(f_d,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_d nT_s}~, \end{equation}
 $$
 
-$$ x_{\text{IN}}[n] $$ is a complex vector containing I&Q samples of the received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase of the received signal with respect to a local reference,  $$ f_d $$ is the Doppler shift, $$ N $$ is the number of samples in a spreading code (4 ms for E1), and $$ d[n] $$ is a locally generated reference. The user can also configure the shape of $$ d[n] $$, allowing simplifications that reduce the computational load. For the E1B signal component, the reference signals available in our implementation are:
-
-$$ \begin{equation} d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t  -  lT_{c,E1B})\cdot  \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~, \end{equation} $$
-
-$$ \begin{equation} d_{E1B}^{(\text{sinBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B}) sc_A[n]~, \end{equation}
-$$
-
-while for E1C, users can choose among:
-
-$$ \begin{equation} d_{E1C}^{(\text{CBOC})}[n] = \sum_{m=-\infty}^{+\infty} \sum_{l=1}^{4092} C_{E1Cp}\Big[ l \Big] \cdot  p[n- mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~,  \end{equation}
-$$
-
-$$ \begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n]. \end{equation}
-$$
-
+$$ x_{\text{IN}}[n] $$ is a complex vector containing I&Q samples of the received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase of the received signal with respect to a local reference,  $$ f_d $$ is the Doppler shift, $$ N $$ is the number of samples in a spreading code (4 ms for E1), and $$ d[n] $$ is a locally generated reference. Next figure plots the shape of such function:
 
 
 
@@ -313,7 +299,7 @@ $$ \epsilon^\prime > \epsilon $$.
 In the case of carrier tracking loops, the pilot channel E1C can be used
 for the phase error estimation, since it does not contain data bit
 transitions, and, theoretically, coherent integration of several code
-periods can be used for as long as needed. As a consequence, a
+periods can be used for as long as needed once the secondary code has been removed. As a consequence, a
 discriminator that is insensitive to phase jumps can be used. Using pure
 PLL tracking on the pilot channel as well as longer coherent integration
 improves the carrier *tracking sensitivity*, the minimum signal power at

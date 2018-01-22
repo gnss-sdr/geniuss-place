@@ -376,38 +376,60 @@ Acquisition_L5.max_dwells=2
 ```
 
 
-## Galileo E1B signal acquisition
+## Galileo E1 signal acquisition
+
+The Galileo E1 Open Service signal can be written as:[^GalileoICD]
+
+$$ \begin{equation} s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{equation} $$
+
+where $$ sc_A(t) $$ and $$ sc_B(t) $$ are the subcarriers defined as
+$$ sc_A(t)= \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big) $$ and
+$$ sc_B(t)= \text{sign} \Big( \sin( 2 \pi f_{s, E1B}t ) \Big) $$, with
+$$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
+
+Channel B contains the I/NAV type of navigation message,
+$$ D_{I/NAV} $$, and can be expressed as:
+
+$$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big]    p(t - lT_{c,E1B})~. \end{equation} $$
+
+In case of channel C, it is a pilot (dataless) channel with a secondary code with a length of 100 ms, forming a tiered code:
+
+$$ \begin{equation} e_{E1C}(t) = \sum_{m=-\infty}^{+\infty}C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
+
+with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$ ms.
 
 ### Implementation: `Galileo_E1_PCPS_Ambiguous_Acquisition`
 
-The user can also configure the shape of $$ d[n] $$, allowing
-simplifications that reduce the computational load. As shown in Figure
-[fig:Rxd], in narrowband receivers the CBOC waveform can be substituted
+This implementation permits the configuration of the shape of the local replica $$ d[n] $$, allowing for simplifications that reduce the computational load. As shown in the figure
+[below]({{ "/docs/sp-blocks/acquisition/#fig:Rxd" | absolute_url }}), in narrowband receivers the CBOC waveform can be substituted
 by a sinBOC modulation with very small performance penalty[^Lohan11]. For
-the E1B signal component, the reference signals available in our
+the E1B signal component, the reference signals available in this
 implementation are:
 
-$$ \begin{equation} d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty}   C_{E1B}\Big[|l|_{4092}\Big]  p(t  -  lT_{c,E1B}) \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~, \end{equation} $$
+$$ \begin{equation} d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty}   C_{E1B}\Big[|l|_{4092}\Big]  p(t  -  lT_{c,E1B}) \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right) \end{equation} $$
+
+or
 
 $$ \begin{equation} \label{eq:dE1BsinBOC}
 d_{E1B}^{(\text{sinBOC})}[n]= \sum_{l=-\infty}^{+\infty}  C_{E1B}\Big[|l|_{4092}\Big] p(t  -  lT_{c,E1B})  sc_A[n]~, \end{equation} $$
 
 while for E1C, users can choose among:
 
-$$ \begin{equation} d_{E1C}^{(\text{CBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)~, \end{equation} $$
+$$ \begin{equation} d_{E1C}^{(\text{CBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right) \end{equation} $$
 
-$$ \begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big]   \! \cdot  \!   p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n], \end{equation} $$
+or
 
-where the subcarriers are defined as
-$$ sc_A(t)= \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big) $$ and
-$$ sc_B(t)= \text{sign} \Big( \sin( 2 \pi f_{s, E1B}t ) \Big) $$, with
-$$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
+$$ \begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big]   \! \cdot  \!   p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n]~. \end{equation} $$
 
+The simpler sinBOC options are chosen by default. CBOC versions can be set by `Acquisition_1B.cboc=true`.
+Next figure plots the shape of the cross-correlation function for those waveforms:
 
-![Rxd]({{ "/assets/images/rxd.png" | absolute_url }}){:width="600x"}
+<a name="fig:Rxd"></a>![Rxd]({{ "/assets/images/rxd.png" | absolute_url }}){:width="600x"}
 {: style="text-align: center;"}
 _Normalized $$ \left|R_{xd}\left(\check{f}_d=f_d, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
 {: style="text-align: center;"}
+
+
 
 This implementation accepts the following parameters:
 
@@ -432,6 +454,7 @@ This implementation accepts the following parameters:
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `cboc` | [`true`, `false`]: If set to `true` the algorithm uses the CBOC waveform , if set to `false` a simpler sinBOC waveform is used. It defaults to `false`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a multiple of 4 ms. It defaults to 4 ms. | Optional |
+| <span style="color: DarkOrange">`acquire_pilot`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `true`, sets the receiver to acquire the E1C pilot component. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to `false` (that is, the receiver is set to acquire the E1B data component).</span> | <span style="color: DarkOrange">Optional</span> |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
@@ -575,3 +598,5 @@ Acquisition_5X.doppler_step=250
 [^Lohan11]: J. Zhang, E. S. Lohan, _Galileo E1 and E5a Link-Level Performances in Single and Multipath Channels_. In G. Giambene, C. Sacchi, Eds., Personal Satellite Services, Third International ICST Conference PSATS 2011, Malaga, Spain, February 2011.
 
 [^Tong73]: P. S. Tong, _A Suboptimum Synchronization Procedure for Pseudo Noise Communication Systems_, in Proc. of National Telecommunications Conference, 1973, pp. 26D1-26D5.
+
+[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
