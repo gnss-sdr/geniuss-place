@@ -25,16 +25,16 @@ GNSS-SDR is a project hosted and sponsored by the Centre Tecnol&ograve;gic de Te
 There is an open distribution list devoted to discussions related to the development of GNSS-SDR. You can:
 
 
-[<i class="fa fa-envelope fa-lg"></i> Subscribe to GNSS-SDR-developers mailing list](https://lists.sourceforge.net/lists/listinfo/gnss-sdr-developers){: .btn .btn--geniuss .btn--x-large}
+[<i class="far fa-envelope fa-lg"></i> Subscribe to GNSS-SDR-developers mailing list](https://lists.sourceforge.net/lists/listinfo/gnss-sdr-developers){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 or
 
-[<i class="fa fa-list-ul fa-lg"></i> Check prior postings](https://sourceforge.net/p/gnss-sdr/mailman/gnss-sdr-developers/){: .btn .btn--geniuss .btn--x-large}
+[<i class="fas fa-list-ul fa-lg"></i> Check prior postings](https://sourceforge.net/p/gnss-sdr/mailman/gnss-sdr-developers/){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 
 
-Inquiries beyond the mailing list can be sent to Carles Fern&aacute;ndez-Prades <a href="mailto:carles.fernandez@cttc.cat"><i class="fa fa-fw fa-envelope" aria-hidden="true"></i> </a>
+Inquiries beyond the mailing list can be sent to Carles Fern&aacute;ndez-Prades <a href="mailto:carles.fernandez@cttc.cat"><i class="far fa-fw fa-envelope" aria-hidden="true"></i> </a>
 
 See other contact details in our [Team]({{ "/team/" | absolute_url }}) page.

@@ -17,7 +17,7 @@
             {% endif %}
             <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
-            <li class="masthead__menu-item"><a href="{{ "/search/" | absolute_url }}"><i class="fa fa-fw fa-search" aria-hidden="true"></i></a></li>
+            <li class="masthead__menu-item"><a href="{{ "/search/" | absolute_url }}"><i class="fas fa-fw fa-search" aria-hidden="true"></i></a></li>
         </ul>
         <button type="button">
           <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</span>

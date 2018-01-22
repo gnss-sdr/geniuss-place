@@ -157,7 +157,7 @@ GNSS-SDR are divided in two categories:
 
 By default, only (a large) subset of unit tests are compiled (see details [below]({{ "#unit-tests" }})). So, when doing:
 
-```
+```bash
 $ cd gnss-sdr/build
 $ git checkout next
 $ cmake ..
@@ -167,7 +167,7 @@ $ make check  # THIS STEP IS OPTIONAL. It builds and runs a subset of tests.
 
 this process will end up generating some executables at the `gnss-sdr/install` folder. Among them, a test program called `run_tests`. This executable gathers all the available GNSS-SDR's unit tests. It can be run by doing:
 
-```
+```bash
 $ cd ../install
 $ ./run_tests
 ```
@@ -221,7 +221,7 @@ TestCase2.
 
 So, running:
 
-```
+```bash
 $ ./run_tests --gtest_list_tests
 ```
 
@@ -250,7 +250,7 @@ The `--gtest_repeat` flag allows you to repeat all (or selected) test methods in
 
 For example:
 
-```
+```bash
 $ ./run_tests --gtest_filter=GpsL1CaPcpsAcquisitionTest.* --gtest_repeat=10
 ```
 
@@ -285,19 +285,19 @@ The format of the report is as follows:
 
 For example:
 
-```
+```bash
 $ ./run_tests --gtest_filter=CpuMulticorrelatorTest.* --gtest_output=xml
 ```
 
 generates a report called `test_detail.xml` in the current directory;
 
-```
+```bash
 $ ./run_tests --gtest_filter=CpuMulticorrelatorTest.* --gtest_output=xml:./test_results/
 ```
 
 generates a report called `run_tests.xml` in a newly created `./test_results` directory; and
 
-```
+```bash
 $ ./run_tests --gtest_filter=CpuMulticorrelatorTest.* --gtest_output=xml:./test_results/my_tests.xml
 ```
 
@@ -326,23 +326,23 @@ The generation of some unit test cases are enabled by default, and gathered in t
  * Unit Test Cases for arithmetics:
     - `CodeGenerationTest`: set of tests for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of PRN code generation.
     - `ComplexCarrierTest`: set of tests for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of complex carrier generation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_carrier_test`. You can try a different length by doing:
-    ```
+    ```bash
     $ ./run_tests --gtest_filter=ComplexCarrier* --size_carrier_test=1000000
     ```
     - `ConjugateTest`: set of tests measuring the execution time of various implementations of vector conjugation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_conjugate_test`. You can try a different length by doing:
-    ```
+    ```bash
     $ ./run_tests --gtest_filter=Conjugate* --size_conjugate_test=1000000
     ```
     - `FFTLengthTest`: set of tests measuring the execution time for several FFT lengths. The default number of averaged iterations is $$ 1000 $$, but this test case accepts the flag `--fft_iterations_test`. If you have [Gnuplot](http://www.gnuplot.info/) installed in your system, you can get some plots by adding the flag `--plot_fft_length_test`. You can try a different number of iterations and get some plots by doing:
-    ```
+    ```bash
     $ ./run_tests --gtest_filter=FFT* --fft_iterations_test=10000 --plot_fft_length_test
     ```
     - `MagnitudeSquaredTest`: set of tests measuring the execution time of various implementations of vector square magnitude computation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_magnitude_test`. You can try a different length by doing:
-    ```
+    ```bash
     $ ./run_tests --gtest_filter=Magnitude* --size_magnitude_test=1000000
     ```
     - `MultiplyTest`: set of tests measuring the execution time of various implementations of vector (element-by-element) multiplication. The default vector length is $$ 10000 $$, but this test case accepts the flag `--size_multiply_test`. You can try a different length by doing:
-    ```
+    ```bash
     $ ./run_tests --gtest_filter=Multiply* --size_multiply_test=100000
     ```
 
@@ -369,14 +369,14 @@ The generation of some unit test cases are enabled by default, and gathered in t
       - `DirectResamplerConditionerCcTest`: set of tests for [direct_resampler_conditioner_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/resampler/gnuradio_blocks/direct_resampler_conditioner_cc.h)
     - Acquisition
       - `GpsL1CaPcpsAcquisitionTest`: set of tests for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h). If Gnuplot is installed in your machine, this test can plot the acquisition grid by passing the flag `--plot_acq_grid`. Example:
-      ```
+      ```bash
       $ ./run_tests --gtest_filter=GpsL1CaPcpsAcquisitionTest* --plot_acq_grid
       ```
       - `GpsL1CaPcpsAcquisitionGSoC2013Test`: set of tests for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h) developed during GSoC 2013.
       - `GpsL1CaPcpsTongAcquisitionGSoC2013Test`: set of tests for [gps_l1_ca_pcps_tong_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_tong_acquisition.h)
       - `GpsL1CaPcpsQuickSyncAcquisitionGSoC2014Test`: set of tests for [gps_l1_ca_pcps_quicksync_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_quicksync_acquisition.h)
       - `GalileoE1PcpsAmbiguousAcquisitionTest`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h). If Gnuplot is installed in your machine, this test can plot the acquisition grid by passing the flag `--plot_acq_grid`. Example:
-      ```
+      ```bash
       $ ./run_tests --gtest_filter=GalileoE1PcpsAmbiguousAcquisitionTest* --plot_acq_grid
       ```
       - `GalileoE1PcpsAmbiguousAcquisitionGSoCTest`: set of tests for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h) developed during GSoC 2012.
@@ -388,11 +388,11 @@ The generation of some unit test cases are enabled by default, and gathered in t
       - `GalileoE5aPcpsAcquisitionGSoC2014GensourceTest`: set of tests for [galileo_e5a_noncoherent_iq_acquisition_caf.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e5a_noncoherent_iq_acquisition_caf.h) developed during GSoC 2014.
     - Tracking
       - `CpuMulticorrelatorTest`: set of tests for [cpu_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cpu_multicorrelator.h) that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--cpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--cpu_multicorrelator_max_threads_test`. A possible call for this test could be:
-      ```
+      ```bash
       $ ./run_tests --gtest_filter=Cpu* --cpu_multicorrelator_iterations_test=10000 --cpu_multicorrelator_max_threads_test=2
       ```
       - `GpuMulticorrelatorTest`: set of tests for [cuda_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cuda_multicorrelator.h) that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$ executed in the GPU. The availability of this test case requires the [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads) installed in your system, a GPU [supporting CUDA](https://developer.nvidia.com/cuda-gpus), and have passed the option `-DENABLE_CUDA=ON` to CMake. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--gpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--gpu_multicorrelator_max_threads_test`. A possible call for this test could be:
-      ```
+      ```bash
       $ ./run_tests --gtest_filter=Gpu* --gpu_multicorrelator_iterations_test=10000 --gpu_multicorrelator_max_threads_test=2
       ```
       - `GalileoE1DllPllVemlTrackingInternalTest`: set of tests for [galileo_e1_dll_pll_veml_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e1_dll_pll_veml_tracking.h)
@@ -411,7 +411,7 @@ The generation of some unit test cases are enabled by default, and gathered in t
 
 This option builds some extra unit tests cases that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
-```
+```bash
 $ cmake -DENABLE_UNIT_TESTING_EXTRA=ON ..
 $ make
 ```
@@ -430,7 +430,7 @@ The following Unit Test Cases are added to the executable `run_tests`:
     - `GpsL2MPcpsAcquisitionTest`: set of tests for [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
   - Tracking
     - `GpsL1CADllPllTrackingTest`: set of tests for [gps_l1_ca_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_tracking.h) that make use of the software-defined signal generator. This test plots the correlators' outputs with the flag `--plot_gps_l1_tracking_test`. For long tests, data can be decimated with the flag `--plot_decimate`. Example:
-    ```
+    ```bash
     $ ./run_tests --gtest_filter=GpsL1CADllPllTrackingTest* --duration=10 --plot_gps_l1_tracking_test --plot_decimate=10
     ```
     - `GpsL2MDllPllTrackingTest`: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
@@ -444,7 +444,7 @@ The following Unit Test Cases are added to the executable `run_tests`:
 
 This option builds some extra system test programs that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
-```
+```bash
 $ cmake -DENABLE_SYSTEM_TESTING=ON ..
 $ make
 ```
@@ -472,7 +472,7 @@ Each TTFF sample is computed as the time interval starting with the invocation o
 
 So an example of running this test could be:
 
-```
+```bash
 $ ./ttff --config_file_ttff=my_GPS_rx.conf --num_measurements=50
 ```
 
@@ -502,7 +502,7 @@ The results of the experiment are reported as follows:
 
 This option builds some extra system test programs that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
-```
+```bash
 $ cmake -DENABLE_SYSTEM_TESTING_EXTRA=ON ..
 $ make
 ```
@@ -531,19 +531,19 @@ This test program calls the software-defined signal generator, which generates a
 
 So an example of running this test could be:
 
-```
+```bash
 $ ./obs_gps_l1_system_test
 ```
 
 The first run will generate a `signal_out.bin` file (taking some time). The next time you execute this test, signal generation cam be skipped by:
 
-```
+```bash
 $ ./obs_gps_l1_system_test --disable_generator
 ```
 
 If you have a professional GNSS signal receiver that generates RINEX files, or you download them from a server, you can use the RINEX navigation file and your best guess of your position:
 
-```
+```bash
 $ ./obs_gps_l1_system_test --rinex_nav_file=my_RINEX.17n --static_position="0.000000,000000,0"
 ```
 
@@ -568,26 +568,26 @@ This test program computes metrics of static accuracy and precision. It can use 
 
 So an example of running this test could be:
 
-```
+```bash
 $ ./position_test
 ```
 
 By default, the program triggers a software-defined GPS L1 C/A signal generator, which takes the default RINEX navigation file (brdc3540.14n, already included in the files automatically downloaded by CMake's `-DENABLE_SYSTEM_TESTING_EXTRA=ON` option) and the default reference location (longitude $$30.286502^o $$, latitude $$ 120.032669^o $$, height $$ 100 $$ m), and generates a RINEX observation file and a raw signal sample file, with a duration of $$ 100 $$ s. Then, it triggers the software receiver and processes such raw data file. At the end of the processing, the program reports several metrics for accuracy and precision. Since the generation of the raw samples file only needs to be executed once, the next time you execute this program, the generation can be skipped by:
 
-```
+```bash
 $ ./position_test --disable_generator
 ```
 
 If you have [Gnuplot](http://www.gnuplot.info/) installed in your system, you can get some plots by adding the flag `--plot_position_test`:
 
 
-```
+```bash
 $ ./position_test --plot_position_test
 ```
 
 You can use your own configuration file:
 
-```
+```bash
 $ ./position_test --config_file_ptest=my_GPS_rx.conf --static_position="0.000000,000000,0"
 ```
 
@@ -709,7 +709,7 @@ Once the test code is written, you need to build and link it against the Google 
 
 At the end of the building, we should be able to run your new test. In the example provided above, this would be:
 
-```
+```bash
 $ ./run_tests --gtest_filter=RtcmTest.HexToInt*
 ```
 

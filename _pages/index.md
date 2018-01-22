@@ -5,7 +5,7 @@ date:
 header:
   overlay_color: "#000000" # "#3399cc"
   overlay_image: /assets/images/main-page-header.jpg
-  cta_label: "<i class='fa fa-download'></i> Install Now"
+  cta_label: "<i class='fas fa-download'></i> Install Now"
   cta_url: "/build-and-install/"
   caption:
 excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.9](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.9)</small> <br /><br /> ' # {::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>{:/nomarkdown}'

@@ -25,7 +25,7 @@ According to the name and the quality of the theme this website is based upon, a
 
 ### Icons
 
-- [Font Awesome](http://fontawesome.io/).
+- [Font Awesome](https://fontawesome.com/).
 - [Academicons](https://jpswalsh.github.io/academicons/).
 - Icons made by [Butterflytronics](https://www.flaticon.com/authors/butterflytronics), [SimpleIcon](https://www.flaticon.com/authors/simpleicon) and [Freepik](https://www.freepik.com) from [Flaticon](https://www.flaticon.com) are licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
 

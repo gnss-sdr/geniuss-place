@@ -76,22 +76,22 @@ The front-end firmware is licensed as GPL open source, and available online from
 
 In order to enable real-time operation and remove the capture size limitation, some modifications to the firmware are required. Basically, we need to modify the file “gn3s_main.c” to disable an interrupt counter that accumulates the number of processed signal samples. The 8051 code should be modified as follows:
 
-```
+```cpp
 void main(void) {
  init_usrp();
  init_gpif();
  init_se4110();
- TD_Init();    // Init fucntion for A9 vendor commands
+ TD_Init();  // Init fucntion for A9 vendor commands
 
- EA = 0;    // disable all interrupts
+ EA = 0;     // disable all interrupts
 
  setup_autovectors();
  usb_install_handlers();
 
  EIEX4 = 1;          // disable INT4 FIXME
- EA = 1;               // global interrupt enable
+ EA = 1;             // global interrupt enable
 
- fx2_renumerate();    // simulates disconnect / reconnect
+ fx2_renumerate();   // simulates disconnect / reconnect
 
 // enable_se4110();
  program_3w();
@@ -104,7 +104,7 @@ void main(void) {
 
 and
 
-```
+```cpp
 static void main_loop(void)
 {
  setup_flowstate_common();
@@ -112,7 +112,6 @@ static void main_loop(void)
 
  while (1) {
    // We don't do much, GPIF is running on autopilot
-
 
    if (_usb_got_SUDAV) {
      usb_handle_setup_packet();
@@ -162,7 +161,7 @@ In addition, it is required to copy the GN3S firmware binary file [gr-gn3s/firmw
 
 Since the driver requires access to the USB port, it is necessary to run the script as root. In case you are using gnuradio-companion, it can be done as:
 
-```
+```bash
 $ sudo gnuradio-companion
 ```
 
@@ -211,7 +210,7 @@ GNSS-SDR support for GN3S dongles makes use of the gr-gn3s GNU Radio source bloc
 
 It makes use of the library gr-gn3s by including the following header:
 
-```
+```cpp
 #include <gn3s/gn3s_source_cc.h>
 ```
 
@@ -225,7 +224,7 @@ The compilation of the SiGe GN3S support in GNSS-SDR is optional and it requires
 
 In order to use a SiGe GN3S device it is necessary to select the `Gn3s_Signal_Source` implementation in the GNSS-SDR configuration file of the `SignalSource` block. Since this is a specific front-end for GNSS signal reception, there is no need to configure any source parameter. Hereafter can be found a working configuration for the reception of a GPS L1 C/A signal:
 
-```
+```ini
 [GNSS-SDR]
 ;######### GLOBAL OPTIONS ##################
 GNSS-SDR.internal_fs_hz=2045950
@@ -249,7 +248,7 @@ The software receiver can solve both problems by enabling the GNU Radio’s freq
 
 In this configuration example we choose a decimation factor of 4. The resulting sampling frequency, which is the GNSS-SDR internal sampling frequency, is 8183800/4=2045950 Hz. The signal conditioner configuration is as follows:
 
-```
+```ini
 ;######### SIGNAL_CONDITIONER CONFIG ############
 ;## It holds blocks to change data type, filter and resample input data.
 ;#implementation: Use [Pass_Through] or [Signal_Conditioner]
@@ -285,7 +284,7 @@ Resampler.implementation=Pass_Through
 This configuration enables the real-time receiver operation with 8 satellite channels in an Intel Core 2 quad Q9400 @ 2.66 GHz with 4 GB of RAM.
 It is important to point out that the GN3S driver requires the firmware file available in the application runtime directory. In the case of the GNSS-SDR application, the firmware file gn3s_firmware.ihx should be copied the folder runniong the receiver. In addition, GNSS-SDR should be called with root privileges
 
-```
+```bash
 $ sudo gnss-sdr --config_file=../conf/gnss-sdr_GPS_L1_GN3S_realtime.conf
 ```
 
@@ -312,7 +311,7 @@ At this time of writing (SVN rev. 244), real-time operation with the aforementio
 </figure>
 
 The following pictures show some tracking data analysis using the GNSS-SDR intermediate data extraction and dump feature:
-```
+```ini
 Tracking.dump=true Tracking.dump_filename=./tracking_ch_
 ```
 
