@@ -45,7 +45,7 @@ Javier Arribas:
 Pau Closas:
   name        : "Pau Closas"
   uri         : "http://www.ece.neu.edu/people/closas-pau"
-  email       : "pa.closas@northeastern.edu"
+  email       : "pau.closas@northeastern.edu"
   bio         : "Assistant Professor at Northeastern University"
   avatar      : "/assets/images/pau.jpg"
   twitter     :
@@ -67,3 +67,48 @@ Luis Esteve:
   facebook    : "luis.elfau"
   google_plus :
   linkedin    : "luis-esteve-ba624a4"
+
+Jordi Vila:
+  name        : "Jordi Vil&agrave;-Valls"
+  uri         : "http://www.cttc.es/people/jordi-1/"
+  email       : "jvila@cttc.cat"
+  bio         : "Senior Researcher at CTTC"
+  avatar      : "/assets/images/Jordi.jpg"
+  twitter     :
+  github      :
+  facebook    :
+  google_plus :
+  linkedin    :
+  orcid       : "0000-0001-7858-4171"
+  google-scholar: "yKW9RNoAAAAJ"
+  researchgate: "Jordi_Vila-Valls"
+
+Antonio Ramos:
+  name        : "Antonio Ramos&nbsp;de&nbsp;Torres"
+  uri         : "http://www.cttc.es/people/aramos/"
+  email       : "antonio.ramos@cttc.es"
+  bio         : "Research Assistant at CTTC"
+  avatar      : "/assets/images/antonio.jpg"
+  twitter     :
+  github      : "antonioramosdet"
+  facebook    :
+  google_plus :
+  linkedin    : "antonioramosdet"
+  orcid       :
+  google-scholar:
+  researchgate:
+
+Marc Majoral:
+  name        : "Marc Majoral"
+  uri         : "http://www.cttc.es/people/mmajoral/"
+  email       : "marc.majoral@cttc.cat"
+  bio         : "Senior Researcher at CTTC"
+  avatar      : "/assets/images/mmajoral.jpg"
+  twitter     :
+  github      : "mmajoral"
+  facebook    :
+  google_plus :
+  linkedin    : "marc-majoral-11a0073"
+  orcid       : "0000-0001-6161-6747"
+  google-scholar: "wNMsAyEAAAAJ"
+  researchgate:
