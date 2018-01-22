@@ -47,6 +47,7 @@ Dr. Jordi Vil&agrave;-Valls, Dr. Pau Closas, Dr. Javier Arribas.
 
 -------
 
+{% comment %}
 
 ## Robust Cross-ambiguity function for anti-jamming
 
@@ -63,7 +64,7 @@ Basic knowledge on digital signal processing and C++ programming (familiarity wi
 Dr. Pau Closas, Dr. Carles Fern&aacute;ndez-Prades, Dr. Jordi Vil&agrave;-Valls.
 
 -------
-
+{% endcomment %}
 
 ## Optimal frame synchronization detection
 
@@ -95,7 +96,7 @@ Solid knowledge on C++ programming (familiarity with the GNU Radio framework is 
 
 ### Potential mentor(s):
 
-Dr. Carles Fern&aacute;ndez-Prades, Dr. Javier Arribas.
+Dr. Carles Fern&aacute;ndez-Prades, Dr. Javier Arribas, Mr. Luis Esteve.
 
 -------
 
@@ -129,7 +130,7 @@ Objective by the end of the summer: To provide a working implementation of a GNS
 Basic knowledge on digital signal processing and C++ programming (familiarity with the GNU Radio framework is a plus).
 
 ### Potential mentor(s):
-Mr. Luis Esteve, Dr. Carles Fernández-Prades.
+Mr. Luis Esteve, Dr. Carles Fernández-Prades, Mr. Antonio Ramos.
 
 -------
 
