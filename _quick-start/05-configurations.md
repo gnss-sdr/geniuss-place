@@ -3,7 +3,7 @@ title: "Configurations"
 permalink: /conf/
 excerpt: "How to configure GNSS-SDR in a variety of setups."
 related: true
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2018-01-23T15:54:02-04:00
 header:
   teaser: "http://exploreflask.com/en/latest/_images/configuration.png"
 sidebar:
@@ -378,6 +378,205 @@ Now you can examine the files created in your working folder.
 </div>
 
  * Play with configuration parameters!
+
+
+
+
+
+## GPS L1 C/A receiver using a HackRF One
+
+[HackRF One](https://greatscottgadgets.com/hackrf/) from Great Scott Gadgets is an [open source](https://github.com/mossmann/hackrf) Software Defined Radio peripheral capable of reception of radio signals from 1 MHz to 6 GHz, and thus is well suited for GNSS applications. If features:
+
+  * Up to 20 million samples per second.
+  * 8-bit quadrature samples (8-bit I and 8-bit Q).
+  * Software-configurable RX gain and baseband filter.
+  * Software-controlled antenna port power (50 mA at 3.3 V).
+  * SMA female antenna connector.
+  * SMA female clock input and output for synchronization.
+  * Hi-Speed USB 2.0.
+  * USB-powered.
+
+![HackRF One]({{ "/assets/images/hackRF.jpg" | absolute_url }}){: .align-center} _HackRF One._
+{: style="text-align: center;"}
+
+For more information, check out the [HackRF wiki](https://github.com/mossmann/hackrf/wiki).
+
+### Required equipment
+
+In order to get real-time position fixes, you will need:
+
+  * **An active GPS antenna**. Most models will fit, just check that you can plug it to the HackRF's SMA-female connector, and that 50 mA at 3.3 V is an adequate feeding.
+  * **A HackRF One**.
+  * **A computer** connected to the HackRF One and with GNSS-SDR installed.
+
+
+This device requires the use of the [`Osmosdr_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-osmosdr_signal_source" | absolute_url }}) implementation. If you installed GNSS-SDR from a software package, this implementation is already available. But if you are building GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
+
+```bash
+$ cmake -DENABLE_OSMOSDR=ON ../
+```
+
+and then build and install the software:
+
+```bash
+$ make
+$ sudo make install
+```
+
+For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | absolute_url }}).
+
+### Setting up the front-end
+
+Once the software is ready, connect your HackRF to your computer, and connect the active antenna. In order to activate the antenna feeding, the configuration file must use the [`Osmosdr_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-osmosdr_signal_source" | absolute_url }}) implementation and include the following line:
+
+```ini
+SignalSource.osmosdr_args=hackrf,bias=1
+```
+
+### Setting up the software receiver
+
+A possible configuration file could be:
+
+
+```ini
+[GNSS-SDR]
+
+;######### GLOBAL OPTIONS ##################
+GNSS-SDR.internal_fs_hz=2000000
+
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=Osmosdr_Signal_Source
+SignalSource.item_type=gr_complex
+SignalSource.sampling_frequency=2000000
+SignalSource.freq=1575420000
+SignalSource.gain=40
+SignalSource.rf_gain=40
+SignalSource.if_gain=30
+SignalSource.AGC_enabled=false
+SignalSource.samples=0
+SignalSource.repeat=false
+;# Next line enables the internal HackRF One bias (3.3 VDC)
+SignalSource.osmosdr_args=hackrf,bias=1
+SignalSource.enable_throttle_control=false
+SignalSource.dump=false
+SignalSource.dump_filename=./signal_source.dat
+
+;######### SIGNAL_CONDITIONER CONFIG ############
+SignalConditioner.implementation=Signal_Conditioner
+
+;######### DATA_TYPE_ADAPTER CONFIG ############
+DataTypeAdapter.implementation=Pass_Through
+
+;######### INPUT_FILTER CONFIG ############
+InputFilter.implementation=Freq_Xlating_Fir_Filter
+InputFilter.decimation_factor=1
+InputFilter.input_item_type=gr_complex
+InputFilter.output_item_type=gr_complex
+InputFilter.taps_item_type=float
+InputFilter.number_of_taps=5
+InputFilter.number_of_bands=2
+InputFilter.band1_begin=0.0
+InputFilter.band1_end=0.85
+InputFilter.band2_begin=0.9
+InputFilter.band2_end=1.0
+InputFilter.ampl1_begin=1.0
+InputFilter.ampl1_end=1.0
+InputFilter.ampl2_begin=0.0
+InputFilter.ampl2_end=0.0
+InputFilter.band1_error=1.0
+InputFilter.band2_error=1.0
+InputFilter.filter_type=bandpass
+InputFilter.grid_density=16
+InputFilter.dump=false
+InputFilter.dump_filename=../data/input_filter.dat
+
+;######### RESAMPLER CONFIG ############
+Resampler.implementation=Pass_Through
+
+;######### CHANNELS GLOBAL CONFIG ############
+Channels_1C.count=8
+Channels.in_acquisition=1
+Channel.signal=1C
+
+;######### ACQUISITION GLOBAL CONFIG ############
+Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition_Fine_Doppler
+Acquisition_1C.item_type=gr_complex
+Acquisition_1C.if=0
+Acquisition_1C.sampled_ms=1
+Acquisition_1C.threshold=0.015
+Acquisition_1C.doppler_max=10000
+Acquisition_1C.doppler_min=-10000
+Acquisition_1C.doppler_step=500
+Acquisition_1C.max_dwells=15
+Acquisition_1C.dump=false
+Acquisition_1C.dump_filename=./acq_dump.dat
+
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
+Tracking_1C.item_type=gr_complex
+Tracking_1C.if=0
+Tracking_1C.pll_bw_hz=40.0;
+Tracking_1C.dll_bw_hz=2.0;
+Tracking_1C.order=3;
+Tracking_1C.early_late_space_chips=0.5;
+Tracking_1C.dump=false
+Tracking_1C.dump_filename=./tracking_ch_
+
+;######### TELEMETRY DECODER GPS CONFIG ############
+TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
+TelemetryDecoder_1C.dump=false
+TelemetryDecoder_1C.decimation_factor=1;
+
+;######### OBSERVABLES CONFIG ############
+Observables.implementation=GPS_L1_CA_Observables
+Observables.dump=true
+Observables.dump_filename=./observables.dat
+
+;######### PVT CONFIG ############
+PVT.implementation=GPS_L1_CA_PVT
+PVT.flag_averaging=true
+PVT.averaging_depth=5
+PVT.output_rate_ms=100
+PVT.display_rate_ms=500
+PVT.flag_nmea_tty_port=false;
+PVT.nmea_dump_devname=/dev/pts/4
+PVT.nmea_dump_filename=./gnss_sdr_pvt.nmea;
+PVT.flag_rtcm_server=false
+PVT.flag_rtcm_tty_port=false
+PVT.rtcm_dump_devname=/dev/pts/1
+PVT.dump=false
+PVT.dump_filename=./PVT
+
+;######### PVT CONFIG if using the next branch ####
+;PVT.implementation=RTKLIB_PVT
+;PVT.positioning_mode=Single
+;PVT.output_rate_ms=100
+;PVT.display_rate_ms=500
+;PVT.iono_model=Broadcast
+;PVT.trop_model=Saastamoinen
+;PVT.flag_rtcm_server=true
+;PVT.flag_rtcm_tty_port=false
+;PVT.rtcm_dump_devname=/dev/pts/1
+;PVT.rtcm_tcp_port=2101
+;PVT.rtcm_MT1019_rate_ms=5000
+;PVT.rtcm_MT1077_rate_ms=1000
+;PVT.rinex_version=2
+
+```
+
+Copy and paste this configuration in your favorite plain text editor and save it as, for instance, `hackrf_GPS_L1.conf`.
+
+Once the hardware and the software configurations are ready, go to your favorite working directory where the file `hackrf_GPS_L1.conf` was stored and invoke the software receiver with this particular configuration:
+
+```bash
+$ gnss-sdr --config_file=./hackrf_GPS_L1.conf
+```
+
+You should see something similar to the example [above](#run-it).
+
+------
+
+
 
 
 <link rel="prerender" href="{{ "/docs/overview/" | absolute_url }}">
