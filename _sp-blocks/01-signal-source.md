@@ -462,8 +462,8 @@ For instance, if `RF_channels` is set to `2`, then:
 
 [![OsmoSDR](http://sdr.osmocom.org/osmocom/osmocom_sdr.png){:height="250px" width="250x"}{: .align-right}](http://sdr.osmocom.org/trac/)
 [OsmoSDR](http://sdr.osmocom.org/trac/) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
-project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. It provides a driver for several front-ends, such as RTL-based
-dongles, HackRF, bladeRF, etc.
+project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. It provides a driver for several front-ends, such as [RTL-based
+dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), etc.
 
 If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
 
@@ -506,7 +506,6 @@ SignalSource.gain=40
 SignalSource.rf_gain=40
 SignalSource.if_gain=30
 SignalSource.enable_throttle_control=false
-SignalSource.osmosdr_args=rtl_tcp,offset_tune=1
 ```
 
 {% capture bias-tee-rtlsdrv3 %}
@@ -514,6 +513,12 @@ SignalSource.osmosdr_args=rtl_tcp,offset_tune=1
 
 ```ini
 SignalSource.osmosdr_args=rtl,bias=1
+```
+
+In case of using a [HackRF One](https://greatscottgadgets.com/hackrf/), you can activate the antenna feeding with:
+
+```ini
+SignalSource.osmosdr_args=hackrf,bias=1
 ```
 {% endcapture %}
 
