@@ -111,9 +111,9 @@ Just point your browser to that [local direction](http://127.0.0.1:4000/) in ord
 {% capture protip %}
 **Pro Tip**: if you want to modify JavaScript (under ```assets/js```), you will need to install [Node.js](https://nodejs.org/en/), ```cd```to the root of your project, and run ```$ npm install``` to get all the dependencies. If all gone well, then running ```npm run build:js``` will compress/concatenate ```_main.js``` and all plugin scripts into ```main.min.js```. Thus, upon a change on JavaScript content, run:
 
-`
+```bash
 $ npm run build:js
-`
+```
 
 in order to update the ```main.js``` script and implement the changes on the website.
 {% endcapture %}

@@ -55,15 +55,15 @@ This will install the latest stable release of GNSS-SDR.
 {% capture mac-os-text %}
 Instead of installing the latest stable release, you can install the code found on the `master` branch, which might contain some bug fixes with respect to the latest stable release:
 
-`
+```bash
 $ sudo port install gnss-sdr-devel
-`
+```
 
 or the context of the `next` branch, which might contain fixes and new features with respect to the latest stable release:
 
-`
+```bash
 $ sudo port install gnss-sdr-next
-`
+```
 {% endcapture %}
 
 <div class="notice--success">
