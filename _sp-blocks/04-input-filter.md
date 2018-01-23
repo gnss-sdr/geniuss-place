@@ -171,9 +171,14 @@ The basic principle of this block is to perform:
 
 Input signal $$ \rightarrow $$ decim $$ \rightarrow $$ (mult by $$ 2 \pi \frac{f_{IF}}{f_s} $$ · decim) $$ \rightarrow $$ Filtering $$ \rightarrow $$ Output signal.
 
-It is ideally suited for a "channel selection filter" and can be efficiently
+However, the GNU Radio implementation of the block [freq_xlating_fir_filter_XXX_impl.cc.t](https://github.com/gnuradio/gnuradio/blob/master/gr-filter/lib/freq_xlating_fir_filter_XXX_impl.cc.t), in which this implementation is based, performs the following operation:
+
+Input signal $$ \rightarrow $$ Filtering $$ \rightarrow $$ decim $$ \rightarrow $$ (mult by $$ 2 \pi \frac{f_{IF}}{f_s} $$ · decim) $$ \rightarrow $$ Output signal.
+
+The applied filter is the baseband filter moved up to the intermediate frequency. Thus, the filter parameters apply to the signal before decimation.
+
+The block is ideally suited for a "channel selection filter" and can be efficiently
 used to select and decimate a narrow band signal out of wide bandwidth input.
-The frequency translation comes before the filtering operation.
 
 This implementation accepts the following parameters:
 
