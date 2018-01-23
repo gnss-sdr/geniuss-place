@@ -86,17 +86,17 @@ This last command copies default configuration information into the ```./build/c
 {% capture branches_info %}
 Please note that the name of the oe-gnss-sdr-manifest branch passed to ```repo``` will determine the version of the SDK to be built. For instance,
 
-`
+```bash
 $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b jethro
-`
+```
 
 will generate the Jethro release of the SDK (see the manifest for a list of installed packages and their respective versions), while
 
-`
-$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b morty
-`
+```bash
+$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b rocko
+```
 
-will generate the Morty release.
+will generate the Rocko release.
 {% endcapture %}
 
 <div class="notice--warning">
