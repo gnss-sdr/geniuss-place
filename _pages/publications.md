@@ -294,7 +294,7 @@ note    = { {ISSN}: 2331-5911}
     <br><b>Accelerating GNSS Software Receivers</b><br>
 <i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
 Portland, OR, Sept. 2016, pp. 44-61.<br>
-<i class="fa fa-fw fa-star"></i> Best Presentation Award (<i>Session A1: Advances in GNSS Software-defined Receivers</i>)
+<i class="fas fa-fw fa-star"></i> Best Presentation Award (<i>Session A1: Advances in GNSS Software-defined Receivers</i>)
     <br />
     <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/266493" >Online  <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
@@ -709,7 +709,7 @@ month = {Feb.}
 J.&nbsp;Arribas
 <br><b>GNSS Array-based Acquisition: Theory and Implementation</b><br>
 <i>PhD Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, June 2012.</i>
-<br><i class="fa fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="http://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
+<br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="http://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
 <br />
 <a href="javascript:toggleBibtex('Arribas12')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="http://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>

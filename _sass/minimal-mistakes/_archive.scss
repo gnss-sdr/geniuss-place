@@ -72,16 +72,6 @@
   }
 }
 
-.archive__item:hover {
-
-  .archive__item-teaser {
-    box-shadow: 0 0 10px rgba(#000, 0.25);
-  }
-
-  .archive__item-title {
-    text-decoration: underline;
-  }
-}
 
 .archive__item-button {
   text-align: center;
@@ -96,6 +86,7 @@
 
   .page__meta {
     margin: 0 0 4px;
+    font-size: 0.6em;
   }
 }
 
@@ -319,5 +310,41 @@
         width: span(7 of 12);
       }
     }
+  }
+}
+
+/* Place inside an archive layout */
+
+.archive {
+  .feature__wrapper {
+    .archive__item-title {
+      margin-top: 0.25em;
+      font-size: 1em;
+    }
+  }
+
+  .feature__item,
+  .feature__item--left,
+  .feature__item--center,
+  .feature__item--right {
+    font-size: 1em;
+  }
+}
+
+/* Place inside an archive layout */
+
+.archive {
+  .feature__wrapper {
+    .archive__item-title {
+      margin-top: 0.25em;
+      font-size: 1em;
+    }
+  }
+
+  .feature__item,
+  .feature__item--left,
+  .feature__item--center,
+  .feature__item--right {
+    font-size: 1em;
   }
 }

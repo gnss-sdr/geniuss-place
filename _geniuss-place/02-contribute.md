@@ -30,7 +30,7 @@ The basic setup steps for a contribution to the source code are the following:
 2. [Fork the GNSS-SDR source code repository from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork). This will copy the
 whole source code repository into your personal account.
 
-   [<i class="fa fa-github fa-lg"></i> Fork GNSS-SDR from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--geniuss .btn--x-large}
+   [<i class="fab fa-github fa-lg"></i> Fork GNSS-SDR from GitHub](https://github.com/gnss-sdr/gnss-sdr/fork){: .btn .btn--geniuss .btn--x-large}
    {: style="text-align: center;"}
 
 3. Then, clone your forked repository into your local machine, checkout the `next` branch, branch off from it, and start working on the source code.
@@ -55,7 +55,7 @@ This website itself lives in a [GitHub repository](https://github.com/gnss-sdr/g
 
  * [Forking this web](https://github.com/gnss-sdr/geniuss-place/fork), cloning the reporitory, branching off from the `master` branch, working on the changes in your own repository, and making a pull request.
 
-   [<i class="fa fa-github fa-lg"></i> Fork this website from GitHub](https://github.com/gnss-sdr/geniuss-place/fork){: .btn .btn--geniuss .btn--x-large}
+   [<i class="fab fa-github fa-lg"></i> Fork this website from GitHub](https://github.com/gnss-sdr/geniuss-place/fork){: .btn .btn--geniuss .btn--x-large}
    {: style="text-align: center;"}
 
 
@@ -65,19 +65,19 @@ The required software can be installed through [RubyGems](https://rubygems.org/)
 
 Install [Jekyll](https://jekyllrb.com/):
 
-```
+```bash
 $ sudo gem install jekyll
 ```
 
 More information at [Jekyll's installation page](https://jekyllrb.com/docs/installation/). Then, install [Bundler](http://bundler.io/), a tool for managing the required dependencies:
 
-```
+```bash
 $ sudo gem install bundler
 ```
 
 Clone your forked repository of this website and install the required dependencies:
 
-```
+```bash
 $ git clone https://github.com/YOUR_USERNAME/geniuss-place/
 $ cd geniuss-place
 $ bundler install
@@ -85,7 +85,7 @@ $ bundler install
 
 After all gems are installed, the following command will deploy the website and run a local server at http://127.0.0.1:4000/
 
-```
+```bash
 $ bundle exec jekyll serve -w --config _config.yml,_config.dev.yml
 ```
 
@@ -110,9 +110,11 @@ Just point your browser to that [local direction](http://127.0.0.1:4000/) in ord
 
 {% capture protip %}
 **Pro Tip**: if you want to modify JavaScript (under ```assets/js```), you will need to install [Node.js](https://nodejs.org/en/), ```cd```to the root of your project, and run ```$ npm install``` to get all the dependencies. If all gone well, then running ```npm run build:js``` will compress/concatenate ```_main.js``` and all plugin scripts into ```main.min.js```. Thus, upon a change on JavaScript content, run:
-```
+
+```bash
 $ npm run build:js
 ```
+
 in order to update the ```main.js``` script and implement the changes on the website.
 {% endcapture %}
 

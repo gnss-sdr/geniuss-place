@@ -184,7 +184,10 @@ body:hover .visually-hidden button {
 /* social icons*/
 
 .social-icons {
-  .fa {
+  .fas,
+  .fab,
+  .far,
+  .fal {
     color: $text-color;
   }
 
@@ -193,17 +196,18 @@ body:hover .visually-hidden button {
     color: $behance-color;
   }
 
-  .fa-bitbucket,
-  .fa-bitbucket-square {
+  .fa-bitbucket {
     color: $bitbucket-color;
   }
 
-  .fa-dribbble {
+  .fa-dribbble,
+  .fa-dribble-square {
     color: $dribbble-color;
   }
 
   .fa-facebook,
-  .fa-facebook-square {
+  .fa-facebook-square,
+  .fa-facebook-f {
     color: $facebook-color;
   }
 
@@ -222,7 +226,8 @@ body:hover .visually-hidden button {
   }
 
   .fa-google-plus,
-  .fa-google-plus-square {
+  .fa-google-plus-square,
+  .fa-google-plus-g {
     color: $google-plus-color;
   }
 
@@ -236,7 +241,7 @@ body:hover .visually-hidden button {
   }
 
   .fa-linkedin,
-  .fa-linkedin-square {
+  .fa-linkedin-in {
     color: $linkedin-color;
   }
 
@@ -271,7 +276,8 @@ body:hover .visually-hidden button {
   }
 
   .fa-vimeo,
-  .fa-vimeo-square {
+  .fa-vimeo-square,
+  .fa-vimeo-v {
     color: $vimeo-color;
   }
 
@@ -279,9 +285,7 @@ body:hover .visually-hidden button {
     color: $vine-color;
   }
 
-  .fa-youtube,
-  .fa-youtube-square,
-  .fa-youtube-play {
+  .fa-youtube {
     color: $youtube-color;
   }
 

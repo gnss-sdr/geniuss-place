@@ -27,23 +27,30 @@ The ```cmake``` executable is the CMake command-line interface. When ```cmake```
 
 Once all the required dependencies are installed in your system, the default building process is:
 
-    $ cd gnss-sdr/build
-    $ cmake ..
-    $ make
-    $ sudo make install
+```bash
+$ cd gnss-sdr/build
+$ cmake ..
+$ make
+$ sudo make install
+```
 
 CMake's defaults and GNSS-SDR project configuration settings can be overridden on the command line with the -D option, with the following syntax:
 
-    cmake -D<variable_name>=<value>
+```bash
+cmake -D<variable_name>=<value>
+```
 
 Thus, if you want to set the variable named ```CMAKE_BUILD_TYPE``` to the ```Debug``` value, you can write in your command line:
 
-    $ cmake -DCMAKE_BUILD_TYPE=Debug ..
+```bash
+$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+```
 
 You can specify any number of variables:
 
-    $ cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_OSMOSDR=ON ..
-
+```bash
+$ cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_OSMOSDR=ON ..
+```
 
 This page documents the available GNSS-SDR configuration options at building time.
 
@@ -72,7 +79,9 @@ The building system honors the usual [CMake variables](https://cmake.org/cmake/h
 
 In addition, if the ```DESTDIR``` environment variable is set, it will be prefixed to ```CMAKE_INSTALL_PREFIX``` in places where it is used to access files during installation. This allows the files to be installed in an intermediate directory tree without changing the final installation path name. For instance:
 
-     $ make DESTDIR=/home/carles install
+```bash
+$ make DESTDIR=/home/carles install
+```
 
 will install the software using the installation prefix, *e.g.*  ```/usr/local``` prepended with the ```DESTDIR``` value which
 finally gives ```/home/carles/usr/local```, so binaries will be under ```/home/carles/usr/local/bin```.

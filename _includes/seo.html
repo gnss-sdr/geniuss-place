@@ -126,7 +126,7 @@
     {
       "@context": "http://schema.org",
       "@type": "Organization",
-      "name" : "{{ site.social.name | default: site.name }}",
+      "name" : {{ site.social.name | default: site.name | jsonify }},
       "url": {{ seo_url | jsonify }},
       "logo": {{ site.og_image | absolute_url | jsonify }},
       "sameAs" : {{ site.social.links | jsonify }}
