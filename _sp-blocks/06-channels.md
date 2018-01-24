@@ -5,7 +5,7 @@ excerpt: "Documentation for the Channel block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-01-16T15:54:02-04:00
+last_modified_at: 2018-01-24T15:54:02-04:00
 ---
 
 
@@ -17,6 +17,7 @@ Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/
 |--------------
 |  ```1C```      | GPS L1 C/A | $$ 1575.42 $$ MHz |
 |  ```1B```      | Galileo E1 B | $$ 1575.42 $$ MHz |
+|  <span style="color: DarkOrange">```1G```</span>      | <span style="color: DarkOrange">Glonass L1 C/A$$ ^{(*)} $$</span> | $$ 1575.42 $$ MHz |
 |  ```2S```      | GPS L2 L2CM | $$ 1227.60 $$ MHz |
 |  ```5X```      | Galileo E5a (I+Q) | $$ 1176.45 $$ MHz |
 |  <span style="color: DarkOrange">```L5```</span>      | <span style="color: DarkOrange">GPS L5$$ ^{(*)} $$</span> | $$ 1176.45 $$ MHz |
@@ -24,7 +25,7 @@ Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/
 
 <span style="color: DarkOrange">$$ ^{(*)} $$: only available on the `next` branch.</span>
 
-Then, five parameters can be set: ```Channels_1C.count```, ```Channels_2S.count```, ```Channels_1B.count```, ```Channels_5X.count``` and ```Channels_L5.count```, all of them defaulting to $$ 0 $$.
+Then, six parameters can be set: ```Channels_1C.count```, ```Channels_1B.count```, ```Channels_1G.count```, ```Channels_2S.count```, ```Channels_5X.count``` and ```Channels_L5.count```, all of them defaulting to $$ 0 $$.
 
 In addition, the GNSS-SDR flow graph allows to set the number of channels that will be executing signal acquisition (which is known to require a high computational load) concurrently. This is controlled by the parameter `Channels.in_acquisition`, which defaults to the total number of channels (all of them performing acquisition on different satellite signals at the same time, if required). When working with real-time configurations, it is a good practice to set this parameter  to 1 (that is, only one channel performing acquisition at a given time) in order to alleviate the computational burden.
 
@@ -35,8 +36,8 @@ _Channels_ accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `Channels_1C.count` |  Number of channels targeting GPS L1 C/A signals. It defaults to $$ 0 $$.| Optional |
+| <span style="color: DarkOrange">`Channels_1G.count`</span> |  <span style="color: DarkOrange">Number of channels targeting Glonass L1 C/A signals. It defaults to $$ 0 $$. ONLY AVAILABLE ON THE `next` BRANCH.</span> | <span style="color: DarkOrange">Optional</span> |
 | `Channels_2S.count` |  Number of channels targeting GPS L2 L2CM signals. It defaults to $$ 0 $$.| Optional |
-| `Channels_1B.count` |  Number of channels targeting Galileo E1 B  signals. It defaults to $$ 0 $$.| Optional |
 | `Channels_5X.count` |  Number of channels targeting Galileo E5a (I+Q) signals. It defaults to $$ 0 $$. | Optional |
 | <span style="color: DarkOrange">`Channels_L5.count`</span> |  <span style="color: DarkOrange">Number of channels targeting GPS L5 signals. It defaults to $$ 0 $$. ONLY AVAILABLE ON THE `next` BRANCH.</span> | <span style="color: DarkOrange">Optional</span> |
 | `Channel.signal` |  Assign all channels to a specific signal [`1C`, `1B`, `2S`, `5X`, `L5`]. Only required in single-system receivers. | Optional |
