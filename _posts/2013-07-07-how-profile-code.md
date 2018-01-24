@@ -20,8 +20,8 @@ A cool feature of these tools is that they are non code-intrusive, in the sense 
 
 In order to build GNSS-SDR with the appropriate compiler flags required by gperftools, configure it with the flag `ENABLE_GPERFTOOLS` enabled:
 
-```
-cmake -DENABLE_GPERFTOOLS=ON .. && make && sudo make install
+```bash
+$ cmake -DENABLE_GPERFTOOLS=ON .. && make && sudo make install
 ```
 
 
@@ -29,19 +29,19 @@ cmake -DENABLE_GPERFTOOLS=ON .. && make && sudo make install
 
 A profiler needs to record what functions were invoked and how many times it took to execute a function. The simplest way of obtaining this data is sampling. When using this method, a profiler interrupts program execution at specified intervals and logs the state of program's call stack.  Thus, when we define the `CPUPROFILE` variable and run the program, the profiling library will periodically pause the program, take a peak at its stack to see what functions are on the stack, making a note of this, and then returning to the program. This Monte-Carlo style analysis provides with an estimate of where the code is spending its time, without adding the overhead of forcing every function to track its own time usage.
 
-```
+```bash
 $ CPUPROFILE=/tmp/gnss-sdr-cpu.prof /path/to/gnss-sdr
 ```
 
 And a graphical output of the analysis can be invoked by:
 
-```
+```bash
 $ pprof --gv /path/to/gnss-sdr /tmp/gnss-sdr-cpu.prof
 ```
 
 You can display a larger fraction of nodes (procedures) and edges (caller to callee relationships) by doing:
 
-```
+```bash
 $ CPUPROFILE_FREQUENCY=100000000000 CPUPROFILE=/tmp/gnss-sdr-cpu.prof /path/to/gnss-sdr
 $ pprof --gv --nodefraction=0.000000000001 --edgefraction=0.000000000001 ./gnss-sdr /tmp/gnss-sdr-cpu.prof
 ```
@@ -56,7 +56,7 @@ The heap is extremely important because it is available for use by applications 
 
 However, shoddy implementations can lead to memory leaks, that is, the program could consume memory but be unable to release it back to the operating system. In object-oriented programming terminology, a memory leak happens when an object is stored in memory but cannot be accessed by the running code. This can diminish the performance of the computer by reducing the amount of available memory. Eventually, in the worst case, too much of the available memory may become allocated and all or part of the system or device stops working correctly, the application fails, or the system slows down unacceptably due to thrashing, the situation found when large amounts of computer resources are used to do a minimal amount of work, with the system in a continual state of resource contention. To conclude: memory leaks are something to avoid.
 
-```
+```bash
 $ HEAPCHECK=1 /path/to/gnss-sdr
 ```
 
@@ -75,7 +75,7 @@ The heap profiler is used to explore how C++ programs manage memory. This facili
 
 The profiling system instruments all allocations and frees. It keeps track of various pieces of information per allocation site. An allocation site is defined as the active stack trace at the call to `malloc`, `calloc`, `realloc`, or `new`. Note that since the heap-checker uses the heap-profiling framework internally, it is not possible to run both the heap-checker and heap profiler at the same time.
 
-```
+```bash
 $ HEAPPROFILE=/tmp/gnss-sdr.heap.prof <path/to/gnss-sdr> [binary args]
 $ pprof <path/to/binary> /tmp/gnss-sdr.heap.prof.0045.heap # run 'ls' to see options
 $ pprof --gv <path/to/binary> /tmp/gnss-sdr.heap.prof.0045.heap
@@ -87,7 +87,7 @@ Please see more details on the [heap profiler options](http://htmlpreview.github
 
 Script for profiling (run this as root from the same directory where the executable gnss-sdr is located):
 
-```
+```bash
 #!/bin/bash
 # This script, due to the usage of "nice", must be run as root.
 if [ $EUID -ne 0 ];
@@ -103,19 +103,19 @@ nice -n -20 gnss-sdr
 
 Save it in the same directory where the executable gnss-sdr is (for instance, name it profiler), make the script executable:
 
-```
+```bash
 $ chmod a+x profiler
 ```
 
 and launch the executable with CPU and heap profiling activated:
 
-```
+```bash
 $ sudo ./profiler
 ```
 
 Then, the command line for displaying the results:
 
-```
+```bash
 $ pprof --gv --nodefraction=0.000000000001 --edgefraction=0.000000000001 ./gnss-sdr /tmp/gnss-sdr-cpu.prof
 $ pprof --gv ./gnss-sdr /tmp/prof.gnss-sdr.0045.heap
 ```
@@ -131,19 +131,19 @@ When you use Callgrind to profile an application, your application is transforme
 
 First of all, you need to install Callgrind and KCachegrind. In Ubuntu, you can install everything by doing
 
-```
+```bash
 $ sudo apt-get install valgrind kcachegrind
 ```
 
 in a terminal. To profile an application with Callgrind, you just have to prepend the Callgrind invocation in front of your normal program invocation:
 
-```
+```bash
 $ valgrind --tool=callgrind ./gnss-sdr
 ```
 
 The profiling result will be stored in a `callgrind.out.XXX` text file where `XXX` will be the process identifier. The content is not human-readable, but here is where a profile data visualization tool as KCacheGrind comes into play. It can be launched from the command line, by doing
 
-```
+```bash
 $ kcachegrind &
 ```
 

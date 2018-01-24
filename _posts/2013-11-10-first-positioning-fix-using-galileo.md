@@ -37,7 +37,7 @@ The hardware setup was composed of a GNSS active antenna located at the rooftop 
 
 If you wish to try, obtain an executable built from the latest revision of the source code repository, go to the install folder, and type:
 
-```
+```bash
 $ gnss-sdr --config_file=../conf/gnss-sdr_Galileo_E1.conf
 ```
 
