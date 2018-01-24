@@ -629,10 +629,10 @@ Example:
 
 ```ini
 ;######### ACQUISITION GLOBAL CONFIG ############
-Acquisition_1C.implementation=GLONASS_L1_CA_PCPS_Acquisition
-Acquisition_1C.doppler_max=8000
-Acquisition_1C.doppler_step=250
-Acquisition_1C.pfa=0.0001
+Acquisition_1G.implementation=GLONASS_L1_CA_PCPS_Acquisition
+Acquisition_1G.doppler_max=8000
+Acquisition_1G.doppler_step=250
+Acquisition_1G.pfa=0.0001
 ```
 
 
