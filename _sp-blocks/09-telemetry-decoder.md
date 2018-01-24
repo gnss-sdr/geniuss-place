@@ -12,9 +12,7 @@ last_modified_at: 2018-01-16T15:54:02-04:00
 The role of a _Telemetry Decoder_ block is to obtain the data bits from the navigation message broadcast by GNSS satellites.
 {: .notice--info}
 
-## GPS navigation message
-
-
+## GPS NAV navigation message
 
 ### Implementation: `GPS_L1_CA_Telemetry_Decoder`
 
@@ -67,6 +65,8 @@ Example:
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1C.dump=false
 ```
+
+## GPS CNAV navigation message
 
 ### Implementation: `GPS_L2C_Telemetry_Decoder`
 
@@ -153,7 +153,7 @@ TelemetryDecoder_L5.implementation=GPS_L5_Telemetry_Decoder
 TelemetryDecoder_L5.dump=true
 ```
 
-## Galileo navigation message
+## Galileo I/NAV navigation message
 
 ### Implementation: `Galileo_E1B_Telemetry_Decoder`
 
@@ -211,6 +211,7 @@ This implementation accepts the following parameters:
   _Telemetry Decoder implementation:_ **`Galileo_E1B_Telemetry_Decoder`**.
   {: style="text-align: center;"}
 
+## Galileo F/NAV navigation message
 
 ### Implementation: `Galileo_E5a_Telemetry_Decoder`
 
@@ -247,7 +248,7 @@ TelemetryDecoder_5X.implementation=Galileo_E5a_Telemetry_Decoder
 TelemetryDecoder_5X.dump=false
 ```
 
-## Glonass navigation message
+## Glonass GNAV navigation message
 
 ### Implementation: `GLONASS_L1_CA_Telemetry_Decoder`
 
