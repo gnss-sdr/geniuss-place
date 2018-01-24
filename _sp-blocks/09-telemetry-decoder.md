@@ -239,6 +239,13 @@ This implementation accepts the following parameters:
   _Telemetry Decoder implementation:_ **`Galileo_E5a_Telemetry_Decoder`**.
   {: style="text-align: center;"}
 
+Example:
+
+```ini
+;######### TELEMETRY DECODER GALILEO E5a CONFIG ############
+TelemetryDecoder_5X.implementation=Galileo_E5a_Telemetry_Decoder
+TelemetryDecoder_5X.dump=false
+```
 
 ## Glonass navigation message
 
@@ -260,3 +267,12 @@ This implementation accepts the following parameters:
 
 _Telemetry Decoder implementation:_ **`GLONASS_L1_CA_Telemetry_Decoder`**.
 {: style="text-align: center;"}
+
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER GLONASS L1 C/A CONFIG ############
+TelemetryDecoder_1G.implementation=GLONASS_L1_CA_Telemetry_Decoder
+TelemetryDecoder_1G.dump=false
+```
