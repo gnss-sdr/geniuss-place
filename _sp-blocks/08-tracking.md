@@ -5,7 +5,7 @@ excerpt: "Documentation for the Tracking block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-01-17T15:54:02-04:00
+last_modified_at: 2018-01-27T15:54:02-04:00
 ---
 
 
@@ -175,92 +175,6 @@ Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking_GPU
 Tracking_1C.pll_bw_hz=40.0;
 Tracking_1C.dll_bw_hz=4.0;
 ```
-
-## GPS L2CM signal tracking
-
-### Implementation: `GPS_L2_M_DLL_PLL_Tracking`
-
-This implementation accepts the following parameters:
-
-|----------
-|  **Global Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-|--------------
-
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `GPS_L2_M_DLL_PLL_Tracking` | Mandatory |
-| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
-|--------------
-
-  _Tracking implementation:_ **`GPS_L2_M_DLL_PLL_Tracking`**.
-  {: style="text-align: center;"}
-
-
-Example:
-
-```ini
-;######### TRACKING GLOBAL CONFIG ############
-Tracking_2S.implementation=GPS_L2_M_DLL_PLL_Tracking
-Tracking_2S.pll_bw_hz=40.0;
-Tracking_2S.dll_bw_hz=4.0;
-Tracking_2S.early_late_space_chips=0.4
-```
-
-## GPS L5 signal tracking
-
-### Implementation: `GPS_L5i_DLL_PLL_Tracking`
-
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
-This implementation accepts the following parameters:
-
-|----------
-|  **Global Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-|--------------
-
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `GPS_L5i_DLL_PLL_Tracking` | Mandatory |
-| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
-|--------------
-
-  _Tracking implementation:_ **`GPS_L5i_DLL_PLL_Tracking`**.
-  {: style="text-align: center;"}
-
-Example:
-
-```ini
-;######### TRACKING GLOBAL CONFIG ############
-Tracking_L5.implementation=GPS_L5i_DLL_PLL_Tracking
-Tracking_L5.pll_bw_hz=30.0
-Tracking_L5.dll_bw_hz=4.0
-Tracking_L5.early_late_space_chips=0.5
-```
-
 
 ## Galileo E1 signal tracking
 
@@ -462,67 +376,6 @@ Tracking_1B.pll_bw_hz=15.0;
 Tracking_1B.dll_bw_hz=2.0;
 ```
 
-## Galileo E5a signal tracking
-
-### Implementation: `Galileo_E5a_DLL_PLL_Tracking`
-The AltBOC modulation in the Galileo E5 band allows the approximation to two sub-bands, referred to as E5a and E5b, QPSK-modulated and centered at $$ f_{\text{Gal E5a}}=1176.450 $$ MHz and $$ f_{Gal E5b}=1207.140 $$ MHz, respectively.
-
-The baseband signal at E5a can then be approximated by:
-
-$$ \begin{equation} e_{E5a}(t) = e_{E5aI}(t)+je_{E5aQ}(t)~, \end{equation} $$
-
-where the signal components are defined as:
-
-$$ \begin{equation} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation} $$
-
-$$ \begin{equation} e_{E5aQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation}$$
-
-where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s.
-
-This implementation accepts the following parameters:
-
-|----------
-|  **Global Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `GNSS-SDR.internal_fs_hz` | Input sample rate to the processing channels, in samples per second.  | Mandatory |
-|--------------
-
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `Galileo_E5a_DLL_PLL_Tracking` | Mandatory |
-| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
-| `pll_bw_init_hz` |  Bandwidth of the PLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
-| `dll_bw_init_hz` |  Bandwidth of the DLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 5 Hz. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
-| `ti_ms` | Correlation length after the secondary code lock, in ms. It defaults to 3 ms. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
-|--------------
-
-  _Tracking implementation:_ **`Galileo_E5a_DLL_PLL_Tracking`**.
-  {: style="text-align: center;"}
-
-Example:
-
-```ini
-;######### TRACKING GLOBAL CONFIG ############
-Tracking_5X.implementation=Galileo_E5a_DLL_PLL_Tracking
-Tracking_5X.item_type=gr_complex
-Tracking_5X.pll_bw_hz_init=25.0
-Tracking_5X.dll_bw_hz_init=4.0
-Tracking_5X.ti_ms=1
-Tracking_5X.pll_bw_hz=10.0
-Tracking_5X.dll_bw_hz=4.0
-Tracking_5X.early_late_space_chips=0.5
-```
-
 
 ## Glonass L1 C/A signal tracking
 
@@ -614,6 +467,158 @@ Tracking_1G.item_type=cshort
 Tracking_1G.pll_bw_hz=40.0;
 Tracking_1G.dll_bw_hz=4.0;
 ```
+
+
+## GPS L2CM signal tracking
+
+### Implementation: `GPS_L2_M_DLL_PLL_Tracking`
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GPS_L2_M_DLL_PLL_Tracking` | Mandatory |
+| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
+|--------------
+
+  _Tracking implementation:_ **`GPS_L2_M_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_2S.implementation=GPS_L2_M_DLL_PLL_Tracking
+Tracking_2S.pll_bw_hz=40.0;
+Tracking_2S.dll_bw_hz=4.0;
+Tracking_2S.early_late_space_chips=0.4
+```
+
+## GPS L5 signal tracking
+
+### Implementation: `GPS_L5i_DLL_PLL_Tracking`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GPS_L5i_DLL_PLL_Tracking` | Mandatory |
+| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
+|--------------
+
+  _Tracking implementation:_ **`GPS_L5i_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_L5.implementation=GPS_L5i_DLL_PLL_Tracking
+Tracking_L5.pll_bw_hz=30.0
+Tracking_L5.dll_bw_hz=4.0
+Tracking_L5.early_late_space_chips=0.5
+```
+
+
+
+
+## Galileo E5a signal tracking
+
+### Implementation: `Galileo_E5a_DLL_PLL_Tracking`
+The AltBOC modulation in the Galileo E5 band allows the approximation to two sub-bands, referred to as E5a and E5b, QPSK-modulated and centered at $$ f_{\text{Gal E5a}}=1176.450 $$ MHz and $$ f_{Gal E5b}=1207.140 $$ MHz, respectively.
+
+The baseband signal at E5a can then be approximated by:
+
+$$ \begin{equation} e_{E5a}(t) = e_{E5aI}(t)+je_{E5aQ}(t)~, \end{equation} $$
+
+where the signal components are defined as:
+
+$$ \begin{equation} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation} $$
+
+$$ \begin{equation} e_{E5aQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation}$$
+
+where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` | Input sample rate to the processing channels, in samples per second.  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Galileo_E5a_DLL_PLL_Tracking` | Mandatory |
+| `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_init_hz` |  Bandwidth of the PLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
+| `dll_bw_init_hz` |  Bandwidth of the DLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 5 Hz. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
+| `ti_ms` | Correlation length after the secondary code lock, in ms. It defaults to 3 ms. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
+|--------------
+
+  _Tracking implementation:_ **`Galileo_E5a_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_5X.implementation=Galileo_E5a_DLL_PLL_Tracking
+Tracking_5X.item_type=gr_complex
+Tracking_5X.pll_bw_hz_init=25.0
+Tracking_5X.dll_bw_hz_init=4.0
+Tracking_5X.ti_ms=1
+Tracking_5X.pll_bw_hz=10.0
+Tracking_5X.dll_bw_hz=4.0
+Tracking_5X.early_late_space_chips=0.5
+```
+
+
 
 -------
 
