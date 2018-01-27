@@ -60,7 +60,7 @@ Found a typo in this website? Interested in adding documentation of new a featur
 
 ## License
 
-&copy; Carles Fern&aacute;ndez-Prades, 2016 - 2017
+&copy; Carles Fern&aacute;ndez-Prades, 2016 - 2018
 
 This work is released under the Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)) license.
 
@@ -80,8 +80,8 @@ The licensor cannot revoke these freedoms as long as you follow the license term
 **No additional restrictions**. You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 
 This work incorporates [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes),
-Copyright &copy; 2017 Michael Rose.
-With modifications: &copy; 2017 Carles Fern&aacute;ndez-Prades.
+Copyright &copy; 2013-2018 Michael Rose and contributors.
+With modifications: &copy; 2016-2018 Carles Fern&aacute;ndez-Prades.
 Minimal Mistakes is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates icons from [The Noun Project](https://thenounproject.com/).
