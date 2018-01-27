@@ -12,9 +12,7 @@ last_modified_at: 2018-01-16T15:54:02-04:00
 The role of a _Telemetry Decoder_ block is to obtain the data bits from the navigation message broadcast by GNSS satellites.
 {: .notice--info}
 
-## GPS navigation message
-
-
+## GPS NAV navigation message
 
 ### Implementation: `GPS_L1_CA_Telemetry_Decoder`
 
@@ -67,6 +65,8 @@ Example:
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1C.dump=false
 ```
+
+## GPS CNAV navigation message
 
 ### Implementation: `GPS_L2C_Telemetry_Decoder`
 
@@ -153,7 +153,7 @@ TelemetryDecoder_L5.implementation=GPS_L5_Telemetry_Decoder
 TelemetryDecoder_L5.dump=true
 ```
 
-## Galileo navigation message
+## Galileo I/NAV navigation message
 
 ### Implementation: `Galileo_E1B_Telemetry_Decoder`
 
@@ -211,6 +211,7 @@ This implementation accepts the following parameters:
   _Telemetry Decoder implementation:_ **`Galileo_E1B_Telemetry_Decoder`**.
   {: style="text-align: center;"}
 
+## Galileo F/NAV navigation message
 
 ### Implementation: `Galileo_E5a_Telemetry_Decoder`
 
@@ -238,3 +239,41 @@ This implementation accepts the following parameters:
 
   _Telemetry Decoder implementation:_ **`Galileo_E5a_Telemetry_Decoder`**.
   {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER GALILEO E5a CONFIG ############
+TelemetryDecoder_5X.implementation=Galileo_E5a_Telemetry_Decoder
+TelemetryDecoder_5X.dump=false
+```
+
+## Glonass GNAV navigation message
+
+### Implementation: `GLONASS_L1_CA_Telemetry_Decoder`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GLONASS_L1_CA_Telemetry_Decoder` | Mandatory |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+|--------------
+
+_Telemetry Decoder implementation:_ **`GLONASS_L1_CA_Telemetry_Decoder`**.
+{: style="text-align: center;"}
+
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER GLONASS L1 C/A CONFIG ############
+TelemetryDecoder_1G.implementation=GLONASS_L1_CA_Telemetry_Decoder
+TelemetryDecoder_1G.dump=false
+```
