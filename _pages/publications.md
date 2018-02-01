@@ -21,7 +21,7 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
     <li ><p>
     J.&nbsp;T.&nbsp;Curran, C.&nbsp;Fern&aacute;ndez-Prades, A.&nbsp;Morrison and M.&nbsp;Bavaro
     <br><b>Innovation: The continued evolution of the GNSS software-defined radio</b><br>
-<i>GPS World</i>, Vol. 29, No. 1, Jan. 2018.
+<i>GPS World</i>, Vol. 29, No. 1, pp. 43-49, Jan. 2018.
     <br />
     <a href="javascript:toggleBibtex('Curran18')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="http://gpsworld.com/innovation-the-continued-evolution-of-the-gnss-software-defined-radio/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
