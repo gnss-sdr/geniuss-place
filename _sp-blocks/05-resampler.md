@@ -60,6 +60,9 @@ Resampler.item_type=cshort
 
 ### Implementation: `Fractional_Resampler`
 
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
 This implementation performs a resampling of the incoming signal with a MMSE filtering stage. This resampling block is suitable in cases when the ratio between the incoming sampling frequency and the outcoming one is not a rational number. A typical use case is when the sampling frequency is an integer multiple of the chip frequency and artifacts appear in the tracking blocks. In that case, it is desirable to slightly decrease the sampling ratio in order to avoid the artifacts and, also, to maintain a similar sampling frequency (for instance, downsampling from 30.69 to 30 Msps).
 
 It accepts the following parameters:
