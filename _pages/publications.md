@@ -7,14 +7,39 @@ header:
   teaser: "https://scontent-mad1-1.cdninstagram.com/t51.2885-15/e15/11190810_1446633488967530_1154530547_n.jpg"
 sidebar:
     nav: "about"
-last_modified_at: 2017-11-30T18:38:52+00:00
+last_modified_at: 2018-01-31T18:38:52+00:00
 redirect_from:
   - /documentation/publications
 ---
 
 List of academic papers in which GNSS-SDR has been referenced, described or used for research purposes. If you are aware of other publications not listed here, please [let us know]({{ "/team/" | absolute_url }}).
 
-<h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals</h3>
+<h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
+
+<ul class="biblist">
+    <!-- Item: Curran18 -->
+    <li ><p>
+    J.&nbsp;T.&nbsp;Curran, C.&nbsp;Fern&aacute;ndez-Prades, A.&nbsp;Morrison and M.&nbsp;Bavaro
+    <br><b>Innovation: The continued evolution of the GNSS software-defined radio</b><br>
+<i>GPS World</i>, Vol. 29, No. 1, pp. 43-49, Jan. 2018.
+    <br />
+    <a href="javascript:toggleBibtex('Curran18')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="http://gpsworld.com/innovation-the-continued-evolution-of-the-gnss-software-defined-radio/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Curran18" class="bibtex noshow">
+    <pre>@article{ Curran18,
+author  = {J.~T.~Curran, C.~Fern\'{a}ndez-Prades, A.~Morrison and M.~Bavaro},
+title   = {Innovation: {T}he continued evolution of the {GNSS} software-defined radio},
+journal = {GPS World},
+year    = {2018},
+volume  = {29},
+number  = {1},
+month   = {Jan.},
+pages   = {43--49}
+}</pre>
+    </div>
+    </li>
+</ul>
 
 
 <ul class="biblist">
@@ -98,6 +123,8 @@ note     = { {DOI}: 10.1186/1687-6180-2013-143}
     </div>
     </li>
 </ul>
+
+
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in International Conferences</h3>
 
