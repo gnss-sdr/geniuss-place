@@ -60,7 +60,7 @@ Resampler.item_type=cshort
 
 ### Implementation: `Fractional_Resampler`
 
-This implementation performs a resampling of the incoming signal with a MMSE filtering stage. This resampling block is suitable in cases when the ratio between the incoming sampling frequency and the outcoming one is not a rational number. A typical use case is when the sampling frequency is an integer multiple of the chip frequency and artifacts appear in the tracking blocks. In that case, it is desirable to slightly decrease the sampling ratio in order to avoid the artifacts and, also, to maintain a similar sampling frequency (for instance, downsampling from 30.69 to 25 Msps).
+This implementation performs a resampling of the incoming signal with a MMSE filtering stage. This resampling block is suitable in cases when the ratio between the incoming sampling frequency and the outcoming one is not a rational number. A typical use case is when the sampling frequency is an integer multiple of the chip frequency and artifacts appear in the tracking blocks. In that case, it is desirable to slightly decrease the sampling ratio in order to avoid the artifacts and, also, to maintain a similar sampling frequency (for instance, downsampling from 30.69 to 30 Msps).
 
 It accepts the following parameters:
 
@@ -84,7 +84,7 @@ Examples:
 ;######### RESAMPLER CONFIG ############
 Resampler.implementation=Fractional_Resampler
 Resampler.sample_freq_in=30690000
-Resampler.sample_freq_out=25000000
+Resampler.sample_freq_out=30000000
 Resampler.item_type=gr_complex
 ```
 
