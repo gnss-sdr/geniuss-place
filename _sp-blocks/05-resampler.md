@@ -5,7 +5,7 @@ excerpt: "Documentation for the Resampler block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2018-02-01T15:54:02-04:00
 ---
 
 
@@ -16,36 +16,6 @@ the $$ N $$ parallel processing channels.
 {: .notice--info}
 
 At the _Resampler_’s output, only complex types are allowed: `cbyte`, `cshort`, or `gr_complex`. This block does not perform any data type conversion.
-
-### Implementation: `Fractional_Resampler`
-
-This implementation performs a resampling of the incoming signal with a MMSE filtering stage. This resampling block is suitable in cases when the ratio between the incoming sampling frequency and the outcoming one is not a rational number. A typical use case is when the sampling frequency is an integer multiple of the chip frequency and artifacts appear in the tracking blocks. In that case, it is desirable to slightly decrease the sampling ratio in order to avoid the artifacts and, also, maintain a similar sampling frequency (for instance, downsampling from 30.69 to 25 Msps).
-
-It accepts the following parameters:
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `Fractional_Resampler` | Mandatory |
-| `sample_freq_in` |  Sample rate at the block input, in samples per second. | Mandatory |
-| `sample_freq_out` |  Sample rate at the block output, in samples per second. | Mandatory |
-| `item_type` |  [`gr_complex`]: Data type to be resampled. This implementation only accepts samples of `gr_complex` type. | Optional |
-|----------
-
-  _Resampler implementation:_ **`Fractional_Resampler`**.
-  {: style="text-align: center;"}
-
-
-Examples:
-
-```ini
-;######### RESAMPLER CONFIG ############
-Resampler.implementation=Fractional_Resampler
-Resampler.sample_freq_in=30690000
-Resampler.sample_freq_out=25000000
-Resampler.item_type=gr_complex
-```
 
 
 ### Implementation: `Direct_Resampler`
@@ -86,6 +56,39 @@ Resampler.sample_freq_in=8000000
 Resampler.sample_freq_out=2500000
 Resampler.item_type=cshort
 ```
+
+
+### Implementation: `Fractional_Resampler`
+
+This implementation performs a resampling of the incoming signal with a MMSE filtering stage. This resampling block is suitable in cases when the ratio between the incoming sampling frequency and the outcoming one is not a rational number. A typical use case is when the sampling frequency is an integer multiple of the chip frequency and artifacts appear in the tracking blocks. In that case, it is desirable to slightly decrease the sampling ratio in order to avoid the artifacts and, also, to maintain a similar sampling frequency (for instance, downsampling from 30.69 to 25 Msps).
+
+It accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Fractional_Resampler` | Mandatory |
+| `sample_freq_in` |  Sample rate at the block input, in samples per second. | Mandatory |
+| `sample_freq_out` |  Sample rate at the block output, in samples per second. | Mandatory |
+| `item_type` |  [`gr_complex`]: Data type to be resampled. This implementation only accepts samples of `gr_complex` type. | Optional |
+|----------
+
+  _Resampler implementation:_ **`Fractional_Resampler`**.
+  {: style="text-align: center;"}
+
+
+Examples:
+
+```ini
+;######### RESAMPLER CONFIG ############
+Resampler.implementation=Fractional_Resampler
+Resampler.sample_freq_in=30690000
+Resampler.sample_freq_out=25000000
+Resampler.item_type=gr_complex
+```
+
+
 
 ### Implementation: `Pass_Through`
 
