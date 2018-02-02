@@ -28,7 +28,7 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
     </p>
     <div id="bib_Curran18" class="bibtex noshow">
     <pre>@article{ Curran18,
-author  = {J.~T.~Curran and C.~Fern\'{a}ndez-Prades and A.~Morrison and M.~Bavaro},
+author  = {J.~T.~Curran and C.~{Fern\'{a}ndez--Prades} and A.~Morrison and M.~Bavaro},
 title   = {Innovation: {T}he continued evolution of the {GNSS} software-defined radio},
 journal = {GPS World},
 year    = {2018},
