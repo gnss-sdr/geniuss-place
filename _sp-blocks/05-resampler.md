@@ -58,7 +58,7 @@ Resampler.item_type=cshort
 ```
 
 
-### Implementation: `Fractional_Resampler`
+### Implementation: `Mmse_Resampler`
 
 **IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
 {: .notice--warning}
@@ -71,13 +71,13 @@ It accepts the following parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `implementation` | `Fractional_Resampler` | Mandatory |
+| `implementation` | `Mmse_Resampler` | Mandatory |
 | `sample_freq_in` |  Sample rate at the block input, in samples per second. | Mandatory |
 | `sample_freq_out` |  Sample rate at the block output, in samples per second. | Mandatory |
 | `item_type` |  [`gr_complex`]: Data type to be resampled. This implementation only accepts samples of `gr_complex` type. | Optional |
 |----------
 
-  _Resampler implementation:_ **`Fractional_Resampler`**.
+  _Resampler implementation:_ **`Mmse_Resampler`**.
   {: style="text-align: center;"}
 
 
@@ -85,7 +85,7 @@ Examples:
 
 ```ini
 ;######### RESAMPLER CONFIG ############
-Resampler.implementation=Fractional_Resampler
+Resampler.implementation=Mmse_Resampler
 Resampler.sample_freq_in=30690000
 Resampler.sample_freq_out=30000000
 Resampler.item_type=gr_complex
