@@ -5,7 +5,7 @@ excerpt: "Documentation for the Signal Source block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-01-31T15:54:02-04:00
+last_modified_at: 2018-02-05T15:54:02-04:00
 ---
 
 {% capture fig_img2 %}
@@ -549,6 +549,7 @@ This implementation accepts the following parameters:
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `item_type` | [`gr_complex`]: Set the output data type. Only  `gr_complex` is allowed in this version, so it is set by default. | Optional |
 | `osmosdr_args` | Pass arguments to the OsmoSDR driver.  | Optional |
+| <span style="color: DarkOrange">`antenna`</span> | <span style="color: DarkOrange">[`NONE`, `LNAL`, `LNAH`, `LNAW`]: Select the LimeSDR RX antenna. `LNAW` is recommended for GNSS applications. It defaults to _empty_.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
 | `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
