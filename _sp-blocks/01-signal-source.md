@@ -521,10 +521,10 @@ For instance, if `RF_channels` is set to `2`, then:
 
 [![OsmoSDR](http://sdr.osmocom.org/osmocom/osmocom_sdr.png){:height="250px" width="250x"}{: .align-right}](http://sdr.osmocom.org/trac/)
 [OsmoSDR](http://sdr.osmocom.org/trac/) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
-project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. It provides a driver for several front-ends, such as [RTL-based
-dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), etc.
+project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. The project also provides a software driver for several RF front-ends such as [RTL-based
+dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), [LimeSDR](https://myriadrf.org/projects/limesdr/), [etc](https://github.com/osmocom/gr-osmosdr/blob/master/README).
 
-If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
+If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need to install the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the GNSS-SDR building with the following flag:
 
 ```bash
 $ cmake -DENABLE_OSMOSDR=ON ../
