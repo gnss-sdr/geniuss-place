@@ -111,10 +111,12 @@ $ sudo apt-get install build-essential cmake git libboost-dev \
    libboost-thread-dev libboost-chrono-dev libboost-serialization-dev \
    libboost-program-options-dev libboost-test-dev liblog4cpp5-dev \
    libuhd-dev gnuradio-dev gr-osmosdr libblas-dev liblapack-dev \
-   libarmadillo-dev libgflags-dev libgoogle-glog-dev \
-   libgnutls-openssl-dev libgtest-dev libmatio-dev \
-   python-mako python-six
+   libarmadillo-dev libgflags-dev libgoogle-glog-dev libhdf5-dev \
+   libgnutls-openssl-dev libmatio-dev python-mako python-six \
+   googletest
 ```
+
+Please note that `googletest` was named `libgtest-dev` in distributions older than Debian 9 Stretch and Ubuntu 17.04 Zesty.
 
 **Note for Ubuntu 14.04 LTS users:**
 you will need to build from source and install GNU Radio manually, as explained below, since GNSS-SDR requires gnuradio-dev >= 3.7.3, and Ubuntu 14.04 came with 3.7.2. Install all the packages above BUT EXCEPT ```libuhd-dev```, ```gnuradio-dev``` and ```gr-osmosdr``` (and remove them if they are already installed in your machine), and install those dependencies using PyBOMBS, as explained below.
