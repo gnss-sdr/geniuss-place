@@ -5,7 +5,7 @@ excerpt: "Documentation for the Acquisition block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-01-27T15:54:02-04:00
+last_modified_at: 2018-02-07T15:54:02-04:00
 ---
 
 The role of an _Acquisition_ block is the detection of presence/absence
