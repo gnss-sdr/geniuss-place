@@ -73,7 +73,7 @@ This release has several improvements, addition of new features and bug fixes in
 
 ## Improvements in [Scalability]({{ "/design-forces/scalability/" | absolute_url }}):
 
- * Fixed bug in acquisition with rata rates higher than 16 Msps in 4ms code periods.
+ * Fixed bug in acquisition with data rates higher than 16 Msps in 4ms code periods.
 
 
 ## Improvements in [Testability]({{ "/design-forces/testability/" | absolute_url }}):
