@@ -360,7 +360,7 @@ $$ \begin{equation} e_{E6C}(t) = \sum_{m=-\infty}^{+\infty}C_{E6Cs}\Big[|m|_{100
 where $$ D_{\text{C/NAV}} $$ is the C/NAV navigation data stream, which is
 modulated with the encrypted ranging code $$ C_{E6B} $$ with chip period
 $$ T_{c,E6}=\frac{1}{5.115} $$ $$\mu $$s. Codes $$ C_{E6B} $$ and primary codes
-$$ C_{E6Cs} $$ and their respective lengths, $$ L_{E6B} $$ and $$ L_{E6C} $$, have
+$$ C_{E6Cp} $$ and their respective lengths, $$ L_{E6B} $$ and $$ L_{E6C} $$, have
 not been published. The secondary codes for the pilot component,
 $$ C_{E6Cs} $$, are available in Galileo's ICD[^GalileoICD]. The receiver reference
 bandwidth for this signal is $$ 40.920 $$ MHz.
