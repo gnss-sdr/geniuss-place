@@ -196,7 +196,7 @@ $ make
 $ sudo make install
 ```
 
-The step `git checkout next` is optional, and sets the source tree pointing to the `next` branch, which is the most recent development snapshot. If this step is omitted it takes the `master` branch by dafault, which contains the latest stable release, and maybe some bug fixes.
+The step `git checkout next` is optional, and sets the source tree pointing to the `next` branch, which is the most recent development snapshot. If this step is omitted it takes the `master` branch by default, which contains the latest stable release, and maybe some bug fixes.
 
 In addition, CMake accepts a number of configuration options for your building process. For instance, if you want to compile your source in "Debug" mode instead of the default "Release", you can type:
 
