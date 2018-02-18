@@ -591,10 +591,10 @@ This implementation accepts the following parameters:
 | `implementation` | `Galileo_E5a_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [`gr_complex`]: Set the sample data type expected at the block input. It defaults to `gr_complex`. | Optional |
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
-| `pll_bw_init_hz` |  Bandwidth of the PLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
-| `dll_bw_init_hz` |  Bandwidth of the DLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 5 Hz. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
+| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 5 Hz. | Optional |
+| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
 | `ti_ms` | Correlation length after the secondary code lock, in ms. It defaults to 3 ms. | Optional |
 | `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
