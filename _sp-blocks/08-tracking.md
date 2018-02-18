@@ -610,11 +610,11 @@ Example:
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_5X.implementation=Galileo_E5a_DLL_PLL_Tracking
 Tracking_5X.item_type=gr_complex
-Tracking_5X.pll_bw_hz_init=25.0
-Tracking_5X.dll_bw_hz_init=4.0
-Tracking_5X.ti_ms=1
-Tracking_5X.pll_bw_hz=10.0
+Tracking_5X.pll_bw_hz=25.0
 Tracking_5X.dll_bw_hz=4.0
+Tracking_5X.ti_ms=1
+Tracking_5X.pll_bw_narrow_hz=10.0
+Tracking_5X.dll_bw_narrow_hz=4.0
 Tracking_5X.early_late_space_chips=0.5
 ```
 
