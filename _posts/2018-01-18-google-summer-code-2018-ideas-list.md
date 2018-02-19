@@ -8,7 +8,7 @@ tags:
 author_profile: false
 sidebar:
   nav: "news"
-last_modified_at: 2018-01-20T12:08:02+02:00
+last_modified_at: 2018-02-19T12:08:02+02:00
 ---
 
 This year, GNSS-SDR has been accepted as a mentoring organization for [Google Summer of Code](https://summerofcode.withgoogle.com/) (also known as GSoC), a global program that offers students stipends to write code for open source projects. In order to participate in the program, you must be a student. Google defines a student as an individual enrolled in or accepted into an accredited institution including (but not necessarily limited to) colleges, universities, masters programs, PhD programs and undergraduate programs. You should be prepared, upon request, to provide Google with transcripts or other documentation from your accredited institution as proof of enrollment or admission status. Computer Science does not need to be your field of study in order to participate in the program. You may be enrolled as a full-time or part-time student for a time period that includes April 23, 2018, and must be at least 18 years old to be eligible to participate in Google Summer of Code in 2018.
@@ -113,6 +113,78 @@ Good understanding of digital signal processing and C++ programming (familiarity
 ### Potential mentor(s):
 
 Dr. Javier Arribas,  Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
+
+--------
+
+## Design and Implementation of a Graphical User Interface (GUI) to show the GNSS-SDR status in real-time
+
+Almost all the commercial GNSS receivers come with an intuitive, easy to install and easy to use software that shows if your receiver is working properly or not. Examples of such software are the [Google GNSS Analysis software](https://developer.android.com/guide/topics/sensors/gnss.html#analyze) and [uBlox uCenter](https://www.u-blox.com/en/product/u-center-windows).
+
+The minimum GNSS receiver information reported by the status software should be:
+  * GNSS Satellites on track
+   - Satellite ID and Constellation identification
+   - Satellite CN0 [dB-Hz]
+   - Elevation and Azimuth
+   - Satellite status (telemetry received and status flags)
+  * Position, Velocity and Time (PVT)
+   - UTC and GPS time
+   - Latitude and Longitude in WGS84
+   - Ground Speed (m/s or km/h)
+   - Ground Course (degrees from true North)
+  * Ground track using on-line map provider (optional)
+
+In addition, due to the inherent flexibility of a software receiver, GNSS-SDR is capable of providing detailed information of the internal status of each of the GNSS receiver modules, hereafter are listed some of the several possibilities:
+
+  * Acquisition module information
+    - Acquisition test statistics value vs. threshold for each satellite
+    - Acquisition grid plot
+  * Tracking module information per channel
+    - Correlators output plot (e.g Early, Prompt and Late absolute value)
+    - BPSK Constellation plot and Telemetry symbols timeline plot
+    - CN0 plot
+    - Tracking loop parameters (DLL, PLL bandwidths and correlator spacing)
+  * Telemetry decoder information per channel
+    - Frame synchronization status
+    - Reverse phase lock flag
+    - Frame CRC status
+    - Decoded Ephemeris information
+  * Observables information
+    - Code Pseudorange [m]
+    - Accumulated carrier phase [cycles]
+    - Doppler frequency [Hz]
+    - CN0 [dB-Hz]
+    - Cycle slips
+  * PVT solver information
+    - Corrected observables information
+    - RTKLIB internal status parameters
+      - Solver flags and log
+      - Kalman filter covariances
+      - Kalman filter states
+    - Extended PVT information
+      - ECEF P,V
+      - Receiver time offset
+
+Regarding the receiver control, usually a GNSS GUI status software has the possibility to trigger a software reset to test Cold Start, Warm Start and Hot Start. GNSS-SDR can be modified to include such features.
+
+The work proposed in this project consist on the one hand designing and implementing a  non-invasive GNSS-SDR monitoring system that provides a real-time access to the internal GNSS-SDR modules receiver parameters, from an external application running either in local or remote machine. Such communication mechanism should be based on Boost serialization libraries or equivalent, over TCP or UDP connections, to speed up the development time.
+On the other hand, the GUI status software should be implemented as a standalone application that can be compiled and run in the following O.S:
+
+  * Windows
+  * Linux
+  * macOS
+
+The C++ Qt 5 framework seems to be a suitable candidate to provide the required libraries to build forms, tables and plots in a multi-platform programming IDE.
+
+### Skills required:
+
+Good understanding C++ programming (familiarity with the GNU Radio framework is a plus).
+Basic knowledge of the C++ Qt 5 framework.
+
+
+### Potential mentor(s):
+
+Dr. Javier Arribas, Dr. Carles Fern&aacute;ndez-Prades, Dr. Jordi Vil&agrave;-Valls.
+
 
 --------
 
