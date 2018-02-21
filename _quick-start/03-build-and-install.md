@@ -71,7 +71,7 @@ $ sudo port install gnss-sdr-next
   {{ mac-os-text | markdownify }}
 </div>
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ "/my-first-fix/" | absolute_url }}"). Or maybe you might prefer other options, such as using [Homebrew](http://brew.sh/) instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on macOS Sierra or Mac OS X, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x) file.
+If everything went fine, you can directly jump into how to get your [first position fix]({{ "/my-first-fix/" | absolute_url }}). Or maybe you might prefer other options, such as using [Homebrew](http://brew.sh/) instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on macOS Sierra or Mac OS X, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x) file.
 
 # Building from source
 
@@ -80,7 +80,7 @@ If everything went fine, you can directly jump into how to get your [first posit
 **Is it better to compile from source or to install from a package?** Here we provide some guidelines. The rule of thumb is: Always consider installing from standard packages of your Operating System first; only compile from sources if you know exactly why you need to do that.
 {: .notice--info}
 
-GNSS-SDR and its software dependencies can all be installed either by downloading their source code, building and installing them in your system, or by installing the corresponding software package. Under GNU/Linux, the package manager my vary according to the distribution you are using (```.deb``` for Debian-based distros, such as Ubuntu, Linaro and Raspbian; ```.rpm``` for Fedora / SUSE / Mandriva; etc.). In Mac OS X, most popular open source pacake managers are Macports and Homebrew. In all cases, a possible option for a quick jump into GNSS-SDR is to install all the dependencies from packages, and then building GNSS-SDR from the source code.
+GNSS-SDR and its software dependencies can all be installed either by downloading their source code, building and installing them in your system, or by installing the corresponding software package. Under GNU/Linux, the package manager my vary according to the distribution you are using (```.deb``` for Debian-based distros, such as Ubuntu, Linaro and Raspbian; ```.rpm``` for Fedora / SUSE / Mandriva; etc.). In Mac OS X, most popular open source package managers are Macports and Homebrew. In all cases, a possible option for a quick jump into GNSS-SDR is to install all the dependencies from packages, and then building GNSS-SDR from the source code.
 
 But maybe this approach does not fit your needs. Maybe you already have some dependency already built from source and want to use it, or your setup requires some specific flag somewhere. This is a building-time _vs_. fine-tuning trade-off. In order to take the adequate approach, just remember this basic rule:
 
@@ -196,7 +196,7 @@ $ make
 $ sudo make install
 ```
 
-The step `git checkout next` is optional, and sets the source tree pointing to the `next` branch, which is the most recent development snapshot. If this step is omitted it takes the `master` branch by dafault, which contains the latest stable release, and maybe some bug fixes.
+The step `git checkout next` is optional, and sets the source tree pointing to the `next` branch, which is the most recent development snapshot. If this step is omitted it takes the `master` branch by default, which contains the latest stable release, and maybe some bug fixes.
 
 In addition, CMake accepts a number of configuration options for your building process. For instance, if you want to compile your source in "Debug" mode instead of the default "Release", you can type:
 
