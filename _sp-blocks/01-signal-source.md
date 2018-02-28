@@ -986,10 +986,10 @@ Channels_1B.count=2
 
 ...
 ; # CHANNEL CONNECTION
-Channel0.SignalSource_ID=0
-Channel1.SignalSource_ID=0
-Channel2.SignalSource_ID=1
-Channel3.SignalSource_ID=1
+Channel0.RF_channel_ID=0
+Channel1.RF_channel_ID=0
+Channel2.RF_channel_ID=1
+Channel3.RF_channel_ID=1
 
 Channel0.signal=1C
 Channel1.signal=1C
