@@ -4,7 +4,7 @@ permalink: /design-forces/maintainability/
 excerpt: "The ease with which a product can be maintained in order to isolate and correct defects and cope with a changing environment."
 header:
   teaser: /assets/images/design-force-teaser.png
-last_modified_at: 2017-08-09T15:54:02-04:00
+last_modified_at: 2018-03-03T15:54:02-04:00
 ---
 
 _Maintainability_ refers to the ease with which a product can be maintained in order to isolate and correct defects or their cause, repair or replace faulty or worn-out components without having to replace still working parts, prevent unexpected breakdowns, maximize a product's useful life, maximize efficiency, reliability, and safety, meet new requirements, make future maintenance easier, or cope with a changed environment.
@@ -20,9 +20,16 @@ Depending on the used programming language, maintainability is also related to t
     * **C++11**: The former ISO C++ standard was ISO/IEC 14882:2011. You can get it from [ISO](https://www.iso.org/standard/50372.html). The closest free working document available is [N3337](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3337.pdf).
 
 In other programming languages, this could refer to the minimum (oldest) / maximum (most recent) working version(s) of the corresponding compiler or interpreter. Examples:
-  * Python interpreter above 2.7 and/or 3.4.
+  * Python interpreter above 2.7 and/or 3.4+.
   * Matlab version above Release R2017a.
   * The [Java Language Specification](https://docs.oracle.com/javase/specs/).
+
+
+Ideally, a software should be executable in a broad range of platforms, even in those yet-to-be-released at the time the software was released. However, this is not straightforward. For instance, Ubuntu (one of the most popular GNU/Linux distributions) releases a new version of the OS every 6 months. Other distributions such as Arch Linux and Gentoo Linux are rolling release systems, making packages available to the distribution a short time (days or weeks) after they are released upstream. Libraries' API change along time and, as a consequence, software environments are constantly mutating and software building or execution is likely to fail due to the API-breaking features introduced in different OS versions. This also holds in case of using scripting languages (such as Matlab/Octave or Python), where this step is recommended in order to check whether the code runs as expected in the different versions of the language interpreter and associated packages shipped with different OS.
+
+This issue can be addressed with Continuous Integration, a concept firstly introduced by Booch[^Booch91] which consists of automating the build and testing of code every time a researcher commits changes to the version control system[^Duvall07]$$ ^{,} $$[^Humble11]$$ ^{,} $$[^Shanin17]. Continuous Integration encourages developers to share their code and unit tests by merging their changes into a shared version control repository after every small task completion. Committing code triggers an automated build system to grab the latest code from the shared repository and to build, test, and validate the obtained numerical results. This helps to identify integration and backward/forward compatibility problems as soon as the offending instruction is committed or a new OS version appears, so they are easier to fix, and ensures that code performs as expected in different environments.
+
+In addition to the adherence to programming language standards and the set up of a Continuous Integration system, maintainability in open source projects is also related to the consistent observance of well-defined code formatting guidelines, which help other developers to read and understand the source code without the hassle of changing formatting styles along pieces written by different authors. Automated tools for code formatting such as [clang-format](http://clang.llvm.org/docs/ClangFormat.html) are highly recommended.
 
 ## Indicators of Maintainability
 
@@ -31,11 +38,20 @@ It follows a list of possible maintainability indicators for a software-defined 
 * Time to Fix Defects.
 * Source code under a version control system.
 * Well--established programming language.
-* Automated build environments.
+* Availability of a Continuous Integration system.
 * Availability of an issue tracking system.
 * Availability of "debugging modes" and tools.
 * Availability of static and dynamic code analysis tools.
 * Definition of a source tree structure.
 * Automated documentation system.
 * Availability and observance of a coding style guide.
+  - Availability of automated code formatting tools and corresponding configuration (_e.g._, availability of a `.clang-format` file).
 * Availability of required and optional software dependencies (type of license, pricing, maintenance / development status).
+
+
+## References
+
+[^Booch91]: G. Booch, *Object Oriented Design With Applications*. New York, NY: Benjamin/Cummings Pub., 1991.
+[^Duvall07]: P. Duvall, S. Matyas, and A. Glover, *Continuous Integration. Improving Software Quality and Reducing Risk*. Upper Saddle River, NJ: Addison Wesley, 2007.
+[^Humble11]: J. Humble and D. Farley, *Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation*. Upper Saddle River, NJ: Addison Wesley, 2011.
+[^Shanin17]: M. Shanin, M. Ali Babar, and L. Zhu, [Continuous integration, delivery and deployment: A systematic review on approaches, tools, challenges and practices](http://ieeexplore.ieee.org/document/7884954/), IEEE Access, vol. 5, pp. 3909–3943, Mar. 2017, DOI: 10.1109/ACCESS.2017.2685629.
