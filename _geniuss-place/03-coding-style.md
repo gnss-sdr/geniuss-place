@@ -1007,6 +1007,14 @@ $ find src/algorithms/conditioner/ -iname *.h -o -iname *.cc | xargs clang-forma
 ```  
   For each input file, clang-format will try to find the `.clang-format` file located in the closest parent directory of the input file, so [the one in the root folder](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) will apply. Please do not modify that file, but feel free to propose changes (that would be applied to the whole source tree) by [filling an issue at Github](https://github.com/gnss-sdr/gnss-sdr/issues/new) in order to let other developers to discuss them.
 
+{% capture notice-maintainability %}
+An automated code formatting tool helps to improve [**Maintainability**]({{ "/design-forces/maintainability/" | absolute_url }}).
+{% endcapture %}
+
+<div class="notice--success">
+  {{ notice-maintainability | markdownify }}
+</div>
+
 
 ### Learn from the best
 

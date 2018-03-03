@@ -38,7 +38,7 @@ It follows a list of possible maintainability indicators for a software-defined 
 * Time to Fix Defects.
 * Source code under a version control system.
 * Well--established programming language.
-* Automated build environments.
+* Availability of a Continuous Integration system.
 * Availability of an issue tracking system.
 * Availability of "debugging modes" and tools.
 * Availability of static and dynamic code analysis tools.
@@ -46,7 +46,6 @@ It follows a list of possible maintainability indicators for a software-defined 
 * Automated documentation system.
 * Availability and observance of a coding style guide.
   - Availability of automated code formatting tools and corresponding configuration (_e.g._, availability of a `.clang-format` file).
-* Availability of a Continuous Integration system.
 * Availability of required and optional software dependencies (type of license, pricing, maintenance / development status).
 
 
