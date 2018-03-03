@@ -940,7 +940,7 @@ void fn ( )
 
 ### Use tools for automated code formatting
 
-As code base grows, maintaining a uniform code formatting is difficult and creates a lot of noise in commits. In order to handle this issue, GNSS-SDR uses [clang-format](http://clang.llvm.org/docs/ClangFormat.html), a set of tools for automated code formatting. It can be used as a standalone tool and supports a number of editor integrations.  
+As code base and the number of contributors grow, maintaining a consistent code formatting is difficult and creates a lot of noise in commits. In order to handle this issue, GNSS-SDR uses [clang-format](http://clang.llvm.org/docs/ClangFormat.html), a set of tools for automated code formatting. It can be used as a standalone tool and supports a number of editor integrations.  
 
 The rules for code formatting are configured in the file [.clang-format](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) at the root of the source tree. The style options are described in [Clang-Format Style Options](http://clang.llvm.org/docs/ClangFormatStyleOptions.html).
 
@@ -1001,7 +1001,7 @@ clang-format version 6.0.0 (branches/release_60 321774)
 ```bash
 $ clang-format -i <file>
 ```
-  or for a set of folders and subfolders;
+  or for a folder and its and subfolders:
 ```bash
 $ find src/algorithms/conditioner/ -iname *.h -o -iname *.cc | xargs clang-format -i
 ```  
