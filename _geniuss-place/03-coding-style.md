@@ -397,6 +397,31 @@ The directory structure may be different on other systems.
 The directory structure of the project may change in the future. It is
 then difficult to correct all the directory names.
 
+### Preferred order for `#include` directives
+
+Immediately after the header file comment (and include guards if working on a header file), the minimal list of `#includes` required by the file should be listed. We suggest this order:
+
+  1. Main Module Header.
+  2. Local headers.
+  3. Third-party library headers.
+  4. System headers.
+
+and each category should be sorted lexicographically by the full path.
+
+The Main Module Header file applies to `.cc` files which implement an interface defined by a `.h` file. This `#include` should always be included first regardless of where it lives on the file system. By including a header file first in the `.cc` files that implement the interfaces, we ensure that the header does not have any hidden dependencies which are not explicitly `#include`d in the header, but should be. It is also a form of documentation in the `.cc` file to indicate where the interfaces it implements are defined. Other headers should be grouped from most specific to least specific, for the same reasons described above.
+
+Example:
+
+```cpp
+/* foobar.cc */
+#include "foobar.h"
+#include "GPS_L1_CA.h"
+#include <gnuradio/io_signature.h>
+#include <cmath>
+...
+```
+
+
 ### Use `const` instead of \#define in header files
 
 `#define` is a preprocessor directive. Before compiling, the middle
