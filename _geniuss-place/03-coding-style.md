@@ -486,7 +486,7 @@ Please use the following template at the header of all files:
  *
  * -----------------------------------------------------------------------
  *
- * Copyright (C) 2010-2016  (see AUTHORS file for a list of contributors)
+ * Copyright (C) 2010-2018  (see AUTHORS file for a list of contributors)
  *
  * GNSS-SDR is a software defined Global Navigation
  *      Satellite Systems receiver
@@ -958,6 +958,11 @@ $ sudo apt-get install clang-format
 $ sudo yum install clang
 ```
 
+  * **In GNU/Linux using ArchLinux:**
+```bash
+$ sudo pacman -S clang
+```
+
   * **In macOS using Homebrew:**
 ```bash
 $ sudo brew install clang-format
@@ -990,12 +995,17 @@ clang-format version 6.0.0 (branches/release_60 321774)
 
 **Step 2.- Apply clang-format**
 
-  * **Tell your favorite editor to use clang-format.** You can use it in Eclipse via [CppStyle](https://github.com/wangzw/CppStyle), in Atom via the [clang-format package](https://atom.io/packages/clang-format), and in [many other editors](https://clang.llvm.org/docs/ClangFormat.html). Once the corresponding plugin or module is installed, configure your editor to run clang-format on every file save.
+  * **Tell your favorite editor to use clang-format.** You can use it in Eclipse via [CppStyle](https://github.com/wangzw/CppStyle), in Atom via the [clang-format package](https://atom.io/packages/clang-format), and in [many other editors](https://clang.llvm.org/docs/ClangFormat.html#vim-integration). Once the corresponding plugin or module is installed, configure your editor to run clang-format on every file save.
 
   * For applying code formatting from the command line:
 ```bash
 $ clang-format -i <file>
 ```
+  or for a set of folders and subfolders;
+```bash
+$ find src/algorithms/conditioner/ -iname *.h -o -iname *.cc | xargs clang-format -i
+```  
+  For each input file, clang-format will try to find the `.clang-format` file located in the closest parent directory of the input file, so [the one in the root folder](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) will apply. Please do not modify that file, but feel free to propose changes (that would be applied to the whole source tree) by [filling an issue at Github](https://github.com/gnss-sdr/gnss-sdr/issues/new) in order to let other developers to discuss them.
 
 
 ### Learn from the best
