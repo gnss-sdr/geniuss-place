@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2017-08-03T13:20:02+02:00
+last_modified_at: 2018-03-03T13:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -911,16 +911,76 @@ void fn ( )
 ```
 
 
-## Other recommendations
+## Final recommendations
 
-### Use of Boost libraries is encouraged
+### Use tools for automated code formatting
 
-[Boost](http://www.boost.org) is a set of free, expertly designed, peer–reviewed portable
-C++ source libraries. Boost provides reference implementations that are
-suitable for eventual standardization. Actually, some of the Boost
-libraries are already included in the current C++ standard and several
-more are expected to be included in the new standard now being
-developed.
+As code base grows, maintaining a uniform code formatting is difficult and creates a lot of noise in commits. In order to handle this issue, GNSS-SDR uses [clang-format](http://clang.llvm.org/docs/ClangFormat.html), a set of tools for automated code formatting. It can be used as a standalone tool and supports a number of editor integrations.  
+
+The rules for code formatting are configured in the file [.clang-format](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) at the root of the source tree. The style options are described in [Clang-Format Style Options](http://clang.llvm.org/docs/ClangFormatStyleOptions.html).
+
+You can use clang-format in two simple steps:
+
+**Step 1.- Install clang-format**
+
+  * **In GNU/Linux using Debian / Ubuntu distributions:**
+```bash
+$ sudo apt-get install clang-format
+```
+
+  * **In GNU/Linux using Fedora / CentOS distributions:**
+```bash
+$ sudo yum install clang
+```
+
+  * **In macOS using Homebrew:**
+```bash
+$ sudo brew install clang-format
+```
+
+  * **In macOS using Macports:**
+```bash
+$ sudo port install clang-6.0
+```
+  NOTE: You can see all available choices with `port select --list` for clang:
+```bash
+$ port select --list clang
+Available versions for clang:
+	mp-clang-6.0
+	none (active)
+```
+  With `sudo port select --set clang <version>` you choose one of them as the new default, which will create symlinks in `/opt/local/bin` without the version suffix.
+```bash
+$ sudo port select --set clang mp-clang-6.0
+electing 'mp-clang-6.0' for 'clang' succeeded. 'mp-clang-6.0' is now active.
+```
+  You can confirm this change by looking at the version of the tool:
+```bash
+$ clang-format --version
+clang-format version 6.0.0 (branches/release_60 321774)
+```
+  If you later wish to remove these symlinks in order to avoid hiding tools installed by Xcode, just select the `none` version.
+
+
+
+**Step 2.- Apply clang-format**
+
+  * **Tell your favorite editor to use clang-format.** You can use it in Eclipse via [CppStyle](https://github.com/wangzw/CppStyle), in Atom via the [clang-format package](https://atom.io/packages/clang-format), and in [many other editors](https://clang.llvm.org/docs/ClangFormat.html). Once the corresponding plugin or module is installed, configure your editor to run clang-format on every file save.
+
+  * For applying code formatting from the command line:
+```bash
+$ clang-format -i <file>
+```
+
+
+### Learn from the best
+
+Take a look at the [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md) edited by [Bjarne Stroustrup](http://www.stroustrup.com/) and [Herb Sutter](https://herbsutter.com/).
+
+
+### Use of Boost libraries
+
+[Boost](http://www.boost.org) is a set of free, expertly designed, peer–reviewed portable C++ source libraries. Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. However, Boost regularly makes backward-incompatible changes, making supporting a wide range of Boost versions hard. All things equal, prefer standard C++ constructs over Boost constructs.
 
 ### Use common sense and BE CONSISTENT
 
