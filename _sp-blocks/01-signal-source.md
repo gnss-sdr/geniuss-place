@@ -296,11 +296,11 @@ SignalSource.samples=0
 {% capture overide-nsr %}
 **Tip:** The name of the file to be read (that is, `SignalSource.filename`) that
 appears on the configuration file can be overridden at the command line
-when invoking `gnss-sdr` with the flag `–-nsr_signal_source`. Example:
+when invoking `gnss-sdr` with the flag `–-signal_source`. Example:
 
 ```bash
 $ gnss-sdr --config_file=/path/to/my_receiver.conf \
-    --nsr_signal_source=/path/to/my_capture2.dat
+    --signal_source=/path/to/my_capture2.dat
 ```
 
 This will read the configuration file `my_receiver.conf`, but it will
