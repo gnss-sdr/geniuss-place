@@ -11,7 +11,7 @@ tags:
 sidebar:
   nav: "docs"
 toc: true
-last_modified_at: 2017-11-23T09:37:02+02:00
+last_modified_at: 2018-03-06T09:37:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function within a larger mechanical or electrical system. Examples of properties of embedded computers when compared with general-purpose counterparts are low power consumption, small size, rugged operating ranges, and low per-unit cost, at the price of limited processing resources.
