@@ -581,7 +581,7 @@ $$ \begin{equation}  sc_{B1C\_data}(t) = \text{sign} \left(\sin \left(2 \pi f_{s
 
 $$ \begin{equation}  sc_{B1C\_pilot}(t) = \sqrt{\frac{29}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) -j \sqrt{\frac{4}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right)~ , \end{equation} $$
 
-with $$ f_{sc\_B1C\_a} = 1.023 $$ MHz and $$ f_{sc\_B1C\_b} = 6.138 $$ MHz. The code length of the ranging codes $$ C_{B1C\_data} $$ and $$ C_{B1C\_pilot} $$ is  10230 chips, and $$ T_{c,B1C\_data} = T_{c,B1C\_pilot} = \frac{1}{1.023} $$ $$\mu $$s. The navigation message $$ D_{\text{B-CNAV1}} $$ has a symbol rate of 100 bit/s.
+with $$ f_{sc\_B1C\_a} = 1.023 $$ MHz and $$ f_{sc\_B1C\_b} = 6.138 $$ MHz. The code length of the ranging codes $$ C_{B1C\_data} $$ and $$ C_{B1C\_pilot} $$ is  10230 chips, and $$ T_{c,B1C\_data} = T_{c,B1C\_pilot} = \frac{1}{1.023} $$ $$\mu $$s. Both of data and pilot ranging codes are tired codes composed of primary and secondary codes. For both data and pilot channel, the primary and secondary codes are generated from Weil sequences, and the starting boundaries of the primary and secondary codes are strictly synchronized. The navigation message $$ D_{\text{B-CNAV1}} $$ has a symbol rate of 100 bit/s.
 
 Since $$ e_{B1C\_pilot}(t) $$ is a complex waveform, the B1C signal contains three components as shown in the following equation:
 
