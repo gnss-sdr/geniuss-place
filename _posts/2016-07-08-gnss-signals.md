@@ -561,7 +561,7 @@ Beidou's Interface Control Document version 2.1 describes the Inphase
 
 The B1I signal is also transmitted by all satellites of BDS-3.
 
-[^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf). China Satellite Navigation Office, November 2016.
+[^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese).
 
 ### BeiDou B1C
 
@@ -636,7 +636,7 @@ The following table lists the GNSS signals providing Open Service.
 | [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
 | [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
 | [**BeiDou B3I**](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf)$$ ^{(*)} $$  | $$ 1268.520 $$ MHz | BPSK(10) |
-| [**BeiDou B1I**](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf) | $$ 1561.098 $$ MHz | BPSK(2) |
+| [**BeiDou B1I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) | $$ 1561.098 $$ MHz | BPSK(2) |
 | [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1561.098 $$ MHz | BOC(1,1) |
 | [**GPS L1 C/A**](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
 | [**GPS L1C**](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
