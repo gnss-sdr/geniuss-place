@@ -10,7 +10,7 @@ tags:
 sidebar:
   nav: "docs"
 toc: true
-last_modified_at: 2017-04-03T09:37:02+02:00
+last_modified_at: 2018-03-10T09:37:02+02:00
 
 ---
 
@@ -79,7 +79,7 @@ $$ \begin{equation} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [
 where $$ \oplus $$ is the exclusive–or operation (modulo–2 addition),
 $$ |l|_{L} $$ means $$ l $$ modulo $$ L $$, $$ [l]_{L} $$ means the integer part of
 $$ \frac{l}{L} $$, $$ D_{\text{NAV}} $$ is the GPS navigation message bit
-sequence, transmitted at $$ 50 $$ bps, $$ T_{c,\text{P(Y)}}=\frac{1}{10.23} $$
+sequence, transmitted at $$ 50 $$ bit/s, $$ T_{c,\text{P(Y)}}=\frac{1}{10.23} $$
 $$ \mu $$s, $$ T_{c,\text{C/A}}=\frac{1}{1.023} $$ $$ \mu $$s,
 $$ L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$, and $$ p(t) $$ is a rectangular
 pulse of a chip–period duration centered at $$ t=0 $$ and filtered at the
@@ -144,8 +144,8 @@ civilian moderate code $$ C_{\text{CM}} $$ is $$ L_{\text{CL}}=10230 $$ chips
 long and its repeats every $$ 20 $$ ms. The CNAV data is an upgraded version
 of the original NAV navigation message, containing higher precision
 representation and nominally more accurate data than the NAV data. It is
-transmitted at $$ 25 $$ bps with forward error correction (FEC) encoding,
-resulting in $$ 50 $$ sps.
+transmitted at $$ 25 $$ bit/s with forward error correction (FEC) encoding,
+resulting in $$ 50 $$ symbols/s.
 
 ![Spectra GPS Signals L2](http://www.navipedia.net/images/c/c4/Chapter_2_Spectra_GPS_Signals_L2.png)
 _GPS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
@@ -231,7 +231,7 @@ $$ \begin{equation} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ 
 where $$ T_{c,\text{HP}}=\frac{1}{5.11} $$ $$ \mu $$s,
 $$ T_{c,\text{SP}}=\frac{1}{0.511} $$ $$ \mu $$s, and
 $$ L_{\text{HP}}=3.3554\cdot 10^7 $$. The navigation message
-$$ D_{\text{GNAV}} $$ is transmitted at $$ 50 $$ bps. Details of its content and
+$$ D_{\text{GNAV}} $$ is transmitted at $$ 50 $$ bit/s. Details of its content and
 structure, as well as the generation of the $$ C_{\text{SP}} $$ code, can be
 found in GLONASS' ICD [^GLONASS08]. The usage of the HP signal should be agreed with
 the Russian Federation Defense Ministry, and no more details have been
@@ -248,7 +248,7 @@ GLONASS transmissions on frequencies close to $$ 1600 $$ MHz, well above the
 GPS L1 band, have complicated the design of combined GLONASS/GPS
 receivers, particularly low–cost equipment for mass–market applications.
 
-In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1600.99 $$ MHz, referred to as L1OC, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, to be launched from 2018. This documentation is only available in Russian [^GLONASS16-1].
+In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1600.99 $$ MHz, referred to as L1OC, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, launched from 2018. This documentation is only available in Russian [^GLONASS16-1].
 
 
 [^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf). Edition 5.1, Moscow, Russia, 2008.
@@ -343,7 +343,7 @@ Navipedia.](http://www.navipedia.net/images/2/23/Galileo_Signal_Plan_Fig_2.png)
 _Galileo signals spectra in E1. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
+[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
 
 ### Galileo E6
 
@@ -515,7 +515,7 @@ On December 27, 2012, the Chinese government released the first version
 of BeiDou’s Interface Control Document (ICD), a 77-page
 document that included details of the navigation message, including
 parameters of the satellite almanacs and ephemerides that were missing
-from a “test version” of the ICD released exactly one year before. One year later cersion 2.0 was released, and version 2.1 followed in November 2016[^Beidou]. The wonderful Navipedia keeps track of [BeiDou status](http://www.navipedia.net/index.php/BeiDou_Future_and_Evolutions).
+from a “test version” of the ICD released exactly one year before. One year later version 2.0 was released, and version 2.1 followed in November 2016[^Beidou]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C], B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open services deployed in the BSD-3 phase of the system development.
 
 ![BeiDou Logo](http://www.gpsworld.com/wp-content/uploads/2013/01/BeiDou-Logo.png){:height="250px" width="250x"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
 official logo of the BeiDou system, the design of which incorporates the
@@ -535,55 +535,89 @@ of the ICD, Ran Chengqi, director of China Satellite Navigation Office,
 said the English designation will henceforth be BeiDou Navigation
 Satellite System with the abbreviation BDS.
 
-[^Beidou]: [BeiDou Navigation Satellite System Signal In Space Interface Control Document](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf). Open Service Signal (Version 2.1). China Satellite Navigation Office, November 2016.
+[^BeidouB1C]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B1C (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf). China Satellite Navigation Office, December 2017.
 
-Updated information can be found at the [Beidou Navigation Satellite System website](http://en.beidou.gov.cn/).
+[^BeidouB2a]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B2a (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf). China Satellite Navigation Office, December 2017.
 
-### BeiDou B1
+[^BeidouB3I]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B3I (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf). China Satellite Navigation Office, February 2018.
 
-BeiDou B1, centered at $$ f_{B1} = 1561.098 $$ MHz, features a QPSK(2) modulation. The complex baseband transmitted signal can be written as:
+Updated information can be found at the [Beidou Navigation Satellite System website](http://www.beidou.gov.cn/). The status of the constellation can be consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
+
+
+### Beidou B1I
+
+BeiDou B1 transmitted by BDS-2 satellites is centered at $$ f_{B1} = 1561.098 $$ MHz, featuring a QPSK(2) modulation. The complex baseband transmitted signal can be written as:
 
 $$ \begin{equation} s^{\text{(BeiDou B1)}}_{T}(t) = e_{B1I}(t) + j e_{B1Q}(t)~, \end{equation} $$
 
 with
 
-$$ \begin{equation} e_{B1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{40920}\Big] \oplus C_{\text{B1I}} \Big[ |l|_{2046} \Big]   p(t -  lT_{c,\text{B1I}})~, \end{equation} $$
+$$ \begin{equation} e_{B1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{40920}\Big] \oplus C_{\text{B1I}} \Big[ |l|_{2046} \Big] p(t - lT_{c,\text{B1I}})~, \end{equation} $$
 
-$$ \begin{equation} e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{\text{N/A}}  \Big]  \oplus   C_{\text{B1Q}}  \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~, \end{equation} $$
+$$ \begin{equation} e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{\text{N/A}}  \Big]  \oplus C_{\text{B1Q}} \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~, \end{equation} $$
 
-Beidou’s Interface Control Document version 2.1 describes the Inphase
-component of the Beidou B1 link.[^Beidou] The chip rate of the B1I ranging code, $$ C_{B1I} $$ is 2.046 Mcps, and the length is 2046 chips.
+Beidou's Interface Control Document version 2.1 describes the Inphase
+-component of the Beidou B1 link.[^Beidou] The chip rate of the B1I ranging code, $$ C_{B1I} $$ is 2.046 Mcps, and the length is 2046 chips.
+
+The B1I signal is also transmitted by all satellites of BDS-3.
+
+[^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese).
+
+### BeiDou B1C
+
+BeiDou Open Service B1C signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are centered at $$ f_{B1C} = 1561.098 $$ MHz and feature a BOC(1,1) modulation in the data component and a QMBOC(6, 1, 4/33) modulation in the pilot component. The complex baseband transmitted signal can be written as:[^BeidouB1C]
+
+$$ \begin{equation} s^{\text{(BeiDou B1C)}}_{T}(t) = e_{B1C\_data}(t) + j e_{B1C\_pilot}(t)~, \end{equation} $$
+
+with
+
+$$ \begin{equation} e_{B1C\_data}(t) = \frac{1}{2} \sum_{l=-\infty}^{\infty} D_{\text{B-CNAV1}}\Big[ [l]_{10230}\Big] \oplus C_{B1C\_data} \Big[ |l|_{10230} \Big] p(t - lT_{c,B1C\_data}) sc_{B1C\_data}(t)~, \end{equation} $$
+
+$$ \begin{equation} e_{B1C\_pilot}(t) = \frac{\sqrt{3}}{2} \sum_{l=-\infty}^{\infty} \Big[ [l]_{10230}  \Big] \oplus C_{B1C\_pilot} \Big[ |l|_{10230} \Big] p(t - lT_{c,B1C\_pilot})sc_{B1C\_pilot}(t)~, \end{equation} $$
+
+where:
+
+$$ \begin{equation}  sc_{B1C\_data}(t) = \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right)~, \end{equation} $$
+
+$$ \begin{equation}  sc_{B1C\_pilot}(t) = \sqrt{\frac{29}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) -j \sqrt{\frac{4}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right)~ , \end{equation} $$
+
+with $$ f_{sc\_B1C\_a} = 1.023 $$ MHz and $$ f_{sc\_B1C\_b} = 6.138 $$ MHz. The code length of the ranging codes $$ C_{B1C\_data} $$ and $$ C_{B1C\_pilot} $$ is  10230 chips, and $$ T_{c,B1C\_data} = T_{c,B1C\_pilot} = \frac{1}{1.023} $$ $$\mu $$s. The navigation message $$ D_{\text{B-CNAV1}} $$ has a symbol rate of 100 bit/s.
+
+Since $$ e_{B1C\_pilot}(t) $$ is a complex waveform, the B1C signal contains three components as shown in the following equation:
+
+$$ \begin{eqnarray} s^{\text{(BeiDou B1C)}}_{T}(t) & = & e_{B1C\_data}(t) + e_{B1C\_pilot\_b}(t) + je_{B1C\_pilot\_a}(t) \\
+\nonumber {} & = & \frac{1}{2} D_{\text{B-CNAV1}}(t) \oplus C_{B1C\_data}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) +\\
+\nonumber {} & {} & + \sqrt{\frac{1}{11}}  C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right) + \\
+\nonumber {} & {} & +j \sqrt{\frac{29}{44}} C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right)~.  \end{eqnarray} $$
 
 
+### BeiDou B2a
+
+BeiDou B2a signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are centered at  $$ f_{B2a} = 1176.45 $$ MHz, featuring a data channel with a BPSK(10) modulation in the I component, and a pilot channel with a BPSK(10) modulation in the Q component:[^BeidouB2a]
+
+$$ \begin{equation} s^{\text{(BeiDou B2a)}}_{T}(t) = e_{B2aI}(t) + j e_{B2aQ}(t)~, \end{equation} $$
+
+with
+
+$$ \begin{equation} e_{B2aI}(t) = \frac{1}{\sqrt{2}} \sum_{l=-\infty}^{\infty} D_{\text{B-CNAV2}}\Big[ [l]_{51150}\Big] \oplus C_{\text{B2aI}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B2aI}})~, \end{equation} $$
+
+$$ \begin{equation} e_{B2aQ}(t) = \frac{1}{\sqrt{2}} \sum_{l=-\infty}^{\infty}  C_{\text{B2aQ}}  \Big[ |l|_{10230} \Big] p(t - lT_{c,\text{B2aI}})~, \end{equation} $$
+
+where $$ T_{c,\text{B2aI}} = T_{c,\text{B2aQ}} = \frac{1}{10.23} $$ $$\mu $$s, and the navigation message $$ D_{\text{B-CNAV2}} $$ has a symbol rate of $$ 200 $$ bit/s.
+
+This signal replaces the former B2I defined in version 2.1 of the ICD[^Beidou].
 
 
-### BeiDou B2
+### BeiDou B3I
+
+BeiDou B3I signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-2 and BDS-3, are centered at $$ f_{B3I} = 1268.520 $$ MHz and feature a data channel with a BPSK(10) modulation:[^BeidouB3I]
+
+$$ \begin{equation} e_{B3I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{D1}}\Big[ [l]_{20460}\Big] \oplus D_{\text{D2}}\Big[ [l]_{2046}\Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B3I}})~, \end{equation} $$
+
+where $$ T_{c,\text{B3I}} = \frac{1}{10.23} $$ $$\mu $$s, and the D1 and D2 navigation messages $$ D_{\text{D1}} $$ and $$ D_{\text{D2}} $$ have a symbol rate of $$ 50 $$ and $$ 500 $$ bit/s, respectively.
 
 
-BeiDou B2, centered at $$ f_{B2} = 1207.140 $$ MHz, features a BPSK(2) modulation in the I component, and a BPSK(10) in the Q component.[^Beidou]
-
-Next figure shows the power spectral densities of the BeiDou signals in B2.
-
-![Spectra of BeiDou signals in B2. Source:
-Navipedia.](http://www.navipedia.net/images/e/ec/Compass_Sig_Plan_Fig_3.png)
-_BeiDou signals spectra in B2. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan)_.
-{: style="text-align: center;"}
-
-
-### BeiDou B3
-
-Currently, not all the technical aspects of the BeiDou B3 signals are defined yet. It probably will feature a QPSK(10) modulation centered at $$ f_{B3} = 1268.52 $$ MHz.
-
-
-Next figure shows the power spectral densities of the proposed BeiDou signals in B3.
-
-
-
-![Spectra of BeiDou signals in B3. Source:
-Navipedia.](http://www.navipedia.net/images/d/de/Compass_Sig_Plan_Fig_5.png)
-_BeiDou signals spectra in B3. Source: [Navipedia](http://www.navipedia.net/index.php/BeiDou_Signal_Plan)_.
-{: style="text-align: center;"}
-
+---------
 
 ## Summary of Open Service signals
 
@@ -593,20 +627,22 @@ The following table lists the GNSS signals providing Open Service.
 |  **GNSS Signal**  |  **Center Freq.** |  **Modulation** |
 |:-:|:-:|:-:|    
 |--------------
-| [GPS L5](http://www.gps.gov/technical/icwg/IS-GPS-705D.pdf)$$ ^{(*)} $$ | $$1176.45 $$ MHz  |  BPSK(10)  |
-| [Galileo E5a](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
-| [GLONASS L3OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
-| [Galileo E5b](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
-| [BeiDou B2I](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf)    | $$ 1207.14 $$ MHz |  BPSK(2)   |
-| [GPS L2C](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
-| [GLONASS L2OF](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
-| [GLONASS L2OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
-| [BeiDou B1](http://www.beidou.gov.cn/attach/2016/11/07/21212.pdf)     | $$ 1561.098 $$ MHz | BPSK(2) |
-| [GPS L1 C/A](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
-| [GPS L1C](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
-| [Galileo E1b/c](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
-| [GLONASS L1OC](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
-| [GLONASS L1OF](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1602.00 $$ MHz | BPSK(0.5) |
+| [**GPS L5**](http://www.gps.gov/technical/icwg/IS-GPS-705D.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
+| [**Galileo E5a**](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
+| [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(**)} $$   | $$ 1176.45 $$ MHz |  BPSK(10)   |
+| [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
+| [**Galileo E5b**](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
+| [**GPS L2C**](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
+| [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
+| [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
+| [**BeiDou B3I**](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf)$$ ^{(*)} $$  | $$ 1268.520 $$ MHz | BPSK(10) |
+| [**BeiDou B1I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) | $$ 1561.098 $$ MHz | BPSK(2) |
+| [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1561.098 $$ MHz | BOC(1,1) |
+| [**GPS L1 C/A**](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
+| [**GPS L1C**](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
+| [**Galileo E1b/c**](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
+| [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
+| [**GLONASS L1OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1602.00 $$ MHz | BPSK(0.5) |
 |--------------
 
 (*): Modernized signal not broadcast by all satellites.
