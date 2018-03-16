@@ -25,6 +25,14 @@ comments:
     shortname            : geniussplace
 atom_feed:
   path                   : # blank (default) uses feed.xml
+search                   : true # true, false (default)
+search_full_content      : true # true, false (default)
+search_provider          : "algolia"
+algolia:
+  application_id         : "C4WP3JR8NU"
+  index_name             : "dev_geniuss-place"
+  search_only_api_key    : "c70df703d8319b91d17ed828bba9874b"
+  powered_by             : true
 
 # SEO Related
 google_site_verification : "googlefb1532d2ac258689"
