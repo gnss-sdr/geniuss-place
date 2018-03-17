@@ -46,6 +46,7 @@ According to the name and the quality of the theme this website is based upon, a
 - Greedy Navigation - [lukejacksonn](https://codepen.io/lukejacksonn/pen/PwmwWV)
 - [jQuery Smooth Scroll](https://github.com/kswedberg/jquery-smooth-scroll)
 - [Sass](http://sass-lang.com/)
+- Web search service provided by [Algolia](https://www.algolia.com/)
 
 ---
 
@@ -133,3 +134,7 @@ Jekyll Group-By-Array is distributed under the terms of the [MIT License](https:
 This work incorporates [@allejo's Pure Liquid Jekyll Table of Contents](https://allejo.io/blog/a-jekyll-toc-without-plugins-or-javascript/),
 Copyright &copy; 2017 Vladimir Jimenez.
 Pure Liquid Jekyll Table of Contents is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+This work incorporates [instantsearch.js](https://github.com/algolia/instantsearch.js),
+Copyright &copy; 2015-present Algolia, Inc.
+instantsearch.js is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
