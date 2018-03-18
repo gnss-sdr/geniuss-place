@@ -69,7 +69,7 @@ given processor.
 
 For more details about sample formats, please check out our tutorial on [data types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}).
 
-The more kinds of signal souces GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" | absolute_url }}).
+The more kinds of signal sources GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" | absolute_url }}).
 {: .notice--success}
 
 ## Reading data from a file

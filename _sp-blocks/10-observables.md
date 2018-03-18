@@ -1,6 +1,6 @@
 ---
 title: "Observables"
-permalink: docs/sp-blocks/observables/
+permalink: /docs/sp-blocks/observables/
 excerpt: "Documentation for the Observables block."
 sidebar:
   nav: "sp-block"
@@ -91,7 +91,7 @@ where:
   * $$ L_{r,i} (t_{r}) $$ is the integer component of the receiver's numerically controlled oscillator (NCO) phase.
   * $$ K_{r,i}  (t_{r}) $$ is the integer component of the term $$ \left( \frac{\rho_{r}^{(s)}(t_{r})}{\lambda_i} +\phi_{r,0,i} - \phi_{0,i}^{(s)} \right) $$.
 
-In order to generate useable phase measurements, the receiver phase observations must maintain a contant integer number of cycles offset from the true carrier phase. That is, if the range increases by one cycle (_i.e._, one wavelength), the integer component of the NCO, denoted as $$ L^{(i)} (t_{r}) $$, also increments by one cycle.
+In order to generate useable phase measurements, the receiver phase observations must maintain a constant integer number of cycles offset from the true carrier phase. That is, if the range increases by one cycle (_i.e._, one wavelength), the integer component of the NCO, denoted as $$ L^{(i)} (t_{r}) $$, also increments by one cycle.
 
 ### Phase-range measurement
 

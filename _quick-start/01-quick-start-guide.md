@@ -43,7 +43,7 @@ Then, GNSS-SDR takes care of all the digital signal processing, performing signa
 ![General Block Diagram](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/master/docs/doxygen/images/GeneralBlockDiagram.png)
 {: style="text-align: center;"}
 
-All the intermediate signals are observable, and the _products_ of the GNSS signal processing (that is, the measurements known in this context as [observables](http://www.navipedia.net/index.php/GNSS_Basic_Observables) and the data trasmitted by the satellites in their navigation message) are delivered in standard formats.
+All the intermediate signals are observable, and the _products_ of the GNSS signal processing (that is, the measurements known in this context as [observables](http://www.navipedia.net/index.php/GNSS_Basic_Observables) and the data transmitted by the satellites in their navigation message) are delivered in standard formats.
 
 GNSS-SDR is [free and open source software](http://www.unesco.org/new/en/communication-and-information/access-to-knowledge/free-and-open-source-software-foss/) released under the [General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html). This means you have:
 

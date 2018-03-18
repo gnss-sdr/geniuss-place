@@ -21,12 +21,12 @@ Task parallelization focuses on distributing execution processes (threads) acros
 
 ### Theoretical foundations: Kahn's process networks
 
-The approach described hereafer is based on [Gilles Kahn](https://en.wikipedia.org/wiki/Gilles_Kahn)'s formal, mathematical representation of process networks[^Kahn74] and his efforts to define a language based on a clear semantics of process interaction which facilitates well-structured programming of dynamically evolving networks of processes[^Kahn77].
+The approach described hereafter is based on [Gilles Kahn](https://en.wikipedia.org/wiki/Gilles_Kahn)'s formal, mathematical representation of process networks[^Kahn74] and his efforts to define a language based on a clear semantics of process interaction which facilitates well-structured programming of dynamically evolving networks of processes[^Kahn77].
 
 A Kahn process describes a model of computation where processes are connected by communication channels to form a network. Processes produce data elements or tokens and send them along a communication channel where they are consumed by the waiting destination process. Communication channels are the only method processes may use to exchange information. Kahn requires the execution of a process to be suspended when it attempts to get data from an empty input channel. A process may not, for example, test an input for the presence or absence of data. At any given point, a process can be either enabled or blocked waiting for data on only one of its input channels: it cannot wait for data from more than one channel. Systems that obey Kahn's mathematical model are determinate: the history of tokens produced on the communication channels does not depend on the execution order[^Kahn74]. With a proper scheduling policy, it is possible to implement software defined radio process networks holding two key properties:
 
-* **Non-termination**: understood as an infinite running flow graph process without deadlocks situations, and
-* **Strictly bounded**: the number of data elements buffered on the communication channels remains bounded for all possible execution orders.
+* **Non-termination:** understood as an infinite running flow graph process without deadlocks situations, and
+* **Strictly bounded:** the number of data elements buffered on the communication channels remains bounded for all possible execution orders.
 
 An analysis of such process networks scheduling was provided in Parks' PhD Thesis[^Parks95].
 
@@ -47,7 +47,7 @@ _Typical GNSS-SDR flow graph._
 
 ### Implementation: GNU Radio
 
-An actual implementation of these concepts is found in [GNU Radio](http://gnuradio.org/), a free and  open source framework for software-defined radio applications. In addition to provide an extensive assortment of signal processing blocks (filters, synchronization elements, demodulators, decoders, and much more), GNU Radio also provides an implementation of a runtime scheduler meeting the requirements described above. This allows developers to focus in the implementation of the actual signal processing, instead of worrying obout how to embed such processes in an efficient processing chain.
+An actual implementation of these concepts is found in [GNU Radio](http://gnuradio.org/), a free and  open source framework for software-defined radio applications. In addition to provide an extensive assortment of signal processing blocks (filters, synchronization elements, demodulators, decoders, and much more), GNU Radio also provides an implementation of a runtime scheduler meeting the requirements described above. This allows developers to focus in the implementation of the actual signal processing, instead of worrying about how to embed such processes in an efficient processing chain.
 
 **Idea to take home:** By adopting GNU Radio's signal processing framework, GNSS-SDR bases its software architecture in a well-established, highly-efficient design and an extensively proven implementation.
 {: .notice--info}
@@ -66,7 +66,7 @@ Thus, there are some constraints and requirements in terms of number of availabl
 **Idea to take home:** In this approach, each processing block executes in its own thread, trying to process data from their income buffer(s) as fast as they can, regardless of the input data rate. An underlying runtime scheduler is in  charge of managing the flow of data along the flow graph from source(s) to sink(s).
 {: .notice--info}
 
-Under this scheme, software-defined signal processing blocks read the available samples in their input memory buffer(s), process them as fast as they can, and place the result in the corresponding output memory buffer(s), each of them being executed in its own, independent thread. This strategy results in a software receiver that always attempts to process signal at the maximum processing capacity, since each block in the flow graph runs as fast as the processor, data flow and buffer space allows, regardless of its input data rate. Achieving real-time is _only_ a matter of executing the receiver's full processing chain in a processing system powerful enough to sustain the required processing load, but it does not prevent from executing exactly the same process at a slower pace, for example, by reading samples from a file in a less powerful platform.
+Under this scheme, software-defined signal processing blocks read the available samples in their input memory buffer(s), process them as fast as they can, and place the result in the corresponding output memory buffer(s), each of them being executed in its own, independent thread. This strategy results in a software receiver that always attempts to process signal at the maximum processing capacity, since each block in the flow graph runs as fast as the processor, data flow and buffer space allow for, regardless of its input data rate. Achieving real-time is _only_ a matter of executing the receiver's full processing chain in a processing system powerful enough to sustain the required processing load, but it does not prevent from executing exactly the same process at a slower pace, for example, by reading samples from a file in a less powerful platform.
 
 [^Kahn74]:  G. Kahn, [The semantics of a simple language for parallel programming](http://www1.cs.columbia.edu/~sedwards/papers/kahn1974semantics.pdf), in Information processing, J. L. Rosenfeld, Ed., Stockholm, Sweden, Aug 1974, pp. 471–475, North Holland.
 

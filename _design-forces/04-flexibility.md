@@ -20,7 +20,7 @@ It follows a list of possible flexibility indicators for a software-defined GNSS
 + Possibility to define custom receiver architectures.
 * Possibility to easily define / interchange implementations and parameters for each processing block.
 * Possibility to change parameters while the software is executing.
-* Possibility to be executed in different processing platforms (mainframes,personal computers, embedded systems, etc).
+* Possibility to be executed in different processing platforms (mainframes, personal computers, embedded systems, etc).
 * Availability of a versatile configuration mechanism.
 * Availability of _operation modes_, as combinations of:
   - Single / multiple frequency bands.

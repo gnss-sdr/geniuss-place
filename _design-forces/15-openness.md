@@ -45,7 +45,7 @@ It follows a list of possible openness indicators for a software-defined GNSS re
   - Demodulation/decoding of navigation message.
   - PVT computation.
 
-* In case of assisted / differential GNSS, reporting of the accessability of the assistance / differential sources and nature of the delivered data.
+* In case of assisted / differential GNSS, reporting of the accessibility of the assistance / differential sources and nature of the delivered data.
 
 
 -------
