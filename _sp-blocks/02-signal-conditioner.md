@@ -100,3 +100,7 @@ SignalConditioner.implementation=Pass_Through
 SignalConditioner.implementation=Pass_Through
 SignalConditioner.item_type=cshort
 ```
+
+<link rel="prerender" href="{{ "/docs/sp-blocks/data-type-adapter/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/input-filter/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/resampler/" | absolute_url }}">
