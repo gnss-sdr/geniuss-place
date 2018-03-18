@@ -35,4 +35,11 @@ In GNSS-SDR, each configuration file defines a receiver. This page documents the
 </td> </tr> </table> </body> </html>
 
 
-<link rel="prerender" href="{{ "/sp-blocks/signal-source/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/signal-source/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/signal-conditioner/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/channels/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/acquisition/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/tracking/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/telemetry-decoder/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/observables/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/pvt/" | absolute_url }}">

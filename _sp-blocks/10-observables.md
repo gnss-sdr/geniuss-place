@@ -1,6 +1,6 @@
 ---
 title: "Observables"
-permalink: docs/sp-blocks/observables/
+permalink: /docs/sp-blocks/observables/
 excerpt: "Documentation for the Observables block."
 sidebar:
   nav: "sp-block"
