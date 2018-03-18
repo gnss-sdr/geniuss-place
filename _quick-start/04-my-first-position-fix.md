@@ -44,7 +44,7 @@ $
 
 please check out the [building guide]({{ "/build-and-install/" | absolute_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file for more details on how to install GNSS-SDR.
 
-In order to take advantage of the SIMD instruction sets present in your processor, you will need to run the prolifer tools of the VOLK and VOLK_GNSSSDR libraries (these operations only need to be done once, and can take a while):
+In order to take advantage of the SIMD instruction sets present in your processor, you will need to run the profiler tools of the VOLK and VOLK_GNSSSDR libraries (these operations only need to be done once, and can take a while):
 
 ```bash
 $ volk_profile

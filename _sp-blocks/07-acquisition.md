@@ -50,10 +50,10 @@ properties. A criterion commonly used for a detection problem is the
 maximization of the detection probability ($$ P_d $$) subject to a given
 false alarm probability ($$ P_{fa} $$). It is well-known in the literature
 that the optimum solution to that problem can be found by applying the
-Neyman-Pearson (NP) approach, which requires perfect knowledge of the
-signal parameters and constitutes the uniformly most powerful test.
+[Neyman-Pearson](https://en.wikipedia.org/wiki/Neyman%E2%80%93Pearson_lemma) approach, which requires perfect knowledge of the
+signal parameters and constitutes the [uniformly most powerful test](https://en.wikipedia.org/wiki/Uniformly_most_powerful_test).
 Assuming additive white Gaussian noise and replacing the true
-synchronization parameters by their ML estimators in the NP detector,
+synchronization parameters by their ML estimators in the Neyman-Pearson detector,
 one obtains the Generalized Likelihood Ratio Test (GLRT) function, that
 can be written as:
 
