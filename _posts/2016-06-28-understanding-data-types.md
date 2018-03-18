@@ -117,13 +117,13 @@ typedef unsigned long ulong;
 unsigned long l1;
 ulong l2;
 ```
-**Idea to take home:** If your GNSS front-end is delivering samples of 2-bit length, a computer does not know how to handle them. A data type for that length is not defined, so there are no operations defined upon it. Even if you define an specific data type and its related operations, processors and compilers will likely not be optimized for such non-standard type. You need to bring whatever format your _Signal Source_ is delivering to a format that is understandable by the processing environment (processor, operating system, compiler, etc.) in charge of executing GNSS-SDR. Luckyly, it is easy to define new formats convertors, and they need to be placed at the first processing block that receives the incoming sample stream: the _Data Type_Adapter_.
+**Idea to take home:** If your GNSS front-end is delivering samples of 2-bit length, a computer does not know how to handle them. A data type for that length is not defined, so there are no operations defined upon it. Even if you define an specific data type and its related operations, processors and compilers will likely not be optimized for such non-standard type. You need to bring whatever format your _Signal Source_ is delivering to a format that is understandable by the processing environment (processor, operating system, compiler, etc.) in charge of executing GNSS-SDR. Luckily, it is easy to define new formats convertors, and they need to be placed at the first processing block that receives the incoming sample stream: the _Data Type_Adapter_.
 {: .notice--info}
 
 
 ## Data types in GNSS-SDR
 
-In the C and C++ programming languages, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) is the name of the
+In the C and C++ programming languages, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) (or its [`cstdint`](http://en.cppreference.com/w/cpp/header/cstdint) counterpart for C++) is the name of the
 header file that allows programmers to write more portable code by
 providing a set of typedefs that specify exact-width integer types,
 together with the defined minimum and maximum allowable values for each
@@ -132,7 +132,7 @@ often involves considerable manipulation of hardware specific I/O
 registers requiring integer data of fixed widths, specific locations and
 exact alignments. The naming convention for exact-width integer types is
 `intN_t` for `signed int` and `uintN_t` for `unsigned int`. Among
-others, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) defines the following typedefs:
+others, both [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) and [`cstdint`](http://en.cppreference.com/w/cpp/header/cstdint) define the following typedefs:
 
 -   `int8_t` Signed integer type with a width of *exactly* 8 bits.
 
@@ -244,7 +244,7 @@ The data type expected by _Channels_ actually depends on the specific implementa
 
 * In a processing flow graph, the data type used by a processing block to write at its output buffer(s) must be the same than the downstream processing blocks which are consuming data from its input buffer(s). Please check that the implementation of the immediately next processing nodes accepts that specific output data format.
 * **The less processing, the faster**. If your _Signal Source_ already delivers samples in a format that _Channels_ admits, setting ```SignalConditioner.implementation=Pass_Through``` (that is, a direct wire between the _Signal Source_ and _Channels_) is probably the best choice. Unnecessary filtering or data format conversion will always consume processing cycles, and given that those operations are performed at the sample rate provided by the signal source, this is specially critical if your are working with a real-time configuration. If you are reading samples from a file, there is no more constraint here that the required processing time.
-* In general, **the smaller the data type, the faster**. Intuitively, the less bits the processor needs to operate with, the faster it can perform the given instruction. That is, multiplying a pair of 8-bit integers should be faster than multipling a pair of 32-bit floating point values. However, in practice this not always holds. Processor manufacturers have spent a lot of effort in optimizing floating-point operations and, when combined with the inherent saturation problem in integer arithmetics (which proper management use to consume a non-negligible amount of cycles), it turns out that sometimes a floating point operation can be done as fast as  its 8 or 16 bit integer counterpart, or even faster. We have found widely different results when using different computing platforms, so specific testing in _your_ machine is always recommended.
+* In general, **the smaller the data type, the faster**. Intuitively, the less bits the processor needs to operate with, the faster it can perform the given instruction. That is, multiplying a pair of 8-bit integers should be faster than multiplying a pair of 32-bit floating point values. However, in practice this not always holds. Processor manufacturers have spent a lot of effort in optimizing floating-point operations and, when combined with the inherent saturation problem in integer arithmetics (which proper management use to consume a non-negligible amount of cycles), it turns out that sometimes a floating point operation can be done as fast as  its 8 or 16 bit integer counterpart, or even faster. We have found widely different results when using different computing platforms, so specific testing in _your_ machine is always recommended.
 * If your _Signal Source_ is delivering a format which is not defined in the Table above (for instance, a specific mapping of signed samples of 2-bit length, which is usual in GNSS-specific front-ends, or any other combination), you need an specific _Data Type Adapter_ for such format.  
 * If your _Signal Source_ is delivering signal at some Intermediate Frequency instead of baseband, use the `Freq_Xlating_Fir_Filter` implementation for _Filter_ and bring it down to a baseband signal (_i.e._, complex format).
 
