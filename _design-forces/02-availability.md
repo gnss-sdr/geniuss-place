@@ -39,11 +39,11 @@ _Availability_ refers to the degree to which a system, subsystem or equipment is
 
 ## Maximum observed running time
 
-A software application can _apparently_ run as expected for a period of time, and then suddently crash without previous notice. A common source of such a problem are _memory leakages_: due to a deficient programming, some parts of the system memory are blocked and never released when they are no longer used. The leakage can be slow, and the system memory huge, but this situation will eventually end up in a crash.
+A software application can _apparently_ run as expected for a period of time, and then suddenly crash without previous notice. A common source of such a problem are _memory leakages_: due to a deficient programming, some parts of the system memory are blocked and never released when they are no longer used. The leakage can be slow, and the system memory huge, but this situation will eventually end up in a crash.
 
 Another common source of such problems are _concurrency deadlocks_. Software applications that exploit task parallelism are exposed to be caught in unexpected scenarios that can cause a deadlock, blocking the application to further deliver position fixes. However, the application itself can implement a _watchdog_, an independent _thread_ monitoring this kind of situations and resetting the receiver to a known, working state. In such a case, the maximum expected response time of such process should be reported.
 
-Such software defects are hard to identify and to fix. Even well-kwown, massively used commercial software applications are not free from this kind of problems. It is then required to report the _maximum_ period of time in which the software receiver has been observed to be in a functioning condition in order to provide an objective measurement.
+Such software defects are hard to identify and to fix. Even well-known, massively used commercial software applications are not free from this kind of problems. It is then required to report the _maximum_ period of time in which the software receiver has been observed to be in a functioning condition in order to provide an objective measurement.
 
 Failures due to GNSS space and control segment failures, announced / reported service discontinuities, or general Operating System failures not directly ascribable to the software receiver should be discarded and not reported, unless constituting a performance hallmark and being reported as the interrupting cause.
 
@@ -282,7 +282,7 @@ It follows a list of possible availability indicators for a software-defined GNS
 
 In case of using differential GNSS techniques:
 
-* Availability and continuity of a minimum number of input datastreams.
+* Availability and continuity of a minimum number of input data streams.
 * Availability of corrections for precise positioning.
 * Corrections’ latency / generation time.
 * Convergence time to subdecimeter level.

@@ -36,11 +36,11 @@ Examples of notable CPU architectures:
    * [AArch64](https://en.wikipedia.org/wiki/ARM_architecture#64-bit) (64/32-bit).
      * SIMD instruction set extension: AArch64 NEON instruction set.
 
-* [Power Architecture](https://en.wikipedia.org/wiki/Power_Architecture) (formely known as [PowerPC](https://en.wikipedia.org/wiki/PowerPC)): big-endian and little-endian, 32 and 64 bits.
+* [Power Architecture](https://en.wikipedia.org/wiki/Power_Architecture) (formerly known as [PowerPC](https://en.wikipedia.org/wiki/PowerPC)): big-endian and little-endian, 32 and 64 bits.
 
 * DEC's [Alpha](https://en.wikipedia.org/wiki/DEC_Alpha) architecture for workstations and servers (64-bit).
 
-* Intel's [Itanium](https://en.wikipedia.org/wiki/Itanium) architecture (formely called IA-64) for enterprise servers and high-performance computing systems (64-bit).
+* Intel's [Itanium](https://en.wikipedia.org/wiki/Itanium) architecture (formerly called IA-64) for enterprise servers and high-performance computing systems (64-bit).
 
 * MIPS Computer Systems Inc.'s [MIPS architecture](https://en.wikipedia.org/wiki/MIPS_instruction_set): big-endian and little-endian, 32 and 64 bits.
 
@@ -125,7 +125,7 @@ It follows a list of possible portability indicators for a software-defined GNSS
 
 * Supported SIMD technologies.
   - In x86-based architectures: SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, FMA, AVX-512 family.
-  - In ARM architecures: NEON, AArch64 NEON.
+  - In ARM architectures: NEON, AArch64 NEON.
 
 * Support of GPU offloading (define GPU's vendor/model).
   - Through OpenCL.
