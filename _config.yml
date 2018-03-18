@@ -33,6 +33,12 @@ algolia:
   index_name             : "dev_geniuss-place"
   search_only_api_key    : "c70df703d8319b91d17ed828bba9874b"
   powered_by             : true
+  files_to_exclude       :
+    - index.html
+    - index.md
+    - _pages/tag-archive.html
+    - _pages/sitemap.md
+    - _docs/01-documentation.md
 
 # SEO Related
 google_site_verification : "googlefb1532d2ac258689"

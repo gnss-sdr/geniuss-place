@@ -47,7 +47,6 @@
 
 /* remove border*/
 .page__content {
-
   .archive__item-title {
     margin-top: 1em;
     border-bottom: none;
@@ -71,7 +70,6 @@
     width: 100%;
   }
 }
-
 
 .archive__item-button {
   text-align: center;
@@ -310,24 +308,6 @@
         width: span(7 of 12);
       }
     }
-  }
-}
-
-/* Place inside an archive layout */
-
-.archive {
-  .feature__wrapper {
-    .archive__item-title {
-      margin-top: 0.25em;
-      font-size: 1em;
-    }
-  }
-
-  .feature__item,
-  .feature__item--left,
-  .feature__item--center,
-  .feature__item--right {
-    font-size: 1em;
   }
 }
 

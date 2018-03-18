@@ -128,7 +128,7 @@
     padding-left: 0;
     padding-right: 0;
   }
-  
+
   a {
     color: inherit;
     text-decoration: none;
@@ -264,5 +264,27 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+/*
+   Wide Pages
+   ========================================================================== */
+
+.wide .sidebar__right {
+  margin-bottom: 1em;
+  @include breakpoint($large) {
+    position: initial;
+    top: initial;
+    right: initial;
+    width: initial;
+    margin-right: initial;
+    padding-left: initial;
+    z-index: initial;
+  }
+
+  @include breakpoint($x-large) {
+    width: initial;
+    margin-right: initial;
   }
 }

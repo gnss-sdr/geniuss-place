@@ -430,6 +430,34 @@
   text-transform: uppercase;
 }
 
+
+/*
+   Wide Pages
+   ========================================================================== */
+
+.wide {
+  .page {
+    @include breakpoint($large) {
+      padding-right: 0;
+    }
+
+    @include breakpoint($x-large) {
+      padding-right: 0;
+    }
+  }
+
+  .page__related {
+    @include breakpoint($large) {
+      padding-right: 0;
+    }
+
+    @include breakpoint($x-large) {
+      padding-right: 0;
+    }
+  }
+}
+
+
 /*
    Fix for Google search engine button
    ========================================================================== */
