@@ -609,7 +609,7 @@ where the chip period is $$ T_{c,B2I} = \frac{1}{2.046} $$ $$ \mu $$s and the co
 
   * In GEO satellites, the broadcasted navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B2I signals for geostationary satellites can be expressed as:
 
-  $$ \begin{equation} e_{B2I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{40920}\Big] \oplus C_{\text{B2I}} \Big[ |l|_{2046} \Big] p(t -  lT_{c,\text{B2I}})~. \end{equation} $$
+  $$ \begin{equation} e_{B2I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{4092}\Big] \oplus C_{\text{B2I}} \Big[ |l|_{2046} \Big] p(t -  lT_{c,\text{B2I}})~. \end{equation} $$
 
 Details of the $$ e_{B2Q}(t) $$ component have not been disclosed.
 
