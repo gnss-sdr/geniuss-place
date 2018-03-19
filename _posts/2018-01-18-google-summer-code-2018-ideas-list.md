@@ -8,7 +8,7 @@ tags:
 author_profile: false
 sidebar:
   nav: "news"
-last_modified_at: 2018-03-11T12:08:02+02:00
+last_modified_at: 2018-03-19T12:08:02+02:00
 ---
 
 This year, GNSS-SDR has been accepted as a mentoring organization for [Google Summer of Code](https://summerofcode.withgoogle.com/) (also known as GSoC), a global program that offers students stipends to write code for open source projects. In order to participate in the program, you must be a student. Google defines a student as an individual enrolled in or accepted into an accredited institution including (but not necessarily limited to) colleges, universities, masters programs, PhD programs and undergraduate programs. You should be prepared, upon request, to provide Google with transcripts or other documentation from your accredited institution as proof of enrollment or admission status. Computer Science does not need to be your field of study in order to participate in the program. You may be enrolled as a full-time or part-time student for a time period that includes April 23, 2018, and must be at least 18 years old to be eligible to participate in Google Summer of Code in 2018.
@@ -204,6 +204,25 @@ Basic knowledge on digital signal processing and C++ programming (familiarity wi
 ### Potential mentor(s):
 Mr. Luis Esteve, Mr. Damian Miralles, Mr. Antonio Ramos.
 
+
+--------
+
+## Expanding the receiver to BEIDOU B2I
+
+### Description:
+
+Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [Beidou B2I signals](http://gnss-sdr.org/docs/tutorials/gnss-signals/#beidou), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user's receiver).
+
+  * Implementation of acquisition and tracking algorithms for Beidou B2I signals, following the examples already implemented for other GNSS signals. This would facilitate research on multi-constellation, multi-frequency receivers (e.g., GPS + Galileo + Beidou) working with real signals.
+  * Demodulation of the navigation message, opening the door to open innovation in multi-constellation receivers and addressing topics such as integrity, reliability, robustness, enhanced coverage, and high-accuracy positioning.
+  * Integration of Beidou observables into the PVT position.
+
+### Skills required:
+
+Basic knowledge of digital signal processing and C++ programming (familiarity with the GNU Radio framework is a plus).
+
+### Potential mentor(s):
+Mr. Damian Miralles, Mr. Luis Esteve, Dr. Carles Fernández-Prades.
 
 --------
 
