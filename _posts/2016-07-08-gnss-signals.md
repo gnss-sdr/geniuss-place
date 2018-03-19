@@ -10,7 +10,7 @@ tags:
 sidebar:
   nav: "docs"
 toc: true
-last_modified_at: 2018-03-10T09:37:02+02:00
+last_modified_at: 2018-03-19T09:37:02+02:00
 
 ---
 
@@ -591,6 +591,31 @@ $$ \begin{eqnarray} s^{\text{(BeiDou B1C)}}_{T}(t) & = & e_{B1C\_data}(t) + e_{B
 \nonumber {} & {} & +j \sqrt{\frac{29}{44}} C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right)~.  \end{eqnarray} $$
 
 
+### BeiDou B2I
+
+BeiDou B2, centered at $$ f_{B2} = 1207.140 $$ MHz, features a QPSK(2) modulation. The complex baseband transmitted signal can be written as:[^Beidou]
+
+$$ \begin{equation} s^{\text{(BeiDou B2)}}_{T}(t) = e_{B2I}(t) + j e_{B2Q}(t)~, \end{equation} $$
+
+with:
+
+$$ \begin{equation} e_{B2I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{B2I}}\Big[ [l]_{40920}\Big] \oplus C_{NH} \Big[ [l]_{2046} \Big] \oplus C_{B2I} \Big[ |l|_{2046} \Big] p(t - lT_{c,B2I})~, \end{equation} $$
+
+$$ \begin{equation} e_{B2Q}(t) =  \sum_{l=-\infty}^{\infty}  D_{\text{B2Q}} \Big[ [l]_{N/A}  \Big] \oplus C_{B2Q} \Big[ |l|_{L_{C_{B2Q}}} \Big] p(t - lT_{c,B2Q})~, \end{equation} $$
+
+where the chip period is $$ T_{c,B2I} = \frac{1}{2.046} $$ $$ \mu $$s and the code length is 2046 chips. The data message $$ D_{\text{B2I}} $$ varies depending on the type of transmitting satellite:
+
+  * In MEO/IGSO satellites, the broadcasted navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s, defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits are transmitted at 50 bit/s.
+
+  * In GEO satellites, the broadcasted navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B2I signals for geostationary satellites can be expressed as:
+
+  $$ \begin{equation} e_{B2I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{40920}\Big] \oplus C_{\text{B2I}} \Big[ |l|_{2046} \Big] p(t -  lT_{c,\text{B2I}})~. \end{equation} $$
+
+Details of the $$ e_{B2Q}(t) $$ component have not been disclosed.
+
+As stated in the ICD[^Beidou], *"B2I will be gradually replaced by a better signal with the
+construction of global system"*. That new "better signal" is B2a, described below.
+
 ### BeiDou B2a
 
 BeiDou B2a signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are centered at  $$ f_{B2a} = 1176.45 $$ MHz, featuring a data channel with a BPSK(10) modulation in the I component, and a pilot channel with a BPSK(10) modulation in the Q component:[^BeidouB2a]
@@ -612,9 +637,19 @@ This signal replaces the former B2I defined in version 2.1 of the ICD[^Beidou].
 
 BeiDou B3I signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-2 and BDS-3, are centered at $$ f_{B3I} = 1268.520 $$ MHz and feature a data channel with a BPSK(10) modulation:[^BeidouB3I]
 
-$$ \begin{equation} e_{B3I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{D1}}\Big[ [l]_{20460}\Big] \oplus D_{\text{D2}}\Big[ [l]_{2046}\Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B3I}})~, \end{equation} $$
+$$ \begin{equation} e_{B3I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{B3I}}\Big[ [l]_{204600}\Big] \oplus C_{NH} \Big[ [l]_{10230} \Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B3I}})~, \end{equation} $$
 
-where $$ T_{c,\text{B3I}} = \frac{1}{10.23} $$ $$\mu $$s, and the D1 and D2 navigation messages $$ D_{\text{D1}} $$ and $$ D_{\text{D2}} $$ have a symbol rate of $$ 50 $$ and $$ 500 $$ bit/s, respectively.
+where $$ T_{c,\text{B3I}} = \frac{1}{10.23} $$ $$\mu $$s and the code length of $$ C_{\text{B3I}} $$ is 10230 chips.
+
+The data message $$ D_{\text{B3I}} $$ varies depending on the type of transmitting satellite:
+
+  * In MEO/IGSO satellites, the broadcasted navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s, defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits are transmitted at 50 bit/s.
+
+  * In GEO satellites, the broadcasted navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B3I signals for geostationary satellites can be expressed as:
+
+  $$ \begin{equation} e_{B3I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{20460}\Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B3I}})~. \end{equation} $$
+
+Details of the $$ e_{B3Q}(t) $$ component have not been disclosed.
 
 
 ---------
@@ -632,6 +667,7 @@ The following table lists the GNSS signals providing Open Service.
 | [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(**)} $$   | $$ 1176.45 $$ MHz |  BPSK(10)   |
 | [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
 | [**Galileo E5b**](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
+| [**BeiDou B2I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) |  $$ 1207.14 $$ MHz  | BPSK(2) |
 | [**GPS L2C**](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
 | [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
 | [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
