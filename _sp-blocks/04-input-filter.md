@@ -63,9 +63,9 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Fir_Filter` | Mandatory |
-| `input_item_type` | [`cbyte`, `cshort`, `gr_complex`]: Input data type. This implementation only accepts streams of complex data types. | Mandatory |
-| `output_item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Output data type. You can use this implementation to upcast the data type (i.e., from `cbyte` to `gr_complex` and from `cshort` to `gr_complex`). | Mandatory |
-| `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Mandatory |
+| `input_item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Input data type. This implementation only accepts streams of complex data types. | Mandatory |
+| `output_item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Output data type. You can use this implementation to upcast the data type (i.e., from <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr> to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> and from <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr> to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>). | Mandatory |
+| `taps_item_type` | [<abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>]: Type and resolution for the taps of the filter. Only <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. | Mandatory |
 | `number_of_bands` |  Number of frequency bands in the filter. | Mandatory |
 | `band1_begin` |  Frequency at the band edges [ <span style="color: blue">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. | Mandatory |
@@ -189,12 +189,12 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Freq_Xlating_Fir_Filter` | Mandatory |
 | `filter_type` |  [`lowpass`, `bandpass`, `hilbert`, `differentiator`]: type of filter to be used after the frequency translation.  | Mandatory |
-| `input_item_type` |  [`byte`, `short`, `float`, `gr_complex`]: This implementation accepts as input data type real samples. It also accepts complex samples of the type `gr_complex`, assuming the presence of an intermediate frequency. The filter also works with `IF=0`. | Mandatory |
-| `output_item_type` |  [`cbyte`, `cshort`, `gr_complex`]: Output data type. You can use this implementation to upcast the data type. | Mandatory |
+| `input_item_type` |  [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: This implementation accepts as input data type real samples. It also accepts complex samples of the type <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, assuming the presence of an intermediate frequency. The filter also works with `IF=0`. | Mandatory |
+| `output_item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Output data type. You can use this implementation to upcast the data type. | Mandatory |
 | `sampling_frequency` |  Specifies the sample rate $$ f_s $$, in samples per second. | Mandatory |
 | `IF` |  Specifies the intermediate frequency $$ f_{IF} $$ to be removed, in Hz. It defaults to $$ 0 $$ Hz (_i.e._, baseband complex signal). | Optional |
 | `decimation_factor` |  Decimation factor (defaults to 1). Needs to be an integer. | Optional |
-| `taps_item_type` | [`float`]: Type and resolution for the taps of the filter. Only `float` is allowed in the current version. | Mandatory |
+| `taps_item_type` | [<abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>]: Type and resolution for the taps of the filter. Only <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `number_of_bands` |  Number of frequency bands in the filter. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `band1_begin` |  Frequency at the band edges [ <span style="color: blue">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
@@ -296,7 +296,7 @@ The implementation of this block provides the following interface:
 | `implementation` | `Pulse_Blanking_Filter` | Mandatory |
 | `pfa` | Probability of false alarm. It defaults to $$ 0.04 $$ | Optional |
 | `length` | Number of signal samples $$ L $$ per analysis segment. It defaults to $$ 32 $$. | Optional |
-| `item_type` | Data type. This implementation only accepts `gr_complex`. It defaults to `gr_complex`. | Optional |
+| `item_type` | Data type. This implementation only accepts <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `segments_est` | Number of signal segments in a noise floor estimation epoch. It defaults to $$ 12500 $$. | Optional |
 | `segments_reset` | Number of signal segments between two consecutive noise floor estimations. It defaults to $$ 5000000 $$. | Optional |
 | `IF` | Specifies the intermediate frequency $$ f_{IF} $$ to be removed, in Hz. It defaults to $$ 0 $$ Hz (_i.e._, baseband complex signal). | Optional |
@@ -366,7 +366,7 @@ The implementation of this block provides the following interface:
 | `p_c_factor` | Pole contraction factor of the filter, $$ k_a $$. It ranges from $$ 0 $$ to $$ 1 $$. The higher the value, the lower the filter bandwidth. It defaults to $$ 0.9 $$  | Optional |
 | `pfa` | Probability of false alarm. It defaults to $$ 0.001 $$ | Optional |
 | `length` | Number of signal samples $$ L $$ per analysis segment. It defaults to $$ 32 $$. | Optional |
-| `item_type` | Data type. This implementation only accepts `gr_complex`. It defaults to `gr_complex`. | Optional |
+| `item_type` | Data type. This implementation only accepts <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `segments_est` | Number of signal segments in a noise floor estimation epoch. It defaults to $$ 12500 $$. | Optional |
 | `segments_reset` | Number of signal segments between two consecutive noise floor estimations. It defaults to $$ 5000000 $$. | Optional |
 | `dump` | [`true`, `false`]. Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
@@ -408,7 +408,7 @@ The implementation of this block provides the following interface:
 | `pfa` | Probability of false alarm. It defaults to $$ 0.001 $$ | Optional |
 | `coeff_rate` | Updating rate of the filter coefficients. It defaults to tenth the sampling frequency set at `SignalSource.sampling_frequency`.  |  Optional |
 | `length` | Number of signal samples per analysis segment. It defaults to $$ 32 $$. | Optional |
-| `item_type` | Data type. This implementation only accepts `gr_complex`. It defaults to `gr_complex`. | Optional |
+| `item_type` | Data type. This implementation only accepts <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `segments_est` | Number of signal segments in a noise floor estimation epoch. It defaults to $$ 12500 $$. | Optional |
 | `segments_reset` | Number of signal segments between two consecutive noise floor estimations. It defaults to $$ 5000000 $$. | Optional |
 | `dump` | [`true`, `false`]. Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
@@ -442,7 +442,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Pass_Through` | Mandatory |
-| `item_type` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Format of data samples. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 |-------
 
   _Input Filter implementation:_ **`Pass_Through`**.

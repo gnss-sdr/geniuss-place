@@ -67,7 +67,7 @@ compiler select the best library version (implemented using SIMD or any
 other processor-specific technology) of the required routines for a
 given processor.
 
-For more details about sample formats, please check out our tutorial on [data types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}).
+For more details about sample formats, please check out our [tutorial on data types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}).
 
 The more kinds of signal sources GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" | absolute_url }}).
 {: .notice--success}
@@ -86,13 +86,13 @@ the Signal Conditioner block with its `IF` parameter.
 
 ### Implementation: `File_Signal_Source`
 
-This _Signal Source_ implementation reads raw signal samples stored in a file, as long as they are stored in one of the following formats: `byte`, `ibyte`, `short`, `ishort`, `float` or `gr_complex`. Their definition is as follows:
+This _Signal Source_ implementation reads raw signal samples stored in a file, as long as they are stored in one of the following formats: <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. Their definition is as follows:
 
 |----------
 | **Type name in GNSS-SDR conf files** | **Definition** | **Sample stream**
 |:-:|:-|:-|
 |----------
-| `byte` | Signed integer, 8-bit two’s complement number ranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
+| `byte` | Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
 | `short` |  Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
 | `float` |  Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
 | `ibyte` |   Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
@@ -115,7 +115,7 @@ This implementation accepts the following parameters:
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
 | `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
-| `item_type` | [`byte`, `ibyte`, `short`, `ishort`, `float`, `gr_complex`]: Sample data type. It defaults to `gr_complex`. | Optional |
+| `item_type` | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
 |-------
@@ -162,8 +162,8 @@ specified in `SignalSource.filename`.
 
 Sometimes, samples are stored in files in a format that is not in the
 list of “native” types supported by the `File_Signal_Source`
-implementation (i.e, it is not among `byte`, `ibyte`, `short`, `ishort`,
-`float` or `gr_complex`). This is the case of 2-bit real samples
+implementation (i.e, it is not among <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>,
+<abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>). This is the case of 2-bit real samples
 delivered at a given intermediate frequency, which is a common format
 for GNSS RF front-ends.
 
@@ -201,7 +201,7 @@ be stored in either big endian `big_endian_items=true` or little endian
 `big_endian_items=false`. If the shorts are big endian, then the second
 byte in each short is output first.
 
-The output data type is either `float` or `gr_complex` depending on
+The output data type is either <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> depending on
 whether or not `sample_type` is real.
 
 This implementation accepts the following parameters:
@@ -214,7 +214,7 @@ This implementation accepts the following parameters:
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
 | `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
-| `item_type` | [`byte`, `short`]: Sample data type. It defaults to `byte`. | Optional |
+| `item_type` | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>]: Sample data type. It defaults to <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
 | `sample_type` | [`real`, `qi`, `iq`]: Set real or complex sample types (see above). It defaults to `real`. | Optional |
 | `big_endian_bytes` |  [`true`, `false`]: If set to `true`, the most significant byte value is expected to be stored at the memory location with the lowest address. If set to `false`, the least significant byte value is expected at the lowest address. It defaults to `false`. | Optional |
@@ -250,8 +250,8 @@ SignalSource.big_endian_bytes=false
 
 Sometimes, samples are stored in files in a format that is not in the
 list of “native” types supported by the `File_Signal_Source`
-implementation (i.e, it is not among `byte`, `ibyte`, `short`, `ishort`,
-`float` or `gr_complex`). This is the case of 2-bit real samples
+implementation (i.e, it is not among <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>,
+<abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>). This is the case of 2-bit real samples
 delivered at a given intermediate frequency, which is a common format
 found in RF front-ends:
 
@@ -260,7 +260,7 @@ $$ [S_0], [S_1], [S_2], ... $$ where $$ [S_i] $$ are 2-bit real samples.
 This Signal Source implementation is able to read such format and
 deliver at its output a sample stream composed of samples of type *byte*
 (8-bit signed integer). This implementation delivers a stream of samples
-of type `gr_complex`.
+of type <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.
 
 This implementation accepts the following parameters:
 
@@ -272,7 +272,7 @@ This implementation accepts the following parameters:
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
 | `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
-| `item_type` | [`byte`]: Sample data type. Only `byte` is allowed in this implementation. | Optional |
+| `item_type` | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>]: Sample data type. Only <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr> is allowed in this implementation. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
 |-------
@@ -338,7 +338,7 @@ and for 16 bits per sample:
 
 ![GSS6450-16bits]({{ "/assets/images/spirent-16bits.png" | absolute_url }}){: .align-center}
 
-This block reads files generated by Spirent's GSS6450, and delivers samples in format `gr_complex`.  It accepts the following parameters:
+This block reads files generated by Spirent's GSS6450, and delivers samples in format <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.  It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -379,7 +379,7 @@ SignalSource.adc_bits=4
 
 [LabSat](https://www.labsat.co.uk/index.php/en/) is an affordable, portable, and versatile multi-constellation Global Navigation Satellite Simulator.
 
-LabSat 3 devices record and replay real world raw sample data, allowing realistic and repeatable testing to be carried out under controlled conditions. This block reads files stored by LabSat 2 or LabSat 3 devices, and delivers a stream of samples of type `gr_complex`. Only single-frequency reading is implemented.
+LabSat 3 devices record and replay real world raw sample data, allowing realistic and repeatable testing to be carried out under controlled conditions. This block reads files stored by LabSat 2 or LabSat 3 devices, and delivers a stream of samples of type <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. Only single-frequency reading is implemented.
 
 LabSat 3 splits data in 2 GB files. This file source automatically increments the file name when the signal is split in several files: it adds "_0000.LS3" to this base path and filename. Thus, next file will be "_0001.LS3" and so on.
 
@@ -395,7 +395,7 @@ This implementation accepts the following parameters:
 | `filename` |  Path to the file base name of files containing the raw digitized signal samples. | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
 | `selected_channel` | [`1`, `2`, `3`]: Select the frequency band of data present in the file. It defaults to 1. | Optional |
-| `item_type` | [`gr_complex`]: Sample data type. Only `gr_complex` is allowed in this implementation. It defaults to `gr_complex`. | Optional |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this implementation. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 |-------
 
@@ -440,7 +440,7 @@ This implementation accepts the following parameters:
 | `sampling_frequency` |  Set the sampling frequency, in samples per second. | Mandatory |
 | `RF_channels` | Number of RF channels present in the front-end device. It defaults to 1. | Optional |
 | `clock_source` | [`internal`, `external`, `MIMO`]: Set the clock source for the USRP device. It defaults to `internal`. | Optional |
-| `item_type` | [`cbyte`, `cshort`, `gr_complex`]: data type for each sample. The type `cbyte` (_i.e._, complex signed 8-bit integers) is not available in USRP devices with their default configurations. This parameter defaults to `cshort`. | Optional |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: data type for each sample. The type <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr> (_i.e._, complex signed 8-bit integers) is not available in USRP devices with their default configurations. This parameter defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>. | Optional |
 | `device_serial` | Filter the device by serial number if required (useful for USB devices). It is empty by default | Optional |
 |-------
 
@@ -547,7 +547,7 @@ This implementation accepts the following parameters:
 | `sampling_frequency` | Sampling frequency, in samples per second. It defaults to 2 Ms/s. | Optional |
 | `AGC_enabled` | [`true`, `false`]: If set to `true`, enables Automatic Gain Control. It defaults to `false`. | Optional |
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
-| `item_type` | [`gr_complex`]: Set the output data type. Only  `gr_complex` is allowed in this version, so it is set by default. | Optional |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only  <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. | Optional |
 | `osmosdr_args` | Pass arguments to the OsmoSDR driver.  | Optional |
 | <span style="color: DarkOrange">`antenna`</span> | <span style="color: DarkOrange">[`NONE`, `LNAL`, `LNAH`, `LNAW`]: Select the LimeSDR RX antenna. `LNAW` is recommended for GNSS applications. It defaults to _empty_.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
@@ -680,7 +680,7 @@ This implementation accepts the following parameters:
 | `freq` | Selects the RX local oscillator frequency, in Hz. It defaults to $$ f_{\text{GPS L1}}=1575420000 $$ Hz. | Optional |
 | `sampling_frequency` | Defines the sampling rate, in samples per second (Sps). It defaults to $$ f_s = 2600000 $$ Sps. | Optional |
 | `bandwidth` | Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz. | Optional |
-| `item_type` | [`gr_complex`]: Set the output data type. Only `gr_complex` is allowed in this version, so it is set by default. | Optional |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. | Optional |
 | `rx1_enable` | [`true`, `false`]: If set to `true`, it enables the RX1 chain. It defaults to `true`. | Optional |
 | `rx2_enable` | [`true`, `false`]: If set to `true`, it enables the RX2 chain. It defaults to `false`. | Optional |
 | `buffer_size` | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
@@ -763,7 +763,7 @@ This implementation accepts the following parameters:
 | `freq` | Selects the RX local oscillator frequency, in Hz. It defaults to $$ f_{\text{GPS L1}}=1575420000 $$ Hz. | Optional |
 | `sampling_frequency` | Defines the sampling rate, in samples per second (Sps). It defaults to $$ f_s = 3000000 $$ Sps. | Optional |
 | `bandwidth` | Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz. | Optional |
-| `item_type` | [`gr_complex`]: Set the output data type. Only `gr_complex` is allowed in this version, so it is set by default. | Optional |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. | Optional |
 | `buffer_size` | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).  | Optional |
 | `quadrature` | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
 | `rf_dc` | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |

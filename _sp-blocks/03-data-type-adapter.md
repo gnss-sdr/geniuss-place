@@ -22,40 +22,23 @@ kind of source can deliver data in different formats.
 -   If the _Signal Source_ is delivering samples at a given intermediate
     frequency, the _native_ data types can be:
 
-    -   Real samples: `byte`, `short`, `float` (8, 16 and 32 bits,
+    -   Real samples: <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> (8, 16 and 32 bits,
         respectively).
 
-    -   Intervealed (I&Q) samples: `ibyte`, `ishort`, `gr_complex` (8+8, 16+16 and 32+32 bits, respectively).
+    -   Intervealed (I&Q) samples: <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (8+8, 16+16 and 32+32 bits, respectively).
 
 -   If the _Signal Source_ is delivering samples at baseband, the _native_ data types can be:
 
-    -   Intervealed (I&Q) samples: `ibyte`, `ishort`, `gr_complex` (8+8, 16+16 and 32+32 bits, respectively).
+    -   Intervealed (I&Q) samples: <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (8+8, 16+16 and 32+32 bits, respectively).
 
-    -   Complex samples: `cbyte`, `cshort`, `gr_complex` (8+8, 16+16 and 32+32 bits, respectively).
+    -   Complex samples: <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (8+8, 16+16 and 32+32 bits, respectively).
 
-This block provide several implementations of data type conversions. Next table summarizes their characteristics:
-
-
-|----------
-| **Type name in GNSS-SDR conf files** |  **Definition** | **Sample stream** |
-|:-:|:-|:-|
-|----------
-| `byte` | Signed integer, 8-bit two’s complement number ranging from $$ -128 $$ to $$ 127 $$. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
-| `short` |   Signed integer, 16-bit two’s complement number ranging from $$ -32768 $$ to $$ 32767 $$. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
-| `float` |  Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
-| `ibyte` |   Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
-| `ishort` |  Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
-| `cbyte` |  Complex samples, with real and imaginary parts of type `byte`. C++ type name: `lv_8sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
-| `cshort` |  Complex samples, with real and imaginary parts of type `short`. C++ type name: `lv_16sc_t` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
-| `gr_complex` | Complex samples, with real and imaginary parts of type `float`.  C++ type name: `std::complex<float>` | $$ [S_0^{I}+jS_0^{Q}],[S_1^{I}+jS_1^{Q}],[S_2^{I}+jS_2^{Q}],... $$
-|----------
-
-For more details about sample data types and their usage in GNSS-SDR, please check out our [tutorial on data types]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}).
+This block provide several implementations of data type conversions. For more details about sample data types and their usage in GNSS-SDR, please check out our [tutorial on data types]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}).
 
 ### Implementation: `Byte_To_Short`
 
-This implementation takes samples of type `byte` (8 bits, real samples)
-at its input and writes samples of type `short` (16 bits, real samples)
+This implementation takes samples of type <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr> (8 bits, real samples)
+at its input and writes samples of type <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr> (16 bits, real samples)
 at its output.
 
 It accepts the following parameters:
@@ -80,8 +63,8 @@ DataTypeAdapter.implementation=Byte_To_Short
 
 ### Implementation: `Ibyte_To_Cbyte`
 
-This implementation takes samples of type `ibyte` (interleaved I&Q
-samples, 8 bits each) at its input and writes samples of type `cbyte`
+This implementation takes samples of type <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr> (interleaved I&Q
+samples, 8 bits each) at its input and writes samples of type <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>
 (complex samples with real and imaginary components of 8 bits each) at
 its output. This reduces the sample rate by two.
 
@@ -106,9 +89,9 @@ DataTypeAdapter.implementation=Ibyte_To_Cbyte
 
 ### Implementation: `Ibyte_To_Complex`
 
-This implementation takes samples of type `ibyte` (interleaved I&Q
+This implementation takes samples of type <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr> (interleaved I&Q
 samples, 8 bits each) at its input and writes samples of type
-`gr_complex` (complex samples with real and imaginary components of 32
+<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (complex samples with real and imaginary components of 32
 bits each) at its output. This reduces the sample rate by two.
 
 It accepts the following parameters:
@@ -132,8 +115,8 @@ DataTypeAdapter.implementation=Ibyte_To_Complex
 
 ### Implementation: `Ishort_To_Cshort`
 
-This implementation takes samples of type `ishort` (interleaved I&Q
-samples, 16 bits each) at its input and writes samples of type `cshort`
+This implementation takes samples of type <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr> (interleaved I&Q
+samples, 16 bits each) at its input and writes samples of type <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>
 (complex samples with real and imaginary components of 16 bits each) at
 its output. This reduces the sample rate by two.
 
@@ -158,9 +141,9 @@ DataTypeAdapter.implementation=Ishort_To_Cshort
 
 ### Implementation: `Ishort_To_Complex`
 
-This implementation takes samples of type `ishort` (interleaved I&Q
+This implementation takes samples of type <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr> (interleaved I&Q
 samples, 16 bits each) at its input and writes samples of type
-`gr_complex` (complex samples with real and imaginary components of 32
+<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (complex samples with real and imaginary components of 32
 bits each) at its output. This reduces the sample rate by two.
 
 It accepts the following parameters:
@@ -193,7 +176,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Pass_Through` | Mandatory |
-| `item_type` |  [`gr_complex`, `cshort`, `cbyte`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Format of data samples. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 |-------
 
   _Data Type Adapter implementation:_ **`Pass_Through`**.
