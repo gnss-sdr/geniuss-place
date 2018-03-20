@@ -183,7 +183,7 @@
 
   abbr[title]:after,
   acronym[title]:after {
-    content: " (" attr(title) ")";
+    content: ''; //
   }
 
   #main {
