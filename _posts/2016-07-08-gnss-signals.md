@@ -586,9 +586,9 @@ with $$ f_{sc\_B1C\_a} = 1.023 $$ MHz and $$ f_{sc\_B1C\_b} = 6.138 $$ MHz. The 
 Since $$ e_{B1C\_pilot}(t) $$ is a complex waveform, the B1C signal contains three components as shown in the following equation:
 
 $$ \begin{eqnarray} s^{\text{(BeiDou B1C)}}_{T}(t) & = & e_{B1C\_data}(t) + e_{B1C\_pilot\_b}(t) + je_{B1C\_pilot\_a}(t) \\
-\nonumber {} & = & \frac{1}{2} D_{\text{B-CNAV1}}(t) \oplus C_{B1C\_data}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) +\\
-\nonumber {} & {} & + \sqrt{\frac{1}{11}}  C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right) + \\
-\nonumber {} & {} & +j \sqrt{\frac{29}{44}} C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right)~.  \end{eqnarray} $$
+\nonumber {} & = & \frac{1}{2} \sum_{l=-\infty}^{\infty} D_{\text{B-CNAV1}}(t) \oplus C_{B1C\_data}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) p(t - lT_{c,B1C\_data}) +\\
+\nonumber {} & {} & + \sqrt{\frac{1}{11}} \sum_{l=-\infty}^{\infty} C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right)  p(t - lT_{c,B1C\_pilot}) + \\
+\nonumber {} & {} & +j \sqrt{\frac{29}{44}} \sum_{l=-\infty}^{\infty} C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right) \right) p(t - lT_{c,B1C\_pilot})~.  \end{eqnarray} $$
 
 
 ### BeiDou B2I
