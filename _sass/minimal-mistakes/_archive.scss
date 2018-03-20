@@ -37,7 +37,7 @@
   text-overflow: ellipsis;
 
   a {
-      color: inherit;
+    color: inherit;
   }
 
   a + a {
@@ -185,7 +185,6 @@
   }
 }
 
-
 /*
    Features
    ========================================================================== */
@@ -239,7 +238,6 @@
     }
 
     @include breakpoint($small) {
-
       .archive__item-teaser {
         float: left;
         width: span(5 of 12);
