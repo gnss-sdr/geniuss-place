@@ -10,7 +10,7 @@ tags:
 sidebar:
   nav: "docs"
 toc: true
-last_modified_at: 2018-03-19T09:37:02+02:00
+last_modified_at: 2018-03-20T09:37:02+02:00
 
 ---
 
@@ -561,7 +561,7 @@ Beidou's Interface Control Document version 2.1 describes the Inphase
 
 The B1I signal is also transmitted by all satellites of BDS-3.
 
-[^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese).
+[^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese). [English version](https://drive.google.com/file/d/19ixverkr6usYFirV_HVtwPzOlQfVL2dC/view?usp=sharing).
 
 ### BeiDou B1C
 
@@ -586,9 +586,9 @@ with $$ f_{sc\_B1C\_a} = 1.023 $$ MHz and $$ f_{sc\_B1C\_b} = 6.138 $$ MHz. The 
 Since $$ e_{B1C\_pilot}(t) $$ is a complex waveform, the B1C signal contains three components as shown in the following equation:
 
 $$ \begin{eqnarray} s^{\text{(BeiDou B1C)}}_{T}(t) & = & e_{B1C\_data}(t) + e_{B1C\_pilot\_b}(t) + je_{B1C\_pilot\_a}(t) \\
-\nonumber {} & = & \frac{1}{2} D_{\text{B-CNAV1}}(t) \oplus C_{B1C\_data}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) +\\
-\nonumber {} & {} & + \sqrt{\frac{1}{11}}  C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right) + \\
-\nonumber {} & {} & +j \sqrt{\frac{29}{44}} C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right)~.  \end{eqnarray} $$
+\nonumber {} & = & \frac{1}{2} \sum_{l=-\infty}^{\infty} D_{\text{B-CNAV1}}(t) \oplus C_{B1C\_data}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) p(t - lT_{c,B1C\_data}) +\\
+\nonumber {} & {} & + \sqrt{\frac{1}{11}} \sum_{l=-\infty}^{\infty} C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right)  p(t - lT_{c,B1C\_pilot}) + \\
+\nonumber {} & {} & +j \sqrt{\frac{29}{44}} \sum_{l=-\infty}^{\infty} C_{B1C\_pilot}(t) \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right) \right) p(t - lT_{c,B1C\_pilot})~.  \end{eqnarray} $$
 
 
 ### BeiDou B2I
@@ -599,13 +599,13 @@ $$ \begin{equation} s^{\text{(BeiDou B2)}}_{T}(t) = e_{B2I}(t) + j e_{B2Q}(t)~, 
 
 with:
 
-$$ \begin{equation} e_{B2I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{B2I}}\Big[ [l]_{40920}\Big] \oplus C_{NH} \Big[ [l]_{2046} \Big] \oplus C_{B2I} \Big[ |l|_{2046} \Big] p(t - lT_{c,B2I})~, \end{equation} $$
+$$ \begin{equation} e_{B2I}(t) =  \sum_{m=-\infty}^{\infty} C_{NH} \Big[ |m|_{20} \Big] \oplus \sum_{l=-\infty}^{\infty} D_{\text{B2I}}\Big[ [l]_{40920}\Big] \oplus C_{B2I} \Big[ |l|_{2046} \Big] p(t - mT_{c,\text{B2I}_{CH}} - lT_{c,\text{B2I}_{C}})~, \end{equation} $$
 
 $$ \begin{equation} e_{B2Q}(t) =  \sum_{l=-\infty}^{\infty}  D_{\text{B2Q}} \Big[ [l]_{N/A}  \Big] \oplus C_{B2Q} \Big[ |l|_{L_{C_{B2Q}}} \Big] p(t - lT_{c,B2Q})~, \end{equation} $$
 
-where the chip period is $$ T_{c,B2I} = \frac{1}{2.046} $$ $$ \mu $$s and the code length is 2046 chips. The data message $$ D_{\text{B2I}} $$ varies depending on the type of transmitting satellite:
+where the chip period is $$ T_{c,\text{B2I}_{C}} = \frac{1}{2.046} $$ $$ \mu $$s and the code length is 2046 chips. The data message $$ D_{\text{B2I}} $$ varies depending on the type of transmitting satellite:
 
-  * In MEO/IGSO satellites, the broadcasted navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s, defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits are transmitted at 50 bit/s.
+  * In MEO/IGSO satellites, the broadcasted navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s (so $$ T_{c,\text{B2I}_{CH}} = 1 $$ ms), defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits are transmitted at 50 bit/s.
 
   * In GEO satellites, the broadcasted navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B2I signals for geostationary satellites can be expressed as:
 
@@ -637,13 +637,13 @@ This signal replaces the former B2I defined in version 2.1 of the ICD[^Beidou].
 
 BeiDou B3I signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-2 and BDS-3, are centered at $$ f_{B3I} = 1268.520 $$ MHz and feature a data channel with a BPSK(10) modulation:[^BeidouB3I]
 
-$$ \begin{equation} e_{B3I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{B3I}}\Big[ [l]_{204600}\Big] \oplus C_{NH} \Big[ [l]_{10230} \Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B3I}})~, \end{equation} $$
+$$ \begin{equation} e_{B3I}(t) = \sum_{m=-\infty}^{\infty} C_{NH} \Big[ |m|_{20} \Big] \oplus \sum_{l=-\infty}^{\infty} D_{\text{B3I}}\Big[ [l]_{204600}\Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t - mT_{c,\text{B3I}_{CH}} - lT_{c,\text{B3I}_{C}})~, \end{equation} $$
 
-where $$ T_{c,\text{B3I}} = \frac{1}{10.23} $$ $$\mu $$s and the code length of $$ C_{\text{B3I}} $$ is 10230 chips.
+where $$ T_{c,\text{B3I}_{C}} = \frac{1}{10.23} $$ $$\mu $$s and the code length of $$ C_{\text{B3I}} $$ is 10230 chips.
 
 The data message $$ D_{\text{B3I}} $$ varies depending on the type of transmitting satellite:
 
-  * In MEO/IGSO satellites, the broadcasted navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s, defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits are transmitted at 50 bit/s.
+  * In MEO/IGSO satellites, the broadcasted navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s (so $$ T_{c,\text{B3I}_{CH}} = 1 $$ ms), defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits $$ D_{\text{B3I}} $$ are transmitted at 50 bit/s.
 
   * In GEO satellites, the broadcasted navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B3I signals for geostationary satellites can be expressed as:
 

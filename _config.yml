@@ -71,6 +71,7 @@ author:
   name             : *name
   github           : "gnss-sdr"
   google_plus      : "GnsssdrOrgPage"
+  gitlab           : "gnss-sdr/gnss-sdr"
   twitter          :
   youtube          :
 

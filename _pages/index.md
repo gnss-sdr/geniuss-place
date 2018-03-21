@@ -43,7 +43,7 @@ intro:
 
 ![GeNiuSS]({{ "/assets/images/geniuss.png" | absolute_url }}){: width="300px"}
 {: style="text-align: center;"}
-[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Get Started]({{ "/quick-start-guide/" | absolute_url }}){: .btn .btn--primary .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Get Started]({{ "/quick-start-guide/" | absolute_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 ---
@@ -107,3 +107,4 @@ intro:
 <link rel="prerender" href="{{ "/my-first-fix/" | absolute_url }}">
 <link rel="prerender" href="{{ "/docs/sp-blocks/" | absolute_url }}">
 <link rel="prerender" href="{{ "/design-forces/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/tutorials/gnss-signals/" | absolute_url }}">
