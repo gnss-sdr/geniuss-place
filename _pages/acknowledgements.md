@@ -59,57 +59,63 @@ The Authors are proud to be supported by the following public institutions, priv
     ![GSoC logo]({{ "/assets/images/logo-gsoc.png" | absolute_url }}){:height="100px" width="100x"}
     {: style="text-align: center;"}
 
-     * [2017](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
-          - In [Robust KF-based Tracking Techniques for Advanced GNSS Receivers](https://summerofcode.withgoogle.com/dashboard/project/6197701027823616/overview/) Shashanka Joisa worked on improving the tracking loops.
-          - In [Graphical User Interface for GNSS-SDR configuration](https://summerofcode.withgoogle.com/dashboard/project/4704519677018112/overview/), Usman Haider worked on a GUI for making GNSS-SDR configuration easier and more intuitive.
-          - In [Expanding the receiver to GLONASS](https://summerofcode.withgoogle.com/dashboard/project/5472452239949824/overview/), Damian Miralles worked on expanding GNSS-SDR to GLONASS signals.
-          - In [Expanding the GNSS-SDR receiver to GLONASS](https://summerofcode.withgoogle.com/dashboard/project/4511514108100608/overview/), Gabriel Araujo worked on expanding GNSS-SDR to GLONASS signals.
-          - In [Pulsed and continuous wave radio frequency interferences mitigation: application to GNSS-SDR in low Signal to Noise ratio scenarios](https://summerofcode.withgoogle.com/dashboard/project/5694177315651584/overview/), Antonio Ramos de Torres worked on interference mitigation techniques.
+[2017](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
 
-     * [2016](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
-          - In [GNSS-SDR port to android](https://summerofcode.withgoogle.com/projects/?sp-page=2#4871316700135424), Eric Wild worked on porting GNSS-SDR to Android.
-          - In [Implementation of the BeiDou signal tracking block for the GNSS-SDR Project](https://summerofcode.withgoogle.com/projects/?sp-page=2#5537250955755520), Enric Juan developed part of the Beidou B1 receiver.
-          - In [Project Frisbee : An Antenna Array Receiver Testbed for GNSS-SDR](https://summerofcode.withgoogle.com/projects/?sp-page=2#4771132842442752), Ajith Peter explored advanced front-end architectures and evolved his open design.
+  * In [Robust KF-based Tracking Techniques for Advanced GNSS Receivers](https://summerofcode.withgoogle.com/dashboard/project/6197701027823616/overview/) Shashanka Joisa worked on improving the tracking loops.
+  * In [Graphical User Interface for GNSS-SDR configuration](https://summerofcode.withgoogle.com/dashboard/project/4704519677018112/overview/), Usman Haider worked on a GUI for making GNSS-SDR configuration easier and more intuitive.
+  * In [Expanding the receiver to GLONASS](https://summerofcode.withgoogle.com/dashboard/project/5472452239949824/overview/), Damian Miralles worked on expanding GNSS-SDR to GLONASS signals.
+  * In [Expanding the GNSS-SDR receiver to GLONASS](https://summerofcode.withgoogle.com/dashboard/project/4511514108100608/overview/), Gabriel Araujo worked on expanding GNSS-SDR to GLONASS signals.
+  * In [Pulsed and continuous wave radio frequency interferences mitigation: application to GNSS-SDR in low Signal to Noise ratio scenarios](https://summerofcode.withgoogle.com/dashboard/project/5694177315651584/overview/), Antonio Ramos de Torres worked on interference mitigation techniques.
 
-     * [2015](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr)
-          - In [BeiDou signal generation and acquisition](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/giorgio.html), Giorgio Savastano explored acquisition methods for the Beidou B1 receiver.
-          - In [Development of a Low Cost Multi-Constellation GNSS Sampler](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/ajithpeter.html), Ajith Peter implemented the first version of a low-cost radiofrequency front-end, achieving a working prototype.
-          - In [Embedding GNSS-SDR in a System on Chip](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/cris_proteinlab.html), Cristian Becerra worked in adapting GNSS-SDR to embedded devices.
-          - In [GNSSSDR Metadata Standard Implementation - Automatic Receiver Configuration](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/sumitgautamjbp.html), Sumit Gautam explored novel interfaces and APIs to describe signal inputs.
-          - In [Run-time partitioning of functions at an embedded SDR framework](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/scaelles.html), Sergi Caelles worked in adapting GNSS-SDR to embedded devices.
-          - In [Run-time partitioning of SDR functions featuring hardware accelerators](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/paul_jsd.html), Paul Harbanau worked on run-time partitioning strategies in FPGA devices.
+[2016](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
 
-     * [2014](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr)
-          - In [Development of a GNSS Sampler using the MAX2769 Universal GPS Receiver](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/ajithpeter.html), Ajith Peter worked on the design of a low-cost radiofrequency front-end for GNSS-SDR.
-          - In [Expanding the receiver to Galileo E5a](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marc_sales.html), Marc Sales pioneered the development of blocks for the Galileo E5a receiver.
-          - In [Faster GNSS Signal Acquisition using the Sparse Fourier Transform](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/dmiralles2009.html), Damian Miralles explored the QuickSync algortihm for signal acquisition.
-          - In [New blocks for BeiDou B1 in GNSS-SDR: toward a multi-constellation receiver](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marabra87.html), Mara Branzanti started working on the Beidou B1 receiver.
+  * In [GNSS-SDR port to android](https://summerofcode.withgoogle.com/projects/?sp-page=2#4871316700135424), Eric Wild worked on porting GNSS-SDR to Android.
+  * In [Implementation of the BeiDou signal tracking block for the GNSS-SDR Project](https://summerofcode.withgoogle.com/projects/?sp-page=2#5537250955755520), Enric Juan developed part of the Beidou B1 receiver.
+  * In [Project Frisbee : An Antenna Array Receiver Testbed for GNSS-SDR](https://summerofcode.withgoogle.com/projects/?sp-page=2#4771132842442752), Ajith Peter explored advanced front-end architectures and evolved his open design.
 
-     * [2013](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr)
-          - In [Development of new blocks for Galileo E1 in GNSS-SDR: From telemetry to PVT solutions](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/marabra87.html), Mara Branzanti worked on the Galileo E1 receiver.
-          - In [GNSS-SDR goes SBAS](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/fehrdan.html), Daniel Fehr set the basis for the EGNOS receiver.
-          - In [Improve the acquisition sensitivity of a GNSS receiver](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/marcmolina.html), Marc Molina improved the performance of acquisition algorithms.
+[2015](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr)
 
-     * [2012](https://www.google-melange.com/archive/gsoc/2012/orgs/gnu), under the kind umbrella of GNU Radio and the GNU Project.
-          - In [GNSS Receiver on GNU Radio](https://www.google-melange.com/archive/gsoc/2012/orgs/gnu/projects/lesteve.html), Luis Esteve implemented an acquisition algorithm for GPS L1 C/A.
+  * In [BeiDou signal generation and acquisition](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/giorgio.html), Giorgio Savastano explored acquisition methods for the Beidou B1 receiver.
+  * In [Development of a Low Cost Multi-Constellation GNSS Sampler](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/ajithpeter.html), Ajith Peter implemented the first version of a low-cost radiofrequency front-end, achieving a working prototype.
+  * In [Embedding GNSS-SDR in a System on Chip](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/cris_proteinlab.html), Cristian Becerra worked in adapting GNSS-SDR to embedded devices.
+  * In [GNSSSDR Metadata Standard Implementation - Automatic Receiver Configuration](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/sumitgautamjbp.html), Sumit Gautam explored novel interfaces and APIs to describe signal inputs.
+  * In [Run-time partitioning of functions at an embedded SDR framework](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/scaelles.html), Sergi Caelles worked in adapting GNSS-SDR to embedded devices.
+  * In [Run-time partitioning of SDR functions featuring hardware accelerators](https://www.google-melange.com/archive/gsoc/2015/orgs/gnss_sdr/projects/paul_jsd.html), Paul Harbanau worked on run-time partitioning strategies in FPGA devices.
 
-          **Google**, through the GSoC program, offers students a stipend for contributing to open source projects.
-          {: .notice--success}
+[2014](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr)
+
+  * In [Development of a GNSS Sampler using the MAX2769 Universal GPS Receiver](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/ajithpeter.html), Ajith Peter worked on the design of a low-cost radiofrequency front-end for GNSS-SDR.
+  * In [Expanding the receiver to Galileo E5a](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marc_sales.html), Marc Sales pioneered the development of blocks for the Galileo E5a receiver.
+  * In [Faster GNSS Signal Acquisition using the Sparse Fourier Transform](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/dmiralles2009.html), Damian Miralles explored the QuickSync algortihm for signal acquisition.
+  * In [New blocks for BeiDou B1 in GNSS-SDR: toward a multi-constellation receiver](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marabra87.html), Mara Branzanti started working on the Beidou B1 receiver.
+
+[2013](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr)
+
+  * In [Development of new blocks for Galileo E1 in GNSS-SDR: From telemetry to PVT solutions](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/marabra87.html), Mara Branzanti worked on the Galileo E1 receiver.
+  * In [GNSS-SDR goes SBAS](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/fehrdan.html), Daniel Fehr set the basis for the EGNOS receiver.
+  * In [Improve the acquisition sensitivity of a GNSS receiver](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr/projects/marcmolina.html), Marc Molina improved the performance of acquisition algorithms.
+
+[2012](https://www.google-melange.com/archive/gsoc/2012/orgs/gnu), under the kind umbrella of GNU Radio and the GNU Project.
+
+  * In [GNSS Receiver on GNU Radio](https://www.google-melange.com/archive/gsoc/2012/orgs/gnu/projects/lesteve.html), Luis Esteve implemented an acquisition algorithm for GPS L1 C/A.
+
+    **Google**, through the GSoC program, offers students a stipend for contributing to open source projects.
+    {: .notice--success}
 
 
 * **ESA Summer Of Code In Space (SOCIS)**
 
-     * [2015](http://sophia.estec.esa.int/socis2015/?q=node/13)
-          - In _Direct Position Estimation_, Luis Esteve explored the DPE algorithm and proposed receiver architectures.
+  * [2015](http://sophia.estec.esa.int/socis2015/?q=node/13)
+    - In _Direct Position Estimation_, Luis Esteve explored the DPE algorithm and proposed receiver architectures.
 
-     * [2014](http://sophia.estec.esa.int/socis2014/?q=node/13)
-          - In _GNSS-SDR. Acceleration with VOLK_, Andr&eacute;s Cecilia created a new VOLK module with kernels for GNSS signal processing, the inception of the current [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr).
+  * [2014](http://sophia.estec.esa.int/socis2014/?q=node/13)
+    - In _GNSS-SDR. Acceleration with VOLK_, Andr&eacute;s Cecilia created a new VOLK module with kernels for GNSS signal processing, the inception of the current [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr).
 
-     * [2013](http://sophia.estec.esa.int/socis2013/?q=node/13)
-          - In _Real-time positioning solution for GNSS-SDR_, Vladimir Avrov started working on the generation of RTCM messages.
+  * [2013](http://sophia.estec.esa.int/socis2013/?q=node/13)
+    - In _Real-time positioning solution for GNSS-SDR_, Vladimir Avrov started working on the generation of RTCM messages.
 
-          **The European Space Agency**, through the SOCIS program, offers students a stipend for contributing to open source projects.
-          {: .notice--success}
+    **The European Space Agency**, through the SOCIS program, offers students a stipend for contributing to open source projects.
+    {: .notice--success}
 
 
 ## Sponsors

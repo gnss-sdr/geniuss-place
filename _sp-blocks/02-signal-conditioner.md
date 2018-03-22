@@ -82,7 +82,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Pass_Through` | Mandatory |
-| `item_type` |  [`gr_complex`, `cshort`]: Format of data samples. It defaults to `gr_complex`. | Optional |
+| `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>]: Format of data samples. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 |-------
 
   _Signal Conditioner implementation:_ **`Pass_Through`**.

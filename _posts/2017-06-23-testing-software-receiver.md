@@ -323,52 +323,59 @@ All these examples produce the following report:
 
 The generation of some unit test cases are enabled by default, and gathered in the test program `run_tests`.
 
- * Unit Test Cases for arithmetics:
-    - `CodeGenerationTest`: set of tests for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of PRN code generation.
-    - `ComplexCarrierTest`: set of tests for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of complex carrier generation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_carrier_test`. You can try a different length by doing:
-    ```bash
-    $ ./run_tests --gtest_filter=ComplexCarrier* --size_carrier_test=1000000
-    ```
-    - `ConjugateTest`: set of tests measuring the execution time of various implementations of vector conjugation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_conjugate_test`. You can try a different length by doing:
-    ```bash
-    $ ./run_tests --gtest_filter=Conjugate* --size_conjugate_test=1000000
-    ```
-    - `FFTLengthTest`: set of tests measuring the execution time for several FFT lengths. The default number of averaged iterations is $$ 1000 $$, but this test case accepts the flag `--fft_iterations_test`. If you have [Gnuplot](http://www.gnuplot.info/) installed in your system, you can get some plots by adding the flag `--plot_fft_length_test`. You can try a different number of iterations and get some plots by doing:
-    ```bash
-    $ ./run_tests --gtest_filter=FFT* --fft_iterations_test=10000 --plot_fft_length_test
-    ```
-    - `MagnitudeSquaredTest`: set of tests measuring the execution time of various implementations of vector square magnitude computation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_magnitude_test`. You can try a different length by doing:
-    ```bash
-    $ ./run_tests --gtest_filter=Magnitude* --size_magnitude_test=1000000
-    ```
-    - `MultiplyTest`: set of tests measuring the execution time of various implementations of vector (element-by-element) multiplication. The default vector length is $$ 10000 $$, but this test case accepts the flag `--size_multiply_test`. You can try a different length by doing:
-    ```bash
-    $ ./run_tests --gtest_filter=Multiply* --size_multiply_test=100000
-    ```
+**Unit Test Cases for arithmetics:**
 
-* Unit Test Cases for the control plane:
-    - `ControlMessageFactoryTest`: set of tests for [control_message_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_message_factory.h)
-    - `ControlThreadTest`: set of tests for [control_thread.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_thread.h)
-    - `FileConfigurationTest`: set of tests for [file_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/file_configuration.h)
-    - `GNSSBlockFactoryTest`: set of tests for [gnss_block_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_block_factory.h)
-    - `GNSSFlowgraph`: set of tests for [gnss_flowgraph.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_flowgraph.h)
-    - `InMemoryConfiguration`: set of tests for [in_memory_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/in_memory_configuration.h)
-    - `StringConverterTest`: set of tests for [string_converter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/libs/string_converter.h)
+ * `CodeGenerationTest`: set of tests for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of PRN code generation.
+ * `ComplexCarrierTest`: set of tests for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of complex carrier generation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_carrier_test`. You can try a different length by doing:
+ ```bash
+ $ ./run_tests --gtest_filter=ComplexCarrier* --size_carrier_test=1000000
+ ```
+ * `ConjugateTest`: set of tests measuring the execution time of various implementations of vector conjugation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_conjugate_test`. You can try a different length by doing:
+ ```bash
+ $ ./run_tests --gtest_filter=Conjugate* --size_conjugate_test=1000000
+ ```
+ * `FFTLengthTest`: set of tests measuring the execution time for several FFT lengths. The default number of averaged iterations is $$ 1000 $$, but this test case accepts the flag `--fft_iterations_test`. If you have [Gnuplot](http://www.gnuplot.info/) installed in your system, you can get some plots by adding the flag `--plot_fft_length_test`. You can try a different number of iterations and get some plots by doing:
+ ```bash
+ $ ./run_tests --gtest_filter=FFT* --fft_iterations_test=10000 --plot_fft_length_test
+ ```
+ * `MagnitudeSquaredTest`: set of tests measuring the execution time of various implementations of vector square magnitude computation. The default vector length is $$ 100000 $$, but this test case accepts the flag `--size_magnitude_test`. You can try a different length by doing:
+ ```bash
+ $ ./run_tests --gtest_filter=Magnitude* --size_magnitude_test=1000000
+ ```
+ * `MultiplyTest`: set of tests measuring the execution time of various implementations of vector (element-by-element) multiplication. The default vector length is $$ 10000 $$, but this test case accepts the flag `--size_multiply_test`. You can try a different length by doing:
+ ```bash
+ $ ./run_tests --gtest_filter=Multiply* --size_multiply_test=100000
+ ```
 
- * Unit Test Cases for signal processing blocks:
-    - Signal sources
-      - `FileSignalSource`: set of tests for [file_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/adapters/file_signal_source.h)
-      - `ValveTest`: set of tests for [gnss_sdr_valve.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_sdr_valve.h)
-      - `Unpack2bitSamplesTest`: set of tests for [unpack_2bit_samples.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/gnuradio_blocks/unpack_2bit_samples.h)
-    - Data Type Adapter
-      - `PassThroughTest`: set of tests for [pass_through.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/pass_through.h)
-      - `DataTypeAdapter`: set of test for data type adapters [byte_to_short.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/byte_to_short.h), [ibyte_to_cbyte.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_cbyte.h), [ibyte_to_complex.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_complex.h), [ibyte_to_cshort.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_cshort.h), [ishort_to_complex.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ishort_to_complex.h) and [ishort_to_cshort.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ishort_to_cshort.h)
-    - Input filter
-      - `FirFilterTest`: set of tests for [fir_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/input_filter/adapters/fir_filter.h)
-    - Resampler
+**Unit Test Cases for the control plane:**
+
+ * `ControlMessageFactoryTest`: set of tests for [control_message_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_message_factory.h)
+ * `ControlThreadTest`: set of tests for [control_thread.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_thread.h)
+ * `FileConfigurationTest`: set of tests for [file_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/file_configuration.h)
+ * `GNSSBlockFactoryTest`: set of tests for [gnss_block_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_block_factory.h)
+ * `GNSSFlowgraph`: set of tests for [gnss_flowgraph.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_flowgraph.h)
+ * `InMemoryConfiguration`: set of tests for [in_memory_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/in_memory_configuration.h)
+ * `StringConverterTest`: set of tests for [string_converter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/libs/string_converter.h)
+
+**Unit Test Cases for signal processing blocks:**
+
+ * Signal sources
+   - `FileSignalSource`: set of tests for [file_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/adapters/file_signal_source.h)
+   - `ValveTest`: set of tests for [gnss_sdr_valve.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_sdr_valve.h)
+   - `Unpack2bitSamplesTest`: set of tests for [unpack_2bit_samples.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/gnuradio_blocks/unpack_2bit_samples.h)
+
+ * Data Type Adapter
+   - `PassThroughTest`: set of tests for [pass_through.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/pass_through.h)
+   - `DataTypeAdapter`: set of test for data type adapters [byte_to_short.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/byte_to_short.h), [ibyte_to_cbyte.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_cbyte.h), [ibyte_to_complex.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_complex.h), [ibyte_to_cshort.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ibyte_to_cshort.h), [ishort_to_complex.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ishort_to_complex.h) and [ishort_to_cshort.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/data_type_adapter/adapters/ishort_to_cshort.h)
+
+ * Input filter
+   - `FirFilterTest`: set of tests for [fir_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/input_filter/adapters/fir_filter.h)
+
+ * Resampler
       - `DirectResamplerConditionerCcTest`: set of tests for [direct_resampler_conditioner_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/resampler/gnuradio_blocks/direct_resampler_conditioner_cc.h)
       - `MmseResamplerTest`: set of tests for [mmse_resampler_conditioner.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/resampler/adapters/mmse_resampler_conditioner.h)
-    - Acquisition
+
+ * Acquisition
       - `GpsL1CaPcpsAcquisitionTest`: set of tests for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h). If Gnuplot is installed in your machine, this test can plot the acquisition grid by passing the flag `--plot_acq_grid`. Example:
       ```bash
       $ ./run_tests --gtest_filter=GpsL1CaPcpsAcquisitionTest* --plot_acq_grid
@@ -387,8 +394,9 @@ The generation of some unit test cases are enabled by default, and gathered in t
       - `GalileoE1PcpsCccwsrAmbiguousAcquisitionTest`: set of tests for [galileo_e1_pcps_cccwsr_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_cccwsr_ambiguous_acquisition.h)
       - `GalileoE1PcpsQuickSyncAmbiguousAcquisitionGSoC2014Test`: set of tests for [galileo_e1_pcps_quicksync_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_quicksync_ambiguous_acquisition.h) developed during GSoC 2014.
       - `GalileoE5aPcpsAcquisitionGSoC2014GensourceTest`: set of tests for [galileo_e5a_noncoherent_iq_acquisition_caf.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e5a_noncoherent_iq_acquisition_caf.h) developed during GSoC 2014.
-      - `GlonassL1CaPcpsAcquisitionGSoC2017Test`: set of tests for [glonass_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/glonass_l1_ca_pcps_acquisition.h) developed during GSoC 2017.      
-    - Tracking
+      - `GlonassL1CaPcpsAcquisitionGSoC2017Test`: set of tests for [glonass_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/glonass_l1_ca_pcps_acquisition.h) developed during GSoC 2017.
+
+ * Tracking
       - `CpuMulticorrelatorTest`: set of tests for [cpu_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cpu_multicorrelator.h) that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--cpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--cpu_multicorrelator_max_threads_test`. A possible call for this test could be:
       ```bash
       $ ./run_tests --gtest_filter=Cpu* --cpu_multicorrelator_iterations_test=10000 --cpu_multicorrelator_max_threads_test=2
@@ -402,17 +410,21 @@ The generation of some unit test cases are enabled by default, and gathered in t
       - `GlonassL1CaDllPllCAidTrackingTest`: set of tests for [glonass_l1_ca_dll_pll_c_aid_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/glonass_l1_ca_dll_pll_tracking.h)
       - `GalileoE5aTrackingTest`: set of tests for [galileo_e5a_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e5a_dll_pll_tracking.h)    
       - `TrackingLoopFilterTest`: set of tests for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h)
-    - Telemetry Decoder
+
+ * Telemetry Decoder
       - -
-    - Observables
+
+ * Observables
       - -
-    - PVT
+
+ * PVT
       - `RinexPrinterTest`: set of tests for [rinex_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rinex_printer.h)
       - `RtcmTest`: set of tests for [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h)
       - `RtcmPrinterTest`: set of tests for [rtcm_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm_printer.h)
-    - System parameters
-      - `GlonassGnavEphemerisTest`: set of tests for [glonass_gnav_ephemeris.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/glonass_gnav_ephemeris.h)
-      - `GlonassGnavNavigationMessageTest`: set of tests for [glonass_gnav_navigation_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/glonass_gnav_navigation_message.h)
+
+ * System parameters:
+     - `GlonassGnavEphemerisTest`: set of tests for [glonass_gnav_ephemeris.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/glonass_gnav_ephemeris.h)
+     - `GlonassGnavNavigationMessageTest`: set of tests for [glonass_gnav_navigation_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/glonass_gnav_navigation_message.h)
 
 ## Extra Unit Tests
 
