@@ -40,7 +40,7 @@ algolia:
     - _pages/news-archive.html
     - _pages/sitemap.md
     - _docs/01-documentation.md
-  nodes_to_index         : 'p,li'  
+  nodes_to_index         : 'p,blockquote,li'
 
 # SEO Related
 google_site_verification : "googlefb1532d2ac258689"
