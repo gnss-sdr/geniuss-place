@@ -1,10 +1,8 @@
 {% if include.id %}
-  {% assign gallery = page.[include.id] %}
+  {% assign gallery = page[include.id] %}
 {% else %}
   {% assign gallery = page.gallery %}
 {% endif %}
-
-{% capture gallery_size %}{{ gallery | size }}{% endcapture %}
 
 {% if gallery.size == 2 %}
   {% assign gallery_layout = 'half' %}
