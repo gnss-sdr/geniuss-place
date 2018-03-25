@@ -11,7 +11,7 @@ modified: 2016-07-24T16:39:37-04:00
 
 {:center: style="text-align: center"}
 
-[![CTTC logo]({{ '/assets/images/CTTC_logo_square.png' | absolute_url }}){:height="250px" width="250x" : style="text-align: center;"}](http://www.cttc.cat)
+[![CTTC logo]({{ '/assets/images/CTTC_logo_square.png' | relative_url }}){:height="250px" width="250x" : style="text-align: center;"}](http://www.cttc.cat)
 {:center}
 
 GNSS-SDR is a project hosted and sponsored by the Centre Tecnol&ograve;gic de Telecomunicacions de Catalunya ([CTTC](http://www.cttc.cat)), a non-profit research foundation located in Castelldefels ([41.27504 N, 1.98555 E](http://maps.google.com/maps/place?q=cttc&hl=es&cid=7042995388158849575)), 20 km south of Barcelona, Spain.  The software is a by-product of GNSS research conducted at the [Communications Systems Division](http://systems.cttc.es/) of CTTC, and it is the combined effort of many students, software engineers and researchers from different institutions.
@@ -37,4 +37,4 @@ or
 
 Inquiries beyond the mailing list can be sent to Carles Fern&aacute;ndez-Prades <a href="mailto:carles.fernandez@cttc.cat"><i class="far fa-fw fa-envelope" aria-hidden="true"></i> </a>
 
-See other contact details in our [Team]({{ "/team/" | absolute_url }}) page.
+See other contact details in our [Team]({{ "/team/" | relative_url }}) page.

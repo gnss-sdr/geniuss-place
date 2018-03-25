@@ -18,31 +18,31 @@ toc: true
 
 
 {% capture fig_img1 %}
-  ![SiGe GN3S Sampler v2]({{ "/assets/images/sige_v2.jpg" | absolute_url }})
+  ![SiGe GN3S Sampler v2]({{ "/assets/images/sige_v2.jpg" | relative_url }})
 {% endcapture %}
 
 {% capture fig_img2 %}
-  ![Gnuradio-companion example]({{ "/assets/images/gr_gn3s_1.jpg" | absolute_url }})
+  ![Gnuradio-companion example]({{ "/assets/images/gr_gn3s_1.jpg" | relative_url }})
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![FFT plot and waterfall spectrum]({{ "/assets/images/gr_gn3s_driver_2.jpg" | absolute_url }})
+  ![FFT plot and waterfall spectrum]({{ "/assets/images/gr_gn3s_driver_2.jpg" | relative_url }})
 {% endcapture %}
 
 {% capture fig_img4 %}
-  ![SiGe GN3S setup]({{ "/assets/images/gr_gn3s_4.jpg" | absolute_url }})
+  ![SiGe GN3S setup]({{ "/assets/images/gr_gn3s_4.jpg" | relative_url }})
 {% endcapture %}
 
 {% capture fig_img5 %}
-  ![Realtime GN3S GPS positioning]({{ "/assets/images/GN3S_setup1.jpg" | absolute_url }})
+  ![Realtime GN3S GPS positioning]({{ "/assets/images/GN3S_setup1.jpg" | relative_url }})
 {% endcapture %}
 
 {% capture fig_img6 %}
-  ![GTracking data analysis]({{ "/assets/images/gn3s_tracking_2M.jpg" | absolute_url }})
+  ![GTracking data analysis]({{ "/assets/images/gn3s_tracking_2M.jpg" | relative_url }})
 {% endcapture %}
 
 {% capture fig_img7 %}
-  ![ Google Earth]({{ "/assets/images/gn3s_pvt_4_sats.jpg" | absolute_url }})
+  ![ Google Earth]({{ "/assets/images/gn3s_pvt_4_sats.jpg" | relative_url }})
 {% endcapture %}
 
 ## Introduction
@@ -81,7 +81,7 @@ void main(void) {
  init_usrp();
  init_gpif();
  init_se4110();
- TD_Init();  // Init fucntion for A9 vendor commands
+ TD_Init();  // Init function for A9 vendor commands
 
  EA = 0;     // disable all interrupts
 
@@ -266,7 +266,7 @@ DataTypeAdapter.implementation=Pass_Through
 InputFilter.implementation=Freq_Xlating_Fir_Filter
 ;#The following options are used in the filter design of Fir_Filter and Freq_Xlating_Fir_Filter implementation.
 ;#These options are based on parameters of gnuradio's function: gr_remez.
-;#These function calculates the optimal (in the Chebyshev/minimax sense) FIR filter inpulse reponse given a set of band edges, the desired reponse on those bands, and the weight given to the error in those bands.
+;#These function calculates the optimal (in the Chebyshev/minimax sense) FIR filter inpulse response given a set of band edges, the desired response on those bands, and the weight given to the error in those bands.
 ; -- Filter parameters and coefficients are omitted in this example --
 ; 8183800/5 = 1636760
 ; 8183800/4 = 2045950

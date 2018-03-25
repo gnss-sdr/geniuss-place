@@ -31,7 +31,7 @@ gnss-sdr version 0.0.9
 $  
 ```
 
-Please check that your installed version is 0.0.9 (or something like 0.0.9.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnsss-sdr` and you got a version earlier to 0.0.9, please do `sudo apt-get remove gnsss-sdr` and [build it from source]({{ "/build-and-install/#build" | absolute_url }}).
+Please check that your installed version is 0.0.9 (or something like 0.0.9.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnsss-sdr` and you got a version earlier to 0.0.9, please do `sudo apt-get remove gnsss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
 If you see something like:
@@ -42,7 +42,7 @@ gnss-sdr: command not found
 $  
 ```
 
-please check out the [building guide]({{ "/build-and-install/" | absolute_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file for more details on how to install GNSS-SDR.
+please check out the [building guide]({{ "/build-and-install/" | relative_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file for more details on how to install GNSS-SDR.
 
 In order to take advantage of the SIMD instruction sets present in your processor, you will need to run the profiler tools of the VOLK and VOLK_GNSSSDR libraries (these operations only need to be done once, and can take a while):
 
@@ -133,7 +133,7 @@ PVT.display_rate_ms=500
 **NOTE:** Check that the parameter `SignalSource.filename` actually points to the name and path of your raw data file.
 {: .notice--warning}
 
-**NOTE:** For more details about the configuration options for each block, check out the [**Signal Processing Blocks**]({{ "/docs/sp-blocks/" | absolute_url }}) documentation.
+**NOTE:** For more details about the configuration options for each block, check out the [**Signal Processing Blocks**]({{ "/docs/sp-blocks/" | relative_url }}) documentation.
 {: .notice--info}
 
 Save the file as `my-first-GNSS-SDR-receiver.conf` (or any other name of your choice).
@@ -236,8 +236,8 @@ Now you can examine the processing outputs in the folder from which you invoked 
  * A `.nmea` file.
  * Observation and Navigation RINEX files.
 
-... play with the configuration parameters or try out more challenging [configurations]({{ "/conf/" | absolute_url }}).
+... play with the configuration parameters or try out more challenging [configurations]({{ "/conf/" | relative_url }}).
 
-<link rel="prerender" href="{{ "/conf/" | absolute_url }}">
-<link rel="prerender" href="{{ "/build-and-install/" | absolute_url }}">
-<link rel="prerender" href="{{ "/docs/" | absolute_url }}">
+<link rel="prerender" href="{{ "/conf/" | relative_url }}">
+<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/" | relative_url }}">

@@ -9,7 +9,7 @@ last_modified_at: 2018-01-24T15:54:02-04:00
 ---
 
 
-Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/acquisition/" | absolute_url }}), [tracking]({{ "/docs/sp-blocks/tracking/" | absolute_url }}) and [demodulation of the navigation message]({{ "/docs/sp-blocks/telemetry-decoder/" | absolute_url }}) for a single satellite. These abstract interfaces can be populated with different algorithms addressing any suitable GNSS signal. The user can define the number of parallel channels to be instantiated by the software receiver, and the thread-per-block scheduler imposed by GNU Radio automatically manages the multitasking capabilities of modern multi-core processors. This is done through the configuration file with the ```Channels_XX.count``` parameter, where ```XX``` is one of the following signal identifiers:
+Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/acquisition/" | relative_url }}), [tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}) and [demodulation of the navigation message]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) for a single satellite. These abstract interfaces can be populated with different algorithms addressing any suitable GNSS signal. The user can define the number of parallel channels to be instantiated by the software receiver, and the thread-per-block scheduler imposed by GNU Radio automatically manages the multitasking capabilities of modern multi-core processors. This is done through the configuration file with the ```Channels_XX.count``` parameter, where ```XX``` is one of the following signal identifiers:
 
 |----------
 |  **Identifier**  |  **Signal** | **Center Frequency** |
@@ -49,10 +49,10 @@ _Channels_ accepts the following parameters:
 
 Then, each type of defined channel requires the configuration of:
 
-* [_Acquisition_]({{ "/docs/sp-blocks/acquisition/" | absolute_url }}) blocks targeting the desired signal type, in charge of the detection of signals coming from a given GNSS satellite and, in the case of a positive
+* [_Acquisition_]({{ "/docs/sp-blocks/acquisition/" | relative_url }}) blocks targeting the desired signal type, in charge of the detection of signals coming from a given GNSS satellite and, in the case of a positive
 detection, to provide coarse estimations of the code phase $$ \hat{\tau} $$ and the Doppler shift $$ \hat{f}_d $$,
-* [_Tracking_]({{ "/docs/sp-blocks/tracking/" | absolute_url }}) blocks targeting the desired signal type, in charge of following the evolution of the signal synchronization parameters: code phase $$ \tau(t) $$, Doppler shift $$ f_d(t) $$ and carrier phase $$ \phi(t) $$, and
-* [_Telemetry Decoder_]({{ "/docs/sp-blocks/telemetry-decoder/" | absolute_url }}) blocks targeting the desired signal type, in charge of demodulating and decoding the GNSS navigation message carried by that particular signal.
+* [_Tracking_]({{ "/docs/sp-blocks/tracking/" | relative_url }}) blocks targeting the desired signal type, in charge of following the evolution of the signal synchronization parameters: code phase $$ \tau(t) $$, Doppler shift $$ f_d(t) $$ and carrier phase $$ \phi(t) $$, and
+* [_Telemetry Decoder_]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) blocks targeting the desired signal type, in charge of demodulating and decoding the GNSS navigation message carried by that particular signal.
 
 Examples for different receiver architectures are provided below.
 

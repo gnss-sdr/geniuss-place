@@ -11,7 +11,7 @@ In this context, it refers to how close a position solution delivered by the sof
 
 The definition of the reference point implies the agreement on some reference coordinate systems for the satellite system and the reference position:
 
-*  GNSS satellite coordinate reference system: The International Earth Rotation and Reference Sytems Service ([IERS](https://www.iers.org/IERS/EN/Home/home_node.html)) recommend to express it as "ITRFyy at epoch yyyy.y"[^Petit10]
+*  GNSS satellite coordinate reference system: The International Earth Rotation and Reference Systems Service ([IERS](https://www.iers.org/IERS/EN/Home/home_node.html)) recommend to express it as "ITRFyy at epoch yyyy.y"[^Petit10]
 * A local geographic coordinate reference system (providing transformation parameters, if applicable).
 * An East-North-Up (ENU) reference frame with origin in the _reference point_.
 * In case of differential GNSS configurations, datum of the differential source.
@@ -72,7 +72,7 @@ it follows a list of possible accuracy indicators for a software-defined GNSS re
   -  Position accuracy results are given in meters of error with respect to a reference (fiducial)  point  previously  measured  in  a  geodetic  survey, or defined by the testing equipment. The most commonly used confidence measurements for 2D positioning are the Distance Root Mean Square (DRMS) and the Circular Error Probability (CEP); and the Mean Radial Spherical Error (MRSE), the Spherical Error Probable (SEP), and the 90 % and 99% Spherical Accuracy Standards when measures are expressed in 3D.
 
 * Stand-alone dynamic position accuracy.
-  - In this case, the reference is not a single point but a timed trajectory. Different trajectories and time schedules can be averaged to mitigate differences due to satellite visibility and geometry. Same metrics than for static positioning, where the position references might now have time and trajectory indeces.
+  - In this case, the reference is not a single point but a timed trajectory. Different trajectories and time schedules can be averaged to mitigate differences due to satellite visibility and geometry. Same metrics than for static positioning, where the position references might now have time and trajectory indices.
   - Nominal mechanical accuracy of the controlled mobile platform moving the receiver while collecting measurements.
 
 * Aided / DGNSS static position accuracy.

@@ -7,7 +7,7 @@
           {% else %}
             {% assign logo = "/assets/images/logo-gnss-sdr.png" %}
           {% endif %}
-        <a class="site-title" href="{{ '/' | absolute_url }}"><img src="{{ logo | absolute_url }}" alt="GNSS-SDR logo"></img> </a>
+        <a class="site-title" href="{{ '/' | relative_url }}"><img src="{{ logo | relative_url }}" alt="GNSS-SDR logo"></img> </a>
         <ul class="visible-links">
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
@@ -15,9 +15,11 @@
             {% else %}
               {% assign domain = site.url | append: site.baseurl %}
             {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            <li class="masthead__menu-item">
+              <a href="{{ domain }}{{ link.url }}" {% if link.description %}title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
+            </li>
           {% endfor %}
-            <li class="masthead__menu-item"><a href="{{ "/search/" | absolute_url }}"><i class="fas fa-fw fa-search" aria-hidden="true"></i></a></li>
+            <li class="masthead__menu-item"><a href="{{ "/search/" | relative_url }}"><i class="fas fa-fw fa-search" aria-hidden="true"></i></a></li>
         </ul>
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</span>
