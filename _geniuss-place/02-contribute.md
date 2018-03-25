@@ -15,13 +15,13 @@ redirect_from:
 ---
 
 
-![Contributing]({{ "/assets/images/geniuss-contribute.png" | absolute_url }}){:height="250px" width="250x"}
+![Contributing]({{ "/assets/images/geniuss-contribute.png" | relative_url }}){:height="250px" width="250x"}
 
 
 ## Contributing to GNSS-SDR
 
-Found a bug in the code? Interested in adding a new feature or [fixing a known bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an issue](https://github.com/gnss-sdr/gnss-sdr/issues/new) or [pull request](https://help.github.com/articles/using-pull-requests/). If this is your first pull request, it may be helpful to read up on the [GitHub Flow](https://guides.github.com/introduction/flow/) first. If you need a quick introduction to Git and its parlance (concepts such as _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}). This project adheres to the [Contributor Covenant code of
-conduct]({{ "/code-of-conduct/" | absolute_url }}). By participating, you are expected to uphold this code.
+Found a bug in the code? Interested in adding a new feature or [fixing a known bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an issue](https://github.com/gnss-sdr/gnss-sdr/issues/new) or [pull request](https://help.github.com/articles/using-pull-requests/). If this is your first pull request, it may be helpful to read up on the [GitHub Flow](https://guides.github.com/introduction/flow/) first. If you need a quick introduction to Git and its parlance (concepts such as _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git tutorial]({{ "/docs/tutorials/using-git/" | relative_url }}). This project adheres to the [Contributor Covenant code of
+conduct]({{ "/code-of-conduct/" | relative_url }}). By participating, you are expected to uphold this code.
 
 The basic setup steps for a contribution to the source code are the following:
 
@@ -39,7 +39,7 @@ whole source code repository into your personal account.
 
 More details are available in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) file.
 
-Before start working in GNSS-SDR source code, specially if you want to contribute your changes back to the _upstream_ repository, you may be interested in having a look at our [coding style guide]({{ "/coding-style/" | absolute_url }}). The usage of clang-format for [automated code formatting]({{ "/coding-style/#use-tools-for-automated-code-formatting" | absolute_url }}) is highly recommended.
+Before start working in GNSS-SDR source code, specially if you want to contribute your changes back to the _upstream_ repository, you may be interested in having a look at our [coding style guide]({{ "/coding-style/" | relative_url }}). The usage of clang-format for [automated code formatting]({{ "/coding-style/#use-tools-for-automated-code-formatting" | relative_url }}) is highly recommended.
 
 ## Contributing to this website
 
@@ -47,7 +47,7 @@ Found a typo in this website? Interested in giving your thoughts on existing pag
 
 This website itself lives in a [GitHub repository](https://github.com/gnss-sdr/geniuss-place.git). You can contribute in several ways:
 
- * Commenting (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/)) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriate style (see our [code of conduct]({{ "/code-of-conduct/" | absolute_url }})).
+ * Commenting (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/)) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriate style (see our [code of conduct]({{ "/code-of-conduct/" | relative_url }})).
 
  * Sharing the content in your favorite social network.
 

@@ -1021,7 +1021,7 @@ Note the space in between the comment start (`//`) and `clang-format`. This spac
 {: .notice--danger}
 
 {% capture notice-maintainability %}
-An automated code formatting tool helps to improve [**Maintainability**]({{ "/design-forces/maintainability/" | absolute_url }}).
+An automated code formatting tool helps to improve [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
 {% endcapture %}
 
 <div class="notice--success">
@@ -1048,7 +1048,7 @@ file looks drastically different from the existing code around it, the
 discontinuity throws readers out of their rhythm when they go to read
 it. Try to avoid this.
 
-![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | absolute_url }})
+![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | relative_url }})
 
 -------
 

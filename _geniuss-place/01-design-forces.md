@@ -54,18 +54,18 @@ The design of a GNSS software-defined receiver needs to resolve some design forc
 [^Doran81]: G. Doran, _There's a S.M.A.R.T. way to write management's goals and objectives,_ Management Review, vol. 70, no. 11, pp. 35–36, 1981.
 
 
-<link rel="prerender" href="{{ "/design-forces/accuracy/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/availability/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/efficiency/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/flexibility/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/interoperability/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/maintainability/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/marketability/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/portability/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/popularity/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/reliability/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/reproducibility/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/scalability/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/testability/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/openness/" | absolute_url }}">
-<link rel="prerender" href="{{ "/design-forces/usability/" | absolute_url }}">
+<link rel="prerender" href="{{ "/design-forces/accuracy/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/availability/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/efficiency/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/flexibility/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/interoperability/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/maintainability/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/marketability/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/portability/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/popularity/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/reliability/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/reproducibility/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/scalability/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/testability/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/openness/" | relative_url }}">
+<link rel="prerender" href="{{ "/design-forces/usability/" | relative_url }}">

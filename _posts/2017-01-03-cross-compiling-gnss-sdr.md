@@ -22,7 +22,7 @@ Once all the required dependencies are already installed, GNSS-SDR can be built 
 
 **Cross-compilation** consists of a building framework capable of creating executable code for a platform other than the one on which the compiler is running. In our example, we would like to build GNSS-SDR with the powerful, fast processor of a general-purpose desktop computer, and to generate binaries that can be directly executed by the Zynq device.
 
-  By using cross-compilation, we can shorten the building time from more than 10 hours to less than 10 minutes. This improves [**Testability**]({{ "/design-forces/testability/" | absolute_url }}), as one of its requirements is that a testing cycle has to be *fast*.
+  By using cross-compilation, we can shorten the building time from more than 10 hours to less than 10 minutes. This improves [**Testability**]({{ "/design-forces/testability/" | relative_url }}), as one of its requirements is that a testing cycle has to be *fast*.
   {: .notice--success}
 
 The cross-compilation environment proposed here is based on [OpenEmbedded](http://www.openembedded.org), a building framework for embedded Linux. OpenEmbedded offers a best-in-class cross-compile environment, allowing developers to create a complete, custom GNU/Linux distribution for embedded systems.

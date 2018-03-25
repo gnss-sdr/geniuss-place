@@ -8,7 +8,7 @@ sidebar:
 last_modified_at: 2017-08-05T18:38:52+00:00
 ---
 
-This project has been mainly developed on a volunteer basis, for education and research purposes. The main [Developer Team]({{ "/team/" | absolute_url }}) is a group of researchers at CTTC, a non-profit research institution, and they use to be quite busy developing amazing new concepts and practical developments for advanced wireless communication systems and serving the industry in actually deploying them. Only some selected students  got a stipend (through their participation in Google Summer of Code and ESA Summer of Code In Space programs) for their direct work on GNSS-SDR.  
+This project has been mainly developed on a volunteer basis, for education and research purposes. The main [Developer Team]({{ "/team/" | relative_url }}) is a group of researchers at CTTC, a non-profit research institution, and they use to be quite busy developing amazing new concepts and practical developments for advanced wireless communication systems and serving the industry in actually deploying them. Only some selected students  got a stipend (through their participation in Google Summer of Code and ESA Summer of Code In Space programs) for their direct work on GNSS-SDR.  
 
 According to [Open HUB](https://www.openhub.net/p/gnss-sdr), the development of GNSS-SDR from its [first commit](https://github.com/gnss-sdr/gnss-sdr/commit/228fa3b797dba7d0192f751e7e25a7b8348f9326) to a Git repository (in October, 2011, after a happy childhood living in a Subversion repository) up to now has taken 35 years of effort, as estimated by the Constructive Cost Model ([COCOMO](https://en.wikipedia.org/wiki/COCOMO)).
 {: .notice--info}
@@ -25,7 +25,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
 * **[AUDITOR](http://www.auditor-project.eu/index.html) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
 
-  ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | absolute_url }}){:height="250px" width="250x"}
+  ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | relative_url }}){:height="250px" width="250x"}
   {: style="text-align: center;"}
 
   This project has received funding from the [**European GNSS Agency**](http://www.gsa.europa.eu/) under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](http://cordis.europa.eu/project/rcn/199301_en.html).
@@ -56,7 +56,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
 * **Google Summer of Code (GSoC)**
 
-    ![GSoC logo]({{ "/assets/images/logo-gsoc.png" | absolute_url }}){:height="100px" width="100x"}
+    ![GSoC logo]({{ "/assets/images/logo-gsoc.png" | relative_url }}){:height="100px" width="100x"}
     {: style="text-align: center;"}
 
 [2017](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
@@ -120,7 +120,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
 ## Sponsors
 
-![NSL logo]({{ "/assets/images/logo-nsl.jpg" | absolute_url }}){:height="250px" width="250x"}
+![NSL logo]({{ "/assets/images/logo-nsl.jpg" | relative_url }}){:height="250px" width="250x"}
 {: style="text-align: center;"}
 
 * [NSL](http://www.nsl.eu.com/), a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](http://www.nsl.eu.com/primo.html) system that is being used with GNSS-SDR development.
