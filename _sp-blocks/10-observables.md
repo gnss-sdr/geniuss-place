@@ -188,7 +188,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L1_CA_Observables` | Mandatory |
-| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $$ 100 $$. | Optional |
+| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
@@ -219,7 +219,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L2C_Observables` | Mandatory |
-| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $$ 100 $$. | Optional |
+| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
@@ -252,7 +252,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E1B_Observables` | Mandatory |
-| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $$ 100 $$. | Optional |
+| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
