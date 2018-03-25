@@ -15,19 +15,19 @@ redirect_from:
 ---
 
 {% capture fig_img1 %}
-  ![First GNSS-SDR Galileo standalone position fix]({{ '/assets/images/Galileo_fix_run2.jpg' | relative_url }})
+  ![First GNSS-SDR Galileo standalone position fix]({{ '/assets/images/Galileo_fix_run2.jpg' | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img2 %}
-  ![Predicted positions of Galileo IOV satellites]({{ '/assets/images/ScrSav001.jpg' | relative_url }})
+  ![Predicted positions of Galileo IOV satellites]({{ '/assets/images/ScrSav001.jpg' | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![2D ENU coordinates precision]({{ '/assets/images/Galileo_first_PVT_fix_precision_2D.jpg' | relative_url }})
+  ![2D ENU coordinates precision]({{ '/assets/images/Galileo_first_PVT_fix_precision_2D.jpg' | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img4 %}
-  ![GNSS-SDR 3D ENU coordinates precision for the Galileo position fix]({{ '/assets/images/Galileo_first_PVT_fix_precision_3D.jpg' | relative_url }})
+  ![GNSS-SDR 3D ENU coordinates precision for the Galileo position fix]({{ '/assets/images/Galileo_first_PVT_fix_precision_3D.jpg' | absolute_url }})
 {% endcapture %}
 
 
@@ -97,6 +97,6 @@ If you are interested in replicating the experiments and playing with the softwa
 
 **Update:** This position fix was acknowledged by the [European Space Agency](http://www.esa.int/) as one of the first 50 users of the Galileo system:
 
-![ESA Certificate]({{ '/assets/images/ESA-ack.jpg' | relative_url }}){: width="500px"}
+![ESA Certificate]({{ '/assets/images/ESA-ack.jpg' | absolute_url }}){: width="500px"}
 {: style="text-align: center;"}
 {: .notice--primary}

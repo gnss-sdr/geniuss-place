@@ -13,7 +13,7 @@ last_modified_at: 2016-04-13T15:54:02-04:00
 A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering.
 {: .notice--info}
 
-Regardless the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate $$ f_{IN} $$. We denote the complex samples at the Signal Conditioner output as $$ x_{\text{IN}}[n] $$. This signal stream feeds a set of parallel [_Channels_]({{ "/docs/sp-blocks/channels/" | relative_url }}).
+Regardless the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate $$ f_{IN} $$. We denote the complex samples at the Signal Conditioner output as $$ x_{\text{IN}}[n] $$. This signal stream feeds a set of parallel [_Channels_]({{ "/docs/sp-blocks/channels/" | absolute_url }}).
 
 
 ### Implementation: `Signal_Conditioner`
@@ -22,13 +22,13 @@ This implementation is in fact a wrapper for other three processing blocks.
 
 <a name="signal-conditioner"></a>
 
-![Signal Conditioner]( {{ "/assets/images/SignalConditioner2.png" | relative_url }})
+![Signal Conditioner]( {{ "/assets/images/SignalConditioner2.png" | absolute_url }})
 
 Those inner blocks are in charge of:
 
-* The role of the [Data Type Adapter]({{ "/docs/sp-blocks/data-type-adapter/" | relative_url }}) block is to perform a conversion of the data type in the incoming sample stream.
-* The role of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) block is to filter the incoming signal.
-* The role of the [Resampler]({{ "/docs/sp-blocks/resampler/" | relative_url }}) block is to resample the signal and to deliver it to the $$ N $$ parallel processing channels.
+* The role of the [Data Type Adapter]({{ "/docs/sp-blocks/data-type-adapter/" | absolute_url }}) block is to perform a conversion of the data type in the incoming sample stream.
+* The role of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }}) block is to filter the incoming signal.
+* The role of the [Resampler]({{ "/docs/sp-blocks/resampler/" | absolute_url }}) block is to resample the signal and to deliver it to the $$ N $$ parallel processing channels.
 
 Any of them can be by-passed by using a `Pass_Through` implementation.
 
@@ -39,9 +39,9 @@ The `Signal_Conditioner` implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Signal_Conditioner` | Mandatory |
-| _DataTypeAdapter_ | This implementation requires the configuration of a [Data Type Adapter]({{ "/docs/sp-blocks/data-type-adapter/" | relative_url }}) block. | Mandatory |
-| _InputFilter_ | This implementation requires the configuration of an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) block. | Mandatory |
-| _Resampler_ | This implementation requires the configuration of a [Resampler]({{ "/docs/sp-blocks/resampler/" | relative_url }}) block. | Mandatory |
+| _DataTypeAdapter_ | This implementation requires the configuration of a [Data Type Adapter]({{ "/docs/sp-blocks/data-type-adapter/" | absolute_url }}) block. | Mandatory |
+| _InputFilter_ | This implementation requires the configuration of an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }}) block. | Mandatory |
+| _Resampler_ | This implementation requires the configuration of a [Resampler]({{ "/docs/sp-blocks/resampler/" | absolute_url }}) block. | Mandatory |
 |-------
 
   _Signal Conditioner implementation:_ **`Signal_Conditioner`**.
@@ -101,6 +101,6 @@ SignalConditioner.implementation=Pass_Through
 SignalConditioner.item_type=cshort
 ```
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/data-type-adapter/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/sp-blocks/input-filter/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/sp-blocks/resampler/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/data-type-adapter/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/input-filter/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/resampler/" | absolute_url }}">

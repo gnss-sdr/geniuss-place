@@ -1,4 +1,4 @@
-relative_url---
+---
 title: "Testing the software receiver"
 permalink: /docs/tutorials/testing-software-receiver/
 excerpt: "Software testing concepts and their implementation in GNSS-SDR."
@@ -22,7 +22,7 @@ Testing is a concept intimately related to inquiry, creativity, design, methodol
 
 Improvement has meaning only in terms of observation based on a given criteria. That is, improvement is useful and has meaning when it is defined by characteristics such as more efficient, more accurate, more reliable, and so on. Thus, we need to identify the dimensions (or _design forces_) in which a software-defined GNSS receiver can be improved, and to define adequate metrics, measurement procedures and feedback mechanisms for each of those dimensions, in order to objectively assess improvement.
 
-A proposal of an open discussion about the definition of quality metrics and testing procedures for _any_ software-defined GNSS receiver is available at [**16 Design Forces for software-defined GNSS receivers**]({{ "/design-forces/" | relative_url }}). Based on that taxonomy, this page describes GNSS-SDR's particular approach and implementation.
+A proposal of an open discussion about the definition of quality metrics and testing procedures for _any_ software-defined GNSS receiver is available at [**16 Design Forces for software-defined GNSS receivers**]({{ "/design-forces/" | absolute_url }}). Based on that taxonomy, this page describes GNSS-SDR's particular approach and implementation.
 {: .notice--info}
 
 The concepts of improvement and change are strongly connected. Although change will not always result in improvement, all improvement requires change.
@@ -45,7 +45,7 @@ Authors in Langley _et al._[^Langley09] claim that the Plan-Do-Study-Act (PDSA) 
  * **ACT**: If the "CHECK" shows that the "PLAN" that was implemented in "DO" is an improvement to the prior standard (baseline), then that becomes the new standard (baseline) for how the project should "ACT" going forward (new standards are enACTed). If the "CHECK" shows that the "PLAN" that was implemented in "DO" is not an improvement, then the existing standard (baseline) will remain in place.
 
 
-![PDCA and Git]({{ "/assets/images/PDCA-Git.png" | relative_url }})
+![PDCA and Git]({{ "/assets/images/PDCA-Git.png" | absolute_url }})
 _A graphical representation of Git and PDCA cycles integration_.
 {: style="text-align: center;"}
 
@@ -61,7 +61,7 @@ By engaging rapid cycles of the PDCA workflow, the GNSS-SDR project aims to lear
    {{ pdca_cycles | markdownify }}
  </div>
 
-This means that all kind of contributions, from fixing a typo in a source code's comment to the addition of a whole new GNSS signal processing chain, are very welcome and greatly appreciated since all of them point towards improved quality, no matter the step size. More details on the _howtos_ in the context of GNSS-SDR are available in our [Git tutorial]({{ "/docs/tutorials/using-git/" | relative_url }}) and in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) file.
+This means that all kind of contributions, from fixing a typo in a source code's comment to the addition of a whole new GNSS signal processing chain, are very welcome and greatly appreciated since all of them point towards improved quality, no matter the step size. More details on the _howtos_ in the context of GNSS-SDR are available in our [Git tutorial]({{ "/docs/tutorials/using-git/" | absolute_url }}) and in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) file.
 
 &nbsp;
 
@@ -69,7 +69,7 @@ This means that all kind of contributions, from fixing a typo in a source code's
 
 Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test case that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards. It is an Agile-based approach to building complex systems where unit test (and in some cases inter-component integration tests) are built in advance of the product software and are used exercised upon component implementation. This methodology is claimed to offer valuable benefits to software development: it facilitates change, simplifies integration, automates documentation, helps separate the interface from the implementation, increases developers productivity, and plays a central role in the software quality assurance process[^Shore08].
 
-![TDD lifecycle]({{ "/assets/images/TDD_Global_Lifecycle.png" | relative_url }})
+![TDD lifecycle]({{ "/assets/images/TDD_Global_Lifecycle.png" | absolute_url }})
 _A graphical representation of the Test-Driven Development lifecycle. Source: [Wikipedia](https://en.wikipedia.org/wiki/Test-driven_development)_.
 {: style="text-align: center;"}
 
@@ -473,7 +473,7 @@ This option generates the following system test program:
 
 ### `ttff`
 
-This test program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | relative_url }}). The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. This program accepts the following commandline flags:
+This test program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | absolute_url }}). The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. This program accepts the following commandline flags:
 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
@@ -507,7 +507,7 @@ The results of the experiment are reported as follows:
 |  **Max TTFF**  | Maximum of the obtained valid measurements. Units: seconds |
 |  **Min TTFF**  | Minimum of the obtained valid measurements. Units: seconds |
 |  **Sample Dev / Size** |  The standard deviation of the sample set is computed as $$ \sigma_{TTFF} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( TTFF_i - \frac{1}{L}\sum_{j=1}^L TTFF_j \right)^2 } $$, in seconds. / Number of valid measurements (L) over the total number of measurements (M), expressed as (L of M). |
-| **Init. status** | [`cold`, `warm`, `hot`]: Initial receiver status, as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | relative_url }}).  |
+| **Init. status** | [`cold`, `warm`, `hot`]: Initial receiver status, as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | absolute_url }}).  |
 | **Nav. mode** | [`2D`, `3D`]: `3D` Navigation mode in which at least four satellite signals are received and are used to compute positioning data containing as a minimum: time tagged latitude, longitude, and altitude referenced to a given coordinate system.  / `2D` Navigation mode in which no fewer than three satellite signals and fixed altitude are received and used to compute positioning data containing as a minimum: time tagged latitude, longitude, and fixed altitude referenced to a given system.    |
 |  **DGNSS**  | [`Y`, `N`]: `Y` if an external system is providing ephemeris data, `N` if the receiver is not receiving external information. |
 | **Signal** | Targeted GNSS signal(s) during the test. |
@@ -614,7 +614,7 @@ $ ./position_test --config_file_ptest=my_GPS_rx.conf --static_position="0.000000
 changing "0.000000,000000,0" by your reference longitude, latitude and height (expressed in WGS-84 coordinates). In case of processing live data, please remember to terminate the receiver execution with key `q` and then `[Enter]`.
 
 
-When the software receiver terminates, the program reports [Accuracy]({{ "/design-forces/accuracy/" | relative_url }}) and [precision]({{ "/design-forces/repeatability/" | relative_url }}) metrics for 2D and 3D positioning, expressed in a local ENU (East-North-Up) reference frame and defined as:
+When the software receiver terminates, the program reports [Accuracy]({{ "/design-forces/accuracy/" | absolute_url }}) and [precision]({{ "/design-forces/repeatability/" | absolute_url }}) metrics for 2D and 3D positioning, expressed in a local ENU (East-North-Up) reference frame and defined as:
 
 |----------
 |  **Measure**  |  **Formula** | **Confidence region probability** | **Definition** |

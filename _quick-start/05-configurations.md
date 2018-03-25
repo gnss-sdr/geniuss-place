@@ -239,7 +239,7 @@ You will need to adjust the values for at least two parameters:
   * Check that `SignalSource.device_address` points to the actual IP address of your USRP, if you are connected through Ethernet, or leave it empty for USB.
   * Check that `SignalSource.subdevice` is set to the receiving slot in which you actually inserted your daughterboard with the antenna. In USRPs with only one receiving slot, leave it as `A:0`. Please check more details on [how to specify the subdevice](http://files.ettus.com/manual/page_configuration.html#config_subdev).
 
-The [Signal Processing Blocks documentation]({{ "/docs/sp-blocks/" | relative_url }}) provides definitions and more details about the configuration parameters.
+The [Signal Processing Blocks documentation]({{ "/docs/sp-blocks/" | absolute_url }}) provides definitions and more details about the configuration parameters.
 
 ### Run it!
 
@@ -396,7 +396,7 @@ Now you can examine the files created in your working folder.
   * Hi-Speed USB 2.0.
   * USB-powered.
 
-![HackRF One]({{ "/assets/images/hackRF.jpg" | relative_url }}){: .align-center} _HackRF One._
+![HackRF One]({{ "/assets/images/hackRF.jpg" | absolute_url }}){: .align-center} _HackRF One._
 {: style="text-align: center;"}
 
 For more information, check out the [HackRF wiki](https://github.com/mossmann/hackrf/wiki).
@@ -410,7 +410,7 @@ In order to get real-time position fixes, you will need:
   * **A computer** connected to the HackRF One and with GNSS-SDR installed.
 
 
-This device requires the use of the [`Osmosdr_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-osmosdr_signal_source" | relative_url }}) implementation. If you installed GNSS-SDR from a software package, this implementation is already available. But if you are building GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
+This device requires the use of the [`Osmosdr_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-osmosdr_signal_source" | absolute_url }}) implementation. If you installed GNSS-SDR from a software package, this implementation is already available. But if you are building GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
 
 ```bash
 $ cmake -DENABLE_OSMOSDR=ON ../
@@ -423,11 +423,11 @@ $ make
 $ sudo make install
 ```
 
-For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}).
+For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | absolute_url }}).
 
 ### Setting up the front-end
 
-Once the software is ready, connect your HackRF to your computer, and connect the active antenna. In order to activate the antenna feeding, the configuration file must use the [`Osmosdr_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-osmosdr_signal_source" | relative_url }}) implementation and include the following line:
+Once the software is ready, connect your HackRF to your computer, and connect the active antenna. In order to activate the antenna feeding, the configuration file must use the [`Osmosdr_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-osmosdr_signal_source" | absolute_url }}) implementation and include the following line:
 
 ```ini
 SignalSource.osmosdr_args=hackrf,bias=1
@@ -579,5 +579,5 @@ You should see something similar to the example [above](#run-it).
 
 
 
-<link rel="prerender" href="{{ "/docs/overview/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/overview/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/" | absolute_url }}">

@@ -31,7 +31,7 @@ Visualization created with [gource](http://gource.io/) and based on the upstream
 
 On December 6, 2013, GNSS-SDR appeared at _GPS World_, an essential reference for professionals in every tech field that uses or seeks to use global positioning, navigation, and timing. You can also check the [original page](http://gpsworld.com/galileo-position-fix-with-open-source-software-receiver-achieved/):
 
-![GPS World screenshot]({{ "/assets/images/gps-world.png" | relative_url }})
+![GPS World screenshot]({{ "/assets/images/gps-world.png" | absolute_url }})
 {: style="text-align: center;"}
 
 ----
@@ -40,7 +40,7 @@ On December 6, 2013, GNSS-SDR appeared at _GPS World_, an essential reference fo
 
 The [European Space Agency](http://www.esa.int/) acknowledged CTTC as one of the first 50 users of the Galileo system:
 
-![ESA Certificate]({{ "/assets/images/ESA-ack.jpg" | relative_url }}){: width="500px"}
+![ESA Certificate]({{ "/assets/images/ESA-ack.jpg" | absolute_url }}){: width="500px"}
 {: style="text-align: center;"}
 
 ----
@@ -49,11 +49,11 @@ The [European Space Agency](http://www.esa.int/) acknowledged CTTC as one of the
 
 On [July 17, 2013](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemdetail.cfm?item_type=251&lang=en&item_id=6833) and on February 12, 2014 (and later [updated](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemdetail.cfm?item_type=251&lang=en&item_id=7254) on June 24, 2015), GNSS-SDR appeared at the News published by the European Commission.
 
-![EC news screenshot]({{ "/assets/images/ec-growth.png" | relative_url }})]
+![EC news screenshot]({{ "/assets/images/ec-growth.png" | absolute_url }})]
 {: style="text-align: center;"}
 
 
-![EC news screenshot 2]({{ "/assets/images/ec-growth-gsoc.png" | relative_url }})
+![EC news screenshot 2]({{ "/assets/images/ec-growth-gsoc.png" | absolute_url }})
 {: style="text-align: center;"}
 
 ----
@@ -62,5 +62,5 @@ On [July 17, 2013](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemde
 
 On August 19, 2012, GNSS-SDR was [mentioned](http://hackaday.com/2012/08/19/real-time-gps-decoding-with-software-defined-radio/) in _Hackaday_, a popular blog about hardware and software hacks.
 
-![Hackaday]({{ "/assets/images/hackaday.png" | relative_url }})
+![Hackaday]({{ "/assets/images/hackaday.png" | absolute_url }})
 {: style="text-align: center;"}

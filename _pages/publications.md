@@ -12,7 +12,7 @@ redirect_from:
   - /documentation/publications
 ---
 
-List of academic papers in which GNSS-SDR has been referenced, described or used for research purposes. If you are aware of other publications not listed here, please [let us know]({{ "/team/" | relative_url }}).
+List of academic papers in which GNSS-SDR has been referenced, described or used for research purposes. If you are aware of other publications not listed here, please [let us know]({{ "/team/" | absolute_url }}).
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 

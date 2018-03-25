@@ -9,9 +9,9 @@ last_modified_at: 2016-07-29T15:54:02-04:00
 
 _Repeatability_ is related to the spread of a measure, also referred to as _precision_. It refers to how close a position solution is to the mean of all the obtained solutions, in a static location scenario.
 
-The difference between [accuracy]({{ "/design-forces/accuracy/" | relative_url }}) and precision is shown below:
+The difference between [accuracy]({{ "/design-forces/accuracy/" | absolute_url }}) and precision is shown below:
 
-![Accuracy vs Precision]({{ "/assets/images/accuracy-and-precision.png" | relative_url }}){:width="520x"}
+![Accuracy vs Precision]({{ "/assets/images/accuracy-and-precision.png" | absolute_url }}){:width="520x"}
 {: style="text-align: center;"}
 _Although the two words precision and accuracy can be synonymous in colloquial use, they are deliberately contrasted in the context of the scientific method. Source: [Wikipedia](https://en.wikipedia.org/wiki/Accuracy_and_precision)._
 {: style="text-align: center;"}
@@ -32,7 +32,7 @@ Most common precision metrics are defined below:
  |  **3D SEP**   | $$ 0.51 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 50 % |
  |-----
 
-which are the same expressions than those defined for [accuracy]({{ "/design-forces/accuracy/" | relative_url }}), but now the standard deviations are not referred to a _reference value_ but to the mean of the obtained results:
+which are the same expressions than those defined for [accuracy]({{ "/design-forces/accuracy/" | absolute_url }}), but now the standard deviations are not referred to a _reference value_ but to the mean of the obtained results:
 
 $$ \begin{equation} \sigma_{E}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- \hat{E}\right)^2} \end{equation} $$
 
@@ -48,7 +48,7 @@ where $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.
 
 Example:
 
-![2D scatter plot]({{ "/assets/images/2d-accuracy.png" | relative_url }}){:width="600x"}
+![2D scatter plot]({{ "/assets/images/2d-accuracy.png" | absolute_url }}){:width="600x"}
 {: style="text-align: center;"}
 _2D position scatter plot and the circles containing 50 %, 65 % and 95% of position fixes (corresponding to the CEP, DRMS and 2DRMS precision errors, respectively)[^Fernandez13]._
 {: style="text-align: center;"}
