@@ -12,7 +12,7 @@ sidebar:
 
 
 {% capture fig_img1 %}
-  ![What is GNSS-SDR]({{ "/assets/images/what-is-gnss-sdr.jpg" | absolute_url }})
+  ![What is GNSS-SDR]({{ "/assets/images/what-is-gnss-sdr.jpg" | relative_url }})
 {% endcapture %}
 
 {% capture fig_img2 %}
@@ -20,7 +20,7 @@ sidebar:
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![Introducing GeNiuSS]({{ "/assets/images/geniuss.jpg" | absolute_url }})
+  ![Introducing GeNiuSS]({{ "/assets/images/geniuss.jpg" | relative_url }})
 {% endcapture %}
 
 
@@ -32,10 +32,10 @@ The name is not a bragging display of creativity:
 
  * SDR: **S**oftware **D**efined **R**eceiver. We play a little trick here, since SDR is usually an acronym that stands for Software Defined _Radio_. In both cases, it refers to systems in which components that have been typically implemented in hardware (e.g. mixers, filters, demodulators, detectors, etc.) are instead implemented by means of software executing on a personal computer or embedded system.
 
-![What is GNSS-SDR]({{ "/assets/images/what-is-gnss-sdr.jpg" | absolute_url }})
+![What is GNSS-SDR]({{ "/assets/images/what-is-gnss-sdr.jpg" | relative_url }})
 {: style="text-align: center;"}
 
-Today's technology still does not allow processing signals digitally at the frequencies that satellites transmit (about 1.5 GHz, more details in the [GNSS Signals]({{ "/docs/tutorials/gnss-signals/" | absolute_url }}) tutorial), so we still need a radio frequency front-end that down-convert signals to a lower frequency, making some filtering and amplification in the process, and sampling them at a certain rate, delivering a stream of quantized, digital raw samples to the computing platform (via USB, Ethernet, etc.).
+Today's technology still does not allow processing signals digitally at the frequencies that satellites transmit (about 1.5 GHz, more details in the [GNSS Signals]({{ "/docs/tutorials/gnss-signals/" | relative_url }}) tutorial), so we still need a radio frequency front-end that down-convert signals to a lower frequency, making some filtering and amplification in the process, and sampling them at a certain rate, delivering a stream of quantized, digital raw samples to the computing platform (via USB, Ethernet, etc.).
 
 Then, GNSS-SDR takes care of all the digital signal processing, performing signal acquisition and tracking of the available satellite signals, decoding the navigation message and computing the observables needed by positioning algorithms, which ultimately compute the navigation solution. The software is designed to facilitate the inclusion of new signal processing techniques, offering an easy way to measure their impact in the overall receiver performance. Testing of all the processes is conducted both by the systematic functional validation of every single software block and by experimental validation of the complete receiver using either real-time signals receiver by the radio frequency front-end or a file containing those raw signal samples.
 
@@ -70,11 +70,11 @@ Here you will find:
 
 ---
 
-<link rel="prerender" href="{{ "/requirements/" | absolute_url }}">
-<link rel="prerender" href="{{ "/build-and-install/" | absolute_url }}">
-<link rel="prerender" href="{{ "/my-first-fix/" | absolute_url }}">
+<link rel="prerender" href="{{ "/requirements/" | relative_url }}">
+<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}">
+<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}">
 
 {::comment}
-![Introducing GeNiuSS]({{ "/assets/images/geniuss.jpg" | absolute_url }}){:height="250px" width="250x"}{: style="text-align: center;"}
+![Introducing GeNiuSS]({{ "/assets/images/geniuss.jpg" | relative_url }}){:height="250px" width="250x"}{: style="text-align: center;"}
 This is GeNiuSS. You will see him here and there.
 {:/comment}

@@ -36,7 +36,7 @@ The measurement vector is defined as:
 
 $$ \begin{equation} \mathbf{y} = ( P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} )^T \end{equation} $$
 
-As described in the [Observables]({{ "docs/sp-blocks/observables/" | absolute_url }}) block, for a signal from satellite $$ s $$ in the *i*-th band, the pseudorange measurement $$ P_{r,i}^{(s)} $$ can be expressed as:
+As described in the [Observables]({{ "docs/sp-blocks/observables/" | relative_url }}) block, for a signal from satellite $$ s $$ in the *i*-th band, the pseudorange measurement $$ P_{r,i}^{(s)} $$ can be expressed as:
 
 $$  P_{r,i}^{(s)} = \rho_r^{(s)} + c( dt_r(t_r) - dT^{(s)}(t^{(s)}) ) + I_{r,i}^{(s)} + T_r^{(s)} +\epsilon_P $$
 
@@ -53,7 +53,7 @@ $$ \definecolor{dark-orange}{RGB}{255,165,0} \color{dark-grey} \rho_{r}^{(s)} \a
 
 where $$ \omega_e $$ is the Earth rotation angle velocity (in rad/s).
 
-![Earth rotation correction]({{ "/assets/images/earth-rotation.png" | absolute_url }})
+![Earth rotation correction]({{ "/assets/images/earth-rotation.png" | relative_url }})
 _Geometric range and Earth rotation correction [^RTKLIBManual]_
 {: style="text-align: center;"}
 
@@ -178,7 +178,7 @@ $$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z
 
 where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are the north and east components of tropospheric gradients (see the tropospheric model [below](#troposphere-model)) and $$ \mathbf{B}_{LC} = \left(  B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)} \right)^T $$ is the ionosphere‐free linear combination of zero‐differenced carrier‐phase biases (in m), defined below in Equation ($$ \ref{eq:bias-lc} $$).
 
-The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay), the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/#phase-range-measurement" | absolute_url }}) apply):
+The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay), the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/#phase-range-measurement" | relative_url }}) apply):
 
 
 $$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$
@@ -367,7 +367,7 @@ The frequency dependence of the ionospheric effect (in m) is described by the fo
 
 $$ \begin{equation} I_{r,i}^{(s)} = \frac{40.3 \cdot \text{STEC} }{f_i^2} \end{equation} $$
 
-where STEC is the Slant Total Electron Content, which describes the number of free electrons present within one square meter between the receiver and satellite $$ s $$. It is often reported in multiples of the so-called TEC unit, defined as $$ \text{TECU} = 10^{16} $$ el/m$$ ^2 $$.  Ionospheric effects on the phase and code measurements have the opposite signs and have approximately the same amount. It causes a positive delay on code measurements (so it is included with a positive sign in the [pseudorange measurement model]({{ "docs/sp-blocks/observables/#pseudorange-measurement" | absolute_url }})) and a *negative delay*, or phase advance, in phase measurements (so it is included with a negative sign in the [phase-range measurement model]({{ "docs/sp-blocks/observables/#phase-range-measurement" | absolute_url }})).
+where STEC is the Slant Total Electron Content, which describes the number of free electrons present within one square meter between the receiver and satellite $$ s $$. It is often reported in multiples of the so-called TEC unit, defined as $$ \text{TECU} = 10^{16} $$ el/m$$ ^2 $$.  Ionospheric effects on the phase and code measurements have the opposite signs and have approximately the same amount. It causes a positive delay on code measurements (so it is included with a positive sign in the [pseudorange measurement model]({{ "docs/sp-blocks/observables/#pseudorange-measurement" | relative_url }})) and a *negative delay*, or phase advance, in phase measurements (so it is included with a negative sign in the [phase-range measurement model]({{ "docs/sp-blocks/observables/#phase-range-measurement" | relative_url }})).
 
 This dispersive nature (i.e., the ionospheric delay is proportional to the squared inverse of $$ f_i $$) allows users to remove its effect up to more than 99.9% using two frequency measurements (as in the see ionosphere-free combination for dual frequency receivers shown in the Precise Point Positioning algorithm described above), but single frequency receivers have to apply an ionospheric prediction model to remove (as much as possible) this effect, that can reach up to several tens of meters.
 
@@ -482,7 +482,7 @@ Depending on the specific application or service that is exploiting the informat
 **IMPORTANT**: In order to get well-formatted GeoJSON, KML and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
 {: .notice--warning}
 
-Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | absolute_url }}) page.
+Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | relative_url }}) page.
 {: .notice--success}
 
 
@@ -793,4 +793,4 @@ PVT.rtcm_MT1077_rate_ms=1000
 [^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](http://areeweb.polito.it/ricerca/relgrav/solciclos/ashby_d.pdf), Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](http://www.springer.com/gp/book/9781402018053), G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
 
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/observables/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/observables/" | relative_url }}">

@@ -11,7 +11,7 @@ last_modified_at: 2017-05-27T15:54:02-04:00
 The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange**, **carrier phase** (or its **phase-range** version) and **Doppler shift** (or its **pseudorange rate** version).
 {: .notice--info}
 
-It follows the description of mathematical models for the obtained measurements, with a physical interpretation. Those models will be used in the computation of the [Position-Velocity-Time]({{ "/docs/sp-blocks/pvt/" | absolute_url }}) solution.
+It follows the description of mathematical models for the obtained measurements, with a physical interpretation. Those models will be used in the computation of the [Position-Velocity-Time]({{ "/docs/sp-blocks/pvt/" | relative_url }}) solution.
 
 ## Pseudorange measurement
 
@@ -19,7 +19,7 @@ The **pseudorange measurement** is defined as the difference of the time of rece
 
 $$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right) $$
 
-![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | absolute_url }})<br />
+![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | relative_url }})<br />
 _Pseudorange measurement (from the RTKLIB Manual)[^RTKLIBManual]_
 {: style="text-align: center;"}
 
@@ -52,7 +52,7 @@ where $$ \Delta \text{TOW}^{(s)} $$ is the difference between the reference $$ -
 The block diagram of such approach is shown below:
 
 
-![Pseudorange computation]({{ "/assets/images/common-reception-time.png" | absolute_url }})
+![Pseudorange computation]({{ "/assets/images/common-reception-time.png" | relative_url }})
 _Block diagram of the pseudorange computation using the common reception time approach in GNSS-SDR[^Arribas14]_
 {: style="text-align: center;"}
 
@@ -91,7 +91,7 @@ where:
   * $$ L_{r,i} (t_{r}) $$ is the integer component of the receiver's numerically controlled oscillator (NCO) phase.
   * $$ K_{r,i}  (t_{r}) $$ is the integer component of the term $$ \left( \frac{\rho_{r}^{(s)}(t_{r})}{\lambda_i} +\phi_{r,0,i} - \phi_{0,i}^{(s)} \right) $$.
 
-In order to generate useable phase measurements, the receiver phase observations must maintain a constant integer number of cycles offset from the true carrier phase. That is, if the range increases by one cycle (_i.e._, one wavelength), the integer component of the NCO, denoted as $$ L^{(i)} (t_{r}) $$, also increments by one cycle.
+In order to generate usable phase measurements, the receiver phase observations must maintain a constant integer number of cycles offset from the true carrier phase. That is, if the range increases by one cycle (_i.e._, one wavelength), the integer component of the NCO, denoted as $$ L^{(i)} (t_{r}) $$, also increments by one cycle.
 
 ### Phase-range measurement
 
@@ -100,7 +100,7 @@ Phase measurements are sometimes given in meters. This is referred to as **phase
 $$ \begin{array}{ccl} \Phi_{r,i}^{(s)} & = & \lambda_i \phi_{r,i}^{(s)} \\
 {} & = &c(t_r-t^{(s)}) + c (dt_r(t_r) - dT^{(s)}(t^{(s)}))+ \lambda_i(\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \lambda_i \epsilon_{\phi}  \end{array}$$
 
-The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna phase center offsets and variations, station displacement by earth tides, phase windup effect and relativity correction on the satellite clock) that will be useful for [precise point positioning]({{ "/docs/sp-blocks/pvt/#precise-point-positioning" | absolute_url }}) algorithms. The phase-range measurement can then be modeled as:
+The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna phase center offsets and variations, station displacement by earth tides, phase windup effect and relativity correction on the satellite clock) that will be useful for [precise point positioning]({{ "/docs/sp-blocks/pvt/#precise-point-positioning" | relative_url }}) algorithms. The phase-range measurement can then be modeled as:
 
 $$ \begin{equation} \Phi_{r,i}^{(s)} =  \rho_{r}^{(s)} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) -  I_{r,i}^{(s)} + T_{r}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} +\epsilon_{\Phi} \end{equation} $$
 
@@ -113,7 +113,7 @@ where:
     * $$ \mathbf{d}_{r,pco,i} $$ is the receiver's $$ i $$-th band antenna phase center offset in local coordinates (in m).
     * $$ d_{r,pcv,i} $$ is the receiver's $$ i $$-th band antenna phase center variation (in m).
 
-    ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | absolute_url }}){:height="200px" width="200px"}
+    ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | relative_url }}){:height="200px" width="200px"}
     {: style="text-align: center;"}
 
     _Receiver antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
@@ -122,7 +122,7 @@ where:
     * $$ \mathbf{d}_{pco,i}^{(s)} $$ is the satellite's  $$ i $$-th band antenna phase center offset in satellite body‐fixed coordinates (in m).
     * $$ d_{pcv,i}^{(s)} $$ is the satellite's antenna phase center variation (in m).
 
-    ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | absolute_url }}){:height="350px" width="350px"}
+    ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | relative_url }}){:height="350px" width="350px"}
     {: style="text-align: center;"}
 
     _Satellite antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
@@ -132,7 +132,7 @@ where:
     * $$ \mathbf{e}_r^{(s)} $$ is the LOS vector from receiver antenna to satellite in ECEF.
     * $$ \mathbf{E}^{(s)} = \left( {\mathbf{e}_{x}^{(s)}}^T, {\mathbf{e}_{y}^{(s)}}^T, {\mathbf{e}_{z}^{(s)}}^T \right)^T $$ is the coordinates transformation matrix from the satellite body‐fixed coordinates to ECEF coordinates, with:
 
-    ![Satellite body-fixed coordinate system]({{ "/assets/images/satellite-coordinate-frame.png" | absolute_url }}){:height="350px" width="350px"}
+    ![Satellite body-fixed coordinate system]({{ "/assets/images/satellite-coordinate-frame.png" | relative_url }}){:height="350px" width="350px"}
     {: style="text-align: center;"}
 
     _Satellite body-fixed coordinate system (from the RTKLIB Manual)[^RTKLIBManual]_
@@ -281,7 +281,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E5A_Observables` | Mandatory |
-| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $100$. | Optional |
+| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $$ 100 $$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
 |--------------
@@ -359,4 +359,4 @@ Example:
 
 [^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf). April 29, 2013.
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/pvt/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}">
