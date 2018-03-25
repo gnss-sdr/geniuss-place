@@ -66,7 +66,7 @@ power.
 
 ![CAF]({{ "/assets/images/caf.png" | absolute_url }}){:width="600x"}
 {: style="text-align: center;"}
-_GLRT statistic for Parallel Code Phase Search acquisition algoritm
+_GLRT statistic for Parallel Code Phase Search acquisition algorithm
 for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kHz with steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo’s IOV satellite PRN 11[^Fernandez12]._
 {: style="text-align: center;"}
 

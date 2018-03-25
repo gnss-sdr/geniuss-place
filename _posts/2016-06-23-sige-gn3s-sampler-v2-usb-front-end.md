@@ -81,7 +81,7 @@ void main(void) {
  init_usrp();
  init_gpif();
  init_se4110();
- TD_Init();  // Init fucntion for A9 vendor commands
+ TD_Init();  // Init function for A9 vendor commands
 
  EA = 0;     // disable all interrupts
 
@@ -266,7 +266,7 @@ DataTypeAdapter.implementation=Pass_Through
 InputFilter.implementation=Freq_Xlating_Fir_Filter
 ;#The following options are used in the filter design of Fir_Filter and Freq_Xlating_Fir_Filter implementation.
 ;#These options are based on parameters of gnuradio's function: gr_remez.
-;#These function calculates the optimal (in the Chebyshev/minimax sense) FIR filter inpulse reponse given a set of band edges, the desired reponse on those bands, and the weight given to the error in those bands.
+;#These function calculates the optimal (in the Chebyshev/minimax sense) FIR filter inpulse response given a set of band edges, the desired response on those bands, and the weight given to the error in those bands.
 ; -- Filter parameters and coefficients are omitted in this example --
 ; 8183800/5 = 1636760
 ; 8183800/4 = 2045950
