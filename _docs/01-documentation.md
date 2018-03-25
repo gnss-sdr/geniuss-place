@@ -43,11 +43,11 @@ In addition, there is a set of tutorials providing more information in particula
 </div>
 </td></tr></table></body></html>
 
-... and [many more]({{ "/docs/tutorials/" | absolute_url }})!
+... and [many more]({{ "/docs/tutorials/" | relative_url }})!
 
-[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Check the full list of Tutorials]({{ "/docs/tutorials/" | absolute_url }}){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Check the full list of Tutorials]({{ "/docs/tutorials/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/" | absolute_url }}">
-<link rel="prerender" href="{{ "/docs/overview/" | absolute_url }}">
-<link rel="prerender" href="{{ "/quick-start-guide/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/overview/" | relative_url }}">
+<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}">

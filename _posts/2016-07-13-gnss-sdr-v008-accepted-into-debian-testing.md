@@ -32,5 +32,5 @@ The package also closes bug [#828040](https://bugs.debian.org/cgi-bin/bugreport.
 * **s390x**: IBM System z architecture for mainframe computers.
 
 
-This is an improvement in [**Portability**]({{ "/design-forces/portability/" | absolute_url }}).
+This is an improvement in [**Portability**]({{ "/design-forces/portability/" | relative_url }}).
 {: .notice--success}
