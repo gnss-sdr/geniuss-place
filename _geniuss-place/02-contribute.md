@@ -53,7 +53,7 @@ This website itself lives in a [GitHub repository](https://github.com/gnss-sdr/g
 
  * Checking [existing open issues](https://github.com/gnss-sdr/geniuss-place/issues/) or submitting a [new one](https://github.com/gnss-sdr/geniuss-place/issues/new).
 
- * [Forking this web](https://github.com/gnss-sdr/geniuss-place/fork), cloning the reporitory, branching off from the `master` branch, working on the changes in your own repository, and making a pull request.
+ * [Forking this web](https://github.com/gnss-sdr/geniuss-place/fork), cloning the repository, branching off from the `master` branch, working on the changes in your own repository, and making a pull request.
 
    [<i class="fab fa-github fa-lg"></i> Fork this website from GitHub](https://github.com/gnss-sdr/geniuss-place/fork){: .btn .btn--geniuss .btn--x-large}
    {: style="text-align: center;"}
