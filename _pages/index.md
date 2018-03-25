@@ -1,4 +1,4 @@
-relative_url---
+---
 layout: splash
 permalink: /
 date:
@@ -41,9 +41,9 @@ intro:
 
 {% include feature_row %}
 
-![GeNiuSS]({{ "/assets/images/geniuss.png" | relative_url }}){: width="300px"}
+![GeNiuSS]({{ "/assets/images/geniuss.png" | absolute_url }}){: width="300px"}
 {: style="text-align: center;"}
-[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Get Started]({{ "/quick-start-guide/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Get Started]({{ "/quick-start-guide/" | absolute_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 ---
@@ -96,15 +96,15 @@ intro:
 </td></tr></table></body></html>
 
 
-[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Learn more]({{ "/docs/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | absolute_url }}){: width="36px"} Learn more]({{ "/docs/" | absolute_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
-<link rel="prefetch" href="{{ "/assets/js/main.min.js" | relative_url }}">
-<link rel="prerender" href="{{ "/search/" | relative_url }}">
-<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/" | relative_url }}">
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}">
-<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}">
-<link rel="prerender" href="{{ "/design-forces/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/tutorials/gnss-signals/" | relative_url }}">
+<link rel="prefetch" href="{{ "/assets/js/main.min.js" | absolute_url }}">
+<link rel="prerender" href="{{ "/search/" | absolute_url }}">
+<link rel="prerender" href="{{ "/quick-start-guide/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/" | absolute_url }}">
+<link rel="prerender" href="{{ "/build-and-install/" | absolute_url }}">
+<link rel="prerender" href="{{ "/my-first-fix/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/" | absolute_url }}">
+<link rel="prerender" href="{{ "/design-forces/" | absolute_url }}">
+<link rel="prerender" href="{{ "/docs/tutorials/gnss-signals/" | absolute_url }}">

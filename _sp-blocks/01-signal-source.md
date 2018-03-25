@@ -9,19 +9,19 @@ last_modified_at: 2018-02-05T15:54:02-04:00
 ---
 
 {% capture fig_img2 %}
-  ![Front-end]({{ "/assets/images/frontend.png" | relative_url }})
+  ![Front-end]({{ "/assets/images/frontend.png" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![Multichannel]({{ "/assets/images/multichannel.png" | relative_url }})
+  ![Multichannel]({{ "/assets/images/multichannel.png" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img4 %}
-  ![Multiple sources]({{ "/assets/images/multisource.png" | relative_url }})
+  ![Multiple sources]({{ "/assets/images/multisource.png" | absolute_url }})
 {% endcapture %}
 
 {% capture fig_img5 %}
-  ![AD9361 Rx Signal Path]( {{ "/assets/images/AD9361_rx_signal_path.png" | relative_url }})
+  ![AD9361 Rx Signal Path]( {{ "/assets/images/AD9361_rx_signal_path.png" | absolute_url }})
 {% endcapture %}
 
 A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kind of sources, from samples stored in files (in a variety of formats) to multiple sample streams delivered in real-time by radio frequency front-ends.
@@ -67,9 +67,9 @@ compiler select the best library version (implemented using SIMD or any
 other processor-specific technology) of the required routines for a
 given processor.
 
-For more details about sample formats, please check out our [tutorial on data types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | relative_url }}).
+For more details about sample formats, please check out our [tutorial on data types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | absolute_url }}).
 
-The more kinds of signal sources GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" | relative_url }}).
+The more kinds of signal sources GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" | absolute_url }}).
 {: .notice--success}
 
 ## Reading data from a file
@@ -81,7 +81,7 @@ captured.
 
 Real signals sampled at an intermediate frequency can be downshifted to
 baseband (and thus expressed as complex samples) by the
-`Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) present at
+`Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }}) present at
 the Signal Conditioner block with its `IF` parameter.
 
 ### Implementation: `File_Signal_Source`
@@ -126,8 +126,8 @@ This implementation accepts the following parameters:
 This implementation assumes that the center frequency is the nominal
 corresponding to the GNSS frequency band. Any known
 deviation from that value can be compensated by using the `IF` parameter
-of the `Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }})
-present at the Signal Conditioner block, or later on in the flow graph at the [Acquisition]({{ "/docs/sp-blocks/acquisition/" | relative_url }}) and [Tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}) blocks with their `if` parameter.
+of the `Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | absolute_url }})
+present at the Signal Conditioner block, or later on in the flow graph at the [Acquisition]({{ "/docs/sp-blocks/acquisition/" | absolute_url }}) and [Tracking]({{ "/docs/sp-blocks/tracking/" | absolute_url }}) blocks with their `if` parameter.
 
 It follows an example of a Signal Source block
 configured with the `File_Signal_Source` implementation:
@@ -318,25 +318,25 @@ specified in `SignalSource.filename`.
 **IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
 {: .notice--warning}
 
-[![GSS6450]({{ "/assets/images/GSS6450.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://www.spirent.com/Products/GSS6450)
+[![GSS6450]({{ "/assets/images/GSS6450.png" | absolute_url }}){:height="250px" width="250x"}{: .align-right}](https://www.spirent.com/Products/GSS6450)
 
 The Spirent [GSS6450](https://www.spirent.com/Products/GSS6450) Record and Playback System digitizes and stores the RF signals from real GNSS satellites along with any interference observed in the GNSS bands. These recordings are then made available for subsequent playback.
 
 The structure of stored data depends on the number of bits of the ADC. For instance, with 2 bits per sample, the stored data is interpreted as:
 
-![GSS6450-2bits]({{ "/assets/images/spirent-2bits.png" | relative_url }}){: .align-center}
+![GSS6450-2bits]({{ "/assets/images/spirent-2bits.png" | absolute_url }}){: .align-center}
 
 for 4 bits per sample:
 
-![GSS6450-4bits]({{ "/assets/images/spirent-4bits.png" | relative_url }}){: .align-center}
+![GSS6450-4bits]({{ "/assets/images/spirent-4bits.png" | absolute_url }}){: .align-center}
 
 for 8 bits per sample:
 
-![GSS6450-8bits]({{ "/assets/images/spirent-8bits.png" | relative_url }}){: .align-center}
+![GSS6450-8bits]({{ "/assets/images/spirent-8bits.png" | absolute_url }}){: .align-center}
 
 and for 16 bits per sample:
 
-![GSS6450-16bits]({{ "/assets/images/spirent-16bits.png" | relative_url }}){: .align-center}
+![GSS6450-16bits]({{ "/assets/images/spirent-16bits.png" | absolute_url }}){: .align-center}
 
 This block reads files generated by Spirent's GSS6450, and delivers samples in format <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.  It accepts the following parameters:
 
@@ -375,7 +375,7 @@ SignalSource.adc_bits=4
 **IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
 {: .notice--warning}
 
-[![LabSat3]({{ "/assets/images/labsat3.jpg" | relative_url }}){:width="250x"}{: .align-right}](https://www.labsat.co.uk/index.php/en/products/labsat-3)
+[![LabSat3]({{ "/assets/images/labsat3.jpg" | absolute_url }}){:width="250x"}{: .align-right}](https://www.labsat.co.uk/index.php/en/products/labsat-3)
 
 [LabSat](https://www.labsat.co.uk/index.php/en/) is an affordable, portable, and versatile multi-constellation Global Navigation Satellite Simulator.
 
@@ -530,7 +530,7 @@ If you installed GNSS-SDR from a software package, this implementation is alread
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
-For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}).
+For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | absolute_url }}).
 
 
 This implementation accepts the following parameters:
@@ -596,7 +596,7 @@ If you installed GNSS-SDR from a software package, this implementation is alread
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
-For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}).
+For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | absolute_url }}).
 
 In a terminal, type:
 
@@ -629,7 +629,7 @@ SignalSource.swap_iq=false
 
 ### Implementation: `Fmcomms2_Signal_Source`
 
-[![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
+[![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | absolute_url }}){:height="250px" width="250x"}{: .align-right}](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
 The [AD-FMCOMMS2-EBZ](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html) is an FPGA Mezzanine Card ([FMC](https://fmchub.github.io/appendix/VITA57_FMC_HPC_LPC_SIGNALS_AND_PINOUT.html)) board for the [AD9361](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/ad9361.html), a highly integrated RF transceiver originally designed for use in 3G and 4G base station applications.  Its programmability and wideband capability make it ideal for a broad range of applications, since the device combines a RF front end with a flexible mixed-signal baseband section and integrated frequency synthesizers, providing a configurable digital interface. The AD9361 receiver's local oscillator can operate from $$ 70 $$ MHz to $$ 6.0 $$ GHz, and channel bandwidths from less than $$ 200 $$ kHz to $$ 56 $$ MHz are supported. The two independent direct conversion receivers have state-of-the-art noise figure and linearity. Each receive (RX) subsystem includes independent automatic gain control (AGC), dc offset correction, quadrature correction, and digital filtering, thereby eliminating the need for these functions in the digital baseband. Two high dynamic range analog-to-digital converters (ADCs) per channel digitize the received I and Q signals and pass them through decimation filters and 128-tap finite impulse response (FIR) filters to produce a 12-bit output signal at the appropriate sample rate.
 
 The AD9361 RX signal path passes downconverted signals (I and Q) to the baseband receiver section. The baseband RX signal path is composed of two programmable analog low-pass filters, a 12-bit ADC, and four stages of digital decimating filters. Each of the four decimating filters can be bypassed. The figure below shows a block diagram for the AD9361 RX signal path after downconversion. Note that both the I and Q paths are schematically identical to each other.
@@ -718,7 +718,7 @@ SignalSource.rf_port_select=A_BALANCED
 
 ### Implementation: `Plutosdr_Signal_Source`
 
-[![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
+[![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | absolute_url }}){:height="250px" width="250x"}{: .align-right}](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
 The [ADALM-Pluto](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html) is a learning module which helps introduce electrical engineering students to the fundamentals of software-defined radio (SDR), radio frequency (RF), and wireless communications. Based on the [AD9363](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/AD9363.html), it offers one receive channel and one transmit channel which can be operated in full duplex, capable of generating or measuring RF analog signals from $$ 325 $$ to $$ 3800 $$ MHz, with a $$ 20 $$ MHz bandwidth, at up to $$ 61.44 $$ Mega Samples per second (MSps) with a 12-bit ADC and DAC.
 
 In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies:

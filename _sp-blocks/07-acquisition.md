@@ -64,7 +64,7 @@ be shown that this acquisition test statistic is a Constant False
 Alarm Rate (CFAR) detector because $$ P_{fa} $$ does not depend on the noise
 power.
 
-![CAF]({{ "/assets/images/caf.png" | relative_url }}){:width="600x"}
+![CAF]({{ "/assets/images/caf.png" | absolute_url }}){:width="600x"}
 {: style="text-align: center;"}
 _GLRT statistic for Parallel Code Phase Search acquisition algoritm
 for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kHz with steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo’s IOV satellite PRN 11[^Fernandez12]._
@@ -299,7 +299,7 @@ with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $
 ### Implementation: `Galileo_E1_PCPS_Ambiguous_Acquisition`
 
 This implementation permits the configuration of the shape of the local replica $$ d[n] $$, allowing for simplifications that reduce the computational load. As shown in the figure
-[below]({{ "/docs/sp-blocks/acquisition/#fig:Rxd" | relative_url }}), in narrowband receivers the CBOC waveform can be substituted
+[below]({{ "/docs/sp-blocks/acquisition/#fig:Rxd" | absolute_url }}), in narrowband receivers the CBOC waveform can be substituted
 by a sinBOC modulation with very small performance penalty[^Lohan11]. For
 the E1B signal component, the reference signals available in this
 implementation are:
@@ -322,7 +322,7 @@ $$ \begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \
 The simpler sinBOC options are chosen by default. CBOC versions can be set by `Acquisition_1B.cboc=true`.
 Next figure plots the shape of the cross-correlation function for those waveforms:
 
-<a name="fig:Rxd"></a>![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600x"}
+<a name="fig:Rxd"></a>![Rxd]({{ "/assets/images/rxd.png" | absolute_url }}){:width="600x"}
 {: style="text-align: center;"}
 _Normalized $$ \left|R_{xd}\left(\check{f}_d=f_d, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
 {: style="text-align: center;"}

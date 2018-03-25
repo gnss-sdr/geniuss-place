@@ -97,4 +97,4 @@ Mentor: Dr. Carles Fern&aacute;ndez-Prades.
 
 --------
 
-Finally, remember that if you are interested in contributing to the GNSS-SDR project, there is no need to wait for SOCIS 2013 to start; you can contact the developer team right now through the mailing list, take a look through the documentation, source code and bug tracker, suggest new features, etc. Check out how can you [participate in GNSS-SDR]({{ "/contribute/" | relative_url }}).
+Finally, remember that if you are interested in contributing to the GNSS-SDR project, there is no need to wait for SOCIS 2013 to start; you can contact the developer team right now through the mailing list, take a look through the documentation, source code and bug tracker, suggest new features, etc. Check out how can you [participate in GNSS-SDR]({{ "/contribute/" | absolute_url }}).
