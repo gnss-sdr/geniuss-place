@@ -5,7 +5,7 @@ excerpt: "Documentation for the Tracking block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-01-27T15:54:02-04:00
+last_modified_at: 2018-03-26T15:54:02-04:00
 ---
 
 
@@ -509,6 +509,98 @@ Tracking_2S.implementation=GPS_L2_M_DLL_PLL_Tracking
 Tracking_2S.pll_bw_hz=40.0;
 Tracking_2S.dll_bw_hz=4.0;
 Tracking_2S.early_late_space_chips=0.4
+```
+
+
+## Glonass L2 C/A signal tracking
+
+### Implementation: `GLONASS_L2_CA_DLL_PLL_Tracking`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GLONASS_L2_CA_DLL_PLL_Tracking` | Mandatory |
+| `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
+|--------------
+
+  _Tracking implementation:_ **`GLONASS_L2_CA_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_2G.implementation=GLONASS_L2_CA_DLL_PLL_Tracking
+Tracking_2G.pll_bw_hz=30.0
+Tracking_2G.dll_bw_hz=4.0
+Tracking_2G.early_late_space_chips=0.5
+```
+
+
+
+### Implementation: `GLONASS_L2_CA_DLL_PLL_C_Aid_Tracking`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GLONASS_L2_CA_DLL_PLL_C_Aid_Tracking` | Mandatory |
+| `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>]. Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter before bit synchronization, in Hz. It defaults to 50 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter before bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
+| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 20 Hz. | Optional |
+| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
+| `extend_correlation_ms` | Correlation length, in ms. It defaults to 1 ms. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging.  Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
+|--------------
+
+  _Tracking implementation:_ **`GLONASS_L2_CA_DLL_PLL_C_Aid_Tracking`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_2G.implementation=GLONASS_L2_CA_DLL_PLL_C_Aid_Tracking
+Tracking_2G.item_type=cshort
+Tracking_2G.pll_bw_hz=40.0;
+Tracking_2G.dll_bw_hz=4.0;
 ```
 
 ## GPS L5 signal tracking

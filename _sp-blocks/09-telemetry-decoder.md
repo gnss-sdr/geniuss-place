@@ -5,7 +5,7 @@ excerpt: "Documentation for the Telemetry Decoder block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-01-27T15:54:02-04:00
+last_modified_at: 2018-03-26T15:54:02-04:00
 ---
 
 
@@ -154,6 +154,34 @@ Example:
 TelemetryDecoder_1G.implementation=GLONASS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1G.dump=false
 ```
+
+### Implementation: `GLONASS_L2_CA_Telemetry_Decoder`
+
+**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `GLONASS_L2_CA_Telemetry_Decoder` | Mandatory |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+|--------------
+
+  _Telemetry Decoder implementation:_ **`GLONASS_L2_CA_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER GPS L2C CONFIG ############
+TelemetryDecoder_2G.implementation=GLONASS_L2_CA_Telemetry_Decoder
+TelemetryDecoder_2G.dump=true
+```
+
 
 ## GPS CNAV navigation message
 
