@@ -26,7 +26,7 @@ Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/
 
 <span style="color: DarkOrange">$$ ^{(*)} $$: only available on the `next` branch.</span>
 
-Then, seven parameters can be set: ```Channels_1C.count```, ```Channels_1B.count```, ```Channels_1G.count```, ```Channels_2S.count```, ````Channels_2G.count```, ``Channels_5X.count``` and ```Channels_L5.count```, all of them defaulting to $$ 0 $$.
+Then, seven parameters can be set: ```Channels_1C.count```, ```Channels_1B.count```, ```Channels_1G.count```, ```Channels_2S.count```, ```Channels_2G.count```, ```Channels_5X.count``` and ```Channels_L5.count```, all of them defaulting to $$ 0 $$.
 
 In addition, the GNSS-SDR flow graph allows to set the number of channels that will be executing signal acquisition (which is known to require a high computational load) concurrently. This is controlled by the parameter `Channels.in_acquisition`, which defaults to the total number of channels (all of them performing acquisition on different satellite signals at the same time, if required). When working with real-time configurations, it is a good practice to set this parameter  to 1 (that is, only one channel performing acquisition at a given time) in order to alleviate the computational burden.
 
