@@ -82,7 +82,7 @@ As shown in this equation, the E1B signal component carries the
 $$ D_{\text{I/NAV}} \in \{ 1, -1 \} $$ navigation message, which provides the space vehicle
 identification (SVID), an Issue of Data, the ephemeris data, a
 signal-in-space accuracy (SISA) indicator, clock correction parameters,
-a ionospheric correction, the Broadcast Group Delay (BGD), signal health
+an ionospheric correction, the Broadcast Group Delay (BGD), signal health
 and data validity status, Galileo System Time (GST), GST-UTC and GST-GPS
 time conversion parameters, the almanacs, and Search and Rescue (SAR)
 service data.
