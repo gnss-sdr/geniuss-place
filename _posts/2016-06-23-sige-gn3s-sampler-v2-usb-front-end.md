@@ -145,7 +145,7 @@ For the sake of simplicity of use, the [gr-gn3s code repository](https://github.
 We developed a complete GNU Radio signal source that provides an interface to the GN3S RF front-end signal samples. The firmware loader is based on Gregory. W. Heckler’s [GPS-SDR](https://github.com/gps-sdr/gps-sdr) GN3S driver. However, the signal sample reception was based on the original SiGe GN3S driver.
 
 
-The gr-gn3s module contains a GNU Radio fully-compliant gr-block signal source, intended to be used either with GNSS-SDR as a signal source or as a standalone signal source block instantiated from a GNU Radio flowgraph from C++ or using Python (it includes a gnuradio-companion interface also). The source code is available at [gr-gn3s](https://github.com/gnss-sdr/gr-gn3s).
+The gr-gn3s module contains a GNU Radio fully-compliant gr-block signal source, intended to be used either with GNSS-SDR as a signal source or as a standalone signal source block instantiated from a GNU Radio flow graph from C++ or using Python (it includes a gnuradio-companion interface also). The source code is available at [gr-gn3s](https://github.com/gnss-sdr/gr-gn3s).
 
 
 Once the driver is compiled and installed, the gr-gn3s signal source is available to gnuradio-companion under the tab [GN3S] -> gn3s_source and it can be instantiated as is shown in the following example:
