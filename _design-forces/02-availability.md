@@ -233,7 +233,7 @@ The generation of testing inputs is as follows: fixing the number of visible sat
 
 Tracking sensitivity refers to the minimum signal level that allows the receiver to maintain a location fix within some specified degree of accuracy. The generation of testing inputs is as follows: fixing the number of visible satellites to one, the power level of the received signal is set such that the GNSS software receiver under test can identify the single GNSS satellite signal. The power level of the GNSS satellite signal is then decreased until the GNSS receiver loses tracking of the single satellite. This power level and the corresponding GNSS software receiver under test reported carrier-to-noise density ratio ($$ C/N_0 $$) should be collected as data.
 
-All the effects explained above for acqusition sensitivity apply as well to tracking sensitivity, where the definition of $$ {C/N_0}_{\text{min}} $$ is now:
+All the effects explained above for acquisition sensitivity apply as well to tracking sensitivity, where the definition of $$ {C/N_0}_{\text{min}} $$ is now:
 
   * $$ {C/N_0}_{\text{min}} $$ is the minimum $$ C/N_0 $$ required for signal tracking, in dB-Hz.
 

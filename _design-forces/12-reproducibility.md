@@ -8,7 +8,7 @@ last_modified_at: 2017-11-11T15:54:02-04:00
 ---
 
 
-An experiment involving a software-defined GNSS receiver is an experiment that occurs in a computer system.  A key aspect in order to obtain meaningful conclusions from the experiments is _reproducibility_, which refers to the ability of an entire experiment or study to be reproduced, either by the researcher or by someone else working independently. It is one of the main principles of the scientific method and relies on _ceteris paribus_ (other things being equal). Publication of scientific theories, including experimental and observational data on which they are based, permits others to scrutinize them, to replicate experiments, identify errors, to support, reject or refine theories and to reuse data for further understanding and knowledge. Facilitating sustained and rigorous analysis of evidence and theory is the most rigorous form of peer review, and contributes to science's powerful capacity for self-correction[^Royal12]. However, it is well known that today's computational environments are complex, and accounting for all the possible effects of changes within and across systems is a challenging task[^Vandewalle09]$$ ^{,} $$[^Peng11].
+An experiment involving a software-defined GNSS receiver is an experiment that occurs in a computer system.  A key aspect in order to obtain meaningful conclusions from the experiments is _reproducibility_, which refers to the ability of an entire experiment or study to be reproduced, either by the researcher or by someone else working independently. It is one of the main principles of the scientific method and relies on _ceteris paribus_ (other things being equal). Publication of scientific theories, including experimental and observational data on which they are based, permits others to scrutinize them, to replicate experiments, identify errors, to support, reject or refine theories and to reuse data for further understanding and knowledge. Facilitating sustained and rigorous analysis of evidence and theory is the most rigorous form of peer review, and contributes to science's powerful capacity for self-correction[^Royal12]. However, it is well-known that today's computational environments are complex, and accounting for all the possible effects of changes within and across systems is a challenging task[^Vandewalle09]$$ ^{,} $$[^Peng11].
 
 In computer systems research, an experiment is defined by the workload, the specific system where the workload runs, and the results from a particular execution. Hence, reproducibility can be classified into:[^Fernandez17]
 
@@ -43,7 +43,7 @@ It follows a list of possible reproducibility indicators for a software-defined 
   * Description of datasets: see the metadata standard by the [ION GNSS SDR Standard Working Group](https://github.com/IonMetadataWorkingGroup).
     * Data collection topology (single/multi band, single/multi stream, single/multi file),
     * Sample resolution (number of bits per sample),
-    * Encoding (sign, sign-magnitude, signed integer, offset binary or floating point),
+    * Encoding (sign, sign-magnitude, signed integer, offset binary or floating-point),
     * Sampling frequency, possible intermediate frequency and inverted spectrum indicator.
 
 ### System reproducibility
@@ -54,7 +54,7 @@ It follows a list of possible reproducibility indicators for a software-defined 
      * the average antenna phase center relative to the antenna reference point (ARP) for each specific frequency band and satellite system,
      * the orientation of the antenna zero-direction as well as the direction of its vertical axis (bore-sight), if mounted tilted on a fixed station, or XYZ vector in a body-fixed system, in case of mounted on a moving platform (all units in meters).
      * If the antenna is physically apart from the front-end the cable category and length, as well as the connectors type, should be reported.
-  * In case of using a RF signal generator instead of live GNSS signals, its brand and model, as well as the complete set of configuration parameters, should be included in the experiment description.     
+  * In case of using an RF signal generator instead of live GNSS signals, its brand and model, as well as the complete set of configuration parameters, should be included in the experiment description.     
   * The radio-frequency front-end:
     * In Open Design: sharing of schematics, bill of materials, printed circuit board layout data, etc.
     * When using commercial devices: define brand, model and configuration.

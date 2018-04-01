@@ -15,7 +15,7 @@ toc: true
 
 ## Step 1: Verify that GNSS-SDR is installed
 
-This guide assumes that GNSS-SDR and its software dependencies are already installed on you system. In order to check whether it is correctly installed, open a terminal and type:
+This guide assumes that GNSS-SDR and its software dependencies are already installed on your system. In order to check whether it is correctly installed, open a terminal and type:
 
 ```bash
 $ gnss-sdr --version
@@ -31,7 +31,7 @@ gnss-sdr version 0.0.9
 $  
 ```
 
-Please check that your installed version is 0.0.9 (or something like 0.0.9.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnsss-sdr` and you got a version earlier to 0.0.9, please do `sudo apt-get remove gnsss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
+Please check that your installed version is 0.0.9 (or something like 0.0.9.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.9, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
 If you see something like:
@@ -67,7 +67,7 @@ $ wget https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGN
 $ tar -zxvf 2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz
 ```
 
-or by opening [this link](https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz/download) in your browser, downloading the file and unpacking it. This will get you the file `2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat`, which contains $$ 100 $$ seconds of raw GNSS signal samples collected by a RF front-end centered at $$ 1,575.42 $$ MHz, that was delivering baseband samples at $$ 4 $$ MS/s, in an interleaved I&Q 16-bit integer format.
+or by opening [this link](https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz/download) in your browser, downloading the file and unpacking it. This will get you the file `2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat`, which contains $$ 100 $$ seconds of raw GNSS signal samples collected by an RF front-end centered at $$ 1,575.42 $$ MHz, that was delivering baseband samples at $$ 4 $$ MS/s, in an interleaved I&Q 16-bit integer format.
 
 
 ## Step 3: Configure GNSS-SDR

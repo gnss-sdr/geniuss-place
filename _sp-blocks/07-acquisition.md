@@ -223,7 +223,7 @@ This is the case of the Tong detector[^Tong73], a sequential variable dwell time
 reasonable computation burden and proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
 signal search, the up/down counter $$ K $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
 decremented by one. If the counter has reached maximum count value $$ A $$, the signal is
-declared ‘_present_’ and the search is terminated. Similarly if the counter contents reach zero,
+declared ‘_present_’ and the search is terminated. Similarly, if the counter contents reach zero,
 the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
 trapped into an extended dwell in the same cell, under certain poor signal conditions, another
 counter ($$ K_{max} $$) sets the limit on maximum number of dwells.
@@ -380,7 +380,7 @@ The Tong detector[^Tong73] is a sequential variable dwell time detector with a
 reasonable computation burden that proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
 signal search, the up/down counter $$ K $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
 decremented by one. If the counter has reached maximum count value $$ A $$, the signal is
-declared ‘_present_’ and the search is terminated. Similarly if the counter contents reach zero,
+declared ‘_present_’ and the search is terminated. Similarly, if the counter contents reach zero,
 the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
 trapped into an extended dwell in the same cell, under certain poor signal conditions, another
 counter ($$ K_{max} $$) sets the limit on maximum number of dwells.

@@ -1005,7 +1005,7 @@ $ clang-format -i <file>
 ```bash
 $ find src/algorithms/conditioner/ -iname *.h -o -iname *.cc | xargs clang-format -i
 ```  
-  For each input file, clang-format will try to find the `.clang-format` file located in the closest parent directory of the input file, so [the one in the root folder](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) will apply. Please do not modify that file, but feel free to propose changes (that would be applied to the whole source tree) by [filling an issue at Github](https://github.com/gnss-sdr/gnss-sdr/issues/new) in order to let other developers to discuss them.
+  For each input file, clang-format will try to find the `.clang-format` file located in the closest parent directory of the input file, so [the one in the root folder](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) will apply. Please do not modify that file, but feel free to propose changes (that would be applied to the whole source tree) by [filling an issue at GitHub](https://github.com/gnss-sdr/gnss-sdr/issues/new) in order to let other developers to discuss them.
 
 You can disable the automatic formatting of a piece of code by using comments:
 

@@ -29,7 +29,7 @@ For the project, product or service in which the software receiver has a role:
 * Availability of communication channels with other users and the development team.
   - Public mailing list.
   - Presence in public IRC channels.
-  - resence in social networks.
+  - Presence in social networks.
 
 
 For the computing platform executing the software receiver:

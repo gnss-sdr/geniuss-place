@@ -47,7 +47,7 @@ Found a typo in this website? Interested in giving your thoughts on existing pag
 
 This website itself lives in a [GitHub repository](https://github.com/gnss-sdr/geniuss-place.git). You can contribute in several ways:
 
- * Commenting (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/)) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriate style (see our [code of conduct]({{ "/code-of-conduct/" | relative_url }})).
+ * Commenting (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/)) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriated style (see our [code of conduct]({{ "/code-of-conduct/" | relative_url }})).
 
  * Sharing the content in your favorite social network.
 

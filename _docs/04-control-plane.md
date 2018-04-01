@@ -85,7 +85,7 @@ adding a new block that requires new parameters will be as simple
 as adding the block class and modifying the factory to be able to
 instantiate it. This loose coupling between the blocks' implementations
 and the syntax of the configuration enables extending the application
-capacities in a high degree. It also allows to produce fully customized
+capacities in a high degree. It also allows producing fully customized
 receivers, for instance a testbed for acquisition algorithms, and
 to place observers at any point of the receiver chain.
 
