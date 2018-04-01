@@ -41,7 +41,7 @@ In order to get real-time position fixes, you will need:
   | X300, X310 | Up to $$ 120 $$ MHz | See daughterboard |  $$ 200 $$ MS/s | 10 Gigabit Ethernet | $$ 200 $$ MS/s |
   |--------------
 
-  _Some USRP models and features. The ADC processing bandwidth is the sample rate provided by the ADCs on the USRP motherboard, and the host sample rate refers to the sample stream between the FPGA of a USRP device, and a host PC. Some USRP models also provide to option to stream 8-bit samples, effectively doubling the host-bandwidth in terms of samples/second. Source: [Ettus Research Knowledge Base](https://kb.ettus.com/About_USRP_Bandwidths_and_Sampling_Rates)._
+  _Some USRP models and features. The ADC processing bandwidth is the sample rate provided by the ADCs on the USRP motherboard, and the host sample rate refers to the sample stream between the FPGA of a USRP device, and a host PC. Some USRP models also provide the option to stream 8-bit samples, effectively doubling the host-bandwidth in terms of samples/second. Source: [Ettus Research Knowledge Base](https://kb.ettus.com/About_USRP_Bandwidths_and_Sampling_Rates)._
   {: style="text-align: center;"}
 
   * The USRP family features a modular architecture with interchangeable daughterboard modules that serve as the RF front end. In case of using a USRP without an embedded transceiver, you will need **a daughterboard** allowing the reception of signals around 1.5 GHz. That is: DBSRX2, WBX, SBX, CBX and UBX daughterboards can work for you. You will not need a daughterboard if you are using USRP B200, B210 or E310, which ship an Analog Devices AD9361 RFIC as an integrated wideband transceiver.
@@ -69,7 +69,7 @@ In order to get real-time position fixes, you will need:
 
 ### Setting up the front-end
 
-The first thing to do is to install a suitable daughterboard into the USRP. As a example, you can check Ettus Research's detailed [step-by-step guide to install a daughterboard into the USRP N200/N210](https://kb.ettus.com/USRP_N_Series_Quick_Start_(Daughterboard_Installation)). In USRPs with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labelled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
+The first thing to do is to install a suitable daughterboard into the USRP. As a example, you can check Ettus Research's detailed [step-by-step guide to install a daughterboard into the USRP N200/N210](https://kb.ettus.com/USRP_N_Series_Quick_Start_(Daughterboard_Installation)). In USRPs with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labeled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
 
 Then, you will need to feed your GNSS active antenna.
 
@@ -147,7 +147,7 @@ This is a good way to check if the USRP is correctly connected to your computer.
 
 ### Setting up the software receiver
 
-Copy the configuration below into you favorite plain text editor and save it with a name such as `my_GPS_receiver.conf` in your favorite working directory.
+Copy the configuration below into your favorite plain text editor and save it with a name such as `my_GPS_receiver.conf` in your working directory.
 
 ```ini
 [GNSS-SDR]

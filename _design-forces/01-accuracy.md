@@ -11,7 +11,7 @@ In this context, it refers to how close a position solution delivered by the sof
 
 The definition of the reference point implies the agreement on some reference coordinate systems for the satellite system and the reference position:
 
-*  GNSS satellite coordinate reference system: The International Earth Rotation and Reference Systems Service ([IERS](https://www.iers.org/IERS/EN/Home/home_node.html)) recommend to express it as "ITRFyy at epoch yyyy.y"[^Petit10]
+*  GNSS satellite coordinate reference system: The International Earth Rotation and Reference Systems Service ([IERS](https://www.iers.org/IERS/EN/Home/home_node.html)) recommend expressing it as "ITRFyy at epoch yyyy.y"[^Petit10]
 * A local geographic coordinate reference system (providing transformation parameters, if applicable).
 * An East-North-Up (ENU) reference frame with origin in the _reference point_.
 * In case of differential GNSS configurations, datum of the differential source.

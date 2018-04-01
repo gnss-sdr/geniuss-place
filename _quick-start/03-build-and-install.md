@@ -126,7 +126,7 @@ Once you have installed these packages, you can jump directly to [clone, build a
 
 ### Install dependencies using PyBOMBS
 
-This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend to use [PyBOMBS](https://www.gnuradio.org/blog/pybombs-the-what-the-how-and-the-why/ "PyBOMBS - The What, the How and the Why") (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs). Here we provide a quick step-by-step tutorial.
+This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine-tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend to use [PyBOMBS](https://www.gnuradio.org/blog/pybombs-the-what-the-how-and-the-why/ "PyBOMBS - The What, the How and the Why") (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs). Here we provide a quick step-by-step tutorial.
 
 First of all, install some basic packages:
 
@@ -223,7 +223,7 @@ $ ninja
 $ sudo ninja install
 ```
 
-In general, the compilation time when using Ninja is comparable to that when using Make for a full build, although its performance is quite platform-dependant. Ninja is specially targeted to improve performance in large projects and for incremental builds, so it seems to be a good replacement for Make especially for developers who need to often recompile the source code. In Debian-based GNU/Linux distributions, it can be installed by doing:
+In general, the compilation time when using Ninja is comparable to that when using Make for a full build, although its performance is quite platform dependent. Ninja is specially targeted to improve performance in large projects and for incremental builds, so it seems to be a good replacement for Make especially for developers who need to often recompile the source code. In Debian-based GNU/Linux distributions, it can be installed by doing:
 
 ```bash
 $ sudo apt-get install ninja-build

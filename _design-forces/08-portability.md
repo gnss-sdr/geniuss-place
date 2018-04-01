@@ -75,7 +75,7 @@ Applications that do not need an operating system are called _bare metal_ applic
 
    * The [Linux](https://en.wikipedia.org/wiki/Linux) kernel, used in some popular distributions such as [Debian](https://www.debian.org/), [Fedora](https://getfedora.org/), [Ubuntu](http://www.ubuntu.com/), [openSUSE](https://www.opensuse.org/), [Arch Linux](https://www.archlinux.org/), [Linux Mint](https://www.linuxmint.com/), [Linaro](https://en.wikipedia.org/wiki/Linaro), [Raspbian](https://www.raspbian.org/) or Google's [Android](https://www.android.com/).
 
-*  **Microsoft Windows** is a family of proprietary operating systems designed by Microsoft Corporation and primarily targeted to Intel architecture based computers, with a [relevant percent total usage share](https://en.wikipedia.org/wiki/Usage_share_of_operating_systems) on Web connected computers. Latest version is [Windows 10](https://en.wikipedia.org/wiki/Windows_10), which was preceded by [Windows 7](https://en.wikipedia.org/wiki/Windows_7), [Windows Vista](https://en.wikipedia.org/wiki/Windows_Vista) and [Windows XP](https://en.wikipedia.org/wiki/Windows_XP).
+*  **Microsoft Windows** is a family of proprietary operating systems designed by Microsoft Corporation and primarily targeted to Intel architecture based computers, with a [relevant percent total usage share](https://en.wikipedia.org/wiki/Usage_share_of_operating_systems) on Web connected computers. The latest version is [Windows 10](https://en.wikipedia.org/wiki/Windows_10), which was preceded by [Windows 7](https://en.wikipedia.org/wiki/Windows_7), [Windows Vista](https://en.wikipedia.org/wiki/Windows_Vista) and [Windows XP](https://en.wikipedia.org/wiki/Windows_XP).
 
 * **Real-Time Operating Systems** such as [VxWorks](http://windriver.com/products/vxworks/), [eCos](http://ecos.sourceware.org/), [QNX](http://www.qnx.com/), [MontaVista Linux](http://www.mvista.com/), [RTLinux](http://www.rtlinux.org/) and Real-Time Executive for Multiprocessor Systems ([RTEMS](https://www.rtems.org/)).
 
@@ -83,7 +83,7 @@ Applications that do not need an operating system are called _bare metal_ applic
 
 ## Building tools
 
-In case of using compiled programming languages, software libraries and executables are generated from the source code through three kind of tools:
+In case of using compiled programming languages, software libraries and executables are generated from the source code through three kinds of tools:
 
   * **Build system generators**, which automatically generate _build files_ from human-written configuration files. Popular examples of those tools are the [GNU Build System](https://en.wikipedia.org/wiki/GNU_Build_System) (also known as Autotools), [CMake](https://cmake.org) and [SCons](http://scons.org).
   * **Build automation tools**, which automatically build executable programs and libraries from the source code with the aid of _build files_ that contains _rules_ describing targets, components and dependencies. Example are [GNU Make](https://www.gnu.org/software/make/), Unix’s [make](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html), [Ninja](https://ninja-build.org) and [others](https://en.wikipedia.org/wiki/List_of_build_automation_software).     

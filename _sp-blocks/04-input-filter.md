@@ -15,7 +15,7 @@ The role on an _Input Filter_ block is to filter noise and possible interference
 {: .notice--info}
 
 
-There are three kind of filter implementations available:
+There are three kinds of filter implementations available:
 
   * Finite Impulse Response (FIR) filters, implementing a fixed frequency mask for out-of-band noise or frequency alias suppression.
     * `Fir_Filter` for baseband signals.
@@ -255,7 +255,7 @@ InputFilter.sampling_frequency=8000000
 
 ## Adaptive filters for interference mitigation
 
-The first step of any interference mitigation algorithm consists in determining whether the interference is present within the receiver's frequency band. A simple method is to calculate the input signal power and compare it against a certain threshold. This threshold should be set according with the signal level in absence of the interference signal. Since the power of the GNSS useful signal components at the receiver's antenna is extremely weak (several tens of dB below the background noise), the input signal power when the interference source is switched off is in practice the same as the background noise power. This is
+The first step of any interference mitigation algorithm consists in determining whether the interference is present within the receiver's frequency band. A simple method is to calculate the input signal power and compare it against a certain threshold. This threshold should be set according to the signal level in absence of the interference signal. Since the power of the GNSS useful signal components at the receiver's antenna is extremely weak (several tens of dB below the background noise), the input signal power when the interference source is switched off is in practice the same as the background noise power. This is
 
 $$ \begin{equation} E \{ | y(t) |^2 \} \approx E \{ | \eta(t) |^2 \} = \sigma^2 . \end{equation} $$
 

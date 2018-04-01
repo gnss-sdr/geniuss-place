@@ -32,7 +32,7 @@ Most common precision metrics are defined below:
  |  **3D SEP**   | $$ 0.51 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 50 % |
  |-----
 
-which are the same expressions than those defined for [accuracy]({{ "/design-forces/accuracy/" | relative_url }}), but now the standard deviations are not referred to a _reference value_ but to the mean of the obtained results:
+which are the same expressions as those defined for [accuracy]({{ "/design-forces/accuracy/" | relative_url }}), but now the standard deviations are not referred to a _reference value_ but to the mean of the obtained results:
 
 $$ \begin{equation} \sigma_{E}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- \hat{E}\right)^2} \end{equation} $$
 
