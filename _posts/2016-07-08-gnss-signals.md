@@ -605,9 +605,9 @@ $$ \begin{equation} e_{B2Q}(t) =  \sum_{l=-\infty}^{\infty}  D_{\text{B2Q}} \Big
 
 where the chip period is $$ T_{c,\text{B2I}_{C}} = \frac{1}{2.046} $$ $$ \mu $$s and the code length is 2046 chips. The data message $$ D_{\text{B2I}} $$ varies depending on the type of transmitting satellite:
 
-  * In MEO/IGSO satellites, the broadcasted navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s (so $$ T_{c,\text{B2I}_{CH}} = 1 $$ ms), defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits are transmitted at 50 bit/s.
+  * In MEO/IGSO satellites, the broadcast navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s (so $$ T_{c,\text{B2I}_{CH}} = 1 $$ ms), defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits are transmitted at 50 bit/s.
 
-  * In GEO satellites, the broadcasted navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B2I signals for geostationary satellites can be expressed as:
+  * In GEO satellites, the broadcast navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B2I signals for geostationary satellites can be expressed as:
 
   $$ \begin{equation} e_{B2I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{4092}\Big] \oplus C_{\text{B2I}} \Big[ |l|_{2046} \Big] p(t -  lT_{c,\text{B2I}})~. \end{equation} $$
 
@@ -643,9 +643,9 @@ where $$ T_{c,\text{B3I}_{C}} = \frac{1}{10.23} $$ $$\mu $$s and the code length
 
 The data message $$ D_{\text{B3I}} $$ varies depending on the type of transmitting satellite:
 
-  * In MEO/IGSO satellites, the broadcasted navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s (so $$ T_{c,\text{B3I}_{CH}} = 1 $$ ms), defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits $$ D_{\text{B3I}} $$ are transmitted at 50 bit/s.
+  * In MEO/IGSO satellites, the broadcast navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s (so $$ T_{c,\text{B3I}_{CH}} = 1 $$ ms), defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits $$ D_{\text{B3I}} $$ are transmitted at 50 bit/s.
 
-  * In GEO satellites, the broadcasted navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B3I signals for geostationary satellites can be expressed as:
+  * In GEO satellites, the broadcast navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B3I signals for geostationary satellites can be expressed as:
 
   $$ \begin{equation} e_{B3I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{20460}\Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B3I}})~. \end{equation} $$
 
