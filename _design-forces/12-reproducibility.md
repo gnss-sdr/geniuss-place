@@ -10,7 +10,7 @@ last_modified_at: 2017-11-11T15:54:02-04:00
 
 An experiment involving a software-defined GNSS receiver is an experiment that occurs in a computer system.  A key aspect in order to obtain meaningful conclusions from the experiments is _reproducibility_, which refers to the ability of an entire experiment or study to be reproduced, either by the researcher or by someone else working independently. It is one of the main principles of the scientific method and relies on _ceteris paribus_ (other things being equal). Publication of scientific theories, including experimental and observational data on which they are based, permits others to scrutinize them, to replicate experiments, identify errors, to support, reject or refine theories and to reuse data for further understanding and knowledge. Facilitating sustained and rigorous analysis of evidence and theory is the most rigorous form of peer review, and contributes to science's powerful capacity for self-correction[^Royal12]. However, it is well-known that today's computational environments are complex, and accounting for all the possible effects of changes within and across systems is a challenging task[^Vandewalle09]$$ ^{,} $$[^Peng11].
 
-In computer systems research, an experiment is defined by the workload, the specific system where the workload runs, and the results from a particular execution. Hence, reproducibility can be classified into:[^Fernandez17]
+In computer systems research, an experiment is defined by the workload, the specific system where the workload runs, and the results from a particular execution. Hence, reproducibility can be classified into:[^Fernandez18]
 
   * **Workload reproducibility**, which requires access to the original code and the particular workload that was used to obtain the original experimental results;
   * **System reproducibility**, which requires access to hardware and software resources that resemble the original dependencies, including the set of hardware devices involved in the experiment such as the antenna, the radio frequency front-end, specific CPU models, possible computing off-loading devices and network elements, system configuration, as well as the entire software stack, from the firmware/kernel version up to the libraries used by the original experiment; and
@@ -72,6 +72,7 @@ It follows a list of possible reproducibility indicators for a software-defined 
     * Virtual machines.
     * Software containers (_e.g._, [Docker](https://www.docker.com/)).
   * Continuous analysis[^Beaulieu17]: process combining Docker containers with continuous integration to automatically re-run computational analysis whenever relevant changes are made to the source code.
+  * Continuous reproducibility[^Fernandez18]: automated pipeline that regenerates results described in a document (research paper, case study, etc.) whenever changes are made to the source code. This includes sharing the data set on which the experiments were done (usually, files containing raw GNSS signal samples and possibly other sensors), the full experiment configuration, and the scripts used to analyze the results and generate the figures or tables appearing in the document in which the results were presented.
 
 ### Results reproducibility
 
@@ -96,4 +97,4 @@ It follows a list of possible reproducibility indicators for a software-defined 
 
 [^Beaulieu17]: B. K. Beaulieu-Jones and C. S. Greene, [Reproducibility of computational workflows is automated using continuous analysis](https://www.biorxiv.org/content/early/2016/08/11/056473). Nature Biotechnology, Vol. 35, no. 4, pp. 342–346, Apr. 2017.
 
-[^Fernandez17]: C. Fern&aacute;ndez-Prades, J. Arribas, M. Majoral, J. Vil&agrave;-Valls, A. Garc&iacute;a-Rigo and M. Hern&aacute;ndez-Pajares, _An open path from the antenna to scientific-grade GNSS products_, in Proc. of the 6th International Colloquium - Scientific and Fundamental Aspects of GNSS / Galileo, pp. 1-8, Valencia, Spain, October 25-27, 2017.
+[^Fernandez18]: C. Fern&aacute;ndez-Prades, J. Vil&agrave;-Valls, J. Arribas and A. Ramos, [Continuous Reproducibility in GNSS Signal Processing](http://ieeexplore.ieee.org/document/8331069/), IEEE Access, Accepted for publication, Apr. 2018. DOI: 10.1109/ACCESS.2018.2822835
