@@ -10,7 +10,7 @@ tags:
 sidebar:
   nav: "docs"
 toc: true
-last_modified_at: 2018-03-20T09:37:02+02:00
+last_modified_at: 2018-04-07T09:37:02+02:00
 
 ---
 
@@ -18,19 +18,19 @@ last_modified_at: 2018-03-20T09:37:02+02:00
 A _generic_ GNSS complex baseband signal transmitted by a given GNSS space vehicle $$ i $$ can be described as
 
 $$ \begin{equation}
-s_T(t)= \sqrt{P_{T}} \sum_{u=-\infty}^{\infty}d(u)p(t-uT_{b_I}) ~, \end{equation}
+s_T(t)= \sqrt{P_{T}} \sum_{u=-\infty}^{\infty}d(u)g(t-uT_{b_I}) ~, \end{equation}
 $$
 
 where
 
 $$ \begin{equation}
-p(t)=\sum_{k=0}^{N_{c}-1}q(t-kT_{PRN}) \end{equation}
+g(t)=\sum_{k=0}^{N_{c}-1}q(t-kT_{PRN}) \end{equation}
 $$
 
 and
 
 $$ \begin{equation}
-q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)g_{T}(t-lT_{c}) ~, \end{equation}
+q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)p_{T}(t-lT_{c}) ~, \end{equation}
 $$
 
 
@@ -39,7 +39,7 @@ symbols, $$ T_{b} $$ the bit period,  $$ N_{c} $$ the number of
 repetitions of a full codeword that spans a bit period,
 $$ T_{PRN}=\frac{T_{b}}{N_{c}} $$ the codeword period,
 $$ c_{i}(l) $$ a chip of a spreading codeword $$ i $$ of length
-$$ L_{c} $$ chips, $$ g_{T}(t) $$ the transmitting chip pulse shape,
+$$ L_{c} $$ chips, $$ p_{T}(t) $$ the transmitting chip pulse shape,
 which is considered energy-normalized for notation clarity, and
 $$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ is the chip period.
 
@@ -128,7 +128,7 @@ $$ \begin{equation} e_{L2I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ 
 
 with an optional presence of the navigation message $$ D_{\text{NAV}} $$. For the Quadrature–phase component, three options are defined:
 
-$$ \begin{equation} e_{L2Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus \left(  C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{3}{4}\right)T_{c,L2C}\right) \right), \end{equation} $$
+$$ \begin{equation} e_{L2Q}(t) = \sum_{l=-\infty}^{\infty}\left( D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus   C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{1}{2}\right)T_{c,L2C}\right) \right), \end{equation} $$
 
 $$ \begin{equation} e_{L2Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}} \Big[ [l]_{20460} \Big] \oplus C_{\text{C/A}} \Big[ |l|_{1023} \Big] p \left(t - lT_{c,\text{C/A}}\right), \end{equation} $$
 
@@ -141,7 +141,7 @@ rectangular pulse of half chip–period duration, thus time–multiplexing
 both codes. The civilian long code $$ C_{\text{CL}} $$ is
 $$ L_{\text{CL}}=767250 $$ chips long, repeating every $$ 1.5 $$ s, while the
 civilian moderate code $$ C_{\text{CM}} $$ is $$ L_{\text{CM}}=10230 $$ chips
-long and its repeats every $$ 20 $$ ms. The CNAV data is an upgraded version
+long and it repeats every $$ 20 $$ ms. The CNAV data is an upgraded version
 of the original NAV navigation message, containing higher precision
 representation and nominally more accurate data than the NAV data. It is
 transmitted at $$ 25 $$ bit/s with forward error correction (FEC) encoding,
