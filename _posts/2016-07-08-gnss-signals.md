@@ -140,7 +140,7 @@ where $$ T_{c,L2C}=\frac{1}{511.5} $$ ms and $$ p_{\text{1/2}}(t) $$ is a
 rectangular pulse of half chip–period duration, thus time–multiplexing
 both codes. The civilian long code $$ C_{\text{CL}} $$ is
 $$ L_{\text{CL}}=767250 $$ chips long, repeating every $$ 1.5 $$ s, while the
-civilian moderate code $$ C_{\text{CM}} $$ is $$ L_{\text{CL}}=10230 $$ chips
+civilian moderate code $$ C_{\text{CM}} $$ is $$ L_{\text{CM}}=10230 $$ chips
 long and its repeats every $$ 20 $$ ms. The CNAV data is an upgraded version
 of the original NAV navigation message, containing higher precision
 representation and nominally more accurate data than the NAV data. It is
