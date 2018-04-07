@@ -17,6 +17,32 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
 <ul class="biblist">
+    <!-- Item: Fernandez18 -->
+    <li ><p>
+    C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Vil&agrave;-Valls, J.&nbsp;Arribas and A.&nbsp;Ramos
+    <br><b>Continuous Reproducibility in GNSS Signal Processing</b><br>
+<i>IEEE Access</i>, Accepted for publication, Apr. 2018.
+    <br />
+    <a href="javascript:toggleBibtex('Fernandez18')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/document/8331069/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/ACCESS.2018.2822835" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Fernandez18" class="bibtex noshow">
+    <pre>@article{ Fernandez18,
+author  = {C.~{Fern\'{a}ndez--Prades} and J.~{Vil\`{a}--Valls} and J.~Arribas and A.~Ramos},
+title   = {Continuous Reproducibility in {GNSS} Signal Processing},
+journal = {IEEE Access},
+year    = {2018},
+month   = {Apr.},
+volume  = {PP},
+pages   = {1--13},
+note    = { {DOI}: 10.1109/ACCESS.2018.2822835}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<ul class="biblist">
     <!-- Item: Curran18 -->
     <li ><p>
     J.&nbsp;T.&nbsp;Curran, C.&nbsp;Fern&aacute;ndez-Prades, A.&nbsp;Morrison and M.&nbsp;Bavaro
@@ -168,7 +194,7 @@ Portland, OR, Sept. 2017, pp. 1204-1228.
     </p>
     <div id="bib_Arribas17a" class="bibtex noshow">
     <pre>@inproceedings{ Arribas17a,
-author  = {J.~{Arribas} and A.~{Ramos~de~Torres} and C.~{Fern\'{a}ndez-Prades} and J.~{Vil\`{a}-Valls} and P.~Closas}
+author  = {J.~{Arribas} and A.~{Ramos~de~Torres} and C.~{Fern\'{a}ndez--Prades} and J.~{Vil\`{a}--Valls} and P.~Closas}
 title   = {Air Traffic Radar Interference Event in the {G}alileo {E}6 Band: {D}etection, Analysis and Mitigation},
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
@@ -197,7 +223,7 @@ Portland, OR, Sept. 2017, pp. 3796-3815.
     </p>
     <div id="bib_Fernandez17a" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez17a,
-author  = {C.~{Fern\'{a}ndez-Prades} and C.~Pomar and J.~Arribas and J.M.~F\`{a}brega and J.~{Vil\`{a}-Valls} and M.~{Svaluto~Moreolo} and R.~Casellas and R.~Mart\'{i}nez and M.~Navarro and F.J.~V\'{i}lchez and R.~Mu{\~{n}}oz and R.~Vilalta and L.~Nadal and A.~Mayoral},
+author  = {C.~{Fern\'{a}ndez--Prades} and C.~Pomar and J.~Arribas and J.M.~F\`{a}brega and J.~{Vil\`{a}--Valls} and M.~{Svaluto~Moreolo} and R.~Casellas and R.~Mart\'{i}nez and M.~Navarro and F.J.~V\'{i}lchez and R.~Mu{\~{n}}oz and R.~Vilalta and L.~Nadal and A.~Mayoral},
 title   = {A Cloud Optical Access Network for Virtualized {GNSS} Receivers},
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
@@ -249,7 +275,7 @@ Aarhus, Denmark, Nov. 27-30, 2016, pp. 1-6.
     </p>
     <div id="bib_Lopez16" class="bibtex noshow">
     <pre>@inproceedings{ Lopez16,
-author  = {E.~L\'{o}pez and J.~Dom\'{i}nguez and B.~Quijano and C.~{Fern\'{a}ndez-Prades} and J.~Arribas and M.~{Hern\'{a}ndez-Pajares} and A.~{Garc\'{i}a-Rigo} and M.~Schmidt and A.~Goss and E.~Spaltro and J.~Grosso and M.~Symeonidou and S.~Fountas and Z.~Tsiropoulos and F.~{Van~Evert} and P.~Blok and D.~Roma},
+author  = {E.~L\'{o}pez and J.~Dom\'{i}nguez and B.~Quijano and C.~{Fern\'{a}ndez--Prades} and J.~Arribas and M.~{Hern\'{a}ndez-Pajares} and A.~{Garc\'{i}a-Rigo} and M.~Schmidt and A.~Goss and E.~Spaltro and J.~Grosso and M.~Symeonidou and S.~Fountas and Z.~Tsiropoulos and F.~{Van~Evert} and P.~Blok and D.~Roma},
 title   = {Advanced Multi-Constellation {EGNSS} Augmentation and Monitoring Network ({AUDITOR})},
 booktitle = {Proc. Global Wireless Summit},
 year    = {2016},
@@ -434,7 +460,7 @@ ESA-ESTEC, Noordwijk, The Netherlands, 2014, pp. 1-3.
     </p>
     <div id="bib_Fabra14" class="bibtex noshow">
     <pre>@inproceedings{ Fabra14,
-author  = {F.~Fabra and C.~Calvin and A.~Rius and J.~Arribas and C.~{Fern\'{a}ndez-Prades}},
+author  = {F.~Fabra and C.~Calvin and A.~Rius and J.~Arribas and C.~{Fern\'{a}ndez--Prades}},
 title   = {Processing Aspects of the Software {PARIS} Interferometric Receiver},
 booktitle = {Proc. Workshop on Advanced RF Sensors and Remote Sensing Instruments (ARSI)},
 year    = {2014},

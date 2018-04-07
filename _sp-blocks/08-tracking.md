@@ -5,7 +5,7 @@ excerpt: "Documentation for the Tracking block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-03-26T15:54:02-04:00
+last_modified_at: 2018-04-07T15:54:02-04:00
 ---
 
 
@@ -65,7 +65,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch.</span> | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
@@ -106,7 +106,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_DLL_PLL_C_Aid_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>]. Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch.</span> | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter before bit synchronization, in Hz. It defaults to 50 Hz. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter before bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 20 Hz. | Optional |
@@ -156,7 +156,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_DLL_PLL_Tracking_GPU` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch.</span> | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
@@ -177,6 +177,33 @@ Tracking_1C.dll_bw_hz=4.0;
 ```
 
 ## Galileo E1 signal tracking
+
+This band, centered at $$ f_{\text{Gal E1}}=1575.420 $$ MHz and
+with a reference bandwidth of $$ 24.5520 $$ MHz, uses the Composite Binary
+Offset Carrier (CBOC) modulation, defined in baseband as:
+
+$$ \begin{equation} s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{equation} $$
+
+where the subcarriers $$ sc(t) $$ are defined as
+
+$$ \begin{equation} sc_A(t) = \text{sign} \Big(\sin(2\pi f_{s,E1A}t) \Big)~, \end{equation} $$
+
+$$ \begin{equation} sc_B(t) = \text{sign} \Big(\sin(2\pi f_{s,E1B}t) \Big)~, \end{equation} $$
+
+and $$ f_{s,E1A}=1.023 $$ MHz, $$ f_{s, E1B}=6.138 $$ MHz are the subcarrier
+rates, $$ \alpha=\sqrt{\frac{10}{11}} $$, and $$ \beta=\sqrt{\frac{1}{11}} $$.
+Channel B contains the I/NAV type of navigation message,
+$$ D_{I/NAV} $$, intended for Safety–of–Life (SoL) services:
+
+$$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big]    p(t - lT_{c,E1B})~. \end{equation} $$
+
+In case of channel C, it is a pilot (dataless) channel with a
+secondary code, forming a tiered code:
+
+$$ \begin{equation} e_{E1C}(t) = \sum_{m=-\infty}^{+\infty}C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
+
+with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$
+ms.
 
 ### Implementation: `Galileo_E1_DLL_PLL_VEML_Tracking`
 
@@ -347,15 +374,15 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E1_DLL_PLL_VEML_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch.</span> | Optional |
 | <span style="color: DarkOrange">`track_pilot`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E1C and enables an extra prompt correlator (slave to pilot's prompt) in the data component E1B. It defaults to `false` (that is, correlations on a data length of 4 ms over the E1B component).</span> | <span style="color: DarkOrange">Optional</span> |
 | <span style="color: DarkOrange">`extend_correlation_symbols`</span> | <span style="color: DarkOrange">If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{E1C_{s}} $$ is removed from the pilot signal, in number of symbols. Each symbol is 4 ms, so setting this parameter to 25 means a coherent integration time of 100 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1.</span> | <span style="color: DarkOrange">Optional</span> |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 5 Hz. This implementation uses a Costas loop. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 0.5 Hz. | Optional |
-| <span style="color: DarkOrange">`pll_bw_narrow_hz`</span> |  <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the PLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$, in Hz. It defaults to 2 Hz. This implementation uses a four-quadrant arctangent discriminator (atan2).</span> | <span style="color: DarkOrange">Optional</span> |
-| <span style="color: DarkOrange">`dll_bw_narrow_hz`</span> |  <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the DLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, in Hz. It defaults to 0.25 Hz.</span> | <span style="color: DarkOrange">Optional</span> |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$. | Optional |
 | `very_early_late_space_chips` | Spacing between Very Early and Prompt and between Prompt and Very Late correlators, normalized by the chip period $$ T_c $$ It defaults to $$ 0.6 $$. | Optional |
+| <span style="color: DarkOrange">`pll_bw_narrow_hz`</span> |  <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the PLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$, in Hz. It defaults to 2 Hz. This implementation uses a four-quadrant arctangent discriminator (atan2).</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`dll_bw_narrow_hz`</span> |  <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the DLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, in Hz. It defaults to 0.25 Hz.</span> | <span style="color: DarkOrange">Optional</span> |
 | <span style="color: DarkOrange">`early_late_space_narrow_chips`</span> | <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$.</span> | <span style="color: DarkOrange">Optional</span> |
 | <span style="color: DarkOrange">`very_early_late_space_narrow_chips`</span> | <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Very Early and Prompt and between Prompt and Very Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, normalized by the chip period $$ T_c $$. It defaults to $$ 0.6 $$.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging.  Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
@@ -471,6 +498,26 @@ Tracking_1G.dll_bw_hz=4.0;
 
 ## GPS L2CM signal tracking
 
+This signal, centered at $$ f_{\text{GPS L2}}=1227.60 $$ MHz, has a complex baseband
+transmitted signal that can be written as:
+
+$$ \begin{equation} s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~, \end{equation} $$
+
+with the In–phase and Quadrature components defined as:
+
+$$ \begin{equation} e_{L2I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] p(t -  lT_{c,\text{P(Y)}})\end{equation}  $$
+
+and
+
+$$ \begin{equation} e_{L2Q}(t)  =  \sum_{l=-\infty}^{\infty}\left( D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus   C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{1}{2}\right)T_{c,L2C}\right) \right)~, \end{equation} $$
+
+where $$ T_{c,L2C}=\frac{1}{511.5} $$ ms and $$ p_{\text{1/2}}(t) $$ is a
+rectangular pulse of half chip–period duration, thus time–multiplexing
+codes $$C_{\text{CL}} $$ and $$ C_{\text{CM}} $$. The civilian long code $$ C_{\text{CL}} $$ is
+$$ L_{\text{CL}}=767250 $$ chips long, repeating every $$ 1.5 $$ s, while the
+civilian moderate code $$ C_{\text{CM}} $$ is $$ L_{\text{CM}}=10230 $$ chips
+long and it repeats every $$ 20 $$ ms.
+
 ### Implementation: `GPS_L2_M_DLL_PLL_Tracking`
 
 This implementation accepts the following parameters:
@@ -489,9 +536,9 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L2_M_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to 0 (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch.</span> | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 0.75 Hz. | Optional |
 | `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
@@ -605,6 +652,21 @@ Tracking_2G.dll_bw_hz=4.0;
 
 ## GPS L5 signal tracking
 
+The GPS L5 link is only available on Block IIF and subsequent satellite blocks. Centered at
+$$ f_{\text{GPS L5}}=1176.45 $$ MHz, this signal can be written as:
+
+$$ \begin{equation} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{equation} $$
+
+$$ \begin{equation} e_{L5I}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ D_{\text{CNAV}}\Big[ [m]_{10}\Big]    \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big]  p(t - m T_{c,nh} - lT_{c,L5}) ~,\end{equation} $$
+
+$$ \begin{equation} e_{L5Q}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{20}} \Big[ |m|_{20}\Big]   \oplus  \sum_{l=1}^{102300}C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, \end{equation} $$
+
+where $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
+component contains a synchronization sequence $$ C_{nh_{10}}=0000110101 $$,
+a $$ 10 $$–bit Neuman–Hoffman code that modulates each $$ 100 $$ symbols of the
+GPS L5 civil navigation data $$ D_{\text{CNAV}} $$, and the L5Q component
+has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
+
 ### Implementation: `GPS_L5i_DLL_PLL_Tracking`
 
 **IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
@@ -626,9 +688,14 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L5i_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal L5Q and enables an extra prompt correlator (slave to pilot's prompt) in the data component L5I. It defaults to `false` (that is, correlations on a data length of 1 ms over the L5I component). | Optional |
+| `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{nh_{20}} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1. | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
+| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
+| `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{nh_{20}} $$, normalized by the chip period $$ T_{c,L5} $$. It defaults to $$ 0.15 $$. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
@@ -682,13 +749,16 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E5a_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch.</span> | Optional |
+| <span style="color: DarkOrange">`track_pilot`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E5aQ and enables an extra prompt correlator (slave to pilot's prompt) in the data component E5aI. It defaults to `false` (that is, correlations on a data length of 1 ms over the E5aI component).</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`extend_correlation_symbols`</span> | <span style="color: DarkOrange">If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{E5aQs} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1.</span> | <span style="color: DarkOrange">Optional</span> |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 5 Hz. | Optional |
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
-| `ti_ms` | Correlation length after the secondary code lock, in ms. It defaults to 3 ms. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| <span style="color: DarkOrange">`early_late_space_narrow_chips`</span> | <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E5aQs} $$, normalized by the chip period $$ T_{c,E5p} $$. It defaults to $$ 0.15 $$.</span> | <span style="color: DarkOrange">Optional</span> |
+| `ti_ms` | Correlation length after the secondary code lock, in ms. It defaults to 3 ms. <span style="color: DarkOrange">This parameter has been removed from the `next` branch (replaced by `extend_correlation_symbols`).</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
@@ -704,7 +774,6 @@ Tracking_5X.implementation=Galileo_E5a_DLL_PLL_Tracking
 Tracking_5X.item_type=gr_complex
 Tracking_5X.pll_bw_hz=25.0
 Tracking_5X.dll_bw_hz=4.0
-Tracking_5X.ti_ms=1
 Tracking_5X.pll_bw_narrow_hz=10.0
 Tracking_5X.dll_bw_narrow_hz=4.0
 Tracking_5X.early_late_space_chips=0.5
