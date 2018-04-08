@@ -982,7 +982,7 @@ Available versions for clang:
   With `sudo port select --set clang <version>` you choose one of them as the new default, which will create symlinks in `/opt/local/bin` without the version suffix.
 ```bash
 $ sudo port select --set clang mp-clang-6.0
-electing 'mp-clang-6.0' for 'clang' succeeded. 'mp-clang-6.0' is now active.
+selecting 'mp-clang-6.0' for 'clang' succeeded. 'mp-clang-6.0' is now active.
 ```
   You can confirm this change by looking at the version of the tool:
 ```bash

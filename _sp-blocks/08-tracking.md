@@ -8,23 +8,35 @@ toc: true
 last_modified_at: 2018-04-07T15:54:02-04:00
 ---
 
+A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of a _Tracking_ block can be written as:
 
-The _Tracking_ block is continually receiving the data stream
-$$ x_\text{IN} $$, but does nothing until it receives a “positive
-acquisition” message from the control plane, along with the coarse
-estimations $$ \hat{\tau}_{acq} $$ and $$ \hat{f}_{d_{acq}} $$. Then, its role
-is to refine such estimations and track their changes along the time.
+$$ \begin{equation} \label{xin} x_\text{IN}[k] = A(t)\tilde{s}_{T}(t-\tau(t))e^{j \left( 2\pi f_D(t) t + \phi(t) \right) } \Bigr \rvert_{t=kT_s} + n(t) \Bigr \rvert_{t=kT_s} \end{equation} $$
+
+where $$ A(t) $$ is the signal amplitude, $$ \tilde{s}_{T}(t) $$ is a filtered version of $$ s_T(t) $$, $$ \tau(t) $$ is a time-varying code delay, $$ f_D(t) $$ is a time-varying Doppler shift, $$ \phi(t) $$ is a time-varying carrier phase shift, $$ n(t) $$ is a term modeling random noise and $$ T_s $$ is the sampling period.
 
 The role of a _Tracking_ block is to follow the evolution of the
-signal synchronization parameters: code phase $$ \tau $$, Doppler shift $$ f_d $$ and carrier phase $$ \phi $$.
+signal synchronization parameters: code phase $$ \tau(t) $$, Doppler shift $$ f_D(t) $$ and carrier phase $$ \phi(t) $$.
 {: .notice--info}
 
-According to the Maximum Likelihood approach, obtaining
+According to the Maximum Likelihood (ML) approach[^Proakis], obtaining
 the optimum estimators implies the maximization of the correlation of
-the incoming signal with its _matched filter_. This is usually achieved
-with closed-loop structures designed to minimize the difference between
+the incoming signal with its _matched filter_.  The ML estimates of $$ f_D $$ and $$ \tau $$ can be obtained by maximizing the function
+
+$$ \begin{equation}
+\hat{f}_{D_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_D,\tau} \left\{ \left| \hat{R}_{xd}(f_D,\tau)\right|^2\right\}~, \end{equation}
+$$
+
+where
+
+$$ \begin{equation}
+\hat{R}_{xd}(f_D,\tau)=\frac{1}{K}\sum_{k=0}^{K-1}x_{\text{IN}}[k]d[kT_s-\tau]e^{-j 2 \pi f_D kT_s}~, \end{equation}
+$$
+
+with $$ K $$ being the number of samples in an integration period, and $$ d[k] $$ is a locally generated reference.
+
+This is usually achieved with closed-loop structures designed to minimize the difference between
 the code phase, carrier phase and frequency of the incoming signal with
-respect to a locally-generated replica.
+respect to the locally-generated replica $$ d[k] $$.
 
 In the case of code phase tracking, the cost function is driven to the
 maximum using feedback loops that employ the derivative
@@ -45,7 +57,49 @@ GNSS-SDR's _Tracking_ implementations make heavy use of [VOLK_GNSSSDR](https://g
 The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr) library addresses [**Efficiency**]({{ "/design-forces/efficiency/" | relative_url }}) and [**Portability**]({{ "/design-forces/portability/" | relative_url }}) at the same time, by providing several implementations of the same functions in different SIMD technologies, benchmarking them and selecting the fastest in your machine at runtime.
 {: .notice--success}
 
+
+_Tracking_ blocks are continually receiving the data stream
+$$ x_\text{IN} $$, but they do nothing until receiving a "positive
+acquisition" message from the control plane, along with the coarse
+estimations $$ \hat{\tau}_{acq} $$ and $$ \hat{f}_{D_{acq}} $$. Then, the role of the _tracking_ blocks
+is to refine such estimations and track their changes along time.
+As shown in the figure below, more refinements can be made once the navigation message bits (in the case of tracking a _data_ component of a GNSS signal) or the secondary spreading code (in the case of tracking a _pilot_ component of a GNSS signal) is synchronized, for instance by extending the integration time or by narrowing the tracking loops.
+
+
+![Tracking State Machine]({{ "/assets/images/tracking_state_machine.png" | relative_url }})
+_Internal state machine of a Tracking block._
+{: style="text-align: center;"}
+
+In addition to track the synchronization parameters, the _Tracking_ blocks
+must also implement code and carrier lock detectors, providing
+indicators of the tracking performance, as well as an estimation of the carrier-to-noise-density ratio, $$ C/N_0 $$.
+
 ## GPS L1 C/A signal tracking
+
+This signal, centered at $$ f_{\text{GPS L1}}=1575.42 $$ MHz, has a complex baseband
+transmitted signal that can be written as:
+
+$$ \begin{equation} \label{GPSL1} s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{equation} $$
+
+with
+
+$$ \begin{equation} e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] p(t - lT_{c,\text{P(Y)}})~, \end{equation} $$
+
+$$ \begin{equation} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}  \Big]  \oplus   C_{\text{C/A}} \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~, \end{equation} $$
+
+where $$ \oplus $$ is the exclusive–or operation (modulo–2 addition),
+$$ |l|_{L} $$ means $$ l $$ modulo $$ L $$, $$ [l]_{L} $$ means the integer part of
+$$ \frac{l}{L} $$, $$ D_{\text{NAV}} $$ is the GPS navigation message bit
+sequence, transmitted at $$ 50 $$ bit/s, $$ T_{c,\text{P(Y)}}=\frac{1}{10.23} $$
+$$ \mu $$s, $$ T_{c,\text{C/A}}=\frac{1}{1.023} $$ $$ \mu $$s,
+$$ L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$, and $$ p(t) $$ is the chip
+pulse of a chip–period duration.
+
+Then, applying equation $$ (\ref{GPSL1}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as:
+
+$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L1)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+
+The implementations described below perform the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking`
 
@@ -182,7 +236,7 @@ This band, centered at $$ f_{\text{Gal E1}}=1575.420 $$ MHz and
 with a reference bandwidth of $$ 24.5520 $$ MHz, uses the Composite Binary
 Offset Carrier (CBOC) modulation, defined in baseband as:
 
-$$ \begin{equation} s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{equation} $$
+$$ \begin{equation} \label{GalE1} s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{equation} $$
 
 where the subcarriers $$ sc(t) $$ are defined as
 
@@ -205,32 +259,23 @@ $$ \begin{equation} e_{E1C}(t) = \sum_{m=-\infty}^{+\infty}C_{E1Cs}\Big[|m|_{25}
 with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$
 ms.
 
+Then, applying equation $$ (\ref{GalE1}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
+
+$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(Gal E1)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+
+The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
+
 ### Implementation: `Galileo_E1_DLL_PLL_VEML_Tracking`
 
-The Maximum likelihood (ML) estimates of $$ f_d $$ and $$ \tau $$ can be obtained by maximizing the function
-
-$$ \begin{equation}
-\hat{f}_{d_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_d,\tau} \left\{   \left| \hat{R}_{xd}(f_d,\tau)\right|^2\right\}~, \end{equation}
-$$
-
-where
-
-$$ \begin{equation}
-\hat{R}_{xd}(f_d,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_d nT_s}~, \end{equation}
-$$
-
-$$ x_{\text{IN}}[n] $$ is a complex vector containing I&Q samples of the received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase of the received signal with respect to a local reference,  $$ f_d $$ is the Doppler shift, $$ N $$ is the number of samples in a spreading code (4 ms for E1), and $$ d[n] $$ is a locally generated reference. Next figure plots the shape of such function:
-
-
+In case of Galileo E1, the CBOC(6,1,$$ \frac{1}{11} $$) modulation creates
+correlation ambiguities, as shown in the following figure:
 
 ![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600x"}
 {: style="text-align: center;"}
-_Normalized $$ \left|R_{xd}\left(\check{f}_d=f_d, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
+_Normalized $$ \left|R_{xd}\left(\check{f}_D=f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
 {: style="text-align: center;"}
 
-In case of Galileo E1, the CBOC(6,1,$$ \frac{1}{11} $$) modulation creates
-correlation ambiguities, as shown in the figure above. The possibility
-of tracking a local maximum instead of the global one can be avoided by
+The possibility of tracking a local maximum instead of the global one can be avoided by
 using discriminators that consider two extra samples of the cost
 function, referred to as *Very Early*
 $$ \text{VE}=R_{xd}(\hat{\tau}-\epsilon^\prime) $$ and *Very Late*
@@ -246,9 +291,6 @@ PLL tracking on the pilot channel as well as longer coherent integration
 improves the carrier *tracking sensitivity*, the minimum signal power at
 which the receiver can keep the tracking process in lock.
 
-In addition to track the synchronization parameters, the Tracking block
-must also implement code and carrier lock detectors, providing
-indicators of the tracking performance.
 
 The implementation of this block is described in Algorithm
 below. The computation of the complex values VE, E, P, L and VL
@@ -269,7 +311,7 @@ block informs to control plane through the message queue.
 
 
 *  **Require:** Complex sample stream, $$ \mathbf{x}_{\text{IN}} $$; estimations of code
-phase $$ \hat{\tau}_{acq} $$ and Doppler shift $$ \hat{f}_{d_{acq}} $$; buffer
+phase $$ \hat{\tau}_{acq} $$ and Doppler shift $$ \hat{f}_{D_{acq}} $$; buffer
 size for power estimation, $$ \mathcal{U} $$; carrier lock detector
 threshold, $$ \mathcal{T} $$; $$ CN0_{min} $$; maximum value for the lock fail
 counter, $$ \vartheta $$; correlators spacing $$ \epsilon $$ and
@@ -280,7 +322,7 @@ within a given lock margin. Inform about a loss of lock.
 1. **Initialization:** Using $$ \hat{\tau}_{acq} $$
 and a sample counter $$ \mathcal{N} $$, skip samples until
 $$ \mathbf{x}_{\text{IN}} $$ is aligned with local PRN replica. Set
-$$ \upsilon=0 $$, $$ k=0 $$, $$ \hat{f}_{d_{0}}=\hat{f}_{d_{acq}} $$,
+$$ \upsilon=0 $$, $$ k=0 $$, $$ \hat{f}_{D_{0}}=\hat{f}_{D_{acq}} $$,
 $$ \hat{\phi}_0=0 $$, $$ \psi_1=0 $$, $$ N_1=\text{round}(T_{int} f_{\text{IN}}) $$.
 
 2. Increase the integration period counter: $$ k=k+1 $$.
@@ -288,11 +330,11 @@ $$ \hat{\phi}_0=0 $$, $$ \psi_1=0 $$, $$ N_1=\text{round}(T_{int} f_{\text{IN}})
 3. Generate local code references: for $$ n=1...N_k $$,
 $$ s[n]=d_{E1B/E1C_{p}}\left[\text{round}(\delta_{k} \cdot n + \psi_{k})\right] $$,
 where
-$$ \delta_{k}= \frac{1}{T_{c,E1B} \cdot f_{\text{IN}} }\left( 1 + \frac{\hat{f}_{d_{k-1}}}{f^{\text{(Gal E1)}}_c} \right) $$,
+$$ \delta_{k}= \frac{1}{T_{c,E1B} \cdot f_{\text{IN}} }\left( 1 + \frac{\hat{f}_{D_{k-1}}}{f^{\text{(Gal E1)}}_c} \right) $$,
 and the Very Early, Early, Late, and Very Late versions with $$ \epsilon $$
 and $$ \epsilon^\prime $$.
 4. Generate local carrier: for $$ n=1...N_k $$,
-$$ c[n]=e^{-j\left(2\pi \hat{f}_{d_{k-1}} \frac{n}{f_{\text{IN}}}+\text{mod}\left(\hat{\phi}_{k-1},2\pi \right) \right)} $$.
+$$ c[n]=e^{-j\left(2\pi \hat{f}_{D_{k-1}} \frac{n}{f_{\text{IN}}}+\text{mod}\left(\hat{\phi}_{k-1},2\pi \right) \right)} $$.
 
 5. Perform carrier wipe-off and compute the complex samples VE$$ _k $$, E$$ _k $$, P$$ _k $$,
 L$$ _k $$ and VL$$ _k $$.
@@ -307,10 +349,10 @@ $$ h_{PLL}\left( \Delta \hat{\phi}_{k}\right) $$.
 
 8. Update carrier frequency
 estimation (in Hz):
-$$ \hat{f}_{d_{k}}=\hat{f}_{d_{acq}}+\frac{1}{ 2\pi T_{int} } h_{PLL}\left( \Delta \hat{\phi}_{k} \right) $$.
+$$ \hat{f}_{D_{k}}=\hat{f}_{D_{acq}}+\frac{1}{ 2\pi T_{int} } h_{PLL}\left( \Delta \hat{\phi}_{k} \right) $$.
 
 9. Update carrier phase estimation (in rad):
-$$ \hat{\phi}_k=\hat{\phi}_{k-1}+ 2 \pi \hat{f}_{d_{k}} T_{int}+ h_{PLL}(\Delta \hat{\phi}) $$.
+$$ \hat{\phi}_k=\hat{\phi}_{k-1}+ 2 \pi \hat{f}_{D_{k}} T_{int}+ h_{PLL}(\Delta \hat{\phi}) $$.
 
 10. Compute DLL discriminator:
 $$ \Delta \hat{\tau}_{k}=\frac{\mathcal{E}_{k}-\mathcal{L}_{k}}{\mathcal{E}_{k}+\mathcal{L}_{k}} $$,
@@ -325,7 +367,7 @@ $$ h_{DLL}\left( \Delta \hat{\tau}_{k}\right) $$.
 12. Update code phase
 estimation (in samples):
 $$ N_{k+1}=\text{round}(S) $$ and $$ \psi_{k+1}=S-N_{k+1} $$, where
-$$ S = \frac{T_{int}f_{\text{IN} } }{\left( 1 + \frac{\hat{f}_{d_{k} } }{f^{\text{(Gal E1) } }_c} \right)} +\psi_{k} + h_{DLL}(\hat{\Delta \tau}_k)f_{\text{IN} }  $$.
+$$ S = \frac{T_{int}f_{\text{IN} } }{\left( 1 + \frac{\hat{f}_{D_{k} } }{f^{\text{(Gal E1) } }_c} \right)} +\psi_{k} + h_{DLL}(\hat{\Delta \tau}_k)f_{\text{IN} }  $$.
 
 13. Code lock indicator:
 $$ \hat{ \text{CN0} } = 10 \cdot \log_{10} ( \hat{\rho}) + 10 \cdot \log_{10}(\frac{ f_{ \text{IN} } }{2} )-10 \cdot \log_{10} (L_{ \text{PRN} }) $$,
@@ -405,6 +447,29 @@ Tracking_1B.dll_bw_hz=2.0;
 
 
 ## Glonass L1 C/A signal tracking
+
+The complex baseband transmitted
+signal can be written as:
+
+$$ \begin{equation} \label{GLOL1} s^{\text{(GLO L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{equation} $$
+
+with
+
+$$ \begin{equation} e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{102200}\Big] \oplus C_{\text{HP}} \Big[ |l|_{L_{\text{HP}}} \Big] p(t  -  lT_{c,\text{HP}})~,\end{equation} $$
+
+$$ \begin{equation} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{10220} \Big]  \oplus  C_{\text{C/A}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{C/A}})~,\end{equation} $$
+
+where $$ T_{c,\text{HP}}=\frac{1}{5.11} $$ $$ \mu $$s,
+$$ T_{c,\text{C/A}}=\frac{1}{0.511} $$ $$ \mu $$s, and
+$$ L_{\text{HP}}=3.3554\cdot 10^7 $$. The navigation message
+$$ D_{\text{GNAV}} $$ is transmitted at $$ 50 $$ bit/s.
+
+Then, applying equation $$ (\ref{GLOL1}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
+
+$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GLO L1)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+
+The implementations described below perform the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
+
 
 ### Implementation: `GLONASS_L1_CA_DLL_PLL_Tracking`
 
@@ -501,7 +566,7 @@ Tracking_1G.dll_bw_hz=4.0;
 This signal, centered at $$ f_{\text{GPS L2}}=1227.60 $$ MHz, has a complex baseband
 transmitted signal that can be written as:
 
-$$ \begin{equation} s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~, \end{equation} $$
+$$ \begin{equation} \label{GPSL2} s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~, \end{equation} $$
 
 with the In–phase and Quadrature components defined as:
 
@@ -517,6 +582,12 @@ codes $$C_{\text{CL}} $$ and $$ C_{\text{CM}} $$. The civilian long code $$ C_{\
 $$ L_{\text{CL}}=767250 $$ chips long, repeating every $$ 1.5 $$ s, while the
 civilian moderate code $$ C_{\text{CM}} $$ is $$ L_{\text{CM}}=10230 $$ chips
 long and it repeats every $$ 20 $$ ms.
+
+Then, applying equation $$ (\ref{GPSL2}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
+
+$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L2)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+
+The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 
 ### Implementation: `GPS_L2_M_DLL_PLL_Tracking`
 
@@ -560,6 +631,11 @@ Tracking_2S.early_late_space_chips=0.4
 
 
 ## Glonass L2 C/A signal tracking
+
+Beginning with the second generation of satellites, called GLONASS–M and
+first launched in 2001, a second civil signal is available using the
+same C/A code than the one in the L1 band but centered at $$ 1246 $$ MHz.
+
 
 ### Implementation: `GLONASS_L2_CA_DLL_PLL_Tracking`
 
@@ -655,7 +731,7 @@ Tracking_2G.dll_bw_hz=4.0;
 The GPS L5 link is only available on Block IIF and subsequent satellite blocks. Centered at
 $$ f_{\text{GPS L5}}=1176.45 $$ MHz, this signal can be written as:
 
-$$ \begin{equation} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{equation} $$
+$$ \begin{equation} \label{GPSL5} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{equation} $$
 
 $$ \begin{equation} e_{L5I}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ D_{\text{CNAV}}\Big[ [m]_{10}\Big]    \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big]  p(t - m T_{c,nh} - lT_{c,L5}) ~,\end{equation} $$
 
@@ -666,6 +742,12 @@ component contains a synchronization sequence $$ C_{nh_{10}}=0000110101 $$,
 a $$ 10 $$–bit Neuman–Hoffman code that modulates each $$ 100 $$ symbols of the
 GPS L5 civil navigation data $$ D_{\text{CNAV}} $$, and the L5Q component
 has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
+
+Then, applying equation $$ (\ref{GPSL5}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
+
+$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L5)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+
+The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 
 ### Implementation: `GPS_L5i_DLL_PLL_Tracking`
 
@@ -718,20 +800,27 @@ Tracking_L5.early_late_space_chips=0.5
 
 ## Galileo E5a signal tracking
 
-### Implementation: `Galileo_E5a_DLL_PLL_Tracking`
 The AltBOC modulation in the Galileo E5 band allows the approximation to two sub-bands, referred to as E5a and E5b, QPSK-modulated and centered at $$ f_{\text{Gal E5a}}=1176.450 $$ MHz and $$ f_{Gal E5b}=1207.140 $$ MHz, respectively.
 
 The baseband signal at E5a can then be approximated by:
 
-$$ \begin{equation} e_{E5a}(t) = e_{E5aI}(t)+je_{E5aQ}(t)~, \end{equation} $$
+$$ \begin{equation} \label{GalE5a} s^{\text{(Gal E5a)}}_{T}(t) = e_{E5aI}(t)+je_{E5aQ}(t)~, \end{equation} $$
 
 where the signal components are defined as:
 
-$$ \begin{equation} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation} $$
+$$ \begin{equation} e_{E5aI}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation} $$
 
 $$ \begin{equation} e_{E5aQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation}$$
 
 where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s.
+
+Then, applying equation $$ (\ref{GalE5a}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
+
+$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(Gal E5a)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+
+The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
+
+### Implementation: `Galileo_E5a_DLL_PLL_Tracking`
 
 This implementation accepts the following parameters:
 
@@ -785,8 +874,10 @@ Tracking_5X.early_late_space_chips=0.5
 
 ## References
 
+[^Proakis]: J. G. Proakis, _Digital Communications_, 5th Ed., McGraw-Hill, 2008.
+
 [^Petovello10]: M. Petovello, E. Falletti, M. Pini, L. Lo Presti, [Are Carrier-to-Noise algorithms equivalent in all situations?](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf). Inside GNSS, Vol. 5, no. 1, pp. 20-27, Jan.-Feb. 2010.
 
-[^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from “Global Positioning System: Theory and Applications”, Volume I, Edited by B. W. Parkinson and J. J. Spilker Jr. American Institute of Aeronautics and Astronautics, 1996.
+[^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from _Global Positioning System: Theory and Applications_, Volume I, Edited by B. W. Parkinson and J. J. Spilker Jr. American Institute of Aeronautics and Astronautics, 1996.
 
 [^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
