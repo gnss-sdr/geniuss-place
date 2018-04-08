@@ -72,7 +72,7 @@ $$ \begin{equation} s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{
 
 with
 
-$$ \begin{equation} e_{L1I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big]   p(t -  lT_{c,\text{P(Y)}})~, \end{equation} $$
+$$ \begin{equation} e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] p(t -  lT_{c,\text{P(Y)}})~, \end{equation} $$
 
 $$ \begin{equation} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}  \Big]  \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~, \end{equation} $$
 
@@ -82,7 +82,7 @@ $$ \frac{l}{L} $$, $$ D_{\text{NAV}} $$ is the GPS navigation message bit
 sequence, transmitted at $$ 50 $$ bit/s, $$ T_{c,\text{P(Y)}}=\frac{1}{10.23} $$
 $$ \mu $$s, $$ T_{c,\text{C/A}}=\frac{1}{1.023} $$ $$ \mu $$s,
 $$ L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$, and $$ p(t) $$ is a rectangular
-pulse of a chip–period duration centered at $$ t=0 $$ and filtered at the
+pulse of a chip–period duration and filtered at the
 transmitter. The precision P codes (named Y codes whenever the
 anti–spoofing mode is activated, encrypting the code and thus denying
 non–U.S. military users) are sequences of $$ 7 $$ days in length.
@@ -91,7 +91,7 @@ Regarding the modernization plans for GPS, it is worthwhile to mention
 that there is a new civilian–use signal planned, called L1C and defined
 in IS-GPS-800D[^ISGPS800], to be broadcast on the same L1 frequency that currently
 contains the C/A signal. The L1C signal will be available with first
-Block III launch, currently scheduled for May 3, 2017, and it will feature a
+Block III launch, currently scheduled for May 2018 by SpaceX, and it will feature a
 Multiplexed Binary Offset Carrier (MBOC) modulation scheme that ensure
 backward compatibility with the C/A signal.
 
