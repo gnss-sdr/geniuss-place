@@ -1,4 +1,4 @@
----
+f_{D---
 title: "Observables"
 permalink: /docs/sp-blocks/observables/
 excerpt: "Documentation for the Observables block."
@@ -156,14 +156,14 @@ $$ f = \left( \frac{c+v_r}{c+v^{(s)}}\right)f_i $$
 Since the speeds of the receiver $$ \mathbf{v}_r(t) $$ and the satellite $$ \mathbf{v}^{(s)} $$ are small compared to the speed of the wave, the difference between the observed frequency $$ f $$ and emitted frequency $$ f_i $$ can be approximated by:
 
 
-$$ f_{d_{i}}^{(s)} = -f_i\frac{\partial \tau^{(s)}(t)}{\partial t} $$
+$$ f_{D_{i}}^{(s)} = -f_i\frac{\partial \tau^{(s)}(t)}{\partial t} $$
 
 Then, the **Doppler shift measurement** can be written as:
 
-$$ \begin{equation}\begin{array}{ccl} f_{d_{i}}^{(s)} & = & -f_i \frac{\partial (t_r- t^{(s)}) }{\partial t} \\
+$$ \begin{equation}\begin{array}{ccl} f_{D_{i}}^{(s)} & = & -f_i \frac{\partial (t_r- t^{(s)}) }{\partial t} \\
 {} & = &  -f_i \frac{\partial \left( \frac{1}{c} \left(\rho_r^{(s)} + I_{r,i}^{(s)} + T_r^{(s)}\right) + dt_r(t_r) - dT^{(s)}(t^{(s)}) \right)}{\partial t} \\
 {} & = & -\frac{f_i}{c}\frac{\partial \left( \left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\| +I_{r,i}^{(s)} + T_{r}^{(s)}+c(dt_r(t_r) - dT^{(s)}(t^{(s)}))  \right)}{\partial t}  \\
-{} & = & -\frac{f_i}{c} \left( \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \frac{\left( \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right)   }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\|} + \frac{\partial  I_{r,i}^{(s)}}{\partial t} + \frac{\partial  T_{r}^{(s)}}{\partial t} + c\frac{\partial dt_r(t_r)}{\partial t} -  c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right) \\ {} & =  & -\frac{f_i}{c} \left( \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)}  +  c\frac{\partial dt_r(t_r)}{\partial t} -  c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right) + \epsilon_{f_{d}} \end{array} \end{equation} $$
+{} & = & -\frac{f_i}{c} \left( \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \frac{\left( \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right)   }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\|} + \frac{\partial  I_{r,i}^{(s)}}{\partial t} + \frac{\partial  T_{r}^{(s)}}{\partial t} + c\frac{\partial dt_r(t_r)}{\partial t} -  c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right) \\ {} & =  & -\frac{f_i}{c} \left( \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)}  +  c\frac{\partial dt_r(t_r)}{\partial t} -  c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right) + \epsilon_{f_{D}} \end{array} \end{equation} $$
 
 where $$ \mathbf{r}_r(t) $$ and $$ \mathbf{v}_r(t) $$ are the position and velocity of the receiver at the instant $$ t $$. The term $$  \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} $$ is the radial velocity from the receiver relative to the satellite, and $$ \frac{\partial dt_r(t_r)}{\partial t} $$ and $$ \frac{\partial dT^{(s)}(t^{(s)})}{\partial t} $$ are the receiver and satellite clocks drift, respectively. The Doppler shift measurement is given in Hz.
 
@@ -172,7 +172,7 @@ where $$ \mathbf{r}_r(t) $$ and $$ \mathbf{v}_r(t) $$ are the position and veloc
 
 Doppler shift measurements are sometimes given in m/s. This is referred to as **pseudorange rate measurement**, and it is defined as the Doppler shift multiplied by the negative of carrier wavelength $$ \lambda_i $$. Its model can be written as:
 
-$$ \begin{equation} \dot{P}_{r,i}^{(s)} = -\lambda_i f_{d_{i}}^{(s)} = \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c \left( \frac{\partial dt_r(t_r)}{\partial t} - \frac{\partial dT^{(s)}(t^{(s)})}{\partial t}\right) + \epsilon_{\dot{P}}\end{equation} $$
+$$ \begin{equation} \dot{P}_{r,i}^{(s)} = -\lambda_i f_{D_{i}}^{(s)} = \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c \left( \frac{\partial dt_r(t_r)}{\partial t} - \frac{\partial dT^{(s)}(t^{(s)})}{\partial t}\right) + \epsilon_{\dot{P}}\end{equation} $$
 
 ## Implementation: `GPS_L1_CA_Observables`
 

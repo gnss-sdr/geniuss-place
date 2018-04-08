@@ -11,25 +11,25 @@ last_modified_at: 2018-03-26T15:54:02-04:00
 The role of an _Acquisition_ block is the detection of presence/absence
 of signals coming from a given GNSS satellite. In case of a positive
 detection, it should provide coarse estimations of the code phase
-$$ \hat{\tau} $$ and the Doppler shift $$ \hat{f}_d $$, yet accurate enough to
+$$ \hat{\tau} $$ and the Doppler shift $$ \hat{f}_D $$, yet accurate enough to
 initialize the delay and phase tracking loops.
 {: .notice--info}
 
 By exploiting the concepts and methodology of estimation theory, it is possible to
-show that the maximum likelihood (ML) estimates of $$ f_d $$ and $$ \tau $$ can
+show that the maximum likelihood (ML) estimates of $$ f_D $$ and $$ \tau $$ can
 be obtained by maximizing the function
 
 $$ \begin{equation}
-\hat{f}_{d_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_d,\tau} \left\{ \left| \hat{R}_{xd}(f_d,\tau)\right|^2\right\}~, \end{equation} $$
+\hat{f}_{D_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_D,\tau} \left\{ \left| \hat{R}_{xd}(f_D,\tau)\right|^2\right\}~, \end{equation} $$
 
 where
 
 $$ \begin{equation}
-\hat{R}_{xd}(f_d,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_d nT_s}~, \end{equation} $$
+\hat{R}_{xd}(f_D,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_D nT_s}~, \end{equation} $$
 
 $$ x_{\text{IN}}[n] $$ is a complex vector containing I&Q samples of the
 received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase
-of the received signal with respect to a local reference, $$ f_d $$ is the
+of the received signal with respect to a local reference, $$ f_D $$ is the
 Doppler shift, $$ N $$ is the number of samples in a spreading code (4 ms
 for Galileo E1, 1 ms for GPS L1), and $$ d[n] $$ is a locally generated
 reference. The maximization in the equation above requires a two-dimensional
@@ -42,7 +42,7 @@ vector product and an inverse transform, taking advantage of the
 efficient implementations available for such operations[^Borre06].
 
 
-The magnitude of $$ |\hat{R}_{xd}(f_d,\tau)| $$, also known as cross-ambiguity function, is
+The magnitude of $$ |\hat{R}_{xd}(f_D,\tau)| $$, also known as cross-ambiguity function, is
 also used to decide whether the satellite corresponding to the local
 replica $$ d[n] $$ is in view or it is not. Resorting to signal detection
 theory, it is possible to define tests statistics with desirable
@@ -57,7 +57,7 @@ synchronization parameters by their ML estimators in the Neyman-Pearson detector
 one obtains the Generalized Likelihood Ratio Test (GLRT) function, that
 can be written as:
 
-$$ \begin{equation} T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right)=\max_{f_d,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_d,\tau) \right|^2}{\hat{R}_{xx}} \right\}~, \end{equation} $$
+$$ \begin{equation} T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right)=\max_{f_D,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_D,\tau) \right|^2}{\hat{R}_{xx}} \right\}~, \end{equation} $$
 
 where $$ \hat{R}_{xx} $$ is an estimation of the input signal power. It can
 be shown that this acquisition test statistic is a Constant False
@@ -83,16 +83,16 @@ $$ D[n]=FFT_{N}\left\{d[n]\right\} $$; acquisition threshold $$ \gamma $$; freq.
 span $$ [f_{min}\; f_{max}] $$; freq. step $$ f_{step} $$.
 * **Ensure**: Decision positive or negative signal acquisition. In case of positive detection, it provides
 coarse estimations of code phase $$ \hat{\tau}_{acq} $$ and Doppler shift
-$$ \hat{f}_{d_{acq}} $$ to the Tracking block.
+$$ \hat{f}_{D_{acq}} $$ to the Tracking block.
 
 1.	Compute input signal power estimation:
  $$ \hat{P}_{in}=\frac{1}{N}\sum_{n=0}^{N-1}\left|x_{\text{IN}}[n]\right|^2 $$.
 
-2.	**for** $$ \check{f}_d=f_{min} $$ to  $$ \check{f}_d=f_{max} $$ in $$ f_{step} $$ steps:
-*	Carrier wipe-off: $$ x[n]=x_{\text{IN}}[n] \cdot e^{-(j2\pi  \check{f}_d  n T_s)} $$, for $$ n=0,...,N-1 $$.
+2.	**for** $$ \check{f}_D=f_{min} $$ to  $$ \check{f}_D=f_{max} $$ in $$ f_{step} $$ steps:
+*	Carrier wipe-off: $$ x[n]=x_{\text{IN}}[n] \cdot e^{-(j2\pi  \check{f}_D  n T_s)} $$, for $$ n=0,...,N-1 $$.
 *	Compute $$ X[n]=\text{FFT}_{N}\left\{ x[n]\right\} $$.
 *	Compute $$ Y[n]=X[n] \cdot D[n] $$, for $$ n=0,...,N-1 $$.
-*	Compute $$ R_{xd}(\check{f}_d, \boldsymbol{\tau})=\frac{1}{N^2}\text{IFFT}_{N}\left\{Y[n]\right\} $$.
+*	Compute $$ R_{xd}(\check{f}_D, \boldsymbol{\tau})=\frac{1}{N^2}\text{IFFT}_{N}\left\{Y[n]\right\} $$.
 
 7.	**end for**
 
@@ -103,7 +103,7 @@ $$ \hat{f}_{d_{acq}} $$ to the Tracking block.
  $$ \Gamma_{\text{GLRT}}=\frac{2\cdot N \cdot S_{max}}{\hat{P}_{in}} $$
 
 10.	**if** $$ \Gamma_{\text{GLRT}}>\gamma $$
-*	Declare positive acquisition and provide $$ \hat{f}_{d_{acq}}=f_i $$ and
+*	Declare positive acquisition and provide $$ \hat{f}_{D_{acq}}=f_i $$ and
 $$ \hat{\tau}_{acq}=\tau_j $$.
 
 12.	**else**
@@ -324,7 +324,7 @@ Next figure plots the shape of the cross-correlation function for those waveform
 
 <a name="fig:Rxd"></a>![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600x"}
 {: style="text-align: center;"}
-_Normalized $$ \left|R_{xd}\left(\check{f}_d=f_d, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
+_Normalized $$ \left|R_{xd}\left(\check{f}_D=f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
 {: style="text-align: center;"}
 
 
