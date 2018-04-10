@@ -5,7 +5,7 @@ excerpt: "Documentation for the Tracking block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-04-07T15:54:02-04:00
+last_modified_at: 2018-04-10T15:54:02-04:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of a _Tracking_ block can be written as:
@@ -73,6 +73,103 @@ _Internal state machine of a Tracking block._
 In addition to track the synchronization parameters, the _Tracking_ blocks
 must also implement code and carrier lock detectors, providing
 indicators of the tracking performance, as well as an estimation of the carrier-to-noise-density ratio, $$ C/N_0 $$.
+
+### Carrier-to-noise-density ratio
+
+The carrier-to-noise-density ratio, expressed as $$ C/N_0 =\frac{C}{\frac{N}{BW}}$$ (where $$ C $$ is the carrier power, $$ N $$ is the noise power and $$ BW $$ is the bandwidth of observation) refers to the ratio of the carrier power and the noise power _per unit of bandwidth_, so it is expressed in decibel-Hertz (dB-Hz). The term $$  \frac{C}{N} $$ is known as the signal-to-noise power ratio (SNR).
+
+Considering that the observation bandwidth is the inverse of the coherent integration time, $$ T_{int} $$, we can write:
+
+$$ \begin{equation}
+C/N_0 = \frac{SNR}{T_{int}}
+\end{equation} $$
+
+The SNR estimation can be computed as:
+
+$$ \begin{equation}
+\hat{SNR}=\frac{\hat{C}}{\hat{N}}=\frac{\hat{C}}{\hat{C}+\hat{N}-\hat{C}},
+\end{equation} $$
+
+where:
+ * $$  \displaystyle \hat{C} = \left(\frac{1}{M}\sum^{M-1}_{m=0}\|\Re(P(m))\|\right)^2 $$ is the estimation of the signal power,
+ * $$  \displaystyle \hat{C}+\hat{N}=\frac{1}{M}\sum^{M-1}_{m=0}\|P(m)\|^2 $$ is the estimation of the total power,
+ * $$  \|\cdot\| $$ is the absolute value (also known as norm, modulus, or magnitude),
+ * $$ \Re(\cdot) $$ stands for the real part of the value, and
+ * $$ P(m) $$ is the prompt correlator output for the integration period $$ m $$.
+
+Then, the estimated $$ C/N_0 $$ value in dB-Hz can be written as:
+
+$$ \begin{equation}
+C/N_{0_{dB-Hz}} = 10\log_{10}(\hat{SNR})-10\log_{10}(T_{int})
+\end{equation} $$
+
+The $$ C/N_0 $$ value provides an indication of the signal quality that is independent of the acquisition and tracking algorithms used by a receiver, and it remains constant through the different processing stages of the receiver.
+
+The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$. This value can be changed by using the command line flag  `-cn0_samples` when running the executable:
+
+```bash
+$ gnss-sdr -cn0_samples=100 -c=./configuration_file.conf
+```
+
+
+### Code lock detector
+
+The lock detector for the code tracking loop is defined as:
+
+$$ \begin{equation}
+C/N_{0_{dB-Hz}} > \gamma_{code}
+\end{equation} $$
+
+If the estimated $$ C/N_{0_{dB-Hz}} $$ is above a certain threshold, the tracking loop is declared locked.
+
+The threshold $$ \gamma_{code} $$ is set by default to 25 dB-Hz. This value can be changed by using the command line flag  `-cn0_min` when running the executable:
+
+```bash
+$ gnss-sdr -cn0_min=22 -c=./configuration_file.conf
+```
+
+### Carrier lock detector
+
+The lock detector for the carrier tracking loop is defined as:
+
+$$ \begin{equation}
+\cos(2\Delta \phi) < \gamma_{carrier}
+\end{equation} $$
+
+where $$ \Delta \phi = \phi - \hat{\phi} $$. If the estimate of the cosine of twice the carrier phase error is below a certain threshold, the loop is declared in lock.
+
+The estimate of the cosine of twice the carrier phase error is given by:
+
+$$ \begin{equation}
+\cos(2\Delta \phi)=\frac{NBD}{NBP},
+\end{equation} $$
+
+where:
+  * $$ \displaystyle NBD=\left(\sum^{M-1}_{m=0}\Im(P(m))\right)^2-\left(\sum^{M-1}_{i=0}\Re(P(m))\right)^2 $$,
+  * $$ \displaystyle NBP=\left(\sum^{M-1}_{m=0}\Im(P(m))\right)^2+\left(\sum^{M-1}_{i=0}\Re(P(m))\right)^2 $$,
+  * $$ \Re(\cdot) $$ and $$ \Im(\cdot) $$ stand for the real and imaginary parts of the value, respectively, and
+  * $$ P(m) $$ is the prompt correlator output for the integration period $$ m $$.
+
+
+The threshold $$ \gamma_{carrier} $$ is set by default to 0.85 radians (corresponding to an error of approx. 31 degrees). This value can be changed by using the command line flag `-carrier_lock_th` when running the executable:
+
+```bash
+$ gnss-sdr -carrier_lock_th=0.75 -c=./configuration_file.conf
+```
+
+### Number of failures allowed before declaring a loss of lock
+
+The maximum number of lock failures before dropping a satellite is set by default to 50 consecutive failures. This value can be changed by using the command line flag  `-max_lock_fail` when running the executable:
+
+```bash
+$ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
+```
+
+&nbsp;
+&nbsp;
+
+The configuration interfaces for the available block implementations are described below.
+
 
 ## GPS L1 C/A signal tracking
 
