@@ -76,7 +76,7 @@ indicators of the tracking performance, as well as an estimation of the carrier-
 
 ### Carrier-to-noise-density ratio
 
-The carrier-to-noise-density ratio, expressed as $$ C/N_0 =\frac{C}{\frac{N}{BW}}$$ (where $$ C $$ is the carrier power, $$ N $$ is the noise power and $$ BW $$ is the bandwidth of observation) refers to the ratio of the carrier power and the noise power _per unit of bandwidth_, so it is expressed in decibel-Hertz (dB-Hz). The term $$  \frac{C}{N} $$ is known as the signal-to-noise power ratio (SNR).
+The carrier-to-noise-density ratio, expressed as $$ C/N_0 =\frac{C}{\frac{N}{BW}}$$ (where $$ C $$ is the carrier power, $$ N $$ is the noise power and $$ BW $$ is the bandwidth of observation) refers to the ratio of the carrier power and the noise power _per unit of bandwidth_, so it is expressed in decibel-Hertz (dB-Hz). The term $$ \frac{C}{N} $$ is known as the signal-to-noise power ratio (SNR).
 
 Considering that the observation bandwidth is the inverse of the coherent integration time, $$ T_{int} $$, we can write:
 
@@ -91,9 +91,9 @@ $$ \begin{equation}
 \end{equation} $$
 
 where:
- * $$  \displaystyle \hat{C} = \left(\frac{1}{M}\sum^{M-1}_{m=0}\|\Re(P(m))\|\right)^2 $$ is the estimation of the signal power,
- * $$  \displaystyle \hat{C}+\hat{N}=\frac{1}{M}\sum^{M-1}_{m=0}\|P(m)\|^2 $$ is the estimation of the total power,
- * $$  \|\cdot\| $$ is the absolute value (also known as norm, modulus, or magnitude),
+ * $$ \displaystyle \hat{C} = \left(\frac{1}{M}\sum^{M-1}_{m=0}\|\Re(P(m))\|\right)^2 $$ is the estimation of the signal power,
+ * $$ \displaystyle \hat{C}+\hat{N}=\frac{1}{M}\sum^{M-1}_{m=0}\|P(m)\|^2 $$ is the estimation of the total power,
+ * $$ \|\cdot\| $$ is the absolute value (also known as norm, modulus, or magnitude),
  * $$ \Re(\cdot) $$ stands for the real part of the value, and
  * $$ P(m) $$ is the prompt correlator output for the integration period $$ m $$.
 
@@ -130,15 +130,15 @@ $ gnss-sdr -cn0_min=22 -c=./configuration_file.conf
 
 ### Carrier lock detector
 
-The lock detector for the carrier tracking loop is defined as:
+The lock detector test for the carrier tracking loop is defined as:
 
 $$ \begin{equation}
-\cos(2\Delta \phi) < \gamma_{carrier}
+\cos(2\Delta \phi) > \gamma_{carrier}
 \end{equation} $$
 
-where $$ \Delta \phi = \phi - \hat{\phi} $$. If the estimate of the cosine of twice the carrier phase error is below a certain threshold, the loop is declared in lock.
+where $$ \Delta \phi = \phi - \hat{\phi} $$. If the estimate of the cosine of twice the carrier phase error is above a certain threshold, the loop is declared in lock.
 
-The estimate of the cosine of twice the carrier phase error is given by:
+The estimate of the cosine of twice the carrier phase error is estimated as:
 
 $$ \begin{equation}
 \cos(2\Delta \phi)=\frac{NBD}{NBP},
@@ -149,7 +149,6 @@ where:
   * $$ \displaystyle NBP=\left(\sum^{M-1}_{m=0}\Im(P(m))\right)^2+\left(\sum^{M-1}_{i=0}\Re(P(m))\right)^2 $$,
   * $$ \Re(\cdot) $$ and $$ \Im(\cdot) $$ stand for the real and imaginary parts of the value, respectively, and
   * $$ P(m) $$ is the prompt correlator output for the integration period $$ m $$.
-
 
 The threshold $$ \gamma_{carrier} $$ is set by default to 0.85 radians (corresponding to an error of approx. 31 degrees). This value can be changed by using the command line flag `-carrier_lock_th` when running the executable:
 
