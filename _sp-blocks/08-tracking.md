@@ -23,7 +23,7 @@ the optimum estimators implies the maximization of the correlation of
 the incoming signal with its _matched filter_.  The ML estimates of $$ f_D $$ and $$ \tau $$ can be obtained by maximizing the function
 
 $$ \begin{equation}
-\hat{f}_{D_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_D,\tau} \left\{ \left| \hat{R}_{xd}(f_D,\tau)\right|^2\right\}~, \end{equation}
+\hat{f}_{\!D_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_D,\tau} \left\{ \left| \hat{R}_{xd}(f_D,\tau)\right|^2\right\}~, \end{equation}
 $$
 
 where
@@ -58,10 +58,10 @@ The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorith
 {: .notice--success}
 
 
-_Tracking_ blocks are continually receiving the data stream
-$$ x_\text{IN} $$, but they do nothing until receiving a "positive
-acquisition" message from the control plane, along with the coarse
-estimations $$ \hat{\tau}_{acq} $$ and $$ \hat{f}_{D_{acq}} $$. Then, the role of the _tracking_ blocks
+The _Tracking_ blocks are continually receiving the data stream
+$$ x_\text{IN}[k] $$, but they do nothing until receiving a "positive
+acquisition" message, along with the coarse
+estimations $$ \hat{\tau}_{acq} $$ and $$ \hat{f}_{\!D_{acq}} $$, provided by an _Acquisition_ block. Then, the role of the _Tracking_ blocks
 is to refine such estimations and track their changes along time.
 As shown in the figure below, more refinements can be made once the navigation message bits (in the case of tracking a _data_ component of a GNSS signal) or the secondary spreading code (in the case of tracking a _pilot_ component of a GNSS signal) is synchronized, for instance by extending the integration time or by narrowing the tracking loops.
 
@@ -105,7 +105,7 @@ $$ \begin{equation}
 
 The $$ C/N_0 $$ value provides an indication of the signal quality that is independent of the acquisition and tracking algorithms used by a receiver, and it remains constant through the different processing stages of the receiver.
 
-The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$. This value can be changed by using the command line flag  `-cn0_samples` when running the executable:
+The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$ (but except for ). This value can be changed by using the command line flag  `-cn0_samples` when running the executable:
 
 ```bash
 $ gnss-sdr -cn0_samples=100 -c=./configuration_file.conf
@@ -407,7 +407,7 @@ block informs to control plane through the message queue.
 
 
 *  **Require:** Complex sample stream, $$ \mathbf{x}_{\text{IN}} $$; estimations of code
-phase $$ \hat{\tau}_{acq} $$ and Doppler shift $$ \hat{f}_{D_{acq}} $$; buffer
+phase $$ \hat{\tau}_{acq} $$ and Doppler shift $$ \hat{f}_{\!D_{acq}} $$; buffer
 size for power estimation, $$ \mathcal{U} $$; carrier lock detector
 threshold, $$ \mathcal{T} $$; $$ CN0_{min} $$; maximum value for the lock fail
 counter, $$ \vartheta $$; correlators spacing $$ \epsilon $$ and
@@ -418,7 +418,7 @@ within a given lock margin. Inform about a loss of lock.
 1. **Initialization:** Using $$ \hat{\tau}_{acq} $$
 and a sample counter $$ \mathcal{N} $$, skip samples until
 $$ \mathbf{x}_{\text{IN}} $$ is aligned with local PRN replica. Set
-$$ \upsilon=0 $$, $$ k=0 $$, $$ \hat{f}_{D_{0}}=\hat{f}_{D_{acq}} $$,
+$$ \upsilon=0 $$, $$ k=0 $$, $$ \hat{f}_{\!D_{0}}=\hat{f}_{\!D_{acq}} $$,
 $$ \hat{\phi}_0=0 $$, $$ \psi_1=0 $$, $$ N_1=\text{round}(T_{int} f_{\text{IN}}) $$.
 
 2. Increase the integration period counter: $$ k=k+1 $$.
@@ -426,11 +426,11 @@ $$ \hat{\phi}_0=0 $$, $$ \psi_1=0 $$, $$ N_1=\text{round}(T_{int} f_{\text{IN}})
 3. Generate local code references: for $$ n=1...N_k $$,
 $$ s[n]=d_{E1B/E1C_{p}}\left[\text{round}(\delta_{k} \cdot n + \psi_{k})\right] $$,
 where
-$$ \delta_{k}= \frac{1}{T_{c,E1B} \cdot f_{\text{IN}} }\left( 1 + \frac{\hat{f}_{D_{k-1}}}{f^{\text{(Gal E1)}}_c} \right) $$,
+$$ \delta_{k}= \frac{1}{T_{c,E1B} \cdot f_{\text{IN}} }\left( 1 + \frac{\hat{f}_{\!D_{k-1}}}{f^{\text{(Gal E1)}}_c} \right) $$,
 and the Very Early, Early, Late, and Very Late versions with $$ \epsilon $$
 and $$ \epsilon^\prime $$.
 4. Generate local carrier: for $$ n=1...N_k $$,
-$$ c[n]=e^{-j\left(2\pi \hat{f}_{D_{k-1}} \frac{n}{f_{\text{IN}}}+\text{mod}\left(\hat{\phi}_{k-1},2\pi \right) \right)} $$.
+$$ c[n]=e^{-j\left(2\pi \hat{f}_{\!D_{k-1}} \frac{n}{f_{\text{IN}}}+\text{mod}\left(\hat{\phi}_{k-1},2\pi \right) \right)} $$.
 
 5. Perform carrier wipe-off and compute the complex samples VE$$ _k $$, E$$ _k $$, P$$ _k $$,
 L$$ _k $$ and VL$$ _k $$.
@@ -445,10 +445,10 @@ $$ h_{PLL}\left( \Delta \hat{\phi}_{k}\right) $$.
 
 8. Update carrier frequency
 estimation (in Hz):
-$$ \hat{f}_{D_{k}}=\hat{f}_{D_{acq}}+\frac{1}{ 2\pi T_{int} } h_{PLL}\left( \Delta \hat{\phi}_{k} \right) $$.
+$$ \hat{f}_{\!D_{k}}=\hat{f}_{\!D_{acq}}+\frac{1}{ 2\pi T_{int} } h_{PLL}\left( \Delta \hat{\phi}_{k} \right) $$.
 
 9. Update carrier phase estimation (in rad):
-$$ \hat{\phi}_k=\hat{\phi}_{k-1}+ 2 \pi \hat{f}_{D_{k}} T_{int}+ h_{PLL}(\Delta \hat{\phi}) $$.
+$$ \hat{\phi}_k=\hat{\phi}_{k-1}+ 2 \pi \hat{f}_{\!D_{k}} T_{int}+ h_{PLL}(\Delta \hat{\phi}) $$.
 
 10. Compute DLL discriminator:
 $$ \Delta \hat{\tau}_{k}=\frac{\mathcal{E}_{k}-\mathcal{L}_{k}}{\mathcal{E}_{k}+\mathcal{L}_{k}} $$,

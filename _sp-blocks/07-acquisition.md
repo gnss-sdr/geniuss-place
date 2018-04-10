@@ -5,13 +5,18 @@ excerpt: "Documentation for the Acquisition block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-03-26T15:54:02-04:00
+last_modified_at: 2018-04-10T15:54:02-04:00
 ---
+A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of an _Acquisition_ block can be written as:
+
+$$ \begin{equation} \label{xin} x_\text{IN}[k] = A(t)\tilde{s}_{T}(t-\tau(t))e^{j \left( 2\pi f_D(t) t + \phi(t) \right) } \Bigr \rvert_{t=kT_s} + n(t) \Bigr \rvert_{t=kT_s} \end{equation} $$
+
+where $$ A(t) $$ is the signal amplitude, $$ \tilde{s}_{T}(t) $$ is a filtered version of $$ s_T(t) $$, $$ \tau(t) $$ is a time-varying code delay, $$ f_D(t) $$ is a time-varying Doppler shift, $$ \phi(t) $$ is a time-varying carrier phase shift, $$ n(t) $$ is a term modeling random noise and $$ T_s $$ is the sampling period.
 
 The role of an _Acquisition_ block is the detection of presence/absence
 of signals coming from a given GNSS satellite. In case of a positive
 detection, it should provide coarse estimations of the code phase
-$$ \hat{\tau} $$ and the Doppler shift $$ \hat{f}_D $$, yet accurate enough to
+$$ \hat{\tau}_{acq} $$ and the Doppler shift $$ \hat{f}_{\!D_{acq}} $$, yet accurate enough to
 initialize the delay and phase tracking loops.
 {: .notice--info}
 
@@ -20,21 +25,21 @@ show that the maximum likelihood (ML) estimates of $$ f_D $$ and $$ \tau $$ can
 be obtained by maximizing the function
 
 $$ \begin{equation}
-\hat{f}_{D_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_D,\tau} \left\{ \left| \hat{R}_{xd}(f_D,\tau)\right|^2\right\}~, \end{equation} $$
+\hat{f}_{\!D_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_D,\tau} \left\{ \left| \hat{R}_{xd}(f_D,\tau)\right|^2\right\}~, \end{equation} $$
 
 where
 
 $$ \begin{equation}
-\hat{R}_{xd}(f_D,\tau)=\frac{1}{N}\sum_{n=0}^{N-1}x_{\text{IN}}[n]d[nT_s-\tau]e^{-j 2 \pi f_D nT_s}~, \end{equation} $$
+\hat{R}_{xd}(f_D,\tau) = \frac{1}{K}\sum_{k=0}^{K-1}x_{\text{IN}}[k]d[kT_s-\tau]e^{-j 2 \pi f_D kT_s}~, \end{equation} $$
 
-$$ x_{\text{IN}}[n] $$ is a complex vector containing I&Q samples of the
+$$ x_{\text{IN}}[k] $$ is a complex vector containing I&Q samples of the
 received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase
 of the received signal with respect to a local reference, $$ f_D $$ is the
-Doppler shift, $$ N $$ is the number of samples in a spreading code (4 ms
-for Galileo E1, 1 ms for GPS L1), and $$ d[n] $$ is a locally generated
+Doppler shift, $$ K $$ is the number of samples in a spreading code (4 ms
+for Galileo E1, 1 ms for GPS L1, etc.), and $$ d[k] $$ is a locally generated
 reference. The maximization in the equation above requires a two-dimensional
 search in a function which output results from a multiplication-and-sum
-of $$ N $$ complex samples, becoming the computational bottleneck of the
+of $$ K $$ complex samples, becoming the computational bottleneck of the
 whole process. A usual method to alleviate this issue is to resort to
 the FFT-based circular convolution, which exchanges the expensive
 multiplication-and-sum operation by a discrete Fourier transform, a
@@ -44,7 +49,7 @@ efficient implementations available for such operations[^Borre06].
 
 The magnitude of $$ |\hat{R}_{xd}(f_D,\tau)| $$, also known as cross-ambiguity function, is
 also used to decide whether the satellite corresponding to the local
-replica $$ d[n] $$ is in view or it is not. Resorting to signal detection
+replica $$ d[k] $$ is in view or it is not. Resorting to signal detection
 theory, it is possible to define tests statistics with desirable
 properties. A criterion commonly used for a detection problem is the
 maximization of the detection probability ($$ P_d $$) subject to a given
@@ -57,7 +62,7 @@ synchronization parameters by their ML estimators in the Neyman-Pearson detector
 one obtains the Generalized Likelihood Ratio Test (GLRT) function, that
 can be written as:
 
-$$ \begin{equation} T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right)=\max_{f_D,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_D,\tau) \right|^2}{\hat{R}_{xx}} \right\}~, \end{equation} $$
+$$ \begin{equation} T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right) = \max_{f_D,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_D,\tau) \right|^2}{\hat{R}_{xx}} \right\}~, \end{equation} $$
 
 where $$ \hat{R}_{xx} $$ is an estimation of the input signal power. It can
 be shown that this acquisition test statistic is a Constant False
@@ -77,22 +82,22 @@ for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kH
 
 The Parallel Code Phase Search (PCPS) algorithm is described as follows:
 
-* **Require**: Input signal buffer $$ \mathbf{x}_{\text{IN}} $$ of $$ N $$ complex samples,
+* **Require**: Input signal buffer $$ \mathbf{x}_{\text{IN}} $$ of $$ K $$ complex samples,
 provided by the Signal Conditioner; on-memory FFT of the local replica,
-$$ D[n]=FFT_{N}\left\{d[n]\right\} $$; acquisition threshold $$ \gamma $$; freq.
+$$ D[k]=FFT_{K}\left\{d[k]\right\} $$; acquisition threshold $$ \gamma $$; freq.
 span $$ [f_{min}\; f_{max}] $$; freq. step $$ f_{step} $$.
 * **Ensure**: Decision positive or negative signal acquisition. In case of positive detection, it provides
 coarse estimations of code phase $$ \hat{\tau}_{acq} $$ and Doppler shift
-$$ \hat{f}_{D_{acq}} $$ to the Tracking block.
+$$ \hat{f}_{\!D_{acq}} $$ to the Tracking block.
 
 1.	Compute input signal power estimation:
- $$ \hat{P}_{in}=\frac{1}{N}\sum_{n=0}^{N-1}\left|x_{\text{IN}}[n]\right|^2 $$.
+ $$ \hat{P}_{in} = \frac{1}{K}\sum_{k=0}^{K-1}\left|x_{\text{IN}}[k]\right|^2 $$.
 
 2.	**for** $$ \check{f}_D=f_{min} $$ to  $$ \check{f}_D=f_{max} $$ in $$ f_{step} $$ steps:
-*	Carrier wipe-off: $$ x[n]=x_{\text{IN}}[n] \cdot e^{-(j2\pi  \check{f}_D  n T_s)} $$, for $$ n=0,...,N-1 $$.
-*	Compute $$ X[n]=\text{FFT}_{N}\left\{ x[n]\right\} $$.
-*	Compute $$ Y[n]=X[n] \cdot D[n] $$, for $$ n=0,...,N-1 $$.
-*	Compute $$ R_{xd}(\check{f}_D, \boldsymbol{\tau})=\frac{1}{N^2}\text{IFFT}_{N}\left\{Y[n]\right\} $$.
+*	Carrier wipe-off: $$ x[k] = x_{\text{IN}}[k] \cdot e^{-(j2\pi \check{f}_D k T_s)} $$, for $$ k = 0,...,K-1 $$.
+*	Compute $$ X[k] = \text{FFT}_{K}\left\{ x[k]\right\} $$.
+*	Compute $$ Y[k] = X[k] \cdot D[k] $$, for $$ k = 0,...,K-1 $$.
+*	Compute $$ R_{xd}(\check{f}_D, \boldsymbol{\tau}) = \frac{1}{K^2}\text{IFFT}_{K}\left\{Y[k]\right\} $$.
 
 7.	**end for**
 
@@ -100,10 +105,10 @@ $$ \hat{f}_{D_{acq}} $$ to the Tracking block.
  $$ \left\{S_{max}, f_i, \tau_j \right\} \quad \Leftarrow \quad \max_{f,\tau}\left|R_{xd}(f,\tau)\right|^2 $$
 
 9.	Compute the GLRT function with normalized variance:
- $$ \Gamma_{\text{GLRT}}=\frac{2\cdot N \cdot S_{max}}{\hat{P}_{in}} $$
+ $$ \Gamma_{\text{GLRT}}=\frac{2\cdot K \cdot S_{max}}{\hat{P}_{in}} $$
 
 10.	**if** $$ \Gamma_{\text{GLRT}}>\gamma $$
-*	Declare positive acquisition and provide $$ \hat{f}_{D_{acq}}=f_i $$ and
+*	Declare positive acquisition and provide $$ \hat{f}_{\!D_{acq}}=f_i $$ and
 $$ \hat{\tau}_{acq}=\tau_j $$.
 
 12.	**else**
@@ -221,12 +226,12 @@ within a given time-out interval.
 
 This is the case of the Tong detector[^Tong73], a sequential variable dwell time detector with a
 reasonable computation burden and proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
-signal search, the up/down counter $$ K $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
+signal search, the up/down counter $$ \mathcal{K} $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
 decremented by one. If the counter has reached maximum count value $$ A $$, the signal is
 declared ‘_present_’ and the search is terminated. Similarly, if the counter contents reach zero,
 the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
 trapped into an extended dwell in the same cell, under certain poor signal conditions, another
-counter ($$ K_{max} $$) sets the limit on maximum number of dwells.
+counter ($$ \mathcal{K}_{max} $$) sets the limit on maximum number of dwells.
 
 This implementation accepts the following parameters:
 
@@ -250,9 +255,9 @@ This implementation accepts the following parameters:
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
-| `tong_init_val` | Initial value of the Tong counter $$ K $$. It defaults to 1. | Optional |
-| `tong_max_val` | Count value $$ A $$ that, if reached by counter $$ K $$, declares a signal as present. It defaults to 2. | Optional |
-| `tong_max_dwells` | Maximum number of dwells in a search $$ K_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
+| `tong_init_val` | Initial value of the Tong counter $$ \mathcal{K} $$. It defaults to 1. | Optional |
+| `tong_max_val` | Count value $$ A $$ that, if reached by counter $$ \mathcal{K} $$, declares a signal as present. It defaults to 2. | Optional |
+| `tong_max_dwells` | Maximum number of dwells in a search $$ \mathcal{K}_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
@@ -298,7 +303,7 @@ with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $
 
 ### Implementation: `Galileo_E1_PCPS_Ambiguous_Acquisition`
 
-This implementation permits the configuration of the shape of the local replica $$ d[n] $$, allowing for simplifications that reduce the computational load. As shown in the figure
+This implementation permits the configuration of the shape of the local replica $$ d[k] $$, allowing for simplifications that reduce the computational load. As shown in the figure
 [below]({{ "/docs/sp-blocks/acquisition/#fig:Rxd" | relative_url }}), in narrowband receivers the CBOC waveform can be substituted
 by a sinBOC modulation with very small performance penalty[^Lohan11]. For
 the E1B signal component, the reference signals available in this
@@ -378,12 +383,12 @@ Acquisition_1B.doppler_step=250
 
 The Tong detector[^Tong73] is a sequential variable dwell time detector with a
 reasonable computation burden that proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
-signal search, the up/down counter $$ K $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
+signal search, the up/down counter $$ \mathcal{K} $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
 decremented by one. If the counter has reached maximum count value $$ A $$, the signal is
 declared ‘_present_’ and the search is terminated. Similarly, if the counter contents reach zero,
 the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
 trapped into an extended dwell in the same cell, under certain poor signal conditions, another
-counter ($$ K_{max} $$) sets the limit on maximum number of dwells.
+counter ($$ \mathcal{K}_{max} $$) sets the limit on maximum number of dwells.
 
 This implementation accepts the following parameters:
 
@@ -404,15 +409,15 @@ This implementation accepts the following parameters:
 | `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
-| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `threshold`    | Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a multiple of 4 ms. It defaults to 4 ms. | Optional |
-| `tong_init_val` | Initial value of the Tong counter $$ K $$. It defaults to 1. | Optional |
-| `tong_max_val` | Count value $$ A $$ that, if reached by counter $$ K $$, declares a signal as present. It defaults to 2. | Optional |
-| `tong_max_dwells` | Maximum number of dwells in a search $$ K_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
-| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `coherent_integration_time_ms` | Set the integration time $$ T_{int} $$, in ms. Should be a multiple of 4 ms. It defaults to 4 ms. | Optional |
+| `tong_init_val` | Initial value of the Tong counter $$ \mathcal{K} $$. It defaults to 1. | Optional |
+| `tong_max_val` | Count value $$ A $$ that, if reached by counter $$ \mathcal{K} $$, declares a signal as present. It defaults to 2. | Optional |
+| `tong_max_dwells` | Maximum number of dwells in a search $$ \mathcal{K}_{max} $$. It defaults to `tong_max_val` $$ +1 $$. | Optional |
+| `repeat_satellite` | [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| `dump` | [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` | If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
   _Acquisition implementation:_ **`Galileo_E1_PCPS_Tong_Ambiguous_Acquisition`**.
