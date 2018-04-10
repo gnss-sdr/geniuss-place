@@ -87,7 +87,7 @@ C/N_0 = \frac{SNR}{T_{int}}
 The SNR estimation can be computed as:
 
 $$ \begin{equation}
-\hat{SNR}=\frac{\hat{C}}{\hat{N}}=\frac{\hat{C}}{\hat{C}+\hat{N}-\hat{C}},
+\widehat{SNR}=\frac{\hat{C}}{\hat{N}}=\frac{\hat{C}}{\hat{C}+\hat{N}-\hat{C}},
 \end{equation} $$
 
 where:
@@ -100,7 +100,7 @@ where:
 Then, the estimated $$ C/N_0 $$ value in dB-Hz can be written as:
 
 $$ \begin{equation}
-C/N_{0_{dB-Hz}} = 10\log_{10}(\hat{SNR})-10\log_{10}(T_{int})
+\widehat{C/N}_{0_{dB-Hz}} = 10\log_{10}(\widehat{SNR})-10\log_{10}(T_{int})
 \end{equation} $$
 
 The $$ C/N_0 $$ value provides an indication of the signal quality that is independent of the acquisition and tracking algorithms used by a receiver, and it remains constant through the different processing stages of the receiver.
@@ -117,7 +117,7 @@ $ gnss-sdr -cn0_samples=100 -c=./configuration_file.conf
 The lock detector for the code tracking loop is defined as:
 
 $$ \begin{equation}
-C/N_{0_{dB-Hz}} > \gamma_{code}
+\widehat{C/N}_{0_{dB-Hz}} \overset{\text{lock}}{\underset{\text{no lock}}{\gtrless}} \gamma_{code}
 \end{equation} $$
 
 If the estimated $$ C/N_{0_{dB-Hz}} $$ is above a certain threshold, the tracking loop is declared locked.
@@ -133,15 +133,15 @@ $ gnss-sdr -cn0_min=22 -c=./configuration_file.conf
 The lock detector test for the carrier tracking loop is defined as:
 
 $$ \begin{equation}
-\cos(2\Delta \phi) > \gamma_{carrier}
+\cos(2\widehat{\Delta \phi}) \overset{\text{lock}}{\underset{\text{no lock}}{\gtrless}} \gamma_{carrier}
 \end{equation} $$
 
-where $$ \Delta \phi = \phi - \hat{\phi} $$. If the estimate of the cosine of twice the carrier phase error is above a certain threshold, the loop is declared in lock.
+where $$ \Delta \phi = \phi - \hat{\phi} $$ is the carrier phase error. If the estimate of the cosine of twice the carrier phase error is above a certain threshold, the loop is declared in lock.
 
-The estimate of the cosine of twice the carrier phase error is estimated as:
+The estimate of the cosine of twice the carrier phase error is computed as:
 
 $$ \begin{equation}
-\cos(2\Delta \phi)=\frac{NBD}{NBP},
+\cos(2\widehat{\Delta \phi})=\frac{NBD}{NBP},
 \end{equation} $$
 
 where:
