@@ -12,7 +12,7 @@ contribute in several ways:
  * Commenting (through your Google, Facebook or Twitter account, or just
 open a new profile at [Disqus](https://disqus.com/)) in the boxes such
 as the one at the bottom of this page. Moderation will be applied only
-in cases of flagrant off-topic or unappropriate style. See our [code of
+in cases of flagrant off-topic or inappropriate style. See our [code of
 conduct](CODE_OF_CONDUCT.md).
 
  * Sharing the content in your favorite social network.
@@ -21,7 +21,7 @@ conduct](CODE_OF_CONDUCT.md).
 issues](https://github.com/gnss-sdr/geniuss-place/issues/) or submitting
 a [new one](https://github.com/gnss-sdr/geniuss-place/issues/new).
 
- * [Forking this repo](https://github.com/gnss-sdr/geniuss-place/fork),
+ * [Forking this repository](https://github.com/gnss-sdr/geniuss-place/fork),
 working on the changes in your own repository, and making a [pull
 request](#how-to-submit-a-pull-request).
 
@@ -44,7 +44,7 @@ GitHub](https://github.com/join).
 GitHub](https://github.com/gnss-sdr/geniuss-place/fork). This will copy the
 whole website repository to your personal account.
 
-   3. Then, go to your favourite working folder in your computer and
+   3. Then, go to your favorite working folder in your computer and
 clone your forked repository by typing (replacing ```YOUR_USERNAME``` by
 the actual username of your GitHub account):
 
