@@ -1,4 +1,4 @@
-almost---
+---
 title: "14.- Testability"
 permalink: /design-forces/testability/
 excerpt: "The degree to which a software artifact supports testing in a given test context."
