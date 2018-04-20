@@ -46,13 +46,14 @@ _Channels_ accepts the following parameters:
 | `ChannelN.signal` |  (where `N` is the channel number, starting from $$ 0 $$). Assign each channel to a specific signal [`1C`, `1B`, `2S`, `5X`, `L5`]. Not required in single-system receivers. | Optional |
 | `ChannelN.RF_channel_ID` | (where `N` is the channel number, starting from $$ 0 $$). Connects channel `N` to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. | Optional |
 | `ChannelN.Signal_Source_ID` | (where `N` is the channel number, starting from $$ 0 $$). Connects channel `N` to a signal source. It defaults to $$ 0 $$. Not required in single-source receivers. | Optional |
-| `Channels.in_acquisition` | Maximum number of channels performing signal acquisition at the same time. The recommended value is $$ 1 $$. It defaults to the total number of channels. | Optional |
+| <span style="color: DarkOrange">`ChannelN.satellite`</span> | <span style="color: DarkOrange">(where `N` is the channel number, starting from $$ 0 $$). Assigns channel `N` to given satellite by its PRN. This channel will always be trying to acquire and track the given satellite.</span> | <span style="color: DarkOrange">Optional</span> |
+| `Channels.in_acquisition` | Maximum number of channels performing signal acquisition at the same time. The recommended value is $$ 1 $$. In the case of having assigned a channel to a given satellite (e.g., with `Channel0.satellite=1`), it is recommended to increase this number in order to always have at least one channel searching for new satellites. It defaults to the total number of channels. | Optional |
 |----------
 
 Then, each type of defined channel requires the configuration of:
 
 * [_Acquisition_]({{ "/docs/sp-blocks/acquisition/" | relative_url }}) blocks targeting the desired signal type, in charge of the detection of signals coming from a given GNSS satellite and, in the case of a positive
-detection, to provide coarse estimations of the code phase $$ \hat{\tau} $$ and the Doppler shift $$ \hat{f}_d $$,
+detection, to provide coarse estimations of the code phase $$ \hat{\tau} $$ and the Doppler shift $$ \hat{f}_{\!\!d} $$,
 * [_Tracking_]({{ "/docs/sp-blocks/tracking/" | relative_url }}) blocks targeting the desired signal type, in charge of following the evolution of the signal synchronization parameters: code phase $$ \tau(t) $$, Doppler shift $$ f_d(t) $$ and carrier phase $$ \phi(t) $$, and
 * [_Telemetry Decoder_]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) blocks targeting the desired signal type, in charge of demodulating and decoding the GNSS navigation message carried by that particular signal.
 
