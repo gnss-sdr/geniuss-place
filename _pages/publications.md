@@ -21,7 +21,7 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
     <li ><p>
     C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Vil&agrave;-Valls, J.&nbsp;Arribas and A.&nbsp;Ramos
     <br><b>Continuous Reproducibility in GNSS Signal Processing</b><br>
-<i>IEEE Access</i>, Accepted for publication, Apr. 2018.
+<i>IEEE Access</i>, Vol. 6, pp. 20451-20463, Apr. 2018.
     <br />
     <a href="javascript:toggleBibtex('Fernandez18')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/document/8331069/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
@@ -34,8 +34,8 @@ title   = {Continuous Reproducibility in {GNSS} Signal Processing},
 journal = {IEEE Access},
 year    = {2018},
 month   = {Apr.},
-volume  = {PP},
-pages   = {1--13},
+volume  = {6},
+pages   = {20451--20463},
 note    = { {DOI}: 10.1109/ACCESS.2018.2822835}
 }</pre>
     </div>

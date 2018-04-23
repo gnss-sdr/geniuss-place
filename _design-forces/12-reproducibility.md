@@ -97,4 +97,4 @@ It follows a list of possible reproducibility indicators for a software-defined 
 
 [^Beaulieu17]: B. K. Beaulieu-Jones and C. S. Greene, [Reproducibility of computational workflows is automated using continuous analysis](https://www.biorxiv.org/content/early/2016/08/11/056473). Nature Biotechnology, Vol. 35, no. 4, pp. 342–346, Apr. 2017.
 
-[^Fernandez18]: C. Fern&aacute;ndez-Prades, J. Vil&agrave;-Valls, J. Arribas and A. Ramos, [Continuous Reproducibility in GNSS Signal Processing](http://ieeexplore.ieee.org/document/8331069/), IEEE Access, Accepted for publication, Apr. 2018. DOI: 10.1109/ACCESS.2018.2822835
+[^Fernandez18]: C. Fern&aacute;ndez-Prades, J. Vil&agrave;-Valls, J. Arribas and A. Ramos, [Continuous Reproducibility in GNSS Signal Processing](http://ieeexplore.ieee.org/document/8331069/), IEEE Access, Vol. 6, pp. 20451-20463, Apr. 2018. DOI: 10.1109/ACCESS.2018.2822835
