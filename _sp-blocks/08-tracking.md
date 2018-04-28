@@ -845,7 +845,7 @@ $$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L5)}}_{T}(kT_
 
 The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 
-### Implementation: `GPS_L5i_DLL_PLL_Tracking`
+### Implementation: `GPS_L5_DLL_PLL_Tracking`
 
 **IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
 {: .notice--warning}
@@ -864,7 +864,7 @@ This implementation accepts the following parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `implementation` | `GPS_L5i_DLL_PLL_Tracking` | Mandatory |
+| `implementation` | `GPS_L5_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal L5Q and enables an extra prompt correlator (slave to pilot's prompt) in the data component L5I. It defaults to `false` (that is, correlations on a data length of 1 ms over the L5I component). | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{nh_{20}} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1. | Optional |
@@ -878,14 +878,14 @@ This implementation accepts the following parameters:
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
 
-  _Tracking implementation:_ **`GPS_L5i_DLL_PLL_Tracking`**.
+  _Tracking implementation:_ **`GPS_L5_DLL_PLL_Tracking`**.
   {: style="text-align: center;"}
 
 Example:
 
 ```ini
 ;######### TRACKING GLOBAL CONFIG ############
-Tracking_L5.implementation=GPS_L5i_DLL_PLL_Tracking
+Tracking_L5.implementation=GPS_L5_DLL_PLL_Tracking
 Tracking_L5.pll_bw_hz=30.0
 Tracking_L5.dll_bw_hz=4.0
 Tracking_L5.early_late_space_chips=0.5
