@@ -219,12 +219,18 @@ This implementation accepts the following parameters:
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| <span style="color: DarkOrange">`cn0_samples`</span> | <span style="color: DarkOrange">Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`cn0_min`</span> | <span style="color: DarkOrange">Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`max_lock_fail`</span> | <span style="color: DarkOrange">Maximum number of lock failures before dropping a satellite. It defaults to 50.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`carrier_lock_th`</span> | <span style="color: DarkOrange">Carrier lock threshold (in rad). It defaults to 0.85 rad.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
 
   _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_Tracking`**.
   {: style="text-align: center;"}
+
+<span style="color: DarkOrange">Please note that parameters in orange text are only available in the `next` branch of the upstream repository.</span>
 
 Example:
 
@@ -523,6 +529,10 @@ This implementation accepts the following parameters:
 | <span style="color: DarkOrange">`dll_bw_narrow_hz`</span> |  <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the DLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, in Hz. It defaults to 0.25 Hz.</span> | <span style="color: DarkOrange">Optional</span> |
 | <span style="color: DarkOrange">`early_late_space_narrow_chips`</span> | <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$.</span> | <span style="color: DarkOrange">Optional</span> |
 | <span style="color: DarkOrange">`very_early_late_space_narrow_chips`</span> | <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Very Early and Prompt and between Prompt and Very Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, normalized by the chip period $$ T_c $$. It defaults to $$ 0.6 $$.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`cn0_samples`</span> | <span style="color: DarkOrange">Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`cn0_min`</span> | <span style="color: DarkOrange">Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`max_lock_fail`</span> | <span style="color: DarkOrange">Maximum number of lock failures before dropping a satellite. It defaults to 50.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`carrier_lock_th`</span> | <span style="color: DarkOrange">Carrier lock threshold (in rad). It defaults to 0.85 rad.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging.  Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
@@ -707,6 +717,10 @@ This implementation accepts the following parameters:
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 0.75 Hz. | Optional |
 | `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| <span style="color: DarkOrange">`cn0_samples`</span> | <span style="color: DarkOrange">Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`cn0_min`</span> | <span style="color: DarkOrange">Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`max_lock_fail`</span> | <span style="color: DarkOrange">Maximum number of lock failures before dropping a satellite. It defaults to 50.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`carrier_lock_th`</span> | <span style="color: DarkOrange">Carrier lock threshold (in rad). It defaults to 0.85 rad.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
@@ -874,6 +888,10 @@ This implementation accepts the following parameters:
 | `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{nh_{20}} $$, normalized by the chip period $$ T_{c,L5} $$. It defaults to $$ 0.15 $$. | Optional |
+| `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20. | Optional |
+| `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz. | Optional |
+| `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50. | Optional |
+| `carrier_lock_th` | Carrier lock threshold (in rad). It defaults to 0.85 rad. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
@@ -944,6 +962,10 @@ This implementation accepts the following parameters:
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
 | <span style="color: DarkOrange">`early_late_space_narrow_chips`</span> | <span style="color: DarkOrange">If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E5aQs} $$, normalized by the chip period $$ T_{c,E5p} $$. It defaults to $$ 0.15 $$.</span> | <span style="color: DarkOrange">Optional</span> |
 | `ti_ms` | Correlation length after the secondary code lock, in ms. It defaults to 3 ms. <span style="color: DarkOrange">This parameter has been removed from the `next` branch (replaced by `extend_correlation_symbols`).</span> | Optional |
+| <span style="color: DarkOrange">`cn0_samples`</span> | <span style="color: DarkOrange">Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`cn0_min`</span> | <span style="color: DarkOrange">Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`max_lock_fail`</span> | <span style="color: DarkOrange">Maximum number of lock failures before dropping a satellite. It defaults to 50.</span> | <span style="color: DarkOrange">Optional</span> |
+| <span style="color: DarkOrange">`carrier_lock_th`</span> | <span style="color: DarkOrange">Carrier lock threshold (in rad). It defaults to 0.85 rad.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging. Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
 |--------------
