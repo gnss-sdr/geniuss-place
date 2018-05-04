@@ -61,11 +61,11 @@ The Authors are proud to be supported by the following public institutions, priv
 
 [2017](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
 
-  * In [Robust KF-based Tracking Techniques for Advanced GNSS Receivers](https://summerofcode.withgoogle.com/dashboard/project/6197701027823616/overview/) Shashanka Joisa worked on improving the tracking loops.
-  * In [Graphical User Interface for GNSS-SDR configuration](https://summerofcode.withgoogle.com/dashboard/project/4704519677018112/overview/), Usman Haider worked on a GUI for making GNSS-SDR configuration easier and more intuitive.
-  * In [Expanding the receiver to GLONASS](https://summerofcode.withgoogle.com/dashboard/project/5472452239949824/overview/), Damian Miralles worked on expanding GNSS-SDR to GLONASS signals.
-  * In [Expanding the GNSS-SDR receiver to GLONASS](https://summerofcode.withgoogle.com/dashboard/project/4511514108100608/overview/), Gabriel Araujo worked on expanding GNSS-SDR to GLONASS signals.
-  * In [Pulsed and continuous wave radio frequency interferences mitigation: application to GNSS-SDR in low Signal to Noise ratio scenarios](https://summerofcode.withgoogle.com/dashboard/project/5694177315651584/overview/), Antonio Ramos de Torres worked on interference mitigation techniques.
+  * In [Robust KF-based Tracking Techniques for Advanced GNSS Receivers](https://summerofcode.withgoogle.com/archive/2017/projects/6261573228167168/) Shashanka Joisa worked on improving the tracking loops.
+  * In [Graphical User Interface for GNSS-SDR configuration](https://summerofcode.withgoogle.com/archive/2017/projects/6610212098146304/), Usman Haider worked on a GUI for making GNSS-SDR configuration easier and more intuitive.
+  * In [Expanding the receiver to GLONASS](https://summerofcode.withgoogle.com/archive/2017/projects/6138210627354624/), Damian Miralles worked on expanding GNSS-SDR to GLONASS signals.
+  * In [Expanding the GNSS-SDR receiver to GLONASS](https://summerofcode.withgoogle.com/archive/2017/projects/5357969688494080/), Gabriel Araujo worked on expanding GNSS-SDR to GLONASS signals.
+  * In [Pulsed and continuous wave radio frequency interferences mitigation: application to GNSS-SDR in low Signal to Noise ratio scenarios](https://summerofcode.withgoogle.com/archive/2017/projects/5347588081451008/), Antonio Ramos de Torres worked on interference mitigation techniques.
 
 [2016](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
 
