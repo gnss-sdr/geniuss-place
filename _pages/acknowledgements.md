@@ -59,6 +59,17 @@ The Authors are proud to be supported by the following public institutions, priv
     ![GSoC logo]({{ "/assets/images/logo-gsoc.png" | relative_url }}){:height="100px" width="100x"}
     {: style="text-align: center;"}
 
+
+[2018](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
+
+  * Project: [Acquisition and Tracking GNU Radio blocks for different data types](https://summerofcode.withgoogle.com/projects/#5284171652530176), by Adri&aacute;n P&eacute;rez.
+  * Project: [Design and Implementation of a Graphical User Interface (GUI) to show the GNSS-SDR status in real-time](https://summerofcode.withgoogle.com/projects/#6453680845357056), by &Aacute;lvaro Cebri&aacute;n Juan.
+  * Project: [Expanding the receiver to BeiDou B1I](https://summerofcode.withgoogle.com/projects/#6399492518051840), by Sergi Segura Mu&ntilde;oz.
+  * Project: [Expanding the receiver to BeiDou B1I](https://summerofcode.withgoogle.com/projects/#6456344530386944), by Sara Hrbek.
+  * Project: [Expanding the receiver to Beidou B2a](https://summerofcode.withgoogle.com/projects/#6554498961506304), by Dong-Kyeong Lee.
+  * Project: [Optimum frame synchronization project](https://summerofcode.withgoogle.com/projects/#5051576423546880), by Mustafa Abaas.
+  * Project: [Proposal to implement Bayesian Covariance Estimation for Kalman Filter based Digital Carrier Synchronization in GNSS-SDR](https://summerofcode.withgoogle.com/projects/#5342148610752512), by Gerald LaMountain.
+
 [2017](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
 
   * In [Robust KF-based Tracking Techniques for Advanced GNSS Receivers](https://summerofcode.withgoogle.com/archive/2017/projects/6261573228167168/) Shashanka Joisa worked on improving the tracking loops.

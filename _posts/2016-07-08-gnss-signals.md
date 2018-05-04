@@ -10,7 +10,7 @@ tags:
 sidebar:
   nav: "docs"
 toc: true
-last_modified_at: 2018-04-08T09:37:02+02:00
+last_modified_at: 2018-04-29T09:37:02+02:00
 
 ---
 
@@ -312,11 +312,11 @@ $$ \begin{equation} s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B
 
 where the subcarriers $$ sc(t) $$ are defined as
 
-$$ \begin{equation} sc_A(t) = \text{sign} \Big(\sin(2\pi f_{s,E1A}t) \Big)~, \end{equation} $$
+$$ \begin{equation} sc_A(t) = \text{sign} \Big(\sin(2\pi f_{sc,E1A}t) \Big)~, \end{equation} $$
 
-$$ \begin{equation} sc_B(t) = \text{sign} \Big(\sin(2\pi f_{s,E1B}t) \Big)~, \end{equation} $$
+$$ \begin{equation} sc_B(t) = \text{sign} \Big(\sin(2\pi f_{sc,E1B}t) \Big)~, \end{equation} $$
 
-and $$ f_{s,E1A}=1.023 $$ MHz, $$ f_{s, E1B}=6.138 $$ MHz are the subcarrier
+and $$ f_{sc,E1A}=1.023 $$ MHz, $$ f_{sc,E1B}=6.138 $$ MHz are the subcarrier
 rates, $$ \alpha=\sqrt{\frac{10}{11}} $$, and $$ \beta=\sqrt{\frac{1}{11}} $$.
 Channel B contains the I/NAV type of navigation message,
 $$ D_{I/NAV} $$, intended for Safety–of–Life (SoL) services:
@@ -334,8 +334,8 @@ code sequences defined in Galileo's ICD[^GalileoICD] [Annex C.7 and C.8]. The bi
 sequence of the secondary code $$ C_{E1Cs} $$ is $$ 0011100000001010110110010 $$.
 This band also contains another component, Galileo E1A, intended for the
 Public Regulated Service (PRS), that uses a BOC modulation with
-cosine–shaped subcarrier, $$ f_{s,E1A}=15.345 $$ MHz, and
-$$ T_{c, E1A}=\frac{1}{2.5575} $$ $$ \mu $$s. The PRS spreading codes and the
+cosine–shaped subcarrier, $$ f_{sc,E1A}=15.345 $$ MHz, and
+$$ T_{c,E1A}=\frac{1}{2.5575} $$ $$ \mu $$s. The PRS spreading codes and the
 structure of the navigation message have not been made public.
 
 ![Spectra of Galileo signals in E1. Source:
@@ -367,7 +367,7 @@ bandwidth for this signal is $$ 40.920 $$ MHz.
 
 This band also contains another component, Galileo E6A, intended for
 PRS. It uses a BOC modulation with cosine–shaped subcarrier,
-$$ f_{s,E6A}=10.23 $$ MHz, and $$ T_{c, E6A}=\frac{1}{5.115} $$ $$ \mu $$s. The PRS
+$$ f_{sc,E6A}=10.23 $$ MHz, and $$ T_{c, E6A}=\frac{1}{5.115} $$ $$ \mu $$s. The PRS
 spreading codes and the structure of the navigation message are not
 publicly available.
 
@@ -386,8 +386,8 @@ The AltBOC modulation can be generically expressed as
 $$ \begin{equation} s^{\text{AltBOC}}(t) = x_1(t)v^{*}(t)+x_2(t)v(t)~, \end{equation} $$
 
 where
-$$ v(t)=\frac{1}{\sqrt{2}}\left( \text{sign}\left( \cos (2 \pi f_s t)\right)+j \text{sign}\left( \sin (2 \pi f_s t)\right)\right) $$
-is the single side–band subcarrier, $$ f_s $$ is the subcarrier frequency,
+$$ v(t)=\frac{1}{\sqrt{2}}\left( \text{sign}\left( \cos (2 \pi f_{sc,E5} t)\right)+j \text{sign}\left( \sin (2 \pi f_{sc,E5} t)\right)\right) $$
+is the single side–band subcarrier, $$ f_{sc,E5} $$ is the subcarrier frequency,
 $$ (\cdot)^{*} $$ stands for the conjugate operation, and $$ x_1(t) $$ and
 $$ x_2(t) $$ are QPSK signals. The resulting waveform does not exhibit
 constant envelope. In case of Galileo, the need for high efficiency of
@@ -442,22 +442,22 @@ different, with page swapping between both components in order to allow
 a fast reception of data by a dual frequency receiver. The single
 subcarrier $$ sc_s(t) $$ and the product subcarrier $$ sc_p(t) $$  are defined as:
 
-$$ \begin{equation} sc_s(t) = \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t - \frac{\pi}{4}\right) \right)+\frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_s t \right) \Big)+\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t + \frac{\pi}{4}\right) \right)~, \end{equation} $$
+$$ \begin{equation} sc_s(t) = \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t - \frac{\pi}{4}\right) \right)+\frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_{sc,E5} t \right) \Big)+\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t + \frac{\pi}{4}\right) \right)~, \end{equation} $$
 
-$$ \begin{equation} sc_p(t) = -\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t - \frac{\pi}{4}\right) \right)+ \frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_s t \right) \Big)-\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_s t + \frac{\pi}{4}\right) \right)~, \end{equation} $$
+$$ \begin{equation} sc_p(t) = -\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t - \frac{\pi}{4}\right) \right)+ \frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_{sc,E5} t \right) \Big)-\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t + \frac{\pi}{4}\right) \right)~, \end{equation} $$
 
-with a subcarrier frequency of $$ f_s=15.345 $$ MHz.
+with a subcarrier frequency of $$ f_{sc,E5}=15.345 $$ MHz.
 
 Plotting the power spectrum of the carriers for $$ s^{\text{(Gal E5)}}_{T}(t) $$ (see Figure below), we
 can see that the QPSK signal $$ e_{E5a}(t) $$ defined above is shifted
 to
-$$ f_{\text{Gal E5a}}\doteq f_{\text{Gal E5}}-f_s=1176.450 $$
+$$ f_{\text{Gal E5a}}\doteq f_{\text{Gal E5}}-f_{sc,E5}=1176.450 $$
 MHz, while $$ e_{E5b}(t) $$ is shifted to
-$$ f_{Gal E5b}\doteq f_{\text{Gal E5}}+f_s=1207.140 $$
+$$ f_{Gal E5b}\doteq f_{\text{Gal E5}}+f_{sc,E5}=1207.140 $$
 MHz.
 
 ![Single and product side-band spectra in E5.]({{ "/assets/images/subcarriers-e5.png" | relative_url }})
-_Power spectrum of single and product side-band subcarriers signals for $$ s^{\text{(Gal E5)}}_{T}(t) $$, normalized to the power of $$ ssc^{*}_s(t) $$ at $$ f_{\text{Gal E5a}} $$. The modified AltBOC modulation can be well approximated by two QPSK signals $$ 2 f_s $$ apart, with negligible contribution of the crossed terms around its center frequency._[^Fernandez11]
+_Power spectrum of single and product side-band subcarriers signals for $$ s^{\text{(Gal E5)}}_{T}(t) $$, normalized to the power of $$ ssc^{*}_s(t) $$ at $$ f_{\text{Gal E5a}} $$. The modified AltBOC modulation can be well approximated by two QPSK signals $$ 2 f_{sc,E5} $$ apart, with negligible contribution of the crossed terms around its center frequency._[^Fernandez11]
 {: style="text-align: center;"}
 
 
