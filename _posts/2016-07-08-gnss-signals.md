@@ -316,7 +316,7 @@ $$ \begin{equation} sc_A(t) = \text{sign} \Big(\sin(2\pi f_{sc,E1A}t) \Big)~, \e
 
 $$ \begin{equation} sc_B(t) = \text{sign} \Big(\sin(2\pi f_{sc,E1B}t) \Big)~, \end{equation} $$
 
-and $$ f_{sc,E1A}=1.023 $$ MHz, $$ f_{s, E1B}=6.138 $$ MHz are the subcarrier
+and $$ f_{sc,E1A}=1.023 $$ MHz, $$ f_{sc,E1B}=6.138 $$ MHz are the subcarrier
 rates, $$ \alpha=\sqrt{\frac{10}{11}} $$, and $$ \beta=\sqrt{\frac{1}{11}} $$.
 Channel B contains the I/NAV type of navigation message,
 $$ D_{I/NAV} $$, intended for Safety–of–Life (SoL) services:
@@ -335,7 +335,7 @@ sequence of the secondary code $$ C_{E1Cs} $$ is $$ 0011100000001010110110010 $$
 This band also contains another component, Galileo E1A, intended for the
 Public Regulated Service (PRS), that uses a BOC modulation with
 cosine–shaped subcarrier, $$ f_{sc,E1A}=15.345 $$ MHz, and
-$$ T_{c, E1A}=\frac{1}{2.5575} $$ $$ \mu $$s. The PRS spreading codes and the
+$$ T_{c,E1A}=\frac{1}{2.5575} $$ $$ \mu $$s. The PRS spreading codes and the
 structure of the navigation message have not been made public.
 
 ![Spectra of Galileo signals in E1. Source:
