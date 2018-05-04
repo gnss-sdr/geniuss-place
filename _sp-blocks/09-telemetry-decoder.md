@@ -51,7 +51,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L1_CA_Telemetry_Decoder`**.
@@ -117,7 +117,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E1B_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`Galileo_E1B_Telemetry_Decoder`**.
@@ -139,7 +139,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GLONASS_L1_CA_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
 |--------------
 
 _Telemetry Decoder implementation:_ **`GLONASS_L1_CA_Telemetry_Decoder`**.
@@ -167,7 +167,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GLONASS_L2_CA_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GLONASS_L2_CA_Telemetry_Decoder`**.
@@ -215,7 +215,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L2C_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetry_L2CM_N.dat`, where `N` is the channel number (automatically added). | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L2C_Telemetry_Decoder`**.
@@ -260,7 +260,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L5_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetry_L5_N.dat`, where `N` is the channel number (automatically added). | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L5_Telemetry_Decoder`**.
@@ -303,7 +303,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E5a_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`Galileo_E5a_Telemetry_Decoder`**.
