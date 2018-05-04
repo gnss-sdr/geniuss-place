@@ -50,7 +50,6 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L1_CA_Telemetry_Decoder` | Mandatory |
-| `decimation_factor` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
@@ -88,6 +87,7 @@ time conversion parameters, the almanacs, and Search and Rescue (SAR)
 service data.
 
 ![INAV message structure]({{ "/assets/images/inav.png" | relative_url }})
+_Galileo E1B I/NAV message structure_.
 {: style="text-align: center;"}
 
 In the message structure depicted above,
@@ -116,7 +116,6 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E1B_Telemetry_Decoder` | Mandatory |
-| `decimation_factor` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
@@ -204,6 +203,10 @@ representation and nominally more accurate data than the NAV data. It is
 transmitted at $$ 25 $$ bps with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ sps.
 
+![GPS L2 CNAV message](http://www.navipedia.net/images/8/89/L2c.png)
+_GPS L2 CNAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
+{: style="text-align: center;"}
+
 This implementation accepts the following parameters:
 
 |----------
@@ -211,7 +214,6 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L2C_Telemetry_Decoder` | Mandatory |
-| `decimation_factor` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
@@ -244,9 +246,11 @@ $$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{equation} 
 
 with $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
 component contains a synchronization sequence $$ C_{nh_{10}} $$ that modulates each $$ 100 $$ symbols of the
-GPS L5 civil navigation data $$ D_{\text{CNAV}} $$. The L5Q component
-has another synchronization sequence $$ C_{nh_{20}} $$.
+GPS L5 civil navigation data $$ D_{\text{CNAV}} $$. The message structure is the same as for L2 CNAV:
 
+![GPS L5 CNAV message](http://www.navipedia.net/images/2/2c/L5c.png)
+_GPS L5 CNAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
+{: style="text-align: center;"}
 
 This implementation accepts the following parameters:
 
@@ -285,6 +289,11 @@ where $$ ssc_s(t) $$ and $$ ssc_p(t) $$ are the single and product side–band s
 $$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]  \color{dark-grey} p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
 
 
+![Galileo E5a F/NAV message](http://www.navipedia.net/images/a/ad/Fnav.png)
+_Galileo E5a F/NAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Navigation_Message)_.
+{: style="text-align: center;"}
+
+
 This implementation accepts the following parameters:
 
 
@@ -293,7 +302,6 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E5a_Telemetry_Decoder` | Mandatory |
-| `decimation_factor` |  . It defaults to 1. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./navigation.dat` | Optional |
 |--------------
