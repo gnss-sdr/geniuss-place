@@ -1,4 +1,4 @@
-f_{D---
+---
 title: "Observables"
 permalink: /docs/sp-blocks/observables/
 excerpt: "Documentation for the Observables block."
