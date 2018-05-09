@@ -1,4 +1,4 @@
-:+1::tada: Hello, and thanks for contributing to the [GNSS-SDR Website](http://gnss-sdr.org)! :tada::+1:
+:+1::tada: Hello, and thanks for contributing to the [GNSS-SDR Website](https://gnss-sdr.org)! :tada::+1:
 
 Before submitting your pull request, please make sure the following is done:
  1. You undertake the [Contributor Covenant Code of Conduct](https://github.com/gnss-sdr/geniuss-place/blob/master/CODE_OF_CONDUCT.md).
