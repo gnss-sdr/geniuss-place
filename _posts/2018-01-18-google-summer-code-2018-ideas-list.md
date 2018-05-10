@@ -192,7 +192,7 @@ Dr. Javier Arribas, Dr. Carles Fern&aacute;ndez-Prades, Dr. Jordi Vil&agrave;-Va
 
 ### Description:
 
-Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [Beidou B1I signals](http://gnss-sdr.org/docs/tutorials/gnss-signals/#beidou), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user’s receiver).
+Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [Beidou B1I signals](https://gnss-sdr.org/docs/tutorials/gnss-signals/#beidou), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user’s receiver).
 
   * Revision of acquisition and tracking algorithms developed for Beidou in [past GSoC editions](https://gnsssdrgsoc2016.wordpress.com/2016/08/18/beidou-tracking-block-for-gnss-sdr/). This would facilitate research on multi-constellation receivers (e.g., GPS + Galileo + GLONASS + Beidou) working with real signals.
   * Demodulation of the navigation message, opening the door to open innovation in multi-constellation receivers and addressing topics such as integrity, reliability, robustness, enhanced coverage, and high-accuracy positioning.
@@ -211,7 +211,7 @@ Mr. Luis Esteve, Mr. Damian Miralles, Mr. Antonio Ramos.
 
 ### Description:
 
-Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [Beidou B1C signals](http://gnss-sdr.org/docs/tutorials/gnss-signals/#beidou), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user's receiver).
+Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [Beidou B1C signals](https://gnss-sdr.org/docs/tutorials/gnss-signals/#beidou), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user's receiver).
 
   * Implementation of acquisition and tracking algorithms for Beidou B1C signals, following the examples already implemented for other GNSS signals. This would facilitate research on multi-constellation, multi-frequency receivers (e.g., GPS + Galileo + Beidou) working with real signals.
   * Demodulation of the navigation message, opening the door to open innovation in multi-constellation receivers and addressing topics such as integrity, reliability, robustness, enhanced coverage, and high-accuracy positioning.
@@ -230,7 +230,7 @@ Mr. Damian Miralles, Mr. Luis Esteve, Dr. Carles Fernández-Prades.
 ## Expanding the receiver to BEIDOU B2a
 
 ### Description:
-Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [Beidou B2a signals](http://gnss-sdr.org/docs/tutorials/gnss-signals/#beidou), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user's receiver).
+Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [Beidou B2a signals](https://gnss-sdr.org/docs/tutorials/gnss-signals/#beidou), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user's receiver).
 
   * Implementation of acquisition and tracking algorithms for Beidou B2a signals, following the examples already implemented for other GNSS signals. This would facilitate research on multi-constellation, multi-frequency receivers (e.g., GPS + Galileo + Beidou) working with real signals.
   * Demodulation of the navigation message, opening the door to open innovation in multi-constellation receivers and addressing topics such as integrity, reliability, robustness, enhanced coverage, and high-accuracy positioning.

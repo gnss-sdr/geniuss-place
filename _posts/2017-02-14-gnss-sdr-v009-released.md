@@ -83,14 +83,14 @@ This release has several improvements, addition of new features and bug fixes in
  * Extra unit tests added: ```GpsL1CADllPllTracking``` and ```GpsL1CATelemetryDecoderTest```.
  * System test added: ```ttff_gps_l1``` performs a set of cold / assisted runs of the software receiver and computes statistics about the obtained Time To First Fix.
  * Extra system test added: ```obs_gps_l1_system_test``` uses an external software-defined signal generator to produce raw digital GNSS signal from a RINEX navigation file and a position (static or dynamic), processes it with GNSS-SDR, and then compares the RINEX observation file produced by the software receiver to that produced by the signal generator.
- * Software Development Kit provided for embedded devices (see [http://gnss-sdr.org/docs/tutorials/cross-compiling/](http://gnss-sdr.org/docs/tutorials/cross-compiling/)).
+ * Software Development Kit provided for embedded devices (see [https://gnss-sdr.org/docs/tutorials/cross-compiling/](https://gnss-sdr.org/docs/tutorials/cross-compiling/)).
 
 
 ## Improvements in [Usability]({{ "/design-forces/usability/" | relative_url }}):
 
  * Now the block factory automatically detects Channel input data type, so it is no longer required to specify ```Channel.input_type``` in the configuration. An error raises if Acquisition and Tracking Blocks are not configured with the same input data type.
  * Block names changed from ```L2_M``` to ```L2C```.
- * Documentation available at [http://gnss-sdr.org/docs/](http://gnss-sdr.org/docs/)
+ * Documentation available at [https://gnss-sdr.org/docs/](https://gnss-sdr.org/docs/)
  * Improved tools for compilation, execution and testing in embedded devices.
 
 
