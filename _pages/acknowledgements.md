@@ -28,7 +28,7 @@ The Authors are proud to be supported by the following public institutions, priv
   ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | relative_url }}){:height="250px" width="250x"}
   {: style="text-align: center;"}
 
-  This project has received funding from the [**European GNSS Agency**](http://www.gsa.europa.eu/) under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](http://cordis.europa.eu/project/rcn/199301_en.html).
+  This project has received funding from the [**European GNSS Agency**](https://www.gsa.europa.eu/) under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](https://cordis.europa.eu/project/rcn/199301_en.html).
   {: .notice--success}
 
 * Support of the Spanish Ministry of Economy and Competitiveness.
@@ -45,7 +45,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
   - **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org))**, which aims to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
 
-  ![IRACON logo](http://www.iracon.org/wp-content/uploads/2016/03/iracon-logo-big.jpg){:height="250px" width="250x"}
+  ![IRACON logo]({{ "/assets/images/iracon-logo-big.jpg" | relative_url }}){:height="250px" width="250x"}
   {: style="text-align: center;"}
 
    **IRACON** offers Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsm/).
@@ -134,9 +134,9 @@ The Authors are proud to be supported by the following public institutions, priv
 ![NSL logo]({{ "/assets/images/logo-nsl.jpg" | relative_url }}){:height="250px" width="250x"}
 {: style="text-align: center;"}
 
-* [NSL](http://www.nsl.eu.com/), a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](http://www.nsl.eu.com/primo.html) system that is being used with GNSS-SDR development.
+* [NSL](https://www.nsl.eu.com/), a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](https://www.nsl.eu.com/nsl-jcms/advanced-gnns-hw-sw/2016-04-11-15-01-35) system that is being used with GNSS-SDR development.
 
-[**NSL**](http://www.nsl.eu.com/) kindly provides equipment and technical support to the development of dual-band software architectures.
+[**NSL**](https://www.nsl.eu.com/) kindly provides equipment and technical support to the development of dual-band software architectures.
 {: .notice--success}
 
 -----
@@ -145,7 +145,7 @@ The Authors are proud to be supported by the following public institutions, priv
 ![Xilinx logo](https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Xilinx_logo.svg/1280px-Xilinx_logo.svg.png){:height="250px" width="250x"}
 {: style="text-align: center;"}
 
-* [Xilinx](http://www.xilinx.com) is a worldwide renowned supplier of programmable logic devices. It is known for inventing the field-programmable gate array (FPGA) and as the first semiconductor company with a fabless manufacturing model.
+* [Xilinx](https://www.xilinx.com) is a worldwide renowned supplier of programmable logic devices. It is known for inventing the field-programmable gate array (FPGA) and as the first semiconductor company with a fabless manufacturing model.
 
 Through their [**Xilinx University Program (XUP)**](https://www.xilinx.com/support/university.html), Xilinx is supporting GNSS-SDR with the donation of four Zedboard development kits and a full license of the Vivado Design Suite, a software tool for synthesis and analysis of HDL designs.
 {: .notice--success}

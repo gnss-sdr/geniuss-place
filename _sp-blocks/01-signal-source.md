@@ -426,7 +426,7 @@ In this example, the names of the files would be `GPS_025_0000.LS3`, `GPS_025_00
 
 ### Implementation: `UHD_Signal_Source`
 
-[![Ettus Research](http://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com) The USRP Hardware Driver ([UHD](http://files.ettus.com/manual/)) software API supports application development on all [Ettus Research](https://www.ettus.com)'s [USRP](https://www.ettus.com/product) Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
+[![Ettus Research](https://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com) The USRP Hardware Driver ([UHD](https://files.ettus.com/manual/)) software API supports application development on all [Ettus Research](https://www.ettus.com)'s [USRP](https://www.ettus.com/product) Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
 
 This implementation accepts the following parameters:
 
@@ -519,8 +519,8 @@ For instance, if `RF_channels` is set to `2`, then:
 
 ### Implementation: `Osmosdr_Signal_Source`
 
-[![OsmoSDR](http://sdr.osmocom.org/osmocom/osmocom_sdr.png){:height="250px" width="250x"}{: .align-right}](http://sdr.osmocom.org/trac/)
-[OsmoSDR](http://sdr.osmocom.org/trac/) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
+[![OsmoSDR](https://sdr.osmocom.org/osmocom/osmocom_sdr.png){:height="250px" width="250x"}{: .align-right}](https://sdr.osmocom.org/trac/)
+[OsmoSDR](https://sdr.osmocom.org/trac/) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
 project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. The project also provides a software driver for several RF front-ends such as [RTL-based
 dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), [LimeSDR](https://myriadrf.org/projects/limesdr/), [etc](https://github.com/osmocom/gr-osmosdr/blob/master/README).
 
@@ -588,7 +588,7 @@ SignalSource.osmosdr_args=hackrf,bias=1
 
 ### Implementation: `RtlTcp_Signal_Source`
 
-In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](http://sdr.osmocom.org/trac/wiki/rtl-sdr#rtl_sdr) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
+In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](https://sdr.osmocom.org/trac/wiki/rtl-sdr#rtl_sdr) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
 
 If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
 
