@@ -106,7 +106,7 @@ termed non-standard $$ L1C_P $$ (NSCP) and non-standard $$ L1C_D $$ (NSCD).
 Non-standard codes are not for utilization by the users and, therefore,
 are not defined in IS-GPS-800D.
 
-![Spectra GPS Signals L1](http://www.navipedia.net/images/thumb/4/41/Chapter_2_Spectra_GPS_Signals_L1.png/800px-Chapter_2_Spectra_GPS_Signals_L1.png)
+![Spectra GPS Signals L1]({{ "/assets/images/Spectra_GPS_Signals_L1.png" | relative_url }})
 _GPS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -147,7 +147,7 @@ representation and nominally more accurate data than the NAV data. It is
 transmitted at $$ 25 $$ bit/s with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ symbols/s.
 
-![Spectra GPS Signals L2](http://www.navipedia.net/images/c/c4/Chapter_2_Spectra_GPS_Signals_L2.png)
+![Spectra GPS Signals L2]({{ "/assets/images/Spectra_GPS_Signals_L2.png" | relative_url }})
 _GPS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -162,9 +162,9 @@ written as:
 
 $$ \begin{equation} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{equation} $$
 
-$$ \begin{equation} e_{L5I}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ D_{\text{CNAV}}\Big[ [m]_{10}\Big]    \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big]  p(t - m T_{c,nh} - lT_{c,L5}) ~,\end{equation} $$
+$$ \begin{equation} e_{L5I}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus D_{\text{CNAV}}\Big[ [m]_{10}\Big] \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big]  p(t - m T_{c,nh} - lT_{c,L5}) ~,\end{equation} $$
 
-$$ \begin{equation} e_{L5Q}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{20}} \Big[ |m|_{20}\Big]   \oplus  \sum_{l=1}^{102300}C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, \end{equation} $$
+$$ \begin{equation} e_{L5Q}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{20}} \Big[ |m|_{20}\Big] \oplus \sum_{l=1}^{102300}C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, \end{equation} $$
 
 where $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
 component contains a synchronization sequence $$ C_{nh_{10}}=0000110101 $$,
@@ -172,7 +172,7 @@ a $$ 10 $$–bit Neuman–Hoffman code that modulates each $$ 100 $$ symbols of 
 GPS L5 civil navigation data $$ D_{\text{CNAV}} $$, and the L5Q component
 has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
 
-![Spectra GPS Signals L5](http://www.navipedia.net/images/7/7a/Chapter_2_Spectra_GPS_Signals_L5.png)
+![Spectra GPS Signals L5]({{ "/assets/images/Spectra_GPS_Signals_L5.png" | relative_url }})
 _GPS signals spectra in L5. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -238,7 +238,7 @@ the Russian Federation Defense Ministry, and no more details have been
 disclosed.
 
 
-![Spectra GLONASS Signals L1](http://www.navipedia.net/images/2/2e/GLONASS_Sig_Plan_Fig_2.png)
+![Spectra GLONASS Signals L1]({{ "/assets/images/Spectra_GLONASS_Signals_L1.png" | relative_url }})
 _GLONASS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -263,7 +263,7 @@ Beginning with the second generation of satellites, called GLONASS–M and
 first launched in 2001, a second civil signal is available using the
 same SP code than the one in the L1 band but centered at $$ 1246 $$ MHz.
 
-![Spectra GLONASS Signals L2](http://www.navipedia.net/images/4/41/GLONASS_Sig_Plan_Fig_4.png)
+![Spectra GLONASS Signals L2]({{ "/assets/images/Spectra_GLONASS_Signals_L2.png" | relative_url }})
 _GLONASS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -338,8 +338,7 @@ cosine–shaped subcarrier, $$ f_{sc,E1A}=15.345 $$ MHz, and
 $$ T_{c,E1A}=\frac{1}{2.5575} $$ $$ \mu $$s. The PRS spreading codes and the
 structure of the navigation message have not been made public.
 
-![Spectra of Galileo signals in E1. Source:
-Navipedia.](http://www.navipedia.net/images/2/23/Galileo_Signal_Plan_Fig_2.png)
+![Spectra of Galileo signals in E1.]({{ "/assets/images/Spectra_Galileo_Signals_E1.png" | relative_url }})
 _Galileo signals spectra in E1. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -371,8 +370,7 @@ $$ f_{sc,E6A}=10.23 $$ MHz, and $$ T_{c, E6A}=\frac{1}{5.115} $$ $$ \mu $$s. The
 spreading codes and the structure of the navigation message are not
 publicly available.
 
-![Spectra of Galileo signals in E6. Source:
-Navipedia.](http://www.navipedia.net/images/e/e7/Galileo_Signal_Plan_Fig_5.png)
+![Spectra of Galileo signals in E6.]({{ "/assets/images/Spectra_Galileo_Signals_E6.png" | relative_url }})
 _Galileo signals spectra in E6. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -473,8 +471,7 @@ The same applies to $$ e_{E5b}(t) $$, allowing an independent reception of
 two QPSK signals and thus requiring considerably less bandwidth than the
 processing of the whole E5 band.
 
-![Spectra of Galileo signals in E5. Source:
-Navipedia.](http://www.navipedia.net/images/e/e2/Galileo_Signal_Plan_Fig_7.png)
+![Spectra of Galileo signals in E5.]({{ "/assets/images/Spectra_Galileo_Signals_E5.png" | relative_url }})
 _Galileo signals spectra in E5. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -517,7 +514,7 @@ document that included details of the navigation message, including
 parameters of the satellite almanacs and ephemerides that were missing
 from a “test version” of the ICD released exactly one year before. One year later version 2.0 was released, and version 2.1 followed in November 2016[^Beidou]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C], B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open services deployed in the BSD-3 phase of the system development.
 
-![BeiDou Logo](http://www.gpsworld.com/wp-content/uploads/2013/01/BeiDou-Logo.png){:height="250px" width="250x"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
+![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250x"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
 official logo of the BeiDou system, the design of which incorporates the
 yin/yang symbol reflecting traditional Chinese culture, dark and light
 blue coloration symbolizing, respectively, space and Earth (including

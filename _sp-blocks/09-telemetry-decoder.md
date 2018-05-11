@@ -27,7 +27,7 @@ $$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{L1I}(t) =  \su
 
 The GPS NAV message $$ D_{\text{NAV}} \in \{ 1, -1 \} $$ is modulated at 50 bits per second. The whole message contains 25 pages (or "frames") of 30 seconds each, forming the master frame that takes 12,5 minutes to be transmitted. Every frame is subdivided into 5 sub-frames of 6 seconds each; in turn, every sub-frame consists of 10 words, with 30 bits per word:
 
-![GPS NAV message](http://www.navipedia.net/images/f/fe/Navigation_Message.png)
+![GPS NAV message]({{ "/assets/images/Navigation_Message_GPS_NAV.png" | relative_url }})
 _GPS NAV message. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
@@ -203,7 +203,7 @@ representation and nominally more accurate data than the NAV data. It is
 transmitted at $$ 25 $$ bps with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ sps.
 
-![GPS L2 CNAV message](http://www.navipedia.net/images/8/89/L2c.png)
+![GPS L2 CNAV message]({{ "/assets/images/Navigation_Message_GPS_CNAV_L2.png" | relative_url }})
 _GPS L2 CNAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
@@ -248,7 +248,7 @@ with $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
 component contains a synchronization sequence $$ C_{nh_{10}} $$ that modulates each $$ 100 $$ symbols of the
 GPS L5 civil navigation data $$ D_{\text{CNAV}} $$. The message structure is the same as for L2 CNAV:
 
-![GPS L5 CNAV message](http://www.navipedia.net/images/2/2c/L5c.png)
+![GPS L5 CNAV message]({{ "/assets/images/Navigation_Message_GPS_CNAV_L5.png" | relative_url }})
 _GPS L5 CNAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
@@ -289,7 +289,7 @@ where $$ ssc_s(t) $$ and $$ ssc_p(t) $$ are the single and product side–band s
 $$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{E5aI}(t) =  \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]  \color{dark-grey} p(t-mT_{c,E5s}-lT_{c,E5p})~. $$
 
 
-![Galileo E5a F/NAV message](http://www.navipedia.net/images/a/ad/Fnav.png)
+![Galileo E5a F/NAV message]({{ "/assets/images/Navigation_Message_Galileo_FNAV.png" | relative_url }})
 _Galileo E5a F/NAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Navigation_Message)_.
 {: style="text-align: center;"}
 
