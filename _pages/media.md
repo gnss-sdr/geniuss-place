@@ -38,7 +38,7 @@ On December 6, 2013, GNSS-SDR appeared at _GPS World_, an essential reference fo
 
 ## European Space Agency
 
-The [European Space Agency](http://www.esa.int/) acknowledged CTTC as one of the first 50 users of the Galileo system:
+The [European Space Agency](https://www.esa.int/) acknowledged CTTC as one of the first 50 users of the Galileo system:
 
 ![ESA Certificate]({{ "/assets/images/ESA-ack.jpg" | relative_url }}){: width="500px"}
 {: style="text-align: center;"}
@@ -60,7 +60,7 @@ On [July 17, 2013](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemde
 
 ## Hackaday
 
-On August 19, 2012, GNSS-SDR was [mentioned](http://hackaday.com/2012/08/19/real-time-gps-decoding-with-software-defined-radio/) in _Hackaday_, a popular blog about hardware and software hacks.
+On August 19, 2012, GNSS-SDR was [mentioned](https://hackaday.com/2012/08/19/real-time-gps-decoding-with-software-defined-radio/) in _Hackaday_, a popular blog about hardware and software hacks.
 
 ![Hackaday]({{ "/assets/images/hackaday.png" | relative_url }})
 {: style="text-align: center;"}

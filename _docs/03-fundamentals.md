@@ -47,7 +47,7 @@ _Typical GNSS-SDR flow graph._
 
 ### Implementation: GNU Radio
 
-An actual implementation of these concepts is found in [GNU Radio](http://gnuradio.org/), a free and  open source framework for software-defined radio applications. In addition to provide an extensive assortment of signal processing blocks (filters, synchronization elements, demodulators, decoders, and much more), GNU Radio also provides an implementation of a runtime scheduler meeting the requirements described above. This allows developers to focus in the implementation of the actual signal processing, instead of worrying about how to embed such processes in an efficient processing chain.
+An actual implementation of these concepts is found in [GNU Radio](https://gnuradio.org/), a free and  open source framework for software-defined radio applications. In addition to provide an extensive assortment of signal processing blocks (filters, synchronization elements, demodulators, decoders, and much more), GNU Radio also provides an implementation of a runtime scheduler meeting the requirements described above. This allows developers to focus in the implementation of the actual signal processing, instead of worrying about how to embed such processes in an efficient processing chain.
 
 **Idea to take home:** By adopting GNU Radio's signal processing framework, GNSS-SDR bases its software architecture in a well-established, highly-efficient design and an extensively proven implementation.
 {: .notice--info}

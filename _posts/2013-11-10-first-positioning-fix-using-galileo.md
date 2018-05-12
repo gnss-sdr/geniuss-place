@@ -95,7 +95,7 @@ If you are interested in replicating the experiments and playing with the softwa
 
 
 
-**Update:** This position fix was acknowledged by the [European Space Agency](http://www.esa.int/) as one of the first 50 users of the Galileo system:
+**Update:** This position fix was acknowledged by the [European Space Agency](https://www.esa.int/) as one of the first 50 users of the Galileo system:
 
 ![ESA Certificate]({{ '/assets/images/ESA-ack.jpg' | relative_url }}){: width="500px"}
 {: style="text-align: center;"}

@@ -39,7 +39,7 @@ The main goals of this project are: *i*) to develop and integrate into the GNSS-
 
 ### Skills required:
 
-Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework and Kalman filtering techniques is a plus).
+Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework and Kalman filtering techniques is a plus).
 
 ### Potential mentor(s):
 
@@ -108,7 +108,7 @@ The configuration mechanism of GNSS-SDR allows users to define and configure eac
 
 ### Skills required:
 
-Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework and [Qt](https://www.qt.io) is a plus).
+Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework and [Qt](https://www.qt.io) is a plus).
 
 ### Potential mentor(s):
 
