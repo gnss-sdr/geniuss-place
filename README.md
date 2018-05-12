@@ -27,7 +27,7 @@ According to the name and the quality of the theme this website is based upon, a
 
 - [Font Awesome](https://fontawesome.com/).
 - [Academicons](https://jpswalsh.github.io/academicons/).
-- Icons made by [Butterflytronics](https://www.flaticon.com/authors/butterflytronics), [SimpleIcon](https://www.flaticon.com/authors/simpleicon) and [Freepik](https://www.freepik.com) from [Flaticon](https://www.flaticon.com) are licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
+- Icons made by [Butterflytronics](https://www.flaticon.com/authors/butterflytronics), [SimpleIcon](https://www.flaticon.com/authors/simpleicon) and [Freepik](https://www.freepik.com) from [Flaticon](https://www.flaticon.com) are licensed by [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/).
 
 
 ### Font
@@ -38,14 +38,14 @@ According to the name and the quality of the theme this website is based upon, a
 ### Other
 
 - [Jekyll](https://jekyllrb.com/)
-- [jQuery](http://jquery.com/)
+- [jQuery](https://jquery.com/)
 - [Susy](http://oddbird.net/susy/)
 - [Breakpoint](http://breakpoint-sass.com/)
 - [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/)
 - [FitVids.JS](http://fitvidsjs.com/)
 - Greedy Navigation - [lukejacksonn](https://codepen.io/lukejacksonn/pen/PwmwWV)
 - [jQuery Smooth Scroll](https://github.com/kswedberg/jquery-smooth-scroll)
-- [Sass](http://sass-lang.com/)
+- [Sass](https://sass-lang.com/)
 - Web search service provided by [Algolia](https://www.algolia.com/)
 
 ---
@@ -96,13 +96,13 @@ Icons are distributed under Creative Commons Attribution 3.0 ([CC BY 3.0](https:
 This work incorporates GeNiuSS, a character created by Carlos Paniego.
 Copyright &copy; 2012, Carlos Paniego. All rights reserved.
 
-This work incorporates [Font Awesome](http://fontawesome.io/),
+This work incorporates [Font Awesome](https://fontawesome.com/),
 Copyright &copy; 2017 Dave Gandy.
-Font Awesome is distributed under the terms of the [SIL OFL 1.1](http://scripts.sil.org/OFL) and [MIT License](http://opensource.org/licenses/MIT).
+Font Awesome is distributed under the terms of the [SIL OFL 1.1](http://scripts.sil.org/OFL) and [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [Academicons](https://jpswalsh.github.io/academicons/),
 Copyright &copy; 2017 James Walsh.
-Academicons is distributed under the terms of the [SIL OFL 1.1](http://scripts.sil.org/OFL) and [MIT License](http://opensource.org/licenses/MIT).
+Academicons is distributed under the terms of the [SIL OFL 1.1](http://scripts.sil.org/OFL) and [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [Susy](http://oddbird.net/susy/),
 Copyright &copy; 2017, Miriam Eric Suzanne.

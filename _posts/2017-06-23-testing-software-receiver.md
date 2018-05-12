@@ -753,18 +753,18 @@ Note: Google Test filter = RtcmTest.HexToInt*
 
 # References
 
-[^Beck99]: K. Beck, C. Andres, [Extreme Programming Explained: Embrace Change](http://www.goodreads.com/book/show/67833.Extreme_Programming_Explained), Addison-Wesley Professional, Boston, MA, 1999.
+[^Beck99]: K. Beck, C. Andres, [Extreme Programming Explained: Embrace Change](https://www.goodreads.com/book/show/67833.Extreme_Programming_Explained), Addison-Wesley Professional, Boston, MA, 1999.
 
 [^Beck02]: K. Beck, [Test Driven Development: By Example](http://www.eecs.yorku.ca/course_archive/2003-04/W/3311/sectionM/case_studies/money/KentBeck_TDD_byexample.pdf), Addison-Wesley Professional, Boston, MA, 2002.
 
 [^Shore08]: J. Shore and S. Warden, [The Art of Agile Development](http://www.jamesshore.com/Agile-Book/), O'Really, Sebastopol, CA, 2008.
 
-[^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0470192410.html), Jossey-Bass, San Francisco, CA, 2009.
+[^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](https://www.wiley.com/WileyCDA/WileyTitle/productCd-0470192410.html), Jossey-Bass, San Francisco, CA, 2009.
 
 [^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education), MIT Press, Cambridge, MA, 1993.
 
-[^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Usnderstand - Improve - Apply](http://www.springer.com/gp/book/9783642137563), Springer-Verlag, Berlin, Germany, 2011.
+[^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Usnderstand - Improve - Apply](https://www.springer.com/gp/book/9783642137563), Springer-Verlag, Berlin, Germany, 2011.
 
 [^Cross11]: N. Cross, [Design Thinking: Understanding How Designers Think and Work](https://books.google.es/books/about/Design_Thinking.html?id=F4SUVT1XCCwC), Berg Publishers, Oxford, UK, 2011.
 
-[^IEEE730]: IEEE Computer Society, [730-2014 - IEEE Standard for Software Quality Assurance Processes](http://ieeexplore.ieee.org/document/6835311/), New York, NY, 2014.
+[^IEEE730]: IEEE Computer Society, [730-2014 - IEEE Standard for Software Quality Assurance Processes](https://ieeexplore.ieee.org/document/6835311/), New York, NY, 2014.

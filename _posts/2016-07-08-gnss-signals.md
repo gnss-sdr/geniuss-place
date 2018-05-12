@@ -45,7 +45,7 @@ $$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ is the chip period.
 
 Particularizations of such signal structure for the different existing systems[^Fernandez11] are described below.
 
-[^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=5942139), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](http://dx.doi.org/10.1109/JPROC.2011.2158032).
+[^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](https://ieeexplore.ieee.org/document/5942139/), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](https://dx.doi.org/10.1109/JPROC.2011.2158032).
 
 ## Global Positioning System (GPS)
 
@@ -60,7 +60,7 @@ worldwide basis. Two GPS services are provided:
 
 -   the Standard Positioning Service (SPS) open to civilian users.
 
-The most updated and authorized source is the [Official U.S. Government website about GPS and related topics](http://www.gps.gov/).
+The most updated and authorized source is the [Official U.S. Government website about GPS and related topics](https://www.gps.gov/).
 
 ### GPS L1
 
@@ -110,9 +110,9 @@ are not defined in IS-GPS-800D.
 _GPS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf), Dec. 2015.
+[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf), Dec. 2015.
 
-[^ISGPS800]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-800D: Navstar GPS Space Segment/User Segment L1C Interface](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf), Sept. 2013.
+[^ISGPS800]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-800D: Navstar GPS Space Segment/User Segment L1C Interface](https://www.gps.gov/technical/icwg/IS-GPS-800D.pdf), Sept. 2013.
 
 ### GPS L2C
 
@@ -176,7 +176,7 @@ has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
 _GPS signals spectra in L5. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^ISGPS705]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-705D: Navstar GPS Space Segment/User Segment L5 Interfaces](http://www.gps.gov/technical/icwg/IS-GPS-705D.pdf), Sept. 2013.
+[^ISGPS705]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-705D: Navstar GPS Space Segment/User Segment L5 Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-705D.pdf), Sept. 2013.
 
 
 ## GLONASS
@@ -297,7 +297,7 @@ Galileo satellites are placed in quasi–circular Earth orbits with a
 nominal semi–major axis of about $$ 30,000 $$ km and an approximate
 revolution period of $$ 14 $$ hours. The Control segment full infrastructure
 will be composed of $$ 30-40 $$ sensor stations, $$ 3 $$ control centers, $$ 9 $$
-Mission Uplink stations, and $$ 5 $$ TT&C stations. The current constellation status can be checked at the [European GNSS Service Centre website](http://www.gsc-europa.eu/system-status/Constellation-Information).
+Mission Uplink stations, and $$ 5 $$ TT&C stations. The current constellation status can be checked at the [European GNSS Service Centre website](https://www.gsc-europa.eu/system-status/Constellation-Information).
 
 Galileo’s Open Service is defined in Galileo's ICD[^GalileoICD], where the following
 signal structures are specified:
@@ -342,7 +342,7 @@ structure of the navigation message have not been made public.
 _Galileo signals spectra in E1. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
+[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
 
 ### Galileo E6
 
@@ -659,21 +659,21 @@ The following table lists the GNSS signals providing Open Service.
 |  **GNSS Signal**  |  **Center Freq.** |  **Modulation** |
 |:-:|:-:|:-:|    
 |--------------
-| [**GPS L5**](http://www.gps.gov/technical/icwg/IS-GPS-705D.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
-| [**Galileo E5a**](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
+| [**GPS L5**](https://www.gps.gov/technical/icwg/IS-GPS-705D.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
+| [**Galileo E5a**](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(**)} $$   | $$ 1176.45 $$ MHz |  BPSK(10)   |
 | [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
-| [**Galileo E5b**](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
+| [**Galileo E5b**](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) |  $$ 1207.14 $$ MHz  | BPSK(2) |
-| [**GPS L2C**](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
+| [**GPS L2C**](https://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
 | [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
 | [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
 | [**BeiDou B3I**](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf)$$ ^{(*)} $$  | $$ 1268.520 $$ MHz | BPSK(10) |
 | [**BeiDou B1I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) | $$ 1561.098 $$ MHz | BPSK(2) |
 | [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1561.098 $$ MHz | BOC(1,1) |
-| [**GPS L1 C/A**](http://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
-| [**GPS L1C**](http://www.gps.gov/technical/icwg/IS-GPS-800D.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
-| [**Galileo E1b/c**](http://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
+| [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
+| [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800D.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
+| [**Galileo E1b/c**](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
 | [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
 | [**GLONASS L1OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1602.00 $$ MHz | BPSK(0.5) |
 |--------------

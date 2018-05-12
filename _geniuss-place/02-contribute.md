@@ -69,7 +69,7 @@ Install [Jekyll](https://jekyllrb.com/):
 $ sudo gem install jekyll
 ```
 
-More information at [Jekyll's installation page](https://jekyllrb.com/docs/installation/). Then, install [Bundler](http://bundler.io/), a tool for managing the required dependencies:
+More information at [Jekyll's installation page](https://jekyllrb.com/docs/installation/). Then, install [Bundler](https://bundler.io/), a tool for managing the required dependencies:
 
 ```bash
 $ sudo gem install bundler

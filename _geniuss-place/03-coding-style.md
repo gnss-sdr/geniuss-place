@@ -220,7 +220,7 @@ Be consistent and use the `// ...` style comments.
 The comment styles `///` and `/** ... */` are used by JavaDoc, Doxygen
 and some other code documenting tools.
 
-For a complete description on how to document the code, see the [Doxygen Manual](http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html)
+For a complete description on how to document the code, see the [Doxygen Manual](https://www.stack.nl/~dimitri/doxygen/manual/docblocks.html)
 
 All classes in GNSS-SDR should be properly documented with Doxygen
 comments in include (`.h`) files. Source (`.cc`) files should be documented
@@ -288,7 +288,7 @@ private:
 
 ### Include formulae
 
-Follow this link to see how can [include formulae](http://www.stack.nl/~dimitri/doxygen/manual/formulas.html).
+Follow this link to see how can [include formulae](https://www.stack.nl/~dimitri/doxygen/manual/formulas.html).
 
 ### Multiple line comments should be split in one comment per line, each having the `/*` and `*/` markers on the same line
 
@@ -940,9 +940,9 @@ void fn ( )
 
 ### Use tools for automated code formatting
 
-As code base and the number of contributors grow, maintaining a consistent code formatting is difficult and creates a lot of noise in commits. In order to handle this issue, GNSS-SDR uses [clang-format](http://clang.llvm.org/docs/ClangFormat.html), a set of tools for automated code formatting. It can be used as a standalone tool and supports a number of editor integrations.  
+As code base and the number of contributors grow, maintaining a consistent code formatting is difficult and creates a lot of noise in commits. In order to handle this issue, GNSS-SDR uses [clang-format](https://clang.llvm.org/docs/ClangFormat.html), a set of tools for automated code formatting. It can be used as a standalone tool and supports a number of editor integrations.  
 
-The rules for code formatting are configured in the file [.clang-format](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) at the root of the source tree. The style options are described in [Clang-Format Style Options](http://clang.llvm.org/docs/ClangFormatStyleOptions.html).
+The rules for code formatting are configured in the file [.clang-format](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) at the root of the source tree. The style options are described in [Clang-Format Style Options](https://clang.llvm.org/docs/ClangFormatStyleOptions.html).
 
 You can use clang-format in two simple steps:
 
@@ -1036,7 +1036,7 @@ Take a look at the [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidel
 
 ### Use of Boost libraries
 
-[Boost](http://www.boost.org) is a set of free, expertly designed, peer–reviewed portable C++ source libraries. Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. However, Boost regularly makes backward-incompatible changes, making supporting a wide range of Boost versions hard. All things equal, prefer standard C++ constructs over Boost constructs.
+[Boost](https://www.boost.org) is a set of free, expertly designed, peer–reviewed portable C++ source libraries. Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. However, Boost regularly makes backward-incompatible changes, making supporting a wide range of Boost versions hard. All things equal, prefer standard C++ constructs over Boost constructs.
 
 ### Use common sense and BE CONSISTENT
 

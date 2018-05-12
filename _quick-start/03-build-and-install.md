@@ -71,7 +71,7 @@ $ sudo port install gnss-sdr-next
   {{ mac-os-text | markdownify }}
 </div>
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ "/my-first-fix/" | relative_url }}). Or maybe you might prefer other options, such as using [Homebrew](http://brew.sh/) instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on macOS Sierra or Mac OS X, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x) file.
+If everything went fine, you can directly jump into how to get your [first position fix]({{ "/my-first-fix/" | relative_url }}). Or maybe you might prefer other options, such as using [Homebrew](https://brew.sh/) instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on macOS Sierra or Mac OS X, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x) file.
 
 # Building from source
 
@@ -284,7 +284,7 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/cl
   <img src="{{ "/assets/images/logo-snappy.png" | relative_url }}" alt="Snappy logo">
 </figure>
 
-[Snaps](http://snapcraft.io) are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
+[Snaps](https://snapcraft.io) are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
 
 Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox) for instructions on building your own snap package of GNSS-SDR.
 
