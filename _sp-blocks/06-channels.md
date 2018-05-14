@@ -20,7 +20,7 @@ Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/
 |  <span style="color: DarkOrange">```1G```</span>      | <span style="color: DarkOrange">Glonass L1 C/A$$ ^{(*)} $$</span> | $$ 1575.42 $$ MHz |
 |  ```2S```      | GPS L2 L2CM | $$ 1227.60 $$ MHz |
 |  <span style="color: DarkOrange">```2G```</span>      | <span style="color: DarkOrange">Glonass L2 C/A$$ ^{(*)} $$</span> | $$ 1227.60 $$ MHz |
-|  ```5X```      | Galileo E5a (I+Q) | $$ 1176.45 $$ MHz |
+|  ```5X```      | Galileo E5a | $$ 1176.45 $$ MHz |
 |  <span style="color: DarkOrange">```L5```</span>      | <span style="color: DarkOrange">GPS L5$$ ^{(*)} $$</span> | $$ 1176.45 $$ MHz |
 |-----
 
