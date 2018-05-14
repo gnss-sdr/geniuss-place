@@ -61,7 +61,7 @@ Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github
 1) Install ```repo```:
 
 ```bash
-$ curl http://storage.googleapis.com/git-repo-downloads/repo > repo
+$ curl https://storage.googleapis.com/git-repo-downloads/repo > repo
 $ chmod a+x repo
 $ sudo mv repo /usr/local/bin/
 ```
