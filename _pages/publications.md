@@ -24,8 +24,8 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 <i>IEEE Access</i>, Vol. 6, No. 1, pp. 20451-20463, Apr. 2018.
     <br />
     <a href="javascript:toggleBibtex('Fernandez18')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/document/8331069/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/ACCESS.2018.2822835" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8331069/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/ACCESS.2018.2822835" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez18" class="bibtex noshow">
     <pre>@article{ Fernandez18,
@@ -77,8 +77,8 @@ pages   = {43--49}
 <i>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</i>, Vol. 9, No. 10, pp. 4843-4853, Oct. 2016.
     <br />
     <a href="javascript:toggleBibtex('Lestarquit16')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7501832" >Online</a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/JSTARS.2016.2568742" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/7501832/" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/JSTARS.2016.2568742" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Lestarquit16" class="bibtex noshow">
     <pre>@article{ Lestarquit16,
@@ -105,8 +105,8 @@ note    = { {DOI}: 10.1109/JSTARS.2016.2568742}
 <i>Proceedings of the IEEE</i>, Vol. 104, No. 6, pp. 1207-1220, June 2016.
     <br />
     <a href="javascript:toggleBibtex('Fernandez16')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7444116" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/JPROC.2016.2532963" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/7444116/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/JPROC.2016.2532963" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez16" class="bibtex noshow">
     <pre>@article{ Fernandez16,
@@ -133,8 +133,8 @@ note    = { {DOI}: 10.1109/JPROC.2016.2532963}
 <i>EURASIP Journal on Advances in Signal Processing</i>, Vol. 2013, No. 143, Sep. 2013.
     <br />
     <a href="javascript:toggleBibtex('Arribas13')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="http://asp.eurasipjournals.springeropen.com/articles/10.1186/1687-6180-2013-143" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1186/1687-6180-2013-143" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://asp-eurasipjournals.springeropen.com/articles/10.1186/1687-6180-2013-143" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1186/1687-6180-2013-143" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Arribas13" class="bibtex noshow">
     <pre>@article{ Arribas13,
@@ -247,7 +247,7 @@ ESA/ESTEC, Noordwijk, The Netherlands, Dec. 14-16, 2016, pp. 1-9.
     <br />
     <a href="javascript:toggleBibtex('Fernandez16c')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/266524" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/NAVITEC.2016.7931740" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2016.7931740" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez16c" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez16c,
@@ -509,7 +509,7 @@ month   = {Sep.}
     A Coru&ntilde;a, Spain, June 2014, pp. 121-124.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR14a')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6882355" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/profile/Pau_Closas/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach/links/548a95080cf225bf669c7fc0.pdf?origin=publication_detail" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/SAM.2014.6882355" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6882355/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/profile/Pau_Closas/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach/links/548a95080cf225bf669c7fc0.pdf?origin=publication_detail" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/SAM.2014.6882355" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR14a" class="bibtex noshow">
         <pre>@inproceedings{ GNSS-SDR14a,
@@ -536,8 +536,8 @@ note    = { {DOI}: 10.1109/SAM.2014.6882355}
     Benevento, Italy, May 29-30, 2014.
         <br />
         <a href="javascript:toggleBibtex('Falone14')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/document/6865943/" >Online</a><span style="color: #52adc8">]</span>
-        <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/MetroAeroSpace.2014.6865943" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6865943/" >Online</a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/MetroAeroSpace.2014.6865943" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_Falone14" class="bibtex noshow">
         <pre>@inproceedings{ Falone14,
@@ -562,8 +562,8 @@ note    = { {DOI}: 10.1109/MetroAeroSpace.2014.6865943}
     Benevento, Italy, May 29-30, 2014.
         <br />
         <a href="javascript:toggleBibtex('Angeletti14')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/document/6865957/" >Online</a><span style="color: #52adc8">]</span>
-        <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/MetroAeroSpace.2014.6865957" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6865957/" >Online</a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/MetroAeroSpace.2014.6865957" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_Angeletti14" class="bibtex noshow">
         <pre>@inproceedings{ Angeletti14,
@@ -613,7 +613,7 @@ month   = {Sep.}
     ESTEC, Noordwijk, The Netherlands, Dec. 2012, pp. 1-8.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR12')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6423057" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/NAVITEC.2012.6423057" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6423057/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2012.6423057" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR12" class="bibtex noshow">
         <pre>@inproceedings{ GNSS-SDR12,
@@ -690,7 +690,7 @@ month   = {Sep.}
     ESTEC, Noordwijk, The Netherlands, Dec. 2010, pp. 1-8.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR10')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=5707981" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/101213-pid1531501-14543.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.1109/NAVITEC.2010.5707981" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/5707981/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/101213-pid1531501-14543.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2010.5707981" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR10" class="bibtex noshow">
         <pre>@inproceedings{ GNSS-SDR10,
@@ -717,7 +717,7 @@ A. Ranganathan
 <i>PhD Thesis, ETH Z&uuml;rich, Department of Computer Science, Z&uuml;rich, Switzerland, June 2016.</i>
 <br><a href="javascript:toggleBibtex('Ranganathan16')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="http://e-collection.library.ethz.ch/view/eth:49164" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://e-collection.library.ethz.ch/eserv/eth:49164/eth-49164-02.pdf" >PDF</a><span style="color: #52adc8">]</span>
-<span style="color: #52adc8">[</span><a href="http://dx.doi.org/10.3929/ethz-a-010659030" >
+<span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.3929/ethz-a-010659030" >
 <i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
 </p>
 <div id="bib_Ranganathan16" class="bibtex noshow">
@@ -763,7 +763,7 @@ month = {Feb.}
 J.&nbsp;Arribas
 <br><b>GNSS Array-based Acquisition: Theory and Implementation</b><br>
 <i>PhD Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, June 2012.</i>
-<br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="http://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
+<br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="https://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
 <br />
 <a href="javascript:toggleBibtex('Arribas12')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="http://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>
@@ -817,7 +817,7 @@ L.&nbsp;Esteve-Elfau
 <i>MS Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, July 2011.</i>
 <br />
 <a href="javascript:toggleBibtex('Esteve11')">[BibTeX]</a>
-<span style="color: #52adc8">[</span><a href="https://upcommons.upc.edu/handle/2099.1/18997" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://upcommons.upc.edu/bitstream/handle/2099.1/18997/PFC_Luis_Esteve_Elfau.pdf" >
+<span style="color: #52adc8">[</span><a href="https://upcommons.upc.edu/handle/2099.1/18997" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://upcommons.upc.edu/bitstream/handle/2099.1/18997/PFC_Luis_Esteve_Elfau.pdf" >
 PDF</a><span style="color: #52adc8">]</span>
 </p>
 <div id="bib_Esteve11" class="bibtex noshow">

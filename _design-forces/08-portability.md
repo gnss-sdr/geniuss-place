@@ -32,7 +32,7 @@ Examples of notable CPU architectures:
 
 * ARM's
    * [ARM architecture](https://en.wikipedia.org/wiki/ARM_architecture) (32-bit).
-     * SIMD instruction set extension: [NEON](http://www.arm.com/products/processors/technologies/neon.php).
+     * SIMD instruction set extension: [NEON](https://www.arm.com/products/processors/technologies/neon.php).
    * [AArch64](https://en.wikipedia.org/wiki/ARM_architecture#64-bit) (64/32-bit).
      * SIMD instruction set extension: AArch64 NEON instruction set.
 
@@ -73,11 +73,11 @@ Applications that do not need an operating system are called _bare metal_ applic
 
    * [BSD](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) and its descendants, which includes [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD), [NetBSD](https://en.wikipedia.org/wiki/NetBSD), and [OpenBSD](https://en.wikipedia.org/wiki/OpenBSD).
 
-   * The [Linux](https://en.wikipedia.org/wiki/Linux) kernel, used in some popular distributions such as [Debian](https://www.debian.org/), [Fedora](https://getfedora.org/), [Ubuntu](http://www.ubuntu.com/), [openSUSE](https://www.opensuse.org/), [Arch Linux](https://www.archlinux.org/), [Linux Mint](https://www.linuxmint.com/), [Linaro](https://en.wikipedia.org/wiki/Linaro), [Raspbian](https://www.raspbian.org/) or Google's [Android](https://www.android.com/).
+   * The [Linux](https://en.wikipedia.org/wiki/Linux) kernel, used in some popular distributions such as [Debian](https://www.debian.org/), [Fedora](https://getfedora.org/), [Ubuntu](https://www.ubuntu.com/), [openSUSE](https://www.opensuse.org/), [Arch Linux](https://www.archlinux.org/), [Linux Mint](https://www.linuxmint.com/), [Linaro](https://en.wikipedia.org/wiki/Linaro), [Raspbian](https://www.raspbian.org/) or Google's [Android](https://www.android.com/).
 
 *  **Microsoft Windows** is a family of proprietary operating systems designed by Microsoft Corporation and primarily targeted to Intel architecture based computers, with a [relevant percent total usage share](https://en.wikipedia.org/wiki/Usage_share_of_operating_systems) on Web connected computers. The latest version is [Windows 10](https://en.wikipedia.org/wiki/Windows_10), which was preceded by [Windows 7](https://en.wikipedia.org/wiki/Windows_7), [Windows Vista](https://en.wikipedia.org/wiki/Windows_Vista) and [Windows XP](https://en.wikipedia.org/wiki/Windows_XP).
 
-* **Real-Time Operating Systems** such as [VxWorks](http://windriver.com/products/vxworks/), [eCos](http://ecos.sourceware.org/), [QNX](http://www.qnx.com/), [MontaVista Linux](http://www.mvista.com/), [RTLinux](http://www.rtlinux.org/) and Real-Time Executive for Multiprocessor Systems ([RTEMS](https://www.rtems.org/)).
+* **Real-Time Operating Systems** such as [VxWorks](https://windriver.com/products/vxworks/), [eCos](http://ecos.sourceware.org/), [QNX](https://blackberry.qnx.com/), [MontaVista Linux](https://www.mvista.com/), [RTLinux](http://www.rtlinux.org/) and Real-Time Executive for Multiprocessor Systems ([RTEMS](https://www.rtems.org/)).
 
 
 
@@ -85,11 +85,11 @@ Applications that do not need an operating system are called _bare metal_ applic
 
 In case of using compiled programming languages, software libraries and executables are generated from the source code through three kinds of tools:
 
-  * **Build system generators**, which automatically generate _build files_ from human-written configuration files. Popular examples of those tools are the [GNU Build System](https://en.wikipedia.org/wiki/GNU_Build_System) (also known as Autotools), [CMake](https://cmake.org) and [SCons](http://scons.org).
+  * **Build system generators**, which automatically generate _build files_ from human-written configuration files. Popular examples of those tools are the [GNU Build System](https://en.wikipedia.org/wiki/GNU_Build_System) (also known as Autotools), [CMake](https://cmake.org) and [SCons](https://scons.org).
   * **Build automation tools**, which automatically build executable programs and libraries from the source code with the aid of _build files_ that contains _rules_ describing targets, components and dependencies. Example are [GNU Make](https://www.gnu.org/software/make/), Unix’s [make](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html), [Ninja](https://ninja-build.org) and [others](https://en.wikipedia.org/wiki/List_of_build_automation_software).     
   * **Compilers**, which are programs that convert instructions into a machine-code or lower-level form so that they can be read and executed by a computer. In general, it is desirable to be able to build the source code with different compilers, since  it improves the overall quality of code by providing different checks and alerts. Examples of compilers are:
     * the [GNU Compiler Collection](https://gcc.gnu.org), which provides front ends for C (```gcc```), C++ (```g++```), Fortran (```gfortran```), Java (```gcj```) and other languages;
-    * the [LLVM](http://llvm.org) project, which provides front-ends for C / Objective-C (```clang```) and C++ (```clang++```), while other external projects allow the compilation of Ruby, Python, Haskell, Java, D, PHP, Pure, Lua, and a number of other languages.
+    * the [LLVM](https://llvm.org) project, which provides front-ends for C / Objective-C (```clang```) and C++ (```clang++```), while other external projects allow the compilation of Ruby, Python, Haskell, Java, D, PHP, Pure, Lua, and a number of other languages.
     * Those included in [Microsoft Visual Studio](https://www.visualstudio.com/), such as the Microsoft C++ Compiler (MSVC) provided by [Microsoft Visual C++](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B); ```vbc.exe```, the Visual Basic .NET compiler; and ```csc.exe```, the C# compiler, among others;
     * [other compilers](https://en.wikipedia.org/wiki/List_of_compilers).
     * In case of targeting embedded platforms, it is desirable the availability of cross-compilers, which are compilers capable of creating executable code for a platform other than the one on which the compiler is running. Examples are GCC and the .NET Framework compiler.

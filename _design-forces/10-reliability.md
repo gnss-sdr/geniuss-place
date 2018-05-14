@@ -25,7 +25,7 @@ Although C and C++ were not specifically designed for this type of applicati
 
 In the case of the C++ language, the software industry has created several specifications for enhanced reliability, banning the usage of a set of libraries and functions from the standard library, as well as defining a list of coding rules. Examples:
 
-* _SEI CERT C++ Coding Standard: Rules for Developing Safe, Reliable, and Secure Systems in C++ [(2016 Edition)](http://cert.org/secure-coding/products-services/secure-coding-cpp-download-2016.cfm)_, based on the [ISO/IEC 14882-2014](https://www.iso.org/standard/64029.html) standard.
+* _SEI CERT C++ Coding Standard: Rules for Developing Safe, Reliable, and Secure Systems in C++ [(2016 Edition)](https://resources.sei.cmu.edu/library/asset-view.cfm?assetID=494932)_, based on the [ISO/IEC 14882-2014](https://www.iso.org/standard/64029.html) standard.
 
 * _High Integrity C++ Coding Standard [Version 4.0](http://www.codingstandard.com)_, released on 3 October 2013. It is based on the [ISO/IEC 14882:2011](https://www.iso.org/standard/50372.html) standard.
 
@@ -71,7 +71,7 @@ It follows a list of possible reliability indicators for a software-defined GNSS
 
 * Safety-critical software certifications (_e.g._, [DO--178B](https://en.wikipedia.org/wiki/DO-178B)).
 
-* If the programming language is C++: Coding Standard certifications (_e.g._, [SEI CERT C++ Coding Standard](http://www.cert.org/go/secure-coding/), [High Integrity C++](http://www.programmingresearch.com/coding-standards/high-integrity-cpp/), MISRA C++:2008, others)
+* If the programming language is C++: Coding Standard certifications (_e.g._, [SEI CERT C++ Coding Standard](https://resources.sei.cmu.edu/library/asset-view.cfm?assetID=494932), [High Integrity C++](http://www.programmingresearch.com/coding-standards/high-integrity-cpp/), MISRA C++:2008, others)
 
 * Observation of coding standards.
   - Use of static checking tools to enforce compliance with the allowed language subset.
@@ -83,4 +83,4 @@ It follows a list of possible reliability indicators for a software-defined GNSS
 
 [^StackOverflow]: Stack Overflow, [Which languages are used for safety-critical software?]( https://stackoverflow.com/questions/243387/which-languages-are-used-for-safety-critical-software/243573#243573)
 
-[^Fernandez16]: C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas, [_Robust GNSS Receivers by Array Signal Processing: Theory and Implementation_](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7444116), Proceedings of the IEEE, Vol. 104, No. 6, pp. 1207 - 1220, June 2016.
+[^Fernandez16]: C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas, [_Robust GNSS Receivers by Array Signal Processing: Theory and Implementation_](https://ieeexplore.ieee.org/document/7444116/), Proceedings of the IEEE, Vol. 104, No. 6, pp. 1207 - 1220, June 2016.

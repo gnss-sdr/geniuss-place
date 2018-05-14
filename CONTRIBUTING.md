@@ -5,7 +5,7 @@
 Found a typo in this website? Interested in giving your thoughts on
 existing pages, adding a post, tutorial, new feature or enhancement?
 
-The website http://gnss-sdr.org lives in a [GitHub
+The website https://gnss-sdr.org lives in a [GitHub
 repository](https://github.com/gnss-sdr/geniuss-place.git). You can
 contribute in several ways:
 
@@ -83,7 +83,7 @@ $ sudo gem install jekyll
 
 More information at [Jekyll's installation
 page](https://jekyllrb.com/docs/installation/). Then, install
-[Bundler](http://bundler.io/), a tool for managing the required
+[Bundler](https://bundler.io/), a tool for managing the required
 dependencies:
 
 ```
@@ -181,13 +181,13 @@ changes, discuss potential modifications, and even push follow-up
 commits if necessary.
 
 For more details about Git usage, please check out [our
-tutorial](http://gnss-sdr.org/docs/tutorials/using-git/).
+tutorial](https://gnss-sdr.org/docs/tutorials/using-git/).
 
 ------
 
 
 
 ![GeNiuSS
-contributes](http://gnss-sdr.org/assets/images/geniuss-contribute.png)
+contributes](https://gnss-sdr.org/assets/images/geniuss-contribute.png)
 
 Thanks for your contribution to GNSS-SDR!

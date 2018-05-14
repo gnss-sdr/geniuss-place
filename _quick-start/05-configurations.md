@@ -5,7 +5,7 @@ excerpt: "How to configure GNSS-SDR in a variety of setups."
 related: true
 last_modified_at: 2018-01-23T15:54:02-04:00
 header:
-  teaser: "http://exploreflask.com/en/latest/_images/configuration.png"
+  teaser: "/assets/images/configuration.png"
 sidebar:
   nav: "start"
 toc: true
@@ -78,22 +78,22 @@ Then, you will need to feed your GNSS active antenna.
 
 In case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper in order to feed the antenna.
 
-![DBSRX2](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/DBSRX2_scale.jpg){: .align-center}
+![DBSRX2]({{ "/assets/images/DBSRX2_scale.jpg" | relative_url }}){: .align-center}
 _DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the injection of current towards the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 If this feature is not available (_e.g._, WBX daughterboards), you will need a bias-T between the USRP and the antenna, and to connect it to a power source delivering the voltage required by your antenna (usually, 3 V or 5 V).
 
-![Bias-T](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/bias_tee_scale.jpg){: .align-center}
+![Bias-T]({{ "/assets/images/bias_tee_scale.jpg" | relative_url }}){: .align-center}
 _Bias-T allowing the injection of DC voltage to the antenna. Source: [Radio Adventures ](http://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 
-![Setup](http://yo3iiu.ro/blog/wp-content/uploads/2013/02/whole_hw_scaled.jpeg){: .align-center}
+![Setup]({{ "/assets/images/whole_hw_scaled.jpg" | relative_url }}){: .align-center}
 _USRP N210 with the bias-T and the GPS antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
-Depending on the specific USRP model you are using, the connection to the host computer in charge of the execution of the software receiver can be through USB (2.0 or 3.0) or Ethernet (1 GigE or 10 GigE). Once connected, every USRP device has [several ways of identifying it](http://files.ettus.com/manual/page_identification.html) on the host system:
+Depending on the specific USRP model you are using, the connection to the host computer in charge of the execution of the software receiver can be through USB (2.0 or 3.0) or Ethernet (1 GigE or 10 GigE). Once connected, every USRP device has [several ways of identifying it](https://files.ettus.com/manual/page_identification.html) on the host system:
 
 |----------
 |  **Identifier**  |  **Key** | **Notes** | **Example** |
@@ -105,7 +105,7 @@ Depending on the specific USRP model you are using, the connection to the host c
 | Name | `name` | optional user-set identifier | lab1_usrp3 |
 |--------------
 
- _Common device identifiers. Source: [Identifying USRP Devices](http://files.ettus.com/manual/page_identification.html)._
+ _Common device identifiers. Source: [Identifying USRP Devices](https://files.ettus.com/manual/page_identification.html)._
  {: style="text-align: center;"}
 
 Devices attached to your system can be discovered using the `uhd_find_devices` program. This program scans your system for supported devices and prints out an enumerated list of discovered devices and their addresses. If you type `uhd_find_devices --help` in a terminal, you should see something similar to this:
@@ -143,7 +143,7 @@ or by typing:
 $ uhd_find_devices --args type=usrp1
 ```
 
-This is a good way to check if the USRP is correctly connected to your computer. After this check, we can proceed to configure the software receiver. The [USRP Hardware Driver and USRP Manual](http://files.ettus.com/manual/page_devices.html) provides more information about the configuration and usage of those devices.
+This is a good way to check if the USRP is correctly connected to your computer. After this check, we can proceed to configure the software receiver. The [USRP Hardware Driver and USRP Manual](https://files.ettus.com/manual/page_devices.html) provides more information about the configuration and usage of those devices.
 
 ### Setting up the software receiver
 
@@ -237,7 +237,7 @@ PVT.flag_rtcm_server=true
 You will need to adjust the values for at least two parameters:
 
   * Check that `SignalSource.device_address` points to the actual IP address of your USRP, if you are connected through Ethernet, or leave it empty for USB.
-  * Check that `SignalSource.subdevice` is set to the receiving slot in which you actually inserted your daughterboard with the antenna. In USRPs with only one receiving slot, leave it as `A:0`. Please check more details on [how to specify the subdevice](http://files.ettus.com/manual/page_configuration.html#config_subdev).
+  * Check that `SignalSource.subdevice` is set to the receiving slot in which you actually inserted your daughterboard with the antenna. In USRPs with only one receiving slot, leave it as `A:0`. Please check more details on [how to specify the subdevice](https://files.ettus.com/manual/page_configuration.html#config_subdev).
 
 The [Signal Processing Blocks documentation]({{ "/docs/sp-blocks/" | relative_url }}) provides definitions and more details about the configuration parameters.
 

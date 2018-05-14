@@ -467,7 +467,7 @@ InputFilter.item_type=cshort
 ## References
 
 
-[^Borio14]: D. Borio, [A Multi-State Notch Filter for GNSS Jamming Mitigation](http://ieeexplore.ieee.org/document/6934175/), in Proc. of the International Conference on Localization and GNSS (ICL-GNSS), pp. 1-6, June 2014, Helsinki, Finland. DOI: 10.1109/ICL-GNSS.2014.6934175.
+[^Borio14]: D. Borio, [A Multi-State Notch Filter for GNSS Jamming Mitigation](https://ieeexplore.ieee.org/document/6934175/), in Proc. of the International Conference on Localization and GNSS (ICL-GNSS), pp. 1-6, June 2014, Helsinki, Finland. DOI: 10.1109/ICL-GNSS.2014.6934175.
 
 [^Dovis15]: F. Dovis, Ed. [GNSS Interference Threats and Countermeasures](http://us.artechhouse.com/GNSS-Interference-Threats-Countermeasures-P1710.aspx), Artech House, Noordwood, MA, 2015.
 

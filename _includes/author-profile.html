@@ -38,7 +38,7 @@
         <li><a href="mailto:{{ author.email }}" ><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> <meta itemprop="email" content="{{ author.email }}" /> {{ site.data.ui-text[site.locale].email_label }}</a></li>
       {% endif %}
       {% if author.orcid %}
-        <li><a href="http://orcid.org/{{ author.orcid }}"  itemprop="sameAs"><i class="ai ai-fw ai-orcid" aria-hidden="true"></i> ORCID</a></li>
+        <li><a href="https://orcid.org/{{ author.orcid }}"  itemprop="sameAs"><i class="ai ai-fw ai-orcid" aria-hidden="true"></i> ORCID</a></li>
       {% endif %}
       {% if author.google-scholar %}
       <li><a href="https://scholar.google.es/citations?user={{ author.google-scholar }}"  itemprop="sameAs"><i class="ai ai-fw ai-google-scholar" aria-hidden="true"></i> Google Scholar</a></li>
