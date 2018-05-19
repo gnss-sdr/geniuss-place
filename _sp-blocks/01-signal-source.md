@@ -644,7 +644,7 @@ In order to make use of this block implementation, you need to build GNSS-SDR fr
 In Debian Buster or Ubuntu Cosmic, those dependencies can be installed as:
 
 ```bash
-$ sudo apt-get install gr-iio
+$ sudo apt-get install libiio-dev gr-iio
 ```
 
 In older releases or other distributions, dependencies can be built from source as:
