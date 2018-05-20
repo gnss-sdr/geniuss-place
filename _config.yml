@@ -27,7 +27,7 @@ atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
-search_provider          : "algolia"
+search_provider          : "algolia" # lunr (default), algolia, google
 algolia:
   application_id         : "C4WP3JR8NU"
   index_name             : "dev_geniuss-place"
@@ -41,6 +41,10 @@ algolia:
     - _pages/sitemap.md
     - _docs/01-documentation.md
   nodes_to_index         : 'p,blockquote,li'
+
+google:
+  search_engine_id       : "017711794320569483402:g-c4wz3ec44"
+  instant_search         : true # false (default), true
 
 # SEO Related
 google_site_verification : "googlefb1532d2ac258689"
