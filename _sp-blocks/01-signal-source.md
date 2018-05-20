@@ -5,7 +5,7 @@ excerpt: "Documentation for the Signal Source block."
 sidebar:
   nav: "sp-block"
 toc: true
-last_modified_at: 2018-02-05T15:54:02-04:00
+last_modified_at: 2018-05-19T15:54:02-04:00
 ---
 
 {% capture fig_img2 %}
@@ -639,7 +639,15 @@ The AD9361 RX signal path passes downconverted signals (I and Q) to the baseband
   <figcaption>Block diagram for the AD9361 RX signal path after downconversion, composed of two programmable analog low-pass filters, a 12-bit ADC, and four stages of digital decimating filters.</figcaption>
 </figure>
 
-In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies:
+In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies.
+
+In Debian Buster or Ubuntu Cosmic, those dependencies can be installed as:
+
+```bash
+$ sudo apt-get install libiio-dev gr-iio
+```
+
+In older releases or other distributions, dependencies can be built from source as:
 
 ```bash
 $ sudo apt-get install libxml2-dev bison flex
@@ -657,7 +665,7 @@ $ mkdir build && cd build && cmake .. && make && sudo make install
 $ cd ../..
 ```
 
-**Warning**: do **not** use gr-iio < 0.3 packaged in some Debian and Ubuntu distributions.
+**Warning**: do **not** use gr-iio < 0.3 packaged in Debian releases older than Buster and Ubuntu releases older than Cosmic.
 
 Once gr-iio is installed, build GNSS-SDR passing the flag ```-DENABLE_FMCOMMS2=ON``` at configure time:
 
