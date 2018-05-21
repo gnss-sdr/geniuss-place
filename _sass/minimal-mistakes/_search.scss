@@ -123,3 +123,15 @@
   font-style: normal;
   font-weight: bold;
 }
+
+/* Google Custom Search */
+
+.gs-title {
+  font-family: $global-font-family;
+  font-size: $type-size-4-5;
+}
+
+.gs-snippet {
+  font-family: $global-font-family;
+  font-size: $type-size-4-5;
+}
