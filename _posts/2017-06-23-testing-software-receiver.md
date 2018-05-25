@@ -761,7 +761,7 @@ Note: Google Test filter = RtcmTest.HexToInt*
 
 [^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](https://www.wiley.com/WileyCDA/WileyTitle/productCd-0470192410.html), Jossey-Bass, San Francisco, CA, 2009.
 
-[^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education), MIT Press, Cambridge, MA, 1993.
+[^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education-second-edition), MIT Press, Cambridge, MA, 1993.
 
 [^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Usnderstand - Improve - Apply](https://www.springer.com/gp/book/9783642137563), Springer-Verlag, Berlin, Germany, 2011.
 
