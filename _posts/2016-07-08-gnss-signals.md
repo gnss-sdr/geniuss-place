@@ -27,7 +27,7 @@ $$ \begin{equation}
 g(t)=\sum_{k=0}^{N_{c}-1}q(t-kT_{PRN}) \end{equation}
 $$
 
-and
+with
 
 $$ \begin{equation}
 q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)p(t-lT_{c}) ~, \end{equation}
