@@ -11,43 +11,41 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-04-29T09:37:02+02:00
+last_modified_at: 2018-06-02T09:37:02+02:00
 ---
 
 
 A _generic_ GNSS complex baseband signal transmitted by a given GNSS space vehicle $$ i $$ can be described as
 
 $$ \begin{equation}
-s_T(t)= \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}d(u)g(t-uT_{b_I}) ~, \end{equation}
+s_T(t)= \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}\Big( d_I(u)g_I(t-uT_{b_I}) + j d_Q(u)g_Q(t-uT_{b_Q})\Big)~, \end{equation}
 $$
 
-where
+where the Inphase and Quadrature (I&Q) components have the form
 
 $$ \begin{equation}
 g(t)=\sum_{k=0}^{N_{c}-1}q(t-kT_{PRN}) \end{equation}
 $$
 
-and
+with
 
 $$ \begin{equation}
-q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)p_{T}(t-lT_{c}) ~, \end{equation}
+q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)p(t-lT_{c}) ~, \end{equation}
 $$
 
 
-being $$ \mathcal{P}_{T} $$ the transmitting power, $$ d(u) $$ the navigation message data
-symbols, $$ T_{b} $$ the bit period,  $$ N_{c} $$ the number of
+being $$ \mathcal{P}_{T} $$ the transmitting power, $$ d(u) $$ the navigation message data symbols, $$ T_{b} $$ the bit period, $$ j $$ the imaginary unit, $$ N_{c} $$ the number of
 repetitions of a full codeword that spans a bit period,
 $$ T_{PRN}=\frac{T_{b}}{N_{c}} $$ the codeword period,
 $$ c_{i}(l) $$ a chip of a spreading codeword $$ i $$ of length
-$$ L_{c} $$ chips, $$ p_{T}(t) $$ the transmitting chip pulse shape,
+$$ L_{c} $$ chips, $$ p(t) $$ the transmitting chip pulse shape,
 which is considered energy-normalized for notation clarity, and
-$$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ is the chip period.
+$$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ the chip period. All parameters can be different in the I and the Q components, there can be uneven power balance among them, and everything will differ in each available frequency band.
 
-Particularizations of such signal structure for the different existing systems[^Fernandez11] are described below. The following notation is used: $$ \oplus $$ is the exclusive–or operation (modulo–2 addition),
-$$ |l|_{L} $$ means $$ l $$ modulo $$ L $$, $$ [l]_{L} $$ means the integer part of
-$$ \frac{l}{L} $$.
+This page describes particularizations of such signal structure for all the currently deployed and planned GNSS signals. The notation used in those descriptions is as follows: $$ \oplus $$ is the exclusive–or operation (modulo–2 addition), $$ |l|_{L} $$ means $$ l $$ modulo $$ L $$, $$ [l]_{L} $$ means the integer part of
+$$ \frac{l}{L} $$, and $$ p(t) $$ is a rectangular pulse of a chip–period duration, filtered at the transmitter at the nominal signal bandwidth and energy-normalized. Links to the official Interface Control Documents are provided in the [References](#references) section.
+{: .notice--info}
 
-[^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](https://ieeexplore.ieee.org/document/5942139/), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](https://dx.doi.org/10.1109/JPROC.2011.2158032).
 
 ## Global Positioning System (GPS)
 
@@ -78,12 +76,10 @@ $$ \begin{equation} e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [
 
 $$ \begin{equation} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}  \Big]  \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~, \end{equation} $$
 
-where $$ D_{\text{NAV}} $$ is the GPS navigation message bit
+where $$ D_{\text{NAV}} \in \{-1,1\} $$ is the GPS navigation message bit
 sequence, transmitted at $$ 50 $$ bit/s, $$ T_{c,\text{P(Y)}}=\frac{1}{10.23} $$
 $$ \mu $$s, $$ T_{c,\text{C/A}}=\frac{1}{1.023} $$ $$ \mu $$s,
-$$ L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$, and $$ p(t) $$ is a rectangular
-pulse of a chip–period duration and filtered at the
-transmitter. The precision P codes (named Y codes whenever the
+and $$ L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$. The precision P codes (named Y codes whenever the
 anti–spoofing mode is activated, encrypting the code and thus denying
 non–U.S. military users) are sequences of $$ 7 $$ days in length.
 
@@ -110,9 +106,7 @@ are not defined in IS-GPS-800D.
 _GPS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf), Dec. 2015.
 
-[^ISGPS800]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-800D: Navstar GPS Space Segment/User Segment L1C Interface](https://www.gps.gov/technical/icwg/IS-GPS-800D.pdf), Sept. 2013.
 
 ### GPS L2C
 
@@ -178,7 +172,6 @@ has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
 _GPS signals spectra in L5. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^ISGPS705]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-705D: Navstar GPS Space Segment/User Segment L5 Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-705D.pdf), Sept. 2013.
 
 
 ## GLONASS
@@ -214,7 +207,7 @@ simultaneously by a ground–based user.
 
 The modernization of GLONASS includes the adoption of the CDMA scheme[^GLONASS16], with new open signals called L1OC, L2OC and L3OC.
 
-[^GLONASS16]: Global Navigation Satellite System GLONASS. [General description of the system with code division of signals](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD.-Obshh.-opis.-Red.-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
+
 
 ### GLONASS L1
 
@@ -253,10 +246,6 @@ receivers, particularly low–cost equipment for mass–market applications.
 In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1600.99 $$ MHz, referred to as L1OC, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, launched from 2018. This documentation is only available in Russian [^GLONASS16-1].
 
 
-[^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf). Edition 5.1, Moscow, Russia, 2008.
-
-[^GLONASS16-1]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L1 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
-
 
 
 ### GLONASS L2
@@ -278,14 +267,12 @@ navigation satellites [crashed](https://www.youtube.com/watch?v=HpBYCLu6kXA) soo
 
 In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1248.06 $$ MHz, referred to as L2OC and featuring a BOC(1,1) modulation, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, to be launched from 2018. This documentation is only available in Russian [^GLONASS16-2].
 
-[^GLONASS16-2]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L2 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
 
 ### GLONASS L3
 
 In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1202.025 $$ MHz, referred to as L3OC and featuring a BPSK(10) modulation, to be broadcast by GLONASS satellites starting by Glonass-M, in production since 2014. This documentation is only available in Russian [^GLONASS16-3].
 
-[^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
 ## Galileo
 
@@ -345,7 +332,7 @@ structure of the navigation message have not been made public.
 _Galileo signals spectra in E1. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
-[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
+
 
 ### Galileo E6
 
@@ -542,12 +529,6 @@ of the ICD, Ran Chengqi, director of China Satellite Navigation Office,
 said the English designation will henceforth be BeiDou Navigation
 Satellite System with the abbreviation BDS.
 
-[^BeidouB1C]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B1C (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf). China Satellite Navigation Office, December 2017.
-
-[^BeidouB2a]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B2a (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf). China Satellite Navigation Office, December 2017.
-
-[^BeidouB3I]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B3I (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf). China Satellite Navigation Office, February 2018.
-
 Updated information can be found at the [Beidou Navigation Satellite System website](http://www.beidou.gov.cn/). The status of the constellation can be consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
 
 
@@ -568,7 +549,6 @@ Beidou's Interface Control Document version 2.1 describes the Inphase
 
 The B1I signal is also transmitted by all satellites of BDS-3.
 
-[^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese). [English version](https://drive.google.com/file/d/19ixverkr6usYFirV_HVtwPzOlQfVL2dC/view?usp=sharing).
 
 ### BeiDou B1C
 
@@ -713,3 +693,31 @@ The following table lists the GNSS signals providing Open Service.
 
 
 ## References
+
+[^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](https://ieeexplore.ieee.org/document/5942139/), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](https://dx.doi.org/10.1109/JPROC.2011.2158032).
+
+[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf), Dec. 2015.
+
+[^ISGPS800]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-800D: Navstar GPS Space Segment/User Segment L1C Interface](https://www.gps.gov/technical/icwg/IS-GPS-800D.pdf), Sept. 2013.
+
+[^ISGPS705]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-705D: Navstar GPS Space Segment/User Segment L5 Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-705D.pdf), Sept. 2013.
+
+[^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf). Edition 5.1, Moscow, Russia, 2008.
+
+[^GLONASS16]: Global Navigation Satellite System GLONASS. [General description of the system with code division of signals](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD.-Obshh.-opis.-Red.-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
+
+[^GLONASS16-1]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L1 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
+
+[^GLONASS16-2]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L2 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
+
+[^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
+
+[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
+
+[^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese). [English version](https://drive.google.com/file/d/19ixverkr6usYFirV_HVtwPzOlQfVL2dC/view?usp=sharing).
+
+[^BeidouB1C]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B1C (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf). China Satellite Navigation Office, December 2017.
+
+[^BeidouB2a]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B2a (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf). China Satellite Navigation Office, December 2017.
+
+[^BeidouB3I]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B3I (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf). China Satellite Navigation Office, February 2018.
