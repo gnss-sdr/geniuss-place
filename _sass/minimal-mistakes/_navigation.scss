@@ -227,7 +227,7 @@
         }
       }
     }
-    
+
     a {
       position: relative;
 
@@ -532,12 +532,6 @@
 
     &:hover {
       color: $text-color;
-    }
-  }
-
-  > li:last-child {
-    a {
-      border-bottom: none;
     }
   }
 
