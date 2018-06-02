@@ -5,6 +5,7 @@ excerpt: "Documentation for the Input Filter block."
 sidebar:
   nav: "sp-block"
 toc: true
+toc_sticky: true
 last_modified_at: 2017-11-06T15:54:02+02:00
 ---
 

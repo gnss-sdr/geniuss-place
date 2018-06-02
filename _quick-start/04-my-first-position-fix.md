@@ -8,6 +8,7 @@ header:
 sidebar:
   nav: "start"
 toc: true
+toc_sticky: true
 ---
 
 **This page is the "_Hello, world!_&nbsp;" for GNSS-SDR**. It will guide you from the scratch up to getting position fixes with GNSS-SDR, in one of its simplest configurations. The signal source will be a file (freely available on the Internet) containing raw signal samples, so this procedure does not require the availability of a radio frequency front-end nor a powerful computer executing the software receiver. The only requirement is GNSS-SDR installed in your computer, and an Internet connection to download the file containing the raw signal samples.

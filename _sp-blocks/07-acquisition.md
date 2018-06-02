@@ -5,6 +5,7 @@ excerpt: "Documentation for the Acquisition block."
 sidebar:
   nav: "sp-block"
 toc: true
+toc_sticky: true
 last_modified_at: 2018-04-10T15:54:02-04:00
 ---
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of an _Acquisition_ block can be written as:
@@ -283,7 +284,9 @@ Acquisition_1C.tong_max_dwells=20
 
 The Galileo E1 Open Service signal can be written as:[^GalileoICD]
 
-$$ \begin{equation} s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{equation} $$
+$$ \begin{eqnarray} s^{\text{(Gal E1)}}_{T}(t)& = &\frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) + \nonumber \\
+ {} & {} & -~e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{eqnarray} $$
+
 
 where $$ sc_A(t) $$ and $$ sc_B(t) $$ are the subcarriers defined as
 $$ sc_A(t)= \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big) $$ and
@@ -293,11 +296,11 @@ $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 Channel B contains the I/NAV type of navigation message,
 $$ D_{I/NAV} $$, and can be expressed as:
 
-$$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big]    p(t - lT_{c,E1B})~. \end{equation} $$
+$$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big] \cdot p(t - lT_{c,E1B})~. \end{equation} $$
 
 In case of channel C, it is a pilot (dataless) channel with a secondary code with a length of 100 ms, forming a tiered code:
 
-$$ \begin{equation} e_{E1C}(t) = \sum_{m=-\infty}^{+\infty}C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
+$$ \!\!\!\!\!\!\begin{equation} e_{E1C}(t) =\! \sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
 
 with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$ ms.
 
@@ -318,11 +321,11 @@ d_{E1B}^{(\text{sinBOC})}[n]= \sum_{l=-\infty}^{+\infty}  C_{E1B}\Big[|l|_{4092}
 
 while for E1C, users can choose among:
 
-$$ \begin{equation} d_{E1C}^{(\text{CBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right) \end{equation} $$
+$$ \begin{eqnarray} d_{E1C}^{(\text{CBOC})}[n] &= &\sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \nonumber \\ {} & {} & \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right) \end{eqnarray} $$
 
 or
 
-$$ \begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big]   \! \cdot  \!   p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n]~. \end{equation} $$
+$$ \!\!\!\begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big]   \! \cdot  \!   p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n]~. \end{equation} $$
 
 The simpler sinBOC options are chosen by default. CBOC versions can be set by `Acquisition_1B.cboc=true`.
 Next figure plots the shape of the cross-correlation function for those waveforms:

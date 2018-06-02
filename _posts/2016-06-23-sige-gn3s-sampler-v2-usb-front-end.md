@@ -14,6 +14,7 @@ redirect_from:
   - /documentation/sige-gn3s-sampler-v2-usb-front-end
   - /node/51
 toc: true
+toc_sticky: true
 ---
 
 

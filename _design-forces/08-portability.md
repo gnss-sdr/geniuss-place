@@ -5,6 +5,7 @@ excerpt: "It refers to the usability of the same software in different environme
 header:
   teaser: /assets/images/design-force-teaser.png
 toc: true
+toc_sticky: true
 last_modified_at: 2017-08-09T15:54:02-04:00
 ---
 

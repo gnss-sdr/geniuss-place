@@ -8,6 +8,7 @@ header:
 sidebar:
   nav: "start"
 toc: true
+toc_sticky: true
 redirect_from:
   - /documentation/building-guide
   - /node/45

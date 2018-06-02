@@ -5,6 +5,7 @@ excerpt: "Documentation for the Data Type Adapter block."
 sidebar:
   nav: "sp-block"
 toc: true
+toc_sticky: true
 last_modified_at: 2017-07-08T15:54:02-04:00
 ---
 
