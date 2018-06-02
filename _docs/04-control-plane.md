@@ -5,6 +5,7 @@ excerpt: "Configuring and managing a network of connected signal processing bloc
 header:
   teaser: /assets/images/multi-band-multi-system-flow-graph-th.png
 toc: true
+toc_sticky: true
 last_modified_at: 2016-04-13T15:54:02-04:00
 ---
 

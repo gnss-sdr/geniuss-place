@@ -10,6 +10,7 @@ tags:
 sidebar:
   nav: "docs"
 toc: true
+toc_sticky: true
 ---
 
 

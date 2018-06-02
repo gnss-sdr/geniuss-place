@@ -7,6 +7,7 @@ header:
   teaser: "/assets/images/geniuss-contribute.png"
 comments: true
 toc: true
+toc_sticky: true
 redirect_from:
   - /node/19
   - /participate

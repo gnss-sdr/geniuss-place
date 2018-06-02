@@ -5,6 +5,7 @@ excerpt: "Documentation for the Tracking block."
 sidebar:
   nav: "sp-block"
 toc: true
+toc_sticky: true
 last_modified_at: 2018-04-10T15:54:02-04:00
 ---
 
@@ -193,7 +194,7 @@ pulse of a chip–period duration.
 
 Then, applying equation $$ (\ref{GPSL1}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as:
 
-$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L1)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+$$ \begin{equation} \!\!\!\!\!\!\!\!\! x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L1)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
 
 The implementations described below perform the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 
@@ -338,7 +339,8 @@ This band, centered at $$ f_{\text{Gal E1}}=1575.420 $$ MHz and
 with a reference bandwidth of $$ 24.5520 $$ MHz, uses the Composite Binary
 Offset Carrier (CBOC) modulation, defined in baseband as:
 
-$$ \begin{equation} \label{GalE1} s^{\text{(Gal E1)}}_{T}(t) = \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) - e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{equation} $$
+$$ \begin{eqnarray} s^{\text{(Gal E1)}}_{T}(t)& = &\frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) + \nonumber \\
+ {} & {} & -~e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{eqnarray} $$
 
 where the subcarriers $$ sc(t) $$ are defined as
 
@@ -356,14 +358,14 @@ $$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Bi
 In case of channel C, it is a pilot (dataless) channel with a
 secondary code, forming a tiered code:
 
-$$ \begin{equation} e_{E1C}(t) = \sum_{m=-\infty}^{+\infty}C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
+$$ \begin{equation} \!\!\!\!\!\!\!\!\!\!\!\!\!\!e_{E1C}(t) = \!\sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
 
 with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$
 ms.
 
 Then, applying equation $$ (\ref{GalE1}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
 
-$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(Gal E1)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+$$ \begin{equation} \!\!\!\!\!\!\!\!\!x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(Gal E1)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
 
 The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 
@@ -572,7 +574,7 @@ $$ D_{\text{GNAV}} $$ is transmitted at $$ 50 $$ bit/s.
 
 Then, applying equation $$ (\ref{GLOL1}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
 
-$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GLO L1)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+$$ \begin{equation} \!\!\!\!\!\!\!\!\!x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GLO L1)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
 
 The implementations described below perform the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 
@@ -680,7 +682,8 @@ $$ \begin{equation} e_{L2I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ 
 
 and
 
-$$ \begin{equation} e_{L2Q}(t)  =  \sum_{l=-\infty}^{\infty}\left( D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus   C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{1}{2}\right)T_{c,L2C}\right) \right)~, \end{equation} $$
+$$ \begin{eqnarray} e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty}\left( D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus   C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + \right. \nonumber \\
+{} & {} & \left. +~C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{1}{2}\right)T_{c,L2C}\right) \right)~, \end{eqnarray} $$
 
 where $$ T_{c,L2C}=\frac{1}{511.5} $$ ms and $$ p_{\text{1/2}}(t) $$ is a
 rectangular pulse of half chip–period duration, thus time–multiplexing
@@ -691,7 +694,7 @@ long and it repeats every $$ 20 $$ ms.
 
 Then, applying equation $$ (\ref{GPSL2}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
 
-$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L2)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+$$ \begin{equation} \!\!\!\!\!\!\!\!\!x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L2)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
 
 The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 
@@ -843,9 +846,12 @@ $$ f_{\text{GPS L5}}=1176.45 $$ MHz, this signal can be written as:
 
 $$ \begin{equation} \label{GPSL5} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{equation} $$
 
-$$ \begin{equation} e_{L5I}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ D_{\text{CNAV}}\Big[ [m]_{10}\Big]    \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big]  p(t - m T_{c,nh} - lT_{c,L5}) ~,\end{equation} $$
+with:
 
-$$ \begin{equation} e_{L5Q}(t) = \sum_{m=-\infty}^{+\infty} C_{nh_{20}} \Big[ |m|_{20}\Big]   \oplus  \sum_{l=1}^{102300}C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, \end{equation} $$
+$$ \begin{eqnarray} e_{L5I}(t) & = & \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ D_{\text{CNAV}}\Big[ [m]_{10}\Big] \oplus \nonumber \\
+{} & {} &  \oplus \sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5}) ~,\end{eqnarray} $$
+
+$$ \begin{equation}\!\!\!\!\!\!\!\!\!\!\!\!\!\!\! e_{L5Q}(t) = \!\sum_{m=-\infty}^{+\infty} \!C_{nh_{20}} \Big[ |m|_{20}\Big] \!  \oplus  \! \sum_{l=1}^{102300}\!C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, \end{equation} $$
 
 where $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
 component contains a synchronization sequence $$ C_{nh_{10}}=0000110101 $$,
@@ -855,7 +861,7 @@ has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
 
 Then, applying equation $$ (\ref{GPSL5}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
 
-$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L5)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+$$ \begin{equation}\!\!\!\!\!\!\!\!\! x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(GPS L5)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
 
 The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 
@@ -922,15 +928,16 @@ $$ \begin{equation} \label{GalE5a} s^{\text{(Gal E5a)}}_{T}(t) = e_{E5aI}(t)+je_
 
 where the signal components are defined as:
 
-$$ \begin{equation} e_{E5aI}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation} $$
+$$ \begin{eqnarray} e_{E5aI}(t) & = & \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \nonumber \\
+{} & {} & \oplus D_{\text{F/NAV}} \Big[ [l]_{204600}\Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{eqnarray} $$
 
-$$ \begin{equation} e_{E5aQ}(t) = \sum_{m=-\infty}^{+\infty}C_{E5aQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation}$$
+$$ \begin{equation} \!\!\!\!\!\!\!\!\!\!\!\!\!\!e_{E5aQ}(t) \! = \! \sum_{m=-\infty}^{+\infty}\!C_{E5aQs}\Big[|m|_{100}\Big]\! \oplus \!\sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{equation}$$
 
 where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s.
 
 Then, applying equation $$ (\ref{GalE5a}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
 
-$$ \begin{equation} x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(Gal E5a)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
+$$ \begin{equation} \!\!\!\!\!\!\!\!\!x_\text{IN}[k] =  A(kT_s)\tilde{s}^{\text{(Gal E5a)}}_{T}(kT_s-\tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~. \end{equation} $$
 
 The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$ and $$ \phi $$, which are assumed piecewise constant (that is, constant within an integration time, but allowed to vary from one integration period to the next one).
 

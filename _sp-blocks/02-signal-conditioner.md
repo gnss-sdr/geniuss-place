@@ -5,6 +5,7 @@ excerpt: "Documentation for the Signal Conditioner block."
 sidebar:
   nav: "sp-block"
 toc: true
+toc_sticky: true
 last_modified_at: 2016-04-13T15:54:02-04:00
 ---
 

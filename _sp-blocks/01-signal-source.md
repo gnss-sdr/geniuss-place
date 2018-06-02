@@ -5,6 +5,7 @@ excerpt: "Documentation for the Signal Source block."
 sidebar:
   nav: "sp-block"
 toc: true
+toc_sticky: true
 last_modified_at: 2018-05-19T15:54:02-04:00
 ---
 

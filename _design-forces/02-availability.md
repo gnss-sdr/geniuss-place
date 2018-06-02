@@ -5,6 +5,7 @@ excerpt: "The degree to which a system, subsystem or equipment is in a specified
 header:
   teaser: /assets/images/design-force-teaser.png
 toc: true
+toc_sticky: true
 last_modified_at: 2016-07-29T15:54:02-04:00
 ---
 
@@ -124,7 +125,7 @@ TTFF test results should be reported as:
 **Example of report**: For a receiver with a mean TTFF of 90 seconds, minimum measured value of 75 seconds, maximum measured value of 110 seconds, valid sample size of 20 with no invalid samples, sample deviation of 8 seconds, using GPS L1 C/A signals in 3D mode, and assuming a cold start with no external source of information, when executing version X.Y.Z of the software receiver in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, the results would be presented as:
 
 |----------
-|  **Mean TTFF**  |  **Max TTFF** | **Min TTFF** | **Sample Dev / Size** | **Init. status** | **Nav. Mode** | **DGNSS** |  **Signal** | **Source** | **Processing platform** | **Operating system** |  **Source code unique ID**  |
+|  **Mean TTFF**  |  **Max TTFF** | **Min TTFF** | **Sample Dev / Size** | **Init. status** | **Nav. Mode** | **DGNSS** |  **Signal** | **Source** | **Processing platform** | **OS** |  **Source code unique ID**  |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |--------------
 | 90 | 110 | 75 | 8 (20 of 20) | cold | 3D | N | 1C | Live | Brand B, Model M | Ubuntu 16.04 (64 bits) | X.Y.Z |
@@ -165,7 +166,7 @@ Reacquisition Time test results should be reported as:
 
 
 |----------
-|  **Mean REAQ**  |  **Blockage Time** |**Max REAQ** | **Min REAQ** | **Sample Dev / Size** | **Nav. Mode** | **DGNSS** | **Signal** | **Source** | **Processing platform** | **Operating system** |  **Source code unique ID**  |
+|  **Mean REAQ**  |  **Block Time** |**Max REAQ** | **Min REAQ** | **Sample Dev / Size** | **Nav. Mode** | **DGNSS** | **Signal** | **Source** | **Processing platform** | **OS** |  **Source code unique ID**  |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |--------------
 | 5 | 30 | 2 | 35 | 1 (50 of 52) | 3D | N | 1B | Sim | Brand B, Model M | Ubuntu 16.04 (64 bits) | X.Y.Z |
@@ -178,7 +179,7 @@ Acquisition sensitivity determines the minimum signal power threshold that allow
 Sensitivity is one of the most important measurements of a GNSS receiver's capability. In fact, for many commercial-grade GNSS receivers, it is often the only RF measurement performed in production test of the final product.
 {: .notice--info}
 
-A receiver's sensitivity is highly dependent on the noise figure of the RF front-end. This relation can be written as:
+A receiver's sensitivity is highly dependent on the [noise figure](https://en.wikipedia.org/wiki/Noise_figure) of the RF front-end. This relation can be written as:
 
 $$ \begin{equation} \text{Sensitivity} =  N_{\text{dBm}} + {C/N_0}_{\text{min}} + \text{NF}_{\text{Rx}} \end{equation} $$
 

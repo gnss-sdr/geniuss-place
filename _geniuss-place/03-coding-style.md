@@ -7,6 +7,7 @@ header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
 toc: true
+toc_sticky: true
 ---
 
 

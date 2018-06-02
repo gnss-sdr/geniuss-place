@@ -9,6 +9,7 @@ header:
 sidebar:
   nav: "start"
 toc: true
+toc_sticky: true
 ---
 
 

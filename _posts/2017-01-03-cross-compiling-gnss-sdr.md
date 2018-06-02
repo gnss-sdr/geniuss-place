@@ -11,6 +11,7 @@ tags:
 sidebar:
   nav: "docs"
 toc: true
+toc_sticky: true
 last_modified_at: 2018-03-06T09:37:02+02:00
 ---
 
