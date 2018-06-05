@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-05-06T15:54:02-04:00
+last_modified_at: 2018-06-05T15:54:02-04:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a signal sink, since the stream of data flowing along the receiver ends here.
@@ -527,6 +527,8 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `phwindup` | [`0`, `1`]: Set whether the phase windup correction $$ \phi_{pw} $$ for PPP modes is applied or not. It defaults to $$ 0 $$ (no phase windup correction). | Optional |
 | `earth_tide` | [`0`, `1`]: Set whether earth tides correction is applied or not. If set to $$ 1 $$, the solid earth tides correction $$ \mathbf{d}_{r,disp} $$ is applied to the PPP solution, following the description in [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html)[^McCarthy04], Chapter 7. It defaults to $$ 0 $$ (no Earth tide correction). | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
+| `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. It defaults to 1000 ms. | Optional |
+| `rinexnav_rate_ms`| Rate at which navigation message's parameters are annotated in the RINEX file, in ms. It defaults to 6000 ms. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
 | `nmea_dump_devname` | If `flag_nmea_tty_port` is set to `true`, descriptor of the serial port device.  It defaults to `/dev/tty1`. | Optional |
