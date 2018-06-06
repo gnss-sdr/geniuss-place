@@ -144,7 +144,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -190,7 +190,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_PCPS_Acquisition_Fine_Doppler` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is defined in this version. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to $$ 5000 $$ Hz. | Optional |
 | `doppler_min`  | Minimum Doppler value in the search grid, in Hz. It defaults to $$ -5000 $$ Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
@@ -250,7 +250,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_Tong_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -353,7 +353,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E1_PCPS_Ambiguous_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -409,7 +409,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E1_PCPS_Tong_Ambiguous_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    | Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -463,7 +463,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GLONASS_L1_CA_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -512,7 +512,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L2_M_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    | Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -564,7 +564,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GLONASS_L2_CA_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -615,7 +615,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L5i_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -716,7 +716,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). | Optional |
+| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `CAF_window_hz` | Resolves Doppler ambiguity by averaging the specified bandwidth (in Hz) in the winner code delay. If set to $$ 0 $$, the CAF filter is deactivated. Recommended value: $$ 3000 $$ Hz. It defaults to 0 Hz. | Optional |
