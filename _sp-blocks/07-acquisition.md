@@ -134,7 +134,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -144,7 +144,6 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -154,7 +153,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| <span style="color: DarkOrange">`blocking`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to `true`.</span> | <span style="color: DarkOrange">Optional</span> |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -180,7 +179,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -190,7 +189,6 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_PCPS_Acquisition_Fine_Doppler` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is defined in this version. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to $$ 5000 $$ Hz. | Optional |
 | `doppler_min`  | Minimum Doppler value in the search grid, in Hz. It defaults to $$ -5000 $$ Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
@@ -240,7 +238,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -250,7 +248,6 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_Tong_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -343,7 +340,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -353,18 +350,17 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E1_PCPS_Ambiguous_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `cboc` | [`true`, `false`]: If set to `true` the algorithm uses the CBOC waveform , if set to `false` a simpler sinBOC waveform is used. It defaults to `false`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a multiple of 4 ms. It defaults to 4 ms. | Optional |
-| <span style="color: DarkOrange">`acquire_pilot`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `true`, sets the receiver to acquire the E1C pilot component. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to `false` (that is, the receiver is set to acquire the E1B data component).</span> | <span style="color: DarkOrange">Optional</span> |
+| `acquire_pilot` | [`true`, `false`]: If set to `true`, sets the receiver to acquire the E1C pilot component. It defaults to `false` (that is, the receiver is set to acquire the E1B data component). <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| <span style="color: DarkOrange">`blocking`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to `true`.</span> | <span style="color: DarkOrange">Optional</span> |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -399,7 +395,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -409,7 +405,6 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E1_PCPS_Tong_Ambiguous_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    | Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -444,16 +439,13 @@ Acquisition_1B.tong_max_dwells=20
 
 ### Implementation: `GLONASS_L1_CA_PCPS_Acquisition`
 
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
-This implementation accepts the following parameters:
+This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -463,7 +455,6 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GLONASS_L1_CA_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -502,7 +493,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -512,7 +503,6 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L2_M_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    | Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -522,7 +512,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| <span style="color: DarkOrange">`blocking`</span> | <span style="color: DarkOrange">[`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to `true`.</span> | <span style="color: DarkOrange">Optional</span> |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -545,16 +535,14 @@ Acquisition_2S.max_dwells=2
 
 ### Implementation: `GLONASS_L2_CA_PCPS_Acquisition`
 
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
 
-This implementation accepts the following parameters:
+This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -564,7 +552,6 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GLONASS_L2_CA_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -596,10 +583,7 @@ Acquisition_2G.pfa=0.0001
 
 ### Implementation: `GPS_L5i_PCPS_Acquisition`
 
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
-This implementation accepts the following parameters:
+This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -615,7 +599,6 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L5i_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
@@ -648,10 +631,7 @@ Acquisition_L5.max_dwells=2
 
 ### Implementation: `Galileo_E5a_Pcps_Acquisition`
 
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
-This implementation accepts the following parameters:
+This implementation, is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
 
 
 |----------
@@ -706,7 +686,7 @@ This implementation accepts the following parameters:
 |  **Global Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_hz` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
 
@@ -716,7 +696,6 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `if`        |  Intermediate frequency of the incoming signal, in Hz. It defaults to $$ 0 $$ (_i.e._, complex baseband signal). <span style="color: DarkOrange">This parameter has been removed from the `next` branch. Please use an [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) to remove IF.</span> | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `CAF_window_hz` | Resolves Doppler ambiguity by averaging the specified bandwidth (in Hz) in the winner code delay. If set to $$ 0 $$, the CAF filter is deactivated. Recommended value: $$ 3000 $$ Hz. It defaults to 0 Hz. | Optional |

@@ -130,10 +130,7 @@ This implementation accepts the following parameters:
 
 ### Implementation: `GLONASS_L1_CA_Telemetry_Decoder`
 
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
-This implementation accepts the following parameters:
+This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -158,10 +155,7 @@ TelemetryDecoder_1G.dump=false
 
 ### Implementation: `GLONASS_L2_CA_Telemetry_Decoder`
 
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
-This implementation accepts the following parameters:
+This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -234,9 +228,6 @@ TelemetryDecoder_2S.dump=true
 
 ### Implementation: `GPS_L5_Telemetry_Decoder`
 
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
 The GPS L5 baseband signal can be written as:
 
 $$ \begin{equation} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{equation} $$
@@ -256,7 +247,7 @@ GPS L5 civil navigation data $$ D_{\text{CNAV}} $$. The message structure is the
 _GPS L5 CNAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
-This implementation accepts the following parameters:
+This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |

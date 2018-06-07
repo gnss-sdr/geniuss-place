@@ -316,9 +316,6 @@ specified in `SignalSource.filename`.
 
 ### Implementation: `Spir_GSS6450_File_Signal_Source`
 
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
 [![GSS6450]({{ "/assets/images/GSS6450.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://www.spirent.com/Products/GSS6450)
 
 The Spirent [GSS6450](https://www.spirent.com/Products/GSS6450) Record and Playback System digitizes and stores the RF signals from real GNSS satellites along with any interference observed in the GNSS bands. These recordings are then made available for subsequent playback.
@@ -372,9 +369,6 @@ SignalSource.adc_bits=4
 ```
 
 ### Implementation: `Labsat_Signal_Source`
-
-**IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
 
 [![LabSat3]({{ "/assets/images/labsat3.jpg" | relative_url }}){:width="250x"}{: .align-right}](https://www.labsat.co.uk/index.php/en/products/labsat-3)
 
@@ -550,7 +544,7 @@ This implementation accepts the following parameters:
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only  <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. | Optional |
 | `osmosdr_args` | Pass arguments to the OsmoSDR driver.  | Optional |
-| <span style="color: DarkOrange">`antenna`</span> | <span style="color: DarkOrange">[`NONE`, `LNAL`, `LNAH`, `LNAW`]: Select the LimeSDR RX antenna. `LNAW` is recommended for GNSS applications. It defaults to _empty_.</span> | <span style="color: DarkOrange">Optional</span> |
+| `antenna` | [`NONE`, `LNAL`, `LNAH`, `LNAW`]: Select the LimeSDR RX antenna. `LNAW` is recommended for GNSS applications. It defaults to _empty_. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
 | `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
