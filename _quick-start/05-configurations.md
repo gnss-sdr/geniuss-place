@@ -154,7 +154,7 @@ Copy the configuration below into your favorite plain text editor and save it wi
 [GNSS-SDR]
 
 ;######### GLOBAL OPTIONS ##################
-GNSS-SDR.internal_fs_hz=4000000
+GNSS-SDR.internal_fs_sps=4000000
 
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=UHD_Signal_Source
@@ -224,15 +224,22 @@ Tracking_1C.early_late_space_chips=0.5
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
 
 ;######### OBSERVABLES CONFIG ############
-Observables.implementation=GPS_L1_CA_Observables
+Observables.implementation=Hybrid_Observables
 
 ;######### PVT CONFIG ############
-PVT.implementation=GPS_L1_CA_PVT
-PVT.averaging_depth=10
-PVT.flag_averaging=true
-PVT.output_rate_ms=100
+PVT.implementation=RTKLIB_PVT
+PVT.positioning_mode=Single
+PVT.output_rate_ms=10
 PVT.display_rate_ms=500
+PVT.iono_model=Broadcast
+PVT.trop_model=Saastamoinen
 PVT.flag_rtcm_server=true
+PVT.flag_rtcm_tty_port=false
+PVT.rtcm_dump_devname=/dev/pts/1
+PVT.rtcm_tcp_port=2101
+PVT.rtcm_MT1019_rate_ms=5000
+PVT.rtcm_MT1077_rate_ms=1000
+PVT.rinex_version=2
 ```
 
 You will need to adjust the values for at least two parameters:
@@ -256,7 +263,7 @@ You should see something similar to:
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
 linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010.git-0-2d68f228
 
-Initializing GNSS-SDR v0.0.9 ... Please wait.
+Initializing GNSS-SDR v0.0.10 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 -- X300 initialization sequence...
@@ -443,7 +450,7 @@ A possible configuration file could be:
 [GNSS-SDR]
 
 ;######### GLOBAL OPTIONS ##################
-GNSS-SDR.internal_fs_hz=2000000
+GNSS-SDR.internal_fs_sps=2000000
 
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=Osmosdr_Signal_Source
@@ -529,39 +536,24 @@ TelemetryDecoder_1C.dump=false
 TelemetryDecoder_1C.decimation_factor=1;
 
 ;######### OBSERVABLES CONFIG ############
-Observables.implementation=GPS_L1_CA_Observables
-Observables.dump=true
+Observables.implementation=Hybrid_Observables
+Observables.dump=false
 Observables.dump_filename=./observables.dat
 
 ;######### PVT CONFIG ############
-PVT.implementation=GPS_L1_CA_PVT
-PVT.flag_averaging=true
-PVT.averaging_depth=5
-PVT.output_rate_ms=100
+PVT.implementation=RTKLIB_PVT
+PVT.positioning_mode=Single
+PVT.output_rate_ms=10
 PVT.display_rate_ms=500
-PVT.flag_nmea_tty_port=false;
-PVT.nmea_dump_devname=/dev/pts/4
-PVT.nmea_dump_filename=./gnss_sdr_pvt.nmea;
-PVT.flag_rtcm_server=false
+PVT.iono_model=Broadcast
+PVT.trop_model=Saastamoinen
+PVT.flag_rtcm_server=true
 PVT.flag_rtcm_tty_port=false
 PVT.rtcm_dump_devname=/dev/pts/1
-PVT.dump=false
-PVT.dump_filename=./PVT
-
-;######### PVT CONFIG if using the next branch ####
-;PVT.implementation=RTKLIB_PVT
-;PVT.positioning_mode=Single
-;PVT.output_rate_ms=100
-;PVT.display_rate_ms=500
-;PVT.iono_model=Broadcast
-;PVT.trop_model=Saastamoinen
-;PVT.flag_rtcm_server=true
-;PVT.flag_rtcm_tty_port=false
-;PVT.rtcm_dump_devname=/dev/pts/1
-;PVT.rtcm_tcp_port=2101
-;PVT.rtcm_MT1019_rate_ms=5000
-;PVT.rtcm_MT1077_rate_ms=1000
-;PVT.rinex_version=2
+PVT.rtcm_tcp_port=2101
+PVT.rtcm_MT1019_rate_ms=5000
+PVT.rtcm_MT1077_rate_ms=1000
+PVT.rinex_version=2
 
 ```
 

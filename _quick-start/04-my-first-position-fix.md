@@ -28,11 +28,11 @@ you should see something similar to:
 $ gnss-sdr --version
 linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010
 
-gnss-sdr version 0.0.9
+gnss-sdr version 0.0.10
 $  
 ```
 
-Please check that your installed version is 0.0.9 (or something like 0.0.9.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.9, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
+Please check that your installed version is 0.0.10 (or something like 0.0.10.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.10, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
 If you see something like:
@@ -79,7 +79,7 @@ Then, copy the GNSS-SDR configuration shown below and paste it into your favorit
 [GNSS-SDR]
 
 ;######### GLOBAL OPTIONS ##################
-GNSS-SDR.internal_fs_hz=2000000
+GNSS-SDR.internal_fs_sps=2000000
 
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=File_Signal_Source
@@ -121,14 +121,22 @@ Tracking_1C.dll_bw_hz=4.0;
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
 
 ;######### OBSERVABLES CONFIG ############
-Observables.implementation=GPS_L1_CA_Observables
+Observables.implementation=Hybrid_Observables
 
 ;######### PVT CONFIG ############
-PVT.implementation=GPS_L1_CA_PVT
-PVT.averaging_depth=100
-PVT.flag_averaging=true
+PVT.implementation=RTKLIB_PVT
+PVT.positioning_mode=Single
 PVT.output_rate_ms=10
 PVT.display_rate_ms=500
+PVT.iono_model=Broadcast
+PVT.trop_model=Saastamoinen
+PVT.flag_rtcm_server=true
+PVT.flag_rtcm_tty_port=false
+PVT.rtcm_dump_devname=/dev/pts/1
+PVT.rtcm_tcp_port=2101
+PVT.rtcm_MT1019_rate_ms=5000
+PVT.rtcm_MT1077_rate_ms=1000
+PVT.rinex_version=2
 ```
 
 **NOTE:** Check that the parameter `SignalSource.filename` actually points to the name and path of your raw data file.
