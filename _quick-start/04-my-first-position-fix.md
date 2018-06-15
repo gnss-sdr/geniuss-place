@@ -26,8 +26,6 @@ you should see something similar to:
 
 ```bash
 $ gnss-sdr --version
-linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010
-
 gnss-sdr version 0.0.10
 $  
 ```
@@ -168,13 +166,13 @@ You should see something similar to:
 
 ```
 $ gnss-sdr --config_file=./my-first-GNSS-SDR-receiver.conf
-linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010.git-0-2d68f228
-
-Initializing GNSS-SDR v0.0.8 ... Please wait.
+Initializing GNSS-SDR v0.0.10 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 Processing file /home/your-username/work/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat, which contains 1600000000 [bytes]
 GNSS signal recorded time to be processed: 99.999 [s]
+Starting a TCP/IP server of RTCM messages on port 2101
+The TCP/IP server of RTCM messages is up and running. Accepting connections ...
 ...
 ```
 
@@ -182,45 +180,52 @@ Then, after some seconds detecting GPS signals and decoding some frames of their
 
 ```
 ...
-Current input signal time = 42 [s]
-NAV Message: received subframe 1 from satellite GPS PRN 20 (Block IIR)
-NAV Message: received subframe 1 from satellite GPS PRN 01 (Block IIF)
-NAV Message: received subframe 1 from satellite GPS PRN 32 (Block IIF)
-NAV Message: received subframe 1 from satellite GPS PRN 11 (Block IIR)
-NAV Message: received subframe 1 from satellite GPS PRN 17 (Block IIR-M)
-Current input signal time = 43 [s]
-Current input signal time = 44 [s]
-Current input signal time = 45 [s]
-Current input signal time = 46 [s]
-Current input signal time = 47 [s]
-Current input signal time = 48 [s]
-NAV Message: received subframe 2 from satellite GPS PRN 20 (Block IIR)
-NAV Message: received subframe 2 from satellite GPS PRN 01 (Block IIF)
-NAV Message: received subframe 2 from satellite GPS PRN 32 (Block IIF)
-NAV Message: received subframe 2 from satellite GPS PRN 11 (Block IIR)
-NAV Message: received subframe 2 from satellite GPS PRN 17 (Block IIR-M)
-Current input signal time = 49 [s]
-Current input signal time = 50 [s]
-Current input signal time = 51 [s]
-Current input signal time = 52 [s]
-Current input signal time = 53 [s]
-Current input signal time = 54 [s]
-NAV Message: received subframe 3 from satellite GPS PRN 20 (Block IIR)
-NAV Message: received subframe 3 from satellite GPS PRN 01 (Block IIF)
-NAV Message: received subframe 3 from satellite GPS PRN 32 (Block IIF)
-NAV Message: received subframe 3 from satellite GPS PRN 11 (Block IIR)
-NAV Message: received subframe 3 from satellite GPS PRN 17 (Block IIR-M)
-Position at 2013-Apr-04 06:24:17 UTC is Lat = 41.27478751250208 [deg], Long = 1.98761094822992 [deg], Height= 91.81396374478936 [m]
-Current input signal time = 55 [s]
-Position at 2013-Apr-04 06:24:18 UTC is Lat = 41.27489321842131 [deg], Long = 1.987777463187041 [deg], Height= 70.65930022858083 [m]
-Position at 2013-Apr-04 06:24:18 UTC is Lat = 41.27487423787719 [deg], Long = 1.987675595977398 [deg], Height= 74.81919255573303 [m]
-Current input signal time = 56 [s]
-Position at 2013-Apr-04 06:24:19 UTC is Lat = 41.27484502531679 [deg], Long = 1.987679687583814 [deg], Height= 66.56866730749607 [m]
-Position at 2013-Apr-04 06:24:19 UTC is Lat = 41.27489169044892 [deg], Long = 1.987773660276054 [deg], Height= 63.41946520376951 [m]
-Current input signal time = 57 [s]
-Position at 2013-Apr-04 06:24:20 UTC is Lat = 41.27484764102147 [deg], Long = 1.987674857241589 [deg], Height= 84.82868976891041 [m]
-Position at 2013-Apr-04 06:24:20 UTC is Lat = 41.27488795165949 [deg], Long = 1.987767396734624 [deg], Height= 57.30093908496201 [m]
-Current input signal time = 58 [s]
+Current receiver time: 14 s
+New GPS NAV message received in channel 3: subframe 1 from satellite GPS PRN 20 (Block IIR)
+New GPS NAV message received in channel 0: subframe 1 from satellite GPS PRN 01 (Block IIF)
+New GPS NAV message received in channel 4: subframe 1 from satellite GPS PRN 32 (Block IIF)
+New GPS NAV message received in channel 2: subframe 1 from satellite GPS PRN 17 (Block IIR-M)
+Current receiver time: 15 s
+Current receiver time: 16 s
+Current receiver time: 17 s
+Current receiver time: 18 s
+Current receiver time: 19 s
+Current receiver time: 20 s
+New GPS NAV message received in channel 3: subframe 2 from satellite GPS PRN 02 (Block IIR)
+New GPS NAV message received in channel 0: subframe 2 from satellite GPS PRN 01 (Block IIF)
+New GPS NAV message received in channel 4: subframe 2 from satellite GPS PRN 32 (Block IIF)
+New GPS NAV message received in channel 1: subframe 2 from satellite GPS PRN 11 (Block IIR)
+New GPS NAV message received in channel 2: subframe 2 from satellite GPS PRN 17 (Block IIR-M)
+Current receiver time: 21 s
+Current receiver time: 22 s
+Current receiver time: 23 s
+Current receiver time: 24 s
+Current receiver time: 25 s
+Current receiver time: 26 s
+New GPS NAV message received in channel 3: subframe 3 from satellite GPS PRN 20 (Block IIR)
+New GPS NAV message received in channel 0: subframe 3 from satellite GPS PRN 01 (Block IIF)
+New GPS NAV message received in channel 4: subframe 3 from satellite GPS PRN 32 (Block IIF)
+New GPS NAV message received in channel 2: subframe 3 from satellite GPS PRN 17 (Block IIR-M)
+New GPS NAV message received in channel 1: subframe 3 from satellite GPS PRN 11 (Block IIR)
+First position fix at 2013-Apr-04 06:23:31.740000 UTC is Lat = 41.2749 [deg], Long = 1.98754 [deg], Height= 100.795 [m]
+Position at 2013-Apr-04 06:23:32.000000 UTC using 4 observations is Lat = 41.274888307 [deg], Long = 1.987581872 [deg], Height = 86.928 [m]
+Position at 2013-Apr-04 06:23:32.500000 UTC using 4 observations is Lat = 41.274964746 [deg], Long = 1.987510141 [deg], Height = 90.557 [m]
+Current receiver time: 27 s
+Position at 2013-Apr-04 06:23:33.000000 UTC using 4 observations is Lat = 41.274921885 [deg], Long = 1.987605767 [deg], Height = 73.365 [m]
+Position at 2013-Apr-04 06:23:33.500000 UTC using 4 observations is Lat = 41.274866502 [deg], Long = 1.987553835 [deg], Height = 83.313 [m]
+Current receiver time: 28 s
+Position at 2013-Apr-04 06:23:34.000000 UTC using 4 observations is Lat = 41.274904024 [deg], Long = 1.987612510 [deg], Height = 87.615 [m]
+Position at 2013-Apr-04 06:23:34.500000 UTC using 4 observations is Lat = 41.274877911 [deg], Long = 1.987553312 [deg], Height = 81.405 [m]
+Current receiver time: 29 s
+Position at 2013-Apr-04 06:23:35.000000 UTC using 4 observations is Lat = 41.274916750 [deg], Long = 1.987576650 [deg], Height = 108.288 [m]
+Position at 2013-Apr-04 06:23:35.500000 UTC using 4 observations is Lat = 41.274803167 [deg], Long = 1.987562527 [deg], Height = 90.144 [m]
+Current receiver time: 30 s
+Position at 2013-Apr-04 06:23:36.000000 UTC using 4 observations is Lat = 41.275044618 [deg], Long = 1.987619037 [deg], Height = 102.346 [m]
+Position at 2013-Apr-04 06:23:36.500000 UTC using 4 observations is Lat = 41.274878468 [deg], Long = 1.987557377 [deg], Height = 102.764 [m]
+Current receiver time: 31 s
+Position at 2013-Apr-04 06:23:37.000000 UTC using 4 observations is Lat = 41.274995336 [deg], Long = 1.987554843 [deg], Height = 113.653 [m]
+Position at 2013-Apr-04 06:23:37.500000 UTC using 4 observations is Lat = 41.274951615 [deg], Long = 1.987600581 [deg], Height = 92.064 [m]
+Current receiver time: 32 s
 ...
 ```
 
@@ -230,11 +235,14 @@ If you see something similar to this... Yay! You are getting position fixes with
 
 ```
 ...
-Current input signal time = 98 [s]
-Position at 2013-Apr-04 06:25:01 UTC is Lat = 41.27485191181121 [deg], Long = 1.987647398644359 [deg], Height= 71.97478503454477 [m]
+Current receiver time: 1 min 40 s
+Position at 2013-Apr-04 06:24:45.500000 UTC using 5 observations is Lat = 41.274821613 [deg], Long = 1.987629659 [deg], Height = 69.292 [m]
+Position at 2013-Apr-04 06:24:46.000000 UTC using 5 observations is Lat = 41.274817101 [deg], Long = 1.987576895 [deg], Height = 43.517 [m]
+Position at 2013-Apr-04 06:24:46.500000 UTC using 5 observations is Lat = 41.274830209 [deg], Long = 1.987583859 [deg], Height = 54.475 [m]
 Stopping GNSS-SDR, please wait!
-Total GNSS-SDR run time 20.65166 [seconds]
+Total GNSS-SDR run time: 37.106698 [seconds]
 GNSS-SDR program ended.
+Stopping TCP/IP server on port 2101
 $
 ```
 
@@ -242,6 +250,7 @@ Now you can examine the processing outputs in the folder from which you invoked 
 
  * A `.kml` file.
  * A `.geojson` file.
+ * A `.gpx` file.
  * A `.nmea` file.
  * Observation and Navigation RINEX files.
 
