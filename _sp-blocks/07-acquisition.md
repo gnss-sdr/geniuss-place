@@ -159,6 +159,7 @@ This implementation accepts the following parameters:
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| <span style="color: DarkOrange">`dump_channel`</span> |  <span style="color: DarkOrange">If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0.</span> | <span style="color: DarkOrange">Optional</span> |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Acquisition`**.
@@ -369,6 +370,7 @@ This implementation accepts the following parameters:
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| <span style="color: DarkOrange">`dump_channel`</span> |  <span style="color: DarkOrange">If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0.</span> | <span style="color: DarkOrange">Optional</span> |
 |--------------
 
   _Acquisition implementation:_ **`Galileo_E1_PCPS_Ambiguous_Acquisition`**.
@@ -473,6 +475,7 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, accepts 
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GLONASS_L1_CA_PCPS_Acquisition`**.
@@ -524,6 +527,7 @@ This implementation accepts the following parameters:
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| <span style="color: DarkOrange">`dump_channel`</span> |  <span style="color: DarkOrange">If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0.</span> | <span style="color: DarkOrange">Optional</span> |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L2_M_PCPS_Acquisition`**.
@@ -573,6 +577,7 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, accepts 
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GLONASS_L2_CA_PCPS_Acquisition`**.
@@ -622,6 +627,7 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, accepts 
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L5i_PCPS_Acquisition`**.
@@ -677,6 +683,7 @@ This implementation, is available starting from GNSS-SDR v0.0.10, accepts the fo
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
   _Acquisition implementation:_ **`Galileo_E5a_Pcps_Acquisition`**.
