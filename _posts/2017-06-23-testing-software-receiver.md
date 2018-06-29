@@ -13,7 +13,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-01-26T11:37:02+02:00
+last_modified_at: 2018-06-29T11:37:02+02:00
 ---
 
 
@@ -445,6 +445,36 @@ The following Unit Test Cases are added to the executable `run_tests`:
 
 * Extra Unit Test Cases
   - Acquisition
+    - `AcquisitionPerformanceTest`: Plots the Receiver Operation Characteristic (ROC), that is, Probability of detection vs probability of false alarm, for GPS L1 C/A signals. This test accepts the following flags:
+
+    |----------
+    |  **Flag**  |  **Default value** | **Description** |
+    |:--|:-:|:--|
+    | &#x2011;&#x2011;fs_gen_sps | $$ 2600000 $$ | Sampling rate, in Samples/s. |
+    | &#x2011;&#x2011;config_file_ptest | empty | File containing alternative configuration parameters for the acquisition performance test. |
+    | &#x2011;&#x2011;acq_test_input_file | empty | File containing raw signal data, must be in int8_t format. The signal generator will not be used. |
+    | &#x2011;&#x2011;acq_test_doppler_max | 5000 | Maximum Doppler, in Hz |
+    | &#x2011;&#x2011;acq_test_doppler_step | 125 | Doppler step, in Hz. |
+    | &#x2011;&#x2011;acq_test_coherent_time_ms | 1 | Acquisition coherent time, in ms. |
+    | &#x2011;&#x2011;acq_test_max_dwells | 1 | Number of non-coherent integrations. |
+    | &#x2011;&#x2011;acq_test_use_CFAR_algorithm | true | Use CFAR algorithm. |
+    | &#x2011;&#x2011;acq_test_bit_transition_flag | false | Bit transition flag. |
+    | &#x2011;&#x2011;acq_test_signal_duration_s | 2 | Generated signal duration, in s. |
+    | &#x2011;&#x2011;acq_test_num_meas | 0 | Number of measurements per run. 0 means the complete file. |
+    | &#x2011;&#x2011;acq_test_cn0_init | 33.0 | Initial CN0, in dBHz. |
+    | &#x2011;&#x2011;acq_test_cn0_final | 45.0 | Final CN0, in dBHz. |
+    | &#x2011;&#x2011;acq_test_cn0_step | 3.0 | CN0 step, in dB. |
+    | &#x2011;&#x2011;acq_test_threshold_init | 11.0 | Initial acquisition threshold. |
+    | &#x2011;&#x2011;acq_test_threshold_final | 16.0 | Final acquisition threshold. |
+    | &#x2011;&#x2011;acq_test_threshold_step | 1.0 | Acquisition threshold step. |
+    | &#x2011;&#x2011;acq_test_pfa_init | 1e-5 | Set initial threshold via probability of false alarm. To disable Pfa setting and set threshold values, set this to -1.0. |
+    | &#x2011;&#x2011;acq_test_PRN | 1 | PRN number of a present satellite. |
+    | &#x2011;&#x2011;acq_test_fake_PRN | 33 | PRN number of a non-present satellite. |
+    | &#x2011;&#x2011;acq_test_iterations | 1 | Number of iterations (same signal, different noise realization). |
+    | &#x2011;&#x2011;plot_acq_test | false | Plots results with gnuplot, if available. |
+    | &#x2011;&#x2011;show_plots | true | Show plots on screen. Set it to false for non-interactive testing. |
+    |--------------
+
     - `GpsL2MPcpsAcquisitionTest`: set of tests for [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
     - `GlonassL1CaPcpsAcquisitionTest`: set of tests for [glonass_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/glonass_l1_ca_pcps_acquisition.h) that make use of the `Glonass_L1_CA_SIM_Fs_62Msps_4ms.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
   - Tracking
