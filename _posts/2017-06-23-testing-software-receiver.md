@@ -443,16 +443,16 @@ This option will download, build and link (at building time) the following tools
 
 The following Unit Test Cases are added to the executable `run_tests`:
 
-* Extra Unit Test Cases
-  - Acquisition
-    - `AcquisitionPerformanceTest`: Plots the Receiver Operation Characteristic (ROC), that is, Probability of detection vs probability of false alarm, for GPS L1 C/A signals. This test accepts the following flags:
+**Extra tests for Acquisition blocks**
+
+  * `AcquisitionPerformanceTest`: Plots the Receiver Operation Characteristic (ROC), that is, Probability of detection vs Probability of false alarm, for GPS L1 C/A signals. This test accepts the following flags:
 
     |----------
     |  **Flag**  |  **Default value** | **Description** |
     |:--|:-:|:--|
     | &#x2011;&#x2011;fs_gen_sps | $$ 2600000 $$ | Sampling rate, in Samples/s. |
     | &#x2011;&#x2011;config_file_ptest | empty | File containing alternative configuration parameters for the acquisition performance test. |
-    | &#x2011;&#x2011;acq_test_input_file | empty | File containing raw signal data, must be in int8_t format. The signal generator will not be used. |
+    | &#x2011;&#x2011;acq_test_input_file | empty | File containing raw signal data, must be in int8_t format. If set, the signal generator will not be used and no CN0 sweep will be done. |
     | &#x2011;&#x2011;acq_test_doppler_max | 5000 | Maximum Doppler, in Hz |
     | &#x2011;&#x2011;acq_test_doppler_step | 125 | Doppler step, in Hz. |
     | &#x2011;&#x2011;acq_test_coherent_time_ms | 1 | Acquisition coherent time, in ms. |
@@ -472,21 +472,28 @@ The following Unit Test Cases are added to the executable `run_tests`:
     | &#x2011;&#x2011;acq_test_fake_PRN | 33 | PRN number of a non-present satellite. |
     | &#x2011;&#x2011;acq_test_iterations | 1 | Number of iterations (same signal, different noise realization). |
     | &#x2011;&#x2011;plot_acq_test | false | Plots results with gnuplot, if available. |
-    | &#x2011;&#x2011;show_plots | true | Show plots on screen. Set it to false for non-interactive testing. |
+    | &#x2011;&#x2011;show_plots | true | Shows plots on screen. Set it to false for non-interactive testing. |
     |--------------
 
-    - `GpsL2MPcpsAcquisitionTest`: set of tests for [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
-    - `GlonassL1CaPcpsAcquisitionTest`: set of tests for [glonass_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/glonass_l1_ca_pcps_acquisition.h) that make use of the `Glonass_L1_CA_SIM_Fs_62Msps_4ms.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
-  - Tracking
-    - `GpsL1CADllPllTrackingTest`: set of tests for [gps_l1_ca_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_tracking.h) that make use of the software-defined signal generator. This test plots the correlators' outputs with the flag `--plot_gps_l1_tracking_test`. For long tests, data can be decimated with the flag `--plot_decimate`. For not showing the plots in the screen, but still get the figures in PDF and PS file formats, use `--noshow_plots`. Example:
+  * `GpsL2MPcpsAcquisitionTest`: set of tests for [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
+  * `GlonassL1CaPcpsAcquisitionTest`: set of tests for [glonass_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/glonass_l1_ca_pcps_acquisition.h) that make use of the `Glonass_L1_CA_SIM_Fs_62Msps_4ms.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
+
+**Extra tests for Tracking blocks**
+
+  * `GpsL1CADllPllTrackingTest`: set of tests for [gps_l1_ca_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_tracking.h) that make use of the software-defined signal generator. This test plots the correlators' outputs with the flag `--plot_gps_l1_tracking_test`. For long tests, data can be decimated with the flag `--plot_decimate`. For not showing the plots in the screen, but still get the figures in PDF and PS file formats, use `--noshow_plots`. Example:
     ```bash
     $ ./run_tests --gtest_filter=GpsL1CADllPllTrackingTest* --duration=10 --plot_gps_l1_tracking_test --plot_decimate=10
     ```
-    - `GpsL2MDllPllTrackingTest`: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
-  - Telemetry Decoder
-    - `GpsL1CATelemetryDecoderTest`: set of tests for [gps_l1_ca_telemetry_decoder.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/gps_l1_ca_telemetry_decoder.h) that make use of the software-defined signal generator.
-  - Observables
-    - `HybridObservablesTest`: set of tests for [hybrid_observables.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/observables/adapters/hybrid_observables.h) that make use of the software-defined signal generator.
+  * `GpsL1CADllPllTrackingPullInTest`: Tracking pull-in test for the `GPS_L1_CA_DLL_PLL_Tracking` implementation.
+  * `GpsL2MDllPllTrackingTest`: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
+
+**Extra tests for Telemetry Decoder blocks**
+
+  * `GpsL1CATelemetryDecoderTest`: set of tests for [gps_l1_ca_telemetry_decoder.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/gps_l1_ca_telemetry_decoder.h) that make use of the software-defined signal generator.
+
+**Extra tests for Observables blocks**
+
+  *  `HybridObservablesTest`: set of tests for [hybrid_observables.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/observables/adapters/hybrid_observables.h) that make use of the software-defined signal generator.
 
 
 ## System Tests
