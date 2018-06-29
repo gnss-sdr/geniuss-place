@@ -148,7 +148,7 @@ A _Test Program_ can contain multiple test cases.
 
 In order to execute the tests, you must build GNSS-SDR from source. If the Google C++ Testing Framework source code is not already present in your system (and pointing the `GTEST_DIR` environment variable to the root of the source code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt-get install libgtest-dev`), it will be automatically downloaded from its Git repository, compiled and linked to GNSS-SDR at building time. The CMake script automates all those steps for you.
 
-**Tip:** some tests can optionally output plots if [Gnuplot](http://www.gnuplot.info/), a portable command-line driven graphing utility, is installed in your system. If you want to use this feature, install Gnuplot (by doing `sudo apt-get install gnuplot` in Debian-based Linux distributions, or `sudo port install gnuplot` using Macports in macOS) before building GNSS-SDR, and then activate the corresponding flag in the tests in which it is allowed (those flags start with `--plot_...`). This will display figures in new windows and will save them as [PostScript](https://en.wikipedia.org/wiki/PostScript) and PDF files in the folder where the test was called.
+**Tip:** some tests can optionally output plots if [Gnuplot](http://www.gnuplot.info/), a portable command-line driven graphing utility, is installed in your system. If you want to use this feature, install Gnuplot (by doing `sudo apt-get install gnuplot` in Debian-based Linux distributions, or `sudo port install gnuplot` using Macports in macOS) before building GNSS-SDR, and then activate the corresponding flag in the tests in which it is allowed (those flags start with `--plot_...`). This will display figures in new windows and will save them as [PostScript](https://en.wikipedia.org/wiki/PostScript) and PDF files in the folder where the test was called. In order to avoid showing plots in the screen, but still get the figures in files, use `--noshow_plot`.
 {: .notice--info}
 
 GNSS-SDR are divided in two categories:
@@ -478,7 +478,7 @@ The following Unit Test Cases are added to the executable `run_tests`:
     - `GpsL2MPcpsAcquisitionTest`: set of tests for [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
     - `GlonassL1CaPcpsAcquisitionTest`: set of tests for [glonass_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/glonass_l1_ca_pcps_acquisition.h) that make use of the `Glonass_L1_CA_SIM_Fs_62Msps_4ms.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
   - Tracking
-    - `GpsL1CADllPllTrackingTest`: set of tests for [gps_l1_ca_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_tracking.h) that make use of the software-defined signal generator. This test plots the correlators' outputs with the flag `--plot_gps_l1_tracking_test`. For long tests, data can be decimated with the flag `--plot_decimate`. Example:
+    - `GpsL1CADllPllTrackingTest`: set of tests for [gps_l1_ca_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_tracking.h) that make use of the software-defined signal generator. This test plots the correlators' outputs with the flag `--plot_gps_l1_tracking_test`. For long tests, data can be decimated with the flag `--plot_decimate`. For not showing the plots in the screen, but still get the figures in PDF and PS file formats, use `--noshow_plots`. Example:
     ```bash
     $ ./run_tests --gtest_filter=GpsL1CADllPllTrackingTest* --duration=10 --plot_gps_l1_tracking_test --plot_decimate=10
     ```
@@ -613,6 +613,7 @@ This test program computes metrics of static accuracy and precision. It can use 
 | &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = $$ 300 $$]. |
 | &#x2011;&#x2011;config_file_ptest | empty | File containing the configuration parameters for the position test. |
 | &#x2011;&#x2011;plot_position_test | false | If set to "true", and [Gnuplot](http://www.gnuplot.info/) is installed in your system, it generates some plots of the obtained results. It will display them in windows and will save them as .ps and .pdf files. |
+| &#x2011;&#x2011;show_plots | true | Show plots on screen. Set it to false for non-interactive testing. |
 |----------
 
 So an example of running this test could be:
