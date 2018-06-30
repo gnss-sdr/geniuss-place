@@ -22,12 +22,12 @@ In order to execute the tests, you must build GNSS-SDR from source. If the Googl
 **Tip:** some tests can optionally output plots if [Gnuplot](http://www.gnuplot.info/), a portable command-line driven graphing utility, is installed in your system. If you want to use this feature, install Gnuplot (by doing `sudo apt-get install gnuplot` in Debian-based Linux distributions, or `sudo port install gnuplot` using Macports in macOS) before building GNSS-SDR, and then activate the corresponding flag in the tests in which it is allowed (those flags start with `--plot_...`). This will display figures in new windows and will save them as [PostScript](https://en.wikipedia.org/wiki/PostScript) and PDF files in the folder where the test was called. In order to avoid showing plots in the screen, but still get the figures in files, use `--noshow_plot`.
 {: .notice--info}
 
-GNSS-SDR are divided in two categories:
+GNSS-SDR tests are divided in two categories:
 
  * **Unit Tests**: checking of certain functions and areas - or _units_ - of the source code.
  * **System Tests**: checking conducted on a complete, integrated system to evaluate the system's compliance with its specified requirements.
 
-By default, only (a large) subset of unit tests are compiled (see details [below]({{ "#unit-tests" }})). So, when doing:
+By default, only a (large) subset of unit tests are compiled (see details [below]({{ "#unit-tests" }})). So, when doing:
 
 ```bash
 $ cd gnss-sdr/build
