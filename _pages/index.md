@@ -87,7 +87,7 @@ intro:
 {% for tag in group_names %}
   {% if tag == "tutorial" %}
     {% assign posts = group_items[forloop.index0] %}
-    {% for post in posts limit:4 %}
+    {% for post in posts limit:8 %}
       {% include archive-single.html type="grid" %}
     {% endfor %}
   {% endif %}
