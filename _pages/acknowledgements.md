@@ -70,7 +70,7 @@ The Authors are proud to be supported by the following public institutions, priv
   * Project: [Optimum frame synchronization project](https://summerofcode.withgoogle.com/projects/#5051576423546880), by Mustafa Abaas.
   * Project: [Proposal to implement Bayesian Covariance Estimation for Kalman Filter based Digital Carrier Synchronization in GNSS-SDR](https://summerofcode.withgoogle.com/projects/#5342148610752512), by Gerald LaMountain.
 
-[2017](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
+[2017](https://summerofcode.withgoogle.com/archive/2017/organizations/5204929132101632/)
 
   * In [Robust KF-based Tracking Techniques for Advanced GNSS Receivers](https://summerofcode.withgoogle.com/archive/2017/projects/6261573228167168/) Shashanka Joisa worked on improving the tracking loops.
   * In [Graphical User Interface for GNSS-SDR configuration](https://summerofcode.withgoogle.com/archive/2017/projects/6610212098146304/), Usman Haider worked on a GUI for making GNSS-SDR configuration easier and more intuitive.
@@ -78,7 +78,7 @@ The Authors are proud to be supported by the following public institutions, priv
   * In [Expanding the GNSS-SDR receiver to GLONASS](https://summerofcode.withgoogle.com/archive/2017/projects/5357969688494080/), Gabriel Araujo worked on expanding GNSS-SDR to GLONASS signals.
   * In [Pulsed and continuous wave radio frequency interferences mitigation: application to GNSS-SDR in low Signal to Noise ratio scenarios](https://summerofcode.withgoogle.com/archive/2017/projects/5347588081451008/), Antonio Ramos de Torres worked on interference mitigation techniques.
 
-[2016](https://summerofcode.withgoogle.com/organizations/?sp-search=gnss-sdr)
+[2016](https://summerofcode.withgoogle.com/archive/2016/organizations/5800194151022592/)
 
   * In [GNSS-SDR port to android](https://summerofcode.withgoogle.com/projects/?sp-page=2#4871316700135424), Eric Wild worked on porting GNSS-SDR to Android.
   * In [Implementation of the BeiDou signal tracking block for the GNSS-SDR Project](https://summerofcode.withgoogle.com/projects/?sp-page=2#5537250955755520), Enric Juan developed part of the Beidou B1 receiver.
