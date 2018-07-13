@@ -333,8 +333,8 @@ The following Unit Test Cases are added to the executable `run_tests`:
 | &#x2011;&#x2011;acq_test_max_dwells | 1 | Number of non-coherent integrations. |
 | &#x2011;&#x2011;acq_test_use_CFAR_algorithm | true | Use CFAR statistic. |
 | &#x2011;&#x2011;acq_test_make_two_steps | false | Perform second step in a thinner grid. |
-| &#x2011;&#x2011;acq_test_second_nbins | true | If `--acq_test_make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. |
-| &#x2011;&#x2011;acq_test_second_doppler_step | true | If `--acq_test_make_two_steps` is set to `true`, this parametersets the Doppler step applied in the acquisition refinement stage, in Hz. |
+| &#x2011;&#x2011;acq_test_second_nbins | 4 | If `--acq_test_make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. |
+| &#x2011;&#x2011;acq_test_second_doppler_step | 10 | Use CFAR statistic. |
 | &#x2011;&#x2011;acq_test_bit_transition_flag | false | Bit transition flag. |
 | &#x2011;&#x2011;acq_test_signal_duration_s | 2 | Generated signal duration, in s. |
 | &#x2011;&#x2011;acq_test_num_meas | 0 | Number of measurements per run. 0 means the complete file. |
