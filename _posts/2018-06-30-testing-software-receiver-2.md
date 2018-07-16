@@ -345,6 +345,7 @@ The following Unit Test Cases are added to the executable `run_tests`:
 | &#x2011;&#x2011;acq_test_threshold_final | 4.0 | Final acquisition threshold. |
 | &#x2011;&#x2011;acq_test_threshold_step | 0.5 | Acquisition threshold step. |
 | &#x2011;&#x2011;acq_test_pfa_init | 1e-5 | Set initial threshold via probability of false alarm. To disable Pfa setting and set threshold values, set this to -1.0. |
+| &#x2011;&#x2011;acq_test_skiphead | 0 | Number of samples to skip in the input file. |
 | &#x2011;&#x2011;acq_test_PRN | 1 | PRN number of a present satellite. |
 | &#x2011;&#x2011;acq_test_fake_PRN | 33 | PRN number of a non-present satellite. |
 | &#x2011;&#x2011;acq_test_iterations | 1 | Number of iterations (same signal, different noise realization). |
