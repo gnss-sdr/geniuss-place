@@ -332,16 +332,20 @@ The following Unit Test Cases are added to the executable `run_tests`:
 | &#x2011;&#x2011;acq_test_coherent_time_ms | 1 | Acquisition coherent time, in ms. |
 | &#x2011;&#x2011;acq_test_max_dwells | 1 | Number of non-coherent integrations. |
 | &#x2011;&#x2011;acq_test_use_CFAR_algorithm | true | Use CFAR statistic. |
+| &#x2011;&#x2011;acq_test_make_two_steps | false | Perform second step in a thinner grid. |
+| &#x2011;&#x2011;acq_test_second_nbins | 4 | If `--acq_test_make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. |
+| &#x2011;&#x2011;acq_test_second_doppler_step | 10 | If `--acq_test_make_two_steps` is set to true, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. |
 | &#x2011;&#x2011;acq_test_bit_transition_flag | false | Bit transition flag. |
 | &#x2011;&#x2011;acq_test_signal_duration_s | 2 | Generated signal duration, in s. |
 | &#x2011;&#x2011;acq_test_num_meas | 0 | Number of measurements per run. 0 means the complete file. |
 | &#x2011;&#x2011;acq_test_cn0_init | 33.0 | Initial CN0, in dBHz. |
 | &#x2011;&#x2011;acq_test_cn0_final | 45.0 | Final CN0, in dBHz. |
 | &#x2011;&#x2011;acq_test_cn0_step | 3.0 | CN0 step, in dB. |
-| &#x2011;&#x2011;acq_test_threshold_init | 11.0 | Initial acquisition threshold. |
-| &#x2011;&#x2011;acq_test_threshold_final | 16.0 | Final acquisition threshold. |
-| &#x2011;&#x2011;acq_test_threshold_step | 1.0 | Acquisition threshold step. |
+| &#x2011;&#x2011;acq_test_threshold_init | 3.0 | Initial acquisition threshold. |
+| &#x2011;&#x2011;acq_test_threshold_final | 4.0 | Final acquisition threshold. |
+| &#x2011;&#x2011;acq_test_threshold_step | 0.5 | Acquisition threshold step. |
 | &#x2011;&#x2011;acq_test_pfa_init | 1e-5 | Set initial threshold via probability of false alarm. To disable Pfa setting and set threshold values, set this to -1.0. |
+| &#x2011;&#x2011;acq_test_skiphead | 0 | Number of samples to skip in the input file. |
 | &#x2011;&#x2011;acq_test_PRN | 1 | PRN number of a present satellite. |
 | &#x2011;&#x2011;acq_test_fake_PRN | 33 | PRN number of a non-present satellite. |
 | &#x2011;&#x2011;acq_test_iterations | 1 | Number of iterations (same signal, different noise realization). |

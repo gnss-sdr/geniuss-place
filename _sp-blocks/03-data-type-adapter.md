@@ -76,6 +76,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Ibyte_To_Cbyte` | Mandatory |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
 |-------
 
   _Signal Conditioner implementation:_ **`Ibyte_To_Cbyte`**.
@@ -87,6 +88,33 @@ Example:
 ;######### DATA_TYPE_ADAPTER CONFIG ############
 DataTypeAdapter.implementation=Ibyte_To_Cbyte
 ```
+
+
+### Implementation: `Ibyte_To_Cshort`
+
+This implementation takes samples of type <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr> (interleaved I&Q
+samples, 8 bits each) at its input and writes samples of type <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr> (complex samples with real and imaginary components of 16-bits integers each) at its output. This reduces the sample rate by two.
+
+It accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|    
+|--------------
+| `implementation` | `Ibyte_To_Cshort` | Mandatory |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
+|-------
+
+  _Signal Conditioner implementation:_ **`Ibyte_To_Cshort`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### DATA_TYPE_ADAPTER CONFIG ############
+DataTypeAdapter.implementation=Ibyte_To_Cshort
+```
+
 
 ### Implementation: `Ibyte_To_Complex`
 
@@ -102,6 +130,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Ibyte_To_Complex` | Mandatory |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
 |-------
 
   _Signal Conditioner implementation:_ **`Ibyte_To_Complex`**.
@@ -128,6 +157,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Ishort_To_Cshort` | Mandatory |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
 |-------
 
   _Signal Conditioner implementation:_ **`Ishort_To_Cshort`**.
@@ -154,6 +184,7 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Ishort_To_Complex` | Mandatory |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
 |-------
 
   _Signal Conditioner implementation:_ **`Ishort_To_Complex`**.
