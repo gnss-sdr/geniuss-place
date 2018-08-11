@@ -3,6 +3,7 @@
    ========================================================================== */
 
 .archive {
+  margin-top: 1em;
   margin-bottom: 2em;
 
   @include breakpoint($large) {
@@ -228,7 +229,7 @@
   a {
     color: inherit;
   }
-  
+
   @include breakpoint($small) {
     float: left;
     margin-bottom: 0;
