@@ -362,7 +362,32 @@ The following Unit Test Cases are added to the executable `run_tests`:
     ```bash
     $ ./run_tests --gtest_filter=GpsL1CADllPllTrackingTest* --duration=10 --plot_gps_l1_tracking_test --plot_decimate=10
     ```
-  * `GpsL1CADllPllTrackingPullInTest`: Tracking pull-in test for the `GPS_L1_CA_DLL_PLL_Tracking` implementation.
+  * `GpsL1CADllPllTrackingPullInTest`: Tracking pull-in test for the `GPS_L1_CA_DLL_PLL_Tracking` implementation. It can make use of the software-defined signal generator to produce GPS L1 CA signals at different CN0 and obtain the true synchronization parameters. The test performs a two-dimensional sweep of Doppler errors and Code Delay erros for each CN0 to emulate an imperfect signal acquisition in the pull-in tracking step. The test output is a 2D grid plot showing those combinations of Doppler and Code delay errors that produced a valid tracking (green dots) and those that produced a loss of lock (black dots). This test accepts the following flags:
+
+  |----------
+|  **Flag**  |  **Default value** | **Description** |
+|:--|:-:|:--|
+| &#x2011;&#x2011;fs_gen_sps | $$ 2600000 $$ | Sampling rate, in Samples/s. |
+| &#x2011;&#x2011;filename_raw_data | signal_out.bin | File containing raw signal data, must be in int8_t format. If set, the signal generator will not be used and no CN0 sweep will be done. |
+| &#x2011;&#x2011;acq_Doppler_error_hz_start | 1000 | Acquisition Doppler error start sweep value [Hz] |
+| &#x2011;&#x2011;acq_Doppler_error_hz_stop | -1000 | Acquisition Doppler error stop sweep value [Hz] |
+| &#x2011;&#x2011;acq_Doppler_error_hz_step | -50 | Acquisition Doppler error sweep step value [Hz] |
+| &#x2011;&#x2011;acq_Delay_error_chips_start | 2.0 | Acquisition Code Delay error start sweep value [Chips] |
+| &#x2011;&#x2011;acq_Delay_error_chips_stop |  -2.0| Acquisition Code Delay error stop sweep value [Chips] |
+| &#x2011;&#x2011;acq_Delay_error_chips_step | -0.1 | Acquisition Code Delay error sweep step value [Chips] |
+| &#x2011;&#x2011;PLL_bw_hz_start | 40.0 | PLL Wide configuration value [Hz] |
+| &#x2011;&#x2011;DLL_bw_hz_start | 1.5 | DLL Wide configuration value [Hz] |
+| &#x2011;&#x2011;extend_correlation_symbols | 1 | Set the tracking coherent correlation to N symbols (up to 20 for GPS L1 C/A) |
+| &#x2011;&#x2011;PLL_narrow_bw_hz | 5.0 | PLL Narrow configuration value [Hz] |
+| &#x2011;&#x2011;DLL_narrow_bw_hz | 0.75 | DLL Narrow configuration value [Hz] |
+| &#x2011;&#x2011;CN0_dBHz_start | (noise disabled) | Enable noise generator and set the CN0 start sweep value [dB-Hz] |
+| &#x2011;&#x2011;CN0_dBHz_stop | (noise disabled) | Enable noise generator and set the CN0 stop sweep value [dB-Hz] |
+| &#x2011;&#x2011;CN0_dB_step | 3.0 | Noise generator CN0 sweep step value [dB] |
+| &#x2011;&#x2011;plot_detail_level | 0 | Specify the desired plot detail (0,1,2): 0 - Minimum plots (default) 2 - Plot all tracking parameters. |
+| &#x2011;&#x2011;show_plots | true | Shows plots on screen. Set it to false for non-interactive testing. |
+|--------------
+
+
   * `GpsL2MDllPllTrackingTest`: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
 
 **Extra Unit Tests for Telemetry Decoder blocks**
