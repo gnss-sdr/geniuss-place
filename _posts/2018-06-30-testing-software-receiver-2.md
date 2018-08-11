@@ -362,10 +362,10 @@ The following Unit Test Cases are added to the executable `run_tests`:
     ```bash
     $ ./run_tests --gtest_filter=GpsL1CADllPllTrackingTest* --duration=10 --plot_gps_l1_tracking_test --plot_decimate=10
     ```
-  * `GpsL1CADllPllTrackingPullInTest`: Tracking pull-in test for the `GPS_L1_CA_DLL_PLL_Tracking` implementation. It can make use of the software-defined signal generator to produce GPS L1 CA signals at different CN0 and obtain the true synchronization parameters. The test performs a two-dimensional sweep of Doppler errors and Code Delay erros for each CN0 to emulate an imperfect signal acquisition in the pull-in tracking step. The test output is a 2D grid plot showing those combinations of Doppler and Code delay errors that produced a valid tracking (green dots) and those that produced a loss of lock (black dots). Example:
+  * `TrackingPullInTest`: Tracking pull-in test for several Tracking block implementations. It can make use of the software-defined signal generator to produce GPS L1 CA signals at different CN0 levels and to obtain the true synchronization parameters. The test performs a two-dimensional sweep of Doppler errors and code delay errors for each CN0 to emulate an imperfect signal acquisition in the pull-in tracking step. The test output is a 2D grid plot showing those combinations of Doppler and Code delay errors that produced a valid tracking (green dots) and those that produced a loss of lock (black dots). Example:
 
     ```bash
-    $ ./run_tests --gtest_filter=GpsL1CADllPllTrackingPullInTest*  --plot_detail_level=0 --duration=4 --CN0_dBHz_start=45 CN0_dBHz_stop=35
+    $ ./run_tests --gtest_filter=TrackingPullInTest* --plot_detail_level=0 --duration=4 --CN0_dBHz_start=45 CN0_dBHz_stop=35
     ```
 
   This test accepts the following flags:
@@ -396,6 +396,7 @@ The following Unit Test Cases are added to the executable `run_tests`:
 | &#x2011;&#x2011;plot_detail_level | 0 | Specify the desired plot detail (0,1,2): 0 - Minimum plots (default) 2 - Plot all tracking parameters. |
 | &#x2011;&#x2011;show_plots | true | Shows plots on screen. Set it to false for non-interactive testing. |
 |--------------
+
 
   * `GpsL2MDllPllTrackingTest`: set of tests for [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h) that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
 

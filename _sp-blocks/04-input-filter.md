@@ -207,7 +207,7 @@ This implementation accepts the following parameters:
 | `band1_error` |  Weighting applied to band 1 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `band2_error` |  Weighting applied to band 2 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values makes the filter slower to compute, but often results in filters that more exactly match an equiripple filter.  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `bw` |  Specifies the cut-off frequency, in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to 2000000 Hz. | Optional |
+| `bw` |  Specifies the cut-off frequency, in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to (`sampling_frequency`/`decimation_factor`)/2  Hz. | Optional |
 | `tw` |  Specifies the width of the transition band (centered at `bw`), in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to $$ \frac{\text{bw}}{10} $$ . | Optional |
 | `dump` |  [`false`, `true`]: Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, path to the file where data will be stored. | Optional |
