@@ -362,13 +362,23 @@ The following Unit Test Cases are added to the executable `run_tests`:
     ```bash
     $ ./run_tests --gtest_filter=GpsL1CADllPllTrackingTest* --duration=10 --plot_gps_l1_tracking_test --plot_decimate=10
     ```
-  * `GpsL1CADllPllTrackingPullInTest`: Tracking pull-in test for the `GPS_L1_CA_DLL_PLL_Tracking` implementation. It can make use of the software-defined signal generator to produce GPS L1 CA signals at different CN0 and obtain the true synchronization parameters. The test performs a two-dimensional sweep of Doppler errors and Code Delay erros for each CN0 to emulate an imperfect signal acquisition in the pull-in tracking step. The test output is a 2D grid plot showing those combinations of Doppler and Code delay errors that produced a valid tracking (green dots) and those that produced a loss of lock (black dots). This test accepts the following flags:
+  * `TrackingPullInTest`: Tracking pull-in test for several Tracking block implementations. It can make use of the software-defined signal generator to produce GPS L1 CA signals at different CN0 levels and to obtain the true synchronization parameters. The test performs a two-dimensional sweep of Doppler errors and code delay errors for each CN0 to emulate an imperfect signal acquisition in the pull-in tracking step. The test output is a 2D grid plot showing those combinations of Doppler and Code delay errors that produced a valid tracking (green dots) and those that produced a loss of lock (black dots). Example:
 
-  |----------
+    ```bash
+    $ ./run_tests --gtest_filter=TrackingPullInTest* --plot_detail_level=0 --duration=4 --CN0_dBHz_start=45 CN0_dBHz_stop=35
+    ```
+
+  This test accepts the following flags:
+
+|----------
 |  **Flag**  |  **Default value** | **Description** |
 |:--|:-:|:--|
 | &#x2011;&#x2011;fs_gen_sps | $$ 2600000 $$ | Sampling rate, in Samples/s. |
-| &#x2011;&#x2011;filename_raw_data | signal_out.bin | File containing raw signal data, must be in int8_t format. If set, the signal generator will not be used and no CN0 sweep will be done. |
+| &#x2011;&#x2011;enable_external_signal_file | false | Use an external signal file capture instead of the software-defined signal generator. NOTICE: when external file is selected, the test will try to perform a high sensitivity acquisition with an enhanced Doppler estimation to estimate the *true* signal synchronization parameters for all the satellites present in the signal|
+| &#x2011;&#x2011;signal_file | signal_out.bin | Path of the external signal capture file, must be in int8_t format. If set, the signal generator will not be used and no CN0 sweep will be done. |
+| &#x2011;&#x2011;disable_generator | false | Disable the signal generator (the pre-generated signal file set must be available for the test, i.e. by running the test without disabling the generator previously). |
+| &#x2011;&#x2011;duration | 100 | Duration of the experiment [in seconds, max = 300]. For this test the recommended signal duration is 4 seconds. |
+| &#x2011;&#x2011;test_satellite_PRN | 1 | PRN of the satellite under test (must be visible during the observation time). |
 | &#x2011;&#x2011;acq_Doppler_error_hz_start | 1000 | Acquisition Doppler error start sweep value [Hz] |
 | &#x2011;&#x2011;acq_Doppler_error_hz_stop | -1000 | Acquisition Doppler error stop sweep value [Hz] |
 | &#x2011;&#x2011;acq_Doppler_error_hz_step | -50 | Acquisition Doppler error sweep step value [Hz] |
