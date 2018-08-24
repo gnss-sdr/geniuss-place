@@ -338,7 +338,7 @@ The following Unit Test Cases are added to the executable `run_tests`:
 | &#x2011;&#x2011;acq_test_bit_transition_flag | false | Bit transition flag. |
 | &#x2011;&#x2011;acq_test_signal_duration_s | 2 | Generated signal duration, in s. |
 | &#x2011;&#x2011;acq_test_num_meas | 0 | Number of measurements per run. 0 means the complete file. |
-| &#x2011;&#x2011;acq_test_cn0_init | 33.0 | Initial CN0, in dBHz. |
+| &#x2011;&#x2011;acq_test_cn0_init | 30.0 | Initial CN0, in dBHz. |
 | &#x2011;&#x2011;acq_test_cn0_final | 45.0 | Final CN0, in dBHz. |
 | &#x2011;&#x2011;acq_test_cn0_step | 3.0 | CN0 step, in dB. |
 | &#x2011;&#x2011;acq_test_threshold_init | 3.0 | Initial acquisition threshold. |
