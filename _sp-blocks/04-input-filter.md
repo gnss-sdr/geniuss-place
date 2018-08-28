@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2017-11-06T15:54:02+02:00
+last_modified_at: 2018-07-08T15:54:02+02:00
 ---
 
 
@@ -167,16 +167,14 @@ InputFilter.grid_density=16
 
 This implementation features a frequency-translating FIR filter. This is
 often used when input data is at an intermediate frequency, as it
-performs frequency translation, filtering and decimation in one step.
+performs filtering, decimation and frequency shifting in one single step.
 The basic principle of this block is to perform:
 
-Input signal $$ \rightarrow $$ decim $$ \rightarrow $$ (mult by $$ 2 \pi \frac{f_{IF}}{f_s} $$ · decim) $$ \rightarrow $$ Filtering $$ \rightarrow $$ Output signal.
 
-However, the GNU Radio implementation of the block [freq_xlating_fir_filter_XXX_impl.cc.t](https://github.com/gnuradio/gnuradio/blob/master/gr-filter/lib/freq_xlating_fir_filter_XXX_impl.cc.t), in which this implementation is based, performs the following operation:
+Input signal $$ \rightarrow $$ Filtering $$ \rightarrow $$ $$ \downarrow N $$ $$ \rightarrow $$ $$\times \exp\{ - j2 \pi \frac{f_{IF}}{f_s} N \} $$ $$ \rightarrow $$ Output signal.
 
-Input signal $$ \rightarrow $$ Filtering $$ \rightarrow $$ decim $$ \rightarrow $$ (mult by $$ 2 \pi \frac{f_{IF}}{f_s} $$ · decim) $$ \rightarrow $$ Output signal.
 
-The applied filter is the baseband filter moved up to the intermediate frequency. Thus, the filter parameters apply to the signal before decimation.
+This block is a wrapper of GNU Radio's  [freq_xlating_fir_filter_XXX_impl.cc.t](https://github.com/gnuradio/gnuradio/blob/master/gr-filter/lib/freq_xlating_fir_filter_XXX_impl.cc.t) block. It applies the baseband filter moved up to the intermediate frequency $$ f_{IF} $$, then it performs decimation by a factor $$ N $$ and a de-rotation with $$ \times \exp\{ -j 2 \pi \frac{f_{IF}}{f_s}N \} $$ to downshift the signal to baseband. Thus, the filter parameters apply to the signal _before_ decimation.
 
 The block is ideally suited for a "channel selection filter" and can be efficiently
 used to select and decimate a narrow band signal out of wide bandwidth input.
@@ -192,9 +190,9 @@ This implementation accepts the following parameters:
 | `filter_type` |  [`lowpass`, `bandpass`, `hilbert`, `differentiator`]: type of filter to be used after the frequency translation.  | Mandatory |
 | `input_item_type` |  [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: This implementation accepts as input data type real samples. It also accepts complex samples of the type <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, assuming the presence of an intermediate frequency. The filter also works with `IF=0`. | Mandatory |
 | `output_item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Output data type. You can use this implementation to upcast the data type. | Mandatory |
-| `sampling_frequency` |  Specifies the sample rate $$ f_s $$, in samples per second. | Mandatory |
+| `sampling_frequency` |  Specifies the input sample rate $$ f_s $$, in samples per second. | Mandatory |
 | `IF` |  Specifies the intermediate frequency $$ f_{IF} $$ to be removed, in Hz. It defaults to $$ 0 $$ Hz (_i.e._, baseband complex signal). | Optional |
-| `decimation_factor` |  Decimation factor (defaults to 1). Needs to be an integer. | Optional |
+| `decimation_factor` |  Decimation factor $$ N $$ (defaults to 1). Needs to be an integer. | Optional |
 | `taps_item_type` | [<abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>]: Type and resolution for the taps of the filter. Only <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `number_of_bands` |  Number of frequency bands in the filter. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
@@ -209,7 +207,7 @@ This implementation accepts the following parameters:
 | `band1_error` |  Weighting applied to band 1 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `band2_error` |  Weighting applied to band 2 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values makes the filter slower to compute, but often results in filters that more exactly match an equiripple filter.  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `bw` |  Specifies the cut-off frequency, in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to 2000000 Hz. | Optional |
+| `bw` |  Specifies the cut-off frequency, in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to (`sampling_frequency`/`decimation_factor`)/2  Hz. | Optional |
 | `tw` |  Specifies the width of the transition band (centered at `bw`), in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to $$ \frac{\text{bw}}{10} $$ . | Optional |
 | `dump` |  [`false`, `true`]: Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, path to the file where data will be stored. | Optional |

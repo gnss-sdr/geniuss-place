@@ -11,7 +11,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-06-07T09:37:02+02:00
+last_modified_at: 2018-08-17T09:17:02+02:00
 ---
 
 
@@ -66,13 +66,14 @@ The building system honors the usual [CMake variables](https://cmake.org/cmake/h
 |  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|
 |--------------
-| &#x2011;DCMAKE_BUILD_TYPE |  None / Debug / Release / RelWithDebInfo / MinSizeRel | Release | A variable which controls the type of build and some of the flags passed to the compiler. The default values for these flags change with different compilers. If CMake does not know your compiler, the contents will be empty. See the [CMake documentation](https://cmake.org/cmake/help/v3.0/variable/CMAKE_BUILD_TYPE.html) for more details. |
+| &#x2011;DCMAKE_BUILD_TYPE |  None / Debug / Release / RelWithDebInfo / MinSizeRel | Release | A variable which controls the type of build and some of the flags passed to the compiler. The default values for these flags change with different compilers. If CMake does not know your compiler, the contents will be empty. See the [CMake documentation about this variable](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html) and the note below for more details. |
 | &#x2011;DCMAKE_INSTALL_PREFIX | System path | System-dependent. In most systems, this use to be ```/usr/local```. | Specifies the path in which GNSS-SDR will be installed when doing ```make install```. The content of this variable is prepended onto all install directories. On UNIX systems, one can use the ```DESTDIR``` mechanism in order to relocate the whole installation (see below). |
 | &#x2011;DCMAKE_INCLUDE_PATH  | System path | System-dependent. | This is used when searching for include files *e.g.* using the FIND_PATH() command in the CMakeLists.txt files. If you have headers in non-standard locations, it may be useful to set this variable to this directory. If you need several directories, separate them by the platform specific separators (*e.g.* ":" on UNIX). |
 | &#x2011;DCMAKE_LIBRARY_PATH  | System path | System-dependent. | This is used when searching for libraries *e.g.* using the FIND_LIBRARY() command in the CMakeLists.txt files. If you have libraries in non-standard locations, it may be useful to set this variable to this directory. If you need several directories, separate them by the platform specific separators (*e.g.* ":" on UNIX). |
 | &#x2011;DCMAKE_PREFIX_PATH  | System path | System-dependent. | This is used when searching for include files, binaries, or libraries using either the FIND_PACKAGE(), FIND_PATH(), FIND_PROGRAM(), or FIND_LIBRARY() commands in the CMakeLists.txt files. For each path in the CMAKE_PREFIX_PATH list, CMake will check "PATH/include" and "PATH" when FIND_PATH() is called, "PATH/bin" and "PATH" when FIND_PROGRAM() is called, and "PATH/lib" and "PATH" when FIND_LIBRARY() is called. |
 | &#x2011;DCMAKE_TOOLCHAIN_FILE |  Path to a CMake toolchain file  | None | This variable is specified on the command line when cross-compiling with CMake. It is the path to a file which is read early in the CMake run and which specifies locations for compilers and toolchain utilities, and other target platform and compiler related information. For an example of usage, see [cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | relative_url }}). |
 | &#x2011;GNinja | - | - | If ```-GNinja``` is passed to CMake, it generates input files for [Ninja](https://ninja-build.org/), a small build system designed for speed that can be seen as a replacement for ```make```. Thus, the code will be compiled by doing ```ninja``` in the command line after running CMake, and the program will be installed by doing ```sudo ninja install```. |
+| &#x2011;DPYTHON_EXECUTABLE | System path  | System-dependent. | Path to the Python interpreter. By default, GNSS-SDR searches for Python 2.7 and, if not found, it searches for Python 3 at standard locations in your system. You can specify the path of the Python interpreter by setting this variable (*e.g.*  ```/path/to/python3```). |
 |----------
 
 In addition, if the ```DESTDIR``` environment variable is set, it will be prefixed to ```CMAKE_INSTALL_PREFIX``` in places where it is used to access files during installation. This allows the files to be installed in an intermediate directory tree without changing the final installation path name. For instance:
@@ -85,6 +86,20 @@ will install the software using the installation prefix, *e.g.*  ```/usr/local``
 finally gives ```/home/carles/usr/local```, so binaries will be under ```/home/carles/usr/local/bin```.
 
 Since the value of ```CMAKE_INSTALL_PREFIX``` may be included in installed files, it is important to use ```DESTDIR``` rather than changing ```CMAKE_INSTALL_PREFIX``` when it is necessary to install to a intermediate staging directory. See a practical example of its usage at [cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | relative_url }}).
+
+The value of ```CMAKE_BUILD_TYPE``` determines the flags passed to the compiler. In addition to those build types offered by CMake by default, GNSS-SDR offers other extra build types for debugging and profiling purposes. The possible options and the flags passed to the compiler are listed below:
+
+ - None: nothing set
+ - Debug: `-O2 -g`
+ - Release: `-O3`
+ - RelWithDebInfo: `-O3 -g`
+ - MinSizeRel: `-Os`
+ - Coverage: `-Wall -pedantic -pthread -g -O0 -fprofile-arcs -ftest-coverage`
+ - NoOptWithASM: `-O0 -g -save-temps`
+ - O2WithASM: `-O2 -g -save-temps`
+ - O3WithASM: `-O3 -g -save-temps`
+ - ASAN: `-Wall -Wextra -g -O2 -fsanitize=address -fno-omit-frame-pointer`
+
 
 For more details, the [CMake official documentation](https://cmake.org/documentation/) is home of the authoritative guide to all CMake variables, commands, and properties.
 
