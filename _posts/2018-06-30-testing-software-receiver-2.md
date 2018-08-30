@@ -478,45 +478,7 @@ $ make
 
 As in the case of the `-DENABLE_UNIT_TESTING_EXTRA=ON`, this option will also download, build and link the software-defined GNSS signal generator and the GPSTk library.
 
-This option generates the following system test programs:
-
-### `obs_gps_l1_system_test`
-
-This test program calls the software-defined signal generator, which generates a file of raw GNSS signals based on the passed RINEX navigation file and a given receiver position. Then, the software receiver processes it, generating its own RINEX observbles and navigation files. Then, the program compares the observables obtained by the software receiver to the ones in a RINEX observation file, making use of the GPSTK library. This program accepts the following commandline flags:
-
-|----------
-|  **Flag**  |  **Default value** | **Description** |
-|:--|:-:|:--|
-| &#x2011;&#x2011;rinex_nav_file| "brdc3540.14n" | Input RINEX navigation file |
-| &#x2011;&#x2011;filename_rinex_obs | "sim.16o" | Filename of output RINEX navigation file. |
-| &#x2011;&#x2011;filename_raw_data | "signal_out.bin" | Filename of raw signal samples file (internally genetaed by software). |
-| &#x2011;&#x2011;static_position | "30.286502,120.032669,100" | Static receiver position [log,lat,height] |
-| &#x2011;&#x2011;dynamic_position | -- | Observer positions file, in .csv or .nmea format. |
-| &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = $$ 300 $$]. |
-| &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
-|----------
-
-
-
-So an example of running this test could be:
-
-```bash
-$ ./obs_gps_l1_system_test
-```
-
-The first run will generate a `signal_out.bin` file (taking some time). The next time you execute this test, signal generation cam be skipped by:
-
-```bash
-$ ./obs_gps_l1_system_test --disable_generator
-```
-
-If you have a professional GNSS signal receiver that generates RINEX files, or you download them from a server, you can use the RINEX navigation file and your best guess of your position:
-
-```bash
-$ ./obs_gps_l1_system_test --rinex_nav_file=my_RINEX.17n --static_position="0.000000,000000,0"
-```
-
-This expects a `my_RINEX.17n` and a `my_RINEX.17o` files and a valid position.
+This option generates the following system test program:
 
 ### `position_test`
 
