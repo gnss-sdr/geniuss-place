@@ -581,6 +581,9 @@ PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 ```
 
+-------
+
+
 
 # Implementation: `GPS_L1_CA_PVT`
 
