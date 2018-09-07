@@ -159,6 +159,7 @@ Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb pa
 |:--|:-:|:-:|:--|
 |--------------
 | &#x2011;DENABLE_UNIT_TESTING | ON / OFF | ON  |  If set to OFF, it disables the building of unit tests. This can be useful in memory-limited systems. |
+| &#x2011;DENABLE_UNIT_TESTING_MINIMAL | ON / OFF | OFF  |  If set to ON, it builds a minimal subset of unit tests. This can be useful in memory-limited systems. |
 | &#x2011;DENABLE_UNIT_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external raw sample files and other software tools (among them, [GPSTk](http://www.gpstk.org/), if it is not already found in your system), and builds some extra unit tests that are added to the ```run_tests``` executable.  |
 | &#x2011;DENABLE_SYSTEM_TESTING | ON / OFF |  OFF |  If set to ON, it builds system tests. The binary ```ttff```, a tool for Time-To-First-Fix measurement, is generated at the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option.  |
 | &#x2011;DENABLE_SYSTEM_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](http://www.gpstk.org/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
