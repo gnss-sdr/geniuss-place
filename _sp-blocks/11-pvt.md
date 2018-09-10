@@ -75,7 +75,7 @@ $$ \begin{equation} \label{eq:lse} \hat{\mathbf{x}}_{i+1} = \hat{\mathbf{x}}_{i}
 {% endcapture %}
 
 <div class="notice--success">
-  <h4>Navigation Solution for Single Point Positioning: Iterative weighted least squares estimator</h4>
+  <b>Navigation Solution for Single Point Positioning: Iterative weighted least squares estimator</b>
   {{ lse | markdownify }}
 </div>
 
@@ -138,7 +138,7 @@ $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 & 0 & -
 $$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)}  \right)^T $$
 {:/comment}
 
-**Solution validation**
+### Solution validation
 
 The estimated receiver positions described in ($$ \ref{eq:lse} $$) might include invalid solutions due to unmodeled measurement errors. To test whether the solution is valid or not, and to reject the invalid solutions, the `RTKLIB_PVT` applies the following validation tests after obtaining the receiver's position estimate:
 
@@ -165,7 +165,7 @@ The threshold value is set by default to $$ \text{GDOP}_{\text{threshold}} = 30$
 
 If any of the validation fails, the solution is rejected as an outlier (that is, no solution is provided).
 
-**Receiver Autonomous Integrity Monitoring (RAIM)**
+### Receiver Autonomous Integrity Monitoring (RAIM)
 
 In addition to the solution validation described above, RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) function can be activated. If the chi-squared test described above fails and the option `PVT.raim_fde` is set to $$ 1 $$, the implementation retries the estimation by excluding one by one of the visible satellites. After all of retries, the estimated receiver position with the minimum normalized squared residuals $$ \boldsymbol{\nu}^T \boldsymbol{\nu} $$ is selected as the final solution. In such scheme, an invalid measurement, which might be due to satellite malfunction, receiver fault or large multipath, is excluded as an outlier. Note that this feature is not effective with two or more invalid measurements. It also needs two redundant visible satellites, that means at least 6 visible satellites are necessary to obtain the final solution.
 
@@ -253,7 +253,7 @@ With all those definitions, the Precise Point Positioning solution is computed a
 {% endcapture %}
 
 <div class="notice--success">
-  <h4>Navigation Solution for Precise Point Positioning: Extended Kalman Filter</h4>
+  <b>Navigation Solution for Precise Point Positioning: Extended Kalman Filter</b>
   {{ ekf | markdownify }}
 </div>
 
@@ -311,7 +311,7 @@ in which $$ \sigma_{\Phi,1}^{(s)} $$ is the standard deviation of L1 phase‐ran
     - $$ \sigma_{ion,s} $$, $$ \sigma_{bclock} $$ and $$ \sigma_{trop,s} $$ defined as above.
     - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m). This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
 
-**Outlier rejection**
+### Outlier rejection
 
 In each of the executions of the Extended Kalman Filter defined in ($$ \ref{eq:state-update} $$)-($$ \ref{eq:meas-cov-update} $$), if the absolute value of a residual $$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} +c \hat{dt}_r - cdT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s} $$ for a satellite $$ s $$ is above a certain threshold, that observation is rejected as an outlier. The default threshold is set to $$ 30 $$ m and can be configured via the option `PVT.threshold_reject_innovation`.
 
@@ -580,6 +580,9 @@ PVT.rtcm_MT1097_rate_ms=1000
 PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 ```
+
+-------
+
 
 
 # Implementation: `GPS_L1_CA_PVT`
