@@ -85,9 +85,9 @@ Jordi Vila:
 
 Antonio Ramos:
   name        : "Antonio Ramos&nbsp;de&nbsp;Torres"
-  uri         : "http://www.cttc.es/people/aramos/"
-  email       : "antonio.ramos@cttc.es"
-  bio         : "Research Assistant at CTTC"
+  uri         :
+  email       : "antonio.ramosdet@gmail.com"
+  bio         : "Engineer at Barcelona City Council"
   avatar      : "/assets/images/antonio.jpg"
   twitter     :
   github      : "antonioramosdet"
