@@ -31,6 +31,14 @@
       {% if author.location %}
         <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place"><i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name"> {{ author.location }} </span></li>
       {% endif %}
+      {% if author.links %}
+        {% for link in author.links %}
+          {% if link.label and link.url %}
+             <li><a href="{{ link.url }}"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a></li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
       {% if author.uri %}
         <li><a href="{{ author.uri }}"  itemprop="url"><i class="fas fa-fw fa-link" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].website_label | default: "Website" }}</a></li>
       {% endif %}
@@ -47,7 +55,7 @@
         <li> <a href="https://www.researchgate.net/profile/{{ author.researchgate }}"  itemprop="sameAs"><i class="ai ai-fw ai-researchgate"></i> ResearchGate</a></li>
       {% endif %}
       {% if author.github %}
-        <li><a href="https://github.com/{{ author.github }}"  itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        <li><a href="https://github.com/{{ author.github }}"  itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
       {% endif %}
       {% if author.bitbucket %}
         <li><a href="https://bitbucket.org/{{ author.bitbucket }}"  itemprop="sameAs"><i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket</a></li>
@@ -127,6 +135,9 @@
       {% if author.vine %}
         <li><a href="https://vine.co/u/{{ author.vine }}"  itemprop="sameAs"><i class="fab fa-fw fa-vine" aria-hidden="true"></i> Vine</a></li>
       {% endif %}
+
+      {% include author-profile-custom-links.html %}
+
     </ul>
   </div>
 </div>
