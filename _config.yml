@@ -274,6 +274,7 @@ plugins:
   - jekyll-feed
   - jekyll-redirect-from
   - jemoji
+  - jekyll-include-cache
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -283,6 +284,7 @@ whitelist:
   - jekyll-feed
   - jekyll-redirect-from
   - jemoji
+  - jekyll-include-cache  
 
 category_archive:
   type: liquid
