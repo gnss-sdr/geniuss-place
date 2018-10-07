@@ -13,21 +13,20 @@ last_modified_at: 2016-06-21T16:39:37-04:00
 
 [AUDITOR](https://auditor-project.eu/) Project:
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/SLe064VqUY8?showinfo=0" frameborder="0" allowfullscreen></iframe>
+{% include video id="SLe064VqUY8" provider="youtube" %}
 
 (also in [Spanish](https://www.youtube.com/watch?v=pE8yB5yvegg)).
 
 GeNiuSS debut film:
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/fwmqiP8kPRE?showinfo=0" frameborder="0" allowfullscreen></iframe>
-
+{% include video id="fwmqiP8kPRE" provider="youtube" %}
 
 This movie was beautifully crafted by [les3ines](https://www.facebook.com/las3inas-375322972611875/), and it also available in [Spanish](https://www.youtube.com/watch?v=L00QZ-iozPs) and [Catalan](https://www.youtube.com/watch?v=Ga-0pQQuR3k).
 
 
 Team at work:
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/zkWvXU3oMs4?showinfo=0" frameborder="0" allowfullscreen></iframe>
+{% include video id="zkWvXU3oMs4" provider="youtube" %}
 
 Visualization created with [gource](http://gource.io/) and based on the upstream repository [https://github.com/gnss-sdr/gnss-sdr.git](https://github.com/gnss-sdr/gnss-sdr.git).
 
