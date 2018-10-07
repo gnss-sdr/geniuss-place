@@ -6,6 +6,6 @@
 {% if video_provider == "vimeo" %}
   <iframe src="https://player.vimeo.com/video/{{ video_id }}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 {% elsif video_provider == "youtube" %}
-  <iframe src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/{{ video_id }}?showinfo=0" frameborder="0" allowfullscreen></iframe>
 {% endif %}
 </div>
