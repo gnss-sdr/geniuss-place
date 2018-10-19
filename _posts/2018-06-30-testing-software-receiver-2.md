@@ -622,7 +622,7 @@ where $$ \hat{E}=\frac{1}{L}\sum_{l=1}^{L}E[l] $$, $$ \hat{N}=\frac{1}{L}\sum_{l
 
 Tests behave very much like system "clients": unit tests imitate the behavior of a corresponding client-class or classes invoking target class methods, and system tests imitate the user behavior. Thinking in how to test a class _before_ actually writing it helps developers to focus in what really matters, and to design better interfaces. In other words, it enforces Design for Testability.
 
-The Google C++ Testing Framework provides an implementation of all those testing concepts described in the [TDD process]({{ "#test-driven-development" }}), allowing developers to concentrate in the testing code.
+The Google C++ Testing Framework provides an implementation of all those testing concepts described in the [TDD process]({{ "/docs/tutorials/testing-software-receiver/#test-driven-development" | relative_url }}), allowing developers to concentrate in the testing code.
 
 In order to create a new test:
 
