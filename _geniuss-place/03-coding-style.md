@@ -971,24 +971,24 @@ $ sudo brew install clang-format
 
   * **In macOS using Macports:**
 ```bash
-$ sudo port install clang-6.0
+$ sudo port install clang-7.0
 ```
   NOTE: You can see all available choices with `port select --list` for clang:
 ```bash
 $ port select --list clang
 Available versions for clang:
-	mp-clang-6.0
+	mp-clang-7.0
 	none (active)
 ```
   With `sudo port select --set clang <version>` you choose one of them as the new default, which will create symlinks in `/opt/local/bin` without the version suffix.
 ```bash
-$ sudo port select --set clang mp-clang-6.0
-selecting 'mp-clang-6.0' for 'clang' succeeded. 'mp-clang-6.0' is now active.
+$ sudo port select --set clang mp-clang-7.0
+selecting 'mp-clang-7.0' for 'clang' succeeded. 'mp-clang-7.0' is now active.
 ```
   You can confirm this change by looking at the version of the tool:
 ```bash
 $ clang-format --version
-clang-format version 6.0.0 (branches/release_60 321774)
+clang-format version 7.0.0 (tags/RELEASE_700/final)
 ```
   If you later wish to remove these symlinks in order to avoid hiding tools installed by Xcode, just select the `none` version.
 
