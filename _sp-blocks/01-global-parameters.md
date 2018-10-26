@@ -43,6 +43,11 @@ GNSS-SDR.internal_fs_sps=4000000
 
 ## Assisted GNSS with XML files
 
+
+**IMPORTANT**: This feature is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
+
+
 GNSS-SDR can read assistance data from [Extensible Markup Language (XML)](https://www.w3.org/XML/) files for faster [Time-To-First-Fix](https://gnss-sdr.org/design-forces/availability/#time-to-first-fix-ttff), and can store navigation data decoded from GNSS signals in the same format. Check [this folder](https://github.com/gnss-sdr/gnss-sdr/tree/next/docs/xml-schemas) for XML Schemas describing those XML files structure.
 
 
