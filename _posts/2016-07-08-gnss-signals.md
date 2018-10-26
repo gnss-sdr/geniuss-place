@@ -664,20 +664,20 @@ The following table lists the GNSS signals providing Open Service.
 |  **GNSS Signal**  |  **Center Freq.** |  **Modulation** |
 |:-:|:-:|:-:|    
 |--------------
-| [**GPS L5**](https://www.gps.gov/technical/icwg/IS-GPS-705D.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
+| [**GPS L5**](https://www.gps.gov/technical/icwg/IS-GPS-705E.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
 | [**Galileo E5a**](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(**)} $$   | $$ 1176.45 $$ MHz |  BPSK(10)   |
 | [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
 | [**Galileo E5b**](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) |  $$ 1207.14 $$ MHz  | BPSK(2) |
-| [**GPS L2C**](https://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
+| [**GPS L2C**](https://www.gps.gov/technical/icwg/IS-GPS-200J.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
 | [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
 | [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
 | [**BeiDou B3I**](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf)$$ ^{(*)} $$  | $$ 1268.520 $$ MHz | BPSK(10) |
 | [**BeiDou B1I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) | $$ 1561.098 $$ MHz | BPSK(2) |
 | [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1561.098 $$ MHz | BOC(1,1) |
-| [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
-| [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800D.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
+| [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IS-GPS-200J.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
+| [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800E.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
 | [**Galileo E1b/c**](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
 | [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
 | [**GLONASS L1OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1602.00 $$ MHz | BPSK(0.5) |
