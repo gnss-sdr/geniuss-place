@@ -696,11 +696,11 @@ The following table lists the GNSS signals providing Open Service.
 
 [^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](https://ieeexplore.ieee.org/document/5942139/), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](https://dx.doi.org/10.1109/JPROC.2011.2158032).
 
-[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf), Dec. 2015.
+[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200J: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200J.pdf), May 2018.
 
-[^ISGPS800]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-800D: Navstar GPS Space Segment/User Segment L1C Interface](https://www.gps.gov/technical/icwg/IS-GPS-800D.pdf), Sept. 2013.
+[^ISGPS800]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-800E: Navstar GPS Space Segment/User Segment L1C Interface](https://www.gps.gov/technical/icwg/IS-GPS-800E.pdf), May 2018.
 
-[^ISGPS705]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-705D: Navstar GPS Space Segment/User Segment L5 Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-705D.pdf), Sept. 2013.
+[^ISGPS705]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-705E: Navstar GPS Space Segment/User Segment L5 Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-705E.pdf), May 2018.
 
 [^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf). Edition 5.1, Moscow, Russia, 2008.
 
