@@ -656,7 +656,12 @@ TEST(RtcmTest, HexToInt)  // RtcmTest is the name of the Test Case
 
 This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h)) and wraps it into a shared pointer that will deallocate memory at the end of the test. Then, it tests the class member function `hex_to_int` and evaluates the result in an assertion, checking that the obtained result is actually the expected one.
 
-For more details details about the usage of the Google C++ Testing Framework and its available features, please check out its  [Documentation](https://github.com/google/googletest/blob/master/googletest/docs/Documentation.md).
+For more details details about the usage of the Google C++ Testing Framework and its available features, please check out its documentation:
+
+ * [Primer](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) -- start here if you are new to googletest.
+ * [Advanced Topics](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md) -- learn some new tricks.
+ * [Frequently-Asked Questions](https://github.com/google/googletest/blob/master/googletest/docs/faq.md) -- maybe your question is answered here.
+
 
 The existing tests are also a source of examples on how to write tests. Please place your testing code in an adequate folder from the GNSS-SDR source tree:
 
