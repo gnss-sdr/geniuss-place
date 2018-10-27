@@ -77,7 +77,7 @@ GNSS-SDR.AGNSS_XML_enabled=true
 
 ## Assisted GNSS with SUPL v1.0
 
-One way of accelerating a GPS receiver's time to first fix is to use assistance data from a Secure User Plane Location (SUPL) server. SUPL is a standard produced by the Open Mobile Alliance (OMA) that allows a device such as a mobile phone to connect to a location server using the TCP/IP protocol, and to request assistance data for location.
+One way of accelerating a GNSS receiver's Time-To-First-Fix is to use assistance data from a Secure User Plane Location (SUPL) server. SUPL is a standard produced by the Open Mobile Alliance (OMA) that allows a device such as a mobile phone to connect to a location server using the TCP/IP protocol, and to request assistance data for location.
 
 
 In order to retrieve that information from a SUPL server, the device to be located needs to send some information, namely its Location Area Identity (which uniquely identifies a location area within a mobile network, and consists of the Mobile Country Code, the Mobile Network Code and the Location Area Code) and the Cell ID to which the device is connected.
@@ -90,13 +90,13 @@ These parameters are defined as follows:
 
   - The **Location Area Code (LAC)** is a unique number of current local area. The served area of a cellular radio network is usually divided into location areas. Location areas are comprised of one or several radio cells, and each location area is given a unique number within the network - the LAC. Please note that in some networks, the LAC is called Tracking Area Code (TAC). Both the LAC and TAC share the same concept of providing the location code of a base station set. The only difference between LAC and TAC is that the LAC is the terminology used in GSM/UMTS while the TAC is the terminology used in LTE networks.
 
-  - The **CellID (CID)** is a generally unique number used to identify each Base Transceiver Station (BTS) or sector of a BTS within a location area. While BTS is the terminology for GSM networks, this is called Node B in UMTS and eNode B in LTE networks.
+  - The **Cell ID (CID)** is a generally unique number used to identify each Base Transceiver Station (BTS) or sector of a BTS within a location area code. While BTS is the terminology for GSM networks, this is called Node B in UMTS and eNode B in LTE networks. Valid values for the CID range from $$ 0 $$ to $$ 65535 $$, that is, ($$ 2^{16} − 1 $$), on GSM and CDMA networks and from $$ 0 $$ to $$ 268435455 $$, that is, ($$ 2^{28} − 1 $$), on UMTS and LTE networks.
 
 
 Those values can be easily retrieved using any net monitor on a smartphone. There are a lot of apps that can do that (an example [here](https://play.google.com/store/apps/details?id=com.parizene.netmonitor&hl=en)). These applications are able to provide the required MMC, MNC, LAC and CI parameters for your location. A list of MCC and MNC around the World can be found at [mcc-mnc.com](http://www.mcc-mnc.com) and at the [Wikipedia](https://en.wikipedia.org/wiki/Mobile_country_code).
 
 
-GNSS-SDR is a SUPL Enabled Terminal (SET) receiver that can use a TCP/IP network connection to retrieve Assisted GPS data from a remote server via the Secure User Plane Location (SUPL) v1.0 and hence accelerate its time to first fix. SUPL v1.0 only applies to GPS L1 C/A assistance.
+GNSS-SDR is a SUPL Enabled Terminal (SET) receiver that can use a TCP/IP network connection to retrieve Assisted GPS data from a remote server via the Secure User Plane Location (SUPL) v1.0 and hence accelerate its Time-To-First-Fix. SUPL v1.0 only applies to GPS L1 C/A assistance.
 
 GNSS-SDR configuration parameters for Assisted GNSS with SUPL v1.0 are shown below:
 
@@ -119,7 +119,7 @@ GNSS-SDR configuration parameters for Assisted GNSS with SUPL v1.0 are shown bel
 |  `SUPL_gps_utc_model_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS UTC model data. It defaults to  `gps_utc_model.xml`. |  Optional |
 |-------
 
-_Global GNSS-SDR parameters: Assisted GPS SUPL V1.0_.
+_Global GNSS-SDR parameters: Assisted GPS via SUPL V1.0_.
 {: style="text-align: center;"}
 
 LAC and CI may be presented in a decimal or hexadecimal form, and the GNSS-SDR configuration accepts both. Setting `GNSS-SDR.SUPL_LAC=0x59e2` is equivalent to `GNSS-SDR.SUPL_LAC=23010`.
