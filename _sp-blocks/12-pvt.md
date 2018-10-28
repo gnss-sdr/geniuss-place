@@ -526,9 +526,17 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `reject_GPS_IIA` | [`0`, `1`]: Set whether the GPS Block IIA satellites are excluded or not. Those satellites often degrade the PPP solutions due to unpredicted behavior of yaw‐attitude. It defaults to $$ 0 $$ (no rejection). | Optional |
 | `phwindup` | [`0`, `1`]: Set whether the phase windup correction $$ \phi_{pw} $$ for PPP modes is applied or not. It defaults to $$ 0 $$ (no phase windup correction). | Optional |
 | `earth_tide` | [`0`, `1`]: Set whether earth tides correction is applied or not. If set to $$ 1 $$, the solid earth tides correction $$ \mathbf{d}_{r,disp} $$ is applied to the PPP solution, following the description in [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html)[^McCarthy04], Chapter 7. It defaults to $$ 0 $$ (no Earth tide correction). | Optional |
+| `output_enabled` | [`true`, `false`]: If set to `false`, output data files are not stored. It defaults to `true`. | Optional |
+| `rtcm_output_file_enabled` | [`true`, `false`]: If set to `false`, RTCM binary files are not stored. It defaults to `output_enabled`. | Optional |
+| `gpx_output_enabled` | [`true`, `false`]: If set to `false`, GPX files are not stored. It defaults to `output_enabled`. | Optional |
+| `geojson_output_enabled` | [`true`, `false`]: If set to `false`, GeoJSON files are not stored. It defaults to `output_enabled`. | Optional |
+| `kml_output_enabled` | [`true`, `false`]: If set to `false`, KML files are not stored. It defaults to `output_enabled`. | Optional |
+| `xml_output_enabled` | [`true`, `false`]: If set to `false`, XML files are not stored. It defaults to `output_enabled`. | Optional |
+| `rinex_output_enabled` | [`true`, `false`]: If set to `false`, RINEX files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
 | `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. It defaults to 1000 ms. | Optional |
 | `rinexnav_rate_ms`| Rate at which navigation message's parameters are annotated in the RINEX file, in ms. It defaults to 6000 ms. | Optional |
+| `nmea_output_file_enabled` | [`true`, `false`]: If set to `false`, NMEA sentences are not stored. It defaults to `true`. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
 | `nmea_dump_devname` | If `flag_nmea_tty_port` is set to `true`, descriptor of the serial port device.  It defaults to `/dev/tty1`. | Optional |
@@ -541,7 +549,15 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `rtcm_MT1077_rate_ms` | Rate at which RTCM Multiple Signal Messages GPS MSM7 (MT1077 - Full GPS observations) will be generated, in ms. If set to `0`, mutes this message. It defaults to `rtcm_MSM_rate_ms`. | Optional |
 | `rtcm_MT1097_rate_ms` | Rate at which RTCM Multiple Signal Messages Galileo MSM7 (MT1097 - Full Galileo observations) will be generated, in ms. If set to `0`, mutes this message. It defaults to `rtcm_MSM_rate_ms`.  | Optional |
 | `flag_rtcm_tty_port` | [`true`, `false`]: If set to `true`, the generated RTCM messages are also sent to a serial port device. It defaults to `false`. | Optional |
-| `rtcm_dump_devname` |  If `flag_rtcm_tty_port` is set to `true`, descriptor of the serial port device. . It defaults to `/dev/pts/1`. | Optional |
+| `rtcm_dump_devname` |  If `flag_rtcm_tty_port` is set to `true`, descriptor of the serial port device. It defaults to `/dev/pts/1`. | Optional |
+| `output_path` | Base path in which output data files will be stored. If the specified path does not exist, it will be created. It defaults to the current path `./`.  | Optional |
+| `rinex_output_path` | Base path in which RINEX files will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
+| `gpx_output_path` | Base path in which GPX files will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
+| `geojson_output_path` | Base path in which GeoJSON files will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
+| `kml_output_path` | Base path in which KML files will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
+| `xml_output_path` | Base path in which XML files will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
+| `nmea_output_file_path` | Base path in which NMEA messages will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
+| `rtcm_output_file_path` | Base path in which RTCM binary files will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
 |----------
@@ -559,6 +575,9 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `iono_0` | Set the process noise initial bias of vertical ionospheric delay per 10 km baseline, in m. It defaults to 0.03 m. | Optional |
 | `trop_0` | Set the process noise initial bias of zenith tropospheric delay, in m. It defaults to 0.3 m. | Optional |
 {:/comment}
+
+_PVT implementation:_ **`RTKLIB_PVT`**.
+{: style="text-align: center;"}
 
 Example:
 
@@ -580,6 +599,52 @@ PVT.rtcm_MT1097_rate_ms=1000
 PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 ```
+
+The generation of output files is controlled by the parameter `output_enabled`. If set to `true` (which is its default value), RINEX, XML, GPX, KML, GeoJSON, NMEA and binary RTCM files will be generated. You can turn off the generation of such files by setting `output_enabled=false`, and then select, for instance, `rinex_output_enabled=true` or `kml_output_enabled=true`. Files are stored in the path indicated in `output_path`, which by default is the current folder (that is, the folder from which GNSS-SDR was called). This can be changed for all outputs (for instance, `output_path=gnss-products` or `output_path=/home/user/Documents/gnss-products/day1`), or it can be defined per type of output (_e.g._, `rinex_output_path=gnss-products/rinex` , `gpx_output_path=gnss-products/gpx`, `geojson_output_path=gnss-products/geojson`, etc. ).
+
+Example:
+
+```ini
+PVT.output_enabled=false
+PVT.rtcm_output_file_enabled=false
+PVT.gpx_output_enabled=true
+PVT.geojson_output_enabled=true
+PVT.kml_output_enabled=true
+PVT.xml_output_enabled=true
+PVT.rinex_output_enabled=true
+PVT.nmea_output_file_enabled=false
+PVT.output_path=gnss-products/others
+PVT.gpx_output_path=gnss-products/gpx
+PVT.kml_output_path=./
+PVT.xml_output_path=./
+PVT.rinex_output_path=gnss-products/rinex
+```
+
+This will create in your current directory:
+
+```
+.
+├── PVT_181028_093651.kml
+├── gnss-products
+│   ├── gpx
+│   │   └── PVT_181028_093651.gpx
+│   ├── others
+│   │   └── PVT_181028_093651.geojson
+│   └── rinex
+│       ├── GSDR301j36.18N
+│       └── GSDR301j36.18O
+└── gps_ephemeris.xml
+```
+
+
+In order to shut down the generation of output files, you can just include in your configuration file the line:
+
+```ini
+PVT.output_enabled=false
+```
+
+Please note that this only concerns to the generation of mentioned file formats, and it does not affect the generation of dump files activated in the configuration of each processing block. If the RTCM server is activated with `flag_rtcm_server=true`, it will still work even if the binary RTCM file is deactivated with `rtcm_output_file_enabled=false`.
+
 
 -------
 
