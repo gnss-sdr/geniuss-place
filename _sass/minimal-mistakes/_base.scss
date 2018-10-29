@@ -43,7 +43,7 @@ h2 {
 }
 
 h3 {
-  font-size: $type-size-5;
+  font-size: $type-size-4-5;
 }
 
 h4 {
@@ -138,14 +138,13 @@ a {
     @extend %tab-focus;
   }
 
-  &:hover,
-  &:active {
-    color: $link-color-hover;
-    outline: 0;
-  }
-
   &:visited {
     color: $link-color-visited;
+  }
+
+  &:hover {
+    color: $link-color-hover;
+    outline: 0;
   }
 }
 

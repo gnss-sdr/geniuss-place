@@ -12,7 +12,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-03-06T09:37:02+02:00
+last_modified_at: 2018-10-27T02:11:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function within a larger mechanical or electrical system. Examples of properties of embedded computers when compared with general-purpose counterparts are low power consumption, small size, rugged operating ranges, and low per-unit cost, at the price of limited processing resources.
@@ -42,17 +42,17 @@ You can download the SDK from the links below. Version names (Jethro, Krogoth, M
 The following table lists the available SDK versions:
 
 
-| Version | Status | Download | md5 | Manifest |
-|:-|:-:|:-:|:-|:-:|
-| Rocko | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | d3c3d5f909c1ca81435108a3cfc4227b | [Host](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Pyro | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 8ce7c2a732884e5487f592ae102780f1 | [Host](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Morty | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | b2eb36d4ef2838586afa1bc6b44dc0f4 | [Host](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Krogoth | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 16af7ab553a0c8f553ba4d6ccc5d6bfe | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Jethro | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh"} | d0419e9c1e0894a327af4d9560cf0294 | [Host](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest) |
+| Version | Status | Download | Size | md5 | Manifest |
+|:-|:-:|:-:|:-:|:-|:-:|
+| Sumo | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 349 MB | d25313709bc8c13eba01f7f9a589d8c6 | [Host](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Rocko | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 1.3 GB  | fb26ff0b84f67006e19266154c36173b | [Host](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Pyro | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.1 GB | 8ce7c2a732884e5487f592ae102780f1 | [Host](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Morty | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.0 GB | b2eb36d4ef2838586afa1bc6b44dc0f4 | [Host](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Krogoth | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 920 MB | 16af7ab553a0c8f553ba4d6ccc5d6bfe | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Jethro | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh"} | 1.6 GB | d0419e9c1e0894a327af4d9560cf0294 | [Host](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest) |
 
 
-
-Please note that the SDK scripts provided in this table take about 1 GB. Check out the manifest files to see the full list of packages and versions each SDK will install in the root filesystem of your device. Releases are listed from the most recent (top) to the oldest (bottom). All the SDKs but Jethro include all the required dependency packages for cross-compiling GNSS-SDR in your own machine, including optional packages such as `gr-osmosdr` and `gr-iio`.
+Check out the manifest files to see the full list of packages and versions each SDK will install in the root filesystem of your device. Releases are listed from the most recent (top) to the oldest (bottom). All the SDKs but Jethro include all the required dependency packages for cross-compiling GNSS-SDR in your own machine, including optional packages such as `gr-osmosdr` and `gr-iio`.
 
 
 ### Option 2: Building your own SDK
@@ -77,7 +77,7 @@ $ cd oe-repo
 3) Initialize ```repo```, download the required tools and prepare your building environment:
 
 ```bash
-$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b krogoth
+$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b sumo
 $ repo sync
 $ TEMPLATECONF=`pwd`/meta-gnss-sdr/conf source ./oe-core/oe-init-build-env ./build ./bitbake
 ```
@@ -88,16 +88,16 @@ This last command copies default configuration information into the ```./build/c
 Please note that the name of the oe-gnss-sdr-manifest branch passed to ```repo``` will determine the version of the SDK to be built. For instance,
 
 ```bash
-$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b jethro
-```
-
-will generate the Jethro release of the SDK (see the manifest for a list of installed packages and their respective versions), while
-
-```bash
 $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b rocko
 ```
 
-will generate the Rocko release.
+will generate the Rocko release of the SDK (see the manifest for a list of installed packages and their respective versions), while
+
+```bash
+$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b sumo
+```
+
+will generate the Sumo release.
 {% endcapture %}
 
 <div class="notice--warning">
@@ -115,6 +115,28 @@ $ bitbake -c populate_sdk gnss-sdr-dev-image
 ```
 
 This process downloads several gigabytes of source code and then proceeds to compile all the required packages for the host and native targets, so **it will take time**. The first command constructs a complete Linux image for your target device. The second command generates the toolchain installer, a script that installs a cross-compiler, a cross-linker and a cross-debugger, forming a completely self-contained toolchain which allows you to cross-develop on the host machine for the target hardware. The generated script will be found under ```./tmp-glibc/deploy/sdk/```.
+
+If you are using Sumo or Rocko, you can create a Docker image of the target environment by doing:
+
+```bash
+$ bitbake gnss-sdr-dev-docker
+```
+
+This will create a ```.docker``` file under ```./tmp-glibc/deploy/images/``` that can be ingested by Docker as:
+
+```
+$ docker load -i /path/to/file.docker
+```
+
+For your convenience, you can also directly pull and run this image from an arm32v7-based device:
+
+```
+$ docker run -it carlesfernandez/gnsssdr-dev-arm32v7:sumo /bin/bash
+```
+
+(or `carlesfernandez/gnsssdr-dev-arm32v7:rocko` for the Rocko image).
+
+Copy the results of your cross-compilation there and you are ready to go. Please note that this image can only be executed by an arm32v7-based system.
 
 
 Using the SDK

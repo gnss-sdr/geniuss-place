@@ -77,6 +77,8 @@ sp-block:
   - title: Signal Processing Blocks
     url: /docs/sp-blocks/
     children:
+      - title: "Global parameters"
+        url: /docs/sp-blocks/global-parameters/      
       - title: "Signal Source"
         url: /docs/sp-blocks/signal-source/
       - title: "Signal Conditioner"
@@ -177,7 +179,7 @@ news:
       - title: "Makers"
         url: /enclosures/
       - title: "Code of Conduct"
-        url: /code-of-conduct/ 
+        url: /code-of-conduct/
 
   - title: About Us
     children:

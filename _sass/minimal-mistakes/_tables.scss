@@ -116,6 +116,7 @@ tr, td, th {
     &:hover {
       color: mix(#000, $text-color, 50%);
       border-bottom-color: $background-color;
+      text-decoration: underline;
     }
   }
 }

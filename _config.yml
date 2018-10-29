@@ -75,12 +75,25 @@ google_ad_slot           :
 # Site Author
 author:
   name             : *name
-  github           : "gnss-sdr"
-  google_plus      : "GnsssdrOrgPage"
-  gitlab           : "gnss-sdr/gnss-sdr"
   sourceforge      : "gnss-sdr"
-  twitter          :
-  youtube          :
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/gnss-sdr/"
+    - label: "GitLab"
+      icon: "fab fa-fw fa-gitlab"
+      url: "https://gitlab.com/gnss-sdr/gnss-sdr/"
+
+
+# Site Footer
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/gnss-sdr"
+    - label: "GitLab"
+      icon: "fab fa-fw fa-gitlab"
+      url: "https://gitlab.com/gnss-sdr/gnss-sdr"
 
 
 # Reading Files
@@ -261,6 +274,7 @@ plugins:
   - jekyll-feed
   - jekyll-redirect-from
   - jemoji
+  - jekyll-include-cache
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -270,6 +284,7 @@ whitelist:
   - jekyll-feed
   - jekyll-redirect-from
   - jemoji
+  - jekyll-include-cache  
 
 category_archive:
   type: liquid
