@@ -1,7 +1,7 @@
 ---
 title: "Acquisition"
 permalink: /docs/sp-blocks/acquisition/
-excerpt: "Documentation for the Acquisition block."
+excerpt: "Documentation for the Acquisition blocks."
 sidebar:
   nav: "sp-block"
 toc: true
