@@ -551,7 +551,7 @@ This test program computes metrics of static accuracy and precision. It can use 
 | &#x2011;&#x2011;accuracy_CEP | $$ 2.0 $$ | Static scenario 2D (East, North) accuracy Circular Error Position (CEP) threshold [meters]. |
 | &#x2011;&#x2011;precision_SEP | $$ 10.0 $$ | Static scenario 3D (East, North, Up) precision Spherical Error Position (SEP) threshold [meters]. |
 | &#x2011;&#x2011;dynamic_3D_position_RMSE | $$ 10.0 $$ | Dynamic scenario 3D (ECEF) accuracy RMSE threshold [meters] |
-| &#x2011;&#x2011;dynamic_3D_velocity_RMSE | $$ 5.0 $$ | Dynamic scenario 3D (ECEF) accuracy RMSE threshold [meters/second] |
+| &#x2011;&#x2011;dynamic_3D_velocity_RMSE | $$ 5.0 $$ | Dynamic scenario 3D (ECEF) velocity accuracy RMSE threshold [meters/second] |
 | &#x2011;&#x2011;pvt_solver_dump_filename | "PVT.dat" | Path and filename for the PVT solver binary dump file |
 | &#x2011;&#x2011;plot_position_test | false | If set to "true", and [Gnuplot](http://www.gnuplot.info/) is installed in your system, it generates some plots of the obtained results. It will display them in windows and will save them as .ps and .pdf files. |
 | &#x2011;&#x2011;show_plots | true | Show plots on screen. Set it to false for non-interactive testing. |
