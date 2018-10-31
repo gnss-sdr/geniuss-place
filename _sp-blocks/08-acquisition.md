@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-06-17T15:54:02-04:00
+last_modified_at: 2018-10-30T15:54:02-04:00
 ---
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of an _Acquisition_ block can be written as:
 
@@ -159,7 +159,7 @@ This implementation accepts the following parameters:
 | <span style="color: DarkOrange">`second_nbins`</span> | <span style="color: DarkOrange">If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to 4.</span> | <span style="color: DarkOrange">Optional</span> |
 | <span style="color: DarkOrange">`second_doppler_step`</span> | <span style="color: DarkOrange">If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to 125 Hz.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. <span style="color: DarkOrange">This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_1C_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. </span> | Optional |
 | <span style="color: DarkOrange">`dump_channel`</span> |  <span style="color: DarkOrange">If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0.</span> | <span style="color: DarkOrange">Optional</span> |
 |--------------
 
@@ -373,7 +373,7 @@ This implementation accepts the following parameters:
 | <span style="color: DarkOrange">`second_nbins`</span> | <span style="color: DarkOrange">If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to 4.</span> | <span style="color: DarkOrange">Optional</span> |
 | <span style="color: DarkOrange">`second_doppler_step`</span> | <span style="color: DarkOrange">If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to 125 Hz.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. <span style="color: DarkOrange">This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_E_1B_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. </span> | Optional |
 | <span style="color: DarkOrange">`dump_channel`</span> |  <span style="color: DarkOrange">If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0.</span> | <span style="color: DarkOrange">Optional</span> |
 |--------------
 
@@ -536,7 +536,7 @@ This implementation accepts the following parameters:
 | <span style="color: DarkOrange">`second_nbins`</span> | <span style="color: DarkOrange">If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to 4.</span> | <span style="color: DarkOrange">Optional</span> |
 | <span style="color: DarkOrange">`second_doppler_step`</span> | <span style="color: DarkOrange">If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. **ONLY AVAILABLE IN THE `next` BRANCH**. It defaults to 125 Hz.</span> | <span style="color: DarkOrange">Optional</span> |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. <span style="color: DarkOrange">This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_2S_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. </span> | Optional |
 | <span style="color: DarkOrange">`dump_channel`</span> |  <span style="color: DarkOrange">If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0.</span> | <span style="color: DarkOrange">Optional</span> |
 |--------------
 
@@ -643,7 +643,7 @@ This implementation accepts the following parameters:
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_L5_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
@@ -702,7 +702,7 @@ This implementation accepts the following parameters:
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_E_5X_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
