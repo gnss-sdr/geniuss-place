@@ -491,7 +491,7 @@ Read more about standard output formats at our [**Interoperability**]({{ "/desig
 **IMPORTANT**: This implementation is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
 {: .notice--warning}
 
-This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
+This implementation is based on the positioning engine provided by [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
