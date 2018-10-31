@@ -559,7 +559,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `nmea_output_file_path` | Base path in which NMEA messages will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
 | `rtcm_output_file_path` | Base path in which RTCM binary files will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./pvt.dat`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./pvt.dat`. | Optional |
 |----------
 
 {::comment}
