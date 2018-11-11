@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2017-11-20T11:13:02+02:00
+last_modified_at: 2018-11-11T11:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -114,7 +114,7 @@ $ sudo apt-get install build-essential cmake git libboost-dev \
    libuhd-dev gnuradio-dev gr-osmosdr libblas-dev liblapack-dev \
    libarmadillo-dev libgflags-dev libgoogle-glog-dev libhdf5-dev \
    libgnutls-openssl-dev libmatio-dev python-mako python-six \
-   libpcap-dev libgtest-dev googletest
+   libpugixml-dev libpcap-dev libgtest-dev googletest
 ```
 
 
