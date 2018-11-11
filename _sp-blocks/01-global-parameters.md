@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-10-25T15:54:02-04:00
+last_modified_at: 2018-11-11T13:54:02+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -62,6 +62,7 @@ GNSS-SDR can read assistance data from [Extensible Markup Language (XML)](https:
 | `AGNSS_gal_ephemeris_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo ephemeris data. It defaults to  `gal_ephemeris.xml`| Optional |
 | `AGNSS_gal_iono_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML of the XML that will be read for Galileo Ionosphere model data. It defaults to  `gal_iono.xml` | Optional |
 | `AGNSS_gal_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo UTC model data. It defaults to  `gal_utc_model.xml` | Optional |
+| `AGNSS_gal_almanac_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo almanac data. The XML format of [Galileo almanac data published by the European GNSS Service Centre](https://www.gsc-europa.eu/system-status/almanac-data) is also accepted. It defaults to `gal_almanac.xml` | Optional |
 | `AGNSS_gps_cnav_ephemeris_xml` |  If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS CNAV ephemeris data. It defaults to  `gps_cnav_ephemeris.xml` | Optional |
 | `AGNSS_cnav_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS UTC model data. It defaults to  `gps_cnav_utc_model.xml` |  Optional |
 |-------
@@ -74,6 +75,16 @@ Example in the configuration file:
 ```ini
 GNSS-SDR.AGNSS_XML_enabled=true
 ```
+
+Please note that the parameter `AGNSS_gal_almanac_xml` accepts, in addition to the [own-defined XML format](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/xml-schemas/gal_almanac_map.xsd) for the Galileo almanac, the XML format published by European GNSS Service Centre and available [here](https://www.gsc-europa.eu/system-status/almanac-data). Just download the almanac XML file from there, and set in the configuration file:
+
+```ini
+GNSS-SDR.AGNSS_XML_enabled=true
+GNSS-SDR.AGNSS_gal_almanac_xml=2018-11-06.xml
+```
+
+(changing `2018-11-06.xml` by the name of the file you actually downloaded) and the format will be detected and read automatically.
+
 
 ## Assisted GNSS with SUPL v1.0
 
