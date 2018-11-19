@@ -108,13 +108,13 @@ tr, td, th {
   text-align: left;
   vertical-align: top;
   a {
-    color: $text-color;
+    color: $dark-gray;
     text-decoration: none;
     border-bottom: 1px solid $background-color;
     transition: $global-transition;
 
     &:hover {
-      color: mix(#000, $text-color, 50%);
+      color: mix(#000, $dark-gray, 60%);
       border-bottom-color: $background-color;
       text-decoration: underline;
     }
