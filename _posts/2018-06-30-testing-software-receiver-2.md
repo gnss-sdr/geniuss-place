@@ -409,6 +409,7 @@ This test accepts the following flags:
 | &#x2011;&#x2011;CN0_dBHz_start | (noise disabled) | Enable noise generator and set the CN0 start sweep value [dB-Hz]. |
 | &#x2011;&#x2011;CN0_dBHz_stop | (noise disabled) | Enable noise generator and set the CN0 stop sweep value [dB-Hz]. |
 | &#x2011;&#x2011;CN0_dB_step | 3.0 | Noise generator CN0 sweep step value [dB]. |
+| &#x2011;&#x2011;acq_to_trk_delay_s | 0.0 | Acquisition to Tracking delay value [s] |
 | &#x2011;&#x2011;plot_detail_level | 0 | Specify the desired plot detail (0,1,2): 0 - Minimum plots (default) 2 - Plot all tracking parameters. |
 | &#x2011;&#x2011;show_plots | true | Shows plots on screen. Set it to false for non-interactive testing. |
 |--------------
