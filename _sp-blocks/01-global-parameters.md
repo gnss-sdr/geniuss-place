@@ -92,7 +92,7 @@ GNSS-SDR.AGNSS_ref_utc_time=22/11/2018 17:45:53
 GNSS-SDR.AGNSS_gal_almanac_xml=2018-11-06.xml
 ```
 
-(changing `2018-11-06.xml` by the name of the file you actually downloaded, as well as your reference position) and the format will be detected and read automatically. If `AGNSS_ref_utc_time` is not set, the receiver will read the system time from the computer executing the software receiver and will take that as a reference. So, if you are using the receiver with live signals, you do not need no set this parameter.
+(changing `2018-11-06.xml` by the name of the file you actually downloaded, as well as your reference position) and the format will be detected and read automatically. If `AGNSS_ref_utc_time` is not set, the receiver will read the system time from the computer executing the software receiver and will take that as a reference. So, if you are using the receiver with live signals from an RF front-end, you do not need to set this parameter.
 
 
 ## Assisted GNSS with SUPL v1.0
