@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-10-25T15:54:02-04:00
+last_modified_at: 2018-11-11T13:54:02+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -45,18 +45,22 @@ GNSS-SDR.internal_fs_sps=4000000
 
 GNSS-SDR can read assistance data from [Extensible Markup Language (XML)](https://www.w3.org/XML/) files for faster [Time-To-First-Fix](https://gnss-sdr.org/design-forces/availability/#time-to-first-fix-ttff), and can store navigation data decoded from GNSS signals in the same format. Check [this folder](https://github.com/gnss-sdr/gnss-sdr/tree/master/docs/xml-schemas) for XML Schemas describing those XML files structure.
 
+When reading AGNSS data from XML files, you must provide a rough initial reference position and time (parameters `AGNSS_ref_location` and `AGNSS_ref_utc_time`), which will be used to compute the list of visible satellites (those with positive elevation angle) from your receiver standpoint before getting any GNSS signal. Hence, the receiver can start searching for those satellites and thus accelerate its Time-To-First-Fix.
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|
 |--------------
-| `AGNSS_XML_enabled` | [`true`, `false`]: If set to `true`, it enables the load of GNSS assistance data cia local XML files. It defaults to `false`. | Optional |
+| `AGNSS_XML_enabled` | [`true`, `false`]: If set to `true`, it enables the load of GNSS assistance data via local XML files. It defaults to `false`. | Optional |
+| `AGNSS_ref_location` | If `AGNSS_XML_enabled` is set to  `true`, this parameter is mandatory, and it sets the reference location used for the preliminary computation of visible satellites from AGNSS data. It must be in the format: `Latitude,Longitude`, in degrees, with positive sign for North and East. | Mandatory |
+| `AGNSS_ref_utc_time` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the reference local time, expressed in UTC, used for the preliminary computation of visible satellites from AGNSS data. It must be in the format: `DD/MM/YYYY HH:MM:SS`, referred to UTC. If this parameter is not set, the receiver will take the system time of your computer. | Optional |
 | `AGNSS_gps_ephemeris_xml` |  If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS NAV ephemeris data. It defaults to  `gps_ephemeris.xml` | Optional |
 | `AGNSS_gps_iono_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML of the XML that will be read for GPS Ionosphere model data. It defaults to  `gps_iono.xml` | Optional |
 | `AGNSS_gps_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS UTC model data. It defaults to  `gps_utc_model.xml` | Optional |
 | `AGNSS_gal_ephemeris_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo ephemeris data. It defaults to  `gal_ephemeris.xml`| Optional |
 | `AGNSS_gal_iono_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML of the XML that will be read for Galileo Ionosphere model data. It defaults to  `gal_iono.xml` | Optional |
 | `AGNSS_gal_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo UTC model data. It defaults to  `gal_utc_model.xml` | Optional |
+| `AGNSS_gal_almanac_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo almanac data. The XML format of [Galileo almanac data published by the European GNSS Service Centre](https://www.gsc-europa.eu/system-status/almanac-data) is also accepted. It defaults to `gal_almanac.xml` | Optional |
 | `AGNSS_gps_cnav_ephemeris_xml` |  If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS CNAV ephemeris data. It defaults to  `gps_cnav_ephemeris.xml` | Optional |
 | `AGNSS_cnav_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS UTC model data. It defaults to  `gps_cnav_utc_model.xml` |  Optional |
 |-------
@@ -68,7 +72,24 @@ Example in the configuration file:
 
 ```ini
 GNSS-SDR.AGNSS_XML_enabled=true
+GNSS-SDR.AGNSS_ref_location=41.39,2.31
 ```
+
+The location in the example refers to a latitude of 41.39º N and a longitude of 2.31º E.
+
+
+Please note that the parameter `AGNSS_gal_almanac_xml` accepts, in addition to the [own-defined XML format](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/xml-schemas/gal_almanac_map.xsd) for the Galileo almanac, the XML format published by European GNSS Service Centre and available [here](https://www.gsc-europa.eu/system-status/almanac-data). Just download the latest almanac XML file from there, and set in your configuration file:
+
+```ini
+GNSS-SDR.AGNSS_XML_enabled=true
+GNSS-SDR.AGNSS_ref_location=41.39,2.31
+GNSS-SDR.AGNSS_ref_utc_time=22/11/2018 17:45:53
+GNSS-SDR.AGNSS_gal_almanac_xml=2018-11-06.xml
+```
+
+(changing `2018-11-06.xml` by the name of the file you actually downloaded, as well as your reference position) and the format will be detected and read automatically. If `AGNSS_ref_utc_time` is not set, the receiver will read the system time from the computer executing the software receiver and will take that as a reference. So, if you are using the receiver with live signals from an RF front-end, you do not need to set this parameter.
+
+You could find useful the utility program [rinex2assist](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/rinex2assist) for the generation of compatible XML files from recent, publicly available RINEX navigation data files.
 
 ## Assisted GNSS with SUPL v1.0
 
@@ -100,18 +121,18 @@ GNSS-SDR configuration parameters for Assisted GNSS with SUPL v1.0 are shown bel
 |:-:|:--|:-:|
 |--------------
 | `SUPL_gps_enabled` | [`true`, `false`]: If set to `true`, it enables requests of GPS assistance data to a SUPL v1.0 server. It defaults to `false`. |  Optional |
-|  `SUPL_read_gps_assistance_xml` | [`true`, `false`]: If `SUPL_gps_enabled` is set to  `true`, this parameter enables searching for local XML files instead of requesting data to the SUPL server. It defaults to `false`. |  Optional |
+| `SUPL_read_gps_assistance_xml` | [`true`, `false`]: If `SUPL_gps_enabled` is set to  `true`, this parameter enables searching for local XML files instead of requesting data to the SUPL server. It defaults to `false`. |  Optional |
 | `SUPL_gps_ephemeris_server` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the SUPL server asked for ephemeris data. It defaults to `supl.google.com`. |  Optional |
 | `SUPL_gps_ephemeris_port` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the port of the `SUPL_gps_ephemeris_server` server. It defaults to `7275`. |  Optional |
-|  `SUPL_gps_acquisition_server` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the SUPL server asked for acquisition assistance data. It defaults to `supl.google.com`. |  Optional |
-|  `SUPL_gps_acquisition_port` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the port of the `SUPL_gps_acquisition_server` server. It defaults to `7275`.  |  Optional |
-|  `SUPL_MCC` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Mobile Country Code (MCC) to be sent to the SUPL server. It defaults to `244`. |  Optional |
+| `SUPL_gps_acquisition_server` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the SUPL server asked for acquisition assistance data. It defaults to `supl.google.com`. |  Optional |
+| `SUPL_gps_acquisition_port` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the port of the `SUPL_gps_acquisition_server` server. It defaults to `7275`.  |  Optional |
+| `SUPL_MCC` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Mobile Country Code (MCC) to be sent to the SUPL server. It defaults to `244`. |  Optional |
 |  `SUPL_MNC` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Mobile Network Code (MNC) to be sent to the SUPL server. It defaults to `5`. |  Optional |
-|  `SUPL_LAC` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Location Area Code (LAC) to be sent to the SUPL server. It defaults to `0x59e2`. |  Optional |
-|  `SUPL_CI` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Cell ID to be sent to the SUPL server. It defaults to `0x31b0`. |  Optional |
-|  `SUPL_gps_ephemeris_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS NAV ephemeris data. It defaults to  `gps_ephemeris.xml`. |  Optional |
-|  `SUPL_gps_iono_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS Ionosphere model data. It defaults to  `gps_iono.xml`. |  Optional |
-|  `SUPL_gps_utc_model_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS UTC model data. It defaults to  `gps_utc_model.xml`. |  Optional |
+| `SUPL_LAC` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Location Area Code (LAC) to be sent to the SUPL server. It defaults to `0x59e2`. |  Optional |
+| `SUPL_CI` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Cell ID to be sent to the SUPL server. It defaults to `0x31b0`. |  Optional |
+| `SUPL_gps_ephemeris_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS NAV ephemeris data. It defaults to  `gps_ephemeris.xml`. |  Optional |
+| `SUPL_gps_iono_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS Ionosphere model data. It defaults to  `gps_iono.xml`. | Optional |
+| `SUPL_gps_utc_model_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS UTC model data. It defaults to  `gps_utc_model.xml`. | Optional |
 |-------
 
 _Global GNSS-SDR parameters: Assisted GPS via SUPL V1.0_.

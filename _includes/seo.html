@@ -131,7 +131,7 @@
 {% if site.og_image %}
   <script type="application/ld+json">
     {
-      "@context": "http://schema.org",
+      "@context": "https://schema.org",
       "@type": "Organization",
       "name" : {{ site.social.name | default: site.name | jsonify }},
       "url": {{ seo_url | jsonify }},

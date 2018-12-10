@@ -409,6 +409,7 @@ This test accepts the following flags:
 | &#x2011;&#x2011;CN0_dBHz_start | (noise disabled) | Enable noise generator and set the CN0 start sweep value [dB-Hz]. |
 | &#x2011;&#x2011;CN0_dBHz_stop | (noise disabled) | Enable noise generator and set the CN0 stop sweep value [dB-Hz]. |
 | &#x2011;&#x2011;CN0_dB_step | 3.0 | Noise generator CN0 sweep step value [dB]. |
+| &#x2011;&#x2011;acq_to_trk_delay_s | 0.0 | Acquisition to Tracking delay value [s] |
 | &#x2011;&#x2011;plot_detail_level | 0 | Specify the desired plot detail (0,1,2): 0 - Minimum plots (default) 2 - Plot all tracking parameters. |
 | &#x2011;&#x2011;show_plots | true | Shows plots on screen. Set it to false for non-interactive testing. |
 |--------------
@@ -546,7 +547,13 @@ This test program computes metrics of static accuracy and precision. It can use 
 | &#x2011;&#x2011;use_ref_motion_file | false | Enable or disable the use of a reference file containing the true receiver position, velocity and acceleration. |
 | &#x2011;&#x2011;ref_motion_file_type | 1 | Type of reference motion file. 1: Spirent CSV motion file |
 | &#x2011;&#x2011;ref_motion_filename | "motion.csv" | Path and filename for the reference motion file. |
-| &#x2011;&#x2011;pvt_solver_dump_filename | "PVT_pvt.dat" | Path and filename for the PVT solver binary dump file |
+| &#x2011;&#x2011;static_2D_error_m | $$ 2.0 $$ | Static scenario 2D (East, North) positioning error bias threshold [meters]. |
+| &#x2011;&#x2011;static_3D_error_m | $$ 5.0 $$ | Static scenario 3D (East, North, Up) positioning error bias threshold [meters]. |
+| &#x2011;&#x2011;accuracy_CEP | $$ 2.0 $$ | Static scenario 2D (East, North) accuracy Circular Error Position (CEP) threshold [meters]. |
+| &#x2011;&#x2011;precision_SEP | $$ 10.0 $$ | Static scenario 3D (East, North, Up) precision Spherical Error Position (SEP) threshold [meters]. |
+| &#x2011;&#x2011;dynamic_3D_position_RMSE | $$ 10.0 $$ | Dynamic scenario 3D (ECEF) accuracy RMSE threshold [meters] |
+| &#x2011;&#x2011;dynamic_3D_velocity_RMSE | $$ 5.0 $$ | Dynamic scenario 3D (ECEF) velocity accuracy RMSE threshold [meters/second] |
+| &#x2011;&#x2011;pvt_solver_dump_filename | "PVT.dat" | Path and filename for the PVT solver binary dump file |
 | &#x2011;&#x2011;plot_position_test | false | If set to "true", and [Gnuplot](http://www.gnuplot.info/) is installed in your system, it generates some plots of the obtained results. It will display them in windows and will save them as .ps and .pdf files. |
 | &#x2011;&#x2011;show_plots | true | Show plots on screen. Set it to false for non-interactive testing. |
 |----------
