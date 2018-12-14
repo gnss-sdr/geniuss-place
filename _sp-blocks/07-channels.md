@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-03-26T15:54:02-04:00
+last_modified_at: 2018-12-14T12:54:02-04:00
 ---
 
 
@@ -18,14 +18,14 @@ Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/
 |--------------
 |  ```1C```      | GPS L1 C/A | $$ 1575.42 $$ MHz |
 |  ```1B```      | Galileo E1 B | $$ 1575.42 $$ MHz |
-|  <span style="color: DarkOrange">```1G```</span>      | <span style="color: DarkOrange">Glonass L1 C/A$$ ^{(*)} $$</span> | $$ 1575.42 $$ MHz |
+|  ```1G```      | Glonass L1 C/A<span style="color: DarkOrange">$$ ^{(*)} $$</span> | $$ 1575.42 $$ MHz |
 |  ```2S```      | GPS L2 L2CM | $$ 1227.60 $$ MHz |
-|  <span style="color: DarkOrange">```2G```</span>      | <span style="color: DarkOrange">Glonass L2 C/A$$ ^{(*)} $$</span> | $$ 1227.60 $$ MHz |
+|  ```2G```      | Glonass L2 C/A<span style="color: DarkOrange">$$ ^{(*)} $$</span> | $$ 1227.60 $$ MHz |
 |  ```5X```      | Galileo E5a | $$ 1176.45 $$ MHz |
-|  <span style="color: DarkOrange">```L5```</span>      | <span style="color: DarkOrange">GPS L5$$ ^{(*)} $$</span> | $$ 1176.45 $$ MHz |
+|  ```L5```      | GPS L5<span style="color: DarkOrange">$$ ^{(*)} $$</span> | $$ 1176.45 $$ MHz |
 |-----
 
-<span style="color: DarkOrange">$$ ^{(*)} $$: only available on the `next` branch.</span>
+<span style="color: DarkOrange">$$ ^{(*)} $$: Available starting from GNSS-SDR v0.0.10</span>.
 
 Then, seven parameters can be set: ```Channels_1C.count```, ```Channels_1B.count```, ```Channels_1G.count```, ```Channels_2S.count```, ```Channels_2G.count```, ```Channels_5X.count``` and ```Channels_L5.count```, all of them defaulting to $$ 0 $$.
 
@@ -38,16 +38,16 @@ _Channels_ accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `Channels_1C.count` |  Number of channels targeting GPS L1 C/A signals. It defaults to $$ 0 $$.| Optional |
-| <span style="color: DarkOrange">`Channels_1G.count`</span> |  <span style="color: DarkOrange">Number of channels targeting Glonass L1 C/A signals. It defaults to $$ 0 $$. ONLY AVAILABLE ON THE `next` BRANCH.</span> | <span style="color: DarkOrange">Optional</span> |
+| `Channels_1G.count` |  Number of channels targeting Glonass L1 C/A signals. It defaults to $$ 0 $$. | Optional |
 | `Channels_2S.count` |  Number of channels targeting GPS L2 L2CM signals. It defaults to $$ 0 $$.| Optional |
-| <span style="color: DarkOrange">`Channels_2G.count`</span> |  <span style="color: DarkOrange">Number of channels targeting Glonass L2 C/A signals. It defaults to $$ 0 $$. ONLY AVAILABLE ON THE `next` BRANCH.</span> | <span style="color: DarkOrange">Optional</span> |
+| `Channels_2G.count` |  Number of channels targeting Glonass L2 C/A signals. It defaults to $$ 0 $$. | Optional |
 | `Channels_5X.count` |  Number of channels targeting Galileo E5a (I+Q) signals. It defaults to $$ 0 $$. | Optional |
-| <span style="color: DarkOrange">`Channels_L5.count`</span> |  <span style="color: DarkOrange">Number of channels targeting GPS L5 signals. It defaults to $$ 0 $$. ONLY AVAILABLE ON THE `next` BRANCH.</span> | <span style="color: DarkOrange">Optional</span> |
+| `Channels_L5.count` | Number of channels targeting GPS L5 signals. It defaults to $$ 0 $$. | Optional |
 | `Channel.signal` |  Assign all channels to a specific signal [`1C`, `1B`, `2S`, `5X`, `L5`]. Only required in single-system receivers. | Optional |
 | `ChannelN.signal` |  (where `N` is the channel number, starting from $$ 0 $$). Assign each channel to a specific signal [`1C`, `1B`, `2S`, `5X`, `L5`]. Not required in single-system receivers. | Optional |
 | `ChannelN.RF_channel_ID` | (where `N` is the channel number, starting from $$ 0 $$). Connects channel `N` to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. | Optional |
 | `ChannelN.Signal_Source_ID` | (where `N` is the channel number, starting from $$ 0 $$). Connects channel `N` to a signal source. It defaults to $$ 0 $$. Not required in single-source receivers. | Optional |
-| <span style="color: DarkOrange">`ChannelN.satellite`</span> | <span style="color: DarkOrange">(where `N` is the channel number, starting from $$ 0 $$). Assigns channel `N` to given satellite by its PRN. This channel will always be trying to acquire and track the given satellite.</span> | <span style="color: DarkOrange">Optional</span> |
+| `ChannelN.satellite` | (where `N` is the channel number, starting from $$ 0 $$). Assigns channel `N` to given satellite by its PRN. This channel will always be trying to acquire and track the given satellite. | Optional |
 | `Channels.in_acquisition` | Maximum number of channels performing signal acquisition at the same time. The recommended value is $$ 1 $$. In the case of having assigned a channel to a given satellite (e.g., with `Channel0.satellite=1`), it is recommended to increase this number in order to always have at least one channel searching for new satellites. It defaults to the total number of channels. | Optional |
 |----------
 

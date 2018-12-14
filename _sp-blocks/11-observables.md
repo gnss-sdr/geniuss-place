@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2017-05-27T15:54:02-04:00
+last_modified_at: 2018-12-14T12:54:02-04:00
 ---
 
 The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange**, **carrier phase** (or its **phase-range** version) and **Doppler shift** (or its **pseudorange rate** version).
@@ -178,128 +178,6 @@ Doppler shift measurements are sometimes given in m/s. This is referred to as **
 $$ \begin{eqnarray} \dot{P}_{r,i}^{(s)} & = & -\lambda_i f_{D_{i}}^{(s)} \nonumber \\
 {} & = & \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c \left( \frac{\partial dt_r(t_r)}{\partial t} - \frac{\partial dT^{(s)}(t^{(s)})}{\partial t}\right) + \epsilon_{\dot{P}}\end{eqnarray} $$
 
-## Implementation: `GPS_L1_CA_Observables`
-
-**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `Hybrid_Observables` implementation described below.
-{: .notice--danger}
-
-This implementation computes observables by collecting the outputs of channels for GPS L1 C/A signals.
-
-It accepts the following parameters:
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `GPS_L1_CA_Observables` | Mandatory |
-| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $$ 100 $$. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
-|--------------
-
-  _Observables implementation:_ **`GPS_L1_CA_Observables`**.
-  {: style="text-align: center;"}
-
-Example:
-
-```ini
-    ;######### OBSERVABLES CONFIG ############
-    Observables.implementation=GPS_L1_CA_Observables
-    Observables.dump=true
-    Observables.dump_filename=./my_observables.dat
-```
-
-## Implementation: `GPS_L2C_Observables`
-
-**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `Hybrid_Observables` implementation described below.
-{: .notice--danger}
-
-This implementation computes observables by collecting the outputs of channels for GPS L2C(M) signals.
-
-It accepts the following parameters:
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `GPS_L2C_Observables` | Mandatory |
-| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $$ 100 $$. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
-|--------------
-
-  _Observables implementation:_ **`GPS_L2C_Observables`**.
-  {: style="text-align: center;"}
-
-Example:
-
-```ini
-    ;######### OBSERVABLES CONFIG ############
-    Observables.implementation=GPS_L2C_Observables
-    Observables.dump=true
-    Observables.dump_filename=./my_observables.dat
-```
-
-
-
-## Implementation: `Galileo_E1B_Observables`
-
-**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `Hybrid_Observables` implementation described below.
-{: .notice--danger}
-
-This implementation computes observables by collecting the outputs of channels for Galileo E1B signals.
-
-It accepts the following parameters:
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `Galileo_E1B_Observables` | Mandatory |
-| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $$ 100 $$. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
-|--------------
-
-  _Observables implementation:_ **`Galileo_E1B_Observables`**.
-  {: style="text-align: center;"}
-
-Example:
-
-```ini
-    ;######### OBSERVABLES CONFIG ############
-    Observables.implementation=Galileo_E1B_Observables
-```
-
-## Implementation: `Galileo_E5A_Observables`
-
-**IMPORTANT**: This implementation has been **removed** from the `next` branch of GNSS-SDR source code and will not be present in the next stable release. Please use instead the `Hybrid_Observables` implementation described below.
-{: .notice--danger}
-
-This implementation computes observables by collecting the outputs of channels for Galileo E5a signals.
-
-It accepts the following parameters:
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `Galileo_E5A_Observables` | Mandatory |
-| `averaging_depth` | Number of observables used in a moving average filter. It defaults to $$ 100 $$. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./observables.dat` | Optional |
-|--------------
-
-  _Observables implementation:_ **`Galileo_E5A_Observables`**.
-  {: style="text-align: center;"}
-
-Example:
-
-```ini
-    ;######### OBSERVABLES CONFIG ############
-    Observables.implementation=Galileo_E5A_Observables
-```
-
 
 
 ## Implementation: `Hybrid_Observables`  
@@ -313,9 +191,9 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Hybrid_Observables` | Mandatory |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. <span style="color: DarkOrange">Storage in .mat files readable from Matlab, Octave and Python is available in the `next` branch, see below.</span> It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. <span style="color: DarkOrange">This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created.</span> It defaults to `./observables.dat` | Optional |
-| <span style="color: DarkOrange">`dump_mat`</span> | <span style="color: DarkOrange">[`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`.</span> | <span style="color: DarkOrange">Optional</span> |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. Storage in .mat files readable from Matlab, Octave and Python is available starting from GNSS-SDR v0.0.10 branch, see below. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./observables.dat` | Optional |
+| `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`. | Optional |
 |--------------
 
   _Observables implementation:_ **`Hybrid_Observables`**.
@@ -332,7 +210,7 @@ It accepts the following parameters:
   * `RX_time`: Receiving time in each channel, in seconds after the start of the week.
   * `TOW_at_current_symbol_s`: Time of week of the current symbol, in [s].
 
-  **THIS FEATURE IS NOW ONLY AVAILABLE IN THE `next` BRANCH, AND WILL FORM PART OF THE NEXT STABLE RELEASE.**
+  **THIS FEATURE IS NOW ONLY AVAILABLE STARTING FROM GNSS-SDR v0.0.10.**
 {% endcapture %}
 
 <div class="notice--warning">

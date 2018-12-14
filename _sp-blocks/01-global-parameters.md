@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-11-11T13:54:02+02:00
+last_modified_at: 2018-12-14T12:54:02+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -43,12 +43,7 @@ GNSS-SDR.internal_fs_sps=4000000
 
 ## Assisted GNSS with XML files
 
-
-**IMPORTANT**: This feature is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
-
-GNSS-SDR can read assistance data from [Extensible Markup Language (XML)](https://www.w3.org/XML/) files for faster [Time-To-First-Fix](https://gnss-sdr.org/design-forces/availability/#time-to-first-fix-ttff), and can store navigation data decoded from GNSS signals in the same format. Check [this folder](https://github.com/gnss-sdr/gnss-sdr/tree/next/docs/xml-schemas) for XML Schemas describing those XML files structure.
+GNSS-SDR can read assistance data from [Extensible Markup Language (XML)](https://www.w3.org/XML/) files for faster [Time-To-First-Fix](https://gnss-sdr.org/design-forces/availability/#time-to-first-fix-ttff), and can store navigation data decoded from GNSS signals in the same format. Check [this folder](https://github.com/gnss-sdr/gnss-sdr/tree/master/docs/xml-schemas) for XML Schemas describing those XML files structure.
 
 When reading AGNSS data from XML files, you must provide a rough initial reference position and time (parameters `AGNSS_ref_location` and `AGNSS_ref_utc_time`), which will be used to compute the list of visible satellites (those with positive elevation angle) from your receiver standpoint before getting any GNSS signal. Hence, the receiver can start searching for those satellites and thus accelerate its Time-To-First-Fix.
 
