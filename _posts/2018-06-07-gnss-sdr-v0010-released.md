@@ -71,7 +71,7 @@ This release has several improvements in different dimensions, addition of new f
  *  Improvements in the correctness of generated RINEX files.
  *  The receiver can read and make use of Galileo [almanac XML files published by the European GNSS Service Centre](https://www.gsc-europa.eu/system-status/almanac-data).
  *  Own-defined XML schemas for navigation data published [here](https://github.com/gnss-sdr/gnss-sdr/tree/next/docs/xml-schemas)
- *  Added program rinex2assist to convert RINEX navigation files into XML files usable for Assisted GNSS. Only available building from source. See https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/rinex2assist
+ *  Added program rinex2assist to convert RINEX navigation files into XML files usable for Assisted GNSS. Only available building from source. See the [README](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/rinex2assist).
 
 
 
@@ -107,6 +107,7 @@ This release has several improvements in different dimensions, addition of new f
  * Fixes required by [Macports packaging](https://www.macports.org/ports.php?by=name&substr=gnss-sdr).
  * A downside in portability: BLAS and LAPACK libraries are now required even in ARM devices.
  * A downside in portability: the [matio library](https://github.com/tbeu/matio) >= 1.5.3 is a new required dependency. If not found, it is downloaded and built automatically at building time, but this requires `libtool`, `automake` and `hdf5` already installed in the system.
+ * A downside in portability: the PugiXML library is a new required dependency. If not found, it is downloaded and built automatically at building time.
 
 
 
