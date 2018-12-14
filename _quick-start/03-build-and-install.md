@@ -243,8 +243,7 @@ $ brew install ninja
 
 More information about Ninja usage can be found in the [Ninja Manual](https://ninja-build.org/manual.html).
 
-**NOTE**: Ninja usage is only available in the ```next``` branch of the GNSS-SDR repository. This feature will be present on the next stable release.
-{: .notice--warning}
+
 
 
 ## Using Clang
@@ -271,8 +270,6 @@ If you have the Ninja build system installed, you can build GNSS-SDR replacing G
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 -GNinja ..
 ```
 
-**NOTE**: The usage of Clang on GNU/Linux is only available in the ```next``` branch of the GNSS-SDR repository. This feature will be present on the next stable release.
-{: .notice--warning}
 
 
 
