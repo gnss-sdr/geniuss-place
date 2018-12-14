@@ -60,6 +60,8 @@ GNSS-SDR builds upon a number of free and open source software libraries:
 * [Armadillo](http://arma.sourceforge.net/), a C++ linear algebra library. It acts as a wrapper for all the relevant libraries present on your system, such as [LAPACK](http://www.netlib.org/lapack/), [BLAS](http://www.netlib.org/blas/), [OpenBlas](http://www.openblas.net/), [ATLAS](http://math-atlas.sourceforge.net/) and [others](http://arma.sourceforge.net/faq.html#linking).
 * [glog](https://github.com/google/glog), a C++ implementation of the Google logging module.
 * [gflags](https://github.com/gflags/gflags), a C++ library that implements commandline flags processing.
+* [matio](https://github.com/tbeu/matio), a MATLAB MAT file I/O library.
+* [PugiXML](https://github.com/zeux/pugixml), a light-weight, simple and fast XML parser for C++.
 * A library implementing some basic SSL functions, such as [OpenSSL](https://www.openssl.org/), [GnuTLS](https://www.gnutls.org/) or [LibreSSL](https://www.libressl.org/).
 
 In order to install those dependencies in your system, check out our [building guide]({{ "/build-and-install/" | relative_url }}) and find more details at GNSS-SDR's [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file.
