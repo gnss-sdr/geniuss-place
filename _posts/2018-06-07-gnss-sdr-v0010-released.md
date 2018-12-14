@@ -8,6 +8,7 @@ tags:
 author_profile: false
 sidebar:
   nav: "news"
+last_modified_at: 2018-12-14T12:54:02+02:00  
 ---
 
 This release has several improvements in different dimensions, addition of new features and bug fixes:
@@ -27,6 +28,7 @@ This release has several improvements in different dimensions, addition of new f
  * Redesign of the time counter for enhanced continuity.
  * Improved flow graph in multisystem configurations: the receiver does not get stalled anymore if no signal is found from the first system.
  * Improved acquisition and tracking sensitivity.
+ * Added mechanisms for Assisted GNSS, thus shortening the Time-To-First-Fix. Provision of data via XML files or via SUPL v1.0. Documented [here](https://gnss-sdr.org/docs/sp-blocks/global-parameters/).
  * Other minor bug fixes.
 
 
@@ -38,6 +40,7 @@ This release has several improvements in different dimensions, addition of new f
  * New `volk_gnsssdr` kernels: `volk_gnsssdr_16i_xn_resampler_16i_xn.h`, `volk_gnsssdr_16ic_16i_rotator_dot_prod_16ic_xn.h`, `volk_gnsssdr_32f_xn_resampler_32f_xn.h`, `volk_gnsssdr_32fc_32f_rotator_dot_prod_32fc_xn.h`.
  * Some AVX2 implementations added to the `volk_gnsssdr` library.
  * Improvement in C++ usage: Use of `const` container calls when result is immediately converted to a `const` iterator. Using these members removes an implicit conversion from `iterator` to `const_iterator`.
+ * Output printers can be shut down, with some savings in memory and storage requirements.
  * A number of code optimizations here and there.
 
 
@@ -46,6 +49,7 @@ This release has several improvements in different dimensions, addition of new f
  * A number of new parameters have been exposed to the configuration system.
  * Possibility to choose Pilot or Data component for tracking of GPS L5 and Galileo E5a signals.
  * Enabled extended coherent integration times.
+ * Configurable coherent and/or non-coherent signal acquisition.
  * Some configuration parameters can now be overridden by commandline flags for easier use in scripts.
 
 
@@ -61,9 +65,14 @@ This release has several improvements in different dimensions, addition of new f
  * Added tools for the interaction with front-ends based on the AD9361 chipset.
  * Intermediate results are now saved in `.mat` binary format, readable from Matlab/Octave and from Python via [h5py](https://www.h5py.org/).
  * Added the [GPX](http://www.topografix.com/gpx.asp) output format.
- * Fixed a bug in the format of NMEA sentences when latitude or longitude minutes were >10.
- * Improvements in the RTCM server stability.
- * Improvements in the correctness of generated RINEX files.
+ *  Improvements in the generation of KML files.
+ *  Improvements in the NMEA output. The receiver can produce GPGGA, GPRMC, GPGSA, GPGSV, GAGSA and GAGSV sentences.
+ *  Improvements in the RTCM server stability.
+ *  Improvements in the correctness of generated RINEX files.
+ *  The receiver can read and make use of Galileo [almanac XML files published by the European GNSS Service Centre](https://www.gsc-europa.eu/system-status/almanac-data).
+ *  Own-defined XML schemas for navigation data published [here](https://github.com/gnss-sdr/gnss-sdr/tree/next/docs/xml-schemas)
+ *  Added program rinex2assist to convert RINEX navigation files into XML files usable for Assisted GNSS. Only available building from source. See https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/rinex2assist
+
 
 
 ## Improvements in [Maintainability]({{ "/design-forces/maintainability/" | relative_url }}):
@@ -75,6 +84,9 @@ This release has several improvements in different dimensions, addition of new f
  * Improvement in C++ usage: The `override` special identifier is now used when overriding a virtual function. This helps the compiler to check for type changes in the base class, making the detection of errors easier.
  * Improvement in C++ usage: A number of unused includes have been removed. Order of includes set to: local (in-source) headers, then library headers, then system headers. This helps to detect missing includes.
  * Improvement in C++ usage: Enhanced `const` correctness. Misuses of those variables are detected by the compiler.
+ * Improved code with clang-tidy and generation of a compile_commands.json file containing the exact compiler calls for all translation units of the project in machine-readable form if clang-tidy is detected.
+ * Applied some style rules to CMake scripts.
+ * Minimal versions of dependencies identified and detected.
 
 
 ## Improvements in [Portability]({{ "/design-forces/portability/" | relative_url }}):
@@ -85,9 +97,8 @@ This release has several improvements in different dimensions, addition of new f
  * The software builds with C++11, C++14 and C++17 standards.
  * The software can now be built using GCC >= 4.7.2 or LLVM/Clang >= 3.4.0 compilers on GNU/Linux, and with Clang/AppleClang on MacOS.
  * The Ninja build system can be used in replacement of make.
- * The `volk_gnsssdr` library can be built using Python 2.7 or Python 3.6.
+ * The `volk_gnsssdr` library can be built using Python 2.7+ or Python 3.6+.
  * The `volk_gnsssdr` library is now ready for AArch64 NEON instructions.
- * Ready for GNU Radio 3.8 C++ API (as per current `next` branch of [GNU Radio's upstream repository](https://github.com/gnuradio/gnuradio)).
  * Improved detection of required and optional dependencies in many GNU/Linux distributions and processor architectures.
  * Improvement in C++ usage: The `<ctime>` library has been replaced by the more modern and portable `<chrono>`.
  * Improvement in C++ usage: The `<stdio.h>` library has been replaced by the more modern and portable `<fstream>` for file handling.
@@ -123,7 +134,11 @@ This release has several improvements in different dimensions, addition of new f
 ## Improvements in [Testability]({{ "/design-forces/testability/" | relative_url }}):
 
  * Several Unit Tests added. Documentation of testing concepts and available in a [tutorial]({{ "/docs/tutorials/testing-software-receiver//" | relative_url }}).
- * Receiver channels can now be fixed to a given satellite.
+ - New extra unit test AcquisitionPerformanceTest checks the performance of Acquisition blocks.
+ - New extra unit test TrackingPullInTest checks acquisition to tracking transition.
+ - New extra unit test HybridObservablesTest checks the generation of observables.
+ - Improved system testing: position_test accepts a wide list of parameters and can be used with external files.
+ - Receiver channels can now be fixed to a given satellite.
  * Improved [CTest](https://cmake.org/cmake/help/latest/manual/ctest.1.html) support in `volk_gnsssdr`.
 
 
@@ -145,5 +160,5 @@ This release has several improvements in different dimensions, addition of new f
 
 As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.10) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
 
-<a href="http://dx.doi.org/10.5281/zenodo.XXXXXX" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.10 is [10.5281/zenodo.XXXXXX](http://dx.doi.org/10.5281/zenodo.XXXXXX).
+<a href="http://doi.org/10.5281/zenodo.2279988" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.10 is [10.5281/zenodo.2279988](http://dx.doi.org/10.5281/zenodo.2279988).
 {: .notice--info}
