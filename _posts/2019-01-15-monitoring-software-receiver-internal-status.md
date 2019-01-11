@@ -19,7 +19,7 @@ toc_sticky: true
 This guide assumes that GNSS-SDR and its software dependencies are already installed on your system, otherwise please check out the [building guide]({{ "/build-and-install/" | relative_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file for more details on how to install GNSS-SDR.
 {: .notice--info}
 
-Since the introduction of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative_url }}) block, GNSS-SDR offers a mechanism for monitoring the internal status of the software receiver in real-time by providing access to 25 parameters that tell us about the performance of each channel. The complete list of parameters is documented [here]({{ "/docs/sp-blocks/monitor/#exposed-internal-parameters" | relative_url }}).
+Since the introduction of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative_url }}) block, GNSS-SDR offers a mechanism for monitoring the status of the software receiver in real-time by providing access to 25 internal parameters that tell us about the performance of each channel. The complete list of parameters is documented [here]({{ "/docs/sp-blocks/monitor/#exposed-internal-parameters" | relative_url }}).
 
 In this article we are going to learn how to create a minimal monitoring client application written in C/C++ that will print and update the PRN, CN0 and Doppler frequency shift for each channel on a terminal window while the receiver is running with the Monitor block activated.
 
@@ -34,22 +34,22 @@ The Monitor block implements this mechanism using the binary serialization forma
   <figcaption>The GNSS-SDR monitoring mechanism uses a binary serialization format.</figcaption>
 </figure>
 
-The colored boxes represent Gnss_Synchro objects moving across the receiver chain. These objects are special containers that hold a set of variables which capture the internal state of the receiver. Each color represents a different channel. When these objects reach the [PVT]({{ "/docs/sp-blocks/pvt/" | relative_url }}) block, they are consumed. Therefore they are not visible from the outside as they do not exit the receiver. This is where the Monitor block comes into play. Its purpose is to stream these objects to the outside world using a binary serialization format. This stream is sent over UDP from a source port to a destination port that can either be on the same machine or on a different one.
+The colored boxes represent Gnss_Synchro objects moving across the receiver chain. These objects are special containers that hold a set of variables which capture the internal state of the receiver. Each color represents a different channel. When these objects reach the [PVT]({{ "/docs/sp-blocks/pvt/" | relative_url }}) block, they are consumed. Therefore they are not visible from the outside, as they do not exit the receiver. This is where the Monitor block comes into play. Its purpose is to stream these objects to the outside world using a binary serialization format. This stream is sent over UDP from a source port to a destination port that can either be on the same machine or on a different one.
 
-Finally, at the other end the monitoring client deserializes the Gnss_Synchro objects from the binary stream. Then we can access their member variables and use them for implementing our monitoring logic. In our example, we will simply print some parameters on the terminal.
+Finally, at the other end, the monitoring client deserializes the Gnss_Synchro objects from the binary stream. Then we can access their member variables and use them for implementing our monitoring logic. In this exercise, we will simply print some of these parameters on the terminal.
 
-In order to successfully deserialize the objects, we will need to use the Gnss_Synchro class and its dependecies (Gnss_Signal and Gnss_Satellite) to build our monitoring client.
+Keep in mind that, in order to successfully deserialize the objects, we will need to include the Gnss_Synchro class and its dependecies (Gnss_Signal and Gnss_Satellite) to build our monitoring client.
 
 Gnss_Synchro class
  * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h)
 
 Gnss_Signal class
  * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.h)
- * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.cc)
+ * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.cc)
 
 Gnss_Satellite class
  * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.h)
- * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.cc)
+ * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.cc)
 
 
 ## Building a minimal monitoring client application
@@ -65,16 +65,16 @@ This will install the GCC/g++ compiler, the CMake build system and the Boost and
 
 ### Download the required classes
 
-Let's create a folder for storing all the source files of our project:
+Create a new directory in the home folder for storing all the source files of our project:
 
 ```bash
 $ mkdir monitoring-client
 $ cd monitoring-client
 ```
 
-Since the Gnss_Synchro class depends on the Gnss_Signal class, and the latter depends on the Gnss_Satellite class, we must include all three of them in our project.
+As mentioned earlier, since the Gnss_Synchro class depends on the Gnss_Signal class, and the latter depends on the Gnss_Satellite class, we must include all three of them in our project.
 
-Download the class files from the GNSS-SDR GitHub repository into our project folder:
+Use the following command to download the class files from the GNSS-SDR GitHub repository into the project folder:
 
 ```bash
 $ wget https://github.com/gnss-sdr/gnss-sdr/raw/next/src/core/system_parameters/gnss_satellite.h \
@@ -86,7 +86,7 @@ $ wget https://github.com/gnss-sdr/gnss-sdr/raw/next/src/core/system_parameters/
 
 ### Create the deserializer class
 
-Open your IDE or text editor of choice, create a new class and call it Gnss_Synchro_Udp_Source. This class will be in charge of deserializing Gnss_Synchro objects from the UDP stream.
+Open your IDE or text editor of choice, create a new class and call it Gnss_Synchro_Udp_Source. This class will be in charge of deserializing the Gnss_Synchro objects from the UDP stream.
 
 Define the class header file first: gnss_synchro_udp_source.h
 
@@ -127,8 +127,8 @@ We are going to use 6 member variables:
 | `socket` | The UDP socket. (See [ip::udp::socket](https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio/reference/ip__udp/socket.html)). |
 | `error` | Operating system-specific errors. (See [boost::system::error_code](https://theboostcpplibraries.com/boost.system)). |
 | `endpoint` | Endpoint that will be associated with the UDP socket. (See [ip::udp::endpoint](https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio/reference/ip__udp/endpoint.html)). |
-| `stocks` | Vector of Gnss_Synchro objects. |
-| `channels` | Map of Gnss_Synchro objects indexed by their `Channel_ID`. |
+| `stocks` | Vector container of Gnss_Synchro objects received from the socket. |
+| `channels` | Map container of Gnss_Synchro objects indexed by their `Channel_ID`. |
 |----------
 
 and 4 member functions:
@@ -139,11 +139,113 @@ and 4 member functions:
 |--------------
 | `Gnss_Synchro_Udp_Source` | Constructor. Opens and binds the `socket` to the `endpoint`. |
 | `read_gnss_synchro` | Fills the `stocks` vector with the latest deserialized Gnss_Synchro objects. |
-| `populate_channels` | This function inserts the latest Gnss_Synchro objects from the `stocks` vector into the `channels` map. |
+| `populate_channels` | This function inserts the latest Gnss_Synchro objects from the `stocks` vector container into the `channels` map conatiner. |
 | `print_table` | Prints the contents of the `channels` map in a table on the terminal screen. |
 |----------
 
 Now let's go ahead and write the functions in the implementation file: gnss_synchro_udp_source.cc
+
+First, add the include block:
+
+```cpp
+#include "gnss_synchro_udp_source.h"
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/serialization/vector.hpp>
+#include <sstream>
+#include <ncurses.h>
+```
+
+Next, implement the constructor. Open the socket and bind it to the endpoint:
+
+```cpp
+Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short& port) : socket{io_service},
+                                                                               endpoint{boost::asio::ip::udp::v4(), port}
+{
+    socket.open(endpoint.protocol(), error);  // Open socket.
+    socket.bind(endpoint, error);             // Bind the socket to the given local endpoint.
+}
+```
+
+Now let's implement the `read_gnss_synchro` function. We need to create a buffer of memory and pass it to the [`receive`](https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio/reference/basic_datagram_socket/receive.html) function. Since this function is synchronous, the program execution will stop here waiting for incoming data. Once some data is received, the socket stores it in the buffer. The `bytes` variable keeps track of the received number of bytes. We use this information to extract the binary data from the memory buffer into a string of ones and zeros. After some intermediate steps, we end up deserializing the archived data (a vector container of Gnss_Synchro objects) and save it in the `stocks` variable.
+
+```cpp
+bool Gnss_Synchro_Udp_Source::read_gnss_synchro(std::vector<Gnss_Synchro>& stocks)
+{
+    char buff[1500];  // Buffer for storing the received data.
+
+    // This call will block until one or more bytes of data has been received.
+    int bytes = socket.receive(boost::asio::buffer(buff));
+
+    try
+        {
+            std::string archive_data(&buff[0], bytes);
+            std::istringstream archive_stream(archive_data);
+            boost::archive::binary_iarchive archive(archive_stream);
+
+            // Deserialize a stock of Gnss_Synchro objects from the binary archive.
+            archive >> stocks;
+        }
+    catch (std::exception& e)
+        {
+            return false;
+        }
+
+    return true;
+}
+```
+
+The implementation of `populate_channels` is straight forward. The function receives a vector of Gnss_Synchro objects as a parameter and inserts each object into the `channels` map container based on the `Channel_ID`. We only allow objects with a sampling frequency different from zero into the map container.
+
+```cpp
+void Gnss_Synchro_Udp_Source::populate_channels(std::vector<Gnss_Synchro> stocks)
+{
+    for (std::size_t i = 0; i < stocks.size(); i++)
+        {
+            Gnss_Synchro ch = stocks[i];
+            if (ch.fs != 0)  // Channel is valid.
+                {
+                    channels[ch.Channel_ID] = ch;
+                }
+        }
+}
+```
+
+Lastly, the `print_table` function calls the `read_gnss_synchro` and `populate_channels` functions, and prints a text table with the `printw` function from NCurses.
+
+```cpp
+bool Gnss_Synchro_Udp_Source::print_table()
+{
+    if (read_gnss_synchro(stocks))
+        {
+            populate_channels(stocks);
+
+            clear();  // Clear the screen.
+
+            // Print table header.
+            attron(A_REVERSE);
+            printw("%3s%6s%14s%17s\n", "CH", "PRN", "CN0 [dB-Hz]", "Doppler [Hz]");
+            attroff(A_REVERSE);
+
+            // Print table contents.
+            for (auto const& ch : channels)
+                {
+                    int channel_id = ch.first;      // Key
+                    Gnss_Synchro data = ch.second;  // Value
+
+                    printw("%3d%6d%14f%17f\n", channel_id, data.PRN, data.CN0_dB_hz, data.Carrier_Doppler_hz);
+                }
+            refresh();  // Update the screen.
+        }
+    else
+        {
+            return false;
+        }
+
+    return true;
+}
+```
+
+The complete implementation file should look like this:
 
 ```cpp
 #include "gnss_synchro_udp_source.h"
@@ -168,10 +270,11 @@ bool Gnss_Synchro_Udp_Source::read_gnss_synchro(std::vector<Gnss_Synchro>& stock
 
     try
         {
-            // Deserialize a stock of Gnss_Synchro objects from the binary archive.
             std::string archive_data(&buff[0], bytes);
             std::istringstream archive_stream(archive_data);
             boost::archive::binary_iarchive archive(archive_stream);
+
+            // Deserialize a stock of Gnss_Synchro objects from the binary archive.
             archive >> stocks;
         }
     catch (std::exception& e)
@@ -228,7 +331,7 @@ bool Gnss_Synchro_Udp_Source::print_table()
 
 ### Create the main function
 
-Finally create a new file and implement the main function: main.cc
+Create a new file and implement the main function: main.cc
 
 ```cpp
 #include "gnss_synchro_udp_source.h"
@@ -270,6 +373,8 @@ int main(int argc, char* argv[])
     return true;
 }
 ```
+
+
 
 ### Build the source code
 
@@ -314,7 +419,7 @@ Next, create a build folder inside the project folder:
 $ mkdir build
 ```
 
-Run the `tree` command to list the contents of our project folder in a tree-like format. This is how it should look at this stage:
+We can make use of the `tree` command to list the contents of our project folder in a tree-like format. This is how it should look at this stage:
 
 ```bash
 $ tree
@@ -341,18 +446,38 @@ $ cmake ../
 $ make
 ```
 
-The `monitoring-client` executable will be created in the build folder.
+The `monitoring-client` executable will be created in the build folder. Try running it with no arguments. It should print the usage help:
 
 ```bash
 $ ./monitoring-client
 Usage: monitoring-client <port>
 ```
 
+Our monitoring client is ready. We have completed the first half of this tutorial. Now let's go ahead and configure the receiver.
+
+Leave the terminal window open, as we will come back to it later, and switch to a new terminal window.
+
+
 ## Activation of the Monitor block in the software receiver
 
-We will be using the same signal source file as the in the [first position fix]({{ "/my-first-fix/" | relative_url }}) tutorial. Download the [signal file]({{ "/my-first-fix/#step-2-download-a-file-of-raw-signal-samples" | relative_url }}) and copy the [configuration file]({{ "/my-first-fix/#step-3-configure-gnss-sdr" | relative_url }}) and store them in a convenient place, separately from the project folder.
+In order to run the receiver, we are going to use the same signal source file that is used in the [first position fix]({{ "/my-first-fix/" | relative_url }}) tutorial.
 
-In order to activate the Monitor block, add the following fragment at the end of the configuration file. The following configuration streams the receiver internal parameters to the localhost address on port 1234 UDP. We will set a decimation factor of $$ N = 1000 $$, so that we get status updates at roughly once a second.
+It is convenient to store the signal file and the receiver configuration in a separate directory from the project folder. Create a work directory in your home folder:
+
+```bash
+$ cd ~
+$ mkdir work
+$ cd work
+```
+
+Download the [file]({{ "/my-first-fix/#step-2-download-a-file-of-raw-signal-samples" | relative_url }}) containing the GNSS raw signal samples. This can be done directly from the terminal:
+
+```bash
+$ wget https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz
+$ tar -zxvf 2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz
+```
+
+Copy the [configuration file]({{ "/my-first-fix/#step-3-configure-gnss-sdr" | relative_url }}), paste it in a text editor and add the following fragment at the end of the configuration file to activate the Monitor block:
 
 ```ini
 ;######### MONITOR CONFIG ############
@@ -361,6 +486,8 @@ Monitor.output_rate_ms=1000
 Monitor.client_addresses=127.0.0.1
 Monitor.udp_port=1234
 ```
+
+We will stream the receiver internal parameters to the localhost address on port 1234 UDP with a decimation factor of $$ N = 1000 $$, so that we get status updates at roughly once a second.
 
 The complete configuration file should look like this:
 
@@ -435,40 +562,40 @@ Monitor.udp_port=1234
 
 ## Testing the monitoring client
 
-We are now ready to test our application. Open a terminal, and start the monitoring client on port 1234:
+We are now ready to test our application. Switch back to the other terminal window and start the monitoring client on port 1234:
 
 ```bash
 $ ./monitoring-client 1234
 ```
 
-
+You will see this message printed on the screen:
 
 ```bash
 Listening on port 1234 UDP...
 ```
 
-Open another terminal and start the receiver:
+Now start the receiver on the other terminal window:
 
 ```bash
 $ gnss-sdr -c ./my-first-GNSS-SDR-receiver.conf
 ```
 
-If all worked fine
+If all worked fine you should see the a table like this:
 
 ```bash
 CH   PRN   CN0 [dB-Hz]     Doppler [Hz]
- 0     1     44.473186      7174.917576
- 3    11     44.990616      5575.376462
- 4    20     41.719349      8441.912933
- 6    32     43.936214      6548.035388
- 7    17     44.480846     10034.242419
+ 0     1     44.205502      7175.743399
+ 2    17     43.886524     10032.649712
+ 3    11     45.290539      5585.268260
+ 4    20     42.442753      8469.028326
+ 6    32     43.016476      6550.037773
 ```
 
 If you see something similar to this... Yay! You are successfully monitoring the internals of your open source software-defined GPS receiver!
 {: .notice--success}
 
 {% capture fig_img2 %}
-![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_monitor-client.png" | relative_url }})
+![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_and_monitoring-client.png" | relative_url }})
 {% endcapture %}
 
 <figure>

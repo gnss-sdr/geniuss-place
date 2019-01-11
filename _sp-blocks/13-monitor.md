@@ -6,15 +6,12 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-11-02T15:54:02-04:00
+last_modified_at: 2019-01-15T15:54:02-04:00
 ---
 
 
 The _Monitor_ block provides an interface for monitoring the internal status of the receiver in real-time by streaming the receiver internal parameters to local or remote clients over UDP.
 {: .notice--info}
-
-**IMPORTANT**: The _Monitor_ block is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
 
 This block is a feature of GNSS-SDR which was developed having [usability]({{ "/design-forces/usability/" | relative_url }}) in mind. It gives an internal (or white-box) perspective of the receiver, allowing a deeper insight into its performance and provides a communication interface through which end-users can build their monitoring clients upon.
 
@@ -73,9 +70,9 @@ The following set of variables record information about the [Tracking]({{ "/docs
 | `Carrier_Doppler_hz` | `double` | Doppler estimation in each channel, in [Hz]. |
 | `Carrier_phase_rads` | `double` | Carrier phase estimation in each channel, in [rad]. |
 | `Code_phase_samples` | `double` | Code phase in [samples]. |
-| `Tracking_sample_counter` | `uint64_t` | |
-| `Flag_valid_symbol_output` | `bool` | |
-| `correlation_length_ms` | `int32_t` | |
+| `Tracking_sample_counter` | `uint64_t` | Sample counter as an index (1,2,3,..etc) indicating number of samples processed. |
+| `Flag_valid_symbol_output` | `bool` | Indicates the validity of the tracking for each channel. |
+| `correlation_length_ms` | `int32_t` | Time duration of correlation-integration, in [ms]. |
 |----------
 
 ### Telemetry Decoder
