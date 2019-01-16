@@ -580,7 +580,7 @@ Now start the receiver on the other terminal window:
 $ gnss-sdr -c ./my-first-GNSS-SDR-receiver.conf
 ```
 
-If all worked fine you should see the a table like this:
+If all worked fine you should see a table like this:
 
 ```bash
 CH   PRN   CN0 [dB-Hz]     Doppler [Hz]
