@@ -78,7 +78,7 @@ sp-block:
     url: /docs/sp-blocks/
     children:
       - title: "Global parameters"
-        url: /docs/sp-blocks/global-parameters/      
+        url: /docs/sp-blocks/global-parameters/
       - title: "Signal Source"
         url: /docs/sp-blocks/signal-source/
       - title: "Signal Conditioner"
@@ -101,6 +101,8 @@ sp-block:
         url: /docs/sp-blocks/observables/
       - title: "PVT"
         url: /docs/sp-blocks/pvt/
+      - title: "Monitor"
+        url: /docs/sp-blocks/monitor/
 
 design-forces:
   - title: Design Forces
