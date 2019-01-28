@@ -239,7 +239,7 @@ _GLONASS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/ind
 
 The use of FDMA techniques, in which the same code is used to broadcast
 navigation signals on different frequencies, and the placement of civil
-GLONASS transmissions on frequencies close to $$ 1600 $$ MHz, well above the
+GLONASS transmissions on frequencies centered at $$ 1602 $$ MHz, well above the
 GPS L1 band, have complicated the design of combined GLONASS/GPS
 receivers, particularly low–cost equipment for mass–market applications.
 
