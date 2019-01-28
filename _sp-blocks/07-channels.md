@@ -18,9 +18,9 @@ Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/
 |--------------
 |  ```1C```      | GPS L1 C/A | $$ 1575.42 $$ MHz |
 |  ```1B```      | Galileo E1 B | $$ 1575.42 $$ MHz |
-|  ```1G```      | Glonass L1 C/A<span style="color: DarkOrange">$$ ^{(*)} $$</span> | $$ 1602.0 $$ MHz |
+|  ```1G```      | Glonass L1 C/A<span style="color: DarkOrange">$$ ^{(*)} $$</span> | $$ 1602.00$$ MHz |
 |  ```2S```      | GPS L2 L2CM | $$ 1227.60 $$ MHz |
-|  ```2G```      | Glonass L2 C/A<span style="color: DarkOrange">$$ ^{(*)} $$</span> | $$ 1227.60 $$ MHz |
+|  ```2G```      | Glonass L2 C/A<span style="color: DarkOrange">$$ ^{(*)} $$</span> | $$ 1246.00 $$ MHz |
 |  ```5X```      | Galileo E5a | $$ 1176.45 $$ MHz |
 |  ```L5```      | GPS L5<span style="color: DarkOrange">$$ ^{(*)} $$</span> | $$ 1176.45 $$ MHz |
 |-----
