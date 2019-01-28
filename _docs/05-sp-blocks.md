@@ -24,7 +24,7 @@ In GNSS-SDR, each configuration file defines a receiver. This page documents the
  <area alt="PVT" title="PVT" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}" shape="rect" coords="623,151,663,180" style="outline:none;" target="_self" />
  <area alt="Monitor" title="Monitor" href="{{ "/docs/sp-blocks/monitor/" | relative_url }}" shape="rect" coords="618,57,666,87" style="outline:none;" target="_self" />
  <area alt="Assisted GNSS" title="Assisted GNSS" href="{{ "/docs/sp-blocks/global-parameters/" | relative_url }}" shape="rect" coords="225,339,311,377" style="outline:none;" target="_self" />
- <area alt="Gnss_Syncho" title="Gnss_Syncho" href="https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h" shape="rect" coords="578,113,633,124" style="outline:none;" target="_self" />
+ <area alt="Gnss_Synchro" title="Gnss_Synchro" href="https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h" shape="rect" coords="578,113,633,124" style="outline:none;" target="_self" />
  <area shape="rect" coords="798,495,800,497" alt="Block Diagram" style="outline:none;" title="Image Map" href="{{ "/docs/sp-blocks/" | relative_url }}" />
 </map>
 
