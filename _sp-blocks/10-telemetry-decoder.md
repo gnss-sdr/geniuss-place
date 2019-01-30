@@ -151,7 +151,7 @@ The navigation message of the standard accuracy signal (C/A) is broadcast as con
 _GLONASS NAV message. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Navigation_Message)_.
 {: style="text-align: center;"}
 
-Each string is formed by a 0 (idle) bit, 85 data bits, the four check bits of a Hamming code (labelled as Kx in the figure above) and a 10-bit time mark (labelled as MB).
+Each string is formed by a 0 (idle) bit, 76 data bits, the eight check bits of a Hamming code (labelled as Kx in the figure above) and a 30-bit time mark (labelled as MB).
 
 The message content divides the data in _immediate data of the transmitting satellite_ and _non-immediate data for the other satellites_:
  * The immediate data is repeated in the first four strings of every frame. It comprises the ephemeris parameters, satellite clock offsets, satellite healthy flag and the relative difference between carrier frequency of the satellite and its nominal value.
