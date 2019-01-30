@@ -13,6 +13,13 @@ last_modified_at: 2019-01-30T10:54:02+02:00
 The role of a _Telemetry Decoder_ block is to obtain the data bits from the navigation message broadcast by GNSS satellites.
 {: .notice--info}
 
+In the description of baseband signals, this page uses the following notation:
+
+ * $$ [l]_{L} $$ means the integer part of $$ \frac{l}{L} $$,
+ * $$ \oplus $$ is the exclusive–or operation (modulo–2 addition), and
+ * $$ \mid l \mid_{L} $$ means $$ l $$ modulo $$ L $$.
+
+
 ## GPS NAV navigation message
 
 ### Implementation: `GPS_L1_CA_Telemetry_Decoder`
