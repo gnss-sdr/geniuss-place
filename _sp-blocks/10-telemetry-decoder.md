@@ -6,12 +6,19 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-12-14T12:54:02-04:00
+last_modified_at: 2019-01-30T10:54:02+02:00
 ---
 
 
 The role of a _Telemetry Decoder_ block is to obtain the data bits from the navigation message broadcast by GNSS satellites.
 {: .notice--info}
+
+In the description of baseband signals, this page uses the following notation:
+
+ * $$ [l]_{L} $$ means the integer part of $$ \frac{l}{L} $$,
+ * $$ \oplus $$ is the exclusive–or operation (modulo–2 addition), and
+ * $$ \mid l \mid_{L} $$ means $$ l $$ modulo $$ L $$.
+
 
 ## GPS NAV navigation message
 
@@ -29,7 +36,7 @@ $$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{eqnarray} 
 The GPS NAV message $$ D_{\text{NAV}} \in \{ 1, -1 \} $$ is modulated at 50 bits per second. The whole message contains 25 pages (or "frames") of 30 seconds each, forming the master frame that takes 12,5 minutes to be transmitted. Every frame is subdivided into 5 sub-frames of 6 seconds each; in turn, every sub-frame consists of 10 words, with 30 bits per word:
 
 ![GPS NAV message]({{ "/assets/images/Navigation_Message_GPS_NAV.png" | relative_url }})
-_GPS NAV message. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
+_GPS NAV message. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
 The content of every sub-frame is as follows:
@@ -128,6 +135,31 @@ This implementation accepts the following parameters:
 
 ## Glonass GNAV navigation message
 
+The complex baseband transmitted signal by GLONASS satellites in the L1 and L2 bands can be written as
+
+$$ \begin{equation} s^{\text{(GLO)}}_{T}(t)=e_{I}(t) + j e_{Q}(t)~, \end{equation} $$
+
+where
+
+$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{equation} e_{Q}(t) = \sum_{l=-\infty}^{\infty} \color{blue} D_{\text{GNAV}}\Big[ [l]_{10220} \Big] \color{dark-grey} \oplus  C_{\text{C/A}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{C/A}})~.\end{equation} $$
+
+
+The navigation message of the standard accuracy signal (C/A) is broadcast as continuously repeating superframes with a duration of 2.5 minutes. Each superframe consists of 5 frames of 30 seconds, and each frame consists of 15 strings of 2 seconds duration (100 bits length).
+
+
+![GLONASS NAV message]({{ "/assets/images/GLONASS_navigation_message_structure.png" | relative_url }}) <br>
+_GLONASS NAV message. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Navigation_Message)_.
+{: style="text-align: center;"}
+
+Each string is formed by a 0 (idle) bit, 76 data bits, the eight check bits of a Hamming code (labelled as Kx in the figure above) and a 30-bit time mark (labelled as MB).
+
+The message content divides the data in _immediate data of the transmitting satellite_ and _non-immediate data for the other satellites_:
+ * The immediate data is repeated in the first four strings of every frame. It comprises the ephemeris parameters, satellite clock offsets, satellite healthy flag and the relative difference between carrier frequency of the satellite and its nominal value.
+ * The non-immediate data is broadcast in the strings 5 to 15 of each frame (almanac for 24 satellites). The frames I to IV contain almanac for 20 satellites (5 per frame), and the 5th frame almanac for 4 satellites. The last 2 strings of frame 5 are reserved bits (the almanac of each satellite uses 2 strings).
+
+The ephemerides values are predicted from the Ground Control Centre for a 24 hours period, and the satellite transmits a new set of ephemerides every 30 minutes. These data differ from GPS data: instead of Keplerian orbital elements, they are provided as Earth Centered Earth Fixed (ECEF) Cartesian coordinates in position and velocity, with lunar and solar acceleration perturbation parameters.
+
+
 ### Implementation: `GLONASS_L1_CA_Telemetry_Decoder`
 
 This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
@@ -201,7 +233,7 @@ transmitted at $$ 25 $$ bps with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ sps.
 
 ![GPS L2 CNAV message]({{ "/assets/images/Navigation_Message_GPS_CNAV_L2.png" | relative_url }})
-_GPS L2 CNAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
+_GPS L2 CNAV message structure. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
 This implementation accepts the following parameters:
@@ -244,7 +276,7 @@ component contains a synchronization sequence $$ C_{nh_{10}} $$ that modulates e
 GPS L5 civil navigation data $$ D_{\text{CNAV}} $$. The message structure is the same as for L2 CNAV:
 
 ![GPS L5 CNAV message]({{ "/assets/images/Navigation_Message_GPS_CNAV_L5.png" | relative_url }})
-_GPS L5 CNAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Navigation_Message)_.
+_GPS L5 CNAV message structure. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
 This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
@@ -287,7 +319,7 @@ $$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{eqnarray} 
 
 
 ![Galileo E5a F/NAV message]({{ "/assets/images/Navigation_Message_Galileo_FNAV.png" | relative_url }})
-_Galileo E5a F/NAV message structure. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Navigation_Message)_.
+_Galileo E5a F/NAV message structure. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Navigation_Message)_.
 {: style="text-align: center;"}
 
 
