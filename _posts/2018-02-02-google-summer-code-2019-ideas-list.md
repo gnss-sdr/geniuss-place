@@ -1,13 +1,14 @@
 ---
 title: "Google Summer of Code 2019 ideas list"
 excerpt: "Ideas page for GSoC 2019."
-permalink: /google-summer-code-2019-ideas-list/
 header:
   teaser: /assets/images/logo-gsoc.png
+tags:
+  - news  
 author_profile: false
 sidebar:
   nav: "news"
-last_modified_at: 2019-01-31T12:08:02+02:00
+last_modified_at: 2019-02-01T12:08:02+02:00
 ---
 
 This year, GNSS-SDR is applying as a mentoring organization for [Google Summer of Code](https://summerofcode.withgoogle.com/) (also known as GSoC), a global program that offers students stipends to write code for open source projects. In order to participate in the program, you must be a student. Google defines a student as an individual enrolled in or accepted into an accredited institution including (but not necessarily limited to) colleges, universities, masters programs, PhD programs and undergraduate programs. You should be prepared, upon request, to provide Google with transcripts or other documentation from your accredited institution as proof of enrollment or admission status. Computer Science does not need to be your field of study in order to participate in the program. You may be enrolled as a full-time or part-time student for a time period that includes May 6, 2019, and must be at least 18 years old to be eligible to participate in Google Summer of Code in 2019.
@@ -67,6 +68,18 @@ Dr. Jordi Vil&agrave;-Valls, Dr. Javier Arribas.
 
 -------
 
+## SDR KF-based Synchronization Techniques for Advanced GNSS Receivers
+
+### Description:
+
+Tracking of synchronization parameters (i.e., time-delay, carrier phase, Doppler shifts) is a key step in the core of any GNSS receiver. The current tracking block implementations, which are fully operational in GNSS-SDR for GPS L1, GPS L2, GPS L5, Galileo E1, Galileo E5a, GLONASS L1 and GLONASS L2 frequency bands, are based on traditional tracking loop architectures (e.g., DLL and PLL). Those techniques are prone to fail in non-nominal propagation conditions such as high-dynamics, shadowing, strong fadings, multipath effects or ionospheric scintillation effects. It is known that Kalman filter (KF)-based techniques, which are formulated from an optimal filtering standpoint, are more robust to such harsh propagation conditions, thus being the synchronization methods of choice to be taken into account in advanced GNSS receivers.
+The main goal of this project is i) to develop and integrate into GNSS-SDR joint code/carrier KF-based synchronization methods, and iv) test and compare the performance of these techniques with respect to traditional architectures using real signals.
+
+### Skills required:
+Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework and Kalman filtering techniques is a plus).
+
+### Potential mentor(s):
+Dr. Pau Closas, Dr. Jordi Vil&agrave;-Valls
 
 
 -------
