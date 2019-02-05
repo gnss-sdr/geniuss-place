@@ -84,6 +84,23 @@ Dr. Pau Closas, Dr. Jordi Vil&agrave;-Valls
 
 -------
 
+## Robust Kalman Filter-based Tracking Techniques for Advanced GNSS Receivers
+
+### Description:
+
+Tracking of synchronization parameters (*i.e.*, time-delay and carrier phase) is a key step in the core of any GNSS receiver. The current tracking block implementations, which are fully operational in GNSS-SDR for GPS L1, GPS L2, GPS L5, Galileo E1, Galileo E5a and GLONASS L1 bands, are based on traditional tracking loop architectures (e.g., DLL and PLL). Those techniques are prone to fail in non-nominal propagation conditions such as high-dynamics, shadowing, strong fadings, multipath effects or ionospheric scintillation. It is known that Kalman filter (KF)-based techniques, which are formulated from an optimal filtering standpoint, are more robust to such harsh propagation conditions, thus being the methods of choice in advanced GNSS receivers.
+
+The main goals of this project are: *i*) to develop and integrate into the GNSS-SDR core standard (discriminator-based) KF tracking techniques for both (joint) code and phase tracking; *ii*) extend such standard KFs to adaptive KF tracking, for instance, sequentially adjusting the measurement covariance at the output of the discriminators; *iii*) implement discriminator-free extended KF (EKF) solutions, and *iv*) to test and compare the performance of these techniques with respect to traditional architectures using real signals.
+
+### Skills required:
+
+Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework and Kalman filtering techniques is a plus).
+
+### Potential mentor(s):
+
+Dr. Jordi Vil&agrave;-Valls, Dr. Pau Closas, Dr. Javier Arribas.
+
+-------
 
 ## Proposal template:
 
