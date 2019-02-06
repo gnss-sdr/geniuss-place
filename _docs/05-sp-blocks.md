@@ -13,18 +13,19 @@ In GNSS-SDR, each configuration file defines a receiver. This page documents the
 <img src="https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/docs/doxygen/images/GeneralBlockDiagram.png" alt="General Block Diagram" usemap="#sp-map">
 {: style="text-align: center; width: 800px;"}
 
+
 <map name="sp-map" id="Diagram-sp-map">
- <area alt="Signal source" title="Signal Source" href="{{ "/docs/sp-blocks/signal-source/" | relative_url }}" shape="rect" coords="142,165,186,192" style="outline:none;" target="_self" />
- <area alt="Signal Conditioner" title="Signal Conditioner" href="{{ "/docs/sp-blocks/signal-conditioner/" | relative_url }}" shape="rect" coords="226,165,283,192" style="outline:none;" target="_self" />
- <area alt="Acquisition" title="Acquisition" href="{{ "/docs/sp-blocks/acquisition/" | relative_url }}" shape="rect" coords="325,127,391,158" style="outline:none;" target="_self" />
- <area alt="Tracking" title="Tracking" href="{{ "/docs/sp-blocks/tracking/" | relative_url }}" shape="rect" coords="326,202,392,232" style="outline:none;" target="_self" />
- <area alt="Telemetry Decoder" title="Telemetry Decoder" href="{{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}" shape="rect" coords="411,202,473,233" style="outline:none;" target="_self" />
- <area alt="Channels" title="Channels" href="{{ "/docs/sp-blocks/channels/" | relative_url }}" shape="rect" coords="292,62,378,113" style="outline:none;" target="_self" />
- <area alt="Observables" title="Observables" href="{{ "/docs/sp-blocks/observables/" | relative_url }}" shape="rect" coords="534,151,604,183" style="outline:none;" target="_self" />
- <area alt="PVT" title="PVT" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}" shape="rect" coords="623,151,663,180" style="outline:none;" target="_self" />
- <area alt="Monitor" title="Monitor" href="{{ "/docs/sp-blocks/monitor/" | relative_url }}" shape="rect" coords="618,57,666,87" style="outline:none;" target="_self" />
- <area alt="Assisted GNSS" title="Assisted GNSS" href="{{ "/docs/sp-blocks/global-parameters/" | relative_url }}" shape="rect" coords="225,339,311,377" style="outline:none;" target="_self" />
- <area alt="Gnss_Synchro" title="Gnss_Synchro" href="https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h" shape="rect" coords="578,113,633,124" style="outline:none;" target="_self" />
+ <area alt="Signal source" title="Signal Source" href="{{ "/docs/sp-blocks/signal-source/" | relative_url }}" shape="rect" coords="145,170,190,198" style="outline:none;" target="_self" />
+ <area alt="Signal Conditioner" title="Signal Conditioner" href="{{ "/docs/sp-blocks/signal-conditioner/" | relative_url }}" shape="rect" coords="230,171,291,199" style="outline:none;" target="_self" />
+ <area alt="Acquisition" title="Acquisition" href="{{ "/docs/sp-blocks/acquisition/" | relative_url }}" shape="rect" coords="332,134,398,161" style="outline:none;" target="_self" />
+ <area alt="Tracking" title="Tracking" href="{{ "/docs/sp-blocks/tracking/" | relative_url }}" shape="rect" coords="333,207,400,236" style="outline:none;" target="_self" />
+ <area alt="Telemetry Decoder" title="Telemetry Decoder" href="{{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}" shape="rect" coords="419,208,485,235" style="outline:none;" target="_self" />
+ <area alt="Channels" title="Channels" href="{{ "/docs/sp-blocks/channels/" | relative_url }}" shape="rect" coords="300,64,387,114" style="outline:none;" target="_self" />
+ <area alt="Observables" title="Observables" href="{{ "/docs/sp-blocks/observables/" | relative_url }}" shape="rect" coords="543,157,615,185" style="outline:none;" target="_self" />
+ <area alt="PVT" title="PVT" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}" shape="rect" coords="635,154,675,184" style="outline:none;" target="_self" />
+ <area alt="Monitor" title="Monitor" href="{{ "/docs/sp-blocks/monitor/" | relative_url }}" shape="rect" coords="597,59,649,89" style="outline:none;" target="_self" />
+ <area alt="Assisted GNSS" title="Assisted GNSS" href="{{ "/docs/sp-blocks/global-parameters/" | relative_url }}" shape="rect" coords="231,349,319,388" style="outline:none;" target="_self" />
+ <area alt="Gnss_Synchro" title="Gnss_Synchro" href="https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h" shape="rect" coords="557,118,614,131" style="outline:none;" target="_self" />
  <area shape="rect" coords="798,495,800,497" alt="Block Diagram" style="outline:none;" title="Image Map" href="{{ "/docs/sp-blocks/" | relative_url }}" />
 </map>
 
