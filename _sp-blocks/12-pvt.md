@@ -477,13 +477,52 @@ Depending on the specific application or service that is exploiting the informat
 * For real-time, possibly networked processing: [RTCM-104](http://www.rtcm.org/differential-global-navigation-satellite--dgnss--standards.html) messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting ```PVT.flag_rtcm_server=true``` in the configuration file, and will be active during the execution of the software receiver. By default, the server will operate on port 2101 (which is the recommended port for RTCM services according to the Internet Assigned Numbers Authority, [IANA](https://www.iana.org/assignments/service-names-port-numbers "Service Name and Transport Protocol Port Number Registry")), and will identify the Reference Station with ID= $$ 1234 $$. These values can be changed with `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration file.
 
 
-
 **IMPORTANT**: In order to get well-formatted GeoJSON, KML, GPX and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
 {: .notice--warning}
 
 Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | relative_url }}) page.
 {: .notice--success}
 
+In addition to the standard output formats, the PVT block offers a custom mechanism for streaming its internal data members to local or remote clients over UDP through a _monitoring port_ which can be enabled by setting `PVT.enable_monitor=true` in the configuration file. This feature is very useful for real-time monitoring of the PVT block and its outputs. By default, the data is streamed to the localhost address on port 1234 UDP. These settings can be changed with `PVT.monitor_client_addresses` and `PVT.monitor_udp_port`. The streamed data members (28 in total) are the same ones that are included in the binary dump, and they are encapsulated inside objects of the class [Monitor_Pvt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/monitor_pvt.h), which acts as a container. The following table shows the complete list of streamed parameters, whose names have been kept identical to those of the binary dump to foster consistency.
+
+|----------
+|  **Name**  |  **Type** | **Description** |
+|:-:|:-:|:--|    
+|--------------
+| `TOW_at_current_symbol_ms` | `uint32_t` | Time of week of the current symbol, in [ms]. |
+| `week` | `uint32_t` | PVT GPS week. |
+| `RX_time` | `double` | PVT GPS time. |
+| `user_clk_offset` | `double` | User clock offset, in [s]. |
+| `pos_x` | `double` | Position X component in ECEF, expressed in [m]. |
+| `pos_y` | `double` | Position Y component in ECEF, expressed in [m]. |
+| `pos_z` | `double` | Position Z component in ECEF, expressed in [m]. |
+| `vel_x` | `double` | Velocity X component in ECEF, expressed in [m/s]. |
+| `vel_y` | `double` | Velocity Y component in ECEF, expressed in [m/s]. |
+| `vel_z` | `double` | Velocity Z component in ECEF, expressed in [m/s]. |
+| `cov_xx` | `double` | Position variance $$\sum_{xx}$$ element, in [m^2]. |
+| `cov_yy` | `double` | Position variance $$\sum_{yy}$$ element, in [m^2]. |
+| `cov_zz` | `double` | Position variance $$\sum_{zz}$$ element, in [m^2]. |
+| `cov_xy` | `double` | Position covariance $$\sum_{xy}$$ element, in [m^2]. |
+| `cov_yz` | `double` | Position covariance $$\sum_{yz}$$ element, in [m^2]. |
+| `cov_zx` | `double` | Position covariance $$\sum_{zx}$$ element, in [m^2]. |
+| `latitude` | `double` | Latitude, in [deg] |
+| `longitude` | `double` | Longitude, in [deg]. |
+| `height` | `double` | Height, in [m]. |
+| `valid_sats` | `uint8_t` | Number of valid satellites. |
+| `solution_status` | `uint8_t` | RTKLIB solution status. |
+| `solution_type` | `uint8_t` | RTKLIB solution type (`0`: xyz-ecef, `1`: enu-baseline). |
+| `AR_ratio_factor` | `float` | Ambiguity resolution ratio factor for validation. |
+| `AR_ratio_threshold` | `float` | Ambiguity resolution ratio threshold for validation. |
+| `gdop` | `double` | Geometric dilution of precision (GDOP). |
+| `pdop` | `double` | Position (3D) dilution of precision (PDOP). |
+| `hdop` | `double` | Horizontal dilution of precision (HDOP). |
+| `vdop` | `double` | Vertical dilution of precision (VDOP). |
+|--------------
+
+The class in charge of serializing and sending the data is the [Monitor_Pvt_Udp_Sink](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/monitor_pvt_udp_sink.h) class. It makes use of the networking and serialization functions provided by the [Boost.Asio](https://www.boost.org/doc/libs/1_65_1/doc/html/boost_asio.html) and [Boost.Serialization](https://www.boost.org/doc/libs/1_65_1/libs/serialization/doc/index.html) libraries. The data is serialized using the binary serialization format (see [binary_oarchive.hpp](https://www.boost.org/doc/libs/1_65_1/boost/archive/binary_oarchive.hpp) and [binary_iarchive.hpp](https://www.boost.org/doc/libs/1_65_1/boost/archive/binary_iarchive.hpp)).
+
+**IMPORTANT**: This feature is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
+{: .notice--warning}
 
 
 # Implementation: `RTKLIB_PVT`
@@ -558,6 +597,9 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, makes us
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./pvt.dat`. | Optional |
 | `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" file stored by this block into a ".mat" file directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so the ".mat" file is generated by default if `dump=true`. | Optional |
+| `enable_monitor` | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port is activated. This feature allows streaming the internal parameters and outputs of the PVT block to local or remote clients over UDP. The streamed data members (28 in total) are the same ones that are included in the binary dump. It defaults to `false`. | Optional |
+| `monitor_client_addresses` | Destination IP address(es) of the real-time monitoring port. To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1` (localhost). | Optional |
+| `monitor_udp_port` | Destination UDP port number of the real-time monitoring port. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. | Optional |
 |----------
 
 {::comment}
