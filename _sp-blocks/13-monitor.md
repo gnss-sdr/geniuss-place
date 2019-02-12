@@ -15,16 +15,16 @@ The _Monitor_ block provides an interface for monitoring the internal status of 
 
 This block is a feature of GNSS-SDR which was developed having [usability]({{ "/design-forces/usability/" | relative_url }}) in mind. It gives an internal (or white-box) perspective of the receiver, allowing a deeper insight into its performance and provides a communication interface through which end-users can build their monitoring clients upon.
 
-This is made possible by exposing Gnss_Synchro objects from inside the receiver to the user. These objects are special containers that hold a set of variables which capture the internal state of the receiver as they travel along the receiver chain.
+This is made possible by exposing [`Gnss_Synchro`](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h) objects from inside the receiver to the user. These objects are special containers that hold a set of variables which capture the internal state of the receiver as they travel along the receiver chain.
 
-Each channel of the receiver instantiates a Gnss_Synchro object. Once it reaches the _Monitor_ block, the object is serialized into a binary [archive](https://www.boost.org/doc/libs/release/libs/serialization/doc/archives.html) and then streamed through a network socket to one or more destination endpoints (clients) designated by the user. Each client can then deserialize the archive from the data stream, recover the [Gnss_Synchro](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h) object and access its member variables for further inspection and monitoring.
+Each channel of the receiver instantiates a `Gnss_Synchro` object. Once it reaches the _Monitor_ block, the object is serialized into a binary [archive](https://www.boost.org/doc/libs/release/libs/serialization/doc/archives.html) and then streamed through a network socket to one or more destination endpoints (clients) designated by the user. Each client can then deserialize the archive from the data stream, recover the `Gnss_Synchro` object and access its member variables for further inspection and monitoring.
 
 This communication mechanism is built with the [Boost.Asio](https://www.boost.org/doc/libs/release/libs/asio/) and [Boost.Serialization](https://www.boost.org/doc/libs/release/libs/serialization/) libraries.
 {: .notice--info}
 
 ## Exposed Internal Parameters
 
-The exposed internal parameters are the data members of the Gnss_Synchro class. There are 25 in total, and can be classified based on the subsystem they inform about:
+The exposed internal parameters are the data members of the `Gnss_Synchro` class. There are 25 in total, and can be classified based on the subsystem they inform about:
 
 ### Satellite and signal information
 
