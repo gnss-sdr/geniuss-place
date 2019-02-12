@@ -17,9 +17,9 @@ This block is a feature of GNSS-SDR which was developed having [usability]({{ "/
 
 This is made possible by exposing Gnss_Synchro objects from inside the receiver to the user. These objects are special containers that hold a set of variables which capture the internal state of the receiver as they travel along the receiver chain.
 
-Each channel of the receiver instantiates a Gnss_Synchro object. Once it reaches the _Monitor_ block, the object is serialized into a binary [archive](https://www.boost.org/doc/libs/1_68_0/libs/serialization/doc/archives.html) and then streamed through a network socket to one or more destination endpoints (clients) designated by the user. Each client can then deserialize the archive from the data stream, recover the Gnss_Synchro object and access its member variables for further inspection and monitoring.
+Each channel of the receiver instantiates a Gnss_Synchro object. Once it reaches the _Monitor_ block, the object is serialized into a binary [archive](https://www.boost.org/doc/libs/1_65_1/libs/serialization/doc/archives.html) and then streamed through a network socket to one or more destination endpoints (clients) designated by the user. Each client can then deserialize the archive from the data stream, recover the Gnss_Synchro object and access its member variables for further inspection and monitoring.
 
-This communication mechanism is built with the [Boost.Serialization](https://www.boost.org/doc/libs/1_68_0/libs/serialization/doc/index.html) and [Boost.Asio](https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio.html) libraries.
+This communication mechanism is built with the [Boost.Serialization](https://www.boost.org/doc/libs/1_65_1/libs/serialization/doc/index.html) and [Boost.Asio](https://www.boost.org/doc/libs/1_65_1/doc/html/boost_asio.html) libraries.
 {: .notice--info}
 
 ## Exposed Internal Parameters
