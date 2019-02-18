@@ -110,7 +110,7 @@ The configuration of the _Monitor_ block accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `Monitor.enable_monitor` | [`true`, `false`]: If set to `true`, the _Monitor_ block is activated. | Mandatory |
-| `Monitor.output_rate_ms` | Decimation integer factor $$ N $$. Limits the streaming output rate to only every $$ N^{th} $$ sample. To stream all the samples, set this to `1`. Zero or negative values are treated as `1`. | Mandatory |
+| `Monitor.decimation_factor` | Decimation integer factor $$ N $$. Limits the streaming output rate to only every $$ N^{th} $$ sample. To stream all the samples, set this to `1`. Zero or negative values are treated as `1`. | Mandatory |
 | `Monitor.client_addresses` | Destination IP address(es). To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. | Mandatory |
 | `Monitor.udp_port` | Destination port number. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. | Mandatory |
 |----------
@@ -123,7 +123,7 @@ The following configuration streams the receiver internal parameters to the loca
 ```ini
 ;######### MONITOR CONFIG ############
 Monitor.enable_monitor=true
-Monitor.output_rate_ms=1
+Monitor.decimation_factor=1
 Monitor.client_addresses=127.0.0.1
 Monitor.udp_port=1234
 ```
@@ -135,7 +135,7 @@ The following configuration streams the receiver internal parameters to the addr
 ```ini
 ;######### MONITOR CONFIG ############
 Monitor.enable_monitor=true
-Monitor.output_rate_ms=1000
+Monitor.decimation_factor=1000
 Monitor.client_addresses=10.10.10.1_10.10.10.2
 Monitor.udp_port=1234
 ```
