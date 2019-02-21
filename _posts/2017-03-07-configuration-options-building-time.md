@@ -11,7 +11,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-08-17T09:17:02+02:00
+last_modified_at: 2019-02-21T09:17:02+02:00
 ---
 
 
@@ -38,7 +38,7 @@ $ sudo make install
 CMake's defaults and GNSS-SDR project configuration settings can be overridden on the command line with the -D option, with the following syntax:
 
 ```bash
-cmake -D<variable_name>=<value>
+$ cmake -D<variable_name>=<value>
 ```
 
 Thus, if you want to set the variable named ```CMAKE_BUILD_TYPE``` to the ```Debug``` value, you can write in your command line:
@@ -66,7 +66,7 @@ The building system honors the usual [CMake variables](https://cmake.org/cmake/h
 |  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|
 |--------------
-| &#x2011;DCMAKE_BUILD_TYPE |  None / Debug / Release / RelWithDebInfo / MinSizeRel | Release | A variable which controls the type of build and some of the flags passed to the compiler. The default values for these flags change with different compilers. If CMake does not know your compiler, the contents will be empty. See the [CMake documentation about this variable](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html) and the note below for more details. |
+| &#x2011;DCMAKE_BUILD_TYPE |  None / Debug / Release / RelWithDebInfo / MinSizeRel / Coverage / NoOptWithASM / O2WithASM / O3WithASM / ASAN | Release | A variable which controls the type of build and some of the flags passed to the compiler. The default values for these flags change with different compilers. If CMake does not know your compiler, the contents will be empty. See the [CMake documentation about this variable](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html) and the note below for more details. |
 | &#x2011;DCMAKE_INSTALL_PREFIX | System path | System-dependent. In most systems, this use to be ```/usr/local```. | Specifies the path in which GNSS-SDR will be installed when doing ```make install```. The content of this variable is prepended onto all install directories. On UNIX systems, one can use the ```DESTDIR``` mechanism in order to relocate the whole installation (see below). |
 | &#x2011;DCMAKE_INCLUDE_PATH  | System path | System-dependent. | This is used when searching for include files *e.g.* using the FIND_PATH() command in the CMakeLists.txt files. If you have headers in non-standard locations, it may be useful to set this variable to this directory. If you need several directories, separate them by the platform specific separators (*e.g.* ":" on UNIX). |
 | &#x2011;DCMAKE_LIBRARY_PATH  | System path | System-dependent. | This is used when searching for libraries *e.g.* using the FIND_LIBRARY() command in the CMakeLists.txt files. If you have libraries in non-standard locations, it may be useful to set this variable to this directory. If you need several directories, separate them by the platform specific separators (*e.g.* ":" on UNIX). |
@@ -178,5 +178,38 @@ Some statistical profiling tools require the software under analysis to be compi
 | &#x2011;DENABLE_GPERFTOOLS | ON / OFF | OFF | If set to ON, it enables linking to [gperftools](https://github.com/gperftools/gperftools) libraries (tcmalloc and profiler). This option requires gperftools to be already installed in your system. Check out [how to profile GNSS-SDR]({{ "/how-profile-code/" | relative_url }}) for more details on gperftools usage.  |
 | &#x2011;DENABLE_GPROF | ON / OFF | OFF  |  If set to ON, it enables the use of the GNU profiler tool [gprof](https://sourceware.org/binutils/docs/gprof/). Specifically, it adds ```-pg``` to the list of flags passed to the compiler and the linker. If the compiler is not GNU, this option has no effect. |
 |----------
+
+
+## Static analysis
+
+[clang-tidy](https://clang.llvm.org/extra/clang-tidy/) is a clang-based C++ "linter" tool. Its purpose is to provide an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis.
+
+|----------
+|  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
+|:--|:-:|:-:|:--|
+|--------------
+| &#x2011;DENABLE_CLANG_TIDY | ON / OFF | OFF | If set to ON, clang-tidy is executed along compilation, performing the checks defined in the [.clang-tidy](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-tidy) file and applying fixes into the source code, when available. After compilation completion, please check your source tree with `git status` and `git diff` to review the applied changes and, if you agree, add and commit them. <span style="color: DarkOrange">WARNING: This option is only available in the `next` branch.</span>
+|----------
+
+Please note that you can also use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform checks over all files in the compilation database:
+
+```bash
+$ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
+```
+
+You can examine the full [list of clang-tidy checks](https://clang.llvm.org/extra/clang-tidy/checks/list.html) and their definition.
+
+In Debian and Ubuntu machines, clang-tidy can be installed with:
+
+```bash
+$ sudo apt-get install clang-tidy
+```
+
+Example of usage:
+```bash
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+        -DCMAKE_C_COMPILER=/usr/bin/clang \
+        -DENABLE_CLANG_TIDY=ON ..
+```
 
 --------
