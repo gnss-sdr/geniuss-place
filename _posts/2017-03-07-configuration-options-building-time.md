@@ -188,7 +188,7 @@ Some statistical profiling tools require the software under analysis to be compi
 |  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|
 |--------------
-| &#x2011;DENABLE_CLANG_TIDY | ON / OFF | OFF | If set to ON, clang-tidy is executed along compilation, performing the checks defined in the [.clang-tidy](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-tidy) file and applying fixes into the source code, when available. After compilation completion, please check your source tree with `git status` and `git diff` to see the applied changes and, if you agree, add and commit them. <span style="color: DarkOrange">WARNING: This option is only available in the `next` branch.</span>
+| &#x2011;DENABLE_CLANG_TIDY | ON / OFF | OFF | If set to ON, clang-tidy is executed along compilation, performing the checks defined in the [.clang-tidy](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-tidy) file and applying fixes into the source code, when available. After compilation completion, please check your source tree with `git status` and `git diff` to review the applied changes and, if you agree, add and commit them. <span style="color: DarkOrange">WARNING: This option is only available in the `next` branch.</span>
 |----------
 
 Please note that you can also use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform checks over all files in the compilation database:
