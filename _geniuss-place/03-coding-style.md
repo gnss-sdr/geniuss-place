@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2018-03-03T13:20:02+02:00
+last_modified_at: 2019-02-22T13:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -41,6 +41,8 @@ The attempt is to make a guideline, not to force a particular coding style onto 
 **Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) and the [High Integrity C++ Coding Standard Version 4.0](http://www.codingstandard.com) Guidelines for the use of the C++ language in critical systems.
 {: .notice--primary}
 
+**Interested in doing a pull-request? Go straight to the point!** The application of some of the rules described in this page can be automated with tools such as [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/), which can help you to meet the project conventions (automatically changing the code for you!) and integrate well with many other tools such as code editors and building systems. If you want to do a pull-request, please apply these tools to your code before doing it. [Scroll down <i class="fas fa-arrow-circle-down"></i>]({{ "/coding-style/#final-recommendations" | relative_url }}) to read about how to install and use them.
+{: .notice--success}
 -------
 
 ## Naming conventions
@@ -956,7 +958,7 @@ $ sudo apt-get install clang-format
 
   * **In GNU/Linux using Fedora / CentOS distributions:**
 ```bash
-$ sudo yum install clang
+$ sudo yum install clang-tools-extra
 ```
 
   * **In GNU/Linux using ArchLinux:**
@@ -966,12 +968,13 @@ $ sudo pacman -S clang
 
   * **In macOS using Homebrew:**
 ```bash
-$ sudo brew install clang-format
+$ brew install llvm
+$ ln -s /usr/local/opt/llvm/bin/clang-format /usr/local/bin
 ```
 
   * **In macOS using Macports:**
 ```bash
-$ sudo port install clang-7.0
+$ sudo port install clang
 ```
   NOTE: You can see all available choices with `port select --list` for clang:
 ```bash
@@ -1029,6 +1032,80 @@ An automated code formatting tool helps to improve [**Maintainability**]({{ "/de
   {{ notice-maintainability | markdownify }}
 </div>
 
+### Use code linters
+
+In this context, _linting_ refers to the process of running a program that analyzes code for potential errors.
+
+[clang-tidy](https://clang.llvm.org/extra/clang-tidy/) is a clang-based C++ "linter" tool. Its purpose is to provide an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis.
+
+The checks performed by clang-tidy are configured in the [.clang-tidy](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-tidy) file at the root of the source tree. Definitions and rationale are available at the [list of clang-tidy checks](https://clang.llvm.org/extra/clang-tidy/checks/list.html).
+
+You can use clang-tidy in two simple steps:
+
+**Step 1.- Install clang-tidy**
+
+* **In GNU/Linux using Debian / Ubuntu distributions:**
+```bash
+$ sudo apt-get install clang-tidy
+```
+
+* **In GNU/Linux using Fedora / CentOS distributions:**
+```bash
+$ sudo yum install clang-tools-extra
+```
+
+* **In GNU/Linux using ArchLinux:**
+```bash
+$ sudo pacman -S clang
+```
+
+* **In macOS using Homebrew:**
+```bash
+$ brew install llvm
+$ ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin
+```
+
+* **In macOS using Macports:**
+```bash
+$ sudo port install clang
+```
+
+**Step 2.- Apply clang-tidy**
+
+This tool integrates nicely with CMake >= 3.6. In GNSS-SDR, all you need to do is to enable its usage with the option:
+
+```bash
+$ cmake -DENABLE_CLANG_TIDY=ON ..
+```
+
+when configuring the build. This option will execute clang-tidy along with the clang compiler at building time. If clang is not your default compiler, tell CMake to use it:
+
+```bash
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+        -DCMAKE_C_COMPILER=/usr/bin/clang \
+        -DENABLE_CLANG_TIDY=ON ..
+```
+
+(pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in you machine). This will provide you with extra warnings, and some checks will even fix errors for you. After compilation, check your source tree with `git status` and, in case of changes, inspect them with `git diff`. If you accept the changes, please `git add` and `git commit` them.
+
+Please note that you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform checks over all files in the compilation database:
+
+```bash
+$ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
+```
+
+You can read more about the usage of this tool at the [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/).
+
+**Please apply clang-tidy to your changes before any pull request.**
+{: .notice--danger}
+
+{% capture notice-tidy %}
+An automated code linter helps to improve [**Efficiency**]({{ "/design-forces/efficiency/" | relative_url }}), [**Reliability**]({{ "/design-forces/reliability/" | relative_url }}) and [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
+{% endcapture %}
+
+<div class="notice--success">
+  {{ notice-tidy | markdownify }}
+</div>
 
 ### Learn from the best
 
