@@ -11,7 +11,7 @@ sidebar:
 last_modified_at: 2019-02-01T12:08:02+02:00
 ---
 
-This year, GNSS-SDR is applying as a mentoring organization for [Google Summer of Code](https://summerofcode.withgoogle.com/) (also known as GSoC), a global program that offers students stipends to write code for open source projects. In order to participate in the program, you must be a student. Google defines a student as an individual enrolled in or accepted into an accredited institution including (but not necessarily limited to) colleges, universities, masters programs, PhD programs and undergraduate programs. You should be prepared, upon request, to provide Google with transcripts or other documentation from your accredited institution as proof of enrollment or admission status. Computer Science does not need to be your field of study in order to participate in the program. You may be enrolled as a full-time or part-time student for a time period that includes May 6, 2019, and must be at least 18 years old to be eligible to participate in Google Summer of Code in 2019.
+This year, GNSS-SDR is serving again as a mentoring organization for [Google Summer of Code](https://summerofcode.withgoogle.com/) (also known as GSoC), a global program that offers students stipends to write code for open source projects. In order to participate in the program, you must be a student. Google defines a student as an individual enrolled in or accepted into an accredited institution including (but not necessarily limited to) colleges, universities, masters programs, PhD programs and undergraduate programs. You should be prepared, upon request, to provide Google with transcripts or other documentation from your accredited institution as proof of enrollment or admission status. Computer Science does not need to be your field of study in order to participate in the program. You may be enrolled as a full-time or part-time student for a time period that includes May 6, 2019, and must be at least 18 years old to be eligible to participate in Google Summer of Code in 2019.
 
 If you are an eligible and interested student, read through the list and note the projects you are interested in. You, as the student programmer, then submit a proposal to Google, using the [GSoC 2019 website](https://summerofcode.withgoogle.com/). The application form for students will be open from March 25 18:00 UTC until April 9 18:00 UTC. We recommend you to submit your application early. By doing so, it will be given a greater share of attention than is possible for applications submitted at the last minute.
 
@@ -100,6 +100,27 @@ Basic knowledge on digital signal processing and C++ programming (familiarity wi
 
 Dr. M&ograve;nica Navarro, Dr. Pau Closas.
 
+-------
+
+## Expanding the receiver to BEIDOU B1C
+
+### Description:
+
+Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with Beidou B1C signals, delivering an on-the-fly navigation solution (that is, computation of position, velocity and time of the user’s receiver).
+
+ * Implementation of acquisition and tracking algorithms for Beidou B1C signals, following the examples already implemented for other GNSS signals. This would facilitate research on multi-constellation, multi-frequency receivers (e.g., GPS + Galileo + Beidou) working with real signals.
+ * Demodulation of the navigation message, opening the door to open innovation in multi-constellation receivers and addressing topics such as integrity, reliability, robustness, enhanced coverage, and high-accuracy positioning.
+ * Integration of Beidou observables into the PVT position.
+
+### Skills required:
+
+Basic knowledge of digital signal processing and C++ programming (familiarity with the GNU Radio framework is a plus).
+
+Basic knowledge of the functionality of the RTKLib modules.  
+
+### Potential mentor(s):
+
+Mr. Damian Miralles, Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
 
 -------
 
