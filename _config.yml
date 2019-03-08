@@ -20,7 +20,7 @@ teaser                   : # filename of teaser fallback teaser image placed in 
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : disqus # false (default), "disqus", "discourse", "facebook", "google-plus", "custom"
+  provider               : disqus # false (default), "disqus", "discourse", "facebook", "custom"
   disqus:
     shortname            : geniussplace
 atom_feed:
@@ -284,7 +284,7 @@ whitelist:
   - jekyll-feed
   - jekyll-redirect-from
   - jemoji
-  - jekyll-include-cache  
+  - jekyll-include-cache
 
 category_archive:
   type: liquid
