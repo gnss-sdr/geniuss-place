@@ -83,7 +83,7 @@ $(document).ready(function() {
   $(window).scroll(jQuery.throttle(250, function() {
     // Don't run while smooth scrolling (from clicking on a link).
     if (smoothScrolling) return;
-    var scrollTop = $(window).scrollTop() + 20;  // 20 = offset
+    var scrollTop = $(window).scrollTop() + 20 + 1;  // 20 = offset
     var links = [];
     $("nav.toc a").each(function() {
       var link = $(this);
@@ -107,8 +107,11 @@ $(document).ready(function() {
         if (links[i].href !== location.hash) {
           history.replaceState(null, null, links[i].href);
         }
-        break;
+        return;
       }
+    }
+    if ('#' !== location.hash) {
+      history.replaceState(null, null, '#');
     }
   }));
 
