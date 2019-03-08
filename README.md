@@ -45,6 +45,7 @@ According to the name and the quality of the theme this website is based upon, a
 - [FitVids.JS](http://fitvidsjs.com/)
 - Greedy Navigation - [lukejacksonn](https://codepen.io/lukejacksonn/pen/PwmwWV)
 - [jQuery Smooth Scroll](https://github.com/kswedberg/jquery-smooth-scroll)
+- [jQuery throttle / debounce](http://benalman.com/projects/jquery-throttle-debounce-plugin/)
 - [Sass](https://sass-lang.com/)
 - Web search service provided by [Algolia](https://www.algolia.com/)
 
@@ -122,6 +123,10 @@ Magnific Popup is distributed under the terms of the [MIT License](https://opens
 This work incorporates [jQuery Smooth Scroll](https://github.com/kswedberg/jquery-smooth-scroll),
 Copyright &copy; 2017 Karl Swedberg.
 jQuery Smooth Scroll is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+This work incorporates [jQuery throttle / debounce](http://benalman.com/projects/jquery-throttle-debounce-plugin/),
+Copyright &copy; 2010 "Cowboy" Ben Alman.
+jQuery throttle / debounce is distributed under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
 This work incorporates [GreedyNav.js](https://github.com/lukejacksonn/GreedyNav),
 Copyright &copy; 2015 Luke Jackson.
