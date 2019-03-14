@@ -18,7 +18,7 @@ last_modified_at: 2019-03-14T09:37:02+02:00
 A _generic_ GNSS complex baseband signal transmitted by a given GNSS space vehicle $$ i $$ can be described as
 
 $$ \begin{equation}
-s_T(t)= \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}\Big( d_I(u)g_I(t-uT_{b_I}) + j d_Q(u)g_Q(t-uT_{b_Q})\Big)~, \end{equation}
+s^{(i)}_T(t) = \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}\Big( d_I^{(i)}(u)g_I(t-uT_{b_I}) + j d_Q^{(i)}(u)g_Q(t-uT_{b_Q})\Big)~, \end{equation}
 $$
 
 where the Inphase and Quadrature (I&Q) components have the form
@@ -35,12 +35,7 @@ $$
 
 
 being $$ \mathcal{P}_{T} $$ the transmitting power, $$ d(u) $$ the navigation message data symbols, $$ T_{b} $$ the bit period, $$ j $$ the imaginary unit, $$ N_{c} $$ the number of
-repetitions of a full codeword that spans a bit period,
-$$ T_{PRN}=\frac{T_{b}}{N_{c}} $$ the codeword period,
-$$ c_{i}(l) $$ a chip of a spreading codeword $$ i $$ of length
-$$ L_{c} $$ chips, $$ p(t) $$ the transmitting chip pulse shape,
-which is considered energy-normalized for notation clarity, and
-$$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ the chip period. All parameters can be different in the I and the Q components, there can be uneven power balance among them, and everything will differ in each available frequency band.
+repetitions of a full codeword that spans a bit period, $$ T_{PRN}=\frac{T_{b}}{N_{c}} $$ the codeword period, $$ c_{i}(l) $$ a chip of the spreading codeword of length $$ L_{c} $$ chips corresponding to the space vehicle $$ i $$, $$ p(t) $$ the transmitting chip pulse shape, which is considered energy-normalized for notation clarity, and $$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ the chip period. All parameters can be different in the I and the Q components, there can be uneven power balance among them, and everything will differ in each available frequency band.
 
 This page describes particularizations of such signal structure for all the currently deployed and planned GNSS signals. The notation used in those descriptions is as follows: $$ \oplus $$ is the exclusive–or operation (modulo–2 addition), $$ |l|_{L} $$ means $$ l $$ modulo $$ L $$, $$ [l]_{L} $$ means the integer part of
 $$ \frac{l}{L} $$, and $$ p(t) $$ is a rectangular pulse of a chip–period duration, filtered at the transmitter at the nominal signal bandwidth and energy-normalized. Links to the official Interface Control Documents are provided in the [References](#references) section.
