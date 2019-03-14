@@ -11,7 +11,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-06-02T09:37:02+02:00
+last_modified_at: 2019-03-14T09:37:02+02:00
 ---
 
 
@@ -336,26 +336,26 @@ _Galileo signals spectra in E1. Source: [Navipedia](http://www.navipedia.net/ind
 
 ### Galileo E6
 
-Intended for the Commercial Service and centered at
-$$ f_{\text{Gal E6}}=1278.750 $$ MHz, this band provides with pilot
-and data components
+Galileo will provide users with added-value services offered through the E6 band, namely:
+
+* The **Galileo High Accuracy Service (HAS)** will allow users to obtain a positioning error below two decimeters in nominal conditions of use, worldwide. The Galileo HAS will be based on the free transmission of Precise Point Positioning (PPP) corrections through the Galileo E6 signal data component $$ e_{E6B}(t) $$ by the Galileo satellites.
+* The **Galileo Commercial Authentication Service (CAS)** will make it possible to authenticate signals, allowing for increased robustness of professional applications by giving access to the E6 signal pilot component $$ e_{E6C}(t) $$ codes, which will be encrypted.
+
+This signal, which is centered at $$ f_{\text{Gal E6}}=1278.750 $$ MHz, has a pilot and a data component:
 
 $$ \begin{equation} s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t)-e_{E6C}(t)\right)~, \end{equation} $$
 
-$$ \begin{equation} e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{C/NAV}} \Big[ [l]_{5115}\Big]  \oplus C_{E6B}\Big[|l|_{L_{E6B}}\Big] \cdot p(t - lT_{c,E6})~, \end{equation} $$
+$$ \begin{equation} e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{HAS}} \Big[ [l]_{5115}\Big]  \oplus C_{E6B}\Big[|l|_{5115}\Big] \cdot p(t - lT_{c,E6B})~, \end{equation} $$
 
-$$ \!\!\!\!\!\!\!\!\!\begin{equation} e_{E6C}(t) \!\!= \!\!\sum_{m=-\infty}^{+\infty}\!C_{E6Cs}\Big[|m|_{100}\Big] \!\oplus\! \sum_{l=1}^{L_{E6C}}\!\!C_{E6Cp}\Big[ l \Big]\! \cdot \!p(t-mT_{c,E6s} -lT_{c,E6p})~, \end{equation} $$
+$$ \!\!\!\!\!\!\!\!\!\begin{equation} e_{E6C}(t) \!= \!\!\!\sum_{m=-\infty}^{+\infty}\!C_{E6Cs}\Big[|m|_{100}\Big] \!\oplus\! \sum_{l=1}^{L_{E6C}}\!\!C_{E6Cp}\Big[ l \Big]\! \cdot \!p(t-mT_{c,E6Cs} -lT_{c,E6Cp}), \end{equation} $$
 
-where $$ D_{\text{C/NAV}} $$ is the C/NAV navigation data stream, which is
-modulated with the encrypted ranging code $$ C_{E6B} $$ with chip period
-$$ T_{c,E6}=\frac{1}{5.115} $$ $$\mu $$s. Codes $$ C_{E6B} $$ and primary codes
-$$ C_{E6Cp} $$ and their respective lengths, $$ L_{E6B} $$ and $$ L_{E6C} $$, have
-not been published. The secondary codes for the pilot component,
-$$ C_{E6Cs} $$, are available in Galileo's ICD[^GalileoICD]. The receiver reference
-bandwidth for this signal is $$ 40.920 $$ MHz.
+where $$ D_{\text{HAS}} $$ is the HAS navigation data stream, which is
+modulated with the ranging code $$ C_{E6B} $$ with chip period
+$$ T_{c,E6B}=\frac{1}{5.115} $$ $$\mu $$s. Codes $$ C_{E6B} $$, $$ C_{E6Cp} $$ and $$ C_{E6Cs} $$ are published in Galileo's E6-B/C Codes
+Technical Note[^GalileoE6].
 
 This band also contains another component, Galileo E6A, intended for
-PRS. It uses a BOC modulation with cosine–shaped subcarrier,
+the Public Regulated Service (PRS). It uses a BOC modulation with cosine–shaped subcarrier,
 $$ f_{sc,E6A}=10.23 $$ MHz, and $$ T_{c, E6A}=\frac{1}{5.115} $$ $$ \mu $$s. The PRS
 spreading codes and the structure of the navigation message are not
 publicly available.
@@ -509,7 +509,7 @@ On December 27, 2012, the Chinese government released the first version
 of BeiDou’s Interface Control Document (ICD), a 77-page
 document that included details of the navigation message, including
 parameters of the satellite almanacs and ephemerides that were missing
-from a “test version” of the ICD released exactly one year before. One year later version 2.0 was released, and version 2.1 followed in November 2016[^Beidou]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C], B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open services deployed in the BSD-3 phase of the system development.
+from a “test version” of the ICD released exactly one year before. One year later version 2.0 was released, version 2.1 followed in November 2016[^Beidou] and version 3.0 in February 2019[^BeidouB1I]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C], B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open services deployed in the BSD-3 phase of the system development.
 
 ![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250x"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
 official logo of the BeiDou system, the design of which incorporates the
@@ -544,8 +544,8 @@ $$ \begin{equation} e_{B1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [
 
 $$ \begin{equation} e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{\text{N/A}}  \Big]  \oplus C_{\text{B1Q}} \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~, \end{equation} $$
 
-Beidou's Interface Control Document version 2.1 describes the Inphase
--component of the Beidou B1 link.[^Beidou] The chip rate of the B1I ranging code, $$ C_{B1I} $$ is 2.046 Mcps, and the length is 2046 chips.
+Beidou's Interface Control Document version 3.0 describes the Inphase
+-component of the Beidou B1 link.[^BeidouB1I] The chip rate of the B1I ranging code, $$ C_{B1I} $$ is 2.046 Mcps, and the length is 2046 chips.
 
 The B1I signal is also transmitted by all satellites of BDS-3.
 
@@ -674,7 +674,8 @@ The following table lists the GNSS signals providing Open Service.
 | [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
 | [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
 | [**BeiDou B3I**](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf)$$ ^{(*)} $$  | $$ 1268.520 $$ MHz | BPSK(10) |
-| [**BeiDou B1I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) | $$ 1561.098 $$ MHz | BPSK(2) |
+| [**Galileo E6B**](https://www.gsc-europa.eu/system/files/galileo_documents/E6BC_SIS_Technical_Note.pdf)$$ ^{(**)} $$ | $$ 1278.750 $$ MHz | BPSK(5) |
+| [**BeiDou B1I**](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/201902/P020190227601370045731.pdf) | $$ 1561.098 $$ MHz | BPSK(2) |
 | [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1561.098 $$ MHz | BOC(1,1) |
 | [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IS-GPS-200J.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
 | [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800E.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
@@ -714,7 +715,11 @@ The following table lists the GNSS signals providing Open Service.
 
 [^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
 
+[^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/system/files/galileo_documents/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
+
 [^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese). [English version](https://drive.google.com/file/d/19ixverkr6usYFirV_HVtwPzOlQfVL2dC/view?usp=sharing).
+
+[^BeidouB1I]: BeiDou Navigation Satellite System Signal In Space Interface Control Document [Open Service Signal B1I (Version 3.0)](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/201902/P020190227601370045731.pdf). China Satellite Navigation Office, February 2019.
 
 [^BeidouB1C]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B1C (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf). China Satellite Navigation Office, December 2017.
 
