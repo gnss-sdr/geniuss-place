@@ -23,7 +23,16 @@ This implementation is in fact a wrapper for other three processing blocks.
 
 <a name="signal-conditioner"></a>
 
-![Signal Conditioner]( {{ "/assets/images/SignalConditioner2.png" | relative_url }})
+<img src="{{ "/assets/images/SignalConditioner2.png" | relative_url }}" alt="Signal Conditioner" usemap="#sc-map">
+{: style="text-align: center; width: 644px;"}
+
+
+<map name="sc-map" id="Diagram-sc-map">
+   <area alt="Data Type Adapter" title="Data Type Adapter" href="{{ "/docs/sp-blocks/data-type-adapter/" | relative_url }}" coords="176,38,267,76" shape="rect" style="outline:none;" target="_self">
+   <area alt="Input Filter" title="Input Filter" href="{{ "/docs/sp-blocks/input-filter/" | relative_url }}" coords="291,38,384,76" shape="rect" style="outline:none;" target="_self">
+   <area alt="Resampler" title="Resampler" href="{{ "/docs/sp-blocks/resampler/" | relative_url }}" coords="409,38,502,76" shape="rect" style="outline:none;" target="_self">
+</map>
+
 
 Those inner blocks are in charge of:
 
