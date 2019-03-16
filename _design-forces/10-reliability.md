@@ -40,11 +40,16 @@ The ultimate objective of those coding standards is to prevent from the undesire
 {% endcapture %}
 
 <div class="notice--danger">
-  <h4>Definitions from the ISO/IEC 14882-2014 standard</h4>
+  <h4>Definitions from the ISO/IEC 14882:2017 standard</h4>
   {{ bad-behaviors | markdownify }}
 </div>
 
 _Unspecified_ and _implementation-defined behaviors_ are issues also related to [portability]({{ "/design-forces/portability/" | relative_url }}).
+
+
+There are tools that help developers in minimizing code defects by diagnosing typical programming errors, like interface misuse or bugs that can be deduced via static analysis. Examples are [Coverity Scan](https://scan.coverity.com/) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/).
+
+
 
 ## Indicators of Reliability
 
@@ -72,6 +77,7 @@ It follows a list of possible reliability indicators for a software-defined GNSS
 * Safety-critical software certifications (_e.g._, [DO--178B](https://en.wikipedia.org/wiki/DO-178B)).
 
 * If the programming language is C++: Coding Standard certifications (_e.g._, [SEI CERT C++ Coding Standard](https://resources.sei.cmu.edu/library/asset-view.cfm?assetID=494932), [High Integrity C++](http://www.programmingresearch.com/coding-standards/high-integrity-cpp/), MISRA C++:2008, others)
+  - Availability of a `.clang-tidy` file for clang-tidy check customization.
 
 * Observation of coding standards.
   - Use of static checking tools to enforce compliance with the allowed language subset.
