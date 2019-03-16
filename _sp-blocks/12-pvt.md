@@ -613,6 +613,7 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, makes us
 | `enable_monitor` | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port is activated. This feature allows streaming the internal parameters and outputs of the PVT block to local or remote clients over UDP. The streamed data members (28 in total) are the same ones that are included in the binary dump. It defaults to `false`. | Optional |
 | `monitor_client_addresses` | Destination IP address(es) of the real-time monitoring port. To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1` (localhost). | Optional |
 | `monitor_udp_port` | Destination UDP port number of the real-time monitoring port. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. | Optional |
+| `show_local_time_zone` | [`true`, `false`]: If set to `true`, time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
 |----------
 
 {::comment}
@@ -715,7 +716,7 @@ Please note that this only concerns to the generation of mentioned file formats,
 
 [^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](https://dx.doi.org/10.1029/95JB03048), Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
 
-[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200H: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IRN-IS-200H-001+002+003_rollup.pdf), Dec. 2015.
+[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200J: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200J.pdf), May 2018.
 
 [^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](https://standards.globalspec.com/std/1014192/rtca-do-229), RTCA Inc., December 13, 2006.
 
