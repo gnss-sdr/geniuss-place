@@ -165,6 +165,7 @@ Advanced knowledge of the C++/QML Qt 5 framework.
 
 ### Potential mentor(s):
 
+Dr. Javier Arribas, Dr. Carles Fern&aacute;ndez-Prades.
 
 
 -------
