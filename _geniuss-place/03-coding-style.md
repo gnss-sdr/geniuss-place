@@ -1127,7 +1127,7 @@ file looks drastically different from the existing code around it, the
 discontinuity throws readers out of their rhythm when they go to read
 it. Try to avoid this.
 
-![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | relative_url }})
+![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | relative_url }} "GeNiuSS is a stylish character. Be like GeNiuSS.")
 
 -------
 
