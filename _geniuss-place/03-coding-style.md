@@ -8,6 +8,7 @@ header:
 comments: true
 toc: true
 toc_sticky: true
+toc_h_max: 2
 ---
 
 
