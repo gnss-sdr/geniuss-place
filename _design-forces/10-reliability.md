@@ -47,7 +47,7 @@ The ultimate objective of those coding standards is to prevent from the undesire
 _Unspecified_ and _implementation-defined behaviors_ are issues also related to [portability]({{ "/design-forces/portability/" | relative_url }}).
 
 
-There are tools that help developers in minimizing code defects by diagnosing typical programming errors, like interface misuse or bugs that can be deduced via static analysis. Examples are [Coverity Scan](https://scan.coverity.com/) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/).
+There are tools that help developers in minimizing code defects by diagnosing typical programming errors, like interface misuse or bugs that can be deduced via static analysis. Examples are [Coverity Scan](https://scan.coverity.com/) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/). Another relevant diagnosing tool are compiler warnings, which indicate things that might cause problems or might have unintended effects that the programmer was not aware of. Different compilers warn more or less than others, and they all have options to increase or decrease the amount of warnings.
 
 
 
@@ -81,6 +81,7 @@ It follows a list of possible reliability indicators for a software-defined GNSS
 
 * Observation of coding standards.
   - Use of static checking tools to enforce compliance with the allowed language subset.
+  - No compiler warnings.
 
 -----
 
