@@ -12,7 +12,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-10-27T02:11:02+02:00
+last_modified_at: 2019-03-12T02:11:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function within a larger mechanical or electrical system. Examples of properties of embedded computers when compared with general-purpose counterparts are low power consumption, small size, rugged operating ranges, and low per-unit cost, at the price of limited processing resources.
@@ -44,6 +44,7 @@ The following table lists the available SDK versions:
 
 | Version | Status | Download | Size | md5 | Manifest |
 |:-|:-:|:-:|:-:|:-|:-:|
+| Thud | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 349 MB | 4f74d9ab0f076e59215be2d1cb674a52 | [Host](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
 | Sumo | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 349 MB | d25313709bc8c13eba01f7f9a589d8c6 | [Host](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
 | Rocko | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 1.3 GB  | fb26ff0b84f67006e19266154c36173b | [Host](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
 | Pyro | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.1 GB | 8ce7c2a732884e5487f592ae102780f1 | [Host](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
@@ -77,7 +78,7 @@ $ cd oe-repo
 3) Initialize ```repo```, download the required tools and prepare your building environment:
 
 ```bash
-$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b sumo
+$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b thud
 $ repo sync
 $ TEMPLATECONF=`pwd`/meta-gnss-sdr/conf source ./oe-core/oe-init-build-env ./build ./bitbake
 ```
@@ -88,16 +89,16 @@ This last command copies default configuration information into the ```./build/c
 Please note that the name of the oe-gnss-sdr-manifest branch passed to ```repo``` will determine the version of the SDK to be built. For instance,
 
 ```bash
-$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b rocko
-```
-
-will generate the Rocko release of the SDK (see the manifest for a list of installed packages and their respective versions), while
-
-```bash
 $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b sumo
 ```
 
-will generate the Sumo release.
+will generate the Sumo release of the SDK (see the manifest for a list of installed packages and their respective versions), while
+
+```bash
+$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b thud
+```
+
+will generate the Thud release.
 {% endcapture %}
 
 <div class="notice--warning">
@@ -116,7 +117,7 @@ $ bitbake -c populate_sdk gnss-sdr-dev-image
 
 This process downloads several gigabytes of source code and then proceeds to compile all the required packages for the host and native targets, so **it will take time**. The first command constructs a complete Linux image for your target device. The second command generates the toolchain installer, a script that installs a cross-compiler, a cross-linker and a cross-debugger, forming a completely self-contained toolchain which allows you to cross-develop on the host machine for the target hardware. The generated script will be found under ```./tmp-glibc/deploy/sdk/```.
 
-If you are using Sumo or Rocko, you can create a Docker image of the target environment by doing:
+If you are using Rocko or above, you can create a Docker image of the target environment by doing:
 
 ```bash
 $ bitbake gnss-sdr-dev-docker
@@ -131,10 +132,10 @@ $ docker load -i /path/to/file.docker
 For your convenience, you can also directly pull and run this image from an arm32v7-based device:
 
 ```
-$ docker run -it carlesfernandez/gnsssdr-dev-arm32v7:sumo /bin/bash
+$ docker run -it carlesfernandez/gnsssdr-dev-arm32v7:thud /bin/bash
 ```
 
-(or `carlesfernandez/gnsssdr-dev-arm32v7:rocko` for the Rocko image).
+(or `carlesfernandez/gnsssdr-dev-arm32v7:sumo` for the Sumo image).
 
 Copy the results of your cross-compilation there and you are ready to go. Please note that this image can only be executed by an arm32v7-based system.
 
