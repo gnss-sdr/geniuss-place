@@ -8,7 +8,7 @@ tags:
 author_profile: false
 sidebar:
   nav: "news"
-last_modified_at: 2019-02-01T12:08:02+02:00
+last_modified_at: 2019-03-17T12:08:02+02:00
 ---
 
 This year, GNSS-SDR is serving again as a mentoring organization for [Google Summer of Code](https://summerofcode.withgoogle.com/) (also known as GSoC), a global program that offers students stipends to write code for open source projects. In order to participate in the program, you must be a student. Google defines a student as an individual enrolled in or accepted into an accredited institution including (but not necessarily limited to) colleges, universities, masters programs, PhD programs and undergraduate programs. You should be prepared, upon request, to provide Google with transcripts or other documentation from your accredited institution as proof of enrollment or admission status. Computer Science does not need to be your field of study in order to participate in the program. You may be enrolled as a full-time or part-time student for a time period that includes May 6, 2019, and must be at least 18 years old to be eligible to participate in Google Summer of Code in 2019.
@@ -121,6 +121,51 @@ Basic knowledge of the functionality of the RTKLib modules.
 ### Potential mentor(s):
 
 Mr. Damian Miralles, Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
+
+-------
+
+## Improving the Graphical User Interface (GUI) for monitoring the GNSS-SDR status in real time
+
+Almost all the commercial GNSS receivers come with an intuitive, easy to install and easy to use software that shows if your receiver is working properly or not. Examples of such software are the [Google GNSS Analysis software](https://developer.android.com/guide/topics/sensors/gnss.html#analyze) and [uBlox uCenter](https://www.u-blox.com/en/product/u-center-windows).
+
+During GSoC 2018, a basic GUI was developed for monitoring the GNSS-SDR status [1], which shows the following information in real time:
+
+  * System and signal identification
+  * Satellite PRN
+  * Constellation (IQ) diagram
+  * Satellite C/N0 [dB-Hz]
+  * Doppler frequency shift [Hz]
+  * Time of week [ms]
+  * Telemetry word validity
+  * Pseudorange [m]
+
+The tool is still at an early stage of development and needs further work. The objective of this project is to continue its development to implement the missing features specified in the [GSoC 2018 ideas list](https://gnss-sdr.org/google-summer-code-2018-ideas-list/).
+
+The recent addition of the [custom streaming](https://gnss-sdr.org/docs/sp-blocks/pvt/#custom-streaming) to the PVT Block opens the door to the implementation of the GUI features that concern PVT outputs such as:
+
+  * UTC and GPS time
+  * Latitude and Longitude in WGS84
+  * Ground Speed (m/s or km/h)
+  * Ground Course (degrees from true North)
+  * Ground track using on-line map provider
+  * Sky plot showing the Elevation and Azimuth of the satellites above the observer's position
+
+Since many of these features will likely require displaying information using graphics such as 2D plots, it is advised to use the functions from the Qt Charts module instead of any third party libraries.
+
+Finally, if time allows, the coverage of the GUI should be extended to the Acquisition, Tacking and Telemetry Decoder blocks to show low-level information of each block.
+
+References:
+
+[1] A. Cebrián "[Design and Implementation of a Graphical User Interface (GUI) to show the GNSS-SDR status in real-time](https://drive.google.com/file/d/1oumzKzhrW4b0tQu1d7BpkllZw0d-E3wQ/view?usp=sharing)", GSoC 2018 Final Evaluation, August 2018.
+
+### Skills required:
+
+Good understanding of C++ programming (familiarity with the GNU Radio framework is a plus).
+Advanced knowledge of the C++/QML Qt 5 framework.
+
+### Potential mentor(s):
+
+
 
 -------
 
