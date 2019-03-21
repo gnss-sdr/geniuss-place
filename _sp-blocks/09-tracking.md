@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-12-14T12:54:02-04:00
+last_modified_at: 2019-03-21T12:54:02-04:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of a _Tracking_ block can be written as:
@@ -217,8 +217,16 @@ This implementation accepts the following parameters:
 | `implementation` | `GPS_L1_CA_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 20 Hz. | Optional |
+| `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
+| `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `early_late_space_narrow_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$, after bit synchronization. It defaults to $$ 0.5 $$. | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
@@ -398,7 +406,7 @@ below. The computation of the complex values VE, E, P, L and VL
 in step $$ 5 $$ was implemented using the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr) library. The
 PLL discriminator implemented in step $$ 6 $$  is the extended
 arctangent (four-quadrant) discriminator, and for the DLL we used the
-normalized Very Early Minus Late Power discriminator (step $$ 10 $$ ). For code lock detection
+normalized Very Early Minus Late Power discriminator (step $$ 10 $$ ). The low-pass filters of the DLL, PLL and FLL (when available, see implementations below) are based in the description by Kaplan and Hegarty[^Kaplan17], section 8.8.  For code lock detection
 (step $$ 13 $$ ), we used the Squared Signal-to-Noise Variance
 (SNV) estimator[^Petovello10]. In the case of carrier lock
 detection (step $$ 14 $$ ), we used the normalized estimate of
@@ -519,12 +527,17 @@ This implementation accepts the following parameters:
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E1C and enables an extra prompt correlator (slave to pilot's prompt) in the data component E1B. It defaults to `false` (that is, correlations on a data length of 4 ms over the E1B component). <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{E1C_{s}} $$ is removed from the pilot signal, in number of symbols. Each symbol is 4 ms, so setting this parameter to 25 means a coherent integration time of 100 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 5 Hz. This implementation uses a Costas loop. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 0.5 Hz. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `pll_bw_narrow_hz` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the PLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$, in Hz. It defaults to 2 Hz. This implementation uses a four-quadrant arctangent discriminator (atan2). <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `dll_bw_narrow_hz` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the DLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, in Hz. It defaults to 0.25 Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$. | Optional |
 | `very_early_late_space_chips` | Spacing between Very Early and Prompt and between Prompt and Very Late correlators, normalized by the chip period $$ T_c $$ It defaults to $$ 0.6 $$. | Optional |
-| `pll_bw_narrow_hz` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the PLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$, in Hz. It defaults to 2 Hz. This implementation uses a four-quadrant arctangent discriminator (atan2). <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `dll_bw_narrow_hz` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the DLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, in Hz. It defaults to 0.25 Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `very_early_late_space_narrow_chips` |If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Very Early and Prompt and between Prompt and Very Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, normalized by the chip period $$ T_c $$. It defaults to $$ 0.6 $$. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
@@ -704,10 +717,16 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L2_M_DLL_PLL_Tracking` | Mandatory |
-| `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 0.75 Hz. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `pll_bw_hz` | Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `dll_bw_hz` | Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
+| `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
@@ -867,10 +886,15 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, accepts 
 | `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal L5Q and enables an extra prompt correlator (slave to pilot's prompt) in the data component L5I. It defaults to `false` (that is, correlations on a data length of 1 ms over the L5I component). | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{nh_{20}} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1. | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
+| `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
-| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
-| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
+| `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{nh_{20}} $$, normalized by the chip period $$ T_{c,L5} $$. It defaults to $$ 0.15 $$. | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz. | Optional |
@@ -940,11 +964,16 @@ This implementation accepts the following parameters:
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E5aQ and enables an extra prompt correlator (slave to pilot's prompt) in the data component E5aI. It defaults to `false` (that is, correlations on a data length of 1 ms over the E5aI component). <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{E5aQs} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter before the secondary code lock, in Hz. It defaults to 20 Hz. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
-| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 5 Hz. | Optional |
+| `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
+| `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
+| `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E5aQs} $$, normalized by the chip period $$ T_{c,E5p} $$. It defaults to $$ 0.15 $$. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
@@ -982,5 +1011,7 @@ Tracking_5X.early_late_space_chips=0.5
 [^Petovello10]: M. Petovello, E. Falletti, M. Pini, L. Lo Presti, [Are Carrier-to-Noise algorithms equivalent in all situations?](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf). Inside GNSS, Vol. 5, no. 1, pp. 20-27, Jan.-Feb. 2010.
 
 [^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from _Global Positioning System: Theory and Applications_, Volume I, Edited by B. W. Parkinson and J. J. Spilker Jr. American Institute of Aeronautics and Astronautics, 1996.
+
+[^Kaplan17]: E. D. Kaplan and C. J. Hegarty, Eds., _Understanding GPS. Principles and Applications_, 3rd edition, Artech House, Norwood, MA, 2017.
 
 [^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
