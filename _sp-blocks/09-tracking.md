@@ -92,11 +92,10 @@ $$ \begin{equation}
 \end{equation} $$
 
 where:
- * $$ \displaystyle \hat{C} = \left(\frac{1}{M}\sum^{M-1}_{m=0}\|\Re(P(m))\|\right)^2 $$ is the estimation of the signal power,
+ * $$ \displaystyle \hat{C} = \left(\frac{1}{M}\sum^{M-1}_{m=0}\|P_I[m])\|\right)^2 $$ is the estimation of the signal power,
  * $$ \displaystyle \hat{C}+\hat{N}=\frac{1}{M}\sum^{M-1}_{m=0}\|P(m)\|^2 $$ is the estimation of the total power,
  * $$ \|\cdot\| $$ is the absolute value (also known as norm, modulus, or magnitude),
- * $$ \Re(\cdot) $$ stands for the real part of the value, and
- * $$ P(m) $$ is the prompt correlator output for the integration period $$ m $$.
+ * $$ P[m] $$ is the prompt correlator output for the integration period $$ m $$.
 
 Then, the estimated $$ C/N_0 $$ value in dB-Hz can be written as:
 
@@ -146,10 +145,9 @@ $$ \begin{equation}
 \end{equation} $$
 
 where:
-  * $$ \displaystyle NBD=\left(\sum^{M-1}_{m=0}\Im(P(m))\right)^2-\left(\sum^{M-1}_{i=0}\Re(P(m))\right)^2 $$,
-  * $$ \displaystyle NBP=\left(\sum^{M-1}_{m=0}\Im(P(m))\right)^2+\left(\sum^{M-1}_{i=0}\Re(P(m))\right)^2 $$,
-  * $$ \Re(\cdot) $$ and $$ \Im(\cdot) $$ stand for the real and imaginary parts of the value, respectively, and
-  * $$ P(m) $$ is the prompt correlator output for the integration period $$ m $$.
+  * $$ \displaystyle NBD=\left(\sum^{M-1}_{m=0}P_{Q}[m]\right)^2-\left(\sum^{M-1}_{i=0}P_{I}[m]\right)^2 $$,
+  * $$ \displaystyle NBP=\left(\sum^{M-1}_{m=0}P_{Q}[m]\right)^2+\left(\sum^{M-1}_{i=0}P_{I}[m]\right)^2 $$,
+  * $$ P_I[m] $$ and $$ P_Q[m] $$ are the prompt correlator output I and Q components for the integration period $$ m $$.
 
 The threshold $$ \gamma_{carrier} $$ is set by default to 0.85 radians (corresponding to an error of approx. 31 degrees). This value can be changed by using the command line flag `-carrier_lock_th` when running the executable:
 
@@ -165,10 +163,98 @@ The maximum number of lock failures before dropping a satellite is set by defaul
 $ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
 ```
 
+
+
+### Discriminators
+
+ * **Code Discriminator**:
+ DLL noncoherent Early minus Late envelope-normalized discriminator:
+
+   $$ \begin{equation}
+   \Delta_c[m]=\frac{\vert E[m]\vert-\vert L[m]\vert}{\vert E[m]\vert+\vert L[m]\vert},
+   \end{equation} $$
+
+   where:
+
+   $$ \vert E[m]\vert=\sqrt{E_{I}[m]^2+E_{Q}[m]^2} $$
+
+   and
+
+   $$ \vert L[m]\vert=\sqrt{L_{I}[m]^2+L_{Q}[m]^2} $$
+
+   are the Early and Late correlator output's absolute value, respectively. In case of Binary offset carrier modulated signals (_e.g._, Galileo E1 OS), this is redefined to
+
+   $$ \vert E[m]\vert =\sqrt{VE_{I}[m]^2+VE_{Q}[m]^2+E_{I}[m]^2+E_{Q}[m]^2} $$
+
+   and
+
+   $$ \vert L[m]\vert =\sqrt{VL_{I}[m]^2+VL_{Q}[m]^2+L_{I}[m]^2+L_{Q}[m]^2}. $$
+
+ * **Phase Discriminator**
+
+   PLL Costas loop two-quadrant discriminator for signals with data bit transitions:
+
+   $$ \begin{equation}
+   \Delta_p^{\text(Costas)}[m]=\text{arctan} \left(\frac{P_{Q}[m]}{P_{I}[m]}\right)
+   \end{equation} $$
+
+   PLL four-quadrant discriminator for dataless channels:
+
+   $$ \begin{equation}
+   \Delta_p^{\text(atan2)}[m]=\text{arctan2} \left(P_{Q}[m], P_{I}[m]\right)
+   \end{equation} $$
+
+ * **Frequency Discriminator**
+
+   If the Frequency Locked Loop (FLL) is activated, the receiver uses the four-quadrant discriminator:
+
+   $$ \begin{equation}
+   \Delta_f[m]=\frac{1}{T_{int}}\text{arctan2}\left(\text{cross}[m], \text{dot}[m]\right),
+   \end{equation} $$
+
+   where
+
+   $$ \text{cross}[m]=P_{I}[k-1]P_{Q}[m]-P_{I}[m]P_{Q}[k-1] $$
+
+   and
+
+   $$ \text{dot}[m]=P_{I}[k-1]P_{I}[m]+P_{Q}[k-1]P_{Q}[m]. $$
+
+
+### Low pass filters
+
+Diagrams of digital low-pass filters of different order are shown below:
+
+ ![First order filter]({{ "/assets/images/1st-order-filter.png" | relative_url }}){: style="width: 250px;"}<br>
+ _First-order digital low-pass filter._
+ {: style="text-align: center"}
+
+![Second order filter]({{ "/assets/images/2nd-order-filter.png" | relative_url }})
+_Second-order digital low-pass filter._
+{: style="text-align: center;"}
+
+![Third order filter]({{ "/assets/images/3rd-order-filter.png" | relative_url }})
+_Third-order digital low-pass filter._
+{: style="text-align: center;"}
+
+|----------
+|  **Filter order**  |  **Parameters** |
+|:-:|:-:|
+|--------------
+| First | $$ \omega_0 = 0.25 \cdot \text{BW} $$ |
+| Second | $$ \omega_0=\frac{\text{BW}}{0.53} $$, $$ a_2=1.414 $$ |
+| Third | $$ \omega_0=\frac{\text{BW}}{0.7845} $$, $$ a_3=1.1 $$,  $$ b_3=2.4 $$ |
+|--------------
+
+_Filter parameters, from Kaplan & Hegarty[^Kaplan17]._
+{: style="text-align: center;"}
+
+The user can configure the noise bandwidth with parameters `dll_bw_hz` and `pll_bw_hz`, and the filter order with `dll_filter_order` and `pll_filter_order`.
+
 &nbsp;
 &nbsp;
 
-The configuration interfaces for the available block implementations are described below.
+The configuration interfaces for the available Tracking block implementations are described below.
 
 
 ## GPS L1 C/A signal tracking
