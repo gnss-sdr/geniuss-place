@@ -120,9 +120,13 @@ This work incorporates [Magnific Popup](http://dimsemenov.com/plugins/magnific-p
 Copyright &copy; 2014-2016 Dmitry Semenov, http://dimsemenov.com.
 Magnific Popup is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-This work incorporates [jQuery Smooth Scroll](https://github.com/kswedberg/jquery-smooth-scroll),
-Copyright &copy; 2017 Karl Swedberg.
-jQuery Smooth Scroll is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+This work incorporates [Smooth Scroll](http://github.com/cferdinandi/smooth-scroll),
+Copyright &copy; 2018 Chris Ferdinandi.
+Smooth Scroll is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+This work incorporates [Gumshoe](http://github.com/cferdinandi/gumshoe),
+Copyright &copy; 2016 Chris Ferdinandi.
+Gumshoe is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [jQuery throttle / debounce](http://benalman.com/projects/jquery-throttle-debounce-plugin/),
 Copyright &copy; 2010 "Cowboy" Ben Alman.
