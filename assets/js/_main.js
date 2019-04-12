@@ -69,26 +69,29 @@ $(document).ready(function() {
   var scroll = new SmoothScroll('a[href*="#"]', {
     offset: 20,
     speed: 300,
-    durationMax: 600
+    durationMax: 600,
+    easing: 'easeInOutQuint'
   });
 
   // Gumshoe scroll spy init
-  var spy = new Gumshoe("nav.toc a", {
-    // Active classes
-    navClass: "active", // applied to the nav list item
-    contentClass: "active", // applied to the content
+  if($("nav.toc").length > 0) {
+    var spy = new Gumshoe("nav.toc a", {
+      // Active classes
+      navClass: "active", // applied to the nav list item
+      contentClass: "active", // applied to the content
 
-    // Nested navigation
-    nested: false, // if true, add classes to parents of active link
-    nestedClass: "active", // applied to the parent items
+      // Nested navigation
+      nested: false, // if true, add classes to parents of active link
+      nestedClass: "active", // applied to the parent items
 
-    // Offset & reflow
-    offset: 20, // how far from the top of the page to activate a content area
-    reflow: true, // if true, listen for reflows
+      // Offset & reflow
+      offset: 20, // how far from the top of the page to activate a content area
+      reflow: true, // if true, listen for reflows
 
-    // Event support
-    events: true // if true, emit custom events
-  });
+      // Event support
+      events: true // if true, emit custom events
+    });
+  }
 
   // add lightbox class to all image links
   $(
