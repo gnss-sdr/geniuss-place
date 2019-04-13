@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2018-11-11T11:13:02+02:00
+last_modified_at: 2019-04-13T11:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -293,7 +293,33 @@ Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/
 
 [Docker](https://www.docker.com) is an open source tool designed to make it easier to create, deploy, and run applications by using *containers*. Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools and system libraries, and ship it all out as one package. This guarantees that the software will always run the same, regardless of any customized settings that the executing machine might have that could differ from the machine used for writing and testing the code. Using containers is another way of packing applications, in a much lighter weight and with a much faster delivery model than using Virtual Machines.
 
-Visit [https://github.com/carlesfernandez/docker-pybombs-gnsssdr](https://github.com/carlesfernandez/docker-pybombs-gnsssdr) for instructions on building your own Docker image containing GNSS-SDR.
+Releases of Docker images with GNSS-SDR already installed are available from the Docker Hub.
+
+ * An image based on Ubuntu with dependencies installed via .deb packages
+
+   ```bash
+   $ docker run -it carlesfernandez/docker-gnsssdr
+   ```
+
+   The latest built from GNSS-SDR's `next` branch can be pulled as:
+
+   ```bash
+   $ docker pull carlesfernandez/docker-gnsssdr:latest
+   ```
+
+ * An image based on Ubuntu with dependencies built and installed via PyBOMBS:
+
+   ```bash
+   $ docker run -it carlesfernandez/docker-pybombs-gnsssdr
+   ```
+
+   The latest built from GNSS-SDR's `next` branch can be pulled as:
+
+   ```bash
+   $ docker pull carlesfernandez/docker-pybombs-gnsssdr:latest
+   ```
+
+Visit [https://hub.docker.com/r/carlesfernandez/docker-gnsssdr](https://hub.docker.com/r/carlesfernandez/docker-gnsssdr) or [https://hub.docker.com/r/carlesfernandez/docker-pybombs-gnsssdr](https://hub.docker.com/r/carlesfernandez/docker-pybombs-gnsssdr) for further instructions (how to share folders within the host machine and the Docker image, how to set the graphical environment, etc.).
 
 
 ## GNSS-SDR in embedded platforms
