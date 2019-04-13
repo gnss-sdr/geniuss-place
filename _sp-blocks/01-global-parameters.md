@@ -1,12 +1,12 @@
 ---
 title: "Global receiver parameters"
 permalink: /docs/sp-blocks/global-parameters/
-excerpt: "Documentation of global receiver parameters. Assisted GNSS."
+excerpt: "Documentation of global receiver parameters: Sampling rate of the GNSS baseband engine, Telecommand and Assisted GNSS."
 sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-12-14T12:54:02+02:00
+last_modified_at: 2019-04-13T12:54:02+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -31,7 +31,7 @@ In the current design, all the processing [Channels]({{ "docs/sp-blocks/channels
 | `internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
 |--------------
 
-_Global GNSS-SDR parameters_.
+_Global GNSS-SDR parameter: channel's input sampling rate_.
 {: style="text-align: center;"}
 
 Example in the configuration file:
@@ -40,8 +40,130 @@ Example in the configuration file:
 GNSS-SDR.internal_fs_sps=4000000
 ```
 
+## Telecommand via TCP/IP
 
-## Assisted GNSS with XML files
+
+The user can access to the receiver interactive interface by connecting a TCP/IP client (_e.g._, with a telnet client) to the TCP port specified in the configuration file for telecommand.
+
+In order to use it, the executable `gnss-sdr` must be executed with the [gnss-sdr-harness.sh](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/utils/scripts/gnss-sdr-harness.sh) script provided at [src/utils/scripts](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/scripts):
+
+```bash
+$ gnss-sdr-harness.sh gnss-sdr -c config_file.conf
+```
+
+
+The configuration of the Telecommand system is as follows:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `telecommand_enabled` |  [`true`, `false`]:  If set to `true`, it enables the telecommand system. It defaults to `false`.  | Optional |
+| `telecommand_tcp_port` |  If `telecommand_enabled=true`, this parameter sets the TCP/IP port in which the service will be provided. It defaults to port 3333  | Optional |
+|--------------
+
+_Global GNSS-SDR parameters for telecommand_.
+{: style="text-align: center;"}
+
+
+Example in the GNSS-SDR configuration file:
+
+```ini
+GNSS-SDR.telecommand_enabled=true
+GNSS-SDR.telecommand_tcp_port=3333
+```
+
+
+The user commands must be sent as a lower-case string, command parameters separated by 1 space, and ended by `\r \n` (carriage-return and line feed). The commands will provide a feedback to the user.
+
+
+The following commands are implemented in GNSS-SDR's telecommand interface:
+
+|----------
+|  **Command**  |  **Response** | **Description** |
+|:-:|:--|:--|
+|--------------
+| `reset` |  `OK`  | Performs a complete reset of the receiver. The receiver will delete all the stored satellite information, reload the configuration parameters from the configuration file and perform a regular startup. Notice that if the configuration file has enabled the assisted acquisition, the receiver will trigger the assisted acquisition. It is equivalent to shutdown and restart the GNSS-SDR program from a regular SSH shell. Notice that the telecommand interface will be also restarted. |
+| `standby` |  `OK` / `ERROR` | Stops all the acquisition and tracking operations and sets the receiver in standby state. The front-end will continue delivering samples to the receiver but no signal processing will be done. Obviously, all the tracked satellites will be lost, but the received satellite telemetry (_e.g._ ephemeris data) and the last PVT state will be kept. NOTE: It is possible to specify an option in the configuration file to start the receiver already in standby state, ready to receive start commands. |
+| `coldstart` |  `OK` / `ERROR` | Performs a receiver cold start. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search for all the satellites in all the signals configured in the configuration file. |
+| `warmstart`&nbsp;`dd/mm/yyyy`&nbsp;`HH:MM:SS`&nbsp;`Lat Long Height` |  `OK` / `ERROR`  | Performs an assisted acquisition receiver start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will read the ephemeris and the almanac assistance data from the [XML files specified in the configuration file](#axml), and the last valid PVT information to predict the visible satellites and coarse estimations of their Doppler rates. |
+| `hotstart dd/mm/yyyy HH:MM:SS Lat Long Height` |  `OK` / `ERROR`   | Performs a receiver hot start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search first for the last set of satellites in view according to the stored ephemeris and almanac and the predicted visible satellites based on the last valid PVT. |
+| `status` |  Summary of current receiver status: individual channel status and PVT status.  | This command prints a summary of the current receiver status intended for debug and system testing purposes only. The user should monitor the RTCM and NMEA streams for a detailed and synchronized receiver data, which are the primary receiver standard data interfaces. |
+| `exit` |  `OK`  | Closes the telecommand connection. |
+|--------------
+
+
+Telecommand execution examples using telnet:
+
+
+```
+user@ubuntu:~\$ telnet receiver_ip tc_port
+Trying receiver_ip...
+Connected to receiver_ip.
+Escape character is '^]'.
+status
+---------------------------------------------------------
+ch | sys | sig  | mode | Tlm | Eph | Doppler  |   CN0   |
+   |     |      |      |     |     |  [Hz]    | [dB-Hz] |
+---------------------------------------------------------
+0  | GPS | L1CA | TRK  | YES | YES | 23412.4  |  44.3   |
+1  | GPS | L1CA | TRK  | YES | YES | -14725.4 |  45.4   |
+2  | GPS | L1CA | TRK  | YES | YES | 4562.1   |  41.0   |
+3  | GPS | L1CA | TRK  | YES | YES | 15223.4  |  38.2   |
+4  | GPS | L1CA | TRK  | YES | NO  |-8456.0   |  40.5   |
+5  | GPS | L1CA | ACQ  | NO  | NO  | -------- |  ----   |
+6  | GPS | L1CA | STBY | NO  | NO  | -------- |  ----   |
+---------------------------------------------------------
+
+- Receiver UTC Time: 02/04/2017 21:02:33
+- Receiver Position WGS84 [Lat, Long, H]: 41.2750209, 1.98558393, 58.1
+- Receiver Speed over Ground [km/h]: 2
+- Receiver Course over ground [deg]: 175.3
+```
+_Example of the `status` command_.
+{: style="text-align: center;"}
+
+
+
+```
+user@ubuntu:~\$ telnet receiver_ip tc_port
+Trying receiver_ip...
+Connected to receiver_ip.
+Escape character is '^]'.
+standby
+OK
+coldstart
+OK
+```
+_Example of the `coldstart` command_.
+{: style="text-align: center;"}
+
+
+
+```
+user@ubuntu:~\$ telnet receiver_ip tc_port
+Trying receiver_ip...
+Connected to receiver_ip.
+Escape character is '^]'.
+standby
+OK
+warmstart 1/12/2018 09:15:42 41.234 1.76 560.0
+OK
+```
+_Example of the `warmstart` command_.
+{: style="text-align: center;"}
+
+
+## Assisted GNSS
+
+GNSS-SDR can read satellite's ephemeris and almanacs from other sources than GNSS signals themselves.
+
+
+
+<a name="axml"></a>
+
+### Assisted GNSS via XML files
+
 
 GNSS-SDR can read assistance data from [Extensible Markup Language (XML)](https://www.w3.org/XML/) files for faster [Time-To-First-Fix](https://gnss-sdr.org/design-forces/availability/#time-to-first-fix-ttff), and can store navigation data decoded from GNSS signals in the same format. Check [this folder](https://github.com/gnss-sdr/gnss-sdr/tree/master/docs/xml-schemas) for XML Schemas describing those XML files structure.
 
@@ -91,7 +213,7 @@ GNSS-SDR.AGNSS_gal_almanac_xml=2018-11-06.xml
 
 You could find useful the utility program [rinex2assist](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/rinex2assist) for the generation of compatible XML files from recent, publicly available RINEX navigation data files.
 
-## Assisted GNSS with SUPL v1.0
+### Assisted GNSS via SUPL v1.0
 
 One way of accelerating a GNSS receiver's Time-To-First-Fix is to use assistance data from a Secure User Plane Location (SUPL) server. SUPL is a standard produced by the Open Mobile Alliance (OMA) that allows a device such as a mobile phone to connect to a location server using the TCP/IP protocol, and to request assistance data for location.
 
