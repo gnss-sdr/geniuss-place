@@ -58,8 +58,8 @@ og_image                 : /assets/images/site-logo.png # Open Graph/Twitter def
 social:
   type                   : Organization # Person or Organization (defaults to Person)
   name                   : gnss-sdr # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
-    - "https://plus.google.com/+GnsssdrOrgPage"
+  links                  : # An array of links to social media profiles
+
 
 # Analytics
 analytics:

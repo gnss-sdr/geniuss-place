@@ -4,6 +4,7 @@ title: "Documentation"
 permalink: /docs/
 excerpt: "Organization of the documentation"
 related: true
+comments: false
 last_modified_at: 2016-04-13T15:54:02-04:00
 redirect_from:
   - /documents
