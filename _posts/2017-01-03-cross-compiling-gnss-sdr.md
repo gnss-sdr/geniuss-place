@@ -12,7 +12,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-03-12T02:11:02+02:00
+last_modified_at: 2019-04-21T02:11:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function within a larger mechanical or electrical system. Examples of properties of embedded computers when compared with general-purpose counterparts are low power consumption, small size, rugged operating ranges, and low per-unit cost, at the price of limited processing resources.
@@ -125,13 +125,13 @@ $ bitbake gnss-sdr-dev-docker
 
 This will create a ```.docker``` file under ```./tmp-glibc/deploy/images/``` that can be ingested by Docker as:
 
-```
+```bash
 $ docker load -i /path/to/file.docker
 ```
 
 For your convenience, you can also directly pull and run this image from an arm32v7-based device:
 
-```
+```bash
 $ docker run -it carlesfernandez/gnsssdr-dev-arm32v7:thud /bin/bash
 ```
 
@@ -145,7 +145,29 @@ Using the SDK
 
 ### Installing the SDK
 
-Download the SDK shell script (or use a locally created SDK, as explained above) and install it:
+In your host machine, you need a Protocol Buffers compiler, which needs to be the same version than in the SDK. For Thud, this is 3.6.1. Install the dependencies:
+
+
+```bash
+$ sudo apt-get install autoconf automake libtool curl make g++ unzip
+```
+
+and then:
+
+```bash
+$ wget https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protobuf-cpp-3.6.1.tar.gz
+$ tar xvfz protobuf-cpp-3.6.1.tar.gz
+$ cd protobuf-3.6.1
+$ ./autogen.sh
+$ ./configure
+$ make
+$ sudo make install
+$ sudo ldconfig
+```
+
+For Sumo, it is 3.5.1, and for Rocko it is 3.4.1. Please install the one that matches the version of your SDK.
+
+Then, download the SDK shell script (or use a locally created SDK, as explained above) and install it:
 
 ```bash
 $ sudo sh oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh
