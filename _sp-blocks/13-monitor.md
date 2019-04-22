@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-02-12T15:54:02-04:00
+last_modified_at: 2019-04-21T15:54:02-04:00
 ---
 
 
@@ -19,7 +19,7 @@ This is made possible by exposing [`Gnss_Synchro`](https://github.com/gnss-sdr/g
 
 Each channel of the receiver instantiates a `Gnss_Synchro` object. Once it reaches the _Monitor_ block, the object is serialized into a binary [archive](https://www.boost.org/doc/libs/release/libs/serialization/doc/archives.html) and then streamed through a network socket to one or more destination endpoints (clients) designated by the user. Each client can then deserialize the archive from the data stream, recover the `Gnss_Synchro` object and access its member variables for further inspection and monitoring.
 
-This communication mechanism is built with the [Boost.Asio](https://www.boost.org/doc/libs/release/libs/asio/) and [Boost.Serialization](https://www.boost.org/doc/libs/release/libs/serialization/) libraries.
+This communication mechanism is built with the [Boost.Asio](https://www.boost.org/doc/libs/release/libs/asio/) and [Boost.Serialization](https://www.boost.org/doc/libs/release/libs/serialization/) libraries. The serialization mechanism will be replaced in the next release by [Protocol Buffers](https://developers.google.com/protocol-buffers/), a feature already available in the `next` branch of the upstream repository.
 {: .notice--info}
 
 ## Exposed Internal Parameters
@@ -113,6 +113,7 @@ The configuration of the _Monitor_ block accepts the following parameters:
 | `Monitor.decimation_factor` | Decimation integer factor $$ N $$. Limits the streaming output rate to only every $$ N^{th} $$ sample. To stream all the samples, set this to `1`. Zero or negative values are treated as `1`. | Mandatory |
 | `Monitor.client_addresses` | Destination IP address(es). To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. | Mandatory |
 | `Monitor.udp_port` | Destination port number. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. | Mandatory |
+| `Monitor.enable_protobuf` | [`true`, `false`]: If set to `true`, the serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`gnss_synchro.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/gnss_synchro.proto). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). That is a deprecated behavior that can be abandoned in the future. It defaults to `true` (Protocol Buffers is used). <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release, where Boost Serialization is still used.</span> | Optional |
 |----------
 
 

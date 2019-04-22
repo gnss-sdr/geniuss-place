@@ -11,6 +11,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
+last_modified_at: 2019-04-21T11:37:02+02:00
 ---
 
 
@@ -23,7 +24,9 @@ Since the introduction of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative
 
 In this article we are going to learn how to create a minimal monitoring client application written in C/C++ that will print and update the PRN, CN0 and Doppler frequency shift for each channel on a terminal window while the receiver is running with the Monitor block activated.
 
-The Monitor block implements this mechanism using the binary serialization format provided by the [Boost.Serialization](https://www.boost.org/doc/libs/1_68_0/libs/serialization/doc/index.html) library and the networking functions from the [Boost.Asio](https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio.html) library. The following diagram can help us to better understand how it works.
+The Monitor block implements this mechanism using the binary serialization format provided by [Protocol Buffers](https://developers.google.com/protocol-buffers/) and defined in the [`gnss_synchro.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/gnss_synchro.proto) file. The networking functions are taken from the [Boost.Asio](https://www.boost.org/doc/libs/release/doc/html/boost_asio.html) library.
+
+The following diagram can help us to better understand how this block works.
 
 {% capture fig_img1 %}
 ![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_monitoring_block_diagram.png" | relative_url }})
@@ -36,20 +39,8 @@ The Monitor block implements this mechanism using the binary serialization forma
 
 The colored boxes represent Gnss_Synchro objects moving across the receiver chain. These objects are special containers that hold a set of variables which capture the internal state of the receiver. Each color represents a different channel. When these objects reach the [PVT]({{ "/docs/sp-blocks/pvt/" | relative_url }}) block, they are consumed. Therefore they are not visible from the outside, as they do not exit the receiver. This is where the Monitor block comes into play. Its purpose is to stream these objects to the outside world using a binary serialization format. This stream is sent over UDP from a source port to a destination port that can either be on the same machine or on a different one.
 
-Finally, at the other end, the monitoring client deserializes the Gnss_Synchro objects from the binary stream. Then we can access their member variables and use them for implementing our monitoring logic. In this exercise, we will simply print some of these parameters on the terminal.
+Finally, at the other end, the monitoring client deserializes the Gnss_Synchro objects from the binary stream. Then we can access their member variables and use them for implementing our monitoring logic. In this exercise, we will simply print some of these parameters on the terminal using Protocol Buffers.
 
-Keep in mind that, in order to successfully deserialize the objects, we will need to include the Gnss_Synchro class and its dependecies (Gnss_Signal and Gnss_Satellite) to build our monitoring client.
-
-Gnss_Synchro class
- * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h)
-
-Gnss_Signal class
- * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.h)
- * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_signal.cc)
-
-Gnss_Satellite class
- * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.h)
- * [https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_satellite.cc)
 
 
 ## Building a minimal monitoring client application
@@ -58,12 +49,12 @@ Gnss_Satellite class
 Copy and paste the following line in a terminal:
 
 ```bash
-$ sudo apt install build-essential cmake libboost-dev libboost-system-dev \
-   libboost-serialization-dev libncurses5-dev libncursesw5-dev
+$ sudo apt install build-essential cmake libboost-dev libprotobuf-dev \
+   protobuf-compiler libncurses5-dev libncursesw5-dev
 ```
-This will install the GCC/g++ compiler, the CMake build system and the Boost and NCurses libraries.
+This will install the GCC/g++ compiler, the CMake build system, and the Protocol Buffers and NCurses libraries.
 
-### Download the required classes
+### Download the required files
 
 Create a new directory in the home folder for storing all the source files of our project:
 
@@ -72,16 +63,10 @@ $ mkdir monitoring-client
 $ cd monitoring-client
 ```
 
-As mentioned earlier, since the Gnss_Synchro class depends on the Gnss_Signal class, and the latter depends on the Gnss_Satellite class, we must include all three of them in our project.
-
-Use the following command to download the class files from the GNSS-SDR GitHub repository into the project folder:
+Use the following command to download the `gnss_synchro.proto` file from the GNSS-SDR GitHub repository into the project folder:
 
 ```bash
-$ wget https://github.com/gnss-sdr/gnss-sdr/raw/next/src/core/system_parameters/gnss_satellite.h \
-   https://github.com/gnss-sdr/gnss-sdr/raw/next/src/core/system_parameters/gnss_satellite.cc \
-   https://github.com/gnss-sdr/gnss-sdr/raw/next/src/core/system_parameters/gnss_signal.h \
-   https://github.com/gnss-sdr/gnss-sdr/raw/next/src/core/system_parameters/gnss_signal.cc \
-   https://github.com/gnss-sdr/gnss-sdr/raw/next/src/core/system_parameters/gnss_synchro.h
+$ wget https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/docs/protobuf/gnss_synchro.proto
 ```
 
 ### Create the deserializer class
@@ -95,14 +80,15 @@ Define the class header file first: gnss_synchro_udp_source.h
 #define GNSS_SYNCHRO_UDP_SOURCE_H_
 
 #include <boost/asio.hpp>
-#include "gnss_synchro.h"
+#include "gnss_synchro.pb.h"  // This file is created automatically
+                              // by the Protocol Buffers compiler
 
 class Gnss_Synchro_Udp_Source
 {
 public:
     Gnss_Synchro_Udp_Source(const unsigned short& port);
-    bool read_gnss_synchro(std::vector<Gnss_Synchro>& stocks);
-    void populate_channels(std::vector<Gnss_Synchro> stocks);
+    bool read_gnss_synchro(gnss_sdr::Observables& stocks);
+    void populate_channels(gnss_sdr::Observables stocks);
     bool print_table();
 
 private:
@@ -110,8 +96,8 @@ private:
     boost::asio::ip::udp::socket socket;
     boost::system::error_code error;
     boost::asio::ip::udp::endpoint endpoint;
-    std::vector<Gnss_Synchro> stocks;
-    std::map<int, Gnss_Synchro> channels;
+    gnss_sdr::Observables stocks;
+    std::map<int, gnss_sdr::GnssSynchro> channels;
 };
 
 #endif /* GNSS_SYNCHRO_UDP_SOURCE_H_ */
@@ -123,12 +109,12 @@ We are going to use 6 member variables:
 |  **Variable Name**  | **Description** |
 |:-:|:--|    
 |--------------
-| `io_service` | Abstraction of the operating system interfaces. (See [io_service](https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio/reference/io_service.html)). |
-| `socket` | The UDP socket. (See [ip::udp::socket](https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio/reference/ip__udp/socket.html)). |
-| `error` | Operating system-specific errors. (See [boost::system::error_code](https://theboostcpplibraries.com/boost.system)). |
-| `endpoint` | Endpoint that will be associated with the UDP socket. (See [ip::udp::endpoint](https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio/reference/ip__udp/endpoint.html)). |
-| `stocks` | Vector container of Gnss_Synchro objects received from the socket. |
-| `channels` | Map container of Gnss_Synchro objects indexed by their `Channel_ID`. |
+| `io_service` | Abstraction of the operating system interfaces. (See [io_service](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/io_service.html)). |
+| `socket` | The UDP socket. (See [ip::udp::socket](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/ip__udp/socket.html)). |
+| `error` | Operating system-specific errors. (See [boost::system::error_code](https://www.boost.org/doc/libs/release/libs/system/doc/html/system.html#reference)). |
+| `endpoint` | Endpoint that will be associated with the UDP socket. (See [ip::udp::endpoint](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/ip__udp/endpoint.html)). |
+| `stocks` | Object of the class gnss_sdr::Observables, which is a collection of gnss_sdr::GnssSynchro objects received from the socket. |
+| `channels` | Map container of gnss_sdr::GnssSynchro objects objects indexed by their `channel_id`. |
 |----------
 
 and 4 member functions:
@@ -138,8 +124,8 @@ and 4 member functions:
 |:-:|:--|    
 |--------------
 | `Gnss_Synchro_Udp_Source` | Constructor. Opens and binds the `socket` to the `endpoint`. |
-| `read_gnss_synchro` | Fills the `stocks` vector with the latest deserialized Gnss_Synchro objects. |
-| `populate_channels` | This function inserts the latest Gnss_Synchro objects from the `stocks` vector container into the `channels` map conatiner. |
+| `read_gnss_synchro` | Fills the `stocks` collection with the latest deserialized gnss_sdr::GnssSynchro objects. |
+| `populate_channels` | This function inserts the latest gnss_sdr::GnssSynchro objects from the `stocks` collection into the `channels` map container. |
 | `print_table` | Prints the contents of the `channels` map in a table on the terminal screen. |
 |----------
 
@@ -149,8 +135,7 @@ First, add the include block:
 
 ```cpp
 #include "gnss_synchro_udp_source.h"
-#include <boost/archive/binary_iarchive.hpp>
-#include <boost/serialization/vector.hpp>
+#include "gnss_synchro.pb.h"
 #include <sstream>
 #include <ncurses.h>
 ```
@@ -158,53 +143,42 @@ First, add the include block:
 Next, implement the constructor. Open the socket and bind it to the endpoint:
 
 ```cpp
-Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short& port) : socket{io_service},
-                                                                               endpoint{boost::asio::ip::udp::v4(), port}
+Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short& port) :
+    socket{io_service},
+    endpoint{boost::asio::ip::udp::v4(), port}
 {
     socket.open(endpoint.protocol(), error);  // Open socket.
     socket.bind(endpoint, error);             // Bind the socket to the given local endpoint.
 }
 ```
 
-Now let's implement the `read_gnss_synchro` function. We need to create a buffer of memory and pass it to the [`receive`](https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio/reference/basic_datagram_socket/receive.html) function. Since this function is synchronous, the program execution will stop here waiting for incoming data. Once some data is received, the socket stores it in the buffer. The `bytes` variable keeps track of the received number of bytes. We use this information to extract the binary data from the memory buffer into a string of ones and zeros. After some intermediate steps, we end up deserializing the archived data (a vector container of Gnss_Synchro objects) and save it in the `stocks` variable.
+Now let's implement the `read_gnss_synchro` function. We need to create a buffer of memory and pass it to the [`receive`](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/basic_datagram_socket/receive.html) function. Since this function is synchronous, the program execution will stop here waiting for incoming data. Once some data is received, the socket stores it in the buffer. The `bytes` variable keeps track of the received number of bytes. We use this information to extract the binary data from the memory buffer into a string of ones and zeros. After some intermediate steps, we end up deserializing the archived data (a collection of GnssSynchro objects) and save it in the `stocks` variable.
 
 ```cpp
-bool Gnss_Synchro_Udp_Source::read_gnss_synchro(std::vector<Gnss_Synchro>& stocks)
+bool Gnss_Synchro_Udp_Source::read_gnss_synchro(gnss_sdr::Observables& stocks)
 {
     char buff[1500];  // Buffer for storing the received data.
 
     // This call will block until one or more bytes of data has been received.
     int bytes = socket.receive(boost::asio::buffer(buff));
 
-    try
-        {
-            std::string archive_data(&buff[0], bytes);
-            std::istringstream archive_stream(archive_data);
-            boost::archive::binary_iarchive archive(archive_stream);
-
-            // Deserialize a stock of Gnss_Synchro objects from the binary archive.
-            archive >> stocks;
-        }
-    catch (std::exception& e)
-        {
-            return false;
-        }
-
-    return true;
+    std::string data(&buff[0], bytes);
+    // Deserialize a stock of Gnss_Synchro objects from the binary string.
+    return stocks.ParseFromString(data);
 }
 ```
 
-The implementation of `populate_channels` is straight forward. The function receives a vector of Gnss_Synchro objects as a parameter and inserts each object into the `channels` map container based on the `Channel_ID`. We only allow objects with a sampling frequency different from zero into the map container.
+The implementation of `populate_channels` is straight forward. The function receives a collection of GnssSynchro annotations as a parameter and inserts each of them into the `channels` map container based on the `channel_id`. We only allow objects with a sampling frequency different from zero into the map container.
 
 ```cpp
-void Gnss_Synchro_Udp_Source::populate_channels(std::vector<Gnss_Synchro> stocks)
+void Gnss_Synchro_Udp_Source::populate_channels(gnss_sdr::Observables& stocks)
 {
-    for (std::size_t i = 0; i < stocks.size(); i++)
+    for (std::size_t i = 0; i < stocks.observable_size(); i++)
         {
-            Gnss_Synchro ch = stocks[i];
-            if (ch.fs != 0)  // Channel is valid.
+            gnss_sdr::GnssSynchro ch = stocks.observable(i);
+            if (ch.fs() != 0)  // Channel is valid.
                 {
-                    channels[ch.Channel_ID] = ch;
+                    channels[ch.channel_id()] = ch;
                 }
         }
 }
@@ -230,9 +204,9 @@ bool Gnss_Synchro_Udp_Source::print_table()
             for (auto const& ch : channels)
                 {
                     int channel_id = ch.first;      // Key
-                    Gnss_Synchro data = ch.second;  // Value
+                    gnss_sdr::GnssSynchro data = ch.second;  // Value
 
-                    printw("%3d%6d%14f%17f\n", channel_id, data.PRN, data.CN0_dB_hz, data.Carrier_Doppler_hz);
+                    printw("%3d%6d%14f%17f\n", channel_id, data.prn(), data.cn0_db_hz(), data.carrier_doppler_hz());
                 }
             refresh();  // Update the screen.
         }
@@ -249,50 +223,38 @@ The complete implementation file should look like this:
 
 ```cpp
 #include "gnss_synchro_udp_source.h"
-#include <boost/archive/binary_iarchive.hpp>
-#include <boost/serialization/vector.hpp>
+#include "gnss_synchro.pb.h"
 #include <sstream>
 #include <ncurses.h>
 
-Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short& port) : socket{io_service},
-                                                                               endpoint{boost::asio::ip::udp::v4(), port}
+Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short& port) :
+    socket{io_service},
+    endpoint{boost::asio::ip::udp::v4(), port}
 {
     socket.open(endpoint.protocol(), error);  // Open socket.
     socket.bind(endpoint, error);             // Bind the socket to the given local endpoint.
 }
 
-bool Gnss_Synchro_Udp_Source::read_gnss_synchro(std::vector<Gnss_Synchro>& stocks)
+bool Gnss_Synchro_Udp_Source::read_gnss_synchro(gnss_sdr::Observables& stocks)
 {
     char buff[1500];  // Buffer for storing the received data.
 
     // This call will block until one or more bytes of data has been received.
     int bytes = socket.receive(boost::asio::buffer(buff));
 
-    try
-        {
-            std::string archive_data(&buff[0], bytes);
-            std::istringstream archive_stream(archive_data);
-            boost::archive::binary_iarchive archive(archive_stream);
-
-            // Deserialize a stock of Gnss_Synchro objects from the binary archive.
-            archive >> stocks;
-        }
-    catch (std::exception& e)
-        {
-            return false;
-        }
-
-    return true;
+    std::string data(&buff[0], bytes);
+    // Deserialize a stock of Gnss_Synchro objects from the binary string.
+    return stocks.ParseFromString(data);
 }
 
-void Gnss_Synchro_Udp_Source::populate_channels(std::vector<Gnss_Synchro> stocks)
+void Gnss_Synchro_Udp_Source::populate_channels(gnss_sdr::Observables stocks)
 {
-    for (std::size_t i = 0; i < stocks.size(); i++)
+    for (std::size_t i = 0; i < stocks.observable_size(); i++)
         {
-            Gnss_Synchro ch = stocks[i];
-            if (ch.fs != 0)  // Channel is valid.
+            gnss_sdr::GnssSynchro ch = stocks.observable(i);
+            if (ch.fs() != 0)  // Channel is valid.
                 {
-                    channels[ch.Channel_ID] = ch;
+                    channels[ch.channel_id()] = ch;
                 }
         }
 }
@@ -314,9 +276,9 @@ bool Gnss_Synchro_Udp_Source::print_table()
             for (auto const& ch : channels)
                 {
                     int channel_id = ch.first;      // Key
-                    Gnss_Synchro data = ch.second;  // Value
+                    gnss_sdr::GnssSynchro data = ch.second;  // Value
 
-                    printw("%3d%6d%14f%17f\n", channel_id, data.PRN, data.CN0_dB_hz, data.Carrier_Doppler_hz);
+                    printw("%3d%6d%14f%17f\n", channel_id, data.prn(), data.cn0_db_hz(), data.carrier_doppler_hz());
                 }
             refresh();  // Update the screen.
         }
@@ -350,7 +312,7 @@ int main(int argc, char* argv[])
                 {
                     // Print help.
                     std::cerr << "Usage: monitoring-client <port>" << std::endl;
-                    return false;
+                    return 1;
                 }
 
             unsigned short port = boost::lexical_cast<unsigned short>(argv[1]);
@@ -370,7 +332,7 @@ int main(int argc, char* argv[])
             std::cerr << e.what() << std::endl;
         }
 
-    return true;
+    return 0;
 }
 ```
 
@@ -380,35 +342,45 @@ int main(int argc, char* argv[])
 
 Create the CMakeLists.txt file. This file contains a set of directives and instructions describing the project's source files and targets.
 
-```bash
-cmake_minimum_required (VERSION 2.8)
+```cmake
+cmake_minimum_required (VERSION 3.9)
 project (monitoring-client CXX C)
 
-set (CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 11)
 
 set(Boost_USE_STATIC_LIBS OFF)
-find_package(Boost COMPONENTS system serialization REQUIRED)
-if(NOT Boost_FOUND)
-     message(FATAL_ERROR "Fatal error: Boost required.")
-endif(NOT Boost_FOUND)
+find_package(Boost COMPONENTS system REQUIRED)
 
-set (CURSES_NEED_NCURSES TRUE)
+set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
-if(NOT CURSES_FOUND)
-     message(FATAL_ERROR "Fatal error: NCurses required.")
-endif(NOT CURSES_FOUND)
 
-include_directories(
-        ${CMAKE_SOURCE_DIR}
-        ${Boost_INCLUDE_DIRS}
+find_package(Protobuf REQUIRED)
+if(${Protobuf_VERSION} VERSION_LESS "3.0.0")
+     message(FATAL_ERROR "Fatal error: Protocol Buffers >= v3.0.0 required.")
+endif()
+
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${CMAKE_SOURCE_DIR}/gnss_synchro.proto)
+
+add_library(monitoring_lib ${CMAKE_SOURCE_DIR}/gnss_synchro_udp_source.cc ${PROTO_SRCS})
+
+target_link_libraries(monitoring_lib
+    PUBLIC
+        Boost::boost
+        Boost::system
+        ${CURSES_LIBRARIES}
+        protobuf::libprotobuf
+        pthread
+)
+
+target_include_directories(monitoring_lib
+    PUBLIC
         ${CURSES_INCLUDE_DIRS}
-     )
+        ${CMAKE_BINARY_DIR}
+)
 
-add_library(monitoring_lib ${CMAKE_SOURCE_DIR}/gnss_synchro_udp_source.cc)
+add_executable(monitoring-client ${CMAKE_SOURCE_DIR}/main.cc)
 
-ADD_EXECUTABLE(monitoring-client ${CMAKE_SOURCE_DIR}/main.cc)
-target_link_libraries(monitoring-client monitoring_lib pthread ${Boost_LIBRARIES})
-target_link_libraries(monitoring-client monitoring_lib pthread ${CURSES_LIBRARIES})
+target_link_libraries(monitoring-client PUBLIC monitoring_lib)
 ```
 
 Save it in the project folder alongside the project source files.
@@ -426,16 +398,12 @@ $ tree
 .
 ├── build
 ├── CMakeLists.txt
-├── gnss_satellite.cc
-├── gnss_satellite.h
-├── gnss_signal.cc
-├── gnss_signal.h
-├── gnss_synchro.h
+├── gnss_synchro.proto
 ├── gnss_synchro_udp_source.cc
 ├── gnss_synchro_udp_source.h
 └── main.cc
 
-1 directory, 9 files
+1 directory, 5 files
 ```
 
 Finally go ahead and build the source code:
@@ -487,7 +455,7 @@ Monitor.client_addresses=127.0.0.1
 Monitor.udp_port=1234
 ```
 
-We will stream the receiver internal parameters to the localhost address on port 1234 UDP with a decimation factor of $$ N = 1000 $$, so that we get status updates at roughly once a second.
+We will stream the receiver internal parameters to the localhost address on port 1234 UDP with an output rate of 1000 ms, so that we get status updates once a second.
 
 The complete configuration file should look like this:
 
@@ -559,6 +527,7 @@ Monitor.client_addresses=127.0.0.1
 Monitor.udp_port=1234
 ```
 
+Please do not forget to point `SignalSource.filename` to the actual path of your data file.
 
 ## Testing the monitoring client
 

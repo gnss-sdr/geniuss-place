@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-02-12T12:54:02-04:00
+last_modified_at: 2019-04-21T12:54:02-04:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a signal sink, since the stream of data flowing along the receiver ends here.
@@ -491,15 +491,17 @@ For sensor integration: [NMEA-0183](https://en.wikipedia.org/wiki/NMEA_0183). A 
 For real-time, possibly networked processing: [RTCM-104](http://www.rtcm.org/differential-global-navigation-satellite--dgnss--standards.html) messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting ```PVT.flag_rtcm_server=true``` in the configuration file, and will be active during the execution of the software receiver. By default, the server will operate on port 2101 (which is the recommended port for RTCM services according to the Internet Assigned Numbers Authority, [IANA](https://www.iana.org/assignments/service-names-port-numbers "Service Name and Transport Protocol Port Number Registry")), and will identify the Reference Station with ID= $$ 1234 $$. These values can be changed with `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration file.
 
 ## Custom streaming
-In addition to the standard output formats, the PVT block offers a custom mechanism for streaming its internal data members to local or remote clients over UDP through a _monitoring port_ which can be enabled by setting `PVT.enable_monitor=true` in the configuration file. This feature is very useful for real-time monitoring of the PVT block and its outputs. By default, the data is streamed to the localhost address on port 1234 UDP. These settings can be changed with `PVT.monitor_client_addresses` and `PVT.monitor_udp_port`. The streamed data members (28 in total) are the same ones that are included in the binary dump, and they are encapsulated inside objects of the class [Monitor_Pvt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/monitor_pvt.h), which acts as a container. The following table shows the complete list of streamed parameters, whose names have been kept identical to those of the binary dump to foster consistency.
+In addition to the standard output formats, the PVT block offers a custom mechanism for streaming its internal data members to local or remote clients over UDP through a _monitoring port_ which can be enabled by setting `PVT.enable_monitor=true` in the configuration file. This feature is very useful for real-time monitoring of the PVT block and its outputs. By default, the data is streamed to the localhost address on port 1234 UDP. These settings can be changed with `PVT.monitor_client_addresses` and `PVT.monitor_udp_port`. The streamed data members (28 in total) are serialized via [Protocol Buffers](https://developers.google.com/protocol-buffers/) into a format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). This allows other applications to easily read those messages, either using C++, Java, Python, C#, Dart, Go or Ruby, among other languages, hence enhancing [**Interoperability**]({{ "/design-forces/interoperability/" | relative_url }}).
+
+The following table shows the complete list of streamed parameters:
 
 |----------
 |  **Name**  |  **Type** | **Description** |
 |:-:|:-:|:--|
 |--------------
-| `TOW_at_current_symbol_ms` | `uint32_t` | Time of week of the current symbol, in [ms]. |
+| `tow_at_current_symbol_ms` | `uint32_t` | Time of week of the current symbol, in [ms]. |
 | `week` | `uint32_t` | PVT GPS week. |
-| `RX_time` | `double` | PVT GPS time. |
+| `rx_time` | `double` | PVT GPS time. |
 | `user_clk_offset` | `double` | User clock offset, in [s]. |
 | `pos_x` | `double` | Position X component in ECEF, expressed in [m]. |
 | `pos_y` | `double` | Position Y component in ECEF, expressed in [m]. |
@@ -516,11 +518,11 @@ In addition to the standard output formats, the PVT block offers a custom mechan
 | `latitude` | `double` | Latitude, in [deg]. Positive: North. |
 | `longitude` | `double` | Longitude, in [deg]. Positive: East. |
 | `height` | `double` | Height, in [m]. |
-| `valid_sats` | `uint8_t` | Number of valid satellites. |
-| `solution_status` | `uint8_t` | RTKLIB solution status. |
-| `solution_type` | `uint8_t` | RTKLIB solution type (`0`: xyz-ecef, `1`: enu-baseline). |
-| `AR_ratio_factor` | `float` | Ambiguity resolution ratio factor for validation. |
-| `AR_ratio_threshold` | `float` | Ambiguity resolution ratio threshold for validation. |
+| `valid_sats` | `uint32_t` | Number of valid satellites. |
+| `solution_status` | `uint32_t` | RTKLIB solution status. |
+| `solution_type` | `uint32_t` | RTKLIB solution type (`0`: xyz-ecef, `1`: enu-baseline). |
+| `ar_ratio_factor` | `float` | Ambiguity resolution ratio factor for validation. |
+| `ar_ratio_threshold` | `float` | Ambiguity resolution ratio threshold for validation. |
 | `gdop` | `double` | Geometric dilution of precision (GDOP). |
 | `pdop` | `double` | Position (3D) dilution of precision (PDOP). |
 | `hdop` | `double` | Horizontal dilution of precision (HDOP). |
@@ -613,6 +615,7 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, makes us
 | `enable_monitor` | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port is activated. This feature allows streaming the internal parameters and outputs of the PVT block to local or remote clients over UDP. The streamed data members (28 in total) are the same ones that are included in the binary dump. It defaults to `false`. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
 | `monitor_client_addresses` | Destination IP address(es) of the real-time monitoring port. To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1` (localhost). <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
 | `monitor_udp_port` | Destination UDP port number of the real-time monitoring port. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `enable_protobuf` | [`true`, `false`]: If set to `true`, the serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). That is a deprecated behavior that can be abandoned in the future. It defaults to `true` (Protocol Buffers is used). <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
 | `show_local_time_zone` | [`true`, `false`]: If set to `true`, time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
 |----------
 
