@@ -455,7 +455,7 @@ Monitor.client_addresses=127.0.0.1
 Monitor.udp_port=1234
 ```
 
-We will stream the receiver internal parameters to the localhost address on port 1234 UDP with an output rate of $$ N = 1000 $$ ms, so that we get status updates once a second.
+We will stream the receiver internal parameters to the localhost address on port 1234 UDP with an output rate of 1000 ms, so that we get status updates once a second.
 
 The complete configuration file should look like this:
 
