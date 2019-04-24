@@ -578,7 +578,7 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, makes us
 | `phwindup` | [`0`, `1`]: Set whether the phase windup correction $$ \phi_{pw} $$ for PPP modes is applied or not. It defaults to $$ 0 $$ (no phase windup correction). | Optional |
 | `earth_tide` | [`0`, `1`]: Set whether earth tides correction is applied or not. If set to $$ 1 $$, the solid earth tides correction $$ \mathbf{d}_{r,disp} $$ is applied to the PPP solution, following the description in [IERS Technical Note No. 32](https://www.iers.org/IERS/EN/Publications/TechnicalNotes/tn32.html)[^McCarthy04], Chapter 7. It defaults to $$ 0 $$ (no Earth tide correction). | Optional |
 | `output_enabled` | [`true`, `false`]: If set to `false`, output data files are not stored. It defaults to `true`. | Optional |
-| `rtcm_output_file_enabled` | [`true`, `false`]: If set to `false`, RTCM binary files are not stored. It defaults to `output_enabled`. | Optional |
+| `rtcm_output_file_enabled` | [`true`, `false`]: If set to `false`, RTCM binary files are not stored. It defaults to `false`. | Optional |
 | `gpx_output_enabled` | [`true`, `false`]: If set to `false`, GPX files are not stored. It defaults to `output_enabled`. | Optional |
 | `geojson_output_enabled` | [`true`, `false`]: If set to `false`, GeoJSON files are not stored. It defaults to `output_enabled`. | Optional |
 | `kml_output_enabled` | [`true`, `false`]: If set to `false`, KML files are not stored. It defaults to `output_enabled`. | Optional |
