@@ -174,10 +174,10 @@ $ pybombs install gnss-sdr
 
 By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, which is the most recent version of the source code. This behaviour can be modified by altering the corresponding recipe at ```$HOME/.pybombs/recipes/gr-recipes/gnss-sdr.lwr```
 
-In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual ```cmake .. && make && sudo make install``` dance, as explained below), there are still some missing dependencies (_i.e._, Armadillo, GFlags, Glog and GnuTLS) that can be installed either by using PyBOMBS:
+In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual ```cmake .. && make && sudo make install``` dance, as explained below), there are still some missing dependencies (_i.e._, Armadillo, GFlags, Glog, GnuTLS and Protocol Buffers) that can be installed either by using PyBOMBS:
 
 ```bash
-$ pybombs install armadillo gflags glog gnutls
+$ pybombs install armadillo gflags glog gnutls protobuf
 ```
 
 or manually, just downloading, building and installing them. More details are available in the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#manual-installation-of-other-required-dependencies) file.
