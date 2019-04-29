@@ -137,6 +137,9 @@ The software receiver should deliver the results of the processing in several st
     **RINEX** (Receiver Independent Exchange Format) is an interchange format for raw satellite navigation system data, covering observables and the information contained in the navigation message broadcast by GNSS satellites. This allows the user to post-process the received data to produce a more accurate result (usually with other data unknown to the original receiver, such as better models of the atmospheric conditions at time of measurement). RINEX files can be used by software packages such as [GPSTk](http://www.gpstk.org), [RTKLIB](http://www.rtklib.com/) and [gLAB](http://gage.upc.es/gLAB), among many others.
     {: .notice--info}
 
+* Custom output formats: if the software receiver needs to output data that is not covered by any of the above standards, or there is a need of a specific output for a given external application, there is a need of a structured data serialization mechanism. This mechanism needs to be efficient (_i. e._ binary data instead of plain text), fast (it needs to be executed in real-time), portable, well-documented and easy to read by other external applications (ideally, language-neutral). Support of backward and forward-compatible formats is a desirable feature, since the number of parameters extracted by the software receiver tends to grow along different versions. A forward-compatible serialization system should allow to do that without breaking existing external applications still using the old format. An example of an open source software library that fulfills these requirements is [Protocol Buffers](https://developers.google.com/protocol-buffers/), which allows to read data from many different languages such as C++, C#, Dart, Go, Java, Javascript, Ruby, Objective-C, PHP and Python.
+
+
 ## Interoperability with data link protocols
 
 The software receiver should support several data link communication protocols, both to the digital signal source (the radio frequency front-end, the network providing a data stream) and to other systems expecting the outputs of the processing:
@@ -165,6 +168,7 @@ It follows a list of possible interoperability indicators for a software-defined
 * Number of supported standard output formats.
   * GIS formats: [KML](http://www.opengeospatial.org/standards/kml), [GeoJSON](http://geojson.org/), [Shapefile](https://en.wikipedia.org/wiki/Shapefile), others.
   * Application-specific formats: NMEA  [0183](https://en.wikipedia.org/wiki/NMEA_0183) / [2000](https://en.wikipedia.org/wiki/NMEA_2000), [GPX](http://www.topografix.com/gpx.asp), others. Specify version.
+  * Custom formats: portable, well-documented, easily readable by other programming languages, support of backward and forward-compatible formats.
   * Geodesic formats: [RINEX](https://en.wikipedia.org/wiki/RINEX), [RTCM-104](http://www.rtcm.org/differential-global-navigation-satellite--dgnss--standards.html).
     * Generation of RINEX observation and navigation data files. Specify version.
     * Real-time generation of RTCM messages in real-time. Type and frequency of real-time generated RTCM messages. Specify RTCM version.
