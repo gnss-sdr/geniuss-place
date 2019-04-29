@@ -7,7 +7,7 @@ header:
   teaser: "https://scontent-mad1-1.cdninstagram.com/t51.2885-15/e15/11190810_1446633488967530_1154530547_n.jpg"
 sidebar:
     nav: "about"
-last_modified_at: 2018-04-27T18:38:52+00:00
+last_modified_at: 2019-04-29T12:38:52+00:00
 redirect_from:
   - /documentation/publications
 ---
@@ -37,7 +37,7 @@ month   = {Apr.},
 volume  = {6},
 number  = {1},
 pages   = {20451--20463},
-note    = { {DOI}: 10.1109/ACCESS.2018.2822835}
+note    = { {doi}: 10.1109/ACCESS.2018.2822835}
 }</pre>
     </div>
     </li>
@@ -90,7 +90,7 @@ pages   = {4843--4853},
 volume  = {9},
 number  = {10},
 month   = {Oct.},
-note    = { {DOI}: 10.1109/JSTARS.2016.2568742}
+note    = { {doi}: 10.1109/JSTARS.2016.2568742}
 }</pre>
     </div>
     </li>
@@ -118,7 +118,7 @@ pages   = {1207--1220},
 volume  = {104},
 number  = {6},
 month   = {June},
-note    = { {DOI}: 10.1109/JPROC.2016.2532963}
+note    = { {doi}: 10.1109/JPROC.2016.2532963}
 }</pre>
     </div>
     </li>
@@ -145,7 +145,7 @@ year    = {2013},
 volume  = {2013},
 number  = {143},
 month   = {Sep.},
-note     = { {DOI}: 10.1186/1687-6180-2013-143}
+note     = { {doi}: 10.1186/1687-6180-2013-143}
 }</pre>
     </div>
     </li>
@@ -154,6 +154,34 @@ note     = { {DOI}: 10.1186/1687-6180-2013-143}
 
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in International Conferences</h3>
+
+
+<ul class="biblist">
+    <!-- Item: Odriscoll18 -->
+    <li ><p>
+    C.&nbsp;O'Driscoll and J.&nbsp;T.&nbsp;Curran
+    <br><b>Carrier Phase Tracking Considerations for Commodity SDR Hardware</b><br>
+<i>Proceedings of the 31st International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2018)</i>,
+Miami, FL, Sept. 2018, pp. 4182-4196.
+    <br />
+    <a href="javascript:toggleBibtex('Odriscoll18')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=16117" >Online</a><span style="color: #52adc8">]</span><span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2018.16117" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Odriscoll18" class="bibtex noshow">
+    <pre>@inproceedings{ Odriscoll18,
+author  = {C.~{O'Driscoll} and J.~T.~Curran},
+title   = {Carrier Phase Tracking Considerations for Commodity {SDR} Hardware},
+booktitle = {Proc. 31st Int. Tech. Meeting Sat. Div. Inst. Navig.},
+year    = {2018},
+address = {Miami, FL},
+month   = {Sep.},
+pages   = {4182--4196},
+note    = { {doi}: 10.33012/2018.16117}
+}</pre>
+    </div>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: GNSS-SDR17a -->
@@ -164,7 +192,7 @@ note     = { {DOI}: 10.1186/1687-6180-2013-143}
 Portland, OR, Sept. 2017, pp. 3508-3518.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll17')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=5206" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15384" >Online</a><span style="color: #52adc8">]</span><span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15384" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Odriscoll17" class="bibtex noshow">
     <pre>@inproceedings{ Odriscoll17,
@@ -174,7 +202,8 @@ booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
 address = {Portland, OR},
 month   = {Sep.},
-pages   = {3508--3518}
+pages   = {3508--3518},
+note    = { {doi}: 10.33012/2017.15384}
 }</pre>
     </div>
     </li>
@@ -190,7 +219,7 @@ pages   = {3508--3518}
 Portland, OR, Sept. 2017, pp. 1204-1228.
     <br />
     <a href="javascript:toggleBibtex('Arribas17a')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=5073" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15301" >Online</a><span style="color: #52adc8">]</span><span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15301" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037280" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Arribas17a" class="bibtex noshow">
@@ -201,7 +230,8 @@ booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
 address = {Portland, OR},
 month   = {Sep.},
-pages   = {1204--1228}
+pages   = {1204--1228},
+note    = { {doi}: 10.33012/2017.15301}
 }</pre>
     </div>
     </li>
@@ -218,7 +248,9 @@ pages   = {1204--1228}
 Portland, OR, Sept. 2017, pp. 3796-3815.
     <br />
     <a href="javascript:toggleBibtex('Fernandez17a')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=5293" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15234" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15234
+" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037906" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/a-cloud-optical-access-network-for-virtualized-gnss-receivers/zhgrtpqstxrx" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
@@ -230,7 +262,8 @@ booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
 address = {Portland, OR},
 month   = {Sep.},
-pages   = {3796--3815}
+pages   = {3796--3815},
+note    = { {doi}: 10.33012/2017.15234}
 }</pre>
     </div>
     </li>
@@ -257,7 +290,7 @@ booktitle = {Proc. 8th ed. of NAVITEC Conf.},
 year    = {2016},
 address = {ESA/ESTEC, Noordwijk, The Netherlands},
 month   = {Dec.},
-note     = { {DOI}: 10.1109/NAVITEC.2016.7931740}
+note     = { {doi}: 10.1109/NAVITEC.2016.7931740}
 }</pre>
     </div>
     </li>
@@ -324,7 +357,7 @@ month   = {Oct.}
 Portland, OR, Sept. 2016, pp. 497-508.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll16')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/gnss/abstracts.cfm?paperID=4237" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=14842" >Online</a><span style="color: #52adc8">]</span><span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2016.14842" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Odriscoll16" class="bibtex noshow">
     <pre>@inproceedings{ Odriscoll16,
@@ -335,7 +368,7 @@ pages   = {497--508},
 year    = {2016},
 address = {Portland, OR},
 month   = {Sep.},
-note    = { {ISSN}: 2331-5911}
+note    = { {doi}: 10.33012/2016.14842}
 }</pre>
     </div>
     </li>
@@ -351,7 +384,7 @@ Portland, OR, Sept. 2016, pp. 44-61.<br>
 <i class="fas fa-fw fa-star"></i> Best Presentation Award (<i>Session A1: Advances in GNSS Software-defined Receivers</i>)
     <br />
     <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/266493" >Online  <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/266493" >Online  <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2016.14576" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/accelerating-gnss-software-receivers/ywcwtdjwgnky" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez16b" class="bibtex noshow">
@@ -363,7 +396,7 @@ pages   = {44--61},
 year    = {2016},
 address = {Portland, OR},
 month   = {Sep.},
-note    = { {ISSN}: 2331-5911}
+note    = { {doi}: 10.33012/2016.14576}
 }</pre>
     </div>
     </li>
@@ -520,7 +553,7 @@ year    = {2014},
 pages   = {121--124},
 address = {A Coru\~{n}a, Spain},
 month   = {Jun.},
-note    = { {DOI}: 10.1109/SAM.2014.6882355}
+note    = { {doi}: 10.1109/SAM.2014.6882355}
 }</pre>
         </div>
         </li>
@@ -547,7 +580,7 @@ booktitle = {Proc. of the IEEE International Workshop on Metrology for Aerospace
 year    = {2014},
 address = {Benevento, Italy},
 month   = {May},
-note    = { {DOI}: 10.1109/MetroAeroSpace.2014.6865943}
+note    = { {doi}: 10.1109/MetroAeroSpace.2014.6865943}
 }</pre>
         </div>
         </li>
@@ -573,7 +606,7 @@ booktitle = {Proc. of the IEEE International Workshop on Metrology for Aerospace
 year    = {2014},
 address = {Benevento, Italy},
 month   = {May},
-note    = { {DOI}: 10.1109/MetroAeroSpace.2014.6865957}
+note    = { {doi}: 10.1109/MetroAeroSpace.2014.6865957}
 }</pre>
         </div>
         </li>
@@ -624,7 +657,7 @@ year    = {2012},
 pages   = {1--8},
 address = {ESTEC, Noordwijk, The Netherlands},
 month   = {Dec.},
-note    = { {DOI}: 10.1109/NAVITEC.2012.6423057}
+note    = { {doi}: 10.1109/NAVITEC.2012.6423057}
 }</pre>
         </div>
         </li>
@@ -650,7 +683,7 @@ year    = {2012},
 pages   = {353--364},
 address = {Istanbul, Turkey},
 month   = {Aug.},
-note    = { {DOI}: 10.1109/NAVITEC.2012.6423057}
+note    = { {doi}: 10.1109/NAVITEC.2012.6423057}
 }</pre>
         </div>
         </li>
@@ -701,7 +734,7 @@ year    = {2010},
 pages   = {1--8},
 address = {ESTEC, Noordwijk, The Netherlands},
 month   = {Dec.},
-note     = { {DOI}: 10.1109/NAVITEC.2010.5707981}
+note     = { {doi}: 10.1109/NAVITEC.2010.5707981}
 }</pre>
         </div>
         </li>
