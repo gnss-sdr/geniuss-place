@@ -52,7 +52,7 @@ Copy and paste the following line in a terminal:
 $ sudo apt install build-essential cmake libboost-dev libprotobuf-dev \
    protobuf-compiler libncurses5-dev libncursesw5-dev
 ```
-This will install the GCC/g++ compiler, the CMake build system, and the Protocol Buffers and NCurses libraries.
+This will install the GCC/g++ compiler, the CMake build system, and the Protocol Buffers and [ncurses](https://www.gnu.org/software/ncurses/ncurses.html) libraries.
 
 ### Download the required files
 
@@ -184,7 +184,7 @@ void Gnss_Synchro_Udp_Source::populate_channels(gnss_sdr::Observables& stocks)
 }
 ```
 
-Lastly, the `print_table` function calls the `read_gnss_synchro` and `populate_channels` functions, and prints a text table with the `printw` function from NCurses.
+Lastly, the `print_table` function calls the `read_gnss_synchro` and `populate_channels` functions, and prints a text table with the `printw` function from ncurses.
 
 ```cpp
 bool Gnss_Synchro_Udp_Source::print_table()
