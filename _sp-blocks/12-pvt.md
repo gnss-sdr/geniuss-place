@@ -586,7 +586,6 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, makes us
 | `rinex_output_enabled` | [`true`, `false`]: If set to `false`, RINEX files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
 | `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. It defaults to 1000 ms. | Optional |
-| `rinexnav_rate_ms`| Rate at which navigation message's parameters are annotated in the RINEX file, in ms. It defaults to 6000 ms. | Optional |
 | `nmea_output_file_enabled` | [`true`, `false`]: If set to `false`, NMEA sentences are not stored. It defaults to `true`. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
