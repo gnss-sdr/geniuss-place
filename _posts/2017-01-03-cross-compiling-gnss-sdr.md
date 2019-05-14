@@ -12,7 +12,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-04-21T02:11:02+02:00
+last_modified_at: 2019-05-14T02:11:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function within a larger mechanical or electrical system. Examples of properties of embedded computers when compared with general-purpose counterparts are low power consumption, small size, rugged operating ranges, and low per-unit cost, at the price of limited processing resources.
@@ -44,7 +44,7 @@ The following table lists the available SDK versions:
 
 | Version | Status | Download | Size | md5 | Manifest |
 |:-|:-:|:-:|:-:|:-|:-:|
-| Thud | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 365 MB | 4f74d9ab0f076e59215be2d1cb674a52 | [Host](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Thud | Recommended | [SDK](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 410 MB | 9190d351cd8bad1535aeb9a6ff220ce3 | [Host](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
 | Sumo | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 349 MB | d25313709bc8c13eba01f7f9a589d8c6 | [Host](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
 | Rocko | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 1.3 GB  | fb26ff0b84f67006e19266154c36173b | [Host](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
 | Pyro | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.1 GB | 8ce7c2a732884e5487f592ae102780f1 | [Host](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
@@ -145,8 +145,16 @@ Using the SDK
 
 ### Installing the SDK
 
-In your host machine, you need a Protocol Buffers compiler, which needs to be the same version than in the SDK. For Thud, this is 3.6.1. Install the dependencies:
+Install some basic packages required by the SDK:
 
+```bash
+$ sudo apt-get install xz-utils python3
+```
+
+{% capture protobuf %}
+**Important note for Sumo or Rocko users**:
+
+In your host machine, you need a Protocol Buffers compiler, which needs to be the same version than in the SDK. For Sumo, this is 3.5.1. Install the dependencies:
 
 ```bash
 $ sudo apt-get install autoconf automake libtool curl make g++ unzip
@@ -155,9 +163,9 @@ $ sudo apt-get install autoconf automake libtool curl make g++ unzip
 and then:
 
 ```bash
-$ wget https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protobuf-cpp-3.6.1.tar.gz
-$ tar xvfz protobuf-cpp-3.6.1.tar.gz
-$ cd protobuf-3.6.1
+$ wget https://github.com/protocolbuffers/protobuf/releases/download/v3.5.1/protobuf-cpp-3.5.1.tar.gz
+$ tar xvfz protobuf-cpp-3.5.1.tar.gz
+$ cd protobuf-3.5.1
 $ ./autogen.sh
 $ ./configure
 $ make
@@ -165,7 +173,14 @@ $ sudo make install
 $ sudo ldconfig
 ```
 
-For Sumo, it is 3.5.1, and for Rocko it is 3.4.1. Please install the one that matches the version of your SDK.
+For Rocko it is 3.4.1. Please install the one that matches the version of your SDK.
+
+**This step is not required if you are using Thud.**
+{% endcapture %}
+
+<div class="notice--warning">
+   {{ protobuf | markdownify }}
+</div>
 
 Then, download the SDK shell script (or use a locally created SDK, as explained above) and install it:
 
