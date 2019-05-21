@@ -159,7 +159,7 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 <ul class="biblist">
     <!-- Item: LaMountain18 -->
     <li ><p>
-    G.&nbsp;LaMountain and J.&nbsp;Vil&agrave;-Valls and P.&nbsp;Closas
+    G.&nbsp;LaMountain, J.&nbsp;Vil&agrave;-Valls and P.&nbsp;Closas
     <br><b>Bayesian Covariance Estimation for Kalman Filter based Digital Carrier Synchronization</b><br>
 <i>Proceedings of the 31st International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2018)</i>,
 Miami, FL, Sept. 2018, pp. 3575-3586.
@@ -169,7 +169,7 @@ Miami, FL, Sept. 2018, pp. 3575-3586.
     </p>
     <div id="bib_LaMountain18" class="bibtex noshow">
     <pre>@inproceedings{ LaMountain18,
-author  = {G.~{LaMountain} and J.~{Vil\'{a}-Valls} and P.~Closas},
+author  = {G.~{LaMountain} and J.~{Vil\`{a}--Valls} and P.~Closas},
 title   = {Bayesian Covariance Estimation for {K}alman Filter based Digital Carrier Synchronization},
 booktitle = {Proc. 31st Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2018},
