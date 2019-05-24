@@ -17,6 +17,33 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
 <ul class="biblist">
+    <!-- Item: Miralles19 -->
+    <li ><p>
+    D.&nbsp;Miralles and D.&nbsp;M.&nbsp;Akos
+    <br><b>A SIMD intrinsic correlator library for GNSS software receivers</b><br>
+<i>GPS Solutions</i>, Vol. 23, No. 3, pp. 72, May 2019.
+    <br />
+    <a href="javascript:toggleBibtex('Miralles19')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/article/10.1007%2Fs10291-019-0865-8" >Online </a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/s10291-019-0865-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Miralles19" class="bibtex noshow">
+    <pre>@article{ Miralles19,
+author  = {D.~Miralles and D.~M.~Akos},
+title   = {A {SIMD} intrinsic correlator library for {GNSS} software receivers},
+journal = {GPS Solutions},
+year    = {2019},
+month   = {May},
+volume  = {23},
+number  = {3},
+pages   = {72},
+note    = { {doi}: 10.1007/s10291-019-0865-8}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<ul class="biblist">
     <!-- Item: Fernandez18 -->
     <li ><p>
     C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Vil&agrave;-Valls, J.&nbsp;Arribas and A.&nbsp;Ramos
