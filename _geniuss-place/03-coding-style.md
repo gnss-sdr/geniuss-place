@@ -292,7 +292,7 @@ private:
 
 ### Include formulae
 
-Follow this link to see how can [include formulae](https://www.stack.nl/~dimitri/doxygen/manual/formulas.html).
+Follow this link to see how can [include formulae](http://www.doxygen.nl/manual/formulas.html).
 
 ### Multiple line comments should be split in one comment per line, each having the `/*` and `*/` markers on the same line
 
