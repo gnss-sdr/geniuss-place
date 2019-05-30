@@ -49,10 +49,10 @@ Finally, at the other end, the monitoring client deserializes the Gnss_Synchro o
 Copy and paste the following line in a terminal:
 
 ```bash
-$ sudo apt install build-essential cmake libboost-dev libprotobuf-dev \
-   protobuf-compiler libncurses5-dev libncursesw5-dev
+$ sudo apt-get install build-essential cmake libboost-dev libboost-system-dev \
+   libprotobuf-dev protobuf-compiler libncurses5-dev libncursesw5-dev wget
 ```
-This will install the GCC/g++ compiler, the CMake build system, and the Protocol Buffers and [ncurses](https://www.gnu.org/software/ncurses/ncurses.html) libraries.
+This will install the GCC/g++ compiler, the CMake build system, and the library dependencies: Protocol Buffers, Boost and [ncurses](https://www.gnu.org/software/ncurses/ncurses.html).
 
 ### Download the required files
 
@@ -73,7 +73,7 @@ $ wget https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/docs/protobuf/gn
 
 Open your IDE or text editor of choice, create a new class and call it Gnss_Synchro_Udp_Source. This class will be in charge of deserializing the Gnss_Synchro objects from the UDP stream.
 
-Define the class header file first: gnss_synchro_udp_source.h
+Define the class header file first: `gnss_synchro_udp_source.h`
 
 ```cpp
 #ifndef GNSS_SYNCHRO_UDP_SOURCE_H_
@@ -86,9 +86,9 @@ Define the class header file first: gnss_synchro_udp_source.h
 class Gnss_Synchro_Udp_Source
 {
 public:
-    Gnss_Synchro_Udp_Source(const unsigned short& port);
+    Gnss_Synchro_Udp_Source(const unsigned short port);
     bool read_gnss_synchro(gnss_sdr::Observables& stocks);
-    void populate_channels(gnss_sdr::Observables stocks);
+    void populate_channels(gnss_sdr::Observables& stocks);
     bool print_table();
 
 private:
@@ -129,7 +129,7 @@ and 4 member functions:
 | `print_table` | Prints the contents of the `channels` map in a table on the terminal screen. |
 |----------
 
-Now let's go ahead and write the functions in the implementation file: gnss_synchro_udp_source.cc
+Now let's go ahead and write the functions in the implementation file: `gnss_synchro_udp_source.cc`
 
 First, add the include block:
 
@@ -143,7 +143,7 @@ First, add the include block:
 Next, implement the constructor. Open the socket and bind it to the endpoint:
 
 ```cpp
-Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short& port) :
+Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short port) :
     socket{io_service},
     endpoint{boost::asio::ip::udp::v4(), port}
 {
@@ -227,7 +227,7 @@ The complete implementation file should look like this:
 #include <sstream>
 #include <ncurses.h>
 
-Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short& port) :
+Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short port) :
     socket{io_service},
     endpoint{boost::asio::ip::udp::v4(), port}
 {
@@ -247,7 +247,7 @@ bool Gnss_Synchro_Udp_Source::read_gnss_synchro(gnss_sdr::Observables& stocks)
     return stocks.ParseFromString(data);
 }
 
-void Gnss_Synchro_Udp_Source::populate_channels(gnss_sdr::Observables stocks)
+void Gnss_Synchro_Udp_Source::populate_channels(gnss_sdr::Observables& stocks)
 {
     for (std::size_t i = 0; i < stocks.observable_size(); i++)
         {
@@ -293,7 +293,7 @@ bool Gnss_Synchro_Udp_Source::print_table()
 
 ### Create the main function
 
-Create a new file and implement the main function: main.cc
+Create a new file and implement the main function: `main.cc`
 
 ```cpp
 #include "gnss_synchro_udp_source.h"
@@ -340,11 +340,11 @@ int main(int argc, char* argv[])
 
 ### Build the source code
 
-Create the CMakeLists.txt file. This file contains a set of directives and instructions describing the project's source files and targets.
+Create the `CMakeLists.txt` file. This file contains a set of directives and instructions describing the project's source files and targets.
 
 ```cmake
 cmake_minimum_required (VERSION 3.9)
-project (monitoring-client CXX C)
+project (monitoring-client CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
