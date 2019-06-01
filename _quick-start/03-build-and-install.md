@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2019-04-13T11:13:02+02:00
+last_modified_at: 2019-06-01T11:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -272,11 +272,12 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/cl
 ```
 
 
+&nbsp;
 
 
 # Other builds
 
-## Snap packages
+## Snap package
 
 <figure style="width: 64px" class="align-left">
   <img src="{{ "/assets/images/logo-snappy.png" | relative_url }}" alt="Snappy logo">
@@ -284,7 +285,10 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/cl
 
 [Snaps](https://snapcraft.io) are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
 
-Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox) for instructions on building your own snap package of GNSS-SDR.
+Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox) for instructions on building your own snap package of GNSS-SDR, or install it directly from the [Snap Store](https://snapcraft.io/gnss-sdr-next):
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/gnss-sdr-next)
+{: style="text-align: center;"}
 
 ## Docker
 
