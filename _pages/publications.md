@@ -236,6 +236,33 @@ pages   = {1--7}
 
 
 <ul class="biblist">
+    <!-- Item:Majoral18 -->
+    <li ><p>
+    M.&nbsp;Majoral, C.&nbsp;Fern&aacute;ndez-Prades and J.&nbsp;Arribas
+    <br><b>Implementation of GNSS Receiver Hardware Accelerators in All&#8209;Programmable System&#8209;On&#8209;Chip Platforms</b><br>
+<i>Proceedings of the 31st International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2018)</i>,
+Miami, FL, Sept. 2018, pp. 4215-4230.
+    <br />
+    <a href="javascript:toggleBibtex('Majoral18')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=16082" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2018.16082" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Majoral18" class="bibtex noshow">
+    <pre>@inproceedings{ Majoral18,
+author  = {M.~Majoral and C.~{Fern\'{a}ndez--Prades} and J.~Arribas},
+title   = {Implementation of {GNSS} Receiver Hardware Accelerators in All-programmable System-On-Chip Platforms},
+booktitle = {Proc. 31st Int. Tech. Meeting Sat. Div. Inst. Navig.},
+year    = {2018},
+address = {Miami, FL},
+month   = {Sep.},
+pages   = {4215--4230},
+note    = { {doi}: 10.33012/2018.16082}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: LaMountain18 -->
     <li ><p>
     G.&nbsp;LaMountain, J.&nbsp;Vil&agrave;-Valls and P.&nbsp;Closas
