@@ -182,6 +182,58 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in International Conferences</h3>
 
+<ul class="biblist">
+    <!-- Item: Fernandez18b -->
+    <li ><p>
+    C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas, M.&nbsp;Majoral, A.&nbsp;Ramos, J.&nbsp;Vil&agrave;-Valls and P.&nbsp;Giordano
+    <br><b>A Software-Defined Spaceborne GNSS Receiver</b><br>
+<i>Proceedings of the 9th ESA Workshop on Satellite Navigation Technologies and European Workshop on GNSS Signals and Signal Processing (NAVITEC)</i>,
+Noordwijk, Netherlands, Dec. 2018, pp. 1-9.
+    <br />
+    <a href="javascript:toggleBibtex('Fernandez18b')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8642697" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/110.1109/NAVITEC.2018.8642697" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Fernandez18b" class="bibtex noshow">
+    <pre>@inproceedings{ Fernandez18b,
+author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and M.~Majoral and A.~Ramos and J.~{Vil\`{a}--Valls} and P.~Giordano},
+title   = {A Software-Defined Spaceborne {GNSS} Receiver},
+booktitle = {Proc. 9th ESA Workshop on Satellite Navigation Technologies and European Workshop on GNSS Signals and Signal Processing},
+year    = {2018},
+address = {Noordwijk, Netherlands},
+month   = {Dec.},
+pages   = {1--9},
+note    = {doi: 10.1109/NAVITEC.2018.8642697}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: Miralles18 -->
+    <li ><p>
+    D.&nbsp;Miralles and J.&nbsp;Iwamoto
+    <br><b>Accelerating software radios by means of SIMD Instructions. A case for the AVX2 and AVX512 Extensions</b><br>
+<i>Proceedings of the 8th Annual GNU Radio Conference (GRCon18)</i>,<br>
+Las Vegas, NV, Sept. 2018, pp. 1-7.
+    <br />
+    <a href="javascript:toggleBibtex('Miralles18')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://pubs.gnuradio.org/index.php/grcon/article/view/49/33" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.gnuradio.org/grcon/grcon18/presentations/accelerating_software_radios_by_means_of_simd_instructions._a_case_for_the_avx2_and_avx512_extensions/8-Jessica_Iwamoto-SIMD.pdf">Slides</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://youtu.be/eDayurX_Rzg">Video</a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Miralles18" class="bibtex noshow">
+    <pre>@inproceedings{ Miralles18,
+author  = {D.~Miralles and J.~Iwamoto},
+title   = {Accelerating software radios by means of {SIMD} Instructions. {A} case for the {AVX2} and {AVX512} Extensions},
+booktitle = {Proc. 8th Annual GNU Radio Conference},
+year    = {2018},
+address = {Las Vegas, NV},
+month   = {Sep.},
+pages   = {1--7}
+}</pre>
+    </div>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: LaMountain18 -->
@@ -192,7 +244,7 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 Miami, FL, Sept. 2018, pp. 3575-3586.
     <br />
     <a href="javascript:toggleBibtex('LaMountain18')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15911" >Online</a><span style="color: #52adc8">]</span><span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2018.15911" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15911" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2018.15911" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_LaMountain18" class="bibtex noshow">
     <pre>@inproceedings{ LaMountain18,
@@ -219,7 +271,7 @@ note    = { {doi}: 10.33012/2018.15911}
 Miami, FL, Sept. 2018, pp. 4182-4196.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll18')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=16117" >Online</a><span style="color: #52adc8">]</span><span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2018.16117" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=16117" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2018.16117" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Odriscoll18" class="bibtex noshow">
     <pre>@inproceedings{ Odriscoll18,
@@ -246,7 +298,7 @@ note    = { {doi}: 10.33012/2018.16117}
 Portland, OR, Sept. 2017, pp. 3508-3518.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll17')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15384" >Online</a><span style="color: #52adc8">]</span><span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15384" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15384" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15384" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Odriscoll17" class="bibtex noshow">
     <pre>@inproceedings{ Odriscoll17,
@@ -273,7 +325,7 @@ note    = { {doi}: 10.33012/2017.15384}
 Portland, OR, Sept. 2017, pp. 1204-1228.
     <br />
     <a href="javascript:toggleBibtex('Arribas17a')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15301" >Online</a><span style="color: #52adc8">]</span><span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15301" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15301" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15301" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037280" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Arribas17a" class="bibtex noshow">
@@ -411,7 +463,7 @@ month   = {Oct.}
 Portland, OR, Sept. 2016, pp. 497-508.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll16')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=14842" >Online</a><span style="color: #52adc8">]</span><span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2016.14842" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=14842" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2016.14842" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Odriscoll16" class="bibtex noshow">
     <pre>@inproceedings{ Odriscoll16,
