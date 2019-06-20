@@ -45,8 +45,8 @@ The following table lists the available SDK versions:
 | Version | Status | Download | Size | md5 | Manifest |
 |:-|:-:|:-:|:-:|:-|:-:|
 | Thud | Recommended | [SDK](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 416 MB | 9bf042cc7481cb0fee9511a2c63751b2 | [Host](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Sumo | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 349 MB | d25313709bc8c13eba01f7f9a589d8c6 | [Host](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Rocko | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 1.3 GB  | fb26ff0b84f67006e19266154c36173b | [Host](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Sumo | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 359 MB | 7a34b8d1ade2608825b2642466ff31f6 | [Host](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Rocko | Stable | [SDK](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 1.3 GB  | 11286d1464aa4b0f2c116f0c8bf853b5 | [Host](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
 | Pyro | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.1 GB | 8ce7c2a732884e5487f592ae102780f1 | [Host](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
 | Morty | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.0 GB | b2eb36d4ef2838586afa1bc6b44dc0f4 | [Host](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
 | Krogoth | Outdated | [SDK](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 920 MB | 16af7ab553a0c8f553ba4d6ccc5d6bfe | [Host](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](http://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
@@ -150,37 +150,6 @@ Install some basic packages required by the SDK:
 ```bash
 $ sudo apt-get install xz-utils python3
 ```
-
-{% capture protobuf %}
-**Important note for Sumo or Rocko users**:
-
-In your host machine, you need a Protocol Buffers compiler, which needs to be the same version than in the SDK. For Sumo, this is 3.5.1. Install the dependencies:
-
-```bash
-$ sudo apt-get install autoconf automake libtool curl make g++ unzip
-```
-
-and then:
-
-```bash
-$ wget https://github.com/protocolbuffers/protobuf/releases/download/v3.5.1/protobuf-cpp-3.5.1.tar.gz
-$ tar xvfz protobuf-cpp-3.5.1.tar.gz
-$ cd protobuf-3.5.1
-$ ./autogen.sh
-$ ./configure
-$ make
-$ sudo make install
-$ sudo ldconfig
-```
-
-For Rocko it is 3.4.1. Please install the one that matches the version of your SDK.
-
-**This step is not required if you are using Thud.**
-{% endcapture %}
-
-<div class="notice--warning">
-   {{ protobuf | markdownify }}
-</div>
 
 Then, download the SDK shell script (or use a locally created SDK, as explained above) and install it:
 
