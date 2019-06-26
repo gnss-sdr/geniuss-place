@@ -39,18 +39,29 @@ redirect_from:
         {% include author-profile.html %}
      </td>
      <td id="authortable">
-        {% assign pauthor = "Antonio Ramos" %}
-        {% include author-profile.html %}
-     </td>
-     <td id="authortable">
         {% assign pauthor = "Jordi Vila" %}
         {% include author-profile.html %}
     </td>
+     <td id="authortable">
+        {% assign pauthor = "Alvaro Cebrian" %}
+        {% include author-profile.html %}
+     </td>
+
   </tr>
 </table>
 
 </body> </html>
 
+## Former members
+
+<table>
+ <tr>
+     <td id="authortable">
+        {% assign pauthor = "Antonio Ramos" %}
+        {% include author-profile.html %}
+     </td>
+  </tr>
+</table>
 
 ## Contributors
 
