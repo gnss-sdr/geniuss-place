@@ -32,7 +32,7 @@ Javier Arribas:
   email       : "javier.arribas@cttc.es"
   bio         : "Senior Researcher at CTTC"
   avatar      : "/assets/images/javier.jpg"
-  twitter     :
+  twitter     : "arribaslazaro"
   github      : "Arribas"
   bitbucket   : "jarribas"
   linkedin    : "javier-arribas-215b785b"
@@ -46,12 +46,12 @@ Pau Closas:
   email       : "pau.closas@northeastern.edu"
   bio         : "Assistant Professor at Northeastern University"
   avatar      : "/assets/images/pau.jpg"
-  twitter     :
+  twitter     : "pauclosas"
   linkedin    : "closas"
   orcid       : "0000-0002-5960-6600"
   google-scholar: "o7bF79sAAAAJ"
   researchgate: "Pau_Closas"
-  bitbucket: "pclosas"
+  bitbucket   : "pclosas"
 
 Luis Esteve:
   name        : "Luis Esteve"
@@ -104,4 +104,18 @@ Marc Majoral:
   linkedin    : "marc-majoral-11a0073"
   orcid       : "0000-0001-6161-6747"
   google-scholar: "wNMsAyEAAAAJ"
+  researchgate:
+
+Alvaro Cebrian:
+  name        : "&Aacute;lvaro Cebri&aacute;n Juan"
+  uri         : "http://www.cttc.es/people/acebrian/"
+  email       : "alvaro.cebrian@cttc.es"
+  bio         : "Research Assistant at CTTC"
+  avatar      : "/assets/images/acebrian.jpg"
+  twitter     :
+  github      : "acebrianjuan"
+  facebook    :
+  linkedin    :
+  orcid       :
+  google-scholar:
   researchgate:
