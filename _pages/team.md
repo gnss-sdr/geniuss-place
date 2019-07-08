@@ -41,12 +41,15 @@ redirect_from:
      <td id="authortable">
         {% assign pauthor = "Jordi Vila" %}
         {% include author-profile.html %}
-    </td>
+     </td>
      <td id="authortable">
         {% assign pauthor = "Alvaro Cebrian" %}
         {% include author-profile.html %}
      </td>
-
+     <td id="authortable">
+        {% assign pauthor = "Damian Miralles" %}
+        {% include author-profile.html %}
+     </td>
   </tr>
 </table>
 

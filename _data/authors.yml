@@ -119,3 +119,18 @@ Alvaro Cebrian:
   orcid       :
   google-scholar:
   researchgate:
+
+Damian Miralles:
+  name        : "Damian Miralles"
+  uri         :
+  email       : "/assets/images/dmiralles.jpg"
+  bio         : "PhD Candidate University of Colorado Boulder"
+  avatar      : "/assets/images/dmiralles.jpg"
+  twitter     :
+  github      : "dmiralles2009"
+  facebook    :
+  linkedin    : "damian-miralles-230764a0"
+  orcid       : "0000-0001-5820-9569"
+  google-scholar: "qyUglMkAAAAJ&hl"
+  researchgate: "Damian_Miralles"
+  location    : "Iowa, USA"
