@@ -97,7 +97,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
   * In [Development of a GNSS Sampler using the MAX2769 Universal GPS Receiver](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/ajithpeter.html), Ajith Peter worked on the design of a low-cost radiofrequency front-end for GNSS-SDR.
   * In [Expanding the receiver to Galileo E5a](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marc_sales.html), Marc Sales pioneered the development of blocks for the Galileo E5a receiver.
-  * In [Faster GNSS Signal Acquisition using the Sparse Fourier Transform](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/dmiralles2009.html), Damian Miralles explored the QuickSync algortihm for signal acquisition.
+  * In [Faster GNSS Signal Acquisition using the Sparse Fourier Transform](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/dmiralles2009.html), Damian Miralles explored the QuickSync algorithm for signal acquisition.
   * In [New blocks for BeiDou B1 in GNSS-SDR: toward a multi-constellation receiver](https://www.google-melange.com/archive/gsoc/2014/orgs/gnss_sdr/projects/marabra87.html), Mara Branzanti started working on the Beidou B1 receiver.
 
 [2013](https://www.google-melange.com/archive/gsoc/2013/orgs/gnss_sdr)
