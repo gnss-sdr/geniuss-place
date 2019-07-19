@@ -104,6 +104,7 @@ es: &DEFAULT_ES
   comment_error_msg          : "Ha ocurrido un error al enviar el comentario. Asegúrate de completar todos los campos obligatorios e inténtalo de nuevo."
   loading_label              : "Cargando..."
   search_placeholder_text    : "Términos de búsqueda..."
+  search_label_text          : "Términos de búsqueda..."
   results_found              : "resultado(s) encontrado(s)"
   back_to_top                : "Volver arriba"
 es-ES:
@@ -157,6 +158,7 @@ fr: &DEFAULT_FR
   comment_error_msg          : "Désolé, une erreur est survenue lors de la soumission. Vérifiez que les champs obligatoires ont été remplis et réessayez."
   loading_label              : "Chargement..."
   search_placeholder_text    : "Entrez votre recherche..."
+  search_label_text          : "Entrez votre recherche..."
   results_found              : "Résultat(s) trouvé(s)"
   back_to_top                : "Retour en haut"
 fr-FR:
