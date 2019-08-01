@@ -9,7 +9,7 @@ header:
     - label: "<i class='fas fa-download'></i> Install Now"
       url: "/build-and-install/"
   caption:
-excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.10](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.10)</small> <br /><br /> '
+excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.11](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.11)</small> <br /><br /> '
 feature_row:
   - image_path: /assets/images/fix.png
     alt: "Using the software-defined receiver"

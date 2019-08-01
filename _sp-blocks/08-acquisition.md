@@ -153,13 +153,13 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
+| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_1C_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
-| `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Acquisition`**.
@@ -360,17 +360,17 @@ This implementation accepts the following parameters:
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `cboc` | [`true`, `false`]: If set to `true` the algorithm uses the CBOC waveform , if set to `false` a simpler sinBOC waveform is used. It defaults to `false`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. Should be a multiple of 4 ms. It defaults to 4 ms. | Optional |
-| `acquire_pilot` | [`true`, `false`]: If set to `true`, sets the receiver to acquire the E1C pilot component. It defaults to `false` (that is, the receiver is set to acquire the E1B data component). <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `acquire_pilot` | [`true`, `false`]: If set to `true`, sets the receiver to acquire the E1C pilot component. It defaults to `false` (that is, the receiver is set to acquire the E1B data component). | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
+| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_1C_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
-| `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
   _Acquisition implementation:_ **`Galileo_E1_PCPS_Ambiguous_Acquisition`**.
@@ -447,7 +447,7 @@ Acquisition_1B.tong_max_dwells=20
 
 ### Implementation: `GLONASS_L1_CA_PCPS_Acquisition`
 
-This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -521,13 +521,13 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
-| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
+| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_1C_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
-| `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
   _Acquisition implementation:_ **`GPS_L2_M_PCPS_Acquisition`**.
@@ -549,7 +549,7 @@ Acquisition_2S.max_dwells=2
 ### Implementation: `GLONASS_L2_CA_PCPS_Acquisition`
 
 
-This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -597,7 +597,7 @@ Acquisition_2G.pfa=0.0001
 
 ### Implementation: `GPS_L5i_PCPS_Acquisition`
 
-This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -649,7 +649,7 @@ Acquisition_L5.max_dwells=2
 
 ### Implementation: `Galileo_E5a_Pcps_Acquisition`
 
-This implementation, is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
+This implementation accepts the following parameters:
 
 
 |----------
