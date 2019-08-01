@@ -129,8 +129,8 @@ This design pattern allows for an infinite number of algorithms and implementati
 
 * Adapter interface: [gnss-sdr/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h)
 * Adapter implementation: [gnss-sdr/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.cc)
-* Processing block interface: [gnss-sdr/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition_cc.h)
-* Processing block implementation: [gnss-sdr/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition_cc.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition_cc.cc)
+* Processing block interface: [gnss-sdr/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.h)
+* Processing block implementation: [gnss-sdr/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.cc)
 
 ### General class hierarchy for GNSS-SDR
 
