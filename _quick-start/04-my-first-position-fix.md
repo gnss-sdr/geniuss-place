@@ -124,7 +124,7 @@ Observables.implementation=Hybrid_Observables
 ;######### PVT CONFIG ############
 PVT.implementation=RTKLIB_PVT
 PVT.positioning_mode=Single
-PVT.output_rate_ms=10
+PVT.output_rate_ms=100
 PVT.display_rate_ms=500
 PVT.iono_model=Broadcast
 PVT.trop_model=Saastamoinen
