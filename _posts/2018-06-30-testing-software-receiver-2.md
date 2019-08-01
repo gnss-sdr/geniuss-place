@@ -224,7 +224,6 @@ The generation of some unit test cases are enabled by default, and gathered in t
 
 **Unit Test Cases for the control plane:**
 
- * `ControlMessageFactoryTest`: set of tests for [control_message_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_message_factory.h)
  * `ControlThreadTest`: set of tests for [control_thread.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_thread.h)
  * `FileConfigurationTest`: set of tests for [file_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/file_configuration.h)
  * `GNSSBlockFactoryTest`: set of tests for [gnss_block_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_block_factory.h)
