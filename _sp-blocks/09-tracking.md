@@ -302,6 +302,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L1_CA_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `extend_correlation_symbols` | Sets the number of correlation symbols to be extended after bit synchronization has been achieved. Each symbol is 1 ms, so setting this parameter to 20 means a coherent integration time of 20 ms. Each bit is 20 ms, so the value of this parameter must be a divisor of it (_e.g._, 2, 4, 5, 10, 20). The higher this parameter is, the better local clock stability will be required. It defaults to 1. | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 20 Hz. | Optional |
 | `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
