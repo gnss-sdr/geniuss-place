@@ -8,7 +8,7 @@ tags:
 author_profile: false
 sidebar:
   nav: "news"
-last_modified_at: 2019-07-26T12:54:02+02:00  
+last_modified_at: 2019-08-04T12:54:02+02:00  
 ---
 
 This release has several improvements in different dimensions, addition of new features and bug fixes:
@@ -16,7 +16,7 @@ This release has several improvements in different dimensions, addition of new f
 
 ## Improvements in [Accuracy]({{ "/design-forces/accuracy/" | relative_url }}):
 
- * Local clock correction based on PVT solution (error kept below 1 ms).
+ * Local clock correction based on PVT solution, allowing the delivery of continuous observables.
  * Fix a bug in broadcast ionospheric parameters usage.
 
 
@@ -35,7 +35,7 @@ This release has several improvements in different dimensions, addition of new f
  * Tracking loops now perform bit synchronization, simplifying the decoding process in Telemetry blocks and FPGA-offloading.
  * Improved preamble detection implementation in the decoding of navigation messages (acceleration by x1.6 on average per channel).
  * Shortened Acquisition to Tracking transition time.
- * Applied clang-tidy checks and fixes related to performance: performance-faster-string-find, performance-inefficient-algorithm, performance-move-const-arg, performance-type-promotion-in-math-fn, performance-unnecessary-value-param, readability-string-compare.
+ * Applied clang-tidy checks and fixes related to performance: performance-faster-string-find, performance-for-range-copy, performance-implicit-conversion-in-loop, performance-inefficient-algorithm, performance-inefficient-string-concatenation, performance-inefficient-vector-operation, performance-move-const-arg, performance-move-constructor-init, performance-noexcept-move-constructor, performance-type-promotion-in-math-fn, performance-unnecessary-copy-initialization, performance-unnecessary-value-param, readability-string-compare.
 
 
 ## Improvements in [Flexibility]({{ "/design-forces/flexibility/" | relative_url }}):
@@ -84,7 +84,7 @@ This release has several improvements in different dimensions, addition of new f
 ## Improvements in [Reliability]({{ "/design-forces/reliability/" | relative_url }}):
 
  * Included the Guidelines Support Library. General improvement of memory management, replacement of raw pointers by containers or smart pointers.
- * Applied clang-tidy checks and fixes related to High Integrity C++: performance-move-const-arg, modernize-use-auto, modernize-use-equals-default, modernize-use-equals-delete, modernize-use-noexcept, modernize-use-nullptr, cert-dcl21-cpp, misc-new-delete-overloads, cert-dcl58-cpp, cert-err52-cpp, cert-err60-cpp.
+ - Applied clang-tidy checks and fixes related to High Integrity C++: performance-move-const-arg, modernize-use-auto, modernize-use-equals-default, modernize-use-equals-delete, modernize-use-noexcept, modernize-use-nullptr, cert-dcl21-cpp, misc-new-delete-overloads, cert-dcl58-cpp, cert-err52-cpp, cert-err60-cpp, hicpp-exception-baseclass, hicpp-explicit-conversions.
  * Fixed a number of defects detected by Coverity Scan (version June 2019).
 
 
@@ -104,5 +104,5 @@ This release has several improvements in different dimensions, addition of new f
 
 As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.11) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
 
-<a href="http://doi.org/10.5281/zenodo.2279988" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.11 is [10.5281/zenodo.DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg](http://dx.doi.org/10.5281/zenodo.2279988).
+<a href="https://doi.org/10.5281/zenodo.3359989" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.11 is [10.5281/zenodo.3359989](https://doi.org/10.5281/zenodo.3359989).
 {: .notice--info}
