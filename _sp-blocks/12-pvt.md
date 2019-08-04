@@ -556,8 +556,8 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `RTKLIB_PVT` | Mandatory |
-| `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. It defaults to 500 ms. | Optional |
-| `display_rate_ms` |  Rate at which PVT solutions will be displayed in the terminal, in ms. It defaults to 500 ms. | Optional |
+| `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. The minimum is 20 ms, and the value must be a multiple of it. It defaults to 500 ms. | Optional |
+| `display_rate_ms` |  Rate at which PVT solutions will be displayed in the terminal, in ms. It must be multiple of `output_rate_ms`. It defaults to 500 ms. | Optional |
 | `positioning_mode` | [`Single`, `PPP_Static`, `PPP_Kinematic`] Set positioning mode. `Single`: Single point positioning.  `PPP_Static`: Precise Point Positioning with static mode. `PPP_Kinematic`: Precise Point Positioning for a moving receiver. It defaults to `Single`. | Optional |
 | `num_bands` | [`1`: L1 Single frequency, `2`: L1 and L2 Dual‐frequency, `3`: L1, L2 and L5 Triple‐frequency] This option is automatically configured according to the Channels configuration. This option can be useful to force some configuration (*e.g.*, single-band solution in a dual frequency receiver).  | Optional |
 | `elevation_mask` | Set the elevation mask angle, in degrees. It defaults to $$ 15^{o} $$.  | Optional |
