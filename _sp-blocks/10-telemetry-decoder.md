@@ -162,7 +162,7 @@ The ephemerides values are predicted from the Ground Control Centre for a 24 hou
 
 ### Implementation: `GLONASS_L1_CA_Telemetry_Decoder`
 
-This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -187,7 +187,7 @@ TelemetryDecoder_1G.dump=false
 
 ### Implementation: `GLONASS_L2_CA_Telemetry_Decoder`
 
-This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -279,7 +279,7 @@ GPS L5 civil navigation data $$ D_{\text{CNAV}} $$. The message structure is the
 _GPS L5 CNAV message structure. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
-This implementation, which is available starting from GNSS-SDR v0.0.10, accepts the following parameters:
+This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |

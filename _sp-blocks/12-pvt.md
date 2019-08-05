@@ -542,7 +542,7 @@ Read more about standard output formats at our [**Interoperability**]({{ "/desig
 
 # Implementation: `RTKLIB_PVT`
 
-This implementation, which is available starting from GNSS-SDR v0.0.10, makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
+This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -556,8 +556,8 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, makes us
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `RTKLIB_PVT` | Mandatory |
-| `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. It defaults to 500 ms. | Optional |
-| `display_rate_ms` |  Rate at which PVT solutions will be displayed in the terminal, in ms. It defaults to 500 ms. | Optional |
+| `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. The minimum is 20 ms, and the value must be a multiple of it. It defaults to 500 ms. | Optional |
+| `display_rate_ms` |  Rate at which PVT solutions will be displayed in the terminal, in ms. It must be multiple of `output_rate_ms`. It defaults to 500 ms. | Optional |
 | `positioning_mode` | [`Single`, `PPP_Static`, `PPP_Kinematic`] Set positioning mode. `Single`: Single point positioning.  `PPP_Static`: Precise Point Positioning with static mode. `PPP_Kinematic`: Precise Point Positioning for a moving receiver. It defaults to `Single`. | Optional |
 | `num_bands` | [`1`: L1 Single frequency, `2`: L1 and L2 Dual‐frequency, `3`: L1, L2 and L5 Triple‐frequency] This option is automatically configured according to the Channels configuration. This option can be useful to force some configuration (*e.g.*, single-band solution in a dual frequency receiver).  | Optional |
 | `elevation_mask` | Set the elevation mask angle, in degrees. It defaults to $$ 15^{o} $$.  | Optional |
@@ -585,7 +585,7 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, makes us
 | `xml_output_enabled` | [`true`, `false`]: If set to `false`, XML files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_output_enabled` | [`true`, `false`]: If set to `false`, RINEX files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
-| `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. It defaults to 1000 ms. | Optional |
+| `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. The minimum is 20 ms, and must be a mutiple of `output_rate_ms`. It defaults to 1000 ms. | Optional |
 | `nmea_output_file_enabled` | [`true`, `false`]: If set to `false`, NMEA sentences are not stored. It defaults to `true`. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
@@ -608,18 +608,18 @@ This implementation, which is available starting from GNSS-SDR v0.0.10, makes us
 | `xml_output_path` | Base path in which XML files will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
 | `nmea_output_file_path` | Base path in which NMEA messages will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
 | `rtcm_output_file_path` | Base path in which RTCM binary files will be stored. If the specified path does not exist, it will be created. It defaults to `output_path`. | Optional |
-| `kml_rate_ms` | Output rate of the KML annotations, in ms. It defaults to $$ 1000 $$ (that is, 1 second). <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
-| `gpx_rate_ms` | Output rate of the GPX annotations, in ms. It defaults to $$ 1000 $$ (that is, 1 second). <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
-| `geojson_rate_ms` | Output rate of the GeoJSON annotations, in ms. It defaults to $$ 1000 $$ (that is, 1 second). <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
-| `nmea_rate_ms` | Output rate of the NMEA messages, in ms. It defaults to $$ 1000 $$ (that is, 1 second). <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `kml_rate_ms` | Output rate of the KML annotations, in ms. It defaults to $$ 1000 $$ (that is, 1 second). | Optional |
+| `gpx_rate_ms` | Output rate of the GPX annotations, in ms. It defaults to $$ 1000 $$ (that is, 1 second). | Optional |
+| `geojson_rate_ms` | Output rate of the GeoJSON annotations, in ms. It defaults to $$ 1000 $$ (that is, 1 second). | Optional |
+| `nmea_rate_ms` | Output rate of the NMEA messages, in ms. It defaults to $$ 1000 $$ (that is, 1 second). | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./pvt.dat`. | Optional |
 | `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" file stored by this block into a ".mat" file directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so the ".mat" file is generated by default if `dump=true`. | Optional |
-| `enable_monitor` | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port is activated. This feature allows streaming the internal parameters and outputs of the PVT block to local or remote clients over UDP. The streamed data members (28 in total) are the same ones that are included in the binary dump. It defaults to `false`. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
-| `monitor_client_addresses` | Destination IP address(es) of the real-time monitoring port. To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1` (localhost). <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
-| `monitor_udp_port` | Destination UDP port number of the real-time monitoring port. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
-| `enable_protobuf` | [`true`, `false`]: If set to `true`, the serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). That is a deprecated behavior that can be abandoned in the future. It defaults to `true` (Protocol Buffers is used). <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
-| `show_local_time_zone` | [`true`, `false`]: If set to `true`, time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC. <span style="color: DarkOrange">This parameter is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.</span> | Optional |
+| `enable_monitor` | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port is activated. This feature allows streaming the internal parameters and outputs of the PVT block to local or remote clients over UDP. The streamed data members (28 in total) are the same ones that are included in the binary dump. It defaults to `false`. | Optional |
+| `monitor_client_addresses` | Destination IP address(es) of the real-time monitoring port. To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1` (localhost). | Optional |
+| `monitor_udp_port` | Destination UDP port number of the real-time monitoring port. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. | Optional |
+| `enable_protobuf` | [`true`, `false`]: If set to `true`, the serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). That is a deprecated behavior that can be abandoned in the future. It defaults to `true` (Protocol Buffers is used). | Optional |
+| `show_local_time_zone` | [`true`, `false`]: If set to `true`, time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC. | Optional |
 |----------
 
 {::comment}

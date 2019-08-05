@@ -283,7 +283,7 @@ where:
 
 $$ \begin{equation} y_f[n] = \left\{ \begin{array}{cl} y[n] & \text{if}\;\; E_s < T_h \\ 0 & \text{if}\;\; E_s > T_h  \end{array} \right. \end{equation} $$
 
-The implementation of this block, which is available starting from GNSS-SDR v0.0.10, provides the following interface:
+The implementation of this block provides the following interface:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -349,7 +349,7 @@ $$ \begin{equation} H_n(z) = \frac{ 1-z_0[n]z^{-1} }{ 1-k_a z_0[n]z^{-1} } , \en
 where $$ z_0[n] $$ is the complex zero of the filter and $$ k_a $$ is the pole contraction factor, ranging from $$ 0 $$ to $$ 1 $$. The pole contraction factor determines the bandwidth of the Notch filter, the closer to $$ 1 $$, the narrower the filter bandwidth.
 
 
-The implementation of this block, which is available starting from GNSS-SDR v0.0.10, provides the following interface:
+The implementation of this block provides the following interface:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -386,7 +386,7 @@ This is an implementation of a notch filter in which the user can choose the upd
 
 That update rate must be set according to the variation rate of the jammer frequency. Slow variations in the jammer frequency are well tracked by a slow updating rate, but this is not true for fast variations. In this implementation, the maximum updating rate available is one update per signal segment, this is to say, $$ \frac{f_s}{L} $$, where $$ f_s $$ is the sampling frequency and $$ L $$ is the number of samples per signal segment.
 
-The implementation of this block, which is available starting from GNSS-SDR v0.0.10, provides the following interface:
+The implementation of this block provides the following interface:
 
 
 |----------
