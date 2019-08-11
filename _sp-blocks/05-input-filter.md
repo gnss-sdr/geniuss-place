@@ -174,7 +174,7 @@ The basic principle of this block is to perform:
 Input signal $$ \rightarrow $$ Filtering $$ \rightarrow $$ $$ \downarrow N $$ $$ \rightarrow $$ $$\times \exp\{ - j2 \pi \frac{f_{IF}}{f_s} N \} $$ $$ \rightarrow $$ Output signal.
 
 
-This block is a wrapper of GNU Radio's  [freq_xlating_fir_filter_XXX_impl.cc.t](https://github.com/gnuradio/gnuradio/blob/master/gr-filter/lib/freq_xlating_fir_filter_XXX_impl.cc.t) block. It applies the baseband filter moved up to the intermediate frequency $$ f_{IF} $$, then it performs decimation by a factor $$ N $$ and a de-rotation with $$ \times \exp\{ -j 2 \pi \frac{f_{IF}}{f_s}N \} $$ to downshift the signal to baseband. Thus, the filter parameters apply to the signal _before_ decimation.
+This block is a wrapper of GNU Radio's  [freq_xlating_fir_filter_impl.h](https://github.com/gnuradio/gnuradio/blob/master/gr-filter/lib/freq_xlating_fir_filter_impl.h) block. It applies the baseband filter moved up to the intermediate frequency $$ f_{IF} $$, then it performs decimation by a factor $$ N $$ and a de-rotation with $$ \times \exp\{ -j 2 \pi \frac{f_{IF}}{f_s}N \} $$ to downshift the signal to baseband. Thus, the filter parameters apply to the signal _before_ decimation.
 
 The block is ideally suited for a "channel selection filter" and can be efficiently
 used to select and decimate a narrow band signal out of wide bandwidth input.
