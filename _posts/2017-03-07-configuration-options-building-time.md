@@ -11,17 +11,17 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-02-21T09:17:02+02:00
+last_modified_at: 2019-08-12T09:17:02+02:00
 ---
 
 
-GNSS-SDR's building system is based on [CMake](https://cmake.org/), a cross-platform, free and open-source software for managing the build process of software using a compiler-independent method. CMake supports directory hierarchies and applications that depend on multiple libraries.  It can locate executables, files, and libraries to be linked against, generating [makefiles](https://en.wikipedia.org/wiki/Makefile) for many platforms and IDEs (such as [Eclipse](https://www.eclipse.org), [Codeblocks](http://www.codeblocks.org/) and [Xcode](https://developer.apple.com/xcode/)), and liberating users from choosing the adequate flags for their compiler. CMake is used in conjunction with native build environments such as [make](https://en.wikipedia.org/wiki/Make_(software)) or Apple's [Xcode](https://en.wikipedia.org/wiki/Xcode).
+GNSS-SDR's building process is managed by [CMake](https://cmake.org/), a cross-platform, compiler-independent, free and open-source software tool. CMake supports directory hierarchies and applications that depend on multiple libraries. It can locate executables, files, and libraries to be linked against, generating [makefiles](https://en.wikipedia.org/wiki/Makefile) for many platforms and IDEs (such as [Eclipse](https://www.eclipse.org), [Codeblocks](http://www.codeblocks.org/) and [Xcode](https://developer.apple.com/xcode/)), and liberating users from choosing the adequate flags for their compiler. CMake is used in conjunction with native build systems such as [make](https://en.wikipedia.org/wiki/Make_(software)), [ninja](https://ninja-build.org/) or Apple's [Xcode](https://en.wikipedia.org/wiki/Xcode).
 
 
 CMake allows GNSS-SDR to be effortlessly built in a wide range of operating systems and processor architectures, constituting a key tool for its [**portability**]({{ "/design-forces/portability/" | relative_url }}).
 {: .notice--info}
 
-CMake can handle in-place and out-of-place builds, enabling several builds from the same source tree, and [cross-compilation](https://en.wikipedia.org/wiki/Cross_compiler). The ability to build a directory tree outside the source tree is a key feature, ensuring that if a build directory is removed, the source files remain unaffected. This approach is highly recommended when building GNSS-SDR, and you will get a warning message if you try an in-place build.
+CMake can handle in-place and out-of-place builds, enabling several builds from the same source tree, and [cross-compilation](https://en.wikipedia.org/wiki/Cross_compiler). The ability to build a directory tree outside the source tree is a key feature, ensuring that if a build directory is removed, the source files remain unaffected. This approach is mandatory when building GNSS-SDR, and you will get an error message if you try an in-place build.
 
 
 The ```cmake``` executable is the CMake command-line interface. When ```cmake``` is first run in an empty build tree, it creates a ```CMakeCache.txt``` file and populates it with customizable settings for the project.
@@ -145,6 +145,7 @@ Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb pa
 | &#x2011;DENABLE_GENERIC_ARCH | ON / OFF |  OFF |  If set to ON, it builds portable binaries which are non-dependent of the SIMD technologies present in the building machine. |
 | &#x2011;DENABLE_PACKAGING | ON / OFF | OFF  |  If set to ON, it enables software packaging flags (for instance, it removes inessential information from executable binary programs and object files, thus potentially resulting in better performance and sometimes significantly less disk space usage) and sets automatically the variable ENABLE_GENERIC_ARCH to ON. |
 | &#x2011;DENABLE_OWN_ARMADILLO | ON / OFF |  OFF |  If set to ON, it forces to download, build and link a working version of [Armadillo](http://arma.sourceforge.net/) locally, even if it is already installed. |
+| &#x2011;DENABLE_ARMA_NO_DEBUG | ON / OFF |  OFF |  If set to ON, it defines the macro ARMA_NO_DEBUG, which disables all run-time checks, such as bounds checking, in the [Armadillo](http://arma.sourceforge.net/) library. This will result in a faster executable. This option is set automatically to ON if ENABLE_PACKAGING is ON. <span style="color: DarkOrange">This option is only available in the `next` branch of the repository, so it is **not** present in the current stable release. In v0.0.11, that macro was set if the build was in Release mode.</span> |
 | &#x2011;DENABLE_OWN_GLOG | ON / OFF |  OFF | If set to ON, it forces to download, build and link a working version of [glog](https://github.com/google/glog) locally, even if it is already installed. If [GFlags](https://github.com/gflags/gflags) is not found, it will also download, build and link it.  |
 | &#x2011;DENABLE_LOG | ON / OFF |  ON |  If set to OFF, it disables runtime logging with [glog](https://github.com/google/glog). This can be useful in storage-limited systems. GNSS-SDR will still produce outputs such as RINEX or KML files. |
 |----------
@@ -190,16 +191,16 @@ Some statistical profiling tools require the software under analysis to be compi
 |  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|
 |--------------
-| &#x2011;DENABLE_CLANG_TIDY | ON / OFF | OFF | If set to ON, clang-tidy is executed along compilation, performing the checks defined in the [.clang-tidy](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-tidy) file and applying fixes into the source code, when available. After compilation completion, please check your source tree with `git status` and `git diff` to review the applied changes and, if you agree, add and commit them. <span style="color: DarkOrange">WARNING: This option is only available in the `next` branch.</span>
+| &#x2011;DENABLE_CLANG_TIDY | ON / OFF | OFF | If set to ON, clang-tidy is executed along compilation, performing the checks defined in the [.clang-tidy](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-tidy) file and applying fixes into the source code, when available. After compilation completion, please check your source tree with `git status` and `git diff` to review the applied changes and, if you agree, add and commit them.
 |----------
 
 Please note that you can also use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform checks over all files in the compilation database:
 
 ```bash
-$ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
+$ run-clang-tidy -checks='-*,modernize-use-nullptr' -fix
 ```
 
-You can examine the full [list of clang-tidy checks](https://clang.llvm.org/extra/clang-tidy/checks/list.html) and their definition.
+You can examine the full [list of clang-tidy checks](https://clang.llvm.org/extra/clang-tidy/checks/list.html) and their definitions.
 
 In Debian and Ubuntu machines, clang-tidy can be installed with:
 
