@@ -174,7 +174,7 @@ The basic principle of this block is to perform:
 Input signal $$ \rightarrow $$ Filtering $$ \rightarrow $$ $$ \downarrow N $$ $$ \rightarrow $$ $$\times \exp\{ - j2 \pi \frac{f_{IF}}{f_s} N \} $$ $$ \rightarrow $$ Output signal.
 
 
-This block is a wrapper of GNU Radio's  [freq_xlating_fir_filter_XXX_impl.cc.t](https://github.com/gnuradio/gnuradio/blob/master/gr-filter/lib/freq_xlating_fir_filter_XXX_impl.cc.t) block. It applies the baseband filter moved up to the intermediate frequency $$ f_{IF} $$, then it performs decimation by a factor $$ N $$ and a de-rotation with $$ \times \exp\{ -j 2 \pi \frac{f_{IF}}{f_s}N \} $$ to downshift the signal to baseband. Thus, the filter parameters apply to the signal _before_ decimation.
+This block is a wrapper of GNU Radio's  [freq_xlating_fir_filter_impl.h](https://github.com/gnuradio/gnuradio/blob/master/gr-filter/lib/freq_xlating_fir_filter_impl.h) block. It applies the baseband filter moved up to the intermediate frequency $$ f_{IF} $$, then it performs decimation by a factor $$ N $$ and a de-rotation with $$ \times \exp\{ -j 2 \pi \frac{f_{IF}}{f_s}N \} $$ to downshift the signal to baseband. Thus, the filter parameters apply to the signal _before_ decimation.
 
 The block is ideally suited for a "channel selection filter" and can be efficiently
 used to select and decimate a narrow band signal out of wide bandwidth input.
@@ -283,7 +283,7 @@ where:
 
 $$ \begin{equation} y_f[n] = \left\{ \begin{array}{cl} y[n] & \text{if}\;\; E_s < T_h \\ 0 & \text{if}\;\; E_s > T_h  \end{array} \right. \end{equation} $$
 
-The implementation of this block, which is available starting from GNSS-SDR v0.0.10, provides the following interface:
+The implementation of this block provides the following interface:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -349,7 +349,7 @@ $$ \begin{equation} H_n(z) = \frac{ 1-z_0[n]z^{-1} }{ 1-k_a z_0[n]z^{-1} } , \en
 where $$ z_0[n] $$ is the complex zero of the filter and $$ k_a $$ is the pole contraction factor, ranging from $$ 0 $$ to $$ 1 $$. The pole contraction factor determines the bandwidth of the Notch filter, the closer to $$ 1 $$, the narrower the filter bandwidth.
 
 
-The implementation of this block, which is available starting from GNSS-SDR v0.0.10, provides the following interface:
+The implementation of this block provides the following interface:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -386,7 +386,7 @@ This is an implementation of a notch filter in which the user can choose the upd
 
 That update rate must be set according to the variation rate of the jammer frequency. Slow variations in the jammer frequency are well tracked by a slow updating rate, but this is not true for fast variations. In this implementation, the maximum updating rate available is one update per signal segment, this is to say, $$ \frac{f_s}{L} $$, where $$ f_s $$ is the sampling frequency and $$ L $$ is the number of samples per signal segment.
 
-The implementation of this block, which is available starting from GNSS-SDR v0.0.10, provides the following interface:
+The implementation of this block provides the following interface:
 
 
 |----------

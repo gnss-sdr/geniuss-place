@@ -538,7 +538,7 @@ This implementation accepts the following parameters:
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only  <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. | Optional |
 | `osmosdr_args` | Pass arguments to the OsmoSDR driver.  | Optional |
-| `antenna` | [`NONE`, `LNAL`, `LNAH`, `LNAW`]: Select the LimeSDR RX antenna. `LNAW` is recommended for GNSS applications. It defaults to _empty_. <span style="color: DarkOrange">Available starting from GNSS-SDR v0.0.10</span> | Optional |
+| `antenna` | [`NONE`, `LNAL`, `LNAH`, `LNAW`]: Select the LimeSDR RX antenna. `LNAW` is recommended for GNSS applications. It defaults to _empty_. | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
 | `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------

@@ -191,7 +191,7 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 Noordwijk, Netherlands, Dec. 2018, pp. 1-9.
     <br />
     <a href="javascript:toggleBibtex('Fernandez18b')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8642697" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/110.1109/NAVITEC.2018.8642697" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8642697" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/NAVITEC.2018.8642697" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez18b" class="bibtex noshow">
     <pre>@inproceedings{ Fernandez18b,

@@ -224,7 +224,6 @@ The generation of some unit test cases are enabled by default, and gathered in t
 
 **Unit Test Cases for the control plane:**
 
- * `ControlMessageFactoryTest`: set of tests for [control_message_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_message_factory.h)
  * `ControlThreadTest`: set of tests for [control_thread.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/control_thread.h)
  * `FileConfigurationTest`: set of tests for [file_configuration.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/file_configuration.h)
  * `GNSSBlockFactoryTest`: set of tests for [gnss_block_factory.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/receiver/gnss_block_factory.h)
@@ -311,7 +310,7 @@ $ make
 This option will download, build and link (at building time) the following tools and files:
 
  * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim) and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator), which includes some sample RINEX and trajectory (.csv) files used by optional tests.
- * The [GPSTk project](http://www.gpstk.org), an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](http://sgl.arlut.utexas.edu), within the [Applied Research Laboratories](http://www.arlut.utexas.edu) at the [University of Texas at Austin](https://www.utexas.edu) (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk).
+ * The [GPSTk project](http://www.gpstk.org), an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](https://wwwext.arlut.utexas.edu/sgl.html), within the [Applied Research Laboratories](https://www.arlut.utexas.edu/) at the [University of Texas at Austin](https://www.utexas.edu) (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk).
  * It downloads `gps_l2c_m_prn7_5msps.dat` and `Glonass_L1_CA_SIM_Fs_62Msps_4ms.dat`, files containing raw GNSS signal samples that are used by some tests as input data.
 
 

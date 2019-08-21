@@ -52,6 +52,10 @@
     }
   }
 
+  &__form {
+      background-color: transparent;
+  }
+
   .search-input {
     display: block;
     margin-bottom: 0;
@@ -119,6 +123,7 @@
   font-style: normal;
   text-decoration: underline;
 }
+
 .archive__item-excerpt .ais-Highlight {
   color: $success-color;
   font-style: normal;
