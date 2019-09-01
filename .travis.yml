@@ -6,7 +6,7 @@ addons:
 cache: bundler
 script:
 #  - bundle exec jekyll algolia  # This pushes a new index to Algolia
-  - bundle exec jekyll build --strict_front_matter --safe # This builds the site
+  - bundle exec jekyll build --safe # This builds the site
 branches:
   only:
     - gh-pages
