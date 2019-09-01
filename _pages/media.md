@@ -4,9 +4,11 @@ title: "Media"
 author_profile: false
 comments: false
 excerpt: "Appearances of GNSS-SDR in general media"
+header:
+  teaser: /assets/images/media.png
 sidebar:
     nav: "about"
-last_modified_at: 2016-06-21T16:39:37-04:00
+last_modified_at: 2019-09-01T10:39:37+02:00
 ---
 
 ## Youtube

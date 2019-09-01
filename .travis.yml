@@ -1,12 +1,12 @@
 # .travis.yml
-# This script pushes a new index to Algolia
 language: ruby
 addons:
   apt:
     update: true
 cache: bundler
 script:
-  - bundle exec jekyll algolia
+#  - bundle exec jekyll algolia  # This pushes a new index to Algolia
+  - bundle exec jekyll build --strict_front_matter --safe # This builds the site
 branches:
   only:
     - gh-pages
