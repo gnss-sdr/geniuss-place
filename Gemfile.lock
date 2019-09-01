@@ -272,14 +272,13 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  jekyll (~> 3.6)
+  jekyll (>= 3.6, < 5.0)
   jekyll-algolia
   jekyll-feed
   jekyll-gist
   jekyll-include-cache
   jekyll-paginate
   jekyll-sitemap
-  jemoji
   nokogiri (>= 1.10.4)
   tzinfo-data
 
