@@ -135,6 +135,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 
@@ -345,6 +346,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 
@@ -503,6 +505,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 
@@ -604,6 +607,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 
@@ -657,6 +661,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 

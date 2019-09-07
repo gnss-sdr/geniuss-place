@@ -29,6 +29,7 @@ In the current design, all the processing [Channels]({{ "docs/sp-blocks/channels
 |:-:|:--|:-:|
 |--------------
 | `internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `internal_fs_sps`. All the required setup is configured automatically. This feature is not implemented in all the Acquisition blocks, please check the [Acquisition documentation]({{ "docs/sp-blocks/acquisition/" | relative_url }}). This parameter defaults to `false`. | Optional |
 |--------------
 
 _Global GNSS-SDR parameter: channel's input sampling rate_.
@@ -275,4 +276,21 @@ GNSS-SDR.SUPL_MCC=244
 GNSS-SDR.SUPL_MNC=5
 GNSS-SDR.SUPL_LAC=0x59e2
 GNSS-SDR.SUPL_CI=0x31b0
+```
+
+### Self-assistance in dual-frequency receivers
+
+In case the receiver is configured to work with signals from different frequency bands from the same satellite (for instance, GPS L1 and GPS L5, Galileo E1 and E5a, etc.), it is possible to make use of the acquisition parameters obtained in the primary band to accelerate acquisition in the secondary band. This generally reduces the computational load and the acquisition-to-tracking latency.
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `assist_dual_frequency_acq` | [`true`, `false`]: If set to `true`, it enables the assistance to acquisition from primary to secondary bands in dual-frequency configurations. It defaults to `false`. | Optional |
+|-------
+
+Example:
+
+```ini
+GNSS-SDR.assist_dual_frequency_acq=true
 ```
