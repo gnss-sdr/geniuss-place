@@ -1073,18 +1073,11 @@ $ sudo port install clang
 
 **Step 2.- Apply clang-tidy**
 
-This tool integrates nicely with CMake >= 3.6. In GNSS-SDR, all you need to do is to enable its usage with the option:
-
-```bash
-$ cmake -DENABLE_CLANG_TIDY=ON ..
-```
-
-when configuring the build. This option will execute clang-tidy along with the clang compiler at building time. If clang is not your default compiler, tell CMake to use it:
+This tool integrates nicely with CMake >= 3.6. In GNSS-SDR, all you need to do is to tell CMake to use clang:
 
 ```bash
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
-        -DCMAKE_C_COMPILER=/usr/bin/clang \
-        -DENABLE_CLANG_TIDY=ON ..
+        -DCMAKE_C_COMPILER=/usr/bin/clang ..
 ```
 
 (pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in you machine). This will provide you with extra warnings, and some checks will even fix errors for you. After compilation, check your source tree with `git status` and, in case of changes, inspect them with `git diff`. If you accept the changes, please `git add` and `git commit` them.
@@ -1098,14 +1091,13 @@ $ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
 You can read more about the usage of this tool at the [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/).
 
 {% capture use-clang-tidy %}
-Please do:
+If you have clang >= 8.0 installed, please do:
 ```bash
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
-        -DCMAKE_C_COMPILER=/usr/bin/clang \
-        -DENABLE_CLANG_TIDY=ON ..
+        -DCMAKE_C_COMPILER=/usr/bin/clang ..
 $ run-clang-tidy -fix
 ```
-and check if there are warnings and/or fixes related to your code (type `git status`). If you agree with the changes, commit them in order to be included in your pull request. Please note that the script `run-clang-tidy` is called `run-clang-tidy.py` in some distributions, or could be in a folder not included in your `$PATH` (so you will need to call it with its absolute path).
+and check if there are warnings and/or fixes related to your code (type `git status`). If you agree with the changes, commit them in order to be included in your pull request. Please note that the default checks lead to wrong fixes when using clang <= 7.0, so this tool should not be used with versions older than clang 8.0.
 {% endcapture %}
 
 <div class="notice--danger">
