@@ -1080,9 +1080,13 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
 ```
 
-(pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in you machine). This will provide you with extra warnings, and some checks will even fix errors for you. After compilation, check your source tree with `git status` and, in case of changes, inspect them with `git diff`. If you accept the changes, please `git add` and `git commit` them.
+(pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in you machine). This will create a file named `compile_commands.json` in your build folder containing the exact compiler calls for all translation units of the project in machine-readable form. After that, you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform the project default checks over all files in the compilation database:
 
-Please note that you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform checks over all files in the compilation database:
+```bash
+$ run-clang-tidy -fix
+```
+
+or you can apply specific checks by doing:
 
 ```bash
 $ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
