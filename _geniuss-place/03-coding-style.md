@@ -1103,9 +1103,9 @@ Please do:
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang \
         -DENABLE_CLANG_TIDY=ON ..
-$ run-clang-tidy.py -fix
+$ run-clang-tidy -fix
 ```
-and check if there are warnings and/or fixes related to your code (type `git status`). If you agree with the changes, commit them in order to be included in your pull request. Please note that the script `run-clang-tidy.py` is called `run-clang-tidy` in some distributions, or could be in a folder not included in your `$PATH` (so you will need to call it with its absolute path).
+and check if there are warnings and/or fixes related to your code (type `git status`). If you agree with the changes, commit them in order to be included in your pull request. Please note that the script `run-clang-tidy` is called `run-clang-tidy.py` in some distributions, or could be in a folder not included in your `$PATH` (so you will need to call it with its absolute path).
 {% endcapture %}
 
 <div class="notice--danger">
