@@ -1097,8 +1097,21 @@ $ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
 
 You can read more about the usage of this tool at the [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/).
 
-**Please apply clang-tidy to your changes before any pull request.**
-{: .notice--danger}
+{% capture use-clang-tidy %}
+Please do:
+```bash
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+        -DCMAKE_C_COMPILER=/usr/bin/clang \
+        -DENABLE_CLANG_TIDY=ON ..
+$ run-clang-tidy.py -fix
+```
+and check if there are warnings and/or fixes related to your code (type `git status`). If you agree with the changes, commit them in order to be included in your pull request. Please note that the script `run-clang-tidy.py` is called `run-clang-tidy` in some distributions, or could be in a folder not included in your `$PATH` (so you will need to call it with its absolute path).
+{% endcapture %}
+
+<div class="notice--danger">
+  <h4>Please apply clang-tidy to your changes before any pull request</h4>
+  {{ use-clang-tidy | markdownify }}
+</div>
 
 {% capture notice-tidy %}
 An automated code linter helps to improve [**Efficiency**]({{ "/design-forces/efficiency/" | relative_url }}), [**Reliability**]({{ "/design-forces/reliability/" | relative_url }}) and [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
