@@ -1095,13 +1095,13 @@ $ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
 You can read more about the usage of this tool at the [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/).
 
 {% capture use-clang-tidy %}
-If you have clang >= 8.0 installed, please do:
+With clang and clang-tidy already installed, please do:
 ```bash
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
 $ run-clang-tidy -fix
 ```
-and check if there are warnings and/or fixes related to your code (type `git status`). If you agree with the changes, commit them in order to be included in your pull request. Please note that the default checks lead to wrong fixes when using clang <= 7.0, so this tool should not be used with versions older than clang 8.0.
+and check if there are warnings and/or fixes related to your code (type `git status`). If you agree with the changes, commit them in order to be included in your pull request.
 {% endcapture %}
 
 <div class="notice--danger">
