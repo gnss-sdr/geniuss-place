@@ -278,7 +278,7 @@ GNSS-SDR.SUPL_LAC=0x59e2
 GNSS-SDR.SUPL_CI=0x31b0
 ```
 
-### Self-assistance in dual-frequency receivers
+## Self-assistance in dual-frequency receivers
 
 In case the receiver is configured to work with signals from different frequency bands from the same satellite (for instance, GPS L1 and GPS L5, Galileo E1 and E5a, etc.), it is possible to make use of the acquisition parameters obtained in the primary band to accelerate acquisition in the secondary band. This generally reduces the computational load and the acquisition-to-tracking latency.
 
@@ -293,4 +293,25 @@ Example:
 
 ```ini
 GNSS-SDR.assist_dual_frequency_acq=true
+```
+
+
+## Processing old data files
+
+If you are processing raw data files containing GNSS signals dated before year 2009, you will need to specify the signals' year in this parameter in order to get the right date and time, due to the GPS week rollover.
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `custom_year` | If you are processing raw data files containing GNSS signals dated before year 2009, specify the signals' year in this parameter in order to get the right date and time. Otherwise, leave it undefined or set it to 0.  <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+|-------
+
+Example:
+
+
+
+```ini
+GNSS-SDR.custom_year=2008
 ```
