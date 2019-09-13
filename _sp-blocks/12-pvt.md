@@ -549,6 +549,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.SUPL_gps_ephemeris_xml` |  Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml` | Optional |
+| `GNSS-SDR.custom_year` | If you are processing raw data files containing GNSS signals dated before year 2009, specify the signals' year in this parameter in order to get the right date and time. Otherwise, leave it undefined or set it to 0.  <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 |--------------
 
 |----------
@@ -564,7 +565,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `dynamics_model` | [`0`: Off, `1`: On] Set the dynamics model of the receiver. If set to $$ 1 $$ and `PVT.positioning_mode=PPP_Kinematic`, the receiver position is predicted with the estimated velocity and acceleration. It defaults to $$ 0 $$ (no dynamics model).  | Optional |
 | `iono_model` |  [`OFF`, `Broadcast`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS or L1‐L5 for Galileo) measurements is used for ionospheric correction. It defaults to `OFF` (no ionospheric correction) | Optional |
 | `trop_model` | [`OFF`, `Saastamoinen`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
-| `enable_rx_clock_correction` | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is not used in the computation of Observables. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch, and will be included in the next stable release.</span> | Optional |
+| `enable_rx_clock_correction` | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is not used in the computation of Observables. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `code_phase_error_ratio_l1` | Code/phase error ratio $$ R_r $$ for the L1 band. It defaults to $$ 100 $$. | Optional |
 | `carrier_phase_error_factor_a` | Carrier phase error factor $$ a_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
 | `carrier_phase_error_factor_b` | Carrier phase error factor $$ b_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
