@@ -313,5 +313,5 @@ Example:
 
 
 ```ini
-GNSS-SDR.cpre_2009_file=true
+GNSS-SDR.pre_2009_file=true
 ```
