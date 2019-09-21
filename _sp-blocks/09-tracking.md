@@ -85,17 +85,17 @@ $$ \begin{equation}
 C/N_0 = \frac{SNR}{T_{int}}
 \end{equation} $$
 
-The SNR estimation can be computed as:
+The SNR estimation for complex signals can be computed as[^Pauluzzi00]:
 
 $$ \begin{equation}
-\widehat{SNR}=\frac{\hat{C}}{\hat{N}}=\frac{\hat{C}}{\hat{C}+\hat{N}-\hat{C}},
+\widehat{SNR}=\frac{\hat{C}}{\hat{N}}=\frac{\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }}{\hat{\mathcal{M}}_2-\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }},
 \end{equation} $$
 
-where:
- * $$ \displaystyle \hat{C} = \left(\frac{1}{M}\sum^{M-1}_{m=0}\|P_I[m])\|\right)^2 $$ is the estimation of the signal power,
- * $$ \displaystyle \hat{C}+\hat{N}=\frac{1}{M}\sum^{M-1}_{m=0}\|P(m)\|^2 $$ is the estimation of the total power,
- * $$ \|\cdot\| $$ is the absolute value (also known as norm, modulus, or magnitude),
- * $$ P[m] $$ is the prompt correlator output for the integration period $$ m $$.
+which is known as the Second- and Fourth-Order Moments Estimator, where:
+ * $$ \displaystyle \hat{\mathcal{M}}_2 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P[m] \vert^2 $$ is the estimation of the second moment of $$ P[m] $$,
+ * $$ \displaystyle \hat{\mathcal{M}}_4 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P[m] \vert^4 $$ is the estimation of the fourth moment of $$ P[m] $$,
+ * $$ \vert \cdot \vert $$ is the absolute value (also known as norm, modulus, or magnitude),
+ * $$ P[m] $$ is the Prompt correlator output (complex value) for the integration period $$ m $$.
 
 Then, the estimated $$ C/N_0 $$ value in dB-Hz can be written as:
 
@@ -105,7 +105,7 @@ $$ \begin{equation}
 
 The $$ C/N_0 $$ value provides an indication of the signal quality that is independent of the acquisition and tracking algorithms used by a receiver, and it remains constant through the different processing stages of the receiver.
 
-The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$ (but except for ). This value can be changed by using the command line flag  `-cn0_samples` when running the executable:
+The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$. This value can be overriden by using the command line flag  `-cn0_samples` when running the executable:
 
 ```bash
 $ gnss-sdr -cn0_samples=100 -c=./configuration_file.conf
@@ -499,8 +499,7 @@ in step $$ 5 $$ was implemented using the [VOLK_GNSSSDR](https://github.com/gnss
 PLL discriminator implemented in step $$ 6 $$  is the extended
 arctangent (four-quadrant) discriminator, and for the DLL we used the
 normalized Very Early Minus Late Power discriminator (step $$ 10 $$ ). The low-pass filters of the DLL, PLL and FLL (when available, see implementations below) are based in the description by Kaplan and Hegarty[^Kaplan17], section 8.8.  For code lock detection
-(step $$ 13 $$ ), we used the Squared Signal-to-Noise Variance
-(SNV) estimator[^Petovello10]. In the case of carrier lock
+(step $$ 13 $$ ), we used the Second- and Fourth-Order Moments Estimator[^Pauluzzi00]. In the case of carrier lock
 detection (step $$ 14 $$ ), we used the normalized estimate of
 the cosine of twice the carrier phase[^Dierendonck]. The values of the
 lock indicator range from $$ -1 $$, when the locally generated carrier is
@@ -571,12 +570,12 @@ $$ N_{k+1}=\text{round}(S) $$ and $$ \psi_{k+1}=S-N_{k+1} $$, where
 $$ S = \frac{T_{int}f_{\text{IN} } }{\left( 1 + \frac{\hat{f}_{D_{k} } }{f^{\text{(Gal E1) } }_c} \right)} +\psi_{k} + h_{DLL}(\hat{\Delta \tau}_k)f_{\text{IN} }  $$.
 
 13. Code lock indicator:
-$$ \hat{ \text{CN0} } = 10 \cdot \log_{10} ( \hat{\rho}) + 10 \cdot \log_{10}(\frac{ f_{ \text{IN} } }{2} )-10 \cdot \log_{10} (L_{ \text{PRN} }) $$,
+$$ \hat{ \text{CN0} } = 10 \cdot \log_{10} ( \hat{\rho}) + 10 \cdot \log_{10}(T_{int}) $$,
 where:
-$$ \hat{\rho}=\frac{ \hat{P}_s }{ \hat{P}_n } = \frac{\hat{P}_s}{\hat{P}_{tot}-\hat{P}_s} $$,
-$$ \hat{P}_s = \left(\frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{I_{k-i}} |\right)^2 $$,
+$$ \hat{\rho}= \frac{\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }}{\hat{\mathcal{M}}_2-\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }} $$,
+$$ \hat{\mathcal{M}}_2 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P(m) \vert^2 $$,
 and
-$$ \hat{P}_{tot} = \frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{k-i}|^2 $$.
+$$ \hat{\mathcal{M}}_4 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P(m) \vert^4 $$.
 
 14. Phase lock indicator:
 $$ T_{carrier} = \frac{ \left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$.
@@ -1120,7 +1119,7 @@ Tracking_5X.early_late_space_chips=0.5
 
 [^Proakis]: J. G. Proakis, _Digital Communications_, 5th Ed., McGraw-Hill, 2008.
 
-[^Petovello10]: M. Petovello, E. Falletti, M. Pini, L. Lo Presti, [Are Carrier-to-Noise algorithms equivalent in all situations?](http://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf). Inside GNSS, Vol. 5, no. 1, pp. 20-27, Jan.-Feb. 2010.
+[^Pauluzzi00]: D. R. Pauluzzi, N. C. Beaulieu, [A comparison of SNR estimation techniques for the AWGN channel](https://ieeexplore.ieee.org/document/871393), IEEE Transactions on Communications, vol. 48, no. 10, pp. 1681–1691, Oct. 2000.
 
 [^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from _Global Positioning System: Theory and Applications_, Volume I, Edited by B. W. Parkinson and J. J. Spilker Jr. American Institute of Aeronautics and Astronautics, 1996.
 
