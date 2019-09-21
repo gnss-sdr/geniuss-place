@@ -298,14 +298,14 @@ GNSS-SDR.assist_dual_frequency_acq=true
 
 ## Processing old data files
 
-If you are processing raw data files containing GNSS signals dated before year 2009, you will need to specify the signals' year in this parameter in order to get the right date and time, due to the GPS week rollover.
+If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time, with the corresponding adjustment to the week rollower.
 
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|
 |--------------
-| `custom_year` | If you are processing raw data files containing GNSS signals dated before year 2009, specify the signals' year in this parameter in order to get the right date and time. Otherwise, leave it undefined or set it to 0.  <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 |-------
 
 Example:
@@ -313,5 +313,5 @@ Example:
 
 
 ```ini
-GNSS-SDR.custom_year=2008
+GNSS-SDR.pre_2009_file=true
 ```

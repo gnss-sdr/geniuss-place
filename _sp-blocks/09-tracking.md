@@ -818,7 +818,7 @@ This implementation accepts the following parameters:
 | `pll_bw_hz` | Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `dll_bw_hz` | Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
@@ -991,7 +991,7 @@ This implementation accepts the following parameters:
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
 | `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
@@ -1078,7 +1078,7 @@ This implementation accepts the following parameters:
 | `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
 | `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
