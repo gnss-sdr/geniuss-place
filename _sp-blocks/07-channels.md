@@ -10,25 +10,25 @@ last_modified_at: 2019-01-28T12:54:02+02:00
 ---
 
 
-Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/acquisition/" | relative_url }}), [tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}) and [demodulation of the navigation message]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) for a single satellite. These abstract interfaces can be populated with different algorithms addressing any suitable GNSS signal. The user can define the number of parallel channels to be instantiated by the software receiver, and the thread-per-block scheduler imposed by GNU Radio automatically manages the multitasking capabilities of modern multi-core processors. This is done through the configuration file with the ```Channels_XX.count``` parameter, where ```XX``` is one of the following signal identifiers:
+Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/acquisition/" | relative_url }}), [tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}) and [demodulation of the navigation message]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) for a single satellite. These abstract interfaces can be populated with different algorithms addressing any suitable GNSS signal. The user can define the number of parallel channels to be instantiated by the software receiver, and the thread-per-block scheduler imposed by GNU Radio automatically manages the multitasking capabilities of modern multi-core processors. This is done through the configuration file with the `Channels_XX.count` parameter, where `XX` is one of the following signal identifiers:
 
 |----------
 |  **Identifier**  |  **Signal** | **Center Frequency** |
 |:-:|:-:|:-:|   
 |--------------
-|  ```1G```      | Glonass L1 C/A | $$ 1602.00 $$ MHz |
-|  ```1C```      | GPS L1 C/A | $$ 1575.42 $$ MHz |
-|  ```1B```      | Galileo E1 B/C | $$ 1575.42 $$ MHz |
-|  ```B1```      | Beidou B1I | $$ 1561.098 $$ MHz |
-|  ```B3```      | Beidou B3I | $$ 1268.520 $$ MHz |
-|  ```2G```      | Glonass L2 C/A | $$ 1246.00 $$ MHz |
-|  ```2S```      | GPS L2 L2CM | $$ 1227.60 $$ MHz |
-|  ```5X```      | Galileo E5a | $$ 1176.45 $$ MHz |
-|  ```L5```      | GPS L5C | $$ 1176.45 $$ MHz |
+|  `1G`      | Glonass L1 C/A | $$ 1602.00 $$ MHz |
+|  `1C`      | GPS L1 C/A | $$ 1575.42 $$ MHz |
+|  `1B`      | Galileo E1 B/C | $$ 1575.42 $$ MHz |
+|  `B1`      | Beidou B1I | $$ 1561.098 $$ MHz |
+|  `B3`      | Beidou B3I | $$ 1268.520 $$ MHz |
+|  `2G`      | Glonass L2 C/A | $$ 1246.00 $$ MHz |
+|  `2S`      | GPS L2 L2CM | $$ 1227.60 $$ MHz |
+|  `5X`      | Galileo E5a | $$ 1176.45 $$ MHz |
+|  `L5`      | GPS L5C | $$ 1176.45 $$ MHz |
 |-----
 
 
-Then, nine parameters can be set:  ```Channels_1G.count```, ```Channels_1C.count```, ```Channels_1B.count```, ```Channels_B1.count```, ```Channels_B3.count```, ```Channels_2G.count```, ```Channels_2S.count```,  ```Channels_5X.count``` and ```Channels_L5.count```, all of them defaulting to $$ 0 $$.
+Then, nine parameters can be set:  `Channels_1G.count`, `Channels_1C.count`, `Channels_1B.count`, `Channels_B1.count`, `Channels_B3.count`, `Channels_2G.count`, `Channels_2S.count`,  `Channels_5X.count` and `Channels_L5.count`, all of them defaulting to $$ 0 $$.
 
 In addition, the GNSS-SDR flow graph allows to set the number of channels that will be executing signal acquisition (which is known to require a high computational load) concurrently. This is controlled by the parameter `Channels.in_acquisition`, which defaults to the total number of channels (all of them performing acquisition on different satellite signals at the same time, if required). When working with real-time configurations, it is a good practice to set this parameter  to 1 (that is, only one channel performing acquisition at a given time) in order to alleviate the computational burden.
 
@@ -89,7 +89,7 @@ TelemetryDecoder_1C.implementation=...
 
 ## Multi-constellation, single band receiver
 
-When defining a multi-system receiver, the user must specify which channels are devoted to each signal. This is done through the parameter ```ChannelN.signal```, where ```N``` is the absolute channel number, starting from zero:
+When defining a multi-system receiver, the user must specify which channels are devoted to each signal. This is done through the parameter `ChannelN.signal`, where `N` is the absolute channel number, starting from zero:
 
 ```ini
 ;######### CHANNELS CONFIG ############
@@ -124,7 +124,7 @@ TelemetryDecoder_1B.implementation=...
 
 ## Multi-band receiver
 
-When defining a multi-band receiver, in addition to assign a signal to each channel, users need to specify the connection of the different radio-frequency chains to the processing channels. This is done using the ```ChannelN.RF_channel_ID```, where ```N``` is the absolute channel number, starting from zero:
+When defining a multi-band receiver, in addition to assign a signal to each channel, users need to specify the connection of the different radio-frequency chains to the processing channels. This is done using the `ChannelN.RF_channel_ID`, where `N` is the absolute channel number, starting from zero:
 
 ```ini
 ; # Channel connection
@@ -193,7 +193,7 @@ TelemetryDecoder_2S.implementation=...
 
 ## Multi-source receiver
 
-When defining a multi-source receiver, in addition to assign a signal to each channel, users need to specify the connection of the different signal sources to the processing channels. This is done using the ```ChannelN.SignalSource_ID```, where ```N``` is the absolute channel number, starting from zero:
+When defining a multi-source receiver, in addition to assign a signal to each channel, users need to specify the connection of the different signal sources to the processing channels. This is done using the `ChannelN.SignalSource_ID`, where `N` is the absolute channel number, starting from zero:
 
 
 ```ini

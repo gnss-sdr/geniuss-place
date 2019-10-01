@@ -81,7 +81,7 @@ If everything went fine, you can directly jump into how to get your [first posit
 **Is it better to compile from source or to install from a package?** Here we provide some guidelines. The rule of thumb is: Always consider installing from standard packages of your Operating System first; only compile from sources if you know exactly why you need to do that.
 {: .notice--info}
 
-GNSS-SDR and its software dependencies can all be installed either by downloading their source code, building and installing them in your system, or by installing the corresponding software package. Under GNU/Linux, the package manager may vary according to the distribution you are using (```.deb``` for Debian-based distros, such as Ubuntu, Linaro and Raspbian; ```.rpm``` for Fedora / SUSE / Mandriva; etc.). In Mac OS X, most popular open source package managers are Macports and Homebrew. In all cases, a possible option for a quick jump into GNSS-SDR is to install all the dependencies from packages, and then building GNSS-SDR from the source code.
+GNSS-SDR and its software dependencies can all be installed either by downloading their source code, building and installing them in your system, or by installing the corresponding software package. Under GNU/Linux, the package manager may vary according to the distribution you are using (`.deb` for Debian-based distros, such as Ubuntu, Linaro and Raspbian; `.rpm` for Fedora / SUSE / Mandriva; etc.). In Mac OS X, most popular open source package managers are Macports and Homebrew. In all cases, a possible option for a quick jump into GNSS-SDR is to install all the dependencies from packages, and then building GNSS-SDR from the source code.
 
 But maybe this approach does not fit your needs. Maybe you already have some dependency already built from source and want to use it, or your setup requires some specific flag somewhere. This is a building-time _vs_. fine-tuning trade-off. In order to take the adequate approach, just remember this basic rule:
 
@@ -95,7 +95,7 @@ and take into account the following considerations:
 {: .notice--success}
 
 
-**The downside:** The disadvantage of compiling from source is that the usual ```cmake .. && make && sudo make install``` procedure keeps your package manager completely unaware of the changes you are making, so you are not going to get any automatic updates for the manually-compiled software; and it is possible that package manager will later override/break your package if you are not careful to install it in a separate location.
+**The downside:** The disadvantage of compiling from source is that the usual `cmake .. && make && sudo make install` procedure keeps your package manager completely unaware of the changes you are making, so you are not going to get any automatic updates for the manually-compiled software; and it is possible that package manager will later override/break your package if you are not careful to install it in a separate location.
 {: .notice--danger}
 
 Some highly automated tools that can do some of the work for you are described below.
@@ -120,7 +120,7 @@ $ sudo apt-get install build-essential cmake git libboost-dev \
 
 
 **Note for Ubuntu 14.04 LTS users:**
-you will need to build from source and install GNU Radio manually, as explained below, since GNSS-SDR requires gnuradio-dev >= 3.7.3, and Ubuntu 14.04 came with 3.7.2. Install all the packages above BUT EXCEPT ```libuhd-dev```, ```gnuradio-dev``` and ```gr-osmosdr``` (and remove them if they are already installed in your machine), and install those dependencies using PyBOMBS, as explained below.
+you will need to build from source and install GNU Radio manually, as explained below, since GNSS-SDR requires gnuradio-dev >= 3.7.3, and Ubuntu 14.04 came with 3.7.2. Install all the packages above BUT EXCEPT `libuhd-dev`, `gnuradio-dev` and `gr-osmosdr` (and remove them if they are already installed in your machine), and install those dependencies using PyBOMBS, as explained below.
 {: .notice--warning}
 
 Once you have installed these packages, you can jump directly to [clone, build and install GNSS-SDR](#build).
@@ -153,13 +153,13 @@ Add list of default recipes (_i.e._, instructions on how to install software dep
 $ pybombs recipes add-defaults
 ```
 
-Download, build and install GNU Radio, related drivers and some other extra modules into the directory ```/path/to/prefix``` (replace this path by your preferred one, for instance ```$HOME/sdr```):
+Download, build and install GNU Radio, related drivers and some other extra modules into the directory `/path/to/prefix` (replace this path by your preferred one, for instance `$HOME/sdr`):
 
 ```bash
 $ pybombs prefix init /path/to/prefix -a myprefix -R gnuradio-default
 ```
 
-This will perform a local installation of the dependencies under ```/path/to/prefix```, so they will not be visible when opening a new terminal. In order to make them available, you will need to set up the adequate environment variables by sourcing the ```setup_env.sh``` script:
+This will perform a local installation of the dependencies under `/path/to/prefix`, so they will not be visible when opening a new terminal. In order to make them available, you will need to set up the adequate environment variables by sourcing the `setup_env.sh` script:
 
 ```bash
 $ cd /path/to/prefix
@@ -172,9 +172,9 @@ Now you are ready to use GNU Radio and to jump into [building GNSS-SDR](#build) 
 $ pybombs install gnss-sdr
 ```
 
-By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, which is the most recent version of the source code. This behaviour can be modified by altering the corresponding recipe at ```$HOME/.pybombs/recipes/gr-recipes/gnss-sdr.lwr```
+By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, which is the most recent version of the source code. This behaviour can be modified by altering the corresponding recipe at `$HOME/.pybombs/recipes/gr-recipes/gnss-sdr.lwr`
 
-In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual ```cmake .. && make && sudo make install``` dance, as explained below), there are still some missing dependencies (_i.e._, Armadillo, GFlags, Glog, GnuTLS and Protocol Buffers) that can be installed either by using PyBOMBS:
+In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual `cmake .. && make && sudo make install` dance, as explained below), there are still some missing dependencies (_i.e._, Armadillo, GFlags, Glog, GnuTLS and Protocol Buffers) that can be installed either by using PyBOMBS:
 
 ```bash
 $ pybombs install armadillo gflags glog gnutls protobuf
@@ -214,7 +214,7 @@ If everything went fine in the building process, now you can jump into how to ge
 
 ## Using Ninja
 
-[Ninja](https://ninja-build.org/) is a small build system with a focus on speed, that can be seen as a replacement for ```make```. If the parameter ```-GNinja``` is passed to CMake, it generates a ```build.ninja``` file (instead of a ```Makefile```) that is used by the Ninja build system to compile and link the source code. Thus, after cloning the repository, the build workflow is:
+[Ninja](https://ninja-build.org/) is a small build system with a focus on speed, that can be seen as a replacement for `make`. If the parameter `-GNinja` is passed to CMake, it generates a `build.ninja` file (instead of a `Makefile`) that is used by the Ninja build system to compile and link the source code. Thus, after cloning the repository, the build workflow is:
 
 ```bash
 $ cd gnss-sdr/build
@@ -257,15 +257,15 @@ In Debian/Ubuntu-based distributions, Clang can be installed by doing:
 $ sudo apt-get install clang
 ```
 
-Other packages specifying the Clang version, such as ```clang-3.4```, ```clang-3.8``` or ```clang-4.0``` could exist for your distribution, check its documentation.  Once installed, its use can be configured by passing the following parameters to CMake:
+Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8` or `clang-4.0` could exist for your distribution, check its documentation.  Once installed, its use can be configured by passing the following parameters to CMake:
 
 ```bash
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 ..
 ```
 
-of course replacing ```3.8``` by the actual version installed in your machine.
+of course replacing `3.8` by the actual version installed in your machine.
 
-If you have the Ninja build system installed, you can build GNSS-SDR replacing GCC and ```make``` by Clang and Ninja:
+If you have the Ninja build system installed, you can build GNSS-SDR replacing GCC and `make` by Clang and Ninja:
 
 ```bash
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 -GNinja ..
