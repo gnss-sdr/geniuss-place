@@ -278,21 +278,21 @@ GNSS-SDR.SUPL_LAC=0x59e2
 GNSS-SDR.SUPL_CI=0x31b0
 ```
 
-## Self-assistance in dual-frequency receivers
+## Self-assistance in multi-frequency receivers
 
-In case the receiver is configured to work with signals from different frequency bands from the same satellite (for instance, GPS L1 and GPS L5, Galileo E1 and E5a, etc.), it is possible to make use of the acquisition parameters obtained in the primary band to accelerate acquisition in the secondary band. This generally reduces the computational load and the acquisition-to-tracking latency.
+In case the receiver is configured to work with signals from different frequency bands from the same satellite (for instance, GPS L1 and GPS L5, Galileo E1 and E5a, etc.), GNSS-SDR makes use of the acquisition parameters obtained in the primary band to accelerate acquisition in the secondary band(s). This allows reducing the computational load (since the search grid in the secondary band(s) can be smaller) and the acquisition-to-tracking latency. This behavior can be deactivated by setting this parameter to `false`, which makes the receiver to search satellites in each band independently.
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|
 |--------------
-| `assist_dual_frequency_acq` | [`true`, `false`]: If set to `true`, it enables the assistance to acquisition from primary to secondary bands in dual-frequency configurations. It defaults to `false`. | Optional |
+| `assist_dual_frequency_acq` | [`true`, `false`]: If set to `true`, it enables the assistance to acquisition from primary to secondary bands in dual-frequency configurations. If set to `false`, satellites are searched for independently in each band. It defaults to `true`. | Optional |
 |-------
 
-Example:
+Example for satellites searched independently in each band:
 
 ```ini
-GNSS-SDR.assist_dual_frequency_acq=true
+GNSS-SDR.assist_dual_frequency_acq=false
 ```
 
 

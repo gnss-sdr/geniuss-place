@@ -68,7 +68,7 @@ This means that all kind of contributions, from fixing a typo in a source code's
 
 # Test Driven Development
 
-Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test case that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards. It is an Agile-based approach to building complex systems where unit test (and in some cases inter-component integration tests) are built in advance of the product software and are used exercised upon component implementation. This methodology is claimed to offer valuable benefits to software development: it facilitates change, simplifies integration, automates documentation, helps separate the interface from the implementation, increases developers productivity, and plays a central role in the software quality assurance process[^Shore08].
+Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test suite that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards. It is an Agile-based approach to building complex systems where unit test (and in some cases inter-component integration tests) are built in advance of the product software and are used exercised upon component implementation. This methodology is claimed to offer valuable benefits to software development: it facilitates change, simplifies integration, automates documentation, helps separate the interface from the implementation, increases developers productivity, and plays a central role in the software quality assurance process[^Shore08].
 
 ![TDD lifecycle]({{ "/assets/images/TDD_Global_Lifecycle.png" | relative_url }})
 _A graphical representation of the Test-Driven Development lifecycle. Source: [Wikipedia](https://en.wikipedia.org/wiki/Test-driven_development)_.
@@ -82,9 +82,9 @@ A typical test-driven development cycle, as described by Beck[^Beck02], can be s
 
  3. **Write some code**: The next step is to write some code that causes the test to pass. The new code written at this stage is not perfect and may, for example, pass the test in an inelegant way. That is acceptable because it will be improved and honed in Step 5. At this point, the only purpose of the written code is to pass the test; no further (and therefore untested) functionality should be predicted nor 'allowed for' at any stage.
 
- 4. **Run the automated tests and see them succeed**: If all test cases now pass, the programmer can be confident that the new code meets the test requirements, and does not break or degrade any existing features. If they do not, the new code must be adjusted until they do.
+ 4. **Run the automated tests and see them succeed**: If all test suites now pass, the programmer can be confident that the new code meets the test requirements, and does not break or degrade any existing features. If they do not, the new code must be adjusted until they do.
 
- 5. **Refactor code**: The growing code base must be cleaned up regularly during test-driven development. New code can be moved from where it was convenient for passing a test to where it more logically belongs. Duplication must be removed, documentation added, inheritance hierarchies may be rearranged to be more logical and helpful, and perhaps to benefit from recognized design patterns, and adhere to a defined set of coding style rules. There are specific and general guidelines for refactoring and for creating clean code[^Beck99]. By continually re-running the test cases throughout each refactoring phase, the developer can be confident that process is not altering any existing functionality.
+ 5. **Refactor code**: The growing code base must be cleaned up regularly during test-driven development. New code can be moved from where it was convenient for passing a test to where it more logically belongs. Duplication must be removed, documentation added, inheritance hierarchies may be rearranged to be more logical and helpful, and perhaps to benefit from recognized design patterns, and adhere to a defined set of coding style rules. There are specific and general guidelines for refactoring and for creating clean code[^Beck99]. By continually re-running the test suites throughout each refactoring phase, the developer can be confident that process is not altering any existing functionality.
 
  6. **Repeat (go to step 1)**: Starting with another new test, the cycle is then repeated to push forward the functionality.
 
@@ -107,8 +107,8 @@ system.
 Software tests have some additional constraints and recommended patterns:
 
  * Tests must be expressed in ordinary source code.
- * The execution of each test is centered on an instance of a _Test Case_ object.
- * Each _Test Case_, before it executes the test, has the opportunity to create an environment for the test, and to destroy that environment when the test finishes.
+ * The execution of each test is centered on an instance of a _Test Suite_ object.
+ * Each _Test Suite_, before it executes the test, has the opportunity to create an environment for the test, and to destroy that environment when the test finishes.
  * Groups of tests can be collected together, and their results of running them all will be reported collectively.
  * Use of the language's exception handling mechanism to catch and report errors.
 
@@ -127,24 +127,24 @@ The key areas in which this approach can contribute are:
 
 GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googletest) (usually referred to as Google Test) for its testing code. This framework is based on the following premises:
 
- * **Tests should be independent and repeatable**. It is a pain to debug a test that succeeds or fails as a result of other tests. Google C++ Testing Framework isolates the tests by running each of them on a different object. When a test fails, Google C++ Testing Framework allows you to run it in isolation for quick debugging.
- * **Tests should be well organized and reflect the structure of the tested code**. Google C++ Testing Framework groups related tests into test cases that can share data and subroutines. This common pattern is easy to recognize and makes tests easy to maintain. Such consistency is especially helpful when people switch projects and start to work on a new code base.
- * **Tests should be portable and reusable**. The open-source community has a lot of code that is platform-neutral; its tests should also be platform-neutral. Google C++ Testing Framework works on different Operating Systems, with different compilers (gcc, llvm, and others), with or without exceptions, so Google C++ Testing Framework tests can easily work with a variety of configurations.
- * **When tests fail, they should provide as much information about the problem as possible**. Google C++ Testing Framework does not stop at the first test failure. Instead, it only stops the current test and continues with the next. You can also set up tests that report non-fatal failures after which the current test continues. Thus, you can detect and fix multiple bugs in a single run-edit-compile cycle.
+ * **Tests should be independent and repeatable**. It is a pain to debug a test that succeeds or fails as a result of other tests. Google C++ Testing Framework isolates test cases by running each of them on a different object. When a test case fails, Google C++ Testing Framework allows you to run it in isolation for quick debugging.
+ * **Tests should be well organized and reflect the structure of the tested code**. Google C++ Testing Framework groups related test cases into test suites that can share data and subroutines. This common pattern is easy to recognize and makes tests easy to maintain. Such consistency is especially helpful when people switch projects and start to work on a new code base.
+ * **Tests should be portable and reusable**. The open-source community has a lot of code that is platform-neutral; its tests should also be platform-neutral. Google C++ Testing Framework works on different Operating Systems, with different compilers (gcc, llvm, and others), with or without exceptions, so Google C++ Testing Framework test cases can easily work with a variety of configurations.
+ * **When tests fail, they should provide as much information about the problem as possible**. Google C++ Testing Framework does not stop at the first test failure. Instead, it only stops the current test and continues with the next. You can also set up test cases that report non-fatal failures after which the current test continues. Thus, you can detect and fix multiple bugs in a single run-edit-compile cycle.
  * **The testing framework should liberate test writers from housekeeping chores and let them focus on the test content**. Google C++ Testing Framework automatically keeps track of all tests defined, and does not require the user to enumerate them in order to run them.
- * **Tests should be fast**. With Google C++ Testing Framework, you can reuse shared resources across tests and pay for the set-up/tear-down only once, without making tests depend on each other.
+ * **Tests should be fast**. With Google C++ Testing Framework, you can reuse shared resources across test cases and pay for the set-up/tear-down only once, without making tests depend on each other.
 
 When using Google Test, developers write [_assertions_](https://github.com/google/googletest/blob/master/googletest/docs/primer.md#assertions), which are statements that check whether a condition is true. An assertion's result can be _success_, _nonfatal failure_, or _fatal failure_. If a fatal failure occurs, it aborts the current function; otherwise the program continues normally.
 
-_Tests_ use assertions to verify the tested code's behavior. If a test crashes or has a failed assertion, then it _<span style="color: #E74C3C">fails</span>_; otherwise it _<span style="color: #2ECC71">succeeds</span>_.
+_Test Cases_ use assertions to verify the tested code's behavior. If a test case crashes or has a failed assertion, then it _<span style="color: #E74C3C">fails</span>_; otherwise it _<span style="color: #2ECC71">succeeds</span>_.
 
-A _Test Case_ contains one or many tests. You should group your tests into test cases that reflect the structure of the tested code. When multiple tests in a test case need to share common objects and subroutines, you can put them into a [_Test Fixture_](https://github.com/google/googletest/blob/master/googletest/docs/primer.md#test-fixtures-using-the-same-data-configuration-for-multiple-tests) class.
+A _Test Suite_ contains one or many test cases. You should group your test cases into test suites that reflect the structure of the tested code. When multiple test cases in a test suite need to share common objects and subroutines, you can put them into a [_Test Fixture_](https://github.com/google/googletest/blob/master/googletest/docs/primer.md#test-fixtures-using-the-same-data-configuration-for-multiple-tests) class.
 
-A _Test Program_ can contain multiple test cases.
+A _Test Program_ can contain multiple test suites.
 
 &nbsp;
 
-For details about the available _Test Cases_ and how to build and run them, please check [Testing the software receiver, Part II: Test Execution]({{ "/docs/tutorials/testing-software-receiver-2/" | relative_url }}).
+For details about the available _Test Suites_ and how to build and run them, please check [Testing the software receiver, Part II: Test Execution]({{ "/docs/tutorials/testing-software-receiver-2/" | relative_url }}).
 {: .notice--info}
 
 ------
