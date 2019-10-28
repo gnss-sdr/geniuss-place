@@ -103,9 +103,17 @@ $$ \begin{equation}
 \widehat{C/N}_{0_{dB-Hz}} = 10\log_{10}(\widehat{SNR})-10\log_{10}(T_{int})
 \end{equation} $$
 
+This estimation is smoothed with an exponential smoother of the form
+
+$$ \begin{equation}
+    {\widehat{C/N}_{0}}_{smoothed}[k]= \alpha \widehat{C/N}_{0}[k] + (1-\alpha) {\widehat{C/N}_{0}}_{smoothed}[k-1]
+\end{equation} $$
+
+with $$ \alpha $$ controlled by the configuration parameter `cn0_smoother_alpha`, after an initialization averaging `cn0_smoother_samples` samples.
+
 The $$ C/N_0 $$ value provides an indication of the signal quality that is independent of the acquisition and tracking algorithms used by a receiver, and it remains constant through the different processing stages of the receiver.
 
-The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$ (but except for ). This value can be changed by using the command line flag  `-cn0_samples` when running the executable:
+The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$. This value can be changed by using the command line flag  `-cn0_samples` when running the executable:
 
 ```bash
 $ gnss-sdr -cn0_samples=100 -c=./configuration_file.conf
@@ -148,6 +156,15 @@ where:
   * $$ \displaystyle NBD=\left(\sum^{M-1}_{m=0}P_{Q}[m]\right)^2-\left(\sum^{M-1}_{i=0}P_{I}[m]\right)^2 $$,
   * $$ \displaystyle NBP=\left(\sum^{M-1}_{m=0}P_{Q}[m]\right)^2+\left(\sum^{M-1}_{i=0}P_{I}[m]\right)^2 $$,
   * $$ P_I[m] $$ and $$ P_Q[m] $$ are the prompt correlator output I and Q components for the integration period $$ m $$.
+
+This estimation is smoothed with an exponential smoother of the form
+
+$$ \begin{equation}
+    \!\!\!\!\!\!\!\!\!{\cos(2\widehat{\Delta \phi})}_{smoothed}[k]= \alpha \cos(2\widehat{\Delta \phi})[k] + (1-\alpha){\cos(2\widehat{\Delta \phi})}_{smoothed}[k-1]
+\end{equation} $$
+
+with $$ \alpha $$ controlled by the configuration parameter `carrier_lock_test_smoother_alpha`, after an initialization averaging `carrier_lock_test_smoother_samples` samples.
+
 
 The threshold $$ \gamma_{carrier} $$ is set by default to 0.85 radians (corresponding to an error of approx. 31 degrees). This value can be changed by using the command line flag `-carrier_lock_th` when running the executable:
 
@@ -818,7 +835,7 @@ This implementation accepts the following parameters:
 | `pll_bw_hz` | Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `dll_bw_hz` | Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
@@ -991,7 +1008,7 @@ This implementation accepts the following parameters:
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
 | `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
@@ -1078,7 +1095,7 @@ This implementation accepts the following parameters:
 | `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
 | `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
