@@ -19,6 +19,23 @@
   }
 }
 
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.initial-content,
+.search-content {
+  flex: 1 0 auto;
+}
+
+
 .page {
   @include breakpoint($large) {
     float: right;
@@ -88,7 +105,7 @@
           opacity: 1;
       }
   }
-  
+
   p,
   li,
   dl {
