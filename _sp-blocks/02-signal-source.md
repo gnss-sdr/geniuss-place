@@ -93,8 +93,8 @@ This _Signal Source_ implementation reads raw signal samples stored in a file, a
 | **Type name in GNSS-SDR conf files** | **Definition** | **Sample stream**
 |:-:|:-|:-|
 |----------
-| `byte` | Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], S_2], ... $$
-| `short` |  Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], S_2], ... $$
+| `byte` | Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], [S_2], ... $$
+| `short` |  Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
 | `float` |  Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
 | `ibyte` |   Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
 | `ishort` |  Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
@@ -537,7 +537,7 @@ This implementation accepts the following parameters:
 | `AGC_enabled` | [`true`, `false`]: If set to `true`, enables Automatic Gain Control. It defaults to `false`. | Optional |
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only  <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. | Optional |
-| `osmosdr_args` | Pass arguments to the OsmoSDR driver.  | Optional |
+| `osmosdr_args` | Pass arguments to the OsmoSDR driver. Check the [gr-osmosdr wiki](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR) for a list of arguments for your specific hardware. | Optional |
 | `antenna` | [`NONE`, `LNAL`, `LNAH`, `LNAW`]: Select the LimeSDR RX antenna. `LNAW` is recommended for GNSS applications. It defaults to _empty_. | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
 | `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
@@ -684,13 +684,13 @@ This implementation accepts the following parameters:
 | `quadrature` | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
 | `rf_dc` | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `bb_dc` | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
-| `gain_mode_rx1` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `manual`. | Optional |
-| `gain_mode_rx2` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX2 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `manual`. | Optional |
+| `gain_mode_rx1` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`. | Optional |
+| `gain_mode_rx2` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX2 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`. | Optional |
 | `gain_rx1` | If `gain_mode_rx1` is set to `manual`, it sets the gain of the RX1 chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain_rx1`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB. | Optional |
 | `gain_rx2` | If `gain_mode_rx2` is set to `manual`, it sets the gain of the RX2 chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain_rx2`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB. | Optional |
 | `rf_port_select` | [`A_BALANCED`, `B_BALANCED`, `C_BALANCED`, `A_N`, `A_P`, `B_N`, `B_P`, `C_N`, `C_P`]: Selects the RF port to be used ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#rf_port_selection) and [more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361-customization?&#rf_port_select)). It defaults to `A_BALANCED`. | Optional |
 | `filter_file` | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty). | Optional |
-| `filter_auto` | [`true`, `false`]: If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
+| `filter_auto` | [`true`, `false`]: If set to `true`, it loads a default FIR filter and thereby enables lower sampling / baseband rates. It defaults to `false`. | Optional |
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
 | `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
@@ -765,7 +765,7 @@ This implementation accepts the following parameters:
 | `quadrature` | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/docs/DOC-3143)). It defaults to `true`. | Optional |
 | `rf_dc` | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `bb_dc` |  [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
-| `gain_mode` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `manual`. | Optional |
+| `gain_mode` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`. | Optional |
 | `gain` | If `gain_mode` is set to `manual`, it sets the gain of the RX chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain`$$ < 72 $$ dB. It defaults to $$ 50 $$ dB. | Optional |
 | `filter_file` | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty). | Optional |
 | `filter_auto` | [`true`, `false`]: If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
