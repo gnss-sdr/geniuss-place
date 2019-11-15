@@ -975,7 +975,7 @@ $ ln -s /usr/local/opt/llvm/bin/clang-format /usr/local/bin
 
   * **In macOS using Macports:**
 ```bash
-$ sudo port install clang
+$ sudo port install clang-9.0
 ```
   NOTE: You can see all available choices with `port select --list` for clang:
 ```bash
@@ -1068,7 +1068,7 @@ $ ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin
 
 * **In macOS using Macports:**
 ```bash
-$ sudo port install clang
+$ sudo port install clang-9.0
 ```
 
 **Step 2.- Apply clang-tidy**

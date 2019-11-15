@@ -132,13 +132,13 @@ This option is adequate if you are interested in development, in working with th
 First of all, install some basic packages:
 
 ```bash
-$ sudo apt-get install git python-pip
+$ sudo apt-get install git python3-pip
 ```
 
 Download, build and install PyBOMBS:
 
 ```bash
-$ sudo pip install git+https://github.com/gnuradio/pybombs.git
+$ sudo pip3 install --upgrade git+https://github.com/gnuradio/pybombs.git
 ```
 
 Apply a configuration:
