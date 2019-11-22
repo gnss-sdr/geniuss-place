@@ -344,7 +344,7 @@ Current input signal time = 68 [s]
   If you see something similar to this... Yay! You are getting real-time position fixes with your open source software-defined GPS receiver!
   {: .notice--success}
 
-  **Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
+  **Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate `gnss-sdr` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
   {: .notice--warning}
 
 Always stop the execution of GNSS-SDR by pressing key '`q`'  and then key '`ENTER`' (_not_ at the same time, first '`q`' and then '`ENTER`'):
@@ -374,10 +374,10 @@ Now you can examine the files created in your working folder.
 * Watch out for overflows! Maybe your host computer is not able to sustain the required computational load for this particular implementation.
 
 {% capture overflow-text %}
- When receiving, the USRP device produces samples at a constant rate. Overflows occurs when the host computer does not consume data fast enough. When UHD software detects the overflow, it prints an "```O```" or "```D```" to the standard terminal output, and pushes an inline message packet into the receive stream.
+ When receiving, the USRP device produces samples at a constant rate. Overflows occurs when the host computer does not consume data fast enough. When UHD software detects the overflow, it prints an "`O`" or "`D`" to the standard terminal output, and pushes an inline message packet into the receive stream.
 
-  * **Network-based devices (_e.g._, USRP N2xx, X3xx)**: The host does not back-pressure the receive stream. When the kernel's socket buffer becomes full, it will drop subsequent packets. UHD software detects the overflow as a discontinuity in the packet's sequence numbers, and pushes an inline message packet into the receive stream. In this case the character ```D``` is printed to the standard terminal output as an indication.
-  * **Other devices (_e.g._, USRP 1, B2xx)**: The host back-pressures the receive stream. Therefore, overflows always occur in the device itself. When the device's internal buffers become full, streaming is shut off, and an inline message packet is sent to the host. In this case the character "```O```" is printed to the standard terminal output as an indication. If the device was in continuous streaming mode, the UHD software will automatically restart streaming when the buffer has space again.
+  * **Network-based devices (_e.g._, USRP N2xx, X3xx)**: The host does not back-pressure the receive stream. When the kernel's socket buffer becomes full, it will drop subsequent packets. UHD software detects the overflow as a discontinuity in the packet's sequence numbers, and pushes an inline message packet into the receive stream. In this case the character `D` is printed to the standard terminal output as an indication.
+  * **Other devices (_e.g._, USRP 1, B2xx)**: The host back-pressures the receive stream. Therefore, overflows always occur in the device itself. When the device's internal buffers become full, streaming is shut off, and an inline message packet is sent to the host. In this case the character "`O`" is printed to the standard terminal output as an indication. If the device was in continuous streaming mode, the UHD software will automatically restart streaming when the buffer has space again.
 {% endcapture %}
 
 <div class="notice--danger">
