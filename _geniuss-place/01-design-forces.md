@@ -11,6 +11,32 @@ sidebar:
   nav: "geniuss-place"
 ---
 
+<aside class="sidebar__right sticky">
+	<nav class="toc">
+		<header>
+			<h4 class="nav__title">Design Forces</h4>
+		</header>
+		<ul class="toc__menu">
+			<li><a href="{{ "/design-forces/accuracy/" | relative_url }}">1. Accuracy</a></li>
+			<li><a href="{{ "/design-forces/availability/" | relative_url }}">2. Availability</a></li>
+			<li><a href="{{ "/design-forces/efficiency/" | relative_url }}">3. Efficiency</a></li>
+            <li><a href="{{ "/design-forces/flexibility/" | relative_url }}">4. Flexibility</a></li>
+            <li><a href="{{ "/design-forces/interoperability/" | relative_url }}">5. Interoperability</a></li>
+            <li><a href="{{ "/design-forces/maintainability/" | relative_url }}">6. Maintainability</a></li>
+            <li><a href="{{ "/design-forces/marketability/" | relative_url }}">7. Marketability</a></li>
+            <li><a href="{{ "/design-forces/portability/" | relative_url }}">8. Portability</a></li>
+            <li><a href="{{ "/design-forces/popularity/" | relative_url }}">9. Popularity</a></li>
+            <li><a href="{{ "/design-forces/reliability/" | relative_url }}">10. Reliability</a></li>
+            <li><a href="{{ "/design-forces/repeatability/" | relative_url }}">11. Repeatability</a></li>
+            <li><a href="{{ "/design-forces/reproducibility/" | relative_url }}">12. Reproducibility</a></li>
+            <li><a href="{{ "/design-forces/scalability/" | relative_url }}">13. Scalability</a></li>
+            <li><a href="{{ "/design-forces/testability/" | relative_url }}">14. Testability</a></li>
+            <li><a href="{{ "/design-forces/openness/" | relative_url }}">15. Openness</a></li>
+            <li><a href="{{ "/design-forces/usability/" | relative_url }}">16. Usability</a></li>
+		</ul>
+	</nav>
+</aside>
+
 A GNSS receiver is a complex device which performance is affected by a wide range of internal and external factors. To the best of the authors' knowledge, the first formal effort to define testing procedures for GPS receivers is found in the paper by Teasley[^Teasley95], a work that anticipated the key concepts of the Standard 101 published by the Institute of Navigation in 1997[^ION97]. Such procedures have been widely accepted by the GNSS industry and, two decades later, world-class testing firms are still referencing them in their white papers. In summary, the set of those proposed testing procedures measure receiver's sensitivity in acquisition and tracking, diverse time-to-first-fix and reacquisition times, static and dynamic location accuracy and robustness to multipath and radio frequency interferences.
 
 
