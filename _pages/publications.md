@@ -4,7 +4,7 @@ layout: publications
 title: "Publications"
 excerpt: "List of academic papers in which GNSS-SDR has been described or used for research purposes."
 header:
-  teaser: "https://scontent-mad1-1.cdninstagram.com/t51.2885-15/e15/11190810_1446633488967530_1154530547_n.jpg"
+  teaser: /assets/images/books.png
 sidebar:
     nav: "about"
 last_modified_at: 2019-04-29T12:38:52+00:00
@@ -180,7 +180,21 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 
 
 
-<h3 style="margin-bottom:0px;padding-top:10px;">Articles in International Conferences</h3>
+<h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
+
+<ul class="biblist">
+    <!-- Item: Fernandez19a -->
+    <li ><p>
+    C.&nbsp;Fern&aacute;ndez-Prades
+    <br><b>An Open Source Global Navigation Satellite Systems Software-Defined Receiver</b><br>
+<i>Software Defined Radio Academy 2019</i>,
+Friedrichshafen, Germany, Jun. 2019.
+    <br />
+    <span style="color: #52adc8">[</span><a href="https://youtu.be/4uHdu-iGsgI">Video</a><span style="color: #52adc8">]</span>
+    </p>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: Fernandez18b -->
