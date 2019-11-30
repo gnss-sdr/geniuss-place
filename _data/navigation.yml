@@ -61,6 +61,53 @@ geniuss-place:
       - title: "Code of Conduct"
         url: /code-of-conduct/
 
+geniuss-place-detailed:
+  - title: GeNiuSS Place
+    children:
+      - title: "Design Forces"
+      - title: "&nbsp;&nbsp;1. Accuracy"
+        url: /design-forces/accuracy/
+      - title: "&nbsp;&nbsp;2. Availability"
+        url: /design-forces/availability/
+      - title: "&nbsp;&nbsp;3. Efficiency"
+        url: /design-forces/efficiency/
+      - title: "&nbsp;&nbsp;4. Flexibility"
+        url: /design-forces/flexibility/
+      - title: "&nbsp;&nbsp;5. Interoperability"
+        url: /design-forces/interoperability/
+      - title: "&nbsp;&nbsp;6. Maintainability"
+        url: /design-forces/maintainability/
+      - title: "&nbsp;&nbsp;7. Marketability"
+        url: /design-forces/marketability/
+      - title: "&nbsp;&nbsp;8. Portability"
+        url: /design-forces/portability/
+      - title: "&nbsp;&nbsp;9. Popularity"
+        url: /design-forces/popularity/
+      - title: "&nbsp;&nbsp;10. Reliability"
+        url: /design-forces/reliability/
+      - title: "&nbsp;&nbsp;11. Repeatability"
+        url: /design-forces/repeatability/
+      - title: "&nbsp;&nbsp;12. Reproducibility"
+        url: /design-forces/reproducibility/
+      - title: "&nbsp;&nbsp;13. Scalability"
+        url: /design-forces/scalability/
+      - title: "&nbsp;&nbsp;14. Testability"
+        url: /design-forces/testability/
+      - title: "&nbsp;&nbsp;15. Openness"
+        url: /design-forces/openness/
+      - title: "&nbsp;&nbsp;16. Usability"
+        url: /design-forces/usability/
+      - title: "Contribute"
+        url: /contribute/
+      - title: "Coding Style"
+        url: /coding-style/
+      - title: "Open RF Design"
+        url: /rf-frontends/
+      - title: "Makers"
+        url: /enclosures/
+      - title: "Code of Conduct"
+        url: /code-of-conduct/
+
 about:
   - title: About Us
     children:
