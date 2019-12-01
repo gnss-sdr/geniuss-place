@@ -267,7 +267,7 @@ Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8` or
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 ..
 ```
 
-of course replacing `3.8` by the actual version installed in your machine.
+of course replacing `3.8` by the actual version installed in your machine. Modern versions dropped the version number, so you may have just `/usr/bin/clang++` and `/usr/bin/clang`.
 
 If you have the Ninja build system installed, you can build GNSS-SDR replacing GCC and `make` by Clang and Ninja:
 
