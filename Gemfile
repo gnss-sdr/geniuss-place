@@ -5,6 +5,7 @@ gem "jekyll", ">= 3.6", "< 5.0"
 gem "tzinfo-data"
 gem "wdm", "~> 0.1.0" if Gem.win_platform?
 gem "nokogiri", ">= 1.10.4"
+gem "activesupport", ">= 4.1.11"
 
 group :jekyll_plugins do
   gem "jekyll-paginate"
