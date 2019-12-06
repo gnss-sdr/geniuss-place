@@ -11,4 +11,4 @@ branches:
   only:
     - gh-pages
 rvm:
- - 2.4
+ - 2.5
