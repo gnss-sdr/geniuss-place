@@ -508,10 +508,10 @@ For instance, if `RF_channels` is set to `2`, then:
 
 ### Implementation: `Osmosdr_Signal_Source`
 
-[![OsmoSDR](https://sdr.osmocom.org/osmocom/osmocom_sdr.png){:height="250px" width="250x"}{: .align-right}](https://sdr.osmocom.org/trac/)
-[OsmoSDR](https://sdr.osmocom.org/trac/) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
+[![OsmoSDR]({{ "/assets/images/osmocom.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://osmocom.org/)
+[OsmoSDR](https://osmocom.org/projects/gr-osmosdr) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
 project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. The project also provides a software driver for several RF front-ends such as [RTL-based
-dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), [LimeSDR](https://myriadrf.org/projects/limesdr/), [etc](https://github.com/osmocom/gr-osmosdr/blob/master/README).
+dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), [LimeSDR](https://myriadrf.org/projects/limesdr/), [etc](https://osmocom.org/projects/gr-osmosdr).
 
 If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need to install the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the GNSS-SDR building with the following flag:
 
