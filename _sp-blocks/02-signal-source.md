@@ -577,7 +577,7 @@ SignalSource.osmosdr_args=hackrf,bias=1
 
 ### Implementation: `RtlTcp_Signal_Source`
 
-In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](https://sdr.osmocom.org/trac/wiki/rtl-sdr#rtl_sdr) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
+In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](https://osmocom.org/projects/rtl-sdr/wiki) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
 
 If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
 
