@@ -123,6 +123,7 @@ exclude:
   - log
   - node_modules
   - package.json
+  - packege-lock.json
   - Rakefile
   - README
   - tmp
