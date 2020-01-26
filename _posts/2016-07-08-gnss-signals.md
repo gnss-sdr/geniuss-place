@@ -524,7 +524,7 @@ of the ICD, Ran Chengqi, director of China Satellite Navigation Office,
 said the English designation will henceforth be BeiDou Navigation
 Satellite System with the abbreviation BDS.
 
-Updated information can be found at the [Beidou Navigation Satellite System website](http://www.beidou.gov.cn/). The status of the constellation can be consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
+Updated information can be found at the [Beidou Navigation Satellite System website](http://en.beidou.gov.cn/). The status of the constellation can be consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
 
 
 ### Beidou B1I
