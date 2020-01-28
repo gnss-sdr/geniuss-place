@@ -121,13 +121,16 @@ The Authors are proud to be supported by the following public institutions, priv
 
 * **ESA Summer Of Code In Space (SOCIS)**
 
-  * [2015](http://sophia.estec.esa.int/socis2015/?q=node/13)
+  * [2019](https://socis.esa.int/)
+    - In _Improving the Graphical User Interface (GUI) for monitoring the GNSS-SDR status in real time_, 	&Aacute;lvaro Cebri&aacute;n worked in a GUI for GNSS-SDR (Honorable Participation).
+
+  * [2015](https://socis.esa.int/)
     - In _Direct Position Estimation_, Luis Esteve explored the DPE algorithm and proposed receiver architectures.
 
-  * [2014](http://sophia.estec.esa.int/socis2014/?q=node/13)
+  * [2014](https://socis.esa.int/)
     - In _GNSS-SDR. Acceleration with VOLK_, Andr&eacute;s Cecilia created a new VOLK module with kernels for GNSS signal processing, the inception of the current [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr).
 
-  * [2013](http://sophia.estec.esa.int/socis2013/?q=node/13)
+  * [2013](https://socis.esa.int/)
     - In _Real-time positioning solution for GNSS-SDR_, Vladimir Avrov started working on the generation of RTCM messages.
 
     **The European Space Agency**, through the SOCIS program, offers students a stipend for contributing to open source projects.
