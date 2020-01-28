@@ -59,6 +59,11 @@ The Authors are proud to be supported by the following public institutions, priv
     ![GSoC logo]({{ "/assets/images/logo-gsoc.png" | relative_url }}){:height="100px" width="100x"}
     {: style="text-align: center;"}
 
+[2019](https://summerofcode.withgoogle.com/archive/2019/organizations/6369884148072448/)
+
+  * Project: [Expanding the receiver to BEIDOU B1C](https://summerofcode.withgoogle.com/archive/2019/projects/6509812521631744/), by Andrew Kamble.
+  * Project: [Nonlinear State Estimation for Carrier Synchronization in GNSS-SDR](https://summerofcode.withgoogle.com/archive/2019/projects/6299766860808192/), by Gerald LaMountain.
+  * Project: [Optimal Frame Synchronization Detection](https://summerofcode.withgoogle.com/archive/2019/projects/5062110764072960/), by Lucas Ventura.
 
 [2018](https://summerofcode.withgoogle.com/archive/2018/organizations/5951344653369344/)
 
