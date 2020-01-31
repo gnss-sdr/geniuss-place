@@ -1026,7 +1026,7 @@ C.&nbsp;Avil&eacute;s
 <div id="bib_Aviles10" class="bibtex noshow">
 <pre>@mastersthesis{ Aviles10,
 author = {C.~Avil\'{e}s},
-title = { {G}lobal {N}avigation {S}atellite {S}ystems - {S}oftware {D}efined Radio ({GNSS-SDR})},
+title = { {G}lobal {N}avigation {S}atellite {S}ystems - {S}oftware {D}efined {R}adio ({GNSS-SDR})},
 school = {Universitat Oberta de Catalunya, Faculty of Computer Science, Multimedia and Telecommunications},
 year = {2010},
 address = {Barcelona, Spain},
