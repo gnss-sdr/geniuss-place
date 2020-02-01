@@ -253,7 +253,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport (>= 4.1.11)
   github-pages
-  jekyll (>= 3.6, < 5.0)
+  jekyll (>= 3.7, < 5.0)
   jekyll-feed
   jekyll-gist
   jekyll-include-cache

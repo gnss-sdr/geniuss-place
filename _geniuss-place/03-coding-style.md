@@ -224,7 +224,7 @@ Be consistent and use the `// ...` style comments.
 The comment styles `///` and `/** ... */` are used by JavaDoc, Doxygen
 and some other code documenting tools.
 
-For a complete description on how to document the code, see the [Doxygen Manual](https://www.stack.nl/~dimitri/doxygen/manual/docblocks.html)
+For a complete description on how to document the code, see the [Doxygen Manual](http://www.doxygen.nl/manual/docblocks.html)
 
 All classes in GNSS-SDR should be properly documented with Doxygen
 comments in include (`.h`) files. Source (`.cc`) files should be documented
