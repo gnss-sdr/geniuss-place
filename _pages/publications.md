@@ -584,7 +584,7 @@ month   = {Sep.}
 Como, Italy, Jul. 14-17, 2015, pp. 405-416.
     <br />
     <a href="javascript:toggleBibtex('Branzanti15')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="http://geomatica.como.polimi.it/workbooks/n12/FOSS4G-eu15_submission_154.pdf" >PDF</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://pdfs.semanticscholar.org/3143/1f0138610dc509cc04e1d24f56ba0a5878b6.pdf" >PDF</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Branzanti15" class="bibtex noshow">
     <pre>@inproceedings{ Branzanti15,

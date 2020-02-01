@@ -235,7 +235,7 @@ The generation of some unit test suites are enabled by default, and gathered in 
 
  * Signal sources
    - `FileSignalSource`: set of test cases for [file_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/adapters/file_signal_source.h)
-   - `ValveTest`: set of test cases for [gnss_sdr_valve.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_sdr_valve.h)
+   - `ValveTest`: set of test cases for [gnss_sdr_valve.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/libs/gnss_sdr_valve.h)
    - `Unpack2bitSamplesTest`: set of test cases for [unpack_2bit_samples.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/gnuradio_blocks/unpack_2bit_samples.h)
 
  * Data Type Adapter
@@ -291,7 +291,7 @@ The generation of some unit test suites are enabled by default, and gathered in 
 
  * PVT
       - `RinexPrinterTest`: set of test cases for [rinex_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rinex_printer.h)
-      - `RtcmTest`: set of test cases for [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h)
+      - `RtcmTest`: set of test cases for [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm.h)
       - `RtcmPrinterTest`: set of test cases for [rtcm_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm_printer.h)
 
  * System parameters:
