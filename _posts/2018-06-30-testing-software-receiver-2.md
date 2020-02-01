@@ -660,7 +660,7 @@ TEST(RtcmTest, HexToInt)  // RtcmTest is the name of the Test Suite
 }
 ```
 
-This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h)) and wraps it into a shared pointer that will deallocate memory at the end of the test. Then, it tests the class member function `hex_to_int` and evaluates the result in an assertion, checking that the obtained result is actually the expected one.
+This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm.h)) and wraps it into a shared pointer that will deallocate memory at the end of the test. Then, it tests the class member function `hex_to_int` and evaluates the result in an assertion, checking that the obtained result is actually the expected one.
 
 For more details details about the usage of the Google C++ Testing Framework and its available features, please check out its documentation:
 
