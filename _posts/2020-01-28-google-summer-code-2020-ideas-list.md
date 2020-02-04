@@ -60,6 +60,27 @@ Dr. Carles Fern&aacute;ndez-Prades
 
 -------
 
+## Project Title: Expanding the receiver to Galileo E5b
+
+### Description:
+Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with Galileo E5b signals, delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user’s receiver).
+
+ * Implementation of acquisition algorithms for Galileo E5b, following the examples already implemented for and Galileo E5a.
+
+ * Demodulation of the INAV navigation message.
+
+ * Integration of Galileo E5b observables into the PVT position.
+
+Given the similarity of the E5b signal with the E5a signal, we will try to reuse (as much as possible) the code blocks already implemented.
+
+### Skills required:
+Basic knowledge on digital signal processing and C++ programming (familiarity with the GNU Radio framework is a plus).
+
+### Potential mentor(s):
+Mr. Luis Esteve, Dr. Javier Arribas.
+
+---------
+
 
 ## Proposal template:
 
