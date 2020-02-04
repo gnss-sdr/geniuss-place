@@ -87,7 +87,7 @@ It follows a list of possible reproducibility indicators for a software-defined 
 
 ## References
 
-[^Bobbio15]: J. Bobbio, [How to make your software build reproducibly](https://reproducible.alioth.debian.org/presentations/2015-08-13-CCCamp15.pdf), in Chaos Communication Camp, Zehdenick, Germany, 2015.
+[^Bobbio15]: J. Bobbio, [How to make your software build reproducibly](https://reproducible-builds.org/_lfs/presentations/2015-08-13-CCCamp15.pdf), in Chaos Communication Camp, Zehdenick, Germany, 2015.
 
 [^Royal12]: The Royal Society, [Science as an open enterprise](https://royalsociety.org/topics-policy/projects/science-public-enterprise/report/), Report 02/12. London, UK, June 2012.
 

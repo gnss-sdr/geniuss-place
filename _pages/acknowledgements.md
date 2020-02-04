@@ -23,7 +23,7 @@ The Authors are proud to be supported by the following public institutions, priv
 ## Public Research Funds
 
 
-* **[AUDITOR](http://www.auditor-project.eu/index.html) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
+* **[AUDITOR](https://www.gsa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
 
   ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | relative_url }}){:height="250px" width="250x"}
   {: style="text-align: center;"}
