@@ -26,20 +26,36 @@ You might submit a proposal following the guidelines below, or you might want to
 
 Your proposal should include the following: your project proposal, why you would like to execute on this particular project, and the reason you are the best individual to do so. Your proposal should also include details of your academic, industry, and/or open source development experience, and other details as you see fit. An explanation of your development methodology and schedule is a good idea, as well. It is always helpful to include your contact information, as it will not be automatically shared with your would-be mentors as part of the proposal process.
 
-Hereafter we list, in no particular order, some proposals for projects to be carried out by the students participating in GSoC 2019. **This is by no means a closed list, so the students can feel free to propose alternative activities related to GNSS-SDR. Original topics for proposals are specially welcome.**
+Hereafter we list, in no particular order, some proposals for projects to be carried out by the students participating in GSoC 2020. **This is by no means a closed list, so the students can feel free to propose alternative activities related to GNSS-SDR. Original topics for proposals are specially welcome and use to be highly ranked.**
 
 -------
 
 
-## Project Title:
+## Project Title: Robust Interference Mitigation for anti-jamming
 
 ### Description:
-
+Although strong jamming can overwhelm much weaker GNSS signals, receiver performance can be significantly improved by implementing interference mitigation techniques. Robust statistics was recently explored as a mitigation technique that requires minimal receiver modifications, while providing unprecedented anti-jamming rejection capabilities. The main required modification is on the generation of a robust cross-ambiguity function (CAF) which is later used in the correlation process, both in acquisition and tracking modes. This project would encompass implementation and testing of such approach, including some of the variants and real signal processing. A reference article might be downloaded from [here](http://www.insidegnss.com/auto/sepoct17-BORIO_0.pdf)    
 
 ### Skills required:
 Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework is a plus).
 
 ### Potential mentor(s):
+Dr. Pau Closas, Mr. Gerald LaMountain, Dr. Carles Fern&aacute;ndez-Prades
+
+
+---------
+
+
+## Project Title: Porting GNSS-SDR to Microsoft Windows
+
+### Description:
+Currently, GNSS-SDR can only be built on GNU/Linux and macOS, but not on Microsoft Windows. This project addresses the portability to Microsoft Windows 10. Basically, it consists of creating (and documenting) an environment for Microsoft Windows containing all the required dependencies, modifying GNSS-SDR CMake scripts in order to build the software with Microsoft Visual Studio 2019, detecting and providing an alternative for those parts of the code that use UNIX-specific stuff, and implementing a Continuous Integration job at GitHub Actions.
+
+### Skills required:
+Familiarity with CMake and the Windows programming environment are strongly recommended.
+
+### Potential mentor(s):
+Dr. Carles Fern&aacute;ndez-Prades
 
 
 -------
