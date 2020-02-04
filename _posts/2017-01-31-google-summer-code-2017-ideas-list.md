@@ -60,7 +60,7 @@ The configuration mechanism of GNSS-SDR allows users to define and configure eac
 
 ### Skills required:
 
-Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework and [Qt](https://www.qt.io) is a plus).
+Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org/) framework and [Qt](https://www.qt.io) is a plus).
 
 ### Potential mentor(s):
 
@@ -78,7 +78,7 @@ The main goal of this project is twofold: *i*) to develop and integrate into the
 
 ### Skills required:
 
-Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework and Kalman filtering techniques is a plus).
+Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org/) framework and Kalman filtering techniques is a plus).
 
 ### Potential mentor(s):
 
@@ -100,7 +100,7 @@ Objective by the end of the summer: To provide a working implementation of a GNS
 
 ### Skills required:
 
-Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework is a plus).
+Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org/) framework is a plus).
 
 ### Potential mentor(s):
 
@@ -118,7 +118,7 @@ The main goal of this project is to implement and characterize state-of-the art 
 
 ### Skills required:
 
-Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](http://gnuradio.org) framework is a plus).
+Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org/) framework is a plus).
 
 ### Potential mentor(s):
 
