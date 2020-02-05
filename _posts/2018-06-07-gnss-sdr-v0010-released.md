@@ -64,7 +64,7 @@ This release has several improvements in different dimensions, addition of new f
  * Improved support for BladeRF, HackRF and RTL-SDR front-ends.
  * Added tools for the interaction with front-ends based on the AD9361 chipset.
  * Intermediate results are now saved in `.mat` binary format, readable from Matlab/Octave and from Python via [h5py](https://www.h5py.org/).
- * Added the [GPX](http://www.topografix.com/gpx.asp) output format.
+ * Added the [GPX](https://www.topografix.com/gpx.asp) output format.
  *  Improvements in the generation of KML files.
  *  Improvements in the NMEA output. The receiver can produce GPGGA, GPRMC, GPGSA, GPGSV, GAGSA and GAGSV sentences.
  *  Improvements in the RTCM server stability.
