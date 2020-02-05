@@ -232,7 +232,7 @@ These parameters are defined as follows:
   - The **Cell ID (CID)** is a generally unique number used to identify each Base Transceiver Station (BTS) or sector of a BTS within a location area code. While BTS is the terminology for GSM networks, this is called Node B in UMTS and eNode B in LTE networks. Valid values for the CID range from $$ 0 $$ to $$ 65535 $$, that is, ($$ 2^{16} − 1 $$), on GSM and CDMA networks and from $$ 0 $$ to $$ 268435455 $$, that is, ($$ 2^{28} − 1 $$), on UMTS and LTE networks.
 
 
-Those values can be easily retrieved using any net monitor on a smartphone. There are a lot of apps that can do that (an example [here](https://play.google.com/store/apps/details?id=com.parizene.netmonitor&hl=en)). These applications are able to provide the required MMC, MNC, LAC and CI parameters for your location. A list of MCC and MNC around the World can be found at [mcc-mnc.com](http://www.mcc-mnc.com) and at the [Wikipedia](https://en.wikipedia.org/wiki/Mobile_country_code).
+Those values can be easily retrieved using any net monitor on a smartphone. There are a lot of apps that can do that (an example [here](https://play.google.com/store/apps/details?id=com.parizene.netmonitor&hl=en)). These applications are able to provide the required MMC, MNC, LAC and CI parameters for your location. A list of MCC and MNC around the World can be found at [mcc-mnc.com](https://www.mcc-mnc.com) and at the [Wikipedia](https://en.wikipedia.org/wiki/Mobile_country_code).
 
 
 GNSS-SDR is a SUPL Enabled Terminal (SET) receiver that can use a TCP/IP network connection to retrieve Assisted GPS data from a remote server via the Secure User Plane Location (SUPL) v1.0 and hence accelerate its Time-To-First-Fix. SUPL v1.0 only applies to GPS L1 C/A assistance.

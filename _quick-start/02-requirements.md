@@ -56,7 +56,7 @@ GNSS-SDR can be run on a variety of operating systems:
 GNSS-SDR builds upon a number of free and open source software libraries:
 
 * [GNU Radio](https://www.gnuradio.org/), a free and open source toolkit for software radio. In turn, GNU Radio requires a number of software dependencies, some of which are also used by GNSS-SDR. Notably, [Boost](https://www.boost.org/), [FFTW](http://www.fftw.org/) and [VOLK](https://www.libvolk.org/).
-* [Armadillo](http://arma.sourceforge.net/), a C++ linear algebra library. It acts as a wrapper for all the relevant libraries present on your system, such as [LAPACK](http://www.netlib.org/lapack/), [BLAS](http://www.netlib.org/blas/), [OpenBlas](http://www.openblas.net/), [ATLAS](http://math-atlas.sourceforge.net/) and [others](http://arma.sourceforge.net/faq.html#linking).
+* [Armadillo](http://arma.sourceforge.net/), a C++ linear algebra library. It acts as a wrapper for all the relevant libraries present on your system, such as [LAPACK](https://www.netlib.org/lapack/), [BLAS](https://www.netlib.org/blas/), [OpenBlas](http://www.openblas.net/), [ATLAS](http://math-atlas.sourceforge.net/) and [others](http://arma.sourceforge.net/faq.html#linking).
 * [glog](https://github.com/google/glog), a C++ implementation of the Google logging module.
 * [gflags](https://github.com/gflags/gflags), a C++ library that implements commandline flags processing.
 * [matio](https://github.com/tbeu/matio), a MATLAB MAT file I/O library.
@@ -93,7 +93,7 @@ It follows a non-exhaustive list of commercially available examples of such gene
 
 * **Ettus Research [USRP family](https://www.ettus.com/product)** is designed for RF applications from DC to 6 GHz, and provides a wide range of devices. The USRP product line spans from affordable hobbyist SDRs to high-end high-bandwidth radios. All USRPs can be used by GNSS-SDR through the USRP Hardware Driver ([UHD](https://files.ettus.com/manual/)).
 
-* **Fairwaves [UmTRX](http://umtrx.org)** is an open hardware dual-channel wideband transceiver that covers from 300 MHz to 3.8 GHz with a maximum RF bandwidth of 28 MHz, delivering 12-bit quadrature samples up to 40 MS/s, and it is able to operate at industrial temperature ranges. Host connection is via Gigabit Ethernet, and a special version of UHD provides a host driver, along with the firmware.
+* **Fairwaves [UmTRX](https://umtrx.org/)** is an open hardware dual-channel wideband transceiver that covers from 300 MHz to 3.8 GHz with a maximum RF bandwidth of 28 MHz, delivering 12-bit quadrature samples up to 40 MS/s, and it is able to operate at industrial temperature ranges. Host connection is via Gigabit Ethernet, and a special version of UHD provides a host driver, along with the firmware.
 
 * **Great Scott Gadgets [HackRF One](https://greatscottgadgets.com/hackrf/)** is an open source hardware platform for Software Defined Radio that can operate from 1 MHz to 6 GHz, with a maximum quadrature sample rate of 20 MS/s with 8-bit quadrature samples (8-bit I and 8-bit Q). It features a software-controlled port to feed an active antenna and a Hi-Speed USB 2.0 connection. GNSS-SDR integration is provided via [gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR).
 
