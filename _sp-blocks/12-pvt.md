@@ -103,7 +103,7 @@ where:
 
   - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m). This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
 
-The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](http://www.navipedia.net/index.php/Time_References_in_GNSS).
+The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](https://gssc.esa.int/navipedia/index.php/Time_References_in_GNSS).
 
 {::comment}
 ### Static / Kinematic
@@ -179,7 +179,7 @@ $$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z
 
 where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are the north and east components of tropospheric gradients (see the tropospheric model [below](#troposphere-model)) and $$ \mathbf{B}_{LC} = \left(  B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)} \right)^T $$ is the ionosphere‐free linear combination of zero‐differenced carrier‐phase biases (in m), defined below in Equation ($$ \ref{eq:bias-lc} $$).
 
-The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay), the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/#phase-range-measurement" | relative_url }}) apply):
+The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](https://gssc.esa.int/navipedia/index.php/Ionospheric_Delay), the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/#phase-range-measurement" | relative_url }}) apply):
 
 
 $$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$
@@ -382,7 +382,7 @@ For ionosphere correction for single frequency GNSS users, GPS navigation data i
 $$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T~. $$
 
 By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r,1}^{(s)} $$ (in m) can be derived by the following
-procedure[^ISGPS200] (this model is often called as the [Klobuchar model](http://www.navipedia.net/index.php/Klobuchar_Ionospheric_Model)[^Klobuchar87]):
+procedure[^ISGPS200] (this model is often called as the [Klobuchar model](https://gssc.esa.int/navipedia/index.php/Klobuchar_Ionospheric_Model)[^Klobuchar87]):
 
 
 $$ \begin{equation} \Psi = \frac{0.0137}{El_r^{(s)} + 0.11}-0.022 \end{equation} $$
@@ -457,7 +457,7 @@ $$ \begin{equation} m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(
 
 $$ \begin{equation} T_{r}^{s} =  m_{H}(El_{r}^{(s)})Z_{H,r} + m(El_{r}^{(s)}) (Z_{T,r}-Z_{H,r})~, \end{equation} $$
 
-where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{(s)}) $$ is the hydro‐static mapping function and $$ m_{W}(El_{r}^{(s)}) $$ is the wet mapping function. The tropospheric zenith hydro‐static delay is given by Saastamoinen model described above with the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the mapping function, the software employs the [Niell mapping function](http://www.navipedia.net/index.php/Mapping_of_Niell)[^Niell96]. The zenith total delay $$ Z_{T,r} $$ is estimated as a unknown parameter in the parameter estimation process.
+where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{(s)}) $$ is the hydro‐static mapping function and $$ m_{W}(El_{r}^{(s)}) $$ is the wet mapping function. The tropospheric zenith hydro‐static delay is given by Saastamoinen model described above with the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the mapping function, the software employs the [Niell mapping function](https://gssc.esa.int/navipedia/index.php/Mapping_of_Niell)[^Niell96]. The zenith total delay $$ Z_{T,r} $$ is estimated as a unknown parameter in the parameter estimation process.
 
 
 

@@ -146,7 +146,7 @@ where:
     * $$ \mathbf{e}_{y}^{(s)} = \frac{\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} }{\left\|\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} \right\|} $$, where $$ \times $$ denotes the [cross-product](https://en.wikipedia.org/wiki/Cross_product) operator.
     * $$ \mathbf{e}_{x}^{(s)} = \mathbf{e}_{y}^{(s)} \times \mathbf{e}_{z}^{(s)} $$.
     * $$ \mathbf{d}_{r,disp} $$ is the displacement by Earth tides at the receiver position in local coordinates (in m).
-    * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect) term (in cycles) due to the circular polarization of the GNSS electromagnetic signals. For a receiver with fixed coordinates, the wind-up is due to the satellite orbital motion. As the satellite moves along its orbital path it must perform a rotation to keep its solar panels pointing to the Sun direction in order to obtain the maximum energy while the satellite antenna keeps pointing to the earth's centre. This rotation causes a phase variation that the receiver misunderstands as a range variation.
+    * $$ \phi_{pw} $$ is the phase [wind-up](https://gssc.esa.int/navipedia/index.php/Carrier_Phase_Wind-up_Effect) term (in cycles) due to the circular polarization of the GNSS electromagnetic signals. For a receiver with fixed coordinates, the wind-up is due to the satellite orbital motion. As the satellite moves along its orbital path it must perform a rotation to keep its solar panels pointing to the Sun direction in order to obtain the maximum energy while the satellite antenna keeps pointing to the earth's centre. This rotation causes a phase variation that the receiver misunderstands as a range variation.
 
 
 ## Doppler shift measurement
