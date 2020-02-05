@@ -60,7 +60,7 @@ References:
 
 ### Skills required:
 
-Good understanding of GNSS signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework is a plus).
+Good understanding of GNSS signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework is a plus).
 
 ### Potential mentor(s):
 
@@ -76,7 +76,7 @@ Tracking of synchronization parameters (i.e., time-delay, carrier phase, Doppler
 The main goal of this project is i) to develop and integrate into GNSS-SDR joint code/carrier KF-based synchronization methods, and iv) test and compare the performance of these techniques with respect to traditional architectures using real signals.
 
 ### Skills required:
-Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework and Kalman filtering techniques is a plus).
+Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework and Kalman filtering techniques is a plus).
 
 ### Potential mentor(s):
 Dr. Pau Closas, Dr. Jordi Vil&agrave;-Valls
@@ -94,7 +94,7 @@ J. L. Massey, [Optimum frame synchronization](http://www.isiweb.ee.ethz.ch/archi
 
 ### Skills required:
 
-Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework is a plus).
+Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework is a plus).
 
 ### Potential mentor(s):
 

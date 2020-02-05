@@ -55,7 +55,7 @@ GNSS-SDR can be run on a variety of operating systems:
 
 GNSS-SDR builds upon a number of free and open source software libraries:
 
-* [GNU Radio](https://gnuradio.org/), a free and open source toolkit for software radio. In turn, GNU Radio requires a number of software dependencies, some of which are also used by GNSS-SDR. Notably, [Boost](https://www.boost.org/), [FFTW](http://www.fftw.org/) and [VOLK](https://www.libvolk.org/).
+* [GNU Radio](https://www.gnuradio.org/), a free and open source toolkit for software radio. In turn, GNU Radio requires a number of software dependencies, some of which are also used by GNSS-SDR. Notably, [Boost](https://www.boost.org/), [FFTW](http://www.fftw.org/) and [VOLK](https://www.libvolk.org/).
 * [Armadillo](http://arma.sourceforge.net/), a C++ linear algebra library. It acts as a wrapper for all the relevant libraries present on your system, such as [LAPACK](http://www.netlib.org/lapack/), [BLAS](http://www.netlib.org/blas/), [OpenBlas](http://www.openblas.net/), [ATLAS](http://math-atlas.sourceforge.net/) and [others](http://arma.sourceforge.net/faq.html#linking).
 * [glog](https://github.com/google/glog), a C++ implementation of the Google logging module.
 * [gflags](https://github.com/gflags/gflags), a C++ library that implements commandline flags processing.
