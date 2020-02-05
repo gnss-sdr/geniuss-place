@@ -64,7 +64,7 @@ This release has several improvements in different dimensions, addition of new f
  * Improved support for BladeRF, HackRF and RTL-SDR front-ends.
  * Added tools for the interaction with front-ends based on the AD9361 chipset.
  * Intermediate results are now saved in `.mat` binary format, readable from Matlab/Octave and from Python via [h5py](https://www.h5py.org/).
- * Added the [GPX](http://www.topografix.com/gpx.asp) output format.
+ * Added the [GPX](https://www.topografix.com/gpx.asp) output format.
  *  Improvements in the generation of KML files.
  *  Improvements in the NMEA output. The receiver can produce GPGGA, GPRMC, GPGSA, GPGSV, GAGSA and GAGSV sentences.
  *  Improvements in the RTCM server stability.
@@ -95,7 +95,7 @@ This release has several improvements in different dimensions, addition of new f
  * Improved SDK for cross-compilation in embedded devices. Documented in a [tutorial]({{ "docs/tutorials/cross-compiling/" | relative_url }}).
  * Improved control over minimum required versions for core dependencies.
  * The software builds with C++11, C++14 and C++17 standards.
- * The software can now be built using GCC >= 4.7.2 or LLVM/Clang >= 3.4.0 compilers on GNU/Linux, and with Clang/AppleClang on MacOS.
+ * The software can now be built using GCC >= 4.7.2 or LLVM/Clang >= 3.4.0 compilers on GNU/Linux, and with Clang/AppleClang on macOS.
  * The Ninja build system can be used in replacement of make.
  * The `volk_gnsssdr` library can be built using Python 2.7+ or Python 3.6+.
  * The `volk_gnsssdr` library is now ready for AArch64 NEON instructions.

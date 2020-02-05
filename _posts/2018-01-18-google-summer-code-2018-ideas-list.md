@@ -53,7 +53,7 @@ Dr. Jordi Vil&agrave;-Valls, Dr. Pau Closas, Dr. Javier Arribas.
 
 ### Description:
 
-Although strong jamming can overwhelm much weaker GNSS signals, receiver performance can be significantly improved by implementing interference mitigation techniques. Robust statistics was recently explored as a mitigation technique that requires minimal receiver modifications, while providing unprecedented anti-jamming rejection capabilities. The main required modification is on the generation of a robust cross-ambiguity function (CAF) which is later used in the correlation process, both in acquisition and tracking modes. This project would encompass implementation and testing of such approach, including some of the variants and real signal processing. A reference article might be downloaded from [here](http://www.insidegnss.com/auto/sepoct17-BORIO_0.pdf).   
+Although strong jamming can overwhelm much weaker GNSS signals, receiver performance can be significantly improved by implementing interference mitigation techniques. Robust statistics was recently explored as a mitigation technique that requires minimal receiver modifications, while providing unprecedented anti-jamming rejection capabilities. The main required modification is on the generation of a robust cross-ambiguity function (CAF) which is later used in the correlation process, both in acquisition and tracking modes. This project would encompass implementation and testing of such approach, including some of the variants and real signal processing. A reference article might be downloaded from [here](https://www.insidegnss.com/auto/sepoct17-BORIO_0.pdf).   
 
 ### Skills required:
 
