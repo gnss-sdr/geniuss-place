@@ -78,7 +78,7 @@ note    = { {doi}: 10.1109/ACCESS.2018.2822835}
 <i>GPS World</i>, Vol. 29, No. 1, pp. 43-49, Jan. 2018.
     <br />
     <a href="javascript:toggleBibtex('Curran18')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="http://gpsworld.com/innovation-the-continued-evolution-of-the-gnss-software-defined-radio/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.gpsworld.com/innovation-the-continued-evolution-of-the-gnss-software-defined-radio/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Curran18" class="bibtex noshow">
     <pre>@article{ Curran18,
@@ -946,7 +946,7 @@ J.&nbsp;Arribas
 <br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="https://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
 <br />
 <a href="javascript:toggleBibtex('Arribas12')">[BibTeX]</a>
-<span style="color: #52adc8">[</span><a href="http://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>
+<span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>
 </p>
 <div id="bib_Arribas12" class="bibtex noshow">
 <pre>@phdthesis{ Arribas12,

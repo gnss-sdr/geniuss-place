@@ -234,9 +234,9 @@ Example:
 
 [^Arribas14]: J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas, [Fastening GPS and Galileo Tight with a Software Receiver](https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428), in Proc. of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014), Tampa, Florida, Sep. 2014, pp. 1383 - 1395.
 
-[^Petovello12]: M. Petovello, M. Rao, G. Falca, [Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?](http://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf), Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
+[^Petovello12]: M. Petovello, M. Rao, G. Falca, [Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?](https://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf), Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
 
-[^Petovello10]: M. Petovello, C. O'Driscoll, [Carrier phase and its measurements for GNSS: What is the carrier phase measurement? How is it generated in GNSS receivers?](http://www.insidegnss.com/auto/julaug10-solutions.pdf) Inside GNSS, vol. 5, no. 5, pp. 18–22, Jul./Aug. 2010.
+[^Petovello10]: M. Petovello, C. O'Driscoll, [Carrier phase and its measurements for GNSS: What is the carrier phase measurement? How is it generated in GNSS receivers?](https://www.insidegnss.com/auto/julaug10-solutions.pdf) Inside GNSS, vol. 5, no. 5, pp. 18–22, Jul./Aug. 2010.
 
 [^Doppler]: C. Doppler, [&#220;ber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels](https://archive.org/details/ueberdasfarbigel00doppuoft) (On the colored light of the double stars and certain other stars of the heavens), Abh. Kniglich Bhmischen Ges. Wiss., vol. 2, pp. 467–482, 1842.
 
