@@ -2,7 +2,7 @@
 title: "My first position fix"
 permalink: /my-first-fix/
 excerpt: "How to quickly get a position fix with GNSS-SDR."
-last_modified_at: 2017-09-03T13:54:02+02:00
+last_modified_at: 2020-02-05T08:54:02+02:00
 header:
   teaser: "/assets/images/gn3s_pvt_4_sats.jpg"
 sidebar:
@@ -105,7 +105,7 @@ Channel.signal=1C
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
 Acquisition_1C.item_type=gr_complex
-Acquisition_1C.threshold=0.008
+Acquisition_1C.pfa=0.01
 Acquisition_1C.doppler_max=10000
 Acquisition_1C.doppler_step=250
 
