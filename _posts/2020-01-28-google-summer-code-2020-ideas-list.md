@@ -8,7 +8,7 @@ tags:
 author_profile: false
 sidebar:
   nav: "news"
-last_modified_at: 2020-01-28T12:08:02+02:00
+last_modified_at: 2020-02-05T12:08:02+02:00
 ---
 
 
@@ -37,7 +37,7 @@ Hereafter we list, in no particular order, some proposals for projects to be car
 Although strong jamming can overwhelm much weaker GNSS signals, receiver performance can be significantly improved by implementing interference mitigation techniques. Robust statistics was recently explored as a mitigation technique that requires minimal receiver modifications, while providing unprecedented anti-jamming rejection capabilities. The main required modification is on the generation of a robust cross-ambiguity function (CAF) which is later used in the correlation process, both in acquisition and tracking modes. This project would encompass implementation and testing of such approach, including some of the variants and real signal processing. A reference article might be downloaded from [here](https://www.insidegnss.com/auto/sepoct17-BORIO_0.pdf)    
 
 ### Skills required:
-Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework is a plus).
+Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework is a plus).
 
 ### Potential mentor(s):
 Dr. Pau Closas, Mr. Gerald LaMountain, Dr. Carles Fern&aacute;ndez-Prades
@@ -51,7 +51,7 @@ The [Galileo High Accuracy Service (HAS)](https://gssc.esa.int/navipedia/index.p
 
 
 ### Skills required:
-Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework is a plus).
+Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework is a plus).
 
 ### Potential mentor(s):
 Dr. Javier Arribas, Dr. Jordi Vil&agrave;-Valls.

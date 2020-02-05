@@ -106,7 +106,7 @@ Blocks are identified by its role. This class knows
 which roles it has to instantiate and how to connect them to configure the generic graph that is
 shown in in the left figure. It relies on the configuration to get the correct instances of the roles it needs and
 then it applies the connections between GNU Radio blocks to make the graph ready to be started.
-The complexity related to managing the blocks and the data stream is handled by GNU Radio's [```gr::top_block```](https://gnuradio.org/doc/doxygen/classgr_1_1top__block.html) class. [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) wraps the [```gr::top_block```](https://gnuradio.org/doc/doxygen/classgr_1_1top__block.html) instance so we can
+The complexity related to managing the blocks and the data stream is handled by GNU Radio's [```gr::top_block```](https://www.gnuradio.org/doc/doxygen/classgr_1_1top__block.html) class. [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) wraps the [```gr::top_block```](https://www.gnuradio.org/doc/doxygen/classgr_1_1top__block.html) instance so we can
 take advantage of the GNSS block factory, the configuration system and the processing blocks. This class is also responsible for applying changes to the configuration of the flow graph
 during run-time, dynamically reconfiguring channels: it selects the strategy for selecting satellites. This can range from a sequential search over all the satellites' ID to smarter approaches that determine what are the satellites most likely in-view based on rough estimations of the receiver position in order to avoid searching satellites in the other side of the Earth.
 
