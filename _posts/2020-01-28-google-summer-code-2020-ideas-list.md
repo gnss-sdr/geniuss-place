@@ -34,7 +34,7 @@ Hereafter we list, in no particular order, some proposals for projects to be car
 ## Project Title: Robust Interference Mitigation for anti-jamming
 
 ### Description:
-Although strong jamming can overwhelm much weaker GNSS signals, receiver performance can be significantly improved by implementing interference mitigation techniques. Robust statistics was recently explored as a mitigation technique that requires minimal receiver modifications, while providing unprecedented anti-jamming rejection capabilities. The main required modification is on the generation of a robust cross-ambiguity function (CAF) which is later used in the correlation process, both in acquisition and tracking modes. This project would encompass implementation and testing of such approach, including some of the variants and real signal processing. A reference article might be downloaded from [here](http://www.insidegnss.com/auto/sepoct17-BORIO_0.pdf)    
+Although strong jamming can overwhelm much weaker GNSS signals, receiver performance can be significantly improved by implementing interference mitigation techniques. Robust statistics was recently explored as a mitigation technique that requires minimal receiver modifications, while providing unprecedented anti-jamming rejection capabilities. The main required modification is on the generation of a robust cross-ambiguity function (CAF) which is later used in the correlation process, both in acquisition and tracking modes. This project would encompass implementation and testing of such approach, including some of the variants and real signal processing. A reference article might be downloaded from [here](https://www.insidegnss.com/auto/sepoct17-BORIO_0.pdf)    
 
 ### Skills required:
 Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework is a plus).
@@ -45,6 +45,18 @@ Dr. Pau Closas, Mr. Gerald LaMountain, Dr. Carles Fern&aacute;ndez-Prades
 
 ---------
 
+## Project Title: Paving the way to Galileo E6
+
+The Galileo High Accuracy Service (HAS) will allow users to obtain a positioning error below two decimeters in nominal conditions of use, worldwide. The Galileo HAS will be based on the free transmission of Precise Point Positioning (PPP) corrections through the Galileo E6 signal data component E6B by the Galileo satellites. Currently, only the [spreading codes have been made public](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf), so it is already possible to implement Acquisition and Tracking blocks for those signals. This project will address those implementations, based on the existing examples for other GNSS signals, hence paving the way to new Galileo accuracy and authentication services in GNSS-SDR.
+
+
+### Skills required:
+Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework is a plus).
+
+### Potential mentor(s):
+Dr. Javier Arribas, Dr. Jordi Vil&agrave;-Valls.
+
+---------
 
 ## Project Title: Porting GNSS-SDR to Microsoft Windows
 
