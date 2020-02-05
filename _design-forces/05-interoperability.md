@@ -108,7 +108,7 @@ More details in version 1.0 of the [Global Navigation Satellite Systems Software
 
 The software receiver should deliver the results of the processing in several standard output formats:
 
-* GIS-oriented formats: [KML](http://www.opengeospatial.org/standards/kml), [GeoJSON](https://geojson.org/), [SHP](https://en.wikipedia.org/wiki/Shapefile).
+* GIS-oriented formats: [KML](https://www.opengeospatial.org/standards/kml), [GeoJSON](https://geojson.org/), [SHP](https://en.wikipedia.org/wiki/Shapefile).
 
     **KML** (Keyhole Markup Language) is an XML grammar used to encode and transport representations of geographic data for display in an earth browser. KML is an open standard officially named the OpenGIS KML Encoding Standard (OGC KML), and it is maintained by the Open Geospatial Consortium, Inc. (OGC). KML files can be displayed in geobrowsers such as [Google Earth](https://www.google.com/earth/), [Marble](https://marble.kde.org), [osgEarth](http://osgearth.org), or used with the [NASA World Wind SDK for Java](https://worldwind.arc.nasa.gov/java/).
     {: .notice--info}
@@ -166,7 +166,7 @@ It follows a list of possible interoperability indicators for a software-defined
 * Number of supported combinations of data collection topologies and formats.
 
 * Number of supported standard output formats.
-  * GIS formats: [KML](http://www.opengeospatial.org/standards/kml), [GeoJSON](https://geojson.org/), [Shapefile](https://en.wikipedia.org/wiki/Shapefile), others.
+  * GIS formats: [KML](https://www.opengeospatial.org/standards/kml), [GeoJSON](https://geojson.org/), [Shapefile](https://en.wikipedia.org/wiki/Shapefile), others.
   * Application-specific formats: NMEA  [0183](https://en.wikipedia.org/wiki/NMEA_0183) / [2000](https://en.wikipedia.org/wiki/NMEA_2000), [GPX](http://www.topografix.com/gpx.asp), others. Specify version.
   * Custom formats: portable, well-documented, easily readable by other programming languages, support of backward and forward-compatible formats.
   * Geodesic formats: [RINEX](https://en.wikipedia.org/wiki/RINEX), [RTCM-104](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-2-differential-gnss-global-navigation-satellite-systems-services-version-3-february-1-2013).
