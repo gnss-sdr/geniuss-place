@@ -30,13 +30,13 @@ Team at work:
 
 {% include video id="zkWvXU3oMs4" provider="youtube" %}
 
-Visualization created with [gource](http://gource.io/) and based on the upstream repository [https://github.com/gnss-sdr/gnss-sdr.git](https://github.com/gnss-sdr/gnss-sdr.git).
+Visualization created with [gource](https://gource.io/) and based on the upstream repository [https://github.com/gnss-sdr/gnss-sdr.git](https://github.com/gnss-sdr/gnss-sdr.git).
 
 ----
 
 ## GPS World
 
-On December 6, 2013, GNSS-SDR appeared at _GPS World_, an essential reference for professionals in every tech field that uses or seeks to use global positioning, navigation, and timing. You can also check the [original page](http://gpsworld.com/galileo-position-fix-with-open-source-software-receiver-achieved/):
+On December 6, 2013, GNSS-SDR appeared at _GPS World_, an essential reference for professionals in every tech field that uses or seeks to use global positioning, navigation, and timing. You can also check the [original page](https://www.gpsworld.com/galileo-position-fix-with-open-source-software-receiver-achieved/):
 
 ![GPS World screenshot]({{ "/assets/images/gps-world.png" | relative_url }})
 {: style="text-align: center;"}

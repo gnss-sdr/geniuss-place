@@ -74,7 +74,7 @@ Under this scheme, software-defined signal processing blocks read the available 
 [^Kahn77]: G. Kahn and D. B. MacQueen, [Coroutines and networks of parallel processes](https://hal.inria.fr/inria-00306565/PDF/rr_iria202.pdf), in Information processing, B. Gilchrist, Ed., Amsterdam, NE, 1977, pp. 993–998, North Holland.
 
 
-[^Parks95]: T. M. Parks, [Bounded Scheduling of Process Networks](http://www.eecs.berkeley.edu/Pubs/TechRpts/1995/ERL-95-105.pdf), Ph.D. thesis, University of California, Berkeley, CA, Dec. 1995.
+[^Parks95]: T. M. Parks, [Bounded Scheduling of Process Networks](https://www2.eecs.berkeley.edu/Pubs/TechRpts/1995/ERL-95-105.pdf), Ph.D. thesis, University of California, Berkeley, CA, Dec. 1995.
 
 ## Software architecture in GNSS-SDR
 
