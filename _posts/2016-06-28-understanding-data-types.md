@@ -142,7 +142,7 @@ others, both [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Referenc
 -   `int32_t` Signed integer type with a width of *exactly* 32 bits.
 
 Building upon these definitions, the [Vector-Optimized Library of Kernels
-(VOLK)](http://libvolk.org/) library defines complex data types. As shown below, it loads the header [`<complex>`](http://en.cppreference.com/w/cpp/header/complex), a file that defines
+(VOLK)](https://www.libvolk.org/) library defines complex data types. As shown below, it loads the header [`<complex>`](http://en.cppreference.com/w/cpp/header/complex), a file that defines
 functionality for complex arithmetic (i.e. basic, arithmetic,
 trigonometric and hyperbolic operations, but only for floating-point
 data types: `float`, `double` and `long double`. This means that complex
