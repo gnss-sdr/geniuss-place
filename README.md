@@ -90,7 +90,7 @@ This work incorporates icons from [The Noun Project](https://thenounproject.com/
 Authors: Garrett Knoll, Arthur Shlain, and tracy tam.
 Icons are distributed under Creative Commons Attribution 3.0 United States ([CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/)).
 
-This work incorporates icons from [Flaticon](hhttps://www.flaticon.com).
+This work incorporates icons from [Flaticon](https://www.flaticon.com).
 Authors: [Butterflytronics](https://www.flaticon.com/authors/butterflytronics), [SimpleIcon](https://www.flaticon.com/authors/simpleicon) and [Freepik](https://www.freepik.com).
 Icons are distributed under Creative Commons Attribution 3.0 ([CC BY 3.0](https://creativecommons.org/licenses/by/3.0/legalcode)).
 
