@@ -946,7 +946,7 @@ J.&nbsp;Arribas
 <br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="https://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
 <br />
 <a href="javascript:toggleBibtex('Arribas12')">[BibTeX]</a>
-<span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>
+<span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>
 </p>
 <div id="bib_Arribas12" class="bibtex noshow">
 <pre>@phdthesis{ Arribas12,

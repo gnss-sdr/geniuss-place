@@ -45,7 +45,7 @@ Then, GNSS-SDR takes care of all the digital signal processing, performing signa
 
 All the intermediate signals are observable, and the _products_ of the GNSS signal processing (that is, the measurements known in this context as [observables](https://gssc.esa.int/navipedia//index.php/GNSS_Basic_Observables) and the data transmitted by the satellites in their navigation message) are delivered in standard formats.
 
-GNSS-SDR is [free and open source software](https://en.unesco.org/foss) released under the [General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html). This means you have:
+GNSS-SDR is [free and open source software](https://en.unesco.org/freeandopensourcesoftware) released under the [General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html). This means you have:
 
  * the freedom to use the software for any purpose,
  * the freedom to change the software to suit your needs,
