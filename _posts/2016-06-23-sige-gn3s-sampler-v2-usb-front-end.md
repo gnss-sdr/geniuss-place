@@ -53,7 +53,7 @@ This article provides details about the support that GNSS-SDR offers for real-ti
 
 ## SiGe GN3S firmware internal details and modifications
 
-The [SiGe GN3S v2 USB RF front-end](https://www.sparkfun.com/products/8238?), developed by the [Colorado Center For Astrodynamics Research](http://ccar.colorado.edu/gnss/), is basically composed of two different integrated circuits. On the one hand, GNSS-related operations are based on the [SiGe 4120](http://www.skyworksinc.com/Products_SiGe.aspx) GPS Application Specific Integrated Circuit (ASIC), that performs RF amplification, filtering, downconversion, and baseband sampling (in June 2011, Skyworks closed its acquisition of SiGe Semiconductor). On the other hand, the Cypress Semiconductors [EZ-USB FX2LP](https://www.cypress.com/products/ez-usb-fx2lp) USB 2.0 microcontroller is in charge of reading the digital samples coming from the SiGe 4120 ASIC and sending them in real-time to the PC through the universal serial bus.
+The [SiGe GN3S v2 USB RF front-end](https://www.sparkfun.com/products/retired/8238), developed by the [Colorado Center For Astrodynamics Research](https://ccar.colorado.edu/gnss/), is basically composed of two different integrated circuits. On the one hand, GNSS-related operations are based on the SiGe 4120 GPS Application Specific Integrated Circuit (ASIC), that performs RF amplification, filtering, downconversion, and baseband sampling (in June 2011, Skyworks closed its acquisition of SiGe Semiconductor). On the other hand, the Cypress Semiconductors [EZ-USB FX2LP](https://www.cypress.com/products/ez-usb-fx2lp) USB 2.0 microcontroller is in charge of reading the digital samples coming from the SiGe 4120 ASIC and sending them in real-time to the PC through the universal serial bus.
 
 
 <figure>
@@ -70,7 +70,7 @@ SiGe 4120 Analog to Digital Converter (ADC) is configured to provide a sample st
  * 2-bit I/Q samples (1bit I & 1bit Q) in a short char binary format (sI0, sQ0, sI1, sQ1, sI2, sQ2, ...)
 
 
-The front-end firmware is licensed as GPL open source, and available online from [GN3Sv2.rar](http://www.sparkfun.com/datasheets/GPS/Modules/GN3Sv2.rar). The front-end was intended to capture up to 600 Mb of data and then use a Matlab GNSS software available from K.Borre’s book[^Kay06] to perform post-processing operations to GPS signals.
+The front-end firmware is licensed as GPL open source, and available online from [GN3Sv2.rar](https://www.sparkfun.com/datasheets/GPS/Modules/GN3Sv2.rar). The front-end was intended to capture up to 600 Mb of data and then use a Matlab GNSS software available from K.Borre’s book[^Kay06] to perform post-processing operations to GPS signals.
 
 [^Kay06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkhäuser, November 2006.
 
