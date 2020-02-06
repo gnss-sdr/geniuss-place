@@ -55,7 +55,7 @@ It follows a list of possible testability indicators for a software-defined GNSS
 
 ## References
 
-[^Yakima]: A. Yakima, [_Design for Testability: A Vital Aspect of the System Architect Role in SAFe._](http://scaledagileframework.com/design-for-testability-a-vital-aspect-of-the- system-architect-role-in-safe/), Scaled Agile, Inc., 2015.
+[^Yakima]: A. Yakima, [_Design for Testability: A Vital Aspect of the System Architect Role in SAFe._](https://www.scaledagileframework.com/design-for-testability-a-vital-aspect-of-the-%20system-architect-role-in-safe//), Scaled Agile, Inc., 2015.
 
 [^Whittaker12]: J. Whittaker, J. Arbon, J. Carollo, _How Google Tests Software_, Westford, Massachusetts: Pearson Education, 2012.
 
