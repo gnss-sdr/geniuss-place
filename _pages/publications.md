@@ -896,7 +896,7 @@ A. Ranganathan
 <br><b>Physical-layer Techniques for Secure Proximity Verification & Localization</b><br>
 <i>PhD Thesis, ETH Z&uuml;rich, Department of Computer Science, Z&uuml;rich, Switzerland, June 2016.</i>
 <br><a href="javascript:toggleBibtex('Ranganathan16')">[BibTeX]</a>
-<span style="color: #52adc8">[</span><a href="http://e-collection.library.ethz.ch/view/eth:49164" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://e-collection.library.ethz.ch/eserv/eth:49164/eth-49164-02.pdf" >PDF</a><span style="color: #52adc8">]</span>
+<span style="color: #52adc8">[</span><a href="https://www.research-collection.ethz.ch/handle/20.500.11850/117163" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/117163/eth-49164-02.pdf" >PDF</a><span style="color: #52adc8">]</span>
 <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.3929/ethz-a-010659030" >
 <i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
 </p>
@@ -972,7 +972,7 @@ A. Hennigar
 <i>MS Thesis, Auburn University, Department of Electrical & Computer Engineering, Auburn, Alabama, Dec. 2014.</i>
 <br />
 <a href="javascript:toggleBibtex('Hennigar14')">[BibTeX]</a>
-<span style="color: #52adc8">[</span><a href="http://etd.auburn.edu/handle/10415/4442" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://etd.auburn.edu/bitstream/handle/10415/4442/Andrew_Hennigar_Thesis_Final_Draft.pdf" >
+<span style="color: #52adc8">[</span><a href="https://etd.auburn.edu/handle/10415/4442" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://etd.auburn.edu/bitstream/handle/10415/4442/Andrew_Hennigar_Thesis_Final_Draft.pdf" >
 PDF</a><span style="color: #52adc8">]</span>
 </p>
 <div id="bib_Hennigar14" class="bibtex noshow">
