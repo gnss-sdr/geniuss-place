@@ -336,7 +336,6 @@ This test computes the Receiver Operation Characteristic (ROC), that is, Probabi
 | &#x2011;&#x2011;acq_test_doppler_step | 125 | Doppler step, in Hz. |
 | &#x2011;&#x2011;acq_test_coherent_time_ms | 1 | Acquisition coherent time, in ms. |
 | &#x2011;&#x2011;acq_test_max_dwells | 1 | Number of non-coherent integrations. |
-| &#x2011;&#x2011;acq_test_use_CFAR_algorithm | true | Use CFAR statistic. |
 | &#x2011;&#x2011;acq_test_make_two_steps | false | Perform second step in a thinner grid. |
 | &#x2011;&#x2011;acq_test_second_nbins | 4 | If `--acq_test_make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. |
 | &#x2011;&#x2011;acq_test_second_doppler_step | 10 | If `--acq_test_make_two_steps` is set to true, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. |
