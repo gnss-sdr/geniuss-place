@@ -46,7 +46,7 @@ $ CPUPROFILE_FREQUENCY=100000000000 CPUPROFILE=/tmp/gnss-sdr-cpu.prof /path/to/g
 $ pprof --gv --nodefraction=0.000000000001 --edgefraction=0.000000000001 ./gnss-sdr /tmp/gnss-sdr-cpu.prof
 ```
 
-Please see more details on fine control of the [CPU profiler’s behavior and output analysis options](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/cpuprofile.html).
+Please see more details on fine control of the [CPU profiler’s behavior and output analysis options](https://gperftools.github.io/gperftools/cpuprofile.html).
 
 ### Heap checker
 
@@ -62,7 +62,7 @@ $ HEAPCHECK=1 /path/to/gnss-sdr
 
 Other values for HEAPCHECK: `normal` (equivalent to `1`), `strict`, `draconian`.
 
-Please see more details on the [heap checker options](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/heap_checker.html).
+Please see more details on the [heap checker options](https://gperftools.github.io/gperftools/heap_checker.html).
 
 
 ### Heap profiler
@@ -81,7 +81,7 @@ $ pprof <path/to/binary> /tmp/gnss-sdr.heap.prof.0045.heap # run 'ls' to see opt
 $ pprof --gv <path/to/binary> /tmp/gnss-sdr.heap.prof.0045.heap
 ```
 
-Please see more details on the [heap profiler options](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/heapprofile.html).
+Please see more details on the [heap profiler options](https://gperftools.github.io/gperftools/heapprofile.html).
 
 ### A quick note about how to use it
 
