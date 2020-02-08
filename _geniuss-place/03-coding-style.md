@@ -1,4 +1,4 @@
----
+_H---
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
@@ -353,17 +353,17 @@ instead of the header file to reduce compile time.
 
 The include guard protects against the header file being included
 multiple times. The format of the symbol name should be
-`<PROJECT>_<FILE>_H_`. For example, the file
+`<PROJECT>_<FILE>_H`. For example, the file
 `gnss-sdr/src/bar_baz.h` should have the following guard:
 
 ```cpp
-#ifndef GNSS_SDR_BAR_BAZ_H_
-#define GNSS_SDR_BAR_BAZ_H_
+#ifndef GNSS_SDR_BAR_BAZ_H
+#define GNSS_SDR_BAR_BAZ_H
 ...
-#endif  // GNSS_SDR_BAR_BAZ_H_
+#endif  // GNSS_SDR_BAR_BAZ_H
 ```
 
-### The name of the macro used in the include guard should have the same name as the file (excluding the extension) followed by the suffix “`_H_`”
+### The name of the macro used in the include guard should have the same name as the file (excluding the extension) followed by the suffix “`_H`”
 
 This avoids clashing with other names.
 
@@ -503,7 +503,7 @@ Please use the following template at the header of all files:
 ```
 
 This Project follows the [REUSE](https://reuse.software/) recommendations and it
-is compliant with the [REUSE Specification](https://reuse.software/spec/). 
+is compliant with the [REUSE Specification](https://reuse.software/spec/).
 Please check the details in [this tutorial](https://reuse.software/tutorial/).
 
 ## Declarations
