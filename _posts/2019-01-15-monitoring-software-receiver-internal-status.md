@@ -76,8 +76,8 @@ Open your IDE or text editor of choice, create a new class and call it Gnss_Sync
 Define the class header file first: `gnss_synchro_udp_source.h`
 
 ```cpp
-#ifndef GNSS_SYNCHRO_UDP_SOURCE_H_
-#define GNSS_SYNCHRO_UDP_SOURCE_H_
+#ifndef GNSS_SYNCHRO_UDP_SOURCE_H
+#define GNSS_SYNCHRO_UDP_SOURCE_H
 
 #include <boost/asio.hpp>
 #include "gnss_synchro.pb.h"  // This file is created automatically
@@ -100,7 +100,7 @@ private:
     std::map<int, gnss_sdr::GnssSynchro> channels;
 };
 
-#endif /* GNSS_SYNCHRO_UDP_SOURCE_H_ */
+#endif  // GNSS_SYNCHRO_UDP_SOURCE_H
 ```
 
 We are going to use 6 member variables:
