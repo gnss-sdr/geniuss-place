@@ -1,4 +1,4 @@
-_H---
+---
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
