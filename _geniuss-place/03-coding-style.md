@@ -1055,6 +1055,8 @@ $ sudo pacman -S clang
 ```bash
 $ brew install llvm
 $ ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin
+$ ln -s /usr/local/Cellar/llvm/9.*/bin/clang-apply-replacements /usr/local/bin
+$ ln -s /usr/local/Cellar/llvm/9.*/share/clang/run-clang-tidy.py /usr/local/bin
 ```
 
 * **In macOS using Macports:**
