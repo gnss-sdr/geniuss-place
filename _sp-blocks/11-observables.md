@@ -181,7 +181,7 @@ $$ \begin{eqnarray} \dot{P}_{r,i}^{(s)} & = & -\lambda_i f_{D_{i}}^{(s)} \nonumb
 
 ## Carrier-smoothing of code pseudoranges
 
-The noisy (but unambiguous) code pseudorange measurements can be smoothed with the precise (but ambiguous) carrier phase measurements. A simple algorithm, known as the Hatch filter, is given as follows:
+The noisy (but unambiguous) code pseudorange measurements can be smoothed with the precise (but ambiguous) carrier phase measurements. A simple algorithm, known as the Hatch filter, is given as follows[^LoPresti15]:
 
 Let $$ P_{r,i}^{(s)}[n] $$ and $$ \Phi_{r,i}^{(s)}[n] $$ be the code and carrier measurements of a given satellite $$ s $$, in the band $$ i $$, at the time $$ n $$. Thence, the smoothed code $$ \hat{P}_{r,i}^{(s)}[n] $$ can be computed as:
 
@@ -263,5 +263,7 @@ Example:
 [^Doppler]: C. Doppler, [&#220;ber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels](https://archive.org/details/ueberdasfarbigel00doppuoft) (On the colored light of the double stars and certain other stars of the heavens), Abh. Kniglich Bhmischen Ges. Wiss., vol. 2, pp. 467–482, 1842.
 
 [^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf). April 29, 2013.
+
+[^LoPresti15]: M. Petovello, L. Lo Presti, M. Visintin, [Can you list all the properties of the carrier-smoothing filter?](https://insidegnss.com/wp-content/uploads/2018/01/julyaug15-SOLUTIONS.pdf), Inside GNSS, vol. 10, no. 4, pp. 32–37, Jul./Aug. 2015.
 
 <link rel="prerender" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}">
