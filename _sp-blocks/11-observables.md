@@ -183,7 +183,7 @@ $$ \begin{eqnarray} \dot{P}_{r,i}^{(s)} & = & -\lambda_i f_{D_{i}}^{(s)} \nonumb
 
 The noisy (but unambiguous) code pseudorange measurements can be smoothed with the precise (but ambiguous) carrier phase measurements. A simple algorithm, known as the Hatch filter, is given as follows:
 
-Let $$ P_{r,i}^{(s)}[n] $$ and $$ \Phi_{r,i}^{(s)}[n] $$ the code and carrier measurements of a given satellite $$ s $$, in the band $$ i $$, at the time $$ n $$. Thence, the smoothed code $$ \hat{P}_{r,i}^{(s)}[n] $$ can be computed as:
+Let $$ P_{r,i}^{(s)}[n] $$ and $$ \Phi_{r,i}^{(s)}[n] $$ be the code and carrier measurements of a given satellite $$ s $$, in the band $$ i $$, at the time $$ n $$. Thence, the smoothed code $$ \hat{P}_{r,i}^{(s)}[n] $$ can be computed as:
 
 $$ \begin{equation} \label{eq:smoothing}
 \hat{P}_{r,i}^{(s)}[k] = \frac{1}{M}  P_{r,i}^{(s)}[k] + \frac{M-1}{M}\left[ \hat{P}_{r,i}^{(s)}[k-1] + \left(\Phi_{r,i}^{(s)}[k] - \Phi_{r,i}^{(s)}[k-1] \right) \right]
