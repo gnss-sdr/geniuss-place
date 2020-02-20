@@ -1,0 +1,43 @@
+---
+permalink: /cookies/
+title: "Cookies"
+author_profile: false
+comments: false
+excerpt: "Cookies information, in compliance with the General Data Protection Regulation (EU GDPR)"
+header:
+  teaser: /assets/images/media.png
+sidebar:
+    nav: "news"
+last_modified_at: 2020-02-20T10:39:37+02:00
+---
+
+## INFORMATION ON USE OF COOKIES
+Cookies are short files that are sent to and stored on the hard disk of the user's computer via its browser when it is connected to a website. Cookies can be used to gather and store the user's data while they are connected to provide the services requested and are not usually conserved (Session Cookies), or to store the user's data for another type of future service in which case it may be stored for an indefinite period of time (Persistent Cookies). Cookies may be our own or those of a third party. There are various types of cookies:
+
+ * Technical cookies which facilitate the user's browsing session and the use of the different options or services the website offers such as identifying the session, enabling access to certain areas, simplifying orders, purchases, completion of forms, entries, security, providing functionalities (videos, social networks,...).
+ * Personalisation cookies which allow the user to access the services in keeping with their preferences (language, browser, configuration...).
+ * Analysis cookies which allow anonymous analysis of the website users' behaviour and to measure the user's activity and create browsing profiles to improve the websites.
+ * Advertising cookies help to manage the advertising spaces of the website.
+ * Personalised advertising cookies which enable management of the advertising spaces on the website, based on the user's behaviour and browsing habits, to create their profile and customise the advertising shown on the user's browser.
+
+**CTTC USES ITS OWN AND THIRD-PARTY TECHNICAL, PERSONALISATION AND ANALYSIS COOKIES WHICH UNDER NO CIRCUMSTANCE PROCESS PERSONAL DATA BUT DO CAPTURE BROWSING HABITS FOR STATISTICAL PURPOSES.** For this reason, when entering our website, pursuant to article 22 of the Law on Information Society Services, we request your consent to use same.
+
+
+We inform you that you can activate or de-activate these cookies by following the instructions of your Internet browser.
+
+ * **Chrome:** Configuration -> Show advanced options -> Privacy -> content configuration.
+ * **Firefox:** Tools -> Options -> Privacy -> History -> Personalised Configuration.
+ * **Safari:** Preferences -> Security.
+ * **Opera:** Tools -> Preferences -> Edit preferences > Cookies
+ * **Edge:** Configuration -> See advanced configuration -> Privacy and services -> Cookies
+ * **Internet Explorer:** Tools -> Internet Options -> Privacy -> Configuration.
+
+
+For more information you can read the Help section of your browser or the support pages:
+
+ * [Chrome](https://support.google.com/)
+ * [Firefox](https://support.mozilla.org/en-US/)
+ * [Safari](https://www.apple.com/)
+ * [Opera](https://help.opera.com/en/latest/web-preferences/)
+ * [Edge](https://support.microsoft.com/en-us/help/4468242/microsoft-edge-browsing-data-and-privacy)
+ * [Internet Explorer](https://www.microsoft.com/en-us/windows/)
