@@ -22,8 +22,6 @@ Cookies are short files that are sent to and stored on the hard disk of the user
 
 **CTTC USES ITS OWN AND THIRD-PARTY TECHNICAL, PERSONALISATION AND ANALYSIS COOKIES WHICH UNDER NO CIRCUMSTANCE PROCESS PERSONAL DATA BUT DO CAPTURE BROWSING HABITS FOR STATISTICAL PURPOSES.** For this reason, when entering our website, pursuant to article 22 of the Law on Information Society Services, we request your consent to use same.
 
-<script type="text/javascript" charset="UTF-8" data-cookiescriptreport="report" src="//report.cookie-script.com/r/b6c9e69bb4e7ad7868e7c46f1b9aeacd.js"></script>
-
 
 We inform you that you can activate or de-activate these cookies by following the instructions of your Internet browser.
 
