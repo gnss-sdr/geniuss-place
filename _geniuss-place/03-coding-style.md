@@ -958,6 +958,11 @@ $ sudo yum install clang-tools-extra
 $ sudo pacman -S clang
 ```
 
+  * **In GNU/Linux using openSUSE:**
+```bash
+$ sudo zypper -n install llvm-clang
+```
+
   * **In macOS using Homebrew:**
 ```bash
 $ brew install llvm
@@ -1049,6 +1054,11 @@ $ sudo yum install clang-tools-extra
 * **In GNU/Linux using ArchLinux:**
 ```bash
 $ sudo pacman -S clang
+```
+
+* **In GNU/Linux using openSUSE:**
+```bash
+$ sudo zypper -n install llvm-clang
 ```
 
 * **In macOS using Homebrew:**
