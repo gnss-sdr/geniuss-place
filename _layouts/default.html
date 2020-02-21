@@ -63,6 +63,12 @@
       revokable: true,
       onInitialise: function(status) {
            var didConsent = this.hasConsented();
+           if(didConsent) {
+               window.dataLayer = window.dataLayer || [];
+               function gtag(){dataLayer.push(arguments);}
+               gtag('js', new Date());
+               gtag('config', '{{ site.analytics.google.tracking_id }}');
+           }
            if(!didConsent) {
                  window.dataLayer = window.dataLayer || [];
                  function gtag(){dataLayer.push(arguments);}
@@ -85,6 +91,12 @@
                gtag('js', new Date());
                gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
            }
+      },
+      onRevokeChoice: function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '{{ site.analytics.google.tracking_id }}');
       }
     });
     </script>
