@@ -21,15 +21,16 @@ Cookies are short files that are sent to and stored on the hard disk of the user
  * Personalised advertising cookies which enable management of the advertising spaces on the website, based on the user's behaviour and browsing habits, to create their profile and customise the advertising shown on the user's browser.
 
 **CTTC USES ITS OWN AND THIRD-PARTY TECHNICAL, PERSONALISATION AND ANALYSIS COOKIES WHICH UNDER NO CIRCUMSTANCE PROCESS PERSONAL DATA BUT DO CAPTURE BROWSING HABITS FOR STATISTICAL PURPOSES.** For this reason, when entering our website, pursuant to article 22 of the Law on Information Society Services, we request your consent to use same.
-
+{: .notice--info}
 
 We inform you that you can activate or de-activate these cookies by following the instructions of your Internet browser.
 
- * **Chrome:** Configuration -> Show advanced options -> Privacy -> content configuration.
- * **Firefox:** Tools -> Options -> Privacy -> History -> Personalised Configuration.
- * **Safari:** Preferences -> Security.
- * **Opera:** Tools -> Preferences -> Edit preferences > Cookies
- * **Edge:** Configuration -> See advanced configuration -> Privacy and services -> Cookies
+ * **Chrome:** At the top right, click More (<i class="fas fa-ellipsis-v"></i> button) -> Settings -> Advanced Options -> Under "Privacy and security," click on Site settings. -> Click Cookies -> See all cookies and site data.
+ * **Firefox:** Menu (<i class="fas fa-bars"></i> button) -> Preferences -> Privacy and Security.
+ * **Safari:** Preferences -> Privacy tab.
+ * **Opera:** Tools -> Preferences -> Edit preferences > Cookies.
+ * **Edge:** Configuration -> See advanced configuration -> Privacy and services -> Cookies.
+ * **Tor:** At the top right, click Open Menu (<i class="fas fa-bars"></i> button) -> Preferences -> Privacy.
  * **Internet Explorer:** Tools -> Internet Options -> Privacy -> Configuration.
 
 
@@ -37,7 +38,8 @@ For more information you can read the Help section of your browser or the suppor
 
  * [Chrome](https://support.google.com/)
  * [Firefox](https://support.mozilla.org/en-US/)
- * [Safari](https://www.apple.com/)
+ * [Safari](https://support.apple.com/safari)
  * [Opera](https://help.opera.com/en/latest/web-preferences/)
  * [Edge](https://support.microsoft.com/en-us/help/4468242/microsoft-edge-browsing-data-and-privacy)
- * [Internet Explorer](https://www.microsoft.com/en-us/windows/)
+ * [Tor](https://support.torproject.org/)
+ * [Internet Explorer](https://www.microsoft.com/en-us/microsoft-365/windows/end-of-ie-support)
