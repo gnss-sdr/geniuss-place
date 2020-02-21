@@ -25,21 +25,11 @@ Cookies are short files that are sent to and stored on the hard disk of the user
 
 We inform you that you can activate or de-activate these cookies by following the instructions of your Internet browser.
 
- * **Chrome:** At the top right, click More (<i class="fas fa-ellipsis-v"></i> button) -> Settings -> Advanced Options -> Under "Privacy and security," click on Site settings. -> Click Cookies -> See all cookies and site data.
- * **Firefox:** Menu (<i class="fas fa-bars"></i> button) -> Preferences -> Privacy and Security.
- * **Safari:** Preferences -> Privacy tab.
- * **Opera:** Tools -> Preferences -> Edit preferences > Cookies.
- * **Edge:** Configuration -> See advanced configuration -> Privacy and services -> Cookies.
- * **Tor:** At the top right, click Open Menu (<i class="fas fa-bars"></i> button) -> Preferences -> Privacy.
- * **Internet Explorer:** Tools -> Internet Options -> Privacy -> Configuration.
-
-
-For more information you can read the Help section of your browser or the support pages:
-
- * [Chrome](https://support.google.com/)
- * [Firefox](https://support.mozilla.org/en-US/)
- * [Safari](https://support.apple.com/safari)
- * [Opera](https://help.opera.com/en/latest/web-preferences/)
- * [Edge](https://support.microsoft.com/en-us/help/4468242/microsoft-edge-browsing-data-and-privacy)
- * [Tor](https://support.torproject.org/)
- * [Internet Explorer](https://www.microsoft.com/en-us/microsoft-365/windows/end-of-ie-support)
+ * **Chrome:** At the top right, click More (<i class="fas fa-ellipsis-v"></i> button) <i class="fas fa-long-arrow-alt-right"></i> Settings <i class="fas fa-long-arrow-alt-right"></i> Advanced Options <i class="fas fa-long-arrow-alt-right"></i> Under "Privacy and security," click on Site settings. <i class="fas fa-long-arrow-alt-right"></i> Click Cookies <i class="fas fa-long-arrow-alt-right"></i> See all cookies and site data. For more information you can read the [Chrome Support website](https://support.google.com/).
+ * **Firefox:** Menu (<i class="fas fa-bars"></i> button) <i class="fas fa-long-arrow-alt-right"></i> Preferences <i class="fas fa-long-arrow-alt-right"></i> Privacy and Security. For more information you can read the [Firefox Support website](https://support.mozilla.org/en-US/).
+ * **Safari:** Preferences <i class="fas fa-long-arrow-alt-right"></i> Privacy tab. For more information you can read the [Safari Support website](https://support.apple.com/safari).
+ * **Opera:** Tools <i class="fas fa-long-arrow-alt-right"></i> Preferences <i class="fas fa-long-arrow-alt-right"></i> Edit preferences > Cookies. For more information you can read the [Opera Support website](https://help.opera.com/en/latest/web-preferences/).
+ * **Edge:** Configuration <i class="fas fa-long-arrow-alt-right"></i> See advanced configuration <i class="fas fa-long-arrow-alt-right"></i> Privacy and services <i class="fas fa-long-arrow-alt-right"></i> Cookies. For more information you can read the [Edge Support website](https://support.microsoft.com/en-us/help/4468242/microsoft-edge-browsing-data-and-privacy).
+ * **Tor:** At the top right, click Open Menu (<i class="fas fa-bars"></i> button) <i class="fas fa-long-arrow-alt-right"></i> Preferences <i class="fas fa-long-arrow-alt-right"></i> Privacy. For more information you can read the [Tor Support website](https://support.torproject.org/).
+ * **Vivaldi:** Preferences <i class="fas fa-long-arrow-alt-right"></i> Privacy <i class="fas fa-long-arrow-alt-right"></i> Cookies. For more information you can read the [Vivaldi Support website](https://help.vivaldi.com/).
+ * **Internet Explorer:** Tools <i class="fas fa-long-arrow-alt-right"></i> Internet Options <i class="fas fa-long-arrow-alt-right"></i> Privacy <i class="fas fa-long-arrow-alt-right"></i> Configuration. Please be aware that Internet Explorer has reached its end of support. For more information you can read the [Internet Explorer Support website](https://www.microsoft.com/en-us/microsoft-365/windows/end-of-ie-support).
