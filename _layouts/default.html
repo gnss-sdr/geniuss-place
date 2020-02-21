@@ -4,7 +4,7 @@
 <!doctype html>
 <!--
   GNSS-SDR website https://gnss-sdr.org
-  Copyright 2016-2019 Carles Fernandez-Prades
+  Copyright 2016-2020 Carles Fernandez-Prades
   Free for personal and commercial use under the Creative Commons Attribution 4.0 license
   https://github.com/gnss-sdr/geniuss-place/blob/master/LICENSE
 -->
@@ -64,23 +64,27 @@
       onInitialise: function(status) {
            var didConsent = this.hasConsented();
            if(!didConsent) {
-               window.dataLayer = window.dataLayer || [];
-               function gtag(){dataLayer.push(arguments);}
-               gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
+                 window.dataLayer = window.dataLayer || [];
+                 function gtag(){dataLayer.push(arguments);}
+                 gtag('js', new Date());
+                 gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
+
            }
       },
       onStatusChange: function(status, chosenBefore) {
            var didConsent = this.hasConsented();
+           if(didConsent) {
+               window.dataLayer = window.dataLayer || [];
+               function gtag(){dataLayer.push(arguments);}
+               gtag('js', new Date());
+               gtag('config', '{{ site.analytics.google.tracking_id }}');
+           }
            if(!didConsent) {
                window.dataLayer = window.dataLayer || [];
                function gtag(){dataLayer.push(arguments);}
+               gtag('js', new Date());
                gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
            }
-      },
-      onRevokeChoice: function() {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': true });
       }
     });
     </script>
