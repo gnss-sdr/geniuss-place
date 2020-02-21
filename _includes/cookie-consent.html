@@ -1,0 +1,60 @@
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  palette: {
+    popup: {
+      background: "#252e39"
+    },
+    button: {
+      background: "#14a7d0"
+    }
+  },
+  type: "opt-out",
+  content: {
+    href: "/cookies/"
+  },
+  cookie: {
+      domain: "gnss-sdr.org",
+      expiryDays: 30,
+      secure: true
+  },
+  revokable: true,
+  onInitialise: function(status) {
+       var didConsent = this.hasConsented();
+       if(didConsent) {
+           window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+           gtag('js', new Date());
+           gtag('config', '{{ site.analytics.google.tracking_id }}');
+       }
+       if(!didConsent) {
+             window.dataLayer = window.dataLayer || [];
+             function gtag(){dataLayer.push(arguments);}
+             gtag('js', new Date());
+             gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
+
+       }
+  },
+  onStatusChange: function(status, chosenBefore) {
+       var didConsent = this.hasConsented();
+       if(didConsent) {
+           window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+           gtag('js', new Date());
+           gtag('config', '{{ site.analytics.google.tracking_id }}');
+       }
+       if(!didConsent) {
+           window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+           gtag('js', new Date());
+           gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
+       }
+  },
+  onRevokeChoice: function() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.analytics.google.tracking_id }}');
+  }
+});
+</script>

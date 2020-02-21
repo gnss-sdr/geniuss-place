@@ -4,7 +4,7 @@
 <!doctype html>
 <!--
   GNSS-SDR website https://gnss-sdr.org
-  Copyright 2016-2019 Carles Fernandez-Prades
+  Copyright 2016-2020 Carles Fernandez-Prades
   Free for personal and commercial use under the Creative Commons Attribution 4.0 license
   https://github.com/gnss-sdr/geniuss-place/blob/master/LICENSE
 -->
@@ -39,24 +39,10 @@
 
     {% include scripts.html %}
     {% include analytics.html %}
-
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-    <script>
-    window.cookieconsent.initialise({
-      "palette": {
-        "popup": {
-          "background": "#252e39"
-        },
-        "button": {
-          "background": "#14a7d0"
-        }
-      },
-      "type": "opt-out",
-      "content": {
-        "href": "/cookies/"
-      }
-    });
-    </script>
+    {% case site.analytics.provider %}
+      {% when "google-gtag" %}
+        {% include cookie-consent.html %}
+    {% endcase %}
 
   </body>
 </html>
