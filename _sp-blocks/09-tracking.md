@@ -354,9 +354,19 @@ Example:
 ```ini
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
-Tracking_1C.pll_bw_hz=30.0
-Tracking_1C.dll_bw_hz=4.0
-Tracking_1C.early_late_space_chips=0.5
+Tracking_1C.item_type=gr_complex
+Tracking_1C.extend_correlation_symbols=20
+Tracking_1C.early_late_space_chips=0.5;
+Tracking_1C.early_late_space_narrow_chips=0.1;
+Tracking_1C.pll_bw_hz=35;
+Tracking_1C.dll_bw_hz=2.0;
+Tracking_1C.pll_bw_narrow_hz=5.0;
+Tracking_1C.dll_bw_narrow_hz=0.50;
+Tracking_1C.fll_bw_hz=10
+Tracking_1C.enable_fll_pull_in=true;
+Tracking_1C.enable_fll_steady_state=false
+Tracking_1C.dump=false
+Tracking_1C.dump_filename=tracking_ch_
 ```
 
 
@@ -672,8 +682,22 @@ Example:
 ```ini
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_1B.implementation=Galileo_E1_DLL_PLL_VEML_Tracking
+Tracking_1B.item_type=gr_complex
+Tracking_1B.track_pilot=true
 Tracking_1B.pll_bw_hz=15.0;
-Tracking_1B.dll_bw_hz=2.0;
+Tracking_1B.dll_bw_hz=0.75;
+Tracking_1B.early_late_space_chips=0.25;
+Tracking_1B.early_late_space_narrow_chips=0.15;
+Tracking_1B.very_early_late_space_chips=0.5;
+Tracking_1B.very_early_late_space_narrow_chips=0.5;
+Tracking_1B.pll_bw_narrow_hz=5.0
+Tracking_1B.dll_bw_narrow_hz=0.2
+Tracking_1B.extend_correlation_symbols=5
+Tracking_1B.enable_fll_pull_in=true;
+Tracking_1B.enable_fll_steady_state=false
+Tracking_1B.fll_bw_hz=10
+Tracking_1B.dump=false
+Tracking_1B.dump_filename=tracking_ch_
 ```
 
 
@@ -1037,9 +1061,20 @@ Example:
 ```ini
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_L5.implementation=GPS_L5_DLL_PLL_Tracking
-Tracking_L5.pll_bw_hz=30.0
-Tracking_L5.dll_bw_hz=4.0
-Tracking_L5.early_late_space_chips=0.5
+Tracking_L5.item_type=gr_complex
+Tracking_L5.track_pilot=true
+Tracking_L5.pll_bw_hz=20.0;
+Tracking_L5.dll_bw_hz=1.5;
+Tracking_L5.extend_correlation_symbols=20
+Tracking_L5.pll_bw_narrow_hz=6.0
+Tracking_L5.dll_bw_narrow_hz=0.5
+Tracking_L5.enable_fll_pull_in=true
+Tracking_L5.enable_fll_steady_state=false
+Tracking_L5.fll_bw_hz=4.0
+Tracking_L5.early_late_space_chips=0.5;
+Tracking_L5.early_late_space_narrow_chips=0.1;
+Tracking_L5.dump=false
+Tracking_L5.dump_filename=./tracking_ch_
 ```
 
 
@@ -1122,11 +1157,19 @@ Example:
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_5X.implementation=Galileo_E5a_DLL_PLL_Tracking
 Tracking_5X.item_type=gr_complex
-Tracking_5X.pll_bw_hz=25.0
-Tracking_5X.dll_bw_hz=4.0
-Tracking_5X.pll_bw_narrow_hz=10.0
-Tracking_5X.dll_bw_narrow_hz=4.0
-Tracking_5X.early_late_space_chips=0.5
+Tracking_5X.track_pilot=true
+Tracking_5X.pll_bw_hz=20.0;
+Tracking_5X.dll_bw_hz=1.5;
+Tracking_5X.extend_correlation_symbols=20
+Tracking_5X.pll_bw_narrow_hz=5.0;
+Tracking_5X.dll_bw_narrow_hz=0.5;
+Tracking_5X.early_late_space_chips=0.5;
+Tracking_5X.early_late_space_chips_narrow=0.1;
+Tracking_5X.fll_bw_hz=4.0
+Tracking_5X.enable_fll_pull_in=true;
+Tracking_5X.enable_fll_steady_state=false
+Tracking_5X.dump=false
+Tracking_5X.dump_filename=./tracking_ch_
 ```
 
 
