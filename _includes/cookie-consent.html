@@ -26,16 +26,12 @@ window.cookieconsent.initialise({
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
            gtag('config', '{{ site.analytics.google.tracking_id }}');
-           function(popup) {
-               popup.toggleRevokeButton(false);
-           }
        }
        if(!didConsent) {
              window.dataLayer = window.dataLayer || [];
              function gtag(){dataLayer.push(arguments);}
              gtag('js', new Date());
              gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
-
        }
   },
   onStatusChange: function(status, chosenBefore) {
@@ -45,9 +41,6 @@ window.cookieconsent.initialise({
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
            gtag('config', '{{ site.analytics.google.tracking_id }}');
-           function(popup) {
-               popup.toggleRevokeButton(false);
-           }
        }
        if(!didConsent) {
            window.dataLayer = window.dataLayer || [];
