@@ -41,7 +41,9 @@ window.cookieconsent.initialise({
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
            gtag('config', '{{ site.analytics.google.tracking_id }}');
-           this.popup.toggleRevokeButton(false);
+           function(popup) {
+               popup.toggleRevokeButton(false);
+           }
        }
        if(!didConsent) {
            window.dataLayer = window.dataLayer || [];
