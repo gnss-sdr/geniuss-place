@@ -119,6 +119,14 @@ about:
         url: /media/
       - title: "Publications"
         url: /publications/
+  - title: Legal
+    children:
+      - title: "Legal Notice"
+        url: /legal-notice/
+      - title: "Privacy Policy"
+        url: /privacy-policy/
+      - title: "Cookies"
+        url: /cookies/
 
 sp-block:
   - title: Signal Processing Blocks
@@ -240,3 +248,12 @@ news:
         url: /media/
       - title: "Publications"
         url: /publications/
+
+  - title: Legal
+    children:
+      - title: "Legal Notice"
+        url: /legal-notice/
+      - title: "Privacy Policy"
+        url: /privacy-policy/
+      - title: "Cookies"
+        url: /cookies/

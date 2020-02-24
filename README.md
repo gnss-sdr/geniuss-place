@@ -47,7 +47,8 @@ According to the name and the quality of the theme this website is based upon, a
 - [Gumshoe](https://github.com/cferdinandi/gumshoe)
 - [jQuery throttle / debounce](http://benalman.com/projects/jquery-throttle-debounce-plugin/)
 - [Sass](https://sass-lang.com/)
-- Web search service provided by [Algolia](https://www.algolia.com/)
+- [Cookie Consent](https://github.com/osano/cookieconsent)
+- Web search service provided by [Google Search Engine](https://cse.google.com/cse)
 
 ---
 
@@ -143,7 +144,3 @@ Jekyll Group-By-Array is distributed under the terms of the [MIT License](https:
 This work incorporates [@allejo's Pure Liquid Jekyll Table of Contents](https://allejo.io/blog/a-jekyll-toc-without-plugins-or-javascript/),
 Copyright &copy; 2017 Vladimir Jimenez.
 Pure Liquid Jekyll Table of Contents is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-This work incorporates [instantsearch.js](https://github.com/algolia/instantsearch.js),
-Copyright &copy; 2015-present Algolia, Inc.
-instantsearch.js is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
