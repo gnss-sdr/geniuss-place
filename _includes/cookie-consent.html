@@ -26,7 +26,6 @@ window.cookieconsent.initialise({
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
            gtag('config', '{{ site.analytics.google.tracking_id }}');
-           this.toggleRevokeButton(false);
        }
        if(!didConsent) {
              window.dataLayer = window.dataLayer || [];
@@ -42,7 +41,6 @@ window.cookieconsent.initialise({
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
            gtag('config', '{{ site.analytics.google.tracking_id }}');
-           this.toggleRevokeButton(false);
        }
        if(!didConsent) {
            window.dataLayer = window.dataLayer || [];
@@ -56,6 +54,12 @@ window.cookieconsent.initialise({
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', '{{ site.analytics.google.tracking_id }}');
+  },
+  onPopupClose: function() {
+      var didConsent = this.hasConsented();
+      if(didConsent) {
+          this.toggleRevokeButton(false);
+      }
   }
 });
 </script>
