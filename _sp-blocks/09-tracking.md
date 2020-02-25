@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-09-07T10:54:02+02:00
+last_modified_at: 2020-02-24T10:54:02+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of a _Tracking_ block can be written as:
@@ -332,6 +332,7 @@ This implementation accepts the following parameters:
 | `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `early_late_space_narrow_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$, after bit synchronization. It defaults to $$ 0.5 $$. | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |.
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.  | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50.  | Optional |
@@ -644,7 +645,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E1_DLL_PLL_VEML_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E1C and enables an extra prompt correlator (slave to pilot's prompt) in the data component E1B. It defaults to `false` (that is, correlations on a data length of 4 ms over the E1B component).  | Optional |
+| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E1C and enables an extra prompt correlator (slave to pilot's prompt) in the data component E1B. It defaults to `false` (that is, correlations on a data length of 4 ms over the E1B component). <span style="color: orange">The default value for this parameter is `true` in the `next` branch of the upstream repository, and that will be the default value in the next stable release.</span> | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{E1C_{s}} $$ is removed from the pilot signal, in number of symbols. Each symbol is 4 ms, so setting this parameter to 25 means a coherent integration time of 100 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1.  | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_bw_narrow_hz` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the PLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$, in Hz. It defaults to 2 Hz. This implementation uses a four-quadrant arctangent discriminator (atan2).  | Optional |
@@ -660,6 +661,7 @@ This implementation accepts the following parameters:
 | `very_early_late_space_chips` | Spacing between Very Early and Prompt and between Prompt and Very Late correlators, normalized by the chip period $$ T_c $$ It defaults to $$ 0.6 $$. | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$.  | Optional |
 | `very_early_late_space_narrow_chips` |If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Very Early and Prompt and between Prompt and Very Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, normalized by the chip period $$ T_c $$. It defaults to $$ 0.6 $$.  | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |.
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.  | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50.  | Optional |
@@ -866,6 +868,7 @@ This implementation accepts the following parameters:
 | `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
 | `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |.
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.  | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50.  | Optional |
@@ -1026,7 +1029,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L5_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal L5Q and enables an extra prompt correlator (slave to pilot's prompt) in the data component L5I. It defaults to `false` (that is, correlations on a data length of 1 ms over the L5I component). | Optional |
+| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal L5Q and enables an extra prompt correlator (slave to pilot's prompt) in the data component L5I. It defaults to `false` (that is, correlations on a data length of 1 ms over the L5I component). <span style="color: orange">The default value for this parameter is `true` in the `next` branch of the upstream repository, and that will be the default value in the next stable release.</span> | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{nh_{20}} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1. | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
@@ -1040,6 +1043,7 @@ This implementation accepts the following parameters:
 | `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{nh_{20}} $$, normalized by the chip period $$ T_{c,L5} $$. It defaults to $$ 0.15 $$. | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |.
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz. | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50. | Optional |
@@ -1121,7 +1125,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E5a_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E5aQ and enables an extra prompt correlator (slave to pilot's prompt) in the data component E5aI. It defaults to `false` (that is, correlations on a data length of 1 ms over the E5aI component).  | Optional |
+| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E5aQ and enables an extra prompt correlator (slave to pilot's prompt) in the data component E5aI. It defaults to `false` (that is, correlations on a data length of 1 ms over the E5aI component). <span style="color: orange">The default value for this parameter is `true` in the `next` branch of the upstream repository, and that will be the default value in the next stable release.</span> | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{E5aQs} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1.  | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
@@ -1135,6 +1139,7 @@ This implementation accepts the following parameters:
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E5aQs} $$, normalized by the chip period $$ T_{c,E5p} $$. It defaults to $$ 0.15 $$.  | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |.
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.  | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50.  | Optional |
