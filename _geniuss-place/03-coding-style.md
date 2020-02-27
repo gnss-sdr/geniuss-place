@@ -1025,19 +1025,18 @@ Note the space in between the comment start (`//`) and `clang-format`. This spac
 
 If you have modified markdown files (ended in `.md`), please apply [prettier](https://prettier.io).
 
-Install prettier:
+  * Install prettier:
 ```bash
 $ sudo npm install --global prettier
 ```
 
-Run it from the root of the source code tree:
-
+  * Run it from the root of the source code tree:
 ```bash
 $ find . -iname "*.md" | xargs prettier --parser markdown --print-width 80 --prose-wrap always --write
 ```
 
-**Please apply prettier to your changes before any pull request if you changed and/or created markdown files.**
-{: .notice--danger}
+  **Please apply prettier to your changes before any pull request if you changed and/or created markdown files.**
+  {: .notice--danger}
 
 
 {% capture notice-maintainability %}
