@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-09-07T10:54:02+02:00
+last_modified_at: 2020-02-25T10:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a signal sink, since the stream of data flowing along the receiver ends here.
@@ -588,6 +588,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `xml_output_enabled` | [`true`, `false`]: If set to `false`, XML files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_output_enabled` | [`true`, `false`]: If set to `false`, RINEX files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
+| `rinex_name` | Sets the base name of the RINEX files. If this parameter is not specified, a default one will be assigned. The command-line flag `--RINEX_name`, if present, overrides this parameter. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. The minimum is 20 ms, and must be a mutiple of `output_rate_ms`. It defaults to 1000 ms. | Optional |
 | `nmea_output_file_enabled` | [`true`, `false`]: If set to `false`, NMEA sentences are not stored. It defaults to `true`. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
