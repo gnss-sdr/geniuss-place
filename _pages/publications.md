@@ -396,8 +396,7 @@ Portland, OR, Sept. 2017, pp. 3796-3815.
     <br />
     <a href="javascript:toggleBibtex('Fernandez17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15234" >Online</a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15234
-" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15234" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037906" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/a-cloud-optical-access-network-for-virtualized-gnss-receivers/zhgrtpqstxrx" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
