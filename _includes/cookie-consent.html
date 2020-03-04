@@ -22,7 +22,6 @@ window.cookieconsent.initialise({
   onInitialise: function(status) {
        var didConsent = this.hasConsented();
        if(didConsent) {
-           document.getElementsByClassName("cc-revoke")[0].style.visibility = "hidden";
            window.dataLayer = window.dataLayer || [];
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
@@ -38,7 +37,6 @@ window.cookieconsent.initialise({
   onStatusChange: function(status, chosenBefore) {
        var didConsent = this.hasConsented();
        if(didConsent) {
-            document.getElementsByClassName("cc-revoke")[0].style.visibility = "hidden";
            window.dataLayer = window.dataLayer || [];
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
