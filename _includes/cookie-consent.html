@@ -18,10 +18,11 @@ window.cookieconsent.initialise({
       expiryDays: 30,
       secure: true
   },
-  revokable: false,
+  revokable: true,
   onInitialise: function(status) {
        var didConsent = this.hasConsented();
        if(didConsent) {
+           this.toggleRevokeButton(false);
            window.dataLayer = window.dataLayer || [];
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
@@ -57,6 +58,9 @@ window.cookieconsent.initialise({
   },
   onPopupClose: function() {
       var didConsent = this.hasConsented();
+      if(didConsent) {
+          this.toggleRevokeButton(false);
+      }
       if(!didConsent) {
           this.toggleRevokeButton(true);
       }
