@@ -22,7 +22,7 @@ window.cookieconsent.initialise({
   onInitialise: function(status) {
        var didConsent = this.hasConsented();
        if(didConsent) {
-           this.toggleRevokeButton(false);
+           this.options.enabled = false;
            window.dataLayer = window.dataLayer || [];
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
@@ -38,6 +38,7 @@ window.cookieconsent.initialise({
   onStatusChange: function(status, chosenBefore) {
        var didConsent = this.hasConsented();
        if(didConsent) {
+           this.options.enabled = false;
            window.dataLayer = window.dataLayer || [];
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
@@ -59,6 +60,7 @@ window.cookieconsent.initialise({
   onPopupClose: function() {
       var didConsent = this.hasConsented();
       if(didConsent) {
+          this.options.enabled = false;
           this.toggleRevokeButton(false);
       }
       if(!didConsent) {
