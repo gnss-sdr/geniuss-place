@@ -9,7 +9,7 @@ window.cookieconsent.initialise({
       background: "#14a7d0"
     }
   },
-  type: "info",
+  type: "opt-out",
   content: {
     href: "/cookies/"
   },
@@ -57,9 +57,6 @@ window.cookieconsent.initialise({
   },
   onPopupClose: function() {
       var didConsent = this.hasConsented();
-      if(didConsent) {
-          this.toggleRevokeButton(false);
-      }
       if(!didConsent) {
           this.toggleRevokeButton(true);
       }
