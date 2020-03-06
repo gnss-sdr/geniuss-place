@@ -353,11 +353,11 @@ taxonomy__section {
 
 .taxonomy__title {
   margin-bottom: 0.5em;
-  color: lighten($text-color, 60%);
+  color: $muted-text-color;
 }
 
 .taxonomy__count {
-  color: lighten($text-color, 50%);
+  color: $muted-text-color;
 }
 
 .taxonomy__index {
@@ -390,7 +390,7 @@ taxonomy__section {
 .back-to-top {
   display: block;
   clear: both;
-  color: lighten($text-color, 50%);
+  color: $muted-text-color;
   font-size: 0.6em;
   text-transform: uppercase;
   text-align: right;
