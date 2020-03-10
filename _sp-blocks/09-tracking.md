@@ -371,48 +371,6 @@ Tracking_1C.dump_filename=tracking_ch_
 ```
 
 
-
-### Implementation: `GPS_L1_CA_DLL_PLL_C_Aid_Tracking`
-
-This implementation accepts the following parameters:
-
-|----------
-|  **Global Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-|--------------
-
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `GPS_L1_CA_DLL_PLL_C_Aid_Tracking` | Mandatory |
-| `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>]. Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter before bit synchronization, in Hz. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter before bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
-| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 20 Hz. | Optional |
-| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
-| `extend_correlation_ms` | Correlation length, in ms. It defaults to 1 ms. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging.  Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
-|--------------
-
-  _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_C_Aid_Tracking`**.
-  {: style="text-align: center;"}
-
-Example:
-
-```ini
-;######### TRACKING GLOBAL CONFIG ############
-Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_C_Aid_Tracking
-Tracking_1C.item_type=cshort
-Tracking_1C.pll_bw_hz=40.0;
-Tracking_1C.dll_bw_hz=4.0;
-```
-
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking_GPU`
 
 GPU-accelerated computing consists in the use of a graphics processing unit (GPU) together with a CPU to accelerate the execution of a software application, by offloading computation-intensive portions of the application to the GPU, while the remainder of the code still runs on the CPU. The key idea is to utilize the computation power of both CPU cores and GPU execution units in tandem for better utilization of available computing power.
