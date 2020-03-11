@@ -122,7 +122,7 @@ Copyright &copy; 2014-2016 Dmitry Semenov, http://dimsemenov.com.
 Magnific Popup is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [Smooth Scroll](http://github.com/cferdinandi/smooth-scroll),
-Copyright &copy; 2018 Chris Ferdinandi.
+Copyright &copy; 2020 Chris Ferdinandi.
 Smooth Scroll is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [Gumshoe](http://github.com/cferdinandi/gumshoe),
