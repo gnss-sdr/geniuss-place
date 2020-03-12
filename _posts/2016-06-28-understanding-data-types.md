@@ -124,7 +124,7 @@ ulong l2;
 
 ## Data types in GNSS-SDR
 
-In the C and C++ programming languages, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) (or its [`cstdint`](http://en.cppreference.com/w/cpp/header/cstdint) counterpart for C++) is the name of the
+In the C and C++ programming languages, [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) (or its [`cstdint`](https://en.cppreference.com/w/cpp/header/cstdint) counterpart for C++) is the name of the
 header file that allows programmers to write more portable code by
 providing a set of typedefs that specify exact-width integer types,
 together with the defined minimum and maximum allowable values for each
@@ -133,7 +133,7 @@ often involves considerable manipulation of hardware specific I/O
 registers requiring integer data of fixed widths, specific locations and
 exact alignments. The naming convention for exact-width integer types is
 `intN_t` for `signed int` and `uintN_t` for `unsigned int`. Among
-others, both [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) and [`cstdint`](http://en.cppreference.com/w/cpp/header/cstdint) define the following typedefs:
+others, both [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h) and [`cstdint`](https://en.cppreference.com/w/cpp/header/cstdint) define the following typedefs:
 
 -   `int8_t` Signed integer type with a width of *exactly* 8 bits.
 
@@ -142,7 +142,7 @@ others, both [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Referenc
 -   `int32_t` Signed integer type with a width of *exactly* 32 bits.
 
 Building upon these definitions, the [Vector-Optimized Library of Kernels
-(VOLK)](http://libvolk.org/) library defines complex data types. As shown below, it loads the header [`<complex>`](http://en.cppreference.com/w/cpp/header/complex), a file that defines
+(VOLK)](https://www.libvolk.org/) library defines complex data types. As shown below, it loads the header [`<complex>`](https://en.cppreference.com/w/cpp/header/complex), a file that defines
 functionality for complex arithmetic (i.e. basic, arithmetic,
 trigonometric and hyperbolic operations, but only for floating-point
 data types: `float`, `double` and `long double`. This means that complex

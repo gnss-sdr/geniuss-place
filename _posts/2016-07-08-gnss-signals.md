@@ -98,7 +98,7 @@ Non-standard codes are not for utilization by the users and, therefore,
 are not defined in IS-GPS-800D.
 
 ![Spectra GPS Signals L1]({{ "/assets/images/Spectra_GPS_Signals_L1.png" | relative_url }})
-_GPS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
+_GPS signals spectra in L1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
 
@@ -138,7 +138,7 @@ transmitted at $$ 25 $$ bit/s with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ symbols/s.
 
 ![Spectra GPS Signals L2]({{ "/assets/images/Spectra_GPS_Signals_L2.png" | relative_url }})
-_GPS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
+_GPS signals spectra in L2. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
 GPS L2C is only available on Block IIR–M and subsequent satellite blocks.
@@ -164,7 +164,7 @@ GPS L5 civil navigation data $$ D_{\text{CNAV}} $$, and the L5Q component
 has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
 
 ![Spectra GPS Signals L5]({{ "/assets/images/Spectra_GPS_Signals_L5.png" | relative_url }})
-_GPS signals spectra in L5. Source: [Navipedia](http://www.navipedia.net/index.php/GPS_Signal_Plan)_.
+_GPS signals spectra in L5. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
 
@@ -229,7 +229,7 @@ disclosed.
 
 
 ![Spectra GLONASS Signals L1]({{ "/assets/images/Spectra_GLONASS_Signals_L1.png" | relative_url }})
-_GLONASS signals spectra in L1. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan)_.
+_GLONASS signals spectra in L1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
 The use of FDMA techniques, in which the same code is used to broadcast
@@ -250,7 +250,7 @@ first launched in 2001, a second civil signal is available using the
 same SP code than the one in the L1 band but centered at $$ 1246 $$ MHz.
 
 ![Spectra GLONASS Signals L2]({{ "/assets/images/Spectra_GLONASS_Signals_L2.png" | relative_url }})
-_GLONASS signals spectra in L2. Source: [Navipedia](http://www.navipedia.net/index.php/GLONASS_Signal_Plan)_.
+_GLONASS signals spectra in L2. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
 Future plans of modernization are intended to increase compatibility and
@@ -324,7 +324,7 @@ $$ T_{c,E1A}=\frac{1}{2.5575} $$ $$ \mu $$s. The PRS spreading codes and the
 structure of the navigation message have not been made public.
 
 ![Spectra of Galileo signals in E1.]({{ "/assets/images/Spectra_Galileo_Signals_E1.png" | relative_url }})
-_Galileo signals spectra in E1. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
+_Galileo signals spectra in E1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
 
@@ -356,7 +356,7 @@ spreading codes and the structure of the navigation message are not
 publicly available.
 
 ![Spectra of Galileo signals in E6.]({{ "/assets/images/Spectra_Galileo_Signals_E6.png" | relative_url }})
-_Galileo signals spectra in E6. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
+_Galileo signals spectra in E6. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
 
@@ -464,7 +464,7 @@ two QPSK signals and thus requiring considerably less bandwidth than the
 processing of the whole E5 band.
 
 ![Spectra of Galileo signals in E5.]({{ "/assets/images/Spectra_Galileo_Signals_E5.png" | relative_url }})
-_Galileo signals spectra in E5. Source: [Navipedia](http://www.navipedia.net/index.php/Galileo_Signal_Plan)_.
+_Galileo signals spectra in E5. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
 
@@ -524,7 +524,7 @@ of the ICD, Ran Chengqi, director of China Satellite Navigation Office,
 said the English designation will henceforth be BeiDou Navigation
 Satellite System with the abbreviation BDS.
 
-Updated information can be found at the [Beidou Navigation Satellite System website](http://www.beidou.gov.cn/). The status of the constellation can be consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
+Updated information can be found at the [Beidou Navigation Satellite System website](http://en.beidou.gov.cn/). The status of the constellation can be consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
 
 
 ### Beidou B1I
@@ -547,7 +547,7 @@ The B1I signal is also transmitted by all satellites of BDS-3.
 
 ### BeiDou B1C
 
-BeiDou Open Service B1C signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are centered at $$ f_{B1C} = 1561.098 $$ MHz and feature a BOC(1,1) modulation in the data component and a QMBOC(6, 1, 4/33) modulation in the pilot component. The complex baseband transmitted signal can be written as:[^BeidouB1C]
+BeiDou Open Service B1C signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are centered at $$ f_{B1C} = 1575.42 $$ MHz and feature a BOC(1,1) modulation in the data component and a QMBOC(6, 1, 4/33) modulation in the pilot component. The complex baseband transmitted signal can be written as:[^BeidouB1C]
 
 $$ \begin{equation} s^{\text{(BeiDou B1C)}}_{T}(t) = e_{B1C\_data}(t) + j e_{B1C\_pilot}(t)~, \end{equation} $$
 
@@ -659,22 +659,22 @@ The following table lists the GNSS signals providing Open Service.
 |  **GNSS Signal**  |  **Center Freq.** |  **Modulation** |
 |:-:|:-:|:-:|    
 |--------------
-| [**GPS L5**](https://www.gps.gov/technical/icwg/IS-GPS-705E.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
-| [**Galileo E5a**](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
+| [**GPS L5**](https://www.gps.gov/technical/icwg/IS-GPS-705F.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
+| [**Galileo E5a**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf)   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(**)} $$   | $$ 1176.45 $$ MHz |  BPSK(10)   |
 | [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
-| [**Galileo E5b**](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
+| [**Galileo E5b**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) |  $$ 1207.14 $$ MHz  | BPSK(2) |
-| [**GPS L2C**](https://www.gps.gov/technical/icwg/IS-GPS-200J.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
+| [**GPS L2C**](https://www.gps.gov/technical/icwg/IS-GPS-200K.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
 | [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
 | [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
 | [**BeiDou B3I**](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf)$$ ^{(*)} $$  | $$ 1268.520 $$ MHz | BPSK(10) |
-| [**Galileo E6B**](https://www.gsc-europa.eu/system/files/galileo_documents/E6BC_SIS_Technical_Note.pdf)$$ ^{(**)} $$ | $$ 1278.750 $$ MHz | BPSK(5) |
+| [**Galileo E6B**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf)$$ ^{(**)} $$ | $$ 1278.750 $$ MHz | BPSK(5) |
 | [**BeiDou B1I**](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/201902/P020190227601370045731.pdf) | $$ 1561.098 $$ MHz | BPSK(2) |
-| [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1561.098 $$ MHz | BOC(1,1) |
-| [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IS-GPS-200J.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
-| [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800E.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
-| [**Galileo E1b/c**](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
+| [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1575.42 $$ MHz | BOC(1,1) |
+| [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IS-GPS-200K.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
+| [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800F.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
+| [**Galileo E1b/c**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
 | [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
 | [**GLONASS L1OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1602.00 $$ MHz | BPSK(0.5) |
 |--------------
@@ -708,7 +708,7 @@ The following table lists the GNSS signals providing Open Service.
 
 [^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
-[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
+[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf), Issue 1.3, Dec. 2016.
 
 [^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/system/files/galileo_documents/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
 

@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-09-07T10:54:02+02:00
+last_modified_at: 2020-02-25T10:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a signal sink, since the stream of data flowing along the receiver ends here.
@@ -103,7 +103,7 @@ where:
 
   - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m). This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
 
-The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](http://www.navipedia.net/index.php/Time_References_in_GNSS).
+The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but incorporated in the solution time‐tag. That means the solution time‐tag indicates not the receiver time‐tag but the true signal reception time measured in [GPS Time](https://gssc.esa.int/navipedia/index.php/Time_References_in_GNSS).
 
 {::comment}
 ### Static / Kinematic
@@ -179,7 +179,7 @@ $$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z
 
 where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are the north and east components of tropospheric gradients (see the tropospheric model [below](#troposphere-model)) and $$ \mathbf{B}_{LC} = \left(  B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)} \right)^T $$ is the ionosphere‐free linear combination of zero‐differenced carrier‐phase biases (in m), defined below in Equation ($$ \ref{eq:bias-lc} $$).
 
-The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](http://www.navipedia.net/index.php/Ionospheric_Delay), the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/#phase-range-measurement" | relative_url }}) apply):
+The Precise Point Positioning measurement model is based on the fact that, according to the phase and code [ionospheric refraction](https://gssc.esa.int/navipedia/index.php/Ionospheric_Delay), the first order ionospheric effects on code and carrier-phase  measurements depend (99.9 %) on the inverse of squared signal frequency $$ f_i $$. Thence, dual-frequency receivers can eliminate their effect through a linear combination of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$ measurements (where the definitions at [Observables]({{ "docs/sp-blocks/observables/#phase-range-measurement" | relative_url }}) apply):
 
 
 $$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$
@@ -382,7 +382,7 @@ For ionosphere correction for single frequency GNSS users, GPS navigation data i
 $$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T~. $$
 
 By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r,1}^{(s)} $$ (in m) can be derived by the following
-procedure[^ISGPS200] (this model is often called as the [Klobuchar model](http://www.navipedia.net/index.php/Klobuchar_Ionospheric_Model)[^Klobuchar87]):
+procedure[^ISGPS200] (this model is often called as the [Klobuchar model](https://gssc.esa.int/navipedia/index.php/Klobuchar_Ionospheric_Model)[^Klobuchar87]):
 
 
 $$ \begin{equation} \Psi = \frac{0.0137}{El_r^{(s)} + 0.11}-0.022 \end{equation} $$
@@ -457,7 +457,7 @@ $$ \begin{equation} m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(
 
 $$ \begin{equation} T_{r}^{s} =  m_{H}(El_{r}^{(s)})Z_{H,r} + m(El_{r}^{(s)}) (Z_{T,r}-Z_{H,r})~, \end{equation} $$
 
-where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{(s)}) $$ is the hydro‐static mapping function and $$ m_{W}(El_{r}^{(s)}) $$ is the wet mapping function. The tropospheric zenith hydro‐static delay is given by Saastamoinen model described above with the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the mapping function, the software employs the [Niell mapping function](http://www.navipedia.net/index.php/Mapping_of_Niell)[^Niell96]. The zenith total delay $$ Z_{T,r} $$ is estimated as a unknown parameter in the parameter estimation process.
+where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{(s)}) $$ is the hydro‐static mapping function and $$ m_{W}(El_{r}^{(s)}) $$ is the wet mapping function. The tropospheric zenith hydro‐static delay is given by Saastamoinen model described above with the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the mapping function, the software employs the [Niell mapping function](https://gssc.esa.int/navipedia/index.php/Mapping_of_Niell)[^Niell96]. The zenith total delay $$ Z_{T,r} $$ is estimated as a unknown parameter in the parameter estimation process.
 
 
 
@@ -476,10 +476,10 @@ where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and 
 Depending on the specific application or service that is exploiting the information provided by GNSS-SDR, different internal data will be required, and thus the receiver needs to provide such data in an adequate, standard formats:
 
 ## KML, GeoJSON, GPX
-For Geographic Information Systems, map representation and Earth browsers: [KML](http://www.opengeospatial.org/standards/kml),  [GeoJSON](http://geojson.org/) and [GPX](http://www.topografix.com/gpx.asp) files are generated by default, upon the computation of the first position fix.
+For Geographic Information Systems, map representation and Earth browsers: [KML](https://www.opengeospatial.org/standards/kml),  [GeoJSON](https://geojson.org/) and [GPX](https://www.topografix.com/gpx.asp) files are generated by default, upon the computation of the first position fix.
 
 ## RINEX
-For post-processing applications: RINEX [2.11](https://igscb.jpl.nasa.gov/igscb/data/format/rinex211.txt) and [3.02](ftp://igs.org/pub/data/format/rinex302.pdf). Version 3.02 is generated by default, and version 2.11 can be requested by setting `PVT.rinex_version=2` in the configuration file.
+For post-processing applications: RINEX [2.11](ftp://igs.org/pub/data/format/rinex211.txt) and [3.02](ftp://igs.org/pub/data/format/rinex302.pdf). Version 3.02 is generated by default, and version 2.11 can be requested by setting `PVT.rinex_version=2` in the configuration file.
 
 **IMPORTANT**: In order to get well-formatted GeoJSON, KML, GPX and RINEX files, always terminate ```gnss-sdr``` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
 {: .notice--warning}
@@ -488,7 +488,7 @@ For post-processing applications: RINEX [2.11](https://igscb.jpl.nasa.gov/igscb/
 For sensor integration: [NMEA-0183](https://en.wikipedia.org/wiki/NMEA_0183). A text file containing NMEA messages is stored with a default name of `gnss_sdr_pvt.nmea`, configurable via `PVT.nmea_dump_filename`. In addition, NMEA messages can be forwarded to a serial port by setting `PVT.flag_nmea_tty_port=true`. The default port is `/dev/tty1`, and can be configured via `PVT.nmea_dump_devname`.
 
 ## RTCM-104
-For real-time, possibly networked processing: [RTCM-104](http://www.rtcm.org/differential-global-navigation-satellite--dgnss--standards.html) messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting ```PVT.flag_rtcm_server=true``` in the configuration file, and will be active during the execution of the software receiver. By default, the server will operate on port 2101 (which is the recommended port for RTCM services according to the Internet Assigned Numbers Authority, [IANA](https://www.iana.org/assignments/service-names-port-numbers "Service Name and Transport Protocol Port Number Registry")), and will identify the Reference Station with ID= $$ 1234 $$. These values can be changed with `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration file.
+For real-time, possibly networked processing: [RTCM-104](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-2-differential-gnss-global-navigation-satellite-systems-services-version-3-february-1-2013) messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting ```PVT.flag_rtcm_server=true``` in the configuration file, and will be active during the execution of the software receiver. By default, the server will operate on port 2101 (which is the recommended port for RTCM services according to the Internet Assigned Numbers Authority, [IANA](https://www.iana.org/assignments/service-names-port-numbers "Service Name and Transport Protocol Port Number Registry")), and will identify the Reference Station with ID= $$ 1234 $$. These values can be changed with `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration file.
 
 ## Custom streaming
 In addition to the standard output formats, the PVT block offers a custom mechanism for streaming its internal data members to local or remote clients over UDP through a _monitoring port_ which can be enabled by setting `PVT.enable_monitor=true` in the configuration file. This feature is very useful for real-time monitoring of the PVT block and its outputs. By default, the data is streamed to the localhost address on port 1234 UDP. These settings can be changed with `PVT.monitor_client_addresses` and `PVT.monitor_udp_port`. The streamed data members (28 in total) are serialized via [Protocol Buffers](https://developers.google.com/protocol-buffers/) into a format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). This allows other applications to easily read those messages, either using C++, Java, Python, C#, Dart, Go or Ruby, among other languages, hence enhancing [**Interoperability**]({{ "/design-forces/interoperability/" | relative_url }}).
@@ -549,7 +549,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.SUPL_gps_ephemeris_xml` |  Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml` | Optional |
-| `GNSS-SDR.pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. | Optional |
+| `GNSS-SDR.pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 |--------------
 
 |----------
@@ -565,7 +565,8 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `dynamics_model` | [`0`: Off, `1`: On] Set the dynamics model of the receiver. If set to $$ 1 $$ and `PVT.positioning_mode=PPP_Kinematic`, the receiver position is predicted with the estimated velocity and acceleration. It defaults to $$ 0 $$ (no dynamics model).  | Optional |
 | `iono_model` |  [`OFF`, `Broadcast`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS or L1‐L5 for Galileo) measurements is used for ionospheric correction. It defaults to `OFF` (no ionospheric correction) | Optional |
 | `trop_model` | [`OFF`, `Saastamoinen`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
-| `enable_rx_clock_correction` | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is not used in the computation of Observables. It defaults to `true`. | Optional |
+| `enable_rx_clock_correction` | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is only used in the computation of Observables when the clock offset estimation exceeds the value of `max_clock_offset_ms`. This parameter defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `max_clock_offset_ms` |  If `enable_rx_clock_correction` is set to `false`, this parameter sets the maximum allowed local clock offset with respect to the Time solution. If the estimated offset exceeds this parameter, a clock correction is applied to the computation of Observables. It defaults to 40 ms. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `code_phase_error_ratio_l1` | Code/phase error ratio $$ R_r $$ for the L1 band. It defaults to $$ 100 $$. | Optional |
 | `carrier_phase_error_factor_a` | Carrier phase error factor $$ a_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
 | `carrier_phase_error_factor_b` | Carrier phase error factor $$ b_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
@@ -587,6 +588,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `xml_output_enabled` | [`true`, `false`]: If set to `false`, XML files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_output_enabled` | [`true`, `false`]: If set to `false`, RINEX files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
+| `rinex_name` | Sets the base name of the RINEX files. If this parameter is not specified, a default one will be assigned. The command-line flag `--RINEX_name`, if present, overrides this parameter. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. The minimum is 20 ms, and must be a mutiple of `output_rate_ms`. It defaults to 1000 ms. | Optional |
 | `nmea_output_file_enabled` | [`true`, `false`]: If set to `false`, NMEA sentences are not stored. It defaults to `true`. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
@@ -724,7 +726,7 @@ Please note that this only concerns to the generation of mentioned file formats,
 
 [^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](https://dx.doi.org/10.1029/95JB03048), Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
 
-[^ISGPS200]: Global Positioning System Directorate Systems Engineering & Integration, [Interface Specification IS-GPS-200J: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200J.pdf), May 2018.
+[^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200K: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200K.pdf), Mar. 2019.
 
 [^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](https://standards.globalspec.com/std/1014192/rtca-do-229), RTCA Inc., December 13, 2006.
 
@@ -740,7 +742,7 @@ Please note that this only concerns to the generation of mentioned file formats,
 
 [^Bevis94]: M. Bevis, S. Businger, S. Chiswell, T. A. Herring, R. A. Anthes, C. Rocken, R. H. Ware, [GPS Meteorology: Mapping Zenith Delay onto Precipitable Water](https://dx.doi.org/10.1175/1520-0450(1994)033%3C0379:GMMZWD%3E2.0.CO;2), American Meteorological Society, vol. 33, March 1994, pp. 379-386.
 
-[^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](http://areeweb.polito.it/ricerca/relgrav/solciclos/ashby_d.pdf), Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](https://www.springer.com/gp/book/9781402018053), G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
+[^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.615.3798&rep=rep1&type=pdf), Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](https://www.springer.com/gp/book/9781402018053), G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
 
 
 <link rel="prerender" href="{{ "/docs/sp-blocks/observables/" | relative_url }}">

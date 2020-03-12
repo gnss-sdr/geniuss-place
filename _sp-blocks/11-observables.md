@@ -146,7 +146,7 @@ where:
     * $$ \mathbf{e}_{y}^{(s)} = \frac{\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} }{\left\|\mathbf{e}_{z}^{(s)} \times \mathbf{e}^{(s)} \right\|} $$, where $$ \times $$ denotes the [cross-product](https://en.wikipedia.org/wiki/Cross_product) operator.
     * $$ \mathbf{e}_{x}^{(s)} = \mathbf{e}_{y}^{(s)} \times \mathbf{e}_{z}^{(s)} $$.
     * $$ \mathbf{d}_{r,disp} $$ is the displacement by Earth tides at the receiver position in local coordinates (in m).
-    * $$ \phi_{pw} $$ is the phase [wind-up](http://www.navipedia.net/index.php/Carrier_Phase_Wind-up_Effect) term (in cycles) due to the circular polarization of the GNSS electromagnetic signals. For a receiver with fixed coordinates, the wind-up is due to the satellite orbital motion. As the satellite moves along its orbital path it must perform a rotation to keep its solar panels pointing to the Sun direction in order to obtain the maximum energy while the satellite antenna keeps pointing to the earth's centre. This rotation causes a phase variation that the receiver misunderstands as a range variation.
+    * $$ \phi_{pw} $$ is the phase [wind-up](https://gssc.esa.int/navipedia/index.php/Carrier_Phase_Wind-up_Effect) term (in cycles) due to the circular polarization of the GNSS electromagnetic signals. For a receiver with fixed coordinates, the wind-up is due to the satellite orbital motion. As the satellite moves along its orbital path it must perform a rotation to keep its solar panels pointing to the Sun direction in order to obtain the maximum energy while the satellite antenna keeps pointing to the earth's centre. This rotation causes a phase variation that the receiver misunderstands as a range variation.
 
 
 ## Doppler shift measurement
@@ -179,6 +179,26 @@ $$ \begin{eqnarray} \dot{P}_{r,i}^{(s)} & = & -\lambda_i f_{D_{i}}^{(s)} \nonumb
 {} & = & \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c \left( \frac{\partial dt_r(t_r)}{\partial t} - \frac{\partial dT^{(s)}(t^{(s)})}{\partial t}\right) + \epsilon_{\dot{P}}\end{eqnarray} $$
 
 
+## Carrier-smoothing of code pseudoranges
+
+The noisy (but unambiguous) code pseudorange measurements can be smoothed with the precise (but ambiguous) carrier phase measurements. A simple algorithm, known as the Hatch filter, is given as follows[^LoPresti15]:
+
+Let $$ P_{r,i}^{(s)}[n] $$ and $$ \Phi_{r,i}^{(s)}[n] $$ be the code and carrier measurements of a given satellite $$ s $$, in the band $$ i $$, at the time $$ n $$. Thence, the smoothed code $$ \hat{P}_{r,i}^{(s)}[n] $$ can be computed as:
+
+$$ \begin{equation} \label{eq:smoothing}
+\hat{P}_{r,i}^{(s)}[k] = \frac{1}{M}  P_{r,i}^{(s)}[k] + \frac{M-1}{M}\left[ \hat{P}_{r,i}^{(s)}[k-1] + \left(\Phi_{r,i}^{(s)}[k] - \Phi_{r,i}^{(s)}[k-1] \right) \right]
+\end{equation} $$
+
+where $$ n=k $$ when $$ k<M $$ and $$ n=M $$ when $$ k \geq M $$.
+
+The algorithm is initialised with:
+
+$$ \begin{equation}
+\hat{P}_{r,i}^{(s)}[1] = P_{r,i}^{(s)}[1]
+\end{equation} $$
+
+This algorithm is initialised every time that a carrier phase cycle-slip occurs.
+
 
 ## Implementation: `Hybrid_Observables`  
 
@@ -191,6 +211,8 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Hybrid_Observables` | Mandatory |
+| `enable_carrier_smoothing` |  [`true`, `false`]: If set to `true`, it enables [carrier smoothing](https://insidegnss.com/wp-content/uploads/2018/01/julyaug15-SOLUTIONS.pdf) of code pseudoranges. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `smoothing_factor` |  If `enable_carrier_smoothing` is set to `true`, this parameter sets the smoothing factor $$ M $$ (see equation ($$ \ref{eq:smoothing} $$)). It defaults to `200`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. Storage in .mat files readable from Matlab, Octave and Python is available starting from GNSS-SDR v0.0.10, see below. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./observables.dat` | Optional |
 | `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`. | Optional |
@@ -234,12 +256,14 @@ Example:
 
 [^Arribas14]: J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas, [Fastening GPS and Galileo Tight with a Software Receiver](https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428), in Proc. of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014), Tampa, Florida, Sep. 2014, pp. 1383 - 1395.
 
-[^Petovello12]: M. Petovello, M. Rao, G. Falca, [Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?](http://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf), Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
+[^Petovello12]: M. Petovello, M. Rao, G. Falca, [Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?](https://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf), Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
 
-[^Petovello10]: M. Petovello, C. O'Driscoll, [Carrier phase and its measurements for GNSS: What is the carrier phase measurement? How is it generated in GNSS receivers?](http://www.insidegnss.com/auto/julaug10-solutions.pdf) Inside GNSS, vol. 5, no. 5, pp. 18–22, Jul./Aug. 2010.
+[^Petovello10]: M. Petovello, C. O'Driscoll, [Carrier phase and its measurements for GNSS: What is the carrier phase measurement? How is it generated in GNSS receivers?](https://www.insidegnss.com/auto/julaug10-solutions.pdf) Inside GNSS, vol. 5, no. 5, pp. 18–22, Jul./Aug. 2010.
 
 [^Doppler]: C. Doppler, [&#220;ber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels](https://archive.org/details/ueberdasfarbigel00doppuoft) (On the colored light of the double stars and certain other stars of the heavens), Abh. Kniglich Bhmischen Ges. Wiss., vol. 2, pp. 467–482, 1842.
 
 [^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf). April 29, 2013.
+
+[^LoPresti15]: M. Petovello, L. Lo Presti, M. Visintin, [Can you list all the properties of the carrier-smoothing filter?](https://insidegnss.com/wp-content/uploads/2018/01/julyaug15-SOLUTIONS.pdf), Inside GNSS, vol. 10, no. 4, pp. 32–37, Jul./Aug. 2015.
 
 <link rel="prerender" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}">

@@ -54,21 +54,15 @@ This will install the latest stable release of GNSS-SDR.
 
 
 {% capture mac-os-text %}
-Instead of installing the latest stable release, you can install the code found on the `master` branch, which might contain some bug fixes with respect to the latest stable release:
+Instead of installing the latest stable release, you can install the code found on the `next` branch, which might contain some bug fixes and new features with respect to the latest stable release:
 
 ```bash
 $ sudo port install gnss-sdr-devel
 ```
-
-or the context of the `next` branch, which might contain fixes and new features with respect to the latest stable release:
-
-```bash
-$ sudo port install gnss-sdr-next
-```
 {% endcapture %}
 
 <div class="notice--success">
-  <h4>You have more options here!</h4>
+  <h4>You have another option here!</h4>
   {{ mac-os-text | markdownify }}
 </div>
 
@@ -107,21 +101,25 @@ Some highly automated tools that can do some of the work for you are described b
 If you are using Debian 8, Ubuntu 14.10 or above, this can be done by copying and pasting the following line in a terminal:
 
 ```bash
-$ sudo apt-get install build-essential cmake git libboost-dev \
+$ sudo apt-get install build-essential cmake git pkg-config libboost-dev \
    libboost-date-time-dev libboost-system-dev libboost-filesystem-dev \
    libboost-thread-dev libboost-chrono-dev libboost-serialization-dev \
    libboost-program-options-dev libboost-test-dev liblog4cpp5-dev \
    libuhd-dev gnuradio-dev gr-osmosdr libblas-dev liblapack-dev \
    libarmadillo-dev libgflags-dev libgoogle-glog-dev libhdf5-dev \
-   libgnutls-openssl-dev libmatio-dev python-mako python-six \
-   libpugixml-dev libpcap-dev libprotobuf-dev protobuf-compiler \
-   libgtest-dev googletest
+   libgnutls-openssl-dev libmatio-dev libpugixml-dev libpcap-dev \
+   libprotobuf-dev protobuf-compiler libgtest-dev googletest \
+   python3-mako python3-six
 ```
 
 
 **Note for Ubuntu 14.04 LTS users:**
 you will need to build from source and install GNU Radio manually, as explained below, since GNSS-SDR requires gnuradio-dev >= 3.7.3, and Ubuntu 14.04 came with 3.7.2. Install all the packages above BUT EXCEPT `libuhd-dev`, `gnuradio-dev` and `gr-osmosdr` (and remove them if they are already installed in your machine), and install those dependencies using PyBOMBS, as explained below.
+<br/><br/>
+**Note for Ubuntu older than 16.04:**
+Packages `python3-mako` and `python3-six` must be replaced by `python-mako` and `python-six`.
 {: .notice--warning}
+
 
 Once you have installed these packages, you can jump directly to [clone, build and install GNSS-SDR](#build).
 
@@ -263,7 +261,7 @@ Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8` or
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 ..
 ```
 
-of course replacing `3.8` by the actual version installed in your machine.
+of course replacing `3.8` by the actual version installed in your machine. Modern versions dropped the version number, so you may have just `/usr/bin/clang++` and `/usr/bin/clang`.
 
 If you have the Ninja build system installed, you can build GNSS-SDR replacing GCC and `make` by Clang and Ninja:
 

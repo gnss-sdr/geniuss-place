@@ -39,7 +39,7 @@ The rules can be violated if there are strong personal objections against them.
 The attempt is to make a guideline, not to force a particular coding style onto individuals. Experienced programmers normally want to adopt a style like this anyway, but having one, and at least requiring everyone to get familiar with it, usually makes people start thinking about programming styling and evaluate their own habits in this area. On the other hand, new and inexperienced programmers normally use a style guide as a convenience of getting into the programming jargon more easily.
 
 
-**Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) and the [High Integrity C++ Coding Standard Version 4.0](http://www.codingstandard.com) Guidelines for the use of the C++ language in critical systems.
+**Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) and the [High Integrity C++ Coding Standard Version 4.0](https://www.perforce.com/resources/qac/high-integrity-cpp-coding-standard) Guidelines for the use of the C++ language in critical systems.
 {: .notice--primary}
 
 **Interested in doing a pull-request? Go straight to the point!** The application of some of the rules described in this page can be automated with tools such as [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/), which can help you to meet the project conventions (automatically changing the code for you!) and integrate well with many other tools such as code editors and building systems. If you want to do a pull-request, please apply these tools to your code before doing it. [Scroll down <i class="fas fa-arrow-circle-down"></i>]({{ "/coding-style/#final-recommendations" | relative_url }}) to read about how to install and use them.
@@ -224,7 +224,7 @@ Be consistent and use the `// ...` style comments.
 The comment styles `///` and `/** ... */` are used by JavaDoc, Doxygen
 and some other code documenting tools.
 
-For a complete description on how to document the code, see the [Doxygen Manual](https://www.stack.nl/~dimitri/doxygen/manual/docblocks.html)
+For a complete description on how to document the code, see the [Doxygen Manual](http://www.doxygen.nl/manual/docblocks.html)
 
 All classes in GNSS-SDR should be properly documented with Doxygen
 comments in include (`.h`) files. Source (`.cc`) files should be documented
@@ -353,18 +353,17 @@ instead of the header file to reduce compile time.
 
 The include guard protects against the header file being included
 multiple times. The format of the symbol name should be
-`<PROJECT>_<PATH>_<FILE>_H_`. To guarantee uniqueness, they should be
-based on the full path in a project’s source tree. For example, the file
-`gnss-sdr/src/bar/baz.h` should have the following guard:
+`<PROJECT>_<FILE>_H`. For example, the file
+`gnss-sdr/src/bar_baz.h` should have the following guard:
 
 ```cpp
-#ifndef GNSS_SDR_BAR_BAZ_H_
-#define GNSS_SDR_BAR_BAZ_H_
+#ifndef GNSS_SDR_BAR_BAZ_H
+#define GNSS_SDR_BAR_BAZ_H
 ...
-#endif // GNSS_SDR_BAR_BAZ_H_
+#endif  // GNSS_SDR_BAR_BAZ_H
 ```
 
-### The name of the macro used in the include guard should have the same name as the file (excluding the extension) followed by the suffix “`_H_`”
+### The name of the macro used in the include guard should have the same name as the file (excluding the extension) followed by the suffix “`_H`”
 
 This avoids clashing with other names.
 
@@ -497,23 +496,15 @@ Please use the following template at the header of all files:
  *
  * This file is part of GNSS-SDR.
  *
- * GNSS-SDR is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * GNSS-SDR is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with GNSS-SDR. If not, see <https://www.gnu.org/licenses/>.
+ * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * -----------------------------------------------------------------------
  */
 ```
 
+This Project follows the [REUSE](https://reuse.software/) recommendations and it
+is compliant with the [REUSE Specification](https://reuse.software/spec/).
+Please check the details in [this tutorial](https://reuse.software/tutorial/).
 
 ## Declarations
 
@@ -967,6 +958,11 @@ $ sudo yum install clang-tools-extra
 $ sudo pacman -S clang
 ```
 
+  * **In GNU/Linux using openSUSE:**
+```bash
+$ sudo zypper -n install llvm-clang
+```
+
   * **In macOS using Homebrew:**
 ```bash
 $ brew install llvm
@@ -1025,8 +1021,26 @@ Note the space in between the comment start (`//`) and `clang-format`. This spac
 **Please apply clang-format to your changes before any pull request.**
 {: .notice--danger}
 
+**Step 3.- Check Markdown formatting**
+
+If you have modified markdown files (ended in `.md`), please apply [prettier](https://prettier.io).
+
+  * Install prettier:
+```bash
+$ sudo npm install --global prettier
+```
+
+  * Run it from the root of the source code tree:
+```bash
+$ find . -iname "*.md" | xargs prettier --parser markdown --print-width 80 --prose-wrap always --write
+```
+
+  **Please apply prettier to your changes before any pull request if you changed and/or created markdown files.**
+  {: .notice--danger}
+
+
 {% capture notice-maintainability %}
-An automated code formatting tool helps to improve [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
+Automated code formatting tools help to improve [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
 {% endcapture %}
 
 <div class="notice--success">
@@ -1060,10 +1074,17 @@ $ sudo yum install clang-tools-extra
 $ sudo pacman -S clang
 ```
 
+* **In GNU/Linux using openSUSE:**
+```bash
+$ sudo zypper -n install llvm-clang
+```
+
 * **In macOS using Homebrew:**
 ```bash
 $ brew install llvm
 $ ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin
+$ ln -s /usr/local/Cellar/llvm/9.*/bin/clang-apply-replacements /usr/local/bin
+$ ln -s /usr/local/Cellar/llvm/9.*/share/clang/run-clang-tidy.py /usr/local/bin
 ```
 
 * **In macOS using Macports:**

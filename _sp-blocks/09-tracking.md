@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-09-07T10:54:02+02:00
+last_modified_at: 2020-02-24T10:54:02+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of a _Tracking_ block can be written as:
@@ -53,7 +53,7 @@ combination of those samples, known as _discriminator_ functions. The result is 
 _Typical diagram of a tracking block. Colored boxes indicate functions implemented in the [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr) library._
 {: style="text-align: center;"}
 
-GNSS-SDR's _Tracking_ implementations make heavy use of [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr), an extension module of the original [VOLK](http://libvolk.org/) library which contains some functions that are specially useful in the context of a GNSS receiver (some examples in the figure above).
+GNSS-SDR's _Tracking_ implementations make heavy use of [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr), an extension module of the original [VOLK](https://www.libvolk.org/) library which contains some functions that are specially useful in the context of a GNSS receiver (some examples in the figure above).
 
 The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr) library addresses [**Efficiency**]({{ "/design-forces/efficiency/" | relative_url }}) and [**Portability**]({{ "/design-forces/portability/" | relative_url }}) at the same time, by providing several implementations of the same functions in different SIMD technologies, benchmarking them and selecting the fastest in your machine at runtime.
 {: .notice--success}
@@ -85,17 +85,17 @@ $$ \begin{equation}
 C/N_0 = \frac{SNR}{T_{int}}
 \end{equation} $$
 
-The SNR estimation for complex signals can be computed as[^Pauluzzi00]:
+The SNR estimation can be computed as:
 
 $$ \begin{equation}
-\widehat{SNR}=\frac{\hat{C}}{\hat{N}}=\frac{\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }}{\hat{\mathcal{M}}_2-\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }},
+\widehat{SNR}=\frac{\hat{C}}{\hat{N}}=\frac{\hat{C}}{\hat{C}+\hat{N}-\hat{C}},
 \end{equation} $$
 
-which is known as the Second- and Fourth-Order Moments Estimator, where:
- * $$ \displaystyle \hat{\mathcal{M}}_2 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P[m] \vert^2 $$ is the estimation of the second moment of $$ P[m] $$,
- * $$ \displaystyle \hat{\mathcal{M}}_4 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P[m] \vert^4 $$ is the estimation of the fourth moment of $$ P[m] $$,
- * $$ \vert \cdot \vert $$ is the absolute value (also known as norm, modulus, or magnitude),
- * $$ P[m] $$ is the Prompt correlator output (complex value) for the integration period $$ m $$.
+where:
+ * $$ \displaystyle \hat{C} = \left(\frac{1}{M}\sum^{M-1}_{m=0}\|P_I[m])\|\right)^2 $$ is the estimation of the signal power,
+ * $$ \displaystyle \hat{C}+\hat{N}=\frac{1}{M}\sum^{M-1}_{m=0}\|P(m)\|^2 $$ is the estimation of the total power,
+ * $$ \|\cdot\| $$ is the absolute value (also known as norm, modulus, or magnitude),
+ * $$ P[m] $$ is the prompt correlator output for the integration period $$ m $$.
 
 Then, the estimated $$ C/N_0 $$ value in dB-Hz can be written as:
 
@@ -113,7 +113,7 @@ with $$ \alpha $$ controlled by the configuration parameter `cn0_smoother_alpha`
 
 The $$ C/N_0 $$ value provides an indication of the signal quality that is independent of the acquisition and tracking algorithms used by a receiver, and it remains constant through the different processing stages of the receiver.
 
-The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$. This value can be overridden by using the command line flag  `-cn0_samples` when running the executable:
+The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$. This value can be changed by using the command line flag  `-cn0_samples` when running the executable:
 
 ```bash
 $ gnss-sdr -cn0_samples=100 -c=./configuration_file.conf
@@ -324,7 +324,7 @@ This implementation accepts the following parameters:
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 20 Hz. | Optional |
 | `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
@@ -332,14 +332,15 @@ This implementation accepts the following parameters:
 | `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `early_late_space_narrow_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$, after bit synchronization. It defaults to $$ 0.5 $$. | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.  | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50.  | Optional |
 | `carrier_lock_th` | Carrier lock threshold (in rad). It defaults to 0.85 rad.  | Optional |
-| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. | Optional |
-| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
-| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. | Optional |
-| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
+| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging, in form of ".dat" files. This format can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./track_ch`, so files in the form "./track_chX.dat", where `X` is the channel number, will be generated. | Optional |
 | `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`.  | Optional |
@@ -354,53 +355,21 @@ Example:
 ```ini
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
-Tracking_1C.pll_bw_hz=30.0
-Tracking_1C.dll_bw_hz=4.0
-Tracking_1C.early_late_space_chips=0.5
+Tracking_1C.item_type=gr_complex
+Tracking_1C.extend_correlation_symbols=20
+Tracking_1C.early_late_space_chips=0.5;
+Tracking_1C.early_late_space_narrow_chips=0.1;
+Tracking_1C.pll_bw_hz=35;
+Tracking_1C.dll_bw_hz=2.0;
+Tracking_1C.pll_bw_narrow_hz=5.0;
+Tracking_1C.dll_bw_narrow_hz=0.50;
+Tracking_1C.fll_bw_hz=10
+Tracking_1C.enable_fll_pull_in=true;
+Tracking_1C.enable_fll_steady_state=false
+Tracking_1C.dump=false
+Tracking_1C.dump_filename=tracking_ch_
 ```
 
-
-
-### Implementation: `GPS_L1_CA_DLL_PLL_C_Aid_Tracking`
-
-This implementation accepts the following parameters:
-
-|----------
-|  **Global Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-|--------------
-
-
-|----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
-|--------------
-| `implementation` | `GPS_L1_CA_DLL_PLL_C_Aid_Tracking` | Mandatory |
-| `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>]. Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `pll_bw_hz` |  Bandwidth of the PLL low pass filter before bit synchronization, in Hz. It defaults to 50 Hz. | Optional |
-| `dll_bw_hz` |  Bandwidth of the DLL low pass filter before bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
-| `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 20 Hz. | Optional |
-| `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
-| `extend_correlation_ms` | Correlation length, in ms. It defaults to 1 ms. | Optional |
-| `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging.  Binary data can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./track_ch` | Optional |
-|--------------
-
-  _Tracking implementation:_ **`GPS_L1_CA_DLL_PLL_C_Aid_Tracking`**.
-  {: style="text-align: center;"}
-
-Example:
-
-```ini
-;######### TRACKING GLOBAL CONFIG ############
-Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_C_Aid_Tracking
-Tracking_1C.item_type=cshort
-Tracking_1C.pll_bw_hz=40.0;
-Tracking_1C.dll_bw_hz=4.0;
-```
 
 ### Implementation: `GPS_L1_CA_DLL_PLL_Tracking_GPU`
 
@@ -516,7 +485,8 @@ in step $$ 5 $$ was implemented using the [VOLK_GNSSSDR](https://github.com/gnss
 PLL discriminator implemented in step $$ 6 $$  is the extended
 arctangent (four-quadrant) discriminator, and for the DLL we used the
 normalized Very Early Minus Late Power discriminator (step $$ 10 $$ ). The low-pass filters of the DLL, PLL and FLL (when available, see implementations below) are based in the description by Kaplan and Hegarty[^Kaplan17], section 8.8.  For code lock detection
-(step $$ 13 $$ ), we used the Second- and Fourth-Order Moments Estimator[^Pauluzzi00]. In the case of carrier lock
+(step $$ 13 $$ ), we used the Squared Signal-to-Noise Variance
+(SNV) estimator[^Petovello10]. In the case of carrier lock
 detection (step $$ 14 $$ ), we used the normalized estimate of
 the cosine of twice the carrier phase[^Dierendonck]. The values of the
 lock indicator range from $$ -1 $$, when the locally generated carrier is
@@ -587,12 +557,12 @@ $$ N_{k+1}=\text{round}(S) $$ and $$ \psi_{k+1}=S-N_{k+1} $$, where
 $$ S = \frac{T_{int}f_{\text{IN} } }{\left( 1 + \frac{\hat{f}_{D_{k} } }{f^{\text{(Gal E1) } }_c} \right)} +\psi_{k} + h_{DLL}(\hat{\Delta \tau}_k)f_{\text{IN} }  $$.
 
 13. Code lock indicator:
-$$ \hat{ \text{CN0} } = 10 \cdot \log_{10} ( \hat{\rho}) + 10 \cdot \log_{10}(T_{int}) $$,
+$$ \hat{ \text{CN0} } = 10 \cdot \log_{10} ( \hat{\rho}) + 10 \cdot \log_{10}(\frac{ f_{ \text{IN} } }{2} )-10 \cdot \log_{10} (L_{ \text{PRN} }) $$,
 where:
-$$ \hat{\rho}= \frac{\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }}{\hat{\mathcal{M}}_2-\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }} $$,
-$$ \hat{\mathcal{M}}_2 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P(m) \vert^2 $$,
+$$ \hat{\rho}=\frac{ \hat{P}_s }{ \hat{P}_n } = \frac{\hat{P}_s}{\hat{P}_{tot}-\hat{P}_s} $$,
+$$ \hat{P}_s = \left(\frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{I_{k-i}} |\right)^2 $$,
 and
-$$ \hat{\mathcal{M}}_4 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P(m) \vert^4 $$.
+$$ \hat{P}_{tot} = \frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{k-i}|^2 $$.
 
 14. Phase lock indicator:
 $$ T_{carrier} = \frac{ \left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} -1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$.
@@ -633,13 +603,13 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E1_DLL_PLL_VEML_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E1C and enables an extra prompt correlator (slave to pilot's prompt) in the data component E1B. It defaults to `false` (that is, correlations on a data length of 4 ms over the E1B component).  | Optional |
+| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E1C and enables an extra prompt correlator (slave to pilot's prompt) in the data component E1B. It defaults to `false` (that is, correlations on a data length of 4 ms over the E1B component). <span style="color: orange">The default value for this parameter is `true` in the `next` branch of the upstream repository, and that will be the default value in the next stable release.</span> | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{E1C_{s}} $$ is removed from the pilot signal, in number of symbols. Each symbol is 4 ms, so setting this parameter to 25 means a coherent integration time of 100 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1.  | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_bw_narrow_hz` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the bandwidth of the PLL low pass filter after removal of the secondary code $$ C_{E1C_{s}} $$, in Hz. It defaults to 2 Hz. This implementation uses a four-quadrant arctangent discriminator (atan2).  | Optional |
 | `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
@@ -649,14 +619,15 @@ This implementation accepts the following parameters:
 | `very_early_late_space_chips` | Spacing between Very Early and Prompt and between Prompt and Very Late correlators, normalized by the chip period $$ T_c $$ It defaults to $$ 0.6 $$. | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$.  | Optional |
 | `very_early_late_space_narrow_chips` |If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Very Early and Prompt and between Prompt and Very Late correlators after removal of the secondary code $$ C_{E1C_{s}} $$ and extension of the coherent integration time, normalized by the chip period $$ T_c $$. It defaults to $$ 0.6 $$.  | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.  | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50.  | Optional |
 | `carrier_lock_th` | Carrier lock threshold (in rad). It defaults to 0.85 rad.  | Optional |
-| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. | Optional |
-| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
-| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. | Optional |
-| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
+| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging, in form of ".dat" files. This format can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./track_ch`, so files in the form "./track_chX.dat", where `X` is the channel number, will be generated. | Optional |
 | `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`.  | Optional |
@@ -671,8 +642,22 @@ Example:
 ```ini
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_1B.implementation=Galileo_E1_DLL_PLL_VEML_Tracking
+Tracking_1B.item_type=gr_complex
+Tracking_1B.track_pilot=true
 Tracking_1B.pll_bw_hz=15.0;
-Tracking_1B.dll_bw_hz=2.0;
+Tracking_1B.dll_bw_hz=0.75;
+Tracking_1B.early_late_space_chips=0.25;
+Tracking_1B.early_late_space_narrow_chips=0.15;
+Tracking_1B.very_early_late_space_chips=0.5;
+Tracking_1B.very_early_late_space_narrow_chips=0.5;
+Tracking_1B.pll_bw_narrow_hz=5.0
+Tracking_1B.dll_bw_narrow_hz=0.2
+Tracking_1B.extend_correlation_symbols=5
+Tracking_1B.enable_fll_pull_in=true;
+Tracking_1B.enable_fll_steady_state=false
+Tracking_1B.fll_bw_hz=10
+Tracking_1B.dump=false
+Tracking_1B.dump_filename=tracking_ch_
 ```
 
 
@@ -834,21 +819,22 @@ This implementation accepts the following parameters:
 | `pll_bw_hz` | Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `dll_bw_hz` | Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
 | `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
 | `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.  | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50.  | Optional |
 | `carrier_lock_th` | Carrier lock threshold (in rad). It defaults to 0.85 rad.  | Optional |
-| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. | Optional |
-| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
-| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. | Optional |
-| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
+| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging, in form of ".dat" files. This format can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./track_ch`, so files in the form "./track_chX.dat", where `X` is the channel number, will be generated. | Optional |
 | `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`.  | Optional |
@@ -1001,13 +987,13 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `GPS_L5_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal L5Q and enables an extra prompt correlator (slave to pilot's prompt) in the data component L5I. It defaults to `false` (that is, correlations on a data length of 1 ms over the L5I component). | Optional |
+| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal L5Q and enables an extra prompt correlator (slave to pilot's prompt) in the data component L5I. It defaults to `false` (that is, correlations on a data length of 1 ms over the L5I component). <span style="color: orange">The default value for this parameter is `true` in the `next` branch of the upstream repository, and that will be the default value in the next stable release.</span> | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{nh_{20}} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1. | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after bit synchronization, in Hz. It defaults to 2 Hz. | Optional |
 | `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `dll_bw_hz` |  Bandwidth of the DLL low pass filter, in Hz. It defaults to 2 Hz. | Optional |
@@ -1015,14 +1001,15 @@ This implementation accepts the following parameters:
 | `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
 | `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{nh_{20}} $$, normalized by the chip period $$ T_{c,L5} $$. It defaults to $$ 0.15 $$. | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz. | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50. | Optional |
 | `carrier_lock_th` | Carrier lock threshold (in rad). It defaults to 0.85 rad. | Optional |
-| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. | Optional |
-| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
-| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. | Optional |
-| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
+| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging, in form of ".dat" files. This format can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, this parameter sets the base name of the files in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./track_ch`, so files in the form "./track_chX.dat", where `X` is the channel number, will be generated. | Optional |
 | `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`. | Optional |
@@ -1036,9 +1023,20 @@ Example:
 ```ini
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_L5.implementation=GPS_L5_DLL_PLL_Tracking
-Tracking_L5.pll_bw_hz=30.0
-Tracking_L5.dll_bw_hz=4.0
-Tracking_L5.early_late_space_chips=0.5
+Tracking_L5.item_type=gr_complex
+Tracking_L5.track_pilot=true
+Tracking_L5.pll_bw_hz=20.0;
+Tracking_L5.dll_bw_hz=1.5;
+Tracking_L5.extend_correlation_symbols=20
+Tracking_L5.pll_bw_narrow_hz=6.0
+Tracking_L5.dll_bw_narrow_hz=0.5
+Tracking_L5.enable_fll_pull_in=true
+Tracking_L5.enable_fll_steady_state=false
+Tracking_L5.fll_bw_hz=4.0
+Tracking_L5.early_late_space_chips=0.5;
+Tracking_L5.early_late_space_narrow_chips=0.1;
+Tracking_L5.dump=false
+Tracking_L5.dump_filename=./tracking_ch_
 ```
 
 
@@ -1085,7 +1083,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Galileo_E5a_DLL_PLL_Tracking` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E5aQ and enables an extra prompt correlator (slave to pilot's prompt) in the data component E5aI. It defaults to `false` (that is, correlations on a data length of 1 ms over the E5aI component).  | Optional |
+| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E5aQ and enables an extra prompt correlator (slave to pilot's prompt) in the data component E5aI. It defaults to `false` (that is, correlations on a data length of 1 ms over the E5aI component). <span style="color: orange">The default value for this parameter is `true` in the `next` branch of the upstream repository, and that will be the default value in the next stable release.</span> | Optional |
 | `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{E5aQs} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1.  | Optional |
 | `pll_bw_hz` |  Bandwidth of the PLL low pass filter, in Hz. It defaults to 50 Hz. | Optional |
 | `pll_bw_narrow_hz` |  Bandwidth of the PLL low pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
@@ -1094,19 +1092,20 @@ This implementation accepts the following parameters:
 | `dll_bw_narrow_hz` |  Bandwidth of the DLL low pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
 | `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
 | `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
-| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `fll_bw_hz` | Bandwidth of the FLL low pass filter, in Hz. It defaults to 35 Hz. | Optional |
 | `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
 | `early_late_space_chips` |  Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
 | `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E5aQs} $$, normalized by the chip period $$ T_{c,E5p} $$. It defaults to $$ 0.15 $$.  | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.  | Optional |
 | `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.  | Optional |
 | `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50.  | Optional |
 | `carrier_lock_th` | Carrier lock threshold (in rad). It defaults to 0.85 rad.  | Optional |
-| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. | Optional |
-| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
-| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. | Optional |
-| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
+| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging, in form of ".dat" files. This format can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./track_ch`, so files in the form "./track_chX.dat", where `X` is the channel number, will be generated. | Optional |
 | `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`.  | Optional |
@@ -1121,11 +1120,19 @@ Example:
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_5X.implementation=Galileo_E5a_DLL_PLL_Tracking
 Tracking_5X.item_type=gr_complex
-Tracking_5X.pll_bw_hz=25.0
-Tracking_5X.dll_bw_hz=4.0
-Tracking_5X.pll_bw_narrow_hz=10.0
-Tracking_5X.dll_bw_narrow_hz=4.0
-Tracking_5X.early_late_space_chips=0.5
+Tracking_5X.track_pilot=true
+Tracking_5X.pll_bw_hz=20.0;
+Tracking_5X.dll_bw_hz=1.5;
+Tracking_5X.extend_correlation_symbols=20
+Tracking_5X.pll_bw_narrow_hz=5.0;
+Tracking_5X.dll_bw_narrow_hz=0.5;
+Tracking_5X.early_late_space_chips=0.5;
+Tracking_5X.early_late_space_chips_narrow=0.1;
+Tracking_5X.fll_bw_hz=4.0
+Tracking_5X.enable_fll_pull_in=true;
+Tracking_5X.enable_fll_steady_state=false
+Tracking_5X.dump=false
+Tracking_5X.dump_filename=./tracking_ch_
 ```
 
 
@@ -1136,7 +1143,7 @@ Tracking_5X.early_late_space_chips=0.5
 
 [^Proakis]: J. G. Proakis, _Digital Communications_, 5th Ed., McGraw-Hill, 2008.
 
-[^Pauluzzi00]: D. R. Pauluzzi, N. C. Beaulieu, [A comparison of SNR estimation techniques for the AWGN channel](https://ieeexplore.ieee.org/document/871393), IEEE Transactions on Communications, vol. 48, no. 10, pp. 1681–1691, Oct. 2000.
+[^Petovello10]: M. Petovello, E. Falletti, M. Pini, L. Lo Presti, [Are Carrier-to-Noise algorithms equivalent in all situations?](https://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf). Inside GNSS, Vol. 5, no. 1, pp. 20-27, Jan.-Feb. 2010.
 
 [^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from _Global Positioning System: Theory and Applications_, Volume I, Edited by B. W. Parkinson and J. J. Spilker Jr. American Institute of Aeronautics and Astronautics, 1996.
 

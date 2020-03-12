@@ -48,7 +48,7 @@ _Typical GNSS-SDR flow graph._
 
 ### Implementation: GNU Radio
 
-An actual implementation of these concepts is found in [GNU Radio](https://gnuradio.org/), a free and  open source framework for software-defined radio applications. In addition to provide an extensive assortment of signal processing blocks (filters, synchronization elements, demodulators, decoders, and much more), GNU Radio also provides an implementation of a runtime scheduler meeting the requirements described above. This allows developers to focus in the implementation of the actual signal processing, instead of worrying about how to embed such processes in an efficient processing chain.
+An actual implementation of these concepts is found in [GNU Radio](https://www.gnuradio.org/), a free and  open source framework for software-defined radio applications. In addition to provide an extensive assortment of signal processing blocks (filters, synchronization elements, demodulators, decoders, and much more), GNU Radio also provides an implementation of a runtime scheduler meeting the requirements described above. This allows developers to focus in the implementation of the actual signal processing, instead of worrying about how to embed such processes in an efficient processing chain.
 
 **Idea to take home:** By adopting GNU Radio's signal processing framework, GNSS-SDR bases its software architecture in a well-established, highly-efficient design and an extensively proven implementation.
 {: .notice--info}
@@ -74,7 +74,7 @@ Under this scheme, software-defined signal processing blocks read the available 
 [^Kahn77]: G. Kahn and D. B. MacQueen, [Coroutines and networks of parallel processes](https://hal.inria.fr/inria-00306565/PDF/rr_iria202.pdf), in Information processing, B. Gilchrist, Ed., Amsterdam, NE, 1977, pp. 993–998, North Holland.
 
 
-[^Parks95]: T. M. Parks, [Bounded Scheduling of Process Networks](http://www.eecs.berkeley.edu/Pubs/TechRpts/1995/ERL-95-105.pdf), Ph.D. thesis, University of California, Berkeley, CA, Dec. 1995.
+[^Parks95]: T. M. Parks, [Bounded Scheduling of Process Networks](https://www2.eecs.berkeley.edu/Pubs/TechRpts/1995/ERL-95-105.pdf), Ph.D. thesis, University of California, Berkeley, CA, Dec. 1995.
 
 ## Software architecture in GNSS-SDR
 

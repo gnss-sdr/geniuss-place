@@ -23,7 +23,7 @@ The Authors are proud to be supported by the following public institutions, priv
 ## Public Research Funds
 
 
-* **[AUDITOR](http://www.auditor-project.eu/index.html) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
+* **[AUDITOR](https://www.gsa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
 
   ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | relative_url }}){:height="250px" width="250x"}
   {: style="text-align: center;"}
@@ -59,6 +59,11 @@ The Authors are proud to be supported by the following public institutions, priv
     ![GSoC logo]({{ "/assets/images/logo-gsoc.png" | relative_url }}){:height="100px" width="100x"}
     {: style="text-align: center;"}
 
+[2019](https://summerofcode.withgoogle.com/archive/2019/organizations/6369884148072448/)
+
+  * Project: [Expanding the receiver to BEIDOU B1C](https://summerofcode.withgoogle.com/archive/2019/projects/6509812521631744/), by Andrew Kamble.
+  * Project: [Nonlinear State Estimation for Carrier Synchronization in GNSS-SDR](https://summerofcode.withgoogle.com/archive/2019/projects/6299766860808192/), by Gerald LaMountain.
+  * Project: [Optimal Frame Synchronization Detection](https://summerofcode.withgoogle.com/archive/2019/projects/5062110764072960/), by Lucas Ventura.
 
 [2018](https://summerofcode.withgoogle.com/archive/2018/organizations/5951344653369344/)
 
@@ -116,13 +121,16 @@ The Authors are proud to be supported by the following public institutions, priv
 
 * **ESA Summer Of Code In Space (SOCIS)**
 
-  * [2015](http://sophia.estec.esa.int/socis2015/?q=node/13)
+  * [2019](https://socis.esa.int/)
+    - In _Improving the Graphical User Interface (GUI) for monitoring the GNSS-SDR status in real time_, 	&Aacute;lvaro Cebri&aacute;n worked in a GUI for GNSS-SDR (Honorable Participation).
+
+  * [2015](https://socis.esa.int/)
     - In _Direct Position Estimation_, Luis Esteve explored the DPE algorithm and proposed receiver architectures.
 
-  * [2014](http://sophia.estec.esa.int/socis2014/?q=node/13)
+  * [2014](https://socis.esa.int/)
     - In _GNSS-SDR. Acceleration with VOLK_, Andr&eacute;s Cecilia created a new VOLK module with kernels for GNSS signal processing, the inception of the current [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr).
 
-  * [2013](http://sophia.estec.esa.int/socis2013/?q=node/13)
+  * [2013](https://socis.esa.int/)
     - In _Real-time positioning solution for GNSS-SDR_, Vladimir Avrov started working on the generation of RTCM messages.
 
     **The European Space Agency**, through the SOCIS program, offers students a stipend for contributing to open source projects.

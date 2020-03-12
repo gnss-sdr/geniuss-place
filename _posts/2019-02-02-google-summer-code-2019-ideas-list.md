@@ -60,7 +60,7 @@ References:
 
 ### Skills required:
 
-Good understanding of GNSS signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework is a plus).
+Good understanding of GNSS signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework is a plus).
 
 ### Potential mentor(s):
 
@@ -76,7 +76,7 @@ Tracking of synchronization parameters (i.e., time-delay, carrier phase, Doppler
 The main goal of this project is i) to develop and integrate into GNSS-SDR joint code/carrier KF-based synchronization methods, and iv) test and compare the performance of these techniques with respect to traditional architectures using real signals.
 
 ### Skills required:
-Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework and Kalman filtering techniques is a plus).
+Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework and Kalman filtering techniques is a plus).
 
 ### Potential mentor(s):
 Dr. Pau Closas, Dr. Jordi Vil&agrave;-Valls
@@ -90,11 +90,11 @@ Dr. Pau Closas, Dr. Jordi Vil&agrave;-Valls
 
 GNSS data demodulation is preceded by frame synchronization. This process is critical, since it may prevent data recovery if not sufficiently reliable. Currently, GNSS-SDR implements a hard correlation scheme where correlation with the known pattern is performed. Although useful due to is simplicity, there are no performance guarantees for such approach. Particularly, in low signal-to-noise ratio (SNR) situations the performance of such correlation may degrade. This situations occur, for instance, in the presence of jamming signals. The goal of the project will be to implement an optimal detector, based on Massey's frame synchronization metric. Characterization of its performance and comparison to the current method in a number of SNR conditions.
 
-J. L. Massey, [Optimum frame synchronization](http://www.isiweb.ee.ethz.ch/archive/massey_pub/pdf/BI417.pdf), IEEE Trans. Commun., vol. 20, no. 2, pp. 115–119, April 1972.
+J. L. Massey, [Optimum frame synchronization](https://www.isiweb.ee.ethz.ch/archive/massey_pub/pdf/BI417.pdf), IEEE Trans. Commun., vol. 20, no. 2, pp. 115–119, April 1972.
 
 ### Skills required:
 
-Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework is a plus).
+Basic knowledge on digital signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework is a plus).
 
 ### Potential mentor(s):
 

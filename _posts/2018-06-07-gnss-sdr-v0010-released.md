@@ -64,7 +64,7 @@ This release has several improvements in different dimensions, addition of new f
  * Improved support for BladeRF, HackRF and RTL-SDR front-ends.
  * Added tools for the interaction with front-ends based on the AD9361 chipset.
  * Intermediate results are now saved in `.mat` binary format, readable from Matlab/Octave and from Python via [h5py](https://www.h5py.org/).
- * Added the [GPX](http://www.topografix.com/gpx.asp) output format.
+ * Added the [GPX](https://www.topografix.com/gpx.asp) output format.
  *  Improvements in the generation of KML files.
  *  Improvements in the NMEA output. The receiver can produce GPGGA, GPRMC, GPGSA, GPGSV, GAGSA and GAGSV sentences.
  *  Improvements in the RTCM server stability.
@@ -95,7 +95,7 @@ This release has several improvements in different dimensions, addition of new f
  * Improved SDK for cross-compilation in embedded devices. Documented in a [tutorial]({{ "docs/tutorials/cross-compiling/" | relative_url }}).
  * Improved control over minimum required versions for core dependencies.
  * The software builds with C++11, C++14 and C++17 standards.
- * The software can now be built using GCC >= 4.7.2 or LLVM/Clang >= 3.4.0 compilers on GNU/Linux, and with Clang/AppleClang on MacOS.
+ * The software can now be built using GCC >= 4.7.2 or LLVM/Clang >= 3.4.0 compilers on GNU/Linux, and with Clang/AppleClang on macOS.
  * The Ninja build system can be used in replacement of make.
  * The `volk_gnsssdr` library can be built using Python 2.7+ or Python 3.6+.
  * The `volk_gnsssdr` library is now ready for AArch64 NEON instructions.
@@ -151,7 +151,7 @@ This release has several improvements in different dimensions, addition of new f
  * Updated and improved [documentation of processing blocks]({{ "/docs/sp-blocks/" | relative_url }}).
  * Improved documentation of required dependency packages in several GNU/Linux distributions.
  * Parameter names with the same role have been harmonized within different block implementations.
- * Added a [changelog](https://github.com/gnss-sdr/gnss-sdr/blob/master/docs/changelog), a [code of conduct](https://github.com/gnss-sdr/gnss-sdr/blob/master/CODE_OF_CONDUCT.md), a [contributing guide](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) and a [pull-request template](https://github.com/gnss-sdr/gnss-sdr/blob/master/docs/PULL_REQUEST_TEMPLATE.md) in the source tree.
+ * Added a [changelog](https://github.com/gnss-sdr/gnss-sdr/blob/master/docs/changelog), a [code of conduct](https://github.com/gnss-sdr/gnss-sdr/blob/master/CODE_OF_CONDUCT.md), a [contributing guide](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) and a [pull-request template](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/PULL_REQUEST_TEMPLATE.md) in the source tree.
  * Added colors to the commandline user interface.
  * Updated manfiles.
 
@@ -161,5 +161,5 @@ This release has several improvements in different dimensions, addition of new f
 
 As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.10) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
 
-<a href="http://doi.org/10.5281/zenodo.2279988" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.10 is [10.5281/zenodo.2279988](http://dx.doi.org/10.5281/zenodo.2279988).
+<a href="https://doi.org/10.5281/zenodo.2279988" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.10 is [10.5281/zenodo.2279988](https://dx.doi.org/10.5281/zenodo.2279988).
 {: .notice--info}

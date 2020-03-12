@@ -38,3 +38,23 @@ or
 Inquiries beyond the mailing list can be sent to Carles Fern&aacute;ndez-Prades <a href="mailto:carles.fernandez@cttc.cat"><i class="far fa-fw fa-envelope" aria-hidden="true"></i> </a>
 
 See other contact details in our [Team]({{ "/team/" | relative_url }}) page.
+
+
+## Legal Terms and Conditions
+
+The General Data Protection Regulation (EU) [2016/679](https://eur-lex.europa.eu/eli/reg/2016/679/oj) (GDPR) is a regulation in EU law on data protection and privacy in the European Union (EU) and the European Economic Area (EEA). It also addresses the transfer of personal data outside the EU and EEA areas. The GDPR aims primarily to give control to individuals over their personal data.
+
+The European Data Protection Regulation is applicable as of May 25th, 2018 in all member states to harmonize data privacy laws across Europe.
+
+This website is compliant with the [GDPR](https://gdpr-info.eu/). You can check the details by clicking in the buttons below:
+
+[<i class="fas fa-balance-scale"></i> Legal Notice]({{ "/legal-notice/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
+{: style="text-align: center;"}
+
+
+[<i class="fas fa-user-secret"></i> Privacy Policy]({{ "/privacy-policy/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
+{: style="text-align: center;"}
+
+
+[<i class="fas fa-cookie"></i> Cookies]({{ "/cookies/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
+{: style="text-align: center;"}

@@ -39,7 +39,7 @@ The main goals of this project are: *i*) to develop and integrate into the GNSS-
 
 ### Skills required:
 
-Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework and Kalman filtering techniques is a plus).
+Good understanding of statistical signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework and Kalman filtering techniques is a plus).
 
 ### Potential mentor(s):
 
@@ -53,7 +53,7 @@ Dr. Jordi Vil&agrave;-Valls, Dr. Pau Closas, Dr. Javier Arribas.
 
 ### Description:
 
-Although strong jamming can overwhelm much weaker GNSS signals, receiver performance can be significantly improved by implementing interference mitigation techniques. Robust statistics was recently explored as a mitigation technique that requires minimal receiver modifications, while providing unprecedented anti-jamming rejection capabilities. The main required modification is on the generation of a robust cross-ambiguity function (CAF) which is later used in the correlation process, both in acquisition and tracking modes. This project would encompass implementation and testing of such approach, including some of the variants and real signal processing. A reference article might be downloaded from [here](http://www.insidegnss.com/auto/sepoct17-BORIO_0.pdf).   
+Although strong jamming can overwhelm much weaker GNSS signals, receiver performance can be significantly improved by implementing interference mitigation techniques. Robust statistics was recently explored as a mitigation technique that requires minimal receiver modifications, while providing unprecedented anti-jamming rejection capabilities. The main required modification is on the generation of a robust cross-ambiguity function (CAF) which is later used in the correlation process, both in acquisition and tracking modes. This project would encompass implementation and testing of such approach, including some of the variants and real signal processing. A reference article might be downloaded from [here](https://www.insidegnss.com/auto/sepoct17-BORIO_0.pdf).   
 
 ### Skills required:
 
@@ -72,7 +72,7 @@ Dr. Pau Closas, Dr. Carles Fern&aacute;ndez-Prades, Dr. Jordi Vil&agrave;-Valls.
 
 GNSS data demodulation is preceded by frame synchronization. This process is critical, since it may prevent data recovery if not sufficiently reliable. Currently, GNSS-SDR implements a hard correlation scheme where correlation with the known pattern is performed. Although useful due to is simplicity, there are no performance guarantees for such approach. Particularly, in low signal-to-noise ratio (SNR) situations the performance of such correlation may degrade. This situations occur, for instance, in the presence of jamming signals. The goal of the project will be to implement an optimal detector, based on Massey's frame synchronization metric. Characterization of its performance and comparison to the current method in a number of SNR conditions.
 
-J. L. Massey, [Optimum frame synchronization](http://www.isiweb.ee.ethz.ch/archive/massey_pub/pdf/BI417.pdf), IEEE Trans. Commun., vol. 20, no. 2, pp. 115–119, April 1972.
+J. L. Massey, [Optimum frame synchronization](https://www.isiweb.ee.ethz.ch/archive/massey_pub/pdf/BI417.pdf), IEEE Trans. Commun., vol. 20, no. 2, pp. 115–119, April 1972.
 
 ### Skills required:
 
@@ -108,7 +108,7 @@ The configuration mechanism of GNSS-SDR allows users to define and configure eac
 
 ### Skills required:
 
-Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](https://gnuradio.org) framework and [Qt](https://www.qt.io) is a plus).
+Good understanding of digital signal processing and C++ programming (familiarity with the [GNU Radio](https://www.gnuradio.org) framework and [Qt](https://www.qt.io) is a plus).
 
 ### Potential mentor(s):
 

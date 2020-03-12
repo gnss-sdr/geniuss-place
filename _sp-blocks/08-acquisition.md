@@ -123,7 +123,7 @@ The computation of the Fast Fourier Transform and its
 inverse (second and fourth steps inside the _for_ loop) are performed by means of GNU
 Radio wrappers of the [FFTW library](http://www.fftw.org/), an efficient implementation
 for computing the discrete Fourier transform, whereas the products (first and third steps in the _for_ loop) are implemented with the Vector-Optimized Library of
-Kernels ([VOLK](http://libvolk.org/)), which generates processor-specific Single-Input
+Kernels ([VOLK](https://www.libvolk.org/)), which generates processor-specific Single-Input
 Multiple-Data (SIMD) assembly instructions that take advantage of
 parallel computing techniques and allow writing efficient and portable
 code.
@@ -766,4 +766,4 @@ Acquisition_5X.doppler_step=250
 
 [^Tong73]: P. S. Tong, _A Suboptimum Synchronization Procedure for Pseudo Noise Communication Systems_, in Proc. of National Telecommunications Conference, 1973, pp. 26D1-26D5.
 
-[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/system/files/galileo_documents/Galileo_OS_SIS_ICD.pdf), Issue 1.3, Dec. 2016.
+[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf), Issue 1.3, Dec. 2016.

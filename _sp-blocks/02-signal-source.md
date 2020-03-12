@@ -508,10 +508,10 @@ For instance, if `RF_channels` is set to `2`, then:
 
 ### Implementation: `Osmosdr_Signal_Source`
 
-[![OsmoSDR](https://sdr.osmocom.org/osmocom/osmocom_sdr.png){:height="250px" width="250x"}{: .align-right}](https://sdr.osmocom.org/trac/)
-[OsmoSDR](https://sdr.osmocom.org/trac/) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
+[![OsmoSDR]({{ "/assets/images/osmocom.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://osmocom.org/)
+[OsmoSDR](https://osmocom.org/projects/gr-osmosdr) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
 project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. The project also provides a software driver for several RF front-ends such as [RTL-based
-dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), [LimeSDR](https://myriadrf.org/projects/limesdr/), [etc](https://github.com/osmocom/gr-osmosdr/blob/master/README).
+dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), [LimeSDR](https://myriadrf.org/projects/limesdr/), [etc](https://osmocom.org/projects/gr-osmosdr).
 
 If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need to install the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the GNSS-SDR building with the following flag:
 
@@ -558,7 +558,7 @@ SignalSource.enable_throttle_control=false
 ```
 
 {% capture bias-tee-rtlsdrv3 %}
-**Tip:** Please note that the new [RTL-SDR Blog V3](https://www.rtl-sdr.com/wp-content/uploads/2017/06/RTL-SDR-Blog-V3-Datasheet.pdf) dongles ship a < 1 PPM temperature compensated oscillator (TCXO), which is well suited for GNSS signal processing, and a 4.5 V powered bias-tee to feed an active antenna. Whether the bias-tee is turned off before reception or remains active depends on which version of [gr-osmosdr](https://github.com/osmocom/gr-osmosdr) was used when compiling GNSS-SDR. With an old version (for example, v0.1.4-8), the utility [rtl_biast](https://github.com/OrbitTheSun/rtl_biast) may be used to switch the bias-tee, and then call gnss-sdr.  After reception, the bias-tee is switched off automatically by the program. With newer versions of gr-osmosdr (>= 0.1.4-13), the bias-tee can be activated by passing the following parameters to the configuration:
+**Tip:** Please note that the new [RTL-SDR Blog V3](https://www.rtl-sdr.com/wp-content/uploads/2018/02/RTL-SDR-Blog-V3-Datasheet.pdf) dongles ship a < 1 PPM temperature compensated oscillator (TCXO), which is well suited for GNSS signal processing, and a 4.5 V powered bias-tee to feed an active antenna. Whether the bias-tee is turned off before reception or remains active depends on which version of [gr-osmosdr](https://github.com/osmocom/gr-osmosdr) was used when compiling GNSS-SDR. With an old version (for example, v0.1.4-8), the utility [rtl_biast](https://github.com/OrbitTheSun/rtl_biast) may be used to switch the bias-tee, and then call gnss-sdr.  After reception, the bias-tee is switched off automatically by the program. With newer versions of gr-osmosdr (>= 0.1.4-13), the bias-tee can be activated by passing the following parameters to the configuration:
 
 ```ini
 SignalSource.osmosdr_args=rtl,bias=1
@@ -577,7 +577,7 @@ SignalSource.osmosdr_args=hackrf,bias=1
 
 ### Implementation: `RtlTcp_Signal_Source`
 
-In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](https://sdr.osmocom.org/trac/wiki/rtl-sdr#rtl_sdr) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
+In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](https://osmocom.org/projects/rtl-sdr/wiki) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
 
 If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
 
@@ -618,8 +618,8 @@ SignalSource.swap_iq=false
 
 ### Implementation: `Fmcomms2_Signal_Source`
 
-[![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
-The [AD-FMCOMMS2-EBZ](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html) is an FPGA Mezzanine Card ([FMC](https://fmchub.github.io/appendix/VITA57_FMC_HPC_LPC_SIGNALS_AND_PINOUT.html)) board for the [AD9361](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/ad9361.html), a highly integrated RF transceiver originally designed for use in 3G and 4G base station applications.  Its programmability and wideband capability make it ideal for a broad range of applications, since the device combines a RF front end with a flexible mixed-signal baseband section and integrated frequency synthesizers, providing a configurable digital interface. The AD9361 receiver's local oscillator can operate from $$ 70 $$ MHz to $$ 6.0 $$ GHz, and channel bandwidths from less than $$ 200 $$ kHz to $$ 56 $$ MHz are supported. The two independent direct conversion receivers have state-of-the-art noise figure and linearity. Each receive (RX) subsystem includes independent automatic gain control (AGC), dc offset correction, quadrature correction, and digital filtering, thereby eliminating the need for these functions in the digital baseband. Two high dynamic range analog-to-digital converters (ADCs) per channel digitize the received I and Q signals and pass them through decimation filters and 128-tap finite impulse response (FIR) filters to produce a 12-bit output signal at the appropriate sample rate.
+[![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
+The [AD-FMCOMMS2-EBZ](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html) is an FPGA Mezzanine Card ([FMC](https://fmchub.github.io/appendix/VITA57_FMC_HPC_LPC_SIGNALS_AND_PINOUT.html)) board for the [AD9361](https://www.analog.com/en/products/ad9361.html), a highly integrated RF transceiver originally designed for use in 3G and 4G base station applications.  Its programmability and wideband capability make it ideal for a broad range of applications, since the device combines a RF front end with a flexible mixed-signal baseband section and integrated frequency synthesizers, providing a configurable digital interface. The AD9361 receiver's local oscillator can operate from $$ 70 $$ MHz to $$ 6.0 $$ GHz, and channel bandwidths from less than $$ 200 $$ kHz to $$ 56 $$ MHz are supported. The two independent direct conversion receivers have state-of-the-art noise figure and linearity. Each receive (RX) subsystem includes independent automatic gain control (AGC), dc offset correction, quadrature correction, and digital filtering, thereby eliminating the need for these functions in the digital baseband. Two high dynamic range analog-to-digital converters (ADCs) per channel digitize the received I and Q signals and pass them through decimation filters and 128-tap finite impulse response (FIR) filters to produce a 12-bit output signal at the appropriate sample rate.
 
 The AD9361 RX signal path passes downconverted signals (I and Q) to the baseband receiver section. The baseband RX signal path is composed of two programmable analog low-pass filters, a 12-bit ADC, and four stages of digital decimating filters. Each of the four decimating filters can be bypassed. The figure below shows a block diagram for the AD9361 RX signal path after downconversion. Note that both the I and Q paths are schematically identical to each other.
 
@@ -715,8 +715,8 @@ SignalSource.rf_port_select=A_BALANCED
 
 ### Implementation: `Plutosdr_Signal_Source`
 
-[![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
-The [ADALM-Pluto](http://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html) is a learning module which helps introduce electrical engineering students to the fundamentals of software-defined radio (SDR), radio frequency (RF), and wireless communications. Based on the [AD9363](http://www.analog.com/en/products/rf-microwave/integrated-transceivers-transmitters-receivers/wideband-transceivers-ic/AD9363.html), it offers one receive channel and one transmit channel which can be operated in full duplex, capable of generating or measuring RF analog signals from $$ 325 $$ to $$ 3800 $$ MHz, with a $$ 20 $$ MHz bandwidth, at up to $$ 61.44 $$ Mega Samples per second (MSps) with a 12-bit ADC and DAC.
+[![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
+The [ADALM-Pluto](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html) is a learning module which helps introduce electrical engineering students to the fundamentals of software-defined radio (SDR), radio frequency (RF), and wireless communications. Based on the [AD9363](https://www.analog.com/en/products/AD9363.html), it offers one receive channel and one transmit channel which can be operated in full duplex, capable of generating or measuring RF analog signals from $$ 325 $$ to $$ 3800 $$ MHz, with a $$ 20 $$ MHz bandwidth, at up to $$ 61.44 $$ Mega Samples per second (MSps) with a 12-bit ADC and DAC.
 
 In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies:
 

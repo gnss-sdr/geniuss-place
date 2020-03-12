@@ -65,7 +65,7 @@ Applications that do not need an operating system are called _bare metal_ applic
 
 *  **Unix** and **Unix-like** operating systems:
 
-   * The present owner of the trademark _UNIX_ is [The Open Group](http://www.opengroup.org/), an industry standards consortium. Only systems fully compliant with and certified to the [Single Unix Specification](https://en.wikipedia.org/wiki/Single_UNIX_Specification) qualify as "[Unix](https://en.wikipedia.org/wiki/Unix)" (others are called "Unix system-like" or "Unix-like"). Examples:
+   * The present owner of the trademark _UNIX_ is [The Open Group](https://www.opengroup.org/), an industry standards consortium. Only systems fully compliant with and certified to the [Single Unix Specification](https://en.wikipedia.org/wiki/Single_UNIX_Specification) qualify as "[Unix](https://en.wikipedia.org/wiki/Unix)" (others are called "Unix system-like" or "Unix-like"). Examples:
      * HP's [HP-UX](https://en.wikipedia.org/wiki/HP-UX).
      * IBM's [AIX](https://en.wikipedia.org/wiki/IBM_AIX).
      * Sun Microsystems's [Solaris](https://en.wikipedia.org/wiki/Solaris_(operating_system)).
@@ -78,7 +78,7 @@ Applications that do not need an operating system are called _bare metal_ applic
 
 *  **Microsoft Windows** is a family of proprietary operating systems designed by Microsoft Corporation and primarily targeted to Intel architecture based computers, with a [relevant percent total usage share](https://en.wikipedia.org/wiki/Usage_share_of_operating_systems) on Web connected computers. The latest version is [Windows 10](https://en.wikipedia.org/wiki/Windows_10), which was preceded by [Windows 7](https://en.wikipedia.org/wiki/Windows_7), [Windows Vista](https://en.wikipedia.org/wiki/Windows_Vista) and [Windows XP](https://en.wikipedia.org/wiki/Windows_XP).
 
-* **Real-Time Operating Systems** such as [VxWorks](https://windriver.com/products/vxworks/), [eCos](http://ecos.sourceware.org/), [QNX](https://blackberry.qnx.com/), [MontaVista Linux](https://www.mvista.com/), [RTLinux](http://www.rtlinux.org/) and Real-Time Executive for Multiprocessor Systems ([RTEMS](https://www.rtems.org/)).
+* **Real-Time Operating Systems** such as [VxWorks](https://windriver.com/products/vxworks/), [eCos](http://ecos.sourceware.org/), [QNX](https://blackberry.qnx.com/), [MontaVista Linux](https://www.mvista.com/), [RTLinux](https://www.rtlinux.org/) and Real-Time Executive for Multiprocessor Systems ([RTEMS](https://www.rtems.org/)).
 
 
 
@@ -87,7 +87,7 @@ Applications that do not need an operating system are called _bare metal_ applic
 In case of using compiled programming languages, software libraries and executables are generated from the source code through three kinds of tools:
 
   * **Build system generators**, which automatically generate _build files_ from human-written configuration files. Popular examples of those tools are the [GNU Build System](https://en.wikipedia.org/wiki/GNU_Build_System) (also known as Autotools), [CMake](https://cmake.org) and [SCons](https://scons.org).
-  * **Build automation tools**, which automatically build executable programs and libraries from the source code with the aid of _build files_ that contains _rules_ describing targets, components and dependencies. Example are [GNU Make](https://www.gnu.org/software/make/), Unix’s [make](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html), [Ninja](https://ninja-build.org) and [others](https://en.wikipedia.org/wiki/List_of_build_automation_software).     
+  * **Build automation tools**, which automatically build executable programs and libraries from the source code with the aid of _build files_ that contains _rules_ describing targets, components and dependencies. Example are [GNU Make](https://www.gnu.org/software/make/), Unix’s [make](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html), [Ninja](https://ninja-build.org) and [others](https://en.wikipedia.org/wiki/List_of_build_automation_software).     
   * **Compilers**, which are programs that convert instructions into a machine-code or lower-level form so that they can be read and executed by a computer. In general, it is desirable to be able to build the source code with different compilers, since  it improves the overall quality of code by providing different checks and alerts. Examples of compilers are:
     * the [GNU Compiler Collection](https://gcc.gnu.org), which provides front ends for C (```gcc```), C++ (```g++```), Fortran (```gfortran```), Java (```gcj```) and other languages;
     * the [LLVM](https://llvm.org) project, which provides front-ends for C / Objective-C (```clang```) and C++ (```clang++```), while other external projects allow the compilation of Ruby, Python, Haskell, Java, D, PHP, Pure, Lua, and a number of other languages.

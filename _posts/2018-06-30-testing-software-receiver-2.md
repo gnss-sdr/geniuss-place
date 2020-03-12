@@ -69,10 +69,10 @@ Other additional unit and system tests require from external tools, libraries an
 |:--|:-:|:-:|:--|
 |--------------
 | &#x2011;DENABLE_UNIT_TESTING | ON / OFF | ON  |  If set to OFF, it disables the building of unit tests. This can be useful in memory-limited systems. |
-| &#x2011;DENABLE_UNIT_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external raw sample files files and other software tools (among them, [GPSTk](http://www.gpstk.org/), if it is not already found in your system), and builds some extra unit tests that are added to the ```run_tests``` executable.  |
+| &#x2011;DENABLE_UNIT_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external raw sample files files and other software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system), and builds some extra unit tests that are added to the ```run_tests``` executable.  |
 | &#x2011;DENABLE_SYSTEM_TESTING | ON / OFF |  OFF |  If set to ON, it builds system tests (each one with its own executable test program) at the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option.  |
-| &#x2011;DENABLE_SYSTEM_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](http://www.gpstk.org/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
-| &#x2011;DENABLE_OWN_GPSTK | ON / OFF |  OFF | If set to ON, it forces to download, build and link [GPSTk](http://www.gpstk.org/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
+| &#x2011;DENABLE_SYSTEM_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
+| &#x2011;DENABLE_OWN_GPSTK | ON / OFF |  OFF | If set to ON, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/GPSTk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
 | &#x2011;DENABLE_INSTALL_TESTS | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder ```gnss-sdr/install```. If this option is set to ON, test binaries and auxiliary files will not be copied to  ```gnss-sdr/install``` but installed in the system path when doing ```make install```.  |
 |----------
 
@@ -235,7 +235,7 @@ The generation of some unit test suites are enabled by default, and gathered in 
 
  * Signal sources
    - `FileSignalSource`: set of test cases for [file_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/adapters/file_signal_source.h)
-   - `ValveTest`: set of test cases for [gnss_sdr_valve.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_sdr_valve.h)
+   - `ValveTest`: set of test cases for [gnss_sdr_valve.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/libs/gnss_sdr_valve.h)
    - `Unpack2bitSamplesTest`: set of test cases for [unpack_2bit_samples.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/signal_source/gnuradio_blocks/unpack_2bit_samples.h)
 
  * Data Type Adapter
@@ -291,7 +291,7 @@ The generation of some unit test suites are enabled by default, and gathered in 
 
  * PVT
       - `RinexPrinterTest`: set of test cases for [rinex_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rinex_printer.h)
-      - `RtcmTest`: set of test cases for [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h)
+      - `RtcmTest`: set of test cases for [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm.h)
       - `RtcmPrinterTest`: set of test cases for [rtcm_printer.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm_printer.h)
 
  * System parameters:
@@ -310,7 +310,7 @@ $ make
 This option will download, build and link (at building time) the following tools and files:
 
  * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim) and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator), which includes some sample RINEX and trajectory (.csv) files used by optional tests.
- * The [GPSTk project](http://www.gpstk.org), an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](https://wwwext.arlut.utexas.edu/sgl.html), within the [Applied Research Laboratories](https://www.arlut.utexas.edu/) at the [University of Texas at Austin](https://www.utexas.edu) (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk).
+ * The [GPSTk project](https://github.com/SGL-UT/GPSTk), an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](https://wwwext.arlut.utexas.edu/sgl.html), within the [Applied Research Laboratories](https://www.arlut.utexas.edu/) at the [University of Texas at Austin](https://www.utexas.edu) (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk).
  * It downloads `gps_l2c_m_prn7_5msps.dat` and `Glonass_L1_CA_SIM_Fs_62Msps_4ms.dat`, files containing raw GNSS signal samples that are used by some tests as input data.
 
 
@@ -336,7 +336,6 @@ This test computes the Receiver Operation Characteristic (ROC), that is, Probabi
 | &#x2011;&#x2011;acq_test_doppler_step | 125 | Doppler step, in Hz. |
 | &#x2011;&#x2011;acq_test_coherent_time_ms | 1 | Acquisition coherent time, in ms. |
 | &#x2011;&#x2011;acq_test_max_dwells | 1 | Number of non-coherent integrations. |
-| &#x2011;&#x2011;acq_test_use_CFAR_algorithm | true | Use CFAR statistic. |
 | &#x2011;&#x2011;acq_test_make_two_steps | false | Perform second step in a thinner grid. |
 | &#x2011;&#x2011;acq_test_second_nbins | 4 | If `--acq_test_make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. |
 | &#x2011;&#x2011;acq_test_second_doppler_step | 10 | If `--acq_test_make_two_steps` is set to true, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. |
@@ -660,7 +659,7 @@ TEST(RtcmTest, HexToInt)  // RtcmTest is the name of the Test Suite
 }
 ```
 
-This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/rtcm.h)) and wraps it into a shared pointer that will deallocate memory at the end of the test. Then, it tests the class member function `hex_to_int` and evaluates the result in an assertion, checking that the obtained result is actually the expected one.
+This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm.h)) and wraps it into a shared pointer that will deallocate memory at the end of the test. Then, it tests the class member function `hex_to_int` and evaluates the result in an assertion, checking that the obtained result is actually the expected one.
 
 For more details details about the usage of the Google C++ Testing Framework and its available features, please check out its documentation:
 

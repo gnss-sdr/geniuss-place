@@ -4,7 +4,7 @@ layout: publications
 title: "Publications"
 excerpt: "List of academic papers in which GNSS-SDR has been described or used for research purposes."
 header:
-  teaser: "https://scontent-mad1-1.cdninstagram.com/t51.2885-15/e15/11190810_1446633488967530_1154530547_n.jpg"
+  teaser: /assets/images/books.png
 sidebar:
     nav: "about"
 last_modified_at: 2019-04-29T12:38:52+00:00
@@ -78,7 +78,7 @@ note    = { {doi}: 10.1109/ACCESS.2018.2822835}
 <i>GPS World</i>, Vol. 29, No. 1, pp. 43-49, Jan. 2018.
     <br />
     <a href="javascript:toggleBibtex('Curran18')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="http://gpsworld.com/innovation-the-continued-evolution-of-the-gnss-software-defined-radio/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.gpsworld.com/innovation-the-continued-evolution-of-the-gnss-software-defined-radio/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Curran18" class="bibtex noshow">
     <pre>@article{ Curran18,
@@ -180,7 +180,21 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 
 
 
-<h3 style="margin-bottom:0px;padding-top:10px;">Articles in International Conferences</h3>
+<h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
+
+<ul class="biblist">
+    <!-- Item: Fernandez19a -->
+    <li ><p>
+    C.&nbsp;Fern&aacute;ndez-Prades
+    <br><b>An Open Source Global Navigation Satellite Systems Software-Defined Receiver</b><br>
+<i>Software Defined Radio Academy 2019</i>,
+Friedrichshafen, Germany, Jun. 2019.
+    <br />
+    <span style="color: #52adc8">[</span><a href="https://youtu.be/4uHdu-iGsgI">Video</a><span style="color: #52adc8">]</span>
+    </p>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: Fernandez18b -->
@@ -382,8 +396,7 @@ Portland, OR, Sept. 2017, pp. 3796-3815.
     <br />
     <a href="javascript:toggleBibtex('Fernandez17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15234" >Online</a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15234
-" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15234" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037906" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/a-cloud-optical-access-network-for-virtualized-gnss-receivers/zhgrtpqstxrx" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
@@ -570,7 +583,7 @@ month   = {Sep.}
 Como, Italy, Jul. 14-17, 2015, pp. 405-416.
     <br />
     <a href="javascript:toggleBibtex('Branzanti15')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="http://geomatica.como.polimi.it/workbooks/n12/FOSS4G-eu15_submission_154.pdf" >PDF</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://pdfs.semanticscholar.org/3143/1f0138610dc509cc04e1d24f56ba0a5878b6.pdf" >PDF</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Branzanti15" class="bibtex noshow">
     <pre>@inproceedings{ Branzanti15,
@@ -882,7 +895,7 @@ A. Ranganathan
 <br><b>Physical-layer Techniques for Secure Proximity Verification & Localization</b><br>
 <i>PhD Thesis, ETH Z&uuml;rich, Department of Computer Science, Z&uuml;rich, Switzerland, June 2016.</i>
 <br><a href="javascript:toggleBibtex('Ranganathan16')">[BibTeX]</a>
-<span style="color: #52adc8">[</span><a href="http://e-collection.library.ethz.ch/view/eth:49164" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://e-collection.library.ethz.ch/eserv/eth:49164/eth-49164-02.pdf" >PDF</a><span style="color: #52adc8">]</span>
+<span style="color: #52adc8">[</span><a href="https://www.research-collection.ethz.ch/handle/20.500.11850/117163" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/117163/eth-49164-02.pdf" >PDF</a><span style="color: #52adc8">]</span>
 <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.3929/ethz-a-010659030" >
 <i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
 </p>
@@ -932,7 +945,7 @@ J.&nbsp;Arribas
 <br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="https://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
 <br />
 <a href="javascript:toggleBibtex('Arribas12')">[BibTeX]</a>
-<span style="color: #52adc8">[</span><a href="http://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>
+<span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>
 </p>
 <div id="bib_Arribas12" class="bibtex noshow">
 <pre>@phdthesis{ Arribas12,
@@ -958,7 +971,7 @@ A. Hennigar
 <i>MS Thesis, Auburn University, Department of Electrical & Computer Engineering, Auburn, Alabama, Dec. 2014.</i>
 <br />
 <a href="javascript:toggleBibtex('Hennigar14')">[BibTeX]</a>
-<span style="color: #52adc8">[</span><a href="http://etd.auburn.edu/handle/10415/4442" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://etd.auburn.edu/bitstream/handle/10415/4442/Andrew_Hennigar_Thesis_Final_Draft.pdf" >
+<span style="color: #52adc8">[</span><a href="https://etd.auburn.edu/handle/10415/4442" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://etd.auburn.edu/bitstream/handle/10415/4442/Andrew_Hennigar_Thesis_Final_Draft.pdf" >
 PDF</a><span style="color: #52adc8">]</span>
 </p>
 <div id="bib_Hennigar14" class="bibtex noshow">
@@ -1012,7 +1025,7 @@ C.&nbsp;Avil&eacute;s
 <div id="bib_Aviles10" class="bibtex noshow">
 <pre>@mastersthesis{ Aviles10,
 author = {C.~Avil\'{e}s},
-title = { {G}lobal {N}avigation {S}atellite {S}ystems - {S}oftware {D}efined Radio ({GNSS-SDR})},
+title = { {G}lobal {N}avigation {S}atellite {S}ystems - {S}oftware {D}efined {R}adio ({GNSS-SDR})},
 school = {Universitat Oberta de Catalunya, Faculty of Computer Science, Multimedia and Telecommunications},
 year = {2010},
 address = {Barcelona, Spain},

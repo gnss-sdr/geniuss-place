@@ -47,7 +47,8 @@ According to the name and the quality of the theme this website is based upon, a
 - [Gumshoe](https://github.com/cferdinandi/gumshoe)
 - [jQuery throttle / debounce](http://benalman.com/projects/jquery-throttle-debounce-plugin/)
 - [Sass](https://sass-lang.com/)
-- Web search service provided by [Algolia](https://www.algolia.com/)
+- [Cookie Consent](https://github.com/osano/cookieconsent)
+- Web search service provided by [Google Search Engine](https://cse.google.com/cse)
 
 ---
 
@@ -62,7 +63,7 @@ Found a typo in this website? Interested in adding documentation of new a featur
 
 ## License
 
-&copy; Carles Fern&aacute;ndez-Prades, 2016 - 2019
+&copy; Carles Fern&aacute;ndez-Prades, 2016 - 2020
 
 This work is released under the Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)) license.
 
@@ -82,15 +83,15 @@ The licensor cannot revoke these freedoms as long as you follow the license term
 **No additional restrictions**. You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 
 This work incorporates [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes),
-Copyright &copy; 2013-2019 Michael Rose and contributors.
-With modifications: &copy; 2016-2019 Carles Fern&aacute;ndez-Prades.
+Copyright &copy; 2013-2020 Michael Rose and contributors.
+With modifications: &copy; 2016-2020 Carles Fern&aacute;ndez-Prades.
 Minimal Mistakes is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates icons from [The Noun Project](https://thenounproject.com/).
 Authors: Garrett Knoll, Arthur Shlain, and tracy tam.
 Icons are distributed under Creative Commons Attribution 3.0 United States ([CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/)).
 
-This work incorporates icons from [Flaticon](hhttps://www.flaticon.com).
+This work incorporates icons from [Flaticon](https://www.flaticon.com).
 Authors: [Butterflytronics](https://www.flaticon.com/authors/butterflytronics), [SimpleIcon](https://www.flaticon.com/authors/simpleicon) and [Freepik](https://www.freepik.com).
 Icons are distributed under Creative Commons Attribution 3.0 ([CC BY 3.0](https://creativecommons.org/licenses/by/3.0/legalcode)).
 
@@ -121,7 +122,7 @@ Copyright &copy; 2014-2016 Dmitry Semenov, http://dimsemenov.com.
 Magnific Popup is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [Smooth Scroll](http://github.com/cferdinandi/smooth-scroll),
-Copyright &copy; 2018 Chris Ferdinandi.
+Copyright &copy; 2020 Chris Ferdinandi.
 Smooth Scroll is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [Gumshoe](http://github.com/cferdinandi/gumshoe),
@@ -143,7 +144,3 @@ Jekyll Group-By-Array is distributed under the terms of the [MIT License](https:
 This work incorporates [@allejo's Pure Liquid Jekyll Table of Contents](https://allejo.io/blog/a-jekyll-toc-without-plugins-or-javascript/),
 Copyright &copy; 2017 Vladimir Jimenez.
 Pure Liquid Jekyll Table of Contents is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-This work incorporates [instantsearch.js](https://github.com/algolia/instantsearch.js),
-Copyright &copy; 2015-present Algolia, Inc.
-instantsearch.js is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).

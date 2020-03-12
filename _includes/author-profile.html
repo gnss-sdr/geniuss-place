@@ -12,11 +12,7 @@
 <div itemscope itemtype="https://schema.org/Person">
 
   <div class="author__avatar" align="center">
-    {% if author.avatar contains "://" %}
-    	<img src="{{ author.avatar }}" alt="{{ author.name }}" itemprop="image">
-    {% else %}
-    	<img src="{{ author.avatar |  relative_url }}" class="author__avatar" alt="{{ author.name }}" itemprop="image">
-    {% endif %}
+    <img src="{{ author.avatar |  relative_url }}" class="author__avatar" alt="{{ author.name }}" itemprop="image">
   </div>
 
   <div class="author__content">
@@ -109,14 +105,14 @@
       {% if author.youtube %}
         {% if author.youtube contains "://" %}
           <li>
-            <a href="{{ author.youtube }}"  itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            <a href="{{ author.youtube }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
             </a>
           </li>
-        {% else author.youtube %}
+        {% elsif author.youtube %}
           <li>
-            <a href="https://www.youtube.com/user/{{ author.youtube }}"  itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            <a href="https://www.youtube.com/user/{{ author.youtube }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
             </a>
           </li>
         {% endif %}
