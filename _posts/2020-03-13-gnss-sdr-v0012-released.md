@@ -112,24 +112,21 @@ features and bug fixes:
  `NoOptWithASM`, `O2WithASM`, `O3WithASM`, `ASAN`.
  * Fix runtime errors when compiling in `Debug` mode on macOS.
  * Updated links in comments along the source code and in CMake scripts.
- * Update GSL implementation to 0.36.0. See
- https://github.com/gsl-lite/gsl-lite/releases/tag/v0.36.0
+ * Update GSL implementation to [0.36.0](https://github.com/gsl-lite/gsl-lite/releases/tag/v0.36.0).
  * Create a CI job on GitHub to ensure that `clang-tidy` has been applied in most
  of the source code (some optional blocks and tests are left apart).
  * Create a CI job on GitHub to ensure that `clang-format` has been applied.
  * Create a CI job on GitHub to ensure that `cpplint` filters have been applied.
- * Create a CI job on GitHub to ensure compliance with REUSE Specification (see
- https://reuse.software)
- * Create a CI job on GitHub using `prettier` (https://prettier.io/) to check
+ * Create a CI job on GitHub to ensure compliance with [REUSE Specification](https://reuse.software)
+ * Create a CI job on GitHub using [prettier](https://prettier.io/) to check
  markdown files formatting.
  * Create a CI job on GitHub to check the formatting of CMake scripts using
- `cmakelint` (see https://github.com/richq/cmake-lint).
+ [cmakelint](https://github.com/richq/cmake-lint).
 
 
 ## Improvements in [Openness]({{ "/design-forces/openness/" | relative_url }}):
 
- * Make software compliant with REUSE Specification – Version 3.0 (see
- https://reuse.software/spec/).
+ * Make software compliant with [REUSE Specification – Version 3.0](https://reuse.software/spec/).
 
 
 ## Improvements in [Portability]({{ "/design-forces/portability/" | relative_url }}):
