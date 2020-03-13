@@ -26,11 +26,11 @@ you should see something similar to:
 
 ```bash
 $ gnss-sdr --version
-gnss-sdr version 0.0.11
+gnss-sdr version 0.0.12
 $  
 ```
 
-Please check that your installed version is 0.0.11 (or something like 0.0.11.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.11, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
+Please check that your installed version is 0.0.12 (or something like 0.0.12.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.12, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
 If you see something like:
@@ -84,7 +84,7 @@ SignalSource.implementation=File_Signal_Source
 SignalSource.filename=/home/your-username/work/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat
 SignalSource.item_type=ishort
 SignalSource.sampling_frequency=4000000
-SignalSource.freq=1575420000
+S0.0.12Source.freq=1575420000
 SignalSource.samples=0
 
 ;######### SIGNAL_CONDITIONER CONFIG ############
@@ -166,7 +166,7 @@ You should see something similar to:
 
 ```
 $ gnss-sdr --config_file=./my-first-GNSS-SDR-receiver.conf
-Initializing GNSS-SDR v0.0.11 ... Please wait.
+Initializing GNSS-SDR v0.0.12 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 Processing file /home/your-username/work/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat, which contains 1600000000 [bytes]
