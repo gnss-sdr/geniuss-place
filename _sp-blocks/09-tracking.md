@@ -85,17 +85,18 @@ $$ \begin{equation}
 C/N_0 = \frac{SNR}{T_{int}}
 \end{equation} $$
 
-The SNR estimation can be computed as:
+The SNR estimation for complex signals can be computed as[^Pauluzzi00]:
 
 $$ \begin{equation}
-\widehat{SNR}=\frac{\hat{C}}{\hat{N}}=\frac{\hat{C}}{\hat{C}+\hat{N}-\hat{C}},
+\widehat{SNR}=\frac{\hat{C}}{\hat{N}}=\frac{\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }}{\hat{\mathcal{M}}_2-\sqrt{2 \hat{\mathcal{M}}_2^2 - \hat{\mathcal{M}}_4 }},
 \end{equation} $$
 
 where:
- * $$ \displaystyle \hat{C} = \left(\frac{1}{M}\sum^{M-1}_{m=0}\|P_I[m])\|\right)^2 $$ is the estimation of the signal power,
- * $$ \displaystyle \hat{C}+\hat{N}=\frac{1}{M}\sum^{M-1}_{m=0}\|P(m)\|^2 $$ is the estimation of the total power,
- * $$ \|\cdot\| $$ is the absolute value (also known as norm, modulus, or magnitude),
- * $$ P[m] $$ is the prompt correlator output for the integration period $$ m $$.
+ * $$ \displaystyle \hat{\mathcal{M}}_2 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P[m] \vert^2 $$ is the estimation of the second moment of $$ P[m] $$,
+ * $$ \displaystyle \hat{\mathcal{M}}_4 = \frac{1}{M}\sum^{M-1}_{m=0} \vert P[m] \vert^4  $$ is the estimation of the fourth moment of $$ P[m] $$,
+ * $$ M $$ is the number of samples used to perform the estimation (see tracking block parameter `cn0_samples`),
+ * $$ \vert \cdot \vert $$ is the absolute value (also known as norm, modulus, or magnitude),
+ * $$ P[m] $$ is the prompt correlator output (complex value) for the integration period $$ m $$.
 
 Then, the estimated $$ C/N_0 $$ value in dB-Hz can be written as:
 
@@ -1150,3 +1151,5 @@ Tracking_5X.dump_filename=./tracking_ch_
 [^Kaplan17]: E. D. Kaplan and C. J. Hegarty, Eds., _Understanding GPS. Principles and Applications_, 3rd edition, Artech House, Norwood, MA, 2017.
 
 [^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
+
+[^Pauluzzi00]: D. R. Pauluzzi and N. C. Beaulieu, [A comparison of SNR estimation techniques for the AWGN channel](https://ieeexplore.ieee.org/document/871393), IEEE Transactions on Communications, Vol. 48, no. 10, pp 1681-1691, Oct. 2000.
