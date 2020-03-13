@@ -83,8 +83,8 @@ features and bug fixes:
  during development, but automatically set to `ON` if the option
  `ENABLE_PACKAGING` is set to `ON`.
  * All shadowed variables detected by passing `-Wshadow` to the compiler have
- been fixed (see https://rules.sonarsource.com/cpp/RSPEC-1117?search=shadow and
- MISRA C++:2008, 2-10-2 * Identifiers declared in an inner scope shall not hide
+ been fixed (see [rules.sonarsource.com](https://rules.sonarsource.com/cpp/RSPEC-1117?search=shadow) and
+ MISRA C++:2008, 2-10-2 - Identifiers declared in an inner scope shall not hide
  an identifier declared in an outer scope).
  * Apply more clang-tidy checks related to readability:
  `readability-avoid-const-params-in-decls`,
@@ -165,7 +165,7 @@ features and bug fixes:
  warnings.
  * Fixed `cpplint.py` `runtime/printf` and `runtime/explicit` errors.
  * All constructors callable with one argument are marked with the keyword
- explicit. See MISRA C++:2008, 12-1-3 * All constructors that are callable with
+ explicit. See MISRA C++:2008, 12-1-3 - All constructors that are callable with
  a single argument of fundamental type shall be declared explicit.
 
 
