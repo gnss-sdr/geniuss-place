@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-04-13T12:54:02+02:00
+last_modified_at: 2020-03-13T12:54:02+02:00
 ---
 
 This page describes GNSS-SDR global parameters.

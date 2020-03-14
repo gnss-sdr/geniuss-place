@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2019-06-01T11:13:02+02:00
+last_modified_at: 2020-03-14T11:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
