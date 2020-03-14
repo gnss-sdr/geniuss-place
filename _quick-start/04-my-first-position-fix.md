@@ -2,7 +2,7 @@
 title: "My first position fix"
 permalink: /my-first-fix/
 excerpt: "How to quickly get a position fix with GNSS-SDR."
-last_modified_at: 2020-02-05T08:54:02+02:00
+last_modified_at: 2020-03-14T08:54:02+02:00
 header:
   teaser: "/assets/images/gn3s_pvt_4_sats.jpg"
 sidebar:

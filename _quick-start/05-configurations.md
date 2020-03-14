@@ -3,7 +3,7 @@ title: "Configurations"
 permalink: /conf/
 excerpt: "How to configure GNSS-SDR in a variety of setups."
 related: true
-last_modified_at: 2020-03-04T15:54:02-04:00
+last_modified_at: 2020-03-14T15:54:02-04:00
 header:
   teaser: "/assets/images/configuration.png"
 sidebar:

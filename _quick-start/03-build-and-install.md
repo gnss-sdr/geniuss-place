@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2019-06-01T11:13:02+02:00
+last_modified_at: 2020-03-14T11:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -269,6 +269,29 @@ If you have the Ninja build system installed, you can build GNSS-SDR replacing G
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 -GNinja ..
 ```
 
+## Using Xcode
+
+[Xcode](https://developer.apple.com/xcode/) is an integrated development environment (IDE) for macOS containing a suite of software development tools developed by Apple.
+
+In order to build GNSS-SDR with Xcode, pass the following parameter to CMake:
+
+```bash
+$ cmake -GXcode ..
+```
+
+This will create a `gnss-sdr.xcodeproj` project that can be opened by Xcode (in the top bar menu, click File <i class="fas fa-long-arrow-alt-right"></i> Open ... <i class="fas fa-long-arrow-alt-right"></i> open the `gnss-sdr.xcodeproj` project).
+
+You can also build from the command line:
+
+```bash
+$ xcodebuild
+```
+or
+
+```bash
+$ xcodebuild -config Release
+```
+
 
 &nbsp;
 
@@ -278,7 +301,7 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/cl
 ## Snap package
 
 <figure style="width: 64px" class="align-left">
-  <img src="{{ "/assets/images/logo-snappy.png" | relative_url }}" alt="Snappy logo">
+  <img src="{{ "/assets/images/Snapcraft-logo-bird.png" | relative_url }}" alt="Snapcraft logo">
 </figure>
 
 [Snaps](https://snapcraft.io) are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
