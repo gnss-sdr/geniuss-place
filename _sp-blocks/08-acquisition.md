@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2020-03-13T12:54:02-04:00
+last_modified_at: 2020-03-15T12:54:02-02:00
 ---
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of an _Acquisition_ block can be written as:
 
@@ -170,9 +170,11 @@ Example:
 ```ini
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
-Acquisition_1C.doppler_max=8000
+Acquisition_1C.doppler_max=5000
 Acquisition_1C.doppler_step=250
-Acquisition_1C.pfa=0.0001
+Acquisition_1C.pfa=0.01
+Acquisition_1C.coherent_integration_time_ms=1
+Acquisition_1C.max_dwells=1
 ```
 
 ### Implementation: `GPS_L1_CA_PCPS_Acquisition_Fine_Doppler`
@@ -382,9 +384,11 @@ Example:
 ```ini
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_1B.implementation=Galileo_E1_PCPS_Ambiguous_Acquisition
-Acquisition_1B.pfa=0.000008
-Acquisition_1B.doppler_max=6000
+Acquisition_1B.pfa=0.01
+Acquisition_1B.doppler_max=5000
 Acquisition_1B.doppler_step=250
+Acquisition_1B.coherent_integration_time_ms=4
+Acquisition_1B.max_dwells=1
 ```
 
 ### Implementation: `Galileo_E1_PCPS_Tong_Ambiguous_Acquisition`
@@ -538,9 +542,10 @@ Example:
 ```ini
 Acquisition_2S.implementation=GPS_L2_M_PCPS_Acquisition
 Acquisition_2S.item_type=cshort
-Acquisition_2S.threshold=0.0015
+Acquisition_2S.pfa=0.01
 Acquisition_2S.doppler_max=6000
 Acquisition_2S.doppler_step=60
+Acquisition_2S.coherent_integration_time_ms=20
 Acquisition_2S.max_dwells=2
 ```
 
@@ -637,10 +642,11 @@ Example:
 ```ini
 Acquisition_L5.implementation=GPS_L5i_PCPS_Acquisition
 Acquisition_L5.item_type=cshort
-Acquisition_L5.threshold=0.0015
+Acquisition_L5.pfa=0.01
 Acquisition_L5.doppler_max=6000
 Acquisition_L5.doppler_step=60
-Acquisition_L5.max_dwells=2
+Acquisition_L5.coherent_integration_time_ms=4
+Acquisition_L5.max_dwells=1
 ```
 
 
@@ -695,7 +701,9 @@ Example:
 Acquisition_5X.implementation=Galileo_E5a_Pcps_Acquisition
 Acquisition_5X.doppler_max=8000
 Acquisition_5X.doppler_step=250
-Acquisition_5X.pfa=0.0001
+Acquisition_5X.pfa=0.01
+Acquisition_5X.coherent_integration_time_ms=1
+Acquisition_5X.max_dwells=1
 ```
 
 ### Implementation: `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF`
@@ -739,13 +747,66 @@ Example:
 ```ini
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_5X.implementation=Galileo_E5a_Noncoherent_IQ_Acquisition_CAF
-Acquisition_5X.threshold=0.002
+Acquisition_5X.pfa=0.01
 Acquisition_5X.doppler_max=10000
 Acquisition_5X.doppler_step=250
 ```
 
 
+## Plotting results with MATLAB/Octave
 
+Some Acquisition block implementations are able to dump intermediate results of the channel indicated by the `dump_channel` parameter in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) file format (`.mat` files), which can be opened in MATLAB/Octave.
+
+The list of output variables contained in each `.mat` file is the following:
+
+  * `acq_delay_samples`: Coarse estimation of time delay, in number of samples from the start of the pseudorandom code.
+  * `acq_doppler_hz`: Coarse estimation of Doppler shift, in Hz.
+  * `acq_grid`: Acquisition search grid.
+  * `d_positive_acq`: `1` if there has been a positive acquisition, `0` for no detection.
+  * `doppler_max`: Maximum Doppler shift in the search grid.
+  * `doppler_step`: Doppler step in the search grid.
+  * `input_power`: Input signal power.
+  * `num_dwells`: Number of dwells performed in non-coherent acquisition.
+  * `PRN`: Satellite ID.
+  * `sample_counter`: Sample counter from receiver's start.
+  * `test_statistic`: Result of the test statistic.
+  * `threshold`: Threshold above which a signal is declared present.
+
+
+Example:
+
+Assuming that you are processing GPS L1 C/A signals, and you have included the following lines in your configuration file:
+
+```ini
+Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
+;... (other parameters) ...
+Acquisition_1C.dump=true
+Acquisition_1C.dump_filename=acq_dump
+Acquisition_1C.dump_channel=0
+```
+
+Then, after the processing, you will get `.mat` files storing the results obtained from the Acquisition block corresponding to channel 0.
+
+The acquisition grid can be plotted from MATLAB or Octave as:
+
+```matlab
+>> load('./acq_dump_G_1C_chan0_1_sat1.mat')
+>> f = -doppler_max:doppler_step:(doppler_max);
+>> tau = linspace(0, 1023, size(acq_grid,1));
+>> surf(f, tau, acq_grid); xlabel('Doppler [Hz]'); ylabel('Delay [chips]');
+```
+
+You should see something like:
+
+![Positive acquisition](/assets/images/capture_matlab_acq_positive.png){: .align-center}
+_Positive acquisition._
+{: style="text-align: center;"}
+
+or
+
+![Negative acquisition](/assets/images/capture_matlab_acq_negative.png){: .align-center}
+_Negative acquisition._
+{: style="text-align: center;"}
 
 -------
 
