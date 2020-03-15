@@ -75,7 +75,7 @@ In addition to track the synchronization parameters, the _Tracking_ blocks
 must also implement code and carrier lock detectors, providing
 indicators of the tracking performance, as well as an estimation of the carrier-to-noise-density ratio, $$ C/N_0 $$.
 
-### Carrier-to-noise-density ratio
+## Carrier-to-noise-density ratio
 
 The carrier-to-noise-density ratio, expressed as $$ C/N_0 =\frac{C}{\frac{N}{BW}}$$ (where $$ C $$ is the carrier power, $$ N $$ is the noise power and $$ BW $$ is the bandwidth of observation) refers to the ratio of the carrier power and the noise power _per unit of bandwidth_, so it is expressed in decibel-Hertz (dB-Hz). The term $$ \frac{C}{N} $$ is known as the signal-to-noise power ratio (SNR).
 
@@ -121,7 +121,7 @@ $ gnss-sdr -cn0_samples=100 -c=./configuration_file.conf
 ```
 
 
-### Code lock detector
+## Code lock detector
 
 The lock detector for the code tracking loop is defined as:
 
@@ -137,7 +137,7 @@ The threshold $$ \gamma_{code} $$ is set by default to 25 dB-Hz. This value can 
 $ gnss-sdr -cn0_min=22 -c=./configuration_file.conf
 ```
 
-### Carrier lock detector
+## Carrier lock detector
 
 The lock detector test for the carrier tracking loop is defined as:
 
@@ -173,7 +173,7 @@ The threshold $$ \gamma_{carrier} $$ is set by default to 0.85 radians (correspo
 $ gnss-sdr -carrier_lock_th=0.75 -c=./configuration_file.conf
 ```
 
-### Number of failures allowed before declaring a loss of lock
+## Number of failures allowed before declaring a loss of lock
 
 The maximum number of lock failures before dropping a satellite is set by default to 50 consecutive failures. This value can be changed by using the command line flag  `-max_lock_fail` when running the executable:
 
@@ -183,7 +183,7 @@ $ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
 
 
 
-### Discriminators
+## Discriminators
 
  * **Code Discriminator**:
  DLL noncoherent Early minus Late envelope-normalized discriminator:
@@ -239,7 +239,7 @@ $ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
    $$ \text{dot}[m]=P_{I}[k-1]P_{I}[m]+P_{Q}[k-1]P_{Q}[m]. $$
 
 
-### Low pass filters
+## Low pass filters
 
 Diagrams of digital low-pass filters of different order are shown below:
 
@@ -1136,6 +1136,55 @@ Tracking_5X.dump=false
 Tracking_5X.dump_filename=./tracking_ch_
 ```
 
+## Plotting results with MATLAB/Octave
+
+Some Tracking block implementations are able to dump intermediate results of the channel indicated by the `dump_channel` parameter in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) file format (`.mat` files), which can be opened in MATLAB/Octave.
+
+The list of output vector variables contained in each `.mat` file is the following:
+
+  * `abs_E`: Magnitude of the Early correlator.
+  * `abs_L`: Magnitude of the Late correlator.
+  * `abs_P`: Magnitude of the Prompt correlator.
+  * `abs_VE`: Magnitude of the Very Early correlator.
+  * `abs_VL`: Magnitude of the Very Late correlator.
+  * `acc_carrier_phase_rad`: Accumulated carrier phase, in rad.
+  * `aux1`: not used.
+  * `aux2`: not used.
+  * `carrier_error_filt_hz`: Carrier error at the output of the PLL filter, in Hz.
+  * `carr_error_hz`: Raw carrier error (unfiltered) at the PLL output, in Hz.
+  * `carrier_doppler_hz`: Doppler shift, in Hz.
+  * `carrier_doppler_rate_hz`: Doppler rate, in Hz/s.
+  * `carrier_lock_test`: Output of the carrier lock test.
+  * `CN0_SNV_dB_Hz`: $$ C / N_0 $$ estimation, in dB-HZ.
+  * `code_error_chips`: Raw code error (unfiltered) at the DLL output, in chips.
+  * `code_error_filt_chips`: Code error at the output of the DLL filter, in chips.
+  * `code_freq_chips`: Code frequency, in chips/s.
+  * `code_freq_rate_chips`: Code frequency rate, in chips/s$$ ^2 $$.
+  * `PRN`: Satellite ID.
+  * `PRN_start_sample_counter`: Sample counter from tracking start.
+  * `Prompt_I`: Value of the Prompt correlator in the In-phase component.
+  * `Prompt_Q`: Value of the Prompt correlator in the Quadrature component.
+
+Each variable is a vector containing the outputs of every integration period.
+
+Example:
+
+Assuming that you are processing GPS L1 C/A signals, and you have included the following lines in your configuration file:
+
+```ini
+Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
+;... (other parameters) ...
+Tracking_1C.dump=true
+Tracking_1C.dump_filename=./trk_dump
+```
+
+Then, after the processing, you will get a list of `.mat` files (in this case, `./trk_dump0.mat`, `./trk_dump1.mat`, etc., up to the number of channels) storing the intermediate results obtained by the Tracking blocks.
+
+Some Matlab/Octave plotting scripts examples are available from [src/utils/matlab](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/utils/matlab). For instance, the [`dll_pll_veml_plot_sample.m`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/utils/matlab/dll_pll_veml_plot_sample.m) script just requires the modification of the `samplingFreq`, `channels`, `tracking_log_path` and `path` variables to get a set of figures with the main tracking results for each channel.
+
+![Tracking results](/assets/images/tracking_matlab.png){: .align-center}
+_Tracking results for a given channel._
+{: style="text-align: center;"}
 
 
 -------
