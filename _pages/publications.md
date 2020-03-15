@@ -17,6 +17,34 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
 <ul class="biblist">
+    <!-- Item: Cutugno20 -->
+    <li ><p>
+    M.&nbsp;Cutugno, U.&nbsp;Robustelli and G.&nbsp;Pugliano
+    <br><b>Low-Cost GNSS Software Receiver Performance Assessment</b><br>
+<i>Geosciences</i>, Vol. 10, No. 2, pp. 79, Feb. 2020.
+    <br />
+    <a href="javascript:toggleBibtex('Cutugno20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.mdpi.com/2076-3263/10/2/79" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.3390/geosciences10020079" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Cutugno20" class="bibtex noshow">
+    <pre>@article{ Cutugno20,
+author  = {M.~Cutugno and U.~Robustelli and G.~Pugliano},
+title   = {Low-Cost {GNSS} Software Receiver Performance Assessment},
+journal = {Geosciences},
+year    = {2020},
+month   = {Feb.},
+volume  = {10},
+number  = {2},
+pages   = {79},
+note    = { {doi}: 10.3390/geosciences10020079}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Miralles19 -->
     <li ><p>
     D.&nbsp;Miralles and D.&nbsp;M.&nbsp;Akos
