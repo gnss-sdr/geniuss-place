@@ -149,7 +149,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present). | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
@@ -469,7 +468,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
@@ -519,7 +517,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    | Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 20 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
@@ -572,7 +569,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
@@ -621,7 +617,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
@@ -675,7 +670,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
