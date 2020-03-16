@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2020-03-13T10:54:02+02:00
+last_modified_at: 2020-03-16T10:54:02+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of a _Tracking_ block can be written as:
@@ -58,6 +58,7 @@ GNSS-SDR's _Tracking_ implementations make heavy use of [VOLK_GNSSSDR](https://g
 The [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr) library addresses [**Efficiency**]({{ "/design-forces/efficiency/" | relative_url }}) and [**Portability**]({{ "/design-forces/portability/" | relative_url }}) at the same time, by providing several implementations of the same functions in different SIMD technologies, benchmarking them and selecting the fastest in your machine at runtime.
 {: .notice--success}
 
+## Tracking State Machine
 
 The _Tracking_ blocks are continually receiving the data stream
 $$ x_\text{IN}[k] $$, but they do nothing until receiving a "positive
@@ -186,27 +187,28 @@ $ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
 ## Discriminators
 
  * **Code Discriminator**:
- DLL noncoherent Early minus Late envelope-normalized discriminator:
+ For BPSK signals, it is used the DLL noncoherent Early minus Late envelope-normalized discriminator:
 
    $$ \begin{equation}
-   \Delta_c[m]=\frac{\vert E[m]\vert-\vert L[m]\vert}{\vert E[m]\vert+\vert L[m]\vert},
+   \Delta_c[m]=\frac{y_{intercept} - \text{slope} \cdot \epsilon}{\text{slope}} \cdot \frac{\vert E[m]\vert-\vert L[m]\vert}{\vert E[m]\vert+\vert L[m]\vert},
    \end{equation} $$
 
    where:
 
-   $$ \vert E[m]\vert=\sqrt{E_{I}[m]^2+E_{Q}[m]^2} $$
+   * $$ y_{intercept} $$ is the interception point of the correlation function in the y-axis,
+   * $$ \text{slope} $$ is the slope of the correlation function,
+   * $$ \epsilon $$ is the Early-to-Prompt (or Prompt-to-Late) spacing, normalized by the chip period,
+   * $$ \vert E[m]\vert=\sqrt{E_{I}[m]^2+E_{Q}[m]^2} $$ is the magnitude of the Early correlator output,
+   * $$ \vert L[m]\vert=\sqrt{L_{I}[m]^2+L_{Q}[m]^2} $$ is the magnitude of the Late correlator output.
 
-   and
+   For BOC(1,1) signals, the DLL discriminator is
 
-   $$ \vert L[m]\vert=\sqrt{L_{I}[m]^2+L_{Q}[m]^2} $$
+   $$ \begin{equation} \Delta_c[m]= \frac{\vert VE[m]\vert + \vert E[m]\vert -\left(\vert VL[m]\vert + \vert L[m]\vert\right) }{\vert VE[m]\vert + \vert E[m]\vert +\vert VL[m]\vert + \vert L[m]\vert} \end{equation} $$
 
-   are the Early and Late correlator output's absolute value, respectively. In case of Binary offset carrier modulated signals (_e.g._, Galileo E1 OS), this is redefined to
+   where:
 
-   $$ \vert E[m]\vert =\sqrt{VE_{I}[m]^2+VE_{Q}[m]^2+E_{I}[m]^2+E_{Q}[m]^2} $$
-
-   and
-
-   $$ \vert L[m]\vert =\sqrt{VL_{I}[m]^2+VL_{Q}[m]^2+L_{I}[m]^2+L_{Q}[m]^2}. $$
+   * $$ \vert VE[m]\vert = \sqrt{VE_{I}[m]^2+VE_{Q}[m]^2} $$ is the magnitude of the Very Early correlator output,
+   * $$ \vert VL[m]\vert = \sqrt{VL_{I}[m]^2+VL_{Q}[m]^2} $$ is the magnitude of the Very Late correlator output.
 
  * **Phase Discriminator**
 
