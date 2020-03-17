@@ -1,6 +1,6 @@
 const CACHE = "pwabuilder-offline";
 
-const offlineFallbackPage = "index.html";
+const offlineFallbackPage = "offline.html";
 
 // Install stage sets up the index page (home page) in the cache and opens a new cache
 self.addEventListener("install", function (event) {
@@ -10,7 +10,7 @@ self.addEventListener("install", function (event) {
     caches.open(CACHE).then(function (cache) {
       console.log("Cached offline page during install");
 
-      if (offlineFallbackPage === "ToDo-replace-this-name.html") {
+      if (offlineFallbackPage === "offline.html") {
         return cache.add(new Response("Update the value of the offlineFallbackPage constant in the serviceworker."));
       }
 
@@ -33,7 +33,7 @@ self.addEventListener("fetch", function (event) {
 
         return response;
       })
-      .catch(function (error) {        
+      .catch(function (error) {
         console.log("Network request Failed. Serving content from cache: " + error);
         return fromCache(event.request);
       })
@@ -60,4 +60,3 @@ function updateCache(request, response) {
     return cache.put(request, response);
   });
 }
-
