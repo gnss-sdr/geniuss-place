@@ -4,7 +4,7 @@ layout: none
 ---
 
 {
-	"name": "GeNiuSS Place",
+	"name": "GeNiuSS Place, the GNSS-SDR documentation website",
 	"short_name": "GeNiuSS Place",
 	"author": "Carles Fernandez-Prades",
 	"start_url": "https://gnss-sdr.org/",
@@ -34,8 +34,20 @@ layout: none
 			"density": 1.5
 		},
 		{
+			"src": "/assets/images/apple-touch-icon-76x76.png",
+			"sizes": "76x76",
+			"type": "image/png",
+			"density": 1.5
+		},
+		{
 			"src": "/assets/images/android-chrome-96x96.png",
 			"sizes": "96x96",
+			"type": "image/png",
+			"density": 2
+		},
+		{
+			"src": "/assets/images/apple-touch-icon-120x120.png",
+			"sizes": "120x120",
 			"type": "image/png",
 			"density": 2
 		},
@@ -50,6 +62,11 @@ layout: none
 			"sizes": "192x192",
 			"type": "image/png",
 			"density": 4
+		},
+		{
+			"src": "/assets/images/splash512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
 		}
 	]
 }
