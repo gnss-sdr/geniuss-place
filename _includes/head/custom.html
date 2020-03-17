@@ -1,11 +1,15 @@
 <!-- start custom head snippets -->
 
-<link rel="dns-prefetch" href="//ajax.googleapis.com">
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-<link rel="dns-prefetch" href="//upload.wikimedia.org">
-<link rel="dns-prefetch" href="//raw.githubusercontent.com">
-<link rel="dns-prefetch" href="//geniuss-place-dev.disqus.com">
+<link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net/">
+<link rel="preconnect" href="https://kit.fontawesome.com/" crossorigin>
+<link rel="dns-prefetch" href="https://kit.fontawesome.com/">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com/" crossorigin>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/">
+<link rel="dns-prefetch" href="https://upload.wikimedia.org/">
+<link rel="dns-prefetch" href="https://geniussplace.disqus.com/">
 
 <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/apple-touch-icon-60x60.png">
@@ -31,5 +35,22 @@
 <link href='https://fonts.googleapis.com/css?family=Ovo' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+<script>
+if ("serviceWorker" in navigator) {
+  if (navigator.serviceWorker.controller) {
+    console.log("An active service worker found, no need to register");
+  } else {
+    // Register the service worker
+    navigator.serviceWorker
+      .register("./serviceworker.js", {
+        scope: "./"
+      })
+      .then(function (reg) {
+        console.log("Service worker has been registered for scope: " + reg.scope);
+      });
+  }
+}
+</script>
 
 <!-- end custom head snippets -->
