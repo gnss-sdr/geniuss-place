@@ -7,7 +7,7 @@ layout: none
 	"name": "GeNiuSS Place, the GNSS-SDR documentation website",
 	"short_name": "GeNiuSS Place",
 	"author": "Carles Fernandez-Prades",
-	"start_url": "https://gnss-sdr.org/",
+	"start_url": "/",
 	"display": "standalone",
 	"orientation": "natural",
 	"description": "GNSS-SDR documentation",
