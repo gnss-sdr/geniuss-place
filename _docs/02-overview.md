@@ -95,4 +95,4 @@ GNSS-SDR's ```main``` method processes the command line flags, if any, provided 
 Hence, all the magic happens when we call the ```run()``` method of an instantiation of a  ```ControlThread``` object. If you are impatient to see what this method does, you can jump to the [Control Plane]({{ "/docs/control-plane/" | relative_url }}) section. Before that, however, we highly recommend going through the [Fundamentals]({{ "/docs/fundamentals/" | relative_url }}) section, which describes GNSS-SDR's internal software architecture and underlying key concepts.
 
 
-<link rel="prerender" href="{{ "/docs/fundamentals/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/fundamentals/" | relative_url }}" />
