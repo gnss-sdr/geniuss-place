@@ -15,7 +15,16 @@ self.addEventListener("install", function (event) {
         return cache.add(new Response("Update the value of the offlineFallbackPage constant in the serviceworker."));
       }
 
-      return cache.add(offlineFallbackPage);
+      // return cache.add(offlineFallbackPage);
+      return cache.addAll(
+        [
+          '/assets/css/main.css',
+          '/assets/css/style.css',
+          '/assets/js/main.min.js',
+          '/assets/images/site-logo.png',
+          '/assets/images/not-found.jpg',
+          '/offline.html'
+      ]);
     })
   );
 });
@@ -38,6 +47,22 @@ self.addEventListener("fetch", function (event) {
         console.log("Network request Failed. Serving content from cache: " + error);
         return fromCache(event.request);
       })
+  );
+});
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+        }).map(function(cacheName) {
+          return caches.delete(cacheName);
+        })
+      );
+    })
   );
 });
 
