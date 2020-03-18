@@ -1,4 +1,5 @@
-const CACHE = "pwabuilder-offline";
+const version = "0.0.12";
+const CACHE = `geniuss-place-${version}`;
 
 const offlineFallbackPage = "offline.html";
 
@@ -10,11 +11,15 @@ self.addEventListener("install", function (event) {
     caches.open(CACHE).then(function (cache) {
       console.log("Cached offline page during install");
 
-      if (offlineFallbackPage === "offline.html") {
-        return cache.add(new Response("Update the value of the offlineFallbackPage constant in the serviceworker."));
-      }
-
-      return cache.add(offlineFallbackPage);
+      return cache.addAll(
+        [
+          '/assets/css/main.css',
+          '/assets/css/style.css',
+          '/assets/js/main.min.js',
+          '/assets/images/site-logo.png',
+          '/assets/images/not-found.jpg',
+          '/offline.html'
+      ]);
     })
   );
 });
@@ -40,14 +45,35 @@ self.addEventListener("fetch", function (event) {
   );
 });
 
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+        }).map(function(cacheName) {
+          return caches.delete(cacheName);
+        })
+      );
+    })
+  );
+});
+
 function fromCache(request) {
   // Check to see if you have it in the cache
   // Return response
-  // If not in the cache, then return error page
+  // If not in the cache, then return the offline page
   return caches.open(CACHE).then(function (cache) {
     return cache.match(request).then(function (matching) {
       if (!matching || matching.status === 404) {
-        return Promise.reject("no-match");
+        // The following validates that the request was for a navigation to a new document
+        if (request.destination !== "document" || request.mode !== "navigate") {
+          return Promise.reject("no-match");
+        }
+
+        return cache.match(offlineFallbackPage);
       }
 
       return matching;

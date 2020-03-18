@@ -8,4 +8,30 @@
   MathJax.Hub.Config({ TeX: { extensions: ["color.js"], equationNumbers: { autoNumber: "AMS" }}, CommonHTML: {scale: 105, minScaleAdjust: 100}});
 </script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  if (navigator.serviceWorker.controller) {
+    console.log("An active service worker found, no need to register");
+  } else {
+    // Register the service worker
+    navigator.serviceWorker
+      .register("/serviceworker.js", {
+        scope: "/"
+      })
+      .then(function (reg) {
+        console.log("Service worker has been registered for scope: " + reg.scope);
+      })
+      .catch(function(err) {
+        console.log("Service Worker Failed to Register", err);
+      });
+      navigator.serviceWorker.ready.then(function(reg) {
+         console.log('Service Worker Ready');
+});
+  }
+}
+else{
+    console.log('Service Workers not supported');
+}
+</script>
+
 <!-- end custom footer snippets -->

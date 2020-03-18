@@ -100,12 +100,11 @@ intro:
 [![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Learn more]({{ "/docs/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
-<link rel="prefetch" href="{{ "/assets/js/main.min.js" | relative_url }}">
-<link rel="prerender" href="{{ "/search/" | relative_url }}">
-<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/" | relative_url }}">
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}">
-<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}">
-<link rel="prerender" href="{{ "/design-forces/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/tutorials/gnss-signals/" | relative_url }}">
+<link rel="prerender" href="{{ "/search/" | relative_url }}" />
+<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/" | relative_url }}" />
+<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
+<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}" />
+<link rel="prerender" href="{{ "/design-forces/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/tutorials/gnss-signals/" | relative_url }}" />

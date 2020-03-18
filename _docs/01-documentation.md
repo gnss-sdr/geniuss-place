@@ -49,6 +49,8 @@ In addition, there is a set of tutorials providing more information in particula
 [![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Check the full list of Tutorials]({{ "/docs/tutorials/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/overview/" | relative_url }}">
-<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/overview/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/fundamentals/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/control-plane/" | relative_url }}" />
+<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />
