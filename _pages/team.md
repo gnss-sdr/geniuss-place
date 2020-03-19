@@ -7,6 +7,7 @@ sidebar:
   nav: "about"
 redirect_from:
   - /contact-us
+classes: wide
 ---
 
 ## Main Developer Team
