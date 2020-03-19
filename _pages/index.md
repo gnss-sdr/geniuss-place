@@ -56,7 +56,7 @@ intro:
 
 <p>&nbsp;</p>
 
-<html> <body > <table> <tr> <td id="gridtable">  
+<html> <body > <table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
 
 {% include group-by-array collection=site.posts field="tags" %}
@@ -83,7 +83,7 @@ intro:
 
 <p>&nbsp;</p>
 
-<html> <body > <table> <tr> <td id="gridtable">  
+<html> <body > <table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
 {% for tag in group_names %}
   {% if tag == "tutorial" %}

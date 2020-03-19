@@ -12,7 +12,7 @@ redirect_from:
 
 Here you will find:
 
-<html> <body > <table> <tr> <td id="gridtable">  
+<html> <body > <table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
   {% for post in site.docs %}
     {% if post.title == "Documentation" %} {% else %}
@@ -31,7 +31,7 @@ In addition, there is a set of tutorials providing more information in particula
 
 {% include group-by-array collection=site.posts field="tags" %}
 
-<html> <body > <table> <tr> <td id="gridtable">
+<html> <body > <table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
 {% for tag in group_names %}
   {% if tag == "tutorial" %}
