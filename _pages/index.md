@@ -97,7 +97,7 @@ intro:
 </td></tr></table></body></html>
 
 
-[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Learn more]({{ "/docs/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Read the Documentation]({{ "/docs/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 <link rel="prerender" href="{{ "/search/" | relative_url }}" />
