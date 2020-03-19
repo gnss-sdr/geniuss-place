@@ -57,7 +57,7 @@ In particular, you have the freedom to install and use GNSS-SDR right now in you
 Here you will find:
 
 
-<html> <body > <table> <tr> <td id="gridtable">
+<html> <body > <table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
   {% for post in site.quick-start %}
     {% if post.title == "Quick-Start Guide" %} {% else %}
