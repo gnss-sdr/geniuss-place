@@ -1,5 +1,6 @@
-const version = "0.0.12";
-const CACHE = `geniuss-place-${version}`;
+const releaseVersion = "0.0.12";
+const serviceWorkerVersion = "1";
+const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
 
 const offlineFallbackPage = "offline.html";
 
@@ -9,7 +10,7 @@ self.addEventListener("install", function (event) {
 
   event.waitUntil(
     caches.open(CACHE).then(function (cache) {
-      console.log("Cached offline page during install");
+      console.log("Cached offline and index pages during install");
 
       return cache.addAll(
         [
@@ -17,8 +18,24 @@ self.addEventListener("install", function (event) {
           '/assets/css/style.css',
           '/assets/js/main.min.js',
           '/assets/images/site-logo.png',
+          '/assets/images/logo-gnss-sdr.png',
           '/assets/images/not-found.jpg',
-          '/offline.html'
+          '/offline.html',
+          '/index.html',
+          '/assets/images/main-page-header.jpg',
+          '/assets/images/icon-gnss-sdr-white.png',
+          '/assets/images/fix.png',
+          '/assets/images/binder.png',
+          '/assets/images/radar-chart.png',
+          '/assets/images/geniuss.png',
+          '/assets/images/logo-gnss-sdr-new-release.png',
+          '/assets/images/logo-gsoc.png',
+          '/assets/images/gnss-sdr_monitoring_teaser.png',
+          '/assets/images/PDCA.png',
+          '/assets/images/Cmake-logo.png',
+          '/assets/images/oe-logo.png',
+          '/assets/images/Galileo_Signal_Plan_Fig_7-th.png',
+          '/assets/images/git-repository.jpg'
       ]);
     })
   );
