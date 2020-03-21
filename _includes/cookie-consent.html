@@ -1,5 +1,46 @@
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
 <script>
+cookieconsent.utils.setCookie = function(name, value, expiryDays, domain, path, secure, sameSite) {
+  var exdate = new Date();
+  exdate.setHours(exdate.getHours() + ((expiryDays || 365) * 24));
+  var cookie = [
+    name + '=' + value,
+    'expires=' + exdate.toUTCString(),
+    'path=' + (path || '/')
+  ];
+  if (domain) {
+    cookie.push('domain=' + domain);
+  }
+  if (secure) {
+    cookie.push('secure');
+  }
+  if (sameSite) {
+    cookie.push('sameSite=' + sameSite );
+  }
+  document.cookie = cookie.join(';');
+}
+
+cookieconsent.Popup.prototype.setStatus = function(status) {
+  var c = this.options.cookie;
+  var value = cookieconsent.utils.getCookie(c.name);
+  var chosenBefore = Object.keys(cookieconsent.status).indexOf(value) >= 0;
+  // if `status` is valid
+  if (Object.keys(cookieconsent.status).indexOf(status) >= 0) {
+    cookieconsent.utils.setCookie(
+      c.name,
+      status,
+      c.expiryDays,
+      c.domain,
+      c.path,
+      c.secure,
+      c.sameSite
+    );
+    this.options.onStatusChange.call(this, status, chosenBefore);
+  } else {
+    this.clearStatus();
+  }
+};
+
 window.cookieconsent.initialise({
   palette: {
     popup: {
@@ -9,6 +50,7 @@ window.cookieconsent.initialise({
       background: "#14a7d0"
     }
   },
+  theme: "classic",
   type: "opt-out",
   content: {
     href: "/cookies/"
@@ -16,7 +58,8 @@ window.cookieconsent.initialise({
   cookie: {
       domain: "gnss-sdr.org",
       expiryDays: 30,
-      secure: true
+      secure: true,
+      sameSite: "Lax"
   },
   revokable: true,
   onInitialise: function(status) {
