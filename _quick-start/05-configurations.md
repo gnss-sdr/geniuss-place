@@ -587,5 +587,5 @@ You should see something similar to the example [above](#run-it).
 
 
 
-<link rel="prerender" href="{{ "/docs/overview/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/overview/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/" | relative_url }}" />

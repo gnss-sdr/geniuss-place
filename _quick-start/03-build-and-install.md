@@ -363,4 +363,8 @@ Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | relativ
 
 ----
 
-<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}">
+<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}" />
+<link rel="prerender" href="{{ "/conf/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/" | relative_url }}" />
+<link rel="prerender" href="{{ "/requirements/" | relative_url }}" />
+<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />

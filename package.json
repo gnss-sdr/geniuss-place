@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/gnss-sdr/geniuss-place/issues"
   },
-  "homepage": "https://gnss-sdr.github.io/geniuss-place/",
+  "homepage": "https://gnss-sdr.org/",
   "engines": {
     "node": ">= 0.10.0"
   },

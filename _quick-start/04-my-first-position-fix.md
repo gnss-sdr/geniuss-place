@@ -256,6 +256,8 @@ Now you can examine the processing outputs in the folder from which you invoked 
 
 ... play with the configuration parameters or try out more challenging [configurations]({{ "/conf/" | relative_url }}).
 
-<link rel="prerender" href="{{ "/conf/" | relative_url }}">
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/" | relative_url }}">
+<link rel="prerender" href="{{ "/conf/" | relative_url }}" />
+<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/" | relative_url }}" />
+<link rel="prerender" href="{{ "/requirements/" | relative_url }}" />
+<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />

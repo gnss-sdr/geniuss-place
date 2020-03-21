@@ -33,11 +33,11 @@ In GNSS-SDR, each configuration file defines a receiver. This page documents the
 
 
 
-<html> <body> <table> <tr> <td id="forcetable">  
+<table> <tr> <td id="forcetable">
 {% for post in site.sp-blocks %}
   {% include archive-single.html %}
 {% endfor %}
-</td> </tr> </table> </body> </html>
+</td> </tr> </table>
 
 
 <link rel="prerender" href="{{ "/docs/sp-blocks/signal-source/" | relative_url }}" />
