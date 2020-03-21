@@ -1157,7 +1157,7 @@ The list of output vector variables contained in each `.mat` file is the followi
   * `carrier_doppler_hz`: Doppler shift, in Hz.
   * `carrier_doppler_rate_hz`: Doppler rate, in Hz/s.
   * `carrier_lock_test`: Output of the carrier lock test.
-  * `CN0_SNV_dB_Hz`: $$ C / N_0 $$ estimation, in dB-HZ.
+  * `CN0_SNV_dB_Hz`: $$ C / N_0 $$ estimation, in dB-Hz.
   * `code_error_chips`: Raw code error (unfiltered) at the DLL output, in chips.
   * `code_error_filt_chips`: Code error at the output of the DLL filter, in chips.
   * `code_freq_chips`: Code frequency, in chips/s.
