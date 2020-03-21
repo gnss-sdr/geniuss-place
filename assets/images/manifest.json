@@ -4,7 +4,7 @@ layout: none
 ---
 
 {
-	"name": "GeNiuSS Place, the GNSS-SDR documentation website",
+	"name": "GeNiuSS Place, the GNSS-SDR documentation app",
 	"short_name": "GeNiuSS Place",
 	"author": "Carles Fernandez-Prades",
 	"start_url": {{ site.url | append: "/" | jsonify }},
@@ -14,12 +14,26 @@ layout: none
 	"description": "GNSS-SDR documentation",
 	"theme_color": "#fcfcfc",
     "background_color": "#fcfcfc",
+	"dir": "ltr",
 	"language": "en",
+	"categories": ["navigation", "education", "science", "engineering"],
 	"icons": [
+		{
+			"src": "/assets/images/favicon-16x16.png",
+			"sizes": "16x16",
+			"type": "image/png",
+			"density": 0.25
+		},
+		{
+			"src": "/assets/images/favicon-32x32.png",
+			"sizes": "32x32",
+			"type": "image/png",
+			"density": 0.5
+		},
 		{
 			"src": "/assets/images/android-chrome-36x36.png",
 			"sizes": "36x36",
-			"type": "image\/png",
+			"type": "image/png",
 			"density": 0.75
 		},
 		{
@@ -27,6 +41,18 @@ layout: none
 			"sizes": "48x48",
 			"type": "image/png",
 			"density": 1
+		},
+		{
+			"src": "/assets/images/apple-icon-57x57.png",
+			"sizes": "57x57",
+			"type": "image/png",
+			"density": 1.25
+		},
+		{
+			"src": "/assets/images/apple-icon-60x60.png",
+			"sizes": "60x60",
+			"type": "image/png",
+			"density": 1.25
 		},
 		{
 			"src": "/assets/images/android-chrome-72x72.png",
@@ -47,6 +73,12 @@ layout: none
 			"density": 2
 		},
 		{
+			"src": "/assets/images/apple-icon-114x114.png",
+			"sizes": "114x114",
+			"type": "image/png",
+			"density": 2
+		},
+		{
 			"src": "/assets/images/apple-touch-icon-120x120.png",
 			"sizes": "120x120",
 			"type": "image/png",
@@ -59,15 +91,40 @@ layout: none
 			"density": 3
 		},
 		{
+			"src": "/assets/images/ms-icon-150x150.png",
+			"sizes": "150x150",
+			"type": "image/png",
+			"density": 3
+		},
+		{
+			"src": "/assets/images/apple-icon-152x152.png",
+			"sizes": "152x152",
+			"type": "image/png",
+			"density": 3
+		},
+		{
+			"src": "/assets/images/apple-icon-180x180.png",
+			"sizes": "180x180",
+			"type": "image/png",
+			"density": 3.5
+		},
+		{
 			"src": "/assets/images/android-chrome-192x192.png",
 			"sizes": "192x192",
 			"type": "image/png",
 			"density": 4
 		},
 		{
+			"src": "/assets/images/ms-icon-310x310.png",
+			"sizes": "310x310",
+			"type": "image/png",
+			"density": 4.5
+		},
+		{
 			"src": "/assets/images/splash512x512.png",
 			"sizes": "512x512",
-			"type": "image/png"
+			"type": "image/png",
+			"density": 5
 		}
 	]
 }
