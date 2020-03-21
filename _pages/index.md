@@ -56,7 +56,7 @@ intro:
 
 <p>&nbsp;</p>
 
-<html> <body > <table> <tr> <td class="gridtable">
+<table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
 
 {% include group-by-array collection=site.posts field="tags" %}
@@ -71,7 +71,7 @@ intro:
 {% endfor %}
 
 </div>
-</td></tr></table></body></html>
+</td></tr></table>
 
 
 ---
@@ -83,7 +83,7 @@ intro:
 
 <p>&nbsp;</p>
 
-<html> <body > <table> <tr> <td class="gridtable">
+<table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
 {% for tag in group_names %}
   {% if tag == "tutorial" %}
@@ -94,7 +94,7 @@ intro:
   {% endif %}
 {% endfor %}
 </div>
-</td></tr></table></body></html>
+</td></tr></table>
 
 
 [![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Read the Documentation]({{ "/docs/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}

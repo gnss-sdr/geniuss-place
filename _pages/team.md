@@ -12,7 +12,7 @@ classes: wide
 
 ## Main Developer Team
 
-<html> <body > <table>
+<table>
  <tr>
      <td class="authortable">
         {% assign pauthor = "Carles Fernandez" %}
@@ -53,8 +53,6 @@ classes: wide
      </td>
   </tr>
 </table>
-
-</body> </html>
 
 ## Former members
 

@@ -56,8 +56,7 @@ In particular, you have the freedom to install and use GNSS-SDR right now in you
 
 Here you will find:
 
-
-<html> <body > <table> <tr> <td class="gridtable">
+<table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
   {% for post in site.quick-start %}
     {% if post.title == "Quick-Start Guide" %} {% else %}
@@ -65,14 +64,14 @@ Here you will find:
     {% endif %}
   {% endfor %}
 </div>
-</td></tr></table></body></html>
+</td></tr></table>
 
 
 ---
 
-<link rel="prerender" href="{{ "/requirements/" | relative_url }}">
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}">
-<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}">
+<link rel="prerender" href="{{ "/requirements/" | relative_url }}" />
+<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
+<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}" />
 
 {::comment}
 ![Introducing GeNiuSS]({{ "/assets/images/geniuss.jpg" | relative_url }}){:height="250px" width="250x"}{: style="text-align: center;"}

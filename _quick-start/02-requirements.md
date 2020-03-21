@@ -106,4 +106,4 @@ For testing purposes, the antenna can be replaced by a radio frequency GNSS sign
 
 If everything is ready, now you can jump into [building and installing GNSS-SDR]({{ "/build-and-install/" | relative_url }}) in your own computer.
 
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}">
+<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
