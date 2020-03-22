@@ -150,7 +150,7 @@ The Authors are proud to be supported by the following public institutions, priv
 -----
 
 
-![Xilinx logo](https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Xilinx.svg/500px-Xilinx.svg.png){:height="250px" width="250x"}
+![Xilinx logo]({{ "/assets/images/logo-xilinx.png" | relative_url }}){:height="250px" width="250x"}
 {: style="text-align: center;"}
 
 * [Xilinx](https://www.xilinx.com) is a worldwide renowned supplier of programmable logic devices. It is known for inventing the field-programmable gate array (FPGA) and as the first semiconductor company with a fabless manufacturing model.
