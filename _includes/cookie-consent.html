@@ -41,6 +41,22 @@ cookieconsent.Popup.prototype.setStatus = function(status) {
   }
 };
 
+function isPwa() {
+    var displayModes = ["fullscreen", "standalone", "minimal-ui"];
+    displayModes.forEach(function(displayMode) {
+        if (window.matchMedia('(display-mode: ' + displayMode + ')').matches) {
+            return true;
+        }
+    });
+    if('standalone' in window.navigator && window.navigator.standalone) {
+        return true;
+    }
+    if(document.referrer.includes('android-app://')) {
+       return true;
+    }
+    return false;
+}
+
 window.cookieconsent.initialise({
   palette: {
     popup: {
@@ -70,7 +86,7 @@ window.cookieconsent.initialise({
            gtag('js', new Date());
            gtag('config', '{{ site.analytics.google.tracking_id }}');
            var screenwidth = $(window).width();
-           if(screenwidth < 1024) {
+           if(screenwidth < 1024 || isPwa()) {
                document.getElementsByClassName("cc-revoke")[0].style.visibility = "hidden";
            }
        }
