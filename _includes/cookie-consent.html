@@ -48,6 +48,9 @@ function isPwa() {
             return true;
         }
     });
+    if('standalone' in window.navigator && window.navigator.standalone) {
+        return true;
+    }
     if(document.referrer.includes('android-app://')) {
        return true;
     }
