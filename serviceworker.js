@@ -35,6 +35,7 @@ self.addEventListener("install", function (event) {
           '/assets/images/Cmake-logo.png',
           '/assets/images/oe-logo.png',
           '/assets/images/Galileo_Signal_Plan_Fig_7-th.png',
+          '/assets/images/lego.jpg',
           '/assets/images/git-repository.jpg'
       ]);
     })
