@@ -308,7 +308,7 @@ $ xcodebuild -config Release
 
 Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox) for instructions on building your own snap package of GNSS-SDR, or install it directly from the [Snap Store](https://snapcraft.io/gnss-sdr-next):
 
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/gnss-sdr-next)
+[![Get it from the Snap Store]({{ "/assets/images/snap-store-white.svg" | relative_url }})](https://snapcraft.io/gnss-sdr-next)
 {: style="text-align: center;"}
 
 ## Docker
