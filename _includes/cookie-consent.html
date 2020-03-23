@@ -42,12 +42,14 @@ cookieconsent.Popup.prototype.setStatus = function(status) {
 };
 
 function isPwa() {
-    var displayModes = ["fullscreen", "standalone", "minimal-ui"];
-    displayModes.forEach(function(displayMode) {
-        if (window.matchMedia('(display-mode: ' + displayMode + ')').matches) {
-            return true;
-        }
-    });
+    if(window.matchMedia('(display-mode: standalone)').matches)
+    {
+        return true;
+    }
+    if(window.matchMedia('(display-mode: minimal-ui)').matches)
+    {
+        return true;
+    }
     if('standalone' in window.navigator && window.navigator.standalone) {
         return true;
     }
