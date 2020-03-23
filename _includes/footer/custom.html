@@ -1,12 +1,46 @@
 <!-- start custom footer snippets -->
 
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/latest.js?config=TeX-MML-AM_CHTML">
+<script>
+MathJax = {
+  tex: {
+    tags: "ams",
+    packages: {'[+]': ['ams', 'noerrors', 'color']}
+  },
+  chtml: {
+    scale: 1.05,
+    minScale: 1
+  },
+  startup: {
+    ready() {
+      const MmlMath = MathJax._.core.MmlTree.MmlNodes.math.MmlMath;
+      MmlMath.defaults.scriptminsize = '.1em';
+      MathJax.startup.defaultReady();
+    }
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process',
+    renderActions: {
+      find_script_mathtex: [10, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+      }, '']
+    }
+  },
+  loader: {
+    load: ['[tex]/ams', '[tex]/noerrors', '[tex]/color']
+  }
+};
 </script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({ TeX: { extensions: ["color.js"], equationNumbers: { autoNumber: "AMS" }}, CommonHTML: {scale: 105, minScaleAdjust: 100}});
-</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
 <script>
 if ("serviceWorker" in navigator) {
