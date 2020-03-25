@@ -64,9 +64,10 @@ social:
 
 # Analytics
 analytics:
-  provider               :  "google-gtag" # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google-tag-manager" # false (default), "google", "google-universal", "google-gtag", "google-tag-manager", "custom"
   google:
     tracking_id          : UA-33262364-1
+    gtm_id               : GTM-WT3PFP7
 
 # Google AdSense
 google_ad_client         :

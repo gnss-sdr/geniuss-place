@@ -83,42 +83,65 @@ window.cookieconsent.initialise({
   onInitialise: function(status) {
        var didConsent = this.hasConsented();
        if(didConsent) {
-           window.dataLayer = window.dataLayer || [];
-           function gtag(){dataLayer.push(arguments);}
-           gtag('js', new Date());
-           gtag('config', '{{ site.analytics.google.tracking_id }}');
+           {% case site.analytics.provider %}
+             {% when "google-gtag" %}
+               window.dataLayer = window.dataLayer || [];
+               function gtag(){dataLayer.push(arguments);}
+               gtag('js', new Date());
+               gtag('config', '{{ site.analytics.google.tracking_id }}');
+           {% endcase %}
            var screenwidth = $(window).width();
            if(screenwidth < 1024 || isPwa()) {
                document.getElementsByClassName("cc-revoke")[0].style.visibility = "hidden";
            }
        }
        if(!didConsent) {
-             window.dataLayer = window.dataLayer || [];
-             function gtag(){dataLayer.push(arguments);}
-             gtag('js', new Date());
-             gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
+           {% case site.analytics.provider %}
+             {% when "google-gtag" %}
+               window.dataLayer = window.dataLayer || [];
+               function gtag(){dataLayer.push(arguments);}
+               gtag('js', new Date());
+               gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
+             {% else %}
+               return;
+           {% endcase %}
        }
   },
   onStatusChange: function(status, chosenBefore) {
        var didConsent = this.hasConsented();
        if(didConsent) {
-           window.dataLayer = window.dataLayer || [];
-           function gtag(){dataLayer.push(arguments);}
-           gtag('js', new Date());
-           gtag('config', '{{ site.analytics.google.tracking_id }}');
+           {% case site.analytics.provider %}
+             {% when "google-gtag" %}
+               window.dataLayer = window.dataLayer || [];
+               function gtag(){dataLayer.push(arguments);}
+               gtag('js', new Date());
+               gtag('config', '{{ site.analytics.google.tracking_id }}');
+             {% else %}
+               return;
+           {% endcase %}
        }
        if(!didConsent) {
-           window.dataLayer = window.dataLayer || [];
-           function gtag(){dataLayer.push(arguments);}
-           gtag('js', new Date());
-           gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
+           {% case site.analytics.provider %}
+             {% when "google-gtag" %}
+               window.dataLayer = window.dataLayer || [];
+               function gtag(){dataLayer.push(arguments);}
+               gtag('js', new Date());
+               gtag('config', '{{ site.analytics.google.tracking_id }}', { 'send_page_view': false });
+             {% else %}
+               return;
+           {% endcase %}
        }
   },
   onRevokeChoice: function() {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{ site.analytics.google.tracking_id }}');
+      {% case site.analytics.provider %}
+        {% when "google-gtag" %}
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '{{ site.analytics.google.tracking_id }}');
+        {% else %}
+          return;
+      {% endcase %}
   },
   onPopupClose: function() {
       var didConsent = this.hasConsented();
