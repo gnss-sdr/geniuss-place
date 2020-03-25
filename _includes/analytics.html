@@ -6,7 +6,9 @@
 {% when "google-universal" %}
   {% include /analytics-providers/google-universal.html %}
 {% when "google-gtag" %}
-  {% include /analytics-providers/google-gtag.html %}  
+  {% include /analytics-providers/google-gtag.html %}
+{% when "google-tag-manager" %}
+  {% include /analytics-providers/google-tag-manager.html %}
 {% when "custom" %}
   {% include /analytics-providers/custom.html %}
 {% endcase %}
