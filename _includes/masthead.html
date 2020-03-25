@@ -14,7 +14,7 @@
             <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
           </li>
           {%- endfor -%}
-            <li class="masthead__menu-item"><a href="{{ "/search/" | relative_url }}"><i class="fas fa-fw fa-search" aria-hidden="true"></i></a></li>
+            <li class="masthead__menu-item"><a href="{{ "/search/" | relative_url }}" title="Search"><i class="fas fa-fw fa-search" aria-hidden="true"></i></a></li>
         </ul>
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</span>
