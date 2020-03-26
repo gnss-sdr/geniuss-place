@@ -100,7 +100,6 @@ intro:
 [![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Read the Documentation]({{ "/docs/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
-<link rel="prerender" href="{{ "/search/" | relative_url }}" />
 <link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />
 <link rel="prerender" href="{{ "/docs/" | relative_url }}" />
 <link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
