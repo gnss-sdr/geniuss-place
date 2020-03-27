@@ -45,6 +45,12 @@
   .fal {
     color: $muted-text-color;
   }
+
+  .social-icons {
+    .fa-github {
+      color: $contrast-color;
+    }
+  }
 }
 
 .page__footer-copyright {

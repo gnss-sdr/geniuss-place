@@ -519,12 +519,12 @@ body:hover .visually-hidden button {
    ========================================================================== */
 
 .footnote {
-  color: $darker-gray; //mix(#fff, $gray, 25%);
+  color: $text-color; // mix(#fff, $gray, 25%);
   text-decoration: none;
 }
 
 .footnotes {
-  color: $darker-gray; //mix(#fff, $gray, 25%);
+  color: $text-color; // mix(#fff, $gray, 25%);
 
   ol,
   li,
