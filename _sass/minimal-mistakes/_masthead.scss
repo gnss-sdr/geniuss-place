@@ -4,7 +4,7 @@
 
 .masthead {
   position: relative;
-  border-bottom: 1px solid $border-color;
+  @include color-assign(border-bottom, border, '1px solid here');
   -webkit-animation: $intro-transition;
   animation: $intro-transition;
   -webkit-animation-delay: 0.15s;
@@ -87,4 +87,10 @@
     padding-right: 2em;
     font-weight: 700;
   }
+}
+
+@media (prefers-color-scheme: dark) {
+    #main-logo {
+        content: url("/assets/images/logo-gnss-sdr-invert.png");
+    }
 }

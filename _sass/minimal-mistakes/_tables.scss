@@ -8,7 +8,7 @@ table {
   font-family: $global-font-family;
   font-size: $type-size-6;
   border-collapse: collapse;
-  border: 1px solid mix(#000, $border-color, 25%);
+  @include color-assign(border, mix-border-25, '1px solid here');
 
   & + table {
     margin-top: 1em;
@@ -16,21 +16,21 @@ table {
 }
 
 thead {
-  background-color: $border-color;
-  border-bottom: 1px solid mix(#000, $border-color, 25%);
+  @include color-assign(background-color, border);
+  @include color-assign(border-bottom, mix-border-25, '1px solid here');
 }
 
 th {
   padding: 0.5em;
   font-weight: bold;
   text-align: left;
-  border-right: 1px solid mix(#000, $border-color, 25%);
+  @include color-assign(border-right, mix-border-25, '1px solid here');
 }
 
 td {
   padding: 0.5em;
-  border-bottom: 1px solid mix(#000, $border-color, 25%);
-  border-right: 1px solid mix(#000, $border-color, 25%);
+  @include color-assign(border-bottom, mix-border-25, '1px solid here');
+  @include color-assign(border-right, mix-border-25, '1px solid here');
 }
 
 tr, td, th {
@@ -40,9 +40,9 @@ tr, td, th {
 td.authortable {
   padding: 0.5em;
   font-size: $type-size-4;
-  border: 0px hidden $background-color;
-  border-bottom: 0px hidden $background-color;
-  border-right: 0px hidden $background-color;
+  @include color-assign(border, background, '0px hidden here');
+  @include color-assign(border-bottom, background, '0px hidden here');
+  @include color-assign(border-right, background, '0px hidden here');
   text-align: center;
   vertical-align: top;
 }
@@ -51,9 +51,9 @@ td.authortable {
 #forcetable {
   padding: 0.5em;
   font-size: $type-size-4;
-  border: 0px hidden $background-color;
-  border-bottom: 0px hidden $background-color;
-  border-right: 0px hidden $background-color;
+  @include color-assign(border, background, '0px hidden here');
+  @include color-assign(border-bottom, background, '0px hidden here');
+  @include color-assign(border-right, background, '0px hidden here');
   text-align: left;
   vertical-align: top;
 
@@ -71,21 +71,21 @@ td.authortable {
 #forcetable2 {
   padding: 0.5em;
   font-size: $type-size-4;
-  border: 0px hidden $background-color;
-  border-bottom: 0px hidden $background-color;
-  border-right: 0px hidden $background-color;
+  @include color-assign(border, background, '0px hidden here');
+  @include color-assign(border-bottom, background, '0px hidden here');
+  @include color-assign(border-right, background, '0px hidden here');
   text-align: left;
   vertical-align: top;
 
   a {
-    color: $text-color;
+    @include color-assign(color, text);
     text-decoration: none;
-    border-bottom: 0px solid $background-color;
+    @include color-assign(border-bottom, background, '0px solid here');
     transition: $global-transition;
 
     &:hover {
-      color: mix(#000, $text-color, 50%);
-      border-bottom-color: $background-color;
+      @include color-assign(color, mix-text-50);
+      @include color-assign(border-bottom-color, background);
     }
   }
 
@@ -102,20 +102,20 @@ td.authortable {
 td.gridtable {
   padding: 0.5em;
   font-size: $type-size-4;
-  border: 0px hidden $background-color;
-  border-bottom: 0px hidden $background-color;
-  border-right: 0px hidden $background-color;
+  @include color-assign(border, background, '0px hidden here');
+  @include color-assign(border-bottom, background, '0px hidden here');
+  @include color-assign(border-right, background, '0px hidden here');
   text-align: left;
   vertical-align: top;
   a {
-    color: mix($contrast-color, $text-color, 25%);
+    @include color-assign(color, mix-contrast-text-25);
     text-decoration: none;
-    border-bottom: 1px solid $background-color;
+    @include color-assign(border-bottom, background, '1px solid here');
     transition: $global-transition;
 
     &:hover {
-      color: mix($contrast-color, $text-color, 10%);
-      border-bottom-color: $background-color;
+      @include color-assign(color, mix-contrast-text-10);
+      @include color-assign(border-bottom-color, background);
       text-decoration: underline;
     }
   }

@@ -125,7 +125,7 @@
 
     @include breakpoint($large) {
       padding: 5px;
-      border: 1px solid $border-color;
+      @include color-assign(border, border, '1px solid here');
     }
   }
 }
@@ -226,9 +226,9 @@
   margin-top: 15px;
   padding: 10px;
   list-style-type: none;
-  border: 1px solid $border-color;
+  @include color-assign(border, border, '1px solid here');
   border-radius: $border-radius;
-  background: $background-color;
+  @include color-assign(background, background);
   box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
   cursor: default;
 
