@@ -54,7 +54,7 @@ $$ \rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) 
 
 where $$ \omega_e $$ is the Earth rotation angle velocity (in rad/s).
 
-![Earth rotation correction]({{ "/assets/images/earth-rotation.png" | relative_url }})
+<span class="invert-colors">![Earth rotation correction]({{ "/assets/images/earth-rotation.png" | relative_url }})</span>
 _Geometric range and Earth rotation correction [^RTKLIBManual]_
 {: style="text-align: center;"}
 

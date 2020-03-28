@@ -470,3 +470,7 @@
         filter: invert(100%);
     }
 }
+
+.highlight-color {
+    @include color-assign(color, highlight);
+}

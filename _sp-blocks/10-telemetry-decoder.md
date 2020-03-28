@@ -35,7 +35,8 @@ e_{L1Q}(t) & = & \sum_{l=-\infty}^{\infty} {\color{ForestGreen} D_{\text{NAV}}\B
 
 The GPS NAV message $$ D_{\text{NAV}} \in \{ 1, -1 \} $$ is modulated at 50 bits per second. The whole message contains 25 pages (or "frames") of 30 seconds each, forming the master frame that takes 12,5 minutes to be transmitted. Every frame is subdivided into 5 sub-frames of 6 seconds each; in turn, every sub-frame consists of 10 words, with 30 bits per word:
 
-![GPS NAV message]({{ "/assets/images/Navigation_Message_GPS_NAV.png" | relative_url }})
+<span class="invert-colors">
+![GPS NAV message]({{ "/assets/images/Navigation_Message_GPS_NAV.png" | relative_url }})</span>
 _GPS NAV message. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
@@ -95,7 +96,8 @@ and data validity status, Galileo System Time (GST), GST-UTC and GST-GPS
 time conversion parameters, the almanacs, and Search and Rescue (SAR)
 service data.
 
-![INAV message structure]({{ "/assets/images/inav.png" | relative_url }})
+<span class="invert-colors">
+![INAV message structure]({{ "/assets/images/inav.png" | relative_url }})</span>
 _Galileo E1B I/NAV message structure_.
 {: style="text-align: center;"}
 
@@ -146,8 +148,8 @@ $$ \begin{equation} e_{Q}(t) = \sum_{l=-\infty}^{\infty} {\color{ForestGreen} D_
 
 The navigation message of the standard accuracy signal (C/A) is broadcast as continuously repeating superframes with a duration of 2.5 minutes. Each superframe consists of 5 frames of 30 seconds, and each frame consists of 15 strings of 2 seconds duration (100 bits length).
 
-
-![GLONASS NAV message]({{ "/assets/images/GLONASS_navigation_message_structure.png" | relative_url }}) <br>
+<span class="invert-colors">
+![GLONASS NAV message]({{ "/assets/images/GLONASS_navigation_message_structure.png" | relative_url }})</span> <br>
 _GLONASS NAV message. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Navigation_Message)_.
 {: style="text-align: center;"}
 
@@ -232,7 +234,8 @@ representation and nominally more accurate data than the NAV data. It is
 transmitted at $$ 25 $$ bps with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ sps.
 
-![GPS L2 CNAV message]({{ "/assets/images/Navigation_Message_GPS_CNAV_L2.png" | relative_url }})
+<span class="invert-colors">
+![GPS L2 CNAV message]({{ "/assets/images/Navigation_Message_GPS_CNAV_L2.png" | relative_url }})</span>
 _GPS L2 CNAV message structure. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
@@ -275,7 +278,8 @@ with $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
 component contains a synchronization sequence $$ C_{nh_{10}} $$ that modulates each $$ 100 $$ symbols of the
 GPS L5 civil navigation data $$ D_{\text{CNAV}} $$. The message structure is the same as for L2 CNAV:
 
-![GPS L5 CNAV message]({{ "/assets/images/Navigation_Message_GPS_CNAV_L5.png" | relative_url }})
+<span class="invert-colors">
+![GPS L5 CNAV message]({{ "/assets/images/Navigation_Message_GPS_CNAV_L5.png" | relative_url }})</span>
 _GPS L5 CNAV message structure. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Navigation_Message)_.
 {: style="text-align: center;"}
 
@@ -317,8 +321,8 @@ where $$ ssc_s(t) $$ and $$ ssc_p(t) $$ are the single and product side–band s
 $$ \begin{eqnarray} e_{E5aI}(t) & = & \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \nonumber \\
 {} & {} & \oplus~{\color{ForestGreen} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]} \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~. \end{eqnarray} $$
 
-
-![Galileo E5a F/NAV message]({{ "/assets/images/Navigation_Message_Galileo_FNAV.png" | relative_url }})
+<span class="invert-colors">
+![Galileo E5a F/NAV message]({{ "/assets/images/Navigation_Message_Galileo_FNAV.png" | relative_url }})</span>
 _Galileo E5a F/NAV message structure. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Navigation_Message)_.
 {: style="text-align: center;"}
 
