@@ -7,7 +7,7 @@
 html {
   /* apply a natural box layout model to all elements */
   box-sizing: border-box;
-  background-color: $background-color;
+  @include color-assign(background-color, background);
   font-size: 16px;
 
   @include breakpoint($medium) {
@@ -26,12 +26,12 @@ body { margin: 0; }
 
 ::-moz-selection {
   color: $selection-color;  //
-  background: $background-color; //
+  @include color-assign(background, background); //
 }
 
 ::selection {
   color: $selection-color;  //
-  background: $background-color;  //
+  @include color-assign(background, background);  //
 }
 
 /* Display HTML5 elements in IE6-9 and FF3 */
@@ -67,7 +67,7 @@ audio:not([controls]) {
 }
 
 a {
-  color: $link-color;
+  @include color-assign(color, link);
 }
 
 /* Apply focus state */

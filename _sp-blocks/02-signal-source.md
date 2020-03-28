@@ -10,7 +10,7 @@ last_modified_at: 2019-04-12T12:54:02-04:00
 ---
 
 {% capture fig_img2 %}
-  ![Front-end]({{ "/assets/images/frontend.png" | relative_url }})
+  <span class="invert-colors">![Front-end]({{ "/assets/images/frontend.png" | relative_url }})</span>
 {% endcapture %}
 
 {% capture fig_img3 %}
@@ -415,7 +415,7 @@ SignalSource.sampling_frequency=16368000
 
 ### Implementation: `UHD_Signal_Source`
 
-[![Ettus Research](https://files.ettus.com/meta/logos/ettus_logo.png){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com) The USRP Hardware Driver ([UHD](https://files.ettus.com/manual/)) software API supports application development on all [Ettus Research](https://www.ettus.com)'s [USRP](https://www.ettus.com/product) Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
+<span class="invert-colors">[![Ettus Research]({{ "/assets/images/logo-ettus.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com)</span> The USRP Hardware Driver ([UHD](https://files.ettus.com/manual/)) software API supports application development on all [Ettus Research](https://www.ettus.com)'s [USRP](https://www.ettus.com/product) Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
 
 This implementation accepts the following parameters:
 

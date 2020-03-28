@@ -1,11 +1,11 @@
 /* ==========================================================================
-   Dark skin
+   GeNiuSS Dark skin
    ========================================================================== */
 
 /* Colors */
 $background-color: #252a34 !default;
 $text-color: #eaeaea !default;
-$primary-color: #00adb5 !default;
+$primary-color: #2f99cc !default;
 $border-color: mix(#fff, $background-color, 20%) !default;
 $code-background-color: mix(#000, $background-color, 15%) !default;
 $code-background-color-dark: mix(#000, $background-color, 20%) !default;
@@ -17,24 +17,27 @@ $link-color-visited: mix(#000, $link-color, 25%) !default;
 $masthead-link-color: $text-color !default;
 $masthead-link-color-hover: mix(#000, $text-color, 20%) !default;
 $navicon-link-color-hover: mix(#000, $background-color, 30%) !default;
+$dark-gray: mix(#000, $text-color, 25%) !default;
+$active-color: mix(#000, #3d4e7f, 80%) !default;
+$contrast-color: #fff !default;
 
-/* dark syntax highlighting (base16) */
-$base00: #ffffff !default;
-$base01: #e0e0e0 !default;
-$base02: #d0d0d0 !default;
-$base03: #b0b0b0 !default;
-$base04: #000000 !default;
-$base05: #101010 !default;
-$base06: #151515 !default;
-$base07: #202020 !default;
-$base08: #ff0086 !default;
-$base09: #fd8900 !default;
-$base0a: #aba800 !default;
-$base0b: #00c918 !default;
-$base0c: #1faaaa !default;
-$base0d: #3777e6 !default;
-$base0e: #ad00a1 !default;
-$base0f: #cc6633 !default;
+/* GeNiuSS Dark highlighting (base16) */
+$base00: mix(#000, #3d4e7f, 40%) !default;
+$base01: #3a3c4e !default;
+$base02: #4d4f68 !default;
+$base03: #626483 !default;
+$base04: #62d6e8 !default;
+$base05: #e9e9f4 !default;
+$base06: #f1f2f8 !default;
+$base07: #f7f7fb !default;
+$base08: #ea51b2 !default;
+$base09: mix(#fff, #b45bcf, 40%) !default;
+$base0a: #00f769 !default;
+$base0b: #ebff87 !default;
+$base0c: #a1efe4 !default;
+$base0d: #62d6e8 !default;
+$base0e: mix(#fff, #b45bcf, 40%) !default;
+$base0f: #00f769 !default;
 
 .author__urls.social-icons .svg-inline--fa,
 .page__footer-follow .social-icons .svg-inline--fa {

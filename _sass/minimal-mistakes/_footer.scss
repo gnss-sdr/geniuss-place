@@ -10,12 +10,12 @@
   width: 100%;
   clear: both;
   margin-top: 3em;
-  color: $muted-text-color;
+  @include color-assign(color, muted-text);
   -webkit-animation: $intro-transition;
   animation: $intro-transition;
   -webkit-animation-delay: 0.45s;
   animation-delay: 0.45s;
-  background-color: $footer-background-color;
+  @include color-assign(background-color, footer-background);
 
   footer {
     @include clearfix;
@@ -43,7 +43,13 @@
   .fab,
   .far,
   .fal {
-    color: $muted-text-color;
+    @include color-assign(color, muted-text);
+  }
+
+  .social-icons {
+    .fa-github {
+      @include color-assign(color, contrast);
+    }
   }
 }
 
