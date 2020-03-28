@@ -30,8 +30,8 @@ $$ \begin{equation} s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{
 
 with
 
-$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{eqnarray} e_{L1I}(t) & = &  \sum_{l=-\infty}^{\infty} \color{blue} D_{\text{NAV}} \Big[ [l]_{204600}\Big] \color{dark-grey} \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] \cdot p(t - lT_{c,\text{P(Y)}})~,\\
-\color{dark-grey} e_{L1Q}(t) & = & \sum_{l=-\infty}^{\infty} \color{blue} D_{\text{NAV}}\Big[ [l]_{20460}  \Big] \color{dark-grey} \oplus  C_{\text{C/A}} \Big[ |l|_{1023} \Big] \cdot p(t - lT_{c,\text{C/A}})~. \end{eqnarray}$$
+$$ \begin{eqnarray} e_{L1I}(t) & = &  \sum_{l=-\infty}^{\infty} {\color{ForestGreen} D_{\text{NAV}} \Big[ [l]_{204600}\Big] } \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] \cdot p(t - lT_{c,\text{P(Y)}})~,\\
+e_{L1Q}(t) & = & \sum_{l=-\infty}^{\infty} {\color{ForestGreen} D_{\text{NAV}}\Big[ [l]_{20460}}  \Big]  \oplus  C_{\text{C/A}} \Big[ |l|_{1023} \Big] \cdot p(t - lT_{c,\text{C/A}})~. \end{eqnarray}$$
 
 The GPS NAV message $$ D_{\text{NAV}} \in \{ 1, -1 \} $$ is modulated at 50 bits per second. The whole message contains 25 pages (or "frames") of 30 seconds each, forming the master frame that takes 12,5 minutes to be transmitted. Every frame is subdivided into 5 sub-frames of 6 seconds each; in turn, every sub-frame consists of 10 words, with 30 bits per word:
 
@@ -84,7 +84,7 @@ $$ \begin{eqnarray} s^{\text{(Gal E1)}}_{T}(t)& = &\frac{1}{\sqrt{2}} \Big( e_{E
 
 where $$ sc_A(t) $$ and $$ sc_B(t) $$ are the Composite Binary Offset Carrier (CBOC) square subcarriers, and:
 
-$$  \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} \color{blue} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \color{dark-grey} \oplus C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})~. \end{equation} $$
+$$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} {\color{ForestGreen} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big]} \oplus C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})~. \end{equation} $$
 
 As shown in this equation, the E1B signal component carries the
 $$ D_{\text{I/NAV}} \in \{ 1, -1 \} $$ navigation message, which provides the space vehicle
@@ -141,7 +141,7 @@ $$ \begin{equation} s^{\text{(GLO)}}_{T}(t)=e_{I}(t) + j e_{Q}(t)~, \end{equatio
 
 where
 
-$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{equation} e_{Q}(t) = \sum_{l=-\infty}^{\infty} \color{blue} D_{\text{GNAV}}\Big[ [l]_{10220} \Big] \color{dark-grey} \oplus  C_{\text{C/A}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{C/A}})~.\end{equation} $$
+$$ \begin{equation} e_{Q}(t) = \sum_{l=-\infty}^{\infty} {\color{ForestGreen} D_{\text{GNAV}}\Big[ [l]_{10220} \Big] } \oplus  C_{\text{C/A}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{C/A}})~.\end{equation} $$
 
 
 The navigation message of the standard accuracy signal (C/A) is broadcast as continuously repeating superframes with a duration of 2.5 minutes. Each superframe consists of 5 frames of 30 seconds, and each frame consists of 15 strings of 2 seconds duration (100 bits length).
@@ -220,7 +220,7 @@ $$ \begin{equation} s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~, \end{
 
 with the Quadrature–phase component defined as:
 
-$$ \begin{eqnarray} \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty}\color{blue} D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \color{dark-grey} \oplus \left(  C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + \right. \nonumber \\
+$$ \begin{eqnarray} e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty} {\color{ForestGreen} D_{\text{CNAV}} \Big[ [l]_{10230} \Big] } \oplus \left(  C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + \right. \nonumber \\
 {} & {} & + \left. C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{3}{4}\right)T_{c,L2C}\right) \right)~. \end{eqnarray} $$
 
 The civilian long code $$ C_{\text{CL}} $$ is
@@ -266,10 +266,10 @@ $$ \begin{equation} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{e
 
 where:
 
-$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{eqnarray} e_{L5I}(t) & = & \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus  \ \color{blue} D_{\text{CNAV}}\Big[ [m]_{10}\Big] \color{dark-grey} \oplus \nonumber \\
+$$ \begin{eqnarray} e_{L5I}(t) & = & \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus {\color{ForestGreen} D_{\text{CNAV}}\Big[ [m]_{10}\Big]} \oplus \nonumber \\
 {} & {} & \oplus~\sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5}) ~,\end{eqnarray} $$
 
-$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \!\!\!\!\!\!\!\!\begin{equation} e_{L5Q}(t) \!=\!\! \sum_{m=-\infty}^{+\infty}\!\! C_{nh_{20}} \Big[ |m|_{20}\Big] \!  \oplus \!\! \sum_{l=1}^{102300}\!\!C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, \end{equation} $$
+$$ \!\!\!\!\!\!\!\!\begin{equation} e_{L5Q}(t) \!=\!\! \sum_{m=-\infty}^{+\infty}\!\! C_{nh_{20}} \Big[ |m|_{20}\Big] \!  \oplus \!\! \sum_{l=1}^{102300}\!\!C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~, \end{equation} $$
 
 with $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
 component contains a synchronization sequence $$ C_{nh_{10}} $$ that modulates each $$ 100 $$ symbols of the
@@ -314,8 +314,8 @@ $$ \begin{eqnarray} s^{\text{(Gal E5)}}_{T}(t) & = & e_{E5a}(t) ssc_s^{*}(t)+ e_
 
 where $$ ssc_s(t) $$ and $$ ssc_p(t) $$ are the single and product side–band signal subcarriers. However, sub-band E5a can be approximated by a QPSK signal. Galileo's F/NAV navigation message $$ D_{\text{F/NAV}} \in \{ 1, -1 \} $$ modulates the I component of the E5a signal, which can be expressed as:
 
-$$ \definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \begin{eqnarray} e_{E5aI}(t) & = & \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \nonumber \\
-{} & {} & \oplus~\color{blue} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]  \color{dark-grey} \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~. \end{eqnarray} $$
+$$ \begin{eqnarray} e_{E5aI}(t) & = & \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \nonumber \\
+{} & {} & \oplus~{\color{ForestGreen} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]} \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~. \end{eqnarray} $$
 
 
 ![Galileo E5a F/NAV message]({{ "/assets/images/Navigation_Message_Galileo_FNAV.png" | relative_url }})

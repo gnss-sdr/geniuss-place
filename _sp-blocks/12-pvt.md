@@ -50,7 +50,7 @@ $$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(
 
 The geometric range $$ \rho_r^{(s)} $$ is defined as the physical distance between the satellite antenna phase center position and the receiver antenna phase center position in the inertial coordinates. For the expression in the ECEF coordinates, the earth rotation effect has to be incorporated. This is known as the <span style="color: orange">Sagnac effect</span>[^Ashby04], and it can be approximated by:
 
-$$ \definecolor{dark-orange}{RGB}{255,165,0}\definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + \color{dark-orange} \frac{\omega_e}{c}(x^{(s)}y_r - y^{(s)}x_r ) \color{dark-grey}~, $$
+$$ \rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + {\definecolor{dark-orange}{RGB}{255,165,0} \color{dark-orange} \frac{\omega_e}{c}(x^{(s)}y_r - y^{(s)}x_r )}~, $$
 
 where $$ \omega_e $$ is the Earth rotation angle velocity (in rad/s).
 
