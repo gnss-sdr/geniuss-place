@@ -16,21 +16,21 @@ table {
 }
 
 thead {
-  @include color-assign(background-color, border);
-  @include color-assign(border-bottom, mix-border-25, '1px solid here');
+  @include color-assign(background-color, table-header);
+  @include color-assign(border-bottom, mix-border-table-25, '1px solid here');
 }
 
 th {
   padding: 0.5em;
   font-weight: bold;
   text-align: left;
-  @include color-assign(border-right, mix-border-25, '1px solid here');
+  @include color-assign(border-right, mix-border-table-25, '1px solid here');
 }
 
 td {
   padding: 0.5em;
-  @include color-assign(border-bottom, mix-border-25, '1px solid here');
-  @include color-assign(border-right, mix-border-25, '1px solid here');
+  @include color-assign(border-bottom, mix-border-table-25, '1px solid here');
+  @include color-assign(border-right, mix-border-table-25, '1px solid here');
 }
 
 tr, td, th {

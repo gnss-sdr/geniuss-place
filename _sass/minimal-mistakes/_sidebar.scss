@@ -303,6 +303,12 @@
       text-decoration: underline;
     }
   }
+
+  &.social-icons {
+    .fa-github {
+      @include color-assign(color, contrast);
+    }
+  }
 }
 
 /*

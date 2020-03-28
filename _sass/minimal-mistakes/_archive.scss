@@ -464,3 +464,9 @@
 	display: inline-block;
   }
 }
+
+.invert-colors {
+    @media (prefers-color-scheme: dark) {
+        filter: invert(100%);
+    }
+}
