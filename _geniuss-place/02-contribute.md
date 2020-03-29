@@ -16,7 +16,7 @@ redirect_from:
 ---
 
 
-![Contributing]({{ "/assets/images/geniuss-contribute.png" | relative_url }} "GeNiuSS contributing. Be like GeNiuSS."){:height="250px" width="250x"}
+![Contributing]({{ "/assets/images/geniuss-contribute.png" | relative_url }} "GeNiuSS contributing. Be like GeNiuSS."){:height="250px" width="250px"}
 {: style="text-align: center;"}
 
 ## Contributing to GNSS-SDR

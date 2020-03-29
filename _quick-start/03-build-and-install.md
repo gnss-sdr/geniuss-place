@@ -16,7 +16,7 @@ redirect_from:
 
 This page describes several ways to build and install GNSS-SDR.
 
-![GeNiuSS building]({{ "/assets/images/geniuss-building.png" | relative_url }} "GeNiuSS at work. What a self-made character!"){:height="250px" width="250x"}
+![GeNiuSS building]({{ "/assets/images/geniuss-building.png" | relative_url }} "GeNiuSS at work. What a self-made character!"){:height="250px" width="250px"}
 {: style="text-align: center;"}
 
 # Installing everything through software package managers

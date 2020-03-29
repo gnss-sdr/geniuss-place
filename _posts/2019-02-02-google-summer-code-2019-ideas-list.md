@@ -36,14 +36,14 @@ Hereafter we list, in no particular order, some proposals for projects to be car
 
 GNSS Reflectometry (GNSS-R) is the application of GNSS signals to determine geophysical parameters of the Earth's surface, as well as the atmospheric layer. The idea is to jointly exploit the direct and reflected GNSS signals. These reflected signals are particularly interesting on water or ice surfaces. The receiver can be located at all altitudes: from the ground to low Earth orbit (LEO) satellites. Two major types of measurements can be made: _i_) relative power measurements between direct and reflected signals from which we can derive, for instance, the surface roughness, and by extension the surface wind (this is the [mission CYGNSS](http://clasp-research.engin.umich.edu/missions/cygnss/)), and _ii_) measurements of relative delay between direct and reflected signals. For more details see [1-3].
 
-![GNSS-R]({{ "/assets/images/GNSS-R.jpg" | relative_url }}){:width="800x"}
+![GNSS-R]({{ "/assets/images/GNSS-R.jpg" | relative_url }}){:width="800px"}
 {: style="text-align: center;"}
 _Figure 1 (from [1]): Basic idea behind GNSS reflectometry and GNSS radio occultation._
 {: style="text-align: center;"}
 
 The goal of this project is to implement a basic GNSS-R architecture, that is, the lower blocks (reflected signal processing) in Figure 2. The detailed objectives of the project are: _i_) understand the signal processing principles of a GNSS Rx (ACQ, TRK and PVT - upper blocks in Figure 2) and the corresponding implementation in GNSS-SDR, _ii_) implement the reflected signal processing within GNSS-SDR (lower blocks in Figure 2), and _iii_) test the GNSS-R architecture using real signals.
 
-![GNSS-R-SP]({{ "/assets/images/GNSS-R-Architecture.jpg" | relative_url }}){:width="800x"}
+![GNSS-R-SP]({{ "/assets/images/GNSS-R-Architecture.jpg" | relative_url }}){:width="800px"}
 {: style="text-align: center;"}
 _Figure 2 (from [2]):  Signal processing architecture. The same carrier replica is used for direct and reflected carrier wipe-off. PVT is Position Velocity, Time, PPP is Precise Point Positioning, and NTM is Numerical Terrain Model._
 {: style="text-align: center;"}

@@ -67,8 +67,7 @@ estimations $$ \hat{\tau}_{acq} $$ and $$ \hat{f}_{\!D_{acq}} $$, provided by an
 is to refine such estimations and track their changes along time.
 As shown in the figure below, more refinements can be made once the navigation message bits (in the case of tracking a _data_ component of a GNSS signal) or the secondary spreading code (in the case of tracking a _pilot_ component of a GNSS signal) is synchronized, for instance by extending the integration time or by narrowing the tracking loops.
 
-<span class="invert-colors">
-![Tracking State Machine]({{ "/assets/images/tracking_state_machine.png" | relative_url }})</span>
+![Tracking State Machine]({{ "/assets/images/tracking_state_machine.png" | relative_url }}){: .align-center .invert-colors}
 _Internal state machine of a Tracking block._
 {: style="text-align: center;"}
 
@@ -245,18 +244,15 @@ $ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
 
 Diagrams of digital low-pass filters of different order are shown below:
 
- <span class="invert-colors">
- ![First order filter]({{ "/assets/images/1st-order-filter.png" | relative_url }}){: style="width: 250px;"}</span><br>
+ ![First order filter]({{ "/assets/images/1st-order-filter.png" | relative_url }}){: style="width: 250px;"}{: .align-center .invert-colors}
  _First-order digital low-pass filter._
  {: style="text-align: center"}
 
-<span class="invert-colors">
-![Second order filter]({{ "/assets/images/2nd-order-filter.png" | relative_url }})</span>
+![Second order filter]({{ "/assets/images/2nd-order-filter.png" | relative_url }}){: .align-center .invert-colors}
 _Second-order digital low-pass filter._
 {: style="text-align: center;"}
 
-<span class="invert-colors">
-![Third order filter]({{ "/assets/images/3rd-order-filter.png" | relative_url }})</span>
+![Third order filter]({{ "/assets/images/3rd-order-filter.png" | relative_url }}){: .align-center .invert-colors}
 _Third-order digital low-pass filter._
 {: style="text-align: center;"}
 
@@ -463,9 +459,7 @@ The implementation described below performs the estimation of $$ \tau $$, $$ f_D
 In case of Galileo E1, the CBOC(6,1,$$ \frac{1}{11} $$) modulation creates
 correlation ambiguities, as shown in the following figure:
 
-<span class="invert-colors">
-![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600x"}</span>
-{: style="text-align: center;"}
+![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _Normalized $$ \left|R_{xd}\left(\check{f}_D=f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
 {: style="text-align: center;"}
 

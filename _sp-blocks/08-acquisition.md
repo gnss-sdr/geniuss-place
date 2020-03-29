@@ -70,9 +70,7 @@ be shown that this acquisition test statistic is a Constant False
 Alarm Rate (CFAR) detector because $$ P_{fa} $$ does not depend on the noise
 power.
 
-<span class="invert-colors">
-![CAF]({{ "/assets/images/caf.png" | relative_url }}){:width="600x"}</span>
-{: style="text-align: center;"}
+![CAF]({{ "/assets/images/caf.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _GLRT statistic for Parallel Code Phase Search acquisition algorithm
 for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kHz with steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo’s IOV satellite PRN 11[^Fernandez12]._
 {: style="text-align: center;"}
@@ -334,8 +332,7 @@ $$ \!\!\!\begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\inf
 The simpler sinBOC options are chosen by default. CBOC versions can be set by `Acquisition_1B.cboc=true`.
 Next figure plots the shape of the cross-correlation function for those waveforms:
 
-<a name="fig:Rxd"></a><span class="invert-colors">![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600x"}</span>
-{: style="text-align: center;"}
+<a name="fig:Rxd"></a>![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _Normalized $$ \left|R_{xd}\left(\check{f}_D=f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
 {: style="text-align: center;"}
 

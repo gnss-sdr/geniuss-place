@@ -112,7 +112,8 @@ The following figure shows the relationship between $$ f $$ = [`band1_begin` `ba
 `ampl2_begin` `ampl2_end`] vectors in defining a desired frequency
 response for the _Input Filter_:
 
-<span class="invert-colors">![Filter]({{ "/assets/images/fir-filter.png" | relative_url }}){:width="600x"}</span><br />_Definition of frequency mask parameters_.
+![Filter]({{ "/assets/images/fir-filter.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
+_Definition of frequency mask parameters_.
 {: style="text-align: center;"}
 
 
@@ -267,7 +268,8 @@ The random variable $$ \frac{E_s}{\sigma^2} $$ follows a [chi-squared distributi
 Note that $$ \sigma^2 $$ should be estimated by a noise floor power estimation method. With the purpose of minimizing the random effects, several noise power estimations are averaged on consecutive signal segments. In addition, as the receiver background noise may change along the time, the estimation of $$ \sigma^2 $$ is performed periodically. In this sense, the minimum signal length to be processed (filtered by a mitigation input filter) is one signal segment because the detection of an interference affects to the entire segment. The figure below summarizes the underlying idea.
 
 
-<span class="invert-colors">![Noise Estimation Parameters]({{ "/assets/images/noise-estimation.png" | relative_url }}){:width="700x"}</span><br />_Noise estimation parameters_.
+![Noise Estimation Parameters]({{ "/assets/images/noise-estimation.png" | relative_url }}){:width="700px"}{: .align-center .invert-colors}
+_Noise estimation parameters_.
 {: style="text-align: center;"}
 
 
@@ -276,7 +278,8 @@ Note that $$ \sigma^2 $$ should be estimated by a noise floor power estimation m
 
 The basic principle of a Pulse Blanking filter is illustrated in the figure below. If the input signal has a squared magnitude within an observation window that is greater than the blanking threshold, $$ T_h $$, then the output signal is set to zero. Otherwise, the output is equal to the input. Replacing the corrupted samples by zero ensures that correlation values are minimally distorted.
 
-<span class="invert-colors">![Pulse Blanking]({{ "/assets/images/pulse-blanking.png" | relative_url }}){:width="600x"}</span><br />_Diagram of the Pulse Blanking filter_.
+![Pulse Blanking]({{ "/assets/images/pulse-blanking.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
+_Diagram of the Pulse Blanking filter_.
 {: style="text-align: center;"}
 
 where:
@@ -319,7 +322,8 @@ InputFilter.segments_est=5000
 
 The aim of the Notch filter is to eliminate jamming signals who are instantaneously narrowband and, also, their instantaneous frequency changes along time.
 
-<span class="invert-colors">![Adaptive Notch Filter]({{ "/assets/images/notch-filter.png" | relative_url }}){:width="600x"}</span><br />_Diagram of the notch filter_.
+![Adaptive Notch Filter]({{ "/assets/images/notch-filter.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
+_Diagram of the notch filter_.
 {: style="text-align: center;"}
 
 When Interference Cancellation is adopted, the interfering signal is at first removed from $$ y[n] $$, and subsequent signal processing is applied to $$ y_f[n] = y[n] − i[n] $$. Since $$ i[n] $$ is usually not known, an estimation technique is required to reconstruct it and to obtain $$ \hat{i}[n] $$. This interference $$ i[n] $$ is usually estimated by considering a specific signal model which depends only on a reduced number of parameters. Let us consider a single component signal[^Borio14]
