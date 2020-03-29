@@ -10,7 +10,7 @@ redirect_from:
   - /project
 ---
 
-![What is GNSS-SDR]({{ "/assets/images/what-is-gnss-sdr.jpg" | relative_url }})
+<span class="invert-colors">![What is GNSS-SDR]({{ "/assets/images/what-is-gnss-sdr.png" | relative_url }})</span>
 {: style="text-align: center;"}
 
 GNSS-SDR is an open source project that implements a global navigation satellite system software defined receiver in C++. With GNSS-SDR, users can build a GNSS software receiver by creating a graph where the nodes are signal processing blocks and the lines represent the data flow between them. The software provides an interface to different suitable RF front-ends and implements all the receiver’s chain up to the navigation solution. Its design allows any kind of customization, including interchangeability of signal sources, signal processing algorithms, interoperability with other systems, output formats, and offers interfaces to all the intermediate signals, parameters and variables.
