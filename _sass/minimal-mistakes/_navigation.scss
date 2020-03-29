@@ -367,7 +367,7 @@
         width: 0.75em;
         height: 0.125em;
         line-height: 1;
-        background-color: $gray;
+        @include color-assign(background-color, primary);
         -webkit-transition: 0.2s ease-out;
         transition: 0.2s ease-out;
       }
@@ -381,7 +381,7 @@
       &:hover {
         color: #fff;
         border-color: $gray;
-        background-color: mix(white, #000, 20%);
+        @include color-assign(background-color, nav-list-background);
 
         &:before,
         &:after {
@@ -393,7 +393,7 @@
     /* selected*/
     input:checked + label {
       color: white;
-      background-color: mix(white, #000, 20%);
+      @include color-assign(background-color, nav-list-background);
 
       &:before,
       &:after {

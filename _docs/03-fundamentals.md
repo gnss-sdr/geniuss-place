@@ -36,13 +36,13 @@ An analysis of such process networks scheduling was provided in Parks' PhD Thesi
 
 An extremely simple flow graph would look like this:
 
-![A simple flow graph]({{ "/assets/images/simple-flowgraph.png" | relative_url }}){:width="400x"}{: .align-center}
+<span class="invert-colors">![A simple flow graph]({{ "/assets/images/simple-flowgraph.png" | relative_url }}){:width="400x"}</span>{: .align-center}
 _Example of a very simple flow graph._
 {: style="text-align: center;"}
 
 and another more complex example that already should be familiar to you could be as:
 
-![A typical GNSS-SDR flow graph]({{ "/assets/images/simple-gnss-sdr-flowgraph.png" | relative_url }}){:width="600x"}{: .align-center}
+<span class="invert-colors">![A typical GNSS-SDR flow graph]({{ "/assets/images/simple-gnss-sdr-flowgraph.png" | relative_url }}){:width="600x"}</span>{: .align-center}
 _Typical GNSS-SDR flow graph._
 {: style="text-align: center;"}
 
@@ -55,7 +55,7 @@ An actual implementation of these concepts is found in [GNU Radio](https://www.g
 
 The diagram of a processing block (that is, of a given node in the flow graph), as implemented by the GNU Radio framework, is shown below:
 
-![GNU Radio block]({{ "/assets/images/gnuradio-block.png" | relative_url }}){: .align-center}
+<span class="invert-colors">![GNU Radio block]({{ "/assets/images/gnuradio-block.png" | relative_url }})</span>{: .align-center}
 _Diagram of a signal processing block, as implemented by GNU Radio. Each block has a completely independent scheduler running in its own execution thread and an asynchronous messaging system for communication with other upstream and downstream blocks. The actual signal processing is performed in the ```work()``` method. Figure adapted from [these Johnathan Corgan's slides](https://static1.squarespace.com/static/543ae9afe4b0c3b808d72acd/t/55de1259e4b01e5c160764cf/1440617049937/5.+corgan_johnathan-scheduler+2015-08-25.pdf)._
 {: style="text-align: center;"}
 
@@ -87,14 +87,14 @@ The notation is as follows: we use a very simplified version of the Unified Mode
 
 A dashed arrow from ```ClassA``` to ```ClassB``` represents the dependency relationship. This relationship simply means that ```ClassA``` somehow depends upon ```ClassB```. In C++ this almost always results in an ```#include```.
 
-![Class dependency]({{ "/assets/images/dependency.png" | relative_url }}){:height="300px" width="300x"}{: .align-center}
+<span class="invert-colors">![Class dependency]({{ "/assets/images/dependency.png" | relative_url }}){:height="300px" width="300x"}</span>{: .align-center}
 _```ClassA``` depends on ```ClassB```._
 {: style="text-align: center;"}
 
 
 Inheritance models _is a_ and _is like_ relationships, enabling you to reuse existing data and code easily. When ```ClassB``` inherits from ```ClassA```, we say that ```ClassB``` is the subclass of ```ClassA```, and ```ClassA``` is the superclass (or parent class) of ```ClassB```. The UML modeling notation for inheritance is a line with a closed arrowhead pointing from the subclass to the superclass.
 
-![Class inheritance]({{ "/assets/images/inheritance.png" | relative_url }}){:width="150x"}{: .align-center}
+<span class="invert-colors">![Class inheritance]({{ "/assets/images/inheritance.png" | relative_url }}){:width="150x"}</span>{: .align-center}
 _```ClassA``` inherits from ```ClassB```._
 {: style="text-align: center;"}
 
