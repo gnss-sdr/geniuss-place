@@ -21,7 +21,7 @@ front-end’s analog-to-digital converter (ADC), as shown below. Those bits can 
 disk or directly in real-time from a hardware device through USB or
 Ethernet buses.
 
-<span class="invert-colors">![Block diagram of a RF front-end]({{ "/assets/images/frontend.png" | relative_url }})</span>
+![Block diagram of a RF front-end]({{ "/assets/images/frontend.png" | relative_url }}){: .align-center .invert-colors}
 
 This is a simplified block diagram of a generic radio frequency front-end,
 consisting of an antenna, an amplification stage, downshifting from RF
@@ -203,7 +203,7 @@ bits, common formats delivered by GNSS radio frequency front-ends. Next Table sh
 
 A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering. Regardless the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate. This signal stream feeds a set of parallel _Channels_.
 
-<span class="invert-colors">![Signal Conditioner]( {{ "/assets/images/SignalConditioner2.png" | relative_url }})</span>
+![Signal Conditioner]( {{ "/assets/images/SignalConditioner2.png" | relative_url }}){: .align-center .invert-colors}
 
 This is an example of _Signal Conditioner_ configuration, in which the _Signal Source_ is delivering samples of type `ishort`. We convert them to `gr_complex` with the _Data Type Adapter_, and then all the downstream processing (filtering and resampling) is also performed on `gr_complex` data. Hence, in this example the data stream delivered to _Channels_ is of type `gr_complex`:
 
@@ -253,7 +253,7 @@ The data type expected by _Channels_ actually depends on the specific implementa
 The following Table shows some of the possible configurations when bringing samples from your  _Signal Source_ to the processing _Channels_:
 
 
-<span class="invert-colors">![Signal Conditioner options]( {{ "/assets/images/signal-conditioner-options.png" | relative_url }})</span>
+![Signal Conditioner options]( {{ "/assets/images/signal-conditioner-options.png" | relative_url }}){: .align-center .invert-colors}
 
 
 ### What happens after Channels?

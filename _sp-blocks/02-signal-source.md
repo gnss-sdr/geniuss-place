@@ -10,7 +10,7 @@ last_modified_at: 2019-04-12T12:54:02-04:00
 ---
 
 {% capture fig_img2 %}
-  <span class="invert-colors">![Front-end]({{ "/assets/images/frontend.png" | relative_url }})</span>
+  ![Front-end]({{ "/assets/images/frontend.png" | relative_url }}){: .invert-colors}
 {% endcapture %}
 
 {% capture fig_img3 %}
@@ -317,7 +317,7 @@ specified in `SignalSource.filename`.
 
 ### Implementation: `Spir_GSS6450_File_Signal_Source`
 
-[![GSS6450]({{ "/assets/images/GSS6450.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://www.spirent.com/Products/GSS6450)
+[![GSS6450]({{ "/assets/images/GSS6450.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://www.spirent.com/Products/GSS6450)
 
 The Spirent [GSS6450](https://www.spirent.com/Products/GSS6450) Record and Playback System digitizes and stores the RF signals from real GNSS satellites along with any interference observed in the GNSS bands. These recordings are then made available for subsequent playback.
 
@@ -355,7 +355,7 @@ SignalSource.adc_bits=4
 
 ### Implementation: `Labsat_Signal_Source`
 
-[![LabSat3]({{ "/assets/images/labsat3.jpg" | relative_url }}){:width="250x"}{: .align-right}](https://www.labsat.co.uk/index.php/en/products/labsat-3)
+[![LabSat3]({{ "/assets/images/labsat3.jpg" | relative_url }}){:width="250px"}{: .align-right}](https://www.labsat.co.uk/index.php/en/products/labsat-3)
 
 [LabSat](https://www.labsat.co.uk/index.php/en/) is an affordable, portable, and versatile multi-constellation Global Navigation Satellite Simulator.
 
@@ -415,7 +415,7 @@ SignalSource.sampling_frequency=16368000
 
 ### Implementation: `UHD_Signal_Source`
 
-<span class="invert-colors">[![Ettus Research]({{ "/assets/images/logo-ettus.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://www.ettus.com)</span> The USRP Hardware Driver ([UHD](https://files.ettus.com/manual/)) software API supports application development on all [Ettus Research](https://www.ettus.com)'s [USRP](https://www.ettus.com/product) Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
+[![Ettus Research]({{ "/assets/images/logo-ettus.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}{: .invert-colors}](https://www.ettus.com) The USRP Hardware Driver ([UHD](https://files.ettus.com/manual/)) software API supports application development on all [Ettus Research](https://www.ettus.com)'s [USRP](https://www.ettus.com/product) Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
 
 This implementation accepts the following parameters:
 
@@ -508,7 +508,7 @@ For instance, if `RF_channels` is set to `2`, then:
 
 ### Implementation: `Osmosdr_Signal_Source`
 
-[![OsmoSDR]({{ "/assets/images/osmocom.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://osmocom.org/)
+[![OsmoSDR]({{ "/assets/images/osmocom.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://osmocom.org/)
 [OsmoSDR](https://osmocom.org/projects/gr-osmosdr) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
 project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. The project also provides a software driver for several RF front-ends such as [RTL-based
 dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), [LimeSDR](https://myriadrf.org/projects/limesdr/), [etc](https://osmocom.org/projects/gr-osmosdr).
@@ -618,7 +618,7 @@ SignalSource.swap_iq=false
 
 ### Implementation: `Fmcomms2_Signal_Source`
 
-[![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
+[![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
 The [AD-FMCOMMS2-EBZ](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html) is an FPGA Mezzanine Card ([FMC](https://fmchub.github.io/appendix/VITA57_FMC_HPC_LPC_SIGNALS_AND_PINOUT.html)) board for the [AD9361](https://www.analog.com/en/products/ad9361.html), a highly integrated RF transceiver originally designed for use in 3G and 4G base station applications.  Its programmability and wideband capability make it ideal for a broad range of applications, since the device combines a RF front end with a flexible mixed-signal baseband section and integrated frequency synthesizers, providing a configurable digital interface. The AD9361 receiver's local oscillator can operate from $$ 70 $$ MHz to $$ 6.0 $$ GHz, and channel bandwidths from less than $$ 200 $$ kHz to $$ 56 $$ MHz are supported. The two independent direct conversion receivers have state-of-the-art noise figure and linearity. Each receive (RX) subsystem includes independent automatic gain control (AGC), dc offset correction, quadrature correction, and digital filtering, thereby eliminating the need for these functions in the digital baseband. Two high dynamic range analog-to-digital converters (ADCs) per channel digitize the received I and Q signals and pass them through decimation filters and 128-tap finite impulse response (FIR) filters to produce a 12-bit output signal at the appropriate sample rate.
 
 The AD9361 RX signal path passes downconverted signals (I and Q) to the baseband receiver section. The baseband RX signal path is composed of two programmable analog low-pass filters, a 12-bit ADC, and four stages of digital decimating filters. Each of the four decimating filters can be bypassed. The figure below shows a block diagram for the AD9361 RX signal path after downconversion. Note that both the I and Q paths are schematically identical to each other.
@@ -715,7 +715,7 @@ SignalSource.rf_port_select=A_BALANCED
 
 ### Implementation: `Plutosdr_Signal_Source`
 
-[![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | relative_url }}){:height="250px" width="250x"}{: .align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
+[![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
 The [ADALM-Pluto](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html) is a learning module which helps introduce electrical engineering students to the fundamentals of software-defined radio (SDR), radio frequency (RF), and wireless communications. Based on the [AD9363](https://www.analog.com/en/products/AD9363.html), it offers one receive channel and one transmit channel which can be operated in full duplex, capable of generating or measuring RF analog signals from $$ 325 $$ to $$ 3800 $$ MHz, with a $$ 20 $$ MHz bandwidth, at up to $$ 61.44 $$ Mega Samples per second (MSps) with a 12-bit ADC and DAC.
 
 In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies:

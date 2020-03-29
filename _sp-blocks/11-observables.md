@@ -20,7 +20,7 @@ The **pseudorange measurement** is defined as the difference of the time of rece
 
 $$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right) $$
 
-<span class="invert-colors">![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | relative_url }})</span><br />
+![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | relative_url }}){: .align-center .invert-colors}
 _Pseudorange measurement (from the RTKLIB Manual)[^RTKLIBManual]_
 {: style="text-align: center;"}
 
@@ -53,7 +53,7 @@ where $$ \Delta \text{TOW}^{(s)} $$ is the difference between the reference $$ -
 The block diagram of such approach is shown below:
 
 
-<span class="invert-colors">![Pseudorange computation]({{ "/assets/images/common-reception-time.png" | relative_url }})</span>
+![Pseudorange computation]({{ "/assets/images/common-reception-time.png" | relative_url }}){: .align-center .invert-colors}
 _Block diagram of the pseudorange computation using the common reception time approach in GNSS-SDR[^Arribas14]_
 {: style="text-align: center;"}
 
@@ -115,7 +115,7 @@ where:
     * $$ \mathbf{d}_{r,pco,i} $$ is the receiver's $$ i $$-th band antenna phase center offset in local coordinates (in m).
     * $$ d_{r,pcv,i} $$ is the receiver's $$ i $$-th band antenna phase center variation (in m).
 
-    <span class="invert-colors">![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | relative_url }}){:height="200px" width="200px"}</span>
+    ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | relative_url }}){:height="200px" width="200px"}{: .align-center .invert-colors}
     {: style="text-align: center;"}
 
     _Receiver antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
@@ -124,8 +124,7 @@ where:
     * $$ \mathbf{d}_{pco,i}^{(s)} $$ is the satellite's  $$ i $$-th band antenna phase center offset in satellite body‐fixed coordinates (in m).
     * $$ d_{pcv,i}^{(s)} $$ is the satellite's antenna phase center variation (in m).
 
-    <span class="invert-colors">![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | relative_url }}){:height="350px" width="350px"}</span>
-    {: style="text-align: center;"}
+    ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | relative_url }}){:height="350px" width="350px"}{: .align-center .invert-colors}
 
     _Satellite antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
     {: style="text-align: center;"}
@@ -134,8 +133,7 @@ where:
     * $$ \mathbf{e}_r^{(s)} $$ is the LOS vector from receiver antenna to satellite in ECEF.
     * $$ \mathbf{E}^{(s)} = \left( {\mathbf{e}_{x}^{(s)}}^T, {\mathbf{e}_{y}^{(s)}}^T, {\mathbf{e}_{z}^{(s)}}^T \right)^T $$ is the coordinates transformation matrix from the satellite body‐fixed coordinates to ECEF coordinates, with:
 
-    <span class="invert-colors">![Satellite body-fixed coordinate system]({{ "/assets/images/satellite-coordinate-frame.png" | relative_url }}){:height="350px" width="350px"}</span>
-    {: style="text-align: center;"}
+    ![Satellite body-fixed coordinate system]({{ "/assets/images/satellite-coordinate-frame.png" | relative_url }}){:height="350px" width="350px"}{: .align-center .invert-colors}
 
     _Satellite body-fixed coordinate system (from the RTKLIB Manual)[^RTKLIBManual]_
     {: style="text-align: center;"}

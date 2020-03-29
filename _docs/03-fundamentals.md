@@ -36,13 +36,13 @@ An analysis of such process networks scheduling was provided in Parks' PhD Thesi
 
 An extremely simple flow graph would look like this:
 
-<span class="invert-colors">![A simple flow graph]({{ "/assets/images/simple-flowgraph.png" | relative_url }}){:width="400x"}</span>{: .align-center}
+![A simple flow graph]({{ "/assets/images/simple-flowgraph.png" | relative_url }}){:width="400px"}{: .align-center .invert-colors}
 _Example of a very simple flow graph._
 {: style="text-align: center;"}
 
 and another more complex example that already should be familiar to you could be as:
 
-<span class="invert-colors">![A typical GNSS-SDR flow graph]({{ "/assets/images/simple-gnss-sdr-flowgraph.png" | relative_url }}){:width="600x"}</span>{: .align-center}
+![A typical GNSS-SDR flow graph]({{ "/assets/images/simple-gnss-sdr-flowgraph.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _Typical GNSS-SDR flow graph._
 {: style="text-align: center;"}
 
@@ -55,7 +55,7 @@ An actual implementation of these concepts is found in [GNU Radio](https://www.g
 
 The diagram of a processing block (that is, of a given node in the flow graph), as implemented by the GNU Radio framework, is shown below:
 
-<span class="invert-colors">![GNU Radio block]({{ "/assets/images/gnuradio-block.png" | relative_url }})</span>{: .align-center}
+![GNU Radio block]({{ "/assets/images/gnuradio-block.png" | relative_url }}){: .align-center .invert-colors}
 _Diagram of a signal processing block, as implemented by GNU Radio. Each block has a completely independent scheduler running in its own execution thread and an asynchronous messaging system for communication with other upstream and downstream blocks. The actual signal processing is performed in the ```work()``` method. Figure adapted from [these Johnathan Corgan's slides](https://static1.squarespace.com/static/543ae9afe4b0c3b808d72acd/t/55de1259e4b01e5c160764cf/1440617049937/5.+corgan_johnathan-scheduler+2015-08-25.pdf)._
 {: style="text-align: center;"}
 
@@ -87,14 +87,14 @@ The notation is as follows: we use a very simplified version of the Unified Mode
 
 A dashed arrow from ```ClassA``` to ```ClassB``` represents the dependency relationship. This relationship simply means that ```ClassA``` somehow depends upon ```ClassB```. In C++ this almost always results in an ```#include```.
 
-<span class="invert-colors">![Class dependency]({{ "/assets/images/dependency.png" | relative_url }}){:height="300px" width="300x"}</span>{: .align-center}
+![Class dependency]({{ "/assets/images/dependency.png" | relative_url }}){:height="300px" width="300px"}{: .align-center .invert-colors}
 _```ClassA``` depends on ```ClassB```._
 {: style="text-align: center;"}
 
 
 Inheritance models _is a_ and _is like_ relationships, enabling you to reuse existing data and code easily. When ```ClassB``` inherits from ```ClassA```, we say that ```ClassB``` is the subclass of ```ClassA```, and ```ClassA``` is the superclass (or parent class) of ```ClassB```. The UML modeling notation for inheritance is a line with a closed arrowhead pointing from the subclass to the superclass.
 
-<span class="invert-colors">![Class inheritance]({{ "/assets/images/inheritance.png" | relative_url }}){:width="150x"}</span>{: .align-center}
+![Class inheritance]({{ "/assets/images/inheritance.png" | relative_url }}){:width="150px"}{: .align-center .invert-colors}
 _```ClassA``` inherits from ```ClassB```._
 {: style="text-align: center;"}
 
@@ -102,14 +102,14 @@ _```ClassA``` inherits from ```ClassB```._
 
 A key aspect of an object-oriented software design is how classes relate to each other. In the GNU Radio framework, [```gr::basic_block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/basic_block.h) is the abstract base class for all signal processing blocks, a bare abstraction of an entity that has a name and a set of inputs and outputs. It is never instantiated directly; rather, this is the abstract parent class of both [```gr::hier_block2```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/hier_block2.h), which is a recursive container that adds or removes processing or hierarchical blocks to the internal graph,  and [```gr::block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h), which is the abstract base class for all the processing blocks. A signal processing flow is constructed by creating a tree of hierarchical blocks, which at any level may also contain terminal nodes that actually implement signal processing functions:
 
-![Class hierarchy overview]({{ "/assets/images/class-hierarchy-sp.png" | relative_url }}){:width="500x"}{: .align-center}
+![Class hierarchy overview]({{ "/assets/images/class-hierarchy-sp.png" | relative_url }}){:width="500px"}{: .align-center}
 _GNU Radio's class hierarchy._
 {: style="text-align: center;"}
 
 
 Class [```gr::top_block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/top_block.h) is the top-level hierarchical block representing a flow graph. It defines GNU Radio runtime functions used during the execution of the program: ```run()```, ```start()```, ```stop()```, ```wait()```, etc. As shown in the figure below, a subclass called [```GNSSBlockInterface```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/gnss_block_interface.h) is the common interface for all the GNSS-SDR modules. It defines pure **virtual** methods, that are required to be implemented by a derived class:
 
-![Block interface]({{ "/assets/images/block-interface.png" | relative_url }}){:width="500x"}{: .align-center}
+![Block interface]({{ "/assets/images/block-interface.png" | relative_url }}){:width="500px"}{: .align-center}
 _```GNSSBlockInterface``` inherits from ```gr::top_block```._
 {: style="text-align: center;"}
 

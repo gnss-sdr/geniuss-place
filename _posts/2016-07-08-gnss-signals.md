@@ -97,7 +97,7 @@ termed non-standard $$ L1C_P $$ (NSCP) and non-standard $$ L1C_D $$ (NSCD).
 Non-standard codes are not for utilization by the users and, therefore,
 are not defined in IS-GPS-800D.
 
-<span class="invert-colors">![Spectra GPS Signals L1]({{ "/assets/images/Spectra_GPS_Signals_L1.png" | relative_url }})</span>
+![Spectra GPS Signals L1]({{ "/assets/images/Spectra_GPS_Signals_L1.png" | relative_url }}){: .align-center .invert-colors}
 _GPS signals spectra in L1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -137,7 +137,7 @@ representation and nominally more accurate data than the NAV data. It is
 transmitted at $$ 25 $$ bit/s with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ symbols/s.
 
-<span class="invert-colors">![Spectra GPS Signals L2]({{ "/assets/images/Spectra_GPS_Signals_L2.png" | relative_url }})</span>
+![Spectra GPS Signals L2]({{ "/assets/images/Spectra_GPS_Signals_L2.png" | relative_url }}){: .align-center .invert-colors}
 _GPS signals spectra in L2. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -163,7 +163,7 @@ a $$ 10 $$–bit Neuman–Hoffman code that modulates each $$ 100 $$ symbols of 
 GPS L5 civil navigation data $$ D_{\text{CNAV}} $$, and the L5Q component
 has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
 
-<span class="invert-colors">![Spectra GPS Signals L5]({{ "/assets/images/Spectra_GPS_Signals_L5.png" | relative_url }})</span>
+![Spectra GPS Signals L5]({{ "/assets/images/Spectra_GPS_Signals_L5.png" | relative_url }}){: .align-center .invert-colors}
 _GPS signals spectra in L5. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -228,7 +228,7 @@ the Russian Federation Defense Ministry, and no more details have been
 disclosed.
 
 
-<span class="invert-colors">![Spectra GLONASS Signals L1]({{ "/assets/images/Spectra_GLONASS_Signals_L1.png" | relative_url }})</span>
+![Spectra GLONASS Signals L1]({{ "/assets/images/Spectra_GLONASS_Signals_L1.png" | relative_url }})<{: .align-center .invert-colors}
 _GLONASS signals spectra in L1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -249,7 +249,7 @@ Beginning with the second generation of satellites, called GLONASS–M and
 first launched in 2001, a second civil signal is available using the
 same SP code than the one in the L1 band but centered at $$ 1246 $$ MHz.
 
-<span class="invert-colors">![Spectra GLONASS Signals L2]({{ "/assets/images/Spectra_GLONASS_Signals_L2.png" | relative_url }})</span>
+![Spectra GLONASS Signals L2]({{ "/assets/images/Spectra_GLONASS_Signals_L2.png" | relative_url }}){: .align-center .invert-colors}
 _GLONASS signals spectra in L2. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -323,7 +323,7 @@ cosine–shaped subcarrier, $$ f_{sc,E1A}=15.345 $$ MHz, and
 $$ T_{c,E1A}=\frac{1}{2.5575} $$ $$ \mu $$s. The PRS spreading codes and the
 structure of the navigation message have not been made public.
 
-<span class="invert-colors">![Spectra of Galileo signals in E1.]({{ "/assets/images/Spectra_Galileo_Signals_E1.png" | relative_url }})</span>
+![Spectra of Galileo signals in E1.]({{ "/assets/images/Spectra_Galileo_Signals_E1.png" | relative_url }}){: .align-center .invert-colors}
 _Galileo signals spectra in E1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -355,7 +355,7 @@ $$ f_{sc,E6A}=10.23 $$ MHz, and $$ T_{c, E6A}=\frac{1}{5.115} $$ $$ \mu $$s. The
 spreading codes and the structure of the navigation message are not
 publicly available.
 
-<span class="invert-colors">![Spectra of Galileo signals in E6.]({{ "/assets/images/Spectra_Galileo_Signals_E6.png" | relative_url }})</span>
+![Spectra of Galileo signals in E6.]({{ "/assets/images/Spectra_Galileo_Signals_E6.png" | relative_url }}){: .align-center .invert-colors}
 _Galileo signals spectra in E6. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -446,7 +446,7 @@ MHz, while $$ e_{E5b}(t) $$ is shifted to
 $$ f_{Gal E5b}\doteq f_{\text{Gal E5}}+f_{sc,E5}=1207.140 $$
 MHz.
 
-<span class="invert-colors">![Single and product side-band spectra in E5.]({{ "/assets/images/subcarriers-e5.png" | relative_url }})</span>
+![Single and product side-band spectra in E5.]({{ "/assets/images/subcarriers-e5.png" | relative_url }}){: .align-center .invert-colors}
 _Power spectrum of single and product side-band subcarriers signals for $$ s^{\text{(Gal E5)}}_{T}(t) $$, normalized to the power of $$ ssc^{*}_s(t) $$ at $$ f_{\text{Gal E5a}} $$. The modified AltBOC modulation can be well approximated by two QPSK signals $$ 2 f_{sc,E5} $$ apart, with negligible contribution of the crossed terms around its center frequency._[^Fernandez11]
 {: style="text-align: center;"}
 
@@ -463,7 +463,7 @@ The same applies to $$ e_{E5b}(t) $$, allowing an independent reception of
 two QPSK signals and thus requiring considerably less bandwidth than the
 processing of the whole E5 band.
 
-<span class="invert-colors">![Spectra of Galileo signals in E5.]({{ "/assets/images/Spectra_Galileo_Signals_E5.png" | relative_url }})</span>
+![Spectra of Galileo signals in E5.]({{ "/assets/images/Spectra_Galileo_Signals_E5.png" | relative_url }}){: .align-center .invert-colors}
 _Galileo signals spectra in E5. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -506,7 +506,7 @@ document that included details of the navigation message, including
 parameters of the satellite almanacs and ephemerides that were missing
 from a “test version” of the ICD released exactly one year before. One year later version 2.0 was released, version 2.1 followed in November 2016[^Beidou] and version 3.0 in February 2019[^BeidouB1I]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C], B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open services deployed in the BSD-3 phase of the system development.
 
-![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250x"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
+![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250px"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
 official logo of the BeiDou system, the design of which incorporates the
 yin/yang symbol reflecting traditional Chinese culture, dark and light
 blue coloration symbolizing, respectively, space and Earth (including

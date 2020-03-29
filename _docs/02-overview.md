@@ -10,8 +10,7 @@ redirect_from:
   - /project
 ---
 
-<span class="invert-colors">![What is GNSS-SDR]({{ "/assets/images/what-is-gnss-sdr.png" | relative_url }})</span>
-{: style="text-align: center;"}
+![What is GNSS-SDR]({{ "/assets/images/what-is-gnss-sdr.png" | relative_url }}){: .align-center .invert-colors}
 
 GNSS-SDR is an open source project that implements a global navigation satellite system software defined receiver in C++. With GNSS-SDR, users can build a GNSS software receiver by creating a graph where the nodes are signal processing blocks and the lines represent the data flow between them. The software provides an interface to different suitable RF front-ends and implements all the receiver’s chain up to the navigation solution. Its design allows any kind of customization, including interchangeability of signal sources, signal processing algorithms, interoperability with other systems, output formats, and offers interfaces to all the intermediate signals, parameters and variables.
 
@@ -27,8 +26,7 @@ The goal is to provide efficient and truly reusable code, easy to read and maint
 The proposed software receiver runs in a common personal computer and provides interfaces through USB and Ethernet buses to a variety of either commercially available or custom-made RF front-ends, adapting the processing algorithms to different sampling frequencies, intermediate frequencies and sample resolutions. It also can process raw data samples stored in a file. The software performs signal acquisition and tracking of the available satellite signals, decodes the navigation message and computes the observables needed by positioning algorithms, which ultimately compute the navigation solution. It is designed to facilitate the inclusion of new signal processing techniques, offering an easy way to measure their impact in the overall receiver performance. Testing of all the processes is conducted both by the systematic functional validation of every single software block and by experimental validation of the complete receiver using both real and synthetic signals. The processing output can be stored in Receiver Independent Exchange Format ([RINEX](https://en.wikipedia.org/wiki/RINEX)), used by most geodetic processing software for GNSS, or transmitted as RTCM 3.2 messages through a TCP/IP server in real-time. Navigation results are stored in [KML](https://www.opengeospatial.org/standards/kml) and [GeoJSON](https://geojson.org/) formats.
 
 
-<span class="invert-colors">![](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/docs/doxygen/images/GeneralBlockDiagram.png)</span>
-{: style="text-align: center; width: 800px;"}
+![Block diagram](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/docs/doxygen/images/GeneralBlockDiagram.png){:width="800px"}{: .align-center .invert-colors}
 
 
 A GNSS software receiver is a complex system, which description needs to be addressed at different abstraction layers. Hereafter, we describe the software architecture implemented in GNSS-SDR, which is based on [GNU Radio](https://www.gnuradio.org), a well-established framework that provides the signal processing runtime and processing blocks to implement software radio applications.
