@@ -228,7 +228,7 @@ the Russian Federation Defense Ministry, and no more details have been
 disclosed.
 
 
-![Spectra GLONASS Signals L1]({{ "/assets/images/Spectra_GLONASS_Signals_L1.png" | relative_url }})<{: .align-center .invert-colors}
+![Spectra GLONASS Signals L1]({{ "/assets/images/Spectra_GLONASS_Signals_L1.png" | relative_url }}){: .align-center .invert-colors}
 _GLONASS signals spectra in L1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
