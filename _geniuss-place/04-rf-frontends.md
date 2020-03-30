@@ -12,7 +12,7 @@ sidebar:
 
 In spite of its name, software defined radio applications still need a portion of hardware. Although GNSS-SDR is free and open source software and it can be used on its own as a simulation and development environment without the need of any hardware (it can work with raw signal samples stored in files), practical systems require physical components such as antennas and radio frequency front-ends that are not implementable by software. It is what could be called the _air-to-computer interface_, that is, the physical device that translates the radiowaves broadcast by GNSS satellites and received by a suitable antenna at a given location and time into a sequence of 0s and 1s tractable by a computer program.
 
-![Front-end]({{ "/assets/images/frontend.png" | relative_url }}){: .align-center}
+![Front-end]({{ "/assets/images/frontend.png" | relative_url }}){: .align-center .invert-colors}
 
   _Simplified diagram of a radio frequency front-end delivering raw signal samples through a serial communication bus._
   {: style="text-align: center;"}

@@ -17,7 +17,7 @@ The name is not a bragging display of creativity:
 
  * GNSS: **G**lobal **N**avigation **S**atellite **S**ystems. The acronym that encompasses those systems that allow users to compute their position based on signals transmitted by satellites, world-wide. The obvious example is [GPS](https://www.gps.gov/), but this term also includes other systems such as [GLONASS](https://www.glonass-iac.ru/en/), [Galileo](https://ec.europa.eu/growth/sectors/space/galileo/) and [BeiDou](http://en.beidou.gov.cn/).
 
- * SDR: **S**oftware **D**efined **R**eceiver. We play a little trick here, since SDR is usually an acronym that stands for Software Defined _Radio_. In both cases, it refers to systems in which components that have been typically implemented in hardware (e.g. mixers, filters, demodulators, detectors, etc.) are instead implemented by means of software executing on a personal computer or embedded system.
+ * SDR: **S**oftware **D**efined **R**eceiver. We play a little trick here, since SDR is usually an acronym that stands for Software Defined _Radio_. In both cases, it refers to systems in which components that have been typically implemented in hardware (*e.g.*, mixers, filters, demodulators, detectors, etc.) are instead implemented by means of software executing on a personal computer or embedded system.
 
 ![What is GNSS-SDR]({{ "/assets/images/what-is-gnss-sdr.png" | relative_url }}){: .align-center .invert-colors}
 {: style="text-align: center;"}
