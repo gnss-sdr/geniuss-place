@@ -102,14 +102,14 @@ _```ClassA``` inherits from ```ClassB```._
 
 A key aspect of an object-oriented software design is how classes relate to each other. In the GNU Radio framework, [```gr::basic_block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/basic_block.h) is the abstract base class for all signal processing blocks, a bare abstraction of an entity that has a name and a set of inputs and outputs. It is never instantiated directly; rather, this is the abstract parent class of both [```gr::hier_block2```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/hier_block2.h), which is a recursive container that adds or removes processing or hierarchical blocks to the internal graph,  and [```gr::block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h), which is the abstract base class for all the processing blocks. A signal processing flow is constructed by creating a tree of hierarchical blocks, which at any level may also contain terminal nodes that actually implement signal processing functions:
 
-![Class hierarchy overview]({{ "/assets/images/class-hierarchy-sp.png" | relative_url }}){:width="500px"}{: .align-center}
+![Class hierarchy overview]({{ "/assets/images/class-hierarchy-sp.png" | relative_url }}){:width="500px"}{: .align-center .invert-colors}
 _GNU Radio's class hierarchy._
 {: style="text-align: center;"}
 
 
 Class [```gr::top_block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/top_block.h) is the top-level hierarchical block representing a flow graph. It defines GNU Radio runtime functions used during the execution of the program: ```run()```, ```start()```, ```stop()```, ```wait()```, etc. As shown in the figure below, a subclass called [```GNSSBlockInterface```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/gnss_block_interface.h) is the common interface for all the GNSS-SDR modules. It defines pure **virtual** methods, that are required to be implemented by a derived class:
 
-![Block interface]({{ "/assets/images/block-interface.png" | relative_url }}){:width="500px"}{: .align-center}
+![Block interface]({{ "/assets/images/block-interface.png" | relative_url }}){:width="500px"}{: .align-center .invert-colors}
 _```GNSSBlockInterface``` inherits from ```gr::top_block```._
 {: style="text-align: center;"}
 
@@ -119,7 +119,7 @@ _```GNSSBlockInterface``` inherits from ```gr::top_block```._
 Subclassing [```GNSSBlockInterface```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/gnss_block_interface.h), we defined interfaces for the receiver's processing blocks. This hierarchy, shown in the figure below, provides a way to define an arbitrary number of algorithms and implementations for each processing block, which will be instantiated according to the configuration. This strategy defines multiple implementations sharing a common interface, achieving the objective of decoupling interfaces from implementations: it defines a family of algorithms, encapsulates each one, and makes them interchangeable. Hence, we let the algorithm vary independently of the program that uses it.
 
 
-![Block hierarchy]({{ "/assets/images/block-hierarchy.png" | relative_url }}){: .align-center}
+![Block hierarchy]({{ "/assets/images/block-hierarchy.png" | relative_url }}){: .align-center .invert-colors}
 _Class hierarchy for the Signal Processing Plane._
 {: style="text-align: center;"}
 
@@ -136,7 +136,7 @@ This design pattern allows for an infinite number of algorithms and implementati
 
 The following figure summarizes the general class hierarchy for GNSS-SDR and its relation to the GNU Radio framework:
 
-![Class hierarchy overview]({{ "/assets/images/class-hierarchy-general.png" | relative_url }}){: .align-center}
+![Class hierarchy overview]({{ "/assets/images/class-hierarchy-general.png" | relative_url }}){: .align-center .invert-colors}
 _Overview of class hierarchy in GNSS-SDR and its relation to GNU Radio._
 {: style="text-align: center;"}
 

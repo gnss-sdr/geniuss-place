@@ -10,15 +10,15 @@ last_modified_at: 2019-04-12T12:54:02-04:00
 ---
 
 {% capture fig_img2 %}
-  ![Front-end]({{ "/assets/images/frontend.png" | relative_url }}){: .invert-colors}
+  ![Front-end]({{ "/assets/images/frontend.png" | relative_url }}){: .align-center .invert-colors}
 {% endcapture %}
 
 {% capture fig_img3 %}
-  ![Multichannel]({{ "/assets/images/multichannel.png" | relative_url }})
+  ![Multichannel]({{ "/assets/images/multichannel.png" | relative_url }}){: .align-center .invert-colors}
 {% endcapture %}
 
 {% capture fig_img4 %}
-  ![Multiple sources]({{ "/assets/images/multisource.png" | relative_url }})
+  ![Multiple sources]({{ "/assets/images/multisource.png" | relative_url }}){: .align-center .invert-colors}
 {% endcapture %}
 
 {% capture fig_img5 %}
@@ -355,7 +355,7 @@ SignalSource.adc_bits=4
 
 ### Implementation: `Labsat_Signal_Source`
 
-[![LabSat3]({{ "/assets/images/labsat3.jpg" | relative_url }}){:width="250px"}{: .align-right}](https://www.labsat.co.uk/index.php/en/products/labsat-3)
+[![LabSat3]({{ "/assets/images/labsat3.png" | relative_url }}){:width="250px"}{: .align-right}](https://www.labsat.co.uk/index.php/en/products/labsat-3)
 
 [LabSat](https://www.labsat.co.uk/index.php/en/) is an affordable, portable, and versatile multi-constellation Global Navigation Satellite Simulator.
 
