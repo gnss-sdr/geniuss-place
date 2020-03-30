@@ -29,7 +29,7 @@ The Monitor block implements this mechanism using the binary serialization forma
 The following diagram can help us to better understand how this block works.
 
 {% capture fig_img1 %}
-![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_monitoring_block_diagram.png" | relative_url }})
+![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_monitoring_block_diagram.png" | relative_url }}){: .align-center .invert-colors}
 {% endcapture %}
 
 <figure>
@@ -564,7 +564,7 @@ If you see something similar to this... Yay! You are successfully monitoring the
 {: .notice--success}
 
 {% capture fig_img2 %}
-![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_and_monitoring-client.png" | relative_url }})
+![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_and_monitoring-client.png" | relative_url }}){: .align-center .invert-colors}
 {% endcapture %}
 
 <figure>
