@@ -222,7 +222,7 @@
 
   .invert-colors {
       @media (prefers-color-scheme: dark) {
-          filter: invert(0%);
+          filter: hue-rotate(0deg) invert(0%);
       }
   }
 
