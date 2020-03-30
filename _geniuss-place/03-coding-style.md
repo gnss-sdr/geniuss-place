@@ -771,7 +771,7 @@ is being performed.
 
 ### The C library should not be used.
 
-Some C++ libraries (e.g. `<cstdio>`) also have corresponding C versions (e.g. `<stdio.h>`). This rule requires that the C++ version is used.
+Some C++ libraries (*e.g.*, `<cstdio>`) also have corresponding C versions (*e.g.*, `<stdio.h>`). This rule requires that the C++ version is used.
 
 ### The library functions `atof`, `atoi` and `atol` from library `<cstdlib>` should not be used.
 
@@ -1157,7 +1157,7 @@ file looks drastically different from the existing code around it, the
 discontinuity throws readers out of their rhythm when they go to read
 it. Try to avoid this.
 
-![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | relative_url }} "GeNiuSS is a stylish character. Be like GeNiuSS.")
+![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | relative_url }} "GeNiuSS is a stylish character. Be like GeNiuSS."){: .align-center}
 
 -------
 

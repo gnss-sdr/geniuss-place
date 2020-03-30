@@ -31,8 +31,8 @@ This release has several improvements, addition of new features and bug fixes in
 
 ## Improvements in [Efficiency]({{ "/design-forces/efficiency/" | relative_url }}):
 
- * VOLK_GNSSSDR: Added NEON, AVX and unaligned protokernels for ```volk_gnsssdr_32f_index_max_32``` kernel.
- * VOLK_GNSSSDR: Added ```volk_gnsssdr-config-info``` to the list of generated executables.
+ * VOLK_GNSSSDR: Added NEON, AVX and unaligned protokernels for `volk_gnsssdr_32f_index_max_32` kernel.
+ * VOLK_GNSSSDR: Added `volk_gnsssdr-config-info` to the list of generated executables.
 
 
 ## Improvements in [Flexibility]({{ "/design-forces/flexibility/" | relative_url }}):
@@ -43,7 +43,7 @@ This release has several improvements, addition of new features and bug fixes in
 ## Improvements in [Interoperability]({{ "/design-forces/interoperability/" | relative_url }}):
 
  * Added six new Galileo satellites:  FM7, FM10, FM11, FM12, FM13, FM14.
- * The ```Hybrid_Observables``` and ```Hybrid_PVT``` implementations can now handle more types of GNSS signals.
+ * The `Hybrid_Observables` and `Hybrid_PVT` implementations can now handle more types of GNSS signals.
  * The RINEX printer can now print L2C and E5a observables and navigation files, including multiband configurations.
  * Added RTCM 3.2 output to more receiver configurations.
 
@@ -56,7 +56,7 @@ This release has several improvements, addition of new features and bug fixes in
  * Added CMake Python finder and module checker.
  * Deleted files related to CPack.
  * Fixes, updates and improvements in the documentation.
- * Improvements in CMake scripts: General code cleaning and addition of comments. Improved user information in case of failure. Improved detection of dependencies in more processor architectures (e.g. aarch64).
+ * Improvements in CMake scripts: General code cleaning and addition of comments. Improved user information in case of failure. Improved detection of dependencies in more processor architectures (*e.g.*, aarch64).
 
 
 ## Improvements in [Marketability]({{ "/design-forces/marketability/" | relative_url }}):
@@ -78,18 +78,18 @@ This release has several improvements, addition of new features and bug fixes in
 
 ## Improvements in [Testability]({{ "/design-forces/testability/" | relative_url }}):
 
- * Major QA source code refactoring: they have been split into ```src/tests/unit-tests``` and  src/tests/system-tests folders. They are optionally built with the ```ENABLE_UNIT_TESTING=ON``` (unit testing QA code), ```ENABLE_UNIT_TESTING_EXTRA=ON``` (unit tests that require extra files downloaded at configure time), ```ENABLE_SYSTEM_TESTING=ON``` (system tests, such as measurement of Time-To-First-Fix) and ```ENABLE_SYSTEM_TESTING_EXTRA=ON``` (extra system test requiring external tools, automatically  downloaded and built at building time) configuration flags. The ```EXTRA``` options also download and build a custom software-defined signal generator and version 2.9 of [GPSTk](https://github.com/SGL-UT/GPSTk/), if not already found on the system. Download and local link of version 2.9 can be forced by ```ENABLE_OWN_GPSTK=ON``` building configuration flag. Only ```ENABLE_UNIT_TESTING``` is set to ON by default.
- * Unit tests added: ```CPU_multicorrelator_test``` and ```GPU_multicorrelator_test``` measure computer performance in multicorrelator setups.
- * Extra unit tests added: ```GpsL1CADllPllTracking``` and ```GpsL1CATelemetryDecoderTest```.
- * System test added: ```ttff_gps_l1``` performs a set of cold / assisted runs of the software receiver and computes statistics about the obtained Time To First Fix.
- * Extra system test added: ```obs_gps_l1_system_test``` uses an external software-defined signal generator to produce raw digital GNSS signal from a RINEX navigation file and a position (static or dynamic), processes it with GNSS-SDR, and then compares the RINEX observation file produced by the software receiver to that produced by the signal generator.
+ * Major QA source code refactoring: they have been split into `src/tests/unit-tests` and  src/tests/system-tests folders. They are optionally built with the `ENABLE_UNIT_TESTING=ON` (unit testing QA code), `ENABLE_UNIT_TESTING_EXTRA=ON` (unit tests that require extra files downloaded at configure time), `ENABLE_SYSTEM_TESTING=ON` (system tests, such as measurement of Time-To-First-Fix) and `ENABLE_SYSTEM_TESTING_EXTRA=ON` (extra system test requiring external tools, automatically  downloaded and built at building time) configuration flags. The `EXTRA` options also download and build a custom software-defined signal generator and version 2.9 of [GPSTk](https://github.com/SGL-UT/GPSTk/), if not already found on the system. Download and local link of version 2.9 can be forced by `ENABLE_OWN_GPSTK=ON` building configuration flag. Only `ENABLE_UNIT_TESTING` is set to ON by default.
+ * Unit tests added: `CPU_multicorrelator_test` and `GPU_multicorrelator_test` measure computer performance in multicorrelator setups.
+ * Extra unit tests added: `GpsL1CADllPllTracking` and `GpsL1CATelemetryDecoderTest`.
+ * System test added: `ttff_gps_l1` performs a set of cold / assisted runs of the software receiver and computes statistics about the obtained Time To First Fix.
+ * Extra system test added: `obs_gps_l1_system_test` uses an external software-defined signal generator to produce raw digital GNSS signal from a RINEX navigation file and a position (static or dynamic), processes it with GNSS-SDR, and then compares the RINEX observation file produced by the software receiver to that produced by the signal generator.
  * Software Development Kit provided for embedded devices (see [https://gnss-sdr.org/docs/tutorials/cross-compiling/](https://gnss-sdr.org/docs/tutorials/cross-compiling/)).
 
 
 ## Improvements in [Usability]({{ "/design-forces/usability/" | relative_url }}):
 
- * Now the block factory automatically detects Channel input data type, so it is no longer required to specify ```Channel.input_type``` in the configuration. An error raises if Acquisition and Tracking Blocks are not configured with the same input data type.
- * Block names changed from ```L2_M``` to ```L2C```.
+ * Now the block factory automatically detects Channel input data type, so it is no longer required to specify `Channel.input_type` in the configuration. An error raises if Acquisition and Tracking Blocks are not configured with the same input data type.
+ * Block names changed from `L2_M` to `L2C`.
  * Documentation available at [https://gnss-sdr.org/docs/](https://gnss-sdr.org/docs/)
  * Improved tools for compilation, execution and testing in embedded devices.
 
