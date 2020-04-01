@@ -6,6 +6,7 @@ excerpt: "Documentation on GNSS-SDR Signal Processing Blocks: implementations an
 comments: false
 header:
   teaser: /assets/images/caf-th.png
+  invert-colors: true
 last_modified_at: 2019-01-28T14:54:02+01:00
 ---
 

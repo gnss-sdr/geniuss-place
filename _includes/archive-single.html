@@ -15,7 +15,11 @@
     {% if include.type == "grid" and teaser %}
       <div class="archive__item-teaser">
           <a href="{{ post.url | relative_url }}" rel="permalink">
-            <img src="{{ teaser | relative_url }}" alt="{{ title | strip }}">
+            {% if post.header.invert-colors %}
+              <img src="{{ teaser | relative_url }}" alt="{{ title | strip }}" class="invert-colors">
+            {% else %}
+              <img src="{{ teaser | relative_url }}" alt="{{ title | strip }}">
+            {% endif %}
           </a>
       </div>
     {% endif %}

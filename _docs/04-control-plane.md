@@ -4,6 +4,7 @@ permalink: /docs/control-plane/
 excerpt: "Configuring and managing a network of connected signal processing blocks from the signal source up to the position fix."
 header:
   teaser: /assets/images/multi-band-multi-system-flow-graph-th.png
+  invert-colors: true
 toc: true
 toc_sticky: true
 last_modified_at: 2016-04-13T15:54:02-04:00
