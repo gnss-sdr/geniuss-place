@@ -4,6 +4,7 @@ permalink: /docs/fundamentals/
 excerpt: "A description of GNSS-SDR software architecture and underlying key concepts."
 header:
   teaser: /assets/images/class-hierarchy-general-th.png
+  invert-colors: true
 toc: true
 toc_sticky: true
 last_modified_at: 2016-04-13T15:54:02-04:00

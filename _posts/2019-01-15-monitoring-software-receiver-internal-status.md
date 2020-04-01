@@ -5,6 +5,7 @@ excerpt: "This tutorial describes how to monitor the internal status of GNSS-SDR
 author_profile: false
 header:
   teaser: /assets/images/gnss-sdr_monitoring_teaser.png
+  invert-colors: true
 tags:
   - tutorial
 sidebar:
