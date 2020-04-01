@@ -380,7 +380,7 @@ select:focus {
   padding: 8px 20px;
   display: inline-block;
   font-size: $type-size-6;
-  @include color-assign(background-color, backgroud);
+  @include color-assign(background-color, background);
   @include color-assign(color, contrast);
   border-width: 2px !important;
   border-style: solid !important;

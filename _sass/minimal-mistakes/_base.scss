@@ -176,7 +176,7 @@ td > code {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   font-size: $type-size-6;
-  @include color-assign(backgroud, code-background);
+  @include color-assign(background, code-background);
   border-radius: $border-radius;
 
   &:before,
