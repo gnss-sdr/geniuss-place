@@ -177,7 +177,6 @@
   display: table-cell;
   vertical-align: middle;
   font-family: $sans-serif;
-  z-index: 10;
   position: relative;
   cursor: pointer;
 
@@ -234,6 +233,7 @@
 
   &.is--visible {
     display: block;
+    z-index: 30;
   }
 
   @include breakpoint($large) {
