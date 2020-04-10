@@ -8,7 +8,7 @@ table {
   font-family: $global-font-family;
   font-size: $type-size-6;
   border-collapse: collapse;
-  @include color-assign(border, mix-border-25, '1px solid here');
+  @include color-assign(border, mix-border-table-25, '1px solid here');
 
   & + table {
     margin-top: 1em;
