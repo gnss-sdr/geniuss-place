@@ -522,6 +522,22 @@
   // Scrollspy marks toc items as .active when they are in focus
   .active a {
     @include yiq-contrasted($active-color);
+    @media (prefers-color-scheme: dark) {
+      background: $lighter-gray;
+      color: $darker-gray;
+    }
+    code {
+      @media (prefers-color-scheme: dark) {
+        background: $lighter-gray;
+        color: $darker-gray;
+      }
+    }
+    &:hover {
+      @media (prefers-color-scheme: dark) {
+        background: $lighter-gray;
+        color: #000;
+      }
+    }
   }
 }
 
