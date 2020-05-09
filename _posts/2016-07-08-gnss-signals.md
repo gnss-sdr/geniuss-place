@@ -11,7 +11,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-09-28T09:37:02+02:00
+last_modified_at: 2020-05-09T09:37:02+02:00
 ---
 
 
@@ -50,10 +50,9 @@ operated by the United States Air Force (USAF). GPS provides positioning
 and timing services to military and civilian users on a continuous,
 worldwide basis. Two GPS services are provided:
 
--   the Precise Positioning Service (PPS), available primarily to the
-    military of the United States and its allies, and
+-   the Precise Positioning Service (PPS)[^GPS-PPS], available primarily to the military of the United States and its allies, and
 
--   the Standard Positioning Service (SPS) open to civilian users.
+-   the Standard Positioning Service (SPS)[^GPS-SPS], open to civilian users.
 
 The most updated and authorized source is the [Official U.S. Government website about GPS and related topics](https://www.gps.gov/).
 
@@ -283,8 +282,9 @@ revolution period of $$ 14 $$ hours. The Control segment full infrastructure
 will be composed of $$ 30-40 $$ sensor stations, $$ 3 $$ control centers, $$ 9 $$
 Mission Uplink stations, and $$ 5 $$ TT&C stations. The current constellation status can be checked at the [European GNSS Service Centre website](https://www.gsc-europa.eu/system-status/Constellation-Information).
 
-Galileo’s Open Service is defined in Galileo's ICD[^GalileoICD], where the following
-signal structures are specified:
+Galileo's Open Service is defined in the Service Definition Document (SDD)[^GalileoSSD],
+and the corresponding signal structures are defined in the Interface Control Document (ICD)[^GalileoICD].
+In this latter document, the following signal structures are specified:
 
 ### Galileo E1
 
@@ -692,6 +692,10 @@ The following table lists the GNSS signals providing Open Service.
 
 [^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](https://ieeexplore.ieee.org/document/5942139/), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](https://dx.doi.org/10.1109/JPROC.2011.2158032).
 
+[^GPS-SPS]: U.S. Government, Department of Defense, [Global Positioning System Standard Positioning Service Performance Standard](https://www.gps.gov/technical/ps/2020-SPS-performance-standard.pdf), 5th edition, April 2020.
+
+[^GPS-PPS]: U.S. Government, Department of Defense, Positioning, Navigation, and Timing Executive Committee, [Global Positioning System Precise Positioning Service Performance Standard](https://www.gps.gov/technical/ps/2007-PPS-performance-standard.pdf), 1st edition, Feb. 2007.
+
 [^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200K: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200K.pdf), March 2019.
 
 [^ISGPS800]: Global Positioning System Directorate, [Interface Specification IS-GPS-800F: Navstar GPS Space Segment/User Segment L1C Interface](https://www.gps.gov/technical/icwg/IS-GPS-800F.pdf), March 2019.
@@ -707,6 +711,8 @@ The following table lists the GNSS signals providing Open Service.
 [^GLONASS16-2]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L2 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
 [^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
+
+[^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.1.pdf), Issue 1.1, May 2019.
 
 [^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf), Issue 1.3, Dec. 2016.
 
