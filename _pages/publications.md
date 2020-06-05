@@ -22,7 +22,7 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
     <li ><p>
     R.&nbsp;M.&nbsp;Watson, J.&nbsp;N.&nbsp;Gross, C.&nbsp;N.&nbsp;Taylor and R.&nbsp;C.&nbsp;Leishman
     <br><b>Robust Incremental State Estimation Through Covariance Adaptation</b><br>
-<i>IEEE Robotics and Automation Letters</i>, Vol. 5, No. 2, pp. 3737-3744, Apr. 2020.
+<i>IEEE Robotics and Automation Letters</i>, Vol. 5, No. 2, pp. 3737-3744, Apr.&nbsp;2020.
     <br />
     <a href="javascript:toggleBibtex('Watson20')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9028253/" >Online </a><span style="color: #52adc8">]</span>
@@ -99,6 +99,34 @@ note    = { {doi}: 10.1007/s10291-019-0865-8}
     </div>
     </li>
 </ul>
+
+<ul class="biblist">
+    <!-- Item: Schmidt18 -->
+    <li ><p>
+    E.&nbsp;Schmidt, D.&nbsp;Akopian and D.&nbsp;J.&nbsp;Pack
+    <br><b>Development of a Real-Time Software-Defined GPS Receiver in a LabVIEW-Based Instrumentation Environment</b><br>
+<i>IEEE Transactions on Instrumentation and Measurement</i>, Vol. 67, No. 9, pp.&nbsp;2082-2096, Sep. 2018.
+    <br />
+    <a href="javascript:toggleBibtex('Schmidt18')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8319903/" >Online </a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/TIM.2018.2811446" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Schmidt18" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Schmidt18,
+author  = {E.~Schmidt, D.~Akopian and D.~J.~Pack},
+title   = {Development of a Real-Time Software-Defined {GPS} Receiver in a {L}ab{VIEW}-Based Instrumentation Environment},
+journal = {IEEE Transactions on Instrumentation and Measurement},
+year    = {2018},
+month   = {Sep.},
+volume  = {67},
+number  = {9},
+pages   = {2082--2096},
+note    = { {doi}: 10.1109/TIM.2018.2811446}
+}</pre>
+    </div>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: Fernandez18 -->
@@ -214,7 +242,7 @@ note    = { {doi}: 10.1109/JPROC.2016.2532963}
     <li ><p>
     J.&nbsp;Arribas, C.&nbsp;Fern&aacute;ndez-Prades and P.&nbsp;Closas
     <br><b>Multi-antenna Techniques for Interference Mitigation in GNSS Signal Acquisition</b><br>
-<i>EURASIP Journal on Advances in Signal Processing</i>, Vol. 2013, No. 143, Sep. 2013.
+<i>EURASIP Journal on Advances in Signal Processing</i>, Vol. 2013, No. 143, Sep.&nbsp;2013.
     <br />
     <a href="javascript:toggleBibtex('Arribas13')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://asp-eurasipjournals.springeropen.com/articles/10.1186/1687-6180-2013-143" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
@@ -242,7 +270,7 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 <ul class="biblist">
     <!-- Item: Vega20 -->
     <li ><p>
-    J.&nbsp;G.&nbsp;Vega&nbsp;Lea&ntilde;ez, J.&nbsp;I.&nbsp;Barber&iacute;a, S.&nbsp;Rodr&iacute;guez, J.&nbsp;G.&nbsp;D&iacute;az, R.&nbsp;L&oacute;pez&nbsp;La&nbsp;Valle, J.&nbsp;G.&nbsp;Garc&oacute;a and C.&nbsp;H.&nbsp;Muravchik
+    J.&nbsp;G.&nbsp;Vega&nbsp;Lea&ntilde;ez, J.&nbsp;I.&nbsp;Barber&iacute;a, S.&nbsp;Rodr&iacute;guez, J.&nbsp;G.&nbsp;D&iacute;az, R.&nbsp;L&oacute;pez&nbsp;La&nbsp;Valle, J.&nbsp;G.&nbsp;Garc&iacute;a and C.&nbsp;H.&nbsp;Muravchik
     <br><b>High-Speed Data Acquisition System for GNSS Applications</b><br>
 <i>Proceedings of the Argentine Conference on Electronics (CAE)</i>,
 Buenos Aires, Argentina, Feb. 2020, pp. 14-19.
@@ -252,7 +280,7 @@ Buenos Aires, Argentina, Feb. 2020, pp. 14-19.
     </p>
     <div id="bib_Vega20" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Vega20,
-author  = {J.~G.~{Vega~Lea{\~{n}}ez} and J.~I.~Barber\'{i}a and S.~Rodr\'{i}guez and J.~G.~D\'{i}az and R.~{L\'{o}pez~La~Valle} and J.~G.~Garc\'{o}a and C.~H.~Muravchik},
+author  = {J.~G.~{Vega~Lea{\~{n}}ez} and J.~I.~Barber\'{i}a and S.~Rodr\'{i}guez and J.~G.~D\'{i}az and R.~{L\'{o}pez~La~Valle} and J.~G.~Garc\'{i}a and C.~H.~Muravchik},
 title   = {High-Speed Data Acquisition System for {GNSS} Applications},
 booktitle = {Proc. Argentine Conference on Electronics},
 year    = {2020},
