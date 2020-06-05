@@ -25,7 +25,7 @@
       /* calculate height of nav list
          viewport height - nav height - masthead x-padding
       */
-      height: calc(100vh - #{$nav-height} - 2em);
+      max-height: calc(100vh - #{$nav-height} - 2em);
     }
   }
 
@@ -191,7 +191,7 @@
       padding-left: 5px;
     }
   }
-  
+
   @include breakpoint($large) {
     display: block;
   }

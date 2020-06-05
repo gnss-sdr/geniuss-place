@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2019-02-22T13:20:02+02:00
+last_modified_at: 2020-06-05T13:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -284,9 +284,9 @@ public:
     TYPE4 member_function1(TYPE1 param1, TYPE2 param2, TYPE3 &param3);
 
 private:
-    bool setup_done;  //!< Checks if the class is properly initialized
-    TYPE1 private_variable1; //!< Short description of private_variable1 here
-    TYPE2 private_variable2; //!< Short description of private_variable2 here
+    bool setup_done;         // Checks if the class is properly initialized
+    TYPE1 private_variable1; // Short description of private_variable1 here
+    TYPE2 private_variable2; // Short description of private_variable2 here
 };
 ```
 
@@ -378,7 +378,7 @@ dependencies is to include it first in the corresponding source file.
 Example:
 
 ```cpp
-/* foobar.cc */
+// foobar.cc
 #include "foobar.h"
 #include <cmath>
 ...
@@ -416,7 +416,7 @@ The Main Module Header file applies to `.cc` files which implement an interface 
 Example:
 
 ```cpp
-/* foobar.cc */
+// foobar.cc
 #include "foobar.h"
 #include "GPS_L1_CA.h"
 #include <gnuradio/io_signature.h>
@@ -487,9 +487,10 @@ Please use the following template at the header of all files:
  *
  * Detailed description of the file here if needed.
  *
+ *
  * -----------------------------------------------------------------------
  *
- * Copyright (C) 2010-2019  (see AUTHORS file for a list of contributors)
+ * Copyright (C) 2010-2020  (see AUTHORS file for a list of contributors)
  *
  * GNSS-SDR is a software defined Global Navigation
  *      Satellite Systems receiver
@@ -523,7 +524,7 @@ be used to declare variables etc.
 double sin(double arg);
 typedef double (*Trigfunc)(double arg);
 
-/* Usage examples */
+// Usage examples
 Trigfunc myfunc = sin;
 void callfunc(Trigfunc callback);
 Trigfunc functable[10];
@@ -743,8 +744,8 @@ on implicit conversion to bool in conditions.
 
 ```cpp
 if (ptr) // wrong
-if (ptr != NULL) // ok
-if (ptr != nullptr) // even better (C++11)
+if (ptr != NULL) // wrong
+if (ptr != nullptr) // ok (C++11)
 ```
 
 ### Use the new cast operators
@@ -988,7 +989,7 @@ selecting 'mp-clang-9.0' for 'clang' succeeded. 'mp-clang-9.0' is now active.
   You can confirm this change by looking at the version of the tool:
 ```bash
 $ clang-format --version
-clang-format version 9.0.0 (tags/RELEASE_900/final)
+clang-format version 9.0.1
 ```
   If you later wish to remove these symlinks in order to avoid hiding tools installed by Xcode, just select the `none` version.
 

@@ -77,6 +77,6 @@
           {% endif %}
         </section>
       {% when "custom" %}
-        <section id="custom-comments"></section>
+        {% include /comments-providers/custom.html %}
   {% endcase %}
 </div>
