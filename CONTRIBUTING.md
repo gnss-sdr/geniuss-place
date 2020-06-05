@@ -45,7 +45,7 @@ GitHub](https://github.com/gnss-sdr/geniuss-place/fork). This will copy the
 whole website repository to your personal account.
 
    3. Then, go to your favorite working folder in your computer and
-clone your forked repository by typing (replacing ```YOUR_USERNAME``` by
+clone your forked repository by typing (replacing `YOUR_USERNAME` by
 the actual username of your GitHub account):
 
           $ git clone https://github.com/YOUR_USERNAME/geniuss-place
@@ -127,12 +127,12 @@ direction](http://127.0.0.1:4000/) in order to enjoy this website
 without the need of Internet connection. Some features such as comments
 might not work.
 
-**Pro Tip**: if you want to modify JavaScript (under ```assets/js```),
-you will need to install [Node.js](https://nodejs.org/en/), ```cd```to
-the root of your project, and run ```$ npm install``` to get all the
-dependencies. If all gone well, then running ```npm run build:js``` will
-compress/concatenate ```_main.js``` and all plugin scripts into
-```main.min.js```. Thus, upon a change on JavaScript content, run:
+**Pro Tip**: if you want to modify JavaScript (under `assets/js`),
+you will need to install [Node.js](https://nodejs.org/en/), `cd` to
+the root of your project, and run `$ npm install` to get all the
+dependencies. If all gone well, then running `npm run build:js` will
+compress/concatenate `_main.js` and all plugin scripts into
+`main.min.js`. Thus, upon a change on JavaScript content, run:
 
 ```
 $ npm run build:js
