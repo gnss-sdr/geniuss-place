@@ -284,9 +284,9 @@ public:
     TYPE4 member_function1(TYPE1 param1, TYPE2 param2, TYPE3 &param3);
 
 private:
-    bool setup_done;  //!< Checks if the class is properly initialized
-    TYPE1 private_variable1; //!< Short description of private_variable1 here
-    TYPE2 private_variable2; //!< Short description of private_variable2 here
+    bool setup_done;         // Checks if the class is properly initialized
+    TYPE1 private_variable1; // Short description of private_variable1 here
+    TYPE2 private_variable2; // Short description of private_variable2 here
 };
 ```
 
@@ -378,7 +378,7 @@ dependencies is to include it first in the corresponding source file.
 Example:
 
 ```cpp
-/* foobar.cc */
+// foobar.cc
 #include "foobar.h"
 #include <cmath>
 ...
@@ -416,7 +416,7 @@ The Main Module Header file applies to `.cc` files which implement an interface 
 Example:
 
 ```cpp
-/* foobar.cc */
+// foobar.cc
 #include "foobar.h"
 #include "GPS_L1_CA.h"
 #include <gnuradio/io_signature.h>
@@ -487,9 +487,10 @@ Please use the following template at the header of all files:
  *
  * Detailed description of the file here if needed.
  *
+ *
  * -----------------------------------------------------------------------
  *
- * Copyright (C) 2010-2019  (see AUTHORS file for a list of contributors)
+ * Copyright (C) 2010-2020  (see AUTHORS file for a list of contributors)
  *
  * GNSS-SDR is a software defined Global Navigation
  *      Satellite Systems receiver
@@ -523,7 +524,7 @@ be used to declare variables etc.
 double sin(double arg);
 typedef double (*Trigfunc)(double arg);
 
-/* Usage examples */
+// Usage examples
 Trigfunc myfunc = sin;
 void callfunc(Trigfunc callback);
 Trigfunc functable[10];
@@ -743,8 +744,8 @@ on implicit conversion to bool in conditions.
 
 ```cpp
 if (ptr) // wrong
-if (ptr != NULL) // ok
-if (ptr != nullptr) // even better (C++11)
+if (ptr != NULL) // wrong
+if (ptr != nullptr) // ok (C++11)
 ```
 
 ### Use the new cast operators

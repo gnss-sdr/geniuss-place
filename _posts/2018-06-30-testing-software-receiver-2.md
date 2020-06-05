@@ -69,11 +69,11 @@ Other additional unit and system tests require from external tools, libraries an
 |:--|:-:|:-:|:--|
 |--------------
 | `-DENABLE_UNIT_TESTING` | ON / OFF | ON  |  If set to OFF, it disables the building of unit tests. This can be useful in memory-limited systems. |
-| `-DENABLE_UNIT_TESTING_EXTRA` | ON / OFF | OFF  | If set to ON, it downloads external raw sample files files and other software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system), and builds some extra unit tests that are added to the ```run_tests``` executable.  |
-| `-DENABLE_SYSTEM_TESTING` | ON / OFF |  OFF |  If set to ON, it builds system tests (each one with its own executable test program) at the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option.  |
-| `-DENABLE_SYSTEM_TESTING_EXTRA` | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
+| `-DENABLE_UNIT_TESTING_EXTRA` | ON / OFF | OFF  | If set to ON, it downloads external raw sample files files and other software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system), and builds some extra unit tests that are added to the `run_tests` executable.  |
+| `-DENABLE_SYSTEM_TESTING` | ON / OFF |  OFF |  If set to ON, it builds system tests (each one with its own executable test program) at the `gnss-sdr/install` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option.  |
+| `-DENABLE_SYSTEM_TESTING_EXTRA` | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the `gnss-sdr/install` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
 | `-DENABLE_OWN_GPSTK` | ON / OFF |  OFF | If set to ON, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/GPSTk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
-| `-DENABLE_INSTALL_TESTS` | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder ```gnss-sdr/install```. If this option is set to ON, test binaries and auxiliary files will not be copied to  ```gnss-sdr/install``` but installed in the system path when doing ```make install```.  |
+| `-DENABLE_INSTALL_TESTS` | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder `gnss-sdr/install`. If this option is set to ON, test binaries and auxiliary files will not be copied to  `gnss-sdr/install` but installed in the system path when doing `make install`.  |
 |----------
 
 Those extra tests are described [below]({{ "#extra-unit-tests" }}).
@@ -631,7 +631,7 @@ The Google C++ Testing Framework provides an implementation of all those testing
 
 In order to create a new test:
 
- 1. Use the ```TEST()``` macro to define and name a test case. These are ordinary C++ functions that do not return a value.
+ 1. Use the `TEST()` macro to define and name a test case. These are ordinary C++ functions that do not return a value.
  2. In this function, along with any valid C++ statements you want to include, use the various Google Test assertions to check values.
  3. The test's result is determined by the assertions; if any assertion in the test fails (either fatally or non-fatally), or if the test crashes, the entire test fails. Otherwise, it succeeds.
 
