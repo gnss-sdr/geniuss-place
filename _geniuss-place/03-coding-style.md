@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2019-02-22T13:20:02+02:00
+last_modified_at: 2020-06-05T13:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -989,7 +989,7 @@ selecting 'mp-clang-9.0' for 'clang' succeeded. 'mp-clang-9.0' is now active.
   You can confirm this change by looking at the version of the tool:
 ```bash
 $ clang-format --version
-clang-format version 9.0.0 (tags/RELEASE_900/final)
+clang-format version 9.0.1
 ```
   If you later wish to remove these symlinks in order to avoid hiding tools installed by Xcode, just select the `none` version.
 
