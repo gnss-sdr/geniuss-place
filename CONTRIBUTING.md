@@ -115,10 +115,9 @@ Configuration file: _config.dev.yml
        Destination: /path_to_cloned_repo/geniuss-place/_site
  Incremental build: disabled. Enable with --incremental
       Generating...
+       Jekyll Feed: Generating feed for posts
                     done in 4.017 seconds.
  Auto-regeneration: enabled for '/path_to_cloned_repo/geniuss-place'
-Configuration file: _config.yml
-Configuration file: _config.dev.yml
     Server address: http://127.0.0.1:4000/
   Server running... press ctrl-c to stop.
 ```
