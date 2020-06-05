@@ -16,6 +16,35 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
+
+<ul class="biblist">
+    <!-- Item: Watson20 -->
+    <li ><p>
+    R.&nbsp;M.&nbsp;Watson, J.&nbsp;N.&nbsp;Gross, C.&nbsp;N.&nbsp;Taylor and R.&nbsp;C.&nbsp;Leishman
+    <br><b>Robust Incremental State Estimation Through Covariance Adaptation</b><br>
+<i>IEEE Robotics and Automation Letters</i>, Vol. 5, No. 2, pp. 3737-3744, Apr. 2020.
+    <br />
+    <a href="javascript:toggleBibtex('Watson20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9028253/" >Online </a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/LRA.2020.2979655" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Watson20" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Watson20,
+author  = {R.~M.~Watson and J.~N.~Gross and C.~N.~Taylor and R.~C.~Leishman},
+title   = {Robust Incremental State Estimation Through Covariance Adaptation},
+journal = {IEEE Robotics and Automation Letters},
+year    = {2020},
+month   = {Apr.},
+volume  = {5},
+number  = {2},
+pages   = {3737--3744},
+note    = { {doi}: 10.1109/LRA.2020.2979655}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
 <ul class="biblist">
     <!-- Item: Cutugno20 -->
     <li ><p>
@@ -209,6 +238,33 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
+
+<ul class="biblist">
+    <!-- Item: Vega20 -->
+    <li ><p>
+    J.&nbsp;G.&nbsp;Vega&nbsp;Lea&ntilde;ez, J.&nbsp;I.&nbsp;Barber&iacute;a, S.&nbsp;Rodr&iacute;guez, J.&nbsp;G.&nbsp;D&iacute;az, R.&nbsp;L&oacute;pez&nbsp;La&nbsp;Valle, J.&nbsp;G.&nbsp;Garc&oacute;a and C.&nbsp;H.&nbsp;Muravchik
+    <br><b>High-Speed Data Acquisition System for GNSS Applications</b><br>
+<i>Proceedings of the Argentine Conference on Electronics (CAE)</i>,
+Buenos Aires, Argentina, Feb. 2020, pp. 14-19.
+    <br />
+    <a href="javascript:toggleBibtex('Vega20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9046375" >Online </a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/CAE48787.2020.9046375" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Vega20" class="bibtex noshow" style="color: #111111">
+    <pre>@inproceedings{ Vega20,
+author  = {J.~G.~{Vega~Lea{\~{n}}ez} and J.~I.~Barber\'{i}a and S.~Rodr\'{i}guez and J.~G.~D\'{i}az and R.~{L\'{o}pez~La~Valle} and J.~G.~Garc\'{o}a and C.~H.~Muravchik},
+title   = {High-Speed Data Acquisition System for {GNSS} Applications},
+booktitle = {Proc. Argentine Conference on Electronics},
+year    = {2020},
+address = {Buenos Aires, Argentina},
+month   = {Feb.},
+pages   = {14--19},
+note    = {doi: 10.1109/CAE48787.2020.9046375}
+}</pre>
+    </div>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: Fernandez19a -->
