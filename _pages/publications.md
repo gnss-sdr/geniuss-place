@@ -7,7 +7,7 @@ header:
   teaser: /assets/images/books.png
 sidebar:
     nav: "about"
-last_modified_at: 2019-04-29T12:38:52+00:00
+last_modified_at: 2020-06-05T12:38:52+00:00
 redirect_from:
   - /documentation/publications
 ---
