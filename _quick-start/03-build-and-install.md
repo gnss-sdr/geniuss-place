@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2020-03-14T11:13:02+02:00
+last_modified_at: 2020-06-09T11:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -255,18 +255,18 @@ In Debian/Ubuntu-based distributions, Clang can be installed by doing:
 $ sudo apt-get install clang
 ```
 
-Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8` or `clang-4.0` could exist for your distribution, check its documentation.  Once installed, its use can be configured by passing the following parameters to CMake:
+Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8`, `clang-4.0`, `clang-5.0`, `clang-6.0`, `clang-7`, `clang-8`, `clang-9` or `clang-10` could exist for your distribution, check its documentation. Once installed, its use can be configured by passing the following parameters to CMake:
 
 ```bash
-$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 ..
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-10 -DCMAKE_C_COMPILER=/usr/bin/clang-10 ..
 ```
 
-of course replacing `3.8` by the actual version installed in your machine. Modern versions dropped the version number, so you may have just `/usr/bin/clang++` and `/usr/bin/clang`.
+of course replacing `10` by the actual version installed in your machine. Some distributions drop the version number, so you may  just have `/usr/bin/clang++` and `/usr/bin/clang`.
 
 If you have the Ninja build system installed, you can build GNSS-SDR replacing GCC and `make` by Clang and Ninja:
 
 ```bash
-$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 -GNinja ..
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-10 -DCMAKE_C_COMPILER=/usr/bin/clang-10 -GNinja ..
 ```
 
 ## Using Xcode
