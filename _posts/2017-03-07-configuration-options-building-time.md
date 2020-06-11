@@ -11,7 +11,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2020-06-05T09:17:02+02:00
+last_modified_at: 2020-06-10T09:17:02+02:00
 ---
 
 
@@ -143,12 +143,13 @@ Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb pa
 |  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|
 |--------------
-| `-DENABLE_GENERIC_ARCH` | ON / OFF |  OFF |  If set to ON, it builds portable binaries which are non-dependent of the SIMD technologies present in the building machine. |
-| `-DENABLE_PACKAGING` | ON / OFF | OFF  |  If set to ON, it enables software packaging flags (for instance, it removes inessential information from executable binary programs and object files, thus potentially resulting in better performance and sometimes significantly less disk space usage) and sets automatically the variable ENABLE_GENERIC_ARCH to ON. |
-| `-DENABLE_OWN_ARMADILLO` | ON / OFF |  OFF |  If set to ON, it forces to download, build and link a working version of [Armadillo](http://arma.sourceforge.net/) locally, even if it is already installed. |
-| `-DENABLE_ARMA_NO_DEBUG` | ON / OFF |  OFF |  If set to ON, it defines the macro ARMA_NO_DEBUG, which disables all run-time checks, such as bounds checking, in the [Armadillo](http://arma.sourceforge.net/) library. This will result in a faster executable. This option is set automatically to ON if ENABLE_PACKAGING is ON. |
-| `-DENABLE_OWN_GLOG` | ON / OFF |  OFF | If set to ON, it forces to download, build and link a working version of [glog](https://github.com/google/glog) locally, even if it is already installed. If [GFlags](https://github.com/gflags/gflags) is not found, it will also download, build and link it.  |
-| `-DENABLE_LOG` | ON / OFF |  ON |  If set to OFF, it disables runtime logging with [glog](https://github.com/google/glog). This can be useful in storage-limited systems. GNSS-SDR will still produce outputs such as RINEX or KML files. |
+| `-DENABLE_GENERIC_ARCH` | ON / OFF | OFF | If set to ON, it builds portable binaries which are non-dependent of the SIMD technologies present in the building machine. |
+| `-DENABLE_PACKAGING` | ON / OFF | OFF | If set to ON, it enables software packaging flags (for instance, it removes inessential information from executable binary programs and object files, thus potentially resulting in better performance and sometimes significantly less disk space usage) and sets automatically the variable ENABLE_GENERIC_ARCH to ON. |
+| `-DENABLE_OWN_ARMADILLO` | ON / OFF | OFF | If set to ON, it forces to download, build and link a working version of [Armadillo](http://arma.sourceforge.net/) locally, even if it is already installed. |
+| `-DENABLE_ARMA_NO_DEBUG` | ON / OFF | OFF | If set to ON, it defines the macro ARMA_NO_DEBUG, which disables all run-time checks, such as bounds checking, in the [Armadillo](http://arma.sourceforge.net/) library. This will result in a faster executable. This option is set automatically to ON if ENABLE_PACKAGING is ON. |
+| `-DENABLE_OWN_GLOG` | ON / OFF | OFF | If set to ON, it forces to download, build and link a working version of [glog](https://github.com/google/glog) locally, even if it is already installed. If [GFlags](https://github.com/gflags/gflags) is not found, it will also download, build and link it. |
+| `-DENABLE_LOG` | ON / OFF | ON | If set to OFF, it disables runtime logging with [glog](https://github.com/google/glog). This can be useful in storage-limited systems. GNSS-SDR will still produce outputs such as RINEX or KML files. |
+| `-DENABLE_STRIP` | ON / OFF | OFF | If set to ON, it activates the generation of stripped binaries (without debugging information), smaller in size and potentially providing better performance than non-stripped counterparts. Only valid when using the `Release` build mode and `ENABLE_PACKAGING` is set to OFF, otherwise ignored. <span style="color: orange">This option is only available from the `next` branch of the upstream repository, and will be available in the next stable release.</span> |
 |----------
 
 
