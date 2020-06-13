@@ -1062,12 +1062,12 @@ You can use clang-tidy in two simple steps:
 
 * **In GNU/Linux using Debian / Ubuntu distributions:**
 ```bash
-$ sudo apt-get install clang-tidy
+$ sudo apt-get install clang clang-tidy
 ```
 
 * **In GNU/Linux using Fedora / CentOS distributions:**
 ```bash
-$ sudo yum install clang-tools-extra
+$ sudo yum install clang clang-tools-extra
 ```
 
 * **In GNU/Linux using ArchLinux:**
@@ -1102,7 +1102,7 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
 ```
 
-(pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in you machine). This will create a file named `compile_commands.json` in your build folder containing the exact compiler calls for all translation units of the project in machine-readable form. After that, you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform the project default checks over all files in the compilation database:
+(pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in your machine). This will create a file named `compile_commands.json` in your build folder containing the exact compiler calls for all translation units of the project in machine-readable form. After that, you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform the project default checks over all files in the compilation database:
 
 ```bash
 $ run-clang-tidy -fix
