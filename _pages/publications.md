@@ -268,6 +268,33 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
 
 <ul class="biblist">
+    <!-- Item: Stenberg20 -->
+    <li ><p>
+    N. Stenberg, E. Axell, J. Rantakokko and G. Hendeby
+    <br><b>GNSS Spoofing Mitigation Using Multiple Receivers</b><br>
+<i>Proceedings of the IEEE/ION Position, Location and Navigation Symposium (PLANS)</i>,
+Portland, Oregon, Apr. 2020, pp. 555-565.
+    <br />
+    <a href="javascript:toggleBibtex('Stenberg20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9109958" >Online </a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/PLANS46316.2020.9109958" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Stenberg20" class="bibtex noshow" style="color: #111111">
+    <pre>@inproceedings{ Stenberg20,
+author  = {N.~Stenberg and E.~Axell and J.~Rantakokko and G.~Hendeby},
+title   = { {GNSS} Spoofing Mitigation Using Multiple Receivers},
+booktitle = {Proc. IEEE/ION Position, Location and Navigation Symposium},
+year    = {2020},
+address = {Portland, OR.},
+month   = {Apr.},
+pages   = {555--565},
+note    = {doi: 10.1109/PLANS46316.2020.9109958}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Vega20 -->
     <li ><p>
     J.&nbsp;G.&nbsp;Vega&nbsp;Lea&ntilde;ez, J.&nbsp;I.&nbsp;Barber&iacute;a, S.&nbsp;Rodr&iacute;guez, J.&nbsp;G.&nbsp;D&iacute;az, R.&nbsp;L&oacute;pez&nbsp;La&nbsp;Valle, J.&nbsp;G.&nbsp;Garc&iacute;a and C.&nbsp;H.&nbsp;Muravchik
