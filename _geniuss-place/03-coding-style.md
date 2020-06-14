@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2020-06-05T13:20:02+02:00
+last_modified_at: 2020-06-14T13:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -1100,6 +1100,7 @@ This tool integrates nicely with CMake >= 3.6. In GNSS-SDR, all you need to do i
 ```bash
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
+$ make volk_gnsssdr_module core_monitor pvt_libs
 ```
 
 (pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in your machine). This will create a file named `compile_commands.json` in your build folder containing the exact compiler calls for all translation units of the project in machine-readable form. After that, you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform the project default checks over all files in the compilation database:
@@ -1114,6 +1115,17 @@ or you can apply specific checks by doing:
 $ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
 ```
 
+An alternative choice is to run clang-tidy along with the building process, by activating the building option `ENABLE_CLANG_TIDY`:
+
+```bash
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+        -DCMAKE_C_COMPILER=/usr/bin/clang \
+        -DENABLE_CLANG_TIDY=ON ..
+$ make  
+```
+
+In this latter case, please do not use parallel building (_e.g._, `make -j4`). Be aware that this process can take a long time.
+
 You can read more about the usage of this tool at the [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/).
 
 {% capture use-clang-tidy %}
@@ -1121,9 +1133,17 @@ With clang and clang-tidy already installed, please do:
 ```bash
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
+$ make volk_gnsssdr_module core_monitor pvt_libs
 $ run-clang-tidy -fix
 ```
-and check if there are warnings and/or fixes related to your code (type `git status`). If you agree with the changes, commit them in order to be included in your pull request.
+or
+```bash
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+        -DCMAKE_C_COMPILER=/usr/bin/clang \
+        -DENABLE_CLANG_TIDY=ON ..
+$ make  
+```
+and check if there are warnings and/or fixes related to your code (use `git status` and `git diff`). If you agree with the changes, add and commit them in order to be included in your pull request. Otherwise, discard the changes with `git ckeckout -- /path/to/changed_file`.
 {% endcapture %}
 
 <div class="notice--danger">
