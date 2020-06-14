@@ -268,6 +268,34 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
 
 <ul class="biblist">
+    <!-- Item: Deng20 -->
+    <li ><p>
+    Y. Deng and B. Lian
+    <br><b>Design and Implementation of a Real Time BDS Scalar-Vector Tracking Receiver</b><br>
+<i>Proceedings of the China Satellite Navigation Conference</i>,
+Vol. III, Chengdu, China, Nov. 2020, pp. 276-287.
+    <br />
+    <a href="javascript:toggleBibtex('Deng20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/chapter/10.1007%2F978-981-15-3715-8_26" >Online </a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/978-981-15-3715-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Deng20" class="bibtex noshow" style="color: #111111">
+    <pre>@inproceedings{ Deng20,
+author  = {Y.~Deng and B.~Lian},
+title   = {Design and Implementation of a Real Time {BDS} Scalar-Vector Tracking Receiver},
+booktitle = {Proc. China Satellite Navigation Conference},
+volume = {3},
+year    = {2020},
+address = {Chengdu, China},
+month   = {Nov.},
+pages   = {276--287},
+note    = {doi: 10.1007/978-981-15-3715-8}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Stenberg20 -->
     <li ><p>
     N. Stenberg, E. Axell, J. Rantakokko and G. Hendeby
