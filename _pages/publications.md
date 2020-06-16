@@ -643,7 +643,7 @@ note     = { {doi}: 10.1109/NAVITEC.2016.7931740}
     E. L&oacute;pez, J.&nbsp;Dom&iacute;nguez, B.&nbsp;Quijano, C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas, M.&nbsp;Hern&aacute;ndez-Pajares, A.&nbsp;Garc&iacute;a-Rigo, M.&nbsp;Schmidt,  A.&nbsp;Goss, E.&nbsp;Spaltro, J.&nbsp;Grosso, M.&nbsp;Symeonidou, S.&nbsp;Fountas, Z.&nbsp;Tsiropoulos, F.&nbsp;Van&nbsp;Evert, P.&nbsp;Blok and D.&nbsp;Roma
     <br><b>Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network (AUDITOR)</b><br>
 <i>Proceedings of the Global Wireless Summit</i>,
-Aarhus, Denmark, Nov. 27-30,&nbsp;2016, pp. 1-6.
+Aarhus, Denmark, Nov.&nbsp;27&#8209;30,&nbsp;2016, pp. 1-6.
     <br />
     <a href="javascript:toggleBibtex('Lopez16')">[BibTeX]</a>
     </p>
