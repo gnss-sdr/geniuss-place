@@ -5,7 +5,7 @@ excerpt: "A brief introduction to GNSS-SDR, a free and open source Global Naviga
 header:
   teaser: /assets/images/what-is-gnss-sdr.png
   invert-colors: true
-last_modified_at: 2017-08-11T05:34:02+02:00
+last_modified_at: 2020-06-18T11:54:02+01:00
 redirect_from:
   - /documentation/general-overview
   - /project
@@ -59,7 +59,7 @@ int main(int argc, char** argv)
     google::InitGoogleLogging(argv[0]);
 
     // Smart pointer to a ControlThread object
-    std::unique_ptr<ControlThread> control_thread(new ControlThread());
+    auto control_thread = std::make_unique<ControlThread>();
 
     // record startup time
     std::chrono::time_point<std::chrono::system_clock> start, end;
