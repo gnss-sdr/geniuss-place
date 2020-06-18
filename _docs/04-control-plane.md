@@ -7,7 +7,7 @@ header:
   invert-colors: true
 toc: true
 toc_sticky: true
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2020-06-18T11:54:02+01:00
 ---
 
 
@@ -136,7 +136,7 @@ _The Control Thread reads the configuration and builds the flow graph of signal 
 As we saw in the [Overview]({{ "/docs/overview/" | relative_url }}), the `main` method of GNSS-SDR instantiates an object of the class [`ControlThread`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h), managed by a smart pointer:
 
 ```cpp
-std::unique_ptr<ControlThread> control_thread(new ControlThread());
+auto control_thread = std::make_unique<ControlThread>();
 ```
 
 The constructor of this objects reads the commandline flag provided by the user when executing the receiver which points to the text file containing the configuration, as shown above:
@@ -151,7 +151,7 @@ Then, when the `run()` method of the `control_thread` object is called, a member
 An excerpt of its actual implementation is as follows, where `flowgraph_` is an object of the class [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h):
 
 ```cpp
-void ControlThread::run()
+int ControlThread::run()
 {
     // Connect the flowgraph
     flowgraph_->connect();
@@ -170,6 +170,8 @@ void ControlThread::run()
         }
     std::cout << "Stopping GNSS-SDR, please wait!" << std::endl;
     flowgraph_->stop();
+    flowgraph_->disconnect();
+    return 0;
   }
 ```
 
