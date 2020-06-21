@@ -219,4 +219,6 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
 $ make        
 ```
 
+Check the [coding style guide]({{ "/coding-style/#use-code-linters" | relative_url }}) for more information on how to use clang-tidy in your system.
+
 --------
