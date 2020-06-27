@@ -25,7 +25,7 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 <i>IEEE Robotics and Automation Letters</i>, Vol. 5, No. 2, pp. 3737-3744, Apr.&nbsp;2020.
     <br />
     <a href="javascript:toggleBibtex('Watson20')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9028253/" >Online </a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9028253/" >Online</a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/LRA.2020.2979655" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Watson20" class="bibtex noshow" style="color: #111111">
@@ -81,7 +81,7 @@ note    = { {doi}: 10.3390/geosciences10020079}
 <i>GPS Solutions</i>, Vol. 23, No. 3, pp. 72, May 2019.
     <br />
     <a href="javascript:toggleBibtex('Miralles19')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://link.springer.com/article/10.1007%2Fs10291-019-0865-8" >Online </a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/article/10.1007%2Fs10291-019-0865-8" >Online</a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/s10291-019-0865-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Miralles19" class="bibtex noshow" style="color: #111111">
@@ -108,7 +108,7 @@ note    = { {doi}: 10.1007/s10291-019-0865-8}
 <i>IEEE Transactions on Instrumentation and Measurement</i>, Vol. 67, No. 9, pp.&nbsp;2082-2096, Sept.&nbsp;2018.
     <br />
     <a href="javascript:toggleBibtex('Schmidt18')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8319903/" >Online </a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8319903/" >Online</a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/TIM.2018.2811446" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Schmidt18" class="bibtex noshow" style="color: #111111">
@@ -276,7 +276,7 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 Vol. III, Chengdu, China, Nov. 2020, pp. 276-287.
     <br />
     <a href="javascript:toggleBibtex('Deng20')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://link.springer.com/chapter/10.1007%2F978-981-15-3715-8_26" >Online </a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/978-981-15-3715-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/chapter/10.1007%2F978-981-15-3715-8_26" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/978-981-15-3715-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Deng20" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Deng20,
@@ -296,6 +296,32 @@ note    = {doi: 10.1007/978-981-15-3715-8}
 
 
 <ul class="biblist">
+    <!-- Item: Calvo20 -->
+    <li ><p>
+    R. Calvo Palomino, A. Bhattacharya, G. Bovet, and D. Giustiniano
+    <br><b>LSTM-based GNSS Spoofing Detection Using Low-cost Spectrum Sensors</b><br>
+<i>Proceedings of the 21st IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks</i>,
+Cork, Ireland, 31 Aug. / 3 Sept., 2020. pp. 1-4.
+    <br />
+    <a href="javascript:toggleBibtex('Calvo20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="http://eprints.networks.imdea.org/id/eprint/2139" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Calvo20" class="bibtex noshow" style="color: #111111">
+    <pre>@inproceedings{ Calvo20,
+author  = {R.~{Calvo~Palomino} and A.~Bhattacharya and G.~Bovet and D.~Giustiniano},
+title   = { {LSTM}-based {GNSS} Spoofing Detection Using Low-cost Spectrum Sensors},
+booktitle = {Proc. 21st IEEE Intl. Symp. on a World of Wireless, Mobile and Multimedia Networks},
+year    = {2020},
+address = {Cork, Ireland},
+month   = {Aug./Sept.},
+pages   = {1--4}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Parlin20 -->
     <li ><p>
     K. P&auml;rlin and T. Riihonen
@@ -304,7 +330,7 @@ note    = {doi: 10.1007/978-981-15-3715-8}
 Tampere, Finland, June&nbsp;2020, pp. 1-6.
     <br />
     <a href="javascript:toggleBibtex('Parlin20')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9115518" >Online </a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/ICL-GNSS49876.2020.9115518" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9115518" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/ICL-GNSS49876.2020.9115518" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Parlin20" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Parlin20,
@@ -331,7 +357,7 @@ note    = {doi: 10.1109/ICL-GNSS49876.2020.9115518}
 Portland, Oregon, Apr. 2020, pp. 555-565.
     <br />
     <a href="javascript:toggleBibtex('Stenberg20')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9109958" >Online </a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/PLANS46316.2020.9109958" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9109958" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/PLANS46316.2020.9109958" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Stenberg20" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Stenberg20,
@@ -358,7 +384,7 @@ note    = {doi: 10.1109/PLANS46316.2020.9109958}
 Buenos Aires, Argentina, Feb. 2020, pp. 14-19.
     <br />
     <a href="javascript:toggleBibtex('Vega20')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9046375" >Online </a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/CAE48787.2020.9046375" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9046375" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/CAE48787.2020.9046375" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Vega20" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Vega20,
