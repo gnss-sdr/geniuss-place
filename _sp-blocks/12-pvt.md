@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2020-03-13T10:54:02+02:00
+last_modified_at: 2020-07-03T10:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a signal sink, since the stream of data flowing along the receiver ends here.
@@ -620,7 +620,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `enable_monitor` | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port is activated. This feature allows streaming the internal parameters and outputs of the PVT block to local or remote clients over UDP. The streamed data members (28 in total) are the same ones that are included in the binary dump. It defaults to `false`. | Optional |
 | `monitor_client_addresses` | Destination IP address(es) of the real-time monitoring port. To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1` (localhost). | Optional |
 | `monitor_udp_port` | Destination UDP port number of the real-time monitoring port. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. | Optional |
-| `enable_protobuf` | [`true`, `false`]: If set to `true`, the serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). That is a deprecated behavior that can be abandoned in the future. It defaults to `true` (Protocol Buffers is used). | Optional |
+| `enable_protobuf` | [`true`, `false`]: If set to `true`, the data serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). An example of usage is the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). For an example of usage of the latter, check the [gnss-sdr-pvt-monitoring-client](https://github.com/acebrianjuan/gnss-sdr-pvt-monitoring-client). This parameter defaults to `true` (Protocol Buffers is used). | Optional |
 | `show_local_time_zone` | [`true`, `false`]: If set to `true`, time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC. | Optional |
 |----------
 
