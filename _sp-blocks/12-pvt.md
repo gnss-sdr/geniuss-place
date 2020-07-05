@@ -525,6 +525,7 @@ The following table shows the complete list of streamed parameters:
 | `pdop` | `double` | Position (3D) dilution of precision (PDOP). |
 | `hdop` | `double` | Horizontal dilution of precision (HDOP). |
 | `vdop` | `double` | Vertical dilution of precision (VDOP). |
+| `user_clk_drift_ppm` | `double` | User clock drift, in parts per million. |
 |--------------
 
 **IMPORTANT**: This UDP streaming feature is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
