@@ -312,7 +312,7 @@ int main(int argc, char* argv[])
             if (argc != 2)
                 {
                     // Print help.
-                    std::cerr << "Usage: monitoring-client <port>" << std::endl;
+                    std::cerr << "Usage: monitoring-client <port>\n";
                     return 1;
                 }
 
@@ -330,7 +330,7 @@ int main(int argc, char* argv[])
         }
     catch (std::exception& e)
         {
-            std::cerr << e.what() << std::endl;
+            std::cerr << e.what() << '\n';
         }
 
     return 0;

@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 
     // Say hello
     std::cout << "Initializing GNSS-SDR v" << GNSS_SDR_VERSION
-              << " ... Please wait." << std::endl;
+              << " ... Please wait.\n";
 
     // Logging library initialization
     google::InitGoogleLogging(argv[0]);
@@ -80,11 +80,11 @@ int main(int argc, char** argv)
     std::chrono::duration<double> elapsed_seconds = end - start;
     std::cout << "Total GNSS-SDR run time: "
               << elapsed_seconds.count()
-              << " [seconds]" << std::endl;
+              << " [seconds]\n";
 
     // Say goodbye
     google::ShutDownCommandLineFlags();
-    std::cout << "GNSS-SDR program ended." << std::endl;
+    std::cout << "GNSS-SDR program ended.\n";
     return 0;
 }
 ```
