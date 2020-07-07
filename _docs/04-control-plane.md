@@ -168,7 +168,7 @@ int ControlThread::run()
             read_control_messages();
             if (control_messages_ != 0) process_control_messages();
         }
-    std::cout << "Stopping GNSS-SDR, please wait!" << std::endl;
+    std::cout << "Stopping GNSS-SDR, please wait!\n";
     flowgraph_->stop();
     flowgraph_->disconnect();
     return 0;

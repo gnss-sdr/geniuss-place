@@ -591,10 +591,10 @@ int dec(int);
 void f()
 {
     // Now we can use iostream names lazily.
-    cout << "Hello world." << endl;
+    cout << "Hello world.\n";
 
     // Error: Ambiguous reference to dec.
-    cout << "Decimal base is " << dec << endl;
+    cout << "Decimal base is " << dec << '\n';
 }
 ```
 
