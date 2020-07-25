@@ -153,7 +153,7 @@ For details about the available _Test Suites_ and how to build and run them, ple
 
 [^Beck99]: K. Beck, C. Andres, [Extreme Programming Explained: Embrace Change](https://www.goodreads.com/book/show/67833.Extreme_Programming_Explained), Addison-Wesley Professional, Boston, MA, 1999.
 
-[^Beck02]: K. Beck, [Test Driven Development: By Example](https://www.eecs.yorku.ca/course_archive/2003-04/W/3311/sectionM/case_studies/money/KentBeck_TDD_byexample.pdf), Addison-Wesley Professional, Boston, MA, 2002.
+[^Beck02]: K. Beck, [Test Driven Development: By Example](http://cecs.wright.edu/~pmateti/Courses/7140/Lectures/Maintenance/KentBeck_TDD_byexample.pdf), Addison-Wesley Professional, Boston, MA, 2002.
 
 [^Shore08]: J. Shore and S. Warden, [The Art of Agile Development](https://www.jamesshore.com/Agile-Book/), O'Reilly, Sebastopol, CA, 2008.
 
