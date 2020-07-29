@@ -320,8 +320,6 @@ Example: since Galileo E14 and E18 satellites are not usable for PVT, they can b
 GNSS-SDR.Galileo_banned_prns=14,18
 ```
 
-<span style="color: orange">NOTE: These configuration parameters are only available from the `next` branch of the upstream repository, and will be available in the next stable release.</span>
-
 
 
 ## Processing old data files

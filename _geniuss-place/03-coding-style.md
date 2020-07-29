@@ -488,7 +488,7 @@ Please use the following template at the header of all files:
  * Detailed description of the file here if needed.
  *
  *
- * -----------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
  *
  * Copyright (C) 2010-2020  (see AUTHORS file for a list of contributors)
  *
@@ -499,7 +499,7 @@ Please use the following template at the header of all files:
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * -----------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
  */
 ```
 
