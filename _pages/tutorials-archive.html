@@ -10,13 +10,12 @@ sidebar:
 
 {% include group-by-array collection=site.posts field="tags" %}
 
-<table> <tr> <td id="forcetable">
+{% assign entries_layout = page.entries_layout | default: 'list' %}
 {% for tag in group_names %}
   {% if tag == "tutorial" %}
     {% assign posts = group_items[forloop.index0] %}
     {% for post in posts %}
-      {% include archive-single.html %}
+      {% include archive-single.html type=entries_layout %}
     {% endfor %}
   {% endif %}
 {% endfor %}
-</td> </tr> </table>

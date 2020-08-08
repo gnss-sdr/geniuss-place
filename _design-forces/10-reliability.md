@@ -3,7 +3,7 @@ title: "10.- Reliability"
 permalink: /design-forces/reliability/
 excerpt: "The ability of a system or component to function under stated conditions for a specified period of time."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 last_modified_at: 2017-08-14T14:54:02+02:00
 ---
 
