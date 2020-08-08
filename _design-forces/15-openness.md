@@ -3,7 +3,7 @@ title: "15.- Openness"
 permalink: /design-forces/openness/
 excerpt: "The degree to which something is accessible to be viewed, modified, distributed and used."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 last_modified_at: 2016-07-29T15:54:02-04:00
 ---
 

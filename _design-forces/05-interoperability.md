@@ -3,7 +3,7 @@ title: "5.- Interoperability"
 permalink: /design-forces/interoperability/
 excerpt: "The ability of making systems work together."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 toc: true
 toc_sticky: true
 last_modified_at: 2017-01-02T08:31:02+02:00

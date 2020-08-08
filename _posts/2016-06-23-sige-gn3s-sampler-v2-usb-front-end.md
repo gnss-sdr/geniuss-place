@@ -15,6 +15,7 @@ redirect_from:
   - /node/51
 toc: true
 toc_sticky: true
+show_date: false
 ---
 
 

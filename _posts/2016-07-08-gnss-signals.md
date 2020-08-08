@@ -11,6 +11,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
+show_date: false
 last_modified_at: 2020-05-09T09:37:02+02:00
 ---
 

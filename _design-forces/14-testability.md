@@ -3,7 +3,7 @@ title: "14.- Testability"
 permalink: /design-forces/testability/
 excerpt: "The degree to which a software artifact supports testing in a given test context."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 last_modified_at: 2016-07-29T15:54:02-04:00
 ---
 

@@ -3,7 +3,7 @@ title: "12.- Reproducibility"
 permalink: /design-forces/reproducibility/
 excerpt: "The ability of an entire experiment or study to be reproduced, either by the researcher or by someone else working independently."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 last_modified_at: 2018-04-06T15:54:02-04:00
 ---
 

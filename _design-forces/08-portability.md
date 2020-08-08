@@ -3,7 +3,7 @@ title: "8.- Portability"
 permalink: /design-forces/portability/
 excerpt: "It refers to the usability of the same software in different environments."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 toc: true
 toc_sticky: true
 last_modified_at: 2017-08-09T15:54:02-04:00
