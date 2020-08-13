@@ -49,7 +49,7 @@ As in any C++ program, the `main` method is called at program start up, after in
 int main(int argc, char** argv)
 {
     // Parse command line flags
-    google::ParseCommandLineFlags(&argc, &argv, true);
+    gflags::ParseCommandLineFlags(&argc, &argv, true);
 
     // Say hello
     std::cout << "Initializing GNSS-SDR v" << GNSS_SDR_VERSION
@@ -83,7 +83,7 @@ int main(int argc, char** argv)
               << " [seconds]\n";
 
     // Say goodbye
-    google::ShutDownCommandLineFlags();
+    gflags::ShutDownCommandLineFlags();
     std::cout << "GNSS-SDR program ended.\n";
     return 0;
 }
