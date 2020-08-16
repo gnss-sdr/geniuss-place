@@ -3,7 +3,7 @@ title: "Configurations"
 permalink: /conf/
 excerpt: "How to configure GNSS-SDR in a variety of setups."
 related: true
-last_modified_at: 2020-03-14T15:54:02-04:00
+last_modified_at: 2020-08-13T13:54:02+02:00
 header:
   teaser: "/assets/images/configuration.png"
 sidebar:
@@ -427,6 +427,7 @@ In order to get real-time position fixes, you will need:
 
   * **An active GPS antenna**. Most models will fit, just check that you can plug it to the HackRF's SMA-female connector, and that 50 mA at 3.3 V is an adequate feeding.
   * **A HackRF One**.
+  * **An stable clock**: the oscillator shipped with the HackRF is not good enough for GNSS signal processing. You will need a frequency stability of 1 ppm or better.
   * **A computer** connected to the HackRF One and with GNSS-SDR installed.
 
 
@@ -452,6 +453,8 @@ Once the software is ready, connect your HackRF to your computer, and connect th
 ```ini
 SignalSource.osmosdr_args=hackrf,bias=1
 ```
+
+You will need to provide an external clock source to the HackRF with a frequency stability of 1 ppm or better (so a 10 MHz oscillator will vary by 10 Hz).
 
 ### Setting up the software receiver
 
@@ -582,7 +585,7 @@ You should see something similar to the example [above](#run-it).
 
 ### HackRF and GNSS-SDR in action
 
-The process of setting up a GPS receiver with a HackRF and GNSS-SDR is nicely described in the following video by Don Kelly, including hardware aspects and the usage of the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor) graphic interface.
+The process of setting up a GPS receiver with a HackRF and GNSS-SDR is nicely described in the following video by [Don Kelly](https://www.linkedin.com/in/kellydak/), including hardware aspects and the usage of the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor) graphic interface.
 
 {% include video id="xSJ1hFUCnP8" provider="youtube" %}
 
