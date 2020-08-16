@@ -427,7 +427,7 @@ In order to get real-time position fixes, you will need:
 
   * **An active GPS antenna**. Most models will fit, just check that you can plug it to the HackRF's SMA-female connector, and that 50 mA at 3.3 V is an adequate feeding.
   * **A HackRF One**.
-  * **An stable clock**: the oscillator shipped with the HackRF is not good enough for GNSS signal processing. You will need a frequency stability of 1 ppm or better.
+  * **A stable clock**: the oscillator shipped with the HackRF is not good enough for GNSS signal processing. You will need a frequency stability of 1 ppm or better.
   * **A computer** connected to the HackRF One and with GNSS-SDR installed.
 
 
