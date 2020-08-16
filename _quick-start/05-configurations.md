@@ -580,6 +580,12 @@ $ gnss-sdr --config_file=./hackrf_GPS_L1.conf
 
 You should see something similar to the example [above](#run-it).
 
+### HackRF and GNSS-SDR in action
+
+The process of setting up a GPS receiver with a HackRF and GNSS-SDR is nicely described in the following video by Don Kelly, including hardware aspects and the usage of the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor) graphic interface.
+
+{% include video id="xSJ1hFUCnP8" provider="youtube" %}
+
 ------
 
 
