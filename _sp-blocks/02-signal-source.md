@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-04-12T12:54:02-04:00
+last_modified_at: 2020-08-27T10:54:02+02:00
 ---
 
 {% capture fig_img2 %}
@@ -373,9 +373,10 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Labsat_Signal_Source` | Mandatory |
 | `filename` |  Path to the file base name of files containing the raw digitized signal samples. For single files using the Labsat 2 version, write directly the name of the file. Example: ```output.ls2``` | Mandatory |
-| `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
 | `selected_channel` | [`1`, `2`, `3`]: Select the frequency band of data present in the file. It defaults to 1. | Optional |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this implementation. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `enable_throttle_control` | [`true`, `false`]: If set to `true`, it throttles the output flow of samples such that the average rate does not exceed `throttle_frequency_sps`, thus emulating real-time operation. It defaults to `false`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `throttle_frequency_sps` | If `enable_throttle_control` is set to `true`, this parameter sets the sample rate applied by the throttle. It defaults to $$ 16368000 $$ Sps. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it dumps the content of the source file `filename` in <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> format. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, name of the dump file. It defaults to `labsat_output.dat` | Optional |
 |-------
@@ -391,7 +392,8 @@ configured with the `Labsat_Signal_Source` implementation:
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=Labsat_Signal_Source
 SignalSource.filename=./GPS_025  ; <- PUT YOUR FILE BASE NAME HERE
-SignalSource.sampling_frequency=16368000
+SignalSource.enable_throttle_control=true
+SignalSource.throttle_frequency_sps=16368000
 ```
 
 In this example, the names of the files would be `GPS_025_0000.LS3`, `GPS_025_0001.LS3`, and so on.
@@ -402,7 +404,8 @@ For the LabSat 2 version, this would be:
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=Labsat_Signal_Source
 SignalSource.filename=./output.ls2  ; <- PUT YOUR FILE NAME HERE
-SignalSource.sampling_frequency=16368000
+SignalSource.enable_throttle_control=true
+SignalSource.throttle_frequency_sps=16368000
 ```
 
 
