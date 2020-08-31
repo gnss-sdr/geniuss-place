@@ -3,7 +3,7 @@ title: "5.- Interoperability"
 permalink: /design-forces/interoperability/
 excerpt: "The ability of making systems work together."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 toc: true
 toc_sticky: true
 last_modified_at: 2017-01-02T08:31:02+02:00
@@ -100,7 +100,7 @@ Support of sample formats for the exchange of raw GNSS data:
 * Quantization: 1, 2, 4, 8, 16, 32 or 64 bits per sample.
 * Encoding: sign, sign-magnitude, signed integer, offset binary or floating-point.
 
-More details in version 1.0 of the [Global Navigation Satellite Systems Software Defined Radio Sampled Data Metadata Standard](https://github.com/IonMetadataWorkingGroup/GNSS-Metadata-Standard/blob/master/Specifications/documentation/DraftMetadataStd.pdf).
+More details in version 1.0 of the [Global Navigation Satellite Systems Software Defined Radio Sampled Data Metadata Standard](https://github.com/IonMetadataWorkingGroup/GNSS-Metadata-Standard/blob/master/Specifications/documentation/ION_MetadataStd_V1.0.pdf).
 
 ## Support of output formats
 

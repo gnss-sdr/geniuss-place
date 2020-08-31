@@ -3,7 +3,7 @@ title: "3.- Efficiency"
 permalink: /design-forces/efficiency/
 excerpt: "How fast the software receiver can process the incoming signal, and in particular how many channels it can sustain in parallel."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 last_modified_at: 2016-07-29T15:54:02-04:00
 ---
 

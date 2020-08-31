@@ -3,7 +3,7 @@ title: "2.- Availability"
 permalink: /design-forces/availability/
 excerpt: "The degree to which a system, subsystem or equipment is in a specified operable and committable state at the (random) start of a mission."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 toc: true
 toc_sticky: true
 last_modified_at: 2016-07-29T15:54:02-04:00

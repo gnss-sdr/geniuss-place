@@ -13,6 +13,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
+show_date: false
 last_modified_at: 2020-06-05T11:37:02+02:00
 ---
 
@@ -284,7 +285,7 @@ The generation of some unit test suites are enabled by default, and gathered in 
       - `TrackingLoopFilterTest`: set of test cases for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h)
 
  * Telemetry Decoder
-      - `Galileo_FNAV_INAV_test`: set of test cases for [galileo_navigation_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/galileo_navigation_message.h) and [galileo_fnav_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/galileo_fnav_message.h)
+      - `Galileo_FNAV_INAV_test`: set of test cases for [galileo_inav_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/galileo_inav_message.h) and [galileo_fnav_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/galileo_fnav_message.h)
 
  * Observables
       - -

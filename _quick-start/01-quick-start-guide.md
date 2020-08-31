@@ -5,7 +5,7 @@ permalink: /quick-start-guide/
 excerpt: "Start here to get a general idea on what is all about."
 last_modified_at: 2016-06-24T15:54:02-04:00
 header:
-  teaser: "/assets/images/geniuss.jpg"
+  teaser: "/assets/images/geniuss.png"
 sidebar:
   nav: "start"
 ---
