@@ -16,7 +16,7 @@ redirect_from:
 ---
 
 
-![Contributing]({{ "/assets/images/geniuss-contribute.png" | relative_url }} "GeNiuSS contributing. Be like GeNiuSS."){:height="250px" width="250x"}
+![Contributing]({{ "/assets/images/geniuss-contribute.png" | relative_url }} "GeNiuSS contributing. Be like GeNiuSS."){:height="250px" width="250px"}
 {: style="text-align: center;"}
 
 ## Contributing to GNSS-SDR
@@ -102,8 +102,6 @@ Configuration file: _config.dev.yml
        Jekyll Feed: Generating feed for posts      
                     done in 4.017 seconds.
  Auto-regeneration: enabled for '/path_to_cloned_repo/geniuss-place'
-Configuration file: _config.yml
-Configuration file: _config.dev.yml
     Server address: http://127.0.0.1:4000/
   Server running... press ctrl-c to stop.
 ```

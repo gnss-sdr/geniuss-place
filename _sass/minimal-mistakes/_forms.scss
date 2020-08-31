@@ -5,7 +5,7 @@
 form {
   margin: 0 0 5px 0;
   padding: 1em;
-  background-color: $form-background-color;
+  @include color-assign(background-color, form-background);
 
   fieldset {
     margin-bottom: 5px;
@@ -19,7 +19,7 @@ form {
     margin-bottom: 5px * 2;
     *margin-left: -7px;
     padding: 0;
-    color: $text-color;
+    @include color-assign(color, text);
     border: 0;
     white-space: normal;
   }
@@ -59,7 +59,7 @@ textarea {
 label {
   display: block;
   margin-bottom: 0.25em;
-  color: $text-color;
+  @include color-assign(color, text);
   cursor: pointer;
 
   small {
@@ -80,9 +80,9 @@ select {
   width: 100%;
   padding: 0.25em;
   margin-bottom: 0.5em;
-  color: $text-color;
-  background-color: $background-color;
-  border: $border-color;
+  @include color-assign(color, text);
+  @include color-assign(background-color, background);
+  @include color-assign(border, border);
   border-radius: $border-radius;
   box-shadow: $box-shadow;
 }
@@ -216,7 +216,7 @@ textarea[readonly] {
 
 input:focus,
 textarea:focus {
-  border-color: $primary-color;
+  @include color-assign(border-color, primary);
   outline: 0;
   outline: thin dotted \9;
   box-shadow: inset 0 1px 3px rgba($text-color, 0.06),
@@ -236,7 +236,7 @@ select:focus {
 
 .help-block,
 .help-inline {
-  color: $muted-text-color;
+  @include color-assign(color, muted-text);
 }
 
 .help-block {
@@ -380,11 +380,11 @@ select:focus {
   padding: 8px 20px;
   display: inline-block;
   font-size: $type-size-6;
-  background-color: #fff;
-  color: #000;
+  @include color-assign(background-color, background);
+  @include color-assign(color, contrast);
   border-width: 2px !important;
   border-style: solid !important;
-  border-color: $border-color;
+  @include color-assign(border-color, border);
   border-radius: $border-radius;
 }
 

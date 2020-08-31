@@ -4,14 +4,15 @@ permalink: /docs/tutorials/gnss-signals/
 excerpt: "Description of Open Service GNSS signals transmitted by satellites."
 author_profile: false
 header:
-  teaser: /assets/images/Galileo_Signal_Plan_Fig_7-th.png
+  teaser: /assets/images/gnss-signals-teaser.png
 tags:
   - tutorial
 sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-09-28T09:37:02+02:00
+show_date: false
+last_modified_at: 2020-05-09T09:37:02+02:00
 ---
 
 
@@ -50,10 +51,9 @@ operated by the United States Air Force (USAF). GPS provides positioning
 and timing services to military and civilian users on a continuous,
 worldwide basis. Two GPS services are provided:
 
--   the Precise Positioning Service (PPS), available primarily to the
-    military of the United States and its allies, and
+-   the Precise Positioning Service (PPS)[^GPS-PPS], available primarily to the military of the United States and its allies, and
 
--   the Standard Positioning Service (SPS) open to civilian users.
+-   the Standard Positioning Service (SPS)[^GPS-SPS], open to civilian users.
 
 The most updated and authorized source is the [Official U.S. Government website about GPS and related topics](https://www.gps.gov/).
 
@@ -97,7 +97,7 @@ termed non-standard $$ L1C_P $$ (NSCP) and non-standard $$ L1C_D $$ (NSCD).
 Non-standard codes are not for utilization by the users and, therefore,
 are not defined in IS-GPS-800D.
 
-![Spectra GPS Signals L1]({{ "/assets/images/Spectra_GPS_Signals_L1.png" | relative_url }})
+![Spectra GPS Signals L1]({{ "/assets/images/Spectra_GPS_Signals_L1.png" | relative_url }}){: .align-center .invert-colors}
 _GPS signals spectra in L1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -137,7 +137,7 @@ representation and nominally more accurate data than the NAV data. It is
 transmitted at $$ 25 $$ bit/s with forward error correction (FEC) encoding,
 resulting in $$ 50 $$ symbols/s.
 
-![Spectra GPS Signals L2]({{ "/assets/images/Spectra_GPS_Signals_L2.png" | relative_url }})
+![Spectra GPS Signals L2]({{ "/assets/images/Spectra_GPS_Signals_L2.png" | relative_url }}){: .align-center .invert-colors}
 _GPS signals spectra in L2. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -163,7 +163,7 @@ a $$ 10 $$–bit Neuman–Hoffman code that modulates each $$ 100 $$ symbols of 
 GPS L5 civil navigation data $$ D_{\text{CNAV}} $$, and the L5Q component
 has another synchronization sequence $$ C_{nh_{20}}=00000100110101001110 $$.
 
-![Spectra GPS Signals L5]({{ "/assets/images/Spectra_GPS_Signals_L5.png" | relative_url }})
+![Spectra GPS Signals L5]({{ "/assets/images/Spectra_GPS_Signals_L5.png" | relative_url }}){: .align-center .invert-colors}
 _GPS signals spectra in L5. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -228,7 +228,7 @@ the Russian Federation Defense Ministry, and no more details have been
 disclosed.
 
 
-![Spectra GLONASS Signals L1]({{ "/assets/images/Spectra_GLONASS_Signals_L1.png" | relative_url }})
+![Spectra GLONASS Signals L1]({{ "/assets/images/Spectra_GLONASS_Signals_L1.png" | relative_url }}){: .align-center .invert-colors}
 _GLONASS signals spectra in L1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -249,7 +249,7 @@ Beginning with the second generation of satellites, called GLONASS–M and
 first launched in 2001, a second civil signal is available using the
 same SP code than the one in the L1 band but centered at $$ 1246 $$ MHz.
 
-![Spectra GLONASS Signals L2]({{ "/assets/images/Spectra_GLONASS_Signals_L2.png" | relative_url }})
+![Spectra GLONASS Signals L2]({{ "/assets/images/Spectra_GLONASS_Signals_L2.png" | relative_url }}){: .align-center .invert-colors}
 _GLONASS signals spectra in L2. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -283,8 +283,9 @@ revolution period of $$ 14 $$ hours. The Control segment full infrastructure
 will be composed of $$ 30-40 $$ sensor stations, $$ 3 $$ control centers, $$ 9 $$
 Mission Uplink stations, and $$ 5 $$ TT&C stations. The current constellation status can be checked at the [European GNSS Service Centre website](https://www.gsc-europa.eu/system-status/Constellation-Information).
 
-Galileo’s Open Service is defined in Galileo's ICD[^GalileoICD], where the following
-signal structures are specified:
+Galileo's Open Service is defined in the Service Definition Document (SDD)[^GalileoSSD],
+and the corresponding signal structures are defined in the Interface Control Document (ICD)[^GalileoICD].
+In this latter document, the following signal structures are specified:
 
 ### Galileo E1
 
@@ -323,7 +324,7 @@ cosine–shaped subcarrier, $$ f_{sc,E1A}=15.345 $$ MHz, and
 $$ T_{c,E1A}=\frac{1}{2.5575} $$ $$ \mu $$s. The PRS spreading codes and the
 structure of the navigation message have not been made public.
 
-![Spectra of Galileo signals in E1.]({{ "/assets/images/Spectra_Galileo_Signals_E1.png" | relative_url }})
+![Spectra of Galileo signals in E1.]({{ "/assets/images/Spectra_Galileo_Signals_E1.png" | relative_url }}){: .align-center .invert-colors}
 _Galileo signals spectra in E1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -355,7 +356,7 @@ $$ f_{sc,E6A}=10.23 $$ MHz, and $$ T_{c, E6A}=\frac{1}{5.115} $$ $$ \mu $$s. The
 spreading codes and the structure of the navigation message are not
 publicly available.
 
-![Spectra of Galileo signals in E6.]({{ "/assets/images/Spectra_Galileo_Signals_E6.png" | relative_url }})
+![Spectra of Galileo signals in E6.]({{ "/assets/images/Spectra_Galileo_Signals_E6.png" | relative_url }}){: .align-center .invert-colors}
 _Galileo signals spectra in E6. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -446,7 +447,7 @@ MHz, while $$ e_{E5b}(t) $$ is shifted to
 $$ f_{Gal E5b}\doteq f_{\text{Gal E5}}+f_{sc,E5}=1207.140 $$
 MHz.
 
-![Single and product side-band spectra in E5.]({{ "/assets/images/subcarriers-e5.png" | relative_url }})
+![Single and product side-band spectra in E5.]({{ "/assets/images/subcarriers-e5.png" | relative_url }}){: .align-center .invert-colors}
 _Power spectrum of single and product side-band subcarriers signals for $$ s^{\text{(Gal E5)}}_{T}(t) $$, normalized to the power of $$ ssc^{*}_s(t) $$ at $$ f_{\text{Gal E5a}} $$. The modified AltBOC modulation can be well approximated by two QPSK signals $$ 2 f_{sc,E5} $$ apart, with negligible contribution of the crossed terms around its center frequency._[^Fernandez11]
 {: style="text-align: center;"}
 
@@ -463,7 +464,7 @@ The same applies to $$ e_{E5b}(t) $$, allowing an independent reception of
 two QPSK signals and thus requiring considerably less bandwidth than the
 processing of the whole E5 band.
 
-![Spectra of Galileo signals in E5.]({{ "/assets/images/Spectra_Galileo_Signals_E5.png" | relative_url }})
+![Spectra of Galileo signals in E5.]({{ "/assets/images/Spectra_Galileo_Signals_E5.png" | relative_url }}){: .align-center .invert-colors}
 _Galileo signals spectra in E5. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
 {: style="text-align: center;"}
 
@@ -506,7 +507,7 @@ document that included details of the navigation message, including
 parameters of the satellite almanacs and ephemerides that were missing
 from a “test version” of the ICD released exactly one year before. One year later version 2.0 was released, version 2.1 followed in November 2016[^Beidou] and version 3.0 in February 2019[^BeidouB1I]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C], B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open services deployed in the BSD-3 phase of the system development.
 
-![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250x"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
+![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250px"}{: .align-left} On December, 2012, the China Satellite Navigation Office released the
 official logo of the BeiDou system, the design of which incorporates the
 yin/yang symbol reflecting traditional Chinese culture, dark and light
 blue coloration symbolizing, respectively, space and Earth (including
@@ -674,7 +675,7 @@ The following table lists the GNSS signals providing Open Service.
 | [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1575.42 $$ MHz | BOC(1,1) |
 | [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IS-GPS-200K.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
 | [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800F.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
-| [**Galileo E1b/c**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
+| [**Galileo E1b/c**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
 | [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
 | [**GLONASS L1OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1602.00 $$ MHz | BPSK(0.5) |
 |--------------
@@ -692,6 +693,10 @@ The following table lists the GNSS signals providing Open Service.
 
 [^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](https://ieeexplore.ieee.org/document/5942139/), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](https://dx.doi.org/10.1109/JPROC.2011.2158032).
 
+[^GPS-SPS]: U.S. Government, Department of Defense, [Global Positioning System Standard Positioning Service Performance Standard](https://www.gps.gov/technical/ps/2020-SPS-performance-standard.pdf), 5th edition, April 2020.
+
+[^GPS-PPS]: U.S. Government, Department of Defense, Positioning, Navigation, and Timing Executive Committee, [Global Positioning System Precise Positioning Service Performance Standard](https://www.gps.gov/technical/ps/2007-PPS-performance-standard.pdf), 1st edition, Feb. 2007.
+
 [^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200K: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200K.pdf), March 2019.
 
 [^ISGPS800]: Global Positioning System Directorate, [Interface Specification IS-GPS-800F: Navstar GPS Space Segment/User Segment L1C Interface](https://www.gps.gov/technical/icwg/IS-GPS-800F.pdf), March 2019.
@@ -707,6 +712,8 @@ The following table lists the GNSS signals providing Open Service.
 [^GLONASS16-2]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L2 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
 [^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
+
+[^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.1.pdf), Issue 1.1, May 2019.
 
 [^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf), Issue 1.3, Dec. 2016.
 

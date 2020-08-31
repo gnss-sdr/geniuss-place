@@ -19,6 +19,7 @@
     padding: 0;
     min-height: auto !important;
     font-size: 16px;
+    background: #fff !important;
   }
 
   body {
@@ -81,6 +82,7 @@
 
   thead {
     display: table-header-group;
+    background-color: #d3d3d3;
   }
 
   table,
@@ -122,6 +124,11 @@
   acronym[title] {
     border: 0;
     text-decoration: none;
+  }
+
+  #data-type {
+      color: #000;
+      background: #fff;
   }
 
   table,
@@ -211,6 +218,20 @@
 
   a.no-reformat:after {
     content: '';
+  }
+
+  .invert-colors {
+      @media (prefers-color-scheme: dark) {
+          filter: hue-rotate(0deg) invert(0%);
+      }
+  }
+
+  .footnotes {
+      color: #000;
+  }
+
+  .highlight-color {
+      color: #0000ff;
   }
 
   abbr[title].no-reformat:after,

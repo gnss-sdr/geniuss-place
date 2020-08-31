@@ -3,7 +3,7 @@ title: "Configurations"
 permalink: /conf/
 excerpt: "How to configure GNSS-SDR in a variety of setups."
 related: true
-last_modified_at: 2018-01-23T15:54:02-04:00
+last_modified_at: 2020-08-13T13:54:02+02:00
 header:
   teaser: "/assets/images/configuration.png"
 sidebar:
@@ -206,19 +206,33 @@ Resampler.implementation=Pass_Through
 ;######### CHANNELS GLOBAL CONFIG ############
 Channels_1C.count=8
 Channels.in_acquisition=1
-Channel.signal=1C
 
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
-Acquisition_1C.threshold=0.01
-Acquisition_1C.doppler_max=8000
-Acquisition_1C.doppler_step=500
+Acquisition_1C.item_type=gr_complex
+Acquisition_1C.coherent_integration_time_ms=1
+Acquisition_1C.pfa=0.01
+Acquisition_1C.doppler_max=5000
+Acquisition_1C.doppler_step=250
+Acquisition_1C.max_dwells=1
+Acquisition_1C.dump=false
+Acquisition_1C.dump_filename=./acq_dump.dat
 
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
-Tracking_1C.pll_bw_hz=30.0
-Tracking_1C.dll_bw_hz=4.0
+Tracking_1C.item_type=gr_complex
+Tracking_1C.extend_correlation_symbols=10
 Tracking_1C.early_late_space_chips=0.5
+Tracking_1C.early_late_space_narrow_chips=0.15
+Tracking_1C.pll_bw_hz=40
+Tracking_1C.dll_bw_hz=2.0
+Tracking_1C.pll_bw_narrow_hz=5.0
+Tracking_1C.dll_bw_narrow_hz=1.50
+Tracking_1C.fll_bw_hz=10
+Tracking_1C.enable_fll_pull_in=true
+Tracking_1C.enable_fll_steady_state=false
+Tracking_1C.dump=false
+Tracking_1C.dump_filename=tracking_ch_
 
 ;######### TELEMETRY DECODER GPS CONFIG ############
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
@@ -229,7 +243,7 @@ Observables.implementation=Hybrid_Observables
 ;######### PVT CONFIG ############
 PVT.implementation=RTKLIB_PVT
 PVT.positioning_mode=Single
-PVT.output_rate_ms=10
+PVT.output_rate_ms=100
 PVT.display_rate_ms=500
 PVT.iono_model=Broadcast
 PVT.trop_model=Saastamoinen
@@ -261,9 +275,7 @@ You should see something similar to:
 
 ```
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
-linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010.git-0-2d68f228
-
-Initializing GNSS-SDR v0.0.11 ... Please wait.
+Initializing GNSS-SDR v0.0.13 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 -- X300 initialization sequence...
@@ -415,6 +427,7 @@ In order to get real-time position fixes, you will need:
 
   * **An active GPS antenna**. Most models will fit, just check that you can plug it to the HackRF's SMA-female connector, and that 50 mA at 3.3 V is an adequate feeding.
   * **A HackRF One**.
+  * **A stable clock**: the oscillator shipped with the HackRF is not good enough for GNSS signal processing. You will need a frequency stability of 1 ppm or better.
   * **A computer** connected to the HackRF One and with GNSS-SDR installed.
 
 
@@ -440,6 +453,8 @@ Once the software is ready, connect your HackRF to your computer, and connect th
 ```ini
 SignalSource.osmosdr_args=hackrf,bias=1
 ```
+
+You will need to provide an external clock source to the HackRF with a frequency stability of 1 ppm or better (so a 10 MHz oscillator will vary by 10 Hz).
 
 ### Setting up the software receiver
 
@@ -504,36 +519,37 @@ Resampler.implementation=Pass_Through
 ;######### CHANNELS GLOBAL CONFIG ############
 Channels_1C.count=8
 Channels.in_acquisition=1
-Channel.signal=1C
 
 ;######### ACQUISITION GLOBAL CONFIG ############
-Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition_Fine_Doppler
+Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
 Acquisition_1C.item_type=gr_complex
-Acquisition_1C.if=0
-Acquisition_1C.sampled_ms=1
-Acquisition_1C.threshold=0.015
-Acquisition_1C.doppler_max=10000
-Acquisition_1C.doppler_min=-10000
-Acquisition_1C.doppler_step=500
-Acquisition_1C.max_dwells=15
+Acquisition_1C.coherent_integration_time_ms=1
+Acquisition_1C.pfa=0.01
+Acquisition_1C.doppler_max=5000
+Acquisition_1C.doppler_step=250
+Acquisition_1C.max_dwells=1
 Acquisition_1C.dump=false
 Acquisition_1C.dump_filename=./acq_dump.dat
 
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
 Tracking_1C.item_type=gr_complex
-Tracking_1C.if=0
-Tracking_1C.pll_bw_hz=40.0;
-Tracking_1C.dll_bw_hz=2.0;
-Tracking_1C.order=3;
-Tracking_1C.early_late_space_chips=0.5;
+Tracking_1C.extend_correlation_symbols=10
+Tracking_1C.early_late_space_chips=0.5
+Tracking_1C.early_late_space_narrow_chips=0.15
+Tracking_1C.pll_bw_hz=40
+Tracking_1C.dll_bw_hz=2.0
+Tracking_1C.pll_bw_narrow_hz=5.0
+Tracking_1C.dll_bw_narrow_hz=1.50
+Tracking_1C.fll_bw_hz=10
+Tracking_1C.enable_fll_pull_in=true
+Tracking_1C.enable_fll_steady_state=false
 Tracking_1C.dump=false
-Tracking_1C.dump_filename=./tracking_ch_
+Tracking_1C.dump_filename=tracking_ch_
 
 ;######### TELEMETRY DECODER GPS CONFIG ############
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1C.dump=false
-TelemetryDecoder_1C.decimation_factor=1;
 
 ;######### OBSERVABLES CONFIG ############
 Observables.implementation=Hybrid_Observables
@@ -543,7 +559,7 @@ Observables.dump_filename=./observables.dat
 ;######### PVT CONFIG ############
 PVT.implementation=RTKLIB_PVT
 PVT.positioning_mode=Single
-PVT.output_rate_ms=10
+PVT.output_rate_ms=100
 PVT.display_rate_ms=500
 PVT.iono_model=Broadcast
 PVT.trop_model=Saastamoinen
@@ -567,10 +583,16 @@ $ gnss-sdr --config_file=./hackrf_GPS_L1.conf
 
 You should see something similar to the example [above](#run-it).
 
+### HackRF and GNSS-SDR in action
+
+The process of setting up a GPS receiver with a HackRF and GNSS-SDR is nicely described in the following video by [Don Kelly](https://www.linkedin.com/in/kellydak/), including hardware aspects and the usage of the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor) graphic interface.
+
+{% include video id="xSJ1hFUCnP8" provider="youtube" %}
+
 ------
 
 
 
 
-<link rel="prerender" href="{{ "/docs/overview/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/overview/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/" | relative_url }}" />

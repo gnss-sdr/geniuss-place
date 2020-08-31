@@ -4,6 +4,7 @@ permalink: /docs/fundamentals/
 excerpt: "A description of GNSS-SDR software architecture and underlying key concepts."
 header:
   teaser: /assets/images/class-hierarchy-general-th.png
+  invert-colors: true
 toc: true
 toc_sticky: true
 last_modified_at: 2016-04-13T15:54:02-04:00
@@ -36,13 +37,13 @@ An analysis of such process networks scheduling was provided in Parks' PhD Thesi
 
 An extremely simple flow graph would look like this:
 
-![A simple flow graph]({{ "/assets/images/simple-flowgraph.png" | relative_url }}){:width="400x"}{: .align-center}
+![A simple flow graph]({{ "/assets/images/simple-flowgraph.png" | relative_url }}){:width="400px"}{: .align-center .invert-colors}
 _Example of a very simple flow graph._
 {: style="text-align: center;"}
 
 and another more complex example that already should be familiar to you could be as:
 
-![A typical GNSS-SDR flow graph]({{ "/assets/images/simple-gnss-sdr-flowgraph.png" | relative_url }}){:width="600x"}{: .align-center}
+![A typical GNSS-SDR flow graph]({{ "/assets/images/simple-gnss-sdr-flowgraph.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _Typical GNSS-SDR flow graph._
 {: style="text-align: center;"}
 
@@ -55,8 +56,8 @@ An actual implementation of these concepts is found in [GNU Radio](https://www.g
 
 The diagram of a processing block (that is, of a given node in the flow graph), as implemented by the GNU Radio framework, is shown below:
 
-![GNU Radio block]({{ "/assets/images/gnuradio-block.png" | relative_url }}){: .align-center}
-_Diagram of a signal processing block, as implemented by GNU Radio. Each block has a completely independent scheduler running in its own execution thread and an asynchronous messaging system for communication with other upstream and downstream blocks. The actual signal processing is performed in the ```work()``` method. Figure adapted from [these Johnathan Corgan's slides](https://static1.squarespace.com/static/543ae9afe4b0c3b808d72acd/t/55de1259e4b01e5c160764cf/1440617049937/5.+corgan_johnathan-scheduler+2015-08-25.pdf)._
+![GNU Radio block]({{ "/assets/images/gnuradio-block.png" | relative_url }}){: .align-center .invert-colors}
+_Diagram of a signal processing block, as implemented by GNU Radio. Each block has a completely independent scheduler running in its own execution thread and an asynchronous messaging system for communication with other upstream and downstream blocks. The actual signal processing is performed in the `work()` method. Figure adapted from [these Johnathan Corgan's slides](https://static1.squarespace.com/static/543ae9afe4b0c3b808d72acd/t/55de1259e4b01e5c160764cf/1440617049937/5.+corgan_johnathan-scheduler+2015-08-25.pdf)._
 {: style="text-align: center;"}
 
 Each block can have an arbitrary number of input and output _ports_ for data and for asynchronous message passing with other blocks in the flow graph. In all software applications based on the GNU Radio framework, the underlying process scheduler passes items (i.e., units of data) from sources to sinks. For each block, the number of items it can process in a single iteration is dependent on how much space it has in its output buffer(s) and how many items are available on the input buffer(s). The larger that number is, the better in terms of efficiency (since the majority of the processing time is taken up with processing samples), but also the larger the latency that will be introduced by that block. On the contrary, the smaller the number of items per iteration, the larger the overhead that will be introduced by the scheduler.
@@ -85,47 +86,47 @@ After defining some basic notation, this section describes a software design bas
 The notation is as follows: we use a very simplified version of the Unified Modeling Language ([UML](https://en.wikipedia.org/wiki/Unified_Modeling_Language)), a standardized general-purpose modeling language in the field of object-oriented software engineering. In this page, classes are described as rectangles with two sections: the top section for the name of the class, and the bottom section for the methods of the class.
 
 
-A dashed arrow from ```ClassA``` to ```ClassB``` represents the dependency relationship. This relationship simply means that ```ClassA``` somehow depends upon ```ClassB```. In C++ this almost always results in an ```#include```.
+A dashed arrow from `ClassA` to `ClassB` represents the dependency relationship. This relationship simply means that `ClassA` somehow depends upon `ClassB`. In C++ this almost always results in an `#include`.
 
-![Class dependency]({{ "/assets/images/dependency.png" | relative_url }}){:height="300px" width="300x"}{: .align-center}
-_```ClassA``` depends on ```ClassB```._
+![Class dependency]({{ "/assets/images/dependency.png" | relative_url }}){:height="300px" width="300px"}{: .align-center .invert-colors}
+_`ClassA` depends on `ClassB`._
 {: style="text-align: center;"}
 
 
-Inheritance models _is a_ and _is like_ relationships, enabling you to reuse existing data and code easily. When ```ClassB``` inherits from ```ClassA```, we say that ```ClassB``` is the subclass of ```ClassA```, and ```ClassA``` is the superclass (or parent class) of ```ClassB```. The UML modeling notation for inheritance is a line with a closed arrowhead pointing from the subclass to the superclass.
+Inheritance models _is a_ and _is like_ relationships, enabling you to reuse existing data and code easily. When `ClassB` inherits from `ClassA`, we say that `ClassB` is the subclass of `ClassA`, and `ClassA` is the superclass (or parent class) of `ClassB`. The UML modeling notation for inheritance is a line with a closed arrowhead pointing from the subclass to the superclass.
 
-![Class inheritance]({{ "/assets/images/inheritance.png" | relative_url }}){:width="150x"}{: .align-center}
-_```ClassA``` inherits from ```ClassB```._
+![Class inheritance]({{ "/assets/images/inheritance.png" | relative_url }}){:width="150px"}{: .align-center .invert-colors}
+_`ClassA` inherits from `ClassB`._
 {: style="text-align: center;"}
 
 ### Class hierarchy overview
 
-A key aspect of an object-oriented software design is how classes relate to each other. In the GNU Radio framework, [```gr::basic_block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/basic_block.h) is the abstract base class for all signal processing blocks, a bare abstraction of an entity that has a name and a set of inputs and outputs. It is never instantiated directly; rather, this is the abstract parent class of both [```gr::hier_block2```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/hier_block2.h), which is a recursive container that adds or removes processing or hierarchical blocks to the internal graph,  and [```gr::block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h), which is the abstract base class for all the processing blocks. A signal processing flow is constructed by creating a tree of hierarchical blocks, which at any level may also contain terminal nodes that actually implement signal processing functions:
+A key aspect of an object-oriented software design is how classes relate to each other. In the GNU Radio framework, [`gr::basic_block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/basic_block.h) is the abstract base class for all signal processing blocks, a bare abstraction of an entity that has a name and a set of inputs and outputs. It is never instantiated directly; rather, this is the abstract parent class of both [`gr::hier_block2`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/hier_block2.h), which is a recursive container that adds or removes processing or hierarchical blocks to the internal graph,  and [`gr::block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h), which is the abstract base class for all the processing blocks. A signal processing flow is constructed by creating a tree of hierarchical blocks, which at any level may also contain terminal nodes that actually implement signal processing functions:
 
-![Class hierarchy overview]({{ "/assets/images/class-hierarchy-sp.png" | relative_url }}){:width="500x"}{: .align-center}
+![Class hierarchy overview]({{ "/assets/images/class-hierarchy-sp.png" | relative_url }}){:width="500px"}{: .align-center .invert-colors}
 _GNU Radio's class hierarchy._
 {: style="text-align: center;"}
 
 
-Class [```gr::top_block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/top_block.h) is the top-level hierarchical block representing a flow graph. It defines GNU Radio runtime functions used during the execution of the program: ```run()```, ```start()```, ```stop()```, ```wait()```, etc. As shown in the figure below, a subclass called [```GNSSBlockInterface```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/gnss_block_interface.h) is the common interface for all the GNSS-SDR modules. It defines pure **virtual** methods, that are required to be implemented by a derived class:
+Class [`gr::top_block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/top_block.h) is the top-level hierarchical block representing a flow graph. It defines GNU Radio runtime functions used during the execution of the program: `run()`, `start()`, `stop()`, `wait()`, etc. As shown in the figure below, a subclass called [`GNSSBlockInterface`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/gnss_block_interface.h) is the common interface for all the GNSS-SDR modules. It defines pure **virtual** methods, that are required to be implemented by a derived class:
 
-![Block interface]({{ "/assets/images/block-interface.png" | relative_url }}){:width="500x"}{: .align-center}
-_```GNSSBlockInterface``` inherits from ```gr::top_block```._
+![Block interface]({{ "/assets/images/block-interface.png" | relative_url }}){:width="500px"}{: .align-center .invert-colors}
+_`GNSSBlockInterface` inherits from `gr::top_block`._
 {: style="text-align: center;"}
 
 **Definition:** Classes containing pure virtual methods are termed _abstract_; they cannot be instantiated directly, and a subclass of an abstract class can only be instantiated directly if all inherited pure virtual methods have been implemented by that class or a parent class.
 {: .notice--info}
 
-Subclassing [```GNSSBlockInterface```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/gnss_block_interface.h), we defined interfaces for the receiver's processing blocks. This hierarchy, shown in the figure below, provides a way to define an arbitrary number of algorithms and implementations for each processing block, which will be instantiated according to the configuration. This strategy defines multiple implementations sharing a common interface, achieving the objective of decoupling interfaces from implementations: it defines a family of algorithms, encapsulates each one, and makes them interchangeable. Hence, we let the algorithm vary independently of the program that uses it.
+Subclassing [`GNSSBlockInterface`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/gnss_block_interface.h), we defined interfaces for the receiver's processing blocks. This hierarchy, shown in the figure below, provides a way to define an arbitrary number of algorithms and implementations for each processing block, which will be instantiated according to the configuration. This strategy defines multiple implementations sharing a common interface, achieving the objective of decoupling interfaces from implementations: it defines a family of algorithms, encapsulates each one, and makes them interchangeable. Hence, we let the algorithm vary independently of the program that uses it.
 
 
-![Block hierarchy]({{ "/assets/images/block-hierarchy.png" | relative_url }}){: .align-center}
+![Block hierarchy]({{ "/assets/images/block-hierarchy.png" | relative_url }}){: .align-center .invert-colors}
 _Class hierarchy for the Signal Processing Plane._
 {: style="text-align: center;"}
 
-This design pattern allows for an infinite number of algorithms and implementations for each block. For instance, defining a new algorithm for signal acquisition requires an _adapter_ ensuring it meets a minimal [AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/acquisition_interface.h), and the actual implementation in form of GNU Radio processing block (that is, inheriting from [```gr::block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h)).
+This design pattern allows for an infinite number of algorithms and implementations for each block. For instance, defining a new algorithm for signal acquisition requires an _adapter_ ensuring it meets a minimal [AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/acquisition_interface.h), and the actual implementation in form of GNU Radio processing block (that is, inheriting from [`gr::block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h)).
 
-**Example:** An available implementation of an Acquisition block is called ```GPS_L1_CA_DLL_PLL_Tracking```. As any other Acquisition block, it has an adapter that inherits from [AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/acquisition_interface.h) and the corresponding GNU Radio block inheriting from [```gr::block```](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h) and implementing the actual processing. You can take a look at the source code:
+**Example:** An available implementation of an Acquisition block is called `GPS_L1_CA_DLL_PLL_Tracking`. As any other Acquisition block, it has an adapter that inherits from [AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/acquisition_interface.h) and the corresponding GNU Radio block inheriting from [`gr::block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h) and implementing the actual processing. You can take a look at the source code:
 
 * Adapter interface: [gnss-sdr/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h)
 * Adapter implementation: [gnss-sdr/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.cc)
@@ -136,7 +137,7 @@ This design pattern allows for an infinite number of algorithms and implementati
 
 The following figure summarizes the general class hierarchy for GNSS-SDR and its relation to the GNU Radio framework:
 
-![Class hierarchy overview]({{ "/assets/images/class-hierarchy-general.png" | relative_url }}){: .align-center}
+![Class hierarchy overview]({{ "/assets/images/class-hierarchy-general.png" | relative_url }}){: .align-center .invert-colors}
 _Overview of class hierarchy in GNSS-SDR and its relation to GNU Radio._
 {: style="text-align: center;"}
 
@@ -148,4 +149,4 @@ Up to this point, we have described a software design that accounts both for eff
 ## References
 
 
-<link rel="prerender" href="{{ "/docs/control-plane/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/control-plane/" | relative_url }}" />

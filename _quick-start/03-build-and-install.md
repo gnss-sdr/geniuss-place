@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2019-06-01T11:13:02+02:00
+last_modified_at: 2020-06-09T11:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -16,7 +16,7 @@ redirect_from:
 
 This page describes several ways to build and install GNSS-SDR.
 
-![GeNiuSS building]({{ "/assets/images/geniuss-building.png" | relative_url }} "GeNiuSS at work. What a self-made character!"){:height="250px" width="250x"}
+![GeNiuSS building]({{ "/assets/images/geniuss-building.png" | relative_url }} "GeNiuSS at work. What a self-made character!"){:height="250px" width="250px"}
 {: style="text-align: center;"}
 
 # Installing everything through software package managers
@@ -79,7 +79,7 @@ GNSS-SDR and its software dependencies can all be installed either by downloadin
 
 But maybe this approach does not fit your needs. Maybe you already have some dependency already built from source and want to use it, or your setup requires some specific flag somewhere. This is a building-time _vs_. fine-tuning trade-off. In order to take the adequate approach, just remember this basic rule:
 
-![Install package or build from source?]({{ "/assets/images/deb-or-build-from-source.png" | relative_url }}){: .align-center}
+![Install package or build from source?]({{ "/assets/images/deb-or-build-from-source.png" | relative_url }}){: .align-center .invert-colors}
 _Software packages require that all its dependencies must be also installed from packages._
 {: style="text-align: center;"}
 
@@ -255,18 +255,41 @@ In Debian/Ubuntu-based distributions, Clang can be installed by doing:
 $ sudo apt-get install clang
 ```
 
-Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8` or `clang-4.0` could exist for your distribution, check its documentation.  Once installed, its use can be configured by passing the following parameters to CMake:
+Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8`, `clang-4.0`, `clang-5.0`, `clang-6.0`, `clang-7`, `clang-8`, `clang-9` or `clang-10` could exist for your distribution, check its documentation. Once installed, its use can be configured by passing the following parameters to CMake:
 
 ```bash
-$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 ..
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-10 -DCMAKE_C_COMPILER=/usr/bin/clang-10 ..
 ```
 
-of course replacing `3.8` by the actual version installed in your machine. Modern versions dropped the version number, so you may have just `/usr/bin/clang++` and `/usr/bin/clang`.
+of course replacing `10` by the actual version installed in your machine. Some distributions drop the version number, so you may  just have `/usr/bin/clang++` and `/usr/bin/clang`.
 
 If you have the Ninja build system installed, you can build GNSS-SDR replacing GCC and `make` by Clang and Ninja:
 
 ```bash
-$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/clang-3.8 -GNinja ..
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-10 -DCMAKE_C_COMPILER=/usr/bin/clang-10 -GNinja ..
+```
+
+## Using Xcode
+
+[Xcode](https://developer.apple.com/xcode/) is an integrated development environment (IDE) for macOS containing a suite of software development tools developed by Apple.
+
+In order to build GNSS-SDR with Xcode, pass the following parameter to CMake:
+
+```bash
+$ cmake -GXcode ..
+```
+
+This will create a `gnss-sdr.xcodeproj` project that can be opened by Xcode (in the top bar menu, click File <i class="fas fa-long-arrow-alt-right"></i> Open ... <i class="fas fa-long-arrow-alt-right"></i> open the `gnss-sdr.xcodeproj` project).
+
+You can also build from the command line:
+
+```bash
+$ xcodebuild
+```
+or
+
+```bash
+$ xcodebuild -config Release
 ```
 
 
@@ -278,14 +301,14 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCMAKE_C_COMPILER=/usr/bin/cl
 ## Snap package
 
 <figure style="width: 64px" class="align-left">
-  <img src="{{ "/assets/images/logo-snappy.png" | relative_url }}" alt="Snappy logo">
+  <img src="{{ "/assets/images/Snapcraft-logo-bird.png" | relative_url }}" alt="Snapcraft logo">
 </figure>
 
 [Snaps](https://snapcraft.io) are universal Linux packages aimed to work on any distribution or device, from IoT devices to servers, desktops to mobile devices. Snaps are self-contained packages that bundle the application and all the libraries and runtimes it needs, and can be updated and reverted without affecting the rest of the system. Snaps are confined from the OS and other apps through security mechanisms, but can exchange content and functions with other snaps.
 
 Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox) for instructions on building your own snap package of GNSS-SDR, or install it directly from the [Snap Store](https://snapcraft.io/gnss-sdr-next):
 
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/gnss-sdr-next)
+[![Get it from the Snap Store]({{ "/assets/images/snap-store-white.svg" | relative_url }})](https://snapcraft.io/gnss-sdr-next)
 {: style="text-align: center;"}
 
 ## Docker
@@ -340,4 +363,8 @@ Visit [Cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | relativ
 
 ----
 
-<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}">
+<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}" />
+<link rel="prerender" href="{{ "/conf/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/" | relative_url }}" />
+<link rel="prerender" href="{{ "/requirements/" | relative_url }}" />
+<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />

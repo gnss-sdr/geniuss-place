@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-04-13T12:54:02+02:00
+last_modified_at: 2020-03-13T12:54:02+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -296,6 +296,32 @@ GNSS-SDR.assist_dual_frequency_acq=false
 ```
 
 
+## Banned satellites
+
+By default, GNSS-SDR searches for all the available satellites by PRN identification, from 1 up to the nominal maximum identifier (32 for GPS, 36 for Galileo, and so on). The order in which they are searched for can be altered if assisted GNSS is enabled, but all of them will be eventually processed as long as there are channels available.
+
+The following parameters allow to remove specific satellites from the list of potentially available ones:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `GPS_banned_prns` | List of GPS satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. | Optional |
+| `Galileo_banned_prns` | List of Galileo satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. | Optional |
+| `Glonass_banned_prns` | List of GLONASS satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. | Optional |
+| `Beidou_banned_prns` | List of Beidou satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. | Optional |
+|-------
+
+With these parameters, users can specify lists of satellites which will not be processed. Satellites on those lists will never be assigned to a processing channel.
+
+Example: since Galileo E14 and E18 satellites are not usable for PVT, they can be removed from the list of Galileo searched satellites by setting:
+
+```ini
+GNSS-SDR.Galileo_banned_prns=14,18
+```
+
+
+
 ## Processing old data files
 
 If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time, with the corresponding adjustment to the week rollower.
@@ -305,7 +331,7 @@ If you are processing raw data files containing GPS L1 C/A signals dated before 
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|
 |--------------
-| `pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. | Optional |
 |-------
 
 Example:

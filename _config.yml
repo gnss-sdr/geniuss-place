@@ -5,7 +5,7 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "mint", "neon", "plum", "sunrise"
+minimal_mistakes_skin    : "default" # "geniuss-dark", air", "aqua", "contrast", "dark", "dirt", "mint", "neon", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
@@ -64,9 +64,10 @@ social:
 
 # Analytics
 analytics:
-  provider               :  "google-gtag" # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google-tag-manager" # false (default), "google", "google-universal", "google-gtag", "google-tag-manager", "custom"
   google:
     tracking_id          : UA-33262364-1
+    gtm_id               : GTM-WT3PFP7
 
 # Google AdSense
 google_ad_client         :
@@ -190,6 +191,7 @@ defaults:
       comments: true
       share: true
       related: true
+      show_date: true
   # _pages
   - scope:
       path: ""

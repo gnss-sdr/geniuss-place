@@ -79,18 +79,18 @@
       line-height: 1.5;
       text-align: center;
       text-decoration: none;
-      color: $muted-text-color;
-      border: 1px solid mix(#000, $border-color, 25%);
+      @include color-assign(color, muted-text);
+      @include color-assign(border, mix-border-25, '1px solid here');
       border-radius: 0;
 
       &:hover {
-        color: $link-color-hover;
+        @include color-assign(color, link-hover);
       }
 
       &.current,
       &.current.disabled {
-        color: #fff;
-        background: $primary-color;
+        @include color-assign(color, no-contrast);
+        @include color-assign(background, primary);
       }
 
       &.disabled {
@@ -128,12 +128,13 @@
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    color: $muted-text-color;
-    border: 1px solid mix(#000, $border-color, 25%);
+    @include color-assign(color, muted-text);
+    @include color-assign(border, mix-border-25, '1px solid here');
     border-radius: $border-radius;
 
     &:hover {
       @include yiq-contrasted($muted-text-color);
+      @include color-assign(background-color, primary);
     }
 
     &:first-child {
@@ -161,7 +162,8 @@
 .page__comments + .pagination {
   margin-top: 2em;
   padding-top: 2em;
-  border-top: 1px solid $border-color;
+  @include color-assign(border-top, border, '1px solid here');
+
 }
 
 /*
@@ -177,16 +179,16 @@
   -ms-flex-align: center;
   align-items: center;
   min-height: $nav-height;
-  background: $background-color;
+  @include color-assign(background, background);
 
   a {
     display: block;
     margin: 0 1rem;
-    color: $masthead-link-color;
+    @include color-assign(color, masthead-link);
     text-decoration: none;
 
     &:hover {
-      color: $masthead-link-color-hover;
+      @include color-assign(color, masthead-link-hover);
     }
 
     &.site-title {
@@ -238,7 +240,7 @@
         left: 0;
         bottom: 0;
         height: 4px;
-        background: $primary-color;
+        @include color-assign(background, primary);
         width: 100%;
         -webkit-transition: $global-transition;
         transition: $global-transition;
@@ -260,9 +262,9 @@
     right: 0;
     margin-top: 15px;
     padding: 5px;
-    border: 1px solid $border-color;
+    @include color-assign(border, border, '1px solid here');
     border-radius: $border-radius;
-    background: $background-color;
+    @include color-assign(background, background);
     -webkit-box-shadow: 0 2px 4px 0 rgba(#000, 0.16),
       0 2px 10px 0 rgba(#000, 0.12);
     box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
@@ -277,8 +279,8 @@
       font-size: $type-size-5;
 
       &:hover {
-        color: $masthead-link-color-hover;
-        background: $navicon-link-color-hover;
+        @include color-assign(color, masthead-link-hover);
+        @include color-assign(background, navicon-link-hover);
       }
     }
 
@@ -310,7 +312,7 @@
 
     li {
       display: block;
-      border-bottom: 1px solid $border-color;
+      @include color-assign(border-bottom, border, '1px solid here');
 
       &:last-child {
         border-bottom: none;
@@ -346,10 +348,11 @@
       position: relative;
       display: inline-block;
       padding: 0.5em 2.5em 0.5em 1em;
-      color: $gray;
+      @include color-assign(color, primary);
       font-size: $type-size-6;
       font-weight: bold;
-      border: 1px solid $light-gray;
+      @include color-assign(border, light-gray, '1px solid here');
+
       border-radius: $border-radius;
       z-index: 20;
       -webkit-transition: 0.2s ease-out;
@@ -365,7 +368,7 @@
         width: 0.75em;
         height: 0.125em;
         line-height: 1;
-        background-color: $gray;
+        @include color-assign(background-color, primary);
         -webkit-transition: 0.2s ease-out;
         transition: 0.2s ease-out;
       }
@@ -379,7 +382,7 @@
       &:hover {
         color: #fff;
         border-color: $gray;
-        background-color: mix(white, #000, 20%);
+        @include color-assign(background-color, nav-list-background);
 
         &:before,
         &:after {
@@ -391,7 +394,7 @@
     /* selected*/
     input:checked + label {
       color: white;
-      background-color: mix(white, #000, 20%);
+      @include color-assign(background-color, nav-list-background);
 
       &:before,
       &:after {
@@ -491,7 +494,7 @@
   font-size: $type-size-6;
   font-weight: bold;
   text-transform: uppercase;
-  border-bottom: 1px solid $border-color;
+  @include color-assign(border-bottom, border, '1px solid here');
 }
 
 /*
@@ -503,15 +506,15 @@
   color: $gray;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background-color: $background-color;
-  border: 1px solid $border-color;
+  @include color-assign(background-color, background);
+  @include color-assign(border, border, '1px solid here');
   border-radius: $border-radius;
   box-shadow: $box-shadow;
 
   .nav__title {
     color: #fff;
     font-size: $type-size-6;
-    background: $primary-color;
+    @include color-assign(background, primary);
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
   }
@@ -519,6 +522,22 @@
   // Scrollspy marks toc items as .active when they are in focus
   .active a {
     @include yiq-contrasted($active-color);
+    @media (prefers-color-scheme: dark) {
+      background: $lighter-gray;
+      color: $darker-gray;
+    }
+    code {
+      @media (prefers-color-scheme: dark) {
+        background: $lighter-gray;
+        color: $darker-gray;
+      }
+    }
+    &:hover {
+      @media (prefers-color-scheme: dark) {
+        background: $lighter-gray;
+        color: #000;
+      }
+    }
   }
 }
 
@@ -535,14 +554,14 @@
   a {
     display: block;
     padding: 0.25rem 0.50rem;
-    color: $muted-text-color;
+    @include color-assign(color, muted-text);
     font-size: $type-size-6; //
     font-weight: bold;
     line-height: 1.5;
-    border-bottom: 1px solid $border-color;
+    @include color-assign(border-bottom, border, '1px solid here');
 
     &:hover {
-      color: $text-color;
+      @include color-assign(color, text);
     }
   }
 

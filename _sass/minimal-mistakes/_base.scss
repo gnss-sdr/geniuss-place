@@ -11,7 +11,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  color: $text-color;
+  @include color-assign(color, text);
   font-family: $global-font-family;
   line-height: 1.5;
 
@@ -35,27 +35,27 @@ h6 {
 
 h1 {
   margin-top: 0;
-  font-size: $type-size-3;
+  font-size: $h-size-1;
 }
 
 h2 {
-  font-size: $type-size-4;
+  font-size: $h-size-2;
 }
 
 h3 {
-  font-size: $type-size-4-5;
+  font-size: $h-size-3;
 }
 
 h4 {
-  font-size: $type-size-6;
+  font-size: $h-size-4;
 }
 
 h5 {
-  font-size: $type-size-6;
+  font-size: $h-size-5;
 }
 
 h6 {
-  font-size: $type-size-6;
+  font-size: $h-size-6;
 }
 
 small,
@@ -70,7 +70,7 @@ p {
 u,
 ins {
   text-decoration: none;
-  border-bottom: 1px solid $text-color;
+  @include color-assign(border-bottom, text, '1px solid here');
   a {
     color: inherit;
   }
@@ -101,15 +101,15 @@ abbr[title],
 abbr[data-original-title] {
   text-decoration: none;
   cursor: help;
-  border-bottom: 1px dotted $text-color;
+  @include color-assign(border-bottom, text, '1px dotted here');
 }
 
 #data-type {
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
-    background: $code-background-color;
+    @include color-assign(background, code-background);
     font-size: $type-size-6;
-    color: $text-color;
+    @include color-assign(color, text);
 }
 
 /* blockquotes */
@@ -119,7 +119,7 @@ blockquote {
   padding-left: 1em;
   padding-right: 1em;
   font-style: italic;
-  border-left: 0.25em solid $primary-color;
+  @include color-assign(border-left, primary, '0.25em solid here');
 
   cite {
     font-style: italic;
@@ -139,11 +139,11 @@ a {
   }
 
   &:visited {
-    color: $link-color-visited;
+    @include color-assign(color, link-visited);
   }
 
   &:hover {
-    color: $link-color-hover;
+    @include color-assign(color, link-hover);
     outline: 0;
   }
 }
@@ -176,7 +176,7 @@ td > code {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   font-size: $type-size-6;
-  background: $code-background-color;
+  @include color-assign(background, code-background);
   border-radius: $border-radius;
 
   &:before,
@@ -192,7 +192,7 @@ hr {
   display: block;
   margin: 1em 0;
   border: 0;
-  border-top: 1px solid $border-color;
+  @include color-assign(border-top, border, '1px solid here');
 }
 
 /* lists */
@@ -271,7 +271,7 @@ figure {
 
 figcaption {
   margin-bottom: 0.5em;
-  color: $muted-text-color;
+  @include color-assign(color, muted-text);
   font-family: $caption-font-family;
   font-size: $type-size-6;
 
@@ -280,7 +280,7 @@ figcaption {
     transition: $global-transition;
 
     &:hover {
-      color: $link-color-hover;
+      @include color-assign(color, link-hover);
     }
   }
 }
@@ -333,6 +333,16 @@ nav {
     margin-top: 0;
   }
 }
+
+/*
+   Definitions
+   ========================================================================== */
+dl {
+  ul {
+      font-size: $type-size-4;
+  }
+}
+
 
 /*
    Global animation transition

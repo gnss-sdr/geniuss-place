@@ -2,7 +2,7 @@
 layout: archive
 permalink: /docs/tutorials/
 title: "Tutorials"
-excerpt: "Tutorials on GNSS-SDR: step-by-step procedures and descriptions of use cases." 
+excerpt: "Tutorials on GNSS-SDR: step-by-step procedures and descriptions of use cases."
 author_profile: false
 sidebar:
   nav: "docs"
@@ -10,13 +10,12 @@ sidebar:
 
 {% include group-by-array collection=site.posts field="tags" %}
 
-<html> <body> <table> <tr> <td id="forcetable">
+{% assign entries_layout = page.entries_layout | default: 'list' %}
 {% for tag in group_names %}
   {% if tag == "tutorial" %}
     {% assign posts = group_items[forloop.index0] %}
     {% for post in posts %}
-      {% include archive-single.html %}
+      {% include archive-single.html type=entries_layout %}
     {% endfor %}
   {% endif %}
 {% endfor %}
-</td> </tr> </table> </body> </html>

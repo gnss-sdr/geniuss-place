@@ -55,7 +55,7 @@ body:hover .visually-hidden button {
   font-size: 1em;
   font-weight: bold;
   padding: 15px 23px 14px;
-  background: #fff;
+  @include color-assign(background, no-contrast);
   z-index: 100000;
   text-decoration: none;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
@@ -208,7 +208,7 @@ body:hover .visually-hidden button {
   .fab,
   .far,
   .fal {
-    color: $text-color;
+    @include color-assign(color, text);
   }
 
   .fa-behance,
@@ -337,7 +337,7 @@ body:hover .visually-hidden button {
   position: relative;
   width: $navicon-width;
   height: $navicon-height;
-  background: $primary-color;
+  @include color-assign(background, primary);
   margin: auto;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -349,7 +349,7 @@ body:hover .visually-hidden button {
     left: 0;
     width: $navicon-width;
     height: $navicon-height;
-    background: $primary-color;
+    @include color-assign(background, primary);
     -webkit-transition: 0.3s;
     transition: 0.3s;
   }
@@ -388,11 +388,38 @@ body:hover .visually-hidden button {
   }
 }
 
+.greedy-nav__toggle {
+  &:before {
+    @supports (pointer-events: none) {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      @include color-assign(background-color, background);
+      -webkit-transition: $global-transition;
+      transition: $global-transition;
+      pointer-events: none;
+    }
+  }
+
+  &.close {
+    &:before {
+      opacity: 0.9;
+      -webkit-transition: $global-transition;
+      transition: $global-transition;
+      pointer-events: auto;
+    }
+  }
+}
+
 .greedy-nav__toggle:hover {
   .navicon,
   .navicon:before,
   .navicon:after {
-    background: mix(#000, $primary-color, 25%);
+    @include color-assign(background, mix-primary-25);
   }
 
   &.close {
@@ -467,8 +494,8 @@ body:hover .visually-hidden button {
   margin-top: -150px;
   min-height: 0;
   z-index: 9999;
-  background: #fff;
-  border: 1px solid $border-color;
+  @include color-assign(background, no-contrast);
+  @include color-assign(border, border, '1px solid here');
   border-radius: $border-radius;
   box-shadow: $box-shadow;
 
@@ -483,7 +510,7 @@ body:hover .visually-hidden button {
 
   &__actions {
     padding: 0.5em 1em;
-    border-top: 1px solid $border-color;
+    @include color-assign(border-top, border, '1px solid here');
   }
 }
 
@@ -492,12 +519,12 @@ body:hover .visually-hidden button {
    ========================================================================== */
 
 .footnote {
-  color: $darker-gray; //mix(#fff, $gray, 25%);
+  @include color-assign(color, text); // mix(#fff, $gray, 25%);
   text-decoration: none;
 }
 
 .footnotes {
-  color: $darker-gray; //mix(#fff, $gray, 25%);
+  @include color-assign(color, text); // mix(#fff, $gray, 25%);
 
   ol,
   li,

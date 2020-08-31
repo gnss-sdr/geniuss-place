@@ -38,7 +38,7 @@ TOne of the most common and undesirable event in a real-time software defined re
 Student tasks:
 
   * Understand the GNSS-SDR architecture: Signal source, signal conditioner and tracking blocks.
-  * Understand the GNU Radio support for VRT 49 protocol and the sample metadata [API](https://www.gnuradio.org/doc/doxygen/page_metadata.html) using the Universal Hardware Driver (UHD).
+  * Understand the GNU Radio support for VRT 49 protocol and the sample metadata [API](https://www.gnuradio.org/doc/doxygen/) using the Universal Hardware Driver (UHD).
   * Write a new GNSS-SDR file signal source with sample metadata support for post processing.
   * Write a new GNSS-SDR UHD signal source with sample metadata support for real-time operation.
   * Update the existing tracking blocks to include the buffer overrun situation detector and implement the protection algorithm.

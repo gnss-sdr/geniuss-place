@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2019-02-22T13:20:02+02:00
+last_modified_at: 2020-06-14T13:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -284,9 +284,9 @@ public:
     TYPE4 member_function1(TYPE1 param1, TYPE2 param2, TYPE3 &param3);
 
 private:
-    bool setup_done;  //!< Checks if the class is properly initialized
-    TYPE1 private_variable1; //!< Short description of private_variable1 here
-    TYPE2 private_variable2; //!< Short description of private_variable2 here
+    bool setup_done;         // Checks if the class is properly initialized
+    TYPE1 private_variable1; // Short description of private_variable1 here
+    TYPE2 private_variable2; // Short description of private_variable2 here
 };
 ```
 
@@ -378,7 +378,7 @@ dependencies is to include it first in the corresponding source file.
 Example:
 
 ```cpp
-/* foobar.cc */
+// foobar.cc
 #include "foobar.h"
 #include <cmath>
 ...
@@ -416,7 +416,7 @@ The Main Module Header file applies to `.cc` files which implement an interface 
 Example:
 
 ```cpp
-/* foobar.cc */
+// foobar.cc
 #include "foobar.h"
 #include "GPS_L1_CA.h"
 #include <gnuradio/io_signature.h>
@@ -487,9 +487,10 @@ Please use the following template at the header of all files:
  *
  * Detailed description of the file here if needed.
  *
- * -----------------------------------------------------------------------
  *
- * Copyright (C) 2010-2019  (see AUTHORS file for a list of contributors)
+ * -----------------------------------------------------------------------------
+ *
+ * Copyright (C) 2010-2020  (see AUTHORS file for a list of contributors)
  *
  * GNSS-SDR is a software defined Global Navigation
  *      Satellite Systems receiver
@@ -498,7 +499,7 @@ Please use the following template at the header of all files:
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * -----------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
  */
 ```
 
@@ -523,7 +524,7 @@ be used to declare variables etc.
 double sin(double arg);
 typedef double (*Trigfunc)(double arg);
 
-/* Usage examples */
+// Usage examples
 Trigfunc myfunc = sin;
 void callfunc(Trigfunc callback);
 Trigfunc functable[10];
@@ -590,10 +591,10 @@ int dec(int);
 void f()
 {
     // Now we can use iostream names lazily.
-    cout << "Hello world." << endl;
+    cout << "Hello world.\n";
 
     // Error: Ambiguous reference to dec.
-    cout << "Decimal base is " << dec << endl;
+    cout << "Decimal base is " << dec << '\n';
 }
 ```
 
@@ -743,8 +744,8 @@ on implicit conversion to bool in conditions.
 
 ```cpp
 if (ptr) // wrong
-if (ptr != NULL) // ok
-if (ptr != nullptr) // even better (C++11)
+if (ptr != NULL) // wrong
+if (ptr != nullptr) // ok (C++11)
 ```
 
 ### Use the new cast operators
@@ -771,7 +772,7 @@ is being performed.
 
 ### The C library should not be used.
 
-Some C++ libraries (e.g. `<cstdio>`) also have corresponding C versions (e.g. `<stdio.h>`). This rule requires that the C++ version is used.
+Some C++ libraries (*e.g.*, `<cstdio>`) also have corresponding C versions (*e.g.*, `<stdio.h>`). This rule requires that the C++ version is used.
 
 ### The library functions `atof`, `atoi` and `atol` from library `<cstdlib>` should not be used.
 
@@ -988,7 +989,7 @@ selecting 'mp-clang-9.0' for 'clang' succeeded. 'mp-clang-9.0' is now active.
   You can confirm this change by looking at the version of the tool:
 ```bash
 $ clang-format --version
-clang-format version 9.0.0 (tags/RELEASE_900/final)
+clang-format version 9.0.1
 ```
   If you later wish to remove these symlinks in order to avoid hiding tools installed by Xcode, just select the `none` version.
 
@@ -1021,8 +1022,26 @@ Note the space in between the comment start (`//`) and `clang-format`. This spac
 **Please apply clang-format to your changes before any pull request.**
 {: .notice--danger}
 
+**Step 3.- Check Markdown formatting**
+
+If you have modified markdown files (ended in `.md`), please apply [prettier](https://prettier.io).
+
+  * Install prettier:
+```bash
+$ sudo npm install --global prettier
+```
+
+  * Run it from the root of the source code tree:
+```bash
+$ find . -iname "*.md" | xargs prettier --parser markdown --print-width 80 --prose-wrap always --write
+```
+
+  **Please apply prettier to your changes before any pull request if you changed and/or created markdown files.**
+  {: .notice--danger}
+
+
 {% capture notice-maintainability %}
-An automated code formatting tool helps to improve [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
+Automated code formatting tools help to improve [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
 {% endcapture %}
 
 <div class="notice--success">
@@ -1043,12 +1062,12 @@ You can use clang-tidy in two simple steps:
 
 * **In GNU/Linux using Debian / Ubuntu distributions:**
 ```bash
-$ sudo apt-get install clang-tidy
+$ sudo apt-get install clang clang-tidy
 ```
 
 * **In GNU/Linux using Fedora / CentOS distributions:**
 ```bash
-$ sudo yum install clang-tools-extra
+$ sudo yum install clang clang-tools-extra
 ```
 
 * **In GNU/Linux using ArchLinux:**
@@ -1081,9 +1100,10 @@ This tool integrates nicely with CMake >= 3.6. In GNSS-SDR, all you need to do i
 ```bash
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
+$ make volk_gnsssdr_module core_monitor pvt_libs
 ```
 
-(pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in you machine). This will create a file named `compile_commands.json` in your build folder containing the exact compiler calls for all translation units of the project in machine-readable form. After that, you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform the project default checks over all files in the compilation database:
+(pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in your machine). This will create a file named `compile_commands.json` in your build folder containing the exact compiler calls for all translation units of the project in machine-readable form. After that, you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform the project default checks over all files in the compilation database:
 
 ```bash
 $ run-clang-tidy -fix
@@ -1095,6 +1115,17 @@ or you can apply specific checks by doing:
 $ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
 ```
 
+An alternative choice is to run clang-tidy along with the building process, by activating the building option `ENABLE_CLANG_TIDY`:
+
+```bash
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+        -DCMAKE_C_COMPILER=/usr/bin/clang \
+        -DENABLE_CLANG_TIDY=ON ..
+$ make  
+```
+
+In this latter case, please do not use parallel building (_e.g._, `make -j4`). Be aware that this process can take a long time.
+
 You can read more about the usage of this tool at the [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/).
 
 {% capture use-clang-tidy %}
@@ -1102,9 +1133,17 @@ With clang and clang-tidy already installed, please do:
 ```bash
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
+$ make volk_gnsssdr_module core_monitor pvt_libs
 $ run-clang-tidy -fix
 ```
-and check if there are warnings and/or fixes related to your code (type `git status`). If you agree with the changes, commit them in order to be included in your pull request.
+or
+```bash
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+        -DCMAKE_C_COMPILER=/usr/bin/clang \
+        -DENABLE_CLANG_TIDY=ON ..
+$ make  
+```
+and check if there are warnings and/or fixes related to your code (use `git status` and `git diff`). If you agree with the changes, add and commit them in order to be included in your pull request. Otherwise, discard the changes with `git ckeckout -- /path/to/changed_file`.
 {% endcapture %}
 
 <div class="notice--danger">
@@ -1139,7 +1178,7 @@ file looks drastically different from the existing code around it, the
 discontinuity throws readers out of their rhythm when they go to read
 it. Try to avoid this.
 
-![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | relative_url }} "GeNiuSS is a stylish character. Be like GeNiuSS.")
+![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | relative_url }} "GeNiuSS is a stylish character. Be like GeNiuSS."){: .align-center}
 
 -------
 

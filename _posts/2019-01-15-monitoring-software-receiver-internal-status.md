@@ -5,12 +5,14 @@ excerpt: "This tutorial describes how to monitor the internal status of GNSS-SDR
 author_profile: false
 header:
   teaser: /assets/images/gnss-sdr_monitoring_teaser.png
+  invert-colors: true
 tags:
   - tutorial
 sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
+show_date: false
 last_modified_at: 2019-05-30T11:37:02+02:00
 ---
 
@@ -29,7 +31,7 @@ The Monitor block implements this mechanism using the binary serialization forma
 The following diagram can help us to better understand how this block works.
 
 {% capture fig_img1 %}
-![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_monitoring_block_diagram.png" | relative_url }})
+![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_monitoring_block_diagram.png" | relative_url }}){: .align-center .invert-colors}
 {% endcapture %}
 
 <figure>
@@ -311,7 +313,7 @@ int main(int argc, char* argv[])
             if (argc != 2)
                 {
                     // Print help.
-                    std::cerr << "Usage: monitoring-client <port>" << std::endl;
+                    std::cerr << "Usage: monitoring-client <port>\n";
                     return 1;
                 }
 
@@ -329,7 +331,7 @@ int main(int argc, char* argv[])
         }
     catch (std::exception& e)
         {
-            std::cerr << e.what() << std::endl;
+            std::cerr << e.what() << '\n';
         }
 
     return 0;
@@ -564,7 +566,7 @@ If you see something similar to this... Yay! You are successfully monitoring the
 {: .notice--success}
 
 {% capture fig_img2 %}
-![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_and_monitoring-client.png" | relative_url }})
+![Client application monitoring GNSS-SDR]({{ "/assets/images/gnss-sdr_and_monitoring-client.png" | relative_url }}){: .align-center .invert-colors}
 {% endcapture %}
 
 <figure>

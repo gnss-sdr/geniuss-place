@@ -86,7 +86,7 @@ body {
 .page__content {
   h2 {
     padding-bottom: 0.5em;
-    border-bottom: 1px solid $border-color;
+    @include color-assign(border-bottom, border, '1px solid here');
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -253,7 +253,7 @@ body {
 .page__share {
   margin-top: 2em;
   padding-top: 1em;
-  border-top: 1px solid $border-color;
+  @include color-assign(border-top, border, '1px solid here');
 
   @include breakpoint(max-width $small) {
     .btn span {
@@ -281,7 +281,7 @@ body {
 
 .page__meta {
   margin-top: 2em;
-  color: $dark-gray; //$muted-text-color;
+  @include color-assign(color, dark-gray); //$muted-text-color;
   font-family: $sans-serif;
   font-size: $type-size-6;
 
@@ -298,6 +298,12 @@ body {
   margin-bottom: 10px;
   font-size: $type-size-6;
   text-transform: uppercase;
+}
+
+.page__meta-sep::before {
+  content: "\2022";
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 /*
@@ -320,12 +326,12 @@ body {
   margin-bottom: 8px;
   padding: 5px 10px;
   text-decoration: none;
-  border: 1px solid mix(#000, $border-color, 25%);
+  @include color-assign(border, mix-border-25, '1px solid here');
   border-radius: $border-radius;
 
   &:hover {
     text-decoration: none;
-    color: $link-color-hover;
+    @include color-assign(color, link-hover);
   }
 }
 
@@ -334,7 +340,7 @@ taxonomy__section {
   padding-bottom: 1em;
 
   &:not(:last-child) {
-    border-bottom: solid 1px $border-color;
+    @include color-assign(border-bottom, border, '1px solid here');
   }
 
   .archive__item-title {
@@ -353,11 +359,11 @@ taxonomy__section {
 
 .taxonomy__title {
   margin-bottom: 0.5em;
-  color: lighten($text-color, 60%);
+  @include color-assign(color, muted-text);
 }
 
 .taxonomy__count {
-  color: lighten($text-color, 50%);
+  @include color-assign(color, muted-text);
 }
 
 .taxonomy__index {
@@ -383,14 +389,14 @@ taxonomy__section {
     justify-content: space-between;
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px solid $border-color;
+    @include color-assign(border-bottom, border, '1px solid here');
   }
 }
 
 .back-to-top {
   display: block;
   clear: both;
-  color: lighten($text-color, 50%);
+  @include color-assign(color, muted-text);
   font-size: 0.6em;
   text-transform: uppercase;
   text-align: right;
@@ -414,7 +420,7 @@ taxonomy__section {
   margin-bottom: 10px;
   padding-top: 2rem;
   font-size: $type-size-6;
-  border-top: 1px solid $border-color;
+  @include color-assign(border-top, border, '1px solid here');
   text-transform: uppercase;
 }
 
@@ -441,7 +447,7 @@ taxonomy__section {
   margin: 1em 0;
 
   &:not(:last-child) {
-    border-bottom: 1px solid $border-color;
+    @include color-assign(border-bottom, border, '1px solid here');
   }
 }
 
@@ -465,7 +471,7 @@ taxonomy__section {
     width: 80px;
     height: 80px;
     padding: 5px;
-    border: 1px solid $border-color;
+    @include color-assign(border, border, '1px solid here');
   }
 }
 
@@ -504,7 +510,7 @@ taxonomy__section {
   float: left;
   margin-top: 2em;
   padding-top: 1em;
-  border-top: 1px solid $border-color;
+  @include color-assign(border-top, border, '1px solid here');
 
   @include breakpoint($large) {
     float: right;

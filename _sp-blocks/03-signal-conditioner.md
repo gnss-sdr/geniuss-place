@@ -23,7 +23,7 @@ This implementation is in fact a wrapper for other three processing blocks.
 
 <a name="signal-conditioner"></a>
 
-<img src="{{ "/assets/images/SignalConditioner2.png" | relative_url }}" alt="Signal Conditioner" usemap="#sc-map">
+<span class="invert-colors"><img src="{{ "/assets/images/SignalConditioner2.png" | relative_url }}" alt="Signal Conditioner" usemap="#sc-map"></span>
 {: style="text-align: center; width: 644px;"}
 
 

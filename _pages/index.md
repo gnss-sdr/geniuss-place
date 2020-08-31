@@ -10,7 +10,7 @@ header:
       url: "/build-and-install/"
   caption:
   teaser: /assets/images/logo-gnss-sdr.png
-excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.11](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.11)</small> <br /><br /> '
+excerpt: 'An open source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.13](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.13)</small> <br /><br /> '
 feature_row:
   - image_path: /assets/images/fix.png
     alt: "Using the software-defined receiver"
@@ -34,7 +34,7 @@ feature_row:
     btn_class: "btn--geniuss"
     btn_label: "Read more"
 intro:
-  - excerpt: '{::nomarkdown} <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px" title="Watch counter"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px" title="Star counter"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px" title="Fork counter"></iframe>{:/nomarkdown}'
+  - excerpt: '{::nomarkdown} <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160" height="30" title="Watch counter"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160" height="30" title="Star counter"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158" height="30" title="Fork counter"></iframe>{:/nomarkdown}'
 
 ---
 
@@ -56,7 +56,7 @@ intro:
 
 <p>&nbsp;</p>
 
-<html> <body > <table> <tr> <td id="gridtable">  
+<table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
 
 {% include group-by-array collection=site.posts field="tags" %}
@@ -71,7 +71,7 @@ intro:
 {% endfor %}
 
 </div>
-</td></tr></table></body></html>
+</td></tr></table>
 
 
 ---
@@ -83,7 +83,7 @@ intro:
 
 <p>&nbsp;</p>
 
-<html> <body > <table> <tr> <td id="gridtable">  
+<table> <tr> <td class="gridtable">
 <div class="grid__wrapper">
 {% for tag in group_names %}
   {% if tag == "tutorial" %}
@@ -94,18 +94,16 @@ intro:
   {% endif %}
 {% endfor %}
 </div>
-</td></tr></table></body></html>
+</td></tr></table>
 
 
-[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Learn more]({{ "/docs/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
+[![Icon]({{ "/assets/images/icon-gnss-sdr-white.png" | relative_url }}){: width="36px"} Read the Documentation]({{ "/docs/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
-<link rel="prefetch" href="{{ "/assets/js/main.min.js" | relative_url }}">
-<link rel="prerender" href="{{ "/search/" | relative_url }}">
-<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/" | relative_url }}">
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}">
-<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}">
-<link rel="prerender" href="{{ "/design-forces/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/tutorials/gnss-signals/" | relative_url }}">
+<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/" | relative_url }}" />
+<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
+<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}" />
+<link rel="prerender" href="{{ "/design-forces/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/tutorials/gnss-signals/" | relative_url }}" />

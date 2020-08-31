@@ -2,7 +2,7 @@
 title: "My first position fix"
 permalink: /my-first-fix/
 excerpt: "How to quickly get a position fix with GNSS-SDR."
-last_modified_at: 2020-02-05T08:54:02+02:00
+last_modified_at: 2020-03-14T08:54:02+02:00
 header:
   teaser: "/assets/images/gn3s_pvt_4_sats.jpg"
 sidebar:
@@ -26,11 +26,11 @@ you should see something similar to:
 
 ```bash
 $ gnss-sdr --version
-gnss-sdr version 0.0.11
+gnss-sdr version 0.0.13
 $  
 ```
 
-Please check that your installed version is 0.0.11 (or something like 0.0.11.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.11, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
+Please check that your installed version is 0.0.13 (or something like 0.0.13.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.13, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
 If you see something like:
@@ -166,7 +166,7 @@ You should see something similar to:
 
 ```
 $ gnss-sdr --config_file=./my-first-GNSS-SDR-receiver.conf
-Initializing GNSS-SDR v0.0.11 ... Please wait.
+Initializing GNSS-SDR v0.0.13 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 Processing file /home/your-username/work/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat, which contains 1600000000 [bytes]
@@ -256,6 +256,8 @@ Now you can examine the processing outputs in the folder from which you invoked 
 
 ... play with the configuration parameters or try out more challenging [configurations]({{ "/conf/" | relative_url }}).
 
-<link rel="prerender" href="{{ "/conf/" | relative_url }}">
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/" | relative_url }}">
+<link rel="prerender" href="{{ "/conf/" | relative_url }}" />
+<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
+<link rel="prerender" href="{{ "/docs/" | relative_url }}" />
+<link rel="prerender" href="{{ "/requirements/" | relative_url }}" />
+<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />

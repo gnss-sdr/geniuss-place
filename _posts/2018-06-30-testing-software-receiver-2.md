@@ -13,7 +13,8 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-09-04T11:37:02+02:00
+show_date: false
+last_modified_at: 2020-06-05T11:37:02+02:00
 ---
 
 [Testability]({{ "/design-forces/testability/" | relative_url }}) is an important feature in any GNSS receiver. The companion tutorial [Testing the software receiver, Part I: Methodology]({{ "/docs/tutorials/testing-software-receiver/" | relative_url }}) describes the general approach taken in this project, and this page documents the available set of Unit and System tests. Some of them are highly configurable, so they can be seen as Performance tests.
@@ -65,15 +66,15 @@ Running GNSS-SDR Tests...
 Other additional unit and system tests require from external tools, libraries and data files not included in the GNSS-SDR's source tree. As in the case of the Google C++ Testing Framework source code, they can be automatically downloaded and built by passing the following option flags to CMake:
 
 |----------
-|  **Variable passed to CMake**  |  **Possible values** | **Default** | **Effect** |
+|  **Variable passed to CMake** | **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|
 |--------------
-| &#x2011;DENABLE_UNIT_TESTING | ON / OFF | ON  |  If set to OFF, it disables the building of unit tests. This can be useful in memory-limited systems. |
-| &#x2011;DENABLE_UNIT_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external raw sample files files and other software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system), and builds some extra unit tests that are added to the ```run_tests``` executable.  |
-| &#x2011;DENABLE_SYSTEM_TESTING | ON / OFF |  OFF |  If set to ON, it builds system tests (each one with its own executable test program) at the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option.  |
-| &#x2011;DENABLE_SYSTEM_TESTING_EXTRA | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the ```gnss-sdr/install``` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
-| &#x2011;DENABLE_OWN_GPSTK | ON / OFF |  OFF | If set to ON, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/GPSTk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
-| &#x2011;DENABLE_INSTALL_TESTS | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder ```gnss-sdr/install```. If this option is set to ON, test binaries and auxiliary files will not be copied to  ```gnss-sdr/install``` but installed in the system path when doing ```make install```.  |
+| `-DENABLE_UNIT_TESTING` | ON / OFF | ON  |  If set to OFF, it disables the building of unit tests. This can be useful in memory-limited systems. |
+| `-DENABLE_UNIT_TESTING_EXTRA` | ON / OFF | OFF  | If set to ON, it downloads external raw sample files files and other software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system), and builds some extra unit tests that are added to the `run_tests` executable.  |
+| `-DENABLE_SYSTEM_TESTING` | ON / OFF |  OFF |  If set to ON, it builds system tests (each one with its own executable test program) at the `gnss-sdr/install` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option.  |
+| `-DENABLE_SYSTEM_TESTING_EXTRA` | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the `gnss-sdr/install` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
+| `-DENABLE_OWN_GPSTK` | ON / OFF |  OFF | If set to ON, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/GPSTk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
+| `-DENABLE_INSTALL_TESTS` | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder `gnss-sdr/install`. If this option is set to ON, test binaries and auxiliary files will not be copied to  `gnss-sdr/install` but installed in the system path when doing `make install`.  |
 |----------
 
 Those extra tests are described [below]({{ "#extra-unit-tests" }}).
@@ -284,7 +285,7 @@ The generation of some unit test suites are enabled by default, and gathered in 
       - `TrackingLoopFilterTest`: set of test cases for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h)
 
  * Telemetry Decoder
-      - `Galileo_FNAV_INAV_test`: set of test cases for [galileo_navigation_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/galileo_navigation_message.h) and [galileo_fnav_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/galileo_fnav_message.h)
+      - `Galileo_FNAV_INAV_test`: set of test cases for [galileo_inav_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/galileo_inav_message.h) and [galileo_fnav_message.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/galileo_fnav_message.h)
 
  * Observables
       - -
@@ -328,33 +329,33 @@ This test computes the Receiver Operation Characteristic (ROC), that is, Probabi
 |----------
 |  **Flag**  |  **Default value** | **Description** |
 |:--|:-:|:--|
-| &#x2011;&#x2011;acq_test_implementation | `GPS_L1_CA_PCPS_Acquisition` | Acquisition block implementation under test. Alternatives: `GPS_L1_CA_PCPS_Acquisition`, `GPS_L1_CA_PCPS_Acquisition_Fine_Doppler`, `Galileo_E1_PCPS_Ambiguous_Acquisition`, `GLONASS_L1_CA_PCPS_Acquisition`, `GLONASS_L2_CA_PCPS_Acquisition`, `GPS_L2_M_PCPS_Acquisition`, `Galileo_E5a_Pcps_Acquisition`, `GPS_L5i_PCPS_Acquisition`. |
-| &#x2011;&#x2011;fs_gen_sps | $$ 2600000 $$ | Sampling rate, in Samples/s. |
-| &#x2011;&#x2011;config_file_ptest | empty | File containing alternative configuration parameters for the acquisition performance test. |
-| &#x2011;&#x2011;acq_test_input_file | empty | File containing raw signal data, must be in int8_t format. If set, the signal generator will not be used and no CN0 sweep will be done. |
-| &#x2011;&#x2011;acq_test_doppler_max | 5000 | Maximum Doppler, in Hz |
-| &#x2011;&#x2011;acq_test_doppler_step | 125 | Doppler step, in Hz. |
-| &#x2011;&#x2011;acq_test_coherent_time_ms | 1 | Acquisition coherent time, in ms. |
-| &#x2011;&#x2011;acq_test_max_dwells | 1 | Number of non-coherent integrations. |
-| &#x2011;&#x2011;acq_test_make_two_steps | false | Perform second step in a thinner grid. |
-| &#x2011;&#x2011;acq_test_second_nbins | 4 | If `--acq_test_make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. |
-| &#x2011;&#x2011;acq_test_second_doppler_step | 10 | If `--acq_test_make_two_steps` is set to true, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. |
-| &#x2011;&#x2011;acq_test_bit_transition_flag | false | Bit transition flag. |
-| &#x2011;&#x2011;acq_test_signal_duration_s | 2 | Generated signal duration, in s. |
-| &#x2011;&#x2011;acq_test_num_meas | 0 | Number of measurements per run. 0 means the complete file. |
-| &#x2011;&#x2011;acq_test_cn0_init | 30.0 | Initial CN0, in dBHz. |
-| &#x2011;&#x2011;acq_test_cn0_final | 45.0 | Final CN0, in dBHz. |
-| &#x2011;&#x2011;acq_test_cn0_step | 3.0 | CN0 step, in dB. |
-| &#x2011;&#x2011;acq_test_threshold_init | 3.0 | Initial acquisition threshold. |
-| &#x2011;&#x2011;acq_test_threshold_final | 4.0 | Final acquisition threshold. |
-| &#x2011;&#x2011;acq_test_threshold_step | 0.5 | Acquisition threshold step. |
-| &#x2011;&#x2011;acq_test_pfa_init | 1e-5 | Set initial threshold via probability of false alarm. To disable Pfa setting and set threshold values, set this to -1.0. |
-| &#x2011;&#x2011;acq_test_skiphead | 0 | Number of samples to skip in the input file. |
-| &#x2011;&#x2011;acq_test_PRN | 1 | PRN number of a present satellite. |
-| &#x2011;&#x2011;acq_test_fake_PRN | 33 | PRN number of a non-present satellite. |
-| &#x2011;&#x2011;acq_test_iterations | 1 | Number of iterations (same signal, different noise realization). |
-| &#x2011;&#x2011;plot_acq_test | false | Plots results with gnuplot, if available. |
-| &#x2011;&#x2011;show_plots | true | Shows plots on screen. Set it to false for non-interactive testing. |
+| `--acq_test_implementation` | `GPS_L1_CA_PCPS_Acquisition` | Acquisition block implementation under test. Alternatives: `GPS_L1_CA_PCPS_Acquisition`, `GPS_L1_CA_PCPS_Acquisition_Fine_Doppler`, `Galileo_E1_PCPS_Ambiguous_Acquisition`, `GLONASS_L1_CA_PCPS_Acquisition`, `GLONASS_L2_CA_PCPS_Acquisition`, `GPS_L2_M_PCPS_Acquisition`, `Galileo_E5a_Pcps_Acquisition`, `GPS_L5i_PCPS_Acquisition`. |
+| `--fs_gen_sps` | `2600000` | Sampling rate, in Samples/s. |
+| `--config_file_ptest` | empty | File containing alternative configuration parameters for the acquisition performance test. |
+| `--acq_test_input_file` | empty | File containing raw signal data, must be in int8_t format. If set, the signal generator will not be used and no CN0 sweep will be done. |
+| `--acq_test_doppler_max` | `5000` | Maximum Doppler, in Hz |
+| `--acq_test_doppler_step` | `125` | Doppler step, in Hz. |
+| `--acq_test_coherent_time_ms` | `1` | Acquisition coherent time, in ms. |
+| `--acq_test_max_dwells` | `1` | Number of non-coherent integrations. |
+| `--acq_test_make_two_steps` | `false` | Perform second step in a thinner grid. |
+| `--acq_test_second_nbins` | `4` | If `--acq_test_make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. |
+| `--acq_test_second_doppler_step` | `10` | If `--acq_test_make_two_steps` is set to true, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. |
+| `--acq_test_bit_transition_flag` | `false` | Bit transition flag. |
+| `--acq_test_signal_duration_s` | `2` | Generated signal duration, in s. |
+| `--acq_test_num_meas` | `0` | Number of measurements per run. 0 means the complete file. |
+| `--acq_test_cn0_init` | `30.0` | Initial CN0, in dBHz. |
+| `--acq_test_cn0_final` | `45.0` | Final CN0, in dBHz. |
+| `--acq_test_cn0_step` | `3.0` | CN0 step, in dB. |
+| `--acq_test_threshold_init` | `3.0` | Initial acquisition threshold. |
+| `--acq_test_threshold_final` | `4.0` | Final acquisition threshold. |
+| `--acq_test_threshold_step` | `0.5` | Acquisition threshold step. |
+| `--acq_test_pfa_init` | `1e-5` | Set initial threshold via probability of false alarm. To disable Pfa setting and set threshold values, set this to `-1.0`. |
+| `--acq_test_skiphead` | `0` | Number of samples to skip in the input file. |
+| `--acq_test_PRN` | `1` | PRN number of a present satellite. |
+| `--acq_test_fake_PRN` | `33` | PRN number of a non-present satellite. |
+| `--acq_test_iterations` | `1` | Number of iterations (same signal, different noise realization). |
+| `--plot_acq_test` | `false` | Plots results with gnuplot, if available. |
+| `--show_plots` | `true` | Shows plots on screen. Set it to `false` for non-interactive testing. |
 |--------------
 
 
@@ -386,30 +387,30 @@ This test accepts the following flags:
 |----------
 |  **Flag**  |  **Default value** | **Description** |
 |:--|:-:|:--|
-| &#x2011;&#x2011;trk_test_implementation | `GPS_L1_CA_DLL_PLL_Tracking` | Tracking block implementation under test. |
-| &#x2011;&#x2011;fs_gen_sps | $$ 2600000 $$ | Sampling rate, in Samples/s. |
-| &#x2011;&#x2011;enable_external_signal_file | false | Use an external signal file capture instead of the software-defined signal generator. NOTICE: when external file is selected, the test will try to perform a high sensitivity acquisition with an enhanced Doppler estimation to estimate the *true* signal synchronization parameters for all the satellites present in the signal. |
-| &#x2011;&#x2011;signal_file | signal_out.bin | Path of the external signal capture file, must be in int8_t format. If set, the signal generator will not be used and no CN0 sweep will be done. |
-| &#x2011;&#x2011;disable_generator | false | Disable the signal generator (the pre-generated signal file set must be available for the test, i.e. by running the test without disabling the generator previously). |
-| &#x2011;&#x2011;duration | 100 | Duration of the experiment [in seconds, max = 300]. For this test the recommended signal duration is 4 seconds. |
-| &#x2011;&#x2011;test_satellite_PRN | 1 | PRN of the satellite under test (must be visible during the observation time). |
-| &#x2011;&#x2011;acq_Doppler_error_hz_start | 1000 | Acquisition Doppler error start sweep value [Hz]. |
-| &#x2011;&#x2011;acq_Doppler_error_hz_stop | -1000 | Acquisition Doppler error stop sweep value [Hz]. |
-| &#x2011;&#x2011;acq_Doppler_error_hz_step | -50 | Acquisition Doppler error sweep step value [Hz]. |
-| &#x2011;&#x2011;acq_Delay_error_chips_start | 2.0 | Acquisition Code Delay error start sweep value [chips]. |
-| &#x2011;&#x2011;acq_Delay_error_chips_stop |  -2.0| Acquisition Code Delay error stop sweep value [chips]. |
-| &#x2011;&#x2011;acq_Delay_error_chips_step | -0.1 | Acquisition Code Delay error sweep step value [chips]. |
-| &#x2011;&#x2011;PLL_bw_hz_start | 40.0 | PLL Wide configuration value [Hz]. |
-| &#x2011;&#x2011;DLL_bw_hz_start | 1.5 | DLL Wide configuration value [Hz]. |
-| &#x2011;&#x2011;extend_correlation_symbols | 1 | Set the tracking coherent correlation to N symbols (up to 20 for GPS L1 C/A). |
-| &#x2011;&#x2011;PLL_narrow_bw_hz | 5.0 | PLL Narrow configuration value [Hz]. |
-| &#x2011;&#x2011;DLL_narrow_bw_hz | 0.75 | DLL Narrow configuration value [Hz]. |
-| &#x2011;&#x2011;CN0_dBHz_start | (noise disabled) | Enable noise generator and set the CN0 start sweep value [dB-Hz]. |
-| &#x2011;&#x2011;CN0_dBHz_stop | (noise disabled) | Enable noise generator and set the CN0 stop sweep value [dB-Hz]. |
-| &#x2011;&#x2011;CN0_dB_step | 3.0 | Noise generator CN0 sweep step value [dB]. |
-| &#x2011;&#x2011;acq_to_trk_delay_s | 0.0 | Acquisition to Tracking delay value [s] |
-| &#x2011;&#x2011;plot_detail_level | 0 | Specify the desired plot detail (0,1,2): 0 - Minimum plots (default) 2 - Plot all tracking parameters. |
-| &#x2011;&#x2011;show_plots | true | Shows plots on screen. Set it to false for non-interactive testing. |
+| `--trk_test_implementation` | `GPS_L1_CA_DLL_PLL_Tracking` | Tracking block implementation under test. |
+| `--fs_gen_sps` | `2600000` | Sampling rate, in Samples/s. |
+| `--enable_external_signal_file` | `false` | Use an external signal file capture instead of the software-defined signal generator. NOTICE: when external file is selected, the test will try to perform a high sensitivity acquisition with an enhanced Doppler estimation to estimate the *true* signal synchronization parameters for all the satellites present in the signal. |
+| `--signal_file` | `signal_out.bin` | Path of the external signal capture file, must be in int8_t format. If set, the signal generator will not be used and no CN0 sweep will be done. |
+| `--disable_generator` | `false` | Disable the signal generator (the pre-generated signal file set must be available for the test, i.e. by running the test without disabling the generator previously). |
+| `--duration` | `100` | Duration of the experiment [in seconds, max = 300]. For this test the recommended signal duration is 4 seconds. |
+| `--test_satellite_PRN` | `1` | PRN of the satellite under test (must be visible during the observation time). |
+| `--acq_Doppler_error_hz_start` | `1000` | Acquisition Doppler error start sweep value [Hz]. |
+| `--acq_Doppler_error_hz_stop` | `-1000` | Acquisition Doppler error stop sweep value [Hz]. |
+| `--acq_Doppler_error_hz_step` | `-50` | Acquisition Doppler error sweep step value [Hz]. |
+| `--acq_Delay_error_chips_start` | `2.0` | Acquisition Code Delay error start sweep value [chips]. |
+| `--acq_Delay_error_chips_stop` |  `-2.0` | Acquisition Code Delay error stop sweep value [chips]. |
+| `--acq_Delay_error_chips_step` | `-0.1` | Acquisition Code Delay error sweep step value [chips]. |
+| `--PLL_bw_hz_start` | `40.0` | PLL Wide configuration value [Hz]. |
+| `--DLL_bw_hz_start` | `1.5` | DLL Wide configuration value [Hz]. |
+| `--extend_correlation_symbols` | `1` | Set the tracking coherent correlation to N symbols (up to 20 for GPS L1 C/A). |
+| `--PLL_narrow_bw_hz` | `5.0` | PLL Narrow configuration value [Hz]. |
+| `--DLL_narrow_bw_hz` | `0.75` | DLL Narrow configuration value [Hz]. |
+| `--CN0_dBHz_start` | (noise disabled) | Enable noise generator and set the CN0 start sweep value [dB-Hz]. |
+| `--CN0_dBHz_stop` | (noise disabled) | Enable noise generator and set the CN0 stop sweep value [dB-Hz]. |
+| `--CN0_dB_step` | `3.0` | Noise generator CN0 sweep step value [dB]. |
+| `--acq_to_trk_delay_s` | `0.0` | Acquisition to Tracking delay value [s] |
+| `--plot_detail_level` | `0` | Specify the desired plot detail (0,1,2): 0 - Minimum plots (default) 2 - Plot all tracking parameters. |
+| `--show_plots` | `true` | Shows plots on screen. Set it to `false` for non-interactive testing. |
 |--------------
 
 
@@ -427,32 +428,32 @@ Unit test for [hybrid_observables.h](https://github.com/gnss-sdr/gnss-sdr/blob/n
 |----------
 |  **Flag**  |  **Default value** | **Description** |
 |:--|:-:|:--|
-| &#x2011;&#x2011;fs_gen_sps | $$ 2600000 $$ | Sampling rate, in Samples/s. |
-| &#x2011;&#x2011;disable_generator | false | Disable the signal generator (the pre-generated signal file set must be available for the test, i.e. by running the test without disabling the generator previously). |
-| &#x2011;&#x2011;duration | 100 | Duration of the experiment [in seconds, max = 300]. |
-| &#x2011;&#x2011;enable_external_signal_file | false | Use an external signal file capture instead of the software-defined signal generator. |
-| &#x2011;&#x2011;signal_file | "signal_out.bin" | Path of the external signal capture file, must be in int8_t format. If set, the signal generator will not be used. |
-| &#x2011;&#x2011;static_position | "30.286502,120.032669,100" | Static receiver position [lat,log,height]. |
-| &#x2011;&#x2011;dynamic_position | empty | Observer positions file, in .csv or .nmea format. |
-| &#x2011;&#x2011;rinex_nav_file | "brdc3540.14n" | Input RINEX navigation file. |
-| &#x2011;&#x2011;filename_rinex_obs | "sim.16o" | Filename of output RINEX navigation file. |
-| &#x2011;&#x2011;filename_raw_data |  "signal_out.bin" | Filename of output raw data file. |
-| &#x2011;&#x2011;test_satellite_PRN_list | "1,2,3,6,9,10,12,17,20,23,28" | List of PRN of the satellites under test (must be visible during the observation time). |
-| &#x2011;&#x2011;external_signal_acquisition_dwells | 5 | Maximum dwells count for satellite acquisition when external file is used. |
-| &#x2011;&#x2011;external_signal_acquisition_doppler_max_hz | 5000.0 | Doppler max for satellite acquisition when external file is used, in Hz. |
-| &#x2011;&#x2011;external_signal_acquisition_doppler_step_hz |  125 | Doppler step for satellite acquisition when external file is used, in Hz. |
-| &#x2011;&#x2011;external_signal_acquisition_threshold | 2.5 | Threshold for satellite acquisition when external file is used. |
-| &#x2011;&#x2011;trk_test_implementation | `GPS_L1_CA_DLL_PLL_Tracking` | Tracking block implementation under test. |
-| &#x2011;&#x2011;PLL_bw_hz_start | 40.0 | PLL Wide configuration value [Hz]. |
-| &#x2011;&#x2011;DLL_bw_hz_start | 1.5 | DLL Wide configuration value [Hz]. |
-| &#x2011;&#x2011;extend_correlation_symbols | 1 | Set the tracking coherent correlation to N symbols (up to 20 for GPS L1 C/A). |
-| &#x2011;&#x2011;PLL_narrow_bw_hz | 5.0 | PLL Narrow configuration value [Hz]. |
-| &#x2011;&#x2011;DLL_narrow_bw_hz | 0.75 | DLL Narrow configuration value [Hz]. |
-| &#x2011;&#x2011;skip_samples | 0 | Skip an initial transitory in the processed signal file capture [samples]. |
-| &#x2011;&#x2011;skip_obs_transitory_s | 30.0 | Skip the initial observable outputs to avoid transitory results [s]. |
-| &#x2011;&#x2011;compute_single_diffs | false | Compute also the single difference errors for Accumulated Carrier Phase and Carrier Doppler (requires LO synchronization between receivers). |
-| &#x2011;&#x2011;compare_with_5X | false | Compare the E5a Doppler and Carrier Phases with the E5 full bw in RINEX (expect discrepancy due to the center frequencies differences). |
-| &#x2011;&#x2011;show_plots | true | Shows plots on screen. Set it to false for non-interactive testing. |
+| `--fs_gen_sps` | `2600000` | Sampling rate, in Samples/s. |
+| `--disable_generator` | `false` | Disable the signal generator (the pre-generated signal file set must be available for the test, i.e. by running the test without disabling the generator previously). |
+| `--duration` | `100` | Duration of the experiment [in seconds, max = 300]. |
+| `--enable_external_signal_file` | `false` | Use an external signal file capture instead of the software-defined signal generator. |
+| `--signal_file` | `signal_out.bin` | Path of the external signal capture file, must be in int8_t format. If set, the signal generator will not be used. |
+| `--static_position` | `30.286502,120.032669,100` | Static receiver position [lat,log,height]. |
+| `--dynamic_position` | empty | Observer positions file, in .csv or .nmea format. |
+| `--rinex_nav_file` | `brdc3540.14n` | Input RINEX navigation file. |
+| `--filename_rinex_obs` | `sim.16o` | Filename of output RINEX navigation file. |
+| `--filename_raw_data` |  `signal_out.bin` | Filename of output raw data file. |
+| `--test_satellite_PRN_list` | `1,2,3,6,9,10,12,17,20,23,28` | List of PRN of the satellites under test (must be visible during the observation time). |
+| `--external_signal_acquisition_dwells` | `5` | Maximum dwells count for satellite acquisition when external file is used. |
+| `--external_signal_acquisition_doppler_max_hz` | `5000.0` | Doppler max for satellite acquisition when external file is used, in Hz. |
+| `--external_signal_acquisition_doppler_step_hz` |  `125` | Doppler step for satellite acquisition when external file is used, in Hz. |
+| `--external_signal_acquisition_threshold` | `2.5` | Threshold for satellite acquisition when external file is used. |
+| `--trk_test_implementation` | `GPS_L1_CA_DLL_PLL_Tracking` | Tracking block implementation under test. |
+| `--PLL_bw_hz_start` | `40.0` | PLL Wide configuration value [Hz]. |
+| `--DLL_bw_hz_start` | `1.5` | DLL Wide configuration value [Hz]. |
+| `--extend_correlation_symbols` | `1` | Set the tracking coherent correlation to N symbols (up to 20 for GPS L1 C/A). |
+| `--PLL_narrow_bw_hz` | `5.0` | PLL Narrow configuration value [Hz]. |
+| `--DLL_narrow_bw_hz` | `0.75` | DLL Narrow configuration value [Hz]. |
+| `--skip_samples` | `0` | Skip an initial transitory in the processed signal file capture [samples]. |
+| `--skip_obs_transitory_s` | `30.0` | Skip the initial observable outputs to avoid transitory results [s]. |
+| `--compute_single_diffs` | `false` | Compute also the single difference errors for Accumulated Carrier Phase and Carrier Doppler (requires LO synchronization between receivers). |
+| `--compare_with_5X` | `false` | Compare the E5a Doppler and Carrier Phases with the E5 full bw in RINEX (expect discrepancy due to the center frequencies differences). |
+| `--show_plots` | `true` | Shows plots on screen. Set it to `false` for non-interactive testing. |
 |--------------
 
 
@@ -474,12 +475,12 @@ This test program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/
 |----------
 |  **Flag**  |  **Default value** | **Description** |
 |:--|:-:|:--|
-| &#x2011;&#x2011;fs_in | $$ 4000000 $$ | Sampling rate, in Samples/s. |
-| &#x2011;&#x2011;max_measurement_duration | $$ 90 $$ | Maximum time waiting for a position fix, in seconds. |
-| &#x2011;&#x2011;num_measurements | $$ 2 $$ | Number of measurements (M). |
-| &#x2011;&#x2011;device_address | 192.168.40.2 | USRP device IP address. |
-| &#x2011;&#x2011;subdevice | A:0 | USRP subdevice. |
-| &#x2011;&#x2011;config_file_ttff | empty | File containing the configuration parameters for the TTFF test. |
+| `--fs_in` | `4000000` | Sampling rate, in Samples/s. |
+| `--max_measurement_duration` | `90` | Maximum time waiting for a position fix, in seconds. |
+| `--num_measurements` | `2` | Number of measurements (M). |
+| `--device_address` | `192.168.40.2` | USRP device IP address. |
+| `--subdevice` | `A:0` | USRP subdevice. |
+| `--config_file_ttff` | empty | File containing the configuration parameters for the TTFF test. |
 |--------------
 
 For TTFF measurements, it makes sense to use real-life GNSS signals. Just prepare a configuration file according to your hardware setup and pass it to the receiver with the `--config_file_ttff` file, in the same way that you invoke `gnss-sdr` with `--config_file`.
@@ -534,26 +535,26 @@ This test program computes metrics of static accuracy and precision. It can use 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
 |:--|:-:|:--|
-| &#x2011;&#x2011;rinex_nav_file| "brdc3540.14n" | Input RINEX navigation file |
-| &#x2011;&#x2011;filename_rinex_obs | "sim.16o" | Filename of output RINEX navigation file. |
-| &#x2011;&#x2011;filename_raw_data | "signal_out.bin" | Filename of raw signal samples file (internally generated by software). |
-| &#x2011;&#x2011;static_position | "30.286502,120.032669,100" | Static receiver position [lat,log,height] |
-| &#x2011;&#x2011;disable_generator | false | If set to "true", it disables the signal generator (so a external raw signal file must be available for the test). |
-| &#x2011;&#x2011;duration | $$ 100 $$ | Duration of the experiment [in seconds, max = $$ 300 $$]. |
-| &#x2011;&#x2011;config_file_ptest | empty | File containing the configuration parameters for the position test. |
-| &#x2011;&#x2011;static_scenario | true | Compute figures of merit for static user position (DRMS, CEP, etc.). |
-| &#x2011;&#x2011;use_ref_motion_file | false | Enable or disable the use of a reference file containing the true receiver position, velocity and acceleration. |
-| &#x2011;&#x2011;ref_motion_file_type | 1 | Type of reference motion file. 1: Spirent CSV motion file |
-| &#x2011;&#x2011;ref_motion_filename | "motion.csv" | Path and filename for the reference motion file. |
-| &#x2011;&#x2011;static_2D_error_m | $$ 2.0 $$ | Static scenario 2D (East, North) positioning error bias threshold [meters]. |
-| &#x2011;&#x2011;static_3D_error_m | $$ 5.0 $$ | Static scenario 3D (East, North, Up) positioning error bias threshold [meters]. |
-| &#x2011;&#x2011;accuracy_CEP | $$ 2.0 $$ | Static scenario 2D (East, North) accuracy Circular Error Position (CEP) threshold [meters]. |
-| &#x2011;&#x2011;precision_SEP | $$ 10.0 $$ | Static scenario 3D (East, North, Up) precision Spherical Error Position (SEP) threshold [meters]. |
-| &#x2011;&#x2011;dynamic_3D_position_RMSE | $$ 10.0 $$ | Dynamic scenario 3D (ECEF) accuracy RMSE threshold [meters] |
-| &#x2011;&#x2011;dynamic_3D_velocity_RMSE | $$ 5.0 $$ | Dynamic scenario 3D (ECEF) velocity accuracy RMSE threshold [meters/second] |
-| &#x2011;&#x2011;pvt_solver_dump_filename | "PVT.dat" | Path and filename for the PVT solver binary dump file |
-| &#x2011;&#x2011;plot_position_test | false | If set to "true", and [Gnuplot](http://www.gnuplot.info/) is installed in your system, it generates some plots of the obtained results. It will display them in windows and will save them as .ps and .pdf files. |
-| &#x2011;&#x2011;show_plots | true | Show plots on screen. Set it to false for non-interactive testing. |
+| `--rinex_nav_file` | `brdc3540.14n` | Input RINEX navigation file |
+| `--filename_rinex_obs` | `sim.16o` | Filename of output RINEX navigation file. |
+| `--filename_raw_data` | `signal_out.bin` | Filename of raw signal samples file (internally generated by software). |
+| `--static_position` | `30.286502,120.032669,100` | Static receiver position [lat,log,height] |
+| `--disable_generator` | `false` | If set to `true`, it disables the signal generator (so a external raw signal file must be available for the test). |
+| `--duration` | `100` | Duration of the experiment [in seconds, max = $$ 300 $$]. |
+| `--config_file_ptest` | empty | File containing the configuration parameters for the position test. |
+| `--static_scenario` | `true` | Compute figures of merit for static user position (DRMS, CEP, etc.). |
+| `--use_ref_motion_file` | `false` | Enable or disable the use of a reference file containing the true receiver position, velocity and acceleration. |
+| `--ref_motion_file_type` | `1` | Type of reference motion file. 1: Spirent CSV motion file |
+| `--ref_motion_filename` | `motion.csv` | Path and filename for the reference motion file. |
+| `--static_2D_error_m` | `2.0` | Static scenario 2D (East, North) positioning error bias threshold [meters]. |
+| `--static_3D_error_m` | `5.0` | Static scenario 3D (East, North, Up) positioning error bias threshold [meters]. |
+| `--accuracy_CEP` | `2.0` | Static scenario 2D (East, North) accuracy Circular Error Position (CEP) threshold [meters]. |
+| `--precision_SEP` | `10.0` | Static scenario 3D (East, North, Up) precision Spherical Error Position (SEP) threshold [meters]. |
+| `--dynamic_3D_position_RMSE` | `10.0` | Dynamic scenario 3D (ECEF) accuracy RMSE threshold [meters] |
+| `--dynamic_3D_velocity_RMSE` | `5.0` | Dynamic scenario 3D (ECEF) velocity accuracy RMSE threshold [meters/second] |
+| `--pvt_solver_dump_filename` | `PVT.dat` | Path and filename for the PVT solver binary dump file |
+| `--plot_position_test` | `false` | If set to `true`, and [Gnuplot](http://www.gnuplot.info/) is installed in your system, it generates some plots of the obtained results. It will display them in windows and will save them as .ps and .pdf files. |
+| `--show_plots` | `true` | Show plots on screen. Set it to `false` for non-interactive testing. |
 |----------
 
 
@@ -631,7 +632,7 @@ The Google C++ Testing Framework provides an implementation of all those testing
 
 In order to create a new test:
 
- 1. Use the ```TEST()``` macro to define and name a test case. These are ordinary C++ functions that do not return a value.
+ 1. Use the `TEST()` macro to define and name a test case. These are ordinary C++ functions that do not return a value.
  2. In this function, along with any valid C++ statements you want to include, use the various Google Test assertions to check values.
  3. The test's result is determined by the assertions; if any assertion in the test fails (either fatally or non-fatally), or if the test crashes, the entire test fails. Otherwise, it succeeds.
 

@@ -47,10 +47,10 @@
     &--#{$buttoncolor} {
       @include yiq-contrasted($color);
       @if ($buttoncolor == inverse) {
-        border: 1px solid $border-color;
+        @include color-assign(border, border, '1px solid here');
       }
       @if ($buttoncolor == light-outline) {
-        border: 1px solid #fff;
+        @include color-assign(border, no-contrast, '1px solid here');
       }
 
       &:visited {
@@ -96,4 +96,15 @@
   &--small {
     font-size: $type-size-7;
   }
+}
+
+
+.cc-window {
+    font-family: 'Ovo', -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",
+      "Helvetica Neue", "Lucida Grande", Arial, sans-serif !important;
+}
+
+.cc-revoke {
+    font-family: 'Ovo', -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",
+      "Helvetica Neue", "Lucida Grande", Arial, sans-serif !important;
 }

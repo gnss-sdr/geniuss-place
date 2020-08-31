@@ -7,7 +7,7 @@ header:
   teaser: /assets/images/books.png
 sidebar:
     nav: "about"
-last_modified_at: 2019-04-29T12:38:52+00:00
+last_modified_at: 2020-06-16T12:38:52+00:00
 redirect_from:
   - /documentation/publications
 ---
@@ -15,6 +15,63 @@ redirect_from:
 List of academic papers in which GNSS-SDR has been referenced, described or used for research purposes. If you are aware of other publications not listed here, please [let us know]({{ "/team/" | relative_url }}).
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
+
+
+<ul class="biblist">
+    <!-- Item: Watson20 -->
+    <li ><p>
+    R.&nbsp;M.&nbsp;Watson, J.&nbsp;N.&nbsp;Gross, C.&nbsp;N.&nbsp;Taylor and R.&nbsp;C.&nbsp;Leishman
+    <br><b>Robust Incremental State Estimation Through Covariance Adaptation</b><br>
+<i>IEEE Robotics and Automation Letters</i>, Vol. 5, No. 2, pp. 3737-3744, Apr.&nbsp;2020.
+    <br />
+    <a href="javascript:toggleBibtex('Watson20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9028253/" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/LRA.2020.2979655" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Watson20" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Watson20,
+author  = {R.~M.~Watson and J.~N.~Gross and C.~N.~Taylor and R.~C.~Leishman},
+title   = {Robust Incremental State Estimation Through Covariance Adaptation},
+journal = {IEEE Robotics and Automation Letters},
+year    = {2020},
+month   = {Apr.},
+volume  = {5},
+number  = {2},
+pages   = {3737--3744},
+note    = { {doi}: 10.1109/LRA.2020.2979655}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: Cutugno20 -->
+    <li ><p>
+    M.&nbsp;Cutugno, U.&nbsp;Robustelli and G.&nbsp;Pugliano
+    <br><b>Low-Cost GNSS Software Receiver Performance Assessment</b><br>
+<i>Geosciences</i>, Vol. 10, No. 2, pp. 79, Feb. 2020.
+    <br />
+    <a href="javascript:toggleBibtex('Cutugno20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.mdpi.com/2076-3263/10/2/79" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.3390/geosciences10020079" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Cutugno20" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Cutugno20,
+author  = {M.~Cutugno and U.~Robustelli and G.~Pugliano},
+title   = {Low-Cost {GNSS} Software Receiver Performance Assessment},
+journal = {Geosciences},
+year    = {2020},
+month   = {Feb.},
+volume  = {10},
+number  = {2},
+pages   = {79},
+note    = { {doi}: 10.3390/geosciences10020079}
+}</pre>
+    </div>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: Miralles19 -->
@@ -24,10 +81,10 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 <i>GPS Solutions</i>, Vol. 23, No. 3, pp. 72, May 2019.
     <br />
     <a href="javascript:toggleBibtex('Miralles19')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://link.springer.com/article/10.1007%2Fs10291-019-0865-8" >Online </a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/article/10.1007%2Fs10291-019-0865-8" >Online</a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/s10291-019-0865-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Miralles19" class="bibtex noshow">
+    <div id="bib_Miralles19" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Miralles19,
 author  = {D.~Miralles and D.~M.~Akos},
 title   = {A {SIMD} intrinsic correlator library for {GNSS} software receivers},
@@ -44,6 +101,34 @@ note    = { {doi}: 10.1007/s10291-019-0865-8}
 </ul>
 
 <ul class="biblist">
+    <!-- Item: Schmidt18 -->
+    <li ><p>
+    E.&nbsp;Schmidt, D.&nbsp;Akopian and D.&nbsp;J.&nbsp;Pack
+    <br><b>Development of a Real-Time Software-Defined GPS Receiver in a LabVIEW-Based Instrumentation Environment</b><br>
+<i>IEEE Transactions on Instrumentation and Measurement</i>, Vol. 67, No. 9, pp.&nbsp;2082-2096, Sept.&nbsp;2018.
+    <br />
+    <a href="javascript:toggleBibtex('Schmidt18')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8319903/" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/TIM.2018.2811446" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Schmidt18" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Schmidt18,
+author  = {E.~Schmidt, D.~Akopian and D.~J.~Pack},
+title   = {Development of a Real-Time Software-Defined {GPS} Receiver in a {L}ab{VIEW}-Based Instrumentation Environment},
+journal = {IEEE Transactions on Instrumentation and Measurement},
+year    = {2018},
+month   = {Sept.},
+volume  = {67},
+number  = {9},
+pages   = {2082--2096},
+note    = { {doi}: 10.1109/TIM.2018.2811446}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Fernandez18 -->
     <li ><p>
     C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Vil&agrave;-Valls, J.&nbsp;Arribas and A.&nbsp;Ramos
@@ -54,7 +139,7 @@ note    = { {doi}: 10.1007/s10291-019-0865-8}
     <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8331069/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/ACCESS.2018.2822835" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Fernandez18" class="bibtex noshow">
+    <div id="bib_Fernandez18" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Fernandez18,
 author  = {C.~{Fern\'{a}ndez--Prades} and J.~{Vil\`{a}--Valls} and J.~Arribas and A.~Ramos},
 title   = {Continuous Reproducibility in {GNSS} Signal Processing},
@@ -80,7 +165,7 @@ note    = { {doi}: 10.1109/ACCESS.2018.2822835}
     <a href="javascript:toggleBibtex('Curran18')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.gpsworld.com/innovation-the-continued-evolution-of-the-gnss-software-defined-radio/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Curran18" class="bibtex noshow">
+    <div id="bib_Curran18" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Curran18,
 author  = {J.~T.~Curran and C.~{Fern\'{a}ndez--Prades} and A.~Morrison and M.~Bavaro},
 title   = {Innovation: {T}he continued evolution of the {GNSS} software-defined radio},
@@ -107,7 +192,7 @@ pages   = {43--49}
     <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/7501832/" >Online</a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/JSTARS.2016.2568742" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Lestarquit16" class="bibtex noshow">
+    <div id="bib_Lestarquit16" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Lestarquit16,
 author  = {L.~Lestarquit and M.~Peyrezabes and J.~Darrozes and E.~Motte and N.~Roussel and G.~Wautelet and F.~Frappart and G.~Ramillien and R.~Biancale and M.~Zribi},
 title   = {Reflectometry With an Open-Source Software {GNSS} Receiver: {U}se Case With Carrier Phase Altimetry},
@@ -129,13 +214,13 @@ note    = { {doi}: 10.1109/JSTARS.2016.2568742}
     <li ><p>
     C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas and P.&nbsp;Closas
     <br><b>Robust GNSS Receivers by Array Signal Processing: Theory and Implementation</b><br>
-<i>Proceedings of the IEEE</i>, Vol. 104, No. 6, pp. 1207-1220, June 2016.
+<i>Proceedings of the IEEE</i>, Vol. 104, No. 6, pp. 1207-1220, June&nbsp;2016.
     <br />
     <a href="javascript:toggleBibtex('Fernandez16')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/7444116/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/JPROC.2016.2532963" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Fernandez16" class="bibtex noshow">
+    <div id="bib_Fernandez16" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Fernandez16,
 author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas},
 title   = {Robust {GNSS} Receivers by Array Signal Processing: {T}heory and Implementation},
@@ -157,13 +242,13 @@ note    = { {doi}: 10.1109/JPROC.2016.2532963}
     <li ><p>
     J.&nbsp;Arribas, C.&nbsp;Fern&aacute;ndez-Prades and P.&nbsp;Closas
     <br><b>Multi-antenna Techniques for Interference Mitigation in GNSS Signal Acquisition</b><br>
-<i>EURASIP Journal on Advances in Signal Processing</i>, Vol. 2013, No. 143, Sep. 2013.
+<i>EURASIP Journal on Advances in Signal Processing</i>, Vol. 2013, No. 143, Sept.&nbsp;2013.
     <br />
     <a href="javascript:toggleBibtex('Arribas13')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://asp-eurasipjournals.springeropen.com/articles/10.1186/1687-6180-2013-143" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1186/1687-6180-2013-143" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Arribas13" class="bibtex noshow">
+    <div id="bib_Arribas13" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Arribas13,
 author  = {J.~Arribas and C.~{Fern\'{a}ndez--Prades} and P.~Closas},
 title   = {Multi-antenna Techniques for Interference Mitigation in {GNSS} Signal Acquisition},
@@ -171,7 +256,7 @@ journal = {EURASIP Journal on Advances in Signal Processing},
 year    = {2013},
 volume  = {2013},
 number  = {143},
-month   = {Sep.},
+month   = {Sept.},
 note     = { {doi}: 10.1186/1687-6180-2013-143}
 }</pre>
     </div>
@@ -183,12 +268,147 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
 
 <ul class="biblist">
+    <!-- Item: Deng20 -->
+    <li ><p>
+    Y. Deng and B. Lian
+    <br><b>Design and Implementation of a Real Time BDS Scalar-Vector Tracking Receiver</b><br>
+<i>Proceedings of the China Satellite Navigation Conference</i>,
+Vol. III, Chengdu, China, Nov. 2020, pp. 276-287.
+    <br />
+    <a href="javascript:toggleBibtex('Deng20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/chapter/10.1007%2F978-981-15-3715-8_26" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/978-981-15-3715-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Deng20" class="bibtex noshow" style="color: #111111">
+    <pre>@inproceedings{ Deng20,
+author  = {Y.~Deng and B.~Lian},
+title   = {Design and Implementation of a Real Time {BDS} Scalar-Vector Tracking Receiver},
+booktitle = {Proc. China Satellite Navigation Conference},
+volume = {3},
+year    = {2020},
+address = {Chengdu, China},
+month   = {Nov.},
+pages   = {276--287},
+note    = {doi: 10.1007/978-981-15-3715-8}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: Calvo20 -->
+    <li ><p>
+    R. Calvo Palomino, A. Bhattacharya, G. Bovet, and D. Giustiniano
+    <br><b>LSTM-based GNSS Spoofing Detection Using Low-cost Spectrum Sensors</b><br>
+<i>Proceedings of the 21st IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks</i>,
+Cork, Ireland, 31 Aug. / 3 Sept., 2020. pp. 1-4.
+    <br />
+    <a href="javascript:toggleBibtex('Calvo20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="http://eprints.networks.imdea.org/id/eprint/2139" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Calvo20" class="bibtex noshow" style="color: #111111">
+    <pre>@inproceedings{ Calvo20,
+author  = {R.~{Calvo~Palomino} and A.~Bhattacharya and G.~Bovet and D.~Giustiniano},
+title   = { {LSTM}-based {GNSS} Spoofing Detection Using Low-cost Spectrum Sensors},
+booktitle = {Proc. 21st IEEE Intl. Symp. on a World of Wireless, Mobile and Multimedia Networks},
+year    = {2020},
+address = {Cork, Ireland},
+month   = {Aug./Sept.},
+pages   = {1--4}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: Parlin20 -->
+    <li ><p>
+    K. P&auml;rlin and T. Riihonen
+    <br><b>Analog Mitigation of Frequency-Modulated Interference for Improved GNSS Reception</b><br>
+<i>Proceedings of the International Conference on Localization and GNSS (ICL-GNSS)</i>,
+Tampere, Finland, June&nbsp;2020, pp. 1-6.
+    <br />
+    <a href="javascript:toggleBibtex('Parlin20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9115518" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/ICL-GNSS49876.2020.9115518" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Parlin20" class="bibtex noshow" style="color: #111111">
+    <pre>@inproceedings{ Parlin20,
+author  = {K.~P\"{a}rlin and T.~Riihonen},
+title   = {Analog Mitigation of Frequency-Modulated Interference for Improved {GNSS} Reception},
+booktitle = {Proc. Intl. Conf. on Localization and GNSS},
+year    = {2020},
+address = {Tampere, Finland},
+month   = {June},
+pages   = {1--6},
+note    = {doi: 10.1109/ICL-GNSS49876.2020.9115518}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: Stenberg20 -->
+    <li ><p>
+    N. Stenberg, E. Axell, J. Rantakokko and G. Hendeby
+    <br><b>GNSS Spoofing Mitigation Using Multiple Receivers</b><br>
+<i>Proceedings of the IEEE/ION Position, Location and Navigation Symposium (PLANS)</i>,
+Portland, Oregon, Apr. 2020, pp. 555-565.
+    <br />
+    <a href="javascript:toggleBibtex('Stenberg20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9109958" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/PLANS46316.2020.9109958" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Stenberg20" class="bibtex noshow" style="color: #111111">
+    <pre>@inproceedings{ Stenberg20,
+author  = {N.~Stenberg and E.~Axell and J.~Rantakokko and G.~Hendeby},
+title   = { {GNSS} Spoofing Mitigation Using Multiple Receivers},
+booktitle = {Proc. IEEE/ION Position, Location and Navigation Symposium},
+year    = {2020},
+address = {Portland, OR.},
+month   = {Apr.},
+pages   = {555--565},
+note    = {doi: 10.1109/PLANS46316.2020.9109958}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: Vega20 -->
+    <li ><p>
+    J.&nbsp;G.&nbsp;Vega&nbsp;Lea&ntilde;ez, J.&nbsp;I.&nbsp;Barber&iacute;a, S.&nbsp;Rodr&iacute;guez, J.&nbsp;G.&nbsp;D&iacute;az, R.&nbsp;L&oacute;pez&nbsp;La&nbsp;Valle, J.&nbsp;G.&nbsp;Garc&iacute;a and C.&nbsp;H.&nbsp;Muravchik
+    <br><b>High-Speed Data Acquisition System for GNSS Applications</b><br>
+<i>Proceedings of the Argentine Conference on Electronics (CAE)</i>,
+Buenos Aires, Argentina, Feb. 2020, pp. 14-19.
+    <br />
+    <a href="javascript:toggleBibtex('Vega20')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9046375" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/CAE48787.2020.9046375" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Vega20" class="bibtex noshow" style="color: #111111">
+    <pre>@inproceedings{ Vega20,
+author  = {J.~G.~{Vega~Lea{\~{n}}ez} and J.~I.~Barber\'{i}a and S.~Rodr\'{i}guez and J.~G.~D\'{i}az and R.~{L\'{o}pez~La~Valle} and J.~G.~Garc\'{i}a and C.~H.~Muravchik},
+title   = {High-Speed Data Acquisition System for {GNSS} Applications},
+booktitle = {Proc. Argentine Conference on Electronics},
+year    = {2020},
+address = {Buenos Aires, Argentina},
+month   = {Feb.},
+pages   = {14--19},
+note    = {doi: 10.1109/CAE48787.2020.9046375}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Fernandez19a -->
     <li ><p>
     C.&nbsp;Fern&aacute;ndez-Prades
     <br><b>An Open Source Global Navigation Satellite Systems Software-Defined Receiver</b><br>
 <i>Software Defined Radio Academy 2019</i>,
-Friedrichshafen, Germany, Jun. 2019.
+Friedrichshafen, Germany, June&nbsp;2019.
     <br />
     <span style="color: #52adc8">[</span><a href="https://youtu.be/4uHdu-iGsgI">Video</a><span style="color: #52adc8">]</span>
     </p>
@@ -207,7 +427,7 @@ Noordwijk, Netherlands, Dec. 2018, pp. 1-9.
     <a href="javascript:toggleBibtex('Fernandez18b')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8642697" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/NAVITEC.2018.8642697" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Fernandez18b" class="bibtex noshow">
+    <div id="bib_Fernandez18b" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Fernandez18b,
 author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and M.~Majoral and A.~Ramos and J.~{Vil\`{a}--Valls} and P.~Giordano},
 title   = {A Software-Defined Spaceborne {GNSS} Receiver},
@@ -229,19 +449,19 @@ note    = {doi: 10.1109/NAVITEC.2018.8642697}
     D.&nbsp;Miralles and J.&nbsp;Iwamoto
     <br><b>Accelerating software radios by means of SIMD Instructions. A case for the AVX2 and AVX512 Extensions</b><br>
 <i>Proceedings of the 8th Annual GNU Radio Conference (GRCon18)</i>,<br>
-Las Vegas, NV, Sept. 2018, pp. 1-7.
+Las Vegas, NV, Sept.&nbsp;2018, pp. 1-7.
     <br />
     <a href="javascript:toggleBibtex('Miralles18')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://pubs.gnuradio.org/index.php/grcon/article/view/49/33" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.gnuradio.org/grcon/grcon18/presentations/accelerating_software_radios_by_means_of_simd_instructions._a_case_for_the_avx2_and_avx512_extensions/8-Jessica_Iwamoto-SIMD.pdf">Slides</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://youtu.be/eDayurX_Rzg">Video</a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Miralles18" class="bibtex noshow">
+    <div id="bib_Miralles18" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Miralles18,
 author  = {D.~Miralles and J.~Iwamoto},
 title   = {Accelerating software radios by means of {SIMD} Instructions. {A} case for the {AVX2} and {AVX512} Extensions},
 booktitle = {Proc. 8th Annual GNU Radio Conference},
 year    = {2018},
 address = {Las Vegas, NV},
-month   = {Sep.},
+month   = {Sept.},
 pages   = {1--7}
 }</pre>
     </div>
@@ -255,19 +475,19 @@ pages   = {1--7}
     M.&nbsp;Majoral, C.&nbsp;Fern&aacute;ndez-Prades and J.&nbsp;Arribas
     <br><b>Implementation of GNSS Receiver Hardware Accelerators in All&#8209;Programmable System&#8209;On&#8209;Chip Platforms</b><br>
 <i>Proceedings of the 31st International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2018)</i>,
-Miami, FL, Sept. 2018, pp. 4215-4230.
+Miami, FL, Sept.&nbsp;2018, pp. 4215-4230.
     <br />
     <a href="javascript:toggleBibtex('Majoral18')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=16082" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2018.16082" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Majoral18" class="bibtex noshow">
+    <div id="bib_Majoral18" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Majoral18,
 author  = {M.~Majoral and C.~{Fern\'{a}ndez--Prades} and J.~Arribas},
 title   = {Implementation of {GNSS} Receiver Hardware Accelerators in All-programmable System-On-Chip Platforms},
 booktitle = {Proc. 31st Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2018},
 address = {Miami, FL},
-month   = {Sep.},
+month   = {Sept.},
 pages   = {4215--4230},
 note    = { {doi}: 10.33012/2018.16082}
 }</pre>
@@ -282,19 +502,19 @@ note    = { {doi}: 10.33012/2018.16082}
     G.&nbsp;LaMountain, J.&nbsp;Vil&agrave;-Valls and P.&nbsp;Closas
     <br><b>Bayesian Covariance Estimation for Kalman Filter based Digital Carrier Synchronization</b><br>
 <i>Proceedings of the 31st International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2018)</i>,
-Miami, FL, Sept. 2018, pp. 3575-3586.
+Miami, FL, Sept.&nbsp;2018, pp. 3575-3586.
     <br />
     <a href="javascript:toggleBibtex('LaMountain18')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15911" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2018.15911" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_LaMountain18" class="bibtex noshow">
+    <div id="bib_LaMountain18" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ LaMountain18,
 author  = {G.~{LaMountain} and J.~{Vil\`{a}--Valls} and P.~Closas},
 title   = {Bayesian Covariance Estimation for {K}alman Filter based Digital Carrier Synchronization},
 booktitle = {Proc. 31st Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2018},
 address = {Miami, FL},
-month   = {Sep.},
+month   = {Sept.},
 pages   = {3575--3586},
 note    = { {doi}: 10.33012/2018.15911}
 }</pre>
@@ -309,19 +529,19 @@ note    = { {doi}: 10.33012/2018.15911}
     C.&nbsp;O'Driscoll and J.&nbsp;T.&nbsp;Curran
     <br><b>Carrier Phase Tracking Considerations for Commodity SDR Hardware</b><br>
 <i>Proceedings of the 31st International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2018)</i>,
-Miami, FL, Sept. 2018, pp. 4182-4196.
+Miami, FL, Sept.&nbsp;2018, pp. 4182-4196.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll18')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=16117" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2018.16117" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Odriscoll18" class="bibtex noshow">
+    <div id="bib_Odriscoll18" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Odriscoll18,
 author  = {C.~{O'Driscoll} and J.~T.~Curran},
 title   = {Carrier Phase Tracking Considerations for Commodity {SDR} Hardware},
 booktitle = {Proc. 31st Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2018},
 address = {Miami, FL},
-month   = {Sep.},
+month   = {Sept.},
 pages   = {4182--4196},
 note    = { {doi}: 10.33012/2018.16117}
 }</pre>
@@ -336,19 +556,19 @@ note    = { {doi}: 10.33012/2018.16117}
     C.&nbsp;O'Driscoll and J.&nbsp;T.&nbsp;Curran
     <br><b>Codeless Processing of BOC(10,5) Signals</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
-Portland, OR, Sept. 2017, pp. 3508-3518.
+Portland, OR, Sept.&nbsp;2017, pp. 3508-3518.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll17')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15384" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15384" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Odriscoll17" class="bibtex noshow">
+    <div id="bib_Odriscoll17" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Odriscoll17,
 author  = {C.~{O'Driscoll} and J.~T.~Curran},
 title   = {Codeless Processing of {BOC}(10,5) Signals},
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
 address = {Portland, OR},
-month   = {Sep.},
+month   = {Sept.},
 pages   = {3508--3518},
 note    = { {doi}: 10.33012/2017.15384}
 }</pre>
@@ -363,20 +583,20 @@ note    = { {doi}: 10.33012/2017.15384}
     J.&nbsp;Arribas, A.&nbsp;Ramos&nbsp;de&nbsp;Torres, C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Vil&agrave;-Valls and P.&nbsp;Closas
     <br><b>Air Traffic Radar Interference Event in the Galileo E6 Band: Detection, Analysis and Mitigation</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
-Portland, OR, Sept. 2017, pp. 1204-1228.
+Portland, OR, Sept.&nbsp;2017, pp. 1204-1228.
     <br />
     <a href="javascript:toggleBibtex('Arribas17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15301" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15301" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037280" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Arribas17a" class="bibtex noshow">
+    <div id="bib_Arribas17a" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Arribas17a,
 author  = {J.~{Arribas} and A.~{Ramos~de~Torres} and C.~{Fern\'{a}ndez--Prades} and J.~{Vil\`{a}--Valls} and P.~Closas}
 title   = {Air Traffic Radar Interference Event in the {G}alileo {E}6 Band: {D}etection, Analysis and Mitigation},
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
 address = {Portland, OR},
-month   = {Sep.},
+month   = {Sept.},
 pages   = {1204--1228},
 note    = { {doi}: 10.33012/2017.15301}
 }</pre>
@@ -392,23 +612,22 @@ note    = { {doi}: 10.33012/2017.15301}
     C.&nbsp;Fern&aacute;ndez-Prades, C.&nbsp;Pomar, J.&nbsp;Arribas, J.M.&nbsp;F&agrave;brega, J.&nbsp;Vil&agrave;-Valls, M.&nbsp;Svaluto&nbsp;Moreolo, R.&nbsp;Casellas, R.&nbsp;Mart&iacute;nez, M.&nbsp;Navarro, F.J.&nbsp;V&iacute;lchez, R.&nbsp;Mu&ntilde;oz, R.&nbsp;Vilalta, L.&nbsp;Nadal and A.&nbsp;Mayoral
     <br><b>A Cloud Optical Access Network for Virtualized GNSS Receivers</b><br>
 <i>Proceedings of the 30th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2017)</i>,
-Portland, OR, Sept. 2017, pp. 3796-3815.
+Portland, OR, Sept.&nbsp;2017, pp. 3796-3815.
     <br />
     <a href="javascript:toggleBibtex('Fernandez17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15234" >Online</a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15234
-" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15234" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037906" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/a-cloud-optical-access-network-for-virtualized-gnss-receivers/zhgrtpqstxrx" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Fernandez17a" class="bibtex noshow">
+    <div id="bib_Fernandez17a" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Fernandez17a,
 author  = {C.~{Fern\'{a}ndez--Prades} and C.~Pomar and J.~Arribas and J.M.~F\`{a}brega and J.~{Vil\`{a}--Valls} and M.~{Svaluto~Moreolo} and R.~Casellas and R.~Mart\'{i}nez and M.~Navarro and F.J.~V\'{i}lchez and R.~Mu{\~{n}}oz and R.~Vilalta and L.~Nadal and A.~Mayoral},
 title   = {A Cloud Optical Access Network for Virtualized {GNSS} Receivers},
 booktitle = {Proc. 30th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2017},
 address = {Portland, OR},
-month   = {Sep.},
+month   = {Sept.},
 pages   = {3796--3815},
 note    = { {doi}: 10.33012/2017.15234}
 }</pre>
@@ -429,7 +648,7 @@ ESA/ESTEC, Noordwijk, The Netherlands, Dec. 14-16, 2016, pp. 1-9.
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/266524" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2016.7931740" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Fernandez16c" class="bibtex noshow">
+    <div id="bib_Fernandez16c" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Fernandez16c,
 author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas},
 title   = {Assessment of Software-Defined {GNSS} Receivers},
@@ -450,11 +669,11 @@ note     = { {doi}: 10.1109/NAVITEC.2016.7931740}
     E. L&oacute;pez, J.&nbsp;Dom&iacute;nguez, B.&nbsp;Quijano, C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas, M.&nbsp;Hern&aacute;ndez-Pajares, A.&nbsp;Garc&iacute;a-Rigo, M.&nbsp;Schmidt,  A.&nbsp;Goss, E.&nbsp;Spaltro, J.&nbsp;Grosso, M.&nbsp;Symeonidou, S.&nbsp;Fountas, Z.&nbsp;Tsiropoulos, F.&nbsp;Van&nbsp;Evert, P.&nbsp;Blok and D.&nbsp;Roma
     <br><b>Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network (AUDITOR)</b><br>
 <i>Proceedings of the Global Wireless Summit</i>,
-Aarhus, Denmark, Nov. 27-30, 2016, pp. 1-6.
+Aarhus, Denmark, Nov.&nbsp;27&#8209;30,&nbsp;2016, pp. 1-6.
     <br />
     <a href="javascript:toggleBibtex('Lopez16')">[BibTeX]</a>
     </p>
-    <div id="bib_Lopez16" class="bibtex noshow">
+    <div id="bib_Lopez16" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Lopez16,
 author  = {E.~L\'{o}pez and J.~Dom\'{i}nguez and B.~Quijano and C.~{Fern\'{a}ndez--Prades} and J.~Arribas and M.~{Hern\'{a}ndez-Pajares} and A.~{Garc\'{i}a-Rigo} and M.~Schmidt and A.~Goss and E.~Spaltro and J.~Grosso and M.~Symeonidou and S.~Fountas and Z.~Tsiropoulos and F.~{Van~Evert} and P.~Blok and D.~Roma},
 title   = {Advanced Multi-Constellation {EGNSS} Augmentation and Monitoring Network ({AUDITOR})},
@@ -480,7 +699,7 @@ New York, Oct. 3-7, 2016, pp. 348-360.
     <a href="javascript:toggleBibtex('SPREE')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://aanjhan.com/assets/spree_arxiv.pdf" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_SPREE" class="bibtex noshow">
+    <div id="bib_SPREE" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ SPREE,
 author  = {A.~Ranganathan and H.~\'{O}lafsd\'{o}ttir and S.~Capkun},
 title   = { {SPREE}: {A} Spoofing Resistant {GPS} Receiver},
@@ -501,12 +720,12 @@ month   = {Oct.}
     C.&nbsp;O'Driscoll and J.&nbsp;T.&nbsp;Curran
     <br><b>Codeless Code Tracking of BOC Signals</b><br>
 <i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
-Portland, OR, Sept. 2016, pp. 497-508.
+Portland, OR, Sept.&nbsp;2016, pp. 497-508.
     <br />
     <a href="javascript:toggleBibtex('Odriscoll16')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=14842" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2016.14842" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Odriscoll16" class="bibtex noshow">
+    <div id="bib_Odriscoll16" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Odriscoll16,
 author  = {C.~{O'Driscoll} and J.~T.~Curran},
 title   = {Codeless Code Tracking of {BOC} Signals},
@@ -514,7 +733,7 @@ booktitle = {Proc. 29th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 pages   = {497--508},
 year    = {2016},
 address = {Portland, OR},
-month   = {Sep.},
+month   = {Sept.},
 note    = { {doi}: 10.33012/2016.14842}
 }</pre>
     </div>
@@ -527,14 +746,14 @@ note    = { {doi}: 10.33012/2016.14842}
     C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas and P.&nbsp;Closas
     <br><b>Accelerating GNSS Software Receivers</b><br>
 <i>Proceedings of the 29th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2016)</i>,
-Portland, OR, Sept. 2016, pp. 44-61.<br>
+Portland, OR, Sept.&nbsp;2016, pp. 44-61.<br>
 <i class="fas fa-fw fa-star"></i> Best Presentation Award (<i>Session A1: Advances in GNSS Software-defined Receivers</i>)
     <br />
     <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/266493" >Online  <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2016.14576" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/accelerating-gnss-software-receivers/ywcwtdjwgnky" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Fernandez16b" class="bibtex noshow">
+    <div id="bib_Fernandez16b" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Fernandez16b,
 author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas},
 title   = {Accelerating {GNSS} Software Receivers},
@@ -542,7 +761,7 @@ booktitle = {Proc. 29th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 pages   = {44--61},
 year    = {2016},
 address = {Portland, OR},
-month   = {Sep.},
+month   = {Sept.},
 note    = { {doi}: 10.33012/2016.14576}
 }</pre>
     </div>
@@ -555,12 +774,12 @@ note    = { {doi}: 10.33012/2016.14576}
     J.&nbsp;Arribas, C.&nbsp;Fern&aacute;ndez-Prades and P.&nbsp;Closas
     <br><b>GESTALT: A Testbed for Experimentation and Validation of GNSS Software Receivers</b><br>
 <i>Proceedings of the 28th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2015)</i>,
-Tampa, Florida, Sep. 2015, pp. 3222-3234.
+Tampa, Florida, Sept.&nbsp;2015, pp. 3222-3234.
     <br />
     <a href="javascript:toggleBibtex('GNSS-SDR15')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=13101" >Online</a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_GNSS-SDR15" class="bibtex noshow">
+    <div id="bib_GNSS-SDR15" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ GNSS-SDR15,
 author  = {J.~Arribas and C.~{Fern\'{a}ndez--Prades} and P.~Closas},
 title   = { {GESTALT}: {A} Testbed for Experimentation and Validation of {GNSS} Software Receivers},
@@ -568,7 +787,7 @@ booktitle = {Proc. 28th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2015},
 pages   = {3222--3234},
 address = {Tampa, FL},
-month   = {Sep.}
+month   = {Sept.}
 }</pre>
     </div>
     </li>
@@ -581,12 +800,12 @@ month   = {Sep.}
     M.&nbsp;Branzanti, J.&nbsp;Arribas, C.&nbsp;Fern&aacute;ndez-Prades and M.&nbsp;Crespi
     <br><b>Software Defined Receivers in GNSS scientific applications: variometric approach to exploit GNSS-SDR phase observations</b><br>
 <i>Proceedings of the European Free and Open Source Software for Geospatial Conference (FOSS4G Europe)</i>,
-Como, Italy, Jul. 14-17, 2015, pp. 405-416.
+Como, Italy, July 14-17, 2015, pp. 405-416.
     <br />
     <a href="javascript:toggleBibtex('Branzanti15')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://pdfs.semanticscholar.org/3143/1f0138610dc509cc04e1d24f56ba0a5878b6.pdf" >PDF</a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Branzanti15" class="bibtex noshow">
+    <div id="bib_Branzanti15" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Branzanti15,
 author  = {M.~{Branzanti} and J.~Arribas and C.~{Fern\'{a}ndez--Prades} and M.~Crespi},
 title   = { Software Defined Receivers in {GNSS} scientific applications: variometric approach to exploit {GNSS-SDR} phase observations},
@@ -594,7 +813,7 @@ booktitle = {Proc. European Free and Open Source Software for Geospatial Confere
 year    = {2015},
 address = {Como, Italy},
 pages = {405--416},
-month   = {Jul.}
+month   = {July}
 }</pre>
     </div>
     </li>
@@ -607,13 +826,13 @@ month   = {Jul.}
     J.-M.&nbsp;Friedt
     <br><b>The power of cross-correlating: from GPS reception to passive RADAR using SDR</b><br>
 <i>Presentation at Free and Open Source Software Developers' European Meeting (FOSDEM)</i>,
-Brussels, Belgium, Jan.-Feb. 2015.
+Brussels, Belgium, Jan./Feb.  2015.
     <br />
     <a href="javascript:toggleBibtex('Martinez15')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="http://jmfriedt.free.fr/efts_gps.pdf" >Slides</a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://mirrors.dotsrc.org/fosdem/2015/devroom-software_defined_radio/xcorr.mp4" >Video</a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Martinez15" class="bibtex noshow">
+    <div id="bib_Martinez15" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Martinez15,
 author  = {S.~{Mart\'{i}nez--Guti\'{e}rrez} and J.-M.~Friedt and G.~Cabodevila and P.~Y.~Bourgeois and E.~Rubiola},
 title   = { Software Defined Radio for processing {GNSS} signals},
@@ -621,7 +840,7 @@ booktitle = {Free and Open Source Software Developers' European Meeting (FOSDEM)
 year    = {2015},
 address = {Brussels, Belgium},
 pages = {1--36},
-month   = {Jan.-Feb.}
+month   = {Jan./Feb. }
 }</pre>
     </div>
     </li>
@@ -639,7 +858,7 @@ ESA-ESTEC, Noordwijk, The Netherlands, 2014, pp. 1-3.
     <a href="javascript:toggleBibtex('Fabra14')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="http://esaconferencebureau.com/2014-events/14c11/proceedings" >Online</a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_Fabra14" class="bibtex noshow">
+    <div id="bib_Fabra14" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Fabra14,
 author  = {F.~Fabra and C.~Calvin and A.~Rius and J.~Arribas and C.~{Fern\'{a}ndez--Prades}},
 title   = {Processing Aspects of the Software {PARIS} Interferometric Receiver},
@@ -660,12 +879,12 @@ month   = {Nov.}
     J.&nbsp;Arribas, M.&nbsp;Branzanti, C.&nbsp;Fern&aacute;ndez-Prades and P.&nbsp;Closas
     <br><b>Fastening GPS and Galileo Tight with a Software Receiver</b><br>
 <i>Proceedings of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014)</i>,
-Tampa, Florida, Sep. 2014, pp. 1383-1395.
+Tampa, Florida, Sept.&nbsp;2014, pp. 1383-1395.
     <br />
     <a href="javascript:toggleBibtex('GNSS-SDR14b')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428" >Online</a><span style="color: #52adc8">]</span>
     </p>
-    <div id="bib_GNSS-SDR14b" class="bibtex noshow">
+    <div id="bib_GNSS-SDR14b" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ GNSS-SDR14b,
 author  = {J.~Arribas and M.~Branzanti and C.~{Fern\'{a}ndez--Prades} and P.~Closas},
 title   = {Fastening {GPS} and {G}alileo Tight with a Software Receiver},
@@ -673,7 +892,7 @@ booktitle = {Proc. 27th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2014},
 pages   = {1383--1395},
 address = {Tampa, FL},
-month   = {Sep.}
+month   = {Sept.}
 }</pre>
     </div>
     </li>
@@ -686,12 +905,12 @@ month   = {Sep.}
         J.&nbsp;Arribas, P.&nbsp;Closas and C.&nbsp;Fern&aacute;ndez-Prades
         <br><b>Interference Mitigation in GNSS Receivers by Array Signal Processing: A Software Radio Approach</b><br>
         <i>Proceedings of the 8th IEEE Sensor Array and Multichannel Signal Processing Workshop</i>,
-    A Coru&ntilde;a, Spain, June 2014, pp. 121-124.
+    A Coru&ntilde;a, Spain, June&nbsp;2014, pp. 121-124.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR14a')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6882355/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/profile/Pau_Closas/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach/links/548a95080cf225bf669c7fc0.pdf?origin=publication_detail" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/SAM.2014.6882355" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
-        <div id="bib_GNSS-SDR14a" class="bibtex noshow">
+        <div id="bib_GNSS-SDR14a" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR14a,
 author  = {J.~Arribas and P.~Closas and C.~{Fern\'{a}ndez--Prades}},
 title   = {Interference Mitigation in {GNSS} Receivers by Array Signal Processing: {A} Software Radio Approach},
@@ -699,7 +918,7 @@ booktitle = {Proc. of the 8th IEEE Sensor Array and Multichannel Signal Processi
 year    = {2014},
 pages   = {121--124},
 address = {A Coru\~{n}a, Spain},
-month   = {Jun.},
+month   = {June},
 note    = { {doi}: 10.1109/SAM.2014.6882355}
 }</pre>
         </div>
@@ -713,13 +932,13 @@ note    = { {doi}: 10.1109/SAM.2014.6882355}
         R.&nbsp;Falone, C.&nbsp;Stallo, E.&nbsp;Gambi and S.&nbsp;Spinsante
         <br><b>SDR GNSS receivers: A comparative overview of different approaches</b><br>
         <i>Proceedings of the IEEE International Workshop on Metrology for Aerospace</i>,
-    Benevento, Italy, May 29-30, 2014.
+    Benevento, Italy, May 29-30,&nbsp;2014.
         <br />
         <a href="javascript:toggleBibtex('Falone14')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6865943/" >Online</a><span style="color: #52adc8">]</span>
         <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/MetroAeroSpace.2014.6865943" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
-        <div id="bib_Falone14" class="bibtex noshow">
+        <div id="bib_Falone14" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ Falone14,
 author  = {R.~Falone and C.~Stallo and E.~Gambi and S.~Spinsante},
 title   = { {SDR} {GNSS} receivers: {A} comparative overview of different approaches},
@@ -739,13 +958,13 @@ note    = { {doi}: 10.1109/MetroAeroSpace.2014.6865943}
         P.&nbsp;Angeletti, M.&nbsp;Lisi and P.&nbsp;Tognolatti
         <br><b>Software Defined Radio: A key technology for flexibility and reconfigurability in space applications</b><br>
         <i>Proceedings of the IEEE International Workshop on Metrology for Aerospace</i>,
-    Benevento, Italy, May 29-30, 2014.
+    Benevento, Italy, May 29-30,&nbsp;2014.
         <br />
         <a href="javascript:toggleBibtex('Angeletti14')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6865957/" >Online</a><span style="color: #52adc8">]</span>
         <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/MetroAeroSpace.2014.6865957" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
-        <div id="bib_Angeletti14" class="bibtex noshow">
+        <div id="bib_Angeletti14" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ Angeletti14,
 author  = {P.~Angeletti and M.~Lisi and P.~Tognolatti},
 title   = { {S}oftware {D}efined {R}adio: {A} key technology for flexibility and reconfigurability in space applications},
@@ -765,12 +984,12 @@ note    = { {doi}: 10.1109/MetroAeroSpace.2014.6865957}
         C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas and P.&nbsp;Closas
         <br><b>Turning a Television into a GNSS Receiver</b><br>
     <i>Proceedings of the 26th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2013)</i>,
-    Nashville, TN, Sep. 2013, pp. 1492-1507.
+    Nashville, TN, Sept.&nbsp;2013, pp. 1492-1507.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR13')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=11334" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/09/Turning_TV_into_GNSS_Rx1.pdf" >PDF</a><span style="color: #52adc8">]</span>
         </p>
-        <div id="bib_GNSS-SDR13" class="bibtex noshow">
+        <div id="bib_GNSS-SDR13" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR13,
 author  = {C.~{Fern\'{a}ndez--Prades} and P.~Closas and J.~Arribas},
 title   = {Turning a Television into a {GNSS} Receiver},
@@ -778,7 +997,7 @@ booktitle = {Proc. 26th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2013},
 pages   = {1492--1507},
 address = {Nashville, TN},
-month   = {Sep.}
+month   = {Sept.}
 }</pre>
         </div>
         </li>
@@ -795,7 +1014,7 @@ month   = {Sep.}
         <a href="javascript:toggleBibtex('GNSS-SDR12')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6423057/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2012.6423057" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
-        <div id="bib_GNSS-SDR12" class="bibtex noshow">
+        <div id="bib_GNSS-SDR12" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR12,
 author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and L.~Esteve and D.~Pubill and P.~Closas},
 title   = {An Open Source {G}alileo {E1} Software Receiver},
@@ -821,7 +1040,7 @@ note    = { {doi}: 10.1109/NAVITEC.2012.6423057}
         <a href="javascript:toggleBibtex('Hassanieh12')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="http://haitham.ece.illinois.edu/Papers/QuickSync-mobicom.pdf" >PDF</a><span style="color: #52adc8">]</span>
         </p>
-        <div id="bib_Hassanieh12" class="bibtex noshow">
+        <div id="bib_Hassanieh12" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ Hassanieh12,
 author  = {H.~Hassanieh and F.~Adib and D.~Katabi and P.~Indyk},
 title   = {Faster {GPS} via the Sparse {F}ourier Transform},
@@ -842,12 +1061,12 @@ note    = { {doi}: 10.1109/NAVITEC.2012.6423057}
         C.&nbsp;Fern&aacute;ndez-Prades, J.&nbsp;Arribas and P.&nbsp;Closas
         <br><b>GNSS-SDR: An Open Source Tool For Researchers and Developers</b><br>
     <i>Proceedings of the 24th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS 2011)</i>,
-    Portland, OR, Sep. 2011, pp. 780-794.
+    Portland, OR, Sept.&nbsp;2011, pp. 780-794.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR11')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=9640" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/profile/Carles_Fernandez-Prades/publication/233380791_GNSS-SDR_An_open_source_tool_for_researchers_and_developers/links/09e41509e27ee6de56000000.pdf?origin=publication_detail" >PDF</a><span style="color: #52adc8">]</span>
         </p>
-        <div id="bib_GNSS-SDR11" class="bibtex noshow">
+        <div id="bib_GNSS-SDR11" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR11,
 author  = {C.~{Fern\'{a}ndez--Prades} and J.~Arribas and P.~Closas and C.~Avil\'{e}s and L.~Esteve},
 title   = { {GNSS-SDR}: An Open Source Tool For Researchers and Developers},
@@ -855,7 +1074,7 @@ booktitle = {Proc. 24th Int. Tech. Meeting Sat. Div. Inst. Navig.},
 year    = {2011},
 pages   = {780--794},
 address = {Portland, OR},
-month   = {Sep.}
+month   = {Sept.}
 }</pre>
         </div>
         </li>
@@ -872,7 +1091,7 @@ month   = {Sep.}
         <a href="javascript:toggleBibtex('GNSS-SDR10')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/5707981/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/101213-pid1531501-14543.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2010.5707981" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
-        <div id="bib_GNSS-SDR10" class="bibtex noshow">
+        <div id="bib_GNSS-SDR10" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR10,
 author  = {C.~{Fern\'{a}ndez--Prades} and C.~Avil\'{e}s and L.~Esteve and J.~Arribas and P.~Closas},
 title   = {Design patterns for {GNSS} software receivers},
@@ -894,13 +1113,13 @@ note     = { {doi}: 10.1109/NAVITEC.2010.5707981}
 <li ><p>
 A. Ranganathan
 <br><b>Physical-layer Techniques for Secure Proximity Verification & Localization</b><br>
-<i>PhD Thesis, ETH Z&uuml;rich, Department of Computer Science, Z&uuml;rich, Switzerland, June 2016.</i>
+<i>PhD Thesis, ETH Z&uuml;rich, Department of Computer Science, Z&uuml;rich, Switzerland, June&nbsp;2016.</i>
 <br><a href="javascript:toggleBibtex('Ranganathan16')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="https://www.research-collection.ethz.ch/handle/20.500.11850/117163" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/117163/eth-49164-02.pdf" >PDF</a><span style="color: #52adc8">]</span>
 <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.3929/ethz-a-010659030" >
 <i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
 </p>
-<div id="bib_Ranganathan16" class="bibtex noshow">
+<div id="bib_Ranganathan16" class="bibtex noshow" style="color: #111111">
 <pre>@phdthesis{ Ranganathan16,
 author = {A.~Ranganathan},
 title = {Physical-layer Techniques for Secure Proximity Verification \& Localization},
@@ -923,7 +1142,7 @@ H. Al Hassanieh
 <br><a href="javascript:toggleBibtex('Hassanieh16')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="https://dspace.mit.edu/handle/1721.1/103715" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://haitham.ece.illinois.edu/Papers/thesis.pdf" >PDF</a><span style="color: #52adc8">]</span>
 </p>
-<div id="bib_Hassanieh16" class="bibtex noshow">
+<div id="bib_Hassanieh16" class="bibtex noshow" style="color: #111111">
 <pre>@phdthesis{ Hassanieh16,
 author = {H.~{Al~Hassanieh}},
 title = {The Sparse {F}ourier Transform: {T}heory \& {P}ractice},
@@ -942,13 +1161,13 @@ month = {Feb.}
 <li ><p>
 J.&nbsp;Arribas
 <br><b>GNSS Array-based Acquisition: Theory and Implementation</b><br>
-<i>PhD Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, June 2012.</i>
+<i>PhD Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, June&nbsp;2012.</i>
 <br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="https://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
 <br />
 <a href="javascript:toggleBibtex('Arribas12')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>
 </p>
-<div id="bib_Arribas12" class="bibtex noshow">
+<div id="bib_Arribas12" class="bibtex noshow" style="color: #111111">
 <pre>@phdthesis{ Arribas12,
 author = {J.~Arribas},
 title = { {GNSS} Array-based Acquisition: {T}heory and Implementation },
@@ -975,7 +1194,7 @@ A. Hennigar
 <span style="color: #52adc8">[</span><a href="https://etd.auburn.edu/handle/10415/4442" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://etd.auburn.edu/bitstream/handle/10415/4442/Andrew_Hennigar_Thesis_Final_Draft.pdf" >
 PDF</a><span style="color: #52adc8">]</span>
 </p>
-<div id="bib_Hennigar14" class="bibtex noshow">
+<div id="bib_Hennigar14" class="bibtex noshow" style="color: #111111">
 <pre>@mastersthesis{ Hennigar14,
 author = {A.~Hennigar},
 title = {Analysis of Record and Playback Errors of {GPS} Signals Caused by the {USRP}},
@@ -1000,7 +1219,7 @@ L.&nbsp;Esteve-Elfau
 <span style="color: #52adc8">[</span><a href="https://upcommons.upc.edu/handle/2099.1/18997" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://upcommons.upc.edu/bitstream/handle/2099.1/18997/PFC_Luis_Esteve_Elfau.pdf" >
 PDF</a><span style="color: #52adc8">]</span>
 </p>
-<div id="bib_Esteve11" class="bibtex noshow">
+<div id="bib_Esteve11" class="bibtex noshow" style="color: #111111">
 <pre>@mastersthesis{ Esteve11,
 author = {L.~{Esteve-Elfau}},
 title = { Contribuci\'{o}n al dise\~{n}o de {GNSS-SDR}. {U}n receptor {GNSS} de c\'{o}digo abierto },
@@ -1018,12 +1237,12 @@ month = {July}
 <li ><p>
 C.&nbsp;Avil&eacute;s
 <br><b>Global Navigation Satellite Systems - Software Defined Radio (GNSS-SDR)</b><br>
-<i>MS Thesis, Universitat Oberta de Catalunya, Faculty of Computer Science, Multimedia and Telecommunications, Barcelona, Spain, June 2010.</i>
+<i>MS Thesis, Universitat Oberta de Catalunya, Faculty of Computer Science, Multimedia and Telecommunications, Barcelona, Spain, June&nbsp;2010.</i>
 <br />
 <a href="javascript:toggleBibtex('Aviles10')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="https://www.youtube.com/watch?v=9ju_GKP613M">Video</a><span style="color: #52adc8">]</span>
 </p>
-<div id="bib_Aviles10" class="bibtex noshow">
+<div id="bib_Aviles10" class="bibtex noshow" style="color: #111111">
 <pre>@mastersthesis{ Aviles10,
 author = {C.~Avil\'{e}s},
 title = { {G}lobal {N}avigation {S}atellite {S}ystems - {S}oftware {D}efined {R}adio ({GNSS-SDR})},

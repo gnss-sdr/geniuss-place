@@ -13,6 +13,7 @@ sidebar:
   nav: "docs"
 toc: true
 toc_sticky: true
+show_date: false
 last_modified_at: 2018-06-29T11:37:02+02:00
 ---
 
@@ -46,7 +47,7 @@ Authors in Langley _et al._[^Langley09] claim that the Plan-Do-Study-Act (PDSA) 
  * **ACT**: If the "CHECK" shows that the "PLAN" that was implemented in "DO" is an improvement to the prior standard (baseline), then that becomes the new standard (baseline) for how the project should "ACT" going forward (new standards are enACTed). If the "CHECK" shows that the "PLAN" that was implemented in "DO" is not an improvement, then the existing standard (baseline) will remain in place.
 
 
-![PDCA and Git]({{ "/assets/images/PDCA-Git.png" | relative_url }})
+![PDCA and Git]({{ "/assets/images/PDCA-Git.png" | relative_url }}){: .align-center .invert-colors}
 _A graphical representation of Git and PDCA cycles integration_.
 {: style="text-align: center;"}
 
@@ -70,7 +71,7 @@ This means that all kind of contributions, from fixing a typo in a source code's
 
 Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test suite that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards. It is an Agile-based approach to building complex systems where unit test (and in some cases inter-component integration tests) are built in advance of the product software and are used exercised upon component implementation. This methodology is claimed to offer valuable benefits to software development: it facilitates change, simplifies integration, automates documentation, helps separate the interface from the implementation, increases developers productivity, and plays a central role in the software quality assurance process[^Shore08].
 
-![TDD lifecycle]({{ "/assets/images/TDD_Global_Lifecycle.png" | relative_url }})
+![TDD lifecycle]({{ "/assets/images/TDD_Global_Lifecycle.png" | relative_url }}){: .align-center .invert-colors}
 _A graphical representation of the Test-Driven Development lifecycle. Source: [Wikipedia](https://en.wikipedia.org/wiki/Test-driven_development)_.
 {: style="text-align: center;"}
 
@@ -153,7 +154,7 @@ For details about the available _Test Suites_ and how to build and run them, ple
 
 [^Beck99]: K. Beck, C. Andres, [Extreme Programming Explained: Embrace Change](https://www.goodreads.com/book/show/67833.Extreme_Programming_Explained), Addison-Wesley Professional, Boston, MA, 1999.
 
-[^Beck02]: K. Beck, [Test Driven Development: By Example](https://www.eecs.yorku.ca/course_archive/2003-04/W/3311/sectionM/case_studies/money/KentBeck_TDD_byexample.pdf), Addison-Wesley Professional, Boston, MA, 2002.
+[^Beck02]: K. Beck, [Test Driven Development: By Example](http://cecs.wright.edu/~pmateti/Courses/7140/Lectures/Maintenance/KentBeck_TDD_byexample.pdf), Addison-Wesley Professional, Boston, MA, 2002.
 
 [^Shore08]: J. Shore and S. Warden, [The Art of Agile Development](https://www.jamesshore.com/Agile-Book/), O'Reilly, Sebastopol, CA, 2008.
 

@@ -1,14 +1,14 @@
 /*
 GreedyNav.js - https://github.com/lukejacksonn/GreedyNav
-Licensed under the MIT license - http://opensource.org/licenses/MIT
+Licensed under the MIT license - https://opensource.org/licenses/MIT
 Copyright (c) 2015 Luke Jackson
 */
 
-$(document).ready(function(){
+$(function() {
 
-  var $btn = $('nav.greedy-nav button');
-  var $vlinks = $('nav.greedy-nav .visible-links');
-  var $hlinks = $('nav.greedy-nav .hidden-links');
+  var $btn = $("nav.greedy-nav .greedy-nav__toggle");
+  var $vlinks = $("nav.greedy-nav .visible-links");
+  var $hlinks = $("nav.greedy-nav .hidden-links");
 
   var numOfItems = 0;
   var totalSpace = 0;
@@ -27,11 +27,11 @@ $(document).ready(function(){
   function check() {
 
     // Get instant state
-    availableSpace = $vlinks.width() - $btn.width();
+    availableSpace = $vlinks.width() - 10;
     numOfVisibleItems = $vlinks.children().length;
     requiredSpace = breakWidths[numOfVisibleItems - 1];
 
-    // There is not enough space
+    // There is not enought space
     if (requiredSpace > availableSpace) {
       $vlinks.children().last().prependTo($hlinks);
       numOfVisibleItems -= 1;
@@ -46,9 +46,7 @@ $(document).ready(function(){
     $btn.attr("count", numOfItems - numOfVisibleItems);
     if (numOfVisibleItems === numOfItems) {
       $btn.addClass('hidden');
-    } else {
-      $btn.removeClass('hidden');
-    }
+    } else $btn.removeClass('hidden');
   }
 
   // Window listeners
@@ -58,7 +56,6 @@ $(document).ready(function(){
 
   $btn.on('click', function() {
     $hlinks.toggleClass('hidden');
-    $(this).toggleClass('close');
     clearTimeout(timer);
   });
 
@@ -66,7 +63,6 @@ $(document).ready(function(){
     // Mouse has left, start the timer
     timer = setTimeout(function() {
       $hlinks.addClass('hidden');
-      $btn.toggleClass('close');
     }, closingTime);
   }).on('mouseenter', function() {
     // Mouse is back, cancel the timer

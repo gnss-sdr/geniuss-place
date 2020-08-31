@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-12-14T12:54:02-04:00
+last_modified_at: 2020-03-15T12:54:02-02:00
 ---
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of an _Acquisition_ block can be written as:
 
@@ -70,8 +70,7 @@ be shown that this acquisition test statistic is a Constant False
 Alarm Rate (CFAR) detector because $$ P_{fa} $$ does not depend on the noise
 power.
 
-![CAF]({{ "/assets/images/caf.png" | relative_url }}){:width="600x"}
-{: style="text-align: center;"}
+![CAF]({{ "/assets/images/caf.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _GLRT statistic for Parallel Code Phase Search acquisition algorithm
 for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kHz with steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo’s IOV satellite PRN 11[^Fernandez12]._
 {: style="text-align: center;"}
@@ -149,7 +148,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present). | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
@@ -171,9 +169,11 @@ Example:
 ```ini
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
-Acquisition_1C.doppler_max=8000
+Acquisition_1C.doppler_max=5000
 Acquisition_1C.doppler_step=250
-Acquisition_1C.pfa=0.0001
+Acquisition_1C.pfa=0.01
+Acquisition_1C.coherent_integration_time_ms=1
+Acquisition_1C.max_dwells=1
 ```
 
 ### Implementation: `GPS_L1_CA_PCPS_Acquisition_Fine_Doppler`
@@ -332,8 +332,7 @@ $$ \!\!\!\begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\inf
 The simpler sinBOC options are chosen by default. CBOC versions can be set by `Acquisition_1B.cboc=true`.
 Next figure plots the shape of the cross-correlation function for those waveforms:
 
-<a name="fig:Rxd"></a>![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600x"}
-{: style="text-align: center;"}
+<a name="fig:Rxd"></a>![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _Normalized $$ \left|R_{xd}\left(\check{f}_D=f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
 {: style="text-align: center;"}
 
@@ -371,7 +370,7 @@ This implementation accepts the following parameters:
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_1C_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_E_1B_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
@@ -383,9 +382,11 @@ Example:
 ```ini
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_1B.implementation=Galileo_E1_PCPS_Ambiguous_Acquisition
-Acquisition_1B.pfa=0.000008
-Acquisition_1B.doppler_max=6000
+Acquisition_1B.pfa=0.01
+Acquisition_1B.doppler_max=5000
 Acquisition_1B.doppler_step=250
+Acquisition_1B.coherent_integration_time_ms=4
+Acquisition_1B.max_dwells=1
 ```
 
 ### Implementation: `Galileo_E1_PCPS_Tong_Ambiguous_Acquisition`
@@ -469,7 +470,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
@@ -519,7 +519,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    | Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 20 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
@@ -529,7 +528,7 @@ This implementation accepts the following parameters:
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_1C_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_2S_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
@@ -541,9 +540,10 @@ Example:
 ```ini
 Acquisition_2S.implementation=GPS_L2_M_PCPS_Acquisition
 Acquisition_2S.item_type=cshort
-Acquisition_2S.threshold=0.0015
+Acquisition_2S.pfa=0.01
 Acquisition_2S.doppler_max=6000
 Acquisition_2S.doppler_step=60
+Acquisition_2S.coherent_integration_time_ms=20
 Acquisition_2S.max_dwells=2
 ```
 
@@ -572,7 +572,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
@@ -621,7 +620,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
@@ -642,10 +640,11 @@ Example:
 ```ini
 Acquisition_L5.implementation=GPS_L5i_PCPS_Acquisition
 Acquisition_L5.item_type=cshort
-Acquisition_L5.threshold=0.0015
+Acquisition_L5.pfa=0.01
 Acquisition_L5.doppler_max=6000
 Acquisition_L5.doppler_step=60
-Acquisition_L5.max_dwells=2
+Acquisition_L5.coherent_integration_time_ms=4
+Acquisition_L5.max_dwells=1
 ```
 
 
@@ -675,7 +674,6 @@ This implementation accepts the following parameters:
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
-| `use_CFAR_algorithm` | [`true`, `false`]: If set to `true`, applies a normalization to the computed peak value on the search grid. It defaults to `true`. | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
@@ -701,7 +699,9 @@ Example:
 Acquisition_5X.implementation=Galileo_E5a_Pcps_Acquisition
 Acquisition_5X.doppler_max=8000
 Acquisition_5X.doppler_step=250
-Acquisition_5X.pfa=0.0001
+Acquisition_5X.pfa=0.01
+Acquisition_5X.coherent_integration_time_ms=1
+Acquisition_5X.max_dwells=1
 ```
 
 ### Implementation: `Galileo_E5a_Noncoherent_IQ_Acquisition_CAF`
@@ -745,13 +745,69 @@ Example:
 ```ini
 ;######### ACQUISITION GLOBAL CONFIG ############
 Acquisition_5X.implementation=Galileo_E5a_Noncoherent_IQ_Acquisition_CAF
-Acquisition_5X.threshold=0.002
+Acquisition_5X.pfa=0.01
 Acquisition_5X.doppler_max=10000
 Acquisition_5X.doppler_step=250
 ```
 
 
+## Plotting results with MATLAB/Octave
 
+Some Acquisition block implementations are able to dump intermediate results of the channel indicated by the `dump_channel` parameter in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) file format (`.mat` files), which can be opened in MATLAB/Octave.
+
+The list of output variables contained in each `.mat` file is the following:
+
+  * `acq_delay_samples`: Coarse estimation of time delay, in number of samples from the start of the pseudorandom code.
+  * `acq_doppler_hz`: Coarse estimation of Doppler shift, in Hz.
+  * `acq_grid`: Acquisition search grid.
+  * `d_positive_acq`: `1` if there has been a positive acquisition, `0` for no detection.
+  * `doppler_max`: Maximum Doppler shift in the search grid.
+  * `doppler_step`: Doppler step in the search grid.
+  * `input_power`: Input signal power.
+  * `num_dwells`: Number of dwells performed in non-coherent acquisition.
+  * `PRN`: Satellite ID.
+  * `sample_counter`: Sample counter from receiver's start.
+  * `test_statistic`: Result of the test statistic.
+  * `threshold`: Threshold above which a signal is declared present.
+
+
+Example:
+
+Assuming that you are processing GPS L1 C/A signals, and you have included the following lines in your configuration file:
+
+```ini
+Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
+;... (other parameters) ...
+Acquisition_1C.dump=true
+Acquisition_1C.dump_filename=acq_dump
+Acquisition_1C.dump_channel=0
+```
+
+Then, after the processing, you will get `.mat` files storing the results obtained from the Acquisition block corresponding to channel 0.
+
+The acquisition grid can be plotted from MATLAB or Octave as:
+
+```matlab
+>> load('./acq_dump_G_1C_chan0_1_sat1.mat')
+>> f = -doppler_max:doppler_step:(doppler_max);
+>> tau = linspace(0, 1023, size(acq_grid,1));
+>> surf(f, tau, acq_grid); xlabel('Doppler [Hz]'); ylabel('Delay [chips]');
+```
+
+You should see something like:
+
+![Positive acquisition](/assets/images/capture_matlab_acq_positive.png){: .align-center}
+_Positive acquisition._
+{: style="text-align: center;"}
+
+or
+
+![Negative acquisition](/assets/images/capture_matlab_acq_negative.png){: .align-center}
+_Negative acquisition._
+{: style="text-align: center;"}
+
+
+&nbsp;<br/>
 
 -------
 

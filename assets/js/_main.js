@@ -28,9 +28,41 @@ $(document).ready(function() {
   });
 
   // Follow menu drop down
-  $(".author__urls-wrapper button").on("click", function() {
-    $(".author__urls").toggleClass("is--visible");
-    $(".author__urls-wrapper button").toggleClass("open");
+  $(".author__urls-wrapper button#CarlesFernández-Prades").on("click", function() {
+    $(".author__urls#urls-CarlesFernández-Prades").toggleClass("is--visible");
+    $(".author__urls-wrapper button#CarlesFernández-Prades").toggleClass("open");
+  });
+  $(".author__urls-wrapper button#JavierArribas").on("click", function() {
+    $(".author__urls#urls-JavierArribas").toggleClass("is--visible");
+    $(".author__urls-wrapper button#JavierArribas").toggleClass("open");
+  });
+  $(".author__urls-wrapper button#LuisEsteve").on("click", function() {
+    $(".author__urls#urls-LuisEsteve").toggleClass("is--visible");
+    $(".author__urls-wrapper button#LuisEsteve").toggleClass("open");
+  });
+  $(".author__urls-wrapper button#PauClosas").on("click", function() {
+    $(".author__urls#urls-PauClosas").toggleClass("is--visible");
+    $(".author__urls-wrapper button#PauClosas").toggleClass("open");
+  });
+  $(".author__urls-wrapper button#MarcMajoral").on("click", function() {
+    $(".author__urls#urls-MarcMajoral").toggleClass("is--visible");
+    $(".author__urls-wrapper button#MarcMajoral").toggleClass("open");
+  });
+  $(".author__urls-wrapper button#JordiVilà-Valls").on("click", function() {
+    $(".author__urls#urls-JordiVilà-Valls").toggleClass("is--visible");
+    $(".author__urls-wrapper button#JordiVilà-Valls").toggleClass("open");
+  });
+  $(".author__urls-wrapper button#ÁlvaroCebriánJuan").on("click", function() {
+    $(".author__urls#urls-ÁlvaroCebriánJuan").toggleClass("is--visible");
+    $(".author__urls-wrapper button#ÁlvaroCebriánJuan").toggleClass("open");
+  });
+  $(".author__urls-wrapper button#DamianMiralles").on("click", function() {
+    $(".author__urls#urls-DamianMiralles").toggleClass("is--visible");
+    $(".author__urls-wrapper button#DamianMiralles").toggleClass("open");
+  });
+  $(".author__urls-wrapper button#AntonioRamosdeTorres").on("click", function() {
+    $(".author__urls#urls-AntonioRamosdeTorres").toggleClass("is--visible");
+    $(".author__urls-wrapper button#AntonioRamosdeTorres").toggleClass("open");
   });
 
   // Close search screen with Esc key
@@ -128,7 +160,7 @@ $(document).ready(function() {
       var anchor = document.createElement("a");
       anchor.className = 'header-link';
       anchor.href = '#' + id;
-      anchor.innerHTML = '<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>';
+      anchor.innerHTML = '<span class=\"sr-only\">Permalink</span><i class=\"fas fa-link\"></i>';
       anchor.title = "Permalink";
       $(this).append(anchor);
     }

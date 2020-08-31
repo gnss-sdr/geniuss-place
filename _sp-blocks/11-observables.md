@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-12-14T12:54:02-04:00
+last_modified_at: 2020-03-13T12:54:02-04:00
 ---
 
 The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange**, **carrier phase** (or its **phase-range** version) and **Doppler shift** (or its **pseudorange rate** version).
@@ -20,7 +20,7 @@ The **pseudorange measurement** is defined as the difference of the time of rece
 
 $$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right) $$
 
-![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | relative_url }})<br />
+![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | relative_url }}){: .align-center .invert-colors}
 _Pseudorange measurement (from the RTKLIB Manual)[^RTKLIBManual]_
 {: style="text-align: center;"}
 
@@ -53,7 +53,7 @@ where $$ \Delta \text{TOW}^{(s)} $$ is the difference between the reference $$ -
 The block diagram of such approach is shown below:
 
 
-![Pseudorange computation]({{ "/assets/images/common-reception-time.png" | relative_url }})
+![Pseudorange computation]({{ "/assets/images/common-reception-time.png" | relative_url }}){: .align-center .invert-colors}
 _Block diagram of the pseudorange computation using the common reception time approach in GNSS-SDR[^Arribas14]_
 {: style="text-align: center;"}
 
@@ -110,12 +110,12 @@ where:
 
   * The ionospheric term $$ I_{r,i}^{(s)} $$ is included with a negative sign due to the phase advancement effect on electromagnetic waves going through a plasmatic media.
   * $$ B_{r,i}^{(s)} = \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} $$ is the carrier‐phase bias for the $$ i $$-th band (in cycles).
-  * $$ d\Phi_{r,i}^{(s)} = \mathbf{d}_{r,pco,i}^T \mathbf{e}_{r,enu}^{(s)} + \left( \mathbf{E}^{(s)} \mathbf{d}_{pco,i}^{(s)}  \right)^T \mathbf{e}_r^{(s)} + \\ \phantom{d\Phi_{r,i}^{(s)} =} + d_{r,pcv,i}(El)+ d_{pcv,i}^{(s)}(\theta)- \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\lambda_i \phi_{pw} ,$$ where:
+  * $$ \begin{array}{ccl} d\Phi_{r,i}^{(s)} & = &\mathbf{d}_{r,pco,i}^T \mathbf{e}_{r,enu}^{(s)} + \left( \mathbf{E}^{(s)} \mathbf{d}_{pco,i}^{(s)}  \right)^T \mathbf{e}_r^{(s)} + \\ {} & {} & + d_{r,pcv,i}(El)+ d_{pcv,i}^{(s)}(\theta)- \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\lambda_i \phi_{pw} \end{array} $$, where:
 
     * $$ \mathbf{d}_{r,pco,i} $$ is the receiver's $$ i $$-th band antenna phase center offset in local coordinates (in m).
     * $$ d_{r,pcv,i} $$ is the receiver's $$ i $$-th band antenna phase center variation (in m).
 
-    ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | relative_url }}){:height="200px" width="200px"}
+    ![Receiver's antenna phase center]({{ "/assets/images/antenna-phase-center.png" | relative_url }}){:height="200px" width="200px"}{: .align-center .invert-colors}
     {: style="text-align: center;"}
 
     _Receiver antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
@@ -124,8 +124,7 @@ where:
     * $$ \mathbf{d}_{pco,i}^{(s)} $$ is the satellite's  $$ i $$-th band antenna phase center offset in satellite body‐fixed coordinates (in m).
     * $$ d_{pcv,i}^{(s)} $$ is the satellite's antenna phase center variation (in m).
 
-    ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | relative_url }}){:height="350px" width="350px"}
-    {: style="text-align: center;"}
+    ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | relative_url }}){:height="350px" width="350px"}{: .align-center .invert-colors}
 
     _Satellite antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
     {: style="text-align: center;"}
@@ -134,8 +133,7 @@ where:
     * $$ \mathbf{e}_r^{(s)} $$ is the LOS vector from receiver antenna to satellite in ECEF.
     * $$ \mathbf{E}^{(s)} = \left( {\mathbf{e}_{x}^{(s)}}^T, {\mathbf{e}_{y}^{(s)}}^T, {\mathbf{e}_{z}^{(s)}}^T \right)^T $$ is the coordinates transformation matrix from the satellite body‐fixed coordinates to ECEF coordinates, with:
 
-    ![Satellite body-fixed coordinate system]({{ "/assets/images/satellite-coordinate-frame.png" | relative_url }}){:height="350px" width="350px"}
-    {: style="text-align: center;"}
+    ![Satellite body-fixed coordinate system]({{ "/assets/images/satellite-coordinate-frame.png" | relative_url }}){:height="350px" width="350px"}{: .align-center .invert-colors}
 
     _Satellite body-fixed coordinate system (from the RTKLIB Manual)[^RTKLIBManual]_
     {: style="text-align: center;"}
@@ -211,8 +209,8 @@ It accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Hybrid_Observables` | Mandatory |
-| `enable_carrier_smoothing` |  [`true`, `false`]: If set to `true`, it enables [carrier smoothing](https://insidegnss.com/wp-content/uploads/2018/01/julyaug15-SOLUTIONS.pdf) of code pseudoranges. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
-| `smoothing_factor` |  If `enable_carrier_smoothing` is set to `true`, this parameter sets the smoothing factor $$ M $$ (see equation ($$ \ref{eq:smoothing} $$)). It defaults to `200`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `enable_carrier_smoothing` |  [`true`, `false`]: If set to `true`, it enables [carrier smoothing](https://insidegnss.com/wp-content/uploads/2018/01/julyaug15-SOLUTIONS.pdf) of code pseudoranges. It defaults to `false`. | Optional |
+| `smoothing_factor` |  If `enable_carrier_smoothing` is set to `true`, this parameter sets the smoothing factor $$ M $$ (see equation ($$ \ref{eq:smoothing} $$)). It defaults to `200`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Observables internal binary data file logging. Storage in .mat files readable from Matlab, Octave and Python is available starting from GNSS-SDR v0.0.10, see below. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./observables.dat` | Optional |
 | `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`. | Optional |
@@ -232,7 +230,7 @@ It accepts the following parameters:
   * `RX_time`: Receiving time in each channel, in seconds after the start of the week.
   * `TOW_at_current_symbol_s`: Time of week of the current symbol, in [s].
 
-  **THIS FEATURE IS NOW ONLY AVAILABLE STARTING FROM GNSS-SDR v0.0.10.**
+  **THIS FEATURE IS AVAILABLE STARTING FROM GNSS-SDR v0.0.10.**
 {% endcapture %}
 
 <div class="notice--warning">

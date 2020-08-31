@@ -4,7 +4,7 @@ Carles Fernandez:
   name        : "Carles Fern&aacute;ndez-Prades"
   github      : "carlesfernandez"
   avatar      : "/assets/images/carles.jpg"
-  bio         : "Senior Researcher at CTTC"
+  bio         : "Senior Researcher<br/>CTTC"
   location    :
   email       : carles.fernandez@cttc.cat
   uri         : "http://www.cttc.es/people/cfernandez/"
@@ -30,7 +30,7 @@ Javier Arribas:
   name        : "Javier Arribas"
   uri         : "http://www.cttc.es/people/jarribas/"
   email       : "javier.arribas@cttc.es"
-  bio         : "Senior Researcher at CTTC"
+  bio         : "Senior Researcher<br/>CTTC"
   avatar      : "/assets/images/javier.jpg"
   twitter     : "arribaslazaro"
   github      : "Arribas"
@@ -44,7 +44,7 @@ Pau Closas:
   name        : "Pau Closas"
   uri         : "https://coe.northeastern.edu/people/closas-pau/"
   email       : "pau.closas@northeastern.edu"
-  bio         : "Assistant Professor at Northeastern University"
+  bio         : "Assistant Professor<br/>Northeastern University"
   avatar      : "/assets/images/pau.jpg"
   twitter     : "pauclosas"
   linkedin    : "closas"
@@ -57,7 +57,7 @@ Luis Esteve:
   name        : "Luis Esteve"
   uri         :
   email       : "luis@epsilon-formacion.com"
-  bio         : "Owner, Epsilon Formacion"
+  bio         : "Owner<br/>Epsilon Formacion"
   avatar      : "/assets/images/luis.jpg"
   twitter     : "LElfau"
   github      : "luis-esteve"
@@ -68,7 +68,7 @@ Jordi Vila:
   name        : "Jordi Vil&agrave;-Valls"
   uri         : "https://jordivilavalls.wordpress.com"
   email       : "jordi.vila-valls@isae-supaero.fr"
-  bio         : "Associate Professor at ISAE-SUPAERO"
+  bio         : "Associate Professor<br/>ISAE-SUPAERO"
   avatar      : "/assets/images/Jordi.jpg"
   twitter     :
   github      :
@@ -79,10 +79,10 @@ Jordi Vila:
   researchgate: "Jordi_Vila-Valls"
 
 Antonio Ramos:
-  name        : "Antonio Ramos de&nbsp;Torres"
+  name        : "Antonio Ramos de Torres"
   uri         :
   email       : "antonio.ramosdet@gmail.com"
-  bio         : "Engineer at Barcelona City Council"
+  bio         : "Engineer<br/>Barcelona City Council"
   avatar      : "/assets/images/antonio.jpg"
   twitter     :
   github      : "antonioramosdet"
@@ -96,7 +96,7 @@ Marc Majoral:
   name        : "Marc Majoral"
   uri         : "http://www.cttc.es/people/mmajoral/"
   email       : "marc.majoral@cttc.cat"
-  bio         : "Senior Researcher at CTTC"
+  bio         : "Senior Researcher<br/>CTTC"
   avatar      : "/assets/images/mmajoral.jpg"
   twitter     :
   github      : "mmajoral"
@@ -110,7 +110,7 @@ Alvaro Cebrian:
   name        : "&Aacute;lvaro Cebri&aacute;n Juan"
   uri         : "http://www.cttc.es/people/acebrian/"
   email       : "alvaro.cebrian@cttc.es"
-  bio         : "Research Assistant at CTTC"
+  bio         : "Research Assistant<br/>CTTC"
   avatar      : "/assets/images/acebrian.jpg"
   twitter     :
   github      : "acebrianjuan"
@@ -124,7 +124,7 @@ Damian Miralles:
   name        : "Damian Miralles"
   uri         :
   email       : "dmiralles2009@gmail.com"
-  bio         : "PhD Candidate University of Colorado Boulder"
+  bio         : "PhD Candidate<br/>University of Colorado Boulder"
   avatar      : "/assets/images/dmiralles.jpg"
   twitter     :
   github      : "dmiralles2009"

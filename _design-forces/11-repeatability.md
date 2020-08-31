@@ -3,7 +3,7 @@ title: "11.- Repeatability"
 permalink: /design-forces/repeatability/
 excerpt: "How close a position solution is to the mean of all the obtained solutions. It is related to the spread of a measure, also referred to as precision."
 header:
-  teaser: /assets/images/design-force-teaser.png
+  teaser: /assets/images/radar-chart.png
 last_modified_at: 2016-07-29T15:54:02-04:00
 ---
 
@@ -11,8 +11,7 @@ _Repeatability_ is related to the spread of a measure, also referred to as _prec
 
 The difference between [accuracy]({{ "/design-forces/accuracy/" | relative_url }}) and precision is shown below:
 
-![Accuracy vs Precision]({{ "/assets/images/accuracy-and-precision.png" | relative_url }}){:width="520x"}
-{: style="text-align: center;"}
+![Accuracy vs Precision]({{ "/assets/images/accuracy-and-precision.png" | relative_url }}){:width="520px"}{: .align-center .invert-colors}
 _Although the two words precision and accuracy can be synonymous in colloquial use, they are deliberately contrasted in the context of the scientific method. Source: [Wikipedia](https://en.wikipedia.org/wiki/Accuracy_and_precision)._
 {: style="text-align: center;"}
 
@@ -48,8 +47,7 @@ where $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.
 
 Example:
 
-![2D scatter plot]({{ "/assets/images/2d-accuracy.png" | relative_url }}){:width="600x"}
-{: style="text-align: center;"}
+![2D scatter plot]({{ "/assets/images/2d-accuracy.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _2D position scatter plot and the circles containing 50 %, 65 % and 95% of position fixes (corresponding to the CEP, DRMS and 2DRMS precision errors, respectively)[^Fernandez13]._
 {: style="text-align: center;"}
 

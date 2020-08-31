@@ -14,7 +14,7 @@
   height: $nav-toggle-height;
   border: 0;
   outline: none;
-  color: $primary-color;
+  @include color-assign(color, primary);
   background-color: transparent;
   cursor: pointer;
   -webkit-transition: 0.2s;
@@ -140,4 +140,26 @@
 .gs-snippet {
   font-family: $global-font-family;
   font-size: $type-size-4-5;
+}
+
+.gsc-control-cse {
+    @include color-assign(background, background, 'here !important');
+    @include color-assign(border, background, 'here !important');
+}
+
+.gsc-result-info {
+    @include color-assign(color, text, 'here !important');
+}
+
+.gsc-orderby-label {
+    @include color-assign(color, text, 'here !important');
+}
+
+.gsc-cursor-page {
+    @include color-assign(background, background, 'here !important');
+    @include color-assign(color, text, 'here !important');
+}
+
+.gsc-tabHeader {
+    @include color-assign(background, background, 'here !important');
 }

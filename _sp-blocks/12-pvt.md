@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2020-02-25T10:54:02+02:00
+last_modified_at: 2020-07-03T10:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a signal sink, since the stream of data flowing along the receiver ends here.
@@ -50,11 +50,11 @@ $$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(
 
 The geometric range $$ \rho_r^{(s)} $$ is defined as the physical distance between the satellite antenna phase center position and the receiver antenna phase center position in the inertial coordinates. For the expression in the ECEF coordinates, the earth rotation effect has to be incorporated. This is known as the <span style="color: orange">Sagnac effect</span>[^Ashby04], and it can be approximated by:
 
-$$ \definecolor{dark-orange}{RGB}{255,165,0}\definecolor{dark-grey}{RGB}{100,100,100} \color{dark-grey} \rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + \color{dark-orange} \frac{\omega_e}{c}(x^{(s)}y_r - y^{(s)}x_r ) \color{dark-grey}~, $$
+$$ \rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + {\definecolor{dark-orange}{RGB}{255,165,0} \color{dark-orange} \frac{\omega_e}{c}(x^{(s)}y_r - y^{(s)}x_r )}~, $$
 
 where $$ \omega_e $$ is the Earth rotation angle velocity (in rad/s).
 
-![Earth rotation correction]({{ "/assets/images/earth-rotation.png" | relative_url }})
+![Earth rotation correction]({{ "/assets/images/earth-rotation.png" | relative_url }}){: .align-center .invert-colors}
 _Geometric range and Earth rotation correction [^RTKLIBManual]_
 {: style="text-align: center;"}
 
@@ -228,9 +228,7 @@ $$ \begin{equation} \mathbf{H}(\mathbf{x}) =  \left( \begin{array}{ccccc} -\math
 
 where $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 & 0 & -1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & 0 & 0 & \cdots & -1 \end{array} \right) $$ is known as the single‐differencing matrix,  $$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)}  \right)^T $$ with $$ \mathbf{e}_{r}^{(s)} $$ defined as above, and
 
-<div style="font-size: 70%;">
-$$ \begin{equation}\!\!\!\!\!\!\!\!\!\!\! \mathbf{M}_T = \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) &  m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\  m_{WG,r}^{(2)} \left( El_r^{(2)} \right) &  m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \cos \left( Az_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \sin \left( Az_r^{(2)} \right) \\  m_{WG,r}^{(3)} \left( El_r^{(3)} \right) &  m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \cos \left( Az_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \sin \left( Az_r^{(3)} \right) \\ \vdots \\  m_{WG,r}^{(m)} \left( El_r^{(m)} \right) &  m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \cos \left( Az_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \sin \left( Az_r^{(m)} \right) \end{array} \right) \end{equation} $$
-</div>
+$$ \scriptstyle \begin{equation}\!\!\!\!\!\!\!\!\!\!\! \mathbf{M}_T \; = \; \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) &  m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\  m_{WG,r}^{(2)} \left( El_r^{(2)} \right) &  m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \cos \left( Az_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \sin \left( Az_r^{(2)} \right) \\  m_{WG,r}^{(3)} \left( El_r^{(3)} \right) &  m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \cos \left( Az_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \sin \left( Az_r^{(3)} \right) \\ \vdots \\  m_{WG,r}^{(m)} \left( El_r^{(m)} \right) &  m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \cos \left( Az_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \sin \left( Az_r^{(m)} \right) \end{array} \right) \end{equation} $$
 is a matrix related to the tropospheric model (see [below](#troposphere-model)).
 
 With all those definitions, the Precise Point Positioning solution is computed as follows:
@@ -527,6 +525,7 @@ The following table shows the complete list of streamed parameters:
 | `pdop` | `double` | Position (3D) dilution of precision (PDOP). |
 | `hdop` | `double` | Horizontal dilution of precision (HDOP). |
 | `vdop` | `double` | Vertical dilution of precision (VDOP). |
+| `user_clk_drift_ppm` | `double` | User clock drift, in parts per million. |
 |--------------
 
 **IMPORTANT**: This UDP streaming feature is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
@@ -549,7 +548,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.SUPL_gps_ephemeris_xml` |  Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml` | Optional |
-| `GNSS-SDR.pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `GNSS-SDR.pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. | Optional |
 |--------------
 
 |----------
@@ -565,8 +564,8 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `dynamics_model` | [`0`: Off, `1`: On] Set the dynamics model of the receiver. If set to $$ 1 $$ and `PVT.positioning_mode=PPP_Kinematic`, the receiver position is predicted with the estimated velocity and acceleration. It defaults to $$ 0 $$ (no dynamics model).  | Optional |
 | `iono_model` |  [`OFF`, `Broadcast`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS or L1‐L5 for Galileo) measurements is used for ionospheric correction. It defaults to `OFF` (no ionospheric correction) | Optional |
 | `trop_model` | [`OFF`, `Saastamoinen`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
-| `enable_rx_clock_correction` | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is only used in the computation of Observables when the clock offset estimation exceeds the value of `max_clock_offset_ms`. This parameter defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
-| `max_clock_offset_ms` |  If `enable_rx_clock_correction` is set to `false`, this parameter sets the maximum allowed local clock offset with respect to the Time solution. If the estimated offset exceeds this parameter, a clock correction is applied to the computation of Observables. It defaults to 40 ms. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `enable_rx_clock_correction` | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is only used in the computation of Observables when the clock offset estimation exceeds the value of `max_clock_offset_ms`. This parameter defaults to `false`. | Optional |
+| `max_clock_offset_ms` |  If `enable_rx_clock_correction` is set to `false`, this parameter sets the maximum allowed local clock offset with respect to the Time solution. If the estimated offset exceeds this parameter, a clock correction is applied to the computation of Observables. It defaults to 40 ms. | Optional |
 | `code_phase_error_ratio_l1` | Code/phase error ratio $$ R_r $$ for the L1 band. It defaults to $$ 100 $$. | Optional |
 | `carrier_phase_error_factor_a` | Carrier phase error factor $$ a_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
 | `carrier_phase_error_factor_b` | Carrier phase error factor $$ b_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m. | Optional |
@@ -588,7 +587,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `xml_output_enabled` | [`true`, `false`]: If set to `false`, XML files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_output_enabled` | [`true`, `false`]: If set to `false`, RINEX files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
-| `rinex_name` | Sets the base name of the RINEX files. If this parameter is not specified, a default one will be assigned. The command-line flag `--RINEX_name`, if present, overrides this parameter. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next stable release.</span> | Optional |
+| `rinex_name` | Sets the base name of the RINEX files. If this parameter is not specified, a default one will be assigned. The command-line flag `--RINEX_name`, if present, overrides this parameter. | Optional |
 | `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. The minimum is 20 ms, and must be a mutiple of `output_rate_ms`. It defaults to 1000 ms. | Optional |
 | `nmea_output_file_enabled` | [`true`, `false`]: If set to `false`, NMEA sentences are not stored. It defaults to `true`. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
@@ -622,7 +621,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `enable_monitor` | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port is activated. This feature allows streaming the internal parameters and outputs of the PVT block to local or remote clients over UDP. The streamed data members (28 in total) are the same ones that are included in the binary dump. It defaults to `false`. | Optional |
 | `monitor_client_addresses` | Destination IP address(es) of the real-time monitoring port. To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1` (localhost). | Optional |
 | `monitor_udp_port` | Destination UDP port number of the real-time monitoring port. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. | Optional |
-| `enable_protobuf` | [`true`, `false`]: If set to `true`, the serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). That is a deprecated behavior that can be abandoned in the future. It defaults to `true` (Protocol Buffers is used). | Optional |
+| `enable_protobuf` | [`true`, `false`]: If set to `true`, the data serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). An example of usage is the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). For an example of usage of the latter, check the [gnss-sdr-pvt-monitoring-client](https://github.com/acebrianjuan/gnss-sdr-pvt-monitoring-client). This parameter defaults to `true` (Protocol Buffers is used). | Optional |
 | `show_local_time_zone` | [`true`, `false`]: If set to `true`, time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC. | Optional |
 |----------
 

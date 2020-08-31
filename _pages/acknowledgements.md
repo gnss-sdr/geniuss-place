@@ -25,7 +25,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
 * **[AUDITOR](https://www.gsa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
 
-  ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | relative_url }}){:height="250px" width="250x"}
+  ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | relative_url }}){:height="250px" width="250px"}
   {: style="text-align: center;"}
 
   This project has received funding from the [**European GNSS Agency**](https://www.gsa.europa.eu/) under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](https://cordis.europa.eu/project/rcn/199301_en.html).
@@ -45,7 +45,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
   - **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org))**, which aims to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
 
-  ![IRACON logo]({{ "/assets/images/iracon-logo-big.jpg" | relative_url }}){:height="250px" width="250x"}
+  ![IRACON logo]({{ "/assets/images/iracon-logo-big.jpg" | relative_url }}){:height="250px" width="250px"}
   {: style="text-align: center;"}
 
    **IRACON** offers Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsm/).
@@ -56,8 +56,13 @@ The Authors are proud to be supported by the following public institutions, priv
 
 * **Google Summer of Code (GSoC)**
 
-    ![GSoC logo]({{ "/assets/images/logo-gsoc.png" | relative_url }}){:height="100px" width="100x"}
+    ![GSoC logo]({{ "/assets/images/logo-gsoc.png" | relative_url }}){:height="100px" width="100px"}
     {: style="text-align: center;"}
+
+[2020](https://summerofcode.withgoogle.com/organizations/6600330621485056/)
+
+  * Project: [Expanding the GNSS receiver to Galileo E5b signals](https://summerofcode.withgoogle.com/projects/#5717247428919296), by Piyush Gupta.
+  * Project: [Robust Interference Mitigation for anti-jamming](https://summerofcode.withgoogle.com/projects/#5829364463173632), by Haoqing Li.    
 
 [2019](https://summerofcode.withgoogle.com/archive/2019/organizations/6369884148072448/)
 
@@ -139,7 +144,7 @@ The Authors are proud to be supported by the following public institutions, priv
 
 ## Sponsors
 
-![NSL logo]({{ "/assets/images/logo-nsl.jpg" | relative_url }}){:height="250px" width="250x"}
+![NSL logo]({{ "/assets/images/logo-nsl.jpg" | relative_url }}){:height="250px" width="250px"}
 {: style="text-align: center;"}
 
 * [NSL](https://www.nsl.eu.com/), a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](https://www.nsl.eu.com/nsl-jcms/advanced-gnns-hw-sw/2016-04-11-15-01-35) system that is being used with GNSS-SDR development.
@@ -150,7 +155,7 @@ The Authors are proud to be supported by the following public institutions, priv
 -----
 
 
-![Xilinx logo](https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Xilinx.svg/500px-Xilinx.svg.png){:height="250px" width="250x"}
+![Xilinx logo]({{ "/assets/images/logo-xilinx.png" | relative_url }}){:height="250px" width="250px"}
 {: style="text-align: center;"}
 
 * [Xilinx](https://www.xilinx.com) is a worldwide renowned supplier of programmable logic devices. It is known for inventing the field-programmable gate array (FPGA) and as the first semiconductor company with a fabless manufacturing model.

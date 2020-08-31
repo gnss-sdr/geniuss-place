@@ -69,14 +69,14 @@ This implementation accepts the following parameters:
 | `taps_item_type` | [<abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>]: Type and resolution for the taps of the filter. Only <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. | Mandatory |
 | `number_of_bands` |  Number of frequency bands in the filter. | Mandatory |
-| `band1_begin` |  Frequency at the band edges [ <span style="color: blue">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. | Mandatory |
-| `band1_end` |  Frequency at the band edges [ b1 <span style="color: blue">**e1**</span> b2 e2 b3 e3 ...] | Mandatory |
-| `band2_begin` |  Frequency at the band edges [ b1 e1 <span style="color: blue">**b2**</span> e2 b3 e3 ...] | Mandatory |
-| `band2_end` |  Frequency at the band edges [ b1 e1 b2 <span style="color: blue">**e2**</span> b3 e3 ...] | Mandatory |
-| `ampl1_begin` |  Desired amplitude at the band edges [ <span style="color: blue">**a(b1)**</span> a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands. | Mandatory |
-| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) <span style="color: blue">**a(e1)**</span> a(b2) a(e2) ...]. | Mandatory |
-| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) <span style="color: blue">**a(b2)**</span> a(e2) ...]. | Mandatory |
-| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) <span style="color: blue">**a(e2)**</span> ...]. | Mandatory |
+| `band1_begin` |  Frequency at the band edges [ <span class="highlight-color">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. | Mandatory |
+| `band1_end` |  Frequency at the band edges [ b1 <span class="highlight-color">**e1**</span> b2 e2 b3 e3 ...] | Mandatory |
+| `band2_begin` |  Frequency at the band edges [ b1 e1 <span class="highlight-color">**b2**</span> e2 b3 e3 ...] | Mandatory |
+| `band2_end` |  Frequency at the band edges [ b1 e1 b2 <span class="highlight-color">**e2**</span> b3 e3 ...] | Mandatory |
+| `ampl1_begin` |  Desired amplitude at the band edges [ <span class="highlight-color">**a(b1)**</span> a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands. | Mandatory |
+| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) <span class="highlight-color">**a(e1)**</span> a(b2) a(e2) ...]. | Mandatory |
+| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) <span class="highlight-color">**a(b2)**</span> a(e2) ...]. | Mandatory |
+| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) <span class="highlight-color">**a(e2)**</span> ...]. | Mandatory |
 | `band1_error` |  Weighting applied to band 1 (usually 1). | Mandatory |
 | `band2_error` |  Weighting applied to band 2 (usually 1). | Mandatory |
 | `filter_type` |  [`bandpass`, `hilbert`, `differentiator`]: type of filter to be used.  | Mandatory |
@@ -112,7 +112,8 @@ The following figure shows the relationship between $$ f $$ = [`band1_begin` `ba
 `ampl2_begin` `ampl2_end`] vectors in defining a desired frequency
 response for the _Input Filter_:
 
-![Filter]({{ "/assets/images/fir-filter.png" | relative_url }}){:width="600x"}<br />_Definition of frequency mask parameters_.
+![Filter]({{ "/assets/images/fir-filter.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
+_Definition of frequency mask parameters_.
 {: style="text-align: center;"}
 
 
@@ -196,14 +197,14 @@ This implementation accepts the following parameters:
 | `taps_item_type` | [<abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>]: Type and resolution for the taps of the filter. Only <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> is allowed in the current version. | Mandatory |
 | `number_of_taps` |  Number of taps in the filter. Increasing this parameter increases the processing time. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `number_of_bands` |  Number of frequency bands in the filter. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `band1_begin` |  Frequency at the band edges [ <span style="color: blue">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `band1_end` |  Frequency at the band edges [ b1 <span style="color: blue">**e1**</span> b2 e2 b3 e3 ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `band2_begin` |  Frequency at the band edges [ b1 e1 <span style="color: blue">**b2**</span> e2 b3 e3 ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `band2_end` |  Frequency at the band edges [ b1 e1 b2 <span style="color: blue">**e2**</span> b3 e3 ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `ampl1_begin` |  Desired amplitude at the band edges [ <span style="color: blue">**a(b1)**</span> a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands.  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) <span style="color: blue">**a(e1)**</span> a(b2) a(e2) ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) <span style="color: blue">**a(b2)**</span> a(e2) ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) <span style="color: blue">**a(e2)**</span> ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band1_begin` |  Frequency at the band edges [ <span class="highlight-color">**b1**</span> e1 b2 e2 b3 e3...]. Frequency is in the range [0, 1], with 1 being the Nyquist frequency ($$ \frac{F_s}{2} $$). The number of `band_begin` and `band_end` elements must match the number of bands. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band1_end` |  Frequency at the band edges [ b1 <span class="highlight-color">**e1**</span> b2 e2 b3 e3 ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band2_begin` |  Frequency at the band edges [ b1 e1 <span class="highlight-color">**b2**</span> e2 b3 e3 ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `band2_end` |  Frequency at the band edges [ b1 e1 b2 <span class="highlight-color">**e2**</span> b3 e3 ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `ampl1_begin` |  Desired amplitude at the band edges [ <span class="highlight-color">**a(b1)**</span> a(e1) a(b2) a(e2) ...]. The number of `ampl_begin` and `ampl_end` elements must match the number of bands.  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `ampl1_end` |  Desired amplitude at the band edges [ a(b1) <span class="highlight-color">**a(e1)**</span> a(b2) a(e2) ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `ampl2_begin` |  Desired amplitude at the band edges [ a(b1) a(e1) <span class="highlight-color">**a(b2)**</span> a(e2) ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) <span class="highlight-color">**a(e2)**</span> ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `band1_error` |  Weighting applied to band 1 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `band2_error` |  Weighting applied to band 2 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values makes the filter slower to compute, but often results in filters that more exactly match an equiripple filter.  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
@@ -267,7 +268,8 @@ The random variable $$ \frac{E_s}{\sigma^2} $$ follows a [chi-squared distributi
 Note that $$ \sigma^2 $$ should be estimated by a noise floor power estimation method. With the purpose of minimizing the random effects, several noise power estimations are averaged on consecutive signal segments. In addition, as the receiver background noise may change along the time, the estimation of $$ \sigma^2 $$ is performed periodically. In this sense, the minimum signal length to be processed (filtered by a mitigation input filter) is one signal segment because the detection of an interference affects to the entire segment. The figure below summarizes the underlying idea.
 
 
-![Noise Estimation Parameters]({{ "/assets/images/noise-estimation.png" | relative_url }}){:width="700x"}<br />_Noise estimation parameters_.
+![Noise Estimation Parameters]({{ "/assets/images/noise-estimation.png" | relative_url }}){:width="700px"}{: .align-center .invert-colors}
+_Noise estimation parameters_.
 {: style="text-align: center;"}
 
 
@@ -276,7 +278,8 @@ Note that $$ \sigma^2 $$ should be estimated by a noise floor power estimation m
 
 The basic principle of a Pulse Blanking filter is illustrated in the figure below. If the input signal has a squared magnitude within an observation window that is greater than the blanking threshold, $$ T_h $$, then the output signal is set to zero. Otherwise, the output is equal to the input. Replacing the corrupted samples by zero ensures that correlation values are minimally distorted.
 
-![Pulse Blanking]({{ "/assets/images/pulse-blanking.png" | relative_url }}){:width="600x"}<br />_Diagram of the Pulse Blanking filter_.
+![Pulse Blanking]({{ "/assets/images/pulse-blanking.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
+_Diagram of the Pulse Blanking filter_.
 {: style="text-align: center;"}
 
 where:
@@ -319,7 +322,8 @@ InputFilter.segments_est=5000
 
 The aim of the Notch filter is to eliminate jamming signals who are instantaneously narrowband and, also, their instantaneous frequency changes along time.
 
-![Adaptive Notch Filter]({{ "/assets/images/notch-filter.png" | relative_url }}){:width="600x"}<br />_Diagram of the notch filter_.
+![Adaptive Notch Filter]({{ "/assets/images/notch-filter.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
+_Diagram of the notch filter_.
 {: style="text-align: center;"}
 
 When Interference Cancellation is adopted, the interfering signal is at first removed from $$ y[n] $$, and subsequent signal processing is applied to $$ y_f[n] = y[n] − i[n] $$. Since $$ i[n] $$ is usually not known, an estimation technique is required to reconstruct it and to obtain $$ \hat{i}[n] $$. This interference $$ i[n] $$ is usually estimated by considering a specific signal model which depends only on a reduced number of parameters. Let us consider a single component signal[^Borio14]

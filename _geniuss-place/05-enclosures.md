@@ -27,4 +27,4 @@ The _maker movement_ is a trend in which people employ do-it-yourself (DIY) and 
 </script>
 
 
-<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}">
+<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />

@@ -4,9 +4,10 @@ permalink: /docs/control-plane/
 excerpt: "Configuring and managing a network of connected signal processing blocks from the signal source up to the position fix."
 header:
   teaser: /assets/images/multi-band-multi-system-flow-graph-th.png
+  invert-colors: true
 toc: true
 toc_sticky: true
-last_modified_at: 2016-04-13T15:54:02-04:00
+last_modified_at: 2020-06-18T11:54:02+01:00
 ---
 
 
@@ -28,17 +29,17 @@ without a major impact in the code. This can be achieved by simply
 mapping the names of the variables in the processing blocks with the names of
 the parameters in the configuration.
 
-Properties are passed around within the program using the [```ConfigurationInterface```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/configuration_interface.h) class.
-There are two implementations of this interface: [```FileConfiguration```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/file_configuration.h) and [```InMemoryConfiguration```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/in_memory_configuration.h).
-A [```FileConfiguration```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/file_configuration.h) object reads the properties (pairs of property name and value) from a file and stores
-them internally. On the contrary, [```InMemoryConfiguration```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/in_memory_configuration.h) does not read from a file; it remains empty after
-instantiation and property values and names are set using the ```set_property``` method.
-[```FileConfiguration```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/file_configuration.h) is intended to be used in the actual GNSS-SDR application whereas
-[```InMemoryConfiguration```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/in_memory_configuration.h) is intended to be used in tests to avoid file-dependency in the
+Properties are passed around within the program using the [`ConfigurationInterface`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/configuration_interface.h) class.
+There are two implementations of this interface: [`FileConfiguration`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/file_configuration.h) and [`InMemoryConfiguration`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/in_memory_configuration.h).
+A [`FileConfiguration`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/file_configuration.h) object reads the properties (pairs of property name and value) from a file and stores
+them internally. On the contrary, [`InMemoryConfiguration`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/in_memory_configuration.h) does not read from a file; it remains empty after
+instantiation and property values and names are set using the `set_property` method.
+[`FileConfiguration`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/file_configuration.h) is intended to be used in the actual GNSS-SDR application whereas
+[`InMemoryConfiguration`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/in_memory_configuration.h) is intended to be used in tests to avoid file-dependency in the
 file system.
 
 
-Classes that need to read configuration parameters will receive instances of [```ConfigurationInterface```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/configuration_interface.h)
+Classes that need to read configuration parameters will receive instances of [`ConfigurationInterface`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/configuration_interface.h)
 from where they will fetch the values. For instance,  parameters
 related to _SignalSource_ should look like this:
 
@@ -47,9 +48,9 @@ SignalSource.parameter1=value1
 SignalSource.parameter2=value2
 ```
 
-The name of these parameters can be anything but one reserved word: ```implementation```.
+The name of these parameters can be anything but one reserved word: `implementation`.
 This parameter indicates in its value the name of the class that has to be instantiated by the factory
-for that role. For instance, if we want to use the implementation ```Pass_Through``` for module ```SignalConditioner```, the corresponding line in the configuration file would be
+for that role. For instance, if we want to use the implementation `Pass_Through` for module `SignalConditioner`, the corresponding line in the configuration file would be
 
 ```ini
 SignalConditioner.implementation=Pass_Through
@@ -59,7 +60,7 @@ Since the configuration is just a set of property names and
 values without any meaning or syntax, the system is very versatile and easily extendable. Adding
 new properties to the system only implies modifications in the classes that will make use of these
 properties. In addition, the configuration files are not checked against any strict syntax so it is
-always in a correct status (as long as it contains pairs of property names and values in [INI](https://en.wikipedia.org/wiki/INI_file) format. An INI file is an $$ 8 $$-bit text file in which every property has a name and a value, in the form ```name = value```. Properties are case-insensitive, and cannot contain spacing characters. Semicolons (```;```) indicate the start of a comment; everything between the semicolon and the end of the line is ignored.
+always in a correct status (as long as it contains pairs of property names and values in [INI](https://en.wikipedia.org/wiki/INI_file) format. An INI file is an $$ 8 $$-bit text file in which every property has a name and a value, in the form `name = value`. Properties are case-insensitive, and cannot contain spacing characters. Semicolons (`;`) indicate the start of a comment; everything between the semicolon and the end of the line is ignored.
 
 ```ini
 ; THIS IS A COMMENT
@@ -79,7 +80,7 @@ GNSS-SDR allows the user to define a custom GNSS receiver, including its archite
 
 Hence, the application defines
 a simple accessor class to fetch the configuration pairs of values and
-passes them to a factory class called [```GNSSBlockFactory```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_block_factory.h). This factory decides, according to
+passes them to a factory class called [`GNSSBlockFactory`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_block_factory.h). This factory decides, according to
 the configuration, which class needs to be instantiated and which
 parameters should be passed to the constructor. Hence, the factory encapsulates the complexity of blocks' instantiation. With that approach,
 adding a new block that requires new parameters will be as simple
@@ -90,7 +91,7 @@ capacities in a high degree. It also allows producing fully customized
 receivers, for instance a testbed for acquisition algorithms, and
 to place observers at any point of the receiver chain.
 
-![Design pattern]({{ "/assets/images/design-pattern.png" | relative_url }}){: .align-center}
+![Design pattern]({{ "/assets/images/design-pattern.png" | relative_url }}){: .align-center .invert-colors}
 _A Factory encapsulates the complexity of the instantiation of processing blocks._
 {: style="text-align: center;"}
 
@@ -100,19 +101,19 @@ This scheme is known as the [Factory Method](https://en.wikipedia.org/wiki/Facto
 
 
 ## The GNSS Flow Graph
-The [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) class is responsible for preparing the graph of blocks according to the
+The [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) class is responsible for preparing the graph of blocks according to the
 configuration, running it, modifying it during run-time and stopping it.
 Blocks are identified by its role. This class knows
-which roles it has to instantiate and how to connect them to configure the generic graph that is
-shown in in the left figure. It relies on the configuration to get the correct instances of the roles it needs and
+which roles it has to instantiate, and how to connect them to configure the generic graph that is
+shown in the figure [below](#generic_flowgraph). It relies on the configuration to get the correct instances of the roles it needs, and
 then it applies the connections between GNU Radio blocks to make the graph ready to be started.
-The complexity related to managing the blocks and the data stream is handled by GNU Radio's [```gr::top_block```](https://www.gnuradio.org/doc/doxygen/classgr_1_1top__block.html) class. [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) wraps the [```gr::top_block```](https://www.gnuradio.org/doc/doxygen/classgr_1_1top__block.html) instance so we can
+The complexity related to managing the blocks and the data stream is handled by GNU Radio's [`gr::top_block`](https://www.gnuradio.org/doc/doxygen/classgr_1_1top__block.html) class. [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) wraps the [`gr::top_block`](https://www.gnuradio.org/doc/doxygen/classgr_1_1top__block.html) instance so we can
 take advantage of the GNSS block factory, the configuration system and the processing blocks. This class is also responsible for applying changes to the configuration of the flow graph
 during run-time, dynamically reconfiguring channels: it selects the strategy for selecting satellites. This can range from a sequential search over all the satellites' ID to smarter approaches that determine what are the satellites most likely in-view based on rough estimations of the receiver position in order to avoid searching satellites in the other side of the Earth.
 
 
 This class internally codifies actions to be taken on the graph. These actions are
-identified by simple integers. [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) offers a method that receives an integer that
+identified by simple integers. [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) offers a method that receives an integer that
 codifies an action, and this method triggers the action represented by the integer.
 Actions can range from changing internal variables of blocks to modifying completely the
 constructed graph by adding/removing blocks. The number and complexity of actions is only
@@ -125,17 +126,17 @@ the graph quite easily.
 
 ## The Control Thread
 
-The [```ControlThread```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h) class is responsible for instantiating the [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) and passing the required
-configuration. Once the flow graph is defined an its blocks connected, it starts to process the incoming data stream. The [```ControlThread```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h) object is then in charge of reading the control queue and processing all the messages sent by the processing blocks via a thread-safe message queue.
+The [`ControlThread`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h) class is responsible for instantiating the [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) and passing the required
+configuration. Once the flow graph is defined an its blocks connected, it starts to process the incoming data stream. The [`ControlThread`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h) object is then in charge of reading the control queue and processing all the messages sent by the processing blocks via a thread-safe message queue.
 
-![Configuration pattern]({{ "/assets/images/config-pattern.png" | relative_url }}){: .align-center}
+![Configuration pattern]({{ "/assets/images/config-pattern.png" | relative_url }}){: .align-center .invert-colors}
 _The Control Thread reads the configuration and builds the flow graph of signal processing blocks that defines the receiver._
 {: style="text-align: center;"}
 
-As we saw in the [Overview]({{ "/docs/overview/" | relative_url }}), the ```main``` method of GNSS-SDR instantiates an object of the class [```ControlThread```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h), managed by a smart pointer:
+As we saw in the [Overview]({{ "/docs/overview/" | relative_url }}), the `main` method of GNSS-SDR instantiates an object of the class [`ControlThread`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h), managed by a smart pointer:
 
 ```cpp
-std::unique_ptr<ControlThread> control_thread(new ControlThread());
+auto control_thread = std::make_unique<ControlThread>();
 ```
 
 The constructor of this objects reads the commandline flag provided by the user when executing the receiver which points to the text file containing the configuration, as shown above:
@@ -144,13 +145,13 @@ The constructor of this objects reads the commandline flag provided by the user 
 $ gnss-sdr --config_file=/path/to/my_receiver.conf
 ```
 
-Then, when the ```run()``` method of the ```control_thread``` object is called, a member of class [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) connects the flow graph, starts the flow of data from sources to sinks, and keeps processing messages from a control queue until the receiver stops.
+Then, when the `run()` method of the `control_thread` object is called, a member of class [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) connects the flow graph, starts the flow of data from sources to sinks, and keeps processing messages from a control queue until the receiver stops.
 
 
-An excerpt of its actual implementation is as follows, where ```flowgraph_``` is an object of the class [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h):
+An excerpt of its actual implementation is as follows, where `flowgraph_` is an object of the class [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h):
 
 ```cpp
-void ControlThread::run()
+int ControlThread::run()
 {
     // Connect the flowgraph
     flowgraph_->connect();
@@ -167,15 +168,17 @@ void ControlThread::run()
             read_control_messages();
             if (control_messages_ != 0) process_control_messages();
         }
-    std::cout << "Stopping GNSS-SDR, please wait!" << std::endl;
+    std::cout << "Stopping GNSS-SDR, please wait!\n";
     flowgraph_->stop();
+    flowgraph_->disconnect();
+    return 0;
   }
 ```
 
-Hence, the object of class [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) will parse the configuration file and will ask the Block Factory for the corresponding [_Signal Source_]({{ "/docs/sp-blocks/signal-source/" | relative_url }}), [_Signal Conditioner_]({{ "/docs/sp-blocks/signal-conditioner/" | relative_url }}), [_Channels_]({{ "/docs/sp-blocks/channels/" | relative_url }}) (each one with its own [_Acquisition_]({{ "/docs/sp-blocks/acquisition/" | relative_url }}), [_Tracking_]({{ "/docs/sp-blocks/tracking/" | relative_url }}) and [_Telemetry Decoder_]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }})), an [_Observables_]({{ "/docs/sp-blocks/observables/" | relative_url }}) block collecting the processing results and a [_PVT_]({{ "/docs/sp-blocks/pvt/" | relative_url }}) block acting as a signal sink:
+Hence, the object of class [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) will parse the configuration file and will ask the Block Factory for the corresponding [_Signal Source_]({{ "/docs/sp-blocks/signal-source/" | relative_url }}), [_Signal Conditioner_]({{ "/docs/sp-blocks/signal-conditioner/" | relative_url }}), [_Channels_]({{ "/docs/sp-blocks/channels/" | relative_url }}) (each one with its own [_Acquisition_]({{ "/docs/sp-blocks/acquisition/" | relative_url }}), [_Tracking_]({{ "/docs/sp-blocks/tracking/" | relative_url }}) and [_Telemetry Decoder_]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }})), an [_Observables_]({{ "/docs/sp-blocks/observables/" | relative_url }}) block collecting the processing results and a [_PVT_]({{ "/docs/sp-blocks/pvt/" | relative_url }}) block acting as a signal sink:
 
-![Basic GNSS flow graph]({{ "/assets/images/simple-gnss-sdr-flowgraph.png" | relative_url }}){:width="600x"}{: .align-center}
-_Diagram of a basic (single-band, single-system) flow graph generated by [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h)._
+</a>![Basic GNSS flow graph]({{ "/assets/images/simple-gnss-sdr-flowgraph.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
+_Diagram of a basic (single-band, single-system) flow graph generated by [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h)._
 {: style="text-align: center;"}
 
 Please check out [My first position fix]({{ "/my-first-fix/" | relative_url }}) for an example of such receiver's flow graph configuration file.
@@ -183,8 +186,8 @@ Please check out [My first position fix]({{ "/my-first-fix/" | relative_url }}) 
 GNSS-SDR's configuration mechanism is flexible enough for allowing other more complex flow graphs. For instance, you can target a given signal (for instance, GPS L1 C/A) with eight channels, and define eight more channels targeting Galileo E1 B/C signals, thus defining a multi-system receiver. Or maybe extend that structure to another band, defining a flow graph for a multi-system, dual band GNSS receiver:
 
 
-![Complex GNSS flow graph]({{ "/assets/images/multi-band-multi-system-flow-graph.png" | relative_url }}){: .align-center}
-_Diagram of a  multi-band, multi-system flow graph generated by [```GNSSFlowgraph```](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h)._
+<a name="generic_flowgraph">![Complex GNSS flow graph]({{ "/assets/images/multi-band-multi-system-flow-graph.png" | relative_url }}){: .align-center .invert-colors}
+_Diagram of a  multi-band, multi-system flow graph generated by [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h)._
 {: style="text-align: center;"}
 
 
@@ -197,4 +200,4 @@ _Diagram of a  multi-band, multi-system flow graph generated by [```GNSSFlowgrap
 
 [^Fernandez10]: C. Fern&aacute;ndez-Prades, C. Avil&eacute;s, L. Esteve, J. Arribas and P. Closas, [Design patterns for GNSS software receivers](http://www.cttc.es/wp-content/uploads/2013/03/101213-pid1531501-14543.pdf), in Proc. of the 5th ESA Workshop on Satellite Navigation Technologies, ESTEC, Noordwijk, The Netherlands, Dec. 2010, pp. 1 - 8.
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}">
+<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}" />

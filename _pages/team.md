@@ -7,25 +7,26 @@ sidebar:
   nav: "about"
 redirect_from:
   - /contact-us
+classes: wide
 ---
 
 ## Main Developer Team
 
-<html> <body > <table>
+<table>
  <tr>
-     <td id="authortable">  
+     <td class="authortable">
         {% assign pauthor = "Carles Fernandez" %}
         {% include author-profile.html %}
      </td>
-     <td id="authortable">
+     <td class="authortable">
         {% assign pauthor = "Javier Arribas" %}
         {% include author-profile.html %}
      </td>
-     <td id="authortable">
+     <td class="authortable">
         {% assign pauthor = "Luis Esteve" %}
         {% include author-profile.html %}
     </td>
-    <td id="authortable">
+    <td class="authortable">
     {% assign pauthor = "Pau Closas" %}
     {% include author-profile.html %}
    </td>
@@ -34,32 +35,30 @@ redirect_from:
 
 <table>
  <tr>
-     <td id="authortable">  
+     <td class="authortable">
         {% assign pauthor = "Marc Majoral" %}
         {% include author-profile.html %}
      </td>
-     <td id="authortable">
+     <td class="authortable">
         {% assign pauthor = "Jordi Vila" %}
         {% include author-profile.html %}
      </td>
-     <td id="authortable">
+     <td class="authortable">
         {% assign pauthor = "Alvaro Cebrian" %}
         {% include author-profile.html %}
      </td>
-     <td id="authortable">
+     <td class="authortable">
         {% assign pauthor = "Damian Miralles" %}
         {% include author-profile.html %}
      </td>
   </tr>
 </table>
 
-</body> </html>
-
 ## Former members
 
 <table>
  <tr>
-     <td id="authortable">
+     <td class="authortable">
         {% assign pauthor = "Antonio Ramos" %}
         {% include author-profile.html %}
      </td>
