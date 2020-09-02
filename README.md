@@ -115,7 +115,7 @@ Breakpoint is distributed under the terms of the [MIT/GPL Licenses](https://open
 
 This work incorporates [FitVids.js](https://github.com/davatron5000/FitVids.js/),
 Copyright &copy; 2013 Dave Rubert and Chris Coyier.
-FitVids is distributed under the terms of the [WTFPL License](http://sam.zoy.org/wtfpl/).
+FitVids is distributed under the terms of the [WTFPL License](http://www.wtfpl.net/).
 
 This work incorporates [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/),
 Copyright &copy; 2014-2016 Dmitry Semenov, http://dimsemenov.com.
