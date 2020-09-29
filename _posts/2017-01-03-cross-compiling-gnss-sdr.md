@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2019-05-14T02:11:02+02:00
+last_modified_at: 2020-09-29T02:11:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function within a larger mechanical or electrical system. Examples of properties of embedded computers when compared with general-purpose counterparts are low power consumption, small size, rugged operating ranges, and low per-unit cost, at the price of limited processing resources.
@@ -61,7 +61,7 @@ Check out the manifest files to see the full list of packages and versions each 
 
 Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github.com/carlesfernandez/oe-gnss-sdr-manifest) and follow instructions there. Make sure you have plenty of space in your hard drive (25 GB minimum). In summary, the process is as follows:
 
-1) Install ```repo```:
+1) Install `repo`:
 
 ```bash
 $ curl https://storage.googleapis.com/git-repo-downloads/repo > repo
@@ -76,7 +76,7 @@ $ mkdir oe-repo
 $ cd oe-repo
 ```
 
-3) Initialize ```repo```, download the required tools and prepare your building environment:
+3) Initialize `repo`, download the required tools and prepare your building environment:
 
 ```bash
 $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b thud
@@ -84,10 +84,10 @@ $ repo sync
 $ TEMPLATECONF=`pwd`/meta-gnss-sdr/conf source ./oe-core/oe-init-build-env ./build ./bitbake
 ```
 
-This last command copies default configuration information into the ```./build/conf``` directory and sets up some environment variables for OpenEmbedded.
+This last command copies default configuration information into the `./build/conf` directory and sets up some environment variables for OpenEmbedded.
 
 {% capture branches_info %}
-Please note that the name of the oe-gnss-sdr-manifest branch passed to ```repo``` will determine the version of the SDK to be built. For instance,
+Please note that the name of the oe-gnss-sdr-manifest branch passed to `repo` will determine the version of the SDK to be built. For instance,
 
 ```bash
 $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b sumo
@@ -107,7 +107,7 @@ will generate the Thud release.
 </div>
 
 
-4) OPTIONAL: at this point, you can configure your building by editing the file ```./conf/conf.local```. If you do nothing and leave the configuration by default, the next step will generate an image for a Zedboard. Other platforms can be selected by changing the value of the MACHINE variable. Read the comments at ```./conf/conf.local``` for more options.
+4) OPTIONAL: at this point, you can configure your building by editing the file `./conf/conf.local`. If you do nothing and leave the configuration by default, the next step will generate an image for a Zedboard. Other platforms can be selected by changing the value of the MACHINE variable. Read the comments at `./conf/conf.local` for more options.
 
 5) Build the image and the toolchain installer:
 
@@ -116,7 +116,7 @@ $ bitbake gnss-sdr-dev-image
 $ bitbake -c populate_sdk gnss-sdr-dev-image
 ```
 
-This process downloads several gigabytes of source code and then proceeds to compile all the required packages for the host and native targets, so **it will take time**. The first command constructs a complete Linux image for your target device. The second command generates the toolchain installer, a script that installs a cross-compiler, a cross-linker and a cross-debugger, forming a completely self-contained toolchain which allows you to cross-develop on the host machine for the target hardware. The generated script will be found under ```./tmp-glibc/deploy/sdk/```.
+This process downloads several gigabytes of source code and then proceeds to compile all the required packages for the host and native targets, so **it will take time**. The first command constructs a complete Linux image for your target device. The second command generates the toolchain installer, a script that installs a cross-compiler, a cross-linker and a cross-debugger, forming a completely self-contained toolchain which allows you to cross-develop on the host machine for the target hardware. The generated script will be found under `./tmp-glibc/deploy/sdk/`.
 
 If you are using Rocko or above, you can create a Docker image of the target environment by doing:
 
@@ -124,7 +124,7 @@ If you are using Rocko or above, you can create a Docker image of the target env
 $ bitbake gnss-sdr-dev-docker
 ```
 
-This will create a ```.docker``` file under ```./tmp-glibc/deploy/images/``` that can be ingested by Docker as:
+This will create a `.docker` file under `./tmp-glibc/deploy/images/` that can be ingested by Docker as:
 
 ```bash
 $ docker load -i /path/to/file.docker
@@ -139,6 +139,9 @@ $ docker run -it carlesfernandez/gnsssdr-dev-arm32v7:thud /bin/bash
 (or `carlesfernandez/gnsssdr-dev-arm32v7:sumo` for the Sumo image).
 
 Copy the results of your cross-compilation there and you are ready to go. Please note that this image can only be executed by an arm32v7-based system.
+
+  If you are going to build images and the SDK in your own machine, you could be interested in the [https://github.com/carlesfernandez/yocto-geniux](https://github.com/carlesfernandez/yocto-geniux) repo. It provides a `Dockerfile` that defines a Docker container for building everything in a virtualized environment (including an interactive mode in which you can make changes and experiment), and a script that automates the whole process, so you can build the version you want with a single command line. Check the README.md file on that repo for instructions.
+  {: .notice--success}
 
 
 Using the SDK
@@ -158,12 +161,12 @@ Then, download the SDK shell script (or use a locally created SDK, as explained 
 $ sudo sh oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh
 ```
 
-This will ask you what directory to install the SDK into. Which directory does not matter, just make sure wherever it goes that you have enough disk space. The default is ```/usr/local```.
+This will ask you what directory to install the SDK into. Which directory does not matter, just make sure wherever it goes that you have enough disk space. The default is `/usr/local`.
 
 The SDK comes with everything you need to build GNSS-SDR. The main contents it has are:
 
-* An "```environment-setup-...```" script that sets up our environmental variables, like editing PATH, CC, CXX, etc.
-* Two sysroots; one for the host machine and one for the target device (installed by default at ```/usr/local/oecore-x86_64/sysroots/```).
+* An "`environment-setup-...`" script that sets up our environmental variables, like editing PATH, CC, CXX, etc.
+* Two sysroots; one for the host machine and one for the target device (installed by default at `/usr/local/oecore-x86_64/sysroots/`).
 
 ### Setting up the cross-compiling environment
 Running the environment script will set up most of the variables you'll need to compile. You will need to do this each time you want to run the SDK (and since the environment variables are only set for the current shell, you need to source it for every console you will run the SDK from):
@@ -186,7 +189,7 @@ $ make
 $ sudo make install DESTDIR=/usr/local/oecore-x86_64/sysroots/armv7ahf-neon-oe-linux-gnueabi/
 ```
 
-Please note that we set the install prefix to ```/usr```. That will be the installation location of the project on the embedded device. We use this because all links and references within the file system will be based on this prefix, but it is obviously not where we want to install these files on our own host system. Instead, we use the ```make``` program's ```DESTDIR``` directive. On the device itself, however, the file system would have this installed onto ```/usr```, which means all our links and references are correct as far as the device is concerned.
+Please note that we set the install prefix to `/usr`. That will be the installation location of the project on the embedded device. We use this because all links and references within the file system will be based on this prefix, but it is obviously not where we want to install these files on our own host system. Instead, we use the `make` program's `DESTDIR` directive. On the device itself, however, the file system would have this installed onto `/usr`, which means all our links and references are correct as far as the device is concerned.
 
 
 
@@ -195,7 +198,7 @@ Copying an image file to your SD card
 
 We have several options here:
 
-### Using ```dd```
+### Using `dd`
 
 ```bash
 $ mkdir myimage
@@ -203,9 +206,9 @@ $ tar -xvzf gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz -C my
 $ sudo dd status=progress bs=4M if=myimage of=/dev/sdX
 ```
 
-where ```/dev/sdX``` is the device the card is mounted as. This works, but can be slow.
+where `/dev/sdX` is the device the card is mounted as. This works, but can be slow.
 
-### Using ```bmaptool```
+### Using `bmaptool`
 
 This option is faster:
 
@@ -216,9 +219,9 @@ $ sudo python setup.py install
 $ sudo bmaptool copy gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz /dev/sdX --nobmap
 ```
 
-### Copying only the sysroot to the SD card using ```cp```
+### Copying only the sysroot to the SD card using `cp`
 
-For systems with a dedicated u-boot, devicetree and Kernel, it is possible to copy only the cross-compiled sysroot to the SD ext4 partition. Mount the SD card partition and extract the root filesystem to the mounted root directory (in this example, ```sdb2``` is the SD card device and the ext4 partition is the second partition in the SD partition table), and then use ```cp``` with the ```-a``` option, which preserves the same directory tree, same file types, same contents, same metadata (times, permissions, extended attributes, etc.) and same symbolic links:
+For systems with a dedicated u-boot, devicetree and Kernel, it is possible to copy only the cross-compiled sysroot to the SD ext4 partition. Mount the SD card partition and extract the root filesystem to the mounted root directory (in this example, `sdb2` is the SD card device and the ext4 partition is the second partition in the SD partition table), and then use `cp` with the `-a` option, which preserves the same directory tree, same file types, same contents, same metadata (times, permissions, extended attributes, etc.) and same symbolic links:
 
 ```bash
 $ mkdir ./mounted_SD
@@ -229,7 +232,7 @@ $ cd ..
 $ sudo cp /usr/local/oecore-x86_64/sysroots/armv7ahf-neon-oe-linux-gnueabi/* -a ./mounted_SD
 ```
 
-### Copying only GNSS-SDR executables to the device over the network using ```sshfs```
+### Copying only GNSS-SDR executables to the device over the network using `sshfs`
 
 For example, let's assume that we can address the device by a network name or IP address. Let's say it's called "mydevice" and it has an ip address of 192.168.2.2. We would use a mount point created in your home directory. To install sshfs and mount mydevice locally:
 
@@ -241,7 +244,7 @@ $ mkdir mydevice
 $ sshfs -o allow_root root@192.168.2.2:/ mydevice
 ```
 
-You should be able to ```ls mydevice``` and see the contents of mydevice's file system. Then you can cross-compile GNSS-SDR as before, changing the last command by:
+You should be able to `ls mydevice` and see the contents of mydevice's file system. Then you can cross-compile GNSS-SDR as before, changing the last command by:
 
 ```bash
 $ sudo make install DESTDIR=~/mydevice
