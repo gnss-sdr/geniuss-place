@@ -12,9 +12,10 @@ sidebar:
 
 A place for sharing projects and thoughts about software-defined GNSS receivers.
 
+{% assign entries_layout = page.entries_layout | default: 'list' %}
 <table> <tr> <td id="forcetable2">
 {% for post in site.geniuss-place %}
-  {% include archive-single.html %}
+  {% include archive-single.html type=entries_layout %}
 {% endfor %}
 </td> </tr> </table>
 
