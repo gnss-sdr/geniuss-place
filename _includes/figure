@@ -5,5 +5,5 @@
     <figcaption>
       {{ include.caption | markdownify | remove: "<p>" | remove: "</p>" }}
     </figcaption>
-  {{%- endif -%}
+  {%- endif -%}
 </figure>
