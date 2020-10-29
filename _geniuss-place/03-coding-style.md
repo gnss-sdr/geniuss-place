@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2020-06-14T13:20:02+02:00
+last_modified_at: 2020-10-29T13:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -966,8 +966,8 @@ $ sudo zypper -n install llvm-clang
 
   * **In macOS using Homebrew:**
 ```bash
-$ brew install llvm
-$ ln -s /usr/local/opt/llvm/bin/clang-format /usr/local/bin
+$ brew install clang-format
+$ brew link clang-format
 ```
 
   * **In macOS using Macports:**
@@ -1084,8 +1084,8 @@ $ sudo zypper -n install llvm-clang
 ```bash
 $ brew install llvm
 $ ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin
-$ ln -s /usr/local/Cellar/llvm/9.*/bin/clang-apply-replacements /usr/local/bin
-$ ln -s /usr/local/Cellar/llvm/9.*/share/clang/run-clang-tidy.py /usr/local/bin
+$ ln -s /usr/local/Cellar/llvm/11.*/bin/clang-apply-replacements /usr/local/bin
+$ ln -s /usr/local/Cellar/llvm/11.*/share/clang/run-clang-tidy.py /usr/local/bin
 ```
 
 * **In macOS using Macports:**
