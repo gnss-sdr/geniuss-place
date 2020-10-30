@@ -12,7 +12,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2020-06-21T09:17:02+02:00
+last_modified_at: 2020-10-30T09:17:02+02:00
 ---
 
 
@@ -221,5 +221,25 @@ $ make
 ```
 
 Check the [coding style guide]({{ "/coding-style/#use-code-linters" | relative_url }}) for more information on how to use clang-tidy in your system.
+
+
+## Documentation
+
+GNSS-SDR can generate documentation from its source code in HTML (by doing `make doc`) or PDF (by doing `make pdfmanual`) formats. Generating the documentation requires [Doxygen](https://www.doxygen.nl/) installed in you system. The PDF generation also requires $$ \LaTeX $$ already installed.
+
+By default, the HTML output makes use of [MathJax](https://www.mathjax.org/) loaded from a public <abbr title="Content Delivery Network">CDN</abbr> for equations rendering in your browser, so you do not need to have MathJax locally installed. If you want to enjoy MathJax rendering in offline mode, you can use a local installation of MathJax (version 2.x) by disabling the option below.
+
+|----------
+| **Variable passed to CMake** | **Possible values** | **Default** | **Effect** |
+|:--|:-:|:-:|:--|
+|--------------
+| `-DENABLE_EXTERNAL_MATHJAX` | `ON` / `OFF` | `ON` | If set to `ON`, doing `make doc` generates HTML documentation using MathJax loaded from an external public CDN. If this option is set to `OFF`, MathJax is looked for in the system and used if found, so the documentation can be checked offline. If MathJax is not found, equations will still be rendered but at lower quality. <span style="color: orange">NOTE: This building configuration option is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span>
+|----------
+
+For instance, in Debian/Ubuntu systems MathJax can be installed as:
+
+```bash
+$ sudo apt-get install libjs-mathjax
+```
 
 --------
