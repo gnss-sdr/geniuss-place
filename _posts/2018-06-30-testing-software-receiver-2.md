@@ -14,7 +14,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2020-06-05T11:37:02+02:00
+last_modified_at: 2020-11-07T11:37:02+02:00
 ---
 
 [Testability]({{ "/design-forces/testability/" | relative_url }}) is an important feature in any GNSS receiver. The companion tutorial [Testing the software receiver, Part I: Methodology]({{ "/docs/tutorials/testing-software-receiver/" | relative_url }}) describes the general approach taken in this project, and this page documents the available set of Unit and System tests. Some of them are highly configurable, so they can be seen as Performance tests.
@@ -201,8 +201,8 @@ The generation of some unit test suites are enabled by default, and gathered in 
 
 **Unit Test Suites for arithmetics:**
 
- * `CodeGenerationTest`: set of test cases for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of PRN code generation.
- * `ComplexCarrierTest`: set of test cases for [gnss_signal_processing.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_processing.h) measuring the execution time of various implementations of complex carrier generation. The default vector length is $$ 100000 $$, but this test suite accepts the flag `--size_carrier_test`. You can try a different length by doing:
+ * `CodeGenerationTest`: set of test cases for [gnss_signal_replica.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_replica.h) measuring the execution time of various implementations of PRN code generation.
+ * `ComplexCarrierTest`: set of test cases for [gnss_signal_replica.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/libs/gnss_signal_replica.h) measuring the execution time of various implementations of complex carrier generation. The default vector length is $$ 100000 $$, but this test suite accepts the flag `--size_carrier_test`. You can try a different length by doing:
  ```bash
  $ ./run_tests --gtest_filter=ComplexCarrier* --size_carrier_test=1000000
  ```

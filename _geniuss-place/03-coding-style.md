@@ -967,7 +967,6 @@ $ sudo zypper -n install llvm-clang
   * **In macOS using Homebrew:**
 ```bash
 $ brew install clang-format
-$ brew link clang-format
 ```
 
   * **In macOS using Macports:**
