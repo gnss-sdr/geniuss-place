@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-01-30T10:54:02+02:00
+last_modified_at: 2020-11-23T10:54:02+02:00
 ---
 
 
@@ -58,8 +58,10 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L1_CA_Telemetry_Decoder` | Mandatory |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L1_CA_Telemetry_Decoder`**.
@@ -125,8 +127,10 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E1B_Telemetry_Decoder` | Mandatory |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`Galileo_E1B_Telemetry_Decoder`**.
@@ -168,8 +172,10 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GLONASS_L1_CA_Telemetry_Decoder` | Mandatory |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
 |--------------
 
 _Telemetry Decoder implementation:_ **`GLONASS_L1_CA_Telemetry_Decoder`**.
@@ -193,8 +199,10 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GLONASS_L2_CA_Telemetry_Decoder` | Mandatory |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GLONASS_L2_CA_Telemetry_Decoder`**.
@@ -242,8 +250,10 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L2C_Telemetry_Decoder` | Mandatory |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetry_L2CM_N.dat`, where `N` is the channel number (automatically added). | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L2C_Telemetry_Decoder`**.
@@ -285,8 +295,10 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `GPS_L5_Telemetry_Decoder` | Mandatory |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetry_L5_N.dat`, where `N` is the channel number (automatically added). | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L5_Telemetry_Decoder`**.
@@ -329,8 +341,10 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E5a_Telemetry_Decoder` | Mandatory |
-| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./telemetryN.dat`, where `N` is the channel number (automatically added). | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. <span style="color: orange">NOTE: This configuration parameter is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span> | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`Galileo_E5a_Telemetry_Decoder`**.
@@ -342,4 +356,31 @@ Example:
 ;######### TELEMETRY DECODER GALILEO E5a CONFIG ############
 TelemetryDecoder_5X.implementation=Galileo_E5a_Telemetry_Decoder
 TelemetryDecoder_5X.dump=false
+```
+
+
+## Binary output
+
+In all Telemetry Decoder blocks, if `dump=true`, the logging of internal processing data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with same name than `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format which can be easily read with Matlab or Octave, by doing `load telemetryN.mat`, where `N` is the channel number, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library. The stored variables are vectors with a number of columns equal to the total number of epochs (that is, tracking integration times) processed by the Telemetry Decoder block. The blocks store the following variables:
+
+* `TOW_at_current_symbol_ms`: Time of Week associated to the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal).
+* `tracking_sample_counter`: Sample counter associated to each epoch.
+* `TOW_at_Preamble_ms`: Time of Week associated to the preamble of the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal).
+* `nav_symbol`: Navigation message symbol $$ \{ \pm 1 \} $$, as obtained by the Tracking block, for each epoch.
+* `PRN`: Satellite ID processed in each epoch.
+
+{% capture savemat_tlm %}
+  **THIS FEATURE IS AVAILABLE STARTING FROM THE `next` BRANCH OF THE GNSS-SDR REPOSITORY**
+{% endcapture %}
+
+<div class="notice--warning">
+  {{ savemat_tlm | markdownify }}
+</div>
+
+
+Example:
+
+```ini
+TelemetryDecoder_XX.dump=true
+TelemetryDecoder_XX.remove_dat=true
 ```
