@@ -363,11 +363,11 @@ TelemetryDecoder_5X.dump=false
 
 In all Telemetry Decoder blocks, if `dump=true`, the logging of internal processing data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with same name than `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format which can be easily read with Matlab or Octave, by doing `load telemetryN.mat`, where `N` is the channel number, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library. The stored variables are vectors with a number of columns equal to the total number of epochs (that is, tracking integration times) processed by the Telemetry Decoder block. The blocks store the following variables:
 
-* `TOW_at_current_symbol_ms`: Time of Week associated to the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal).
-* `tracking_sample_counter`: Sample counter associated to each epoch.
-* `TOW_at_Preamble_ms`: Time of Week associated to the preamble of the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal).
-* `nav_symbol`: Navigation message symbol $$ \{ \pm 1 \} $$, as obtained by the Tracking block, for each epoch.
-* `PRN`: Satellite ID processed in each epoch.
+* `TOW_at_current_symbol_ms`: Time of Week associated to the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal). Data type: `double`.
+* `tracking_sample_counter`: Sample counter associated to each epoch. Data type: `uint64_t`.
+* `TOW_at_Preamble_ms`: Time of Week associated to the preamble of the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal). Data type: `double`.
+* `nav_symbol`: Navigation message symbol $$ \{ \pm 1 \} $$, as obtained by the Tracking block, for each epoch. Data type: `int32_t`.
+* `PRN`: Satellite ID processed in each epoch. Data type: `int32_t`.
 
 {% capture savemat_tlm %}
   **THIS FEATURE IS AVAILABLE STARTING FROM THE `next` BRANCH OF THE GNSS-SDR REPOSITORY**
@@ -377,10 +377,26 @@ In all Telemetry Decoder blocks, if `dump=true`, the logging of internal process
   {{ savemat_tlm | markdownify }}
 </div>
 
+Examples:
 
-Example:
+1.- Retrieve the `dat` and`.mat` files with `nav_data` base name:
+```ini
+TelemetryDecoder_XX.dump=true
+TelemetryDecoder_XX.dump_filename=nav_data
+```
+so files will be named `nav_data0.dat`, `nav_data0.mat`, `nav_data1.dat`, `nav_data1.mat`, etc.
 
+2.- Retrieve the `.mat` files only:
 ```ini
 TelemetryDecoder_XX.dump=true
 TelemetryDecoder_XX.remove_dat=true
 ```
+so files will be named `telemetry0.mat`, `telemetry1.mat`, etc.
+
+3.- Retrieve the `.dat` files only:
+```ini
+TelemetryDecoder_XX.dump=true
+TelemetryDecoder_XX.dump_filename=nav_data
+TelemetryDecoder_XX.dump_mat=false
+```
+so files will be named  `telemetry0.dat`, `telemetry1.dat`, etc.
