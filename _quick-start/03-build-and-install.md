@@ -44,7 +44,7 @@ If everything went fine, you can directly jump into how to get your [first posit
 
 ## macOS / Mac OS X using Macports
 
-If you are using macOS 10.15 Catalina (or Mac OS X 10.9 and above), and the [Macports](https://www.macports.org/) package manager, GNSS-SDR can be installed by typing in a Terminal:
+If you are using macOS 11 Big Sur (or Mac OS X 10.9 and above), and the [Macports](https://www.macports.org/) package manager, GNSS-SDR can be installed by typing in a Terminal:
 
 ```bash
 $ sudo port install gnss-sdr
