@@ -971,24 +971,24 @@ $ brew install clang-format
 
   * **In macOS using Macports:**
 ```bash
-$ sudo port install clang-9.0
+$ sudo port install clang-11
 ```
   NOTE: You can see all available choices with `port select --list` for clang:
 ```bash
 $ port select --list clang
 Available versions for clang:
-	mp-clang-9.0
+	mp-clang-11
 	none (active)
 ```
   With `sudo port select --set clang <version>` you choose one of them as the new default, which will create symlinks in `/opt/local/bin` without the version suffix.
 ```bash
-$ sudo port select --set clang mp-clang-9.0
-selecting 'mp-clang-9.0' for 'clang' succeeded. 'mp-clang-9.0' is now active.
+$ sudo port select --set clang mp-clang-11
+selecting 'mp-clang-11' for 'clang' succeeded. 'mp-clang-11' is now active.
 ```
   You can confirm this change by looking at the version of the tool:
 ```bash
 $ clang-format --version
-clang-format version 9.0.1
+clang-format version 11.0.0
 ```
   If you later wish to remove these symlinks in order to avoid hiding tools installed by Xcode, just select the `none` version.
 
@@ -1089,7 +1089,7 @@ $ ln -s /usr/local/Cellar/llvm/11.*/share/clang/run-clang-tidy.py /usr/local/bin
 
 * **In macOS using Macports:**
 ```bash
-$ sudo port install clang-9.0
+$ sudo port install clang-11
 ```
 
 **Step 2.- Apply clang-tidy**
