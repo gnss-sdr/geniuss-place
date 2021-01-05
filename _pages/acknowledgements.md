@@ -147,9 +147,9 @@ The Authors are proud to be supported by the following public institutions, priv
 ![NSL logo]({{ "/assets/images/logo-nsl.jpg" | relative_url }}){:height="250px" width="250px"}
 {: style="text-align: center;"}
 
-* [NSL](https://www.nsl.eu.com/), a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](https://www.nsl.eu.com/nsl-jcms/advanced-gnns-hw-sw/2016-04-11-15-01-35) system that is being used with GNSS-SDR development.
+* [NSL](https://gmvnsl.com/), a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](https://gmvnsl.com/advanced-gnns-hw-sw/2016-04-11-15-01-35) system that is being used with GNSS-SDR development.
 
-[**NSL**](https://www.nsl.eu.com/) kindly provides equipment and technical support to the development of dual-band software architectures.
+[**NSL**](https://gmvnsl.com/) kindly provided equipment and technical support to the development of dual-band software architectures.
 {: .notice--success}
 
 -----
