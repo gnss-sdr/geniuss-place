@@ -452,7 +452,7 @@ note    = {doi: 10.1109/NAVITEC.2018.8642697}
 Las Vegas, NV, Sept.&nbsp;2018, pp. 1-7.
     <br />
     <a href="javascript:toggleBibtex('Miralles18')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://pubs.gnuradio.org/index.php/grcon/article/view/49/33" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.gnuradio.org/grcon/grcon18/presentations/accelerating_software_radios_by_means_of_simd_instructions._a_case_for_the_avx2_and_avx512_extensions/8-Jessica_Iwamoto-SIMD.pdf">Slides</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://youtu.be/eDayurX_Rzg">Video</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://pubs.gnuradio.org/index.php/grcon/article/view/49/33" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.gnuradio.org/grcon/grcon18/presentations/Accelerating_software_radios_by_means_of_SIMD_Instructions._A_case_for_the_AVX2_and_AVX512_Extensions/8-Jessica_Iwamoto-SIMD.pdf">Slides</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://youtu.be/eDayurX_Rzg">Video</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Miralles18" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Miralles18,
