@@ -233,7 +233,7 @@ By default, the HTML output makes use of [MathJax](https://www.mathjax.org/) loa
 | **Variable passed to CMake** | **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|
 |--------------
-| `-DENABLE_EXTERNAL_MATHJAX` | `ON` / `OFF` | `ON` | If set to `ON`, doing `make doc` generates HTML documentation using MathJax loaded from an external public CDN. If this option is set to `OFF`, MathJax is looked for in the system and used if found, so the documentation can be checked offline. If MathJax is not found, equations will still be rendered but at lower quality. <span style="color: orange">NOTE: This building configuration option is only available from the `next` branch of the upstream repository, and it will be present in the next stable release.</span>
+| `-DENABLE_EXTERNAL_MATHJAX` | `ON` / `OFF` | `ON` | If set to `ON`, doing `make doc` generates HTML documentation using MathJax loaded from an external public CDN. If this option is set to `OFF`, MathJax is looked for in the system and used if found, so the documentation can be checked offline. If MathJax is not found, equations will still be rendered but at lower quality.
 |----------
 
 For instance, in Debian/Ubuntu systems MathJax can be installed as:
