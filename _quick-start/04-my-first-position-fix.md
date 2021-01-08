@@ -26,11 +26,11 @@ you should see something similar to:
 
 ```bash
 $ gnss-sdr --version
-gnss-sdr version 0.0.13
+gnss-sdr version 0.0.14
 $  
 ```
 
-Please check that your installed version is 0.0.13 (or something like 0.0.13.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.13, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
+Please check that your installed version is 0.0.14 (or something like 0.0.14.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.14, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
 If you see something like:
@@ -166,7 +166,7 @@ You should see something similar to:
 
 ```
 $ gnss-sdr --config_file=./my-first-GNSS-SDR-receiver.conf
-Initializing GNSS-SDR v0.0.13 ... Please wait.
+Initializing GNSS-SDR v0.0.14 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 Processing file /home/your-username/work/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat, which contains 1600000000 [bytes]

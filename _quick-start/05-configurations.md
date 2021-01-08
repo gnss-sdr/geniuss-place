@@ -275,7 +275,7 @@ You should see something similar to:
 
 ```
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
-Initializing GNSS-SDR v0.0.13 ... Please wait.
+Initializing GNSS-SDR v0.0.14 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 -- X300 initialization sequence...
