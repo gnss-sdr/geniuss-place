@@ -12,7 +12,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2020-10-30T09:17:02+02:00
+last_modified_at: 2021-01-11T09:17:02+02:00
 ---
 
 
@@ -151,6 +151,7 @@ Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb pa
 | `-DENABLE_OWN_GLOG` | `ON` / `OFF` | `OFF` | If set to `ON`, it forces to download, build and link a working version of [glog](https://github.com/google/glog) locally, even if it is already installed. If [GFlags](https://github.com/gflags/gflags) is not found, it will also download, build and link it. |
 | `-DENABLE_LOG` | `ON` / `OFF` | `ON` | If set to `OFF`, it disables runtime logging with [glog](https://github.com/google/glog). This can be useful in storage-limited systems. GNSS-SDR will still produce outputs such as RINEX or KML files. |
 | `-DENABLE_STRIP` | `ON` / `OFF` | `OFF` | If set to `ON`, it activates the generation of stripped binaries (without debugging information), smaller in size and potentially providing better performance than non-stripped counterparts. Only valid when using the `Release` build mode and `ENABLE_PACKAGING` is set to `OFF`, otherwise ignored. |
+| `-DENABLE_OWN_CPUFEATURES` | `ON` / `OFF` | `ON` | This option defaults to `ON` when building `gnss-sdr`, but it defaults to `OFF` when building a stand-alone version of `volk_gnsssdr`. When this building option is set to `ON`, it forces the building of the local version of the [cpu_features](https://github.com/google/cpu_features) library, regardless of whether it is already installed or not. If set to `OFF`, CMake searches for the cpu_features files installed by VOLK and makes use of them. <span style="color: orange">NOTE: This option is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> |
 |----------
 
 
