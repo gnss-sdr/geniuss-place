@@ -12,7 +12,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2020-05-09T09:37:02+02:00
+last_modified_at: 2021-01-11T09:37:02+02:00
 ---
 
 
@@ -316,7 +316,7 @@ $$ \!\!\!\!\!\!\!\!\!\!\begin{equation} e_{E1C}(t) \!=\!\! \sum_{m=-\infty}^{+\i
 
 with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$
 ms. The $$ C_{E1B} $$ and $$ C_{E1Cp} $$ primary codes are pseudorandom memory
-code sequences defined in Galileo's ICD[^GalileoICD] [Annex C.7 and C.8]. The binary
+code sequences defined in Galileo's ICD[^GalileoICD] [Annex C]. The binary
 sequence of the secondary code $$ C_{E1Cs} $$ is $$ 0011100000001010110110010 $$.
 This band also contains another component, Galileo E1A, intended for the
 Public Regulated Service (PRS), that uses a BOC modulation with
@@ -661,10 +661,10 @@ The following table lists the GNSS signals providing Open Service.
 |:-:|:-:|:-:|    
 |--------------
 | [**GPS L5**](https://www.gps.gov/technical/icwg/IS-GPS-705F.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
-| [**Galileo E5a**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf)   | $$ 1176.45 $$ MHz  |  QPSK(10)  |
+| [**Galileo E5a**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf) | $$ 1176.45 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(**)} $$   | $$ 1176.45 $$ MHz |  BPSK(10)   |
 | [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
-| [**Galileo E5b**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf)   | $$ 1207.14 $$ MHz  |  QPSK(10)  |
+| [**Galileo E5b**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf) | $$ 1207.14 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) |  $$ 1207.14 $$ MHz  | BPSK(2) |
 | [**GPS L2C**](https://www.gps.gov/technical/icwg/IS-GPS-200K.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
 | [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
@@ -675,7 +675,7 @@ The following table lists the GNSS signals providing Open Service.
 | [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1575.42 $$ MHz | BOC(1,1) |
 | [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IS-GPS-200K.pdf)    | $$ 1575.42 $$ MHz  |  BPSK(1)   |
 | [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800F.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
-| [**Galileo E1b/c**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
+| [**Galileo E1b/c**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
 | [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
 | [**GLONASS L1OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1602.00 $$ MHz | BPSK(0.5) |
 |--------------
@@ -715,7 +715,7 @@ The following table lists the GNSS signals providing Open Service.
 
 [^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.1.pdf), Issue 1.1, May 2019.
 
-[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf), Issue 1.3, Dec. 2016.
+[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021
 
 [^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/system/files/galileo_documents/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
 
