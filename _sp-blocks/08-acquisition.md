@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2020-03-15T12:54:02-02:00
+last_modified_at: 2021-01-11T12:54:02-02:00
 ---
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of an _Acquisition_ block can be written as:
 
@@ -822,4 +822,4 @@ _Negative acquisition._
 
 [^Tong73]: P. S. Tong, _A Suboptimum Synchronization Procedure for Pseudo Noise Communication Systems_, in Proc. of National Telecommunications Conference, 1973, pp. 26D1-26D5.
 
-[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf), Issue 1.3, Dec. 2016.
+[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021.
