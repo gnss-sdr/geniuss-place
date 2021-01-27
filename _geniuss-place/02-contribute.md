@@ -2,7 +2,7 @@
 title: "How to contribute"
 permalink: /contribute/
 excerpt: "Contributing to the GNSS-SDR source code and to this website."
-last_modified_at: 2018-03-03T08:54:02+02:00
+last_modified_at: 2021-01-27T08:54:02+02:00
 header:
   teaser: "/assets/images/geniuss-contribute.png"
 comments: true
@@ -24,6 +24,19 @@ redirect_from:
 Found a bug in the code? Interested in adding a new feature or [fixing a known bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an issue](https://github.com/gnss-sdr/gnss-sdr/issues/new) or [pull request](https://help.github.com/articles/using-pull-requests/). If this is your first pull request, it may be helpful to read up on the [GitHub Flow](https://guides.github.com/introduction/flow/) first. If you need a quick introduction to Git and its parlance (concepts such as _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git tutorial]({{ "/docs/tutorials/using-git/" | relative_url }}). This project adheres to the [Contributor Covenant code of
 conduct]({{ "/code-of-conduct/" | relative_url }}). By participating, you are expected to uphold this code.
 
+Any code contributions going into GNSS-SDR will become part of a GPL-licensed,
+open source repository. It is therefore imperative that code submissions belong
+to the authors, and that submitters have the authority to merge that code into
+the public GNSS-SDR codebase.
+
+For that purpose, we use the [Developer's Certificate of Origin](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/DCO.txt). It is the same document used by other projects. Signing the DCO states that there are
+no legal reasons to not merge your code.
+
+To sign the DCO, suffix your git commits with a `Signed-off-by:` line. When using
+the command line, you can use `git commit -s` to automatically add this line. If
+there were multiple authors of the code, or other types of stakeholders, make
+sure that all are listed, each with a separate `Signed-off-by:` line.
+
 The basic setup steps for a contribution to the source code are the following:
 
 1. If you still have not done so, [create your personal account on GitHub](https://github.com/join).
@@ -36,7 +49,9 @@ whole source code repository into your personal account.
 
 3. Then, clone your forked repository into your local machine, checkout the `next` branch, branch off from it, and start working on the source code.
 
-4. When your contribution is ready, head your browser to your GitHub repository, switch to the branch where your contributions are, and click the **Pull Request** button.
+4. Be sure to [sign your commits](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work) to indicate that you fulfill the [Developer's Certificate of Origin](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/DCO.txt).
+
+5. When your contribution is ready, head your browser to your GitHub repository, switch to the branch where your contributions are, and click the **Pull Request** button.
 
 More details are available in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) file.
 
