@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2020-12-30T03:20:02+02:00
+last_modified_at: 2021-01-27T03:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -42,7 +42,7 @@ The attempt is to make a guideline, not to force a particular coding style onto 
 **Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) and the [High Integrity C++ Coding Standard Version 4.0](https://www.perforce.com/resources/qac/high-integrity-cpp-coding-standard) Guidelines for the use of the C++ language in critical systems.
 {: .notice--primary}
 
-**Interested in doing a pull-request? Go straight to the point!** The application of some of the rules described in this page can be automated with tools such as [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/), which can help you to meet the project conventions (automatically changing the code for you!) and integrate well with many other tools such as code editors and building systems. If you want to do a pull-request, please apply these tools to your code before doing it. [Scroll down <i class="fas fa-arrow-circle-down"></i>]({{ "/coding-style/#final-recommendations" | relative_url }}) to read about how to install and use them.
+**Interested in doing a pull-request? Go straight to the point!** The application of some of the rules described in this page can be automated with tools such as [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/), which can help you to meet the project conventions (automatically changing the code for you!) and integrate well with many other tools such as code editors and building systems. If you want to do a pull-request, please apply these tools to your code before doing it. [Scroll down <i class="fas fa-arrow-circle-down"></i>]({{ "/coding-style/#final-recommendations" | relative_url }}) to read about how to install and use them. Do not forget to [sign your commits](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work) as indication of [Developer's Certificate of Origin](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/DCO.txt) fulfillment.
 {: .notice--success}
 -------
 
