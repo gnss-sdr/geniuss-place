@@ -49,7 +49,7 @@ whole source code repository into your personal account.
 
 3. Then, clone your forked repository into your local machine, checkout the `next` branch, branch off from it, and start working on the source code.
 
-4. Be sure to [sign your commits](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work) to indicate that you fulfill the [Developer's Certificate of Origin](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/DCO.txt).
+4. Be sure to [sign your commits]({{ "/docs/tutorials/using-git/#sign-your-commits" | relative_url }}) to indicate that you fulfill the [Developer's Certificate of Origin](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/DCO.txt).
 
 5. When your contribution is ready, head your browser to your GitHub repository, switch to the branch where your contributions are, and click the **Pull Request** button.
 
