@@ -127,7 +127,7 @@ the graph quite easily.
 ## The Control Thread
 
 The [`ControlThread`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h) class is responsible for instantiating the [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) and passing the required
-configuration. Once the flow graph is defined an its blocks connected, it starts to process the incoming data stream. The [`ControlThread`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h) object is then in charge of reading the control queue and processing all the messages sent by the processing blocks via a thread-safe message queue.
+configuration. Once the flow graph is defined and its blocks connected, it starts to process the incoming data stream. The [`ControlThread`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/control_thread.h) object is then in charge of reading the control queue and processing all the messages sent by the processing blocks via a thread-safe message queue.
 
 ![Configuration pattern]({{ "/assets/images/config-pattern.png" | relative_url }}){: .align-center .invert-colors}
 _The Control Thread reads the configuration and builds the flow graph of signal processing blocks that defines the receiver._
