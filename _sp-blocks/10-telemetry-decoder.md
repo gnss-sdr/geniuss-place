@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2020-11-23T10:54:02+02:00
+last_modified_at: 2021-02-05T10:54:02+02:00
 ---
 
 
@@ -135,6 +135,14 @@ This implementation accepts the following parameters:
 
   _Telemetry Decoder implementation:_ **`Galileo_E1B_Telemetry_Decoder`**.
   {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER GALILEO CONFIG ############
+TelemetryDecoder_1B.implementation=Galileo_E1B_Telemetry_Decoder
+TelemetryDecoder_1B.dump=false
+```
 
 
 ## Glonass GNAV navigation message
@@ -369,17 +377,10 @@ In all Telemetry Decoder blocks, if `dump=true`, the logging of internal process
 * `nav_symbol`: Navigation message symbol $$ \{ \pm 1 \} $$, as obtained by the Tracking block, for each epoch. Data type: `int32_t`.
 * `PRN`: Satellite ID processed in each epoch. Data type: `int32_t`.
 
-{% capture savemat_tlm %}
-  **THIS FEATURE IS AVAILABLE STARTING FROM THE `next` BRANCH OF THE GNSS-SDR REPOSITORY**
-{% endcapture %}
-
-<div class="notice--warning">
-  {{ savemat_tlm | markdownify }}
-</div>
 
 Examples:
 
-1.- Retrieve the `dat` and`.mat` files with `nav_data` base name:
+1.- Retrieve the `dat` and`.mat` files with `nav_data` base name (with `XX` being `1C`, `1B`, `1G`, `2G`, `2S`, `L5`, or `5X`):
 ```ini
 TelemetryDecoder_XX.dump=true
 TelemetryDecoder_XX.dump_filename=nav_data
@@ -399,4 +400,4 @@ TelemetryDecoder_XX.dump=true
 TelemetryDecoder_XX.dump_filename=nav_data
 TelemetryDecoder_XX.dump_mat=false
 ```
-so files will be named  `telemetry0.dat`, `telemetry1.dat`, etc.
+so files will be named  `nav_data0.dat`, `nav_data1.dat`, etc.
