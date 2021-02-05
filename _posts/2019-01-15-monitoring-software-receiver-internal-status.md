@@ -472,7 +472,6 @@ SignalSource.implementation=File_Signal_Source
 SignalSource.filename=/home/your-username/work/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat
 SignalSource.item_type=ishort
 SignalSource.sampling_frequency=4000000
-SignalSource.freq=1575420000
 SignalSource.samples=0
 
 ;######### SIGNAL_CONDITIONER CONFIG ############
