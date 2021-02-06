@@ -517,6 +517,7 @@
   @include color-assign(border, border, '1px solid here');
   border-radius: $border-radius;
   box-shadow: $box-shadow;
+  overflow-wrap: break-word;
 
   .nav__title {
     color: #fff;
