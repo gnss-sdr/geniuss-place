@@ -341,3 +341,43 @@
     margin-right: initial;
   }
 }
+
+
+// Add scrollbar to sticky Table of Contents in small screens
+// From: https://github.com/iBug/iBug-source/blob/ca14b16997b9be975dd1719b9871f466421034f2/_sass/toc.scss
+// Copyright: iBug <git@ibugone.com>
+// License: CC BY-SA 4.0
+// Color customization by C. Fernandez
+
+.sidebar__right.sticky {
+  @include breakpoint($large) {
+    max-height: calc(100vh - 4em);
+    overflow-y: auto;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+    position: absolute;
+    top: 0;
+    right: -2px;
+  }
+
+  // WARNING: This is not working
+  &:hover::-webkit-scrollbar-thumb {
+    opacity: 1 !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @include color-assign(background, light-gray);
+
+    // WARNING: This is not working in Chrome or Opera, but it does in Firefox and Safari
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      @include color-assign(background, primary);
+      opacity: 0.5;
+    }
+  }
+}

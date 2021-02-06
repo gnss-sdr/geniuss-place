@@ -144,3 +144,7 @@ Jekyll Group-By-Array is distributed under the terms of the [MIT License](https:
 This work incorporates [@allejo's Pure Liquid Jekyll Table of Contents](https://allejo.io/blog/a-jekyll-toc-without-plugins-or-javascript/),
 Copyright &copy; 2017 Vladimir Jimenez.
 Pure Liquid Jekyll Table of Contents is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+This work incorporates code from [iBug-source][https://github.com/iBug/iBug-source],
+Copyright &copy; 2020-2021 iBug <git@ibugone.com>.
+iBug-source is distributed under the terms of the Creative Commons Attribution-ShareAlike 4.0 International Public License ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)).
