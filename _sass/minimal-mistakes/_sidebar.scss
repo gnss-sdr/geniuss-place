@@ -371,7 +371,7 @@
   &::-webkit-scrollbar-thumb {
     @include color-assign(background, light-gray);
 
-    // WARNING: This is not working in Chrome or Opera, but it does in Firefox and Safari
+    // WARNING: This is not working in Chrome or Opera, but it does in Safari
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 
