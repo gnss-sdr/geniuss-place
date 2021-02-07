@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2020-03-13T12:54:02-04:00
+last_modified_at: 2021-02-07T09:54:02+02:00
 ---
 
 The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange**, **carrier phase** (or its **phase-range** version) and **Doppler shift** (or its **pseudorange rate** version).
@@ -219,8 +219,17 @@ It accepts the following parameters:
   _Observables implementation:_ **`Hybrid_Observables`**.
   {: style="text-align: center;"}
 
-{% capture savemat %}
-  If `dump=true`, the logging of data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with same name than `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format which can be easily read with Matlab or Octave, by doing `load observables.mat`, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library.  The stored variables are matrices with a number of rows equal to the total number of channels set up in the configuration file, and a number of columns equal to the number of epochs (that is, tracking integration times). This block stores the following variables:
+Example:
+
+```ini
+    ;######### OBSERVABLES CONFIG ############
+    Observables.implementation=Hybrid_Observables
+    Observables.dump=true
+```
+
+&nbsp;
+
+If `dump=true`, the logging of data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with same name than `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format which can be easily read with Matlab or Octave, by doing `load observables.mat`, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library.  The stored variables are matrices with a number of rows equal to the total number of channels set up in the configuration file, and a number of columns equal to the number of epochs (that is, tracking integration times). This block stores the following variables:
 
   * `Carrier_Doppler_hz`: Doppler estimation in each channel, in [Hz].
   * `Carrier_phase_cycles`: Carrier phase estimation in each channel, in [cycles].
@@ -230,25 +239,7 @@ It accepts the following parameters:
   * `RX_time`: Receiving time in each channel, in seconds after the start of the week.
   * `TOW_at_current_symbol_s`: Time of week of the current symbol, in [s].
 
-  **THIS FEATURE IS AVAILABLE STARTING FROM GNSS-SDR v0.0.10.**
-{% endcapture %}
-
-<div class="notice--warning">
-  {{ savemat | markdownify }}
-</div>
-
-
-Example:
-
-```ini
-    ;######### OBSERVABLES CONFIG ############
-    Observables.implementation=Hybrid_Observables
-    Observables.dump=true
-```
-
-
-
-----
+&nbsp;
 
 ## References
 

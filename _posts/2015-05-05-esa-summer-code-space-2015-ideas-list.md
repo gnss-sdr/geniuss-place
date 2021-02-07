@@ -2,7 +2,7 @@
 title: "ESA Summer of Code in Space 2015 ideas list"
 excerpt: "Ideas page for SOCIS 2015."
 header:
-  teaser: http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/03/socis/15309314-1-eng-GB/SOCIS_large.jpg
+  teaser: /assets/images/SOCIS_large.jpg
 tags:
   - news
 author_profile: false
@@ -12,9 +12,9 @@ redirect_from:
   - /documentation/esa-summer-code-space-2015-ideas-list
 ---
 
-ESA Summer of Code in Space 2015 ([SOCIS 2015](https://socis.esa.int/about/)) is a program run by the European Space Agency. It aims at offering student developers stipends to write code for various space-related open source software projects. Through SOCIS, accepted student applicants are paired with a mentor or mentors from the participating projects, thus gaining exposure to real-world software development scenarios. In turn, the participating projects are able to more easily identify and bring in new developers. To learn more about the program, check out the [timeline](https://socis.esa.int/timeline/), visit the [FAQ](https://socis.esa.int/frequently-asked-questions/), or head to its [mailing list](https://groups.google.com/forum/#!forum/esa-socis).
+ESA Summer of Code in Space 2015 ([SOCIS 2015](https://www.esa.int/Enabling_Support/Space_Engineering_Technology/SOCIS_The_ESA_Summer_of_Code_in_Space)) is a program run by the European Space Agency. It aims at offering student developers stipends to write code for various space-related open source software projects. Through SOCIS, accepted student applicants are paired with a mentor or mentors from the participating projects, thus gaining exposure to real-world software development scenarios. In turn, the participating projects are able to more easily identify and bring in new developers.
 
-If you are an [eligible](https://socis.esa.int/frequently-asked-questions/) and interested student, read through the list and note the projects you are interested in. You, as the student programmer, then submit a proposal to ESA using the SOCIS 2015 website. The application form will be open until April 30. We recommend you to submit your application early. By doing so, it will be given a greater share of attention than is possible for applications submitted at the last minute.
+If you are an eligible and interested student, read through the list and note the projects you are interested in. You, as the student programmer, then submit a proposal to ESA using the SOCIS 2015 website. The application form will be open until April 30. We recommend you to submit your application early. By doing so, it will be given a greater share of attention than is possible for applications submitted at the last minute.
 
 You might submit a proposal following the guidelines below, or you might want to adapt it. Changes to the proposal could include:
 

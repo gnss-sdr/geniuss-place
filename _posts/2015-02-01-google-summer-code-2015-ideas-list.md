@@ -9,7 +9,7 @@ author_profile: false
 sidebar:
   nav: "news"
 redirect_from:
-  - /documentation/g​oogle-summer-code-2015-ideas-list
+  - /documentation/google-summer-code-2015-ideas-list
   - /node/57
 ---
 

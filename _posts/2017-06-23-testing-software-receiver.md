@@ -135,11 +135,11 @@ GNSS-SDR uses the [Google C++ Testing Framework](https://github.com/google/googl
  * **The testing framework should liberate test writers from housekeeping chores and let them focus on the test content**. Google C++ Testing Framework automatically keeps track of all tests defined, and does not require the user to enumerate them in order to run them.
  * **Tests should be fast**. With Google C++ Testing Framework, you can reuse shared resources across test cases and pay for the set-up/tear-down only once, without making tests depend on each other.
 
-When using Google Test, developers write [_assertions_](https://github.com/google/googletest/blob/master/googletest/docs/primer.md#assertions), which are statements that check whether a condition is true. An assertion's result can be _success_, _nonfatal failure_, or _fatal failure_. If a fatal failure occurs, it aborts the current function; otherwise the program continues normally.
+When using Google Test, developers write [_assertions_](https://github.com/google/googletest/blob/master/docs/primer.md#assertions), which are statements that check whether a condition is true. An assertion's result can be _success_, _nonfatal failure_, or _fatal failure_. If a fatal failure occurs, it aborts the current function; otherwise the program continues normally.
 
 _Test Cases_ use assertions to verify the tested code's behavior. If a test case crashes or has a failed assertion, then it _<span style="color: #E74C3C">fails</span>_; otherwise it _<span style="color: #2ECC71">succeeds</span>_.
 
-A _Test Suite_ contains one or many test cases. You should group your test cases into test suites that reflect the structure of the tested code. When multiple test cases in a test suite need to share common objects and subroutines, you can put them into a [_Test Fixture_](https://github.com/google/googletest/blob/master/googletest/docs/primer.md#test-fixtures-using-the-same-data-configuration-for-multiple-tests) class.
+A _Test Suite_ contains one or many test cases. You should group your test cases into test suites that reflect the structure of the tested code. When multiple test cases in a test suite need to share common objects and subroutines, you can put them into a [_Test Fixture_](https://github.com/google/googletest/blob/master/docs/primer.md#test-fixtures-using-the-same-data-configuration-for-multiple-tests-same-data-multiple-tests) class.
 
 A _Test Program_ can contain multiple test suites.
 
