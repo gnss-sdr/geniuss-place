@@ -664,9 +664,9 @@ This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h
 
 For more details details about the usage of the Google C++ Testing Framework and its available features, please check out its documentation:
 
- * [Primer](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) -- start here if you are new to googletest.
- * [Advanced Topics](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md) -- learn some new tricks.
- * [Frequently-Asked Questions](https://github.com/google/googletest/blob/master/googletest/docs/faq.md) -- maybe your question is answered here.
+ * [Primer](https://github.com/google/googletest/blob/master/docs/primer.md) -- start here if you are new to googletest.
+ * [Advanced Topics](https://github.com/google/googletest/blob/master/docs/advanced.md) -- learn some new tricks.
+ * [Frequently-Asked Questions](https://github.com/google/googletest/blob/master/docs/faq.md) -- maybe your question is answered here.
 
 
 The existing tests are also a source of examples on how to write tests. Please place your testing code in an adequate folder from the GNSS-SDR source tree:
