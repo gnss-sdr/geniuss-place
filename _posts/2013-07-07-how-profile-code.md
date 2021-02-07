@@ -5,7 +5,7 @@ author_profile: false
 sidebar:
   nav: "news"
 header:
-  teaser: https://upload.wikimedia.org/wikipedia/en/f/f9/Valgrind_logo.png
+  teaser: /assets/images/Valgrind_logo.png
 tags:
   - news
 ---
@@ -123,7 +123,7 @@ $ pprof --gv ./gnss-sdr /tmp/prof.gnss-sdr.0045.heap
 
 ## Instrumenting profilers
 
-Another king of profilers instrument (that is, monitor or measure) the target program with additional instructions to collect the required information about software performance. [Valgrind](http://valgrind.org/) is an instrumentation framework for building dynamic analysis tools. There are Valgrind tools that can automatically detect many memory management and threading bugs, and profile  programs in detail. One of these tools is Callgrind, a cache profiler. Available separately is an amazing visualisation tool, [KCachegrind](https://kcachegrind.github.io/html/Home.html), which gives a much better overview of the data that Callgrind collects.
+Another king of profilers instrument (that is, monitor or measure) the target program with additional instructions to collect the required information about software performance. [Valgrind](https://www.valgrind.org/) is an instrumentation framework for building dynamic analysis tools. There are Valgrind tools that can automatically detect many memory management and threading bugs, and profile  programs in detail. One of these tools is Callgrind, a cache profiler. Available separately is an amazing visualisation tool, [KCachegrind](https://kcachegrind.github.io/html/Home.html), which gives a much better overview of the data that Callgrind collects.
 
 When you use Callgrind to profile an application, your application is transformed in an intermediate language and then ran in a virtual processor emulated by Valgrind. This has a huge run-time overhead, but the precision is really good and your profiling data is complete. An application running in Callgrind can be 10 to 50 times slower than normally. The output of Callgrind is flat cal graph that is not really usable directly, but we can use KCachegrind to display the information about the profiling of the analyzed application.
 
@@ -149,6 +149,6 @@ $ kcachegrind &
 
 and then we have to open the file `callgrind.out.XXX` we obtained before.
 
-The Valgrind framework offers other interesting tools such as Memcheck, a memory error detector. See the [Memcheck manual](http://valgrind.org/docs/manual/mc-manual.html) for more details.
+The Valgrind framework offers other interesting tools such as Memcheck, a memory error detector. See the [Memcheck manual](https://www.valgrind.org/docs/manual/mc-manual.html) for more details.
 
-To know more, a good place to start is the [Valgrind homepage](http://valgrind.org/) and a list of [research papers about Valgrind](http://valgrind.org/docs/pubs.html).
+To know more, a good place to start is the [Valgrind homepage](https://www.valgrind.org/) and a list of [research papers about Valgrind](https://www.valgrind.org/docs/pubs.html).
