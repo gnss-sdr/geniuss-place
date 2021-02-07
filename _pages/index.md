@@ -1,6 +1,8 @@
 ---
 layout: splash
 permalink: /
+redirect_from:
+  - /documentation/about-project
 date:
 header:
   overlay_color: "#000000" # "#3399cc"
