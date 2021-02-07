@@ -16,6 +16,8 @@ The role of a _PVT_ block is to compute navigation solutions and deliver informa
 
 It follows a description of the available positioning algorithms and their parameters, the available output formats and the description of the configuration options for this block.
 
+&nbsp;
+
 # Positioning modes
 
 The positioning problem is generally stated as
@@ -355,10 +357,13 @@ If the validation failed, RTKLIB outputs the ʺFLOATʺ solution $$ \hat{\mathbf{
 
 {:/comment}
 
+&nbsp;
 
 ---------
 
-# Ionosphere Model
+&nbsp;
+
+# Ionospheric Model
 
 The ionosphere is a region of Earth's upper atmosphere, from about 60 km to 1,000 km altitude, surrounding the planet with a shell of electrons and electrically charged atoms and molecules. This part of the atmosphere is ionized by ultraviolet, X-ray and shorter wavelengths of solar radiation, and this affects GNSS signals' propagation speed.
 
@@ -408,9 +413,13 @@ This correction is activated when `PVT.iono_model` is set to `Broadcast`.
 SBAS corrections for ionospheric delay is provided by the message type 18 (ionospheric grid point masks) and the message type 26 (ionospheric delay corrections).
 {:/comment}
 
+&nbsp;
+
 ---------
 
-# Troposphere Model
+&nbsp;
+
+# Tropospheric Model
 
 The troposphere is the lowest portion of Earth's atmosphere, and contains 99% of the total mass of water vapor. The average depths of the troposphere are 20 km in the tropics, 17 km in the mid latitudes, and 7 km in the polar regions in winter. The chemical composition of the troposphere is essentially uniform, with the notable exception of water vapor, which can vary widely. The effect of the troposphere on the GNSS signals appears as an extra delay in the measurement of the signal traveling time from the satellite to the receiver. This delay depends on the temperature, pressure, humidity as well as the transmitter and receiver antennas location, and it is related to [air refractivity](https://aty.sdsu.edu/explain/atmos_refr/air_refr.html), which in turn can be divided in hydrostatic, i.e., dry gases (mainly $$ N_2 $$ and $$ O_2 $$), and wet, i.e., water vapour, components:
 
@@ -467,7 +476,11 @@ $$ \begin{equation} \!\!\!\!\!\!\!\!\!\!\!\!m(El_{r}^{(s)})\! = \!m_{W}(El_{r}^{
 
 where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and $$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the tropospheric gradient, respectively. The zenith total delay $$ Z_{T,r} $$ and the gradient parameters $$ G_{E,r} $$ and $$ G_{N,r} $$ are estimated as unknown parameters in the parameter estimation process.
 
+&nbsp;
+
 ---------
+
+&nbsp;
 
 # Output formats
 
@@ -528,16 +541,16 @@ The following table shows the complete list of streamed parameters:
 | `user_clk_drift_ppm` | `double` | User clock drift, in parts per million. |
 |--------------
 
-**IMPORTANT**: This UDP streaming feature is only available from the `next` branch of GNSS-SDR's repository, so it is **not** present in the current stable release.
-{: .notice--warning}
-
-
+&nbsp;
 
 Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | relative_url }}) page.
 {: .notice--success}
 
+&nbsp;
 
 ---------
+
+&nbsp;
 
 # Implementation: `RTKLIB_PVT`
 
@@ -708,15 +721,12 @@ PVT.output_enabled=false
 
 Please note that this only concerns to the generation of mentioned file formats, and it does not affect the generation of dump files activated in the configuration of each processing block. If the RTCM server is activated with `flag_rtcm_server=true`, it will still work even if the binary RTCM file is deactivated with `rtcm_output_file_enabled=false`.
 
+&nbsp;
 
--------
+---------
 
+&nbsp;
 
-
-
-
-
--------------
 # References
 
 [^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf). April 29, 2013.
