@@ -16,7 +16,7 @@ The notation is as follows: for a global parameter `XXX` with value `YY`, its en
 ```ini
 GNSS-SDR.XXX=YY
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 If a parameter is not specified in the configuration file, it takes its default value.
 
@@ -52,7 +52,7 @@ In order to use it, the executable `gnss-sdr` must be executed with the [gnss-sd
 ```console
 $ gnss-sdr-harness.sh gnss-sdr -c config_file.conf
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 The configuration of the Telecommand system is as follows:
 
@@ -122,7 +122,7 @@ ch | sys | sig  | mode | Tlm | Eph | Doppler  |   CN0   |
 - Receiver Speed over Ground [km/h]: 2
 - Receiver Course over ground [deg]: 175.3
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 _Example of the `status` command_.
 {: style="text-align: center;"}
 
@@ -138,7 +138,7 @@ OK
 coldstart
 OK
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 _Example of the `coldstart` command_.
 {: style="text-align: center;"}
 
@@ -154,7 +154,7 @@ OK
 warmstart 1/12/2018 09:15:42 41.234 1.76 560.0
 OK
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 _Example of the `warmstart` command_.
 {: style="text-align: center;"}
 

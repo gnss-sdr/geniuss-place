@@ -41,7 +41,7 @@ CMake's defaults and GNSS-SDR project configuration settings can be overridden o
 ```console
 $ cmake -D<variable_name>=<value>
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Thus, if you want to set the variable named `CMAKE_BUILD_TYPE` to the `Debug` value, you can write in your command line:
 

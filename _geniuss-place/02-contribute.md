@@ -120,7 +120,7 @@ Configuration file: _config.dev.yml
     Server address: http://127.0.0.1:4000/
   Server running... press ctrl-c to stop.
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Just point your browser to that [local direction](http://127.0.0.1:4000/) in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
 

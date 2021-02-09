@@ -29,7 +29,7 @@ $ gnss-sdr --version
 gnss-sdr version 0.0.14
 $  
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Please check that your installed version is 0.0.14 (or something like 0.0.14.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.14, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
@@ -41,7 +41,7 @@ $ gnss-sdr --version
 gnss-sdr: command not found
 $  
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 please check out the [building guide]({{ "/build-and-install/" | relative_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file for more details on how to install GNSS-SDR.
 
@@ -176,7 +176,7 @@ Starting a TCP/IP server of RTCM messages on port 2101
 The TCP/IP server of RTCM messages is up and running. Accepting connections ...
 ...
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Then, after some seconds detecting GPS signals and decoding some frames of their navigation messages (at least, subframes 1, 2 and 3 from four satellites)...
 
@@ -230,7 +230,7 @@ Position at 2013-Apr-04 06:23:37.500000 UTC using 4 observations is Lat = 41.274
 Current receiver time: 32 s
 ...
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 
 If you see something similar to this... Yay! You are getting position fixes with your open source software-defined GPS receiver!
@@ -248,7 +248,7 @@ GNSS-SDR program ended.
 Stopping TCP/IP server on port 2101
 $
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Now you can examine the processing outputs in the folder from which you invoked GNSS-SDR:
 

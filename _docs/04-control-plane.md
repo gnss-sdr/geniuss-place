@@ -47,7 +47,7 @@ related to _SignalSource_ should look like this:
 SignalSource.parameter1=value1
 SignalSource.parameter2=value2
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 The name of these parameters can be anything but one reserved word: `implementation`.
 This parameter indicates in its value the name of the class that has to be instantiated by the factory
@@ -73,7 +73,7 @@ In this way, a full GNSS receiver can be uniquely defined in one text file in IN
 ```console
 $ gnss-sdr --config_file=/path/to/my_receiver.conf
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 GNSS-SDR allows the user to define a custom GNSS receiver, including its architecture (number of bands, channels per band and targeted signal) and the specific algorithms and parameters for each of the processing blocks through a single configuration file (a simple text file in [INI](https://en.wikipedia.org/wiki/INI_file) format). Thus, **each configuration file defines a different GNSS receiver**. Some examples of such files are available at [gnss-sdr/conf](https://github.com/gnss-sdr/gnss-sdr/tree/master/conf).
 {: .notice--info}
@@ -138,14 +138,14 @@ As we saw in the [Overview]({{ "/docs/overview/" | relative_url }}), the `main` 
 ```cpp
 auto control_thread = std::make_unique<ControlThread>();
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 The constructor of this objects reads the commandline flag provided by the user when executing the receiver which points to the text file containing the configuration, as shown above:
 
 ```console
 $ gnss-sdr --config_file=/path/to/my_receiver.conf
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Then, when the `run()` method of the `control_thread` object is called, a member of class [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) connects the flow graph, starts the flow of data from sources to sinks, and keeps processing messages from a control queue until the receiver stops.
 
@@ -176,7 +176,7 @@ int ControlThread::run()
     return 0;
   }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Hence, the object of class [`GNSSFlowgraph`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/receiver/gnss_flowgraph.h) will parse the configuration file and will ask the Block Factory for the corresponding [_Signal Source_]({{ "/docs/sp-blocks/signal-source/" | relative_url }}), [_Signal Conditioner_]({{ "/docs/sp-blocks/signal-conditioner/" | relative_url }}), [_Channels_]({{ "/docs/sp-blocks/channels/" | relative_url }}) (each one with its own [_Acquisition_]({{ "/docs/sp-blocks/acquisition/" | relative_url }}), [_Tracking_]({{ "/docs/sp-blocks/tracking/" | relative_url }}) and [_Telemetry Decoder_]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }})), one [_Observables_]({{ "/docs/sp-blocks/observables/" | relative_url }}) block (collecting the processing results from all Channels), and a [_PVT_]({{ "/docs/sp-blocks/pvt/" | relative_url }}) block (acting as a signal sink):
 

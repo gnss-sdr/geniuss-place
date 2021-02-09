@@ -2,12 +2,12 @@
    jQuery plugin settings and other scripts
    ========================================================================== */
 
-$(document).ready(function() {
+$(document).ready(function () {
   // FitVids init
   $("#main").fitVids();
 
   // Sticky sidebar
-  var stickySideBar = function() {
+  var stickySideBar = function () {
     var show =
       $(".author__urls-wrapper button").length === 0
         ? $(window).width() > 1024 // width should match $large Sass variable
@@ -23,50 +23,50 @@ $(document).ready(function() {
 
   stickySideBar();
 
-  $(window).resize(function() {
+  $(window).resize(function () {
     stickySideBar();
   });
 
   // Follow menu drop down
-  $(".author__urls-wrapper button#CarlesFernández-Prades").on("click", function() {
+  $(".author__urls-wrapper button#CarlesFernández-Prades").on("click", function () {
     $(".author__urls#urls-CarlesFernández-Prades").toggleClass("is--visible");
     $(".author__urls-wrapper button#CarlesFernández-Prades").toggleClass("open");
   });
-  $(".author__urls-wrapper button#JavierArribas").on("click", function() {
+  $(".author__urls-wrapper button#JavierArribas").on("click", function () {
     $(".author__urls#urls-JavierArribas").toggleClass("is--visible");
     $(".author__urls-wrapper button#JavierArribas").toggleClass("open");
   });
-  $(".author__urls-wrapper button#LuisEsteve").on("click", function() {
+  $(".author__urls-wrapper button#LuisEsteve").on("click", function () {
     $(".author__urls#urls-LuisEsteve").toggleClass("is--visible");
     $(".author__urls-wrapper button#LuisEsteve").toggleClass("open");
   });
-  $(".author__urls-wrapper button#PauClosas").on("click", function() {
+  $(".author__urls-wrapper button#PauClosas").on("click", function () {
     $(".author__urls#urls-PauClosas").toggleClass("is--visible");
     $(".author__urls-wrapper button#PauClosas").toggleClass("open");
   });
-  $(".author__urls-wrapper button#MarcMajoral").on("click", function() {
+  $(".author__urls-wrapper button#MarcMajoral").on("click", function () {
     $(".author__urls#urls-MarcMajoral").toggleClass("is--visible");
     $(".author__urls-wrapper button#MarcMajoral").toggleClass("open");
   });
-  $(".author__urls-wrapper button#JordiVilà-Valls").on("click", function() {
+  $(".author__urls-wrapper button#JordiVilà-Valls").on("click", function () {
     $(".author__urls#urls-JordiVilà-Valls").toggleClass("is--visible");
     $(".author__urls-wrapper button#JordiVilà-Valls").toggleClass("open");
   });
-  $(".author__urls-wrapper button#ÁlvaroCebriánJuan").on("click", function() {
+  $(".author__urls-wrapper button#ÁlvaroCebriánJuan").on("click", function () {
     $(".author__urls#urls-ÁlvaroCebriánJuan").toggleClass("is--visible");
     $(".author__urls-wrapper button#ÁlvaroCebriánJuan").toggleClass("open");
   });
-  $(".author__urls-wrapper button#DamianMiralles").on("click", function() {
+  $(".author__urls-wrapper button#DamianMiralles").on("click", function () {
     $(".author__urls#urls-DamianMiralles").toggleClass("is--visible");
     $(".author__urls-wrapper button#DamianMiralles").toggleClass("open");
   });
-  $(".author__urls-wrapper button#AntonioRamosdeTorres").on("click", function() {
+  $(".author__urls-wrapper button#AntonioRamosdeTorres").on("click", function () {
     $(".author__urls#urls-AntonioRamosdeTorres").toggleClass("is--visible");
     $(".author__urls-wrapper button#AntonioRamosdeTorres").toggleClass("open");
   });
 
   // Close search screen with Esc key
-  $(document).keyup(function(e) {
+  $(document).keyup(function (e) {
     if (e.keyCode === 27) {
       if ($(".initial-content").hasClass("is--hidden")) {
         $(".search-content").toggleClass("is--visible");
@@ -76,11 +76,11 @@ $(document).ready(function() {
   });
 
   // Search toggle
-  $(".search__toggle").on("click", function() {
+  $(".search__toggle").on("click", function () {
     $(".search-content").toggleClass("is--visible");
     $(".initial-content").toggleClass("is--hidden");
     // set focus on input
-    setTimeout(function() {
+    setTimeout(function () {
       $(".search-content input").focus();
     }, 400);
   });
@@ -90,7 +90,7 @@ $(document).ready(function() {
     offset: 20,
     speed: 300,
     durationMax: 600,
-    easing: 'easeInOutQuint'
+    easing: 'easeInOutQuint',
   });
 
   // Gumshoe scroll spy init
@@ -109,7 +109,7 @@ $(document).ready(function() {
       reflow: true, // if true, listen for reflows
 
       // Event support
-      events: true // if true, emit custom events
+      events: true, // if true, emit custom events
     });
   }
 
@@ -120,7 +120,7 @@ $(document).ready(function() {
 
   // Magnific-Popup options
   $(".image-popup").magnificPopup({
-    // disableOn: function() {
+    // disableOn: function () {
     //   if( $(window).width() < 500 ) {
     //     return false;
     //   }
@@ -131,10 +131,10 @@ $(document).ready(function() {
     gallery: {
       enabled: true,
       navigateByImgClick: true,
-      preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+      preload: [0, 1], // Will preload 0 - before current, and 1 after the current image
     },
     image: {
-      tError: '<a href="%url%">Image #%curr%</a> could not be loaded.'
+      tError: '<a href="%url%">Image #%curr%</a> could not be loaded.',
     },
     removalDelay: 500, // Delay in milliseconds before popup is removed
     // Class that is added to body when popup is open.
@@ -147,10 +147,10 @@ $(document).ready(function() {
           "mfp-figure",
           "mfp-figure mfp-with-anim"
         );
-      }
+      },
     },
     closeOnContentClick: true,
-    midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+    midClick: true, // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
   });
 
   // Add anchors for headings
@@ -158,7 +158,7 @@ $(document).ready(function() {
   if (content) {
     var headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
     if (headings) {
-      headings.forEach(function(element) {
+      headings.forEach(function (element) {
         var id = element.getAttribute('id');
         if (id) {
           var anchor = document.createElement("a");
@@ -173,39 +173,44 @@ $(document).ready(function() {
   }
 
   // Add copy button for <pre> blocks
-  var copyText = function(text) {
-    var isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-    var textarea = document.createElement('textarea');
-    textarea.className = "clipboard-helper";
-    textarea.style[isRTL ? 'right' : 'left'] = '-9999px';
-    // Move element to the same position vertically
-    var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-    textarea.style.top = yPosition + "px";
+  var copyText = function (text) {
+    if (document.queryCommandEnabled("copy") && navigator.clipboard) {
+      navigator.clipboard.writeText(textarea.value).then(
+        () => true, () => console.error("Failed to copy text to clipboard: " + text)
+      );
+      return true;
+    } else {
+      var isRTL = document.documentElement.getAttribute("dir") === "rtl";
 
-    textarea.setAttribute('readonly', '');
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    var success = true;
-    try {
-      textarea.select();
-      if (document.queryCommandEnabled('copy') && navigator.clipboard) {
-        navigator.clipboard.writeText(textarea.value);
-      } else {
+      var textarea = document.createElement("textarea");
+      textarea.className = "clipboard-helper";
+      textarea.style[isRTL ? "right" : "left"] = "-9999px";
+      // Move element to the same position vertically
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      textarea.style.top = yPosition + "px";
+
+      textarea.setAttribute("readonly", "");
+      textarea.value = text;
+      document.body.appendChild(textarea);
+
+      var success = true;
+      try {
+        textarea.select();
         success = document.execCommand("copy");
+      } catch (e) {
+        success = false;
       }
-    } catch (e) {
-      success = false;
+      textarea.parentNode.removeChild(textarea);
+      return success;
     }
-    textarea.parentNode.removeChild(textarea);
-    return success;
   };
 
-  var copyButtonEventListener = function(event) {
+  var copyButtonEventListener = function (event) {
     var thisButton = event.target;
 
     // Locate the <code> element
     var codeBlock = thisButton.nextElementSibling;
-    while (codeBlock && codeBlock.tagName.toLowerCase() !== 'code') {
+    while (codeBlock && codeBlock.tagName.toLowerCase() !== "code") {
       codeBlock = codeBlock.nextElementSibling;
     }
     if (!codeBlock) {
@@ -226,15 +231,11 @@ $(document).ready(function() {
 
   var elem = document.querySelectorAll(".page__content pre > code");
   if (elem) {
-    elem.forEach(function(element, index, parentList) {
+    elem.forEach(function (element, index, parentList) {
       // Locate the <pre> element
       var container = element.parentElement;
       // Sanity check - don't add an extra button if there's already one
-      if (container.firstElementChild.tagName.toLowerCase() !== 'code') {
-        return;
-      }
-      // Add the option to not include the copy button if class nocopy is present
-      if (element.closest('.nocopy')) {
+      if (container.firstElementChild.tagName.toLowerCase() !== "code") {
         return;
       }
 

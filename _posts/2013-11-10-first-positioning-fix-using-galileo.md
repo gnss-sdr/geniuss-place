@@ -56,7 +56,7 @@ Dilution of Precision at 2013-Nov-10 15:52:14 is HDOP = 3.58641436755431
  VDOP = 4.151352135926544 TDOP = 4.650305636312183
  GDOP = 5.485990573475482
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 The maximum available Carrier-to-Noise density ratio (CN0) was 41 dB-Hz, associated to high elevation satellites (such as Galileo FM3), as predicted by the orbital model. In contrast, Galileo PFM (PRN ID 11) is visible with a low elevation, and thus the received CN0 was 35 dB-Hz. Next figure shows a capture of the predicted satellite positions and the skyplot.
 
