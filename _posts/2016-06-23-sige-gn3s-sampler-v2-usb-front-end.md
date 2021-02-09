@@ -185,7 +185,7 @@ Creating GPS Source
 GN3S Start
 started TX
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 
 In this sample script, the FFT GUI shows in real-time the digitized signal spectrum, as is shown in the next picture:

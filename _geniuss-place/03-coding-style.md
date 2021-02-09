@@ -56,7 +56,7 @@ Variables are named using lower-case letters and words are separated using under
 fft_size
 my_variable_name
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Naming rules for files
 Files are named using lower-case letters and words are separated using under-score. Abbreviations, when used in file names, are also written in lower-case letters. Source files are named using `.cc` suffix, whereas header files end with `.h` extension. Examples:
@@ -65,7 +65,7 @@ Files are named using lower-case letters and words are separated using under-sco
 my_file.h
 my_file.cc
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Naming rules for functions
 Function names are named using lower-case letters and words are separated using under-score. Abbreviations, when used in function names, are also written in lower-case letters. This rule applies both to stand-alone functions as well as to member functions of classes. Example:
@@ -73,7 +73,7 @@ Function names are named using lower-case letters and words are separated using 
 ```cpp
 do_something( with, these, parameters );
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 When function calls get too long, you will have to split them up in several lines. Align the following lines with the previous ones so the structure becomes obvious, and go to the next line after the comma.
 
@@ -88,7 +88,7 @@ Channel(ConfigurationInterface *configuration,
     std::string implementation,
     boost::shared_ptr<gr::msg_queue> queue);
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 
 ### Naming rules for classes and structures
@@ -99,7 +99,7 @@ My_Class_Name
 My_Struct_Name
 BPSK
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Use sensible, descriptive names
 
@@ -157,7 +157,7 @@ class A
 {
 };
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Function parameters should be lined up with one parameter per line
 
@@ -177,7 +177,7 @@ do not contain any code. Example:
 ```cpp
 while (...) {}
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Each statement should be placed on a line on its own
 
@@ -192,7 +192,7 @@ knowing which variables are pointers. (Bad) example:
 ```cpp
 int* p, i;
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 
 It is easy to forget that the star belongs to the declared name, not the
@@ -297,7 +297,7 @@ private:
     TYPE2 private_variable2; // Short description of private_variable2 here
 };
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Include formulae
 
@@ -371,7 +371,7 @@ multiple times. The format of the symbol name should be
 ...
 #endif  // GNSS_SDR_BAR_BAZ_H
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### The name of the macro used in the include guard should have the same name as the file (excluding the extension) followed by the suffix “`_H`”
 
@@ -393,7 +393,7 @@ Example:
 #include <cmath>
 ...
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### System header files should be included with `<>` and project headers with `""`
 
@@ -434,7 +434,7 @@ Example:
 #include <cmath>
 ...
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 
 ### Use `const` instead of \#define in header files
@@ -455,7 +455,7 @@ have to write `const` twice:
 ```cpp
 const char * const authorName = "Carlos Aviles";
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 However, it is worth reminding you here that string objects are
 generally preferable to their `char*`-based progenitors, so `authorName`
@@ -464,7 +464,7 @@ is often better defined this way:
 ```cpp
 const std::string authorName("Carlos Aviles");  
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 The second special case concerns class-specific constants. To limit the
 scope of a constant to a class, you must make it a member, and to ensure
@@ -480,7 +480,7 @@ private:
     ...
 };  
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 In general, use `const` whenever possible. The wonderful thing about
 `const` is that it allows you to specify a semantic constraint — a
@@ -541,7 +541,7 @@ Trigfunc myfunc = sin;
 void callfunc(Trigfunc callback);
 Trigfunc functable[10];
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Do not use exception specifications
 
@@ -610,7 +610,7 @@ void f()
     cout << "Decimal base is " << dec << '\n';
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### The parts of a class definition must be `public`, `protected` and `private`
 
@@ -649,7 +649,7 @@ T operator+(const T & left, const T & right)
     return temp;
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ## Statements
 
@@ -739,7 +739,7 @@ double sqrt(double x)
     assert(abs(result*result-x)/x < 1E-8) ;
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Use prefix increment/decrement instead of postfix increment/decrement when the value of the variable is not used
 
@@ -763,7 +763,7 @@ if (ptr) // wrong
 if (ptr != NULL) // wrong
 if (ptr != nullptr) // ok (C++11)
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Use the new cast operators
 
@@ -803,7 +803,7 @@ int32_t f ( const char_t * numstr )
     return atoi ( numstr );  // Non-compliant
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### The library functions `abort`, `exit`, `getenv` and `system` from library `<cstdlib>` should not be used.
 
@@ -817,7 +817,7 @@ void f ( )
     exit(0); // Non-compliant
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### The time handling functions of library `<ctime>` should not be used.
 
@@ -831,7 +831,7 @@ void f ( )
     clock(); // Non-compliant
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### The unbounded functions of library `<cstring>` should not be used.
 
@@ -848,7 +848,7 @@ void fn ( const char_t * pChar )
     strcpy ( array, pChar );  // Non-compliant
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### The macro `offsetof` should not be used.
 
@@ -866,7 +866,7 @@ void f1 ( )
     offsetof ( A, i );  // Non-compliant
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Dynamic heap memory allocation should not be used.
 
@@ -884,7 +884,7 @@ void f1 ( )
     delete i;
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### The signal handling facilities of `<csignal>` should not be used.
 
@@ -899,7 +899,7 @@ void f1 ( )
     signal ( 1, my_handler );   // Non-compliant
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### Do not use `std::vector<bool>`
 
@@ -917,7 +917,7 @@ void foo ()
     std::vector <bool> vb;    // Non-Compliant
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### The error indicator errno should not be used.
 
@@ -940,7 +940,7 @@ void f1 ( const char_t * str )
         }
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 ### The stream input/output library `<cstdio>` should not be used.
 
@@ -955,7 +955,7 @@ void fn ( )
     gets ( array );   // Can lead to buffer over-run
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 
 ## Final recommendations
@@ -1006,19 +1006,19 @@ Available versions for clang:
 	mp-clang-11
 	none (active)
     ```
-    {: class="nocopy"}
+    {: class="no-copy"}
   With `sudo port select --set clang <version>` you choose one of them as the new default, which will create symlinks in `/opt/local/bin` without the version suffix.
     ```console
 $ sudo port select --set clang mp-clang-11
 selecting 'mp-clang-11' for 'clang' succeeded. 'mp-clang-11' is now active.
     ```
-    {: class="nocopy"}
+    {: class="no-copy"}
   You can confirm this change by looking at the version of the tool:
     ```console
 $ clang-format --version
 clang-format version 11.0.0
     ```
-    {: class="nocopy"}
+    {: class="no-copy"}
   If you later wish to remove these symlinks in order to avoid hiding tools installed by Xcode, just select the `none` version.
 
 
@@ -1031,7 +1031,7 @@ clang-format version 11.0.0
     ```console
 $ clang-format -i <file>
     ```
-    {: class="nocopy"}
+    {: class="no-copy"}
   or for a folder and its and subfolders:
 ```console
 $ find src/algorithms/conditioner/ -iname *.h -o -iname *.cc | xargs clang-format -i
@@ -1045,7 +1045,7 @@ You can disable the automatic formatting of a piece of code by using comments:
 ... code here will not be formatted.
 // clang-format on  
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Note the space in between the comment start (`//`) and `clang-format`. This space is required for the comment to be successfully detected.
 

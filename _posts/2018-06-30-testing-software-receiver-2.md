@@ -61,7 +61,7 @@ Running GNSS-SDR Tests...
 [  PASSED  ] 217 tests.
 
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Other additional unit and system tests require from external tools, libraries and data files not included in the GNSS-SDR's source tree. As in the case of the Google C++ Testing Framework source code, they can be automatically downloaded and built by passing the following option flags to CMake:
 
@@ -94,7 +94,7 @@ TestSuite1.
 TestSuite2.
   TestCase
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 So, running:
 
@@ -154,7 +154,7 @@ The format of the report is as follows:
   </testsuite>
 </testsuites>
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
  * The root `<testsuites>` element corresponds to the entire test program.
  * `<testsuite>` elements correspond to Google Test test suites.
@@ -191,7 +191,7 @@ All these examples produce the following report:
   </testsuite>
 </testsuites>
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 &nbsp;
 
@@ -645,7 +645,7 @@ TEST(test_suite_name, test_case_name)
     ... test body ...
 }
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 An example of this would be:
 
@@ -700,7 +700,7 @@ The existing tests are also a source of examples on how to write tests. Please p
 │   │           ├── telemetry_decoder
 │   │           └── tracking
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Once the test code is written, you need to build and link it against the Google Test library. This process is managed in the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt). You will need to list your new test in the appropriate place in order to include it in the building:
 
@@ -731,7 +731,7 @@ Note: Google Test filter = RtcmTest.HexToInt*
 [==========] 1 test from 1 test suite ran. (2 ms total)
 [  PASSED  ] 1 test.
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 &nbsp;
 

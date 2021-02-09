@@ -119,7 +119,7 @@ UHD Find Devices Allowed options:
   --help                help message
   --args arg            device address args
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Then, you can search your USRP in a specific IP address:
 
@@ -138,7 +138,7 @@ Device Address:
     serial: F5CA38
     product: X300
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 or by typing:
 
@@ -302,7 +302,7 @@ Starting a TCP Server on port 2101
 The TCP Server is up and running. Accepting connections ...
 ...
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Of course, file `my_GPS_receiver.conf` can be wherever (`--config-file` accepts both relative and absolute paths), and the data displayed at the terminal output might vary according to your setup.
 
@@ -355,7 +355,7 @@ Current input signal time = 68 [s]
 ...
 
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
   If you see something similar to this... Yay! You are getting real-time position fixes with your open source software-defined GPS receiver!
   {: .notice--success}
@@ -378,7 +378,7 @@ GNSS-SDR program ended.
 Stopping TCP Server on port 2101
 $
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Now you can examine the files created in your working folder.
 

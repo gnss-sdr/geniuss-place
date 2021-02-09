@@ -407,7 +407,7 @@ $ tree
 
 1 directory, 5 files
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Finally go ahead and build the source code:
 
@@ -423,7 +423,7 @@ The `monitoring-client` executable will be created in the build folder. Try runn
 $ ./monitoring-client
 Usage: monitoring-client <port>
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Our monitoring client is ready. We have completed the first half of this tutorial. Now let's go ahead and configure the receiver.
 
@@ -545,7 +545,7 @@ You will see this message printed on the screen:
 ```console
 Listening on port 1234 UDP...
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 Now start the receiver on the other terminal window:
 
@@ -563,7 +563,7 @@ CH   PRN   CN0 [dB-Hz]     Doppler [Hz]
  4    20     42.442753      8469.028326
  6    32     43.016476      6550.037773
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 If you see something similar to this... Yay! You are successfully monitoring the internals of your open source software-defined GPS receiver!
 {: .notice--success}

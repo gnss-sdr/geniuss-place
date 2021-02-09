@@ -711,7 +711,7 @@ This will create in your current directory:
 │       └── GSDR301j36.18O
 └── gps_ephemeris.xml
 ```
-{: class="nocopy"}
+{: class="no-copy"}
 
 In order to shut down the generation of output files, you can just include in your configuration file the line:
 
