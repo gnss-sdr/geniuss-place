@@ -154,17 +154,23 @@ $(document).ready(function() {
   });
 
   // Add anchors for headings
-  document.querySelector('.page__content').querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(function(element) {
-    var id = element.getAttribute('id');
-    if (id) {
-      var anchor = document.createElement("a");
-      anchor.className = 'header-link';
-      anchor.href = '#' + id;
-      anchor.innerHTML = '<span class=\"sr-only\">Permalink</span><i class=\"fas fa-link\"></i>';
-      anchor.title = "Permalink";
-      element.appendChild(anchor);
+  var content = document.querySelector('.page__content');
+  if (content) {
+    var headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    if (headings) {
+      headings.forEach(function(element) {
+        var id = element.getAttribute('id');
+        if (id) {
+          var anchor = document.createElement("a");
+          anchor.className = 'header-link';
+          anchor.href = '#' + id;
+          anchor.innerHTML = '<span class=\"sr-only\">Permalink</span><i class=\"fas fa-link\"></i>';
+          anchor.title = "Permalink";
+          element.appendChild(anchor);
+        }
+      });
     }
-  });
+  }
 
   // Add copy button for <pre> blocks
   var copyText = function(text) {
@@ -218,23 +224,26 @@ $(document).ready(function() {
     return copyText(skippedText);
   };
 
-  document.querySelectorAll(".page__content pre > code").forEach(function(element, index, parentList) {
-    // Locate the <pre> element
-    var container = element.parentElement;
-    // Sanity check - don't add an extra button if there's already one
-    if (container.firstElementChild.tagName.toLowerCase() !== 'code') {
-      return;
-    }
-    // Add the option to not include the copy button if class nocopy is present
-    if (element.closest('.nocopy')) {
-      return;
-    }
+  var elem = document.querySelectorAll(".page__content pre > code");
+  if (elem) {
+    elem.forEach(function(element, index, parentList) {
+      // Locate the <pre> element
+      var container = element.parentElement;
+      // Sanity check - don't add an extra button if there's already one
+      if (container.firstElementChild.tagName.toLowerCase() !== 'code') {
+        return;
+      }
+      // Add the option to not include the copy button if class nocopy is present
+      if (element.closest('.nocopy')) {
+        return;
+      }
 
-    var copyButton = document.createElement("button");
-    copyButton.title = "Copy to clipboard";
-    copyButton.className = "clipboard-copy-button";
-    copyButton.innerHTML = '<i class="far fa-copy"></i>';
-    copyButton.addEventListener("click", copyButtonEventListener);
-    container.prepend(copyButton);
-  });
+      var copyButton = document.createElement("button");
+      copyButton.title = "Copy to clipboard";
+      copyButton.className = "clipboard-copy-button";
+      copyButton.innerHTML = '<i class="far fa-copy"></i>';
+      copyButton.addEventListener("click", copyButtonEventListener);
+      container.prepend(copyButton);
+    });
+  }
 });
