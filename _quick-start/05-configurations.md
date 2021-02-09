@@ -257,7 +257,6 @@ PVT.rtcm_MT1019_rate_ms=5000
 PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 ```
-{: class="nocopy"}
 
 You will need to adjust the values for at least two parameters:
 
@@ -578,7 +577,6 @@ PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 
 ```
-{: class="nocopy"}
 
 Copy and paste this configuration in your favorite plain text editor and save it as, for instance, `hackrf_GPS_L1.conf`.
 
