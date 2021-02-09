@@ -4,7 +4,7 @@ permalink: /design-forces/maintainability/
 excerpt: "The ease with which a product can be maintained in order to isolate and correct defects and cope with a changing environment."
 header:
   teaser: /assets/images/radar-chart.png
-last_modified_at: 2019-03-16T15:54:02-04:00
+last_modified_at: 2021-02-09T14:54:02+02:00
 ---
 
 _Maintainability_ refers to the ease with which a product can be maintained in order to isolate and correct defects or their cause, repair or replace faulty or worn-out components without having to replace still working parts, prevent unexpected breakdowns, maximize a product's useful life, maximize efficiency, reliability, and safety, meet new requirements, make future maintenance easier, or cope with a changed environment.
@@ -16,9 +16,10 @@ Depending on the used programming language, maintainability is also related to t
     * **C11**: The former international standard which defined the C programming language, ISO/IEC 9899:2011, is available from [ISO](https://www.iso.org/standard/57853.html). You can obtain something very close to the standard for free because of the working drafts available, the closest is [N1570](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1570.pdf).
     * **C99**: An older standard ISO/IEC 9899:1999 is unavailable from official sources, due to the ISO adoption of C11. The closest free working draft is [N1256](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1256.pdf).
   * For C++:
-    * **Draft C++20**: Check the [C++ standard draft sources at GitHub](https://github.com/cplusplus/draft).
-    * **C++17**: The current ISO C++ standard is officially known as _ISO International Standard ISO/IEC 14882:2017 &ndash; Programming languages &ndash; C++_. You can get it from [ISO](https://www.iso.org/standard/68564.html), [IEC](https://webstore.iec.ch/publication/62162) or [ANSI](https://webstore.ansi.org/Standards/ISO/ISOIEC148822017). The closest free working document available is [N4659](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf).
-    * **C++14**: The former ISO C++ standard was officially known as _ISO International Standard ISO/IEC 14882:2014 &ndash; Programming languages &ndash; C++_. You can get it from [ISO](https://www.iso.org/standard/64029.html) or [ANSI](https://webstore.ansi.org/RecordDetail.aspx?sku=INCITS/ISO/IEC+14882:2014+(2016)). The closest free working document available is [N4296](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf).
+    * **Draft C++23**: Check the [C++ standard draft sources at GitHub](https://github.com/cplusplus/draft).
+    * **C++20**: The current ISO C++ standard is officially known as _ISO International Standard ISO/IEC 14882:2020(E) &ndash; Programming Languages &ndash; C++_. You can get it from [ISO](https://www.iso.org/standard/79358.html), [IEC](https://webstore.iec.ch/publication/68285) or [ANSI](https://webstore.ansi.org/Standards/ISO/ISOIEC148822020). The closest free working document available is [N4868](https://github.com/cplusplus/draft/releases/download/n4868/n4868.pdf).
+    * **C++17**: The former ISO C++ standard was officially known as _ISO International Standard ISO/IEC 14882:2017 &ndash; Programming languages &ndash; C++_. You can get it from [ISO](https://www.iso.org/standard/68564.html), [IEC](https://webstore.iec.ch/publication/62162) or [ANSI](https://webstore.ansi.org/Standards/ISO/ISOIEC148822017). The closest free working document available is [N4659](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf).
+    * **C++14**: An older ISO C++ standard was officially known as _ISO International Standard ISO/IEC 14882:2014 &ndash; Programming languages &ndash; C++_. You can get it from [ISO](https://www.iso.org/standard/64029.html) or [ANSI](https://webstore.ansi.org/RecordDetail.aspx?sku=INCITS/ISO/IEC+14882:2014+(2016)). The closest free working document available is [N4296](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf).
     * **C++11**: An older ISO C++ standard was ISO/IEC 14882:2011. You can get it from [ISO](https://www.iso.org/standard/50372.html). The closest free working document available is [N3337](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3337.pdf).
 
 In other programming languages, this could refer to the minimum (oldest) / maximum (most recent) working version(s) of the corresponding compiler or interpreter. Examples:
