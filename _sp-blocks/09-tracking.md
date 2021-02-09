@@ -116,7 +116,7 @@ The $$ C/N_0 $$ value provides an indication of the signal quality that is indep
 
 The number of correlation outputs to perform the estimation defaults to $$ M = 20 $$. This value can be changed by using the command line flag  `-cn0_samples` when running the executable:
 
-```bash
+```console
 $ gnss-sdr -cn0_samples=100 -c=./configuration_file.conf
 ```
 
@@ -133,7 +133,7 @@ If the estimated $$ C/N_{0_{dB-Hz}} $$ is above a certain threshold, the trackin
 
 The threshold $$ \gamma_{code} $$ is set by default to 25 dB-Hz. This value can be changed by using the command line flag  `-cn0_min` when running the executable:
 
-```bash
+```console
 $ gnss-sdr -cn0_min=22 -c=./configuration_file.conf
 ```
 
@@ -169,7 +169,7 @@ with $$ \alpha $$ controlled by the configuration parameter `carrier_lock_test_s
 
 The threshold $$ \gamma_{carrier} $$ is set by default to 0.85 radians (corresponding to an error of approx. 31 degrees). This value can be changed by using the command line flag `-carrier_lock_th` when running the executable:
 
-```bash
+```console
 $ gnss-sdr -carrier_lock_th=0.75 -c=./configuration_file.conf
 ```
 
@@ -177,7 +177,7 @@ $ gnss-sdr -carrier_lock_th=0.75 -c=./configuration_file.conf
 
 The maximum number of lock failures before dropping a satellite is set by default to 50 consecutive failures. This value can be changed by using the command line flag  `-max_lock_fail` when running the executable:
 
-```bash
+```console
 $ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
 ```
 
@@ -379,7 +379,7 @@ GPU-accelerated computing consists in the use of a graphics processing unit (GPU
 
 This implementation follows the CUDA programming model and targets NVIDIA's GPU computing platform. Thus, you will need a [CUDA-enabled GPU](https://developer.nvidia.com/cuda-gpus) and the [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) installed. Moreover, it is only available if GNSS-SDR has been built from source and configured with the flag `ENABLE_CUDA` set to `ON`:
 
-```bash
+```console
 $ cmake -DENABLE_CUDA=ON ../ && make && sudo make install
 ```
 

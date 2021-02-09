@@ -81,19 +81,19 @@ The required software can be installed through [RubyGems](https://rubygems.org/)
 
 Install [Jekyll](https://jekyllrb.com/):
 
-```bash
+```console
 $ sudo gem install jekyll
 ```
 
 More information at [Jekyll's installation page](https://jekyllrb.com/docs/installation/). Then, install [Bundler](https://bundler.io/), a tool for managing the required dependencies:
 
-```bash
+```console
 $ sudo gem install bundler
 ```
 
 Clone your forked repository of this website and install the required dependencies:
 
-```bash
+```console
 $ git clone https://github.com/YOUR_USERNAME/geniuss-place/
 $ cd geniuss-place
 $ bundler install
@@ -101,13 +101,13 @@ $ bundler install
 
 After all gems are installed, the following command will deploy the website and run a local server at http://127.0.0.1:4000/
 
-```bash
+```console
 $ bundle exec jekyll serve -w --config _config.yml,_config.dev.yml
 ```
 
 You should see something as:
 
-```
+```console
 Configuration file: _config.yml
 Configuration file: _config.dev.yml
             Source: /path_to_cloned_repo/geniuss-place
@@ -120,13 +120,14 @@ Configuration file: _config.dev.yml
     Server address: http://127.0.0.1:4000/
   Server running... press ctrl-c to stop.
 ```
+{: class="nocopy"}
 
 Just point your browser to that [local direction](http://127.0.0.1:4000/) in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
 
 {% capture protip %}
 **Pro Tip**: if you want to modify JavaScript (under `assets/js`), you will need to install [Node.js](https://nodejs.org/en/), `cd` to the root of your project, and run `$ npm install` to get all the dependencies. If all gone well, then running `npm run build:js` will compress/concatenate `_main.js` and all plugin scripts into `main.min.js`. Thus, upon a change on JavaScript content, run:
 
-```bash
+```console
 $ npm run build:js
 ```
 

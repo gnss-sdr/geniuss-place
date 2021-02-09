@@ -16,6 +16,7 @@ The notation is as follows: for a global parameter `XXX` with value `YY`, its en
 ```ini
 GNSS-SDR.XXX=YY
 ```
+{: class="nocopy"}
 
 If a parameter is not specified in the configuration file, it takes its default value.
 
@@ -48,10 +49,10 @@ The user can access to the receiver interactive interface by connecting a TCP/IP
 
 In order to use it, the executable `gnss-sdr` must be executed with the [gnss-sdr-harness.sh](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/utils/scripts/gnss-sdr-harness.sh) script provided at [src/utils/scripts](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/scripts):
 
-```bash
+```console
 $ gnss-sdr-harness.sh gnss-sdr -c config_file.conf
 ```
-
+{: class="nocopy"}
 
 The configuration of the Telecommand system is as follows:
 
@@ -97,7 +98,7 @@ The following commands are implemented in GNSS-SDR's telecommand interface:
 Telecommand execution examples using telnet:
 
 
-```
+```console
 user@ubuntu:~\$ telnet receiver_ip tc_port
 Trying receiver_ip...
 Connected to receiver_ip.
@@ -121,12 +122,13 @@ ch | sys | sig  | mode | Tlm | Eph | Doppler  |   CN0   |
 - Receiver Speed over Ground [km/h]: 2
 - Receiver Course over ground [deg]: 175.3
 ```
+{: class="nocopy"}
 _Example of the `status` command_.
 {: style="text-align: center;"}
 
 
 
-```
+```console
 user@ubuntu:~\$ telnet receiver_ip tc_port
 Trying receiver_ip...
 Connected to receiver_ip.
@@ -136,12 +138,13 @@ OK
 coldstart
 OK
 ```
+{: class="nocopy"}
 _Example of the `coldstart` command_.
 {: style="text-align: center;"}
 
 
 
-```
+```console
 user@ubuntu:~\$ telnet receiver_ip tc_port
 Trying receiver_ip...
 Connected to receiver_ip.
@@ -151,6 +154,7 @@ OK
 warmstart 1/12/2018 09:15:42 41.234 1.76 560.0
 OK
 ```
+{: class="nocopy"}
 _Example of the `warmstart` command_.
 {: style="text-align: center;"}
 

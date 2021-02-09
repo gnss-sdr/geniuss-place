@@ -222,9 +222,9 @@ It accepts the following parameters:
 Example:
 
 ```ini
-    ;######### OBSERVABLES CONFIG ############
-    Observables.implementation=Hybrid_Observables
-    Observables.dump=true
+;######### OBSERVABLES CONFIG ############
+Observables.implementation=Hybrid_Observables
+Observables.dump=true
 ```
 
 &nbsp;

@@ -56,6 +56,7 @@ Variables are named using lower-case letters and words are separated using under
 fft_size
 my_variable_name
 ```
+{: class="nocopy"}
 
 ### Naming rules for files
 Files are named using lower-case letters and words are separated using under-score. Abbreviations, when used in file names, are also written in lower-case letters. Source files are named using `.cc` suffix, whereas header files end with `.h` extension. Examples:
@@ -64,6 +65,7 @@ Files are named using lower-case letters and words are separated using under-sco
 my_file.h
 my_file.cc
 ```
+{: class="nocopy"}
 
 ### Naming rules for functions
 Function names are named using lower-case letters and words are separated using under-score. Abbreviations, when used in function names, are also written in lower-case letters. This rule applies both to stand-alone functions as well as to member functions of classes. Example:
@@ -71,6 +73,7 @@ Function names are named using lower-case letters and words are separated using 
 ```cpp
 do_something( with, these, parameters );
 ```
+{: class="nocopy"}
 
 When function calls get too long, you will have to split them up in several lines. Align the following lines with the previous ones so the structure becomes obvious, and go to the next line after the comma.
 
@@ -85,6 +88,7 @@ Channel(ConfigurationInterface *configuration,
     std::string implementation,
     boost::shared_ptr<gr::msg_queue> queue);
 ```
+{: class="nocopy"}
 
 
 ### Naming rules for classes and structures
@@ -95,6 +99,7 @@ My_Class_Name
 My_Struct_Name
 BPSK
 ```
+{: class="nocopy"}
 
 ### Use sensible, descriptive names
 
@@ -152,6 +157,7 @@ class A
 {
 };
 ```
+{: class="nocopy"}
 
 ### Function parameters should be lined up with one parameter per line
 
@@ -171,6 +177,7 @@ do not contain any code. Example:
 ```cpp
 while (...) {}
 ```
+{: class="nocopy"}
 
 ### Each statement should be placed on a line on its own
 
@@ -185,6 +192,7 @@ knowing which variables are pointers. (Bad) example:
 ```cpp
 int* p, i;
 ```
+{: class="nocopy"}
 
 
 It is easy to forget that the star belongs to the declared name, not the
@@ -289,6 +297,7 @@ private:
     TYPE2 private_variable2; // Short description of private_variable2 here
 };
 ```
+{: class="nocopy"}
 
 ### Include formulae
 
@@ -362,6 +371,7 @@ multiple times. The format of the symbol name should be
 ...
 #endif  // GNSS_SDR_BAR_BAZ_H
 ```
+{: class="nocopy"}
 
 ### The name of the macro used in the include guard should have the same name as the file (excluding the extension) followed by the suffix “`_H`”
 
@@ -383,6 +393,7 @@ Example:
 #include <cmath>
 ...
 ```
+{: class="nocopy"}
 
 ### System header files should be included with `<>` and project headers with `""`
 
@@ -423,6 +434,7 @@ Example:
 #include <cmath>
 ...
 ```
+{: class="nocopy"}
 
 
 ### Use `const` instead of \#define in header files
@@ -443,6 +455,7 @@ have to write `const` twice:
 ```cpp
 const char * const authorName = "Carlos Aviles";
 ```
+{: class="nocopy"}
 
 However, it is worth reminding you here that string objects are
 generally preferable to their `char*`-based progenitors, so `authorName`
@@ -451,6 +464,7 @@ is often better defined this way:
 ```cpp
 const std::string authorName("Carlos Aviles");  
 ```
+{: class="nocopy"}
 
 The second special case concerns class-specific constants. To limit the
 scope of a constant to a class, you must make it a member, and to ensure
@@ -466,6 +480,7 @@ private:
     ...
 };  
 ```
+{: class="nocopy"}
 
 In general, use `const` whenever possible. The wonderful thing about
 `const` is that it allows you to specify a semantic constraint — a
@@ -526,6 +541,7 @@ Trigfunc myfunc = sin;
 void callfunc(Trigfunc callback);
 Trigfunc functable[10];
 ```
+{: class="nocopy"}
 
 ### Do not use exception specifications
 
@@ -594,6 +610,7 @@ void f()
     cout << "Decimal base is " << dec << '\n';
 }
 ```
+{: class="nocopy"}
 
 ### The parts of a class definition must be `public`, `protected` and `private`
 
@@ -632,6 +649,7 @@ T operator+(const T & left, const T & right)
     return temp;
 }
 ```
+{: class="nocopy"}
 
 ## Statements
 
@@ -721,6 +739,7 @@ double sqrt(double x)
     assert(abs(result*result-x)/x < 1E-8) ;
 }
 ```
+{: class="nocopy"}
 
 ### Use prefix increment/decrement instead of postfix increment/decrement when the value of the variable is not used
 
@@ -744,6 +763,7 @@ if (ptr) // wrong
 if (ptr != NULL) // wrong
 if (ptr != nullptr) // ok (C++11)
 ```
+{: class="nocopy"}
 
 ### Use the new cast operators
 
@@ -783,6 +803,7 @@ int32_t f ( const char_t * numstr )
     return atoi ( numstr );  // Non-compliant
 }
 ```
+{: class="nocopy"}
 
 ### The library functions `abort`, `exit`, `getenv` and `system` from library `<cstdlib>` should not be used.
 
@@ -796,6 +817,7 @@ void f ( )
     exit(0); // Non-compliant
 }
 ```
+{: class="nocopy"}
 
 ### The time handling functions of library `<ctime>` should not be used.
 
@@ -809,6 +831,7 @@ void f ( )
     clock(); // Non-compliant
 }
 ```
+{: class="nocopy"}
 
 ### The unbounded functions of library `<cstring>` should not be used.
 
@@ -825,6 +848,7 @@ void fn ( const char_t * pChar )
     strcpy ( array, pChar );  // Non-compliant
 }
 ```
+{: class="nocopy"}
 
 ### The macro `offsetof` should not be used.
 
@@ -842,6 +866,7 @@ void f1 ( )
     offsetof ( A, i );  // Non-compliant
 }
 ```
+{: class="nocopy"}
 
 ### Dynamic heap memory allocation should not be used.
 
@@ -859,6 +884,7 @@ void f1 ( )
     delete i;
 }
 ```
+{: class="nocopy"}
 
 ### The signal handling facilities of `<csignal>` should not be used.
 
@@ -873,7 +899,7 @@ void f1 ( )
     signal ( 1, my_handler );   // Non-compliant
 }
 ```
-
+{: class="nocopy"}
 
 ### Do not use `std::vector<bool>`
 
@@ -891,6 +917,7 @@ void foo ()
     std::vector <bool> vb;    // Non-Compliant
 }
 ```
+{: class="nocopy"}
 
 ### The error indicator errno should not be used.
 
@@ -913,6 +940,7 @@ void f1 ( const char_t * str )
         }
 }
 ```
+{: class="nocopy"}
 
 ### The stream input/output library `<cstdio>` should not be used.
 
@@ -927,6 +955,7 @@ void fn ( )
     gets ( array );   // Can lead to buffer over-run
 }
 ```
+{: class="nocopy"}
 
 
 ## Final recommendations
@@ -942,51 +971,54 @@ You can use clang-format in two simple steps:
 **Step 1.- Install clang-format**
 
   * **In GNU/Linux using Debian / Ubuntu distributions:**
-```bash
+```console
 $ sudo apt-get install clang-format
 ```
 
   * **In GNU/Linux using Fedora / CentOS distributions:**
-```bash
+```console
 $ sudo yum install clang-tools-extra
 ```
 
   * **In GNU/Linux using ArchLinux:**
-```bash
+```console
 $ sudo pacman -S clang
 ```
 
   * **In GNU/Linux using openSUSE:**
-```bash
+```console
 $ sudo zypper -n install llvm-clang
 ```
 
   * **In macOS using Homebrew:**
-```bash
+```console
 $ brew install clang-format
 ```
 
   * **In macOS using Macports:**
-```bash
+```console
 $ sudo port install clang-11
 ```
   NOTE: You can see all available choices with `port select --list` for clang:
-```bash
+    ```console
 $ port select --list clang
 Available versions for clang:
 	mp-clang-11
 	none (active)
-```
+    ```
+    {: class="nocopy"}
   With `sudo port select --set clang <version>` you choose one of them as the new default, which will create symlinks in `/opt/local/bin` without the version suffix.
-```bash
+    ```console
 $ sudo port select --set clang mp-clang-11
 selecting 'mp-clang-11' for 'clang' succeeded. 'mp-clang-11' is now active.
-```
+    ```
+    {: class="nocopy"}
   You can confirm this change by looking at the version of the tool:
-```bash
+    ```console
 $ clang-format --version
 clang-format version 11.0.0
-```
+    ```
+    {: class="nocopy"}
   If you later wish to remove these symlinks in order to avoid hiding tools installed by Xcode, just select the `none` version.
 
 
@@ -996,11 +1028,12 @@ clang-format version 11.0.0
   * **Tell your favorite editor to use clang-format.** You can use it in Eclipse via [CppStyle](https://github.com/wangzw/CppStyle), in Atom via the [clang-format package](https://atom.io/packages/clang-format), and in [many other editors](https://clang.llvm.org/docs/ClangFormat.html#vim-integration). Once the corresponding plugin or module is installed, configure your editor to run clang-format on every file save.
 
   * For applying code formatting from the command line:
-```bash
+    ```console
 $ clang-format -i <file>
-```
+    ```
+    {: class="nocopy"}
   or for a folder and its and subfolders:
-```bash
+```console
 $ find src/algorithms/conditioner/ -iname *.h -o -iname *.cc | xargs clang-format -i
 ```  
   For each input file, clang-format will try to find the `.clang-format` file located in the closest parent directory of the input file, so [the one in the root folder](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) will apply. Please do not modify that file, but feel free to propose changes (that would be applied to the whole source tree) by [filling an issue at GitHub](https://github.com/gnss-sdr/gnss-sdr/issues/new) in order to let other developers to discuss them.
@@ -1012,6 +1045,7 @@ You can disable the automatic formatting of a piece of code by using comments:
 ... code here will not be formatted.
 // clang-format on  
 ```
+{: class="nocopy"}
 
 Note the space in between the comment start (`//`) and `clang-format`. This space is required for the comment to be successfully detected.
 
@@ -1023,12 +1057,12 @@ Note the space in between the comment start (`//`) and `clang-format`. This spac
 If you have modified markdown files (ended in `.md`), please apply [prettier](https://prettier.io).
 
   * Install prettier:
-```bash
+```console
 $ sudo npm install --global prettier
 ```
 
   * Run it from the root of the source code tree:
-```bash
+```console
 $ find . -iname "*.md" | xargs prettier --parser markdown --print-width 80 --prose-wrap always --write
 ```
 
@@ -1057,27 +1091,27 @@ You can use clang-tidy in two simple steps:
 **Step 1.- Install clang-tidy**
 
 * **In GNU/Linux using Debian / Ubuntu distributions:**
-```bash
+```console
 $ sudo apt-get install clang clang-tidy
 ```
 
 * **In GNU/Linux using Fedora / CentOS distributions:**
-```bash
+```console
 $ sudo yum install clang clang-tools-extra
 ```
 
 * **In GNU/Linux using ArchLinux:**
-```bash
+```console
 $ sudo pacman -S clang
 ```
 
 * **In GNU/Linux using openSUSE:**
-```bash
+```console
 $ sudo zypper -n install llvm-clang
 ```
 
 * **In macOS using Homebrew:**
-```bash
+```console
 $ brew install llvm
 $ ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin
 $ ln -s /usr/local/Cellar/llvm/11.*/bin/clang-apply-replacements /usr/local/bin
@@ -1085,7 +1119,7 @@ $ ln -s /usr/local/Cellar/llvm/11.*/share/clang/run-clang-tidy.py /usr/local/bin
 ```
 
 * **In macOS using Macports:**
-```bash
+```console
 $ sudo port install clang-11
 ```
 
@@ -1093,7 +1127,7 @@ $ sudo port install clang-11
 
 This tool integrates nicely with CMake >= 3.6. In GNSS-SDR, all you need to do is to tell CMake to use clang:
 
-```bash
+```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
 $ make volk_gnsssdr_module core_monitor pvt_libs
@@ -1101,19 +1135,19 @@ $ make volk_gnsssdr_module core_monitor pvt_libs
 
 (pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of the clang binaries in your machine). This will create a file named `compile_commands.json` in your build folder containing the exact compiler calls for all translation units of the project in machine-readable form. After that, you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform the project default checks over all files in the compilation database:
 
-```bash
+```console
 $ run-clang-tidy -fix
 ```
 
 or you can apply specific checks by doing:
 
-```bash
+```console
 $ run-clang-tidy -header-filter='.*' -checks='-*,modernize-use-nullptr' -fix
 ```
 
 An alternative choice is to run clang-tidy along with the building process, by activating the building option `ENABLE_CLANG_TIDY`:
 
-```bash
+```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang \
         -DENABLE_CLANG_TIDY=ON ..
@@ -1126,14 +1160,14 @@ You can read more about the usage of this tool at the [clang-tidy documentation]
 
 {% capture use-clang-tidy %}
 With clang and clang-tidy already installed, please do:
-```bash
+```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
 $ make volk_gnsssdr_module core_monitor pvt_libs
 $ run-clang-tidy -fix
 ```
 or
-```bash
+```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang \
         -DENABLE_CLANG_TIDY=ON ..

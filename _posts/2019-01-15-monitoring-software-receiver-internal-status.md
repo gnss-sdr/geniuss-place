@@ -50,7 +50,7 @@ Finally, at the other end, the monitoring client deserializes the Gnss_Synchro o
 ### Install dependencies
 Copy and paste the following line in a terminal:
 
-```bash
+```console
 $ sudo apt-get install build-essential cmake libboost-dev libboost-system-dev \
    libprotobuf-dev protobuf-compiler libncurses5-dev libncursesw5-dev wget
 ```
@@ -60,14 +60,14 @@ This will install the GCC/g++ compiler, the CMake build system, and the library 
 
 Create a new directory in the home folder for storing all the source files of our project:
 
-```bash
+```console
 $ mkdir monitoring-client
 $ cd monitoring-client
 ```
 
 Use the following command to download the `gnss_synchro.proto` file from the GNSS-SDR GitHub repository into the project folder:
 
-```bash
+```console
 $ wget https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/docs/protobuf/gnss_synchro.proto
 ```
 
@@ -389,13 +389,13 @@ Save it in the project folder alongside the project source files.
 
 Next, create a build folder inside the project folder:
 
-```bash
+```console
 $ mkdir build
 ```
 
 We can make use of the `tree` command to list the contents of our project folder in a tree-like format. This is how it should look at this stage:
 
-```bash
+```console
 $ tree
 .
 ├── build
@@ -407,10 +407,11 @@ $ tree
 
 1 directory, 5 files
 ```
+{: class="nocopy"}
 
 Finally go ahead and build the source code:
 
-```bash
+```console
 $ cd build
 $ cmake ../
 $ make
@@ -418,10 +419,11 @@ $ make
 
 The `monitoring-client` executable will be created in the build folder. Try running it with no arguments. It should print the usage help:
 
-```bash
+```console
 $ ./monitoring-client
 Usage: monitoring-client <port>
 ```
+{: class="nocopy"}
 
 Our monitoring client is ready. We have completed the first half of this tutorial. Now let's go ahead and configure the receiver.
 
@@ -434,7 +436,7 @@ In order to run the receiver, we are going to use the same signal source file th
 
 It is convenient to store the signal file and the receiver configuration in a separate directory from the project folder. Create a work directory in your home folder:
 
-```bash
+```console
 $ cd ~
 $ mkdir work
 $ cd work
@@ -442,7 +444,7 @@ $ cd work
 
 Download the [file]({{ "/my-first-fix/#step-2-download-a-file-of-raw-signal-samples" | relative_url }}) containing the GNSS raw signal samples. This can be done directly from the terminal:
 
-```bash
+```console
 $ wget https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz
 $ tar -zxvf 2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz
 ```
@@ -534,25 +536,26 @@ Please do not forget to point `SignalSource.filename` to the actual path of your
 
 We are now ready to test our application. Switch back to the other terminal window and start the monitoring client on port 1234:
 
-```bash
+```console
 $ ./monitoring-client 1234
 ```
 
 You will see this message printed on the screen:
 
-```bash
+```console
 Listening on port 1234 UDP...
 ```
+{: class="nocopy"}
 
 Now start the receiver on the other terminal window:
 
-```bash
+```console
 $ gnss-sdr -c ./my-first-GNSS-SDR-receiver.conf
 ```
 
 If all worked fine you should see a table like this:
 
-```bash
+```console
 CH   PRN   CN0 [dB-Hz]     Doppler [Hz]
  0     1     44.205502      7175.743399
  2    17     43.886524     10032.649712
@@ -560,6 +563,7 @@ CH   PRN   CN0 [dB-Hz]     Doppler [Hz]
  4    20     42.442753      8469.028326
  6    32     43.016476      6550.037773
 ```
+{: class="nocopy"}
 
 If you see something similar to this... Yay! You are successfully monitoring the internals of your open source software-defined GPS receiver!
 {: .notice--success}

@@ -63,7 +63,7 @@ Head to [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github
 
 1) Install `repo`:
 
-```bash
+```console
 $ curl https://storage.googleapis.com/git-repo-downloads/repo > repo
 $ chmod a+x repo
 $ sudo mv repo /usr/local/bin/
@@ -71,14 +71,14 @@ $ sudo mv repo /usr/local/bin/
 
 2) Create a folder in which all the process will take place:
 
-```bash
+```console
 $ mkdir oe-repo
 $ cd oe-repo
 ```
 
 3) Initialize `repo`, download the required tools and prepare your building environment:
 
-```bash
+```console
 $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b thud
 $ repo sync
 $ TEMPLATECONF=`pwd`/meta-gnss-sdr/conf source ./oe-core/oe-init-build-env ./build ./bitbake
@@ -89,13 +89,13 @@ This last command copies default configuration information into the `./build/con
 {% capture branches_info %}
 Please note that the name of the oe-gnss-sdr-manifest branch passed to `repo` will determine the version of the SDK to be built. For instance,
 
-```bash
+```console
 $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b sumo
 ```
 
 will generate the Sumo release of the SDK (see the manifest for a list of installed packages and their respective versions), while
 
-```bash
+```console
 $ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b thud
 ```
 
@@ -111,7 +111,7 @@ will generate the Thud release.
 
 5) Build the image and the toolchain installer:
 
-```bash
+```console
 $ bitbake gnss-sdr-dev-image
 $ bitbake -c populate_sdk gnss-sdr-dev-image
 ```
@@ -120,19 +120,19 @@ This process downloads several gigabytes of source code and then proceeds to com
 
 If you are using Rocko or above, you can create a Docker image of the target environment by doing:
 
-```bash
+```console
 $ bitbake gnss-sdr-dev-docker
 ```
 
 This will create a `.docker` file under `./tmp-glibc/deploy/images/` that can be ingested by Docker as:
 
-```bash
+```console
 $ docker load -i /path/to/file.docker
 ```
 
 For your convenience, you can also directly pull and run this image from an arm32v7-based device:
 
-```bash
+```console
 $ docker run -it carlesfernandez/gnsssdr-dev-arm32v7:thud /bin/bash
 ```
 
@@ -151,13 +151,13 @@ Using the SDK
 
 Install some basic packages required by the SDK:
 
-```bash
+```console
 $ sudo apt-get install xz-utils python3
 ```
 
 Then, download the SDK shell script (or use a locally created SDK, as explained above) and install it:
 
-```bash
+```console
 $ sudo sh oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh
 ```
 
@@ -171,7 +171,7 @@ The SDK comes with everything you need to build GNSS-SDR. The main contents it h
 ### Setting up the cross-compiling environment
 Running the environment script will set up most of the variables you'll need to compile. You will need to do this each time you want to run the SDK (and since the environment variables are only set for the current shell, you need to source it for every console you will run the SDK from):
 
-```bash
+```console
 $ . /usr/local/oecore-x86_64/environment-setup-armv7ahf-neon-oe-linux-gnueabi
 ```
 
@@ -179,7 +179,7 @@ $ . /usr/local/oecore-x86_64/environment-setup-armv7ahf-neon-oe-linux-gnueabi
 
 Once the environment script has been run, you can cross-compile GNSS-SDR as:
 
-```bash
+```console
 $ git clone https://github.com/gnss-sdr/gnss-sdr.git
 $ cd gnss-sdr
 $ git checkout next
@@ -200,7 +200,7 @@ We have several options here:
 
 ### Using `dd`
 
-```bash
+```console
 $ mkdir myimage
 $ tar -xvzf gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz -C myimage
 $ sudo dd status=progress bs=4M if=myimage of=/dev/sdX
@@ -212,7 +212,7 @@ where `/dev/sdX` is the device the card is mounted as. This works, but can be sl
 
 This option is faster:
 
-```bash
+```console
 $ git clone https://github.com/01org/bmap-tools.git
 $ cd bmap-tools
 $ sudo python setup.py install
@@ -223,7 +223,7 @@ $ sudo bmaptool copy gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar
 
 For systems with a dedicated u-boot, devicetree and Kernel, it is possible to copy only the cross-compiled sysroot to the SD ext4 partition. Mount the SD card partition and extract the root filesystem to the mounted root directory (in this example, `sdb2` is the SD card device and the ext4 partition is the second partition in the SD partition table), and then use `cp` with the `-a` option, which preserves the same directory tree, same file types, same contents, same metadata (times, permissions, extended attributes, etc.) and same symbolic links:
 
-```bash
+```console
 $ mkdir ./mounted_SD
 $ sudo mount -rw /dev/sdb2 ./mounted_SD
 $ cd ./mounted_SD
@@ -236,7 +236,7 @@ $ sudo cp /usr/local/oecore-x86_64/sysroots/armv7ahf-neon-oe-linux-gnueabi/* -a 
 
 For example, let's assume that we can address the device by a network name or IP address. Let's say it's called "mydevice" and it has an ip address of 192.168.2.2. We would use a mount point created in your home directory. To install sshfs and mount mydevice locally:
 
-```bash
+```console
 $ sudo apt-get install sshfs
 $ sudo gpasswd -a $USER fuse
 $ cd
@@ -246,13 +246,13 @@ $ sshfs -o allow_root root@192.168.2.2:/ mydevice
 
 You should be able to `ls mydevice` and see the contents of mydevice's file system. Then you can cross-compile GNSS-SDR as before, changing the last command by:
 
-```bash
+```console
 $ sudo make install DESTDIR=~/mydevice
 ```
 
 in order to install the GNSS-SDR binary directly in your device. To unmount:
 
-```bash
+```console
 $ fusermount -u ~/mydevice
 ```
 

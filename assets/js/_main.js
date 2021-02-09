@@ -94,7 +94,7 @@ $(document).ready(function() {
   });
 
   // Gumshoe scroll spy init
-  if($("nav.toc").length > 0) {
+  if ($("nav.toc").length > 0) {
     var spy = new Gumshoe("nav.toc a", {
       // Active classes
       navClass: "active", // applied to the nav list item
@@ -154,15 +154,83 @@ $(document).ready(function() {
   });
 
   // Add anchors for headings
-  $('.page__content').find('h1, h2, h3, h4, h5, h6').each(function() {
-    var id = $(this).attr('id');
+  document.querySelector('.page__content').querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(function(element) {
+    var id = element.getAttribute('id');
     if (id) {
       var anchor = document.createElement("a");
       anchor.className = 'header-link';
       anchor.href = '#' + id;
       anchor.innerHTML = '<span class=\"sr-only\">Permalink</span><i class=\"fas fa-link\"></i>';
       anchor.title = "Permalink";
-      $(this).append(anchor);
+      element.appendChild(anchor);
     }
+  });
+
+  // Add copy button for <pre> blocks
+  var copyText = function(text) {
+    var isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+    var textarea = document.createElement('textarea');
+    textarea.className = "clipboard-helper";
+    textarea.style[isRTL ? 'right' : 'left'] = '-9999px';
+    // Move element to the same position vertically
+    var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+    textarea.style.top = yPosition + "px";
+
+    textarea.setAttribute('readonly', '');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    var success = true;
+    try {
+      textarea.select();
+      success = document.execCommand("copy");
+    } catch (e) {
+      success = false;
+    }
+    textarea.parentNode.removeChild(textarea);
+    return success;
+  };
+
+  var copyButtonEventListener = function(event) {
+    var thisButton = event.target;
+
+    // Locate the <code> element
+    var codeBlock = thisButton.nextElementSibling;
+    while (codeBlock && codeBlock.tagName.toLowerCase() !== 'code') {
+      codeBlock = codeBlock.nextElementSibling;
+    }
+    if (!codeBlock) {
+      // No <code> found - wtf?
+      console.warn(thisButton);
+      throw new Error("No code block found for this button.");
+    }
+
+    // Skip line numbers if present (i.e. {% highlight lineno %})
+    var realCodeBlock = codeBlock.querySelector("td.code");
+    if (realCodeBlock) {
+      codeBlock = realCodeBlock;
+    }
+    // Skip terminal prompt symbol
+    var skippedText = codeBlock.innerText.replace(/\$\s/g,'')
+    return copyText(skippedText);
+  };
+
+  document.querySelectorAll(".page__content pre > code").forEach(function(element, index, parentList) {
+    // Locate the <pre> element
+    var container = element.parentElement;
+    // Sanity check - don't add an extra button if there's already one
+    if (container.firstElementChild.tagName.toLowerCase() !== 'code') {
+      return;
+    }
+    // Add the option to not include the copy button if class nocopy is present
+    if (element.closest('.nocopy')) {
+      return;
+    }
+
+    var copyButton = document.createElement("button");
+    copyButton.title = "Copy to clipboard";
+    copyButton.className = "clipboard-copy-button";
+    copyButton.innerHTML = '<i class="far fa-copy"></i>';
+    copyButton.addEventListener("click", copyButtonEventListener);
+    container.prepend(copyButton);
   });
 });

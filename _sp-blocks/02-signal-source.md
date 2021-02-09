@@ -146,7 +146,7 @@ SignalSource.sampling_frequency=4000000
 appears on the configuration file can be overridden at the command line
 when invoking `gnss-sdr` with the flag `--signal_source`. Example:
 
-```bash
+```console
 $ gnss-sdr --config_file=/path/to/my_receiver.conf \
   --signal_source=/path/to/my_capture2.dat
 ```
@@ -300,7 +300,7 @@ SignalSource.samples=0
 appears on the configuration file can be overridden at the command line
 when invoking `gnss-sdr` with the flag `–-signal_source`. Example:
 
-```bash
+```console
 $ gnss-sdr --config_file=/path/to/my_receiver.conf \
     --signal_source=/path/to/my_capture2.dat
 ```
@@ -518,7 +518,7 @@ dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.co
 
 If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need to install the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the GNSS-SDR building with the following flag:
 
-```bash
+```console
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
@@ -584,7 +584,7 @@ In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the 
 
 If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
 
-```bash
+```console
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
@@ -592,7 +592,7 @@ For more information, check out the tutorial about [GNSS-SDR options at building
 
 In a terminal, type:
 
-```bash
+```console
 $ rtl_tcp -a 127.0.0.1 -f 1575420000 -g 0 -s 2000000
 ```
 
@@ -635,13 +635,13 @@ In order to make use of this block implementation, you need to build GNSS-SDR fr
 
 In Debian Buster or Ubuntu Cosmic, those dependencies can be installed as:
 
-```bash
+```console
 $ sudo apt-get install libiio-dev gr-iio
 ```
 
 In older releases or other distributions, dependencies can be built from source as:
 
-```bash
+```console
 $ sudo apt-get install libxml2-dev bison flex
 $ git clone https://github.com/analogdevicesinc/libiio
 $ cd libiio
@@ -661,7 +661,7 @@ $ cd ../..
 
 Once gr-iio is installed, build GNSS-SDR passing the flag ```-DENABLE_FMCOMMS2=ON``` at configure time:
 
-```bash
+```console
 $ cd gnss-sdr/build
 $ git checkout next
 $ git pull upstream next
@@ -723,7 +723,7 @@ The [ADALM-Pluto](https://www.analog.com/en/design-center/evaluation-hardware-an
 
 In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies:
 
-```bash
+```console
 $ sudo apt-get install libxml2-dev bison flex
 $ git clone https://github.com/analogdevicesinc/libiio
 $ cd libiio
@@ -741,9 +741,9 @@ $ cd ../..
 
 **Warning**: do **not** use gr-iio < 0.3 packaged in some Debian and Ubuntu distributions.
 
-Once gr-iio is installed, build GNSS-SDR passing the flag ```-DENABLE_PLUTOSDR=ON``` at configure time:
+Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_PLUTOSDR=ON` at configure time:
 
-```bash
+```console
 $ cd gnss-sdr/build
 $ git checkout next
 $ git pull upstream next

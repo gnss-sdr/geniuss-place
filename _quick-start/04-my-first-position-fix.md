@@ -18,40 +18,42 @@ toc_sticky: true
 
 This guide assumes that GNSS-SDR and its software dependencies are already installed on your system. In order to check whether it is correctly installed, open a terminal and type:
 
-```bash
+```console
 $ gnss-sdr --version
 ```
 
 you should see something similar to:
 
-```bash
+```console
 $ gnss-sdr --version
 gnss-sdr version 0.0.14
 $  
 ```
+{: class="nocopy"}
 
 Please check that your installed version is 0.0.14 (or something like 0.0.14.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.14, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
 If you see something like:
 
-```bash
+```console
 $ gnss-sdr --version
 gnss-sdr: command not found
 $  
 ```
+{: class="nocopy"}
 
 please check out the [building guide]({{ "/build-and-install/" | relative_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file for more details on how to install GNSS-SDR.
 
 In order to take advantage of the SIMD instruction sets present in your processor, you will need to run the profiler tools of the VOLK and VOLK_GNSSSDR libraries (these operations only need to be done once, and can take a while):
 
-```bash
+```console
 $ volk_profile
 ```
 
 and
 
-```bash
+```console
 $ volk_gnsssdr_profile
 ```
 
@@ -59,7 +61,7 @@ $ volk_gnsssdr_profile
 
 Now it's time to download the file containing the GNSS raw signal samples. This can be done directly from the terminal:
 
-```bash
+```console
 $ mkdir work
 $ cd work
 $ wget https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz
@@ -154,7 +156,7 @@ Ok, let's recap. We have:
 
 So, we are ready to run our software-defined GPS receiver. In a terminal, type:
 
-```bash
+```console
 $ gnss-sdr --config_file=./my-first-GNSS-SDR-receiver.conf
 ```
 
@@ -174,6 +176,7 @@ Starting a TCP/IP server of RTCM messages on port 2101
 The TCP/IP server of RTCM messages is up and running. Accepting connections ...
 ...
 ```
+{: class="nocopy"}
 
 Then, after some seconds detecting GPS signals and decoding some frames of their navigation messages (at least, subframes 1, 2 and 3 from four satellites)...
 
@@ -227,6 +230,7 @@ Position at 2013-Apr-04 06:23:37.500000 UTC using 4 observations is Lat = 41.274
 Current receiver time: 32 s
 ...
 ```
+{: class="nocopy"}
 
 
 If you see something similar to this... Yay! You are getting position fixes with your open source software-defined GPS receiver!
@@ -244,6 +248,7 @@ GNSS-SDR program ended.
 Stopping TCP/IP server on port 2101
 $
 ```
+{: class="nocopy"}
 
 Now you can examine the processing outputs in the folder from which you invoked GNSS-SDR:
 
