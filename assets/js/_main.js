@@ -182,7 +182,11 @@ $(document).ready(function() {
     var success = true;
     try {
       textarea.select();
-      success = document.execCommand("copy");
+      if (document.queryCommandEnabled('copy') && navigator.clipboard) {
+        navigator.clipboard.writeText(textarea.value);
+      } else {
+        success = document.execCommand("copy");
+      }
     } catch (e) {
       success = false;
     }
