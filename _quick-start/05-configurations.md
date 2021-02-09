@@ -111,7 +111,7 @@ Depending on the specific USRP model you are using, the connection to the host c
 
 Devices attached to your system can be discovered using the `uhd_find_devices` program. This program scans your system for supported devices and prints out an enumerated list of discovered devices and their addresses. If you type `uhd_find_devices --help` in a terminal, you should see something similar to this:
 
-```
+```console
 $ uhd_find_devices --help
 linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010.git-0-2d68f228
 
@@ -123,7 +123,7 @@ UHD Find Devices Allowed options:
 
 Then, you can search your USRP in a specific IP address:
 
-```
+```console
 $ uhd_find_devices --args addr=192.168.50.2
 linux; GNU C++ version 4.9.2; Boost_105400; UHD_003.010.git-0-2d68f228
 
@@ -142,7 +142,7 @@ Device Address:
 
 or by typing:
 
-```
+```console
 $ uhd_find_devices --args type=usrp1
 ```
 
@@ -257,7 +257,6 @@ PVT.rtcm_MT1019_rate_ms=5000
 PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 ```
-{: class="nocopy"}
 
 You will need to adjust the values for at least two parameters:
 
@@ -276,7 +275,7 @@ $ gnss-sdr --config_file=./my_GPS_receiver.conf
 
 You should see something similar to:
 
-```
+```console
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
 Initializing GNSS-SDR v0.0.14 ... Please wait.
 Logging will be done at "/tmp"
@@ -309,7 +308,7 @@ Of course, file `my_GPS_receiver.conf` can be wherever (`--config-file` accepts 
 
 Then, after some seconds detecting GPS signals and decoding some frames of their navigation messages (at least, subframes 1, 2 and 3 from four satellites)...
 
-```
+```console
 
 ...
 Current input signal time = 49 [s]
@@ -367,7 +366,7 @@ Current input signal time = 68 [s]
 Always stop the execution of GNSS-SDR by pressing key '`q`'  and then key '`ENTER`' (_not_ at the same time, first '`q`' and then '`ENTER`'):
 
 
-```
+```console
 
 ...
 Position at 2016-Aug-11 14:23:31 UTC is Lat = 41.2751 [deg], Long = 1.98762 [deg], Height= 58.1987 [m]
@@ -578,7 +577,6 @@ PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 
 ```
-{: class="nocopy"}
 
 Copy and paste this configuration in your favorite plain text editor and save it as, for instance, `hackrf_GPS_L1.conf`.
 
