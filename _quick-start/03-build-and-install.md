@@ -25,7 +25,7 @@ This page describes several ways to build and install GNSS-SDR.
 
 Starting from Debian 9 and Ubuntu 16.04, you can install GNSS-SDR just by doing:
 
-```bash
+```console
 $ sudo apt-get install gnss-sdr
 ```
 
@@ -46,7 +46,7 @@ If everything went fine, you can directly jump into how to get your [first posit
 
 If you are using macOS 11 Big Sur (or Mac OS X 10.9 and above), and the [Macports](https://www.macports.org/) package manager, GNSS-SDR can be installed by typing in a Terminal:
 
-```bash
+```console
 $ sudo port install gnss-sdr
 ```
 
@@ -56,7 +56,7 @@ This will install the latest stable release of GNSS-SDR.
 {% capture mac-os-text %}
 Instead of installing the latest stable release, you can install the code found on the `next` branch, which might contain some bug fixes and new features with respect to the latest stable release:
 
-```bash
+```console
 $ sudo port install gnss-sdr-devel
 ```
 {% endcapture %}
@@ -100,7 +100,7 @@ Some highly automated tools that can do some of the work for you are described b
 
 If you are using Debian 8, Ubuntu 14.10 or above, this can be done by copying and pasting the following line in a terminal:
 
-```bash
+```console
 $ sudo apt-get install build-essential cmake git pkg-config libboost-dev \
    libboost-date-time-dev libboost-system-dev libboost-filesystem-dev \
    libboost-thread-dev libboost-chrono-dev libboost-serialization-dev \
@@ -129,44 +129,44 @@ This option is adequate if you are interested in development, in working with th
 
 First of all, install some basic packages:
 
-```bash
+```console
 $ sudo apt-get install git python3-pip
 ```
 
 Download, build and install PyBOMBS:
 
-```bash
+```console
 $ sudo pip3 install --upgrade git+https://github.com/gnuradio/pybombs.git
 ```
 
 Apply a configuration:
 
-```bash
+```console
 $ pybombs auto-config
 ```
 
 Add list of default recipes (_i.e._, instructions on how to install software dependencies):
 
-```bash
+```console
 $ pybombs recipes add-defaults
 ```
 
 Download, build and install GNU Radio, related drivers and some other extra modules into the directory `/path/to/prefix` (replace this path by your preferred one, for instance `$HOME/sdr`):
 
-```bash
+```console
 $ pybombs prefix init /path/to/prefix -a myprefix -R gnuradio-default
 ```
 
 This will perform a local installation of the dependencies under `/path/to/prefix`, so they will not be visible when opening a new terminal. In order to make them available, you will need to set up the adequate environment variables by sourcing the `setup_env.sh` script:
 
-```bash
+```console
 $ cd /path/to/prefix
 $ . ./setup_env.sh
 ```
 
 Now you are ready to use GNU Radio and to jump into [building GNSS-SDR](#build) after installing a few other dependencies. Actually, those are steps that PyBOMBS can do for you as well:
 
-```bash
+```console
 $ pybombs install gnss-sdr
 ```
 
@@ -174,7 +174,7 @@ By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, whic
 
 In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual `cmake .. && make && sudo make install` dance, as explained below), there are still some missing dependencies (_i.e._, Armadillo, GFlags, Glog, GnuTLS and Protocol Buffers) that can be installed either by using PyBOMBS:
 
-```bash
+```console
 $ pybombs install armadillo gflags glog gnutls protobuf
 ```
 
@@ -186,7 +186,7 @@ or manually, just downloading, building and installing them. More details are av
 
 Once all the dependencies are installed in your system, you are ready to clone the repository, build the source code and install the software in your system:
 
-```bash
+```console
 $ git clone https://github.com/gnss-sdr/gnss-sdr
 $ cd gnss-sdr/build
 $ git checkout next
@@ -199,7 +199,7 @@ The step `git checkout next` is optional, and sets the source tree pointing to t
 
 In addition, CMake accepts a number of configuration options for your building process. For instance, if you want to compile your source in "Debug" mode instead of the default "Release", you can type:
 
-```bash
+```console
 $ cmake -DCMAKE_BUILD_TYPE=Debug ..
 ```
 
@@ -214,7 +214,7 @@ If everything went fine in the building process, now you can jump into how to ge
 
 [Ninja](https://ninja-build.org/) is a small build system with a focus on speed, that can be seen as a replacement for `make`. If the parameter `-GNinja` is passed to CMake, it generates a `build.ninja` file (instead of a `Makefile`) that is used by the Ninja build system to compile and link the source code. Thus, after cloning the repository, the build workflow is:
 
-```bash
+```console
 $ cd gnss-sdr/build
 $ git checkout next
 $ cmake -GNinja ..
@@ -224,25 +224,23 @@ $ sudo ninja install
 
 In general, the compilation time when using Ninja is comparable to that when using Make for a full build, although its performance is quite platform dependent. Ninja is specially targeted to improve performance in large projects and for incremental builds, so it seems to be a good replacement for Make especially for developers who need to often recompile the source code. In Debian-based GNU/Linux distributions, it can be installed by doing:
 
-```bash
+```console
 $ sudo apt-get install ninja-build
 ```
 
 On macOS, Ninja can be installed using Macports:
 
-```bash
+```console
 $ sudo port install ninja
 ```
 
 or Homebrew:
 
-```bash
+```console
 $ brew install ninja
 ```
 
 More information about Ninja usage can be found in the [Ninja Manual](https://ninja-build.org/manual.html).
-
-
 
 
 ## Using Clang
@@ -251,22 +249,22 @@ More information about Ninja usage can be found in the [Ninja Manual](https://ni
 
 In Debian/Ubuntu-based distributions, Clang can be installed by doing:
 
-```bash
+```console
 $ sudo apt-get install clang
 ```
 
-Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8`, `clang-4.0`, `clang-5.0`, `clang-6.0`, `clang-7`, `clang-8`, `clang-9` or `clang-10` could exist for your distribution, check its documentation. Once installed, its use can be configured by passing the following parameters to CMake:
+Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8`, `clang-4.0`, `clang-5.0`, ..., or `clang-11` could exist for your distribution, check its documentation. Once installed, its use can be configured by passing the following parameters to CMake:
 
-```bash
-$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-10 -DCMAKE_C_COMPILER=/usr/bin/clang-10 ..
+```console
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-11 -DCMAKE_C_COMPILER=/usr/bin/clang-11 ..
 ```
 
-of course replacing `10` by the actual version installed in your machine. Some distributions drop the version number, so you may  just have `/usr/bin/clang++` and `/usr/bin/clang`.
+of course replacing `11` by the actual version installed in your machine. Some distributions drop the version number, so you may  just have `/usr/bin/clang++` and `/usr/bin/clang`.
 
 If you have the Ninja build system installed, you can build GNSS-SDR replacing GCC and `make` by Clang and Ninja:
 
-```bash
-$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-10 -DCMAKE_C_COMPILER=/usr/bin/clang-10 -GNinja ..
+```console
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-11 -DCMAKE_C_COMPILER=/usr/bin/clang-11 -GNinja ..
 ```
 
 ## Using Xcode
@@ -275,7 +273,7 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-10 -DCMAKE_C_COMPILER=/usr/bin/cla
 
 In order to build GNSS-SDR with Xcode, pass the following parameter to CMake:
 
-```bash
+```console
 $ cmake -GXcode ..
 ```
 
@@ -283,12 +281,12 @@ This will create a `gnss-sdr.xcodeproj` project that can be opened by Xcode (in 
 
 You can also build from the command line:
 
-```bash
+```console
 $ xcodebuild
 ```
 or
 
-```bash
+```console
 $ xcodebuild -config Release
 ```
 
@@ -323,25 +321,25 @@ Releases of Docker images with GNSS-SDR already installed are available from the
 
  * An image based on Ubuntu with dependencies installed via .deb packages
 
-   ```bash
+   ```console
    $ docker run -it carlesfernandez/docker-gnsssdr
    ```
 
    The latest built from GNSS-SDR's `next` branch can be pulled as:
 
-   ```bash
+   ```console
    $ docker pull carlesfernandez/docker-gnsssdr:latest
    ```
 
  * An image based on Ubuntu with dependencies built and installed via PyBOMBS:
 
-   ```bash
+   ```console
    $ docker run -it carlesfernandez/docker-pybombs-gnsssdr
    ```
 
    The latest built from GNSS-SDR's `next` branch can be pulled as:
 
-   ```bash
+   ```console
    $ docker pull carlesfernandez/docker-pybombs-gnsssdr:latest
    ```
 

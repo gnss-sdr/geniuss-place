@@ -29,7 +29,7 @@ The `cmake` executable is the CMake command-line interface. When `cmake` is firs
 
 Once all the required dependencies are installed in your system, the default building process is:
 
-```bash
+```console
 $ cd gnss-sdr/build
 $ cmake ..
 $ make
@@ -38,19 +38,20 @@ $ sudo make install
 
 CMake's defaults and GNSS-SDR project configuration settings can be overridden on the command line with the -D option, with the following syntax:
 
-```bash
+```console
 $ cmake -D<variable_name>=<value>
 ```
+{: class="nocopy"}
 
 Thus, if you want to set the variable named `CMAKE_BUILD_TYPE` to the `Debug` value, you can write in your command line:
 
-```bash
+```console
 $ cmake -DCMAKE_BUILD_TYPE=Debug ..
 ```
 
 You can specify any number of variables:
 
-```bash
+```console
 $ cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_OSMOSDR=ON ..
 ```
 
@@ -82,7 +83,7 @@ The building system honors the usual [CMake variables](https://cmake.org/cmake/h
 
 In addition, if the `DESTDIR` environment variable is set, it will be prefixed to `CMAKE_INSTALL_PREFIX` in places where it is used to access files during installation. This allows the files to be installed in an intermediate directory tree without changing the final installation path name. For instance:
 
-```bash
+```console
 $ make DESTDIR=/home/carles install
 ```
 
@@ -201,7 +202,7 @@ Some statistical profiling tools require the software under analysis to be compi
 
 Please note that you can also use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform checks over all files in the compilation database:
 
-```bash
+```console
 $ run-clang-tidy -checks='-*,modernize-use-nullptr' -fix
 ```
 
@@ -209,12 +210,12 @@ You can examine the full [list of clang-tidy checks](https://clang.llvm.org/extr
 
 In Debian and Ubuntu machines, clang-tidy can be installed with:
 
-```bash
+```console
 $ sudo apt-get install clang clang-tidy
 ```
 
 Example of usage:
-```bash
+```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang \
         -DENABLE_CLANG_TIDY=ON ..
@@ -239,7 +240,7 @@ By default, the HTML output makes use of [MathJax](https://www.mathjax.org/) loa
 
 For instance, in Debian/Ubuntu systems MathJax can be installed as:
 
-```bash
+```console
 $ sudo apt-get install libjs-mathjax
 ```
 

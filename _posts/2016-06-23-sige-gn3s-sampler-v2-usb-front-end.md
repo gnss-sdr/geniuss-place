@@ -163,7 +163,7 @@ In addition, it is required to copy the GN3S firmware binary file [gr-gn3s/firmw
 
 Since the driver requires access to the USB port, it is necessary to run the script as root. In case you are using gnuradio-companion, it can be done as:
 
-```bash
+```console
 $ sudo gnuradio-companion
 ```
 
@@ -185,7 +185,7 @@ Creating GPS Source
 GN3S Start
 started TX
 ```
-
+{: class="nocopy"}
 
 
 In this sample script, the FFT GUI shows in real-time the digitized signal spectrum, as is shown in the next picture:
@@ -286,7 +286,7 @@ Resampler.implementation=Pass_Through
 This configuration enables the real-time receiver operation with 8 satellite channels in an Intel Core 2 quad Q9400 @ 2.66 GHz with 4 GB of RAM.
 It is important to point out that the GN3S driver requires the firmware file available in the application runtime directory. In the case of the GNSS-SDR application, the firmware file gn3s_firmware.ihx should be copied the folder runniong the receiver. In addition, GNSS-SDR should be called with root privileges
 
-```bash
+```console
 $ sudo gnss-sdr --config_file=../conf/gnss-sdr_GPS_L1_GN3S_realtime.conf
 ```
 

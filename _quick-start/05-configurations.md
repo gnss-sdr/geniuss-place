@@ -119,6 +119,7 @@ UHD Find Devices Allowed options:
   --help                help message
   --args arg            device address args
 ```
+{: class="nocopy"}
 
 Then, you can search your USRP in a specific IP address:
 
@@ -137,6 +138,7 @@ Device Address:
     serial: F5CA38
     product: X300
 ```
+{: class="nocopy"}
 
 or by typing:
 
@@ -255,6 +257,7 @@ PVT.rtcm_MT1019_rate_ms=5000
 PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 ```
+{: class="nocopy"}
 
 You will need to adjust the values for at least two parameters:
 
@@ -267,7 +270,7 @@ The [Signal Processing Blocks documentation]({{ "/docs/sp-blocks/" | relative_ur
 
 Once the hardware and the software configurations are ready, go to your favorite working directory where the file `my_GPS_receiver.conf` was stored and invoke the software receiver with this particular configuration:
 
-```bash
+```console
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
 ```
 
@@ -300,6 +303,7 @@ Starting a TCP Server on port 2101
 The TCP Server is up and running. Accepting connections ...
 ...
 ```
+{: class="nocopy"}
 
 Of course, file `my_GPS_receiver.conf` can be wherever (`--config-file` accepts both relative and absolute paths), and the data displayed at the terminal output might vary according to your setup.
 
@@ -352,6 +356,7 @@ Current input signal time = 68 [s]
 ...
 
 ```
+{: class="nocopy"}
 
   If you see something similar to this... Yay! You are getting real-time position fixes with your open source software-defined GPS receiver!
   {: .notice--success}
@@ -374,6 +379,7 @@ GNSS-SDR program ended.
 Stopping TCP Server on port 2101
 $
 ```
+{: class="nocopy"}
 
 Now you can examine the files created in your working folder.
 
@@ -433,13 +439,13 @@ In order to get real-time position fixes, you will need:
 
 This device requires the use of the [`Osmosdr_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-osmosdr_signal_source" | relative_url }}) implementation. If you installed GNSS-SDR from a software package, this implementation is already available. But if you are building GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
 
-```bash
+```console
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
 and then build and install the software:
 
-```bash
+```console
 $ make
 $ sudo make install
 ```
@@ -572,12 +578,13 @@ PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 
 ```
+{: class="nocopy"}
 
 Copy and paste this configuration in your favorite plain text editor and save it as, for instance, `hackrf_GPS_L1.conf`.
 
 Once the hardware and the software configurations are ready, go to your favorite working directory where the file `hackrf_GPS_L1.conf` was stored and invoke the software receiver with this particular configuration:
 
-```bash
+```console
 $ gnss-sdr --config_file=./hackrf_GPS_L1.conf
 ```
 

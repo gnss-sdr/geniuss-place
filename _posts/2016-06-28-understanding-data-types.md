@@ -119,6 +119,8 @@ typedef unsigned long ulong;
 unsigned long l1;
 ulong l2;
 ```
+{: class="nocopy"}
+
 **Idea to take home:** If your GNSS front-end is delivering samples of 2-bit length, a computer does not know how to handle them. A data type for that length is not defined, so there are no operations defined upon it. Even if you define a specific data type and its related operations, processors and compilers will likely not be optimized for such non-standard type. You need to bring whatever format your _Signal Source_ is delivering to a format that is understandable by the processing environment (processor, operating system, compiler, etc.) in charge of executing GNSS-SDR. Luckily, it is easy to define new formats converters, and they need to be placed at the first processing block that receives the incoming sample stream: the _Data Type_Adapter_.
 {: .notice--info}
 
@@ -171,7 +173,7 @@ template <typename T> inline std::complex<T> lv_cmake(const T &r, const T &i){
 }
 ...
 ```
-
+{: class="nocopy"}
 
 As shown in the typedefs listed above, VOLK defines
 type names for objects holding complex numbers in which their real and

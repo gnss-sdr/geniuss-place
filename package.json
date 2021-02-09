@@ -1,6 +1,6 @@
 {
   "name": "geniuss-place",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "GNSS-SDR website npm build scripts",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   },
   "homepage": "https://gnss-sdr.org/",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 12.10.0"
   },
   "devDependencies": {
     "minimist": ">=1.2.2",

@@ -26,6 +26,7 @@ comments:
     shortname            : geniussplace
 atom_feed:
   path                   : # blank (default) uses feed.xml
+  hide                   : true # true, false (default)
 search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
 search_provider          : "google" # lunr (default), algolia, google
