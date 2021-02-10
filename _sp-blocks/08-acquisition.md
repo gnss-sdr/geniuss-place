@@ -14,8 +14,8 @@ $$ \begin{equation} \label{xin} x_\text{IN}[k] = A(t)\tilde{s}_{T}(t-\tau(t))e^{
 
 where $$ A(t) $$ is the signal amplitude, $$ \tilde{s}_{T}(t) $$ is a filtered version of $$ s_T(t) $$, $$ \tau(t) $$ is a time-varying code delay, $$ f_D(t) $$ is a time-varying Doppler shift, $$ \phi(t) $$ is a time-varying carrier phase shift, $$ n(t) $$ is a term modeling random noise and $$ T_s $$ is the sampling period.
 
-The role of an _Acquisition_ block is the detection of presence/absence
-of signals coming from a given GNSS satellite. In case of a positive
+The role of an _Acquisition_ block is the detection of the presence/absence
+of signals coming from a given GNSS satellite. In the case of a positive
 detection, it should provide coarse estimations of the code phase
 $$ \hat{\tau}_{acq} $$ and the Doppler shift $$ \hat{f}_{\!D_{acq}} $$, yet accurate enough to
 initialize the delay and phase tracking loops.
@@ -60,7 +60,7 @@ that the optimum solution to that problem can be found by applying the
 signal parameters and constitutes the [uniformly most powerful test](https://en.wikipedia.org/wiki/Uniformly_most_powerful_test).
 Assuming additive white Gaussian noise and replacing the true
 synchronization parameters by their ML estimators in the Neyman-Pearson detector,
-one obtains the Generalized Likelihood Ratio Test (GLRT) function, that
+one obtains the Generalized Likelihood Ratio Test (GLRT) function, which
 can be written as:
 
 $$ \begin{equation} T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right) = \max_{f_D,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_D,\tau) \right|^2}{\hat{R}_{xx}} \right\}~, \end{equation} $$
@@ -86,7 +86,7 @@ The Parallel Code Phase Search (PCPS) algorithm is described as follows:
 provided by the Signal Conditioner; on-memory FFT of the local replica,
 $$ D[k]=FFT_{K}\left\{d[k]\right\} $$; acquisition threshold $$ \gamma $$; freq.
 span $$ [f_{min}\; f_{max}] $$; freq. step $$ f_{step} $$.
-* **Ensure**: Decision positive or negative signal acquisition. In case of positive detection, it provides
+* **Ensure**: Decision positive or negative signal acquisition. In the case of positive detection, it provides
 coarse estimations of code phase $$ \hat{\tau}_{acq} $$ and Doppler shift
 $$ \hat{f}_{\!D_{acq}} $$ to the Tracking block.
 
@@ -134,7 +134,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 
@@ -152,8 +152,8 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
-| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
@@ -231,11 +231,11 @@ within a given time-out interval.
 This is the case of the Tong detector[^Tong73], a sequential variable dwell time detector with a
 reasonable computation burden and proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
 signal search, the up/down counter $$ \mathcal{K} $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
-decremented by one. If the counter has reached maximum count value $$ A $$, the signal is
+decremented by one. If the counter has reached the maximum count value $$ A $$, the signal is
 declared ‘_present_’ and the search is terminated. Similarly, if the counter contents reach zero,
 the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
 trapped into an extended dwell in the same cell, under certain poor signal conditions, another
-counter ($$ \mathcal{K}_{max} $$) sets the limit on maximum number of dwells.
+counter ($$ \mathcal{K}_{max} $$) sets the limit on the maximum number of dwells.
 
 This implementation accepts the following parameters:
 
@@ -300,7 +300,7 @@ $$ D_{I/NAV} $$, and can be expressed as:
 
 $$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big] \cdot p(t - lT_{c,E1B})~. \end{equation} $$
 
-In case of channel C, it is a pilot (dataless) channel with a secondary code with a length of 100 ms, forming a tiered code:
+In the case of channel C, it is a pilot (dataless) channel with a secondary code with a length of 100 ms, forming a tiered code:
 
 $$ \!\!\!\!\!\!\begin{equation} e_{E1C}(t) =\! \sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
 
@@ -310,7 +310,7 @@ with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $
 
 This implementation permits the configuration of the shape of the local replica $$ d[k] $$, allowing for simplifications that reduce the computational load. As shown in the figure
 [below]({{ "/docs/sp-blocks/acquisition/#fig:Rxd" | relative_url }}), in narrowband receivers the CBOC waveform can be substituted
-by a sinBOC modulation with very small performance penalty[^Lohan11]. For
+by a sinBOC modulation with a very small performance penalty[^Lohan11]. For
 the E1B signal component, the reference signals available in this
 implementation are:
 
@@ -345,7 +345,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 
@@ -365,8 +365,8 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
-| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
@@ -394,11 +394,11 @@ Acquisition_1B.max_dwells=1
 The Tong detector[^Tong73] is a sequential variable dwell time detector with a
 reasonable computation burden that proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
 signal search, the up/down counter $$ \mathcal{K} $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
-decremented by one. If the counter has reached maximum count value $$ A $$, the signal is
+decremented by one. If the counter has reached the maximum count value $$ A $$, the signal is
 declared ‘_present_’ and the search is terminated. Similarly, if the counter contents reach zero,
 the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
 trapped into an extended dwell in the same cell, under certain poor signal conditions, another
-counter ($$ \mathcal{K}_{max} $$) sets the limit on maximum number of dwells.
+counter ($$ \mathcal{K}_{max} $$) sets the limit on the maximum number of dwells.
 
 This implementation accepts the following parameters:
 
@@ -474,7 +474,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -505,7 +505,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 
@@ -523,8 +523,8 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
-| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
@@ -576,7 +576,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -606,7 +606,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 
@@ -623,8 +623,8 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
-| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
@@ -660,7 +660,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
 |--------------
 
 
@@ -678,10 +678,10 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is specially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `acquire_pilot` |  [`true`, `false`]: If set to `true`, it enables the Acquisition of the pilot Galileo E5a signal (Q component). It defaults to `false`. | Optional |
 | `acquire_iq` |  [`true`, `false`]: If set to `true`, it enables the Acquisition of both, data (I) and pilot (Q) components of the Galileo E5a signal and overrides `acquire_pilot` to `false`. It is suitable for increasing the acquisition sensitivity of the receiver. It defaults to `false`. | Optional |
-| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows to provide an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |

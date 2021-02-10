@@ -9,14 +9,14 @@ toc_sticky: true
 last_modified_at: 2021-02-07T09:54:02+02:00
 ---
 
-The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange**, **carrier phase** (or its **phase-range** version) and **Doppler shift** (or its **pseudorange rate** version).
+The role of an _Observables_ block is to collect the synchronization data coming from all the processing Channels, and to compute from them the GNSS basic measurements: **pseudorange**, **carrier phase** (or its **phase-range** version), and **Doppler shift** (or its **pseudorange rate** version).
 {: .notice--info}
 
 It follows the description of mathematical models for the obtained measurements, with a physical interpretation. Those models will be used in the computation of the [Position-Velocity-Time]({{ "/docs/sp-blocks/pvt/" | relative_url }}) solution.
 
 ## Pseudorange measurement
 
-The **pseudorange measurement** is defined as the difference of the time of reception (expressed in the time frame of the receiver) and the time of transmission (expressed in the time frame of the satellite) of a distinct satellite signal. This corresponds to the distance from the receiver antenna to the satellite antenna, including receiver and satellite clock offsets and other biases, such as atmospheric delays. For a signal from satellite $$ s $$ in the *i*-th band, the pseudorange $$ P_{r,i}^{(s)} $$ can be expressed by using the signal reception time $$ \bar{t}_r $$ (s) measured by the receiver clock and the signal transmission time $$ \bar{t}^{(s)} $$ (s) measured by the satellite clock as:
+The **pseudorange measurement** is defined as the difference between the time of reception (expressed in the time frame of the receiver) and the time of transmission (expressed in the time frame of the satellite) of a distinct satellite signal. This corresponds to the distance from the receiver antenna to the satellite antenna, including receiver and satellite clock offsets and other biases, such as atmospheric delays. For a signal from satellite $$ s $$ in the *i*-th band, the pseudorange $$ P_{r,i}^{(s)} $$ can be expressed by using the signal reception time $$ \bar{t}_r $$ (s) measured by the receiver clock and the signal transmission time $$ \bar{t}^{(s)} $$ (s) measured by the satellite clock as:
 
 $$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right) $$
 
@@ -42,7 +42,7 @@ where:
   * $$ \epsilon_P $$ models measurement noise, including satellite orbital errors, receiver's and satellite's instrumental delays, effects of multipath propagation and thermal noise (in m).
 
 
-GNSS-SDR performs pseudorange generation based on setting a **common reception time** across all channels[^Petovello12]. The result of this approach is not an absolute pseudorange, but a relative pseudorange with respect to the value (of pseudorange) allocated for a _reference_ satellite. This is possible thanks to the time of week (TOW) information, that is the epoch conveyed by the navigation message, and the associated reception time $$ t_{r} $$, that is the epoch measured by the receiver's time counter, both available for each satellite.
+GNSS-SDR performs pseudorange generation based on setting a **common reception time** across all channels[^Petovello12]. The result of this approach is not an absolute pseudorange, but a relative pseudorange with respect to the value (of pseudorange) allocated for a _reference_ satellite. This is possible thanks to the time of week (TOW) information, which is the epoch conveyed by the navigation message, and the associated reception time $$ t_{r} $$, which is the epoch measured by the receiver's time counter, both available for each satellite.
 
 The first step performed by the common reception time algorithm is the selection of a reference satellite: it is the satellite with the most recent TOW (which is the nearest satellite), denoted as $$ \text{TOW}_\text{ref} $$, whose associated $$ t_{r_\text{ref}} $$ is taken as the common reception time for all channels. An initial travel time ($$ \tau_\text{ref} = 68.802 $$ ms is assigned to this satellite, but in general it is a value between $$ 65 $$ and $$ 85 $$ milliseconds according to the user altitude) that can be easily converted in meters considering the speed of light. Then, the pseudoranges for all other satellites are derived by adding the relative-arrival times. Each travel time $$ \tau $$ can be computed as:
 
@@ -61,7 +61,7 @@ Note that, in the case of a multi-system receiver, all pseudorange observations 
 
 ## Carrier phase measurement
 
-The **carrier phase measurement** is actually a measurement on the beat frequency between the received carrier of the satellite signal and a receiver-generated reference frequency. It can be modeled as:
+The **carrier phase measurement** is actually a measurement of the beat frequency between the received carrier of the satellite signal and a receiver-generated reference frequency. It can be modeled as:
 
 $$ \begin{equation} \!\!\!\!\!\!\!\!\!\!\begin{array}{ccl}  \phi_{r,i}^{(s)} \!\!\! & = \!\!\!\!&\phi_{r,i}(t_r) - \phi_{i}^{(s)}(t^{(s)}) + N_{r,i}^{(s)} + \epsilon_{\phi} \\
 {} & \!\!\!= \!\!\!\!& \left(f_i(t_r + dt_r(t_r) - t_0) + \phi_{r,0,i}\right) +\\
@@ -102,7 +102,7 @@ Phase measurements are sometimes given in meters. This is referred to as **phase
 $$ \begin{array}{ccl} \Phi_{r,i}^{(s)} & = & \lambda_i \phi_{r,i}^{(s)} \\
 {} & = &c(t_r-t^{(s)}) + c (dt_r(t_r) - dT^{(s)}(t^{(s)}))+ \lambda_i(\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \lambda_i \epsilon_{\phi}  \end{array}$$
 
-The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna phase center offsets and variations, station displacement by earth tides, phase windup effect and relativity correction on the satellite clock) that will be useful for [precise point positioning]({{ "/docs/sp-blocks/pvt/#precise-point-positioning" | relative_url }}) algorithms. The phase-range measurement can then be modeled as:
+The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna phase center offsets and variations, station displacement by earth tides, phase windup effect, and relativity correction on the satellite clock) that will be useful for [precise point positioning]({{ "/docs/sp-blocks/pvt/#precise-point-positioning" | relative_url }}) algorithms. The phase-range measurement can then be modeled as:
 
 $$ \!\!\!\!\begin{equation} \Phi_{r,i}^{(s)} =  \rho_{r}^{(s)} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) -  I_{r,i}^{(s)} + T_{r}^{(s)} + \lambda_i B_{r,i}^{(s)}+d\Phi_{r,i}^{(s)} +\epsilon_{\Phi} \end{equation} $$
 
@@ -189,18 +189,18 @@ $$ \begin{equation} \label{eq:smoothing}
 
 where $$ n=k $$ when $$ k<M $$ and $$ n=M $$ when $$ k \geq M $$.
 
-The algorithm is initialised with:
+The algorithm is initialized with:
 
 $$ \begin{equation}
 \hat{P}_{r,i}^{(s)}[1] = P_{r,i}^{(s)}[1]
 \end{equation} $$
 
-This algorithm is initialised every time that a carrier phase cycle-slip occurs.
+This algorithm is initialized every time that a carrier phase cycle-slip occurs.
 
 
 ## Implementation: `Hybrid_Observables`  
 
-This implementation computes observables by collecting the outputs of channels for all kind of allowed GNSS signals. **You always can use this implementation in your configuration file, since it accepts all kind of (single- or multi-band, single- or multi-constellation) receiver configurations.**
+This implementation computes observables by collecting the outputs of channels for all kinds of allowed GNSS signals. **You always can use this implementation in your configuration file, since it accepts all kind of (single- or multi-band, single- or multi-constellation) receiver configurations.**
 
 It accepts the following parameters:
 
@@ -229,7 +229,7 @@ Observables.dump=true
 
 &nbsp;
 
-If `dump=true`, the logging of data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with same name than `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format which can be easily read with Matlab or Octave, by doing `load observables.mat`, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library.  The stored variables are matrices with a number of rows equal to the total number of channels set up in the configuration file, and a number of columns equal to the number of epochs (that is, tracking integration times). This block stores the following variables:
+If `dump=true`, the logging of data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with the same name as `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format that can be easily read with Matlab or Octave, by doing `load observables.mat`, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library.  The stored variables are matrices with a number of rows equal to the total number of channels set up in the configuration file, and a number of columns equal to the number of epochs (that is, tracking integration times). This block stores the following variables:
 
   * `Carrier_Doppler_hz`: Doppler estimation in each channel, in [Hz].
   * `Carrier_phase_cycles`: Carrier phase estimation in each channel, in [cycles].

@@ -10,7 +10,7 @@ last_modified_at: 2018-12-14T12:54:02-04:00
 ---
 
 
-The _Data Type Adapter_ is the first processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | relative_url }}) implementation.
+The _Data Type Adapter_ is the first processing block inside a _Signal Conditioner_ when the latter is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | relative_url }}) implementation.
 
 
 
@@ -20,21 +20,20 @@ The role of a _Data Type Adapter_  block is to perform a conversion of the data 
 This is the first processing block after the Signal Source, and each
 kind of source can deliver data in different formats.
 
--   If the _Signal Source_ is delivering samples at a given intermediate
-    frequency, the _native_ data types can be:
+- If the _Signal Source_ is delivering samples at a given intermediate
+  frequency, the _native_ data types can be:
 
-    -   Real samples: <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> (8, 16 and 32 bits,
-        respectively).
+    - Real samples: <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> (8, 16, and 32 bits, respectively).
 
-    -   Intervealed (I&Q) samples: <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (8+8, 16+16 and 32+32 bits, respectively).
+    - Intervealed (I&Q) samples: <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (8+8, 16+16, and 32+32 bits, respectively).
 
--   If the _Signal Source_ is delivering samples at baseband, the _native_ data types can be:
+- If the _Signal Source_ is delivering samples at baseband, the _native_ data types can be:
 
-    -   Interleaved (I&Q) samples: <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (8+8, 16+16 and 32+32 bits, respectively).
+    - Interleaved (I&Q) samples: <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (8+8, 16+16, and 32+32 bits, respectively).
 
-    -   Complex samples: <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (8+8, 16+16 and 32+32 bits, respectively).
+    - Complex samples: <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> (8+8, 16+16, and 32+32 bits, respectively).
 
-This block provide several implementations of data type conversions. For more details about sample data types and their usage in GNSS-SDR, please check out our [tutorial on data types]({{ "/docs/tutorials/understanding-data-types/" | relative_url }}).
+This block has several implementations of data type conversions. For more details about sample data types and their usage in GNSS-SDR, please check out our [tutorial on data types]({{ "/docs/tutorials/understanding-data-types/" | relative_url }}).
 
 ### Implementation: `Byte_To_Short`
 

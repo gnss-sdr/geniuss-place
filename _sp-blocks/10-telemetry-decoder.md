@@ -41,15 +41,15 @@ _GPS NAV message. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/G
 
 The content of every sub-frame is as follows:
 
-* **Sub-frame 1**: contains information about the parameters to be applied to satellite clock status for its correction. These values are polynomial coefficients that allow converting time on board to GPS time. It also has information about satellite health condition.
+* **Sub-frame 1**: contains information about the parameters to be applied to satellite clock status for its correction. These values are polynomial coefficients that allow converting time onboard to GPS time. It also has information about the satellite's health condition.
 * **Sub-frames 2 and 3**: these sub-frames contain satellite ephemeris.
-* **Sub-frame 4**: provides ionospheric model parameters (in order to adjust for ionospheric refraction), UTC information (Universal Coordinate Time), part of the almanac, and indications whether the Anti-Spoofing, A/S, is activated or not (which transforms P code into the encrypted Y code).
+* **Sub-frame 4**: provides ionospheric model parameters (in order to adjust for ionospheric refraction), UTC information (Universal Coordinate Time), part of the almanac, and indications of whether the Anti-Spoofing, A/S, is activated or not (which transforms P code into the encrypted Y code).
 * **Sub-frame 5**: contains data from the almanac and the constellation status. A total of 25 frames are needed to complete the almanac.
 
 Sub-frames 1, 2 and 3 are transmitted with each frame (i.e., they are repeated every 30 seconds). Sub-frames 4 and 5 contain different pages (25 pages each) of the navigation message. Thence, the transmission of the full navigation message takes $$ 25 \times 30 $$ seconds = 12.5 minutes.
 
 
-The content of sub-frames 4 and 5 is common for all satellites. Thence, the almanac data for all in orbit satellites can be obtained from a single tracked satellite.
+The content of sub-frames 4 and 5 is common for all satellites. Thence, the almanac data for all in-orbit satellites can be obtained from a single tracked satellite.
 
 This implementation accepts the following parameters:
 
@@ -61,7 +61,7 @@ This implementation accepts the following parameters:
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
-| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L1_CA_Telemetry_Decoder`**.
@@ -130,7 +130,7 @@ This implementation accepts the following parameters:
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
-| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`Galileo_E1B_Telemetry_Decoder`**.
@@ -156,16 +156,16 @@ where
 $$ \begin{equation} e_{Q}(t) = \sum_{l=-\infty}^{\infty} {\color{ForestGreen} D_{\text{GNAV}}\Big[ [l]_{10220} \Big] } \oplus  C_{\text{C/A}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{C/A}})~.\end{equation} $$
 
 
-The navigation message of the standard accuracy signal (C/A) is broadcast as continuously repeating superframes with a duration of 2.5 minutes. Each superframe consists of 5 frames of 30 seconds, and each frame consists of 15 strings of 2 seconds duration (100 bits length).
+The navigation message of the standard accuracy signal (C/A) is broadcast as continuously repeating superframes with a duration of 2.5 minutes. Each superframe consists of 5 frames of 30 seconds, and each frame consists of 15 strings of 2 seconds duration (100 bits long).
 
 ![GLONASS NAV message]({{ "/assets/images/GLONASS_navigation_message_structure.png" | relative_url }}){: .align-center .invert-colors}
 _GLONASS NAV message. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Navigation_Message)_.
 {: style="text-align: center;"}
 
-Each string is formed by a 0 (idle) bit, 76 data bits, the eight check bits of a Hamming code (labelled as Kx in the figure above) and a 30-bit time mark (labelled as MB).
+Each string is formed by a 0 (idle) bit, 76 data bits, the eight check bits of a Hamming code (labeled as Kx in the figure above) and a 30-bit time mark (labeled as MB).
 
-The message content divides the data in _immediate data of the transmitting satellite_ and _non-immediate data for the other satellites_:
- * The immediate data is repeated in the first four strings of every frame. It comprises the ephemeris parameters, satellite clock offsets, satellite healthy flag and the relative difference between carrier frequency of the satellite and its nominal value.
+The message content divides the data into _immediate data of the transmitting satellite_ and _non-immediate data for the other satellites_:
+ * The immediate data is repeated in the first four strings of every frame. It comprises the ephemeris parameters, satellite clock offsets, satellite healthy flag, and the relative difference between carrier frequency of the satellite and its nominal value.
  * The non-immediate data is broadcast in the strings 5 to 15 of each frame (almanac for 24 satellites). The frames I to IV contain almanac for 20 satellites (5 per frame), and the 5th frame almanac for 4 satellites. The last 2 strings of frame 5 are reserved bits (the almanac of each satellite uses 2 strings).
 
 The ephemerides values are predicted from the Ground Control Centre for a 24 hours period, and the satellite transmits a new set of ephemerides every 30 minutes. These data differ from GPS data: instead of Keplerian orbital elements, they are provided as Earth Centered Earth Fixed (ECEF) Cartesian coordinates in position and velocity, with lunar and solar acceleration perturbation parameters.
@@ -183,7 +183,7 @@ This implementation accepts the following parameters:
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
-| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
 |--------------
 
 _Telemetry Decoder implementation:_ **`GLONASS_L1_CA_Telemetry_Decoder`**.
@@ -210,7 +210,7 @@ This implementation accepts the following parameters:
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
-| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GLONASS_L2_CA_Telemetry_Decoder`**.
@@ -241,7 +241,7 @@ $$ \begin{eqnarray} e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty} {\color{ForestGre
 The civilian long code $$ C_{\text{CL}} $$ is
 $$ L_{\text{CL}}=767250 $$ chips long, repeating every $$ 1.5 $$ s, while the
 civilian moderate code $$ C_{\text{CM}} $$ is $$ L_{\text{CL}}=10230 $$ chips
-long and its repeats every $$ 20 $$ ms. The CNAV data message $$ D_{\text{CNAV}} \in \{ 1, -1 \} $$ is an upgraded version
+long and it repeats every $$ 20 $$ ms. The CNAV data message $$ D_{\text{CNAV}} \in \{ 1, -1 \} $$ is an upgraded version
 of the original NAV navigation message, containing higher precision
 representation and nominally more accurate data than the NAV data. It is
 transmitted at $$ 25 $$ bps with forward error correction (FEC) encoding,
@@ -261,7 +261,7 @@ This implementation accepts the following parameters:
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
-| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L2C_Telemetry_Decoder`**.
@@ -306,7 +306,7 @@ This implementation accepts the following parameters:
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
-| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`GPS_L5_Telemetry_Decoder`**.
@@ -352,7 +352,7 @@ This implementation accepts the following parameters:
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
-| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default this parameter is set to `false`. | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
 |--------------
 
   _Telemetry Decoder implementation:_ **`Galileo_E5a_Telemetry_Decoder`**.
