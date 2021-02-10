@@ -6,7 +6,7 @@ header:
   teaser: /assets/images/radar-chart.png
 toc: true
 toc_sticky: true
-last_modified_at: 2017-01-02T08:31:02+02:00
+last_modified_at: 2021-02-10T08:31:02+02:00
 ---
 
 _Interoperability_ refers to the ability of making systems work together. In particular, the possibility to exchange information with other free and proprietary software, devices and systems, including GNSS signals, RF front-ends, external assistance, and all sort of information-displaying or sensor data fusion applications via standard outputs.
@@ -132,7 +132,7 @@ The software receiver should deliver the results of the processing in several st
     **RTCM SC-104** provides standards that define the data structure for differential GNSS correction information for a variety of differential correction applications. Developed by the Radio Technical Commission for Maritime Services ([RTCM](https://www.rtcm.org/ "Radio Technical Commission for Maritime Services")), they have become an industry standard for communication of correction information. GNSS-SDR implements RTCM version 3.2, defined in the document *RTCM 10403.2, Differential GNSS (Global Navigation Satellite Systems) Services - Version 3* (October 7, 2016), which can be [purchased online](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-2-differential-gnss-global-navigation-satellite-systems-services-version-3-february-1-2013 "RTCM Online Publication Order Form"). The software receiver should implement a TCP/IP server, acting as an NTRIP source that can feed an NTRIP server. NTRIP (Networked Transport of RTCM via Internet Protocol) is an open standard protocol that can be freely download from [BKG](https://igs.bkg.bund.de/root_ftp/NTRIP/documentation/NtripDocumentation.pdf "Networked Transport of RTCM via Internet Protocol (Ntrip) Version 1.0"), and it is designed for disseminating differential correction data (_e.g._ in the RTCM-104 format) or other kinds of GNSS streaming data to stationary or mobile users over the Internet.
     {: .notice--info}
 
-* RINEX observation and navigation data files. Specify version: [2.10](ftp://igs.org/pub/data/format/rinex210.txt), [2.11](ftp://igs.org/pub/data/format/rinex211.txt), [3.00](ftp://igs.org/pub/data/format/rinex300.pdf), [3.02](ftp://igs.org/pub/data/format/rinex302.pdf), [3.03](ftp://igs.org/pub/data/format/rinex303.pdf).
+* RINEX observation and navigation data files. Specify version: [2.10](ftp://igs.org/pub/data/format/rinex210.txt), [2.11](ftp://igs.org/pub/data/format/rinex211.txt), [3.00](ftp://igs.org/pub/data/format/rinex300.pdf), [3.02](ftp://igs.org/pub/data/format/rinex302.pdf), [3.03](ftp://igs.org/pub/data/format/rinex303.pdf), [3.04](https://files.igs.org/pub/data/format/rinex304.pdf), or [3.05](https://files.igs.org/pub/data/format/rinex305.pdf).
 
     **RINEX** (Receiver Independent Exchange Format) is an interchange format for raw satellite navigation system data, covering observables and the information contained in the navigation message broadcast by GNSS satellites. This allows the user to post-process the received data to produce a more accurate result (usually with other data unknown to the original receiver, such as better models of the atmospheric conditions at time of measurement). RINEX files can be used by software packages such as [GPSTk](https://github.com/SGL-UT/GPSTk), [RTKLIB](http://www.rtklib.com/) and [gLAB](https://gage.upc.edu/gLAB/), among many others.
     {: .notice--info}
