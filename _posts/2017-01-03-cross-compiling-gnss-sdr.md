@@ -16,9 +16,9 @@ show_date: false
 last_modified_at: 2020-09-29T02:11:02+02:00
 ---
 
-An **embedded system** is defined as a computer system with a specific function within a larger mechanical or electrical system. Examples of properties of embedded computers when compared with general-purpose counterparts are low power consumption, small size, rugged operating ranges, and low per-unit cost, at the price of limited processing resources.
+An **embedded system** is defined as a computer system with a specific function within a larger mechanical or electrical system. Examples of properties of embedded computers, when compared with general-purpose counterparts, are low power consumption, small size, rugged operating ranges, and low per-unit cost, at the price of limited processing resources.
 
-This page is devoted to the development cycle for building and executing GNSS-SDR in an embedded computer. In this example we are working with a [Zedboard](https://www.xilinx.com/products/boards-and-kits/1-elhabt.html) (a development board that ships a [Xilinx Zynq-7000](https://www.xilinx.com/products/silicon-devices/soc/zynq-7000.html) all-programmable [SoC](https://en.wikipedia.org/wiki/System_on_a_chip), which houses two ARM and one FPGA processor in a single chip), but this procedure is applicable to other embedded platforms without much modification.
+This page is devoted to the development cycle for building and executing GNSS-SDR in an embedded computer. In this example, we are working with a [Zedboard](https://www.xilinx.com/products/boards-and-kits/1-elhabt.html) (a development board that ships a [Xilinx Zynq-7000](https://www.xilinx.com/products/silicon-devices/soc/zynq-7000.html) all-programmable [SoC](https://en.wikipedia.org/wiki/System_on_a_chip), which houses two ARM and one FPGA processor in a single chip), but this procedure is applicable to other embedded platforms without much modification.
 
 Once all the required dependencies are already installed, GNSS-SDR can be built from source in ARM processors without hassle. However, this building process can easily take more than 10 hours if it is executed on the Zynq device. Thus, in order to speed up the development cycle from a change in the source code to the execution in an embedded platform, we need to resort to cross-compilation.
 
@@ -34,7 +34,7 @@ Below we provide a software developer kit (SDK) that installs a ready-to-use cro
 Getting the SDK
 ----------------
 
-We offer two options here: you can either download a script that will install the full SDK in your computer, or you can customise and build your own SDK. Both options are described below:
+We offer two options here: you can either download a script that will install the full SDK on your computer, or you can customize and build your own SDK. Both options are described below:
 
 ### Option 1: Downloading the SDK
 
@@ -116,7 +116,7 @@ $ bitbake gnss-sdr-dev-image
 $ bitbake -c populate_sdk gnss-sdr-dev-image
 ```
 
-This process downloads several gigabytes of source code and then proceeds to compile all the required packages for the host and native targets, so **it will take time**. The first command constructs a complete Linux image for your target device. The second command generates the toolchain installer, a script that installs a cross-compiler, a cross-linker and a cross-debugger, forming a completely self-contained toolchain which allows you to cross-develop on the host machine for the target hardware. The generated script will be found under `./tmp-glibc/deploy/sdk/`.
+This process downloads several gigabytes of source code and then proceeds to compile all the required packages for the host and native targets, so **it will take time**. The first command constructs a complete Linux image for your target device. The second command generates the toolchain installer, a script that installs a cross-compiler, a cross-linker, and a cross-debugger, forming a completely self-contained toolchain that allows you to cross-develop on the host machine for the target hardware. The generated script will be found under `./tmp-glibc/deploy/sdk/`.
 
 If you are using Rocko or above, you can create a Docker image of the target environment by doing:
 
