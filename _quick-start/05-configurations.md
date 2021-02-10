@@ -45,7 +45,7 @@ In order to get real-time position fixes, you will need:
   _Some USRP models and features. The ADC processing bandwidth is the sample rate provided by the ADCs on the USRP motherboard, and the host sample rate refers to the sample stream between the FPGA of a USRP device, and a host PC. Some USRP models also provide the option to stream 8-bit samples, effectively doubling the host-bandwidth in terms of samples/second. Source: [Ettus Research Knowledge Base](https://kb.ettus.com/About_USRP_Bandwidths_and_Sampling_Rates)._
   {: style="text-align: center;"}
 
-  * The USRP family features a modular architecture with interchangeable daughterboard modules that serve as the RF front end. In case of using a USRP without an embedded transceiver, you will need **a daughterboard** allowing the reception of signals around 1.5 GHz. That is: DBSRX2, WBX, SBX, CBX and UBX daughterboards can work for you. You will not need a daughterboard if you are using USRP B200, B210 or E310, which ship an Analog Devices AD9361 RFIC as an integrated wideband transceiver.
+  * The USRP family features a modular architecture with interchangeable daughterboard modules that serve as the RF front end. In the case of using a USRP without an embedded transceiver, you will need **a daughterboard** allowing the reception of signals around 1.5 GHz. That is: DBSRX2, WBX, SBX, CBX, and UBX daughterboards can work for you. You will not need a daughterboard if you are using USRP B200, B210, or E310, which ship an Analog Devices AD9361 RFIC as an integrated wideband transceiver.
 
   |----------
   |  **Daughterboard**  |  **Frequency coverage** | **Analog bandwidth** | **RX gain**
@@ -70,14 +70,14 @@ In order to get real-time position fixes, you will need:
 
 ### Setting up the front-end
 
-The first thing to do is to install a suitable daughterboard into the USRP. As a example, you can check Ettus Research's detailed [step-by-step guide to install a daughterboard into the USRP N200/N210](https://kb.ettus.com/USRP_N_Series_Quick_Start_(Daughterboard_Installation)). In USRPs with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labeled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
+The first thing to do is to install a suitable daughterboard into the USRP. As an example, you can check Ettus Research's detailed [step-by-step guide to install a daughterboard into the USRP N200/N210](https://kb.ettus.com/USRP_N_Series_Quick_Start_(Daughterboard_Installation)). In USRPs with two receiving slots, please check in which one you are inserting the daughterboard (they are usually labeled as "RX A" and "RX B"). This is something that you will need to specify in the configuration file (via the `subdevice` parameter, see below).
 
 Then, you will need to feed your GNSS active antenna.
 
 **Important:** Never apply more than -15 dBm of power into any RF input.
 {: .notice--danger}
 
-In case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper in order to feed the antenna.
+In the case of using a DBSRX2 daughterboard, you will need to adjust the J101 jumper in order to feed the antenna.
 
 ![DBSRX2]({{ "/assets/images/DBSRX2_scale.jpg" | relative_url }}){: .align-center}
 _DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the injection of current towards the antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/)._
@@ -357,10 +357,10 @@ Current input signal time = 68 [s]
 ```
 {: class="no-copy"}
 
-  If you see something similar to this... Yay! You are getting real-time position fixes with your open source software-defined GPS receiver!
+  If you see something similar to this... Yay! You are getting real-time position fixes with your open-source software-defined GPS receiver!
   {: .notice--success}
 
-  **Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate `gnss-sdr` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
+  **Important:** In order to get well-formatted GeoJSON, KML and RINEX files, always terminate `gnss-sdr` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix has been obtained during the execution of the software receiver.
   {: .notice--warning}
 
 Always stop the execution of GNSS-SDR by pressing key '`q`'  and then key '`ENTER`' (_not_ at the same time, first '`q`' and then '`ENTER`'):
@@ -384,17 +384,17 @@ Now you can examine the files created in your working folder.
 
 ### If something goes wrong
 
-* Check out that the GNSS antenna is actually fed and that it is placed in a location with a good sky visibility.
+* Check out that the GNSS antenna is actually fed and that it is placed in a location with good sky visibility.
 
 * Check out Ettus Research's [getting starting guide](https://kb.ettus.com/Getting_Started_Guides) for your particular hardware configuration.
 
 * Watch out for overflows! Maybe your host computer is not able to sustain the required computational load for this particular implementation.
 
 {% capture overflow-text %}
- When receiving, the USRP device produces samples at a constant rate. Overflows occurs when the host computer does not consume data fast enough. When UHD software detects the overflow, it prints an "`O`" or "`D`" to the standard terminal output, and pushes an inline message packet into the receive stream.
+ When receiving, the USRP device produces samples at a constant rate. Overflows occur when the host computer does not consume data fast enough. When UHD software detects the overflow, it prints an "`O`" or "`D`" to the standard terminal output, and pushes an inline message packet into the receive stream.
 
   * **Network-based devices (_e.g._, USRP N2xx, X3xx)**: The host does not back-pressure the receive stream. When the kernel's socket buffer becomes full, it will drop subsequent packets. UHD software detects the overflow as a discontinuity in the packet's sequence numbers, and pushes an inline message packet into the receive stream. In this case the character `D` is printed to the standard terminal output as an indication.
-  * **Other devices (_e.g._, USRP 1, B2xx)**: The host back-pressures the receive stream. Therefore, overflows always occur in the device itself. When the device's internal buffers become full, streaming is shut off, and an inline message packet is sent to the host. In this case the character "`O`" is printed to the standard terminal output as an indication. If the device was in continuous streaming mode, the UHD software will automatically restart streaming when the buffer has space again.
+  * **Other devices (_e.g._, USRP 1, B2xx)**: The host back-pressures the receive stream. Therefore, overflows always occur in the device itself. When the device's internal buffers become full, streaming is shut off, and an inline message packet is sent to the host. In this case, the character "`O`" is printed to the standard terminal output as an indication. If the device was in continuous streaming mode, the UHD software will automatically restart streaming when the buffer has space again.
 {% endcapture %}
 
 <div class="notice--danger">
@@ -410,7 +410,7 @@ Now you can examine the files created in your working folder.
 
 ## GPS L1 C/A receiver using a HackRF One
 
-[HackRF One](https://greatscottgadgets.com/hackrf/) from Great Scott Gadgets is an [open source](https://github.com/mossmann/hackrf) Software Defined Radio peripheral capable of reception of radio signals from 1 MHz to 6 GHz, and thus is well suited for GNSS applications. If features:
+[HackRF One](https://greatscottgadgets.com/hackrf/) from Great Scott Gadgets is an [open-source](https://github.com/mossmann/hackrf) Software Defined Radio peripheral capable of reception of radio signals from 1 MHz to 6 GHz, and thus is well suited for GNSS applications. If features:
 
   * Up to 20 million samples per second.
   * 8-bit quadrature samples (8-bit I and 8-bit Q).

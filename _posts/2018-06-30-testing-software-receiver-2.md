@@ -1,4 +1,4 @@
----
+of a circle---
 title: "Testing the software receiver, Part II: Test Execution"
 permalink: /docs/tutorials/testing-software-receiver-2/
 excerpt: "Documentation on how to build and run the testing code."
@@ -17,19 +17,19 @@ show_date: false
 last_modified_at: 2020-11-07T11:37:02+02:00
 ---
 
-[Testability]({{ "/design-forces/testability/" | relative_url }}) is an important feature in any GNSS receiver. The companion tutorial [Testing the software receiver, Part I: Methodology]({{ "/docs/tutorials/testing-software-receiver/" | relative_url }}) describes the general approach taken in this project, and this page documents the available set of Unit and System tests. Some of them are highly configurable, so they can be seen as Performance tests.
+[Testability]({{ "/design-forces/testability/" | relative_url }}) is an essential feature in any GNSS receiver. The companion tutorial [Testing the software receiver, Part I: Methodology]({{ "/docs/tutorials/testing-software-receiver/" | relative_url }}) describes the general approach taken in this project, and this page documents the available set of Unit and System tests. Some of them are highly configurable, so they can be seen as Performance tests.
 
 In order to execute the tests, you must build GNSS-SDR from source. If the Google C++ Testing Framework source code is not already present in your system (and pointing the `GTEST_DIR` environment variable to the root of the source code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt-get install libgtest-dev`), it will be automatically downloaded from its Git repository, compiled and linked to GNSS-SDR at building time. The CMake script automates all those steps for you.
 
-**Tip:** some tests can optionally output plots if [Gnuplot](http://www.gnuplot.info/), a portable command-line driven graphing utility, is installed in your system. If you want to use this feature, install Gnuplot (by doing `sudo apt-get install gnuplot` in Debian-based Linux distributions, or `sudo port install gnuplot` using Macports in macOS) before building GNSS-SDR, and then activate the corresponding flag in the tests in which it is allowed (those flags start with `--plot_...`). This will display figures in new windows and will save them as [PostScript](https://en.wikipedia.org/wiki/PostScript) and PDF files in the folder where the test was called. In order to avoid showing plots in the screen, but still get the figures in files, use `--noshow_plot`.
+**Tip:** some tests can optionally output plots if [Gnuplot](http://www.gnuplot.info/), a portable command-line driven graphing utility, is installed in your system. If you want to use this feature, install Gnuplot (by doing `sudo apt-get install gnuplot` in Debian-based Linux distributions, or `sudo port install gnuplot` using Macports in macOS) before building GNSS-SDR, and then activate the corresponding flag in the tests in which it is allowed (those flags start with `--plot_...`). This will display figures in new windows and will save them as [PostScript](https://en.wikipedia.org/wiki/PostScript) and PDF files in the folder where the test was called. In order to avoid showing plots on the screen, but still get the figures in files, use `--noshow_plot`.
 {: .notice--info}
 
-GNSS-SDR tests are divided in two categories:
+GNSS-SDR tests are divided into two categories:
 
  * **Unit Tests**: checking of certain functions and areas - or _units_ - of the source code.
  * **System Tests**: checking conducted on a complete, integrated system to evaluate the system's compliance with its specified requirements.
 
-By default, only a (large) subset of unit tests are compiled (see details [below]({{ "#unit-tests" }})). So, when doing:
+By default, only a (large) subset of unit tests is compiled (see details [below]({{ "#unit-tests" }})). So, when doing:
 
 ```console
 $ cd gnss-sdr/build
@@ -63,7 +63,7 @@ Running GNSS-SDR Tests...
 ```
 {: class="no-copy"}
 
-Other additional unit and system tests require from external tools, libraries and data files not included in the GNSS-SDR's source tree. As in the case of the Google C++ Testing Framework source code, they can be automatically downloaded and built by passing the following option flags to CMake:
+Other additional unit and system tests require external tools, libraries and data files not included in the GNSS-SDR's source tree. As in the case of the Google C++ Testing Framework source code, they can be automatically downloaded and built by passing the following option flags to CMake:
 
 |----------
 |  **Variable passed to CMake** | **Possible values** | **Default** | **Effect** |
@@ -79,7 +79,7 @@ Other additional unit and system tests require from external tools, libraries an
 
 Those extra tests are described [below]({{ "#extra-unit-tests" }}).
 
-Tests programs generated with the Google C++ Testing Framework accepts a number of interesting commandline flags. Hereafter we describe some of the most relevant ones.
+Tests programs generated with the Google C++ Testing Framework accepts a number of interesting command-line flags. Hereafter we describe some of the most relevant ones.
 
 # Using the testing framework
 
@@ -273,7 +273,7 @@ The generation of some unit test suites are enabled by default, and gathered in 
       - `GlonassL1CaPcpsAcquisitionGSoC2017Test`: set of test cases for [glonass_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/glonass_l1_ca_pcps_acquisition.h) developed during GSoC 2017.
 
  * Tracking
-      - `CpuMulticorrelatorTest`: set of test cases for [cpu_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cpu_multicorrelator.h) that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--cpu_multicorrelator_iterations_test`. You can also set the number of threads spawn by this program with the flag `--cpu_multicorrelator_max_threads_test`. A possible call for this test could be:
+      - `CpuMulticorrelatorTest`: set of test cases for [cpu_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cpu_multicorrelator.h) that measure the execution time for multi-correlations of size $$ 2048 $$, $$ 4096 $$ and $$ 8192 $$. By default, the measurements average $$ 1000 $$ independent realizations, a value that can be changed by the flag `--cpu_multicorrelator_iterations_test`. You can also set the number of threads spawned by this program with the flag `--cpu_multicorrelator_max_threads_test`. A possible call for this test could be:
       ```console
       $ ./run_tests --gtest_filter=Cpu* --cpu_multicorrelator_iterations_test=10000 --cpu_multicorrelator_max_threads_test=2
       ```
@@ -304,7 +304,7 @@ The generation of some unit test suites are enabled by default, and gathered in 
 
 ## Extra Unit Tests
 
-This option builds some extra unit tests cases that require external tools not included in the GNSS-SDR source tree. It can be activated by:
+This option builds some extra unit test cases that require external tools not included in the GNSS-SDR source tree. It can be activated by:
 
 ```console
 $ cmake -DENABLE_UNIT_TESTING_EXTRA=ON ..
@@ -314,7 +314,7 @@ $ make
 This option will download, build and link (at building time) the following tools and files:
 
  * A basic software-defined GNSS signal generator based on [gps-sdr-sim](https://github.com/osqzss/gps-sdr-sim) and available at [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator), which includes some sample RINEX and trajectory (.csv) files used by optional tests.
- * The [GPSTk project](https://github.com/SGL-UT/GPSTk), an open source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](https://wwwext.arlut.utexas.edu/sgl.html), within the [Applied Research Laboratories](https://www.arlut.utexas.edu/) at the [University of Texas at Austin](https://www.utexas.edu) (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk).
+ * The [GPSTk project](https://github.com/SGL-UT/GPSTk), an open-source library and suite of applications for the satellite navigation community. GPSTk is sponsored by [Space and Geophysics Laboratory](https://wwwext.arlut.utexas.edu/sgl.html), within the [Applied Research Laboratories](https://www.arlut.utexas.edu/) at the [University of Texas at Austin](https://www.utexas.edu) (ARL:UT). GPSTk is the by-product of GPS research conducted at ARL:UT since before the first satellite launched in 1978; it is the combined effort of many software engineers and scientists. In 2003, the research staff at ARL:UT decided to open-source much of their basic GNSS processing software as the GPSTk. The source code is currently available from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk).
  * It downloads `gps_l2c_m_prn7_5msps.dat` and `Glonass_L1_CA_SIM_Fs_62Msps_4ms.dat`, files containing raw GNSS signal samples that are used by some tests as input data.
 
 
@@ -392,10 +392,10 @@ This test accepts the following flags:
 |:--|:-:|:--|
 | `--trk_test_implementation` | `GPS_L1_CA_DLL_PLL_Tracking` | Tracking block implementation under test. |
 | `--fs_gen_sps` | `2600000` | Sampling rate, in Samples/s. |
-| `--enable_external_signal_file` | `false` | Use an external signal file capture instead of the software-defined signal generator. NOTICE: when external file is selected, the test will try to perform a high sensitivity acquisition with an enhanced Doppler estimation to estimate the *true* signal synchronization parameters for all the satellites present in the signal. |
+| `--enable_external_signal_file` | `false` | Use an external signal file capture instead of the software-defined signal generator. NOTICE: when a external file is selected, the test will try to perform a high sensitivity acquisition with an enhanced Doppler estimation to estimate the *true* signal synchronization parameters for all the satellites present in the signal. |
 | `--signal_file` | `signal_out.bin` | Path of the external signal capture file, must be in int8_t format. If set, the signal generator will not be used and no CN0 sweep will be done. |
 | `--disable_generator` | `false` | Disable the signal generator (the pre-generated signal file set must be available for the test, i.e. by running the test without disabling the generator previously). |
-| `--duration` | `100` | Duration of the experiment [in seconds, max = 300]. For this test the recommended signal duration is 4 seconds. |
+| `--duration` | `100` | Duration of the experiment [in seconds, max = 300]. For this test, the recommended signal duration is 4 seconds. |
 | `--test_satellite_PRN` | `1` | PRN of the satellite under test (must be visible during the observation time). |
 | `--acq_Doppler_error_hz_start` | `1000` | Acquisition Doppler error start sweep value [Hz]. |
 | `--acq_Doppler_error_hz_stop` | `-1000` | Acquisition Doppler error stop sweep value [Hz]. |
@@ -442,10 +442,10 @@ Unit test for [hybrid_observables.h](https://github.com/gnss-sdr/gnss-sdr/blob/n
 | `--filename_rinex_obs` | `sim.16o` | Filename of output RINEX navigation file. |
 | `--filename_raw_data` |  `signal_out.bin` | Filename of output raw data file. |
 | `--test_satellite_PRN_list` | `1,2,3,6,9,10,12,17,20,23,28` | List of PRN of the satellites under test (must be visible during the observation time). |
-| `--external_signal_acquisition_dwells` | `5` | Maximum dwells count for satellite acquisition when external file is used. |
-| `--external_signal_acquisition_doppler_max_hz` | `5000.0` | Doppler max for satellite acquisition when external file is used, in Hz. |
-| `--external_signal_acquisition_doppler_step_hz` |  `125` | Doppler step for satellite acquisition when external file is used, in Hz. |
-| `--external_signal_acquisition_threshold` | `2.5` | Threshold for satellite acquisition when external file is used. |
+| `--external_signal_acquisition_dwells` | `5` | Maximum dwells count for satellite acquisition when a external file is used. |
+| `--external_signal_acquisition_doppler_max_hz` | `5000.0` | Doppler max for satellite acquisition when a external file is used, in Hz. |
+| `--external_signal_acquisition_doppler_step_hz` |  `125` | Doppler step for satellite acquisition when a external file is used, in Hz. |
+| `--external_signal_acquisition_threshold` | `2.5` | Threshold for satellite acquisition when a external file is used. |
 | `--trk_test_implementation` | `GPS_L1_CA_DLL_PLL_Tracking` | Tracking block implementation under test. |
 | `--PLL_bw_hz_start` | `40.0` | PLL Wide configuration value [Hz]. |
 | `--DLL_bw_hz_start` | `1.5` | DLL Wide configuration value [Hz]. |
@@ -473,7 +473,7 @@ This option generates the following system test program:
 
 ### `ttff`
 
-This test program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | relative_url }}). The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. This program accepts the following commandline flags:
+This test program computes the Time-To-First-Fix (TTFF), as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | relative_url }}). The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. This program accepts the following command-line flags:
 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
@@ -508,7 +508,7 @@ The results of the experiment are reported as follows:
 |  **Min TTFF**  | Minimum of the obtained valid measurements. Units: seconds |
 |  **Sample Dev / Size** |  The standard deviation of the sample set is computed as $$ \sigma_{TTFF} = \sqrt{\frac{1}{L-1}\sum_{i=1}^L \left( TTFF_i - \frac{1}{L}\sum_{j=1}^L TTFF_j \right)^2 } $$, in seconds. / Number of valid measurements (L) over the total number of measurements (M), expressed as (L of M). |
 | **Init. status** | [`cold`, `warm`, `hot`]: Initial receiver status, as defined [here]({{ "/design-forces/availability/#time-to-first-fix-ttff" | relative_url }}).  |
-| **Nav. mode** | [`2D`, `3D`]: `3D` Navigation mode in which at least four satellite signals are received and are used to compute positioning data containing as a minimum: time tagged latitude, longitude, and altitude referenced to a given coordinate system.  / `2D` Navigation mode in which no fewer than three satellite signals and fixed altitude are received and used to compute positioning data containing as a minimum: time tagged latitude, longitude, and fixed altitude referenced to a given system.    |
+| **Nav. mode** | [`2D`, `3D`]: `3D` Navigation mode in which at least four satellite signals are received and are used to compute positioning data containing as a minimum: time-tagged latitude, longitude, and altitude referenced to a given coordinate system.  / `2D` Navigation mode in which no fewer than three satellite signals and fixed altitude are received and used to compute positioning data containing as a minimum: time-tagged latitude, longitude, and fixed altitude referenced to a given system.    |
 |  **DGNSS**  | [`Y`, `N`]: `Y` if an external system is providing ephemeris data, `N` if the receiver is not receiving external information. |
 | **Signal** | Targeted GNSS signal(s) during the test. |
 | **Source** | [`Live`, `Sim`, `File`]: `Live` for GNSS signals from space, `Sim` for or simulated GNSS signals generated at RF, `File` for a pre-defined set of signal inputs, stored in files. |
@@ -533,7 +533,7 @@ This option generates the following system test program:
 
 ### `position_test`
 
-This test program computes metrics of static accuracy and precision. It can use either a software-defined signal generator (GPS L1 only) or accept any other receiver configuration obtaining PVT fixes. It accepts the following commandline flags:
+This test program computes metrics of static accuracy and precision. It can use either a software-defined signal generator (GPS L1 only) or accept any other receiver configuration obtaining PVT fixes. It accepts the following command-line flags:
 
 |----------
 |  **Flag**  |  **Default value** | **Description** |
@@ -542,11 +542,11 @@ This test program computes metrics of static accuracy and precision. It can use 
 | `--filename_rinex_obs` | `sim.16o` | Filename of output RINEX navigation file. |
 | `--filename_raw_data` | `signal_out.bin` | Filename of raw signal samples file (internally generated by software). |
 | `--static_position` | `30.286502,120.032669,100` | Static receiver position [lat,log,height] |
-| `--disable_generator` | `false` | If set to `true`, it disables the signal generator (so a external raw signal file must be available for the test). |
+| `--disable_generator` | `false` | If set to `true`, it disables the signal generator (so an external raw signal file must be available for the test). |
 | `--duration` | `100` | Duration of the experiment [in seconds, max = $$ 300 $$]. |
 | `--config_file_ptest` | empty | File containing the configuration parameters for the position test. |
 | `--static_scenario` | `true` | Compute figures of merit for static user position (DRMS, CEP, etc.). |
-| `--use_ref_motion_file` | `false` | Enable or disable the use of a reference file containing the true receiver position, velocity and acceleration. |
+| `--use_ref_motion_file` | `false` | Enable or disable the use of a reference file containing the true receiver position, velocity, and acceleration. |
 | `--ref_motion_file_type` | `1` | Type of reference motion file. 1: Spirent CSV motion file |
 | `--ref_motion_filename` | `motion.csv` | Path and filename for the reference motion file. |
 | `--static_2D_error_m` | `2.0` | Static scenario 2D (East, North) positioning error bias threshold [meters]. |
@@ -587,7 +587,7 @@ You can use your own configuration file:
 $ ./position_test --config_file_ptest=my_GPS_rx.conf --static_position="0.000000,000000,0"
 ```
 
-changing "0.000000,000000,0" by your reference longitude, latitude and height (expressed in WGS-84 coordinates). In case of processing live data, please remember to terminate the receiver execution with key `q` and then `[Enter]`.
+changing "0.000000,000000,0" by your reference longitude, latitude, and height (expressed in WGS-84 coordinates). In case of processing live data, please remember to terminate the receiver execution with key `q` and then `[Enter]`.
 
 
 When the software receiver terminates, the program reports [accuracy]({{ "/design-forces/accuracy/" | relative_url }}) and [precision]({{ "/design-forces/repeatability/" | relative_url }}) metrics for 2D and 3D positioning, expressed in a local ENU (East-North-Up) reference frame and defined as:
@@ -596,13 +596,13 @@ When the software receiver terminates, the program reports [accuracy]({{ "/desig
 |  **Measure**  |  **Formula** | **Confidence region probability** | **Definition** |
 |:-:|:-:|:-:|:--|  
 |--------------
-|  **2DRMS** | $$ 2\sqrt{\sigma_E^2+\sigma_N^2} $$ | 95 % | Twice the DRMS of the horizontal position errors, defining the radius of circle centered at the true position, containing the horizontal position estimate with probability of 95 %. |
-|  **DRMS**  | $$ \sqrt{\sigma_E^2+\sigma_N^2} $$  | 65 % | The square root of the average of the squared horizontal position errors, defining the radius of circle centered at the true position, containing the horizontal position estimate with probability of 65 %. |
-|  **CEP**   | $$ 0.62\sigma_N+0.56\sigma_E $$, accurate if $$ \frac{\sigma_N}{\sigma_E}>0.3 $$ | 50 % | The radius of circle centered at the true position, containing the horizontal position estimate with probability of 50 %. |
-|  **99 % Spherical Accuracy Standard** | $$ 1.122 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 99 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 99 %  |
-|  **90 % Spherical Accuracy Standard** | $$ 0.833 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 90 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 90 %  |
-|  **MRSE**  | $$ \sqrt{\sigma_E^2+\sigma_N^2+\sigma_U^2} $$ | 61 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 61 % |
-|  **SEP**   | $$ 0.51 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 50 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 50 % |
+|  **2DRMS** | $$ 2\sqrt{\sigma_E^2+\sigma_N^2} $$ | 95 % | Twice the DRMS of the horizontal position errors, defining the radius of a circle centered at the true position, containing the horizontal position estimate with a probability of 95 %. |
+|  **DRMS**  | $$ \sqrt{\sigma_E^2+\sigma_N^2} $$  | 65 % | The square root of the average of the squared horizontal position errors, defining the radius of a circle centered at the true position, containing the horizontal position estimate with a probability of 65 %. |
+|  **CEP**   | $$ 0.62\sigma_N+0.56\sigma_E $$, accurate if $$ \frac{\sigma_N}{\sigma_E}>0.3 $$ | 50 % | The radius of a circle centered at the true position, containing the horizontal position estimate with a probability of 50 %. |
+|  **99 % Spherical Accuracy Standard** | $$ 1.122 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 99 % | The radius of a sphere centered at the true position, containing the position estimate in 3D with a probability of 99 %  |
+|  **90 % Spherical Accuracy Standard** | $$ 0.833 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 90 % | The radius of a sphere centered at the true position, containing the position estimate in 3D with a probability of 90 %  |
+|  **MRSE**  | $$ \sqrt{\sigma_E^2+\sigma_N^2+\sigma_U^2} $$ | 61 % | The radius of a sphere centered at the true position, containing the position estimate in 3D with a probability of 61 % |
+|  **SEP**   | $$ 0.51 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 50 % | The radius of a sphere centered at the true position, containing the position estimate in 3D with a probability of 50 % |
 |-----
 
 For accuracy measurements, the standard deviation of the error in the three local coordinates (in m) are computed as:
@@ -629,9 +629,9 @@ where $$ \hat{E}=\frac{1}{L}\sum_{l=1}^{L}E[l] $$, $$ \hat{N}=\frac{1}{L}\sum_{l
 
 # How to write a new test
 
-Tests behave very much like system "clients": unit tests imitate the behavior of a corresponding client-class or classes invoking target class methods, and system tests imitate the user behavior. Thinking in how to test a class _before_ actually writing it helps developers to focus in what really matters, and to design better interfaces. In other words, it enforces Design for Testability.
+Tests behave very much like system "clients": unit tests imitate the behavior of a corresponding client-class or classes invoking target class methods, and system tests imitate the user behavior. Thinking about how to test a class _before_ actually writing it helps developers to focus on what really matters and to design better interfaces. In other words, it enforces Design for Testability.
 
-The Google C++ Testing Framework provides an implementation of all those testing concepts described in the [TDD process]({{ "/docs/tutorials/testing-software-receiver/#test-driven-development" | relative_url }}), allowing developers to concentrate in the testing code.
+The Google C++ Testing Framework provides an implementation of all those testing concepts described in the [TDD process]({{ "/docs/tutorials/testing-software-receiver/#test-driven-development" | relative_url }}), allowing developers to concentrate on the testing code.
 
 In order to create a new test:
 
@@ -666,7 +666,7 @@ TEST(RtcmTest, HexToInt)  // RtcmTest is the name of the Test Suite
 
 This test constructs an object called `rtcm` of class `Rtcm` (defined in [rtcm.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/PVT/libs/rtcm.h)) and wraps it into a shared pointer that will deallocate memory at the end of the test. Then, it tests the class member function `hex_to_int` and evaluates the result in an assertion, checking that the obtained result is actually the expected one.
 
-For more details details about the usage of the Google C++ Testing Framework and its available features, please check out its documentation:
+For more details about the usage of the Google C++ Testing Framework and its available features, please check out its documentation:
 
  * [Primer](https://github.com/google/googletest/blob/master/docs/primer.md) -- start here if you are new to googletest.
  * [Advanced Topics](https://github.com/google/googletest/blob/master/docs/advanced.md) -- learn some new tricks.
@@ -704,9 +704,9 @@ The existing tests are also a source of examples on how to write tests. Please p
 
 Once the test code is written, you need to build and link it against the Google Test library. This process is managed in the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt). You will need to list your new test in the appropriate place in order to include it in the building:
 
- * If your test is a Unit Test, please `#include` it in the file [gnss-sdr/src/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/test_main.cc) and rebuild the source code. It should be get included in the test program `run_tests`.
+ * If your test is a Unit Test, please `#include` it in the file [gnss-sdr/src/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/test_main.cc) and rebuild the source code. It should be getting included in the test program `run_tests`.
 
- * If you test is a System Test, please modify accordingly the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt) to define a new target and then rebuild the source code to get the new executable.
+ * If your test is a System Test, please modify accordingly the file [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt) to define a new target and then rebuild the source code to get the new executable.
 
 
 At the end of the building, we should be able to run your new test. In the example provided above, this would be:
