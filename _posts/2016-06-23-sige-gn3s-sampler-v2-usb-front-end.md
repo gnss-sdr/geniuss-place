@@ -49,12 +49,12 @@ show_date: false
 
 ## Introduction
 
-This article provides details about the support that GNSS-SDR offers for real-time operation using the GNSS USB front-end [SiGe GN3S Sampler v2](https://www.sparkfun.com/products/retired/8238). Unfortunately, this product has been retired and replaced by a newer version v3, but we hope this still can be useful to v2 users. The article starts with a brief description of the GN3S hardware and gives some insights about the required modifications in the firmware code that drives the Cypress FX2 microcontroller. It follows introducing the GNU Radio compliant GN3S signal source that enables access to the signal samples in real-time. The driver can be compiled and installed as standalone library, and thus can be used by any other GNU Radio application in C++ or Python, including gnuradio-companion. Finally, we describe a step-by-step procedure to configure GNSS-SDR to receive GPS L1 signals using the GN3S dongle. Some experimental results with real-life signals are also provided.
+This article provides details about the support that GNSS-SDR offers for real-time operation using the GNSS USB front-end [SiGe GN3S Sampler v2](https://www.sparkfun.com/products/retired/8238). Unfortunately, this product has been retired and replaced by a newer version v3, but we hope this still can be useful to v2 users. The article starts with a brief description of the GN3S hardware and gives some insights into the required modifications in the firmware code that drives the Cypress FX2 microcontroller. It follows introducing the GNU Radio compliant GN3S signal source that enables access to the signal samples in real-time. The driver can be compiled and installed as a standalone library, and thus can be used by any other GNU Radio application in C++ or Python, including gnuradio-companion. Finally, we describe a step-by-step procedure to configure GNSS-SDR to receive GPS L1 signals using the GN3S dongle. Some experimental results with real-life signals are also provided.
 
 
 ## SiGe GN3S firmware internal details and modifications
 
-The [SiGe GN3S v2 USB RF front-end](https://www.sparkfun.com/products/retired/8238), developed by the [Colorado Center For Astrodynamics Research](https://ccar.colorado.edu/gnss/), is basically composed of two different integrated circuits. On the one hand, GNSS-related operations are based on the SiGe 4120 GPS Application Specific Integrated Circuit (ASIC), that performs RF amplification, filtering, downconversion, and baseband sampling (in June 2011, Skyworks closed its acquisition of SiGe Semiconductor). On the other hand, the Cypress Semiconductors [EZ-USB FX2LP](https://www.cypress.com/products/ez-usb-fx2lp) USB 2.0 microcontroller is in charge of reading the digital samples coming from the SiGe 4120 ASIC and sending them in real-time to the PC through the universal serial bus.
+The [SiGe GN3S v2 USB RF front-end](https://www.sparkfun.com/products/retired/8238), developed by the [Colorado Center For Astrodynamics Research](https://ccar.colorado.edu/gnss/), is basically composed of two different integrated circuits. On the one hand, GNSS-related operations are based on the SiGe 4120 GPS Application Specific Integrated Circuit (ASIC), which performs RF amplification, filtering, downconversion, and baseband sampling (in June 2011, Skyworks closed its acquisition of SiGe Semiconductor). On the other hand, the Cypress Semiconductors [EZ-USB FX2LP](https://www.cypress.com/products/ez-usb-fx2lp) USB 2.0 microcontroller is in charge of reading the digital samples coming from the SiGe 4120 ASIC and sending them in real-time to the PC through the universal serial bus.
 
 
 <figure>
@@ -71,7 +71,7 @@ SiGe 4120 Analog to Digital Converter (ADC) is configured to provide a sample st
  * 2-bit I/Q samples (1bit I & 1bit Q) in a short char binary format (sI0, sQ0, sI1, sQ1, sI2, sQ2, ...)
 
 
-The front-end firmware is licensed as GPL open source, and available online from [GN3Sv2.rar](https://www.sparkfun.com/datasheets/GPS/Modules/GN3Sv2.rar). The front-end was intended to capture up to 600 Mb of data and then use a Matlab GNSS software available from K.Borre’s book[^Kay06] to perform post-processing operations to GPS signals.
+The front-end firmware is released under the GPL and available online from [GN3Sv2.rar](https://www.sparkfun.com/datasheets/GPS/Modules/GN3Sv2.rar). The front-end was intended to capture up to 600 Mb of data and then use a Matlab GNSS software available from K.Borre’s book[^Kay06] to perform post-processing operations to GPS signals.
 
 [^Kay06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkhäuser, November 2006.
 
@@ -139,7 +139,7 @@ static void main_loop(void)
 }
 ```
 
-For the sake of simplicity of use, the [gr-gn3s code repository](https://github.com/gnss-sdr/gr-gn3s) contains a copy of the modified GN3S v2 firmware, available at [gr-gn3s/firmware/GN3Sv2](https://github.com/gnss-sdr/gr-gn3s/tree/master/firmware/GN3S_v2). In addition, a pre-compiled binary firmware file ready to be uploaded by the GN3S driver is also available. See next section for the details.
+For the sake of simplicity of use, the [gr-gn3s code repository](https://github.com/gnss-sdr/gr-gn3s) contains a copy of the modified GN3S v2 firmware, available at [gr-gn3s/firmware/GN3Sv2](https://github.com/gnss-sdr/gr-gn3s/tree/master/firmware/GN3S_v2). In addition, a pre-compiled binary firmware file ready to be uploaded by the GN3S driver is also available. See the next section for the details.
 
 
 ## GNU Radio compliant GN3S front-end signal source: gr-gn3s
@@ -224,7 +224,7 @@ The compilation of the SiGe GN3S support in GNSS-SDR is optional and it requires
 
 ## Configuring GNSS-SDR for GPS L1 real-time operation
 
-In order to use a SiGe GN3S device it is necessary to select the `Gn3s_Signal_Source` implementation in the GNSS-SDR configuration file of the `SignalSource` block. Since this is a specific front-end for GNSS signal reception, there is no need to configure any source parameter. Hereafter can be found a working configuration for the reception of a GPS L1 C/A signal:
+In order to use a SiGe GN3S device, it is necessary to select the `Gn3s_Signal_Source` implementation in the GNSS-SDR configuration file of the `SignalSource` block. Since this is a specific front-end for GNSS signal reception, there is no need to configure any source parameter. Hereafter can be found a working configuration for the reception of a GPS L1 C/A signal:
 
 ```ini
 [GNSS-SDR]
@@ -239,7 +239,7 @@ SignalSource.sampling_frequency=8183800
 SignalSource.enable_throttle_control=false
 ```
 
-The front-end sampling frequency is fixed by the SiGe ASIC to 8183800 Hz. However, this sampling frequency is too high for multichannel real-time operation, at least on our machine. On top of this issue, the samples signal contains an Intermediate Frequency of 38400 Hz that should be compensated.
+The front-end sampling frequency is fixed by the SiGe ASIC to 8183800 Hz. However, this sampling frequency is too high for multichannel real-time operation, at least on our machine. On top of this issue, the sampled signal contains an Intermediate Frequency of 38400 Hz that should be compensated.
 The software receiver can solve both problems by enabling the GNU Radio’s frequency translating Finite Impulse Response (FIR) filter in the signal conditioner section to perform the following operations:
 
  1. Eliminate the parasitic IF signal
@@ -268,7 +268,7 @@ DataTypeAdapter.implementation=Pass_Through
 InputFilter.implementation=Freq_Xlating_Fir_Filter
 ;#The following options are used in the filter design of Fir_Filter and Freq_Xlating_Fir_Filter implementation.
 ;#These options are based on parameters of gnuradio's function: gr_remez.
-;#These function calculates the optimal (in the Chebyshev/minimax sense) FIR filter inpulse response given a set of band edges, the desired response on those bands, and the weight given to the error in those bands.
+;#This function calculates the optimal (in the Chebyshev/minimax sense) FIR filter impulse response given a set of band edges, the desired response on those bands, and the weight given to the error in those bands.
 ; -- Filter parameters and coefficients are omitted in this example --
 ; 8183800/5 = 1636760
 ; 8183800/4 = 2045950
@@ -293,7 +293,7 @@ $ sudo gnss-sdr --config_file=../conf/gnss-sdr_GPS_L1_GN3S_realtime.conf
 
 ## Hardware setup
 
-We used the GN3S front-end connected to a ceramic patch antenna equipped with an internal Low Noise Amplifier (LNA) to reduce the overall noise figure. The picture below shows a picture of such On Shine Enterprise Co., Ltd ANT-555 antenna connected to the USB dongle.
+We used the GN3S front-end connected to a ceramic patch antenna equipped with an internal Low Noise Amplifier (LNA) to reduce the overall noise figure. The picture below shows a picture of an On Shine Enterprise Co., Ltd ANT-555 antenna connected to the USB dongle.
 
 <figure>
   {{ fig_img4 | markdownify | remove: "<p>" | remove: "</p>" }}
@@ -317,7 +317,7 @@ The following pictures show some tracking data analysis using the GNSS-SDR inter
 Tracking.dump=true Tracking.dump_filename=./tracking_ch_
 ```
 
-As a sanity check, we did some post processing analysis using the Matlab script available at
+As a sanity check, we did some post-processing analysis using the Matlab script available at
 [gnss-sdr/src/utils/matlab/gps_l1_ca_dll_pll_plot_sample.m](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/utils/matlab/gps_l1_ca_dll_pll_plot_sample.m).
 The figure clearly shows the GPS C/A navigation symbols:
 
@@ -328,7 +328,7 @@ The figure clearly shows the GPS C/A navigation symbols:
 </figure>
 
 
-Finally, the obtained KML file can be displayed by Google Earth as shown in the following picture. The yellow line represents the position evolution for a 10 seconds time lapse. The yellow mark represents the true antenna position.
+Finally, the obtained KML file can be displayed by Google Earth as shown in the following picture. The yellow line represents the position evolution for a 10 seconds time-lapse. The yellow mark represents the true antenna position.
 
 <figure>
   {{ fig_img7 | markdownify | remove: "<p>" | remove: "</p>" }}
@@ -341,7 +341,7 @@ Finally, the obtained KML file can be displayed by Google Earth as shown in the 
 
 Summarizing this introductory article and the associated experiments we can highlight that:
 
- * GNSS-SDR is able to operate in real-time with the aforementioned hardware and software driver on average 4-years old laptop computer. It supports up to 7 satellite tracking channels in current revision (SVN rev. 244) thanks to the frequency shifting and decimation capability of signal conditioning module.
+ * GNSS-SDR is able to operate in real-time with the aforementioned hardware and software driver on an average 4-years old laptop computer. It supports up to 7 satellite tracking channels in the current revision (SVN rev. 244) thanks to the frequency shifting and decimation capability of the signal conditioning module.
 
  * We developed and validated a GNU Radio signal source block that encapsulates a SiGe GN3S Sampler v2 front-end firmware loader and driver. Since this front-end is now obsolete and it is superseded by the [SiGe GN3S Sampler v3](https://www.sparkfun.com/products/retired/10981) front-end, it is planned to extend the signal source support for the new hardware in future versions of GNSS-SDR. Testing volunteers are highly welcome!
 

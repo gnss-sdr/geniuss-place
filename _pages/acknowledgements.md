@@ -10,13 +10,13 @@ last_modified_at: 2017-08-05T18:38:52+00:00
 
 This project has been mainly developed on a volunteer basis, for education and research purposes. The main [Developer Team]({{ "/team/" | relative_url }}) is a group of researchers at CTTC, a non-profit research institution, and they use to be quite busy developing amazing new concepts and practical developments for advanced wireless communication systems and serving the industry in actually deploying them. Only some selected students  got a stipend (through their participation in Google Summer of Code and ESA Summer of Code In Space programs) for their direct work on GNSS-SDR.  
 
-According to [Open HUB](https://www.openhub.net/p/gnss-sdr), the development of GNSS-SDR from its [first commit](https://github.com/gnss-sdr/gnss-sdr/commit/228fa3b797dba7d0192f751e7e25a7b8348f9326) to a Git repository (in October, 2011, after a happy childhood living in a Subversion repository) up to now has taken 35 years of effort, as estimated by the Constructive Cost Model ([COCOMO](https://en.wikipedia.org/wiki/COCOMO)).
+According to [Open HUB](https://www.openhub.net/p/gnss-sdr), the development of GNSS-SDR from its [first commit](https://github.com/gnss-sdr/gnss-sdr/commit/228fa3b797dba7d0192f751e7e25a7b8348f9326) to a Git repository (in October 2011, after a happy childhood living in a Subversion repository) up to now has taken 35 years of effort, as estimated by the Constructive Cost Model ([COCOMO](https://en.wikipedia.org/wiki/COCOMO)).
 {: .notice--info}
 
-Slowly but steadily baked, the source code evolved and demonstrated its feasibility as an open and free framework for software-defined GNSS receiver development, attracting the interest of more researchers, students, skilled hobbyists and the industry.
+Slowly but steadily baked, the source code evolved and demonstrated its feasibility as an open and free framework for software-defined GNSS receiver development, attracting the interest of more researchers, students, skilled hobbyists, and the industry.
 
 
-The Authors are proud to be supported by the following public institutions, private companies and spontaneous, enthusiastic volunteers that contribute in maintaining and expanding the capabilities and field of applications of a free and open source GNSS software-defined receiver:
+The Authors are proud to be supported by the following public institutions, private companies, and spontaneous, enthusiastic volunteers that contribute in maintaining and expanding the capabilities and field of applications of a free and open-source GNSS software-defined receiver:
 
 
 

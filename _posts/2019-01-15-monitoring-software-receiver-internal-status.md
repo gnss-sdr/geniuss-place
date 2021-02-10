@@ -24,7 +24,7 @@ This guide assumes that GNSS-SDR and its software dependencies are already insta
 
 Since the introduction of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative_url }}) block, GNSS-SDR offers a mechanism for monitoring the status of the software receiver in real-time by providing access to 25 internal parameters that tell us about the performance of each channel. The complete list of parameters is documented [here]({{ "/docs/sp-blocks/monitor/#exposed-internal-parameters" | relative_url }}).
 
-In this article we are going to learn how to create a minimal monitoring client application written in C/C++ that will print and update the PRN, CN0 and Doppler frequency shift for each channel on a terminal window while the receiver is running with the Monitor block activated.
+In this article, we are going to learn how to create a minimal monitoring client application written in C/C++ that will print and update the PRN, CN0, and Doppler frequency shift for each channel on a terminal window while the receiver is running with the Monitor block activated.
 
 The Monitor block implements this mechanism using the binary serialization format provided by [Protocol Buffers](https://developers.google.com/protocol-buffers/) and defined in the [`gnss_synchro.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/gnss_synchro.proto) file. The networking functions are taken from the [Boost.Asio](https://www.boost.org/doc/libs/release/doc/html/boost_asio.html) library.
 
@@ -39,7 +39,7 @@ The following diagram can help us to better understand how this block works.
   <figcaption>The GNSS-SDR monitoring mechanism uses a binary serialization format.</figcaption>
 </figure>
 
-The colored boxes represent Gnss_Synchro objects moving across the receiver chain. These objects are special containers that hold a set of variables which capture the internal state of the receiver. Each color represents a different channel. When these objects reach the [PVT]({{ "/docs/sp-blocks/pvt/" | relative_url }}) block, they are consumed. Therefore they are not visible from the outside, as they do not exit the receiver. This is where the Monitor block comes into play. Its purpose is to stream these objects to the outside world using a binary serialization format. This stream is sent over UDP from a source port to a destination port that can either be on the same machine or on a different one.
+The colored boxes represent Gnss_Synchro objects moving across the receiver chain. These objects are special containers that hold a set of variables that capture the internal state of the receiver. Each color represents a different channel. When these objects reach the [PVT]({{ "/docs/sp-blocks/pvt/" | relative_url }}) block, they are consumed. Therefore they are not visible from the outside, as they do not exit the receiver. This is where the Monitor block comes into play. Its purpose is to stream these objects to the outside world using a binary serialization format. This stream is sent over UDP from a source port to a destination port that can either be on the same machine or on a different one.
 
 Finally, at the other end, the monitoring client deserializes the Gnss_Synchro objects from the binary stream. Then we can access their member variables and use them for implementing our monitoring logic. In this exercise, we will simply print some of these parameters on the terminal using Protocol Buffers.
 

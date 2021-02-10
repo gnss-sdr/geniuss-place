@@ -10,13 +10,13 @@ tags:
   - news
 ---
 
-Profiling is a dynamic program analysis that measures the usage of memory, the usage of particular instructions, and frequency and duration of function calls during the execution. It is important for identifying computational bottlenecks, and helps the developers to focus their optimization efforts by spotting the critical sections of code. We suggest the use of a couple of open source tools for software profiling that use different techniques, in the hope of taking advantage of their complementary nature and obtain a better insight about how the code is performing.
+Profiling is a dynamic program analysis that measures the usage of memory, the usage of particular instructions, and the frequency and duration of function calls during the execution. It is important for identifying computational bottlenecks and helps the developers to focus their optimization efforts by spotting the critical sections of code. We suggest the use of a couple of open-source tools for software profiling that use different techniques, in the hope of taking advantage of their complementary nature and obtain a better insight into how the code is performing.
 
 ## Statistical profilers
 
-GNSS-SDR can use [gperftools](https://github.com/gperftools/gperftools), a set of performance analysis tools for multi-threaded application developments in C++. Gperftools includes a high-performance, multi-threaded memory allocation implementation called thread-caching malloc (tcmalloc), plus a CPU profiler (measures CPU time consumption), a heap profiler (measures memory usage) and heap checker (detects memory leaks).
+GNSS-SDR can use [gperftools](https://github.com/gperftools/gperftools), a set of performance analysis tools for multi-threaded application developments in C++. Gperftools includes a high-performance, multi-threaded memory allocation implementation called thread-caching malloc (tcmalloc), plus a CPU profiler (measures CPU time consumption), a heap profiler (measures memory usage), and heap checker (detects memory leaks).
 
-A cool feature of these tools is that they are non code-intrusive, in the sense that they do not require modifications in the source code. In fact, the CPU profiler, the heap checker, and the heap profiler will remain inactive, using no memory or CPU, until you turn them on by defining certain environment variables.
+A cool feature of these tools is that they are non-intrusive code, in the sense that they do not require modifications in the source code. In fact, the CPU profiler, the heap checker, and the heap profiler will remain inactive, using no memory or CPU, until you turn them on by defining certain environment variables.
 
 In order to build GNSS-SDR with the appropriate compiler flags required by gperftools, configure it with the flag `ENABLE_GPERFTOOLS` enabled:
 
@@ -27,7 +27,7 @@ $ cmake -DENABLE_GPERFTOOLS=ON .. && make && sudo make install
 
 ### CPU Profiling
 
-A profiler needs to record what functions were invoked and how many times it took to execute a function. The simplest way of obtaining this data is sampling. When using this method, a profiler interrupts program execution at specified intervals and logs the state of program's call stack.  Thus, when we define the `CPUPROFILE` variable and run the program, the profiling library will periodically pause the program, take a peak at its stack to see what functions are on the stack, making a note of this, and then returning to the program. This Monte-Carlo style analysis provides with an estimate of where the code is spending its time, without adding the overhead of forcing every function to track its own time usage.
+A profiler needs to record what functions were invoked and how many times it took to execute a function. The simplest way of obtaining this data is by sampling. When using this method, a profiler interrupts program execution at specified intervals and logs the state of the program's call stack.  Thus, when we define the `CPUPROFILE` variable and run the program, the profiling library will periodically pause the program, take a peek at its stack to see what functions are on the stack, making a note of this, and then returning to the program. This Monte-Carlo style analysis provides an estimate of where the code is spending its time, without adding the overhead of forcing every function to track its own time usage.
 
 ```console
 $ CPUPROFILE=/tmp/gnss-sdr-cpu.prof /path/to/gnss-sdr
@@ -123,9 +123,9 @@ $ pprof --gv ./gnss-sdr /tmp/prof.gnss-sdr.0045.heap
 
 ## Instrumenting profilers
 
-Another king of profilers instrument (that is, monitor or measure) the target program with additional instructions to collect the required information about software performance. [Valgrind](https://www.valgrind.org/) is an instrumentation framework for building dynamic analysis tools. There are Valgrind tools that can automatically detect many memory management and threading bugs, and profile  programs in detail. One of these tools is Callgrind, a cache profiler. Available separately is an amazing visualisation tool, [KCachegrind](https://kcachegrind.github.io/html/Home.html), which gives a much better overview of the data that Callgrind collects.
+Another king of profilers instrument (that is, monitor or measure) the target program with additional instructions to collect the required information about software performance. [Valgrind](https://www.valgrind.org/) is an instrumentation framework for building dynamic analysis tools. There are Valgrind tools that can automatically detect many memory management and threading bugs, and profile  programs in detail. One of these tools is Callgrind, a cache profiler. Available separately is an amazing visualization tool, [KCachegrind](https://kcachegrind.github.io/html/Home.html), which gives a much better overview of the data that Callgrind collects.
 
-When you use Callgrind to profile an application, your application is transformed in an intermediate language and then ran in a virtual processor emulated by Valgrind. This has a huge run-time overhead, but the precision is really good and your profiling data is complete. An application running in Callgrind can be 10 to 50 times slower than normally. The output of Callgrind is flat cal graph that is not really usable directly, but we can use KCachegrind to display the information about the profiling of the analyzed application.
+When you use Callgrind to profile an application, your application is transformed in an intermediate language and then ran in a virtual processor emulated by Valgrind. This has a huge run-time overhead, but the precision is really good and your profiling data is complete. An application running in Callgrind can be 10 to 50 times slower than normal. The output of Callgrind is a flat cal graph that is not really usable directly, but we can use KCachegrind to display the information about the profiling of the analyzed application.
 
 ### Installation and usage
 
