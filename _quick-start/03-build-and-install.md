@@ -37,7 +37,7 @@ This is the easiest and fastest way to get GNSS-SDR installed in your system. Ju
 {: .notice--success}
 
 **The downside:**
-GNSS-SDR package updates need to undergo an acceptance process before they are included in the different distributions, so it might not be the ultimate version of the source code. The same applies for the dependency libraries.
+GNSS-SDR package updates need to undergo an acceptance process before they are included in the different distributions, so it might not be the ultimate version of the source code. The same applies for dependency libraries.
 {: .notice--danger}
 
 If everything went fine, you can directly jump into how to get your [first position fix]({{ "/my-first-fix/" | relative_url }}). If your Operating System release still does not include the GNSS-SDR package, you can [build it from source](#source).
@@ -66,7 +66,7 @@ $ sudo port install gnss-sdr-devel
   {{ mac-os-text | markdownify }}
 </div>
 
-If everything went fine, you can directly jump into how to get your [first position fix]({{ "/my-first-fix/" | relative_url }}). Or maybe you might prefer other options, such as using [Homebrew](https://brew.sh/) instead of Macports as a software package manager, or to build the source code manually. Fore more details of GNSS-SDR on macOS, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x) file.
+If everything went fine, you can directly jump into how to get your [first position fix]({{ "/my-first-fix/" | relative_url }}). Or maybe you might prefer other options, such as using [Homebrew](https://brew.sh/) instead of Macports as a software package manager, or building the source code manually. For more details of GNSS-SDR on macOS, please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x) file.
 
 # Building from source
 
@@ -75,21 +75,21 @@ If everything went fine, you can directly jump into how to get your [first posit
 **Is it better to compile from source or to install from a package?** Here we provide some guidelines. The rule of thumb is: Always consider installing from standard packages of your Operating System first; only compile from sources if you know exactly why you need to do that.
 {: .notice--info}
 
-GNSS-SDR and its software dependencies can all be installed either by downloading their source code, building and installing them in your system, or by installing the corresponding software package. Under GNU/Linux, the package manager may vary according to the distribution you are using (`.deb` for Debian-based distros, such as Ubuntu, Linaro and Raspbian; `.rpm` for Fedora / SUSE / Mandriva; etc.). In Mac OS X, most popular open source package managers are Macports and Homebrew. In all cases, a possible option for a quick jump into GNSS-SDR is to install all the dependencies from packages, and then building GNSS-SDR from the source code.
+GNSS-SDR and its software dependencies can all be installed either by downloading their source code, building and installing them in your system, or by installing the corresponding software package. Under GNU/Linux, the package manager may vary according to the distribution you are using (`.deb` for Debian-based distros, such as Ubuntu, Linaro and Raspbian; `.rpm` for Fedora / SUSE / Mandriva; etc.). In Mac OS X, the most popular open-source package managers are Macports and Homebrew. In all cases, a possible option for a quick jump into GNSS-SDR is to install all the dependencies from packages, and then building GNSS-SDR from the source code.
 
 But maybe this approach does not fit your needs. Maybe you already have some dependency already built from source and want to use it, or your setup requires some specific flag somewhere. This is a building-time _vs_. fine-tuning trade-off. In order to take the adequate approach, just remember this basic rule:
 
 ![Install package or build from source?]({{ "/assets/images/deb-or-build-from-source.png" | relative_url }}){: .align-center .invert-colors}
-_Software packages require that all its dependencies must be also installed from packages._
+_Software packages require that all their dependencies must be also installed from packages._
 {: style="text-align: center;"}
 
 and take into account the following considerations:
 
-**The good part:** The advantage of compiling from source is that you can compile packages with certain flags/options which may be missing or disabled in standard packages. Also, it makes it easy to have multiple versions of the same program installed. Also, you can choose an exact version of a package which may be already removed from, or not yet present in, your OS repositories.
+**The good part:** The advantage of compiling from source is that you can compile packages with certain flags/options which may be missing or disabled in standard packages. Also, it makes it easy to have multiple versions of the same program installed. Also, you can choose an exact version of a package that may be already removed from, or not yet present in, your OS repositories.
 {: .notice--success}
 
 
-**The downside:** The disadvantage of compiling from source is that the usual `cmake .. && make && sudo make install` procedure keeps your package manager completely unaware of the changes you are making, so you are not going to get any automatic updates for the manually-compiled software; and it is possible that package manager will later override/break your package if you are not careful to install it in a separate location.
+**The downside:** The disadvantage of compiling from source is that the usual `cmake .. && make && sudo make install` procedure keeps your package manager completely unaware of the changes you are making, so you are not going to get any automatic updates for the manually-compiled software, and it is possible that package manager will later override/break your package if you are not careful to install it in a separate location.
 {: .notice--danger}
 
 Some highly automated tools that can do some of the work for you are described below.
@@ -125,7 +125,7 @@ Once you have installed these packages, you can jump directly to [clone, build a
 
 ### Install dependencies using PyBOMBS
 
-This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine-tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend to use [PyBOMBS](https://www.gnuradio.org/blog/pybombs-the-what-the-how-and-the-why "PyBOMBS - The What, the How and the Why") (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs). Here we provide a quick step-by-step tutorial.
+This option is adequate if you are interested in development, in working with the most recent versions of software dependencies, want more fine-tuning on the installed versions, or simply in building everything from the scratch just for the fun of it. In such cases, we recommend using [PyBOMBS](https://www.gnuradio.org/blog/pybombs-the-what-the-how-and-the-why "PyBOMBS - The What, the How and the Why") (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager tool that installs software from source, or whatever the local package manager is, that automatically does all the work for you. Please take a look at the [configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs). Here we provide a quick step-by-step tutorial.
 
 First of all, install some basic packages:
 
@@ -170,7 +170,7 @@ Now you are ready to use GNU Radio and to jump into [building GNSS-SDR](#build) 
 $ pybombs install gnss-sdr
 ```
 
-By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, which is the most recent version of the source code. This behaviour can be modified by altering the corresponding recipe at `$HOME/.pybombs/recipes/gr-recipes/gnss-sdr.lwr`
+By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, which is the most recent version of the source code. This behavior can be modified by altering the corresponding recipe at `$HOME/.pybombs/recipes/gr-recipes/gnss-sdr.lwr`
 
 In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR step by step (i.e., cloning the repository and doing the usual `cmake .. && make && sudo make install` dance, as explained below), there are still some missing dependencies (_i.e._, Armadillo, GFlags, Glog, GnuTLS and Protocol Buffers) that can be installed either by using PyBOMBS:
 
@@ -203,7 +203,7 @@ In addition, CMake accepts a number of configuration options for your building p
 $ cmake -DCMAKE_BUILD_TYPE=Debug ..
 ```
 
-and then CMake will add the debug flags appropriate for your compiler. There are more options that can be of your interest, such as the addition of extra drivers for RF front-ends not included by default, implementations of signal processing blocks that take advantage of your GPU, addition of experimental features, building of optional QA code, and so on. Check out the available [building configuration options]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}) documentation for more details.
+and then CMake will add the debug flags appropriate for your compiler. There are more options that can be of your interest, such as the addition of extra drivers for RF front-ends not included by default, implementations of signal processing blocks that take advantage of your GPU, addition of experimental features, the building of optional QA code, and so on. Check out the available [building configuration options]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}) documentation for more details.
 
 
 If everything went fine in the building process, now you can jump into how to get your [first position fix]({{ "/my-first-fix/" | relative_url }}).
@@ -315,7 +315,7 @@ Visit [https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/
   <img src="{{ "/assets/images/docker_logo.png" | relative_url }}" alt="Docker logo">
 </figure>
 
-[Docker](https://www.docker.com) is an open source tool designed to make it easier to create, deploy, and run applications by using *containers*. Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools and system libraries, and ship it all out as one package. This guarantees that the software will always run the same, regardless of any customized settings that the executing machine might have that could differ from the machine used for writing and testing the code. Using containers is another way of packing applications, in a much lighter weight and with a much faster delivery model than using Virtual Machines.
+[Docker](https://www.docker.com) is an open-source tool designed to make it easier to create, deploy, and run applications by using *containers*. Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools and system libraries, and ship it all out as one package. This guarantees that the software will always run the same, regardless of any customized settings that the executing machine might have that could differ from the machine used for writing and testing the code. Using containers is another way of packing applications, in a much lighter weight and with a much faster delivery model than using Virtual Machines.
 
 Releases of Docker images with GNSS-SDR already installed are available from the Docker Hub.
 
