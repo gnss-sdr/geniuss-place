@@ -7,19 +7,19 @@ header:
 last_modified_at: 2016-07-29T15:54:02-04:00
 ---
 
-When referred to software, _testability_ is the degree to which a software artifact (_i.e._, a software system, software module, requirements, or design document) supports testing in a given test context. Testability is not an intrinsic property of a software artifact and cannot be measured directly (such as software size). Instead, testability is an extrinsic property that results from interdependency of the software to be tested and the test goals, test methods used, and test resources (_i.e._, the test context).
+When referred to software, _testability_ is the degree to which a software artifact (_i.e._, a software system, software module, requirements, or design document) supports testing in a given test context. Testability is not an intrinsic property of a software artifact and cannot be measured directly (such as software size). Instead, testability is an extrinsic property that results from the interdependency of the software to be tested and the test goals, test methods used, and test resources (_i.e._, the test context).
 
 Testability can be understood as visibility and control:
 
- * **Visibility** is our ability to observe the states, outputs, resource usage and other side effects of the software under test.
+ * **Visibility** is our ability to observe the states, outputs, resource usage, and other side effects of the software under test.
  * **Control** is our ability to apply inputs to the software under test or place it in specified states.
 
 
-_Design for Testability_ is a concept used in electronic hardware design for over 50 years, driven by the obvious fact that in order to be able to test an integrated circuit both during the design stage and later in production, it has to be designed so it _can_ be tested. The testing points, procedures and testing equipment requirements must be taken into account in the design, since testability cannot be added in a later stage, as the circuit is already in silicon. Testability is a critical non-functional requirement that affects almost every aspect of electronic hardware design. In a similar way, complex software systems require testing both during design and production, and the same principles apply. A software-defined GNSS receiver must be designed for testability.
+_Design for Testability_ is a concept used in electronic hardware design for over 50 years, driven by the obvious fact that in order to be able to test an integrated circuit both during the design stage and later in production, it has to be designed so it _can_ be tested. The testing points, procedures, and testing equipment requirements must be taken into account in the design since testability cannot be added at a later stage, as the circuit is already in silicon. Testability is a critical non-functional requirement that affects almost every aspect of electronic hardware design. In a similar way, complex software systems require testing both during design and production, and the same principles apply. A software-defined GNSS receiver must be designed for testability.
 
 A primary purpose of testing is to detect software failures so that defects may be discovered and corrected. Testing cannot establish that a product functions properly under all conditions but can only establish that it does not function properly under specific conditions.
 
-But such design for testability has also an impact on System Architecture design, since it typically drives a clear separation of concerns, layered architecture or service orientation, and high cohesiveness of entities in the code. Tests behave very much like system "clients": unit tests imitate the behavior of a corresponding client-class or classes invoking target class methods; component test imitate the behavior of client-components; functional tests imitate the end user[^Yakima]. Designing for testability implies providing for clear and understandable interfaces between classes, components, services, and, ultimately, the user interface and the rest of the system. Design patterns[^GoF94]$$ ^{,} $$[^Fowler02] as [fa&ccedil;ade](https://en.wikipedia.org/wiki/Facade_pattern), [gateway](https://martinfowler.com/eaaCatalog/gateway.html), or [observer](https://en.wikipedia.org/wiki/Observer_pattern) foster testability. Logging, abstract interfaces, verbose output modes and a flexible configuration system are other desirable features that enable testability.
+But such design for testability has also an impact on System Architecture design since it typically drives a clear separation of concerns, layered architecture or service orientation, and high cohesiveness of entities in the code. Tests behave very much like system "clients": unit tests imitate the behavior of a corresponding client-class or classes invoking target class methods; component tests imitate the behavior of client-components; functional tests imitate the end user[^Yakima]. Designing for testability implies providing clear and understandable interfaces between classes, components, services, and, ultimately, the user interface and the rest of the system. Design patterns[^GoF94]$$ ^{,} $$[^Fowler02] as [fa&ccedil;ade](https://en.wikipedia.org/wiki/Facade_pattern), [gateway](https://martinfowler.com/eaaCatalog/gateway.html), or [observer](https://en.wikipedia.org/wiki/Observer_pattern) foster testability. Logging, abstract interfaces, verbose output modes, and a flexible configuration system are other desirable features that enable testability.
 
 Software tests have the following desirable features[^Whittaker12]:
 
@@ -44,7 +44,7 @@ It follows a list of possible testability indicators for a software-defined GNSS
 
 * System testing:
   - Time To First Fix (TTFF) testability:
-    * Possibility to set up the receiver in cold, warm and hot starts.
+    * Possibility to set up the receiver in cold, warm, and hot starts.
   - Acquisition sensitivity testability:
     * Possibility to set up the receiver to acquire a single signal and report time-tagged $$ C/N_0 $$ and acquisition status.
   - Tracking sensitivity testability:

@@ -15,7 +15,7 @@ In the context of engineering design, _flexibility_ refers to the ability of a s
 It follows a list of possible flexibility indicators for a software-defined GNSS receiver:
 
 * Possibility to either use synthetically generated or real-life GNSS signals.
-+ Possibility to process signals either in real time or in post-processing time (only limited by the computational capacity of the processing platform executing the software receiver).
++ Possibility to process signals either in real-time or in post-processing time (only limited by the computational capacity of the processing platform executing the software receiver).
 * Possibility to use interchangeable RF front-ends.
 + Possibility to define custom receiver architectures.
 * Possibility to easily define / interchange implementations and parameters for each processing block.

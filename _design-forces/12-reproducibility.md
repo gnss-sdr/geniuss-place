@@ -8,7 +8,7 @@ last_modified_at: 2018-04-06T15:54:02-04:00
 ---
 
 
-An experiment involving a software-defined GNSS receiver is an experiment that occurs in a computer system.  A key aspect in order to obtain meaningful conclusions from the experiments is _reproducibility_, which refers to the ability of an entire experiment or study to be reproduced, either by the researcher or by someone else working independently. It is one of the main principles of the scientific method and relies on _ceteris paribus_ (other things being equal). Publication of scientific theories, including experimental and observational data on which they are based, permits others to scrutinize them, to replicate experiments, identify errors, to support, reject or refine theories and to reuse data for further understanding and knowledge. Facilitating sustained and rigorous analysis of evidence and theory is the most rigorous form of peer review, and contributes to science's powerful capacity for self-correction[^Royal12]. However, it is well-known that today's computational environments are complex, and accounting for all the possible effects of changes within and across systems is a challenging task[^Vandewalle09]$$ ^{,} $$[^Peng11].
+An experiment involving a software-defined GNSS receiver is an experiment that occurs in a computer system.  A key aspect in order to obtain meaningful conclusions from the experiments is _reproducibility_, which refers to the ability of an entire experiment or study to be reproduced, either by the researcher or by someone else working independently. It is one of the main principles of the scientific method and relies on _ceteris paribus_ (other things being equal). Publication of scientific theories, including experimental and observational data on which they are based, permits others to scrutinize them, replicate experiments, identify errors, support, reject or refine theories, and reuse data for further understanding and knowledge. Facilitating sustained and rigorous analysis of evidence and theory is the most rigorous form of peer review, and contributes to science's powerful capacity for self-correction[^Royal12]. However, it is well-known that today's computational environments are complex, and accounting for all the possible effects of changes within and across systems is a challenging task[^Vandewalle09]$$ ^{,} $$[^Peng11].
 
 In computer systems research, an experiment is defined by the workload, the specific system where the workload runs, and the results from a particular execution. Hence, reproducibility can be classified into:
 
@@ -30,49 +30,49 @@ It follows a list of possible reproducibility indicators for a software-defined 
   * Availability of a version control system providing a unique identifier to each source code snapshot (_e.g._, Git).
   * Public reading access to the upstream repository (for instance, via [GitHub](https://github.com) or [BitBucket](https://bitbucket.com)).
   * Availability of a Digital Object Identifier (DOI) for source code releases (for instance, provided by [Zenodo.org](https://zenodo.org/)).
-  * Meet the requirements of [Reproducible Builds](https://reproducible-builds.org), a set of software development practices which create a verifiable path from human readable source code to the binary code used by computers. This includes[^Bobbio15]:
+  * Meet the requirements of [Reproducible Builds](https://reproducible-builds.org), a set of software development practices that create a verifiable path from human-readable source code to the binary code used by computers. This includes[^Bobbio15]:
     - The build system needs to be made entirely deterministic: transforming a given source must always create the same result. Typically, the current date and time must not be recorded and output always has to be written in the same order.
-    - The set of tools used to perform the build and more generally the build environment should either be recorded or pre-defined.
+    - The set of tools used to perform the build and more generally the building environment should either be recorded or pre-defined.
     - Users should be given a way to recreate a close enough build environment, perform the build process, and verify that the output matches the original build.
 
 
 * For the data set of signal samples:
   * Availability of data set(s).
-  * Include a description of the location and date in which the GNSS signals were captured and a description of the surroundings as needed (nearby buildings and other scatterers, possible presence of interference sources, and any other information considered relevant for the interpretation of the results).
+  * Include a description of the location and date in which the GNSS signals were captured and a description of the surroundings as needed (nearby buildings and other scatterers, the possible presence of interference sources, and any other information considered relevant for the interpretation of the results).
     * A 360-degree picture taken from the antenna location for static receivers, or a 360-degree, time-tagged video for moving platforms could be informative in certain scenarios.
   * Description of datasets: see the metadata standard by the [ION GNSS SDR Standard Working Group](https://github.com/IonMetadataWorkingGroup).
     * Data collection topology (single/multi band, single/multi stream, single/multi file),
     * Sample resolution (number of bits per sample),
-    * Encoding (sign, sign-magnitude, signed integer, offset binary or floating-point),
-    * Sampling frequency, possible intermediate frequency and inverted spectrum indicator.
+    * Encoding (sign, sign-magnitude, signed integer, offset binary, or floating-point),
+    * Sampling frequency, possible intermediate frequency, and inverted spectrum indicator.
 
 ### System reproducibility
 
 * Hardware description:
   * The antenna should be described by:
-     * its manufacturer, identification number and type. In case of multiple antennas, its geometrical arrangement must be provided;
+     * its manufacturer, identification number and type. In the case of multiple antennas, its geometrical arrangement must be provided;
      * the average antenna phase center relative to the antenna reference point (ARP) for each specific frequency band and satellite system,
      * the orientation of the antenna zero-direction as well as the direction of its vertical axis (bore-sight), if mounted tilted on a fixed station, or XYZ vector in a body-fixed system, in case of mounted on a moving platform (all units in meters).
      * If the antenna is physically apart from the front-end the cable category and length, as well as the connectors type, should be reported.
-  * In case of using an RF signal generator instead of live GNSS signals, its brand and model, as well as the complete set of configuration parameters, should be included in the experiment description.     
+  * In the case of using an RF signal generator instead of live GNSS signals, its brand and model, as well as the complete set of configuration parameters, should be included in the experiment description.     
   * The radio-frequency front-end:
     * In Open Design: sharing of schematics, bill of materials, printed circuit board layout data, etc.
-    * When using commercial devices: define brand, model and configuration.
+    * When using commercial devices: report the brand, model and configuration.
     * If custom modifications were made to a commercially available front-end (for instance, replacing and/or disciplining the shipped local oscillator with a more stable clock), those modifications should be also clearly described.
-  * In case of using sample set produced by a software-defined generator, its version and configuration should be included in the experiment description.
+  * In the case of using a sample set produced by a software-defined generator, its version and configuration should be included in the experiment description.
   * The processing platform:
      * Report of the processor architecture (_e.g._, i386, x86_64/amd64, armhf or arm64), manufacturer and type; the available RAM memory and, when relevant, the storage capacity.
      * If computing off-loading devices were used (such as FPGAs or GPUs), its vendor and model should be also specified.
 
 * Software stack description:
   * Operating system (name and version).
-  * Required, optional and supporting libraries and binaries (name and version).
+  * Required, optional, and supporting libraries and binaries (name and version).
   * Uniquely identifiable and reportable receiver configuration.
   * Availability of virtualized images containing the whole software stack (can include data and scripts to generate figures):
     * Virtual machines.
     * Software containers (_e.g._, [Docker](https://www.docker.com/)).
   * Continuous analysis[^Beaulieu17]: process combining Docker containers with continuous integration to automatically re-run computational analysis whenever relevant changes are made to the source code.
-  * Continuous reproducibility[^Fernandez18]: automated pipeline that regenerates results described in a document (research paper, case study, etc.) whenever changes are made to the source code. This includes sharing the data set on which the experiments were done (usually, files containing raw GNSS signal samples and possibly other sensors), the full experiment configuration, and the scripts used to analyze the results and generate the figures or tables appearing in the document in which the results were presented.
+  * Continuous reproducibility[^Fernandez18]: an automated pipeline that regenerates results described in a document (research paper, case study, etc.) whenever changes are made to the source code. This includes sharing the data set on which the experiments were done (usually, files containing raw GNSS signal samples and possibly other sensors), the full experiment configuration, and the scripts used to analyze the results and generate the figures or tables appearing in the document in which the results were presented.
 
 ### Results reproducibility
 

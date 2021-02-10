@@ -90,7 +90,7 @@ This release has several improvements in different dimensions, addition of new f
 
 ## Improvements in [Usability]({{ "/design-forces/usability/" | relative_url }}):
 
- * The receiver now admits FPGA off-loading, allowing for real time operation in embedded systems at high sampling rates and high number of signals and channels per signal in multiple bands.
+ * The receiver now admits FPGA off-loading, allowing for real-time operation in embedded systems at high sampling rates and high number of signals and channels per signal in multiple bands.
  * Fixed program termination (avoiding hangs and segfaults in some platforms/configurations).
  * The Labsat_Signal_Source now terminates the receiver's execution when the end of file(s) is reached. It now accepts LabSat 2 filenames and series of LabSat 3 files.
  * Added configuration parameters to set the annotation rate in KML, GPX, GeoJSON and NMEA outputs, set by default to 1 s.

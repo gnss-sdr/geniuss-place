@@ -7,28 +7,28 @@ header:
 last_modified_at: 2016-07-29T15:54:02-04:00
 ---
 
-In this context, it refers to how close a position solution delivered by the software-defined GNSS receiver is to the _true_ (actual) position. Hence, it is a measure of the _bias_ or systematic error. Its measurement requires a reference (also known as _fiducial_) position in the case of static positioning, and a controlled mobile platform in the case of dynamic positioning.
+In this context, _Accuracy_ refers to how close a position solution delivered by the software-defined GNSS receiver is to the _true_ (actual) position. Hence, it is a measure of the _bias_ or systematic error. Its measurement requires a reference (also known as _fiducial_) position in the case of static positioning and a controlled mobile platform in the case of dynamic positioning.
 
 The definition of the reference point implies the agreement on some reference coordinate systems for the satellite system and the reference position:
 
 *  GNSS satellite coordinate reference system: The International Earth Rotation and Reference Systems Service ([IERS](https://www.iers.org/IERS/EN/Home/home_node.html)) recommend expressing it as "ITRFyy at epoch yyyy.y"[^Petit10]
 * A local geographic coordinate reference system (providing transformation parameters, if applicable).
 * An East-North-Up (ENU) reference frame with origin in the _reference point_.
-* In case of differential GNSS configurations, datum of the differential source.
+* In the case of differential GNSS configurations, datum of the differential source.
 
-Upon those definitions, most common position accuracy metrics for 2D and 3D positioning, expressed in a local ENU reference frame, are defined below:
+Upon those definitions, the most common position accuracy metrics for 2D and 3D positioning, expressed in a local ENU reference frame, are defined below:
 
 |----------
 |  **Measure**  |  **Formula** | **Confidence region probability** | **Definition** |
 |:-:|:-:|:-:|:--|  
 |--------------
-|  **2DRMS** | $$ 2\sqrt{\sigma_E^2+\sigma_N^2} $$ | 95 % | Twice the DRMS of the horizontal position errors, defining the radius of circle centered at the true position, containing the horizontal position estimate with probability of 95 %. |
-|  **DRMS**  | $$ \sqrt{\sigma_E^2+\sigma_N^2} $$  | 65 % | The square root of the average of the squared horizontal position errors, defining the radius of circle centered at the true position, containing the horizontal position estimate with probability of 65 %. |
-|  **CEP**   | $$ 0.62\sigma_N+0.56\sigma_E $$, accurate if $$ \frac{\sigma_N}{\sigma_E}>0.3 $$ | 50 % | The radius of circle centered at the true position, containing the horizontal position estimate with probability of 50 %. |
-|  **99 % Spherical Accuracy Standard** | $$ 1.122 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 99 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 99 %  |
-|  **90 % Spherical Accuracy Standard** | $$ 0.833 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 90 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 90 %  |
-|  **MRSE**  | $$ \sqrt{\sigma_E^2+\sigma_N^2+\sigma_U^2} $$ | 61 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 61 % |
-|  **SEP**   | $$ 0.51 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 50 % | The radius of sphere centered at the true position, containing the position estimate in 3D with probability of 50 % |
+|  **2DRMS** | $$ 2\sqrt{\sigma_E^2+\sigma_N^2} $$ | 95 % | Twice the DRMS of the horizontal position errors, defining the radius of a circle centered at the true position, containing the horizontal position estimate with a probability of 95 %. |
+|  **DRMS**  | $$ \sqrt{\sigma_E^2+\sigma_N^2} $$  | 65 % | The square root of the average of the squared horizontal position errors, defining the radius of a circle centered at the true position, containing the horizontal position estimate with a probability of 65 %. |
+|  **CEP**   | $$ 0.62\sigma_N+0.56\sigma_E $$, accurate if $$ \frac{\sigma_N}{\sigma_E}>0.3 $$ | 50 % | The radius of a circle centered at the true position, containing the horizontal position estimate with a probability of 50 %. |
+|  **99 % Spherical Accuracy Standard** | $$ 1.122 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 99 % | The radius of a sphere centered at the true position, containing the position estimate in 3D with a probability of 99 %  |
+|  **90 % Spherical Accuracy Standard** | $$ 0.833 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 90 % | The radius of a sphere centered at the true position, containing the position estimate in 3D with a probability of 90 %  |
+|  **MRSE**  | $$ \sqrt{\sigma_E^2+\sigma_N^2+\sigma_U^2} $$ | 61 % | The radius of a sphere centered at the true position, containing the position estimate in 3D with a probability of 61 % |
+|  **SEP**   | $$ 0.51 \left(\sigma_E^2+\sigma_N^2+\sigma_U^2\right) $$ | 50 % | The radius of a sphere centered at the true position, containing the position estimate in 3D with a probability of 50 % |
 |-----
 
 with the standard deviations, in the case of a static receiver, computed as:
@@ -69,7 +69,7 @@ Upon the definition of:
 it follows a list of possible accuracy indicators for a software-defined GNSS receiver:
 
 * Stand-alone static position accuracy.
-  -  Position accuracy results are given in meters of error with respect to a reference (fiducial)  point  previously  measured  in  a  geodetic  survey, or defined by the testing equipment. The most commonly used confidence measurements for 2D positioning are the Distance Root Mean Square (DRMS) and the Circular Error Probability (CEP); and the Mean Radial Spherical Error (MRSE), the Spherical Error Probable (SEP), and the 90 % and 99% Spherical Accuracy Standards when measures are expressed in 3D.
+  -  Position accuracy results are given in meters of error with respect to a reference (fiducial) point previously measured in a geodetic survey or defined by the testing equipment. The most commonly used confidence measurements for 2D positioning are the Distance Root Mean Square (DRMS) and the Circular Error Probability (CEP); and the Mean Radial Spherical Error (MRSE), the Spherical Error Probable (SEP), and the 90 % and 99% Spherical Accuracy Standards when measures are expressed in 3D.
 
 * Stand-alone dynamic position accuracy.
   - In this case, the reference is not a single point but a timed trajectory. Different trajectories and time schedules can be averaged to mitigate differences due to satellite visibility and geometry. Same metrics than for static positioning, where the position references might now have time and trajectory indices.

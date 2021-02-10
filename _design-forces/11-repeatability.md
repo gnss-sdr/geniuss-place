@@ -16,7 +16,7 @@ _Although the two words precision and accuracy can be synonymous in colloquial u
 {: style="text-align: center;"}
 
 
-Most common precision metrics are defined below:
+The most common precision metrics are defined below:
 
  |----------
  |  **Measure**  |  **Formula** | **Confidence region probability** |
@@ -48,7 +48,7 @@ where $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.
 Example:
 
 ![2D scatter plot]({{ "/assets/images/2d-accuracy.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
-_2D position scatter plot and the circles containing 50 %, 65 % and 95% of position fixes (corresponding to the CEP, DRMS and 2DRMS precision errors, respectively)[^Fernandez13]._
+_2D position scatter plot and the circles containing 50 %, 65 %, and 95% of position fixes (corresponding to the CEP, DRMS, and 2DRMS precision errors, respectively)[^Fernandez13]._
 {: style="text-align: center;"}
 
 
