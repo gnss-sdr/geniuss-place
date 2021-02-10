@@ -12,7 +12,7 @@ toc_h_max: 2
 ---
 
 
-Since the seminal work by Kernighan _et al_. in 1974[^Kernighan74], there is a clear concern on the style in writing software and its impact in the final quality of the product. Following programming guidelines and code conventions not only helps to avoid introducing errors, but cuts maintenance costs and favors effective code reuse.
+Since the seminal work by Kernighan _et al_. in 1974[^Kernighan74], there is a clear concern on the style in writing software and its impact on the final quality of the product. Following programming guidelines and code conventions not only helps to avoid introducing errors but cuts maintenance costs and favors effective code reuse.
 
 [^Kernighan74]: B. W. Kernighan and P. J. Plauger, The Elements of Programming Style, McGraw-Hill, New York, 1974.
 
@@ -30,9 +30,9 @@ The following rules capture the most important aspects of coding style:
 </div>
 
 
-The best way to look at these rules is to make everything as simple as possible, unless understandability or readability suffer. As a programmer you must always try to respect the above rules, even if you do not follow our suggested style of coding.
+The best way to look at these rules is to make everything as simple as possible unless understandability or readability suffers. As a programmer, you must always try to respect the above rules, even if you do not follow our suggested style of coding.
 
-Any violation to the guide is allowed if it enhances readability.
+Any violation of the guide is allowed if it enhances readability.
 The main goal of the recommendation is to improve readability and thereby the understanding and the maintainability and general quality of the code. It is impossible to cover all the specific cases in a general guide and the programmer should be flexible.
 
 The rules can be violated if there are strong personal objections against them.
@@ -42,7 +42,7 @@ The attempt is to make a guideline, not to force a particular coding style onto 
 **Not invented here!** This coding style guide was written based on this [Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some ideas were borrowed from the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) and the [High Integrity C++ Coding Standard Version 4.0](https://www.perforce.com/resources/qac/high-integrity-cpp-coding-standard) Guidelines for the use of the C++ language in critical systems.
 {: .notice--primary}
 
-**Interested in doing a pull-request? Go straight to the point!** The application of some of the rules described in this page can be automated with tools such as [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/), which can help you to meet the project conventions (automatically changing the code for you!) and integrate well with many other tools such as code editors and building systems. If you want to do a pull-request, please apply these tools to your code before doing it. [Scroll down <i class="fas fa-arrow-circle-down"></i>]({{ "/coding-style/#final-recommendations" | relative_url }}) to read about how to install and use them. Do not forget to [sign your commits]({{ "/docs/tutorials/using-git/#sign-your-commits" | relative_url }}) as indication of [Developer's Certificate of Origin](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/DCO.txt) fulfillment.
+**Interested in doing a pull-request? Go straight to the point!** The application of some of the rules described in this page can be automated with tools such as [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/), which can help you to meet the project conventions (automatically changing the code for you!) and integrate well with many other tools such as code editors and building systems. If you want to do a pull-request, please apply these tools to your code before doing it. [Scroll down <i class="fas fa-arrow-circle-down"></i>]({{ "/coding-style/#final-recommendations" | relative_url }}) to read about how to install and use them. Do not forget to [sign your commits]({{ "/docs/tutorials/using-git/#sign-your-commits" | relative_url }}) as an indication of [Developer's Certificate of Origin](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/DCO.txt) fulfillment.
 {: .notice--success}
 -------
 
@@ -75,7 +75,7 @@ do_something( with, these, parameters );
 ```
 {: class="no-copy"}
 
-When function calls get too long, you will have to split them up in several lines. Align the following lines with the previous ones so the structure becomes obvious, and go to the next line after the comma.
+When function calls get too long, you will have to split them up into several lines. Align the following lines with the previous ones so the structure becomes obvious, and go to the next line after the comma.
 
 ```cpp
 Channel(ConfigurationInterface *configuration,
@@ -103,7 +103,7 @@ BPSK
 
 ### Use sensible, descriptive names
 
-Do not use short cryptic names or names based on internal jokes. It should be easy to type a name without looking up how it is spelt. Exception: Loop variables and variables with a small scope (less than 20 lines) may have short names to save space if the purpose of that variable is obvious.
+Do not use short cryptic names or names based on internal jokes. It should be easy to type a name without looking up how it is spelled. Exception: Loop variables and variables with a small scope (less than 20 lines) may have short names to save space if the purpose of that variable is obvious.
 
 ### Only use English names
 It is confusing when mixing languages for names. English is the preferred language because of its spread in research and software development and because most libraries already used are in English.
@@ -114,7 +114,7 @@ It is confusing when mixing languages for names. English is the preferred langua
 Scratch variables used for temporary storage or indices are best kept
 short. A programmer reading such variables should be able to assume that
 its value is not used outside a few lines of code. Common scratch
-variables for integers are `i`, `j`, `k`, `m`, `n` and for characters `c` and `d`.
+variables for integers are `i`, `j`, `k`, `m`, `n`, and for characters `c` and `d`.
 
 ### Use namespaces for identifiers declared in different modules
 
@@ -215,8 +215,8 @@ problems for other programs and printers.
 ### Do not use tabs
 
 Tabs make the source code difficult to read because different programs
-treat the tabs differently. The same code can look very differently in
-different views. Avoid using tabs in your source code to avoid this
+treat the tabs differently. The same code can look very different in
+different viewers. Avoid using tabs in your source code to avoid this
 problem. Use spaces instead.
 
 ## Comments
@@ -232,7 +232,7 @@ Be consistent and use the `// ...` style comments.
 The comment styles `///` and `/** ... */` are used by JavaDoc, Doxygen
 and some other code documenting tools.
 
-For a complete description on how to document the code, see the [Doxygen Manual](https://www.doxygen.nl/manual/docblocks.html)
+For a complete description of how to document the code, see the [Doxygen Manual](https://www.doxygen.nl/manual/docblocks.html)
 
 All classes in GNSS-SDR should be properly documented with Doxygen
 comments in include (`.h`) files. Source (`.cc`) files should be documented
@@ -245,7 +245,7 @@ GNSS-SDR is shown here:
 /*!
  * \brief Brief description of My_Class here
  *
- * Detailed description of My_Class here. With example code if needed.
+ * Detailed description of My_Class here. With example code, if needed.
  */
 class My_Class
 {
@@ -312,7 +312,7 @@ code and possibly nested comments.
 
 ### All comments should be placed above the line the comment describes, indented identically
 
-Being consistent on placement of comments removes any question on what
+Being consistent on the placement of comments removes any question on what
 the comment refers to.
 
 Use `#ifdef` instead of `/* ... */` to comment out blocks of code. The
@@ -440,9 +440,9 @@ Example:
 ### Use `const` instead of \#define in header files
 
 `#define` is a preprocessor directive. Before compiling, the middle
-symbol is replaced by the right hand symbol(s). The preprocessor does
+symbol is replaced by the right-hand symbol(s). The preprocessor does
 nothing but text replacement, so `#define`s have no respect for the
-usual C++ scoping rules. In other words, `#define` is not type safe.
+usual C++ scoping rules. In other words, `#define` is not type-safe.
 
 When replacing `#defines` with constants, two special cases are worth
 mentioning. The first is defining constant pointers. Because constant
@@ -626,7 +626,7 @@ consistent.
 The exception to the rule is C type `struct` that only contains data
 members.
 
-### Functions that can be implemented using public interface of a class should not be members
+### Functions that can be implemented using the public interface of a class should not be members
 
 A class definition can be kept small and less prone to change if it only
 defines the core functionality. Any other functions that can be
@@ -670,9 +670,9 @@ less readable.
 
 ### Only have one `return` in a function
 
-It is confusing when there are more than one `return` statement in a
+It is confusing when there is more than one `return` statement in a
 function. Having only one exit point of a function makes it easy to have
-a single place for post conditions and invariant check. When debugging
+a single place for post-conditions and invariant check. When debugging
 it is useful to have a single exit point of a function where you can put
 a single breakpoint or trace output. It is sometimes necessary to
 introduce a result variable to carry the function return value to the
@@ -695,13 +695,13 @@ loops since the conditional is at the bottom of the loop. The reader
 must scan the entire loop in order to understand the scope of the loop.
 In addition, `do-while` loops are not needed. Any `do-while` loop can
 easily be rewritten into a `while` loop or a `for` loop. Reducing the
-number of constructs used enhance readability.
+number of constructs used enhances readability.
 
 ## Other typographical issues
 
 ### Avoid macros
 
-Most macros can be replaced by constants, enumerations or inline
+Most macros can be replaced by constants, enumerations, or inline
 functions. As macros are not part of the C++ language, they do not
 provide type safety and debugger support.
 
@@ -713,7 +713,7 @@ purpose of the number.
 
 ### Use plenty of assertions
 
-Assertions are useful to verify pre-conditions, post-conditions and any
+Assertions are useful to verify pre-conditions, post-conditions, and any
 other conditions that should never happen. Pre-conditions are useful to
 verify that functions are called with valid arguments. They are also
 useful as documentation of what argument value ranges a function is
@@ -743,11 +743,11 @@ double sqrt(double x)
 
 ### Use prefix increment/decrement instead of postfix increment/decrement when the value of the variable is not used
 
-For class objects there may be two different member functions for the
+For class objects, there may be two different member functions for the
 postfix and prefix operations. The postfix operation has to keep a
 temporary return value of the object before changing the object. For
-built-in objects this does not matter as the compiler will be able to
-optimise away the temporary value when it is not used.
+built-in objects, this does not matter as the compiler will be able to
+optimize away the temporary value when it is not used.
 
 Even if this only matters for class objects, it is a good habit to use
 prefix increment/decrement at all times.
@@ -872,7 +872,7 @@ void f1 ( )
 
 The use of dynamic memory can lead to out-of-storage run-time failures, which are undesirable. The built-in `new` and `delete` operators, other than the placement versions, use dynamic heap memory. The functions `calloc`, `malloc`, `realloc` and `free` also use dynamic heap memory.
 
-There is a range of _unspecified_, _undefined_ and _implementation-defined behaviour_ associated with dynamic memory allocation, as well as a number of other potential pitfalls. Dynamic heap memory allocation may lead to memory leaks, data inconsistency, memory exhaustion, non-deterministic behaviour, etc.
+There is a range of _unspecified_, _undefined_, and _implementation-defined behaviour_ associated with dynamic memory allocation, as well as a number of other potential pitfalls. Dynamic heap memory allocation may lead to memory leaks, data inconsistency, memory exhaustion, non-deterministic behaviour, etc.
 
 Note that some implementations may use dynamic heap memory allocation to implement other functions (for example, functions in the library `cstring`). If this is the case, then these functions should also be avoided.
 
@@ -944,7 +944,7 @@ void f1 ( const char_t * str )
 
 ### The stream input/output library `<cstdio>` should not be used.
 
-This includes file and I/O functions `fgetpos`, `fopen`, `ftell`, `gets`, `perror`, `remove`, `rename`, etc. Streams and file I/O have a large number of _unspecified_, _undefined_ and _implementation-defined_ behaviours associated with them.
+This includes file and I/O functions `fgetpos`, `fopen`, `ftell`, `gets`, `perror`, `remove`, `rename`, etc. Streams and file I/O have a large number of _unspecified_, _undefined_, and _implementation-defined_ behaviours associated with them.
 
 Example:
 ```cpp
@@ -962,7 +962,7 @@ void fn ( )
 
 ### Use tools for automated code formatting
 
-As code base and the number of contributors grow, maintaining a consistent code formatting is difficult and creates a lot of noise in commits. In order to handle this issue, GNSS-SDR uses [clang-format](https://clang.llvm.org/docs/ClangFormat.html), a set of tools for automated code formatting. It can be used as a standalone tool and supports a number of editor integrations.  
+As the code base and the number of contributors grows, maintaining a consistent code formatting is difficult and creates a lot of noise in commits. In order to handle this issue, GNSS-SDR uses [clang-format](https://clang.llvm.org/docs/ClangFormat.html), a set of tools for automated code formatting. It can be used as a standalone tool and supports a number of editor integrations.  
 
 The rules for code formatting are configured in the file [.clang-format](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-format) at the root of the source tree. The style options are described in [Clang-Format Style Options](https://clang.llvm.org/docs/ClangFormatStyleOptions.html).
 
@@ -1156,7 +1156,7 @@ $ make
 
 In this latter case, please do not use parallel building (_e.g._, `make -j4`). Be aware that this process can take a long time.
 
-You can read more about the usage of this tool at the [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/).
+You can read more about the usage of this tool in the [clang-tidy documentation](https://clang.llvm.org/extra/clang-tidy/).
 
 {% capture use-clang-tidy %}
 With clang and clang-tidy already installed, please do:
@@ -1182,7 +1182,7 @@ and check if there are warnings and/or fixes related to your code (use `git stat
 </div>
 
 {% capture notice-tidy %}
-An automated code linter helps to improve [**Efficiency**]({{ "/design-forces/efficiency/" | relative_url }}), [**Reliability**]({{ "/design-forces/reliability/" | relative_url }}) and [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
+An automated code linter helps to improve [**Efficiency**]({{ "/design-forces/efficiency/" | relative_url }}), [**Reliability**]({{ "/design-forces/reliability/" | relative_url }}), and [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
 {% endcapture %}
 
 <div class="notice--success">
@@ -1196,14 +1196,14 @@ Take a look at the [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidel
 
 ### Use of Boost libraries
 
-[Boost](https://www.boost.org) is a set of free, expertly designed, peer–reviewed portable C++ source libraries. Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. However, Boost regularly makes backward-incompatible changes, making supporting a wide range of Boost versions hard. All things equal, prefer standard C++ constructs over Boost constructs.
+[Boost](https://www.boost.org) is a set of free, expertly designed, peer-reviewed portable C++ source libraries. Boost libraries are intended to be widely useful, and usable across a broad spectrum of applications. However, Boost regularly makes backward-incompatible changes, making supporting a wide range of Boost versions hard. All things equal, prefer standard C++ constructs over Boost constructs.
 
 ### Use common sense and BE CONSISTENT
 
 The point of having style guidelines is to have a common vocabulary of
 coding so people can concentrate on what you are saying, rather than on
 how you are saying it. We present global style rules here so people know
-the vocabulary. But local style is also important. If code you add to a
+the vocabulary. But local style is also important. If the code you add to a
 file looks drastically different from the existing code around it, the
 discontinuity throws readers out of their rhythm when they go to read
 it. Try to avoid this.

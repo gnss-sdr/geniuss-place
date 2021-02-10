@@ -37,7 +37,7 @@ or
 
 Inquiries beyond the mailing list can be sent to Carles Fern&aacute;ndez-Prades <a href="mailto:carles.fernandez@cttc.cat"><i class="far fa-fw fa-envelope" aria-hidden="true"></i> </a>
 
-See other contact details in our [Team]({{ "/team/" | relative_url }}) page.
+See other contact details on our [Team]({{ "/team/" | relative_url }}) page.
 
 
 ## Legal Terms and Conditions
@@ -46,7 +46,7 @@ The General Data Protection Regulation (EU) [2016/679](https://eur-lex.europa.eu
 
 The European Data Protection Regulation is applicable as of May 25th, 2018 in all member states to harmonize data privacy laws across Europe.
 
-This website is compliant with the [GDPR](https://gdpr-info.eu/). You can check the details by clicking in the buttons below:
+This website is compliant with the [GDPR](https://gdpr-info.eu/). You can check the details by clicking on the buttons below:
 
 [<i class="fas fa-balance-scale"></i> Legal Notice]({{ "/legal-notice/" | relative_url }}){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}

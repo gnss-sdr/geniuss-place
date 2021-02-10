@@ -25,7 +25,7 @@ Found a bug in the code? Interested in adding a new feature or [fixing a known b
 conduct]({{ "/code-of-conduct/" | relative_url }}). By participating, you are expected to uphold this code.
 
 Any code contributions going into GNSS-SDR will become part of a GPL-licensed,
-open source repository. It is therefore imperative that code submissions belong
+open-source repository. It is therefore imperative that code submissions belong
 to the authors, and that submitters have the authority to merge that code into
 the public GNSS-SDR codebase.
 
@@ -55,17 +55,17 @@ whole source code repository into your personal account.
 
 More details are available in the [CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) file.
 
-Before start working in GNSS-SDR source code, specially if you want to contribute your changes back to the _upstream_ repository, you may be interested in having a look at our [coding style guide]({{ "/coding-style/" | relative_url }}). The usage of clang-format for [automated code formatting]({{ "/coding-style/#use-tools-for-automated-code-formatting" | relative_url }}) is highly recommended.
+Before start working in GNSS-SDR source code, especially if you want to contribute your changes back to the _upstream_ repository, you may be interested in having a look at our [coding style guide]({{ "/coding-style/" | relative_url }}). The usage of clang-format for [automated code formatting]({{ "/coding-style/#use-tools-for-automated-code-formatting" | relative_url }}) is highly recommended.
 
 ## Contributing to this website
 
-Found a typo in this website? Interested in giving your thoughts on existing pages, adding a post, tutorial, new feature or enhancement?
+Found a typo on this website? Interested in giving your thoughts on existing pages, adding a post, tutorial, new feature, or enhancement?
 
 This website itself lives in a [GitHub repository](https://github.com/gnss-sdr/geniuss-place.git). You can contribute in several ways:
 
- * Commenting (through your Google, Facebook or Twitter account, or just open a new profile at [Disqus](https://disqus.com/)) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriated style (see our [code of conduct]({{ "/code-of-conduct/" | relative_url }})).
+ * Commenting (through your Google, Facebook, or Twitter account, or just open a new profile at [Disqus](https://disqus.com/)) in the boxes such as the one at the bottom of this page. Moderation will be applied only in cases of flagrant off-topic or unappropriated style (see our [code of conduct]({{ "/code-of-conduct/" | relative_url }})).
 
- * Sharing the content in your favorite social network.
+ * Sharing the content on your favorite social network.
 
  * Checking [existing open issues](https://github.com/gnss-sdr/geniuss-place/issues/) or submitting a [new one](https://github.com/gnss-sdr/geniuss-place/issues/new).
 
@@ -122,10 +122,10 @@ Configuration file: _config.dev.yml
 ```
 {: class="no-copy"}
 
-Just point your browser to that [local direction](http://127.0.0.1:4000/) in order to enjoy this website without the need of Internet connection. Some features such as comments might not work.
+Just point your browser to that [local direction](http://127.0.0.1:4000/) in order to enjoy this website without the need for an Internet connection. Some features such as comments might not work.
 
 {% capture protip %}
-**Pro Tip**: if you want to modify JavaScript (under `assets/js`), you will need to install [Node.js](https://nodejs.org/en/), `cd` to the root of your project, and run `$ npm install` to get all the dependencies. If all gone well, then running `npm run build:js` will compress/concatenate `_main.js` and all plugin scripts into `main.min.js`. Thus, upon a change on JavaScript content, run:
+**Pro Tip**: if you want to modify JavaScript (under `assets/js`), you will need to install [Node.js](https://nodejs.org/en/), `cd` to the root of your project, and run `$ npm install` to get all the dependencies. If all went well, then running `npm run build:js` will compress/concatenate `_main.js` and all plugin scripts into `main.min.js`. Thus, upon a change on JavaScript content, run:
 
 ```console
 $ npm run build:js

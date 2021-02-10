@@ -17,7 +17,7 @@ show_date: false
 
 ## Data ingestion in GNSS-SDR
 
-The input of a software receiver are the raw bits that come out from the
+The inputs of a software receiver are the raw bits that come out from the
 front-end’s analog-to-digital converter (ADC), as shown below. Those bits can be read from a file stored in the hard
 disk or directly in real-time from a hardware device through USB or
 Ethernet buses.
@@ -31,20 +31,20 @@ host computer for real-time processing mode, or to a storage device for
 post-processing.
 
 GNSS-SDR is designed to work with a wide range of radiofrequency
-front-ends, each one with its own parameters of sampling frequency,
+front-ends, each one with its own parameters for the sampling frequency,
 number of bits per sample, signal format (baseband or passband), etc.
 When the sample stream enters the host computer, there is a first
-processing block, called *Signal Conditioner*, which is in charge of accommodate the sample stream
+processing block, called *Signal Conditioner*, which is in charge of accommodating the sample stream
 in a format tractable by a computer. The containers of data in a
 computer system are called **data types**.
 
 
 ### Data type definition
 
-A *type* is a set of possible values which an object, reference,
-function or expression can possess, and it is defined as its
+A *type* is a set of possible values that an object, reference,
+function, or expression can possess, and it is defined as its
 representation and a set of operators manipulating these
-representations. The type is a property which both restricts the
+representations. The type is a property that both restricts the
 operations that are permitted for those entities and provides semantic
 meaning to the otherwise generic sequences of bits.
 {: .notice--info}
@@ -91,7 +91,7 @@ The following Table lists the fundamental data types in C++. Within each of the 
 |                  | unsigned *int*           |  Not smaller than short. At least 16 bits.
 |                  | unsigned long *int*      |  Not smaller than int. At least 32 bits.
 |                  | unsigned long long *int* |  Not smaller than long. At least 64 bits.
-| Floating point types | float                |
+| Floating-point types | float                |
 |                  | double                   |  Precision not less than float
 |                  | long double              |  Precision not less than double
 |---
@@ -102,7 +102,7 @@ Note that
 other than `char` (which has a size of exactly one byte), none of the
 fundamental types has a standard size specified (but a minimum size, at
 most). Therefore, the type is not required (and in many cases is not)
-exactly this minimum size. This does not mean that these types are of an
+exactly this minimum size. This does not mean that these types are of
 undetermined size, but that there is no standard size across all
 compilers and machines; each compiler implementation may specify the
 sizes for these types that fit the best the architecture where the
@@ -121,7 +121,7 @@ ulong l2;
 ```
 {: class="no-copy"}
 
-**Idea to take home:** If your GNSS front-end is delivering samples of 2-bit length, a computer does not know how to handle them. A data type for that length is not defined, so there are no operations defined upon it. Even if you define a specific data type and its related operations, processors and compilers will likely not be optimized for such non-standard type. You need to bring whatever format your _Signal Source_ is delivering to a format that is understandable by the processing environment (processor, operating system, compiler, etc.) in charge of executing GNSS-SDR. Luckily, it is easy to define new formats converters, and they need to be placed at the first processing block that receives the incoming sample stream: the _Data Type_Adapter_.
+**Idea to take home:** If your GNSS front-end is delivering samples of 2-bit length, a computer does not know how to handle them. A data type for that length is not defined, so there are no operations defined upon it. Even if you define a specific data type and its related operations, processors and compilers will likely not be optimized for such a non-standard type. You need to bring whatever format your _Signal Source_ is delivering to a format that is understandable by the processing environment (processor, operating system, compiler, etc.) in charge of executing GNSS-SDR. Luckily, it is easy to define new formats converters, and they need to be placed at the first processing block that receives the incoming sample stream: the _Data Type_Adapter_.
 {: .notice--info}
 
 
@@ -132,7 +132,7 @@ header file that allows programmers to write more portable code by
 providing a set of typedefs that specify exact-width integer types,
 together with the defined minimum and maximum allowable values for each
 type. This header is particularly useful for embedded programming which
-often involves considerable manipulation of hardware specific I/O
+often involves considerable manipulation of hardware-specific I/O
 registers requiring integer data of fixed widths, specific locations and
 exact alignments. The naming convention for exact-width integer types is
 `intN_t` for `signed int` and `uintN_t` for `unsigned int`. Among
@@ -149,7 +149,7 @@ Building upon these definitions, the [Vector-Optimized Library of Kernels
 functionality for complex arithmetic (i.e. basic, arithmetic,
 trigonometric and hyperbolic operations, but only for floating-point
 data types: `float`, `double` and `long double`. This means that complex
-operations are not defined for integer data types, and for instance the
+operations are not defined for integer data types, and, for instance, the
 instantiation of an object of type `std::complex<int8_t>` has undefined
 behavior. The VOLK library provides definitions for those data types
 that are missing in C++ in a portable manner.
@@ -177,15 +177,15 @@ template <typename T> inline std::complex<T> lv_cmake(const T &r, const T &i){
 
 As shown in the typedefs listed above, VOLK defines
 type names for objects holding complex numbers in which their real and
-imaginary parts are integers of exactly 8, 16, 32 or 64 bits, or floating
-point numbers of 32 or 64 bits. It also provides a template constructor
+imaginary parts are integers of exactly 8, 16, 32, or 64 bits, or floating-point
+numbers of 32 or 64 bits. It also provides a template constructor
 for them.
 
 
 Internally, GNSS-SDR makes use of the complex data types defined by
 VOLK. They are fundamental for handling sample streams in which samples
 are complex numbers with real and imaginary components of 8, 16 or 32
-bits, common formats delivered by GNSS radio frequency front-ends. Next Table shows the data type names that GNSS-SDR exposes through the configuration file.
+bits, common formats delivered by GNSS radio frequency front-ends. The next Table shows the data type names that GNSS-SDR exposes through the configuration file.
 
 |----------
 | **Type name in GNSS-SDR conf files** | **Identifier in VOLK kernels** | **Definition** | **Sample stream**
@@ -247,9 +247,9 @@ The data type expected by _Channels_ actually depends on the specific implementa
 
 
 * In a processing flow graph, the data type used by a processing block to write at its output buffer(s) must be the same as the downstream processing blocks which are consuming data from its input buffer(s). Please check that the implementation of the immediately next processing nodes accepts that specific output data format.
-* **The less processing, the faster**. If your _Signal Source_ already delivers samples in a format that _Channels_ admits, setting ```SignalConditioner.implementation=Pass_Through``` (that is, a direct wire between the _Signal Source_ and _Channels_) is probably the best choice. Unnecessary filtering or data format conversion will always consume processing cycles, and given that those operations are performed at the sample rate provided by the signal source, this is specially critical if you are working with a real-time configuration. If you are reading samples from a file, there is no more constraint here that the required processing time.
-* In general, **the smaller the data type, the faster**. Intuitively, the fewer bits the processor needs to operate with, the faster it can perform the given instruction. That is, multiplying a pair of 8-bit integers should be faster than multiplying a pair of 32-bit floating-point values. However, in practice this not always holds. Processor manufacturers have spent a lot of effort in optimizing floating-point operations and, when combined with the inherent saturation problem in integer arithmetics (which proper management use to consume a non-negligible amount of cycles), it turns out that sometimes a floating-point operation can be done as fast as  its 8 or 16 bit integer counterpart, or even faster. We have found widely different results when using different computing platforms, so specific testing in _your_ machine is always recommended.
-* If your _Signal Source_ is delivering a format which is not defined in the Table above (for instance, a specific mapping of signed samples of 2-bit length, which is usual in GNSS-specific front-ends, or any other combination), you need a specific _Data Type Adapter_ for such format.  
+* **The less processing, the faster**. If your _Signal Source_ already delivers samples in a format that _Channels_ admits, setting ```SignalConditioner.implementation=Pass_Through``` (that is, a direct wire between the _Signal Source_ and _Channels_) is probably the best choice. Unnecessary filtering or data format conversion will always consume processing cycles, and given that those operations are performed at the sample rate provided by the signal source, this is especially critical if you are working with a real-time configuration. If you are reading samples from a file, there is no more constraint here than the required processing time.
+* In general, **the smaller the data type, the faster**. Intuitively, the fewer bits the processor needs to operate with, the faster it can perform the given instruction. That is, multiplying a pair of 8-bit integers should be faster than multiplying a pair of 32-bit floating-point values. However, in practice this not always holds. Processor manufacturers have spent a lot of effort in optimizing floating-point operations and, when combined with the inherent saturation problem in integer arithmetics (which proper management use to consume a non-negligible amount of cycles), it turns out that sometimes a floating-point operation can be done as fast as its 8 or 16-bit integer counterpart, or even faster. We have found widely different results when using different computing platforms, so specific testing in _your_ machine is always recommended.
+* If your _Signal Source_ is delivering a format that is not defined in the Table above (for instance, a specific mapping of signed samples of 2-bit length, which is usual in GNSS-specific front-ends, or any other combination), you need a specific _Data Type Adapter_ for such format.  
 * If your _Signal Source_ is delivering signal at some Intermediate Frequency instead of baseband, use the `Freq_Xlating_Fir_Filter` implementation for _Filter_ and bring it down to a baseband signal (_i.e._, complex format).
 
 
@@ -261,4 +261,4 @@ The following Table shows some of the possible configurations when bringing samp
 
 ### What happens after Channels?
 
-Your duty as user when configuring GNSS-SDR, in the matters related to data types, ends when delivering samples to _Channels_. After that, all the information is handled by an object of an internal class ([check out its API](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/system_parameters/gnss_synchro.h) if you are curious) and the results of the whole processing are then delivered in standard formats such as [RINEX](https://en.wikipedia.org/wiki/RINEX), [RTCM 104](https://en.wikipedia.org/wiki/RTCM) or [KML](https://en.wikipedia.org/wiki/Keyhole_Markup_Language), among others.
+Your duty as a user when configuring GNSS-SDR, in matters related to data types, ends when delivering samples to _Channels_. After that, all the information is handled by an object of an internal class ([check out its API](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/system_parameters/gnss_synchro.h) if you are curious) and the results of the whole processing are then delivered in standard formats such as [RINEX](https://en.wikipedia.org/wiki/RINEX), [RTCM 104](https://en.wikipedia.org/wiki/RTCM), or [KML](https://en.wikipedia.org/wiki/Keyhole_Markup_Language), among others.
