@@ -14,7 +14,7 @@ _Interoperability_ refers to the ability of making systems work together. In par
 
 ## Interoperability with GNSS signals
 
-A software defined receiver needs to interoperate with GNSS signals, defined as combinations of frequency band and channel or code, from which GNSS observables (_i.e._, measurements of pseudorange, carrier phase, Doppler and signal strength) can be generated. The new signal structures for GPS, Galileo and Beidou make it possible to generate code and phase observations based on one or a combination of several channels: two-channel signals are composed of I and Q components, whereas three-channel signals of A, B, and C components.
+A software-defined receiver needs to interoperate with GNSS signals, defined as combinations of frequency band and channel or code, from which GNSS observables (_i.e._, measurements of pseudorange, carrier phase, Doppler and signal strength) can be generated. The new signal structures for GPS, Galileo and Beidou make it possible to generate code and phase observations based on one or a combination of several channels: two-channel signals are composed of I and Q components, whereas three-channel signals of A, B, and C components.
 
 Possible GNSS signals are listed below:
 
