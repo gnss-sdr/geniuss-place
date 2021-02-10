@@ -58,7 +58,7 @@ Dilution of Precision at 2013-Nov-10 15:52:14 is HDOP = 3.58641436755431
 ```
 {: class="no-copy"}
 
-The maximum available Carrier-to-Noise density ratio (CN0) was 41 dB-Hz, associated to high elevation satellites (such as Galileo FM3), as predicted by the orbital model. In contrast, Galileo PFM (PRN ID 11) is visible with a low elevation, and thus the received CN0 was 35 dB-Hz. Next figure shows a capture of the predicted satellite positions and the skyplot.
+The maximum available Carrier-to-Noise density ratio (CN0) was 41 dB-Hz, associated with high elevation satellites (such as Galileo FM3), as predicted by the orbital model. In contrast, Galileo PFM (PRN ID 11) is visible with a low elevation, and thus the received CN0 was 35 dB-Hz. The next figure shows a capture of the predicted satellite positions and the sky plot.
 
 <figure>
   {{ fig_img2 | markdownify | remove: "<p>" | remove: "</p>" }}
@@ -81,7 +81,7 @@ The 3D analysis reveals a precision MRSE of 3.4 m, results shown below:
   <figcaption>GNSS-SDR 3D ENU coordinates precision for the Galileo position fix.</figcaption>
 </figure>
 
-The minimal available Galileo constellation of four satellites provided a Dilution of Precision (DOP) with horizontal and vertical values of 3.6 and 4.2, respectively. The precision performance obtained by GNSS-SDR, which computed the PVT solution by a simple least squares algorithm and without any sort of external help, has clearly passed the first test!
+The minimal available Galileo constellation of four satellites provided a Dilution of Precision (DOP) with horizontal and vertical values of 3.6 and 4.2, respectively. The precision performance obtained by GNSS-SDR, which computed the PVT solution by a simple least-squares algorithm and without any sort of external help, has clearly passed the first test!
 
 <figure>
   {{ fig_img1 | markdownify | remove: "<p>" | remove: "</p>" }}
