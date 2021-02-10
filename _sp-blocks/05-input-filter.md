@@ -259,7 +259,7 @@ The first step of any interference mitigation algorithm consists in determining 
 
 $$ \begin{equation} E \{ | y(t) |^2 \} \approx E \{ | \eta(t) |^2 \} = \sigma^2 . \end{equation} $$
 
-After the ADC step and exploiting the statistical properties of $$ \eta[n] $$ (i.i.d. Gaussian symmetric circular noise), it is possible to guarantee a certain probability of false alarm, i.e. the probability of detecting the interference when the jamming signal is not present. Comparing the signal magnitude against the threshold and taking a decision in all the samples is not feasible in real time applications, so the detection algorithm runs on signal segments of length $$ L $$ samples. The energy of a signal segment is
+After the ADC step and exploiting the statistical properties of $$ \eta[n] $$ (i.i.d. Gaussian symmetric circular noise), it is possible to guarantee a certain probability of false alarm, i.e. the probability of detecting the interference when the jamming signal is not present. Comparing the signal magnitude against the threshold and taking a decision in all the samples is not feasible in real-time applications, so the detection algorithm runs on signal segments of length $$ L $$ samples. The energy of a signal segment is
 
 $$ \begin{equation} E_s = \sum_{l=1}^{L} | y[l] |^2 . \end{equation} $$
 
