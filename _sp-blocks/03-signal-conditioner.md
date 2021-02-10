@@ -14,7 +14,7 @@ last_modified_at: 2018-12-14T12:54:02-04:00
 A _Signal Conditioner_ block is in charge of adapting the sample bit depth to a data type tractable at the host computer running the software receiver, and optionally intermediate frequency to baseband conversion, resampling, and filtering.
 {: .notice--info}
 
-Regardless the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate $$ f_{IN} $$. We denote the complex samples at the Signal Conditioner output as $$ x_{\text{IN}}[n] $$. This signal stream feeds a set of parallel [_Channels_]({{ "/docs/sp-blocks/channels/" | relative_url }}).
+Regardless of the selected signal source features, the _Signal Conditioner_ interface delivers in a unified format a sample data stream to the receiver downstream processing channels, acting as a facade between the signal source and the synchronization channels, providing a simplified interface to the input signal at a reference, _internal_ sample rate $$ f_{IN} $$. We denote the complex samples at the Signal Conditioner output as $$ x_{\text{IN}}[n] $$. This signal stream feeds a set of parallel [_Channels_]({{ "/docs/sp-blocks/channels/" | relative_url }}).
 
 
 ### Implementation: `Signal_Conditioner`

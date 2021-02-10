@@ -10,7 +10,7 @@ last_modified_at: 2019-01-28T12:54:02+02:00
 ---
 
 
-Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/acquisition/" | relative_url }}), [tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}) and [demodulation of the navigation message]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) for a single satellite. These abstract interfaces can be populated with different algorithms addressing any suitable GNSS signal. The user can define the number of parallel channels to be instantiated by the software receiver, and the thread-per-block scheduler imposed by GNU Radio automatically manages the multitasking capabilities of modern multi-core processors. This is done through the configuration file with the `Channels_XX.count` parameter, where `XX` is one of the following signal identifiers:
+Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/acquisition/" | relative_url }}), [tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}), and [demodulation of the navigation message]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) for a single satellite. These abstract interfaces can be populated with different algorithms addressing any suitable GNSS signal. The user can define the number of parallel channels to be instantiated by the software receiver, and the thread-per-block scheduler imposed by GNU Radio automatically manages the multitasking capabilities of modern multi-core processors. This is done through the configuration file with the `Channels_XX.count` parameter, where `XX` is one of the following signal identifiers:
 
 |----------
 |  **Identifier**  |  **Signal** | **Center Frequency** |
@@ -28,9 +28,9 @@ Each _Channel_ encapsulates blocks for signal [acquisition]({{ "/docs/sp-blocks/
 |-----
 
 
-Then, nine parameters can be set:  `Channels_1G.count`, `Channels_1C.count`, `Channels_1B.count`, `Channels_B1.count`, `Channels_B3.count`, `Channels_2G.count`, `Channels_2S.count`,  `Channels_5X.count` and `Channels_L5.count`, all of them defaulting to $$ 0 $$.
+Then, nine parameters can be set:  `Channels_1G.count`, `Channels_1C.count`, `Channels_1B.count`, `Channels_B1.count`, `Channels_B3.count`, `Channels_2G.count`, `Channels_2S.count`, `Channels_5X.count` and `Channels_L5.count`, all of them defaulting to $$ 0 $$.
 
-In addition, the GNSS-SDR flow graph allows to set the number of channels that will be executing signal acquisition (which is known to require a high computational load) concurrently. This is controlled by the parameter `Channels.in_acquisition`, which defaults to the total number of channels (all of them performing acquisition on different satellite signals at the same time, if required). When working with real-time configurations, it is a good practice to set this parameter  to 1 (that is, only one channel performing acquisition at a given time) in order to alleviate the computational burden.
+In addition, the GNSS-SDR flow graph allows setting the number of channels that will be executing signal acquisition (which is known to require a high computational load) concurrently. This is controlled by the parameter `Channels.in_acquisition`, which defaults to the total number of channels (all of them performing acquisition on different satellite signals at the same time, if required). When working with real-time configurations, it is a good practice to set this parameter to 1 (that is, only one channel performing acquisition at a given time) in order to alleviate the computational burden.
 
 _Channels_ accepts the following parameters:
 

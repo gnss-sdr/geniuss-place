@@ -14,7 +14,7 @@ The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a 
 The role of a _PVT_ block is to compute navigation solutions and deliver information in adequate formats for further processing or data representation.
 {: .notice--info}
 
-It follows a description of the available positioning algorithms and their parameters, the available output formats and the description of the configuration options for this block.
+It follows a description of the available positioning algorithms and their parameters, the available output formats, and the description of the configuration options for this block.
 
 &nbsp;
 
@@ -24,12 +24,12 @@ The positioning problem is generally stated as
 
 $$ \begin{equation} \mathbf{y} = \mathbf{h}(\mathbf{x}) +  \mathbf{n}~, \end{equation} $$
 
-where $$ \mathbf{y} $$ is the measurement vector (that is, the observables obtained from the GNSS signals of a set of $$ m $$ satellites), $$ \mathbf{x} $$ is the state vector to be estimated (at least, the position of the receiver's antenna and the time), $$ \mathbf{h}(\cdot) $$ is the function that relates states with measurements, and $$ \mathbf{n} $$ models measurement noise. Depending on the models, assumptions, available measurements and the availability of *a priori* or externally-provided information, many positioning strategies and algorithms can be devised. It follows a description of the positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
+where $$ \mathbf{y} $$ is the measurement vector (that is, the observables obtained from the GNSS signals of a set of $$ m $$ satellites), $$ \mathbf{x} $$ is the state vector to be estimated (at least, the position of the receiver's antenna and the time), $$ \mathbf{h}(\cdot) $$ is the function that relates states with measurements, and $$ \mathbf{n} $$ models measurement noise. Depending on the models, assumptions, available measurements, and the availability of *a priori* or externally-provided information, many positioning strategies and algorithms can be devised. It follows a description of the positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
 
 
 ## Single Point Positioning
 
-The default positiong mode is `PVT.positioning_mode=Single`. In this mode, the vector of unknown states is defined as:
+The default positioning mode is `PVT.positioning_mode=Single`. In this mode, the vector of unknown states is defined as:
 
 $$ \begin{equation} \mathbf{x} = ( \mathbf{r}_r^T, cdt_r)^T~, \end{equation} $$
 
@@ -154,7 +154,7 @@ the residuals test is defined as:
 
 $$ \frac{\boldsymbol{\nu}^T \boldsymbol{\nu}}{m-n-1} < \chi_{\alpha}^2 (m-n-1) $$
 
-where $$ n $$ is the number of estimated parameters, $$ m $$ is the number of measurements, $$ \chi_{\alpha}^2(n) $$ is the chi‐square distribution of degree of freedom $$ n $$ and with a significance level of $$ \alpha=0.001 $$ (that is, $$ prob > 0.001 $$).
+where $$ n $$ is the number of estimated parameters, $$ m $$ is the number of measurements, $$ \chi_{\alpha}^2(n) $$ is the chi‐square distribution of degree of freedom $$ n $$, and with a significance level of $$ \alpha=0.001 $$ (that is, $$ prob > 0.001 $$).
 
 
 **2) GDOP Test**
@@ -169,7 +169,7 @@ If any of the validation fails, the solution is rejected as an outlier (that is,
 
 ### Receiver Autonomous Integrity Monitoring (RAIM)
 
-In addition to the solution validation described above, RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) function can be activated. If the chi-squared test described above fails and the option `PVT.raim_fde` is set to $$ 1 $$, the implementation retries the estimation by excluding one by one of the visible satellites. After all of retries, the estimated receiver position with the minimum normalized squared residuals $$ \boldsymbol{\nu}^T \boldsymbol{\nu} $$ is selected as the final solution. In such scheme, an invalid measurement, which might be due to satellite malfunction, receiver fault or large multipath, is excluded as an outlier. Note that this feature is not effective with two or more invalid measurements. It also needs two redundant visible satellites, that means at least 6 visible satellites are necessary to obtain the final solution.
+In addition to the solution validation described above, RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) function can be activated. If the chi-squared test described above fails and the option `PVT.raim_fde` is set to $$ 1 $$, the implementation retries the estimation by excluding one by one of the visible satellites. After all of the retries, the estimated receiver position with the minimum normalized squared residuals $$ \boldsymbol{\nu}^T \boldsymbol{\nu} $$ is selected as the final solution. In such a scheme, an invalid measurement, which might be due to satellite malfunction, receiver fault, or large multipath, is excluded as an outlier. Note that this feature is not effective with two or more invalid measurements. It also needs two redundant visible satellites, which means at least 6 visible satellites are necessary to obtain the final solution.
 
 
 
@@ -222,7 +222,7 @@ $$ \mathbf{h}_{\Phi} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)
 
 $$ \mathbf{h}_{P} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{r}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{r}^{(2)} \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{r}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{r}^{(m)} \end{array}\right)~. $$
 
-This is again a nonlinear equation that could be solved with the iterative weighted least squares estimator as in the case of the Single Point Positing case. However, here we want to incorporate some *a priori* information, such as a basic dynamic model for the receiver, and some statistical knowledge about the status of the troposphere. The [Extended Kalman Filter](https://en.wikipedia.org/wiki/Extended_Kalman_filter) offers a suitable framework for that.
+This is again a nonlinear equation that could be solved with the iterative weighted least squares estimator as in the case of the Single Point Positioning case. However, here we want to incorporate some *a priori* information, such as a basic dynamic model for the receiver, and some statistical knowledge about the status of the troposphere. The [Extended Kalman Filter](https://en.wikipedia.org/wiki/Extended_Kalman_filter) offers a suitable framework for that.
 
 The partial derivatives matrix $$ \mathbf{H}= \frac{\partial \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} = \mathbf{x}_{0} } $$ can be written as:
 
@@ -276,10 +276,10 @@ $$ \begin{equation} \mathbf{Q}_k = \left(\begin{array}{ccccc} \mathbf{Q}_{r} & {
 
 with:
 
-  * $$ \mathbf{Q}_r = \mathbf{E}_r^T \text{diag} \left( \sigma_{re}^2 , \sigma_{rn}^2 , \sigma_{ru}^2 \right) \mathbf{E}_r $$, where  $$ \mathbf{E}_r$$ is the coordinates rotation matrix from ECEF to local coordinates at the receiver antenna position (defined below), and  $$ \sigma_{re} $$, $$  \sigma_{rn} $$ and $$ \sigma_{ru} $$ are the standard deviations of east, north and up components of the receiver position model noises (in m).
+  * $$ \mathbf{Q}_r = \mathbf{E}_r^T \text{diag} \left( \sigma_{re}^2 , \sigma_{rn}^2 , \sigma_{ru}^2 \right) \mathbf{E}_r $$, where  $$ \mathbf{E}_r$$ is the coordinates rotation matrix from ECEF to local coordinates at the receiver antenna position (defined below), and  $$ \sigma_{re} $$, $$  \sigma_{rn} $$ and $$ \sigma_{ru} $$ are the standard deviations of east, north, and up components of the receiver position model noises (in m).
     * If the positioning mode is set to `PVT.positioning_mode=PPP_Static`, these values are initialized to $$ \sigma_{re} =  \sigma_{rn} =  \sigma_{ru} = 100 $$ m in the first epoch and then set to $$ 0 $$ in the following time updates.
     * If the positioning mode is set to `PVT.positioning_mode=PPP_Kinematic`, these values are set to $$ \sigma_{re} = \sigma_{rn} =  \sigma_{ru} = 100 $$ m for all time updates.
-  * $$ \mathbf{Q}_v = \mathbf{E}_r^T \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) \mathbf{E}_r $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north and up components of the receiver velocity model noises (in m/s/$$ \sqrt{s} $$). In the current implementation, those parameters are set to $$ \sigma_{ve} = \sigma_{vn} = \sigma_{vu} = 0 $$.
+  * $$ \mathbf{Q}_v = \mathbf{E}_r^T \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) \mathbf{E}_r $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north, and up components of the receiver velocity model noises (in m/s/$$ \sqrt{s} $$). In the current implementation, those parameters are set to $$ \sigma_{ve} = \sigma_{vn} = \sigma_{vu} = 0 $$.
   * $$ \sigma_{cdt_{r}} $$ is the standard deviation of the receiver clock offset (in m). This value is set to $$ \sigma_{cdt_{r}} = 100 $$ m.
   * $$ \mathbf{Q}_{T} = \text{diag} \left( \sigma_{Z}^2 \Delta_k, \sigma_{G_{N}}^2 \Delta_k,  \sigma_{G_{E}}^2 \Delta_k \right) $$ is the noise covariance matrix of the troposphere terms. These values are set to $$ \sigma_{Z} = 0.0001 $$, and $$ \sigma_{G_{N}} = \sigma_{G_{E}} $$ are initialized to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.001 $$ m/$$ \sqrt{s} $$ in the first epoch and then set to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.1 \cdot \sigma_{Z} $$ in the following time updates. The default value of $$ \sigma_{Z} = 0.0001 $$ m/$$ \sqrt{s} $$ can be configured with the `PVT.sigma_trop` option.
   * $$ \sigma_{bias} $$ is the standard deviation of the ionosphere-free carrier-phase bias measurements, in m/$$ \sqrt{s} $$. This value is initialized at the first epoch and after a cycle slip to $$ \sigma_{bias} = 100$$ m/$$ \sqrt{s} $$, and then is set to a default value of $$ \sigma_{bias} = 0.0001 $$ m/$$ \sqrt{s} $$ in the following time updates. This value and can be configured with the option `PVT.sigma_bias`.
@@ -375,12 +375,12 @@ $$ \begin{equation} I_{r,i}^{(s)} = \frac{40.3 \cdot \text{STEC} }{f_i^2}~, \end
 
 where STEC is the Slant Total Electron Content, which describes the number of free electrons present within one square meter between the receiver and satellite $$ s $$. It is often reported in multiples of the so-called TEC unit, defined as $$ \text{TECU} = 10^{16} $$ el/m$$ ^2 $$.  Ionospheric effects on the phase and code measurements have the opposite signs and have approximately the same amount. It causes a positive delay on code measurements (so it is included with a positive sign in the [pseudorange measurement model]({{ "docs/sp-blocks/observables/#pseudorange-measurement" | relative_url }})) and a *negative delay*, or phase advance, in phase measurements (so it is included with a negative sign in the [phase-range measurement model]({{ "docs/sp-blocks/observables/#phase-range-measurement" | relative_url }})).
 
-This dispersive nature (i.e., the ionospheric delay is proportional to the squared inverse of $$ f_i $$) allows users to remove its effect up to more than 99.9% using two frequency measurements (as in the see ionosphere-free combination for dual frequency receivers shown in the Precise Point Positioning algorithm described above), but single frequency receivers have to apply an ionospheric prediction model to remove (as much as possible) this effect, that can reach up to several tens of meters.
+This dispersive nature (i.e., the ionospheric delay is proportional to the squared inverse of $$ f_i $$) allows users to remove its effect up to more than 99.9% using two frequency measurements (as in the see ionosphere-free combination for dual-frequency receivers shown in the Precise Point Positioning algorithm described above), but single-frequency receivers have to apply an ionospheric prediction model to remove (as much as possible) this effect, that can reach up to several tens of meters.
 
 
 ## Broadcast
 
-For ionosphere correction for single frequency GNSS users, GPS navigation data include the following broadcast ionospheric parameters:
+For ionosphere correction for single-frequency GNSS users, GPS navigation data include the following broadcast ionospheric parameters:
 
 $$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T~. $$
 
@@ -421,13 +421,13 @@ SBAS corrections for ionospheric delay is provided by the message type 18 (ionos
 
 # Tropospheric Model
 
-The troposphere is the lowest portion of Earth's atmosphere, and contains 99% of the total mass of water vapor. The average depths of the troposphere are 20 km in the tropics, 17 km in the mid latitudes, and 7 km in the polar regions in winter. The chemical composition of the troposphere is essentially uniform, with the notable exception of water vapor, which can vary widely. The effect of the troposphere on the GNSS signals appears as an extra delay in the measurement of the signal traveling time from the satellite to the receiver. This delay depends on the temperature, pressure, humidity as well as the transmitter and receiver antennas location, and it is related to [air refractivity](https://aty.sdsu.edu/explain/atmos_refr/air_refr.html), which in turn can be divided in hydrostatic, i.e., dry gases (mainly $$ N_2 $$ and $$ O_2 $$), and wet, i.e., water vapour, components:
+The troposphere is the lowest portion of Earth's atmosphere, and contains 99% of the total mass of water vapor. The average depths of the troposphere are 20 km in the tropics, 17 km in the mid-latitudes, and 7 km in the polar regions in winter. The chemical composition of the troposphere is essentially uniform, with the notable exception of water vapor, which can vary widely. The effect of the troposphere on the GNSS signals appears as an extra delay in the measurement of the signal traveling time from the satellite to the receiver. This delay depends on the temperature, pressure, humidity as well as the transmitter and receiver antennas location, and it is related to [air refractivity](https://aty.sdsu.edu/explain/atmos_refr/air_refr.html), which in turn can be divided in hydrostatic, i.e., dry gases (mainly $$ N_2 $$ and $$ O_2 $$), and wet, i.e., water vapor, components:
 
   * **Hydrostatic component delay**: Its effect varies with local temperature and atmospheric pressure in quite a predictable manner, besides its variation is less that the 1% in a few hours. The error caused by this component is about $$ 2.3 $$ meters in the zenith direction and $$ 10 $$ meters for lower elevations ($$ 10^{o} $$ approximately).
 
-  * **Wet component delay**: It is caused by the water vapour and condensed water in form of clouds and, thence, it depends on weather conditions. The excess delay is small in this case, only some tens of centimetres, but this component varies faster than the hydrostatic component and in a quite randomly way, being very difficult to model.
+  * **Wet component delay**: It is caused by the water vapor and condensed water in form of clouds and, thence, it depends on weather conditions. The excess delay is small in this case, only some tens of centimetres, but this component varies faster than the hydrostatic component and in a quite random way, being very difficult to model.
 
-The troposphere is a non dispersive media with respect to electromagnetic waves up to 15 GHz, so the tropospheric effects are not frequency dependent for the GNSS signals. Thence, the carrier phase and code measurements are affected by the same delay, and this effect can not be removed by combinations of dual frequency measurements.
+The troposphere is a non-dispersive media with respect to electromagnetic waves up to 15 GHz, so the tropospheric effects are not frequency-dependent for the GNSS signals. Thence, the carrier phase and code measurements are affected by the same delay, and this effect can not be removed by combinations of dual-frequency measurements.
 
 ## Saastamoinen
 
@@ -445,7 +445,7 @@ $$ \begin{equation} T_{r}^{(s)} = \frac{0.002277}{\cos(z^{(s)})} \left\{ p+\left
 
 where $$ z^{(s)} $$ is the zenith angle (rad) as $$ z^{(s)} = \frac{\pi}{2} - El_{r}^{(s)} $$, where $$ El_{r}^{(s)} $$ is elevation angle of satellite direction (rad).
 
-The standard atmosphere and the Saastamoinen model are applied in case that the processing option `PVT.trop_model` is set to `Saastamoinen`, where the geodetic height is approximated by the ellipsoidal height and the relative humidity is fixed to 70 %.
+The standard atmosphere and the Saastamoinen model are applied in the case that the processing option `PVT.trop_model` is set to `Saastamoinen`, where the geodetic height is approximated by the ellipsoidal height and the relative humidity is fixed to 70 %.
 
 
 {::comment}
@@ -464,7 +464,7 @@ $$ \begin{equation} m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(
 
 $$ \begin{equation} T_{r}^{s} =  m_{H}(El_{r}^{(s)})Z_{H,r} + m(El_{r}^{(s)}) (Z_{T,r}-Z_{H,r})~, \end{equation} $$
 
-where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{(s)}) $$ is the hydro‐static mapping function and $$ m_{W}(El_{r}^{(s)}) $$ is the wet mapping function. The tropospheric zenith hydro‐static delay is given by Saastamoinen model described above with the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the mapping function, the software employs the [Niell mapping function](https://gssc.esa.int/navipedia/index.php/Mapping_of_Niell)[^Niell96]. The zenith total delay $$ Z_{T,r} $$ is estimated as a unknown parameter in the parameter estimation process.
+where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{(s)}) $$ is the hydro‐static mapping function and $$ m_{W}(El_{r}^{(s)}) $$ is the wet mapping function. The tropospheric zenith hydro‐static delay is given by Saastamoinen model described above with the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the mapping function, the software employs the [Niell mapping function](https://gssc.esa.int/navipedia/index.php/Mapping_of_Niell)[^Niell96]. The zenith total delay $$ Z_{T,r} $$ is estimated as an unknown parameter in the parameter estimation process.
 
 
 
@@ -487,12 +487,12 @@ where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and 
 Depending on the specific application or service that is exploiting the information provided by GNSS-SDR, different internal data will be required. The software provides such output data in standard formats:
 
 ## KML, GeoJSON, GPX
-For Geographic Information Systems, map representation and Earth browsers: [KML](https://www.opengeospatial.org/standards/kml),  [GeoJSON](https://geojson.org/) and [GPX](https://www.topografix.com/gpx.asp) files are generated by default, upon the computation of the first position fix.
+For Geographic Information Systems, map representation and Earth browsers: [KML](https://www.opengeospatial.org/standards/kml),  [GeoJSON](https://geojson.org/), and [GPX](https://www.topografix.com/gpx.asp) files are generated by default, upon the computation of the first position fix.
 
 ## RINEX
 For post-processing applications: RINEX [2.11](ftp://igs.org/pub/data/format/rinex211.txt) and [3.02](ftp://igs.org/pub/data/format/rinex302.pdf). Version 3.02 is generated by default, and version 2.11 can be requested by setting `PVT.rinex_version=2` in the configuration file.
 
-**IMPORTANT**: In order to get well-formatted GeoJSON, KML, GPX and RINEX files, always terminate `gnss-sdr` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix have been obtained during the execution of the software receiver.
+**IMPORTANT**: In order to get well-formatted GeoJSON, KML, GPX, and RINEX files, always terminate `gnss-sdr` execution by pressing key '`q`' and then key '`ENTER`'. Those files will be automatically deleted if no position fix has been obtained during the execution of the software receiver.
 {: .notice--warning}
 
 ## NMEA-0183
@@ -502,7 +502,7 @@ For sensor integration: [NMEA-0183](https://en.wikipedia.org/wiki/NMEA_0183). A 
 For real-time, possibly networked processing: [RTCM-104](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-2-differential-gnss-global-navigation-satellite-systems-services-version-3-february-1-2013) messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting `PVT.flag_rtcm_server=true` in the configuration file, and will be active during the execution of the software receiver. By default, the server will operate on port 2101 (which is the recommended port for RTCM services according to the Internet Assigned Numbers Authority, [IANA](https://www.iana.org/assignments/service-names-port-numbers "Service Name and Transport Protocol Port Number Registry")), and will identify the Reference Station with ID= $$ 1234 $$. These values can be changed with `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms), `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration file.
 
 ## Custom streaming
-In addition to the standard output formats, the PVT block offers a custom mechanism for streaming its internal data members to local or remote clients over UDP through a _monitoring port_ which can be enabled by setting `PVT.enable_monitor=true` in the configuration file. This feature is very useful for real-time monitoring of the PVT block and its outputs. By default, the data is streamed to the localhost address on port 1234 UDP. These settings can be changed with `PVT.monitor_client_addresses` and `PVT.monitor_udp_port`. The streamed data members (28 in total) are serialized via [Protocol Buffers](https://developers.google.com/protocol-buffers/) into a format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). This allows other applications to easily read those messages, either using C++, Java, Python, C#, Dart, Go or Ruby, among other languages, hence enhancing [**Interoperability**]({{ "/design-forces/interoperability/" | relative_url }}).
+In addition to the standard output formats, the PVT block offers a custom mechanism for streaming its internal data members to local or remote clients over UDP through a _monitoring port_ which can be enabled by setting `PVT.enable_monitor=true` in the configuration file. This feature is very useful for real-time monitoring of the PVT block and its outputs. By default, the data is streamed to the localhost address on port 1234 UDP. These settings can be changed with `PVT.monitor_client_addresses` and `PVT.monitor_udp_port`. The streamed data members (28 in total) are serialized via [Protocol Buffers](https://developers.google.com/protocol-buffers/) into a format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). This allows other applications to easily read those messages, either using C++, Java, Python, C#, Dart, Go, or Ruby, among other languages, hence enhancing [**Interoperability**]({{ "/design-forces/interoperability/" | relative_url }}).
 
 The following table shows the complete list of streamed parameters:
 
@@ -543,7 +543,7 @@ The following table shows the complete list of streamed parameters:
 
 &nbsp;
 
-Read more about standard output formats at our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | relative_url }}) page.
+Read more about standard output formats on our [**Interoperability**]({{ "/design-forces/interoperability/#output-formats" | relative_url }}) page.
 {: .notice--success}
 
 &nbsp;
@@ -554,7 +554,7 @@ Read more about standard output formats at our [**Interoperability**]({{ "/desig
 
 # Implementation: `RTKLIB_PVT`
 
-This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open source program package for standard and precise positioning. It accepts the following parameters:
+This implementation makes use of the positioning libraries of [RTKLIB](http://www.rtklib.com), a well-known open-source program package for standard and precise positioning. It accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
@@ -572,10 +572,10 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. The minimum is 20 ms, and the value must be a multiple of it. It defaults to 500 ms. | Optional |
 | `display_rate_ms` |  Rate at which PVT solutions will be displayed in the terminal, in ms. It must be multiple of `output_rate_ms`. It defaults to 500 ms. | Optional |
 | `positioning_mode` | [`Single`, `PPP_Static`, `PPP_Kinematic`] Set positioning mode. `Single`: Single point positioning.  `PPP_Static`: Precise Point Positioning with static mode. `PPP_Kinematic`: Precise Point Positioning for a moving receiver. It defaults to `Single`. | Optional |
-| `num_bands` | [`1`: L1 Single frequency, `2`: L1 and L2 Dual‐frequency, `3`: L1, L2 and L5 Triple‐frequency] This option is automatically configured according to the Channels configuration. This option can be useful to force some configuration (*e.g.*, single-band solution in a dual frequency receiver).  | Optional |
+| `num_bands` | [`1`: L1 Single frequency, `2`: L1 and L2 Dual‐frequency, `3`: L1, L2 and L5 Triple‐frequency] This option is automatically configured according to the Channels configuration. This option can be useful to force some configuration (*e.g.*, single-band solution in a dual-frequency receiver).  | Optional |
 | `elevation_mask` | Set the elevation mask angle, in degrees. It defaults to $$ 15^{o} $$.  | Optional |
 | `dynamics_model` | [`0`: Off, `1`: On] Set the dynamics model of the receiver. If set to $$ 1 $$ and `PVT.positioning_mode=PPP_Kinematic`, the receiver position is predicted with the estimated velocity and acceleration. It defaults to $$ 0 $$ (no dynamics model).  | Optional |
-| `iono_model` |  [`OFF`, `Broadcast`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Not apply ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual frequency (L1‐L2 for GPS or L1‐L5 for Galileo) measurements is used for ionospheric correction. It defaults to `OFF` (no ionospheric correction) | Optional |
+| `iono_model` |  [`OFF`, `Broadcast`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Not apply the ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual-frequency (L1‐L2 for GPS or L1‐L5 for Galileo) measurements is used for ionospheric correction. It defaults to `OFF` (no ionospheric correction) | Optional |
 | `trop_model` | [`OFF`, `Saastamoinen`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction). | Optional |
 | `enable_rx_clock_correction` | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is only used in the computation of Observables when the clock offset estimation exceeds the value of `max_clock_offset_ms`. This parameter defaults to `false`. | Optional |
 | `max_clock_offset_ms` |  If `enable_rx_clock_correction` is set to `false`, this parameter sets the maximum allowed local clock offset with respect to the Time solution. If the estimated offset exceeds this parameter, a clock correction is applied to the computation of Observables. It defaults to 40 ms. | Optional |
@@ -601,7 +601,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `rinex_output_enabled` | [`true`, `false`]: If set to `false`, RINEX files are not stored. It defaults to `output_enabled`. | Optional |
 | `rinex_version` | [`2`: version 2.11, `3`: version 3.02] Version of the generated RINEX files. It defaults to 3. | Optional |
 | `rinex_name` | Sets the base name of the RINEX files. If this parameter is not specified, a default one will be assigned. The command-line flag `--RINEX_name`, if present, overrides this parameter. | Optional |
-| `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. The minimum is 20 ms, and must be a mutiple of `output_rate_ms`. It defaults to 1000 ms. | Optional |
+| `rinexobs_rate_ms`| Rate at which observations are annotated in the RINEX file, in ms. The minimum is 20 ms, and must be a multiple of `output_rate_ms`. It defaults to 1000 ms. | Optional |
 | `nmea_output_file_enabled` | [`true`, `false`]: If set to `false`, NMEA sentences are not stored. It defaults to `true`. | Optional |
 | `nmea_dump_filename` | Name of the file containing the generated NMEA sentences in ASCII format. It defaults to `./nmea_pvt.nmea`. | Optional |
 | `flag_nmea_tty_port` | [`true`, `false`]: If set to `true`, the NMEA sentences are also sent to a serial port device. It defaults to `false`. | Optional |
@@ -635,7 +635,7 @@ This implementation makes use of the positioning libraries of [RTKLIB](http://ww
 | `monitor_client_addresses` | Destination IP address(es) of the real-time monitoring port. To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1` (localhost). | Optional |
 | `monitor_udp_port` | Destination UDP port number of the real-time monitoring port. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. | Optional |
 | `enable_protobuf` | [`true`, `false`]: If set to `true`, the data serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). An example of usage is the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). For an example of usage of the latter, check the [gnss-sdr-pvt-monitoring-client](https://github.com/acebrianjuan/gnss-sdr-pvt-monitoring-client). This parameter defaults to `true` (Protocol Buffers is used). | Optional |
-| `show_local_time_zone` | [`true`, `false`]: If set to `true`, time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC. | Optional |
+| `show_local_time_zone` | [`true`, `false`]: If set to `true`, the time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC. | Optional |
 |----------
 
 {::comment}
@@ -719,7 +719,7 @@ In order to shut down the generation of output files, you can just include in yo
 PVT.output_enabled=false
 ```
 
-Please note that this only concerns to the generation of mentioned file formats, and it does not affect the generation of dump files activated in the configuration of each processing block. If the RTCM server is activated with `flag_rtcm_server=true`, it will still work even if the binary RTCM file is deactivated with `rtcm_output_file_enabled=false`.
+Please note that this only concerns the generation of mentioned file formats, and it does not affect the generation of dump files activated in the configuration of each processing block. If the RTCM server is activated with `flag_rtcm_server=true`, it will still work even if the binary RTCM file is deactivated with `rtcm_output_file_enabled=false`.
 
 &nbsp;
 

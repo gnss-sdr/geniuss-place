@@ -30,7 +30,7 @@ In the current design, all the processing [Channels]({{ "docs/sp-blocks/channels
 |:-:|:--|:-:|
 |--------------
 | `internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-| `use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows to reduce the FFT size when using high data rates at `internal_fs_sps`. All the required setup is configured automatically. This feature is not implemented in all the Acquisition blocks, please check the [Acquisition documentation]({{ "docs/sp-blocks/acquisition/" | relative_url }}). This parameter defaults to `false`. | Optional |
+| `use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `internal_fs_sps`. All the required setup is configured automatically. This feature is not implemented in all the Acquisition blocks, please check the [Acquisition documentation]({{ "docs/sp-blocks/acquisition/" | relative_url }}). This parameter defaults to `false`. | Optional |
 |--------------
 
 _Global GNSS-SDR parameter: channel's input sampling rate_.
@@ -45,7 +45,7 @@ GNSS-SDR.internal_fs_sps=4000000
 ## Telecommand via TCP/IP
 
 
-The user can access to the receiver interactive interface by connecting a TCP/IP client (_e.g._, with a telnet client) to the TCP port specified in the configuration file for telecommand.
+The user can access the receiver interactive interface by connecting a TCP/IP client (_e.g._, with a telnet client) to the TCP port specified in the configuration file for telecommand.
 
 In order to use it, the executable `gnss-sdr` must be executed with the [gnss-sdr-harness.sh](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/utils/scripts/gnss-sdr-harness.sh) script provided at [src/utils/scripts](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/scripts):
 
@@ -76,7 +76,7 @@ GNSS-SDR.telecommand_tcp_port=3333
 ```
 
 
-The user commands must be sent as a lower-case string, command parameters separated by 1 space, and ended by `\r \n` (carriage-return and line feed). The commands will provide a feedback to the user.
+The user commands must be sent as a lower-case string, command parameters separated by 1 space, and ended by `\r \n` (carriage-return and line feed). The commands will provide feedback to the user.
 
 
 The following commands are implemented in GNSS-SDR's telecommand interface:
@@ -86,11 +86,11 @@ The following commands are implemented in GNSS-SDR's telecommand interface:
 |:-:|:--|:--|
 |--------------
 | `reset` |  `OK`  | Performs a complete reset of the receiver. The receiver will delete all the stored satellite information, reload the configuration parameters from the configuration file and perform a regular startup. Notice that if the configuration file has enabled the assisted acquisition, the receiver will trigger the assisted acquisition. It is equivalent to shutdown and restart the GNSS-SDR program from a regular SSH shell. Notice that the telecommand interface will be also restarted. |
-| `standby` |  `OK` / `ERROR` | Stops all the acquisition and tracking operations and sets the receiver in standby state. The front-end will continue delivering samples to the receiver but no signal processing will be done. Obviously, all the tracked satellites will be lost, but the received satellite telemetry (_e.g._ ephemeris data) and the last PVT state will be kept. NOTE: It is possible to specify an option in the configuration file to start the receiver already in standby state, ready to receive start commands. |
+| `standby` |  `OK` / `ERROR` | Stops all the acquisition and tracking operations and sets the receiver in the standby state. The front-end will continue delivering samples to the receiver but no signal processing will be done. Obviously, all the tracked satellites will be lost, but the received satellite telemetry (_e.g._ ephemeris data) and the last PVT state will be kept. NOTE: It is possible to specify an option in the configuration file to start the receiver already in the standby state, ready to receive start commands. |
 | `coldstart` |  `OK` / `ERROR` | Performs a receiver cold start. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search for all the satellites in all the signals configured in the configuration file. |
 | `warmstart`&nbsp;`dd/mm/yyyy`&nbsp;`HH:MM:SS`&nbsp;`Lat Long Height` |  `OK` / `ERROR`  | Performs an assisted acquisition receiver start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will read the ephemeris and the almanac assistance data from the [XML files specified in the configuration file](#axml), and the last valid PVT information to predict the visible satellites and coarse estimations of their Doppler rates. |
 | `hotstart dd/mm/yyyy HH:MM:SS Lat Long Height` |  `OK` / `ERROR`   | Performs a receiver hot start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search first for the last set of satellites in view according to the stored ephemeris and almanac and the predicted visible satellites based on the last valid PVT. |
-| `status` |  Summary of current receiver status: individual channel status and PVT status.  | This command prints a summary of the current receiver status intended for debug and system testing purposes only. The user should monitor the RTCM and NMEA streams for a detailed and synchronized receiver data, which are the primary receiver standard data interfaces. |
+| `status` |  Summary of current receiver status: individual channel status and PVT status.  | This command prints a summary of the current receiver status intended for debugging and system testing purposes only. The user should monitor the RTCM and NMEA streams for a detailed and synchronized receiver data, which are the primary receiver standard data interfaces. |
 | `exit` |  `OK`  | Closes the telecommand connection. |
 |--------------
 
@@ -179,13 +179,13 @@ When reading AGNSS data from XML files, you must provide a rough initial referen
 |:-:|:--|:-:|
 |--------------
 | `AGNSS_XML_enabled` | [`true`, `false`]: If set to `true`, it enables the load of GNSS assistance data via local XML files. It defaults to `false`. | Optional |
-| `AGNSS_ref_location` | If `AGNSS_XML_enabled` is set to  `true`, this parameter is mandatory, and it sets the reference location used for the preliminary computation of visible satellites from AGNSS data. It must be in the format: `Latitude,Longitude`, in degrees, with positive sign for North and East. | Mandatory |
+| `AGNSS_ref_location` | If `AGNSS_XML_enabled` is set to  `true`, this parameter is mandatory, and it sets the reference location used for the preliminary computation of visible satellites from AGNSS data. It must be in the format: `Latitude,Longitude`, in degrees, with a positive sign for North and East. | Mandatory |
 | `AGNSS_ref_utc_time` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the reference local time, expressed in UTC, used for the preliminary computation of visible satellites from AGNSS data. It must be in the format: `DD/MM/YYYY HH:MM:SS`, referred to UTC. If this parameter is not set, the receiver will take the system time of your computer. | Optional |
 | `AGNSS_gps_ephemeris_xml` |  If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS NAV ephemeris data. It defaults to  `gps_ephemeris.xml` | Optional |
 | `AGNSS_gps_iono_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML of the XML that will be read for GPS Ionosphere model data. It defaults to  `gps_iono.xml` | Optional |
 | `AGNSS_gps_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS UTC model data. It defaults to  `gps_utc_model.xml` | Optional |
 | `AGNSS_gal_ephemeris_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo ephemeris data. It defaults to  `gal_ephemeris.xml`| Optional |
-| `AGNSS_gal_iono_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML of the XML that will be read for Galileo Ionosphere model data. It defaults to  `gal_iono.xml` | Optional |
+| `AGNSS_gal_iono_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo Ionosphere model data. It defaults to  `gal_iono.xml` | Optional |
 | `AGNSS_gal_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo UTC model data. It defaults to  `gal_utc_model.xml` | Optional |
 | `AGNSS_gal_almanac_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo almanac data. The XML format of [Galileo almanac data published by the European GNSS Service Centre](https://www.gsc-europa.eu/system-status/almanac-data) is also accepted. It defaults to `gal_almanac.xml` | Optional |
 | `AGNSS_gps_cnav_ephemeris_xml` |  If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS CNAV ephemeris data. It defaults to  `gps_cnav_ephemeris.xml` | Optional |
@@ -205,7 +205,7 @@ GNSS-SDR.AGNSS_ref_location=41.39,2.31
 The location in the example refers to a latitude of 41.39º N and a longitude of 2.31º E.
 
 
-Please note that the parameter `AGNSS_gal_almanac_xml` accepts, in addition to the [own-defined XML format](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/xml-schemas/gal_almanac_map.xsd) for the Galileo almanac, the XML format published by European GNSS Service Centre and available [here](https://www.gsc-europa.eu/system-status/almanac-data). Just download the latest almanac XML file from there, and set in your configuration file:
+Please note that the parameter `AGNSS_gal_almanac_xml` accepts, in addition to the [own-defined XML format](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/xml-schemas/gal_almanac_map.xsd) for the Galileo almanac, the XML format published by European GNSS Service Centre and available [here](https://www.gsc-europa.eu/system-status/almanac-data). Just download the latest almanac XML file from there, and set the following parameters in your configuration file:
 
 ```ini
 GNSS-SDR.AGNSS_XML_enabled=true
@@ -227,16 +227,16 @@ In order to retrieve that information from a SUPL server, the device to be locat
 
 These parameters are defined as follows:
 
-  - The **Mobile Country Code (MCC)** is used in wireless telephone networks (GSM, CDMA, UMTS, LTE, etc.) in order to identify the country which a mobile subscriber belongs to. Defined by the [ITU-T Recommendation E.212](https://www.itu.int/rec/T-REC-E.212/en), this code is an integer number (three digits) represented with 16 bits.
+  - The **Mobile Country Code (MCC)** is used in wireless telephone networks (GSM, CDMA, UMTS, LTE, etc.) in order to identify the country to which a mobile subscriber belongs. Defined by the [ITU-T Recommendation E.212](https://www.itu.int/rec/T-REC-E.212/en), this code is an integer number (three digits) represented with 16 bits.
 
-  - The **Mobile Network Code (MNC)** is used for the international identification of networks. Jointly with the MCC, these parameters are used to to uniquely identify a mobile network operator. This code is an integer of two or three digits, depending on the country.
+  - The **Mobile Network Code (MNC)** is used for the international identification of networks. Jointly with the MCC, these parameters are used to uniquely identify a mobile network operator. This code is an integer of two or three digits, depending on the country.
 
-  - The **Location Area Code (LAC)** is a unique number of current local area. The served area of a cellular radio network is usually divided into location areas. Location areas are comprised of one or several radio cells, and each location area is given a unique number within the network - the LAC. Please note that in some networks, the LAC is called Tracking Area Code (TAC). Both the LAC and TAC share the same concept of providing the location code of a base station set. The only difference between LAC and TAC is that the LAC is the terminology used in GSM/UMTS while the TAC is the terminology used in LTE networks.
+  - The **Location Area Code (LAC)** is a unique number of the current local area. The served area of a cellular radio network is usually divided into location areas. Location areas are comprised of one or several radio cells, and each location area is given a unique number within the network - the LAC. Please note that in some networks, the LAC is called Tracking Area Code (TAC). Both the LAC and TAC share the same concept of providing the location code of a base station set. The only difference between LAC and TAC is that the LAC is the terminology used in GSM/UMTS while the TAC is the terminology used in LTE networks.
 
   - The **Cell ID (CID)** is a generally unique number used to identify each Base Transceiver Station (BTS) or sector of a BTS within a location area code. While BTS is the terminology for GSM networks, this is called Node B in UMTS and eNode B in LTE networks. Valid values for the CID range from $$ 0 $$ to $$ 65535 $$, that is, ($$ 2^{16} − 1 $$), on GSM and CDMA networks and from $$ 0 $$ to $$ 268435455 $$, that is, ($$ 2^{28} − 1 $$), on UMTS and LTE networks.
 
 
-Those values can be easily retrieved using any net monitor on a smartphone. There are a lot of apps that can do that (an example [here](https://play.google.com/store/apps/details?id=com.parizene.netmonitor&hl=en)). These applications are able to provide the required MMC, MNC, LAC and CI parameters for your location. A list of MCC and MNC around the World can be found at [mcc-mnc.com](https://www.mcc-mnc.com) and at the [Wikipedia](https://en.wikipedia.org/wiki/Mobile_country_code).
+Those values can be easily retrieved using any net monitor on a smartphone. There are a lot of apps that can do that (an example [here](https://play.google.com/store/apps/details?id=com.parizene.netmonitor&hl=en)). These applications are able to provide the required MMC, MNC, LAC, and CI parameters for your location. A list of MCC and MNC around the World can be found at [mcc-mnc.com](https://www.mcc-mnc.com) and at the [Wikipedia](https://en.wikipedia.org/wiki/Mobile_country_code).
 
 
 GNSS-SDR is a SUPL Enabled Terminal (SET) receiver that can use a TCP/IP network connection to retrieve Assisted GPS data from a remote server via the Secure User Plane Location (SUPL) v1.0 and hence accelerate its Time-To-First-Fix. SUPL v1.0 only applies to GPS L1 C/A assistance.
@@ -316,7 +316,7 @@ The following parameters allow to remove specific satellites from the list of po
 | `Beidou_banned_prns` | List of Beidou satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. | Optional |
 |-------
 
-With these parameters, users can specify lists of satellites which will not be processed. Satellites on those lists will never be assigned to a processing channel.
+With these parameters, users can specify lists of satellites that will not be processed. Satellites on those lists will never be assigned to a processing channel.
 
 Example: since Galileo E14 and E18 satellites are not usable for PVT, they can be removed from the list of Galileo searched satellites by setting:
 
@@ -328,7 +328,7 @@ GNSS-SDR.Galileo_banned_prns=14,18
 
 ## Processing old data files
 
-If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time, with the corresponding adjustment to the week rollower.
+If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time, with the corresponding adjustment to the week rollover.
 
 
 |----------

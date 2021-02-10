@@ -25,7 +25,7 @@ last_modified_at: 2020-08-27T10:54:02+02:00
   ![AD9361 Rx Signal Path]( {{ "/assets/images/AD9361_rx_signal_path.png" | relative_url }})
 {% endcapture %}
 
-A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kind of sources, from samples stored in files (in a variety of formats) to multiple sample streams delivered in real-time by radio frequency front-ends.
+A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kinds of sources, from samples stored in files (in a variety of formats) to multiple sample streams delivered in real-time by radiofrequency front-ends.
 {: .notice--info}
 
 
@@ -38,7 +38,7 @@ Ethernet buses.
   {{ fig_img2 | markdownify | remove: "<p>" | remove: "</p>" }}
   <figcaption>Simplified block diagram of a generic radio frequency front-end,
   consisting of an antenna, an amplification stage, downshifting from RF
-  to and intermediate frequency (or baseband), filtering, sampling, and an
+  to an intermediate frequency (or baseband), filtering, sampling, and an
   interface to a host computer for real-time processing mode, or to a
   storage device for post-processing.</figcaption>
 </figure>
@@ -52,8 +52,8 @@ real-time processing requires a highly optimized implementation of the
 whole receiver, this module also allows reading samples from a file
 stored in a hard disk, and thus processing without time constraints.
 Relevant parameters of those samples are the intermediate frequency (or
-baseband I&Q components), the sampling rate and number of bits per
-sample, that must be specified by the user in the configuration file, as
+baseband I&Q components), the sampling rate, and the number of bits per
+sample, which must be specified by the user in the configuration file, as
 shown below.
 
 This block also performs bit-depth adaptation, since most of the
@@ -63,7 +63,7 @@ depending on its architecture. Although there are implementations of the
 most intensive computational processes (mainly correlation) that take
 advantage of specific data types and architectures for the sake of
 efficiency, the approach is processor-specific and hardly portable. We
-suggest to keep signal samples in standard data types and letting the
+suggest keeping signal samples in standard data types and letting the
 compiler select the best library version (implemented using SIMD or any
 other processor-specific technology) of the required routines for a
 given processor.
@@ -172,7 +172,7 @@ for GNSS RF front-ends.
 The `Two_Bit_Packed_File_Signal_Source` implementation allows reading
 two-bit length samples from a file. The data is assumed to be packed as
 bytes `item_type=byte` or shorts `item_type=short` so that there are 4
-two bit samples in each byte. The two bit values are assumed to have the
+two-bit samples in each byte. The two-bit values are assumed to have the
 following interpretation:
 
 |---
@@ -183,13 +183,13 @@ following interpretation:
 | 1 | 0 | -3 |
 | 1 | 1 | -1 |
 
-Within a byte the samples may be packed in big endian
+Within a byte the samples may be packed in big-endian
 `big_endian_bytes=true` (if the most significant byte value is stored at
 the memory location with the lowest address, the next byte value in
 significance is stored at the following memory location, and so on) or
-little endian `big_endian_bytes=false` (if the least significant byte
+little-endian `big_endian_bytes=false` (if the least significant byte
 value is at the lowest address, and the other bytes follow in increasing
-order of significance). If the order is big endian then the most
+order of significance). If the order is big-endian then the most
 significant two bits will form the first sample output, otherwise the
 least significant two bits will be used.
 
@@ -199,8 +199,8 @@ stored in the order: real, imag, real, imag, ... `sample_type=iq` or in
 the order: imag, real, imag, real, ... `sample_type=qi`.
 
 Finally, if the data is stored as shorts `item_type=short`, then it may
-be stored in either big endian `big_endian_items=true` or little endian
-`big_endian_items=false`. If the shorts are big endian, then the second
+be stored in either big-endian `big_endian_items=true` or little-endian
+`big_endian_items=false`. If the shorts are big-endian, then the second
 byte in each short is output first.
 
 The output data type is either <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> depending on
@@ -221,7 +221,7 @@ This implementation accepts the following parameters:
 | `sample_type` | [`real`, `qi`, `iq`]: Set real or complex sample types (see above). It defaults to `real`. | Optional |
 | `big_endian_bytes` |  [`true`, `false`]: If set to `true`, the most significant byte value is expected to be stored at the memory location with the lowest address. If set to `false`, the least significant byte value is expected at the lowest address. It defaults to `false`. | Optional |
 | `seconds_to_skip` | Seconds to skip in the file header. It defaults to $$ 0 $$ s. | Optional |
-| `big_endian_items` |  [`true`, `false`]: If set to `true`, and the data is stored as shorts, it is interpreted as big endian. If set to `false`, data is interpreted to be stored in little endian. It defaults to `true`. | Optional |
+| `big_endian_items` |  [`true`, `false`]: If set to `true`, and the data is stored as shorts, it is interpreted as big-endian. If set to `false`, data is interpreted to be stored in little-endian. It defaults to `true`. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
 |-------
 
@@ -359,9 +359,9 @@ SignalSource.adc_bits=4
 
 [LabSat](https://www.labsat.co.uk/index.php/en/) is an affordable, portable, and versatile multi-constellation Global Navigation Satellite Simulator.
 
-LabSat 3 devices record and replay real world raw sample data, allowing realistic and repeatable testing to be carried out under controlled conditions. This block reads files stored by LabSat 2 or LabSat 3 devices, and delivers a stream of samples of type <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. Only single-frequency reading is implemented.
+LabSat 3 devices record and replay real-world raw sample data, allowing realistic and repeatable testing to be carried out under controlled conditions. This block reads files stored by LabSat 2 or LabSat 3 devices, and delivers a stream of samples of type <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. Only single-frequency reading is implemented.
 
-LabSat 3 splits data in 2 GB files. This file source automatically increments the file name when the signal is split in several files: it adds "_0000.LS3" to this base path and filename. Thus, next file will be "_0001.LS3" and so on.
+LabSat 3 splits data into 2 GB files. This file source automatically increments the file name when the signal is split into several files: it adds "_0000.LS3" to this base path and filename. Thus, the next file will be "_0001.LS3" and so on.
 
 The block can work as well with files generated by [SatGen](https://www.labsat.co.uk/index.php/en/products/satgen-simulator-software), the associated software that allows users to create GNSS RF I&Q or IF data files from predefined and user-defined scenarios.
 
@@ -378,7 +378,7 @@ This implementation accepts the following parameters:
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it throttles the output flow of samples such that the average rate does not exceed `throttle_frequency_sps`, thus emulating real-time operation. It defaults to `false`. | Optional |
 | `throttle_frequency_sps` | If `enable_throttle_control` is set to `true`, this parameter sets the sample rate applied by the throttle. It defaults to $$ 16368000 $$ Sps. | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it dumps the content of the source file `filename` in <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> format. It defaults to `false`. | Optional |
-| `dump_filename` | If `dump` is set to `true`, name of the dump file. It defaults to `labsat_output.dat` | Optional |
+| `dump_filename` | If `dump` is set to `true`, the name of the dump file. It defaults to `labsat_output.dat` | Optional |
 |-------
 
   _Signal Source implementation:_ **`Labsat_Signal_Source`**
@@ -447,7 +447,7 @@ If `RF_channels` is set to `1`, then:
 | `gain` | Set the RF front-end gain, in dB, distributed across all gain elements. It defaults to $$ 50 $$ dB. | Optional |
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the dump of the signal source delivered data into a file. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, the name of the file in which internal data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
 
   _Signal Source implementation:_ **`UHD_Signal_Source`** single-band parameters.
@@ -487,13 +487,13 @@ For instance, if `RF_channels` is set to `2`, then:
 | `gain0` | Set the RF front-end gain for RF channel 0, in dB, distributed across all gain elements. It defaults to $$ 50 $$ dB. | Optional |
 | `samples0` |  Number of samples to be processed for RF channel 0. It defaults to $$ 0 $$, which means infinite samples | Optional |
 | `dump0` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source $$ 0 $$ delivered data into a file. It defaults to `false`. | Optional |
-| `dump_filename0` | If `dump0` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source0.dat` | Optional |
+| `dump_filename0` | If `dump0` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source0.dat` | Optional |
 | `freq1` | RF front-end center frequency for RF channel 1, in Hz. | Mandatory |
 | `IF_bandwidth_hz1` | Set the IF passband filter bandwidth of RF channel 1, in Hz. It defaults to `sampling_frequency` / 2. | Optional |
 | `gain1` | Set the RF front-end gain for RF channel 1, in dB, distributed across all gain elements. It defaults to $$ 50 $$ dB. | Optional |
 | `samples1` |  Number of samples to be processed for RF channel 1. It defaults to $$ 0 $$, which means infinite samples | Optional |
 | `dump1` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source $$ 1 $$ delivered data into a file. It defaults to `false`.  | Optional |
-| `dump_filename1` | If `dump1` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source1.dat` | Optional |
+| `dump_filename1` | If `dump1` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source1.dat` | Optional |
 |-------
 
   _Signal Source implementation:_ **`UHD_Signal_Source`** multiple-band parameters.
@@ -543,7 +543,7 @@ This implementation accepts the following parameters:
 | `osmosdr_args` | Pass arguments to the OsmoSDR driver. Check the [gr-osmosdr wiki](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR) for a list of arguments for your specific hardware. | Optional |
 | `antenna` | [`NONE`, `LNAL`, `LNAH`, `LNAW`]: Select the LimeSDR RX antenna. `LNAW` is recommended for GNSS applications. It defaults to _empty_. | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
-| `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+| `dump_filename` | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
 
 Please note that not all the OsmoSDR-compatible devices can work as radio frequency front-ends for proper GNSS signal reception, please check the specifications. For suitable RF front-ends, you can use:
@@ -567,7 +567,7 @@ SignalSource.enable_throttle_control=false
 SignalSource.osmosdr_args=rtl,bias=1
 ```
 
-In case of using a [HackRF One](https://greatscottgadgets.com/hackrf/), you can activate the antenna feeding with:
+In the case of using a [HackRF One](https://greatscottgadgets.com/hackrf/), you can activate the antenna feeding with:
 
 ```ini
 SignalSource.osmosdr_args=hackrf,bias=1
@@ -580,7 +580,7 @@ SignalSource.osmosdr_args=hackrf,bias=1
 
 ### Implementation: `RtlTcp_Signal_Source`
 
-In case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](https://osmocom.org/projects/rtl-sdr/wiki) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
+In the case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](https://osmocom.org/projects/rtl-sdr/wiki) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
 
 If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
 
@@ -689,14 +689,14 @@ This implementation accepts the following parameters:
 | `bb_dc` | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `gain_mode_rx1` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`. | Optional |
 | `gain_mode_rx2` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX2 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`. | Optional |
-| `gain_rx1` | If `gain_mode_rx1` is set to `manual`, it sets the gain of the RX1 chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain_rx1`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB. | Optional |
-| `gain_rx2` | If `gain_mode_rx2` is set to `manual`, it sets the gain of the RX2 chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain_rx2`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB. | Optional |
+| `gain_rx1` | If `gain_mode_rx1` is set to `manual`, it sets the gain of the RX1 chain, in dB, with a granularity of 1 dB and range $$ 0 < $$`gain_rx1`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB. | Optional |
+| `gain_rx2` | If `gain_mode_rx2` is set to `manual`, it sets the gain of the RX2 chain, in dB, with a granularity of 1 dB and range $$ 0 < $$`gain_rx2`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB. | Optional |
 | `rf_port_select` | [`A_BALANCED`, `B_BALANCED`, `C_BALANCED`, `A_N`, `A_P`, `B_N`, `B_P`, `C_N`, `C_P`]: Selects the RF port to be used ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#rf_port_selection) and [more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361-customization?&#rf_port_select)). It defaults to `A_BALANCED`. | Optional |
 | `filter_file` | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty). | Optional |
 | `filter_auto` | [`true`, `false`]: If set to `true`, it loads a default FIR filter and thereby enables lower sampling / baseband rates. It defaults to `false`. | Optional |
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
-| `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+| `dump_filename` | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
 
   _Signal Source implementation:_ **`Fmcomms2_Signal_Source`**
@@ -719,7 +719,7 @@ SignalSource.rf_port_select=A_BALANCED
 ### Implementation: `Plutosdr_Signal_Source`
 
 [![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
-The [ADALM-Pluto](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html) is a learning module which helps introduce electrical engineering students to the fundamentals of software-defined radio (SDR), radio frequency (RF), and wireless communications. Based on the [AD9363](https://www.analog.com/en/products/AD9363.html), it offers one receive channel and one transmit channel which can be operated in full duplex, capable of generating or measuring RF analog signals from $$ 325 $$ to $$ 3800 $$ MHz, with a $$ 20 $$ MHz bandwidth, at up to $$ 61.44 $$ Mega Samples per second (MSps) with a 12-bit ADC and DAC.
+The [ADALM-Pluto](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html) is a learning module that helps introduce electrical engineering students to the fundamentals of software-defined radio (SDR), radio frequency (RF), and wireless communications. Based on the [AD9363](https://www.analog.com/en/products/AD9363.html), it offers one receive channel and one transmit channel which can be operated in full-duplex, capable of generating or measuring RF analog signals from $$ 325 $$ to $$ 3800 $$ MHz, with a $$ 20 $$ MHz bandwidth, at up to $$ 61.44 $$ Mega Samples per second (MSps) with a 12-bit ADC and DAC.
 
 In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies:
 
@@ -774,7 +774,7 @@ This implementation accepts the following parameters:
 | `filter_auto` | [`true`, `false`]: If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
 | `samples` | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
-| `dump_filename` | If `dump` is set to `true`, name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+| `dump_filename` | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
 
   _Signal Source implementation:_ **`Plutosdr_Signal_Source`**
@@ -817,7 +817,7 @@ signals present on each band.
 </figure>
 
 
-The number of radio-frequency chains is denoted by parameter
+The number of radio-frequency chains is denoted by the parameter
 `RF_channels`, which defaults to one if it is not present in the
 configuration file.
 

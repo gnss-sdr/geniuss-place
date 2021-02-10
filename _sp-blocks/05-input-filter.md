@@ -10,9 +10,9 @@ last_modified_at: 2018-12-14T12:54:02+02:00
 ---
 
 
-The _Input Filter_ is the second processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | relative_url }}) implementation.
+The _Input Filter_ is the second processing block inside a _Signal Conditioner_ when the latter is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | relative_url }}) implementation.
 
-The role on an _Input Filter_ block is to filter noise and possible interferences from the incoming signal.
+The role of an _Input Filter_ block is to filter noise and possible interferences from the incoming signal.
 {: .notice--info}
 
 
@@ -41,9 +41,9 @@ where:
   * $$ i(t) $$ is the interference signal, and
   * $$ \eta(t) $$ is a noise term usually modeled as a complex circularly symmetric Gaussian random process. The samples are assumed independent and identically distributed.
 
-The sequence $$ y[n] $$ is obtained by amplifying, down-converting and digitizing the analog signal $$ y(t) $$ with a sampling frequency $$ f_s $$.
+The sequence $$ y[n] $$ is obtained by amplifying, down-converting, and digitizing the analog signal $$ y(t) $$ with a sampling frequency $$ f_s $$.
 
-Interference Cancellation consists of removing $$ i[n] $$ from $$ y[n] $$ by means of a signal processing algorithm. The underlying idea seems straightforward, but in practice Interference Cancellation becomes a complicated matter due to the huge variety of interference sources that may coexist within the GNSS signal band. For instance, the interference may be pulsed or continuous. In the first case, the period between pulses, time duration, intensity and bandwidth of the pulses can be constant or vary along time. In the second case, the intensity, instantaneous frequency and frequency rate of the interference may also behave randomly. For this reason, there is no a "one-fits-all" algorithm for interference mitigation. Furthermore, during last years research literature has been populated with new signal processing techniques that perform many kinds of Interference Cancellation[^Dovis15].
+Interference Cancellation consists of removing $$ i[n] $$ from $$ y[n] $$ by means of a signal processing algorithm. The underlying idea seems straightforward, but in practice Interference Cancellation becomes a complicated matter due to the huge variety of interference sources that may coexist within the GNSS signal band. For instance, the interference may be pulsed or continuous. In the first case, the period between pulses, time duration, intensity and bandwidth of the pulses can be constant or vary over time. In the second case, the intensity, instantaneous frequency and frequency rate of the interference may also behave randomly. For this reason, there is no a "one-fits-all" algorithm for interference mitigation. Furthermore, during last years research literature has been populated with new signal processing techniques that perform many kinds of Interference Cancellation[^Dovis15].
 
 ## Finite Impulse Response (FIR) filters
 
@@ -80,7 +80,7 @@ This implementation accepts the following parameters:
 | `band1_error` |  Weighting applied to band 1 (usually 1). | Mandatory |
 | `band2_error` |  Weighting applied to band 2 (usually 1). | Mandatory |
 | `filter_type` |  [`bandpass`, `hilbert`, `differentiator`]: type of filter to be used.  | Mandatory |
-| `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values makes the filter slower to compute, but often results in filters that more exactly match an equiripple filter. | Mandatory |
+| `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values make the filter slower to compute, but often results in filters that more exactly match an equiripple filter. | Mandatory |
 | `dump` |  [`false`, `true`]: Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, path to the file where data will be stored. | Optional |
 |-------
@@ -168,7 +168,7 @@ InputFilter.grid_density=16
 
 This implementation features a frequency-translating FIR filter. This is
 often used when input data is at an intermediate frequency, as it
-performs filtering, decimation and frequency shifting in one single step.
+performs filtering, decimation, and frequency shifting in one single step.
 The basic principle of this block is to perform:
 
 
@@ -207,7 +207,7 @@ This implementation accepts the following parameters:
 | `ampl2_end` |  Desired amplitude at the band edges [ a(b1) a(e1) a(b2) <span class="highlight-color">**a(e2)**</span> ...]. If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `band1_error` |  Weighting applied to band 1 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `band2_error` |  Weighting applied to band 2 (usually 1).  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
-| `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values makes the filter slower to compute, but often results in filters that more exactly match an equiripple filter.  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
+| `grid_density` | Determines how accurately the filter will be constructed. The minimum value is 16; higher values make the filter slower to compute, but often results in filters that more exactly match an equiripple filter.  If `filter_type` is set to `lowpass`, this parameter has no effect | Optional |
 | `bw` |  Specifies the cut-off frequency, in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to (`sampling_frequency`/`decimation_factor`)/2  Hz. | Optional |
 | `tw` |  Specifies the width of the transition band (centered at `bw`), in Hz, of the low-pass filter used after the Intermediate Frequency removal. If `filter_type` is not set to `lowpass`, this parameter has no effect. It defaults to $$ \frac{\text{bw}}{10} $$ . | Optional |
 | `dump` |  [`false`, `true`]: Flag for storing the signal at the filter output in a file. It defaults to `false`. | Optional |
@@ -263,7 +263,7 @@ After the ADC step and exploiting the statistical properties of $$ \eta[n] $$ (i
 
 $$ \begin{equation} E_s = \sum_{l=1}^{L} | y[l] |^2 . \end{equation} $$
 
-The random variable $$ \frac{E_s}{\sigma^2} $$ follows a [chi-squared distribution](https://en.wikipedia.org/wiki/Chi-squared_distribution) with $$ 2L $$ degrees of freedom. According with the tabulated values of that distribution, it is possible to set the threshold that produces a given probability of false alarm. When the segment's energy exceeds the detection threshold, then the segment is processed with the interference mitigation algorithm.
+The random variable $$ \frac{E_s}{\sigma^2} $$ follows a [chi-squared distribution](https://en.wikipedia.org/wiki/Chi-squared_distribution) with $$ 2L $$ degrees of freedom. According to the tabulated values of that distribution, it is possible to set the threshold that produces a given probability of false alarm. When the segment's energy exceeds the detection threshold, then the segment is processed with the interference mitigation algorithm.
 
 Note that $$ \sigma^2 $$ should be estimated by a noise floor power estimation method. With the purpose of minimizing the random effects, several noise power estimations are averaged on consecutive signal segments. In addition, as the receiver background noise may change along the time, the estimation of $$ \sigma^2 $$ is performed periodically. In this sense, the minimum signal length to be processed (filtered by a mitigation input filter) is one signal segment because the detection of an interference affects to the entire segment. The figure below summarizes the underlying idea.
 
@@ -326,7 +326,7 @@ The aim of the Notch filter is to eliminate jamming signals who are instantaneou
 _Diagram of the notch filter_.
 {: style="text-align: center;"}
 
-When Interference Cancellation is adopted, the interfering signal is at first removed from $$ y[n] $$, and subsequent signal processing is applied to $$ y_f[n] = y[n] − i[n] $$. Since $$ i[n] $$ is usually not known, an estimation technique is required to reconstruct it and to obtain $$ \hat{i}[n] $$. This interference $$ i[n] $$ is usually estimated by considering a specific signal model which depends only on a reduced number of parameters. Let us consider a single component signal[^Borio14]
+When Interference Cancellation is adopted, the interfering signal is at first removed from $$ y[n] $$, and subsequent signal processing is applied to $$ y_f[n] = y[n] − i[n] $$. Since $$ i[n] $$ is usually not known, an estimation technique is required to reconstruct it and to obtain $$ \hat{i}[n] $$. This interference $$ i[n] $$ is usually estimated by considering a specific signal model that depends only on a reduced number of parameters. Let us consider a single component signal[^Borio14]
 
 $$ \begin{equation} i[n]=A[n]\exp \{j\varphi[n]\} , \end{equation} $$
 
@@ -346,7 +346,7 @@ where $$ a[n] $$ is a time-varying coefficient that can be expressed as:
 
 $$ \begin{equation} a[n] = \frac{i[n]}{i[n-1]} = \frac{A[n]}{A[n-1]} \exp \{ j 2 \pi f_i[n] \} . \end{equation} $$
 
-This principle is exploited in a single pole notch filter which is characterized by the following transfer function:
+This principle is exploited in a single-pole notch filter which is characterized by the following transfer function:
 
 $$ \begin{equation} H_n(z) = \frac{ 1-z_0[n]z^{-1} }{ 1-k_a z_0[n]z^{-1} } , \end{equation} $$
 
