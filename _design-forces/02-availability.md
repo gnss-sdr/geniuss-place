@@ -1,7 +1,9 @@
 ---
 title: "2.- Availability"
 permalink: /design-forces/availability/
-excerpt: "The degree to which a system, subsystem or equipment is in a specified operable and committable state at the (random) start of a mission."
+excerpt:
+  "The degree to which a system, subsystem or equipment is in a specified
+  operable and committable state at the (random) start of a mission."
 header:
   teaser: /assets/images/radar-chart.png
 toc: true
@@ -35,18 +37,40 @@ last_modified_at: 2016-07-29T15:54:02-04:00
 * Position within $$ 100 $$ km of last fix.
 {% endcapture %}
 
-_Availability_ refers to the degree to which a system, subsystem, or equipment is in a specified operable and committable state at the start of a mission, when the mission is called for at an unknown, random time. Simply put, availability is the proportion of time the software receiver is in a functioning condition.
+_Availability_ refers to the degree to which a system, subsystem, or equipment
+is in a specified operable and committable state at the start of a mission, when
+the mission is called for at an unknown, random time. Simply put, availability
+is the proportion of time the software receiver is in a functioning condition.
 
 
 ## Maximum observed running time
 
-A software application can _apparently_ run as expected for a period of time, and then suddenly crash without previous notice. Common sources of such a problem are _memory leakages_: due to deficient programming, some parts of the system memory are blocked and never released when they are no longer used. The leakage can be slow, and the system memory huge, but this situation will eventually end up in a crash.
+A software application can _apparently_ run as expected for a period of time,
+and then suddenly crash without previous notice. Common sources of such a
+problem are _memory leakages_: due to deficient programming, some parts of the
+system memory are blocked and never released when they are no longer used. The
+leakage can be slow, and the system memory huge, but this situation will
+eventually end up in a crash.
 
-Another common source of such problems are _concurrency deadlocks_. Software applications that exploit task parallelism are exposed to be caught in unexpected scenarios that can cause a deadlock, blocking the application to further deliver position fixes. However, the application itself can implement a _watchdog_, an independent _thread_ monitoring this kind of situation and resetting the receiver to a known, working state. In such a case, the maximum expected response time of such a process should be reported.
+Another common source of such problems are _concurrency deadlocks_. Software
+applications that exploit task parallelism are exposed to be caught in
+unexpected scenarios that can cause a deadlock, blocking the application to
+further deliver position fixes. However, the application itself can implement a
+_watchdog_, an independent _thread_ monitoring this kind of situation and
+resetting the receiver to a known, working state. In such a case, the maximum
+expected response time of such a process should be reported.
 
-Such software defects are hard to identify and fix. Even well-known, massively used commercial software applications are not free from this kind of problem. It is then required to report the _maximum_ period of time in which the software receiver has been observed to be in a functioning condition in order to provide an objective measurement.
+Such software defects are hard to identify and fix. Even well-known, massively
+used commercial software applications are not free from this kind of problem. It
+is then required to report the _maximum_ period of time in which the software
+receiver has been observed to be in a functioning condition in order to provide
+an objective measurement.
 
-Failures due to GNSS space and control segment failures, announced / reported service discontinuities, or general Operating System failures not directly ascribable to the software receiver should be discarded and not reported, unless constituting a performance hallmark and being reported as the interrupting cause.
+Failures due to GNSS space and control segment failures, announced/reported
+service discontinuities, or general Operating System failures not directly
+ascribable to the software receiver should be discarded and not reported, unless
+constituting a performance hallmark and being reported as the interrupting
+cause.
 
 Such a test should be reported as:
 
@@ -64,7 +88,11 @@ Such a test should be reported as:
 | **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
 |----------
 
-**Example of report**: For a software-defined receiver being observed to successfully deliver position fixes over a week using live signals, when executing version X.Y.Z of the software receiver in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, with no watchdog, the results would be presented as:
+**Example of report**: For a software-defined receiver being observed to
+successfully deliver position fixes over a week using live signals, when
+executing version X.Y.Z of the software receiver in a Brand B, Model M machine
+under GNU/Linux Ubuntu 15.04 64 bits, with no watchdog, the results would be
+presented as:
 
 
 |----------
@@ -76,9 +104,17 @@ Such a test should be reported as:
 
 ## Time-To-First-Fix (TTFF)
 
-The TTFF indicator provides a measurement of the time required for a static receiver to provide a valid position fix after the receiver is started. A _valid_ position fix is required to have a 3D accuracy below a given threshold (for instance, 600 m for GPS L1 C/A signals). The value includes the time to recover ephemeris data from all satellites used in the navigation estimation process.
+The TTFF indicator provides a measurement of the time required for a static
+receiver to provide a valid position fix after the receiver is started. A
+_valid_ position fix is required to have a 3D accuracy below a given threshold
+(for instance, 600 m for GPS L1 C/A signals). The value includes the time to
+recover ephemeris data from all satellites used in the navigation estimation
+process.
 
-When a software receiver starts its execution, it can retrieve some previously stored information in order to accelerate certain processes. Depending on the kind of stored information, and its validity, three starting receiver's state scenarios are defined:
+When a software receiver starts its execution, it can retrieve some previously
+stored information in order to accelerate certain processes. Depending on the
+kind of stored information, and its validity, three starting receiver's state
+scenarios are defined:
 
 <div class="notice--info">
   {{ cold-start | markdownify }}
@@ -92,15 +128,30 @@ When a software receiver starts its execution, it can retrieve some previously s
   {{ hot-start | markdownify }}
 </div>
 
-Before taking each TTFF measurement, the receiver must be set in the states defined above, referred to as _cold_, _warm_ and _hot_ starts.
+Before taking each TTFF measurement, the receiver must be set in the states
+defined above, referred to as _cold_, _warm_, and _hot_ starts.
 
-Each TTFF sample should be computed as the time interval starting with the invocation of the receiver's executable and ending with the first valid navigation data point derived from live or simulated satellite signals. The start times of the test samples should not be synchronized to any UTC time boundary and should be randomly spread within the 24 hour UTC day and within the GNSS data collection interval (_e.g._, 30 s for GPS L1 C/A signals).
+Each TTFF sample should be computed as the time interval starting with the
+invocation of the receiver's executable and ending with the first valid
+navigation data point derived from live or simulated satellite signals. The
+start times of the test samples should not be synchronized to any UTC time
+boundary and should be randomly spread within the 24 hour UTC day and within the
+GNSS data collection interval (_e.g._, 30 s for GPS L1 C/A signals).
 
-A total of at least 20 valid TTFF samples shall be produced for use in data analysis[^ION101] and the total sample size recorded as $$ L $$. Provisions must be made between samples to ensure that current ephemeris does not remain in the receiver. In order to make the measurement as independent as possible of the satellite geometry, measurements should be spread in an interval of 8 hours.
+A total of at least 20 valid TTFF samples shall be produced for use in data
+analysis[^ION101] and the total sample size recorded as $$ L $$. Provisions must
+be made between samples to ensure that current ephemeris does not remain in the
+receiver. In order to make the measurement as independent as possible of the
+satellite geometry, measurements should be spread in an interval of 8 hours.
 
-In addition, this test makes provisions for anomalous behavior by allowing the tester to reject samples that exceed 10 times the value of MEAN determined for the valid sample size. Such samples are considered non-tests for purposes of statistical analysis, but the total number of such occurrences is recorded and presented with the test results.
+In addition, this test makes provisions for anomalous behavior by allowing the
+tester to reject samples that exceed 10 times the value of MEAN determined for
+the valid sample size. Such samples are considered non-tests for purposes of
+statistical analysis, but the total number of such occurrences is recorded and
+presented with the test results.
 
-The TTFF samples are then analyzed to determine the mean, standard deviation, minimum, and maximum  values.
+The TTFF samples are then analyzed to determine the mean, standard deviation,
+minimum, and maximum values.
 
 TTFF test results should be reported as:
 
@@ -122,7 +173,13 @@ TTFF test results should be reported as:
 | **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
 |--------------
 
-**Example of report**: For a receiver with a mean TTFF of 90 seconds, minimum measured value of 75 seconds, maximum measured value of 110 seconds, valid sample size of 20 with no invalid samples, sample deviation of 8 seconds, using GPS L1 C/A signals in 3D mode, and assuming a cold start with no external source of information, when executing version X.Y.Z of the software receiver in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, the results would be presented as:
+**Example of report**: For a receiver with a mean TTFF of 90 seconds, minimum
+measured value of 75 seconds, maximum measured value of 110 seconds, valid
+sample size of 20 with no invalid samples, sample deviation of 8 seconds, using
+GPS L1 C/A signals in 3D mode, and assuming a cold start with no external source
+of information, when executing version X.Y.Z of the software receiver in a Brand
+B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, the results would be
+presented as:
 
 |----------
 |  **Mean TTFF**  |  **Max TTFF** | **Min TTFF** | **Sample Dev / Size** | **Init. status** | **Nav. Mode** | **DGNSS** |  **Signal** | **Source** | **Processing platform** | **OS** |  **Source code unique ID**  |
@@ -134,12 +191,24 @@ TTFF test results should be reported as:
 
 ## Reacquisition Time
 
-Reacquisition time characterizes the performance of the receiver in a scenario where the signal is greatly reduced or interrupted for some short period of time and is then restored. An example of this would be a vehicle going through a tunnel or under some heavy tree cover. In this case, the receiver is briefly unable to track most or all of the satellites, but must re-acquire (track) the signal when "visibility" is restored.
+Reacquisition time characterizes the performance of the receiver in a scenario
+where the signal is greatly reduced or interrupted for some short period of time
+and is then restored. An example of this would be a vehicle going through a
+tunnel or under some heavy tree cover. In this case, the receiver is briefly
+unable to track most or all of the satellites, but must re-acquire (track) the
+signal when "visibility" is restored.
 
-The test measurement system must be configured to record the time at which signals are removed from the receiver ($$ t_1 $$) and the time at which signals are reapplied to the receiver ($$ t_2 $$). All navigation data produced by the receiver should be recorded for subsequent data analysis. Each REAQ sample is computed as the time interval beginning at $$ t_2 $$ and ending with the first valid navigation data point derived from live or simulated satellite signals which is within the accuracy limits specified for the targeted signal(s).
+The test measurement system must be configured to record the time at which
+signals are removed from the receiver ($$ t_1 $$) and the time at which signals
+are reapplied to the receiver ($$ t_2 $$). All navigation data produced by the
+receiver should be recorded for subsequent data analysis. Each REAQ sample is
+computed as the time interval beginning at $$ t_2 $$ and ending with the first
+valid navigation data point derived from live or simulated satellite signals
+which is within the accuracy limits specified for the targeted signal(s).
 
 
-A total of at least 50 valid REAQ samples should be produced for use in data analysis[^ION101].
+A total of at least 50 valid REAQ samples should be produced for use in data
+analysis[^ION101].
 
 Reacquisition Time test results should be reported as:
 
@@ -162,7 +231,12 @@ Reacquisition Time test results should be reported as:
 |--------------
 
 
-**Example of report**: For version X.Y.Z of the software receiver executed in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, obtaining a mean REAQ of 5 seconds for 30-second blockage, with a valid sample size of 50 plus 2 invalid samples, minimum measured value of 2 seconds, maximum measured value of 35 seconds, sample deviation of 1 second, using 30 navigation mode and simulated Galileo E1 open signals, the results would be presented as:
+**Example of report**: For version X.Y.Z of the software receiver executed in a
+Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, obtaining a mean
+REAQ of 5 seconds for 30-second blockage, with a valid sample size of 50 plus 2
+invalid samples, minimum measured value of 2 seconds, maximum measured value of
+35 seconds, sample deviation of 1 second, using 30 navigation mode and simulated
+Galileo E1 open signals, the results would be presented as:
 
 
 |----------
@@ -174,35 +248,98 @@ Reacquisition Time test results should be reported as:
 
 ## Acquisition sensitivity
 
-Acquisition sensitivity determines the minimum signal power threshold that allows the receiver to successfully perform a cold start TTFF within a specified time frame. The generation of testing inputs is as follows: fixing the number of visible satellites to one, the power level of the received signal is set such that the GNSS software receiver under test can detect the single GNSS satellite signal within a given probability of detection. The power level of the GPS satellite signal is then decreased until the GNSS receiver is not able to acquire that satellite signal.
+Acquisition sensitivity determines the minimum signal power threshold that
+allows the receiver to successfully perform a cold start TTFF within a specified
+time frame. The generation of testing inputs is as follows: fixing the number of
+visible satellites to one, the power level of the received signal is set such
+that the GNSS software receiver under test can detect the single GNSS satellite
+signal within a given probability of detection. The power level of the GPS
+satellite signal is then decreased until the GNSS receiver is not able to
+acquire that satellite signal.
 
-Sensitivity is one of the most important measurements of a GNSS receiver's capability. In fact, for many commercial-grade GNSS receivers, it is often the only RF measurement performed in production test of the final product.
+Sensitivity is one of the most important measurements of a GNSS receiver's
+capability. In fact, for many commercial-grade GNSS receivers, it is often the
+only RF measurement performed in production test of the final product.
 {: .notice--info}
 
-A receiver's sensitivity is highly dependent on the [noise figure](https://en.wikipedia.org/wiki/Noise_figure) of the RF front-end. This relation can be written as:
+A receiver's sensitivity is highly dependent on the
+[noise figure](https://en.wikipedia.org/wiki/Noise_figure) of the RF front-end.
+This relation can be written as:
 
-$$ \begin{equation} \text{Sensitivity} =  N_{\text{dBm}} + {C/N_0}_{\text{min}} + \text{NF}_{\text{Rx}} \end{equation} $$
+$$ \begin{equation} \text{Sensitivity} = N_{\text{dBm}} + {C/N_0}_{\text{min}} + \text{NF}_{\text{Rx}} \end{equation} $$
 
 where:
 
-  * $$  N_{\text{dBm}} = 10 \cdot log_{10}(k \times T_0  \times 1000) $$ is the noise power, in dBm, where $$ k = 1.38 \cdot 10^{-23} $$  Joules per Kelvin is the Boltzmann's constant and $$ T_0 $$ is the temperature of the receiver system in Kelvin. Assuming that the physical temperature of the system is 290 Kelvin, $$ N_{\text{dBm}} = -174 $$ dBm.
-  * $$ {C/N_0}_{\text{min}} $$ is the minimum $$ C/N_0 $$ required for signal acquisition, in dB-Hz.
+  * $$ N_{\text{dBm}} = 10 \cdot log_{10}(k \times T_0 \times 1000) $$ is the
+    noise power, in dBm, where $$ k = 1.38 \cdot 10^{-23} $$ Joules per Kelvin
+    is the Boltzmann's constant and $$ T_0 $$ is the temperature of the receiver
+    system in Kelvin. Assuming that the physical temperature of the system is
+    290 Kelvin, $$ N_{\text{dBm}} = -174 $$ dBm.
+  * $$ {C/N_0}_{\text{min}} $$ is the minimum $$ C/N_0 $$ required for signal
+    acquisition, in dB-Hz.
   * $$ \text{NF}_{\text{Rx}} $$ is the receiver's noise figure, in dB.
 
-When performing  sensitivity measurements, RF power-level accuracy is one of the most important characteristics of the signal generator. Because receivers report $$ C/N_0 $$ to within $$ 0 $$ digits of precision (for instance: $$ 34 $$ dB-Hz), sensitivity measurements in production test are made within $$ \pm 0.5 $$ dB of power accuracy.
+When performing sensitivity measurements, RF power-level accuracy is one of the
+most important characteristics of the signal generator. Because receivers report
+$$ C/N_0 $$ to within $$ 0 $$ digits of precision (for instance: $$ 34 $$
+dB-Hz), sensitivity measurements in production test are made within
+$$ \pm 0.5 $$ dB of power accuracy.
 
-Thus, it is important to ensure that your instrumentation  for RF signal generation has equal or better performance. Because general-purpose RF instrumentation is specified for operation across a broad range of power levels, frequency ranges, and temperature conditions, you can often achieve measurement repeatability that is much better than the specified instrument performance by implementing a basic system calibration.
+Thus, it is important to ensure that your instrumentation  for RF signal
+generation has equal or better performance. Because general-purpose RF
+instrumentation is specified for operation across a broad range of power levels,
+frequency ranges, and temperature conditions, you can often achieve measurement
+repeatability that is much better than the specified instrument performance by
+implementing a basic system calibration.
 
-Hence, only the $$ {C/N_0}_{\text{min}} $$ term is responsibility of the software receiver, whereas the noise figure is related to the hardware implementation of the RF front-end. From a digital signal processing perspective, the usual approach for improving acquisition sensitivity is the extension of the coherent integration time $$ T_{\text{int}} $$. However, there are several limitations to this method:
+Hence, only the $$ {C/N_0}_{\text{min}} $$ term is responsibility of the
+software receiver, whereas the noise figure is related to the hardware
+implementation of the RF front-end. From a digital signal processing
+perspective, the usual approach for improving acquisition sensitivity is the
+extension of the coherent integration time $$ T_{\text{int}} $$. However, there
+are several limitations to this method:
 
-  * **The presence of data-bit transitions modulating the ranging code**. Each transition introduces a sign reversal in successive correlation blocks, such that their coherent accumulation leads to the potential loss of the correlation peak. Therefore, the availability of an external-aiding source is crucial to extend $$ T_{\text{int}} $$ to be larger than the data bit duration. This approach is referred to as the aided (or assisted) signal acquisition, and it is a part of the Assisted GNSS (A-GNSS) positioning method defined by different standardization bodies such as 3GPP and OMA.
-  * **Local oscillator stability**. The uncertainty on the actual frequency value delivered by the front-end's local oscillator gives rise to effects very similar to those caused by a Doppler shift, and hence to an additional correlation loss. Using a simple model for time deviation between the clock with the true oscillator and an ideal clock,
-  $$ x_{LO}(t) = x_0 + y_0 t $$, where $$ x_0 $$ is an initial synchronization error between real and ideal clocks, $$ y_0 $$ is a constant frequency offset and $$ t $$ is the time elapsed since the initial synchronization epoch, the output of the sampling process will be $$ x[n] = x \left( \frac{n}{f_s} + x_0 + y_0 \frac{n}{f_s} \right) $$, which is affected by a time-variant delay with respect to the ideal case. This might cause correlation losses, especially when $$ T_{\text{int}} $$ is large.
+  * **The presence of data-bit transitions modulating the ranging code**. Each
+  transition introduces a sign reversal in successive correlation blocks, such
+  that their coherent accumulation leads to the potential loss of the
+  correlation peak. Therefore, the availability of an external-aiding source is
+  crucial to extend $$ T_{\text{int}} $$ to be larger than the data bit
+  duration. This approach is referred to as the aided (or assisted) signal
+  acquisition, and it is a part of the Assisted GNSS (A-GNSS) positioning method
+  defined by different standardization bodies such as 3GPP and OMA.
 
-Acquisition sensitivity is quite dependent of the radio frequency front-end (including the antenna / cable connection to a RF generator) that was used to capture signals (either live signals or simulated). It is then a good practice to provide technical details of the front-end equipment used in the testing procedures when reporting acquisition sensitivity of a software-defined receiver. Ideally, input signals should be generated digitally and stored in files in order to remove this limitation and to provide a measure for which the software-defined receiver is the sole responsible.
+  * **Local oscillator stability**. The uncertainty on the actual frequency
+  value delivered by the front-end's local oscillator gives rise to effects very
+  similar to those caused by a Doppler shift, and hence to an additional
+  correlation loss. Using a simple model for time deviation between the clock
+  with the true oscillator and an ideal clock, $$ x_{LO}(t) = x_0 + y_0 t $$,
+  where $$ x_0 $$ is an initial synchronization error between real and ideal
+  clocks, $$ y_0 $$ is a constant frequency offset and $$ t $$ is the time
+  elapsed since the initial synchronization epoch, the output of the sampling
+  process will be $$ x[n] = x \left( \frac{n}{f_s} + x_0 + y_0 \frac{n}{f_s}
+  \right) $$, which is affected by a time-variant delay with respect to the
+  ideal case. This might cause correlation losses, especially when
+  $$ T_{\text{int}} $$ is large.
+
+Acquisition sensitivity is quite dependent of the radio frequency front-end
+(including the antenna and cable connection to a RF generator) that was used to
+capture signals (either live signals or simulated). It is then a good practice
+to provide technical details of the front-end equipment used in the testing
+procedures when reporting acquisition sensitivity of a software-defined
+receiver. Ideally, input signals should be generated digitally and stored in
+files in order to remove this limitation and to provide a measure for which the
+software-defined receiver is the sole responsible.
 {: .notice--info}
 
-The generation of testing inputs is as follows: fixing the number of visible satellites to one, the power level of the received signal is set such that the GNSS software receiver under test can detect the single GNSS satellite signal within a given probability of detection. The power level of the GPS satellite signal is then decreased until the GNSS receiver is not able to acquire that satellite signal. This power level and the corresponding GNSS software receiver under test reported carrier-to-noise density ratio ($$ C/N_0 $$) should be collected as data. The received power level at the beginning of this scenario is $$ -140 $$ dBm, and it is decreased by $$ 1 $$ dB in each acquisition procedure.
+The generation of testing inputs is as follows: fixing the number of visible
+satellites to one, the power level of the received signal is set such that the
+GNSS software receiver under test can detect the single GNSS satellite signal
+within a given probability of detection. The power level of the GPS satellite
+signal is then decreased until the GNSS receiver is not able to acquire that
+satellite signal. This power level and the corresponding GNSS software receiver
+under test reported carrier-to-noise density ratio ($$ C/N_0 $$) should be
+collected as data. The received power level at the beginning of this scenario is
+$$ -140 $$ dBm, and it is decreased by $$ 1 $$ dB in each acquisition procedure.
 
 |----------
 |  **Reported parameter**  |  **Description** |
@@ -219,7 +356,10 @@ The generation of testing inputs is as follows: fixing the number of visible sat
 | **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
 |--------------
 
-**Example of report**: For version X.Y.Z of the software receiver executed in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, obtaining an acquisition sensitivity of -147 dBm reporting a $$ C/N_0 $$ of 30 dB-Hz, using simulated Galileo E1 open signals, the results would be presented as:
+**Example of report**: For version X.Y.Z of the software receiver executed in a
+Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, obtaining an
+acquisition sensitivity of -147 dBm reporting a $$ C/N_0 $$ of 30 dB-Hz, using
+simulated Galileo E1 open signals, the results would be presented as:
 
 
 |----------
@@ -232,17 +372,43 @@ The generation of testing inputs is as follows: fixing the number of visible sat
 
 ## Tracking sensitivity
 
-Tracking sensitivity refers to the minimum signal level that allows the receiver to maintain a location fix within some specified degree of accuracy. The generation of testing inputs is as follows: fixing the number of visible satellites to one, the power level of the received signal is set such that the GNSS software receiver under test can identify the single GNSS satellite signal. The power level of the GNSS satellite signal is then decreased until the GNSS receiver loses tracking of the single satellite. This power level and the corresponding GNSS software receiver under test reported carrier-to-noise density ratio ($$ C/N_0 $$) should be collected as data.
+Tracking sensitivity refers to the minimum signal level that allows the receiver
+to maintain a location fix within some specified degree of accuracy. The
+generation of testing inputs is as follows: fixing the number of visible
+satellites to one, the power level of the received signal is set such that the
+GNSS software receiver under test can identify the single GNSS satellite signal.
+The power level of the GNSS satellite signal is then decreased until the GNSS
+receiver loses tracking of the single satellite. This power level and the
+corresponding GNSS software receiver under test reported carrier-to-noise
+density ratio ($$ C/N_0 $$) should be collected as data.
 
-All the effects explained above for acquisition sensitivity apply as well to tracking sensitivity, where the definition of $$ {C/N_0}_{\text{min}} $$ is now:
+All the effects explained above for acquisition sensitivity apply as well to
+tracking sensitivity, where the definition of $$ {C/N_0}_{\text{min}} $$ is now:
 
-  * $$ {C/N_0}_{\text{min}} $$ is the minimum $$ C/N_0 $$ required for signal tracking, in dB-Hz.
+  * $$ {C/N_0}_{\text{min}} $$ is the minimum $$ C/N_0 $$ required for signal
+    tracking, in dB-Hz.
 
-and the concept of _integration time_ is now called _correlation length_. The usual approach to improve tracking sensitivity is to span the correlation length to more than one codeword period, but again the same limitations apply: the presence of data bit transitions and the stability of the RF front-end's local oscillator.
+and the concept of _integration time_ is now called _correlation length_. The
+usual approach to improve tracking sensitivity is to span the correlation length
+to more than one codeword period, but again the same limitations apply: the
+presence of data bit transitions and the stability of the RF front-end's local
+oscillator.
 
-The generation of testing inputs is as follows: fixing the number of visible satellites to one, the power level of the received signal is set such that the GNSS software receiver under test can identify the single GNSS satellite signal. The power level of the GNSS satellite signal is then decreased until the GNSS receiver loses tracking of the single satellite. This power level and the corresponding GNSS receiver reported $$ C/N_0 $$ should be collected as data. The received power level at the beginning of this scenario is $$ -130 $$ dBm, and it is decreased by $$ 1 $$ dB at $$ 60 $$-second intervals.
+The generation of testing inputs is as follows: fixing the number of visible
+satellites to one, the power level of the received signal is set such that the
+GNSS software receiver under test can identify the single GNSS satellite signal.
+The power level of the GNSS satellite signal is then decreased until the GNSS
+receiver loses tracking of the single satellite. This power level and the
+corresponding GNSS receiver reported $$ C/N_0 $$ should be collected as data.
+The received power level at the beginning of this scenario is $$ -130 $$ dBm,
+and it is decreased by $$ 1 $$ dB at $$ 60 $$-second intervals.
 
-Another possible receiver sensitivity test is to measure the power level and $$ C/N_0 $$ level at which 3D location fix is lost. This is a similar procedure as above but using eight visible satellites from the same constellation. The power level of the received signals is then decreased until the 3D location fix is lost. Again, the power level and the corresponding GNSS software receiver under test reported $$ C/N_0 $$ are collected as data.
+Another possible receiver sensitivity test is to measure the power level and
+$$ C/N_0 $$ level at which 3D location fix is lost. This is a similar procedure
+as above but using eight visible satellites from the same constellation. The
+power level of the received signals is then decreased until the 3D location fix
+is lost. Again, the power level and the corresponding GNSS software receiver
+under test reported $$ C/N_0 $$ are collected as data.
 
 
 |----------
@@ -260,7 +426,11 @@ Another possible receiver sensitivity test is to measure the power level and $$ 
 | **Source code unique ID** | Software release version, D.O.I., Git hash, or any other unique identifier. |
 |--------------
 
-**Example of report**: For version X.Y.Z of the software receiver executed in a Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, obtaining an acquisition sensitivity of -163 dBm reporting a $$ C/N_0 $$ of 28 dB-Hz, using one simulated Galileo E1 open signal and no external data, the results would be presented as:
+**Example of report**: For version X.Y.Z of the software receiver executed in a
+Brand B, Model M machine under GNU/Linux Ubuntu 15.04 64 bits, obtaining an
+acquisition sensitivity of -163 dBm reporting a $$ C/N_0 $$ of 28 dB-Hz, using
+one simulated Galileo E1 open signal and no external data, the results would be
+presented as:
 
 |----------
 |  **Trk. sensitivity**  |  **$$ C/N_0 $$** | **Test Mode** | **RF front-end**  | **Signal** | **Source** | **DGNSS** | **Processing platform** | **Operating system** |  **Source code unique ID**  |
@@ -272,26 +442,33 @@ Another possible receiver sensitivity test is to measure the power level and $$ 
 
 ## Indicators of Availability
 
-It follows a list of possible availability indicators for a software-defined GNSS receiver:
+It follows a list of possible availability indicators for a software-defined
+GNSS receiver:
 
-* Maximum observed running time, measured and reported as explained above, and for each of the _running modes_ (that is, for all the GNSS signal combinations) allowed by the software receiver.
-* Time To First Fix (TTFF), measured and reported as explained above for cold, warm, and hot starts, and for each of the _running modes_ (that is, for all the GNSS signal combinations) allowed by the software receiver.
-* Reacquisition Time, measured and reported as explained above, for each of the GNSS signals allowed by the software receiver.
-* Acquisition sensitivity, measured and reported as explained above, for each of the GNSS signals allowed by the software receiver.
-* Tracking sensitivity, measured and reported as explained above, for each of the GNSS signals allowed by the software receiver.
+* Maximum observed running time, measured and reported as explained above,
+  and for each of the _running modes_ (that is, for all the GNSS signal
+  combinations) allowed by the software receiver.
+* Time To First Fix (TTFF), measured and reported as explained above for
+  cold, warm, and hot starts, and for each of the _running modes_ (that is, for
+  all the GNSS signal combinations) allowed by the software receiver.
+* Reacquisition Time, measured and reported as explained above, for each of
+  the GNSS signals allowed by the software receiver.
+* Acquisition sensitivity, measured and reported as explained above, for each
+  of the GNSS signals allowed by the software receiver.
+* Tracking sensitivity, measured and reported as explained above, for each of
+  the GNSS signals allowed by the software receiver.
 
-
-In case of using differential GNSS techniques:
+In the case of using differential GNSS techniques:
 
 * Availability and continuity of a minimum number of input data streams.
 * Availability of corrections for precise positioning.
-* Corrections’ latency / generation time.
+* Corrections' latency / generation time.
 * Convergence time to subdecimeter level.
 * Phase ambiguity fixing success rate.
 * Baseline maximum length.
 
 
-In case of using assisted GNSS techniques:
+In the case of using assisted GNSS techniques:
 
 * Availability of an external service delivering assisted GNSS data.
 

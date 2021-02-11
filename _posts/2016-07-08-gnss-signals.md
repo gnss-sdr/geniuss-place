@@ -16,7 +16,8 @@ last_modified_at: 2021-01-11T09:37:02+02:00
 ---
 
 
-A _generic_ GNSS complex baseband signal transmitted by a given GNSS space vehicle $$ i $$ can be described as
+A _generic_ GNSS complex baseband signal transmitted by a given GNSS space
+vehicle $$ i $$ can be described as
 
 $$ \begin{equation}
 s^{(i)}_T(t) = \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}\Big( d_I^{(i)}(u)g_I(t-uT_{b_I}) + j d_Q^{(i)}(u)g_Q(t-uT_{b_Q})\Big)~, \end{equation}
@@ -35,33 +36,47 @@ q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)p(t-lT_{c}) ~, \end{equation}
 $$
 
 
-being $$ \mathcal{P}_{T} $$ the transmitting power, $$ d(u) $$ the navigation message data symbols, $$ T_{b} $$ the bit period, $$ j $$ the imaginary unit, $$ N_{c} $$ the number of
-repetitions of a full codeword that spans a bit period, $$ T_{PRN}=\frac{T_{b}}{N_{c}} $$ the codeword period, $$ c_{i}(l) $$ a chip of the spreading codeword of length $$ L_{c} $$ chips corresponding to the space vehicle $$ i $$, $$ p(t) $$ the transmitting chip pulse shape, which is considered energy-normalized for notation clarity, and $$ T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ the chip period. All parameters can be different in the I and the Q components, there can be uneven power balance among them, and everything will differ in each available frequency band.
+being $$ \mathcal{P}_{T} $$ the transmitting power, $$ d(u) $$ the navigation
+message data symbols, $$ T_{b} $$ the bit period, $$ j $$ the imaginary unit, $$
+N_{c} $$ the number of repetitions of a full codeword that spans a bit period, $$
+T_{PRN}=\frac{T_{b}}{N_{c}} $$ the codeword period, $$ c_{i}(l) $$ a chip of the
+spreading codeword of length $$ L_{c} $$ chips corresponding to the space
+vehicle $$ i $$, $$ p(t) $$ the transmitting chip pulse shape, which is
+considered energy-normalized for notation clarity, and $$
+T_{c}=\frac{T_{b}}{N_{c} L_{c}} $$ the chip period. All parameters can be
+different in the I and the Q components, there can be uneven power balance among
+them, and everything will differ in each available frequency band.
 
-This page describes particularizations of such signal structure for all the currently deployed and planned GNSS signals. The notation used in those descriptions is as follows: $$ \oplus $$ is the exclusive–or operation (modulo–2 addition), $$ |l|_{L} $$ means $$ l $$ modulo $$ L $$, $$ [l]_{L} $$ means the integer part of
-$$ \frac{l}{L} $$, and $$ p(t) $$ is a rectangular pulse of a chip–period duration, filtered at the transmitter at the nominal signal bandwidth and energy-normalized. Links to the official Interface Control Documents are provided in the [References](#references) section.
+This page describes particularizations of such signal structure for all the
+currently deployed and planned GNSS signals. The notation used in those
+descriptions is as follows: $$ \oplus $$ is the exclusive–or operation (modulo–2
+addition), $$ |l|_{L} $$ means $$ l $$ modulo $$ L $$, $$ [l]_{L} $$ means the
+integer part of $$ \frac{l}{L} $$, and $$ p(t) $$ is a rectangular pulse of a
+chip–period duration, filtered at the transmitter at the nominal signal
+bandwidth and energy-normalized. Links to the official Interface Control
+Documents are provided in the [References](#references) section.
 {: .notice--info}
 
 
 ## Global Positioning System (GPS)
 
-The Navstar Global Positioning System (GPS) is a space-based
-radio–navigation system owned by the United States Government (USG) and
-operated by the United States Air Force (USAF). GPS provides positioning
-and timing services to military and civilian users on a continuous,
-worldwide basis. Two GPS services are provided:
+The Navstar Global Positioning System (GPS) is a space-based radio–navigation
+system owned by the United States Government (USG) and operated by the United
+States Air Force (USAF). GPS provides positioning and timing services to
+military and civilian users on a continuous, worldwide basis. Two GPS services
+are provided:
 
--   the Precise Positioning Service (PPS)[^GPS-PPS], available primarily to the military of the United States and its allies, and
+- the Precise Positioning Service (PPS)[^GPS-PPS], available primarily to the
+military of the United States and its allies, and
 
--   the Standard Positioning Service (SPS)[^GPS-SPS], open to civilian users.
+- the Standard Positioning Service (SPS)[^GPS-SPS], open to civilian users.
 
 The most updated and authorized source is the [Official U.S. Government website about GPS and related topics](https://www.gps.gov/).
 
 ### GPS L1
 
-Defined in IS-GPS-200[^ISGPS200], this band is centered at
-$$ f_{\text{GPS L1}}=1575.42 $$ MHz. The complex baseband
-transmitted signal can be written as
+Defined in IS-GPS-200[^ISGPS200], this band is centered at $$ f_{\text{GPS
+L1}}=1575.42 $$ MHz. The complex baseband transmitted signal can be written as
 
 $$ \begin{equation} s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{equation} $$
 
@@ -72,19 +87,19 @@ $$ \begin{equation} e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [
 $$ \begin{equation} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}  \Big]  \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~, \end{equation} $$
 
 where $$ D_{\text{NAV}} \in \{-1,1\} $$ is the GPS navigation message bit
-sequence, transmitted at $$ 50 $$ bit/s, $$ T_{c,\text{P(Y)}}=\frac{1}{10.23} $$
-$$ \mu $$s, $$ T_{c,\text{C/A}}=\frac{1}{1.023} $$ $$ \mu $$s,
-and $$ L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$. The precision P codes (named Y codes whenever the
-anti-spoofing mode is activated, encrypting the code and thus denying
-non–U.S. military users) are sequences of $$ 7 $$ days in length.
+sequence, transmitted at $$ 50 $$ bit/s, $$ T_{c,\text{P(Y)}}=\frac{1}{10.23} $$ $$
+\mu $$s, $$ T_{c,\text{C/A}}=\frac{1}{1.023} $$ $$ \mu $$s, and $$
+L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$. The precision P codes (named Y codes
+whenever the anti-spoofing mode is activated, encrypting the code and thus
+denying non–U.S. military users) are sequences of $$ 7 $$ days in length.
 
-Regarding the modernization plans for GPS, it is worthwhile to mention
-that there is a new civilian–use signal planned, called L1C and defined
-in IS-GPS-800D[^ISGPS800], to be broadcast on the same L1 frequency that currently
-contains the C/A signal. The L1C signal will be available with first
-Block III launch, currently scheduled for May 2018 by SpaceX, and it will feature a
-Multiplexed Binary Offset Carrier (MBOC) modulation scheme that ensures
-backward compatibility with the C/A signal.
+Regarding the modernization plans for GPS, it is worthwhile to mention that
+there is a new civilian–use signal planned, called L1C and defined in
+IS-GPS-800D[^ISGPS800], to be broadcast on the same L1 frequency that currently
+contains the C/A signal. The L1C signal will be available with first Block III
+launch, currently scheduled for May 2018 by SpaceX, and it will feature a
+Multiplexed Binary Offset Carrier (MBOC) modulation scheme that ensures backward
+compatibility with the C/A signal.
 
 The L1C signal consists of two main components; one denoted $$ L1C_P $$ to
 represent a pilot signal, without any data message, that is spread by a
@@ -115,7 +130,8 @@ with the In-phase component defined as:
 
 $$ \begin{equation} e_{L2I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] p(t -  lT_{c,\text{P(Y)}})~,\end{equation}  $$
 
-with an optional presence of the navigation message $$ D_{\text{NAV}} $$. For the Quadrature–phase component, three options are defined:
+with an optional presence of the navigation message $$ D_{\text{NAV}} $$. For
+the Quadrature–phase component, three options are defined:
 
 $$ \begin{eqnarray} e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty}\left( D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus   C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + \right. \nonumber \\
 {} & {} & \left. +~C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{1}{2}\right)T_{c,L2C}\right) \right)~, \end{eqnarray} $$
@@ -127,15 +143,14 @@ or
 $$ \begin{equation} e_{L2Q}(t) = \sum_{l=-\infty}^{\infty}C_{\text{C/A}} \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~, \end{equation} $$
 
 where $$ T_{c,L2C}=\frac{1}{511.5} $$ ms and $$ p_{\text{1/2}}(t) $$ is a
-rectangular pulse of half chip–period duration, thus time-multiplexing
-both codes. The civilian long code $$ C_{\text{CL}} $$ is
-$$ L_{\text{CL}}=767250 $$ chips long, repeating every $$ 1.5 $$ s, while the
-civilian moderate code $$ C_{\text{CM}} $$ is $$ L_{\text{CM}}=10230 $$ chips
-long and it repeats every $$ 20 $$ ms. The CNAV data is an upgraded version
-of the original NAV navigation message, containing higher precision
-representation and nominally more accurate data than the NAV data. It is
-transmitted at $$ 25 $$ bit/s with forward error correction (FEC) encoding,
-resulting in $$ 50 $$ symbols/s.
+rectangular pulse of half chip–period duration, thus time-multiplexing both
+codes. The civilian long code $$ C_{\text{CL}} $$ is $$ L_{\text{CL}}=767250 $$
+chips long, repeating every $$ 1.5 $$ s, while the civilian moderate code $$
+C_{\text{CM}} $$ is $$ L_{\text{CM}}=10230 $$ chips long and it repeats every $$
+20 $$ ms. The CNAV data is an upgraded version of the original NAV navigation
+message, containing higher precision representation and nominally more accurate
+data than the NAV data. It is transmitted at $$ 25 $$ bit/s with forward error
+correction (FEC) encoding, resulting in $$ 50 $$ symbols/s.
 
 ![Spectra GPS Signals L2]({{ "/assets/images/Spectra_GPS_Signals_L2.png" | relative_url }}){: .align-center .invert-colors}
 _GPS signals spectra in L2. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
@@ -145,10 +160,9 @@ GPS L2C is only available on Block IIR–M and subsequent satellite blocks.
 
 ### GPS L5
 
-The GPS L5 link, defined in IS-GPS-705[^ISGPS705], is only available on Block IIF
-and subsequent satellite blocks. Centered at
-$$ f_{\text{GPS L5}}=1176.45 $$ MHz, this signal in space can be
-written as:
+The GPS L5 link, defined in IS-GPS-705[^ISGPS705], is only available on Block
+IIF and subsequent satellite blocks. Centered at $$ f_{\text{GPS L5}}=1176.45 $$
+MHz, this signal in space can be written as:
 
 $$ \begin{equation} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{equation} $$
 
@@ -182,33 +196,34 @@ equally spaced in each plane with $$ 45^o $$ argument of latitude. Moreover,
 the orbital planes have an argument of latitude displacement of $$ 15^o $$
 relative to each other. The current constellation status can be checked at the Russian [Information and Analysis Center for Positioning, Navigation and Timing website](https://www.glonass-iac.ru/en/).
 
-The ground control segment of GLONASS is almost entirely located within
-former Soviet Union territory, except for a station in Brasilia, Brazil.
-The Ground Control Center and Time Standards is located in Moscow and
-the telemetry and tracking stations are in Saint Petersburg, Ternopol,
-Eniseisk, and Komsomolsk-na-Amure.
+The ground control segment of GLONASS is almost entirely located within former
+Soviet Union territory, except for a station in Brasilia, Brazil. The Ground
+Control Center and Time Standards is located in Moscow and the telemetry and
+tracking stations are in Saint Petersburg, Ternopol, Eniseisk, and
+Komsomolsk-na-Amure.
 
-GLONASS civil signal–in–space is defined in GLONASS' ICD [^GLONASS08]. This system
-makes use of a frequency–division multiple access (FDMA) signal
+GLONASS civil signal–in–space is defined in GLONASS' ICD [^GLONASS08]. This
+system makes use of a frequency–division multiple access (FDMA) signal
 structure, transmitting in two bands:
 
  * $$ f^{(k)}_{GLO L1}=1602+k \cdot 0.5625 $$ MHz and
  * $$ f^{(k)}_{GLO L2}=1246+k \cdot 0.4375 $$ MHz,
 
 where $$ k\in \left\{ -7,-6,\cdots,5,6\right\} $$ is the channel number.
-Satellites in opposite points of an orbit plane transmit signals on
-equal frequencies, as these satellites will never be in view
-simultaneously by a ground-based user.
+Satellites in opposite points of an orbit plane transmit signals on equal
+frequencies, as these satellites will never be in view simultaneously by a
+ground-based user.
 
-The modernization of GLONASS includes the adoption of the CDMA scheme[^GLONASS16], with new open signals called L1OC, L2OC, and L3OC.
+The modernization of GLONASS includes the adoption of the CDMA
+scheme[^GLONASS16], with new open signals called L1OC, L2OC, and L3OC.
 
 
 
 ### GLONASS L1
 
 Two kinds of signals are transmitted: a standard precision (SP) and an
-obfuscated high precision (HP) signal. The complex baseband transmitted
-signal can be written as
+obfuscated high precision (HP) signal. The complex baseband transmitted signal
+can be written as
 
 $$ \begin{equation} s^{\text{(GLO L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{equation} $$
 
@@ -233,65 +248,79 @@ _GLONASS signals spectra in L1. Source: [Navipedia](https://gssc.esa.int/naviped
 {: style="text-align: center;"}
 
 The use of FDMA techniques, in which the same code is used to broadcast
-navigation signals on different frequencies, and the placement of civil
-GLONASS transmissions on frequencies centered at $$ 1602 $$ MHz, well above the
-GPS L1 band, have complicated the design of combined GLONASS/GPS
-receivers, particularly low–cost equipment for mass-market applications.
+navigation signals on different frequencies, and the placement of civil GLONASS
+transmissions on frequencies centered at $$ 1602 $$ MHz, well above the GPS L1
+band, have complicated the design of combined GLONASS/GPS receivers,
+particularly low–cost equipment for mass-market applications.
 
-In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1600.99 $$ MHz, referred to as L1OC, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, launched from 2018. This documentation is only available in Russian [^GLONASS16-1].
+In late 2016, the Russian Federation published a new ICD related to a CDMA
+signal at $$ 1600.99 $$ MHz, referred to as L1OC, to be broadcast by GLONASS
+satellites starting by Enhanced Glonass-K1 and Glonass-K2, launched from 2018.
+This documentation is only available in Russian [^GLONASS16-1].
 
 
 
 
 ### GLONASS L2
 
-Beginning with the second generation of satellites, called GLONASS–M and
-first launched in 2001, a second civil signal is available using the
-same SP code as the one in the L1 band but centered at $$ 1246 $$ MHz.
+Beginning with the second generation of satellites, called GLONASS–M and first
+launched in 2001, a second civil signal is available using the same SP code as
+the one in the L1 band but centered at $$ 1246 $$ MHz.
 
 ![Spectra GLONASS Signals L2]({{ "/assets/images/Spectra_GLONASS_Signals_L2.png" | relative_url }}){: .align-center .invert-colors}
 _GLONASS signals spectra in L2. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Signal_Plan)_.
 {: style="text-align: center;"}
 
 Future plans of modernization are intended to increase compatibility and
-interoperability with other GNSS, and include the addition of a
-code-division multiple access (CDMA) structure.
+interoperability with other GNSS, and include the addition of a code-division
+multiple access (CDMA) structure.
 
-On July 2, 2013, a Russian Proton-M rocket carrying three GLONASS–M
-navigation satellites [crashed](https://www.youtube.com/watch?v=HpBYCLu6kXA) soon after liftoff today from Kazakhstan’ Baikonur cosmodrome.
+On July 2, 2013, a Russian Proton-M rocket carrying three GLONASS–M navigation
+satellites [crashed](https://www.youtube.com/watch?v=HpBYCLu6kXA) soon after
+liftoff today from Kazakhstan’ Baikonur cosmodrome.
 
-In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1248.06 $$ MHz, referred to as L2OC and featuring a BOC(1,1) modulation, to be broadcast by GLONASS satellites starting by Enhanced Glonass-K1 and Glonass-K2, to be launched from 2018. This documentation is only available in Russian [^GLONASS16-2].
+In late 2016, the Russian Federation published a new ICD related to a CDMA
+signal at $$ 1248.06 $$ MHz, referred to as L2OC and featuring a BOC(1,1)
+modulation, to be broadcast by GLONASS satellites starting by Enhanced
+Glonass-K1 and Glonass-K2, to be launched from 2018. This documentation is only
+available in Russian [^GLONASS16-2].
 
 
 
 ### GLONASS L3
 
-In late 2016, the Russian Federation published a new ICD related to a CDMA signal at $$ 1202.025 $$ MHz, referred to as L3OC and featuring a BPSK(10) modulation, to be broadcast by GLONASS satellites starting by Glonass-M, in production since 2014. This documentation is only available in Russian [^GLONASS16-3].
+In late 2016, the Russian Federation published a new ICD related to a CDMA
+signal at $$ 1202.025 $$ MHz, referred to as L3OC and featuring a BPSK(10)
+modulation, to be broadcast by GLONASS satellites starting by Glonass-M, in
+production since 2014. This documentation is only available in Russian
+[^GLONASS16-3].
 
 
 ## Galileo
 
 The nominal Galileo constellation comprises a total of $$ 24 $$ operational
-satellites (plus $$ 6 $$ active spares), that are evenly distributed among
-three orbital planes inclined at $$ 56^o $$ relative to the equator. There
-are eight operational satellites per orbital plane, occupying evenly
-distributed orbital slots. Six additional spare satellites (two per
-orbital plane) complement the nominal constellation configuration. The
-Galileo satellites are placed in quasi-circular Earth orbits with a
-nominal semi-major axis of about $$ 30,000 $$ km and an approximate
-revolution period of $$ 14 $$ hours. The Control segment full infrastructure
-will be composed of $$ 30-40 $$ sensor stations, $$ 3 $$ control centers, $$ 9 $$
-Mission Uplink stations, and $$ 5 $$ TT&C stations. The current constellation status can be checked at the [European GNSS Service Centre website](https://www.gsc-europa.eu/system-status/Constellation-Information).
+satellites (plus $$ 6 $$ active spares), that are evenly distributed among three
+orbital planes inclined at $$ 56^o $$ relative to the equator. There are eight
+operational satellites per orbital plane, occupying evenly distributed orbital
+slots. Six additional spare satellites (two per orbital plane) complement the
+nominal constellation configuration. The Galileo satellites are placed in
+quasi-circular Earth orbits with a nominal semi-major axis of about $$ 30,000 $$
+km and an approximate revolution period of $$ 14 $$ hours. The Control segment
+full infrastructure will be composed of $$ 30-40 $$ sensor stations, $$ 3 $$
+control centers, $$ 9 $$ Mission Uplink stations, and $$ 5 $$ TT&C stations. The
+current constellation status can be checked at the [European GNSS Service Centre
+website](https://www.gsc-europa.eu/system-status/Constellation-Information).
 
-Galileo's Open Service is defined in the Service Definition Document (SDD)[^GalileoSSD],
-and the corresponding signal structures are defined in the Interface Control Document (ICD)[^GalileoICD].
-In this latter document, the following signal structures are specified:
+Galileo's Open Service is defined in the Service Definition Document
+(SDD)[^GalileoSSD], and the corresponding signal structures are defined in the
+Interface Control Document (ICD)[^GalileoICD]. In this latter document, the
+following signal structures are specified:
 
 ### Galileo E1
 
-This band, centered at $$ f_{\text{Gal E1}}=1575.420 $$ MHz and
-with a reference bandwidth of $$ 24.5520 $$ MHz, uses the Composite Binary
-Offset Carrier (CBOC) modulation, defined in baseband as:
+This band, centered at $$ f_{\text{Gal E1}}=1575.420 $$ MHz and with a reference
+bandwidth of $$ 24.5520 $$ MHz, uses the Composite Binary Offset Carrier (CBOC)
+modulation, defined in baseband as:
 
 $$ \begin{eqnarray} s^{\text{(Gal E1)}}_{T}(t) & = & \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) + \nonumber \\
 {} & {} & -~e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{eqnarray} $$
@@ -309,8 +338,8 @@ $$ D_{I/NAV} $$, intended for Safety–of–Life (SoL) services:
 
 $$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big]    p(t - lT_{c,E1B})~. \end{equation} $$
 
-In the case of channel C, it is a pilot (dataless) channel with a
-secondary code, forming a tiered code:
+In the case of channel C, it is a pilot (dataless) channel with a secondary
+code, forming a tiered code:
 
 $$ \!\!\!\!\!\!\!\!\!\!\begin{equation} e_{E1C}(t) \!=\!\! \sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big]\! \oplus \!\sum_{l=1}^{4092}\!C_{E1Cp}\Big[ l \Big] \!\cdot\!  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
 
@@ -332,12 +361,21 @@ _Galileo signals spectra in E1. Source: [Navipedia](https://gssc.esa.int/naviped
 
 ### Galileo E6
 
-Galileo will provide users with added-value services offered through the E6 band, namely:
+Galileo will provide users with added-value services offered through the E6
+band, namely:
 
-* The **Galileo High Accuracy Service (HAS)** will allow users to obtain a positioning error below two decimeters in nominal conditions of use, worldwide. The Galileo HAS will be based on the free transmission of Precise Point Positioning (PPP) corrections through the Galileo E6 signal data component $$ e_{E6B}(t) $$ by the Galileo satellites.
-* The **Galileo Commercial Authentication Service (CAS)** will make it possible to authenticate signals, allowing for increased robustness of professional applications by giving access to the E6 signal pilot component $$ e_{E6C}(t) $$ codes, which will be encrypted.
+* The **Galileo High Accuracy Service (HAS)** will allow users to obtain a
+positioning error below two decimeters in nominal conditions of use, worldwide.
+The Galileo HAS will be based on the free transmission of Precise Point
+Positioning (PPP) corrections through the Galileo E6 signal data component $$
+e_{E6B}(t) $$ by the Galileo satellites.
+* The **Galileo Commercial Authentication Service (CAS)** will make it possible
+to authenticate signals, allowing for increased robustness of professional
+applications by giving access to the E6 signal pilot component $$ e_{E6C}(t) $$
+codes, which will be encrypted.
 
-This signal, which is centered at $$ f_{\text{Gal E6}}=1278.750 $$ MHz, has a pilot and a data component:
+This signal, which is centered at $$ f_{\text{Gal E6}}=1278.750 $$ MHz, has a
+pilot and a data component:
 
 $$ \begin{equation} s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t)-e_{E6C}(t)\right)~, \end{equation} $$
 
@@ -345,16 +383,16 @@ $$ \begin{equation} e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{HAS}} \Big[
 
 $$ \!\!\!\!\!\!\!\!\!\begin{equation} e_{E6C}(t) \!= \!\!\!\sum_{m=-\infty}^{+\infty}\!C_{E6Cs}\Big[|m|_{100}\Big] \!\oplus\! \sum_{l=1}^{L_{E6C}}\!\!C_{E6Cp}\Big[ l \Big]\! \cdot \!p(t-mT_{c,E6Cs} -lT_{c,E6Cp}), \end{equation} $$
 
-where $$ D_{\text{HAS}} $$ is the HAS navigation data stream, which is
-modulated with the ranging code $$ C_{E6B} $$ with chip period
-$$ T_{c,E6B}=\frac{1}{5.115} $$ $$\mu $$s. Codes $$ C_{E6B} $$, $$ C_{E6Cp} $$ and $$ C_{E6Cs} $$ are published in Galileo's E6-B/C Codes
-Technical Note[^GalileoE6].
+where $$ D_{\text{HAS}} $$ is the HAS navigation data stream, which is modulated
+with the ranging code $$ C_{E6B} $$ with chip period $$
+T_{c,E6B}=\frac{1}{5.115} $$ $$\mu $$s. Codes $$ C_{E6B} $$, $$ C_{E6Cp} $$ and $$
+C_{E6Cs} $$ are published in Galileo's E6-B/C Codes Technical Note[^GalileoE6].
 
-This band also contains another component, Galileo E6A, intended for
-the Public Regulated Service (PRS). It uses a BOC modulation with cosine–shaped subcarrier,
-$$ f_{sc,E6A}=10.23 $$ MHz, and $$ T_{c, E6A}=\frac{1}{5.115} $$ $$ \mu $$s. The PRS
-spreading codes and the structure of the navigation message are not
-publicly available.
+This band also contains another component, Galileo E6A, intended for the Public
+Regulated Service (PRS). It uses a BOC modulation with cosine–shaped subcarrier, $$
+f_{sc,E6A}=10.23 $$ MHz, and $$ T_{c, E6A}=\frac{1}{5.115} $$ $$ \mu $$s. The
+PRS spreading codes and the structure of the navigation message are not publicly
+available.
 
 ![Spectra of Galileo signals in E6.]({{ "/assets/images/Spectra_Galileo_Signals_E6.png" | relative_url }}){: .align-center .invert-colors}
 _Galileo signals spectra in E6. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
@@ -363,9 +401,9 @@ _Galileo signals spectra in E6. Source: [Navipedia](https://gssc.esa.int/naviped
 
 ### Galileo E5 {#subsec:GalileoE5}
 
-Centered at $$ f_{\text{Gal E5}}=1191.795 $$ MHz and with a total
-(baseband) bandwidth of $$ 51.150 $$ MHz, its signal structure deserves some analysis.
-The AltBOC modulation can be generically expressed as
+Centered at $$ f_{\text{Gal E5}}=1191.795 $$ MHz and with a total (baseband)
+bandwidth of $$ 51.150 $$ MHz, its signal structure deserves some analysis. The
+AltBOC modulation can be generically expressed as
 
 $$ \begin{equation} s^{\text{AltBOC}}(t) = x_1(t)v^{*}(t)+x_2(t)v(t)~, \end{equation} $$
 
@@ -374,12 +412,11 @@ $$ v(t)=\frac{1}{\sqrt{2}}\left( \text{sign}\left( \cos (2 \pi f_{sc,E5} t)\righ
 is the single side-band subcarrier, $$ f_{sc,E5} $$ is the subcarrier frequency,
 $$ (\cdot)^{*} $$ stands for the conjugate operation, and $$ x_1(t) $$ and
 $$ x_2(t) $$ are QPSK signals. The resulting waveform does not exhibit a
-constant envelope. In the case of Galileo, the need for high efficiency of
-the satellites’ onboard High Power Amplifier (HPA) has pushed a
-modification on the signal in order to make it envelope-constant and
-thus use the HPA at saturation. This can be done by adding some
-inter-modulation products to the expression above, coming up
-with the following definition:
+constant envelope. In the case of Galileo, the need for high efficiency of the
+satellites’ onboard High Power Amplifier (HPA) has pushed a modification on the
+signal in order to make it envelope-constant and thus use the HPA at saturation.
+This can be done by adding some inter-modulation products to the expression
+above, coming up with the following definition:
 
 $$ \begin{eqnarray} s^{\text{(Gal E5)}}_{T}(t) & = & e_{E5a}(t) ssc_s^{*}(t)+ e_{E5b}(t)ssc_s(t) + \nonumber \\
 {} & {} & +~\bar{e}_{E5a}(t)ssc_p^{*}(t)+\bar{e}_{E5b}(t)ssc_p(t)~, \end{eqnarray} $$
@@ -423,13 +460,13 @@ $$ \begin{eqnarray} e_{E5bQ}(t) & = & \sum_{m=-\infty}^{+\infty}C_{E5bQs}\Big[|m
 {} & {} & \cdot~p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{eqnarray} $$
 
 
-where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s. Channel
-A contains the F/NAV type of navigation message, $$ D_{F/NAV} $$,
-intended for the Open Service. The I/NAV message structures for the E5bI
-and E1B signals use the same page layout. Only page sequencing is
-different, with page swapping between both components in order to allow
-a fast reception of data by a dual-frequency receiver. The single
-subcarrier $$ sc_s(t) $$ and the product subcarrier $$ sc_p(t) $$  are defined as:
+where $$ T_{c,E5s}=1 $$ ms and $$ T_{c,E5p}=\frac{1}{10.23} $$ $$ \mu $$s.
+Channel A contains the F/NAV type of navigation message, $$ D_{F/NAV} $$,
+intended for the Open Service. The I/NAV message structures for the E5bI and E1B
+signals use the same page layout. Only page sequencing is different, with page
+swapping between both components in order to allow a fast reception of data by a
+dual-frequency receiver. The single subcarrier $$ sc_s(t) $$ and the product
+subcarrier $$ sc_p(t) $$  are defined as:
 
 $$ \begin{eqnarray} \!\!\!\!\! sc_s(t) & = & \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t - \frac{\pi}{4}\right) \right)+\frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_{sc,E5} t \right) \Big)+ \nonumber \\
 {} & {} & + \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t + \frac{\pi}{4}\right) \right)~, \end{eqnarray} $$
@@ -439,30 +476,31 @@ $$ \begin{eqnarray} \!\!\!\!\!\!\!\!\!\!sc_p(t) & = & -\frac{\sqrt{2}}{4}\text{s
 
 with a subcarrier frequency of $$ f_{sc,E5}=15.345 $$ MHz.
 
-Plotting the power spectrum of the carriers for $$ s^{\text{(Gal E5)}}_{T}(t) $$ (see Figure below), we
-can see that the QPSK signal $$ e_{E5a}(t) $$ defined above is shifted
-to
-$$ f_{\text{Gal E5a}}\doteq f_{\text{Gal E5}}-f_{sc,E5}=1176.450 $$
-MHz, while $$ e_{E5b}(t) $$ is shifted to
-$$ f_{Gal E5b}\doteq f_{\text{Gal E5}}+f_{sc,E5}=1207.140 $$
-MHz.
+Plotting the power spectrum of the carriers for $$ s^{\text{(Gal E5)}}_{T}(t) $$
+(see Figure below), we can see that the QPSK signal $$ e_{E5a}(t) $$ defined
+above is shifted to $$ f_{\text{Gal E5a}}\doteq f_{\text{Gal
+E5}}-f_{sc,E5}=1176.450 $$ MHz, while $$ e_{E5b}(t) $$ is shifted to $$ f_{Gal
+E5b}\doteq f_{\text{Gal E5}}+f_{sc,E5}=1207.140 $$ MHz.
 
 ![Single and product side-band spectra in E5.]({{ "/assets/images/subcarriers-e5.png" | relative_url }}){: .align-center .invert-colors}
-_Power spectrum of single and product side-band subcarriers signals for $$ s^{\text{(Gal E5)}}_{T}(t) $$, normalized to the power of $$ ssc^{*}_s(t) $$ at $$ f_{\text{Gal E5a}} $$. The modified AltBOC modulation can be well approximated by two QPSK signals $$ 2 f_{sc,E5} $$ apart, with negligible contribution of the crossed terms around its center frequency._[^Fernandez11]
+_Power spectrum of single and product side-band subcarriers signals for $$
+s^{\text{(Gal E5)}}_{T}(t) $$, normalized to the power of $$ ssc^{*}_s(t) $$ at $$
+f_{\text{Gal E5a}} $$. The modified AltBOC modulation can be well approximated
+by two QPSK signals $$ 2 f_{sc,E5} $$ apart, with negligible contribution of the
+crossed terms around its center frequency._[^Fernandez11]
 {: style="text-align: center;"}
 
 
 
-Thus, we can bandpass filter around $$ f_{Gal E5a} $$
-and get a good approximation of a QPSK signal, with very low energy
-components of $$ e_{E5b}(t) $$, $$ \bar{e}_{E5a}(t) $$, and
-$$ \bar{e}_{E5b}(t) $$:
+Thus, we can bandpass filter around $$ f_{Gal E5a} $$ and get a good
+approximation of a QPSK signal, with very low energy components of $$ e_{E5b}(t) $$, $$
+\bar{e}_{E5a}(t) $$, and $$ \bar{e}_{E5b}(t) $$:
 
 $$ \begin{equation} s_{T}^{(Gal E5a)}(t) \simeq e_{E5aI}(t)+je_{E5aQ}(t). \end{equation} $$
 
-The same applies to $$ e_{E5b}(t) $$, allowing an independent reception of
-two QPSK signals and thus requiring considerably less bandwidth than the
-processing of the whole E5 band.
+The same applies to $$ e_{E5b}(t) $$, allowing an independent reception of two
+QPSK signals and thus requiring considerably less bandwidth than the processing
+of the whole E5 band.
 
 ![Spectra of Galileo signals in E5.]({{ "/assets/images/Spectra_Galileo_Signals_E5.png" | relative_url }}){: .align-center .invert-colors}
 _Galileo signals spectra in E5. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan)_.
@@ -471,12 +509,11 @@ _Galileo signals spectra in E5. Source: [Navipedia](https://gssc.esa.int/naviped
 
 ## BeiDou
 
-People’s Republic of China was also concerned with the importance of an
-accurate (and independent) navigation and timing satellite system.
+People’s Republic of China was also concerned with the importance of an accurate
+(and independent) navigation and timing satellite system.
 
-According to the China National Space Administration, in a communicate
-dated on May 19, 2010, the development of the system would be carried
-out in three steps:
+According to the China National Space Administration, in a communicate dated on
+May 19, 2010, the development of the system would be carried out in three steps:
 
 * 2000 – 2003: China built the BeiDou Satellite Navigation Experimental
   System, also known as BeiDou-1, consisting of 3 satellites. It offered
@@ -485,27 +522,31 @@ out in three steps:
   neighboring regions.
 * by 2020: global BeiDou navigation system.
 
-The second generation of the system, officially called the BeiDou
-Satellite Navigation System (BDS) and also formerly known as COMPASS or
-BeiDou-2, will be a global satellite navigation system consisting of $$ 5 $$
-geostationary satellites and $$ 30 $$ non–geostationary satellites. The
-geostationary satellites will be located at $$ 58.75^o $$ E, $$ 80^o $$ E,
-$$ 110.5^o $$ E, $$ 140^o $$ E and $$ 160^o $$ E. Non–geostationary satellites will
-be in medium–Earth orbit (MEO) and inclined geosynchronous orbit. Global
-coverage is planned by 2020. The ground segment will consist of one
-Master Control Station, two Upload Stations and $$ 30 $$ Monitor Stations.
+The second generation of the system, officially called the BeiDou Satellite
+Navigation System (BDS) and also formerly known as COMPASS or BeiDou-2, will be
+a global satellite navigation system consisting of $$ 5 $$ geostationary
+satellites and $$ 30 $$ non–geostationary satellites. The geostationary
+satellites will be located at $$ 58.75^o $$ E, $$ 80^o $$ E, $$ 110.5^o $$ E, $$
+140^o $$ E and $$ 160^o $$ E. Non–geostationary satellites will be in
+medium–Earth orbit (MEO) and inclined geosynchronous orbit. Global coverage is
+planned by 2020. The ground segment will consist of one Master Control Station,
+two Upload Stations and $$ 30 $$ Monitor Stations.
 
-After the first geostationary satellite (located at $$ 140^o $$ E) was
-launched on October 31, 2000, a second satellite (located at $$ 80^o $$ E)
-and a third satellite (located at $$ 110.5^o $$ E) were launched on December
-21, 2000, and May 25, 2003, respectively.  The first
-geostationary satellite, COMPASS–G2, was launched on April 15, 2009.
+After the first geostationary satellite (located at $$ 140^o $$ E) was launched
+on October 31, 2000, a second satellite (located at $$ 80^o $$ E) and a third
+satellite (located at $$ 110.5^o $$ E) were launched on December 21, 2000, and
+May 25, 2003, respectively.  The first geostationary satellite, COMPASS–G2, was
+launched on April 15, 2009.
 
-On December 27, 2012, the Chinese government released the first version
-of BeiDou’s Interface Control Document (ICD), a 77-page
-document that included details of the navigation message, including
-parameters of the satellite almanacs and ephemerides that were missing
-from a “test version” of the ICD released exactly one year before. One year later version 2.0 was released, version 2.1 followed in November 2016[^Beidou], and version 3.0 in February 2019[^BeidouB1I]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C], B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open services deployed in the BSD-3 phase of the system development.
+On December 27, 2012, the Chinese government released the first version of
+BeiDou’s Interface Control Document (ICD), a 77-page document that included
+details of the navigation message, including parameters of the satellite
+almanacs and ephemerides that were missing from a “test version” of the ICD
+released exactly one year before. One year later version 2.0 was released,
+version 2.1 followed in November 2016[^Beidou], and version 3.0 in February
+2019[^BeidouB1I]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C],
+B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open
+services deployed in the BSD-3 phase of the system development.
 
 ![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250px"}{: .align-left} On December 2012, the China Satellite Navigation Office released the
 official logo of the BeiDou system, the design of which incorporates the
@@ -519,18 +560,22 @@ first navigation device developed by China.
 {: .notice--info}
 
 
-It also appeared that China intended to discontinue the use of COMPASS as
-the English name for BeiDou. During the press briefing about the publication
-of the ICD, Ran Chengqi, director of China Satellite Navigation Office,
-said the English designation will henceforth be BeiDou Navigation
-Satellite System with the abbreviation BDS.
+It also appeared that China intended to discontinue the use of COMPASS as the
+English name for BeiDou. During the press briefing about the publication of the
+ICD, Ran Chengqi, director of China Satellite Navigation Office, said the
+English designation will henceforth be BeiDou Navigation Satellite System with
+the abbreviation BDS.
 
-Updated information can be found at the [Beidou Navigation Satellite System website](http://en.beidou.gov.cn/). The status of the constellation can be consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
+Updated information can be found at the [Beidou Navigation Satellite System
+website](http://en.beidou.gov.cn/). The status of the constellation can be
+consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
 
 
 ### Beidou B1I
 
-BeiDou B1 transmitted by BDS-2 satellites is centered at $$ f_{B1} = 1561.098 $$ MHz, featuring a QPSK(2) modulation. The complex baseband transmitted signal can be written as:
+BeiDou B1 transmitted by BDS-2 satellites is centered at $$ f_{B1} = 1561.098 $$
+MHz, featuring a QPSK(2) modulation. The complex baseband transmitted signal can
+be written as:
 
 $$ \begin{equation} s^{\text{(BeiDou B1)}}_{T}(t) = e_{B1I}(t) + j e_{B1Q}(t)~, \end{equation} $$
 
@@ -540,15 +585,20 @@ $$ \begin{equation} e_{B1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [
 
 $$ \begin{equation} e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{\text{N/A}}  \Big]  \oplus C_{\text{B1Q}} \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~, \end{equation} $$
 
-Beidou's Interface Control Document version 3.0 describes the Inphase
--component of the Beidou B1 link.[^BeidouB1I] The chip rate of the B1I ranging code, $$ C_{B1I} $$ is 2.046 Mcps, and the length is 2046 chips.
+Beidou's Interface Control Document version 3.0 describes the Inphase -component
+of the Beidou B1 link.[^BeidouB1I] The chip rate of the B1I ranging code, $$
+C_{B1I} $$ is 2.046 Mcps, and the length is 2046 chips.
 
 The B1I signal is also transmitted by all satellites of BDS-3.
 
 
 ### BeiDou B1C
 
-BeiDou Open Service B1C signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are centered at $$ f_{B1C} = 1575.42 $$ MHz and feature a BOC(1,1) modulation in the data component and a QMBOC(6, 1, 4/33) modulation in the pilot component. The complex baseband transmitted signal can be written as:[^BeidouB1C]
+BeiDou Open Service B1C signals, transmitted by Medium Earth Orbit (MEO)
+satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are
+centered at $$ f_{B1C} = 1575.42 $$ MHz and feature a BOC(1,1) modulation in the
+data component and a QMBOC(6, 1, 4/33) modulation in the pilot component. The
+complex baseband transmitted signal can be written as:[^BeidouB1C]
 
 $$ \begin{equation} s^{\text{(BeiDou B1C)}}_{T}(t) = e_{B1C\_data}(t) + j e_{B1C\_pilot}(t)~, \end{equation} $$
 
@@ -567,9 +617,17 @@ $$ \begin{equation}  sc_{B1C\_data}(t) = \text{sign} \left(\sin \left(2 \pi f_{s
 $$ \begin{eqnarray}  sc_{B1C\_pilot}(t) & = & \sqrt{\frac{29}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) + \nonumber \\
 {} & {} & - j \sqrt{\frac{4}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right)~ , \end{eqnarray} $$
 
-with $$ f_{sc\_B1C\_a} = 1.023 $$ MHz and $$ f_{sc\_B1C\_b} = 6.138 $$ MHz. The code length of the ranging codes $$ C_{B1C\_data} $$ and $$ C_{B1C\_pilot} $$ is  10230 chips, and $$ T_{c,B1C\_data} = T_{c,B1C\_pilot} = \frac{1}{1.023} $$ $$\mu $$s. Both of data and pilot ranging codes are tired codes composed of primary and secondary codes. For both data and pilot channels, the primary and secondary codes are generated from Weil sequences, and the starting boundaries of the primary and secondary codes are strictly synchronized. The navigation message $$ D_{\text{B-CNAV1}} $$ has a symbol rate of 100 bit/s.
+with $$ f_{sc\_B1C\_a} = 1.023 $$ MHz and $$ f_{sc\_B1C\_b} = 6.138 $$ MHz. The
+code length of the ranging codes $$ C_{B1C\_data} $$ and $$ C_{B1C\_pilot} $$ is
+10230 chips, and $$ T_{c,B1C\_data} = T_{c,B1C\_pilot} = \frac{1}{1.023} $$
+$$\mu $$s. Both of data and pilot ranging codes are tired codes composed of
+primary and secondary codes. For both data and pilot channels, the primary and
+secondary codes are generated from Weil sequences, and the starting boundaries
+of the primary and secondary codes are strictly synchronized. The navigation
+message $$ D_{\text{B-CNAV1}} $$ has a symbol rate of 100 bit/s.
 
-Since $$ e_{B1C\_pilot}(t) $$ is a complex waveform, the B1C signal contains three components as shown in the following equation:
+Since $$ e_{B1C\_pilot}(t) $$ is a complex waveform, the B1C signal contains
+three components as shown in the following equation:
 
 $$ \begin{equation}s^{\text{(BeiDou B1C)}}_{T}(t) =  e_{B1C\_data}(t) + e_{B1C\_pilot\_b}(t) + je_{B1C\_pilot\_a}(t) ~,  \end{equation} $$
 
@@ -589,7 +647,8 @@ $$ \begin{eqnarray} e_{B1C\_pilot\_a}(t) & = & \sqrt{\frac{29}{44}} \sum_{l=-\in
 
 ### BeiDou B2I
 
-BeiDou B2, centered at $$ f_{B2} = 1207.140 $$ MHz, features a QPSK(2) modulation. The complex baseband transmitted signal can be written as:[^Beidou]
+BeiDou B2, centered at $$ f_{B2} = 1207.140 $$ MHz, features a QPSK(2)
+modulation. The complex baseband transmitted signal can be written as:[^Beidou]
 
 $$ \begin{equation} s^{\text{(BeiDou B2)}}_{T}(t) = e_{B2I}(t) + j e_{B2Q}(t)~, \end{equation} $$
 
@@ -600,22 +659,40 @@ $$ \begin{eqnarray} e_{B2I}(t) & = &  \sum_{m=-\infty}^{\infty} C_{NH} \Big[ |m|
 
 $$ \begin{equation} e_{B2Q}(t) =  \sum_{l=-\infty}^{\infty}  D_{\text{B2Q}} \Big[ [l]_{N/A}  \Big] \oplus C_{B2Q} \Big[ |l|_{L_{C_{B2Q}}} \Big] p(t - lT_{c,B2Q})~, \end{equation} $$
 
-where the chip period is $$ T_{c,\text{B2I}_{C}} = \frac{1}{2.046} $$ $$ \mu $$s and the code length is 2046 chips. The data message $$ D_{\text{B2I}} $$ varies depending on the type of transmitting satellite:
+where the chip period is $$ T_{c,\text{B2I}_{C}} = \frac{1}{2.046} $$ $$ \mu $$s
+and the code length is 2046 chips. The data message $$ D_{\text{B2I}} $$ varies
+depending on the type of transmitting satellite:
 
-  * In MEO/IGSO satellites, the broadcast navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s (so $$ T_{c,\text{B2I}_{CH}} = 1 $$ ms), defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits are transmitted at 50 bit/s.
+  * In MEO/IGSO satellites, the broadcast navigation message structure is known
+  as D1, and it contains basic navigation data (fundamental NAV information of
+  the broadcasting satellites, almanac information for all satellites as well as
+  the time offsets from other systems). It is modulated by a Neumann-Hoffman
+  secondary code at 1 kbit/s (so $$ T_{c,\text{B2I}_{CH}} = 1 $$ ms), defined as $$
+  C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and
+  the data bits are transmitted at 50 bit/s.
 
-  * In GEO satellites, the broadcast navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential, and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B2I signals for geostationary satellites can be expressed as:
+  * In GEO satellites, the broadcast navigation message structure is known as
+  D2, and it contains basic navigation data plus augmentation service
+  information (the BDS integrity, differential, and ionospheric grid
+  information). It is not modulated by the secondary code $$ C_{NH}$$, and the
+  data rate is 500 bit/s. Thus, the B2I signals for geostationary satellites can
+  be expressed as:
 
   $$ \begin{equation} e_{B2I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{4092}\Big] \oplus C_{\text{B2I}} \Big[ |l|_{2046} \Big] p(t -  lT_{c,\text{B2I}})~. \end{equation} $$
 
 Details of the $$ e_{B2Q}(t) $$ component have not been disclosed.
 
-As stated in the ICD[^Beidou], *"B2I will be gradually replaced by a better signal with the
-construction of global system"*. That new "better signal" is B2a, described below.
+As stated in the ICD[^Beidou], *"B2I will be gradually replaced by a better
+signal with the construction of global system"*. That new "better signal" is
+B2a, described below.
 
 ### BeiDou B2a
 
-BeiDou B2a signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are centered at  $$ f_{B2a} = 1176.45 $$ MHz, featuring a data channel with a BPSK(10) modulation in the I component, and a pilot channel with a BPSK(10) modulation in the Q component:[^BeidouB2a]
+BeiDou B2a signals, transmitted by Medium Earth Orbit (MEO) satellites and the
+Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are centered at  $$
+f_{B2a} = 1176.45 $$ MHz, featuring a data channel with a BPSK(10) modulation in
+the I component, and a pilot channel with a BPSK(10) modulation in the Q
+component:[^BeidouB2a]
 
 $$ \begin{equation} s^{\text{(BeiDou B2a)}}_{T}(t) = e_{B2aI}(t) + j e_{B2aQ}(t)~, \end{equation} $$
 
@@ -625,25 +702,43 @@ $$ \!\!\!\!\!\!\!\!\!\!\!\begin{equation} e_{B2aI}(t) = \frac{1}{\sqrt{2}} \sum_
 
 $$ \begin{equation} e_{B2aQ}(t) = \frac{1}{\sqrt{2}} \sum_{l=-\infty}^{\infty}  C_{\text{B2aQ}}  \Big[ |l|_{10230} \Big] p(t - lT_{c,\text{B2aI}})~, \end{equation} $$
 
-where $$ T_{c,\text{B2aI}} = T_{c,\text{B2aQ}} = \frac{1}{10.23} $$ $$\mu $$s, and the navigation message $$ D_{\text{B-CNAV2}} $$ has a symbol rate of $$ 200 $$ bit/s.
+where $$ T_{c,\text{B2aI}} = T_{c,\text{B2aQ}} = \frac{1}{10.23} $$ $$\mu $$s,
+and the navigation message $$ D_{\text{B-CNAV2}} $$ has a symbol rate of $$ 200 $$
+bit/s.
 
 This signal replaces the former B2I defined in version 2.1 of the ICD[^Beidou].
 
 
 ### BeiDou B3I
 
-BeiDou B3I signals, transmitted by Medium Earth Orbit (MEO) satellites and the Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-2 and BDS-3, are centered at $$ f_{B3I} = 1268.520 $$ MHz and feature a data channel with a BPSK(10) modulation:[^BeidouB3I]
+BeiDou B3I signals, transmitted by Medium Earth Orbit (MEO) satellites and the
+Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-2 and BDS-3, are centered
+at $$ f_{B3I} = 1268.520 $$ MHz and feature a data channel with a BPSK(10)
+modulation:[^BeidouB3I]
 
 $$ \begin{eqnarray} e_{B3I}(t) & = & \sum_{m=-\infty}^{\infty} C_{NH} \Big[ |m|_{20} \Big] \oplus \sum_{l=-\infty}^{\infty} D_{\text{B3I}}\Big[ [l]_{204600}\Big] \oplus \nonumber \\
 {} & {} & \oplus ~C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t - mT_{c,\text{B3I}_{CH}} - lT_{c,\text{B3I}_{C}})~, \end{eqnarray} $$
 
-where $$ T_{c,\text{B3I}_{C}} = \frac{1}{10.23} $$ $$\mu $$s and the code length of $$ C_{\text{B3I}} $$ is 10230 chips.
+where $$ T_{c,\text{B3I}_{C}} = \frac{1}{10.23} $$ $$\mu $$s and the code length
+of $$ C_{\text{B3I}} $$ is 10230 chips.
 
-The data message $$ D_{\text{B3I}} $$ varies depending on the type of transmitting satellite:
+The data message $$ D_{\text{B3I}} $$ varies depending on the type of
+transmitting satellite:
 
-  * In MEO/IGSO satellites, the broadcast navigation message structure is known as D1, and it contains basic navigation data (fundamental NAV information of the broadcasting satellites, almanac information for all satellites as well as the time offsets from other systems). It is modulated by a Neumann-Hoffman secondary code at 1 kbit/s (so $$ T_{c,\text{B3I}_{CH}} = 1 $$ ms), defined as $$ C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and the data bits $$ D_{\text{B3I}} $$ are transmitted at 50 bit/s.
+  * In MEO/IGSO satellites, the broadcast navigation message structure is known
+  as D1, and it contains basic navigation data (fundamental NAV information of
+  the broadcasting satellites, almanac information for all satellites as well as
+  the time offsets from other systems). It is modulated by a Neumann-Hoffman
+  secondary code at 1 kbit/s (so $$ T_{c,\text{B3I}_{CH}} = 1 $$ ms), defined as $$
+  C_{NH} = (0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0) $$, and
+  the data bits $$ D_{\text{B3I}} $$ are transmitted at 50 bit/s.
 
-  * In GEO satellites, the broadcast navigation message structure is known as D2, and it contains basic navigation data plus augmentation service information (the BDS integrity, differential and ionospheric grid information). It is not modulated by the secondary code $$ C_{NH}$$, and the data rate is 500 bit/s. Thus, the B3I signals for geostationary satellites can be expressed as:
+  * In GEO satellites, the broadcast navigation message structure is known as
+  D2, and it contains basic navigation data plus augmentation service
+  information (the BDS integrity, differential and ionospheric grid
+  information). It is not modulated by the secondary code $$ C_{NH}$$, and the
+  data rate is 500 bit/s. Thus, the B3I signals for geostationary satellites can
+  be expressed as:
 
   $$ \begin{equation} e_{B3I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{20460}\Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B3I}})~. \end{equation} $$
 

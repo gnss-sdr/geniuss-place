@@ -10,13 +10,24 @@ last_modified_at: 2018-12-14T12:54:02-04:00
 ---
 
 
-The _Resampler_ is the third processing block inside a _Signal Conditioner_ when the later is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | relative_url }}) implementation.
+The _Resampler_ is the third processing block inside a _Signal Conditioner_ when
+the later is using a [**`Signal_Conditioner`**]({{
+"/docs/sp-blocks/signal-conditioner/#signal-conditioner" | relative_url }})
+implementation.
 
 A _Resampler_ block is in charge of resampling the signal and delivering it to
 the $$ N $$ parallel processing channels.
 {: .notice--info}
 
-At the _Resampler_’s output, only complex types are allowed: <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. This block does not perform any data type conversion.
+At the _Resampler_’s output, only complex types are allowed: <abbr
+id="data-type" title="Complex samples with real and imaginary parts of type
+signed 8-bit integer. C++ name: lv_8sc_t (custom definition of
+std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex
+samples with real and imaginary parts of type signed 16-bit integer. C++ name:
+lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, or
+<abbr id="data-type" title="Complex samples with real and imaginary parts of
+type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.
+This block does not perform any data type conversion.
 
 
 ### Implementation: `Direct_Resampler`
@@ -61,7 +72,14 @@ Resampler.item_type=cshort
 
 ### Implementation: `Mmse_Resampler`
 
-This implementation performs a resampling of the incoming signal with a MMSE filtering stage. This resampling block is suitable in cases when the ratio between the incoming sampling frequency and the outcoming one is not a rational number. A typical use case is when the sampling frequency is an integer multiple of the chip frequency and artifacts appear in the tracking blocks. In that case, it is desirable to slightly decrease the sampling ratio in order to avoid the artifacts and, also, to maintain a similar sampling frequency (for instance, downsampling from 30.69 to 30 Msps).
+This implementation performs a resampling of the incoming signal with a MMSE
+filtering stage. This resampling block is suitable in cases when the ratio
+between the incoming sampling frequency and the outcoming one is not a rational
+number. A typical use case is when the sampling frequency is an integer multiple
+of the chip frequency and artifacts appear in the tracking blocks. In that case,
+it is desirable to slightly decrease the sampling ratio in order to avoid the
+artifacts and, also, to maintain a similar sampling frequency (for instance,
+downsampling from 30.69 to 30 Msps).
 
 It accepts the following parameters:
 

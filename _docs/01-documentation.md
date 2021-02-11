@@ -27,7 +27,8 @@ Here you will find:
 
 # Tutorials
 
-In addition, there is a set of tutorials providing more information in particular topics or examples of use:
+In addition, there is a set of tutorials providing more information in
+particular topics or examples of use:
 
 {% include group-by-array collection=site.posts field="tags" %}
 

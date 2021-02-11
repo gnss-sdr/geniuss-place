@@ -10,7 +10,8 @@ sidebar:
 last_modified_at: 2020-03-21T09:37:02+02:00
 ---
 
-Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
+Please note that this project is released with a Contributor Code of Conduct. By
+participating in this project you agree to abide by its terms.
 
 # Contributor Covenant Code of Conduct
 
