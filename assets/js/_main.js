@@ -175,8 +175,9 @@ $(document).ready(function () {
   // Add copy button for <pre> blocks
   var copyText = function (text) {
     if (document.queryCommandEnabled("copy") && navigator.clipboard) {
-      navigator.clipboard.writeText(textarea.value).then(
-        () => true, () => console.error("Failed to copy text to clipboard: " + text)
+        navigator.clipboard.writeText(text).then(
+          () => true,
+          () => console.error("Failed to copy text to clipboard: " + text)
       );
       return true;
     } else {
@@ -220,7 +221,7 @@ $(document).ready(function () {
     }
 
     // Skip line numbers if present (i.e. {% highlight lineno %})
-    var realCodeBlock = codeBlock.querySelector("td.code");
+    var realCodeBlock = codeBlock.querySelector("td.code, td.rouge-code");
     if (realCodeBlock) {
       codeBlock = realCodeBlock;
     }
