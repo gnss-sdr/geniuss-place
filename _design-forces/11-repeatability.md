@@ -44,7 +44,7 @@ are not referred to a _reference value_ but to the mean of the obtained results:
 
 $$
 \begin{equation}
-\sigma_{E}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- \hat{E}\right)^2}\quad,
+\sigma_{E}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l] - \hat{E}\right)^2}~,
 \end{equation} $$
 
 where $$ \hat{E}=\frac{1}{L}\sum_{l=1}^{L}E[l] $$ is the mean of all the $$ E $$
@@ -55,13 +55,14 @@ Up coordinates:
 
 $$
 \begin{equation}
-\sigma_{N}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- \hat{N}\right)^2} \quad,
+\sigma_{N}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l] - \hat{N}\right)^2}~,
 \end{equation} $$
 
 where $$ \hat{N}=\frac{1}{L}\sum_{l=1}^{L}N[l] $$, and
 
 $$
-\begin{equation} \sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- \hat{U}\right)^2}\quad,
+\begin{equation}
+\sigma_{U}^{(precision)} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l] - \hat{U}\right)^2}~,
 \end{equation} $$
 
 where $$ \hat{U}=\frac{1}{L}\sum_{l=1}^{L}U[l] $$.

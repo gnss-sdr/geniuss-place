@@ -46,21 +46,23 @@ manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
 The default positioning mode is `PVT.positioning_mode=Single`. In this mode, the
 vector of unknown states is defined as:
 
-$$ \begin{equation} \mathbf{x} = ( \mathbf{r}_r^T, cdt_r)^T~, \end{equation} $$
+$$ \begin{equation} \mathbf{x} = \left(\mathbf{r}_r^T, c \cdot dt_r\right)^T~, \end{equation} $$
 
 where $$ \mathbf{r}_r $$ is the receiver's antenna position in an
 earth-centered, earth-fixed (ECEF) coordinate system (in meters), $$ c $$ is the
-speed of light and $$ dt_r $$ is the receiver clock bias (in seconds).
+speed of light, and $$ dt_r $$ is the receiver clock bias (in seconds).
 
 The measurement vector is defined as:
 
-$$ \begin{equation} \mathbf{y} = ( P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} )^T~. \end{equation} $$
+$$ \begin{equation} \mathbf{y} = \left(P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} \right)^T~. \end{equation} $$
 
 As described in the [Observables]({{ "docs/sp-blocks/observables/" |
 relative_url }}) block, for a signal from satellite $$ s $$ in the *i*-th band,
 the pseudorange measurement $$ P_{r,i}^{(s)} $$ can be expressed as:
 
-$$  P_{r,i}^{(s)} = \rho_r^{(s)} + c( dt_r(t_r) - dT^{(s)}(t^{(s)}) ) + I_{r,i}^{(s)} + T_r^{(s)} + \epsilon_P~. $$
+$$  \begin{equation}
+P_{r,i}^{(s)} = \rho_r^{(s)} + c\left(dt_r(t_r) - dT^{(s)}(t^{(s)}) \right) + I_{r,i}^{(s)} + T_r^{(s)} + \epsilon_P~.
+\end{equation} $$
 
 In the current implementation, if the receiver obtains pseudorange measurements
 from the same satellite in different frequency bands, only measurements in the
@@ -69,7 +71,8 @@ L1 band are used.
 Hence, the equation that relates pseudorange measurements to the vector of
 unknown states can be written as:
 
-$$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(1)} + cdt_r - cdT^{(1)} + I_{r}^{(1)} + T_{r}^{(1)} \\  \rho_{r}^{(2)} + cdt_r - cdT^{(2)} + I_{r}^{(2)} + T_{r}^{(2)}  \\ \rho_{r}^{(3)} + cdt_r - cdT^{(3)} + I_{r}^{(3)} + T_{r}^{(3)}  \\ \vdots \\ \rho_{r}^{(m)} + cdt_r - cdT^{(m)} + I_{r}^{(m)} + T_{r}^{(m)} \end{array} \right)~. \end{equation} $$
+$$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(1)} + cdt_r - cdT^{(1)} + I_{r}^{(1)} + T_{r}^{(1)} \\  \rho_{r}^{(2)} + cdt_r - cdT^{(2)} + I_{r}^{(2)} + T_{r}^{(2)}  \\ \rho_{r}^{(3)} + cdt_r - cdT^{(3)} + I_{r}^{(3)} + T_{r}^{(3)}  \\ \vdots \\ \rho_{r}^{(m)} + cdt_r - cdT^{(m)} + I_{r}^{(m)} + T_{r}^{(m)} \end{array} \right)~.
+\end{equation} $$
 
 
 The geometric range $$ \rho_r^{(s)} $$ is defined as the physical distance
@@ -79,8 +82,9 @@ ECEF coordinates, the earth rotation effect has to be incorporated. This is
 known as the <span style="color: orange">Sagnac effect</span>[^Ashby04], and it
 can be approximated by:
 
-$$ \rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + {\definecolor{dark-orange}{RGB}{255,165,0} \color{dark-orange} \frac{\omega_e}{c}(x^{(s)}y_r - y^{(s)}x_r )}~, $$
-
+$$ \begin{equation}
+\rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + {\definecolor{dark-orange}{RGB}{255,165,0} \color{dark-orange} \frac{\omega_e}{c}\left(x^{(s)}y_r - y^{(s)}x_r \right)}~,
+\end{equation} $$
 where $$ \omega_e $$ is the Earth rotation angle velocity (in rad/s).
 
 ![Earth rotation correction]({{ "/assets/images/earth-rotation.png" | relative_url }}){: .align-center .invert-colors}
@@ -299,15 +303,22 @@ with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 -
 f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$
 and $$ L_j $$ measurements. Explicitly:
 
-$$ \begin{equation} P_{r,LC}^{(s)} =  \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{r}^{(s)} + \epsilon_P \end{equation} $$
+$$ \begin{equation} P_{r,LC}^{(s)} =  \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} + \epsilon_P \end{equation} $$
 
-$$ \begin{equation} \Phi_{r,LC}^{(s)} = \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{r}^{(s)} + B_{r,LC}^{(s)} + d\Phi_{r,LC}^{(s)} + \epsilon_{\Phi} \end{equation} $$
+$$ \begin{equation} \Phi_{r,LC}^{(s)} = \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} + B_{r,LC}^{(s)} + d\Phi_{r,LC}^{(s)} + \epsilon_{\Phi} \end{equation} $$
 
 with
 
 $$ \begin{equation} \label{eq:bias-lc} B_{r,LC}^{(s)} = C_i  \left( \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} \right) + C_j  \left( \phi_{r,0,j} - \phi_{0,j}^{(s)} + N_{r,j}^{(s)} \right) \end{equation} $$
 
-$$ \begin{equation} \begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \\ {} & {} & + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} +  C_j\mathbf{d}_{pco,j}^{(s)} \right)  \right)^T \mathbf{e}_r^{(s)} + \\ {} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)})+C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) + \\ {} & {} & + \left( d_{pcv,i}^{(s)}(\theta) +  d_{pcv,j}^{(s)}(\theta)\right) + \\ {} & {} & - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\left( C_i\lambda_i + C_j \lambda_j \right) \phi_{pw} \end{array} \end{equation} $$
+$$ \begin{equation}
+\begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \\
+{} & {} & + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} +  C_j\mathbf{d}_{pco,j}^{(s)} \right) \right)^T \mathbf{e}_r^{(s)} + \\
+{} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)})+C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) +\\
+{} & {} & + \left( d_{pcv,i}^{(s)}(\theta) +  d_{pcv,j}^{(s)}(\theta)\right) + \\
+{} & {} & - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\left( C_i\lambda_i + C_j \lambda_j \right) \phi_{pw}
+\end{array}
+\end{equation} $$
 
 
 In the current implementation, satellites and receiver antennas offset and
@@ -551,7 +562,7 @@ can reach up to several tens of meters.
 For ionosphere correction for single-frequency GNSS users, GPS navigation data
 include the following broadcast ionospheric parameters:
 
-$$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T~. $$
+$$ \mathbf{p}_{ion} = \left(\alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3 \right)^T~. $$
 
 By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r,1}^{(s)} $$
 (in m) can be derived by the following procedure[^ISGPS200] (this model is often
@@ -559,22 +570,24 @@ called as the [Klobuchar
 model](https://gssc.esa.int/navipedia/index.php/Klobuchar_Ionospheric_Model)[^Klobuchar87]):
 
 
-$$ \begin{equation} \Psi = \frac{0.0137}{El_r^{(s)} + 0.11}-0.022 \end{equation} $$
+$$ \begin{equation} \Psi = \frac{0.0137}{El_r^{(s)} + 0.11} - 0.022 \end{equation} $$
 
-$$ \begin{equation} \psi_i = \psi + \Psi \cos(Az_r^{(s)}) \end{equation} $$
+$$ \begin{equation} \psi_i = \psi + \Psi \cos\left(Az_r^{(s)}\right) \end{equation} $$
 
-$$ \begin{equation} \lambda_i = \lambda + \frac{\Psi \sin(Az_r^{(s)})}{\cos(\psi_i)} \end{equation} $$
+$$ \begin{equation} \lambda_i = \lambda + \frac{\Psi \sin\left(Az_r^{(s)}\right)}{\cos(\psi_i)} \end{equation} $$
 
-$$ \begin{equation}  \psi_m = \psi_i + 0.064 \cos(\lambda_i -1.617) \end{equation} $$
+$$ \begin{equation} \psi_m = \psi_i + 0.064 \cos(\lambda_i - 1.617) \end{equation} $$
 
-$$ \begin{equation} t = 4.32 \cdot 10^4 \lambda_i +t \end{equation} $$
+$$ \begin{equation} t = 4.32 \cdot 10^4 \lambda_i + t \end{equation} $$
 
-$$ \begin{equation} F = 1.0 + 16.0 \cdot (0.43 - El_r^{(s)})^3 \end{equation} $$
+$$ \begin{equation} F = 1.0 + 16.0 \cdot \left(0.43 - El_r^{(s)}\right)^3 \end{equation} $$
 
+$$ \begin{equation} x = \frac{2 \pi (t - 505400)}{\sum_{n=0}^{3} \beta_n {\psi_m}^n} \end{equation} $$
 
-$$ \begin{equation} x = \frac{2 \pi (t - 505400)}{ \sum_{n=0}^{3} \beta_n {\psi_m}^n} \end{equation} $$
-
-$$ \begin{equation} \!\!\!\!\!\!\!\!I_{r,1}^{(s)} = \left\{ \begin{array}{cc}  F \cdot 5 \cdot 10 ^{-9} & ( | x | > 1.57) \\ F \cdot \left( 5 \cdot 10^{-9}+ \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left( 1-\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array}   \right. \end{equation} $$
+$$ \begin{equation}
+\!\!\!\!\!\!\!\!I_{r,1}^{(s)} = \left\{ \begin{array}{cc} F \cdot 5 \cdot 10 ^{-9} & \left(|x| > 1.57\right) \\
+F \cdot \left( 5 \cdot 10^{-9} + \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left(1 -\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array} \right.
+\end{equation} $$
 
 This correction is activated when `PVT.iono_model` is set to `Broadcast`.
 
@@ -627,11 +640,11 @@ dual-frequency measurements.
 
 The standard atmosphere can be expressed as:[^Bevis94]
 
-$$ \begin{equation} p = 1013.15 \cdot (1-2.2557 \cdot 10^{-5} \cdot h)^{5.2568}~, \end{equation} $$
+$$ \begin{equation} p = 1013.15 \cdot (1 - 2.2557 \cdot 10^{-5} \cdot h)^{5.2568}~, \end{equation} $$
 
-$$ \begin{equation} T = 15.0 -6.5 \cdot 10^{-3} \cdot h + 273.15~, \end{equation} $$
+$$ \begin{equation} T = 15.0 - 6.5 \cdot 10^{-3} \cdot h + 273.15~, \end{equation} $$
 
-$$ \begin{equation} e = 6.108  \cdot \exp\left\{\frac{17.15 T -4684.0}{T-38.45}\right\} \cdot \frac{h_{rel}}{100}~, \end{equation} $$   
+$$ \begin{equation} e = 6.108 \cdot \exp\left\{\frac{17.15 T - 4684.0}{T - 38.45}\right\} \cdot \frac{h_{rel}}{100}~, \end{equation} $$   
 
 where $$ p $$ is the total pressure (in hPa), $$ T $$ is the absolute
 temperature (in K) of the air, $$ h $$  is the geodetic height above MSL (mean
