@@ -58,19 +58,20 @@ based on a clear semantics of process interaction which facilitates
 well-structured programming of dynamically evolving networks of
 processes[^Kahn77].
 
-A Kahn process describes a model of computation where processes are connected by
-communication channels to form a network. Processes produce data elements or
-tokens and send them along a communication channel where they are consumed by
-the waiting destination process. Communication channels are the only method
-processes may use to exchange information. Kahn requires the execution of a
-process to be suspended when it attempts to get data from an empty input
-channel. A process may not, for example, test input for the presence or absence
-of data. At any given point, a process can be either enabled or blocked waiting
-for data on only one of its input channels: it cannot wait for data from more
-than one channel. Systems that obey Kahn's mathematical model are determinate:
-the history of tokens produced on the communication channels does not depend on
-the execution order[^Kahn74]. With a proper scheduling policy, it is possible to
-implement software-defined radio process networks holding two key properties:
+A [Kahn process](https://en.wikipedia.org/wiki/Kahn_process_networks) describes
+a model of computation where processes are connected by communication channels
+to form a network. Processes produce data elements or tokens and send them along
+a communication channel where they are consumed by the waiting destination
+process. Communication channels are the only method processes may use to
+exchange information. Kahn requires the execution of a process to be suspended
+when it attempts to get data from an empty input channel. A process may not, for
+example, test input for the presence or absence of data. At any given point, a
+process can be either enabled or blocked waiting for data on only one of its
+input channels: it cannot wait for data from more than one channel. Systems that
+obey Kahn's mathematical model are determinate: the history of tokens produced
+on the communication channels does not depend on the execution order[^Kahn74].
+With a proper scheduling policy, it is possible to implement software-defined
+radio process networks holding two key properties:
 
 * **Non-termination:** understood as an infinite running flow graph process
   without deadlocks situations, and
