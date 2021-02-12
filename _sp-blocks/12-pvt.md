@@ -601,12 +601,12 @@ the signal traveling time from the satellite to the receiver. This delay depends
 on the temperature, pressure, humidity as well as the transmitter and receiver
 antennas location, and it is related to [air
 refractivity](https://aty.sdsu.edu/explain/atmos_refr/air_refr.html), which in
-turn can be divided in hydrostatic, i.e., dry gases (mainly $$ N_2 $$ and $$ O_2 $$),
-and wet, i.e., water vapor, components:
+turn can be divided into hydrostatic, _i.e._, dry gases (mainly $$ N_2 $$ and
+$$ O_2 $$), and wet, _i.e._, water vapor, components:
 
   * **Hydrostatic component delay**: Its effect varies with local temperature
   and atmospheric pressure in quite a predictable manner, besides its variation
-  is less that the 1% in a few hours. The error caused by this component is
+  is less than the 1% in a few hours. The error caused by this component is
   about $$ 2.3 $$ meters in the zenith direction and $$ 10 $$ meters for lower
   elevations ($$ 10^{o} $$ approximately).
 
@@ -854,7 +854,7 @@ standard and precise positioning. It accepts the following parameters:
 | `slip_threshold` | Set the cycle‐slip threshold (m) of geometry‐free LC carrier‐phase difference between epochs. It defaults to $$ 0.05 $$. | Optional |
 | `threshold_reject_GDOP` | Set the reject threshold of GDOP. If the GDOP is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$. | Optional |
 | `threshold_reject_innovation` | Set the reject threshold of innovation (pre‐fit residual) (m). If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$ m. | Optional |
-| `number_filter_iter` | Set the number of iteration in the measurement update of the estimation filter. If the baseline length is very short like 1 m, the iteration may be effective to handle the nonlinearity of measurement equation. It defaults to 1. | Optional |
+| `number_filter_iter` | Set the number of iteration in the measurement update of the estimation filter. If the baseline length is very short like 1 m, the iteration may be effective to handle the nonlinearity of the measurement equation. It defaults to 1. | Optional |
 | `sigma_bias` | Set the process noise standard deviation of carrier‐phase bias $$ \sigma_{bias} $$, in cycles/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ cycles/$$ \sqrt{s} $$. | Optional |
 | `sigma_trop` | Set the process noise standard deviation of zenith tropospheric delay $$ \sigma_{Z} $$, in m/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ m/$$ \sqrt{s} $$. | Optional |
 | `raim_fde`| [`0`, `1`]: Set whether RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) feature is enabled or not. It defaults to $$ 0 $$ (RAIM not enabled) | Optional |

@@ -11,7 +11,7 @@ last_modified_at: 2018-12-14T12:54:02-04:00
 
 
 The _Resampler_ is the third processing block inside a _Signal Conditioner_ when
-the later is using a [**`Signal_Conditioner`**]({{
+the latter is using a [**`Signal_Conditioner`**]({{
 "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | relative_url }})
 implementation.
 

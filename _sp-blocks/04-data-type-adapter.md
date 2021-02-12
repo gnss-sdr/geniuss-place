@@ -35,7 +35,7 @@ kind of source can deliver data in different formats.
     3.4e38 with a precision of 7 digits (32 bits). C++ type name:
     float">`float`</abbr> (8, 16, and 32 bits, respectively).
 
-    - Intervealed (I&Q) samples: <abbr id="data-type" title="Interleaved (I&Q)
+    - Interleaved (I&Q) samples: <abbr id="data-type" title="Interleaved (I&Q)
     stream of samples of type signed 8-bit integer. C++ name:
     int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream
     of samples of type signed 16-bit integer. C++ name:

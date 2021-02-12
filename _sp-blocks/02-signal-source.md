@@ -101,7 +101,7 @@ int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of
 samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr
 id="data-type" title="Defines numbers with fractional parts, can represent
 values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32
-bits). C++ type name: float">`float`</abbr> or <abbr id="data-type"
+bits). C++ type name: float">`float`</abbr>, or <abbr id="data-type"
 title="Complex samples with real and imaginary parts of type 32-bit floating
 point. C++ name: std::complex<float>">`gr_complex`</abbr>. Their definition is
 as follows:
@@ -132,7 +132,7 @@ This implementation accepts the following parameters:
 | `implementation` | `File_Signal_Source` | Mandatory |
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
-| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `samples` | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 | `item_type` | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `seconds_to_skip` | Seconds of signal to skip from the beginning of the file before start processing. It defaults to $$ 0 $$ s. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
@@ -193,7 +193,7 @@ name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q)
 stream of samples of type signed 16-bit integer. C++ name:
 int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with
 fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38
-with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or
+with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>, or
 <abbr id="data-type" title="Complex samples with real and imaginary parts of
 type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>).
 This is the case of 2-bit real samples delivered at a given intermediate
@@ -213,16 +213,16 @@ interpretation:
 | 1 | 0 | -3 |
 | 1 | 1 | -1 |
 
-Within a byte the samples may be packed in big-endian `big_endian_bytes=true`
+Within a byte, the samples may be packed in big-endian `big_endian_bytes=true`
 (if the most significant byte value is stored at the memory location with the
 lowest address, the next byte value in significance is stored at the following
 memory location, and so on) or little-endian `big_endian_bytes=false` (if the
 least significant byte value is at the lowest address, and the other bytes
 follow in increasing order of significance). If the order is big-endian then the
-most significant two bits will form the first sample output, otherwise the least
-significant two bits will be used.
+most significant two bits will form the first sample output. Otherwise, the
+least significant two bits will be used.
 
-Additionally the samples may be either real `sample_type=real`, or complex. If
+Additionally, the samples may be either real `sample_type=real` or complex. If
 the sample type is complex, then the samples are either stored in the order:
 real, imag, real, imag, ... `sample_type=iq` or in the order: imag, real, imag,
 real, ... `sample_type=qi`.
@@ -248,7 +248,7 @@ This implementation accepts the following parameters:
 | `implementation` | `Two_Bit_Packed_File_Signal_Source` | Mandatory |
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
-| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `samples` | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 | `item_type` | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>]: Sample data type. It defaults to <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
 | `sample_type` | [`real`, `qi`, `iq`]: Set real or complex sample types (see above). It defaults to `real`. | Optional |
@@ -317,7 +317,7 @@ This implementation accepts the following parameters:
 | `implementation` | `Nsr_Signal_Source` | Mandatory |
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
-| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `samples` | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 | `item_type` | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>]: Sample data type. Only <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr> is allowed in this implementation. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
@@ -384,7 +384,7 @@ std::complex<float>">`gr_complex`</abbr>.  It accepts the following parameters:
 | `sel_ch` | Selected frequency band. 1 $$ <= $$ `sel_ch` $$ <= $$ `total_channels`. It defaults to 1. | Optional |
 | `adc_bits` | [`2`, `4`, `8`, `16`]: Selects 2, 4, 8 or 16 bit I/Q quantization. It defaults to 4 bits. | Optional |
 | `endian` | [`true`, `false`]: If it is set to `false`, it assumes that the host machine is reading in Big Endian (that is, the byte containing the most significant bit is stored first and has the lowest memory address). If it is set to `true`, it assumes Little Endian reading (that is, the byte containing the most significant bit is stored last and has the highest address). It defaults to `false`. | Optional |
-| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `samples` | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 | `bytes_to_skip` | Number of bytes to skip from the beginning of the file. It defaults to 65536 bytes (which is `.gns` files' header length). | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
@@ -927,7 +927,7 @@ This implementation accepts the following parameters:
 | `rf_dc` | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `bb_dc` |  [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `gain_mode` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`. | Optional |
-| `gain` | If `gain_mode` is set to `manual`, it sets the gain of the RX chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain`$$ < 72 $$ dB. It defaults to $$ 50 $$ dB. | Optional |
+| `gain` | If `gain_mode` is set to `manual`, it sets the gain of the RX chain, in dB, with a granularity of 1 dB and range $$ 0 < $$`gain`$$ < 72 $$ dB. It defaults to $$ 50 $$ dB. | Optional |
 | `filter_file` | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty). | Optional |
 | `filter_auto` | [`true`, `false`]: If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
 | `samples` | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |

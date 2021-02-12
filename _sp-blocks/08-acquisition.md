@@ -49,7 +49,7 @@ search in a function which output results from a multiplication-and-sum of $$ K 
 complex samples, becoming the computational bottleneck of the whole process. A
 usual method to alleviate this issue is to resort to the FFT-based circular
 convolution, which exchanges the expensive multiplication-and-sum operation by a
-discrete Fourier transform, a vector product and an inverse transform, taking
+discrete Fourier transform, a vector product, and an inverse transform, taking
 advantage of the efficient implementations available for such
 operations[^Borre06].
 

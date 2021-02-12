@@ -57,7 +57,7 @@ relative_url }}) block is to filter the incoming signal.
 block is to resample the signal and to deliver it to the $$ N $$ parallel
 processing channels.
 
-Any of them can be by-passed by using a `Pass_Through` implementation.
+Any of them can be bypassed by using a `Pass_Through` implementation.
 
 The `Signal_Conditioner` implementation accepts the following parameters:
 

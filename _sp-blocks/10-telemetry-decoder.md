@@ -156,19 +156,29 @@ where
 $$ \begin{equation} e_{Q}(t) = \sum_{l=-\infty}^{\infty} {\color{ForestGreen} D_{\text{GNAV}}\Big[ [l]_{10220} \Big] } \oplus  C_{\text{C/A}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{C/A}})~.\end{equation} $$
 
 
-The navigation message of the standard accuracy signal (C/A) is broadcast as continuously repeating superframes with a duration of 2.5 minutes. Each superframe consists of 5 frames of 30 seconds, and each frame consists of 15 strings of 2 seconds duration (100 bits long).
+The navigation message of the standard accuracy signal (C/A) is broadcast as
+continuously repeating superframes with a duration of 2.5 minutes. Each
+superframe consists of 5 frames of 30 seconds, and each frame consists of 15
+strings of 2 seconds duration (100 bits long).
 
 ![GLONASS NAV message]({{ "/assets/images/GLONASS_navigation_message_structure.png" | relative_url }}){: .align-center .invert-colors}
 _GLONASS NAV message. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GLONASS_Navigation_Message)_.
 {: style="text-align: center;"}
 
-Each string is formed by a 0 (idle) bit, 76 data bits, the eight check bits of a Hamming code (labeled as Kx in the figure above) and a 30-bit time mark (labeled as MB).
+Each string is formed by a 0 (idle) bit, 76 data bits, the eight check bits of a
+Hamming code (labeled as Kx in the figure above), and a 30-bit time mark
+(labeled as MB).
 
 The message content divides the data into _immediate data of the transmitting satellite_ and _non-immediate data for the other satellites_:
- * The immediate data is repeated in the first four strings of every frame. It comprises the ephemeris parameters, satellite clock offsets, satellite healthy flag, and the relative difference between carrier frequency of the satellite and its nominal value.
+ * The immediate data is repeated in the first four strings of every frame. It comprises the ephemeris parameters, satellite clock offsets, satellite healthy flag, and the relative difference between the carrier frequency of the satellite and its nominal value.
  * The non-immediate data is broadcast in the strings 5 to 15 of each frame (almanac for 24 satellites). The frames I to IV contain almanac for 20 satellites (5 per frame), and the 5th frame almanac for 4 satellites. The last 2 strings of frame 5 are reserved bits (the almanac of each satellite uses 2 strings).
 
-The ephemerides values are predicted from the Ground Control Centre for a 24 hours period, and the satellite transmits a new set of ephemerides every 30 minutes. These data differ from GPS data: instead of Keplerian orbital elements, they are provided as Earth Centered Earth Fixed (ECEF) Cartesian coordinates in position and velocity, with lunar and solar acceleration perturbation parameters.
+The ephemerides values are predicted from the Ground Control Centre for a 24
+hours period, and the satellite transmits a new set of ephemerides every 30
+minutes. These data differ from GPS data: instead of Keplerian orbital elements,
+they are provided as Earth Centered Earth Fixed (ECEF) Cartesian coordinates in
+position and velocity, with lunar and solar acceleration perturbation
+parameters.
 
 
 ### Implementation: `GLONASS_L1_CA_Telemetry_Decoder`
@@ -369,11 +379,11 @@ TelemetryDecoder_5X.dump=false
 
 ## Binary output
 
-In all Telemetry Decoder blocks, if `dump=true`, the logging of internal processing data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with same name than `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format which can be easily read with Matlab or Octave, by doing `load telemetryN.mat`, where `N` is the channel number, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library. The stored variables are vectors with a number of columns equal to the total number of epochs (that is, tracking integration times) processed by the Telemetry Decoder block. The blocks store the following variables:
+In all Telemetry Decoder blocks, if `dump=true`, the logging of internal processing data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with the same name than `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format that can be easily read with Matlab or Octave, by doing `load telemetryN.mat`, where `N` is the channel number, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library. The stored variables are vectors with a number of columns equal to the total number of epochs (that is, tracking integration times) processed by the Telemetry Decoder block. The blocks store the following variables:
 
-* `TOW_at_current_symbol_ms`: Time of Week associated to the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal). Data type: `double`.
-* `tracking_sample_counter`: Sample counter associated to each epoch. Data type: `uint64_t`.
-* `TOW_at_Preamble_ms`: Time of Week associated to the preamble of the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal). Data type: `double`.
+* `TOW_at_current_symbol_ms`: Time of Week associated with the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal). Data type: `double`.
+* `tracking_sample_counter`: Sample counter associated with each epoch. Data type: `uint64_t`.
+* `TOW_at_Preamble_ms`: Time of Week associated with the preamble of the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal). Data type: `double`.
 * `nav_symbol`: Navigation message symbol $$ \{ \pm 1 \} $$, as obtained by the Tracking block, for each epoch. Data type: `int32_t`.
 * `PRN`: Satellite ID processed in each epoch. Data type: `int32_t`.
 

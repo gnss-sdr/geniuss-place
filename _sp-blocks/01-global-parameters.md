@@ -40,7 +40,7 @@ parameter, it needs to be present in the configuration file.
 |:-:|:--|:-:|
 |--------------
 | `internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
-| `use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `internal_fs_sps`. All the required setup is configured automatically. This feature is not implemented in all the Acquisition blocks, please check the [Acquisition documentation]({{ "docs/sp-blocks/acquisition/" | relative_url }}). This parameter defaults to `false`. | Optional |
+| `use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during the signal acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `internal_fs_sps`. All the required setup is configured automatically. This feature is not implemented in all the Acquisition blocks, please check the [Acquisition documentation]({{ "docs/sp-blocks/acquisition/" | relative_url }}). This parameter defaults to `false`. | Optional |
 |--------------
 
 _Global GNSS-SDR parameter: channel's input sampling rate_.
@@ -59,7 +59,7 @@ The user can access the receiver interactive interface by connecting a TCP/IP
 client (_e.g._, with a telnet client) to the TCP port specified in the
 configuration file for telecommand.
 
-In order to use it, the executable `gnss-sdr` must be executed with the
+In order to use it, the executable `gnss-sdr` must be called with the
 [gnss-sdr-harness.sh](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/utils/scripts/gnss-sdr-harness.sh)
 script provided at
 [src/utils/scripts](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/scripts):
@@ -106,8 +106,8 @@ The following commands are implemented in GNSS-SDR's telecommand interface:
 | `standby` |  `OK` / `ERROR` | Stops all the acquisition and tracking operations and sets the receiver in the standby state. The front-end will continue delivering samples to the receiver but no signal processing will be done. Obviously, all the tracked satellites will be lost, but the received satellite telemetry (_e.g._ ephemeris data) and the last PVT state will be kept. NOTE: It is possible to specify an option in the configuration file to start the receiver already in the standby state, ready to receive start commands. |
 | `coldstart` |  `OK` / `ERROR` | Performs a receiver cold start. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search for all the satellites in all the signals configured in the configuration file. |
 | `warmstart`&nbsp;`dd/mm/yyyy`&nbsp;`HH:MM:SS`&nbsp;`Lat Long Height` |  `OK` / `ERROR`  | Performs an assisted acquisition receiver start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will read the ephemeris and the almanac assistance data from the [XML files specified in the configuration file](#axml), and the last valid PVT information to predict the visible satellites and coarse estimations of their Doppler rates. |
-| `hotstart dd/mm/yyyy HH:MM:SS Lat Long Height` |  `OK` / `ERROR`   | Performs a receiver hot start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search first for the last set of satellites in view according to the stored ephemeris and almanac and the predicted visible satellites based on the last valid PVT. |
-| `status` |  Summary of current receiver status: individual channel status and PVT status.  | This command prints a summary of the current receiver status intended for debugging and system testing purposes only. The user should monitor the RTCM and NMEA streams for a detailed and synchronized receiver data, which are the primary receiver standard data interfaces. |
+| `hotstart dd/mm/yyyy HH:MM:SS Lat Long Height` |  `OK` / `ERROR`   | Performs a receiver hot start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search first for the last set of in-view satellites  according to the stored ephemeris, almanac, and the predicted visible satellites based on the last valid PVT. |
+| `status` |  Summary of current receiver status: individual channel status and PVT status.  | This command prints a summary of the current receiver status intended for debugging and system testing purposes only. The user should monitor the RTCM and NMEA streams for detailed and synchronized receiver data, which are the primary receiver standard data interfaces. |
 | `exit` |  `OK`  | Closes the telecommand connection. |
 |--------------
 
@@ -238,7 +238,7 @@ The location in the example refers to a latitude of 41.39º N and a longitude of
 Please note that the parameter `AGNSS_gal_almanac_xml` accepts, in addition to
 the [own-defined XML
 format](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/xml-schemas/gal_almanac_map.xsd)
-for the Galileo almanac, the XML format published by European GNSS Service
+for the Galileo almanac, the XML format published by the European GNSS Service
 Centre and available
 [here](https://www.gsc-europa.eu/system-status/almanac-data). Just download the
 latest almanac XML file from there, and set the following parameters in your
@@ -375,7 +375,7 @@ E5a, etc.), GNSS-SDR makes use of the acquisition parameters obtained in the
 primary band to accelerate acquisition in the secondary band(s). This allows
 reducing the computational load (since the search grid in the secondary band(s)
 can be smaller) and the acquisition-to-tracking latency. This behavior can be
-deactivated by setting this parameter to `false`, which makes the receiver to
+deactivated by setting this parameter to `false`, which makes the receiver
 search satellites in each band independently.
 
 |----------
