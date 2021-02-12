@@ -323,8 +323,8 @@ e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \
 In the case of channel C, it is a pilot (dataless) channel with a secondary code
 with a length of 100 ms, forming a tiered code:
 
-$$ \!\!\!\!\!\!\!\!\!\!\begin{equation}
-e_{E1C}(t) =\!\! \sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~,
+$$ \!\!\!\!\!\!\!\!\!\!\!\begin{equation}
+e_{E1C}(t) =\!\! \sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot p(t \! - \! mT_{c,E1Cs} \! - \! lT_{c,E1Cp})~,
 \end{equation} $$
 
 with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$ ms.
@@ -351,11 +351,15 @@ d_{E1B}^{(\text{sinBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}
 
 while for E1C, users can choose among:
 
-$$ \begin{eqnarray} d_{E1C}^{(\text{CBOC})}[n] & = &\sum_{m=-\infty}^{+\infty} \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \nonumber \\ {} & {} & \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right) \end{eqnarray} $$
+$$ \begin{eqnarray}
+d_{E1C}^{(\text{CBOC})}[n] & = &\sum_{m=-\infty}^{+\infty} \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \nonumber \\
+{} & {} & \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)
+\end{eqnarray} $$
 
 or
 
-$$ \!\!\!\begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty} \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \! \cdot \! p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n]~. \end{equation} $$
+$$ \!\!\!\!\begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \! \sum_{m=-\infty}^{+\infty} \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \! \cdot \! p[n \! - \! mT_{c,E1Cs} \! - \! lT_{c,E1Cp}] \cdot sc_A[n]~.
+\end{equation} $$
 
 The simpler sinBOC options are chosen by default. CBOC versions can be set by
 `Acquisition_1B.cboc=true`. Next figure plots the shape of the cross-correlation
