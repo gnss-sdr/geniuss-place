@@ -24,15 +24,16 @@ There are three kinds of filter implementations available:
 
   * Finite Impulse Response (FIR) filters, implementing a fixed frequency mask
     for out-of-band noise or frequency alias suppression.
-    * `Fir_Filter` for baseband signals.
-    * `Freq_Xlating_Fir_Filter` for signals modulated at a given intermediate frequency.
+    * [`Fir_Filter`](#implementation-fir_filter) for baseband signals.
+    * [`Freq_Xlating_Fir_Filter`](#implementation-freq_xlating_fir_filter) for
+    signals modulated at a given intermediate frequency.
 
   * Adaptive filters for interference mitigation.
-    * `Pulse_Blanking_Filter` for pulsed interferences.
-    * `Notch_Filter`, `Notch_Filter_Lite` for narrowband interferences.
+    * [`Pulse_Blanking_Filter`](#implementation-pulse_blanking_filter) for pulsed interferences.
+    * [`Notch_Filter`](#implementation-notch_filter), [`Notch_Filter_Lite`](#implementation-notch_filter_lite) for narrowband interferences.
 
   * Short circuit.
-    * `Pass_Through` copy the input samples to the output buffer.
+    * [`Pass_Through`](#implementation-pass_through) copy the input samples to the output buffer.
 
 
 In the presence of noise and interferences, the signal y(t) received at the
