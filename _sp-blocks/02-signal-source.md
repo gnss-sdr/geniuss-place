@@ -25,14 +25,17 @@ last_modified_at: 2020-08-27T10:54:02+02:00
   ![AD9361 Rx Signal Path]( {{ "/assets/images/AD9361_rx_signal_path.png" | relative_url }})
 {% endcapture %}
 
-A _Signal Source_ is the block that injects a continuous stream of raw samples of GNSS signal to the processing flow graph. This is an abstraction that wraps _all_ kinds of sources, from samples stored in files (in a variety of formats) to multiple sample streams delivered in real-time by radiofrequency front-ends.
+A _Signal Source_ is the block that injects a continuous stream of raw samples
+of GNSS signal to the processing flow graph. This is an abstraction that wraps
+_all_ kinds of sources, from samples stored in files (in a variety of formats)
+to multiple sample streams delivered in real-time by radiofrequency front-ends.
 {: .notice--info}
 
 
 The input of a software receiver are the raw bits that come out from the
-front-end’s analog-to-digital converter (ADC), as sketched in the figure below. Those bits can be read from a file stored in the hard
-disk or directly in real-time from a hardware device through USB or
-Ethernet buses.
+front-end’s analog-to-digital converter (ADC), as sketched in the figure below.
+Those bits can be read from a file stored in the hard disk or directly in
+real-time from a hardware device through USB or Ethernet buses.
 
 <figure>
   {{ fig_img2 | markdownify | remove: "<p>" | remove: "</p>" }}
@@ -44,50 +47,64 @@ Ethernet buses.
 </figure>
 
 
-The _Signal Source_ block is in charge of implementing the hardware
-driver, that is, the portion of the code that communicates with the RF
-front-end and receives the samples coming from the ADC. This
-communication is usually performed through USB or Ethernet buses. Since
-real-time processing requires a highly optimized implementation of the
-whole receiver, this module also allows reading samples from a file
-stored in a hard disk, and thus processing without time constraints.
-Relevant parameters of those samples are the intermediate frequency (or
-baseband I&Q components), the sampling rate, and the number of bits per
-sample, which must be specified by the user in the configuration file, as
-shown below.
+The _Signal Source_ block is in charge of implementing the hardware driver, that
+is, the portion of the code that communicates with the RF front-end and receives
+the samples coming from the ADC. This communication is usually performed through
+USB or Ethernet buses. Since real-time processing requires a highly optimized
+implementation of the whole receiver, this module also allows reading samples
+from a file stored in a hard disk, and thus processing without time constraints.
+Relevant parameters of those samples are the intermediate frequency (or baseband
+I&Q components), the sampling rate, and the number of bits per sample, which
+must be specified by the user in the configuration file, as shown below.
 
-This block also performs bit-depth adaptation, since most of the
-existing RF front-ends provide samples quantized with 2 or 3 bits, while
-operations inside the processor are performed on 32- or 64-bit words,
-depending on its architecture. Although there are implementations of the
-most intensive computational processes (mainly correlation) that take
-advantage of specific data types and architectures for the sake of
-efficiency, the approach is processor-specific and hardly portable. We
-suggest keeping signal samples in standard data types and letting the
-compiler select the best library version (implemented using SIMD or any
-other processor-specific technology) of the required routines for a
-given processor.
+This block also performs bit-depth adaptation, since most of the existing RF
+front-ends provide samples quantized with 2 or 3 bits, while operations inside
+the processor are performed on 32- or 64-bit words, depending on its
+architecture. Although there are implementations of the most intensive
+computational processes (mainly correlation) that take advantage of specific
+data types and architectures for the sake of efficiency, the approach is
+processor-specific and hardly portable. We suggest keeping signal samples in
+standard data types and letting the compiler select the best library version
+(implemented using SIMD or any other processor-specific technology) of the
+required routines for a given processor.
 
-For more details about sample formats, please check out our [tutorial on data types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | relative_url }}).
+For more details about sample formats, please check out our [tutorial on data
+types in GNSS-SDR]({{ "/docs/tutorials/understanding-data-types/" | relative_url }}).
 
-The more kinds of signal sources GNSS-SDR is able to work with, the better is its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" | relative_url }}).
+The more kinds of signal sources GNSS-SDR is able to work with, the better is
+its [**Interoperability**]({{ "/design-forces/interoperability/#signal-sources" |
+relative_url }}).
 {: .notice--success}
 
 ## Reading data from a file
 
-The user can configure the receiver for reading from a file, setting in
-the configuration file the data file location, sample format, and the
-sampling and intermediate frequencies at which the signal was originally
-captured.
+The user can configure the receiver for reading from a file, setting in the
+configuration file the data file location, sample format, and the sampling and
+intermediate frequencies at which the signal was originally captured.
 
-Real signals sampled at an intermediate frequency can be downshifted to
-baseband (and thus expressed as complex samples) by the
-`Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }}) present at
-the Signal Conditioner block with its `IF` parameter.
+Real signals sampled at an intermediate frequency can be downshifted to baseband
+(and thus expressed as complex samples) by the `Freq_Xlating_Fir_Filter`
+implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" |
+relative_url }}) present at the Signal Conditioner block with its `IF`
+parameter.
 
 ### Implementation: `File_Signal_Source`
 
-This _Signal Source_ implementation reads raw signal samples stored in a file, as long as they are stored in one of the following formats: <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. Their definition is as follows:
+This _Signal Source_ implementation reads raw signal samples stored in a file,
+as long as they are stored in one of the following formats: <abbr id="data-type"
+title="Signed integer, 8-bit two's complement number ranging from -128 to 127.
+C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved
+(I&Q) stream of samples of type signed 8-bit integer. C++ name:
+int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's
+complement number ranging from -32768 to 32767. C++ type name:
+int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of
+samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr
+id="data-type" title="Defines numbers with fractional parts, can represent
+values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32
+bits). C++ type name: float">`float`</abbr>, or <abbr id="data-type"
+title="Complex samples with real and imaginary parts of type 32-bit floating
+point. C++ name: std::complex<float>">`gr_complex`</abbr>. Their definition is
+as follows:
 
 |----------
 | **Type name in GNSS-SDR conf files** | **Definition** | **Sample stream**
@@ -115,7 +132,7 @@ This implementation accepts the following parameters:
 | `implementation` | `File_Signal_Source` | Mandatory |
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
-| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `samples` | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 | `item_type` | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `seconds_to_skip` | Seconds of signal to skip from the beginning of the file before start processing. It defaults to $$ 0 $$ s. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
@@ -126,10 +143,13 @@ This implementation accepts the following parameters:
   {: style="text-align: center;"}
 
 This implementation assumes that the center frequency is the nominal
-corresponding to the GNSS frequency band. Any known
-deviation from that value can be compensated by using the `IF` parameter
-of the `Freq_Xlating_Fir_Filter` implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" | relative_url }})
-present at the Signal Conditioner block, or later on in the flow graph at the [Acquisition]({{ "/docs/sp-blocks/acquisition/" | relative_url }}) and [Tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}) blocks with their `if` parameter.
+corresponding to the GNSS frequency band. Any known deviation from that value
+can be compensated by using the `IF` parameter of the `Freq_Xlating_Fir_Filter`
+implementation of the [Input Filter]({{ "/docs/sp-blocks/input-filter/" |
+relative_url }}) present at the Signal Conditioner block, or later on in the
+flow graph at the [Acquisition]({{ "/docs/sp-blocks/acquisition/" | relative_url }})
+and [Tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}) blocks with
+their `if` parameter.
 
 It follows an example of a Signal Source block
 configured with the `File_Signal_Source` implementation:
@@ -162,18 +182,28 @@ specified in `SignalSource.filename`.
 
 ### Implementation: `Two_Bit_Packed_File_Signal_Source`
 
-Sometimes, samples are stored in files in a format that is not in the
-list of “native” types supported by the `File_Signal_Source`
-implementation (i.e, it is not among <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>,
-<abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>). This is the case of 2-bit real samples
-delivered at a given intermediate frequency, which is a common format
-for GNSS RF front-ends.
+Sometimes, samples are stored in files in a format that is not in the list of
+“native” types supported by the `File_Signal_Source` implementation (i.e, it is
+not among <abbr id="data-type" title="Signed integer, 8-bit two's complement
+number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr
+id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit
+integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed
+integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type
+name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q)
+stream of samples of type signed 16-bit integer. C++ name:
+int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with
+fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38
+with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>, or
+<abbr id="data-type" title="Complex samples with real and imaginary parts of
+type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>).
+This is the case of 2-bit real samples delivered at a given intermediate
+frequency, which is a common format for GNSS RF front-ends.
 
-The `Two_Bit_Packed_File_Signal_Source` implementation allows reading
-two-bit length samples from a file. The data is assumed to be packed as
-bytes `item_type=byte` or shorts `item_type=short` so that there are 4
-two-bit samples in each byte. The two-bit values are assumed to have the
-following interpretation:
+The `Two_Bit_Packed_File_Signal_Source` implementation allows reading two-bit
+length samples from a file. The data is assumed to be packed as bytes
+`item_type=byte` or shorts `item_type=short` so that there are 4 two-bit samples
+in each byte. The two-bit values are assumed to have the following
+interpretation:
 
 |---
 | **b1** | **b0** | **Value** |
@@ -183,28 +213,31 @@ following interpretation:
 | 1 | 0 | -3 |
 | 1 | 1 | -1 |
 
-Within a byte the samples may be packed in big-endian
-`big_endian_bytes=true` (if the most significant byte value is stored at
-the memory location with the lowest address, the next byte value in
-significance is stored at the following memory location, and so on) or
-little-endian `big_endian_bytes=false` (if the least significant byte
-value is at the lowest address, and the other bytes follow in increasing
-order of significance). If the order is big-endian then the most
-significant two bits will form the first sample output, otherwise the
+Within a byte, the samples may be packed in big-endian `big_endian_bytes=true`
+(if the most significant byte value is stored at the memory location with the
+lowest address, the next byte value in significance is stored at the following
+memory location, and so on) or little-endian `big_endian_bytes=false` (if the
+least significant byte value is at the lowest address, and the other bytes
+follow in increasing order of significance). If the order is big-endian then the
+most significant two bits will form the first sample output. Otherwise, the
 least significant two bits will be used.
 
-Additionally the samples may be either real `sample_type=real`, or
-complex. If the sample type is complex, then the samples are either
-stored in the order: real, imag, real, imag, ... `sample_type=iq` or in
-the order: imag, real, imag, real, ... `sample_type=qi`.
+Additionally, the samples may be either real `sample_type=real` or complex. If
+the sample type is complex, then the samples are either stored in the order:
+real, imag, real, imag, ... `sample_type=iq` or in the order: imag, real, imag,
+real, ... `sample_type=qi`.
 
-Finally, if the data is stored as shorts `item_type=short`, then it may
-be stored in either big-endian `big_endian_items=true` or little-endian
-`big_endian_items=false`. If the shorts are big-endian, then the second
-byte in each short is output first.
+Finally, if the data is stored as shorts `item_type=short`, then it may be
+stored in either big-endian `big_endian_items=true` or little-endian
+`big_endian_items=false`. If the shorts are big-endian, then the second byte in
+each short is output first.
 
-The output data type is either <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> depending on
-whether or not `sample_type` is real.
+The output data type is either <abbr id="data-type" title="Defines numbers with
+fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38
+with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or
+<abbr id="data-type" title="Complex samples with real and imaginary parts of
+type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>
+depending on whether or not `sample_type` is real.
 
 This implementation accepts the following parameters:
 
@@ -215,7 +248,7 @@ This implementation accepts the following parameters:
 | `implementation` | `Two_Bit_Packed_File_Signal_Source` | Mandatory |
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
-| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `samples` | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 | `item_type` | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>]: Sample data type. It defaults to <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
 | `sample_type` | [`real`, `qi`, `iq`]: Set real or complex sample types (see above). It defaults to `real`. | Optional |
@@ -250,19 +283,30 @@ SignalSource.big_endian_bytes=false
 
 ### Implementation: `Nsr_File_Signal_Source`
 
-Sometimes, samples are stored in files in a format that is not in the
-list of “native” types supported by the `File_Signal_Source`
-implementation (i.e, it is not among <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>,
-<abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>). This is the case of 2-bit real samples
-delivered at a given intermediate frequency, which is a common format
-found in RF front-ends:
+Sometimes, samples are stored in files in a format that is not in the list of
+“native” types supported by the `File_Signal_Source` implementation (i.e, it is
+not among <abbr id="data-type" title="Signed integer, 8-bit two's complement
+number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr
+id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit
+integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed
+integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type
+name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q)
+stream of samples of type signed 16-bit integer. C++ name:
+int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with
+fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38
+with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr> or
+<abbr id="data-type" title="Complex samples with real and imaginary parts of
+type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>).
+This is the case of 2-bit real samples delivered at a given intermediate
+frequency, which is a common format found in RF front-ends:
 
 $$ [S_0], [S_1], [S_2], ... $$ where $$ [S_i] $$ are 2-bit real samples.
 
-This Signal Source implementation is able to read such format and
-deliver at its output a sample stream composed of samples of type *byte*
-(8-bit signed integer). This implementation delivers a stream of samples
-of type <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.
+This Signal Source implementation is able to read such format and deliver at its
+output a sample stream composed of samples of type *byte* (8-bit signed
+integer). This implementation delivers a stream of samples of type <abbr
+id="data-type" title="Complex samples with real and imaginary parts of type
+32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.
 
 This implementation accepts the following parameters:
 
@@ -273,7 +317,7 @@ This implementation accepts the following parameters:
 | `implementation` | `Nsr_Signal_Source` | Mandatory |
 | `filename` |  Path to the file containing the raw digitized signal samples | Mandatory |
 | `sampling_frequency` | Sample rate, in samples per second. | Mandatory |
-| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `samples` | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 | `item_type` | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>]: Sample data type. Only <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr> is allowed in this implementation. | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
@@ -319,9 +363,15 @@ specified in `SignalSource.filename`.
 
 [![GSS6450]({{ "/assets/images/GSS6450.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://www.spirent.com/Products/GSS6450)
 
-The Spirent [GSS6450](https://www.spirent.com/Products/GSS6450) Record and Playback System digitizes and stores the RF signals from real GNSS satellites along with any interference observed in the GNSS bands. These recordings are then made available for subsequent playback.
+The Spirent [GSS6450](https://www.spirent.com/Products/GSS6450) Record and
+Playback System digitizes and stores the RF signals from real GNSS satellites
+along with any interference observed in the GNSS bands. These recordings are
+then made available for subsequent playback.
 
-This block reads files generated by Spirent's GSS6450, and delivers samples in format <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.  It accepts the following parameters:
+This block reads files generated by Spirent's GSS6450, and delivers samples in
+format <abbr id="data-type" title="Complex samples with real and imaginary parts
+of type 32-bit floating point. C++ name:
+std::complex<float>">`gr_complex`</abbr>.  It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
@@ -334,7 +384,7 @@ This block reads files generated by Spirent's GSS6450, and delivers samples in f
 | `sel_ch` | Selected frequency band. 1 $$ <= $$ `sel_ch` $$ <= $$ `total_channels`. It defaults to 1. | Optional |
 | `adc_bits` | [`2`, `4`, `8`, `16`]: Selects 2, 4, 8 or 16 bit I/Q quantization. It defaults to 4 bits. | Optional |
 | `endian` | [`true`, `false`]: If it is set to `false`, it assumes that the host machine is reading in Big Endian (that is, the byte containing the most significant bit is stored first and has the lowest memory address). If it is set to `true`, it assumes Little Endian reading (that is, the byte containing the most significant bit is stored last and has the highest address). It defaults to `false`. | Optional |
-| `samples` | Number of samples to be read. If set to $$ 0 $$ the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
+| `samples` | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$. | Optional |
 | `bytes_to_skip` | Number of bytes to skip from the beginning of the file. It defaults to 65536 bytes (which is `.gns` files' header length). | Optional |
 | `repeat` | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`. | Optional |
@@ -357,13 +407,26 @@ SignalSource.adc_bits=4
 
 [![LabSat3]({{ "/assets/images/labsat3.png" | relative_url }}){:width="250px"}{: .align-right}](https://www.labsat.co.uk/index.php/en/products/labsat-3)
 
-[LabSat](https://www.labsat.co.uk/index.php/en/) is an affordable, portable, and versatile multi-constellation Global Navigation Satellite Simulator.
+[LabSat](https://www.labsat.co.uk/index.php/en/) is an affordable, portable, and
+versatile multi-constellation Global Navigation Satellite Simulator.
 
-LabSat 3 devices record and replay real-world raw sample data, allowing realistic and repeatable testing to be carried out under controlled conditions. This block reads files stored by LabSat 2 or LabSat 3 devices, and delivers a stream of samples of type <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. Only single-frequency reading is implemented.
+LabSat 3 devices record and replay real-world raw sample data, allowing
+realistic and repeatable testing to be carried out under controlled conditions.
+This block reads files stored by LabSat 2 or LabSat 3 devices, and delivers a
+stream of samples of type <abbr id="data-type" title="Complex samples with real
+and imaginary parts of type 32-bit floating point. C++ name:
+std::complex<float>">`gr_complex`</abbr>. Only single-frequency reading is
+implemented.
 
-LabSat 3 splits data into 2 GB files. This file source automatically increments the file name when the signal is split into several files: it adds "_0000.LS3" to this base path and filename. Thus, the next file will be "_0001.LS3" and so on.
+LabSat 3 splits data into 2 GB files. This file source automatically increments
+the file name when the signal is split into several files: it adds "_0000.LS3"
+to this base path and filename. Thus, the next file will be "_0001.LS3" and so
+on.
 
-The block can work as well with files generated by [SatGen](https://www.labsat.co.uk/index.php/en/products/satgen-simulator-software), the associated software that allows users to create GNSS RF I&Q or IF data files from predefined and user-defined scenarios.
+The block can work as well with files generated by
+[SatGen](https://www.labsat.co.uk/index.php/en/products/satgen-simulator-software),
+the associated software that allows users to create GNSS RF I&Q or IF data files
+from predefined and user-defined scenarios.
 
 This implementation accepts the following parameters:
 
@@ -418,7 +481,17 @@ SignalSource.throttle_frequency_sps=16368000
 
 ### Implementation: `UHD_Signal_Source`
 
-[![Ettus Research]({{ "/assets/images/logo-ettus.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}{: .invert-colors}](https://www.ettus.com) The USRP Hardware Driver ([UHD](https://files.ettus.com/manual/)) software API supports application development on all [Ettus Research](https://www.ettus.com)'s [USRP](https://www.ettus.com/product) Software Defined Radio products. Using a common software interface is critical as it increases code portability, allowing applications to transition seamlessly to other USRP SDR platforms when development requirements expand or new platforms are available. Hence, it enables a significant reduction in development effort by allowing you to preserve and reuse your legacy code so you can focus on new algorithms.
+[![Ettus Research]({{ "/assets/images/logo-ettus.png" | relative_url
+}}){:height="250px" width="250px"}{: .align-right}{:
+.invert-colors}](https://www.ettus.com) The USRP Hardware Driver
+([UHD](https://files.ettus.com/manual/)) software API supports application
+development on all [Ettus Research](https://www.ettus.com)'s
+[USRP](https://www.ettus.com/product) Software Defined Radio products. Using a
+common software interface is critical as it increases code portability, allowing
+applications to transition seamlessly to other USRP SDR platforms when
+development requirements expand or new platforms are available. Hence, it
+enables a significant reduction in development effort by allowing you to
+preserve and reuse your legacy code so you can focus on new algorithms.
 
 This implementation accepts the following parameters:
 
@@ -471,10 +544,10 @@ SignalSource.dump_filename=../data/signal_source.dat
 SignalSource.enable_throttle_control=false
 ```
 
-If `RF_channels` is set to more than one, then the number of the
-radio-frequency channel (starting with $$ 0 $$) is appended to the name of
-parameters `samples`, `dump`, `dump_filename`, `freq`, `gain` and
-`IF_bandwidth_hz` to indicate to which RF chain they apply.
+If `RF_channels` is set to more than one, then the number of the radio-frequency
+channel (starting with $$ 0 $$) is appended to the name of parameters `samples`,
+`dump`, `dump_filename`, `freq`, `gain` and `IF_bandwidth_hz` to indicate to
+which RF chain they apply.
 
 For instance, if `RF_channels` is set to `2`, then:
 
@@ -500,7 +573,15 @@ For instance, if `RF_channels` is set to `2`, then:
   {: style="text-align: center;"}
 
 {% capture tip-exit %}
-  **Tip:** If the `samples` parameter is not specified, or set to $$ 0 $$, the USRP will deliver samples in a continuous way and with no specified end time, and so the software receiver will process endlessly. When configured for an infinite number of samples, please **always** terminate the software receiver execution by **pressing key 'q' and then key 'ENTER'**. This will make the program to exit gracefully, doing some clean-up work and preparing output products such as RINEX files to be properly read by other software tools. This is not guaranteed if the program is interrupted for instance by pressing keys 'CTRL' and 'c' at the same time.
+  **Tip:** If the `samples` parameter is not specified, or set to $$ 0 $$, the
+  USRP will deliver samples in a continuous way and with no specified end time,
+  and so the software receiver will process endlessly. When configured for an
+  infinite number of samples, please **always** terminate the software receiver
+  execution by **pressing key 'q' and then key 'ENTER'**. This will make the
+  program to exit gracefully, doing some clean-up work and preparing output
+  products such as RINEX files to be properly read by other software tools. This
+  is not guaranteed if the program is interrupted for instance by pressing keys
+  'CTRL' and 'c' at the same time.
 {% endcapture %}
 
 <div class="notice--warning">
@@ -511,18 +592,30 @@ For instance, if `RF_channels` is set to `2`, then:
 
 ### Implementation: `Osmosdr_Signal_Source`
 
-[![OsmoSDR]({{ "/assets/images/osmocom.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://osmocom.org/)
-[OsmoSDR](https://osmocom.org/projects/gr-osmosdr) is a 100 % Free Software based small form-factor inexpensive SDR (Software Defined Radio)
-project. It consists of USB-attached hardware, the associated firmware as well as software tools for GNU Radio integration. The project also provides a software driver for several RF front-ends such as [RTL-based
-dongles](https://www.rtl-sdr.com/tag/v3/), [HackRF](https://greatscottgadgets.com/hackrf/), [bladeRF](https://www.nuand.com/), [LimeSDR](https://myriadrf.org/projects/limesdr/), [etc](https://osmocom.org/projects/gr-osmosdr).
+[![OsmoSDR]({{ "/assets/images/osmocom.png" | relative_url }}){:height="250px"
+width="250px"}{: .align-right}](https://osmocom.org/)
+[OsmoSDR](https://osmocom.org/projects/gr-osmosdr) is a 100 % Free Software
+based small form-factor inexpensive SDR (Software Defined Radio) project. It
+consists of USB-attached hardware, the associated firmware as well as software
+tools for GNU Radio integration. The project also provides a software driver for
+several RF front-ends such as [RTL-based
+dongles](https://www.rtl-sdr.com/tag/v3/),
+[HackRF](https://greatscottgadgets.com/hackrf/),
+[bladeRF](https://www.nuand.com/),
+[LimeSDR](https://myriadrf.org/projects/limesdr/),
+[etc](https://osmocom.org/projects/gr-osmosdr).
 
-If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need to install the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the GNSS-SDR building with the following flag:
+If you installed GNSS-SDR from a software package, this implementation is
+already available. But if you built GNSS-SDR from the source code, you will need
+to install the required software dependencies (the `gr-osmosdr` component of GNU
+Radio) and configure the GNSS-SDR building with the following flag:
 
 ```console
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
-For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}).
+For more information, check out the tutorial about [GNSS-SDR options at building
+time]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}).
 
 
 This implementation accepts the following parameters:
@@ -546,7 +639,9 @@ This implementation accepts the following parameters:
 | `dump_filename` | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
 |-------
 
-Please note that not all the OsmoSDR-compatible devices can work as radio frequency front-ends for proper GNSS signal reception, please check the specifications. For suitable RF front-ends, you can use:
+Please note that not all the OsmoSDR-compatible devices can work as radio
+frequency front-ends for proper GNSS signal reception, please check the
+specifications. For suitable RF front-ends, you can use:
 
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
@@ -561,7 +656,19 @@ SignalSource.enable_throttle_control=false
 ```
 
 {% capture bias-tee-rtlsdrv3 %}
-**Tip:** Please note that the new [RTL-SDR Blog V3](https://www.rtl-sdr.com/wp-content/uploads/2018/02/RTL-SDR-Blog-V3-Datasheet.pdf) dongles ship a < 1 PPM temperature compensated oscillator (TCXO), which is well suited for GNSS signal processing, and a 4.5 V powered bias-tee to feed an active antenna. Whether the bias-tee is turned off before reception or remains active depends on which version of [gr-osmosdr](https://github.com/osmocom/gr-osmosdr) was used when compiling GNSS-SDR. With an old version (for example, v0.1.4-8), the utility [rtl_biast](https://github.com/OrbitTheSun/rtl_biast) may be used to switch the bias-tee, and then call gnss-sdr.  After reception, the bias-tee is switched off automatically by the program. With newer versions of gr-osmosdr (>= 0.1.4-13), the bias-tee can be activated by passing the following parameters to the configuration:
+**Tip:** Please note that the new [RTL-SDR Blog
+V3](https://www.rtl-sdr.com/wp-content/uploads/2018/02/RTL-SDR-Blog-V3-Datasheet.pdf)
+dongles ship a < 1 PPM temperature compensated oscillator (TCXO), which is well
+suited for GNSS signal processing, and a 4.5 V powered bias-tee to feed an
+active antenna. Whether the bias-tee is turned off before reception or remains
+active depends on which version of
+[gr-osmosdr](https://github.com/osmocom/gr-osmosdr) was used when compiling
+GNSS-SDR. With an old version (for example, v0.1.4-8), the utility
+[rtl_biast](https://github.com/OrbitTheSun/rtl_biast) may be used to switch the
+bias-tee, and then call gnss-sdr.  After reception, the bias-tee is switched off
+automatically by the program. With newer versions of gr-osmosdr (>= 0.1.4-13),
+the bias-tee can be activated by passing the following parameters to the
+configuration:
 
 ```ini
 SignalSource.osmosdr_args=rtl,bias=1
@@ -580,15 +687,22 @@ SignalSource.osmosdr_args=hackrf,bias=1
 
 ### Implementation: `RtlTcp_Signal_Source`
 
-In the case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use the [`rtl_tcp`](https://osmocom.org/projects/rtl-sdr/wiki) I/Q server in order to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832 based DVB-T receivers.
+In the case of using a Zarlink's RTL2832 based DVB-T receiver, you can even use
+the [`rtl_tcp`](https://osmocom.org/projects/rtl-sdr/wiki) I/Q server in order
+to use the USB dongle remotely. `rtl_tcp` is an I/Q spectrum server for RTL2832
+based DVB-T receivers.
 
-If you installed GNSS-SDR from a software package, this implementation is already available. But if you built GNSS-SDR from the source code, you will need the required software dependencies (the `gr-osmosdr` component of GNU Radio) and configure the building with the following flag:
+If you installed GNSS-SDR from a software package, this implementation is
+already available. But if you built GNSS-SDR from the source code, you will need
+the required software dependencies (the `gr-osmosdr` component of GNU Radio) and
+configure the building with the following flag:
 
 ```console
 $ cmake -DENABLE_OSMOSDR=ON ../
 ```
 
-For more information, check out the tutorial about [GNSS-SDR options at building time]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}).
+For more information, check out the tutorial about [GNSS-SDR options at building
+time]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}).
 
 In a terminal, type:
 
@@ -621,17 +735,44 @@ SignalSource.swap_iq=false
 
 ### Implementation: `Fmcomms2_Signal_Source`
 
-[![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
-The [AD-FMCOMMS2-EBZ](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html) is an FPGA Mezzanine Card ([FMC](https://fmchub.github.io/appendix/VITA57_FMC_HPC_LPC_SIGNALS_AND_PINOUT.html)) board for the [AD9361](https://www.analog.com/en/products/ad9361.html), a highly integrated RF transceiver originally designed for use in 3G and 4G base station applications.  Its programmability and wideband capability make it ideal for a broad range of applications, since the device combines a RF front end with a flexible mixed-signal baseband section and integrated frequency synthesizers, providing a configurable digital interface. The AD9361 receiver's local oscillator can operate from $$ 70 $$ MHz to $$ 6.0 $$ GHz, and channel bandwidths from less than $$ 200 $$ kHz to $$ 56 $$ MHz are supported. The two independent direct conversion receivers have state-of-the-art noise figure and linearity. Each receive (RX) subsystem includes independent automatic gain control (AGC), dc offset correction, quadrature correction, and digital filtering, thereby eliminating the need for these functions in the digital baseband. Two high dynamic range analog-to-digital converters (ADCs) per channel digitize the received I and Q signals and pass them through decimation filters and 128-tap finite impulse response (FIR) filters to produce a 12-bit output signal at the appropriate sample rate.
+[![AD-FMComms2-EBZ]({{ "/assets/images/fmcomms2.png" | relative_url
+}}){:height="250px" width="250px"}{:
+.align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
+The
+[AD-FMCOMMS2-EBZ](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/EVAL-AD-FMCOMMS2.html)
+is an FPGA Mezzanine Card
+([FMC](https://fmchub.github.io/appendix/VITA57_FMC_HPC_LPC_SIGNALS_AND_PINOUT.html))
+board for the [AD9361](https://www.analog.com/en/products/ad9361.html), a highly
+integrated RF transceiver originally designed for use in 3G and 4G base station
+applications.  Its programmability and wideband capability make it ideal for a
+broad range of applications, since the device combines a RF front end with a
+flexible mixed-signal baseband section and integrated frequency synthesizers,
+providing a configurable digital interface. The AD9361 receiver's local
+oscillator can operate from $$ 70 $$ MHz to $$ 6.0 $$ GHz, and channel
+bandwidths from less than $$ 200 $$ kHz to $$ 56 $$ MHz are supported. The two
+independent direct conversion receivers have state-of-the-art noise figure and
+linearity. Each receive (RX) subsystem includes independent automatic gain
+control (AGC), dc offset correction, quadrature correction, and digital
+filtering, thereby eliminating the need for these functions in the digital
+baseband. Two high dynamic range analog-to-digital converters (ADCs) per channel
+digitize the received I and Q signals and pass them through decimation filters
+and 128-tap finite impulse response (FIR) filters to produce a 12-bit output
+signal at the appropriate sample rate.
 
-The AD9361 RX signal path passes downconverted signals (I and Q) to the baseband receiver section. The baseband RX signal path is composed of two programmable analog low-pass filters, a 12-bit ADC, and four stages of digital decimating filters. Each of the four decimating filters can be bypassed. The figure below shows a block diagram for the AD9361 RX signal path after downconversion. Note that both the I and Q paths are schematically identical to each other.
+The AD9361 RX signal path passes downconverted signals (I and Q) to the baseband
+receiver section. The baseband RX signal path is composed of two programmable
+analog low-pass filters, a 12-bit ADC, and four stages of digital decimating
+filters. Each of the four decimating filters can be bypassed. The figure below
+shows a block diagram for the AD9361 RX signal path after downconversion. Note
+that both the I and Q paths are schematically identical to each other.
 
 <figure>
   {{ fig_img5 | markdownify | remove: "<p>" | remove: "</p>" }}
   <figcaption>Block diagram for the AD9361 RX signal path after downconversion, composed of two programmable analog low-pass filters, a 12-bit ADC, and four stages of digital decimating filters.</figcaption>
 </figure>
 
-In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies.
+In order to make use of this block implementation, you need to build GNSS-SDR
+from the source code after installing the required software dependencies.
 
 In Debian Buster or Ubuntu Cosmic, those dependencies can be installed as:
 
@@ -639,7 +780,8 @@ In Debian Buster or Ubuntu Cosmic, those dependencies can be installed as:
 $ sudo apt-get install libiio-dev gr-iio
 ```
 
-In older releases or other distributions, dependencies can be built from source as:
+In older releases or other distributions, dependencies can be built from source
+as:
 
 ```console
 $ sudo apt-get install libxml2-dev bison flex
@@ -657,9 +799,11 @@ $ mkdir build && cd build && cmake .. && make && sudo make install
 $ cd ../..
 ```
 
-**Warning**: do **not** use gr-iio < 0.3 packaged in Debian releases older than Buster and Ubuntu releases older than Cosmic.
+**Warning**: do **not** use gr-iio < 0.3 packaged in Debian releases older than
+Buster and Ubuntu releases older than Cosmic.
 
-Once gr-iio is installed, build GNSS-SDR passing the flag ```-DENABLE_FMCOMMS2=ON``` at configure time:
+Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_FMCOMMS2=ON`
+at configure time:
 
 ```console
 $ cd gnss-sdr/build
@@ -718,10 +862,22 @@ SignalSource.rf_port_select=A_BALANCED
 
 ### Implementation: `Plutosdr_Signal_Source`
 
-[![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
-The [ADALM-Pluto](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html) is a learning module that helps introduce electrical engineering students to the fundamentals of software-defined radio (SDR), radio frequency (RF), and wireless communications. Based on the [AD9363](https://www.analog.com/en/products/AD9363.html), it offers one receive channel and one transmit channel which can be operated in full-duplex, capable of generating or measuring RF analog signals from $$ 325 $$ to $$ 3800 $$ MHz, with a $$ 20 $$ MHz bandwidth, at up to $$ 61.44 $$ Mega Samples per second (MSps) with a 12-bit ADC and DAC.
+[![ADALM-Pluto]({{ "/assets/images/ADALM-Pluto.png" | relative_url
+}}){:height="250px" width="250px"}{:
+.align-right}](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
+The
+[ADALM-Pluto](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/adalm-pluto.html)
+is a learning module that helps introduce electrical engineering students to the
+fundamentals of software-defined radio (SDR), radio frequency (RF), and wireless
+communications. Based on the
+[AD9363](https://www.analog.com/en/products/AD9363.html), it offers one receive
+channel and one transmit channel which can be operated in full-duplex, capable
+of generating or measuring RF analog signals from $$ 325 $$ to $$ 3800 $$ MHz,
+with a $$ 20 $$ MHz bandwidth, at up to $$ 61.44 $$ Mega Samples per second
+(MSps) with a 12-bit ADC and DAC.
 
-In order to make use of this block implementation, you need to build GNSS-SDR from the source code after installing the required software dependencies:
+In order to make use of this block implementation, you need to build GNSS-SDR
+from the source code after installing the required software dependencies:
 
 ```console
 $ sudo apt-get install libxml2-dev bison flex
@@ -739,9 +895,11 @@ $ mkdir build && cd build && cmake .. && make && sudo make install
 $ cd ../..
 ```
 
-**Warning**: do **not** use gr-iio < 0.3 packaged in some Debian and Ubuntu distributions.
+**Warning**: do **not** use gr-iio < 0.3 packaged in some Debian and Ubuntu
+distributions.
 
-Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_PLUTOSDR=ON` at configure time:
+Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_PLUTOSDR=ON`
+at configure time:
 
 ```console
 $ cd gnss-sdr/build
@@ -769,7 +927,7 @@ This implementation accepts the following parameters:
 | `rf_dc` | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `bb_dc` |  [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`. | Optional |
 | `gain_mode` | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`. | Optional |
-| `gain` | If `gain_mode` is set to `manual`, it sets the gain of the RX chain, in dB, with granularity of 1 dB and range $$ 0 < $$`gain`$$ < 72 $$ dB. It defaults to $$ 50 $$ dB. | Optional |
+| `gain` | If `gain_mode` is set to `manual`, it sets the gain of the RX chain, in dB, with a granularity of 1 dB and range $$ 0 < $$`gain`$$ < 72 $$ dB. It defaults to $$ 50 $$ dB. | Optional |
 | `filter_file` | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty). | Optional |
 | `filter_auto` | [`true`, `false`]: If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`. | Optional |
 | `samples` | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
@@ -800,26 +958,24 @@ SignalSource.dump_filename=./capture.dat
 Multiple radio frequency chains
 -------------------------------
 
-A single Signal Source can be equipped with more than one
-radio-frequency chain. Examples of such configuration could be a USRP
-with two subdevices, or dual or triple band RF front ends, such as NSL
-Stereo or Flexiband.
+A single Signal Source can be equipped with more than one radio-frequency chain.
+Examples of such configuration could be a USRP with two subdevices, or dual or
+triple band RF front ends, such as NSL Stereo or Flexiband.
 
-This case implies not only the configuration of the Signal Source, but
-also there is a need to set up different Signal Conditioners for each
-band, and configure the Channel implementations for the different
-signals present on each band.
+This case implies not only the configuration of the Signal Source, but also
+there is a need to set up different Signal Conditioners for each band, and
+configure the Channel implementations for the different signals present on each
+band.
 
 <figure>
   {{ fig_img3 | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>Simplified block diagram of a dual-band receiver of GPS L1 C/A and GPS
-  L2C (M) signals.</figcaption>
+  <figcaption>Simplified block diagram of a dual-band receiver of GPS L1 C/A and
+  GPS L2C (M) signals.</figcaption>
 </figure>
 
 
-The number of radio-frequency chains is denoted by the parameter
-`RF_channels`, which defaults to one if it is not present in the
-configuration file.
+The number of radio-frequency chains is denoted by the parameter `RF_channels`,
+which defaults to one if it is not present in the configuration file.
 
 ```ini
 SignalSource.RF_channels=2
@@ -911,7 +1067,8 @@ TelemetryDecoder_2S.implementation=...
 ```
 
 
-Example: Configuring the USRP X300 with two front-ends for receiving signals in L1 and L2 bands
+Example: Configuring the USRP X300 with two front-ends for receiving signals in
+L1 and L2 bands
 
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
@@ -940,8 +1097,8 @@ SignalSource.dump_filename1=../data/signal_source1.dat
 Multiple sources
 ----------------
 
-A receiver can have more than one Signal Source delivering signal
-streams at the same time.
+A receiver can have more than one Signal Source delivering signal streams at the
+same time.
 
 Examples of such configuration could be:
 

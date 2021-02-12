@@ -10,25 +10,53 @@ last_modified_at: 2019-04-21T15:54:02-04:00
 ---
 
 
-The _Monitor_ block provides an interface for monitoring the internal status of the receiver in real-time by streaming the receiver's internal data to local or remote clients over UDP.
+The _Monitor_ block provides an interface for monitoring the internal status of
+the receiver in real-time by streaming the receiver's internal data to local or
+remote clients over UDP.
 {: .notice--info}
 
-This block is a feature of GNSS-SDR which was developed having [usability]({{ "/design-forces/usability/" | relative_url }}) in mind. It gives an internal (or white-box) perspective of the receiver, allowing a deeper insight into its performance, and provides a communication interface through which end-users can build their monitoring clients upon.
+This block is a feature of GNSS-SDR which was developed having [usability]({{
+"/design-forces/usability/" | relative_url }}) in mind. It gives an internal (or
+white-box) perspective of the receiver, allowing a deeper insight into its
+performance, and provides a communication interface through which end-users can
+build their monitoring clients upon.
 
-This is made possible by exposing [`Gnss_Synchro`](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h) objects from inside the receiver to the user. These objects are special containers that hold a set of variables that capture the internal state of the receiver as they travel along the receiver chain.
+This is made possible by exposing
+[`Gnss_Synchro`](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/core/system_parameters/gnss_synchro.h)
+objects from inside the receiver to the user. These objects are special
+containers that hold a set of variables that capture the internal state of the
+receiver as they travel along the receiver chain.
 
-Each channel of the receiver instantiates a `Gnss_Synchro` object. Once it reaches the _Monitor_ block, the object is serialized into a binary encoded message and then streamed through a network socket to one or more destination endpoints (clients) designated by the user. Each client can then deserialize the encoded message from the data stream, recover the `Gnss_Synchro` object and access its member variables for further inspection and monitoring.
+Each channel of the receiver instantiates a `Gnss_Synchro` object. Once it
+reaches the _Monitor_ block, the object is serialized into a binary encoded
+message and then streamed through a network socket to one or more destination
+endpoints (clients) designated by the user. Each client can then deserialize the
+encoded message from the data stream, recover the `Gnss_Synchro` object and
+access its member variables for further inspection and monitoring.
 
-This communication mechanism is built with [Boost.Asio](https://www.boost.org/doc/libs/release/libs/asio/) for the networking logic and [Protocol Buffers](https://developers.google.com/protocol-buffers/) for the serialization logic. Originally [Boost.Serialization](https://www.boost.org/doc/libs/release/libs/serialization/) was used but in release [v0.0.11](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.11) it was deprecated in favor of Protocol Buffers. If you still wish to use the old serialization format based on Boost, set the `Monitor.enable_protobuf` parameter to `false` in your configuration file.
+This communication mechanism is built with
+[Boost.Asio](https://www.boost.org/doc/libs/release/libs/asio/) for the
+networking logic and [Protocol
+Buffers](https://developers.google.com/protocol-buffers/) for the serialization
+logic. Originally
+[Boost.Serialization](https://www.boost.org/doc/libs/release/libs/serialization/)
+was used but in release
+[v0.0.11](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.11) it was
+deprecated in favor of Protocol Buffers. If you still wish to use the old
+serialization format based on Boost, set the `Monitor.enable_protobuf` parameter
+to `false` in your configuration file.
 {: .notice--info}
 
 ## Exposed Internal Parameters
 
-The exposed internal parameters are the data members of the `Gnss_Synchro` class. There are 25 in total, and can be classified based on the subsystem they inform about:
+The exposed internal parameters are the data members of the `Gnss_Synchro`
+class. There are 25 in total, and can be classified based on the subsystem they
+inform about:
 
 ### Satellite and signal information
 
-The following set of variables record general information about the [Channel]({{ "/docs/sp-blocks/acquisition/" | relative_url }}).
+The following set of variables record general information about the [Channel]({{
+"/docs/sp-blocks/acquisition/" | relative_url }}).
 
 |----------
 |  **Name**  |  **Type** | **Description** |
@@ -42,7 +70,8 @@ The following set of variables record general information about the [Channel]({{
 
 ### Acquisition
 
-The following set of variables record information about the [Acquisition]({{ "/docs/sp-blocks/acquisition/" | relative_url }}) block.
+The following set of variables record information about the [Acquisition]({{
+"/docs/sp-blocks/acquisition/" | relative_url }}) block.
 
 |----------
 |  **Name**  |  **Type** | **Description** |
@@ -57,7 +86,8 @@ The following set of variables record information about the [Acquisition]({{ "/d
 
 ### Tracking
 
-The following set of variables record information about the [Tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}) block.
+The following set of variables record information about the [Tracking]({{
+"/docs/sp-blocks/tracking/" | relative_url }}) block.
 
 |----------
 |  **Name**  |  **Type** | **Description** |
@@ -77,7 +107,8 @@ The following set of variables record information about the [Tracking]({{ "/docs
 
 ### Telemetry Decoder
 
-The following set of variables record information about the [Telemetry Decoder]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) block.
+The following set of variables record information about the [Telemetry
+Decoder]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) block.
 
 |----------
 |  **Name**  |  **Type** | **Description** |
@@ -89,7 +120,8 @@ The following set of variables record information about the [Telemetry Decoder](
 
 ### Observables
 
-The following set of variables record information about the [Observables]({{ "/docs/sp-blocks/observables/" | relative_url }}) block.
+The following set of variables record information about the [Observables]({{
+"/docs/sp-blocks/observables/" | relative_url }}) block.
 
 |----------
 |  **Name**  |  **Type** | **Description** |
@@ -119,7 +151,8 @@ The configuration of the _Monitor_ block accepts the following parameters:
 
 Example 1:
 
-The following configuration streams the receiver internal parameters to the localhost address on port 1234 UDP without decimation:
+The following configuration streams the receiver internal parameters to the
+localhost address on port 1234 UDP without decimation:
 
 ```ini
 ;######### MONITOR CONFIG ############
@@ -131,7 +164,9 @@ Monitor.udp_port=1234
 
 Example 2:
 
-The following configuration streams the receiver internal parameters to the addresses 10.10.10.1 and 10.10.10.2 on port 1234 UDP with a decimation integer factor of $$ N=1000 $$:
+The following configuration streams the receiver internal parameters to the
+addresses 10.10.10.1 and 10.10.10.2 on port 1234 UDP with a decimation integer
+factor of $$ N=1000 $$:
 
 ```ini
 ;######### MONITOR CONFIG ############

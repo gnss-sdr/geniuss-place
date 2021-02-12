@@ -1169,7 +1169,8 @@ Each variable is a vector containing the outputs of every integration period.
 
 Example:
 
-Assuming that you are processing GPS L1 C/A signals, and you have included the following lines in your configuration file:
+Assuming that you are processing GPS L1 C/A signals, and you have included the
+following lines in your configuration file:
 
 ```ini
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
@@ -1178,9 +1179,17 @@ Tracking_1C.dump=true
 Tracking_1C.dump_filename=./trk_dump
 ```
 
-Then, after the processing, you will get a list of `.mat` files (in this case, `./trk_dump0.mat`, `./trk_dump1.mat`, etc., up to the number of channels) storing the intermediate results obtained by the Tracking blocks.
+Then, after the processing, you will get a list of `.mat` files (in this case,
+`./trk_dump0.mat`, `./trk_dump1.mat`, etc., up to the number of channels)
+storing the intermediate results obtained by the Tracking blocks.
 
-Some Matlab/Octave plotting scripts examples are available from [src/utils/matlab](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/utils/matlab). For instance, the [`dll_pll_veml_plot_sample.m`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/utils/matlab/dll_pll_veml_plot_sample.m) script just requires the modification of the `samplingFreq`, `channels`, `tracking_log_path` and `path` variables to get a set of figures with the main tracking results for each channel.
+Some Matlab/Octave plotting script examples are available from
+[src/utils/matlab](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/utils/matlab).
+For instance, the
+[`dll_pll_veml_plot_sample.m`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/utils/matlab/dll_pll_veml_plot_sample.m)
+script just requires the modification of the `samplingFreq`, `channels`,
+`tracking_log_path`, and `path` variables to get a set of figures with the main
+tracking results for each channel.
 
 ![Tracking results](/assets/images/tracking_matlab.png){: .align-center}
 _Tracking results for a given channel._

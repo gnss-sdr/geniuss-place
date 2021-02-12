@@ -10,28 +10,34 @@ last_modified_at: 2018-12-14T12:54:02+02:00
 ---
 
 
-The _Input Filter_ is the second processing block inside a _Signal Conditioner_ when the latter is using a [**`Signal_Conditioner`**]({{ "/docs/sp-blocks/signal-conditioner/#signal-conditioner" | relative_url }}) implementation.
+The _Input Filter_ is the second processing block inside a _Signal Conditioner_
+when the latter is using a [**`Signal_Conditioner`**]({{
+"/docs/sp-blocks/signal-conditioner/#signal-conditioner" | relative_url }})
+implementation.
 
-The role of an _Input Filter_ block is to filter noise and possible interferences from the incoming signal.
+The role of an _Input Filter_ block is to filter noise and possible
+interferences from the incoming signal.
 {: .notice--info}
 
 
 There are three kinds of filter implementations available:
 
-  * Finite Impulse Response (FIR) filters, implementing a fixed frequency mask for out-of-band noise or frequency alias suppression.
-    * `Fir_Filter` for baseband signals.
-    * `Freq_Xlating_Fir_Filter` for signals modulated at a given intermediate frequency.
+  * Finite Impulse Response (FIR) filters, implementing a fixed frequency mask
+    for out-of-band noise or frequency alias suppression.
+    * [`Fir_Filter`](#implementation-fir_filter) for baseband signals.
+    * [`Freq_Xlating_Fir_Filter`](#implementation-freq_xlating_fir_filter) for
+    signals modulated at a given intermediate frequency.
 
   * Adaptive filters for interference mitigation.
-    * `Pulse_Blanking_Filter` for pulsed interferences.
-    * `Notch_Filter`, `Notch_Filter_Lite` for narrowband interferences.
+    * [`Pulse_Blanking_Filter`](#implementation-pulse_blanking_filter) for pulsed interferences.
+    * [`Notch_Filter`](#implementation-notch_filter), [`Notch_Filter_Lite`](#implementation-notch_filter_lite) for narrowband interferences.
 
   * Short circuit.
-    * `Pass_Through` copy the input samples to the output buffer.
+    * [`Pass_Through`](#implementation-pass_through) copy the input samples to the output buffer.
 
 
-
-In the presence of noise and interferences, the signal y(t) received at the antenna of a GNSS receiver can be modeled as[^Borio14]
+In the presence of noise and interferences, the signal y(t) received at the
+antenna of a GNSS receiver can be modeled as[^Borio14]
 
 $$ \begin{equation} y(t) = x(t) + i(t) + \eta(t) , \end{equation} $$
 
@@ -41,21 +47,33 @@ where:
   * $$ i(t) $$ is the interference signal, and
   * $$ \eta(t) $$ is a noise term usually modeled as a complex circularly symmetric Gaussian random process. The samples are assumed independent and identically distributed.
 
-The sequence $$ y[n] $$ is obtained by amplifying, down-converting, and digitizing the analog signal $$ y(t) $$ with a sampling frequency $$ f_s $$.
+The sequence $$ y[n] $$ is obtained by amplifying, down-converting, and
+digitizing the analog signal $$ y(t) $$ with a sampling frequency $$ f_s $$.
 
-Interference Cancellation consists of removing $$ i[n] $$ from $$ y[n] $$ by means of a signal processing algorithm. The underlying idea seems straightforward, but in practice Interference Cancellation becomes a complicated matter due to the huge variety of interference sources that may coexist within the GNSS signal band. For instance, the interference may be pulsed or continuous. In the first case, the period between pulses, time duration, intensity and bandwidth of the pulses can be constant or vary over time. In the second case, the intensity, instantaneous frequency and frequency rate of the interference may also behave randomly. For this reason, there is no a "one-fits-all" algorithm for interference mitigation. Furthermore, during last years research literature has been populated with new signal processing techniques that perform many kinds of Interference Cancellation[^Dovis15].
+Interference Cancellation consists of removing $$ i[n] $$ from $$ y[n] $$ by
+means of a signal processing algorithm. The underlying idea seems
+straightforward but, in practice, Interference Cancellation becomes a
+complicated matter due to the huge variety of interference sources that may
+coexist within the GNSS signal band. For instance, the interference may be
+pulsed or continuous. In the first case, the period between pulses, time
+duration, intensity, and bandwidth of the pulses can be constant or vary over
+time. In the second case, the intensity, instantaneous frequency and frequency
+rate of the interference may also behave randomly. For this reason, there is no
+a "one-fits-all" algorithm for interference mitigation. Furthermore, during last
+years research literature has been populated with new signal processing
+techniques that perform many kinds of Interference Cancellation[^Dovis15].
 
 ## Finite Impulse Response (FIR) filters
 
 ### Implementation: `Fir_Filter`
 
-This implementation, based on the [Parks-McClellan algorithm](https://en.wikipedia.org/wiki/Parks%E2%80%93McClellan_filter_design_algorithm), computes
-the optimal (in the Chebyshev/minimax sense) FIR filter impulse response
-given a set of band edges, the desired response on those bands, and the
-weight given to the error in those bands. The Parks-McClellan algorithm
-uses the Remez exchange algorithm and Chebyshev approximation theory to
-design filters with an optimal fit between the desired and actual
-frequency responses.
+This implementation, based on the [Parks-McClellan
+algorithm](https://en.wikipedia.org/wiki/Parks%E2%80%93McClellan_filter_design_algorithm),
+computes the optimal (in the Chebyshev/minimax sense) FIR filter impulse
+response given a set of band edges, the desired response on those bands, and the
+weight given to the error in those bands. The Parks-McClellan algorithm uses the
+Remez exchange algorithm and Chebyshev approximation theory to design filters
+with an optimal fit between the desired and actual frequency responses.
 
 This implementation accepts the following parameters:
 
@@ -95,7 +113,7 @@ Possible `filter_type` are:
       frequency band.
 
 -   `hilbert`: designs linear-phase filters with odd symmetry. This
-      class of filters has a desired amplitude of 1 across the entire
+      class of filters has the desired amplitude of 1 across the entire
       band.
 
 -   `differentiator`: For nonzero amplitude bands, it weights the
@@ -175,10 +193,17 @@ The basic principle of this block is to perform:
 Input signal $$ \rightarrow $$ Filtering $$ \rightarrow $$ $$ \downarrow N $$ $$ \rightarrow $$ $$\times \exp\{ - j2 \pi \frac{f_{IF}}{f_s} N \} $$ $$ \rightarrow $$ Output signal.
 
 
-This block is a wrapper of GNU Radio's  [freq_xlating_fir_filter_impl.h](https://github.com/gnuradio/gnuradio/blob/master/gr-filter/lib/freq_xlating_fir_filter_impl.h) block. It applies the baseband filter moved up to the intermediate frequency $$ f_{IF} $$, then it performs decimation by a factor $$ N $$ and a de-rotation with $$ \times \exp\{ -j 2 \pi \frac{f_{IF}}{f_s}N \} $$ to downshift the signal to baseband. Thus, the filter parameters apply to the signal _before_ decimation.
+This block is a wrapper of GNU Radio's
+[freq_xlating_fir_filter_impl.h](https://github.com/gnuradio/gnuradio/blob/master/gr-filter/lib/freq_xlating_fir_filter_impl.h)
+block. It applies the baseband filter moved up to the intermediate frequency
+$$ f_{IF} $$, then it performs decimation by a factor $$ N $$ and a de-rotation
+with $$ \times \exp\{ -j 2 \pi \frac{f_{IF}}{f_s}N \} $$ to downshift the signal
+to baseband. Thus, the filter parameters apply to the signal _before_
+decimation.
 
-The block is ideally suited for a "channel selection filter" and can be efficiently
-used to select and decimate a narrow band signal out of wide bandwidth input.
+The block is ideally suited for a "channel selection filter" and can be
+efficiently used to select and decimate a narrow band signal out of wide
+bandwidth input.
 
 This implementation accepts the following parameters:
 
@@ -255,17 +280,42 @@ InputFilter.sampling_frequency=8000000
 
 ## Adaptive filters for interference mitigation
 
-The first step of any interference mitigation algorithm consists in determining whether the interference is present within the receiver's frequency band. A simple method is to calculate the input signal power and compare it against a certain threshold. This threshold should be set according to the signal level in absence of the interference signal. Since the power of the GNSS useful signal components at the receiver's antenna is extremely weak (several tens of dB below the background noise), the input signal power when the interference source is switched off is in practice the same as the background noise power. This is
+The first step of any interference mitigation algorithm consists of determining
+whether the interference is present within the receiver's frequency band. A
+simple method is to calculate the input signal power and compare it against a
+certain threshold. This threshold should be set according to the signal level in
+absence of the interference signal. Since the power of the GNSS useful signal
+components at the receiver's antenna is extremely weak (several tens of dB below
+the background noise), the input signal power when the interference source is
+switched off is in practice the same as the background noise power. This is
 
 $$ \begin{equation} E \{ | y(t) |^2 \} \approx E \{ | \eta(t) |^2 \} = \sigma^2 . \end{equation} $$
 
-After the ADC step and exploiting the statistical properties of $$ \eta[n] $$ (i.i.d. Gaussian symmetric circular noise), it is possible to guarantee a certain probability of false alarm, i.e. the probability of detecting the interference when the jamming signal is not present. Comparing the signal magnitude against the threshold and taking a decision in all the samples is not feasible in real-time applications, so the detection algorithm runs on signal segments of length $$ L $$ samples. The energy of a signal segment is
+After the ADC step and exploiting the statistical properties of $$ \eta[n] $$
+(i.i.d. Gaussian symmetric circular noise), it is possible to guarantee a
+certain probability of false alarm, i.e. the probability of detecting the
+interference when the jamming signal is not present. Comparing the signal
+magnitude against the threshold and taking a decision in all the samples is not
+feasible in real-time applications, so the detection algorithm runs on signal
+segments of length $$ L $$ samples. The energy of a signal segment is
 
 $$ \begin{equation} E_s = \sum_{l=1}^{L} | y[l] |^2 . \end{equation} $$
 
-The random variable $$ \frac{E_s}{\sigma^2} $$ follows a [chi-squared distribution](https://en.wikipedia.org/wiki/Chi-squared_distribution) with $$ 2L $$ degrees of freedom. According to the tabulated values of that distribution, it is possible to set the threshold that produces a given probability of false alarm. When the segment's energy exceeds the detection threshold, then the segment is processed with the interference mitigation algorithm.
+The random variable $$ \frac{E_s}{\sigma^2} $$ follows a [chi-squared
+distribution](https://en.wikipedia.org/wiki/Chi-squared_distribution) with $$ 2L $$
+degrees of freedom. According to the tabulated values of that distribution, it
+is possible to set the threshold that produces a given probability of false
+alarm. When the segment's energy exceeds the detection threshold, then the
+segment is processed with the interference mitigation algorithm.
 
-Note that $$ \sigma^2 $$ should be estimated by a noise floor power estimation method. With the purpose of minimizing the random effects, several noise power estimations are averaged on consecutive signal segments. In addition, as the receiver background noise may change along the time, the estimation of $$ \sigma^2 $$ is performed periodically. In this sense, the minimum signal length to be processed (filtered by a mitigation input filter) is one signal segment because the detection of an interference affects to the entire segment. The figure below summarizes the underlying idea.
+Note that $$ \sigma^2 $$ should be estimated by a noise floor power estimation
+method. With the purpose of minimizing the random effects, several noise power
+estimations are averaged on consecutive signal segments. In addition, as the
+receiver background noise may change along the time, the estimation of $$
+\sigma^2 $$ is performed periodically. In this sense, the minimum signal length
+to be processed (filtered by a mitigation input filter) is one signal segment
+because the detection of an interference affects to the entire segment. The
+figure below summarizes the underlying idea.
 
 
 ![Noise Estimation Parameters]({{ "/assets/images/noise-estimation.png" | relative_url }}){:width="700px"}{: .align-center .invert-colors}
@@ -276,7 +326,12 @@ _Noise estimation parameters_.
 
 ### Implementation: `Pulse_Blanking_Filter`
 
-The basic principle of a Pulse Blanking filter is illustrated in the figure below. If the input signal has a squared magnitude within an observation window that is greater than the blanking threshold, $$ T_h $$, then the output signal is set to zero. Otherwise, the output is equal to the input. Replacing the corrupted samples by zero ensures that correlation values are minimally distorted.
+The basic principle of a Pulse Blanking filter is illustrated in the figure
+below. If the input signal has a squared magnitude within an observation window
+that is greater than the blanking threshold, $$ T_h $$, then the output signal
+is set to zero. Otherwise, the output is equal to the input. Replacing the
+corrupted samples by zero ensures that correlation values are minimally
+distorted.
 
 ![Pulse Blanking]({{ "/assets/images/pulse-blanking.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _Diagram of the Pulse Blanking filter_.
@@ -320,25 +375,40 @@ InputFilter.segments_est=5000
 
 ### Implementation: `Notch_Filter`
 
-The aim of the Notch filter is to eliminate jamming signals who are instantaneously narrowband and, also, their instantaneous frequency changes along time.
+The aim of the Notch filter is to eliminate jamming signals who are
+instantaneously narrowband and, also, their instantaneous frequency changes
+over time.
 
 ![Adaptive Notch Filter]({{ "/assets/images/notch-filter.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _Diagram of the notch filter_.
 {: style="text-align: center;"}
 
-When Interference Cancellation is adopted, the interfering signal is at first removed from $$ y[n] $$, and subsequent signal processing is applied to $$ y_f[n] = y[n] − i[n] $$. Since $$ i[n] $$ is usually not known, an estimation technique is required to reconstruct it and to obtain $$ \hat{i}[n] $$. This interference $$ i[n] $$ is usually estimated by considering a specific signal model that depends only on a reduced number of parameters. Let us consider a single component signal[^Borio14]
+When Interference Cancellation is adopted, the interfering signal is at first
+removed from $$ y[n] $$, and subsequent signal processing is applied to $$
+y_f[n] = y[n] − i[n] $$. Since $$ i[n] $$ is usually not known, an estimation
+technique is required to reconstruct it and to obtain $$ \hat{i}[n] $$. This
+interference $$ i[n] $$ is usually estimated by considering a specific signal
+model that depends only on a reduced number of parameters. Let us consider a
+single component signal[^Borio14]
 
 $$ \begin{equation} i[n]=A[n]\exp \{j\varphi[n]\} , \end{equation} $$
 
-where $$ A[n] $$ and $$ \varphi[n] $$ are two real signals with $$ A[n] \in [0,+\infty) $$ and $$ \varphi[n]\in(−\pi,\pi] $$. Although this model is quite general, the hypothesis assumed by the single component model is that $$ i[n] $$ is _instantaneously_ narrow band, i.e., it has a single frequency component at each instant in time. Continuous Wave and chirp signals are examples of waveforms that can be described by this model. The instantaneous frequency of a single component signal is defined as the discrete derivative of its phase:
+where $$ A[n] $$ and $$ \varphi[n] $$ are two real signals with $$ A[n] \in
+[0,+\infty) $$ and $$ \varphi[n]\in(−\pi,\pi] $$. Although this model is quite
+general, the hypothesis assumed by the single component model is that $$ i[n] $$
+is _instantaneously_ narrow band, i.e., it has a single frequency component at
+each instant in time. Continuous Wave and chirp signals are examples of
+waveforms that can be described by this model. The instantaneous frequency of a
+single component signal is defined as the discrete derivative of its phase:
 
 $$ \begin{equation} f_i[n] = \frac{1}{2\pi} \left( \varphi[n] - \varphi[n-1] \right) . \end{equation} $$
 
-This block implements a simple, single-sample Prony's frequency estimator[^Prony95]. The interference frequency is estimated as
+This block implements a simple, single-sample Prony's frequency
+estimator[^Prony95]. The interference frequency is estimated as
 
 $$ \begin{equation} \hat{f_i}[n] = \frac{1}{2\pi} \angle \{ y[n] y^{*}[n-1] \} . \end{equation} $$
 
-Single component signals can be generated by a first order recurrence equation,
+Single component signals can be generated by a first-order recurrence equation,
 
 $$ \begin{equation} i[n] = a[n]i[n−1] , \end{equation} $$
 
@@ -346,11 +416,15 @@ where $$ a[n] $$ is a time-varying coefficient that can be expressed as:
 
 $$ \begin{equation} a[n] = \frac{i[n]}{i[n-1]} = \frac{A[n]}{A[n-1]} \exp \{ j 2 \pi f_i[n] \} . \end{equation} $$
 
-This principle is exploited in a single-pole notch filter which is characterized by the following transfer function:
+This principle is exploited in a single-pole notch filter which is characterized
+by the following transfer function:
 
 $$ \begin{equation} H_n(z) = \frac{ 1-z_0[n]z^{-1} }{ 1-k_a z_0[n]z^{-1} } , \end{equation} $$
 
-where $$ z_0[n] $$ is the complex zero of the filter and $$ k_a $$ is the pole contraction factor, ranging from $$ 0 $$ to $$ 1 $$. The pole contraction factor determines the bandwidth of the Notch filter, the closer to $$ 1 $$, the narrower the filter bandwidth.
+where $$ z_0[n] $$ is the complex zero of the filter and $$ k_a $$ is the pole
+contraction factor, ranging from $$ 0 $$ to $$ 1 $$. The pole contraction factor
+determines the bandwidth of the Notch filter, the closer to $$ 1 $$, the
+narrower the filter bandwidth.
 
 
 The implementation of this block provides the following interface:
@@ -386,9 +460,17 @@ InputFilter.segments_est=5000
 
 ### Implementation: `Notch_Filter_Lite`
 
-This is an implementation of a notch filter in which the user can choose the updating rate of the filter central frequency estimation. This requires lower computational resources since the Prony estimation is no longer performed sample by sample.
+This is an implementation of a notch filter in which the user can choose the
+updating rate of the filter central frequency estimation. This requires lower
+computational resources since the Prony estimation is no longer performed sample
+by sample.
 
-That update rate must be set according to the variation rate of the jammer frequency. Slow variations in the jammer frequency are well tracked by a slow updating rate, but this is not true for fast variations. In this implementation, the maximum updating rate available is one update per signal segment, this is to say, $$ \frac{f_s}{L} $$, where $$ f_s $$ is the sampling frequency and $$ L $$ is the number of samples per signal segment.
+That update rate must be set according to the variation rate of the jammer
+frequency. Slow variations in the jammer frequency are well tracked by a slow
+updating rate, but this is not true for fast variations. In this implementation,
+the maximum updating rate available is one update per signal segment, this is to
+say, $$ \frac{f_s}{L} $$, where $$ f_s $$ is the sampling frequency and $$ L $$
+is the number of samples per signal segment.
 
 The implementation of this block provides the following interface:
 

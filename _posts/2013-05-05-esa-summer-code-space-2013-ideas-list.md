@@ -2,7 +2,7 @@
 title: "ESA Summer of Code in Space 2013 ideas list"
 excerpt: "Ideas page for SOCIS 2013."
 header:
-  teaser: http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/03/socis/15309314-1-eng-GB/SOCIS_large.jpg
+  teaser: /assets/images/SOCIS_large.jpg
 tags:
   - news
 author_profile: false
@@ -57,7 +57,7 @@ Mentor: Dr. Pau Closas
 
 The VITA 49 Radio Transport (VRT) is an emerging standard for SDR signal samples transport protocol. Prior to the development of the VRT standard, each SDR RF front-end manufacturer developed custom and proprietary digitized data formats and metadata formats. A remarkable feature of the VRT protocol is the ability to provide accurate timestamping of the signal samples.
 
-One of the most common and undesirable event in a real-time software defined receiver is the sample buffer overrun situation. The problem occurs when the host machine eventually consumes signal samples at a lower speed than the hardware driver produces. If the sample buffer fills up, then the hardware driver start to discard signal samples. This transitory event can be caused by the multitasking nature of the host operating system, specially in slow machines when they are also used to concurrently run other user programs, such as GPS navigation displays and mapping software.
+One of the most common and undesirable event in a real-time software-defined receiver is the sample buffer overrun situation. The problem occurs when the host machine eventually consumes signal samples at a lower speed than the hardware driver produces. If the sample buffer fills up, then the hardware driver start to discard signal samples. This transitory event can be caused by the multitasking nature of the host operating system, specially in slow machines when they are also used to concurrently run other user programs, such as GPS navigation displays and mapping software.
 
 The immediate effect of discarding a sample is that all the signal tracking loops in the GNSS-SDR receiver loss their lock to the satellite signals due to an unexpected shift in the CDMA synchronization process.
 

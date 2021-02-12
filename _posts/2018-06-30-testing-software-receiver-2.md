@@ -1,4 +1,4 @@
-of a circle---
+---
 title: "Testing the software receiver, Part II: Test Execution"
 permalink: /docs/tutorials/testing-software-receiver-2/
 excerpt: "Documentation on how to build and run the testing code."
