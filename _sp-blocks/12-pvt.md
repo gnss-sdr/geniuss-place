@@ -273,7 +273,7 @@ $$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z
 
 where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are
 the north and east components of tropospheric gradients (see the tropospheric
-model [below](#troposphere-model)) and $$ \mathbf{B}_{LC} = \left(
+model [below](#tropospheric-model)) and $$ \mathbf{B}_{LC} = \left(
 B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)} \right)^T $$
 is the ionosphere‐free linear combination of zero‐differenced carrier‐phase
 biases (in m), defined below in Equation ($$ \ref{eq:bias-lc} $$).
@@ -363,7 +363,7 @@ where $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 &
 \mathbf{e}_{r}^{(s)} $$ defined as above, and
 
 $$ \scriptstyle \begin{equation}\!\!\!\!\!\!\!\!\!\!\! \mathbf{M}_T \; = \; \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) &  m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\  m_{WG,r}^{(2)} \left( El_r^{(2)} \right) &  m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \cos \left( Az_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \sin \left( Az_r^{(2)} \right) \\  m_{WG,r}^{(3)} \left( El_r^{(3)} \right) &  m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \cos \left( Az_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \sin \left( Az_r^{(3)} \right) \\ \vdots \\  m_{WG,r}^{(m)} \left( El_r^{(m)} \right) &  m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \cos \left( Az_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \sin \left( Az_r^{(m)} \right) \end{array} \right) \end{equation} $$
-is a matrix related to the tropospheric model (see [below](#troposphere-model)).
+is a matrix related to the tropospheric model (see [below](#tropospheric-model)).
 
 With all those definitions, the Precise Point Positioning solution is computed
 as follows:
