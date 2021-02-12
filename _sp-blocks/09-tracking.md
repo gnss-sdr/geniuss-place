@@ -53,9 +53,9 @@ In the case of code phase tracking, the cost function is driven to the maximum
 using feedback loops that employ the derivative $$ \frac{dR_{xd}(\tau)}{d\tau} $$
 zero-crossing as a timing error detector. This is the case of the Delay Lock
 Loop (DLL) architecture and its wide range of variants, where the receiver
-computes three samples of $$ R_{xd} $$, usually referred to as *Early* $$
-E=R_{xd}(\hat{\tau}+\epsilon) $$, *Prompt* $$ P=R_{xd}(\hat{\tau}) $$ and *Late* $$
-L=R_{xd}(\hat{\tau}-\epsilon) $$, with $$ \epsilon $$ ranging from $$ 0.1T_c $$
+computes three samples of $$ R_{xd} $$, usually referred to as *Early*
+$$ E=R_{xd}(\hat{\tau}+\epsilon) $$, *Prompt* $$ P=R_{xd}(\hat{\tau}) $$ and *Late*
+$$ L=R_{xd}(\hat{\tau}-\epsilon) $$, with $$ \epsilon $$ ranging from $$ 0.1T_c $$
 to $$ 0.5T_c $$, and then computes a timing error with some combination of those
 samples, known as _discriminator_ functions. The result is low-pass filtered and
 reinjected back to the matched filter, as shown in the figure below:
@@ -519,14 +519,14 @@ Channel B contains the I/NAV type of navigation message,
 $$ D_{I/NAV} $$, intended for Safety–of–Life (SoL) services:
 
 $$ \begin{equation}
-e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})~.
+e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[[l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})~.
 \end{equation} $$
 
 In case of channel C, it is a pilot (dataless) channel with a secondary code,
 forming a tiered code:
 
 $$ \begin{equation}
-\!\!\!\!\!\!\!\!\!\!\!\!\!\!e_{E1C}(t) = \!\sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot p(t - mT_{c,E1Cs} - lT_{c,E1Cp})~,
+\!\!\!\!\!\!\!\!\!\!\!\!\!\!e_{E1C}(t) \! = \!\! \sum_{m=-\infty}^{+\infty} \! C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot p(t \! - \! mT_{c,E1Cs} \! - \! lT_{c,E1Cp})~,
 \end{equation} $$
 
 with $$ T_{c,E1B} = T_{c,E1Cp} = \frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs} = 4 $$ ms.
@@ -552,8 +552,8 @@ correlation ambiguities, as shown in the following figure:
 _Normalized $$ \left|R_{xd}\left(\check{f}_D=f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
 {: style="text-align: center;"}
 
-The possibility of tracking a local maximum instead of the global one can be avoided by
-using discriminators that consider two extra samples of the cost
+The possibility of tracking a local maximum instead of the global one can be
+avoided by using discriminators that consider two extra samples of the cost
 function, referred to as *Very Early*
 $$ \text{VE} = R_{xd}(\hat{\tau}-\epsilon^\prime) $$ and *Very Late*
 $$ \text{VL} = R_{xd}(\hat{\tau}+\epsilon^\prime) $$, with
@@ -574,11 +574,11 @@ implemented using the
 [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr)
 library. The PLL discriminator implemented in step $$ 6 $$ is the extended
 arctangent (four-quadrant) discriminator, and for the DLL we used the normalized
-Very Early Minus Late Power discriminator (step $$ 10 $$ ). The low-pass filters
+Very Early Minus Late Power discriminator (step $$ 10 $$). The low-pass filters
 of the DLL, PLL, and FLL (when available, see implementations below) are based
 in the description by Kaplan and Hegarty[^Kaplan17], section 8.8. For code lock
 detection (step $$ 13 $$), we used the Squared Signal-to-Noise Variance (SNV)
-estimator[^Petovello10]. In the case of carrier lock detection (step $$ 14 $$ ),
+estimator[^Petovello10]. In the case of carrier lock detection (step $$ 14 $$),
 we used the normalized estimate of the cosine of twice the carrier
 phase[^Dierendonck]. The values of the lock indicator range from $$ -1 $$, when
 the locally generated carrier is completely out of phase, to $$ 1 $$, that
@@ -628,14 +628,14 @@ estimation (in Hz):
 $$ \hat{f}_{\!D_{k}} = \hat{f}_{\!D_{acq}} + \frac{1}{2\pi T_{int}} h_{PLL}\left( \Delta \hat{\phi}_{k} \right) $$.
 
 9. Update carrier phase estimation (in rad):
-$$ \hat{\phi}_k= \hat{\phi}_{k-1} + 2 \pi \hat{f}_{\!D_{k}} T_{int} + h_{PLL}(\Delta \hat{\phi}) $$.
+$$ \hat{\phi}_k = \hat{\phi}_{k-1} + 2 \pi \hat{f}_{\!D_{k}} T_{int} + h_{PLL}(\Delta \hat{\phi}) $$.
 
 10. Compute DLL discriminator:
 $$ \Delta \hat{\tau}_{k} = \frac{\mathcal{E}_{k} - \mathcal{L}_{k}}{\mathcal{E}_{k} + \mathcal{L}_{k}} $$,
 where:
-$$ \mathcal{E}_{k} = \sqrt{\text{VE}_{I_{k}}^2+\text{VE}_{Q_{k}}^2+E_{I_{k}}^2 + E_{Q_{k}}^2} $$,
+$$ \mathcal{E}_{k} = \sqrt{\text{VE}_{I_{k}}^2 + \text{VE}_{Q_{k}}^2 + E_{I_{k}}^2 + E_{Q_{k}}^2} $$,
 and
-$$ \mathcal{L}_{k} = \sqrt{\text{VL}_{I_{k}}^2+\text{VL}_{Q_{k}}^2+L_{I_{k}}^2 + L_{Q_{k}}^2} $$.
+$$ \mathcal{L}_{k} = \sqrt{\text{VL}_{I_{k}}^2 + \text{VL}_{Q_{k}}^2 + L_{I_{k}}^2 + L_{Q_{k}}^2} $$.
 
 11. Filter $$ \Delta \hat{\tau}_{k} $$ with a bandwidth $$ BW_{DLL} $$:
 $$ h_{DLL}\left( \Delta \hat{\tau}_{k}\right) $$.
@@ -654,7 +654,7 @@ and
 $$ \hat{P}_{tot} = \frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{k-i}|^2 $$.
 
 14. Phase lock indicator:
-$$ T_{carrier} = \frac{\left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{{I}_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} - 1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} - 1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$.
+$$ T_{carrier} = \frac{\left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{I_{k-i}}\right)^2 - \left( \sum^{\mathcal{U} - 1}_{i=0} \text{P}_{Q_{k-i}}\right)^2}{\left(\sum^{\mathcal{U}-1}_{i=0} \text{P}_{ {I}_{k-i}}\right)^2 + \left( \sum^{\mathcal{U} - 1}_{i=0} \text{P}_{Q_{k-i}}\right)^2} $$.
 
 15. **if** $$ T_{carrier} < \mathcal{T} $$ or $$ \hat{ CN0 } < CN0_{min} $$
 * Increase lock fail counter $$ \upsilon \leftarrow \upsilon + 1 $$.
@@ -773,7 +773,8 @@ $$ T_{c,\text{C/A}} = \frac{1}{0.511} $$ $$ \mu $$s, and
 $$ L_{\text{HP}} =3.3554\cdot 10^7 $$. The navigation message
 $$ D_{\text{GNAV}} $$ is transmitted at $$ 50 $$ bit/s.
 
-Then, applying equation $$ (\ref{GLOL1}) $$ in $$ (\ref{xin}) $$, the digital signal at the input of the _Tracking_ block can be written as
+Then, applying equation $$ (\ref{GLOL1}) $$ in $$ (\ref{xin}) $$, the digital
+signal at the input of the _Tracking_ block can be written as
 
 $$ \begin{equation}
 \!\!\!\!\!\!\!\!\!x_\text{IN}[k] = A(kT_s)\tilde{s}^{\text{(GLO L1)}}_{T}(kT_s - \tau(kT_s)) e^{j \left(2\pi f_D(kT_s) kT_s + \phi(kT_s) \right)} + n(kT_s)~.
@@ -889,11 +890,11 @@ e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty}\left( D_{\text{CNAV}} \Big[[l]_{10230
 \end{eqnarray} $$
 
 where $$ T_{c,L2C} = \frac{1}{511.5} $$ ms and $$ p_{\text{1/2}}(t) $$ is a
-rectangular pulse of half chip–period duration, thus time–multiplexing
-codes $$C_{\text{CL}} $$ and $$ C_{\text{CM}} $$. The civilian long code $$ C_{\text{CL}} $$ is
-$$ L_{\text{CL}} =767250 $$ chips long, repeating every $$ 1.5 $$ s, while the
-civilian moderate code $$ C_{\text{CM}} $$ is $$ L_{\text{CM}} = 10230 $$ chips
-long and it repeats every $$ 20 $$ ms.
+rectangular pulse of half chip–period duration, thus time–multiplexing codes
+$$ C_{\text{CL}} $$ and $$ C_{\text{CM}} $$. The civilian long code
+$$ C_{\text{CL}} $$ is $$ L_{\text{CL}} = 767250 $$ chips long, repeating every
+$$ 1.5 $$ s, while the civilian moderate code $$ C_{\text{CM}} $$ is
+$$ L_{\text{CM}} = 10230 $$ chips long and it repeats every $$ 20 $$ ms.
 
 Then, applying equation $$ (\ref{GPSL2}) $$ in $$ (\ref{xin}) $$, the digital
 signal at the input of the _Tracking_ block can be written as
@@ -1069,7 +1070,7 @@ e_{L5I}(t) & = & \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \opl
 \end{eqnarray} $$
 
 $$ \begin{equation}
-\!\!\!\!\!\!\!\!\!\!\!\!\!\!\! e_{L5Q}(t) = \!\sum_{m=-\infty}^{+\infty} \!C_{nh_{20}} \Big[|m|_{20}\Big] \! \oplus \! \sum_{l=1}^{102300}\!C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5})~,
+\!\!\!\!\!\!\!\!\!\!\!\!\!\!\! e_{L5Q}(t) \! = \!\!\sum_{m=-\infty}^{+\infty} \!C_{nh_{20}} \Big[|m|_{20}\Big] \! \oplus \!\! \sum_{l=1}^{102300}\!C_{L5Q}\Big[|l|_{10230}\Big] \cdot p(t \! - \! m T_{c,nh} \! - \! lT_{c,L5})~,
 \end{equation} $$
 
 where $$ T_{c,nh} = 1 $$ ms and $$ T_{c,L5} = \frac{1}{10.23} $$ $$ \mu $$s. The L5I
@@ -1182,7 +1183,7 @@ e_{E5aI}(t) & = & \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \
 \end{eqnarray} $$
 
 $$ \begin{equation}
-\!\!\!\!\!\!\!\!\!\!\!\!\!\!e_{E5aQ}(t) \! = \! \sum_{m=-\infty}^{+\infty}\!C_{E5aQs}\Big[|m|_{100}\Big]\! \oplus \!\sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t - mT_{c,E5s}-lT_{c,E5p})~,
+\!\!\!\!\!\!\!\!\!\!\!\!\!\!e_{E5aQ}(t) \! = \!\! \sum_{m=-\infty}^{+\infty}\!C_{E5aQs}\Big[|m|_{100}\Big]\! \oplus \!\!\sum_{l=1}^{10230}C_{E5aQp}\Big[ l \Big] \cdot p(t \! - \! mT_{c,E5s} \! - \! lT_{c,E5p})~,
 \end{equation}$$
 
 where $$ T_{c,E5s} = 1 $$ ms and $$ T_{c,E5p} = \frac{1}{10.23} $$ $$ \mu $$s.
@@ -1191,7 +1192,7 @@ Then, applying equation $$ (\ref{GalE5a}) $$ in $$ (\ref{xin}) $$, the digital
 signal at the input of the _Tracking_ block can be written as
 
 $$ \begin{equation}
-\!\!\!\!\!\!\!\!\!x_\text{IN}[k] = A(kT_s)\tilde{s}^{\text{(Gal E5a)}}_{T}(kT_s - \tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~.
+\!\!\!\!\!\!\!\!\!x_\text{IN}[k] = A(kT_s)\tilde{s}^{\text{(Gal E5a)}}_{T}(kT_s \! - \! \tau(kT_s)) e^{j \left( 2\pi f_D(kT_s) kT_s + \phi(kT_s) \right) } + n(kT_s)~.
 \end{equation} $$
 
 The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$
