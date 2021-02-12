@@ -36,8 +36,9 @@ states with measurements, and $$ \mathbf{n} $$ models measurement noise.
 Depending on the models, assumptions, available measurements, and the
 availability of *a priori* or externally-provided information, many positioning
 strategies and algorithms can be devised. It follows a description of the
-positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted
-from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
+positioning modes available at the [`RTKLIB_PVT`](#implementation-rtklib_pvt)
+implementation, mostly extracted from the excellent [RTKLIB
+manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
 
 
 ## Single Point Positioning
