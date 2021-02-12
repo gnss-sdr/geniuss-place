@@ -60,13 +60,14 @@ stored in a hard drive.
 
 **Try the software on your own computer**: GNSS-SDR can be executed in a wide
 range of processor architectures, from the newest ones to those that have been
-around for a while. Your own computer will probably be among the list above. The
-software receiver processes data _as fast as it can_, taking advantage of the
-particularities of your processor and dumping messages to the terminal output in
-case it is not able to perform the required computation in real-time. If your
-processor is not fast enough to process GNSS signals in real-time, you can still
-use files and use the software, performing exactly the same processing but at a
-slower pace, and thus without processing time constraints.
+around for a while. Your own computer will probably be among the listed above.
+The software receiver processes data _as fast as it can_, taking advantage of
+the particularities of your processor and dumping messages to the terminal
+output in case it is not able to perform the required computation in real-time.
+If your processor is not fast enough to process GNSS signals in real-time, you
+can still use files and use the software, performing exactly the same processing
+but at a slower pace, and thus without processing time constraints.
+
 {: .notice--success}
 
 ### Operating Systems
@@ -170,7 +171,7 @@ relative_url }}).
 
 ### Files
 
-The stream of raw GNSS signals samples can be stored in a file. Some of such
+The stream of raw GNSS signal samples can be stored in a file. Some of such
 files are freely available on the Internet, so you do not need access to a GNSS
 front-end for using GNSS-SDR. Only a few basic parameters are needed to be known
 (file name and path, the sampling frequency, the format in which samples are
@@ -202,7 +203,7 @@ for more information about GNSS signals' center frequencies, modulations, and
 recommended bandwidths), downshifting, filtering, and conversion to the digital
 domain, plus some standard connection (usually, through USB or Ethernet) to the
 host computer in charge of the execution of the software-defined receiver, which
-will be performing all the baseband processing. Such computer needs to be
+will be performing all the baseband processing. Such a computer needs to be
 powerful enough to sustain the required amount of computational load. For simple
 configurations, any modern laptop should work well.
 
@@ -232,7 +233,7 @@ integration is provided via
 [gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR).
 
 * **Nuand [BladeRF](https://nuand.com)** is a wideband transceiver that covers
-from 300 MHz to 3.8 GHz, delivering 12-bit quadrature sampling at a rate up to
+from 300 MHz to 3.8 GHz, delivering 12-bit quadrature sampling at a rate of up to
 40 MS/s. The host connection is via USB 3.0 Superspeed, and GNSS-SDR integration
 is provided via
 [gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR).

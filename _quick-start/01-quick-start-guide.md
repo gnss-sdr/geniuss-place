@@ -71,7 +71,7 @@ means you have:
 - the freedom to share the software with your friends and neighbors, and
 - the freedom to share the changes you make.
 
-In particular, you have the freedom to install and use GNSS-SDR right now in
+In particular, you have the freedom to install and use GNSS-SDR right now on
 your own computer. This is what the Quick-Start Guide is about.
 
 Here you will find:

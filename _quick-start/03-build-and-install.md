@@ -41,7 +41,7 @@ you.
 
 **The downside:** GNSS-SDR package updates need to undergo an acceptance process
 before they are included in the different distributions, so it might not be the
-ultimate version of the source code. The same applies for dependency libraries.
+ultimate version of the source code. The same applies to dependency libraries.
 {: .notice--danger}
 
 If everything went fine, you can directly jump into how to get your [first
@@ -126,7 +126,7 @@ be already removed from, or not yet present in, your OS repositories.
 **The downside:** The disadvantage of compiling from source is that the usual
 `cmake .. && make && sudo make install` procedure keeps your package manager
 completely unaware of the changes you are making, so you are not going to get
-any automatic updates for the manually-compiled software, and it is possible
+automatic updates for the manually-compiled software, and it is possible
 that package manager will later override/break your package if you are not
 careful to install it in a separate location.
 {: .notice--danger}
@@ -204,7 +204,7 @@ dependencies):
 $ pybombs recipes add-defaults
 ```
 
-Download, build and install GNU Radio, related drivers and some other extra
+Download, build and install GNU Radio, related drivers, and some other extra
 modules into the directory `/path/to/prefix` (replace this path by your
 preferred one, for instance `$HOME/sdr`):
 

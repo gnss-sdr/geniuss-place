@@ -15,7 +15,7 @@ toc_sticky: true
 
 Obtaining position fixes from a file is nice and useful, but the real deal for a
 software-defined receiver is to play with live GNSS signals in real-time. This
-page describes examples of hardware setups, software configurations and general
+page describes examples of hardware setups, software configurations, and general
 tips for obtaining position fixes (and a collection of side data, delivered in
 standard formats) with GNSS-SDR.
 
@@ -37,7 +37,7 @@ model's datasheet).
 
 ## GPS L1 C/A receiver using a USRP
 
-This in an example of an eight-channel GPS L1 C/A receiver, working at 4 MS/s
+This is an example of an eight-channel GPS L1 C/A receiver, working at 4 MS/s
 (baseband, _i.e._ complex samples), and using a device from the [USRP
 family](https://www.ettus.com/product) as the "air-to-computer" interface.
 
@@ -379,7 +379,7 @@ both relative and absolute paths), and the data displayed at the terminal output
 might vary according to your setup.
 
 Then, after some seconds detecting GPS signals and decoding some frames of their
-navigation messages (at least, subframes 1, 2 and 3 from four satellites)...
+navigation messages (at least, subframes 1, 2, and 3 from four satellites)...
 
 ```console
 
@@ -476,13 +476,13 @@ required computational load for this particular implementation.
  When receiving, the USRP device produces samples at a constant rate. Overflows
  occur when the host computer does not consume data fast enough. When UHD
  software detects the overflow, it prints an "`O`" or "`D`" to the standard
- terminal output, and pushes an inline message packet into the receive stream.
+ terminal output and pushes an inline message packet into the receive stream.
 
   * **Network-based devices (_e.g._, USRP N2xx, X3xx)**: The host does not
   back-pressure the receive stream. When the kernel's socket buffer becomes
   full, it will drop subsequent packets. UHD software detects the overflow as a
-  discontinuity in the packet's sequence numbers, and pushes an inline message
-  packet into the receive stream. In this case the character `D` is printed to
+  discontinuity in the packet's sequence numbers and pushes an inline message
+  packet into the receive stream. In this case, the character `D` is printed to
   the standard terminal output as an indication.
   * **Other devices (_e.g._, USRP 1, B2xx)**: The host back-pressures the
   receive stream. Therefore, overflows always occur in the device itself. When
