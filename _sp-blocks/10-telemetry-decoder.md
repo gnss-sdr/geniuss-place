@@ -380,7 +380,7 @@ In all Telemetry Decoder blocks, if `dump=true`, the logging of internal process
 
 Examples:
 
-1.- Retrieve the `dat` and`.mat` files with `nav_data` base name (with `XX` being `1C`, `1B`, `1G`, `2G`, `2S`, `L5`, or `5X`):
+1.- Retrieve the `.dat` and`.mat` files with `nav_data` base name (with `XX` being `1C`, `1B`, `1G`, `2G`, `2S`, `L5`, or `5X`):
 ```ini
 TelemetryDecoder_XX.dump=true
 TelemetryDecoder_XX.dump_filename=nav_data
