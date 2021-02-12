@@ -11,12 +11,21 @@ toc: true
 toc_sticky: true
 ---
 
-**This page is the "_Hello, world!_&nbsp;" for GNSS-SDR**. It will guide you from the scratch up to getting position fixes with GNSS-SDR, in one of its simplest configurations. The signal source will be a file (freely available on the Internet) containing raw signal samples, so this procedure does not require the availability of a radio frequency front-end nor a powerful computer executing the software receiver. The only requirement is GNSS-SDR installed in your computer, and an Internet connection to download the file containing the raw signal samples.
+**This page is the "_Hello, world!_&nbsp;" for GNSS-SDR**. It will guide you
+from the scratch up to getting position fixes with GNSS-SDR, in one of its
+simplest configurations. The signal source will be a file (freely available on
+the Internet) containing raw signal samples, so this procedure does not require
+the availability of a radio frequency front-end nor a powerful computer
+executing the software receiver. The only requirement is GNSS-SDR installed in
+your computer, and an Internet connection to download the file containing the
+raw signal samples.
 {: .notice--info}
 
 ## Step 1: Verify that GNSS-SDR is installed
 
-This guide assumes that GNSS-SDR and its software dependencies are already installed on your system. In order to check whether it is correctly installed, open a terminal and type:
+This guide assumes that GNSS-SDR and its software dependencies are already
+installed on your system. In order to check whether it is correctly installed,
+open a terminal and type:
 
 ```console
 $ gnss-sdr --version
@@ -31,7 +40,12 @@ $
 ```
 {: class="no-copy"}
 
-Please check that your installed version is 0.0.14 (or something like 0.0.14.git-`branchname`-`githash` if you built the code from a source code snapshot). Older versions could not work for the example shown here. If you installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a version earlier to 0.0.14, please do `sudo apt-get remove gnss-sdr` and [build it from source]({{ "/build-and-install/#build" | relative_url }}).
+Please check that your installed version is 0.0.14 (or something like
+0.0.14.git-`branchname`-`githash` if you built the code from a source code
+snapshot). Older versions could not work for the example shown here. If you
+installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a
+version earlier to 0.0.14, please do `sudo apt-get remove gnss-sdr` and [build
+it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
 If you see something like:
@@ -43,9 +57,13 @@ $
 ```
 {: class="no-copy"}
 
-please check out the [building guide]({{ "/build-and-install/" | relative_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file for more details on how to install GNSS-SDR.
+please check out the [building guide]({{ "/build-and-install/" | relative_url }})
+and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md)
+file for more details on how to install GNSS-SDR.
 
-In order to take advantage of the SIMD instruction sets present in your processor, you will need to run the profiler tools of the VOLK and VOLK_GNSSSDR libraries (these operations only need to be done once, and can take a while):
+In order to take advantage of the SIMD instruction sets present in your
+processor, you will need to run the profiler tools of the VOLK and VOLK_GNSSSDR
+libraries (these operations only need to be done once, and can take a while):
 
 ```console
 $ volk_profile
@@ -59,7 +77,8 @@ $ volk_gnsssdr_profile
 
 ## Step 2: Download a file of raw signal samples
 
-Now it's time to download the file containing the GNSS raw signal samples. This can be done directly from the terminal:
+Now it's time to download the file containing the GNSS raw signal samples. This
+can be done directly from the terminal:
 
 ```console
 $ mkdir work
@@ -68,12 +87,19 @@ $ wget https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGN
 $ tar -zxvf 2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz
 ```
 
-or by opening [this link](https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz/download) in your browser, downloading the file, and unpacking it. This will get you the file `2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat`, which contains $$ 100 $$ seconds of raw GNSS signal samples collected by an RF front-end centered at $$ 1,575.42 $$ MHz, that was delivering baseband samples at $$ 4 $$ MS/s, in an interleaved I&Q 16-bit integer format.
+or by opening [this
+link](https://sourceforge.net/projects/gnss-sdr/files/data/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.tar.gz/download)
+in your browser, downloading the file, and unpacking it. This will get you the
+file `2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat`, which contains $$ 100 $$
+seconds of raw GNSS signal samples collected by an RF front-end centered at
+$$ 1,575.42 $$ MHz, that was delivering baseband samples at $$ 4 $$ MS/s, in an
+interleaved I&Q 16-bit integer format.
 
 
 ## Step 3: Configure GNSS-SDR
 
-Then, copy the GNSS-SDR configuration shown below and paste it into your favorite plain text editor:
+Then, copy the GNSS-SDR configuration shown below and paste it into your
+favorite plain text editor:
 
 ```ini
 [GNSS-SDR]
@@ -138,20 +164,26 @@ PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 ```
 
-**NOTE:** Check that the parameter `SignalSource.filename` actually points to the name and path of your raw data file.
+**NOTE:** Check that the parameter `SignalSource.filename` actually points to
+the name and path of your raw data file.
 {: .notice--warning}
 
-**NOTE:** For more details about the configuration options for each block, check out the [**Signal Processing Blocks**]({{ "/docs/sp-blocks/" | relative_url }}) documentation.
+**NOTE:** For more details about the configuration options for each block,
+check out the [**Signal Processing Blocks**]({{ "/docs/sp-blocks/" |
+relative_url }}) documentation.
 {: .notice--info}
 
-Save the file as `my-first-GNSS-SDR-receiver.conf` (or any other name of your choice).
+Save the file as `my-first-GNSS-SDR-receiver.conf` (or any other name of your
+choice).
 
 ## Step 4: Run GNSS-SDR
 
 Ok, let's recap. We have:
 
 * GNSS-SDR installed in our system.
-* A signal source: A file named `2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat` containing 100 seconds of raw GPS signal samples, that were grabbed by a radio frequency front-end.
+* A signal source: A file named `2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat`
+containing 100 seconds of raw GPS signal samples, that were grabbed by a radio
+frequency front-end.
 * A configuration file for a GPS L1 C/A receiver that will take the file `2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat` as its signal source.
 
 So, we are ready to run our software-defined GPS receiver. In a terminal, type:
@@ -160,7 +192,8 @@ So, we are ready to run our software-defined GPS receiver. In a terminal, type:
 $ gnss-sdr --config_file=./my-first-GNSS-SDR-receiver.conf
 ```
 
-**NOTE:** Change `./my-first-GNSS-receiver.conf` by the actual name and path of your recently created configuration file.
+**NOTE:** Change `./my-first-GNSS-receiver.conf` by the actual name and path of
+your recently created configuration file.
 {: .notice--warning}
 
 You should see something similar to:
@@ -178,7 +211,8 @@ The TCP/IP server of RTCM messages is up and running. Accepting connections ...
 ```
 {: class="no-copy"}
 
-Then, after some seconds detecting GPS signals and decoding some frames of their navigation messages (at least, subframes 1, 2 and 3 from four satellites)...
+Then, after some seconds detecting GPS signals and decoding some frames of their
+navigation messages (at least, subframes 1, 2 and 3 from four satellites)...
 
 ```
 ...
@@ -233,7 +267,8 @@ Current receiver time: 32 s
 {: class="no-copy"}
 
 
-If you see something similar to this... Yay! You are getting position fixes with your open source software-defined GPS receiver!
+If you see something similar to this... Yay! You are getting position fixes with
+your open source software-defined GPS receiver!
 {: .notice--success}
 
 ```
@@ -250,7 +285,8 @@ $
 ```
 {: class="no-copy"}
 
-Now you can examine the processing outputs in the folder from which you invoked GNSS-SDR:
+Now you can examine the processing outputs in the folder from which you invoked
+GNSS-SDR:
 
  * A `.kml` file.
  * A `.geojson` file.
@@ -258,7 +294,8 @@ Now you can examine the processing outputs in the folder from which you invoked 
  * A `.nmea` file.
  * Observation and Navigation RINEX files.
 
-... play with the configuration parameters or try out more challenging [configurations]({{ "/conf/" | relative_url }}).
+... play with the configuration parameters or try out more challenging
+[configurations]({{ "/conf/" | relative_url }}).
 
 <link rel="prerender" href="{{ "/conf/" | relative_url }}" />
 <link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />

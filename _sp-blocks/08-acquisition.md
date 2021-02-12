@@ -8,22 +8,28 @@ toc: true
 toc_sticky: true
 last_modified_at: 2021-01-11T12:54:02-02:00
 ---
-A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$, the digital signal at the input of an _Acquisition_ block can be written as:
+
+A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
+the digital signal at the input of an _Acquisition_ block can be written as:
 
 $$ \begin{equation} \label{xin} x_\text{IN}[k] = A(t)\tilde{s}_{T}(t-\tau(t))e^{j \left( 2\pi f_D(t) t + \phi(t) \right) } \Bigr \rvert_{t=kT_s} + n(t) \Bigr \rvert_{t=kT_s} \end{equation} $$
 
-where $$ A(t) $$ is the signal amplitude, $$ \tilde{s}_{T}(t) $$ is a filtered version of $$ s_T(t) $$, $$ \tau(t) $$ is a time-varying code delay, $$ f_D(t) $$ is a time-varying Doppler shift, $$ \phi(t) $$ is a time-varying carrier phase shift, $$ n(t) $$ is a term modeling random noise and $$ T_s $$ is the sampling period.
+where $$ A(t) $$ is the signal amplitude, $$ \tilde{s}_{T}(t) $$ is a filtered
+version of $$ s_T(t) $$, $$ \tau(t) $$ is a time-varying code delay, $$ f_D(t) $$
+is a time-varying Doppler shift, $$ \phi(t) $$ is a time-varying carrier phase
+shift, $$ n(t) $$ is a term modeling random noise and $$ T_s $$ is the sampling
+period.
 
-The role of an _Acquisition_ block is the detection of the presence/absence
-of signals coming from a given GNSS satellite. In the case of a positive
-detection, it should provide coarse estimations of the code phase
-$$ \hat{\tau}_{acq} $$ and the Doppler shift $$ \hat{f}_{\!D_{acq}} $$, yet accurate enough to
+The role of an _Acquisition_ block is the detection of the presence/absence of
+signals coming from a given GNSS satellite. In the case of a positive detection,
+it should provide coarse estimations of the code phase $$ \hat{\tau}_{acq} $$
+and the Doppler shift $$ \hat{f}_{\!D_{acq}} $$, yet accurate enough to
 initialize the delay and phase tracking loops.
 {: .notice--info}
 
-By exploiting the concepts and methodology of estimation theory, it is possible to
-show that the maximum likelihood (ML) estimates of $$ f_D $$ and $$ \tau $$ can
-be obtained by maximizing the function
+By exploiting the concepts and methodology of estimation theory, it is possible
+to show that the maximum likelihood (ML) estimates of $$ f_D $$ and $$ \tau $$
+can be obtained by maximizing the function
 
 $$ \begin{equation}
 \hat{f}_{\!D_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_D,\tau} \left\{ \left| \hat{R}_{xd}(f_D,\tau)\right|^2\right\}~, \end{equation} $$
@@ -36,32 +42,33 @@ $$ \begin{equation}
 $$ x_{\text{IN}}[k] $$ is a complex vector containing I&Q samples of the
 received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase
 of the received signal with respect to a local reference, $$ f_D $$ is the
-Doppler shift, $$ K $$ is the number of samples in a spreading code (4 ms
-for Galileo E1, 1 ms for GPS L1, etc.), and $$ d[k] $$ is a locally generated
+Doppler shift, $$ K $$ is the number of samples in a spreading code (4 ms for
+Galileo E1, 1 ms for GPS L1, etc.), and $$ d[k] $$ is a locally generated
 reference. The maximization in the equation above requires a two-dimensional
-search in a function which output results from a multiplication-and-sum
-of $$ K $$ complex samples, becoming the computational bottleneck of the
-whole process. A usual method to alleviate this issue is to resort to
-the FFT-based circular convolution, which exchanges the expensive
-multiplication-and-sum operation by a discrete Fourier transform, a
-vector product and an inverse transform, taking advantage of the
-efficient implementations available for such operations[^Borre06].
+search in a function which output results from a multiplication-and-sum of $$ K $$
+complex samples, becoming the computational bottleneck of the whole process. A
+usual method to alleviate this issue is to resort to the FFT-based circular
+convolution, which exchanges the expensive multiplication-and-sum operation by a
+discrete Fourier transform, a vector product and an inverse transform, taking
+advantage of the efficient implementations available for such
+operations[^Borre06].
 
 
-The magnitude of $$ |\hat{R}_{xd}(f_D,\tau)| $$, also known as cross-ambiguity function, is
-also used to decide whether the satellite corresponding to the local
-replica $$ d[k] $$ is in view or it is not. Resorting to signal detection
-theory, it is possible to define tests statistics with desirable
-properties. A criterion commonly used for a detection problem is the
-maximization of the detection probability ($$ P_d $$) subject to a given
-false alarm probability ($$ P_{fa} $$). It is well-known in the literature
-that the optimum solution to that problem can be found by applying the
-[Neyman-Pearson](https://en.wikipedia.org/wiki/Neyman%E2%80%93Pearson_lemma) approach, which requires perfect knowledge of the
-signal parameters and constitutes the [uniformly most powerful test](https://en.wikipedia.org/wiki/Uniformly_most_powerful_test).
-Assuming additive white Gaussian noise and replacing the true
-synchronization parameters by their ML estimators in the Neyman-Pearson detector,
-one obtains the Generalized Likelihood Ratio Test (GLRT) function, which
-can be written as:
+The magnitude of $$ |\hat{R}_{xd}(f_D,\tau)| $$, also known as cross-ambiguity
+function, is also used to decide whether the satellite corresponding to the
+local replica $$ d[k] $$ is in view or it is not. Resorting to signal detection
+theory, it is possible to define tests statistics with desirable properties. A
+criterion commonly used for a detection problem is the maximization of the
+detection probability ($$ P_d $$) subject to a given false alarm probability ($$
+P_{fa} $$). It is well-known in the literature that the optimum solution to that
+problem can be found by applying the
+[Neyman-Pearson](https://en.wikipedia.org/wiki/Neyman%E2%80%93Pearson_lemma)
+approach, which requires perfect knowledge of the signal parameters and
+constitutes the [uniformly most powerful
+test](https://en.wikipedia.org/wiki/Uniformly_most_powerful_test). Assuming
+additive white Gaussian noise and replacing the true synchronization parameters
+by their ML estimators in the Neyman-Pearson detector, one obtains the
+Generalized Likelihood Ratio Test (GLRT) function, which can be written as:
 
 $$ \begin{equation} T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right) = \max_{f_D,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_D,\tau) \right|^2}{\hat{R}_{xx}} \right\}~, \end{equation} $$
 
@@ -71,8 +78,10 @@ Alarm Rate (CFAR) detector because $$ P_{fa} $$ does not depend on the noise
 power.
 
 ![CAF]({{ "/assets/images/caf.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
-_GLRT statistic for Parallel Code Phase Search acquisition algorithm
-for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kHz with steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo’s IOV satellite PRN 11[^Fernandez12]._
+_GLRT statistic for Parallel Code Phase Search acquisition algorithm for a
+configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kHz with
+steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo’s IOV
+satellite PRN 11[^Fernandez12]._
 {: style="text-align: center;"}
 
 
@@ -82,13 +91,14 @@ for a configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kH
 
 The Parallel Code Phase Search (PCPS) algorithm is described as follows:
 
-* **Require**: Input signal buffer $$ \mathbf{x}_{\text{IN}} $$ of $$ K $$ complex samples,
-provided by the Signal Conditioner; on-memory FFT of the local replica,
-$$ D[k]=FFT_{K}\left\{d[k]\right\} $$; acquisition threshold $$ \gamma $$; freq.
-span $$ [f_{min}\; f_{max}] $$; freq. step $$ f_{step} $$.
-* **Ensure**: Decision positive or negative signal acquisition. In the case of positive detection, it provides
-coarse estimations of code phase $$ \hat{\tau}_{acq} $$ and Doppler shift
-$$ \hat{f}_{\!D_{acq}} $$ to the Tracking block.
+* **Require**: Input signal buffer $$ \mathbf{x}_{\text{IN}} $$ of $$ K $$
+complex samples, provided by the Signal Conditioner; on-memory FFT of the local
+replica, $$ D[k]=FFT_{K}\left\{d[k]\right\} $$; acquisition threshold $$ \gamma $$;
+freq. span $$ [f_{min}\; f_{max}] $$; freq. step $$ f_{step} $$.
+* **Ensure**: Decision positive or negative signal acquisition. In the case of
+positive detection, it provides coarse estimations of code phase
+$$ \hat{\tau}_{acq} $$ and Doppler shift $$ \hat{f}_{\!D_{acq}} $$ to the Tracking
+block.
 
 1.	Compute input signal power estimation:
  $$ \hat{P}_{in} = \frac{1}{K}\sum_{k=0}^{K-1}\left|x_{\text{IN}}[k]\right|^2 $$.
@@ -118,14 +128,14 @@ $$ \hat{\tau}_{acq}=\tau_j $$.
 {: .notice--info}
 
 
-The computation of the Fast Fourier Transform and its
-inverse (second and fourth steps inside the _for_ loop) are performed by means of GNU
-Radio wrappers of the [FFTW library](http://www.fftw.org/), an efficient implementation
-for computing the discrete Fourier transform, whereas the products (first and third steps in the _for_ loop) are implemented with the Vector-Optimized Library of
-Kernels ([VOLK](https://www.libvolk.org/)), which generates processor-specific Single-Input
-Multiple-Data (SIMD) assembly instructions that take advantage of
-parallel computing techniques and allow writing efficient and portable
-code.
+The computation of the Fast Fourier Transform and its inverse (second and fourth
+steps inside the _for_ loop) are performed by means of GNU Radio wrappers of the
+[FFTW library](http://www.fftw.org/), an efficient implementation for computing
+the discrete Fourier transform, whereas the products (first and third steps in
+the _for_ loop) are implemented with the Vector-Optimized Library of Kernels
+([VOLK](https://www.libvolk.org/)), which generates processor-specific
+Single-Input Multiple-Data (SIMD) assembly instructions that take advantage of
+parallel computing techniques and allow writing efficient and portable code.
 
 This implementation accepts the following parameters:
 
@@ -221,21 +231,23 @@ Acquisition_1C.max_dwells=10
 
 ### Implementation: `GPS_L1_CA_PCPS_Tong_Acquisition`
 
-On top of the PCPS Algorithm (or any other providing the same
-outputs), we could integrate results from more than one consecutive code
-periods in order to enhance the *acquisition sensitivity*, understood as
-the minimum signal power at which a receiver can correctly identify the
-presence of a particular satellite signal in the incoming RF signal
-within a given time-out interval.
+On top of the PCPS Algorithm (or any other providing the same outputs), we could
+integrate results from more than one consecutive code periods in order to
+enhance the *acquisition sensitivity*, understood as the minimum signal power at
+which a receiver can correctly identify the presence of a particular satellite
+signal in the incoming RF signal within a given time-out interval.
 
-This is the case of the Tong detector[^Tong73], a sequential variable dwell time detector with a
-reasonable computation burden and proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
-signal search, the up/down counter $$ \mathcal{K} $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
-decremented by one. If the counter has reached the maximum count value $$ A $$, the signal is
-declared ‘_present_’ and the search is terminated. Similarly, if the counter contents reach zero,
-the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
-trapped into an extended dwell in the same cell, under certain poor signal conditions, another
-counter ($$ \mathcal{K}_{max} $$) sets the limit on the maximum number of dwells.
+This is the case of the Tong detector[^Tong73], a sequential variable dwell time
+detector with a reasonable computation burden and proves good for acquiring
+signals with low $$ C/N_0 $$ levels.  During the signal search, the up/down
+counter $$ \mathcal{K} $$ is incremented by one if the correlation peak value
+exceeds the threshold, otherwise it is decremented by one. If the counter has
+reached the maximum count value $$ A $$, the signal is declared ‘_present_’ and
+the search is terminated. Similarly, if the counter contents reach zero, the
+signal is declared ‘_absent_’ and the search is terminated. So that the Tong
+detector is not trapped into an extended dwell in the same cell, under certain
+poor signal conditions, another counter ($$ \mathcal{K}_{max} $$) sets the limit
+on the maximum number of dwells.
 
 This implementation accepts the following parameters:
 
@@ -300,7 +312,8 @@ $$ D_{I/NAV} $$, and can be expressed as:
 
 $$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big] \cdot p(t - lT_{c,E1B})~. \end{equation} $$
 
-In the case of channel C, it is a pilot (dataless) channel with a secondary code with a length of 100 ms, forming a tiered code:
+In the case of channel C, it is a pilot (dataless) channel with a secondary code
+with a length of 100 ms, forming a tiered code:
 
 $$ \!\!\!\!\!\!\begin{equation} e_{E1C}(t) =\! \sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
 
@@ -308,29 +321,32 @@ with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $
 
 ### Implementation: `Galileo_E1_PCPS_Ambiguous_Acquisition`
 
-This implementation permits the configuration of the shape of the local replica $$ d[k] $$, allowing for simplifications that reduce the computational load. As shown in the figure
-[below]({{ "/docs/sp-blocks/acquisition/#fig:Rxd" | relative_url }}), in narrowband receivers the CBOC waveform can be substituted
-by a sinBOC modulation with a very small performance penalty[^Lohan11]. For
-the E1B signal component, the reference signals available in this
-implementation are:
+This implementation permits the configuration of the shape of the local replica $$
+d[k] $$, allowing for simplifications that reduce the computational load. As
+shown in the figure [below]({{ "/docs/sp-blocks/acquisition/#fig:Rxd" |
+relative_url }}), in narrowband receivers the CBOC waveform can be substituted
+by a sinBOC modulation with a very small performance penalty[^Lohan11]. For the
+E1B signal component, the reference signals available in this implementation
+are:
 
-$$ \begin{equation} d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty}   C_{E1B}\Big[|l|_{4092}\Big]  p(t  -  lT_{c,E1B}) \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right) \end{equation} $$
+$$ \begin{equation} d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big]  p(t - lT_{c,E1B}) \cdot \left( \alpha sc_A[n] + \beta sc_B[n] \right) \end{equation} $$
 
 or
 
 $$ \begin{equation} \label{eq:dE1BsinBOC}
-d_{E1B}^{(\text{sinBOC})}[n]= \sum_{l=-\infty}^{+\infty}  C_{E1B}\Big[|l|_{4092}\Big] p(t  -  lT_{c,E1B})  sc_A[n]~, \end{equation} $$
+d_{E1B}^{(\text{sinBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})  sc_A[n]~, \end{equation} $$
 
 while for E1C, users can choose among:
 
-$$ \begin{eqnarray} d_{E1C}^{(\text{CBOC})}[n] &= &\sum_{m=-\infty}^{+\infty}  \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \nonumber \\ {} & {} & \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right) \end{eqnarray} $$
+$$ \begin{eqnarray} d_{E1C}^{(\text{CBOC})}[n] & = &\sum_{m=-\infty}^{+\infty} \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \nonumber \\ {} & {} & \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right) \end{eqnarray} $$
 
 or
 
-$$ \!\!\!\begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty}  \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big]   \! \cdot  \!   p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n]~. \end{equation} $$
+$$ \!\!\!\begin{equation} d_{E1C}^{(\text{sinBOC})}[n] = \sum_{m=-\infty}^{+\infty} \! \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \! \cdot \! p[n - mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot sc_A[n]~. \end{equation} $$
 
-The simpler sinBOC options are chosen by default. CBOC versions can be set by `Acquisition_1B.cboc=true`.
-Next figure plots the shape of the cross-correlation function for those waveforms:
+The simpler sinBOC options are chosen by default. CBOC versions can be set by
+`Acquisition_1B.cboc=true`. Next figure plots the shape of the cross-correlation
+function for those waveforms:
 
 <a name="fig:Rxd"></a>![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _Normalized $$ \left|R_{xd}\left(\check{f}_D=f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
@@ -392,13 +408,16 @@ Acquisition_1B.max_dwells=1
 ### Implementation: `Galileo_E1_PCPS_Tong_Ambiguous_Acquisition`
 
 The Tong detector[^Tong73] is a sequential variable dwell time detector with a
-reasonable computation burden that proves good for acquiring signals with low $$ C/N_0 $$ levels.  During the
-signal search, the up/down counter $$ \mathcal{K} $$ is incremented by one if the correlation peak value exceeds the threshold, otherwise it is
-decremented by one. If the counter has reached the maximum count value $$ A $$, the signal is
-declared ‘_present_’ and the search is terminated. Similarly, if the counter contents reach zero,
-the signal is declared ‘_absent_’ and the search is terminated. So that the Tong detector is not
-trapped into an extended dwell in the same cell, under certain poor signal conditions, another
-counter ($$ \mathcal{K}_{max} $$) sets the limit on the maximum number of dwells.
+reasonable computation burden that proves good for acquiring signals with low $$
+C/N_0 $$ levels.  During the signal search, the up/down counter $$ \mathcal{K} $$
+is incremented by one if the correlation peak value exceeds the threshold,
+otherwise it is decremented by one. If the counter has reached the maximum count
+value $$ A $$, the signal is declared ‘_present_’ and the search is terminated.
+Similarly, if the counter contents reach zero, the signal is declared ‘_absent_’
+and the search is terminated. So that the Tong detector is not trapped into an
+extended dwell in the same cell, under certain poor signal conditions, another
+counter ($$ \mathcal{K}_{max} $$) sets the limit on the maximum number of
+dwells.
 
 This implementation accepts the following parameters:
 
@@ -753,7 +772,11 @@ Acquisition_5X.doppler_step=250
 
 ## Plotting results with MATLAB/Octave
 
-Some Acquisition block implementations are able to dump intermediate results of the channel indicated by the `dump_channel` parameter in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) file format (`.mat` files), which can be opened in MATLAB/Octave.
+Some Acquisition block implementations are able to dump intermediate results of
+the channel indicated by the `dump_channel` parameter in [MATLAB Level 5
+MAT-file
+v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) file
+format (`.mat` files), which can be opened in MATLAB/Octave.
 
 The list of output variables contained in each `.mat` file is the following:
 
@@ -773,7 +796,8 @@ The list of output variables contained in each `.mat` file is the following:
 
 Example:
 
-Assuming that you are processing GPS L1 C/A signals, and you have included the following lines in your configuration file:
+Assuming that you are processing GPS L1 C/A signals, and you have included the
+following lines in your configuration file:
 
 ```ini
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
@@ -783,7 +807,8 @@ Acquisition_1C.dump_filename=acq_dump
 Acquisition_1C.dump_channel=0
 ```
 
-Then, after the processing, you will get `.mat` files storing the results obtained from the Acquisition block corresponding to channel 0.
+Then, after the processing, you will get `.mat` files storing the results
+obtained from the Acquisition block corresponding to channel 0.
 
 The acquisition grid can be plotted from MATLAB or Octave as:
 
