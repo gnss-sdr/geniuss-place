@@ -12,7 +12,9 @@ last_modified_at: 2021-01-11T12:54:02-02:00
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
 the digital signal at the input of an _Acquisition_ block can be written as:
 
-$$ \begin{equation} \label{xin} x_\text{IN}[k] = A(t)\tilde{s}_{T}(t-\tau(t))e^{j \left( 2\pi f_D(t) t + \phi(t) \right) } \Bigr \rvert_{t=kT_s} + n(t) \Bigr \rvert_{t=kT_s} \end{equation} $$
+$$ \begin{equation}
+\label{xin} x_\text{IN}[k] = A(t)\tilde{s}_{T}(t-\tau(t))e^{j \left( 2\pi f_D(t) t + \phi(t) \right) } \Bigr \rvert_{t=kT_s} + n(t) \Bigr \rvert_{t=kT_s}
+\end{equation} $$
 
 where $$ A(t) $$ is the signal amplitude, $$ \tilde{s}_{T}(t) $$ is a filtered
 version of $$ s_T(t) $$, $$ \tau(t) $$ is a time-varying code delay, $$ f_D(t) $$
@@ -32,12 +34,14 @@ to show that the maximum likelihood (ML) estimates of $$ f_D $$ and $$ \tau $$
 can be obtained by maximizing the function
 
 $$ \begin{equation}
-\hat{f}_{\!D_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_D,\tau} \left\{ \left| \hat{R}_{xd}(f_D,\tau)\right|^2\right\}~, \end{equation} $$
+\hat{f}_{\!D_{ML}}, \hat{\tau}_{ML} = \arg \max_{f_D,\tau} \left\{ \left| \hat{R}_{xd}(f_D,\tau)\right|^2\right\}~,
+\end{equation} $$
 
 where
 
 $$ \begin{equation}
-\hat{R}_{xd}(f_D,\tau) = \frac{1}{K}\sum_{k=0}^{K-1}x_{\text{IN}}[k]d[kT_s-\tau]e^{-j 2 \pi f_D kT_s}~, \end{equation} $$
+\hat{R}_{xd}(f_D,\tau) = \frac{1}{K}\sum_{k=0}^{K-1}x_{\text{IN}}[k]d[kT_s-\tau]e^{-j 2 \pi f_D kT_s}~,
+\end{equation} $$
 
 $$ x_{\text{IN}}[k] $$ is a complex vector containing I&Q samples of the
 received signal, $$ T_s $$ is the sampling period, $$ \tau $$ is the code phase
@@ -52,7 +56,6 @@ convolution, which exchanges the expensive multiplication-and-sum operation by a
 discrete Fourier transform, a vector product, and an inverse transform, taking
 advantage of the efficient implementations available for such
 operations[^Borre06].
-
 
 The magnitude of $$ |\hat{R}_{xd}(f_D,\tau)| $$, also known as cross-ambiguity
 function, is also used to decide whether the satellite corresponding to the
@@ -70,7 +73,9 @@ additive white Gaussian noise and replacing the true synchronization parameters
 by their ML estimators in the Neyman-Pearson detector, one obtains the
 Generalized Likelihood Ratio Test (GLRT) function, which can be written as:
 
-$$ \begin{equation} T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right) = \max_{f_D,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_D,\tau) \right|^2}{\hat{R}_{xx}} \right\}~, \end{equation} $$
+$$ \begin{equation}
+T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right) = \max_{f_D,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_D,\tau) \right|^2}{\hat{R}_{xx}} \right\}~,
+\end{equation} $$
 
 where $$ \hat{R}_{xx} $$ is an estimation of the input signal power. It can
 be shown that this acquisition test statistic is a Constant False
@@ -298,24 +303,29 @@ Acquisition_1C.tong_max_dwells=20
 
 The Galileo E1 Open Service signal can be written as:[^GalileoICD]
 
-$$ \begin{eqnarray} s^{\text{(Gal E1)}}_{T}(t)& = &\frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) + \nonumber \\
- {} & {} & -~e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{eqnarray} $$
-
+$$ \begin{eqnarray}
+s^{\text{(Gal E1)}}_{T}(t)& = &\frac{1}{\sqrt{2}} \Big( e_{E1B}(t) \left(\alpha sc_A(t) + \beta sc_B(t) \right)~ + \nonumber \\
+{} & {} & -~e_{E1C}(t) \left(\alpha sc_A(t) - \beta sc_B(t) \right) \Big)~,
+\end{eqnarray} $$
 
 where $$ sc_A(t) $$ and $$ sc_B(t) $$ are the subcarriers defined as
-$$ sc_A(t)= \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big) $$ and
-$$ sc_B(t)= \text{sign} \Big( \sin( 2 \pi f_{s, E1B}t ) \Big) $$, with
+$$ sc_A(t) = \text{sign}\Big(\sin(2\pi f_{s,E1A}t) \Big) $$ and
+$$ sc_B(t) = \text{sign}\Big(\sin(2\pi f_{s, E1B}t) \Big) $$, with
 $$ f_{s,E1A}=1.023 $$ MHz and $$ f_{s, E1B}=6.138 $$ MHz.
 
 Channel B contains the I/NAV type of navigation message,
 $$ D_{I/NAV} $$, and can be expressed as:
 
-$$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big] \cdot p(t - lT_{c,E1B})~. \end{equation} $$
+$$ \begin{equation}
+e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big] \cdot p(t - lT_{c,E1B})~.
+\end{equation} $$
 
 In the case of channel C, it is a pilot (dataless) channel with a secondary code
 with a length of 100 ms, forming a tiered code:
 
-$$ \!\!\!\!\!\!\begin{equation} e_{E1C}(t) =\! \sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
+$$ \!\!\!\!\!\!\!\!\!\!\begin{equation}
+e_{E1C}(t) =\!\! \sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big] \oplus \sum_{l=1}^{4092}C_{E1Cp}\Big[ l \Big] \cdot p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~,
+\end{equation} $$
 
 with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$ ms.
 
@@ -329,12 +339,15 @@ by a sinBOC modulation with a very small performance penalty[^Lohan11]. For the
 E1B signal component, the reference signals available in this implementation
 are:
 
-$$ \begin{equation} d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big]  p(t - lT_{c,E1B}) \cdot \left( \alpha sc_A[n] + \beta sc_B[n] \right) \end{equation} $$
+$$ \begin{equation}
+d_{E1B}^{(\text{CBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B}) \cdot \left( \alpha sc_A[n] + \beta sc_B[n] \right)
+\end{equation} $$
 
 or
 
 $$ \begin{equation} \label{eq:dE1BsinBOC}
-d_{E1B}^{(\text{sinBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})  sc_A[n]~, \end{equation} $$
+d_{E1B}^{(\text{sinBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B}) sc_A[n]~,
+\end{equation} $$
 
 while for E1C, users can choose among:
 
