@@ -1,7 +1,8 @@
 ---
 title: "Configuration options at building time"
 permalink: /docs/tutorials/configuration-options-building-time/
-excerpt: "Description of the available GNSS-SDR configuration options at building time."
+excerpt:
+  "Description of the available GNSS-SDR configuration options at building time."
 author_profile: false
 header:
   teaser: /assets/images/Cmake-logo.png
@@ -16,18 +17,40 @@ last_modified_at: 2021-01-11T09:17:02+02:00
 ---
 
 
-GNSS-SDR's building process is managed by [CMake](https://cmake.org/), a cross-platform, compiler-independent, free, and open-source software tool. CMake supports directory hierarchies and applications that depend on multiple libraries. It can locate executables, files, and libraries to be linked against, generating [makefiles](https://en.wikipedia.org/wiki/Makefile) for many platforms and IDEs (such as [Eclipse](https://www.eclipse.org), [Codeblocks](http://www.codeblocks.org/) and [Xcode](https://developer.apple.com/xcode/)), and liberating users from choosing the adequate flags for their compiler. CMake is used in conjunction with native build systems such as [make](https://en.wikipedia.org/wiki/Make_(software)), [ninja](https://ninja-build.org/) or Apple's [Xcode](https://en.wikipedia.org/wiki/Xcode).
+GNSS-SDR's building process is managed by [CMake](https://cmake.org/), a
+cross-platform, compiler-independent, free, and open-source software tool. CMake
+supports directory hierarchies and applications that depend on multiple
+libraries. It can locate executables, files, and libraries to be linked against,
+generating [makefiles](https://en.wikipedia.org/wiki/Makefile) for many
+platforms and IDEs (such as [Eclipse](https://www.eclipse.org),
+[Codeblocks](http://www.codeblocks.org/), and
+[Xcode](https://developer.apple.com/xcode/)), and liberating users from choosing
+the adequate flags for their compiler. CMake is used in conjunction with native
+build systems such as [make](https://en.wikipedia.org/wiki/Make_(software)),
+[ninja](https://ninja-build.org/), or Apple's
+[Xcode](https://en.wikipedia.org/wiki/Xcode).
 
 
-CMake allows GNSS-SDR to be effortlessly built in a wide range of operating systems and processor architectures, constituting a key tool for its [**portability**]({{ "/design-forces/portability/" | relative_url }}).
+CMake allows GNSS-SDR to be effortlessly built on a wide range of operating
+systems and processor architectures, constituting a key tool for its
+[**portability**]({{ "/design-forces/portability/" | relative_url }}).
 {: .notice--info}
 
-CMake can handle in-place and out-of-place builds, enabling several builds from the same source tree, and [cross-compilation](https://en.wikipedia.org/wiki/Cross_compiler). The ability to build a directory tree outside the source tree is a key feature, ensuring that if a build directory is removed, the source files remain unaffected. This approach is mandatory when building GNSS-SDR, and you will get an error message if you try an in-place build.
+CMake can handle in-place and out-of-place builds, enabling several builds from
+the same source tree, and
+[cross-compilation](https://en.wikipedia.org/wiki/Cross_compiler). The ability
+to build a directory tree outside the source tree is a key feature, ensuring
+that if a build directory is removed, the source files remain unaffected. This
+approach is mandatory when building GNSS-SDR, and you will get an error message
+if you try an in-place build.
 
 
-The `cmake` executable is the CMake command-line interface. When `cmake` is first run in an empty build tree, it creates a `CMakeCache.txt` file and populates it with customizable settings for the project.
+The `cmake` executable is the CMake command-line interface. When `cmake` is
+first run in an empty build tree, it creates a `CMakeCache.txt` file and
+populates it with customizable settings for the project.
 
-Once all the required dependencies are installed in your system, the default building process is:
+Once all the required dependencies are installed in your system, the default
+building process is:
 
 ```console
 $ cd gnss-sdr/build
@@ -36,14 +59,16 @@ $ make
 $ sudo make install
 ```
 
-CMake's defaults and GNSS-SDR project configuration settings can be overridden on the command line with the -D option, with the following syntax:
+CMake's defaults and GNSS-SDR project configuration settings can be overridden
+on the command line with the -D option, with the following syntax:
 
 ```console
 $ cmake -D<variable_name>=<value>
 ```
 {: class="no-copy"}
 
-Thus, if you want to set the variable named `CMAKE_BUILD_TYPE` to the `Debug` value, you can write in your command line:
+Thus, if you want to set the variable named `CMAKE_BUILD_TYPE` to the `Debug`
+value, you can write in your command line:
 
 ```console
 $ cmake -DCMAKE_BUILD_TYPE=Debug ..
@@ -55,13 +80,16 @@ You can specify any number of variables:
 $ cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_OSMOSDR=ON ..
 ```
 
-This page documents the available GNSS-SDR configuration options at building time.
+This page documents the available GNSS-SDR configuration options at building
+time.
 
 
 
 ## General CMake variables
 
-The building system honors the usual [CMake variables](https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html). Most relevant are:
+The building system honors the usual [CMake
+variables](https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html).
+Most relevant are:
 
 
 |----------
@@ -72,8 +100,8 @@ The building system honors the usual [CMake variables](https://cmake.org/cmake/h
 | `-DCMAKE_INSTALL_PREFIX` | System path | System-dependent. In most systems, this use to be `/usr/local`. | Specifies the path in which GNSS-SDR will be installed when doing `make install`. The content of this variable is prepended onto all install directories. On UNIX systems, one can use the `DESTDIR` mechanism in order to relocate the whole installation (see below). |
 | `-DCMAKE_CXX_COMPILER` | System path | System-dependent. | Specifies a non-default C++ compiler. Example: `/usr/bin/clang++`. |
 | `-DCMAKE_C_COMPILER` | System path | System-dependent. | Specifies a non-default C compiler. Example: `/usr/bin/clang`. |
-| `-DCMAKE_INCLUDE_PATH` | System path | System-dependent. | This is used when searching for include files *e.g.* using the `FIND_PATH()` command in the `CMakeLists.txt` files. If you have headers in non-standard locations, it may be useful to set this variable to this directory. If you need several directories, separate them by the platform specific separators (*e.g.* ":" on UNIX). |
-| `-DCMAKE_LIBRARY_PATH` | System path | System-dependent. | This is used when searching for libraries *e.g.* using the FIND_LIBRARY() command in the CMakeLists.txt files. If you have libraries in non-standard locations, it may be useful to set this variable to this directory. If you need several directories, separate them by the platform specific separators (*e.g.* ":" on UNIX). |
+| `-DCMAKE_INCLUDE_PATH` | System path | System-dependent. | This is used when searching for include files *e.g.* using the `FIND_PATH()` command in the `CMakeLists.txt` files. If you have headers in non-standard locations, it may be useful to set this variable to this directory. If you need several directories, separate them by the platform-specific separators (*e.g.* ":" on UNIX). |
+| `-DCMAKE_LIBRARY_PATH` | System path | System-dependent. | This is used when searching for libraries *e.g.* using the FIND_LIBRARY() command in the CMakeLists.txt files. If you have libraries in non-standard locations, it may be useful to set this variable to this directory. If you need several directories, separate them by the platform-specific separators (*e.g.* ":" on UNIX). |
 | `-DCMAKE_PREFIX_PATH` | System path | System-dependent. | This is used when searching for include files, binaries, or libraries using either the `FIND_PACKAGE()`, `FIND_PATH()`, `FIND_PROGRAM()`, or `FIND_LIBRARY()` commands in the `CMakeLists.txt` files. For each path in the `CMAKE_PREFIX_PATH` list, CMake will check `PATH/include` and `PATH` when `FIND_PATH()` is called, `PATH/bin` and `PATH` when `FIND_PROGRAM()` is called, and `PATH/lib` and `PATH` when `FIND_LIBRARY()` is called. |
 | `-DCMAKE_TOOLCHAIN_FILE` |  Path to a CMake toolchain file  | None | This variable is specified on the command line when cross-compiling with CMake. It is the path to a file which is read early in the CMake run and which specifies locations for compilers and toolchain utilities, and other target platform and compiler related information. For an example of usage, see [cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | relative_url }}). |
 | `-GNinja` | - | - | If `-GNinja` is passed to CMake, it generates input files for [Ninja](https://ninja-build.org/), a small build system designed for speed that can be seen as a replacement for `make`. Thus, the code will be compiled by doing `ninja` in the command line after running CMake, and the program will be installed by doing `sudo ninja install`. |
@@ -81,18 +109,29 @@ The building system honors the usual [CMake variables](https://cmake.org/cmake/h
 | `-DPYTHON_EXECUTABLE` | System path | System-dependent. | Path to the Python interpreter. By default, GNSS-SDR searches for Python  >= 3.4 and, if not found, it searches for Python 2.7 at standard locations in your system. You can specify the path of the Python interpreter by setting this variable (*e.g.* `/path/to/python`). |
 |----------
 
-In addition, if the `DESTDIR` environment variable is set, it will be prefixed to `CMAKE_INSTALL_PREFIX` in places where it is used to access files during installation. This allows the files to be installed in an intermediate directory tree without changing the final installation path name. For instance:
+In addition, if the `DESTDIR` environment variable is set, it will be prefixed
+to `CMAKE_INSTALL_PREFIX` in places where it is used to access files during
+installation. This allows the files to be installed in an intermediate directory
+tree without changing the final installation path name. For instance:
 
 ```console
 $ make DESTDIR=/home/carles install
 ```
 
-will install the software using the installation prefix, *e.g.* `/usr/local` prepended with the `DESTDIR` value which
-finally gives `/home/carles/usr/local`, so binaries will be under `/home/carles/usr/local/bin`.
+will install the software using the installation prefix, *e.g.* `/usr/local`
+prepended with the `DESTDIR` value which finally gives `/home/carles/usr/local`,
+so binaries will be under `/home/carles/usr/local/bin`.
 
-Since the value of `CMAKE_INSTALL_PREFIX` may be included in installed files, it is important to use `DESTDIR` rather than changing `CMAKE_INSTALL_PREFIX` when it is necessary to install to an intermediate staging directory. See a practical example of its usage at [cross-compiling GNSS-SDR]({{ "/docs/tutorials/cross-compiling/" | relative_url }}).
+Since the value of `CMAKE_INSTALL_PREFIX` may be included in installed files, it
+is important to use `DESTDIR` rather than changing `CMAKE_INSTALL_PREFIX` when
+it is necessary to install to an intermediate staging directory. See a practical
+example of its usage at [cross-compiling GNSS-SDR]({{
+"/docs/tutorials/cross-compiling/" | relative_url }}).
 
-The value of `CMAKE_BUILD_TYPE` determines the flags passed to the compiler. In addition to those build types offered by CMake by default, GNSS-SDR offers other extra build types for debugging and profiling purposes. The possible options and the flags passed to the compiler are listed below:
+The value of `CMAKE_BUILD_TYPE` determines the flags passed to the compiler. In
+addition to those build types offered by CMake by default, GNSS-SDR offers other
+extra build types for debugging and profiling purposes. The possible options and
+the flags passed to the compiler are listed below:
 
  - None: nothing set
  - Debug: `-O2 -g`
@@ -106,7 +145,9 @@ The value of `CMAKE_BUILD_TYPE` determines the flags passed to the compiler. In 
  - ASAN: `-Wall -Wextra -g -O2 -fsanitize=address -fno-omit-frame-pointer`
 
 
-For more details, the [CMake official documentation](https://cmake.org/documentation/) is home of the authoritative guide to all CMake variables, commands, and properties.
+For more details, the [CMake official
+documentation](https://cmake.org/documentation/) is home of the authoritative
+guide to all CMake variables, commands, and properties.
 
 ## Optional drivers for RF front-ends
 
@@ -123,7 +164,9 @@ For more details, the [CMake official documentation](https://cmake.org/documenta
 | `-ENABLE_RAW_UDP` | `ON` / `OFF` | `OFF` | If set to `ON`, it enables the reception of IP frames containing samples in UDP frame encapsulation using a high-performance packet capture library. This option requires [libpcap](https://github.com/the-tcpdump-group/libpcap) already installed in your system. Specifically, the [`Custom_UDP_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-plutosdr_signal_source" | relative_url }}) implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | relative_url }}) block becomes available. |
 |----------
 
-Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb package (`sudo apt-get install gnss-sdr`), the option `ENABLE_OSMOSDR` is set to `ON`, and the required drivers are already installed.
+Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb
+package (`sudo apt-get install gnss-sdr`), the option `ENABLE_OSMOSDR` is set to
+`ON`, and the required drivers are already installed.
 
 
 ## GPU off-loading and SIMD-related options
@@ -173,12 +216,16 @@ Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb pa
 | `-DENABLE_INSTALL_TESTS` | `ON` / `OFF` | `OFF` | By default, generated test binaries are not installed system-wide but placed in the local folder `gnss-sdr/install`. If this option is set to `ON`, test binaries and auxiliary files will not be copied to `gnss-sdr/install` but installed in the system path when doing `make install`. |
 |----------
 
-If all these options are set to `OFF` (so, `-DENABLE_UNIT_TESTING=OFF` in a fresh start), then [Google Test](https://github.com/google/googletest) is not a required dependency anymore.
+If all these options are set to `OFF` (so, `-DENABLE_UNIT_TESTING=OFF` in a
+fresh start), then [Google Test](https://github.com/google/googletest) is not a
+required dependency anymore.
 
 
 ## Performance analysis tools
 
-Some statistical profiling tools require the software under analysis to be compiled and linked with certain profiling options enabled. GNSS-SDR provides some options for that:
+Some statistical profiling tools require the software under analysis to be
+compiled and linked with certain profiling options enabled. GNSS-SDR provides
+some options for that:
 
 |----------
 | **Variable passed to CMake** | **Possible values** | **Default** | **Effect** |
@@ -191,7 +238,10 @@ Some statistical profiling tools require the software under analysis to be compi
 
 ## Static analysis
 
-[clang-tidy](https://clang.llvm.org/extra/clang-tidy/) is a clang-based C++ "linter" tool. Its purpose is to provide an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis.
+[clang-tidy](https://clang.llvm.org/extra/clang-tidy/) is a clang-based C++
+"linter" tool. Its purpose is to provide an extensible framework for diagnosing
+and fixing typical programming errors, like style violations, interface misuse,
+or bugs that can be deduced via static analysis.
 
 |----------
 | **Variable passed to CMake** | **Possible values** | **Default** | **Effect** |
@@ -200,13 +250,17 @@ Some statistical profiling tools require the software under analysis to be compi
 | `-DENABLE_CLANG_TIDY` | `ON` / `OFF` | `OFF` | If set to `ON`, clang-tidy is executed along with compilation, performing the checks defined in the [.clang-tidy](https://github.com/gnss-sdr/gnss-sdr/blob/next/.clang-tidy) file and applying fixes into the source code, when available. After compilation completion, please check your source tree with `git status` and `git diff` to review the applied changes and, if you agree, add and commit them.
 |----------
 
-Please note that you can also use the `run-clang-tidy` script (called `run-clang-tidy.py` in some platforms) to perform checks over all files in the compilation database:
+Please note that you can also use the `run-clang-tidy` script (called
+`run-clang-tidy.py` in some platforms) to perform checks over all files in the
+compilation database:
 
 ```console
 $ run-clang-tidy -checks='-*,modernize-use-nullptr' -fix
 ```
 
-You can examine the full [list of clang-tidy checks](https://clang.llvm.org/extra/clang-tidy/checks/list.html) and their definitions.
+You can examine the full [list of clang-tidy
+checks](https://clang.llvm.org/extra/clang-tidy/checks/list.html) and their
+definitions.
 
 In Debian and Ubuntu machines, clang-tidy can be installed with:
 
@@ -222,14 +276,22 @@ $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
 $ make        
 ```
 
-Check the [coding style guide]({{ "/coding-style/#use-code-linters" | relative_url }}) for more information on how to use clang-tidy in your system.
+Check the [coding style guide]({{ "/coding-style/#use-code-linters" |
+relative_url }}) for more information on how to use clang-tidy in your system.
 
 
 ## Documentation
 
-GNSS-SDR can generate documentation from its source code in HTML (by doing `make doc`) or PDF (by doing `make pdfmanual`) formats. Generating the documentation requires [Doxygen](https://www.doxygen.nl/) installed in your system. The PDF generation also requires $$ \LaTeX $$ already installed.
+GNSS-SDR can generate documentation from its source code in HTML (by doing `make
+doc`) or PDF (by doing `make pdfmanual`) formats. Generating the documentation
+requires [Doxygen](https://www.doxygen.nl/) installed in your system. The PDF
+generation also requires $$ \LaTeX $$ already installed.
 
-By default, the HTML output makes use of [MathJax](https://www.mathjax.org/) loaded from a public <abbr title="Content Delivery Network">CDN</abbr> for equations rendering in your browser, so you do not need to have MathJax locally installed. If you want to enjoy MathJax rendering in offline mode, you can use a local installation of MathJax (version 2.x) by disabling the option below.
+By default, the HTML output makes use of [MathJax](https://www.mathjax.org/)
+loaded from a public <abbr title="Content Delivery Network">CDN</abbr> for
+equations rendering in your browser, so you do not need to have MathJax locally
+installed. If you want to enjoy MathJax rendering in offline mode, you can use a
+local installation of MathJax (version 2.x) by disabling the option below.
 
 |----------
 | **Variable passed to CMake** | **Possible values** | **Default** | **Effect** |
