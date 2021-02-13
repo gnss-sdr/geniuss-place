@@ -26,13 +26,13 @@ s^{(i)}_T(t) = \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}\Big(d_I^{(i)}(u)
 where the Inphase and Quadrature (I&Q) components have the form
 
 $$ \begin{equation}
-g(t)=\sum_{k=0}^{N_{c}-1}q(t-kT_{PRN})
+g(t) = \sum_{k=0}^{N_{c}-1}q(t - kT_{PRN})
 \end{equation} $$
 
 with
 
 $$ \begin{equation}
-q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)p(t-lT_{c}) ~,
+q(t) = \sum_{l=0}^{L_{c}-1}c_{i}(l)p(t - lT_{c}) ~,
 \end{equation} $$
 
 
@@ -71,7 +71,8 @@ military of the United States and its allies, and
 
 - the Standard Positioning Service (SPS)[^GPS-SPS], open to civilian users.
 
-The most updated and authorized source is the [Official U.S. Government website about GPS and related topics](https://www.gps.gov/).
+The most updated and authorized source is the [Official U.S. Government website
+about GPS and related topics](https://www.gps.gov/).
 
 ### GPS L1
 
@@ -593,7 +594,8 @@ version 2.1 followed in November 2016[^Beidou], and version 3.0 in February
 B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open
 services deployed in the BSD-3 phase of the system development.
 
-![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250px"}{: .align-left} On December 2012, the China Satellite Navigation Office released the
+![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250px"}{: .align-left}
+On December 2012, the China Satellite Navigation Office released the
 official logo of the BeiDou system, the design of which incorporates the
 yin/yang symbol reflecting traditional Chinese culture, dark and light
 blue coloration symbolizing, respectively, space and Earth (including
