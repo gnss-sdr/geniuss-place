@@ -36,8 +36,9 @@ states with measurements, and $$ \mathbf{n} $$ models measurement noise.
 Depending on the models, assumptions, available measurements, and the
 availability of *a priori* or externally-provided information, many positioning
 strategies and algorithms can be devised. It follows a description of the
-positioning modes available at the `RTKLIB_PVT` implementation, mostly extracted
-from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
+positioning modes available at the [`RTKLIB_PVT`](#implementation-rtklib_pvt)
+implementation, mostly extracted from the excellent [RTKLIB
+manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
 
 
 ## Single Point Positioning
@@ -45,21 +46,23 @@ from the excellent [RTKLIB manual](http://www.rtklib.com/prog/manual_2.4.2.pdf).
 The default positioning mode is `PVT.positioning_mode=Single`. In this mode, the
 vector of unknown states is defined as:
 
-$$ \begin{equation} \mathbf{x} = ( \mathbf{r}_r^T, cdt_r)^T~, \end{equation} $$
+$$ \begin{equation} \mathbf{x} = \left(\mathbf{r}_r^T, c \cdot dt_r\right)^T~, \end{equation} $$
 
 where $$ \mathbf{r}_r $$ is the receiver's antenna position in an
 earth-centered, earth-fixed (ECEF) coordinate system (in meters), $$ c $$ is the
-speed of light and $$ dt_r $$ is the receiver clock bias (in seconds).
+speed of light, and $$ dt_r $$ is the receiver clock bias (in seconds).
 
 The measurement vector is defined as:
 
-$$ \begin{equation} \mathbf{y} = ( P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} )^T~. \end{equation} $$
+$$ \begin{equation} \mathbf{y} = \left(P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} \right)^T~. \end{equation} $$
 
 As described in the [Observables]({{ "docs/sp-blocks/observables/" |
 relative_url }}) block, for a signal from satellite $$ s $$ in the *i*-th band,
 the pseudorange measurement $$ P_{r,i}^{(s)} $$ can be expressed as:
 
-$$  P_{r,i}^{(s)} = \rho_r^{(s)} + c( dt_r(t_r) - dT^{(s)}(t^{(s)}) ) + I_{r,i}^{(s)} + T_r^{(s)} + \epsilon_P~. $$
+$$  \begin{equation}
+P_{r,i}^{(s)} = \rho_r^{(s)} + c\left(dt_r(t_r) - dT^{(s)}(t^{(s)}) \right) + I_{r,i}^{(s)} + T_r^{(s)} + \epsilon_P~.
+\end{equation} $$
 
 In the current implementation, if the receiver obtains pseudorange measurements
 from the same satellite in different frequency bands, only measurements in the
@@ -68,8 +71,13 @@ L1 band are used.
 Hence, the equation that relates pseudorange measurements to the vector of
 unknown states can be written as:
 
-$$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(1)} + cdt_r - cdT^{(1)} + I_{r}^{(1)} + T_{r}^{(1)} \\  \rho_{r}^{(2)} + cdt_r - cdT^{(2)} + I_{r}^{(2)} + T_{r}^{(2)}  \\ \rho_{r}^{(3)} + cdt_r - cdT^{(3)} + I_{r}^{(3)} + T_{r}^{(3)}  \\ \vdots \\ \rho_{r}^{(m)} + cdt_r - cdT^{(m)} + I_{r}^{(m)} + T_{r}^{(m)} \end{array} \right)~. \end{equation} $$
-
+$$ \begin{equation}
+\mathbf{h}(\mathbf{x}) = \left( \begin{array}{c} \rho_{r}^{(1)} + c \cdot dt_r - c \cdot dT^{(1)} + I_{r}^{(1)} + T_{r}^{(1)} \\
+\rho_{r}^{(2)} + c \cdot dt_r - c \cdot dT^{(2)} + I_{r}^{(2)} + T_{r}^{(2)} \\
+\rho_{r}^{(3)} + c \cdot dt_r - c \cdot dT^{(3)} + I_{r}^{(3)} + T_{r}^{(3)} \\
+\vdots \\
+\rho_{r}^{(m)} + c \cdot dt_r - c \cdot dT^{(m)} + I_{r}^{(m)} + T_{r}^{(m)} \end{array} \right)~.
+\end{equation} $$
 
 The geometric range $$ \rho_r^{(s)} $$ is defined as the physical distance
 between the satellite antenna phase center position and the receiver antenna
@@ -78,8 +86,9 @@ ECEF coordinates, the earth rotation effect has to be incorporated. This is
 known as the <span style="color: orange">Sagnac effect</span>[^Ashby04], and it
 can be approximated by:
 
-$$ \rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + {\definecolor{dark-orange}{RGB}{255,165,0} \color{dark-orange} \frac{\omega_e}{c}(x^{(s)}y_r - y^{(s)}x_r )}~, $$
-
+$$ \begin{equation}
+\rho_{r}^{(s)} \approx \left\| \mathbf{r}_r(t_r) - \mathbf{r}^{(s)}(t^{(s)}) \right\| + {\definecolor{dark-orange}{RGB}{255,165,0} \color{dark-orange} \frac{\omega_e}{c}\left(x^{(s)}y_r - y^{(s)}x_r \right)}~,
+\end{equation} $$
 where $$ \omega_e $$ is the Earth rotation angle velocity (in rad/s).
 
 ![Earth rotation correction]({{ "/assets/images/earth-rotation.png" | relative_url }}){: .align-center .invert-colors}
@@ -109,7 +118,14 @@ method.
 
 Matrix $$ \mathbf{H} $$ can be written as:
 
-$$ \begin{equation} \label{eq:H-single} \mathbf{H} = \left( \begin{array}{cc} -{\mathbf{e}_{r}^{(1)}}^T & 1 \\  -{\mathbf{e}_{r}^{(2)}}^T & 1 \\ -{\mathbf{e}_{r}^{(3)}}^T & 1 \\ \vdots & \vdots \\ -{\mathbf{e}_{r}^{(m)}}^T & 1 \end{array} \right), \quad \text{where } \mathbf{e}_r^{(s)}= \frac{\mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r)  \right\|} \end{equation} $$
+$$ \begin{equation}
+\label{eq:H-single} \mathbf{H} = \left( \begin{array}{cc} -{\mathbf{e}_{r}^{(1)}}^T & 1 \\
+-{\mathbf{e}_{r}^{(2)}}^T & 1 \\
+-{\mathbf{e}_{r}^{(3)}}^T & 1 \\
+\vdots & \vdots \\
+-{\mathbf{e}_{r}^{(m)}}^T & 1 \end{array} \right),
+\quad \text{where } \mathbf{e}_r^{(s)}= \frac{\mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\|}
+\end{equation} $$
 
 and the weighted least squares estimator (LSE) of the unknown state vector is
 obtained as:
@@ -218,7 +234,7 @@ estimate:
 Defining the residuals vector $$ \boldsymbol{\nu} = \left( \nu_1, \nu_2, \nu_3, ...,
 \nu_m \right)^T $$ with:
 
-$$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} +c \hat{dt}_r - cdT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s}~, $$
+$$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} +c \hat{dt}_r - c \cdot dT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s}~, $$
 
 the residuals test is defined as:
 
@@ -233,7 +249,7 @@ is, $$ prob > 0.001 $$).
 **2) GDOP Test**
 
 The Geometric Dilution of Precision, defined as $$ \text{GDOP} =
-\sqrt{\sigma_{r_{x}}^2+ \sigma_{r_{y}}^2 + \sigma_{r_{z}}^2 + \sigma_{cdt}^2 } $$,
+\sqrt{\sigma_{r_{x}}^2+ \sigma_{r_{y}}^2 + \sigma_{r_{z}}^2 + \sigma_{c \cdot dt}^2 } $$,
 must be better (that is, lower) than a certain threshold:
 
 $$ \text{GDOP} < \text{GDOP}_{\text{threshold}} $$
@@ -269,7 +285,7 @@ in the configuration file, a Precise Point Positioning algorithm is used to
 solve the positioning problem. In this positioning mode, the state vector to be
 estimated is defined as:
 
-$$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, cdt_r, Z_r, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T \right)^T~, \end{equation} $$
+$$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, c \cdot dt_r, Z_r, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T \right)^T~, \end{equation} $$
 
 where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are
 the north and east components of tropospheric gradients (see the tropospheric
@@ -298,15 +314,22 @@ with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 -
 f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$
 and $$ L_j $$ measurements. Explicitly:
 
-$$ \begin{equation} P_{r,LC}^{(s)} =  \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{r}^{(s)} + \epsilon_P \end{equation} $$
+$$ \begin{equation} P_{r,LC}^{(s)} =  \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} + \epsilon_P \end{equation} $$
 
-$$ \begin{equation} \Phi_{r,LC}^{(s)} = \rho_{r}^{(s)} + c(dt_r - dT^{(s)}) + T_{r}^{(s)} + B_{r,LC}^{(s)} + d\Phi_{r,LC}^{(s)} + \epsilon_{\Phi} \end{equation} $$
+$$ \begin{equation} \Phi_{r,LC}^{(s)} = \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} + B_{r,LC}^{(s)} + d\Phi_{r,LC}^{(s)} + \epsilon_{\Phi} \end{equation} $$
 
 with
 
 $$ \begin{equation} \label{eq:bias-lc} B_{r,LC}^{(s)} = C_i  \left( \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} \right) + C_j  \left( \phi_{r,0,j} - \phi_{0,j}^{(s)} + N_{r,j}^{(s)} \right) \end{equation} $$
 
-$$ \begin{equation} \begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \\ {} & {} & + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} +  C_j\mathbf{d}_{pco,j}^{(s)} \right)  \right)^T \mathbf{e}_r^{(s)} + \\ {} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)})+C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) + \\ {} & {} & + \left( d_{pcv,i}^{(s)}(\theta) +  d_{pcv,j}^{(s)}(\theta)\right) + \\ {} & {} & - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\left( C_i\lambda_i + C_j \lambda_j \right) \phi_{pw} \end{array} \end{equation} $$
+$$ \begin{equation}
+\begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \\
+{} & {} & + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} +  C_j\mathbf{d}_{pco,j}^{(s)} \right) \right)^T \mathbf{e}_r^{(s)} + \\
+{} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)})+C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) +\\
+{} & {} & + \left( d_{pcv,i}^{(s)}(\theta) +  d_{pcv,j}^{(s)}(\theta)\right) + \\
+{} & {} & - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\left( C_i\lambda_i + C_j \lambda_j \right) \phi_{pw}
+\end{array}
+\end{equation} $$
 
 
 In the current implementation, satellites and receiver antennas offset and
@@ -353,7 +376,10 @@ The partial derivatives matrix $$ \mathbf{H}= \frac{\partial
 \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} =
 \mathbf{x}_{0} } $$ can be written as:
 
-$$ \begin{equation} \mathbf{H}(\mathbf{x}) =  \left( \begin{array}{ccccc} -\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{I} \\ -\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{0} \end{array} \right)~, \end{equation} $$
+$$ \begin{equation}
+\mathbf{H}(\mathbf{x}) = \left(\begin{array}{ccccc} - \mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T && \mathbf{I} \\
+-\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{0} \end{array} \right)~,
+\end{equation} $$
 
 where $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 &
 0 & -1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & 0 & 0 &
@@ -362,7 +388,13 @@ where $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 &
 \mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)}  \right)^T $$ with $$
 \mathbf{e}_{r}^{(s)} $$ defined as above, and
 
-$$ \scriptstyle \begin{equation}\!\!\!\!\!\!\!\!\!\!\! \mathbf{M}_T \; = \; \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) &  m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\  m_{WG,r}^{(2)} \left( El_r^{(2)} \right) &  m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \cos \left( Az_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \sin \left( Az_r^{(2)} \right) \\  m_{WG,r}^{(3)} \left( El_r^{(3)} \right) &  m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \cos \left( Az_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \sin \left( Az_r^{(3)} \right) \\ \vdots \\  m_{WG,r}^{(m)} \left( El_r^{(m)} \right) &  m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \cos \left( Az_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \sin \left( Az_r^{(m)} \right) \end{array} \right) \end{equation} $$
+$$ \scriptstyle \begin{equation}
+\!\!\!\!\!\!\!\!\!\!\! \mathbf{M}_T \; = \; \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\
+m_{WG,r}^{(2)} \left( El_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \cos \left( Az_r^{(2)} \right) & m_{W,r}^{(2)} \left( El_r^{(2)} \right) \cot \left( El_r^{(2)} \right) \sin \left( Az_r^{(2)} \right) \\
+m_{WG,r}^{(3)} \left( El_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \cos \left( Az_r^{(3)} \right) & m_{W,r}^{(3)} \left( El_r^{(3)} \right) \cot \left( El_r^{(3)} \right) \sin \left( Az_r^{(3)} \right) \\
+\vdots \\
+m_{WG,r}^{(m)} \left( El_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \cos \left( Az_r^{(m)} \right) & m_{W,r}^{(m)} \left( El_r^{(m)} \right) \cot \left( El_r^{(m)} \right) \sin \left( Az_r^{(m)} \right) \end{array} \right)
+\end{equation} $$
 is a matrix related to the tropospheric model (see [below](#tropospheric-model)).
 
 With all those definitions, the Precise Point Positioning solution is computed
@@ -405,7 +437,7 @@ The transition matrix $$ \mathbf{F}_k $$ models the receiver movement:
 
 The dynamics model noise covariance matrix $$ \mathbf{Q}_k $$ is set to:
 
-$$ \begin{equation} \mathbf{Q}_k = \left(\begin{array}{ccccc} \mathbf{Q}_{r} & {} & {} & {} & {} \\ {} &  \mathbf{Q}_{v} & {} & {} & {} \\ {} & {} & \sigma_{cdt_{r}}^2 & {} & {} \\ {} & {} & {} & \mathbf{Q}_{T} & {} \\  {} & {} & {} & {} & \sigma_{bias}^2 \Delta_k \mathbf{I}_{m\times m} \end{array} \right) \end{equation} $$
+$$ \begin{equation} \mathbf{Q}_k = \left(\begin{array}{ccccc} \mathbf{Q}_{r} & {} & {} & {} & {} \\ {} &  \mathbf{Q}_{v} & {} & {} & {} \\ {} & {} & \sigma_{c \cdot dt_{r}}^2 & {} & {} \\ {} & {} & {} & \mathbf{Q}_{T} & {} \\  {} & {} & {} & {} & \sigma_{bias}^2 \Delta_k \mathbf{I}_{m\times m} \end{array} \right) \end{equation} $$
 
 with:
 
@@ -413,7 +445,7 @@ with:
     * If the positioning mode is set to `PVT.positioning_mode=PPP_Static`, these values are initialized to $$ \sigma_{re} =  \sigma_{rn} =  \sigma_{ru} = 100 $$ m in the first epoch and then set to $$ 0 $$ in the following time updates.
     * If the positioning mode is set to `PVT.positioning_mode=PPP_Kinematic`, these values are set to $$ \sigma_{re} = \sigma_{rn} =  \sigma_{ru} = 100 $$ m for all time updates.
   * $$ \mathbf{Q}_v = \mathbf{E}_r^T \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) \mathbf{E}_r $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north, and up components of the receiver velocity model noises (in m/s/$$ \sqrt{s} $$). In the current implementation, those parameters are set to $$ \sigma_{ve} = \sigma_{vn} = \sigma_{vu} = 0 $$.
-  * $$ \sigma_{cdt_{r}} $$ is the standard deviation of the receiver clock offset (in m). This value is set to $$ \sigma_{cdt_{r}} = 100 $$ m.
+  * $$ \sigma_{c \cdot dt_{r}} $$ is the standard deviation of the receiver clock offset (in m). This value is set to $$ \sigma_{c \cdot dt_{r}} = 100 $$ m.
   * $$ \mathbf{Q}_{T} = \text{diag} \left( \sigma_{Z}^2 \Delta_k, \sigma_{G_{N}}^2 \Delta_k,  \sigma_{G_{E}}^2 \Delta_k \right) $$ is the noise covariance matrix of the troposphere terms. These values are set to $$ \sigma_{Z} = 0.0001 $$, and $$ \sigma_{G_{N}} = \sigma_{G_{E}} $$ are initialized to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.001 $$ m/$$ \sqrt{s} $$ in the first epoch and then set to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.1 \cdot \sigma_{Z} $$ in the following time updates. The default value of $$ \sigma_{Z} = 0.0001 $$ m/$$ \sqrt{s} $$ can be configured with the `PVT.sigma_trop` option.
   * $$ \sigma_{bias} $$ is the standard deviation of the ionosphere-free carrier-phase bias measurements, in m/$$ \sqrt{s} $$. This value is initialized at the first epoch and after a cycle slip to $$ \sigma_{bias} = 100$$ m/$$ \sqrt{s} $$, and then is set to a default value of $$ \sigma_{bias} = 0.0001 $$ m/$$ \sqrt{s} $$ in the following time updates. This value and can be configured with the option `PVT.sigma_bias`.
   * $$ \mathbf{E}_r = \left( \begin{array}{ccc} - \sin(\theta_r) & \cos (\theta_r) & 0 \\ -\sin (\psi_r) \cos(\theta_r) & -\sin (\psi_r)\sin(\theta_r) & \cos (\psi_r)\\ \cos(\psi_r)\cos(\theta_r) & \cos(\psi_r)\sin(\theta_r) & \sin(\psi_r)\end{array} \right) $$ is the rotation matrix of the ECEF coordinates to the local coordinates, where where $$ \psi_r $$ and $$ \theta_r $$ are the geodetic latitude and the longitude of the receiver position.
@@ -451,7 +483,7 @@ of L1 pseudorange measurement error (in m). These quantities are estimated as:
 In each of the executions of the Extended Kalman Filter defined in ($$
 \ref{eq:state-update} $$)-($$ \ref{eq:meas-cov-update} $$), if the absolute
 value of a residual $$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} +c
-\hat{dt}_r - cdT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s} $$ for a
+\hat{dt}_r - c \cdot dT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s} $$ for a
 satellite $$ s $$ is above a certain threshold, that observation is rejected as
 an outlier. The default threshold is set to $$ 30 $$ m and can be configured via
 the option `PVT.threshold_reject_innovation`.
@@ -550,7 +582,7 @@ can reach up to several tens of meters.
 For ionosphere correction for single-frequency GNSS users, GPS navigation data
 include the following broadcast ionospheric parameters:
 
-$$ \mathbf{p}_{ion} = ( \alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3)^T~. $$
+$$ \mathbf{p}_{ion} = \left(\alpha_0, \alpha_1, \alpha_2, \alpha_3, \beta_0, \beta_1, \beta_2, \beta_3 \right)^T~. $$
 
 By using these ionospheric parameters, the L1 ionospheric delay $$ I_{r,1}^{(s)} $$
 (in m) can be derived by the following procedure[^ISGPS200] (this model is often
@@ -558,22 +590,24 @@ called as the [Klobuchar
 model](https://gssc.esa.int/navipedia/index.php/Klobuchar_Ionospheric_Model)[^Klobuchar87]):
 
 
-$$ \begin{equation} \Psi = \frac{0.0137}{El_r^{(s)} + 0.11}-0.022 \end{equation} $$
+$$ \begin{equation} \Psi = \frac{0.0137}{El_r^{(s)} + 0.11} - 0.022 \end{equation} $$
 
-$$ \begin{equation} \psi_i = \psi + \Psi \cos(Az_r^{(s)}) \end{equation} $$
+$$ \begin{equation} \psi_i = \psi + \Psi \cos\left(Az_r^{(s)}\right) \end{equation} $$
 
-$$ \begin{equation} \lambda_i = \lambda + \frac{\Psi \sin(Az_r^{(s)})}{\cos(\psi_i)} \end{equation} $$
+$$ \begin{equation} \lambda_i = \lambda + \frac{\Psi \sin\left(Az_r^{(s)}\right)}{\cos(\psi_i)} \end{equation} $$
 
-$$ \begin{equation}  \psi_m = \psi_i + 0.064 \cos(\lambda_i -1.617) \end{equation} $$
+$$ \begin{equation} \psi_m = \psi_i + 0.064 \cos(\lambda_i - 1.617) \end{equation} $$
 
-$$ \begin{equation} t = 4.32 \cdot 10^4 \lambda_i +t \end{equation} $$
+$$ \begin{equation} t = 4.32 \cdot 10^4 \lambda_i + t \end{equation} $$
 
-$$ \begin{equation} F = 1.0 + 16.0 \cdot (0.43 - El_r^{(s)})^3 \end{equation} $$
+$$ \begin{equation} F = 1.0 + 16.0 \cdot \left(0.43 - El_r^{(s)}\right)^3 \end{equation} $$
 
+$$ \begin{equation} x = \frac{2 \pi (t - 505400)}{\sum_{n=0}^{3} \beta_n {\psi_m}^n} \end{equation} $$
 
-$$ \begin{equation} x = \frac{2 \pi (t - 505400)}{ \sum_{n=0}^{3} \beta_n {\psi_m}^n} \end{equation} $$
-
-$$ \begin{equation} \!\!\!\!\!\!\!\!I_{r,1}^{(s)} = \left\{ \begin{array}{cc}  F \cdot 5 \cdot 10 ^{-9} & ( | x | > 1.57) \\ F \cdot \left( 5 \cdot 10^{-9}+ \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left( 1-\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array}   \right. \end{equation} $$
+$$ \begin{equation}
+\!\!\!\!\!\!\!\!I_{r,1}^{(s)} = \left\{ \begin{array}{cc} F \cdot 5 \cdot 10 ^{-9} & \left(|x| > 1.57\right) \\
+F \cdot \left( 5 \cdot 10^{-9} + \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \left(1 -\frac{x^2}{2}+\frac{x^4}{24} \right) \right) & ( | x | \leq 1.57)\end{array} \right.
+\end{equation} $$
 
 This correction is activated when `PVT.iono_model` is set to `Broadcast`.
 
@@ -626,11 +660,11 @@ dual-frequency measurements.
 
 The standard atmosphere can be expressed as:[^Bevis94]
 
-$$ \begin{equation} p = 1013.15 \cdot (1-2.2557 \cdot 10^{-5} \cdot h)^{5.2568}~, \end{equation} $$
+$$ \begin{equation} p = 1013.15 \cdot (1 - 2.2557 \cdot 10^{-5} \cdot h)^{5.2568}~, \end{equation} $$
 
-$$ \begin{equation} T = 15.0 -6.5 \cdot 10^{-3} \cdot h + 273.15~, \end{equation} $$
+$$ \begin{equation} T = 15.0 - 6.5 \cdot 10^{-3} \cdot h + 273.15~, \end{equation} $$
 
-$$ \begin{equation} e = 6.108  \cdot \exp\left\{\frac{17.15 T -4684.0}{T-38.45}\right\} \cdot \frac{h_{rel}}{100}~, \end{equation} $$   
+$$ \begin{equation} e = 6.108 \cdot \exp\left\{\frac{17.15 T - 4684.0}{T - 38.45}\right\} \cdot \frac{h_{rel}}{100}~, \end{equation} $$   
 
 where $$ p $$ is the total pressure (in hPa), $$ T $$ is the absolute
 temperature (in K) of the air, $$ h $$  is the geodetic height above MSL (mean
@@ -666,17 +700,17 @@ If the processing option `PVT.trop_model` is set to `SBAS`, the SBAS troposphere
 If the processing option `PVT.trop_model` is set to `Estimate_ZTD`, a more
 precise troposphere model is applied with strict mapping functions as:
 
-$$ \begin{equation} m(El_{r}^{(s)}) = m_{W}(El_{r}^{(s)})\left\{1+\cot(El_{r}^{(s)}) \right\}~, \end{equation} $$
+$$ \begin{equation} m\left(El_{r}^{(s)}\right) = m_{W}\left(El_{r}^{(s)}\right)\left\{1+\cot\left(El_{r}^{(s)}\right) \right\}~, \end{equation} $$
 
-$$ \begin{equation} T_{r}^{s} =  m_{H}(El_{r}^{(s)})Z_{H,r} + m(El_{r}^{(s)}) (Z_{T,r}-Z_{H,r})~, \end{equation} $$
+$$ \begin{equation} T_{r}^{s} = m_{H}\left(El_{r}^{(s)}\right)Z_{H,r} + m\left(El_{r}^{(s)}\right) \left(Z_{T,r}-Z_{H,r}\right)~, \end{equation} $$
 
-where $$ Z_{T,t} $$ is the tropospheric zenith total delay (m), $$ Z_{H,r} $$ is
-the tropospheric zenith hydro‐static delay (m), $$ m_{H}(El_{r}^{(s)}) $$ is the
-hydro‐static mapping function and $$ m_{W}(El_{r}^{(s)}) $$ is the wet mapping
-function. The tropospheric zenith hydro‐static delay is given by Saastamoinen
-model described above with the zenith angle $$ z = 0 $$ and relative humidity $$
-h_{rel} = 0 $$. For the mapping function, the software employs the [Niell
-mapping
+where $$ Z_{T,t} $$ is the tropospheric zenith total delay (in meters), $$
+Z_{H,r} $$ is the tropospheric zenith hydro‐static delay (in meters), $$
+m_{H}\left(El_{r}^{(s)}\right) $$ is the hydro‐static mapping function and $$
+m_{W}\left(El_{r}^{(s)}\right) $$ is the wet mapping function. The tropospheric
+zenith hydro‐static delay is given by Saastamoinen model described above with
+the zenith angle $$ z = 0 $$ and relative humidity $$ h_{rel} = 0 $$. For the
+mapping function, the software employs the [Niell mapping
 function](https://gssc.esa.int/navipedia/index.php/Mapping_of_Niell)[^Niell96].
 The zenith total delay $$ Z_{T,r} $$ is estimated as an unknown parameter in the
 parameter estimation process.
@@ -689,7 +723,9 @@ If the processing option `trop_model` is set to `Estimate_ZTD_Grad`, a more
 precise troposphere model is applied with strict mapping functions
 as[^MacMillan95]:
 
-$$ \begin{equation} \!\!\!\!\!\!\!\!\!\!\!\!m(El_{r}^{(s)})\! = \!m_{W}(El_{r}^{(s)})\!\left\{1\!+\!\cot(El_{r}^{(s)}) \left( G_{N,r} \cos(Az_{r}^{(s)}) \!+\! G_{E,r} \sin(Az_{r}^{(s)})\right) \!\right\} \end{equation} $$
+$$ \begin{equation}
+\!\!\!\!\!\!\!\!\!\!\!\!\!\!m\left(El_{r}^{(s)}\right)\! = \!m_{W}\left(El_{r}^{(s)}\right)\!\left[1\!+\!\cot \! \left(El_{r}^{(s)}\right) \! \left( \! G_{N,r} \cos \! \left(Az_{r}^{(s)}\right) \!+\! G_{E,r} \sin \! \left(Az_{r}^{(s)}\right)\!\right) \!\right]
+\end{equation} $$
 
 where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and
 $$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the

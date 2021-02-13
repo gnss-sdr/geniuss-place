@@ -46,18 +46,18 @@ positioning, expressed in a local ENU reference frame, are defined below:
 with the standard deviations, in the case of a static receiver, computed as:
 
 $$ \begin{equation}
-\sigma_E^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- E_{ref}\right)^2} \quad,
+\sigma_E^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(E[l]- E_{ref}\right)^2}~,
 \end{equation} $$
 
 where $$ E_{ref} $$ is the East coordinate of the reference location. Similar
 expressions can be defined for the North and Up coordinates:
 
 $$ \begin{equation}
-\sigma_N^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- N_{ref}\right)^2} \quad,
+\sigma_N^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(N[l]- N_{ref}\right)^2}~,
 \end{equation} $$
 
 $$ \begin{equation}
-\sigma_U^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- U_{ref}\right)^2} \quad.
+\sigma_U^{(\text{static accuracy})} = \sqrt{\frac{1}{L-1}\sum_{l=1}^L \left(U[l]- U_{ref}\right)^2}~.
 \end{equation} $$
 
 Ideally, static position measurements should be averaged over 24 hours and
@@ -73,7 +73,7 @@ $$ t_{k_r} $$, and performed over $$ r=0,...,R-1 $$ repetitions of the same
 trajectory at the same pace:
 
 $$ \begin{equation}
-\sigma_E^{(\text{dynamic accuracy})} = \frac{1}{R}\sum_{r=0}^{R-1} \sqrt{\frac{1}{K_r-1}\sum_{k=0}^{K_r-1} \left(E_r(t_{k_r})- E_{r_{ref}}(t_{k_r})\right)^2} \quad,
+\sigma_E^{(\text{dynamic accuracy})} = \frac{1}{R}\sum_{r=0}^{R-1} \sqrt{\frac{1}{K_r-1}\sum_{k=0}^{K_r-1} \left(E_r(t_{k_r})- E_{r_{ref}}(t_{k_r})\right)^2}~,
 \end{equation} $$
 
 where $$ E_{r_{ref}}(t_{k_r}) $$ is the East reference position of trajectory
@@ -83,11 +83,11 @@ $$ t_{k_r} $$. Similar expressions can be defined for the North and Up
 coordinates:
 
 $$ \begin{equation}
-\sigma_N^{(\text{dynamic accuracy})} = \frac{1}{R}\sum_{r=0}^{R-1} \sqrt{\frac{1}{K_r-1}\sum_{k=0}^{K_r-1} \left(N_r(t_{k_r})- N_{r_{ref}}(t_{k_r})\right)^2} \quad,
+\sigma_N^{(\text{dynamic accuracy})} = \frac{1}{R}\sum_{r=0}^{R-1} \sqrt{\frac{1}{K_r-1}\sum_{k=0}^{K_r-1} \left(N_r(t_{k_r})- N_{r_{ref}}(t_{k_r})\right)^2}~,
 \end{equation} $$
 
 $$ \begin{equation}
-\sigma_U^{(\text{dynamic accuracy})} = \frac{1}{R}\sum_{r=0}^{R-1} \sqrt{\frac{1}{K_r-1}\sum_{k=0}^{K_r-1} \left(U_r(t_{k_r})- U_{r_{ref}}(t_{k_r})\right)^2} \quad.
+\sigma_U^{(\text{dynamic accuracy})} = \frac{1}{R}\sum_{r=0}^{R-1} \sqrt{\frac{1}{K_r-1}\sum_{k=0}^{K_r-1} \left(U_r(t_{k_r})- U_{r_{ref}}(t_{k_r})\right)^2}~.
 \end{equation} $$
 
 

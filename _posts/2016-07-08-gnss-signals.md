@@ -20,20 +20,20 @@ A _generic_ GNSS complex baseband signal transmitted by a given GNSS space
 vehicle $$ i $$ can be described as
 
 $$ \begin{equation}
-s^{(i)}_T(t) = \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}\Big( d_I^{(i)}(u)g_I(t-uT_{b_I}) + j d_Q^{(i)}(u)g_Q(t-uT_{b_Q})\Big)~, \end{equation}
-$$
+s^{(i)}_T(t) = \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}\Big(d_I^{(i)}(u)g_I(t - uT_{b_I}) + j d_Q^{(i)}(u)g_Q(t - uT_{b_Q})\Big)~,
+\end{equation} $$
 
 where the Inphase and Quadrature (I&Q) components have the form
 
 $$ \begin{equation}
-g(t)=\sum_{k=0}^{N_{c}-1}q(t-kT_{PRN}) \end{equation}
-$$
+g(t)=\sum_{k=0}^{N_{c}-1}q(t-kT_{PRN})
+\end{equation} $$
 
 with
 
 $$ \begin{equation}
-q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)p(t-lT_{c}) ~, \end{equation}
-$$
+q(t)=\sum_{l=0}^{L_{c}-1}c_{i}(l)p(t-lT_{c}) ~,
+\end{equation} $$
 
 
 being $$ \mathcal{P}_{T} $$ the transmitting power, $$ d(u) $$ the navigation
@@ -78,18 +78,24 @@ The most updated and authorized source is the [Official U.S. Government website 
 Defined in IS-GPS-200[^ISGPS200], this band is centered at $$ f_{\text{GPS
 L1}}=1575.42 $$ MHz. The complex baseband transmitted signal can be written as
 
-$$ \begin{equation} s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{equation} $$
+$$ \begin{equation}
+s^{\text{(GPS L1)}}_{T}(t) = e_{L1I}(t) + j e_{L1Q}(t)~,
+\end{equation} $$
 
 with
 
-$$ \begin{equation} e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] p(t -  lT_{c,\text{P(Y)}})~, \end{equation} $$
+$$ \begin{equation}
+e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] p(t - lT_{c,\text{P(Y)}})~,
+\end{equation} $$
 
-$$ \begin{equation} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}  \Big]  \oplus   C_{\text{C/A}}  \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~, \end{equation} $$
+$$ \begin{equation}
+e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{20460}\Big] \oplus C_{\text{C/A}} \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~,
+\end{equation} $$
 
 where $$ D_{\text{NAV}} \in \{-1,1\} $$ is the GPS navigation message bit
-sequence, transmitted at $$ 50 $$ bit/s, $$ T_{c,\text{P(Y)}}=\frac{1}{10.23} $$ $$
-\mu $$s, $$ T_{c,\text{C/A}}=\frac{1}{1.023} $$ $$ \mu $$s, and $$
-L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$. The precision P codes (named Y codes
+sequence, transmitted at $$ 50 $$ bit/s, $$ T_{c,\text{P(Y)}}=\frac{1}{10.23} $$
+$$ \mu $$s, $$ T_{c,\text{C/A}}=\frac{1}{1.023} $$ $$ \mu $$s, and
+$$ L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$. The precision P codes (named Y codes
 whenever the anti-spoofing mode is activated, encrypting the code and thus
 denying non–U.S. military users) are sequences of $$ 7 $$ days in length.
 
@@ -124,23 +130,33 @@ Defined in IS-GPS-200[^ISGPS200], this band is centered at
 $$ f_{\text{GPS L2}}=1227.60 $$ MHz. The complex baseband
 transmitted signal can be written as:
 
-$$  \begin{equation} s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~, \end{equation} $$
+$$ \begin{equation}
+s^{\text{(GPS L2)}}_{T}(t) = e_{L2I}(t) + j e_{L2Q}(t)~,
+\end{equation} $$
 
 with the In-phase component defined as:
 
-$$ \begin{equation} e_{L2I}(t) =  \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] p(t -  lT_{c,\text{P(Y)}})~,\end{equation}  $$
+$$ \begin{equation}
+e_{L2I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{204600}\Big] \oplus C_{\text{P(Y)}} \Big[ |l|_{L_{\text{P(Y)}}} \Big] p(t - lT_{c,\text{P(Y)}})~,
+\end{equation} $$
 
 with an optional presence of the navigation message $$ D_{\text{NAV}} $$. For
 the Quadrature–phase component, three options are defined:
 
-$$ \begin{eqnarray} e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty}\left( D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus   C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + \right. \nonumber \\
-{} & {} & \left. +~C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{1}{2}\right)T_{c,L2C}\right) \right)~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty}\left( D_{\text{CNAV}} \Big[ [l]_{10230} \Big] \oplus C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + \right. \nonumber \\
+{} & {} & \left. +~C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{1}{2}\right)T_{c,L2C}\right) \right)~,
+\end{eqnarray} $$
 
-$$ \begin{equation} e_{L2Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}} \Big[ [l]_{20460} \Big] \oplus C_{\text{C/A}} \Big[ |l|_{1023} \Big] p \left(t - lT_{c,\text{C/A}}\right), \end{equation} $$
+$$ \begin{equation}
+e_{L2Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}} \Big[ [l]_{20460} \Big] \oplus C_{\text{C/A}} \Big[ |l|_{1023} \Big] p \left(t - lT_{c,\text{C/A}}\right),
+\end{equation} $$
 
 or
 
-$$ \begin{equation} e_{L2Q}(t) = \sum_{l=-\infty}^{\infty}C_{\text{C/A}} \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~, \end{equation} $$
+$$ \begin{equation}
+e_{L2Q}(t) = \sum_{l=-\infty}^{\infty}C_{\text{C/A}} \Big[ |l|_{1023} \Big] p(t - lT_{c,\text{C/A}})~,
+\end{equation} $$
 
 where $$ T_{c,L2C}=\frac{1}{511.5} $$ ms and $$ p_{\text{1/2}}(t) $$ is a
 rectangular pulse of half chip–period duration, thus time-multiplexing both
@@ -164,12 +180,18 @@ The GPS L5 link, defined in IS-GPS-705[^ISGPS705], is only available on Block
 IIF and subsequent satellite blocks. Centered at $$ f_{\text{GPS L5}}=1176.45 $$
 MHz, this signal in space can be written as:
 
-$$ \begin{equation} s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~, \end{equation} $$
+$$ \begin{equation}
+s^{\text{(GPS L5)}}_{T}(t) = e_{L5I}(t) + j e_{L5Q}(t)~,
+\end{equation} $$
 
-$$ \begin{eqnarray} e_{L5I}(t) & = & \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus D_{\text{CNAV}}\Big[ [m]_{10}\Big] \oplus \nonumber \\
-{} & {} & \oplus~\sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5}) ~,\end{eqnarray} $$
+$$ \begin{eqnarray}
+e_{L5I}(t) & = & \sum_{m=-\infty}^{+\infty} C_{nh_{10}} \Big[ |m|_{10}\Big] \oplus D_{\text{CNAV}}\Big[ [m]_{10}\Big] \oplus \nonumber \\
+{} & {} & \oplus~\sum_{l=1}^{102300} C_{L5I}\Big[|l|_{10230}\Big] \cdot p(t - m T_{c,nh} - lT_{c,L5}) ~,
+\end{eqnarray} $$
 
-$$ \!\!\!\!\!\!\!\!\!\begin{equation} e_{L5Q}(t) = \!\!\sum_{m=-\infty}^{+\infty}\!\! C_{nh_{20}} \Big[ |m|_{20}\Big] \oplus \!\!\sum_{l=1}^{102300}\!\!C_{L5Q}\Big[|l|_{10230}\Big] \! \cdot\! p(t - m T_{c,nh} - lT_{c,L5})~, \end{equation} $$
+$$ \!\!\!\!\!\!\!\!\!\begin{equation}
+e_{L5Q}(t) = \!\!\sum_{m=-\infty}^{+\infty}\!\! C_{nh_{20}} \Big[ |m|_{20}\Big] \oplus \!\!\sum_{l=1}^{102300}\!\!C_{L5Q}\Big[|l|_{10230}\Big] \! \cdot\! p(t \! - \! m T_{c,nh} \! - \! lT_{c,L5})~,
+\end{equation} $$
 
 where $$ T_{c,nh}=1 $$ ms and $$ T_{c,L5}=\frac{1}{10.23} $$ $$ \mu $$s. The L5I
 component contains a synchronization sequence $$ C_{nh_{10}}=0000110101 $$,
@@ -185,16 +207,17 @@ _GPS signals spectra in L5. Source: [Navipedia](https://gssc.esa.int/navipedia/i
 
 ## GLONASS
 
-The nominal baseline constellation of the Russian Federation’s Global
-Navigation Satellite System (GLONASS) comprises $$ 24 $$ GLONASS–M
-satellites that are uniformly deployed in three roughly circular orbital
-planes at an inclination of $$ 64.8^o $$ to the equator. The altitude of the
-orbit is $$ 19,100 $$ km. The orbit period of each satellite is $$ 11 $$ hours,
-$$ 15 $$ minutes, and $$ 45 $$ seconds. The orbital planes are separated by
-$$ 120^o $$ right ascension of the ascending node. Eight satellites are
-equally spaced in each plane with $$ 45^o $$ argument of latitude. Moreover,
-the orbital planes have an argument of latitude displacement of $$ 15^o $$
-relative to each other. The current constellation status can be checked at the Russian [Information and Analysis Center for Positioning, Navigation and Timing website](https://www.glonass-iac.ru/en/).
+The nominal baseline constellation of the Russian Federation’s Global Navigation
+Satellite System (GLONASS) comprises $$ 24 $$ GLONASS–M satellites that are
+uniformly deployed in three roughly circular orbital planes at an inclination of
+$$ 64.8^o $$ to the equator. The altitude of the orbit is $$ 19,100 $$ km. The
+orbit period of each satellite is $$ 11 $$ hours, $$ 15 $$ minutes, and $$ 45 $$
+seconds. The orbital planes are separated by $$ 120^o $$ right ascension of the
+ascending node. Eight satellites are equally spaced in each plane with $$ 45^o $$
+argument of latitude. Moreover, the orbital planes have an argument of latitude
+displacement of $$ 15^o $$ relative to each other. The current constellation
+status can be checked at the Russian [Information and Analysis Center for
+Positioning, Navigation and Timing website](https://www.glonass-iac.ru/en/).
 
 The ground control segment of GLONASS is almost entirely located within former
 Soviet Union territory, except for a station in Brasilia, Brazil. The Ground
@@ -225,13 +248,19 @@ Two kinds of signals are transmitted: a standard precision (SP) and an
 obfuscated high precision (HP) signal. The complex baseband transmitted signal
 can be written as
 
-$$ \begin{equation} s^{\text{(GLO L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{equation} $$
+$$ \begin{equation}
+s^{\text{(GLO L1)}}_{T}(t) = e_{L1I}(t) + j e_{L1Q}(t)~,
+\end{equation} $$
 
 with
 
-$$ \begin{equation} e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{102200}\Big] \oplus C_{\text{HP}} \Big[ |l|_{L_{\text{HP}}} \Big] p(t  -  lT_{c,\text{HP}})~,\end{equation} $$
+$$ \begin{equation}
+e_{L1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{102200}\Big] \oplus C_{\text{HP}} \Big[ |l|_{L_{\text{HP}}} \Big] p(t - lT_{c,\text{HP}})~,
+\end{equation} $$
 
-$$ \begin{equation} e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{10220} \Big]  \oplus  C_{\text{SP}}  \Big[ |l|_{511} \Big] p(t - lT_{c,\text{SP}})~,\end{equation} $$
+$$ \begin{equation}
+e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{10220} \Big] \oplus C_{\text{SP}} \Big[ |l|_{511} \Big] p(t - lT_{c,\text{SP}})~,
+\end{equation} $$
 
 where $$ T_{c,\text{HP}}=\frac{1}{5.11} $$ $$ \mu $$s,
 $$ T_{c,\text{SP}}=\frac{1}{0.511} $$ $$ \mu $$s, and
@@ -322,8 +351,10 @@ This band, centered at $$ f_{\text{Gal E1}}=1575.420 $$ MHz and with a reference
 bandwidth of $$ 24.5520 $$ MHz, uses the Composite Binary Offset Carrier (CBOC)
 modulation, defined in baseband as:
 
-$$ \begin{eqnarray} s^{\text{(Gal E1)}}_{T}(t) & = & \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left( \alpha sc_A(t)+ \beta sc_B(t) \right) + \nonumber \\
-{} & {} & -~e_{E1C}(t) \left( \alpha sc_A(t)- \beta  sc_B(t) \right) \Big)~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+s^{\text{(Gal E1)}}_{T}(t) & = & \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left(\alpha sc_A(t) + \beta sc_B(t) \right) + \nonumber \\
+{} & {} & -~e_{E1C}(t) \left(\alpha sc_A(t) - \beta sc_B(t) \right) \Big)~,
+\end{eqnarray} $$
 
 where the subcarriers $$ sc(t) $$ are defined as
 
@@ -336,12 +367,16 @@ rates, $$ \alpha=\sqrt{\frac{10}{11}} $$, and $$ \beta=\sqrt{\frac{1}{11}} $$.
 Channel B contains the I/NAV type of navigation message,
 $$ D_{I/NAV} $$, intended for Safety–of–Life (SoL) services:
 
-$$ \begin{equation} e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big]    p(t - lT_{c,E1B})~. \end{equation} $$
+$$ \begin{equation}
+e_{E1B}(t) = \sum_{l=-\infty}^{+\infty} D_{\text{I/NAV}} \Big[ [l]_{4092}\Big] \oplus C_{E1B}\Big[|l|_{4092}\Big] p(t - lT_{c,E1B})~.
+\end{equation} $$
 
 In the case of channel C, it is a pilot (dataless) channel with a secondary
 code, forming a tiered code:
 
-$$ \!\!\!\!\!\!\!\!\!\!\begin{equation} e_{E1C}(t) \!=\!\! \sum_{m=-\infty}^{+\infty}\!C_{E1Cs}\Big[|m|_{25}\Big]\! \oplus \!\sum_{l=1}^{4092}\!C_{E1Cp}\Big[ l \Big] \!\cdot\!  p(t-mT_{c,E1Cs}-lT_{c,E1Cp})~, \end{equation} $$
+$$ \!\!\!\!\!\!\!\!\!\!\begin{equation}
+e_{E1C}(t) \! = \!\! \sum_{m=-\infty}^{+\infty} \! C_{E1Cs}\Big[|m|_{25}\Big] \! \oplus \! \sum_{l=1}^{4092} \! C_{E1Cp}\Big[ l \Big] \! \cdot \! p(t \! - \! mT_{c,E1Cs} \! - \! lT_{c,E1Cp})~,
+\end{equation} $$
 
 with $$ T_{c,E1B}=T_{c,E1Cp}=\frac{1}{1.023} $$ $$ \mu $$s and $$ T_{c,E1Cs}=4 $$
 ms. The $$ C_{E1B} $$ and $$ C_{E1Cp} $$ primary codes are pseudorandom memory
@@ -377,11 +412,17 @@ codes, which will be encrypted.
 This signal, which is centered at $$ f_{\text{Gal E6}}=1278.750 $$ MHz, has a
 pilot and a data component:
 
-$$ \begin{equation} s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t)-e_{E6C}(t)\right)~, \end{equation} $$
+$$ \begin{equation}
+s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t) - e_{E6C}(t)\right)~,
+\end{equation} $$
 
-$$ \begin{equation} e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{HAS}} \Big[ [l]_{5115}\Big]  \oplus C_{E6B}\Big[|l|_{5115}\Big] \cdot p(t - lT_{c,E6B})~, \end{equation} $$
+$$ \begin{equation}
+e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{HAS}} \Big[ [l]_{5115}\Big] \oplus C_{E6B}\Big[|l|_{5115}\Big] \cdot p(t - lT_{c,E6B})~,
+\end{equation} $$
 
-$$ \!\!\!\!\!\!\!\!\!\begin{equation} e_{E6C}(t) \!= \!\!\!\sum_{m=-\infty}^{+\infty}\!C_{E6Cs}\Big[|m|_{100}\Big] \!\oplus\! \sum_{l=1}^{L_{E6C}}\!\!C_{E6Cp}\Big[ l \Big]\! \cdot \!p(t-mT_{c,E6Cs} -lT_{c,E6Cp}), \end{equation} $$
+$$ \!\!\!\!\!\!\!\!\!\begin{equation}
+e_{E6C}(t) \! = \!\!\! \sum_{m=-\infty}^{+\infty} \! C_{E6Cs}\Big[|m|_{100}\Big] \! \oplus \! \sum_{l=1}^{L_{E6C}} \!\! C_{E6Cp}\Big[ l \Big]\! \cdot \! p(t \! - \! mT_{c,E6Cs} \! - \! lT_{c,E6Cp}),
+\end{equation} $$
 
 where $$ D_{\text{HAS}} $$ is the HAS navigation data stream, which is modulated
 with the ranging code $$ C_{E6B} $$ with chip period $$
@@ -405,7 +446,7 @@ Centered at $$ f_{\text{Gal E5}}=1191.795 $$ MHz and with a total (baseband)
 bandwidth of $$ 51.150 $$ MHz, its signal structure deserves some analysis. The
 AltBOC modulation can be generically expressed as
 
-$$ \begin{equation} s^{\text{AltBOC}}(t) = x_1(t)v^{*}(t)+x_2(t)v(t)~, \end{equation} $$
+$$ \begin{equation} s^{\text{AltBOC}}(t) = x_1(t)v^{*}(t) + x_2(t)v(t)~, \end{equation} $$
 
 where
 $$ v(t)=\frac{1}{\sqrt{2}}\left( \text{sign}\left( \cos (2 \pi f_{sc,E5} t)\right)+j \text{sign}\left( \sin (2 \pi f_{sc,E5} t)\right)\right) $$
@@ -468,19 +509,23 @@ swapping between both components in order to allow a fast reception of data by a
 dual-frequency receiver. The single subcarrier $$ sc_s(t) $$ and the product
 subcarrier $$ sc_p(t) $$  are defined as:
 
-$$ \begin{eqnarray} \!\!\!\!\! sc_s(t) & = & \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t - \frac{\pi}{4}\right) \right)+\frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_{sc,E5} t \right) \Big)+ \nonumber \\
-{} & {} & + \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t + \frac{\pi}{4}\right) \right)~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+\!\!\!\!\! sc_s(t) & = & \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t - \frac{\pi}{4}\right) \right)+\frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_{sc,E5} t \right) \Big)+ \nonumber \\
+{} & {} & + \frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t + \frac{\pi}{4}\right) \right)~,
+\end{eqnarray} $$
 
-$$ \begin{eqnarray} \!\!\!\!\!\!\!\!\!\!sc_p(t) & = & -\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t - \frac{\pi}{4}\right) \right)+ \frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_{sc,E5} t \right) \Big)+\nonumber \\
-{} & {} & -\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t + \frac{\pi}{4}\right) \right)~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+\!\!\!\!\!\!\!\!\!\!sc_p(t) & = & -\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t - \frac{\pi}{4}\right) \right)+ \frac{1}{2}\text{sign} \Big( \cos \left( 2 \pi f_{sc,E5} t \right) \Big)+\nonumber \\
+{} & {} & -\frac{\sqrt{2}}{4}\text{sign} \left( \cos \left( 2 \pi f_{sc,E5} t + \frac{\pi}{4}\right) \right)~,
+\end{eqnarray} $$
 
-with a subcarrier frequency of $$ f_{sc,E5}=15.345 $$ MHz.
+with a subcarrier frequency of $$ f_{sc,E5} = 15.345 $$ MHz.
 
 Plotting the power spectrum of the carriers for $$ s^{\text{(Gal E5)}}_{T}(t) $$
 (see Figure below), we can see that the QPSK signal $$ e_{E5a}(t) $$ defined
-above is shifted to $$ f_{\text{Gal E5a}}\doteq f_{\text{Gal
-E5}}-f_{sc,E5}=1176.450 $$ MHz, while $$ e_{E5b}(t) $$ is shifted to $$ f_{Gal
-E5b}\doteq f_{\text{Gal E5}}+f_{sc,E5}=1207.140 $$ MHz.
+above is shifted to $$ f_{\text{Gal E5a}} \doteq f_{\text{Gal E5}} -
+f_{sc,E5} = 1176.450 $$ MHz, while $$ e_{E5b}(t) $$ is shifted to
+$$ f_{Gal E5b} \doteq f_{\text{Gal E5}} + f_{sc,E5} = 1207.140 $$ MHz.
 
 ![Single and product side-band spectra in E5.]({{ "/assets/images/subcarriers-e5.png" | relative_url }}){: .align-center .invert-colors}
 _Power spectrum of single and product side-band subcarriers signals for $$
@@ -577,17 +622,23 @@ BeiDou B1 transmitted by BDS-2 satellites is centered at $$ f_{B1} = 1561.098 $$
 MHz, featuring a QPSK(2) modulation. The complex baseband transmitted signal can
 be written as:
 
-$$ \begin{equation} s^{\text{(BeiDou B1)}}_{T}(t) = e_{B1I}(t) + j e_{B1Q}(t)~, \end{equation} $$
+$$ \begin{equation}
+s^{\text{(BeiDou B1)}}_{T}(t) = e_{B1I}(t) + j e_{B1Q}(t)~,
+\end{equation} $$
 
 with
 
-$$ \begin{equation} e_{B1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{40920}\Big] \oplus C_{\text{B1I}} \Big[ |l|_{2046} \Big] p(t - lT_{c,\text{B1I}})~, \end{equation} $$
+$$ \begin{equation}
+e_{B1I}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{40920}\Big] \oplus C_{\text{B1I}} \Big[ |l|_{2046} \Big] p(t - lT_{c,\text{B1I}})~,
+\end{equation} $$
 
-$$ \begin{equation} e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{\text{N/A}}  \Big]  \oplus C_{\text{B1Q}} \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~, \end{equation} $$
+$$ \begin{equation}
+e_{B1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{NAV}}\Big[ [l]_{\text{N/A}}\Big] \oplus C_{\text{B1Q}} \Big[ |l|_{L_{\text{B1Q}}} \Big] p(t - lT_{c,\text{B1Q}})~,
+\end{equation} $$
 
-Beidou's Interface Control Document version 3.0 describes the Inphase -component
-of the Beidou B1 link.[^BeidouB1I] The chip rate of the B1I ranging code, $$
-C_{B1I} $$ is 2.046 Mcps, and the length is 2046 chips.
+Beidou's Interface Control Document version 3.0 describes the Inphase-component
+of the Beidou B1 link.[^BeidouB1I] The chip rate of the B1I ranging code,
+$$ C_{B1I} $$ is 2.046 Mcps, and the length is 2046 chips.
 
 The B1I signal is also transmitted by all satellites of BDS-3.
 
@@ -600,22 +651,32 @@ centered at $$ f_{B1C} = 1575.42 $$ MHz and feature a BOC(1,1) modulation in the
 data component and a QMBOC(6, 1, 4/33) modulation in the pilot component. The
 complex baseband transmitted signal can be written as:[^BeidouB1C]
 
-$$ \begin{equation} s^{\text{(BeiDou B1C)}}_{T}(t) = e_{B1C\_data}(t) + j e_{B1C\_pilot}(t)~, \end{equation} $$
+$$ \begin{equation}
+s^{\text{(BeiDou B1C)}}_{T}(t) = e_{B1C\_data}(t) + j e_{B1C\_pilot}(t)~,
+\end{equation} $$
 
 with
 
-$$ \begin{eqnarray} e_{B1C\_data}(t) & = & \frac{1}{2} \sum_{l=-\infty}^{\infty} D_{\text{B-CNAV1}}\Big[ [l]_{10230}\Big] \oplus \nonumber \\
-{} & {} & \oplus~C_{B1C\_data} \Big[ |l|_{10230} \Big] p(t - lT_{c,B1C\_data}) sc_{B1C\_data}(t)~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+e_{B1C\_data}(t) & = & \frac{1}{2} \sum_{l=-\infty}^{\infty} D_{\text{B-CNAV1}}\Big[ [l]_{10230}\Big] \oplus \nonumber \\
+{} & {} & \oplus~C_{B1C\_data} \Big[ |l|_{10230} \Big] p(t - lT_{c,B1C\_data}) sc_{B1C\_data}(t)~,
+\end{eqnarray} $$
 
-$$ \begin{eqnarray} e_{B1C\_pilot}(t) & = & \frac{\sqrt{3}}{2} \sum_{l=-\infty}^{\infty} \Big[ [l]_{10230}  \Big] \oplus \nonumber \\
-{} & {} & \oplus~C_{B1C\_pilot} \Big[ |l|_{10230} \Big] p(t - lT_{c,B1C\_pilot})sc_{B1C\_pilot}(t)~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+e_{B1C\_pilot}(t) & = & \frac{\sqrt{3}}{2} \sum_{l=-\infty}^{\infty} \Big[ [l]_{10230} \Big] \oplus \nonumber \\
+{} & {} & \oplus~C_{B1C\_pilot} \Big[ |l|_{10230} \Big] p(t - lT_{c,B1C\_pilot})sc_{B1C\_pilot}(t)~,
+\end{eqnarray} $$
 
 where:
 
-$$ \begin{equation}  sc_{B1C\_data}(t) = \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right)~, \end{equation} $$
+$$ \begin{equation}
+sc_{B1C\_data}(t) = \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right) \right)~,
+\end{equation} $$
 
-$$ \begin{eqnarray}  sc_{B1C\_pilot}(t) & = & \sqrt{\frac{29}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) + \nonumber \\
-{} & {} & - j \sqrt{\frac{4}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right)~ , \end{eqnarray} $$
+$$ \begin{eqnarray}
+sc_{B1C\_pilot}(t) & = & \sqrt{\frac{29}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right) \right) + \nonumber \\
+{} & {} & - j \sqrt{\frac{4}{33}} \text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right) \right)~ ,
+\end{eqnarray} $$
 
 with $$ f_{sc\_B1C\_a} = 1.023 $$ MHz and $$ f_{sc\_B1C\_b} = 6.138 $$ MHz. The
 code length of the ranging codes $$ C_{B1C\_data} $$ and $$ C_{B1C\_pilot} $$ is
@@ -629,20 +690,28 @@ message $$ D_{\text{B-CNAV1}} $$ has a symbol rate of 100 bit/s.
 Since $$ e_{B1C\_pilot}(t) $$ is a complex waveform, the B1C signal contains
 three components as shown in the following equation:
 
-$$ \begin{equation}s^{\text{(BeiDou B1C)}}_{T}(t) =  e_{B1C\_data}(t) + e_{B1C\_pilot\_b}(t) + je_{B1C\_pilot\_a}(t) ~,  \end{equation} $$
+$$ \begin{equation}
+s^{\text{(BeiDou B1C)}}_{T}(t) = e_{B1C\_data}(t) + e_{B1C\_pilot\_b}(t) + je_{B1C\_pilot\_a}(t) ~,
+\end{equation} $$
 
 where:
 
-$$ \begin{eqnarray} e_{B1C\_data}(t) & = &\frac{1}{2} \sum_{l=-\infty}^{\infty} D_{\text{B-CNAV1}}(t) \oplus C_{B1C\_data}(t) \cdot \nonumber \\
-{} & {} & \cdot~\text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right)  \right) p(t - lT_{c,B1C\_data})~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+e_{B1C\_data}(t) & = &\frac{1}{2} \sum_{l=-\infty}^{\infty} D_{\text{B-CNAV1}}(t) \oplus C_{B1C\_data}(t) \cdot \nonumber \\
+{} & {} & \cdot~\text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right) \right) p(t - lT_{c,B1C\_data})~,
+\end{eqnarray} $$
 
-$$ \begin{eqnarray} e_{B1C\_pilot\_b}(t) & = &  \sqrt{\frac{1}{11}} \sum_{l=-\infty}^{\infty} C_{B1C\_pilot}(t) \cdot \nonumber \\
-{} & {} & \cdot~\text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right)  \right)  p(t - lT_{c,B1C\_pilot})~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+e_{B1C\_pilot\_b}(t) & = & \sqrt{\frac{1}{11}} \sum_{l=-\infty}^{\infty} C_{B1C\_pilot}(t) \cdot \nonumber \\
+{} & {} & \cdot~\text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_b} t \right) \right)  p(t - lT_{c,B1C\_pilot})~,
+\end{eqnarray} $$
 
 and
 
-$$ \begin{eqnarray} e_{B1C\_pilot\_a}(t) & = & \sqrt{\frac{29}{44}} \sum_{l=-\infty}^{\infty} C_{B1C\_pilot}(t) \cdot \nonumber \\
-{} & {} & \cdot~\text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right) \right) p(t - lT_{c,B1C\_pilot})~. \end{eqnarray} $$
+$$ \begin{eqnarray}
+e_{B1C\_pilot\_a}(t) & = & \sqrt{\frac{29}{44}} \sum_{l=-\infty}^{\infty} C_{B1C\_pilot}(t) \cdot \nonumber \\
+{} & {} & \cdot~\text{sign} \left(\sin \left(2 \pi f_{sc\_B1C\_a} t \right) \right) p(t - lT_{c,B1C\_pilot})~.
+\end{eqnarray} $$
 
 
 ### BeiDou B2I
@@ -650,14 +719,20 @@ $$ \begin{eqnarray} e_{B1C\_pilot\_a}(t) & = & \sqrt{\frac{29}{44}} \sum_{l=-\in
 BeiDou B2, centered at $$ f_{B2} = 1207.140 $$ MHz, features a QPSK(2)
 modulation. The complex baseband transmitted signal can be written as:[^Beidou]
 
-$$ \begin{equation} s^{\text{(BeiDou B2)}}_{T}(t) = e_{B2I}(t) + j e_{B2Q}(t)~, \end{equation} $$
+$$ \begin{equation}
+s^{\text{(BeiDou B2)}}_{T}(t) = e_{B2I}(t) + j e_{B2Q}(t)~,
+\end{equation} $$
 
 with:
 
-$$ \begin{eqnarray} e_{B2I}(t) & = &  \sum_{m=-\infty}^{\infty} C_{NH} \Big[ |m|_{20} \Big] \oplus \sum_{l=-\infty}^{\infty} D_{\text{B2I}}\Big[ [l]_{40920}\Big] \oplus \nonumber \\
-{} & {} & \oplus~C_{B2I} \Big[ |l|_{2046} \Big] p(t - mT_{c,\text{B2I}_{CH}} - lT_{c,\text{B2I}_{C}})~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+e_{B2I}(t) & = & \sum_{m=-\infty}^{\infty} C_{NH} \Big[ |m|_{20} \Big] \oplus \sum_{l=-\infty}^{\infty} D_{\text{B2I}}\Big[ [l]_{40920}\Big] \oplus \nonumber \\
+{} & {} & \oplus~C_{B2I} \Big[ |l|_{2046} \Big] p(t - mT_{c,\text{B2I}_{CH}} - lT_{c,\text{B2I}_{C}})~,
+\end{eqnarray} $$
 
-$$ \begin{equation} e_{B2Q}(t) =  \sum_{l=-\infty}^{\infty}  D_{\text{B2Q}} \Big[ [l]_{N/A}  \Big] \oplus C_{B2Q} \Big[ |l|_{L_{C_{B2Q}}} \Big] p(t - lT_{c,B2Q})~, \end{equation} $$
+$$ \begin{equation}
+e_{B2Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{B2Q}} \Big[ [l]_{N/A} \Big] \oplus C_{B2Q} \Big[ |l|_{L_{C_{B2Q}}} \Big] p(t - lT_{c,B2Q})~,
+\end{equation} $$
 
 where the chip period is $$ T_{c,\text{B2I}_{C}} = \frac{1}{2.046} $$ $$ \mu $$s
 and the code length is 2046 chips. The data message $$ D_{\text{B2I}} $$ varies
@@ -678,7 +753,7 @@ depending on the type of transmitting satellite:
   data rate is 500 bit/s. Thus, the B2I signals for geostationary satellites can
   be expressed as:
 
-  $$ \begin{equation} e_{B2I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{4092}\Big] \oplus C_{\text{B2I}} \Big[ |l|_{2046} \Big] p(t -  lT_{c,\text{B2I}})~. \end{equation} $$
+  $$ \begin{equation} e_{B2I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{4092}\Big] \oplus C_{\text{B2I}} \Big[ |l|_{2046} \Big] p(t - lT_{c,\text{B2I}})~. \end{equation} $$
 
 Details of the $$ e_{B2Q}(t) $$ component have not been disclosed.
 
@@ -694,13 +769,19 @@ f_{B2a} = 1176.45 $$ MHz, featuring a data channel with a BPSK(10) modulation in
 the I component, and a pilot channel with a BPSK(10) modulation in the Q
 component:[^BeidouB2a]
 
-$$ \begin{equation} s^{\text{(BeiDou B2a)}}_{T}(t) = e_{B2aI}(t) + j e_{B2aQ}(t)~, \end{equation} $$
+$$ \begin{equation}
+s^{\text{(BeiDou B2a)}}_{T}(t) = e_{B2aI}(t) + j e_{B2aQ}(t)~,
+\end{equation} $$
 
 with
 
-$$ \!\!\!\!\!\!\!\!\!\!\!\begin{equation} e_{B2aI}(t) = \frac{1}{\sqrt{2}} \sum_{l=-\infty}^{\infty}\! D_{\text{B-CNAV2}}\Big[ [l]_{51150}\Big] \oplus C_{\text{B2aI}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B2aI}})~, \end{equation} $$
+$$ \!\!\!\!\!\!\!\!\!\!\! \begin{equation}
+e_{B2aI}(t) = \frac{1}{\sqrt{2}} \sum_{l=-\infty}^{\infty} \! D_{\text{B-CNAV2}}\Big[ [l]_{51150}\Big] \oplus C_{\text{B2aI}} \Big[ |l|_{10230} \Big] p(t \! - \! lT_{c,\text{B2aI}})~,
+\end{equation} $$
 
-$$ \begin{equation} e_{B2aQ}(t) = \frac{1}{\sqrt{2}} \sum_{l=-\infty}^{\infty}  C_{\text{B2aQ}}  \Big[ |l|_{10230} \Big] p(t - lT_{c,\text{B2aI}})~, \end{equation} $$
+$$ \begin{equation}
+e_{B2aQ}(t) = \frac{1}{\sqrt{2}} \sum_{l=-\infty}^{\infty}  C_{\text{B2aQ}}  \Big[ |l|_{10230} \Big] p(t - lT_{c,\text{B2aI}})~,
+\end{equation} $$
 
 where $$ T_{c,\text{B2aI}} = T_{c,\text{B2aQ}} = \frac{1}{10.23} $$ $$\mu $$s,
 and the navigation message $$ D_{\text{B-CNAV2}} $$ has a symbol rate of $$ 200 $$
@@ -716,8 +797,10 @@ Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-2 and BDS-3, are centered
 at $$ f_{B3I} = 1268.520 $$ MHz and feature a data channel with a BPSK(10)
 modulation:[^BeidouB3I]
 
-$$ \begin{eqnarray} e_{B3I}(t) & = & \sum_{m=-\infty}^{\infty} C_{NH} \Big[ |m|_{20} \Big] \oplus \sum_{l=-\infty}^{\infty} D_{\text{B3I}}\Big[ [l]_{204600}\Big] \oplus \nonumber \\
-{} & {} & \oplus ~C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t - mT_{c,\text{B3I}_{CH}} - lT_{c,\text{B3I}_{C}})~, \end{eqnarray} $$
+$$ \begin{eqnarray}
+e_{B3I}(t) & = & \sum_{m=-\infty}^{\infty} C_{NH} \Big[ |m|_{20} \Big] \oplus \sum_{l=-\infty}^{\infty} D_{\text{B3I}}\Big[ [l]_{204600}\Big] \oplus \nonumber \\
+{} & {} & \oplus ~C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t - mT_{c,\text{B3I}_{CH}} - lT_{c,\text{B3I}_{C}})~,
+\end{eqnarray} $$
 
 where $$ T_{c,\text{B3I}_{C}} = \frac{1}{10.23} $$ $$\mu $$s and the code length
 of $$ C_{\text{B3I}} $$ is 10230 chips.
@@ -740,7 +823,7 @@ transmitting satellite:
   data rate is 500 bit/s. Thus, the B3I signals for geostationary satellites can
   be expressed as:
 
-  $$ \begin{equation} e_{B3I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{20460}\Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t -  lT_{c,\text{B3I}})~. \end{equation} $$
+  $$ \begin{equation} e_{B3I}(t)^{(GEO)} = \sum_{l=-\infty}^{\infty} D_{\text{D2}}\Big[ [l]_{20460}\Big] \oplus C_{\text{B3I}} \Big[ |l|_{10230} \Big] p(t - lT_{c,\text{B3I}})~. \end{equation} $$
 
 Details of the $$ e_{B3Q}(t) $$ component have not been disclosed.
 
