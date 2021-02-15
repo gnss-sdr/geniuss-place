@@ -33,7 +33,7 @@ to multiple sample streams delivered in real-time by radiofrequency front-ends.
 
 
 The input of a software receiver are the raw bits that come out from the
-front-end’s analog-to-digital converter (ADC), as sketched in the figure below.
+front-end's analog-to-digital converter (ADC), as sketched in the figure below.
 Those bits can be read from a file stored in the hard disk or directly in
 real-time from a hardware device through USB or Ethernet buses.
 
@@ -111,7 +111,7 @@ as follows:
 |:-:|:-|:-|
 |----------
 | `byte` | Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: `int8_t`| $$ [ S_0 ], [S_1 ], [S_2], ... $$
-| `short` |  Signed integer, 16-bit two’s complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
+| `short` |  Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: `int16_t` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
 | `float` |  Defines numbers with fractional parts, can represent values ranging from approx. $$ 1.5 \times 10^{-45} $$ to $$ 3.4 \times 10^{38} $$ with a precision of 7 digits (32 bits). C++ type name: `float` | $$ [ S_0 ], [S_1 ], [S_2], ... $$
 | `ibyte` |   Interleaved (I&Q) stream of samples of type `byte`. C++ type name: `int8_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
 | `ishort` |  Interleaved (I&Q) samples of type `short`. C++ type name: `int16_t` | $$ [ S_0^{I} ], [ S_0^{Q} ], [S_1^{I} ], [S_1^{Q}], [ S_2^{I} ], [S_2^{Q}], ... $$
@@ -183,7 +183,7 @@ specified in `SignalSource.filename`.
 ### Implementation: `Two_Bit_Packed_File_Signal_Source`
 
 Sometimes, samples are stored in files in a format that is not in the list of
-“native” types supported by the `File_Signal_Source` implementation (i.e, it is
+"native" types supported by the `File_Signal_Source` implementation (i.e, it is
 not among <abbr id="data-type" title="Signed integer, 8-bit two's complement
 number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr
 id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit
@@ -284,7 +284,7 @@ SignalSource.big_endian_bytes=false
 ### Implementation: `Nsr_File_Signal_Source`
 
 Sometimes, samples are stored in files in a format that is not in the list of
-“native” types supported by the `File_Signal_Source` implementation (i.e, it is
+"native" types supported by the `File_Signal_Source` implementation (i.e, it is
 not among <abbr id="data-type" title="Signed integer, 8-bit two's complement
 number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr
 id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit
@@ -1102,7 +1102,7 @@ same time.
 
 Examples of such configuration could be:
 
--   Two files, one for each band (such as in the case of NSL’s Stereo
+-   Two files, one for each band (such as in the case of NSL's Stereo
     front-end);
 
 -   Different antennas, working at the same band but with different RF

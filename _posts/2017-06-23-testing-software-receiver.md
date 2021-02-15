@@ -172,7 +172,7 @@ summarized as:
 
  1. **Add a test**: In test-driven development, each new feature begins with
  writing a test. To write a test, the developer must clearly understand the
- feature’s specification and requirements. This is a differentiating feature of
+ feature's specification and requirements. This is a differentiating feature of
  test-driven development versus writing unit tests after the code is written: it
  makes the developer focus on the requirements before writing the code, a subtle
  but important difference.

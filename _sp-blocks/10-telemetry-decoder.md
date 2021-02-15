@@ -27,7 +27,7 @@ In the description of baseband signals, this page uses the following notation:
 
 The GPS L1 C/A baseband signal can be written as:
 
-$$ \begin{equation} s^{\text{(GPS L1)}}_{T}(t)=e_{L1I}(t) + j e_{L1Q}(t)~, \end{equation} $$
+$$ \begin{equation} s^{\text{(GPS L1)}}_{T}(t) = e_{L1I}(t) + j e_{L1Q}(t)~, \end{equation} $$
 
 with
 
@@ -88,7 +88,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GPS L1 CHANNELS ############
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1C.dump=false
 ```
@@ -160,7 +160,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GALILEO CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GALILEO E1 CHANNELS ############
 TelemetryDecoder_1B.implementation=Galileo_E1B_Telemetry_Decoder
 TelemetryDecoder_1B.dump=false
 ```
@@ -171,7 +171,7 @@ TelemetryDecoder_1B.dump=false
 The complex baseband transmitted signal by GLONASS satellites in the L1 and L2
 bands can be written as
 
-$$ \begin{equation} s^{\text{(GLO)}}_{T}(t)=e_{I}(t) + j e_{Q}(t)~, \end{equation} $$
+$$ \begin{equation} s^{\text{(GLO)}}_{T}(t) = e_{I}(t) + j e_{Q}(t)~, \end{equation} $$
 
 where
 
@@ -236,7 +236,7 @@ _Telemetry Decoder implementation:_ **`GLONASS_L1_CA_Telemetry_Decoder`**.
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GLONASS L1 C/A CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GLONASS L1 CHANNELS ############
 TelemetryDecoder_1G.implementation=GLONASS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1G.dump=false
 ```
@@ -262,7 +262,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GPS L2C CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GLONASS L2 CHANNELS ############
 TelemetryDecoder_2G.implementation=GLONASS_L2_CA_Telemetry_Decoder
 TelemetryDecoder_2G.dump=true
 ```
@@ -274,13 +274,13 @@ TelemetryDecoder_2G.dump=true
 
 The GPS L2C baseband signal can be written as:
 
-$$ \begin{equation} s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~, \end{equation} $$
+$$ \begin{equation} s^{\text{(GPS L2)}}_{T}(t) = e_{L2I}(t) + j e_{L2Q}(t)~, \end{equation} $$
 
 with the Quadrature–phase component defined as:
 
 $$ \begin{eqnarray}
 e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty} {\color{ForestGreen} D_{\text{CNAV}} \Big[ [l]_{10230} \Big] } \oplus \left(C_{\text{CL}} \Big[ |l|_{L_{\text{CL}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + \right. \nonumber \\
-{} & {} & + \left. C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{3}{4}\right)T_{c,L2C}\right) \right)~.
+{} & {} & + \left. C_{\text{CM}} \Big[ |l|_{L_{\text{CM}}} \Big] p_{\text{1/2}}\left(t - \left(l + \frac{3}{4}\right)T_{c,L2C}\right) \right)~.
 \end{eqnarray} $$
 
 The civilian long code $$ C_{\text{CL}} $$ is $$ L_{\text{CL}}=767250 $$ chips
@@ -315,7 +315,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GPS L2C CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GPS L2C CHANNELS ############
 TelemetryDecoder_2S.implementation=GPS_L2C_Telemetry_Decoder
 TelemetryDecoder_2S.dump=true
 ```
@@ -325,7 +325,7 @@ TelemetryDecoder_2S.dump=true
 The GPS L5 baseband signal can be written as:
 
 $$ \begin{equation}
-s^{\text{(GPS L5)}}_{T}(t)=e_{L5I}(t) +j e_{L5Q}(t)~,
+s^{\text{(GPS L5)}}_{T}(t) = e_{L5I}(t) + j e_{L5Q}(t)~,
 \end{equation} $$
 
 where:
@@ -367,7 +367,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GPS L5 CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GPS L5 CHANNELS ############
 TelemetryDecoder_L5.implementation=GPS_L5_Telemetry_Decoder
 TelemetryDecoder_L5.dump=true
 ```
@@ -381,7 +381,7 @@ TelemetryDecoder_L5.dump=true
 The Galileo E5 baseband signal can be written as:
 
 $$ \begin{eqnarray}
-s^{\text{(Gal E5)}}_{T}(t) & = & e_{E5a}(t) ssc_s^{*}(t)+ e_{E5b}(t) ssc_s(t) + \nonumber \\
+s^{\text{(Gal E5)}}_{T}(t) & = & e_{E5a}(t) ssc_s^{*}(t) + e_{E5b}(t) ssc_s(t) + \nonumber \\
 {} & {} & +~\bar{e}_{E5a}(t)ssc_p^{*}(t)+\bar{e}_{E5b}(t)ssc_p(t)~,
 \end{eqnarray} $$
 
@@ -392,7 +392,7 @@ modulates the I component of the E5a signal, which can be expressed as:
 
 $$ \begin{eqnarray}
 e_{E5aI}(t) & = & \sum_{m=-\infty}^{+\infty}C_{E5aIs}\Big[|m|_{20}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \nonumber \\
-{} & {} & \oplus~{\color{ForestGreen} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]} \cdot p(t-mT_{c,E5s}-lT_{c,E5p})~.
+{} & {} & \oplus~{\color{ForestGreen} D_{\text{F/NAV}} \Big[ [l]_{204600}\Big]} \cdot p(t - mT_{c,E5s} - lT_{c,E5p})~.
 \end{eqnarray} $$
 
 ![Galileo E5a F/NAV message]({{ "/assets/images/Navigation_Message_Galileo_FNAV.png" | relative_url }}){: .align-center .invert-colors}
@@ -420,7 +420,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GALILEO E5a CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GALILEO E5a CHANNELS ############
 TelemetryDecoder_5X.implementation=Galileo_E5a_Telemetry_Decoder
 TelemetryDecoder_5X.dump=false
 ```
@@ -428,23 +428,41 @@ TelemetryDecoder_5X.dump=false
 
 ## Binary output
 
-In all Telemetry Decoder blocks, if `dump=true`, the logging of internal processing data is also delivered in [MATLAB Level 5 MAT-file v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml) format, in a file with the same name than `dump_filename` but terminated in `.mat` instead of `.dat`. This is a compressed binary file format that can be easily read with Matlab or Octave, by doing `load telemetryN.mat`, where `N` is the channel number, or in Python via the [h5py](http://docs.h5py.org/en/latest/index.html) library. The stored variables are vectors with a number of columns equal to the total number of epochs (that is, tracking integration times) processed by the Telemetry Decoder block. The blocks store the following variables:
+In all Telemetry Decoder blocks, if `dump=true`, the logging of internal
+processing data is also delivered in [MATLAB Level 5 MAT-file
+v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml)
+format, in a file with the same name than `dump_filename` but terminated in
+`.mat` instead of `.dat`. This is a compressed binary file format that can be
+easily read with Matlab or Octave, by doing `load telemetryN.mat`, where `N` is
+the channel number, or in Python via the
+[h5py](http://docs.h5py.org/en/latest/index.html) library. The stored variables
+are vectors with a number of columns equal to the total number of epochs (that
+is, tracking integration times) processed by the Telemetry Decoder block. The
+blocks store the following variables:
 
-* `TOW_at_current_symbol_ms`: Time of Week associated with the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal). Data type: `double`.
-* `tracking_sample_counter`: Sample counter associated with each epoch. Data type: `uint64_t`.
-* `TOW_at_Preamble_ms`: Time of Week associated with the preamble of the current symbol for each epoch, in ms (different granularity depending on the message structure for each particular signal). Data type: `double`.
-* `nav_symbol`: Navigation message symbol $$ \{ \pm 1 \} $$, as obtained by the Tracking block, for each epoch. Data type: `int32_t`.
+* `TOW_at_current_symbol_ms`: Time of Week associated with the current symbol
+for each epoch, in ms (different granularity depending on the message structure
+for each particular signal). Data type: `double`.
+* `tracking_sample_counter`: Sample counter associated with each epoch. Data
+type: `uint64_t`.
+* `TOW_at_Preamble_ms`: Time of Week associated with the preamble of the
+current symbol for each epoch, in ms (different granularity depending on the
+message structure for each particular signal). Data type: `double`.
+* `nav_symbol`: Navigation message symbol $$ \{ \pm 1 \} $$, as obtained by the
+Tracking block, for each epoch. Data type: `int32_t`.
 * `PRN`: Satellite ID processed in each epoch. Data type: `int32_t`.
 
 
 Examples:
 
-1.- Retrieve the `.dat` and`.mat` files with `nav_data` base name (with `XX` being `1C`, `1B`, `1G`, `2G`, `2S`, `L5`, or `5X`):
+1.- Retrieve the `.dat` and`.mat` files with `nav_data` base name (with `XX`
+being `1C`, `1B`, `1G`, `2G`, `2S`, `L5`, or `5X`):
 ```ini
 TelemetryDecoder_XX.dump=true
 TelemetryDecoder_XX.dump_filename=nav_data
 ```
-so files will be named `nav_data0.dat`, `nav_data0.mat`, `nav_data1.dat`, `nav_data1.mat`, etc.
+so files will be named `nav_data0.dat`, `nav_data0.mat`, `nav_data1.dat`,
+`nav_data1.mat`, etc.
 
 2.- Retrieve the `.mat` files only:
 ```ini

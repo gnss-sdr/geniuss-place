@@ -19,7 +19,7 @@ A _Resampler_ block is in charge of resampling the signal and delivering it to
 the $$ N $$ parallel processing channels.
 {: .notice--info}
 
-At the _Resampler_’s output, only complex types are allowed: <abbr
+At the _Resampler_'s output, only complex types are allowed: <abbr
 id="data-type" title="Complex samples with real and imaginary parts of type
 signed 8-bit integer. C++ name: lv_8sc_t (custom definition of
 std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex

@@ -196,12 +196,12 @@ threshold, the loop is declared in lock.
 The estimate of the cosine of twice the carrier phase error is computed as:
 
 $$ \begin{equation}
-\cos(2\widehat{\Delta \phi})= \frac{NBD}{NBP}~,
+\cos\left(2\widehat{\Delta \phi}\right) = \frac{NBD}{NBP}~,
 \end{equation} $$
 
 where:
-  * $$ \displaystyle NBD = \left(\sum^{M-1}_{m=0}P_{Q}[m]\right)^2-\left(\sum^{M-1}_{i=0}P_{I}[m]\right)^2 $$,
-  * $$ \displaystyle NBP = \left(\sum^{M-1}_{m=0}P_{Q}[m]\right)^2+\left(\sum^{M-1}_{i=0}P_{I}[m]\right)^2 $$,
+  * $$ \displaystyle NBD = \left(\sum^{M-1}_{m=0}P_{Q}[m]\right)^2 - \left(\sum^{M-1}_{i=0}P_{I}[m]\right)^2 $$,
+  * $$ \displaystyle NBP = \left(\sum^{M-1}_{m=0}P_{Q}[m]\right)^2 + \left(\sum^{M-1}_{i=0}P_{I}[m]\right)^2 $$,
   * $$ P_I[m] $$ and $$ P_Q[m] $$ are the prompt correlator output I and Q components for the integration period $$ m $$.
 
 This estimation is smoothed with an exponential smoother of the form
@@ -240,7 +240,7 @@ $ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
  For BPSK signals, it is used the DLL noncoherent Early minus Late envelope-normalized discriminator:
 
    $$ \begin{equation}
-   \Delta_c[m] = \frac{y_{intercept} - \text{slope} \cdot \epsilon}{\text{slope}} \cdot \frac{\vert E[m]\vert-\vert L[m]\vert}{\vert E[m]\vert+\vert L[m]\vert}~,
+   \Delta_c[m] = \frac{y_{intercept} - \text{slope} \cdot \epsilon}{\text{slope}} \cdot \frac{\vert E[m]\vert - \vert L[m]\vert}{\vert E[m]\vert + \vert L[m]\vert}~,
    \end{equation} $$
 
    where:
@@ -248,8 +248,8 @@ $ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
    * $$ y_{intercept} $$ is the interception point of the correlation function in the y-axis,
    * $$ \text{slope} $$ is the slope of the correlation function,
    * $$ \epsilon $$ is the Early-to-Prompt (or Prompt-to-Late) spacing, normalized by the chip period,
-   * $$ \vert E[m]\vert = \sqrt{E_{I}[m]^2+E_{Q}[m]^2} $$ is the magnitude of the Early correlator output,
-   * $$ \vert L[m]\vert = \sqrt{L_{I}[m]^2+L_{Q}[m]^2} $$ is the magnitude of the Late correlator output.
+   * $$ \vert E[m]\vert = \sqrt{E_{I}[m]^2 + E_{Q}[m]^2} $$ is the magnitude of the Early correlator output,
+   * $$ \vert L[m]\vert = \sqrt{L_{I}[m]^2 + L_{Q}[m]^2} $$ is the magnitude of the Late correlator output.
 
    For BOC(1,1) signals, the DLL discriminator is
 
@@ -286,11 +286,11 @@ $ gnss-sdr -max_lock_fail=100 -c=./configuration_file.conf
 
    where
 
-   $$ \text{cross}[m] =P_{I}[k-1]P_{Q}[m]-P_{I}[m]P_{Q}[k-1] $$
+   $$ \text{cross}[m] = P_{I}[k-1]P_{Q}[m] - P_{I}[m]P_{Q}[k-1] $$
 
    and
 
-   $$ \text{dot}[m] =P_{I}[k-1]P_{I}[m]+P_{Q}[k-1]P_{Q}[m]~. $$
+   $$ \text{dot}[m] = P_{I}[k-1]P_{I}[m] + P_{Q}[k-1]P_{Q}[m]~. $$
 
 
 ## Low pass filters
@@ -423,7 +423,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GPS L1 CHANNELS ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
 Tracking_1C.item_type=gr_complex
 Tracking_1C.extend_correlation_symbols=20
@@ -490,7 +490,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GPS L1 CHANNELS ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking_GPU
 Tracking_1C.pll_bw_hz=40.0;
 Tracking_1C.dll_bw_hz=4.0;
@@ -504,7 +504,7 @@ modulation, defined in baseband as:
 
 $$ \begin{eqnarray}
 s^{\text{(Gal E1)}}_{T}(t) & = & \frac{1}{\sqrt{2}} \Big( e_{E1B}(t)\left(\alpha sc_A(t) + \beta sc_B(t) \right) + \nonumber \\
-{} & {} & -~e_{E1C}(t) \left(\alpha sc_A(t) - \beta sc_B(t) \right) \Big)~,
+{} & {} & - ~e_{E1C}(t) \left(\alpha sc_A(t) - \beta sc_B(t) \right) \Big)~,
 \label{GalE1} \end{eqnarray} $$
 
 where the subcarriers $$ sc(t) $$ are defined as
@@ -549,7 +549,7 @@ In case of Galileo E1, the CBOC(6,1,$$ \frac{1}{11} $$) modulation creates
 correlation ambiguities, as shown in the following figure:
 
 ![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
-_Normalized $$ \left|R_{xd}\left(\check{f}_D=f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
+_Normalized $$ \left|R_{xd}\left(\check{f}_D = f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez]._
 {: style="text-align: center;"}
 
 The possibility of tracking a local maximum instead of the global one can be
@@ -592,7 +592,7 @@ size for power estimation, $$ \mathcal{U} $$; carrier lock detector
 threshold, $$ \mathcal{T} $$; $$ CN0_{min} $$; maximum value for the lock fail
 counter, $$ \vartheta $$; correlators spacing $$ \epsilon $$ and
 $$ \epsilon^\prime $$; loop filters bandwidth $$ BW_{DLL} $$ and $$ BW_{PLL} $$;
-integration time $$ T_{int} $$. Track signal’s synchronization parameters
+integration time $$ T_{int} $$. Track signal's synchronization parameters
 within a given lock margin. Inform about a loss of lock.
 
 1. **Initialization:** Using $$ \hat{\tau}_{acq} $$
@@ -642,11 +642,11 @@ $$ h_{DLL}\left( \Delta \hat{\tau}_{k}\right) $$.
 
 12. Update code phase
 estimation (in samples):
-$$ N_{k+1} = \text{round}(S) $$ and $$ \psi_{k+1} =S-N_{k+1} $$, where
+$$ N_{k+1} = \text{round}(S) $$ and $$ \psi_{k+1} = S - N_{k+1} $$, where
 $$ S = \frac{T_{int}f_{\text{IN}}}{\left(1 + \frac{\hat{f}_{D_{k}}}{f^{\text{(Gal E1)}}_c} \right)} + \psi_{k} + h_{DLL}(\hat{\Delta \tau}_k)f_{\text{IN}} $$.
 
 13. Code lock indicator:
-$$ \hat{ \text{CN0} } = 10 \cdot \log_{10}\left(\hat{\rho}\right) + 10 \cdot \log_{10}\left(\frac{ f_{\text{IN}} }{2}\right) -10 \cdot \log_{10} \left(L_{ \text{PRN} }\right) $$,
+$$ \hat{ \text{CN0} } = 10 \cdot \log_{10}\left(\hat{\rho}\right) + 10 \cdot \log_{10}\left(\frac{f_{\text{IN}}}{2}\right) - 10 \cdot \log_{10} \left(L_{\text{PRN}}\right) $$,
 where:
 $$ \hat{\rho} = \frac{ \hat{P}_s }{ \hat{P}_n } = \frac{\hat{P}_s}{\hat{P}_{tot} - \hat{P}_s} $$,
 $$ \hat{P}_s = \left(\frac{1}{\mathcal{U}}\sum^{\mathcal{U}-1}_{i=0}|\text{P}_{I_{k-i}} |\right)^2 $$,
@@ -671,7 +671,7 @@ $$ T_{carrier} = \frac{\left( \sum^{\mathcal{U}-1}_{i=0} \text{P}_{I_{k-i}}\righ
 
 21. **Output**:
 $$ \text{P}_k $$, accumulated carrier phase error $$ \hat{\phi}_k $$, code phase
-$$ \mathcal{N} \leftarrow \mathcal{N}+ N_k + \psi_k $$, carrier-to-noise-density ratio $$ \hat{\text{CN0}} $$.
+$$ \mathcal{N} \leftarrow \mathcal{N} + N_k + \psi_k $$, carrier-to-noise-density ratio $$ \hat{\text{CN0}} $$.
 {: .notice--info}
 
 
@@ -728,7 +728,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GALILEO E1 CHANNELS ############
 Tracking_1B.implementation=Galileo_E1_DLL_PLL_VEML_Tracking
 Tracking_1B.item_type=gr_complex
 Tracking_1B.track_pilot=true
@@ -770,7 +770,7 @@ e_{L1Q}(t) = \sum_{l=-\infty}^{\infty} D_{\text{GNAV}}\Big[ [l]_{10220} \Big] \o
 
 where $$ T_{c,\text{HP}} = \frac{1}{5.11} $$ $$ \mu $$s,
 $$ T_{c,\text{C/A}} = \frac{1}{0.511} $$ $$ \mu $$s, and
-$$ L_{\text{HP}} =3.3554\cdot 10^7 $$. The navigation message
+$$ L_{\text{HP}} = 3.3554\cdot 10^7 $$. The navigation message
 $$ D_{\text{GNAV}} $$ is transmitted at $$ 50 $$ bit/s.
 
 Then, applying equation $$ (\ref{GLOL1}) $$ in $$ (\ref{xin}) $$, the digital
@@ -817,7 +817,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GLONASS L1 CHANNELS ############
 Tracking_1G.implementation=GLONASS_L1_CA_DLL_PLL_Tracking
 Tracking_1G.pll_bw_hz=30.0
 Tracking_1G.dll_bw_hz=4.0
@@ -861,7 +861,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GLONASS L1 CHANNELS ############
 Tracking_1G.implementation=GLONASS_L1_CA_DLL_PLL_C_Aid_Tracking
 Tracking_1G.item_type=cshort
 Tracking_1G.pll_bw_hz=40.0;
@@ -874,7 +874,7 @@ Tracking_1G.dll_bw_hz=4.0;
 This signal, centered at $$ f_{\text{GPS L2}} = 1227.60 $$ MHz, has a complex baseband
 transmitted signal that can be written as:
 
-$$ \begin{equation} \label{GPSL2} s^{\text{(GPS L2)}}_{T}(t)=e_{L2I}(t) + j e_{L2Q}(t)~, \end{equation} $$
+$$ \begin{equation} \label{GPSL2} s^{\text{(GPS L2)}}_{T}(t) = e_{L2I}(t) + j e_{L2Q}(t)~, \end{equation} $$
 
 with the In–phase and Quadrature components defined as:
 
@@ -886,7 +886,7 @@ and
 
 $$ \begin{eqnarray}
 e_{L2Q}(t) & = & \sum_{l=-\infty}^{\infty}\left( D_{\text{CNAV}} \Big[[l]_{10230} \Big] \oplus C_{\text{CM}} \Big[|l|_{L_{\text{CM}}} \Big] p_{\text{1/2}} \left(t - lT_{c,L2C} \right) + \right. \nonumber \\
-{} & {} & \left. +~C_{\text{CL}} \Big[|l|_{L_{\text{CL}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{1}{2}\right)T_{c,L2C}\right) \right)~,
+{} & {} & \left. + ~C_{\text{CL}} \Big[|l|_{L_{\text{CL}}} \Big] p_{\text{1/2}}\left(t - \left(l+\frac{1}{2}\right)T_{c,L2C}\right) \right)~,
 \end{eqnarray} $$
 
 where $$ T_{c,L2C} = \frac{1}{511.5} $$ ms and $$ p_{\text{1/2}}(t) $$ is a
@@ -957,7 +957,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GPS L2C CHANNELS ############
 Tracking_2S.implementation=GPS_L2_M_DLL_PLL_Tracking
 Tracking_2S.pll_bw_hz=40.0;
 Tracking_2S.dll_bw_hz=4.0;
@@ -1003,7 +1003,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GLONASS L2 CHANNELS ############
 Tracking_2G.implementation=GLONASS_L2_CA_DLL_PLL_Tracking
 Tracking_2G.pll_bw_hz=30.0
 Tracking_2G.dll_bw_hz=4.0
@@ -1046,7 +1046,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GLONASS L2 CHANNELS ############
 Tracking_2G.implementation=GLONASS_L2_CA_DLL_PLL_C_Aid_Tracking
 Tracking_2G.item_type=cshort
 Tracking_2G.pll_bw_hz=40.0;
@@ -1143,7 +1143,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GPS L5 CHANNELS ############
 Tracking_L5.implementation=GPS_L5_DLL_PLL_Tracking
 Tracking_L5.item_type=gr_complex
 Tracking_L5.track_pilot=true
@@ -1252,7 +1252,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GALILEO E5a CHANNELS ############
 Tracking_5X.implementation=Galileo_E5a_DLL_PLL_Tracking
 Tracking_5X.item_type=gr_complex
 Tracking_5X.track_pilot=true
@@ -1339,14 +1339,14 @@ _Tracking results for a given channel._
 
 ## References
 
-[^Proakis]: J. G. Proakis, _Digital Communications_, 5th Ed., McGraw-Hill, 2008.
+[^Proakis]: J. G. Proakis and M. Salehi, _Digital Communications_, 5th Ed., New York: McGraw-Hill, 2008.
 
 [^Petovello10]: M. Petovello, E. Falletti, M. Pini, L. Lo Presti, [Are Carrier-to-Noise algorithms equivalent in all situations?](https://www.insidegnss.com/auto/IGM_gnss-sol-janfeb10.pdf). Inside GNSS, Vol. 5, no. 1, pp. 20-27, Jan.-Feb. 2010.
 
-[^Dierendonck]: A. J. Van Dierendonck, “GPS Receivers”, from _Global Positioning System: Theory and Applications_, Volume I, Edited by B. W. Parkinson and J. J. Spilker Jr. American Institute of Aeronautics and Astronautics, 1996.
+[^Dierendonck]: A. J. Van Dierendonck, "GPS Receivers", from _Global Positioning System: Theory and Applications_, Volume I, Edited by B. W. Parkinson and J. J. Spilker Jr., American Institute of Aeronautics and Astronautics, 1996.
 
 [^Kaplan17]: E. D. Kaplan and C. J. Hegarty, Eds., _Understanding GPS. Principles and Applications_, 3rd edition, Artech House, Norwood, MA, 2017.
 
-[^Fernandez]: C. Fernández-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
+[^Fernandez]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk, The Netherlands.
 
 [^Pauluzzi00]: D. R. Pauluzzi and N. C. Beaulieu, [A comparison of SNR estimation techniques for the AWGN channel](https://ieeexplore.ieee.org/document/871393), IEEE Transactions on Communications, Vol. 48, no. 10, pp 1681-1691, Oct. 2000.

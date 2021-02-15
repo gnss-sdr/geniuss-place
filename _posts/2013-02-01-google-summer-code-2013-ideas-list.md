@@ -182,6 +182,6 @@ Finally, remember that if you are interested in contributing to the GNSS-SDR pro
 
 [^4]: VITA Standards Organization. (2009, May 26). VITA Radio Transport (VRT) Standard, NSI/VITA 49.0-2009. Available from [vita.com](https://www.vita.com/).
 
-[^5]: J. Arribas, [GNSS Array-based Acquisition: Theory and Implementation](https://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/), PhD Thesis, Universitat Politècnica de Catalunya, Barcelona, Spain, June 2012.
+[^5]: J. Arribas, [GNSS Array-based Acquisition: Theory and Implementation](https://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/), PhD Thesis, Universitat Polit&egrave;cnica de Catalunya, Barcelona, Spain, June 2012.
 
 [^6]: J. A. Farrell, and M. Barth, The Global Positioning System & Inertial Navigation, McGraw-Hill, 1999.

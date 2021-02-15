@@ -158,7 +158,7 @@ executables are generated from the source code through three kinds of tools:
 - **Build automation tools**, which automatically build executable
   programs and libraries from the source code with the aid of _build files_ that
   contains _rules_ describing targets, components, and dependencies. Examples
-  are [GNU Make](https://www.gnu.org/software/make/), Unix’s
+  are [GNU Make](https://www.gnu.org/software/make/), Unix's
   [make](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html),
   [Ninja](https://ninja-build.org), and
   [others](https://en.wikipedia.org/wiki/List_of_build_automation_software).

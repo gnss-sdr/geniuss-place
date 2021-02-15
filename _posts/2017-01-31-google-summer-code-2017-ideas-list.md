@@ -38,7 +38,7 @@ The work proposed here is the implementation of time and frequency countermeasur
  D. Borio, "[A multi-state notch filter for GNSS jamming mitigation](http://www.danieleborio.altervista.org/papers/conferences/iclgnss14_MultiStateNotch_25Jun14.pdf)," International Conference on Localization and GNSS 2014 (ICL-GNSS 2014), Helsinki, 2014, pp. 1-6. DOI: 10.1109/ICL-GNSS.2014.693417
 
 
-  * **Pulsed interferences**: A pulsed interference has an instantaneous bandwidth that usually covers the entire GNSS band. This feature prevents the implementation of a notch filter to remove the interference because the full spectrum is contaminated. Here it is possible to implement what is called a “pulse blanking” algorithm to remove the unwanted signal in time domain, as described in the following paper:
+  * **Pulsed interferences**: A pulsed interference has an instantaneous bandwidth that usually covers the entire GNSS band. This feature prevents the implementation of a notch filter to remove the interference because the full spectrum is contaminated. Here it is possible to implement what is called a "pulse blanking" algorithm to remove the unwanted signal in time domain, as described in the following paper:
 
   D. Borio, "[Swept GNSS jamming mitigation through pulse blanking](https://www.researchgate.net/publication/305907284_Swept_GNSS_jamming_mitigation_through_pulse_blanking)," 2016 European Navigation Conference (ENC), Helsinki, 2016, pp. 1-8., DOI: 10.1109/EURONAV.2016.7530549
 
@@ -90,7 +90,7 @@ Dr. Jordi Vil&agrave;-Valls, Dr. Carles Fern&aacute;ndez-Prades
 
 ### Description:
 
-Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [GLONASS L1 SP signals](https://gnss-sdr.org/docs/tutorials/gnss-signals/#glonass), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user’s receiver).
+Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [GLONASS L1 SP signals](https://gnss-sdr.org/docs/tutorials/gnss-signals/#glonass), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user's receiver).
 
   * Implementation of acquisition algorithms for GLONASS, following the examples already implemented for GPS L1 C/A and Galileo E1. This would facilitate research on multi-constellation receivers (*e.g.*, GPS + Galileo + GLONASS) working with real signals.
 

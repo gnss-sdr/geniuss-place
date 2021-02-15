@@ -57,7 +57,7 @@ Dr. Javier Arribas
 
 ### Description:
 
-Objective by the end of the summer: To provide a working implementation of a GNSS receiver (working with GLONASS or COMPASS signals), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user’s receiver).
+Objective by the end of the summer: To provide a working implementation of a GNSS receiver (working with GLONASS or COMPASS signals), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user's receiver).
 
   * Implementation of acquisition algorithms for either GLONASS or BeiDou, following the examples already implemented for GPS L1 C/A and Galileo E1. This would facilitate research on truly multi-constellation receivers (e.g., GPS+GLONASS) working with real signals.
   * Demodulation of the navigation message for either GLONASS / COMPASS, opening the door to open innovation in multi-constellation receivers and addressing topics such as integrity, reliability, robustness, enhanced coverage, and high-accuracy positioning.
