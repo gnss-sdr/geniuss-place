@@ -182,7 +182,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### ACQUISITION GLOBAL CONFIG ############
+;######### ACQUISITION CONFIG FOR GPS L1 CHANNELS ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
 Acquisition_1C.doppler_max=5000
 Acquisition_1C.doppler_step=250
@@ -226,6 +226,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
+;######### ACQUISITION CONFIG FOR GPS L1 CHANNELS ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition_Fine_Doppler
 Acquisition_1C.threshold=0.007
 Acquisition_1C.doppler_max=10000
@@ -289,7 +290,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### ACQUISITION GLOBAL CONFIG ############
+;######### ACQUISITION CONFIG FOR GPS L1 CHANNELS ############
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Tong_Acquisition
 Acquisition_1C.pfa=0.0001
 Acquisition_1C.doppler_max=10000
@@ -413,7 +414,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### ACQUISITION GLOBAL CONFIG ############
+;######### ACQUISITION CONFIG FOR GALILEO E1 CHANNELS ############
 Acquisition_1B.implementation=Galileo_E1_PCPS_Ambiguous_Acquisition
 Acquisition_1B.pfa=0.01
 Acquisition_1B.doppler_max=5000
@@ -471,7 +472,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### ACQUISITION GLOBAL CONFIG ############
+;######### ACQUISITION CONFIG FOR GALILEO E1 CHANNELS ############
 Acquisition_1B.implementation=Galileo_E1_PCPS_Tong_Ambiguous_Acquisition
 Acquisition_1B.pfa=0.0001
 Acquisition_1B.doppler_max=10000
@@ -522,7 +523,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### ACQUISITION GLOBAL CONFIG ############
+;######### ACQUISITION CONFIG FOR GLONASS L1 CHANNELS ############
 Acquisition_1G.implementation=GLONASS_L1_CA_PCPS_Acquisition
 Acquisition_1G.doppler_max=8000
 Acquisition_1G.doppler_step=250
@@ -574,6 +575,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
+;######### ACQUISITION CONFIG FOR GPS L2C CHANNELS ############
 Acquisition_2S.implementation=GPS_L2_M_PCPS_Acquisition
 Acquisition_2S.item_type=cshort
 Acquisition_2S.pfa=0.01
@@ -624,7 +626,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### ACQUISITION GLOBAL CONFIG ############
+;######### ACQUISITION CONFIG FOR GLONASS L2 CHANNELS ############
 Acquisition_2G.implementation=GLONASS_L2_CA_PCPS_Acquisition
 Acquisition_2G.doppler_max=8000
 Acquisition_2G.doppler_step=250
@@ -674,6 +676,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
+;######### ACQUISITION CONFIG FOR GPS L5 CHANNELS ############
 Acquisition_L5.implementation=GPS_L5i_PCPS_Acquisition
 Acquisition_L5.item_type=cshort
 Acquisition_L5.pfa=0.01
@@ -731,7 +734,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### ACQUISITION GLOBAL CONFIG ############
+;######### ACQUISITION CONFIG FOR GALILEO E5a CHANNELS ############
 Acquisition_5X.implementation=Galileo_E5a_Pcps_Acquisition
 Acquisition_5X.doppler_max=8000
 Acquisition_5X.doppler_step=250
@@ -779,7 +782,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### ACQUISITION GLOBAL CONFIG ############
+;######### ACQUISITION CONFIG FOR GALILEO E5a CHANNELS ############
 Acquisition_5X.implementation=Galileo_E5a_Noncoherent_IQ_Acquisition_CAF
 Acquisition_5X.pfa=0.01
 Acquisition_5X.doppler_max=10000
@@ -832,7 +835,7 @@ The acquisition grid can be plotted from MATLAB or Octave as:
 ```matlab
 load('./acq_dump_G_1C_chan0_1_sat1.mat')
 f = -doppler_max:doppler_step:(doppler_max);
-tau = linspace(0, 1023, size(acq_grid,1));
+tau = linspace(0, 1023, size(acq_grid, 1));
 surf(f, tau, acq_grid); xlabel('Doppler [Hz]'); ylabel('Delay [chips]');
 ```
 

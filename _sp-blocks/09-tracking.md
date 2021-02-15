@@ -423,7 +423,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GPS L1 CHANNELS ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
 Tracking_1C.item_type=gr_complex
 Tracking_1C.extend_correlation_symbols=20
@@ -490,7 +490,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GPS L1 CHANNELS ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking_GPU
 Tracking_1C.pll_bw_hz=40.0;
 Tracking_1C.dll_bw_hz=4.0;
@@ -642,7 +642,7 @@ $$ h_{DLL}\left( \Delta \hat{\tau}_{k}\right) $$.
 
 12. Update code phase
 estimation (in samples):
-$$ N_{k+1} = \text{round}(S) $$ and $$ \psi_{k+1} =S-N_{k+1} $$, where
+$$ N_{k+1} = \text{round}(S) $$ and $$ \psi_{k+1} = S - N_{k+1} $$, where
 $$ S = \frac{T_{int}f_{\text{IN}}}{\left(1 + \frac{\hat{f}_{D_{k}}}{f^{\text{(Gal E1)}}_c} \right)} + \psi_{k} + h_{DLL}(\hat{\Delta \tau}_k)f_{\text{IN}} $$.
 
 13. Code lock indicator:
@@ -728,7 +728,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GALILEO E1 CHANNELS ############
 Tracking_1B.implementation=Galileo_E1_DLL_PLL_VEML_Tracking
 Tracking_1B.item_type=gr_complex
 Tracking_1B.track_pilot=true
@@ -817,7 +817,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GLONASS L1 CHANNELS ############
 Tracking_1G.implementation=GLONASS_L1_CA_DLL_PLL_Tracking
 Tracking_1G.pll_bw_hz=30.0
 Tracking_1G.dll_bw_hz=4.0
@@ -861,7 +861,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GLONASS L1 CHANNELS ############
 Tracking_1G.implementation=GLONASS_L1_CA_DLL_PLL_C_Aid_Tracking
 Tracking_1G.item_type=cshort
 Tracking_1G.pll_bw_hz=40.0;
@@ -957,7 +957,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GPS L2C CHANNELS ############
 Tracking_2S.implementation=GPS_L2_M_DLL_PLL_Tracking
 Tracking_2S.pll_bw_hz=40.0;
 Tracking_2S.dll_bw_hz=4.0;
@@ -1003,7 +1003,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GLONASS L2 CHANNELS ############
 Tracking_2G.implementation=GLONASS_L2_CA_DLL_PLL_Tracking
 Tracking_2G.pll_bw_hz=30.0
 Tracking_2G.dll_bw_hz=4.0
@@ -1046,7 +1046,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GLONASS L2 CHANNELS ############
 Tracking_2G.implementation=GLONASS_L2_CA_DLL_PLL_C_Aid_Tracking
 Tracking_2G.item_type=cshort
 Tracking_2G.pll_bw_hz=40.0;
@@ -1143,7 +1143,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GPS L5 CHANNELS ############
 Tracking_L5.implementation=GPS_L5_DLL_PLL_Tracking
 Tracking_L5.item_type=gr_complex
 Tracking_L5.track_pilot=true
@@ -1252,7 +1252,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TRACKING GLOBAL CONFIG ############
+;######### TRACKING CONFIG FOR GALILEO E5a CHANNELS ############
 Tracking_5X.implementation=Galileo_E5a_DLL_PLL_Tracking
 Tracking_5X.item_type=gr_complex
 Tracking_5X.track_pilot=true

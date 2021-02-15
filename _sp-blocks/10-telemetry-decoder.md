@@ -88,7 +88,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GPS L1 CHANNELS ############
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1C.dump=false
 ```
@@ -160,7 +160,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GALILEO CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GALILEO E1 CHANNELS ############
 TelemetryDecoder_1B.implementation=Galileo_E1B_Telemetry_Decoder
 TelemetryDecoder_1B.dump=false
 ```
@@ -236,7 +236,7 @@ _Telemetry Decoder implementation:_ **`GLONASS_L1_CA_Telemetry_Decoder`**.
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GLONASS L1 C/A CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GLONASS L1 CHANNELS ############
 TelemetryDecoder_1G.implementation=GLONASS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1G.dump=false
 ```
@@ -262,7 +262,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GPS L2C CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GLONASS L2 CHANNELS ############
 TelemetryDecoder_2G.implementation=GLONASS_L2_CA_Telemetry_Decoder
 TelemetryDecoder_2G.dump=true
 ```
@@ -315,7 +315,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GPS L2C CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GPS L2C CHANNELS ############
 TelemetryDecoder_2S.implementation=GPS_L2C_Telemetry_Decoder
 TelemetryDecoder_2S.dump=true
 ```
@@ -367,7 +367,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GPS L5 CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GPS L5 CHANNELS ############
 TelemetryDecoder_L5.implementation=GPS_L5_Telemetry_Decoder
 TelemetryDecoder_L5.dump=true
 ```
@@ -420,7 +420,7 @@ This implementation accepts the following parameters:
 Example:
 
 ```ini
-;######### TELEMETRY DECODER GALILEO E5a CONFIG ############
+;######### TELEMETRY DECODER CONFIG FOR GALILEO E5a CHANNELS ############
 TelemetryDecoder_5X.implementation=Galileo_E5a_Telemetry_Decoder
 TelemetryDecoder_5X.dump=false
 ```
