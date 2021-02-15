@@ -247,10 +247,10 @@ int* p, i;
 
 
 It is easy to forget that the star belongs to the declared name, not the type,
-and look at it and assume that the type is “pointer to int” and both p and i are
+and look at it and assume that the type is "pointer to int" and both p and i are
 declared to this type.
 
-### For declaring pointers and reference the “`*`” and “`&`” should be surrounded by spaces on both sides
+### For declaring pointers and reference the "`*`" and "`&`" should be surrounded by spaces on both sides
 
 ### All binary arithmetic, bitwise and assignment operators and the ternary conditional operator (`?:`) should be surrounded by spaces
 
@@ -392,9 +392,9 @@ Overloaded functions count as a single function here.
 
 ### File name should be treated as case sensitive
 
-### C++ source files should have extension “`.cc`”
+### C++ source files should have extension "`.cc`"
 
-### C++ header files should have extension “`.h`”
+### C++ header files should have extension "`.h`"
 
 ### Inline functions should be declared in header files and defined in inline definition files
 
@@ -419,7 +419,7 @@ example, the file `gnss-sdr/src/bar_baz.h` should have the following guard:
 ```
 {: class="no-copy"}
 
-### The name of the macro used in the include guard should have the same name as the file (excluding the extension) followed by the suffix “`_H`”
+### The name of the macro used in the include guard should have the same name as the file (excluding the extension) followed by the suffix "`_H`"
 
 This avoids clashing with other names.
 

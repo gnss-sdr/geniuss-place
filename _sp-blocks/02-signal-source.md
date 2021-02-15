@@ -183,7 +183,7 @@ specified in `SignalSource.filename`.
 ### Implementation: `Two_Bit_Packed_File_Signal_Source`
 
 Sometimes, samples are stored in files in a format that is not in the list of
-“native” types supported by the `File_Signal_Source` implementation (i.e, it is
+"native" types supported by the `File_Signal_Source` implementation (i.e, it is
 not among <abbr id="data-type" title="Signed integer, 8-bit two's complement
 number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr
 id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit
@@ -284,7 +284,7 @@ SignalSource.big_endian_bytes=false
 ### Implementation: `Nsr_File_Signal_Source`
 
 Sometimes, samples are stored in files in a format that is not in the list of
-“native” types supported by the `File_Signal_Source` implementation (i.e, it is
+"native" types supported by the `File_Signal_Source` implementation (i.e, it is
 not among <abbr id="data-type" title="Signed integer, 8-bit two's complement
 number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr
 id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit

@@ -112,9 +112,9 @@ The L1C signal consists of two main components; one denoted $$ L1C_P $$ to
 represent a pilot signal, without any data message, that is spread by a
 ranging code, and $$ L1C_D $$ that is spread by a ranging code and modulated
 by a data message. The $$ L1C_P $$ is also modulated by an SV unique overlay
-code, $$ L1C_O $$. The SVs could transmit intentionally “incorrect” versions
+code, $$ L1C_O $$. The SVs could transmit intentionally "incorrect" versions
 of the respective ranging codes as needed to protect users from
-receiving and utilizing anomalous signals. These “incorrect” codes are
+receiving and utilizing anomalous signals. These "incorrect" codes are
 termed non-standard $$ L1C_P $$ (NSCP) and non-standard $$ L1C_D $$ (NSCD).
 Non-standard codes are not for utilization by the users and, therefore,
 are not defined in IS-GPS-800D.
@@ -587,7 +587,7 @@ launched on April 15, 2009.
 On December 27, 2012, the Chinese government released the first version of
 BeiDou's Interface Control Document (ICD), a 77-page document that included
 details of the navigation message, including parameters of the satellite
-almanacs and ephemerides that were missing from a “test version” of the ICD
+almanacs and ephemerides that were missing from a "test version" of the ICD
 released exactly one year before. One year later version 2.0 was released,
 version 2.1 followed in November 2016[^Beidou], and version 3.0 in February
 2019[^BeidouB1I]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C],
