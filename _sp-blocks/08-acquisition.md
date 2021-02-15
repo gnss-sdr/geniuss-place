@@ -13,7 +13,7 @@ A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$
 the digital signal at the input of an _Acquisition_ block can be written as:
 
 $$ \begin{equation}
-\label{xin} x_\text{IN}[k] = A(t)\tilde{s}_{T}(t-\tau(t))e^{j \left( 2\pi f_D(t) t + \phi(t) \right) } \Bigr \rvert_{t=kT_s} + n(t) \Bigr \rvert_{t=kT_s}
+\label{xin} x_\text{IN}[k] = A(t)\tilde{s}_{T}(t - \tau(t))e^{j \left( 2\pi f_D(t) t + \phi(t) \right) } \Bigr \rvert_{t=kT_s} + n(t) \Bigr \rvert_{t=kT_s}
 \end{equation} $$
 
 where $$ A(t) $$ is the signal amplitude, $$ \tilde{s}_{T}(t) $$ is a filtered
@@ -40,7 +40,7 @@ $$ \begin{equation}
 where
 
 $$ \begin{equation}
-\hat{R}_{xd}(f_D,\tau) = \frac{1}{K}\sum_{k=0}^{K-1}x_{\text{IN}}[k]d[kT_s-\tau]e^{-j 2 \pi f_D kT_s}~,
+\hat{R}_{xd}(f_D,\tau) = \frac{1}{K}\sum_{k=0}^{K-1}x_{\text{IN}}[k]d[kT_s - \tau]e^{-j 2 \pi f_D kT_s}~,
 \end{equation} $$
 
 $$ x_{\text{IN}}[k] $$ is a complex vector containing I&Q samples of the
@@ -74,7 +74,7 @@ by their ML estimators in the Neyman-Pearson detector, one obtains the
 Generalized Likelihood Ratio Test (GLRT) function, which can be written as:
 
 $$ \begin{equation}
-T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right) = \max_{f_D,\tau}\left\{ \frac{\left|\hat{R}_{xd}(f_D,\tau) \right|^2}{\hat{R}_{xx}} \right\}~,
+T_{\text{GLRT}}\left(\mathbf{x}_{\text{IN}}\right) = \max_{f_D,\tau}\left\{ \frac{\left| \hat{R}_{xd}(f_D,\tau) \right|^2}{\hat{R}_{xx}} \right\}~,
 \end{equation} $$
 
 where $$ \hat{R}_{xx} $$ is an estimation of the input signal power. It can
@@ -85,7 +85,7 @@ power.
 ![CAF]({{ "/assets/images/caf.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
 _GLRT statistic for Parallel Code Phase Search acquisition algorithm for a
 configuration of $$ f_{IN} = 4 $$ Msps, a frequency span of $$ \pm 5 $$ kHz with
-steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo’s IOV
+steps of $$ 250 $$ Hz, and using the E1B sinBOC local replica for Galileo's IOV
 satellite PRN 11[^Fernandez12]._
 {: style="text-align: center;"}
 
@@ -108,7 +108,7 @@ block.
 1.	Compute input signal power estimation:
  $$ \hat{P}_{in} = \frac{1}{K}\sum_{k=0}^{K-1}\left|x_{\text{IN}}[k]\right|^2 $$.
 
-2.	**for** $$ \check{f}_D=f_{min} $$ to  $$ \check{f}_D=f_{max} $$ in $$ f_{step} $$ steps:
+2.	**for** $$ \check{f}_D=f_{min} $$ to $$ \check{f}_D = f_{max} $$ in $$ f_{step} $$ steps:
 *	Carrier wipe-off: $$ x[k] = x_{\text{IN}}[k] \cdot e^{-(j2\pi \check{f}_D k T_s)} $$, for $$ k = 0,...,K-1 $$.
 *	Compute $$ X[k] = \text{FFT}_{K}\left\{ x[k]\right\} $$.
 *	Compute $$ Y[k] = X[k] \cdot D[k] $$, for $$ k = 0,...,K-1 $$.
@@ -120,11 +120,11 @@ block.
  $$ \left\{S_{max}, f_i, \tau_j \right\} \quad \Leftarrow \quad \max_{f,\tau}\left|R_{xd}(f,\tau)\right|^2 $$
 
 9.	Compute the GLRT function with normalized variance:
- $$ \Gamma_{\text{GLRT}}=\frac{2\cdot K \cdot S_{max}}{\hat{P}_{in}} $$
+ $$ \Gamma_{\text{GLRT}} = \frac{2\cdot K \cdot S_{max}}{\hat{P}_{in}} $$
 
 10.	**if** $$ \Gamma_{\text{GLRT}}>\gamma $$
-*	Declare positive acquisition and provide $$ \hat{f}_{\!D_{acq}}=f_i $$ and
-$$ \hat{\tau}_{acq}=\tau_j $$.
+*	Declare positive acquisition and provide $$ \hat{f}_{\!D_{acq}} = f_i $$ and
+$$ \hat{\tau}_{acq} = \tau_j $$.
 
 12.	**else**
 * Declare negative acquisition.
@@ -248,12 +248,12 @@ detector with a reasonable computation burden and proves good for acquiring
 signals with low $$ C/N_0 $$ levels.  During the signal search, the up/down
 counter $$ \mathcal{K} $$ is incremented by one if the correlation peak value
 exceeds the threshold, otherwise it is decremented by one. If the counter has
-reached the maximum count value $$ A $$, the signal is declared ‘_present_’ and
-the search is terminated. Similarly, if the counter contents reach zero, the
-signal is declared ‘_absent_’ and the search is terminated. So that the Tong
-detector is not trapped into an extended dwell in the same cell, under certain
-poor signal conditions, another counter ($$ \mathcal{K}_{max} $$) sets the limit
-on the maximum number of dwells.
+reached the maximum count value $$ A $$, the signal is declared
+_&lsquo;present&rsquo;_ and the search is terminated. Similarly, if the counter
+contents reach zero, the signal is declared _&lsquo;absent&rsquo;_ and the
+search is terminated. So that the Tong detector is not trapped into an extended
+dwell in the same cell, under certain poor signal conditions, another counter
+($$ \mathcal{K}_{max} $$) sets the limit on the maximum number of dwells.
 
 This implementation accepts the following parameters:
 
@@ -353,8 +353,8 @@ d_{E1B}^{(\text{sinBOC})}[n] = \sum_{l=-\infty}^{+\infty} C_{E1B}\Big[|l|_{4092}
 while for E1C, users can choose among:
 
 $$ \begin{eqnarray}
-d_{E1C}^{(\text{CBOC})}[n] & = &\sum_{m=-\infty}^{+\infty} \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot  \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \nonumber \\
-{} & {} & \cdot \left( \alpha sc_A[n]+ \beta sc_B[n] \right)
+d_{E1C}^{(\text{CBOC})}[n] & = &\sum_{m=-\infty}^{+\infty} \sum_{l=1}^{4092}\! C_{E1Cp}\Big[ l \Big] \! \cdot \! p[n\! -\! mT_{c,E1Cs} - lT_{c,E1Cp}] \cdot \nonumber \\
+{} & {} & \cdot \left( \alpha sc_A[n] + \beta sc_B[n] \right)
 \end{eqnarray} $$
 
 or
@@ -367,7 +367,7 @@ The simpler sinBOC options are chosen by default. CBOC versions can be set by
 function for those waveforms:
 
 <a name="fig:Rxd"></a>![Rxd]({{ "/assets/images/rxd.png" | relative_url }}){:width="600px"}{: .align-center .invert-colors}
-_Normalized $$ \left|R_{xd}\left(\check{f}_D=f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
+_Normalized $$ \left|R_{xd}\left(\check{f}_D = f_D, \tau \right) \right|^2 $$ for different sampling rates and local reference waveforms[^Fernandez12]._
 {: style="text-align: center;"}
 
 
@@ -430,20 +430,20 @@ reasonable computation burden that proves good for acquiring signals with low $$
 C/N_0 $$ levels.  During the signal search, the up/down counter $$ \mathcal{K} $$
 is incremented by one if the correlation peak value exceeds the threshold,
 otherwise it is decremented by one. If the counter has reached the maximum count
-value $$ A $$, the signal is declared ‘_present_’ and the search is terminated.
-Similarly, if the counter contents reach zero, the signal is declared ‘_absent_’
-and the search is terminated. So that the Tong detector is not trapped into an
-extended dwell in the same cell, under certain poor signal conditions, another
-counter ($$ \mathcal{K}_{max} $$) sets the limit on the maximum number of
-dwells.
+value $$ A $$, the signal is declared _&lsquo;present&rsquo;_ and the search is
+terminated. Similarly, if the counter contents reach zero, the signal is
+declared _&lsquo;absent&rsquo;_ and the search is terminated. So that the Tong
+detector is not trapped into an extended dwell in the same cell, under certain
+poor signal conditions, another counter ($$ \mathcal{K}_{max} $$) sets the limit
+on the maximum number of dwells.
 
 This implementation accepts the following parameters:
 
 |----------
-|  **Global Parameter**  |  **Description** | **Required** |
+| **Global Parameter** | **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` | Input sample rate to the processing channels, in samples per second. | Mandatory |
 |--------------
 
 
@@ -490,10 +490,10 @@ Acquisition_1B.tong_max_dwells=20
 This implementation accepts the following parameters:
 
 |----------
-|  **Global Parameter**  |  **Description** | **Required** |
+| **Global Parameter** | **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` | Input sample rate to the processing channels, in samples per second. | Mandatory |
 |--------------
 
 
@@ -593,10 +593,10 @@ Acquisition_2S.max_dwells=2
 This implementation accepts the following parameters:
 
 |----------
-|  **Global Parameter**  |  **Description** | **Required** |
+| **Global Parameter** | **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` | Input sample rate to the processing channels, in samples per second. | Mandatory |
 |--------------
 
 
@@ -749,10 +749,10 @@ This implementation accepts the following parameters:
 
 
 |----------
-|  **Global Parameter**  |  **Description** | **Required** |
+| **Global Parameter** | **Description** | **Required** |
 |:-:|:--|:-:|    
 |--------------
-| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.internal_fs_sps` | Input sample rate to the processing channels, in samples per second. | Mandatory |
 |--------------
 
 
@@ -859,12 +859,12 @@ _Negative acquisition._
 
 ## References
 
-[^Borre06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkhäuser, November 2006.
+[^Borre06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkh&auml;user, November 2006.
 
-[^Fernandez12]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk (The Netherlands).
+[^Fernandez12]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk, The Netherlands.
 
-[^Lohan11]: J. Zhang, E. S. Lohan, _Galileo E1 and E5a Link-Level Performances in Single and Multipath Channels_. In G. Giambene, C. Sacchi, Eds., Personal Satellite Services, Third International ICST Conference PSATS 2011, Malaga, Spain, February 2011.
+[^Lohan11]: J. Zhang, E. S. Lohan, _Galileo E1 and E5a Link-Level Performances in Single and Multipath Channels_. In G. Giambene, C. Sacchi, Eds., Personal Satellite Services, Third International ICST Conference PSATS 2011, M&aacute;laga, Spain, February 2011.
 
-[^Tong73]: P. S. Tong, _A Suboptimum Synchronization Procedure for Pseudo Noise Communication Systems_, in Proc. of National Telecommunications Conference, 1973, pp. 26D1-26D5.
+[^Tong73]: P. S. Tong, _A Suboptimum Synchronization Procedure for Pseudo Noise Communication Systems_, in Proc. of National Telecommunications Conference, pp. 26D1-26D5. Atlanta, GA, Nov. 1973.
 
 [^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021.
