@@ -208,7 +208,7 @@ _GPS signals spectra in L5. Source: [Navipedia](https://gssc.esa.int/navipedia/i
 
 ## GLONASS
 
-The nominal baseline constellation of the Russian Federation’s Global Navigation
+The nominal baseline constellation of the Russian Federation's Global Navigation
 Satellite System (GLONASS) comprises $$ 24 $$ GLONASS–M satellites that are
 uniformly deployed in three roughly circular orbital planes at an inclination of
 $$ 64.8^o $$ to the equator. The altitude of the orbit is $$ 19,100 $$ km. The
@@ -555,7 +555,7 @@ _Galileo signals spectra in E5. Source: [Navipedia](https://gssc.esa.int/naviped
 
 ## BeiDou
 
-People’s Republic of China was also concerned with the importance of an accurate
+People's Republic of China was also concerned with the importance of an accurate
 (and independent) navigation and timing satellite system.
 
 According to the China National Space Administration, in a communicate dated on
@@ -585,7 +585,7 @@ May 25, 2003, respectively.  The first geostationary satellite, COMPASS–G2, wa
 launched on April 15, 2009.
 
 On December 27, 2012, the Chinese government released the first version of
-BeiDou’s Interface Control Document (ICD), a 77-page document that included
+BeiDou's Interface Control Document (ICD), a 77-page document that included
 details of the navigation message, including parameters of the satellite
 almanacs and ephemerides that were missing from a “test version” of the ICD
 released exactly one year before. One year later version 2.0 was released,
@@ -600,7 +600,7 @@ official logo of the BeiDou system, the design of which incorporates the
 yin/yang symbol reflecting traditional Chinese culture, dark and light
 blue coloration symbolizing, respectively, space and Earth (including
 the aerospace industry), and the Big Dipper (a pattern of stars
-recognized on Earth’s night sky which star components are the seven
+recognized on Earth's night sky which star components are the seven
 brightest of the constellation Ursa Major) used for navigation since
 ancient times to locate the North Star Polaris and representing the
 first navigation device developed by China.

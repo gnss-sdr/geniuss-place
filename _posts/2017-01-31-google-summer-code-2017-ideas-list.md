@@ -90,7 +90,7 @@ Dr. Jordi Vil&agrave;-Valls, Dr. Carles Fern&aacute;ndez-Prades
 
 ### Description:
 
-Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [GLONASS L1 SP signals](https://gnss-sdr.org/docs/tutorials/gnss-signals/#glonass), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user’s receiver).
+Objective by the end of the summer: To provide a working implementation of a GNSS receiver working with [GLONASS L1 SP signals](https://gnss-sdr.org/docs/tutorials/gnss-signals/#glonass), delivering RINEX files (the standard input of geodesic software libraries for high—accuracy positioning) and an on-the-fly navigation solution (that is, computation of position, velocity and time of the user's receiver).
 
   * Implementation of acquisition algorithms for GLONASS, following the examples already implemented for GPS L1 C/A and Galileo E1. This would facilitate research on multi-constellation receivers (*e.g.*, GPS + Galileo + GLONASS) working with real signals.
 

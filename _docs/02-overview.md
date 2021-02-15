@@ -72,7 +72,7 @@ software radio applications.
 Frameworks are a special case of software libraries. They are reusable
 abstractions of code wrapped in a well-defined API, yet they contain some key
 distinguishing features that separate them from normal libraries: the overall
-program’s flow of control is not dictated by the caller, but by the framework,
+program's flow of control is not dictated by the caller, but by the framework,
 and it can be extended by the user usually by selective overriding or
 specialized by user code providing specific functionality. Software frameworks
 aim to facilitate software development by allowing designers and programmers to
