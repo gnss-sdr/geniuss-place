@@ -25,7 +25,7 @@ admission status. Computer Science does not need to be your field of study in
 order to participate in the program. You may be enrolled or accepted as a
 full-time or part-time student into an accredited institution including (but not
 necessarily limited to) colleges, universities, masters programs, PhD programs,
-and undergraduate programs, for a time period that includes April 13, 2021, must
+and undergraduate programs, for a time period that includes May 17, 2021, must
 be at least 18 years old and must be eligible to work in your country of
 residence during duration of the program to be eligible to participate in Google
 Summer of Code in 2021.
