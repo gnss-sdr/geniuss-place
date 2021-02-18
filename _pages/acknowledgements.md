@@ -59,10 +59,10 @@ The Authors are proud to be supported by the following public institutions, priv
     ![GSoC logo]({{ "/assets/images/logo-gsoc.png" | relative_url }}){:height="100px" width="100px"}
     {: style="text-align: center;"}
 
-[2020](https://summerofcode.withgoogle.com/organizations/6600330621485056/)
+[2020](https://summerofcode.withgoogle.com/archive/2020/organizations/5600351610208256/)
 
-  * Project: [Expanding the GNSS receiver to Galileo E5b signals](https://summerofcode.withgoogle.com/projects/#5717247428919296), by Piyush Gupta.
-  * Project: [Robust Interference Mitigation for anti-jamming](https://summerofcode.withgoogle.com/projects/#5829364463173632), by Haoqing Li.    
+  * Project: [Expanding the GNSS receiver to Galileo E5b signals](https://summerofcode.withgoogle.com/archive/2020/projects/6254817149714432/), by Piyush Gupta.
+  * Project: [Robust Interference Mitigation for anti-jamming](https://summerofcode.withgoogle.com/archive/2020/projects/5671680850001920/), by Haoqing Li.    
 
 [2019](https://summerofcode.withgoogle.com/archive/2019/organizations/6369884148072448/)
 
