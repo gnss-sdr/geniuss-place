@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-02-07T09:54:02+02:00
+last_modified_at: 2021-02-22T09:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -827,7 +827,7 @@ The following table shows the complete list of streamed parameters:
 | `cov_yy` | `double` | Position variance in the Y component, $$ \sigma_{yy}^2 $$, in [$$ m^2 $$]. |
 | `cov_zz` | `double` | Position variance in the X component, $$ \sigma_{zz}^2 $$, in [$$ m^2 $$]. |
 | `cov_xy` | `double` | Position XY covariance $$ \sigma_{xy}^2 $$, in [$$ m^2 $$]. |
-| `cov_yz` | `double` | Position YZ covariance $$ \sigma_{yz}^2 $$t, in [$$ m^2 $$]. |
+| `cov_yz` | `double` | Position YZ covariance $$ \sigma_{yz}^2 $$, in [$$ m^2 $$]. |
 | `cov_zx` | `double` | Position ZX covariance $$ \sigma_{zx}^2 $$, in [$$ m^2 $$]. |
 | `latitude` | `double` | Latitude, in [deg]. Positive: North. |
 | `longitude` | `double` | Longitude, in [deg]. Positive: East. |
