@@ -285,7 +285,9 @@ in the configuration file, a Precise Point Positioning algorithm is used to
 solve the positioning problem. In this positioning mode, the state vector to be
 estimated is defined as:
 
-$$ \begin{equation} \mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, c \cdot dt_r, Z_r, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T \right)^T~, \end{equation} $$
+$$ \begin{equation}
+\mathbf{x} = \left( \mathbf{r}_r^T, \mathbf{v}_r^T, c \cdot dt_r, Z_r, G_{N_r}, G_{E_r}, \mathbf{B}_{LC}^T \right)^T~,
+\end{equation} $$
 
 where $$ Z_r $$ is ZTD (zenith total delay), $$ G_{N_r} $$ and $$ G_{E_r} $$ are
 the north and east components of tropospheric gradients (see the tropospheric
@@ -314,13 +316,19 @@ with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 -
 f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$
 and $$ L_j $$ measurements. Explicitly:
 
-$$ \begin{equation} P_{r,LC}^{(s)} =  \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} + \epsilon_P \end{equation} $$
+$$ \begin{equation}
+P_{r,LC}^{(s)} = \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} + \epsilon_P
+\end{equation} $$
 
-$$ \begin{equation} \Phi_{r,LC}^{(s)} = \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} + B_{r,LC}^{(s)} + d\Phi_{r,LC}^{(s)} + \epsilon_{\Phi} \end{equation} $$
+$$ \begin{equation}
+\Phi_{r,LC}^{(s)} = \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} + B_{r,LC}^{(s)} + d\Phi_{r,LC}^{(s)} + \epsilon_{\Phi}
+\end{equation} $$
 
 with
 
-$$ \begin{equation} \label{eq:bias-lc} B_{r,LC}^{(s)} = C_i  \left( \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} \right) + C_j  \left( \phi_{r,0,j} - \phi_{0,j}^{(s)} + N_{r,j}^{(s)} \right) \end{equation} $$
+$$ \begin{equation} \label{eq:bias-lc}
+B_{r,LC}^{(s)} = C_i \left( \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} \right) + C_j \left( \phi_{r,0,j} - \phi_{0,j}^{(s)} + N_{r,j}^{(s)} \right)
+\end{equation} $$
 
 $$ \begin{equation}
 \begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \\
@@ -360,9 +368,17 @@ $$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \mathbf{h}_{\Phi}^T,
 
 where:
 
-$$ \mathbf{h}_{\Phi} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{r}^{(1)} + B_{r,LC}^{(1)} + d\Phi_{r,LC}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{r}^{(2)} + B_{r,LC}^{(2)} + d\Phi_{r,LC}^{(2)}  \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{r}^{(3)} + B_{r,LC}^{(3)} + d\Phi_{r,LC}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{r}^{(m)} + B_{r,LC}^{(m)} + d\Phi_{r,LC}^{(m)} \end{array}\right)~, $$
+$$ \mathbf{h}_{\Phi} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{r}^{(1)} + B_{r,LC}^{(1)} + d\Phi_{r,LC}^{(1)} \\
+\rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{r}^{(2)} + B_{r,LC}^{(2)} + d\Phi_{r,LC}^{(2)} \\
+\rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{r}^{(3)} + B_{r,LC}^{(3)} + d\Phi_{r,LC}^{(3)} \\
+\vdots \\
+\rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{r}^{(m)} + B_{r,LC}^{(m)} + d\Phi_{r,LC}^{(m)} \end{array}\right)~, $$
 
-$$ \mathbf{h}_{P} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{r}^{(1)} \\ \rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{r}^{(2)} \\ \rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{r}^{(3)} \\ \vdots \\ \rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{r}^{(m)} \end{array}\right)~. $$
+$$ \mathbf{h}_{P} = \left( \begin{array}{c} \rho_{r}^{(1)} + c(dt_r - dT^{(1)}) + T_{r}^{(1)} \\
+\rho_{r}^{(2)} + c(dt_r - dT^{(2)}) + T_{r}^{(2)} \\
+\rho_{r}^{(3)} + c(dt_r - dT^{(3)}) + T_{r}^{(3)} \\
+\vdots \\
+\rho_{r}^{(m)} + c(dt_r - dT^{(m)}) + T_{r}^{(m)} \end{array}\right)~. $$
 
 This is again a nonlinear equation that could be solved with the iterative
 weighted least squares estimator as in the case of the Single Point Positioning
@@ -404,17 +420,27 @@ as follows:
 
   * Time update (prediction):
 
-  $$ \begin{equation} \label{eq:state-update} \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k  \hat{\mathbf{x}}_{k-1|k-1} \end{equation} $$
+  $$ \begin{equation} \label{eq:state-update}
+  \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k  \hat{\mathbf{x}}_{k-1|k-1}
+  \end{equation} $$
 
-  $$ \begin{equation} \boldsymbol{\Sigma}_{k|k-1} = \mathbf{F}_k  \boldsymbol{\Sigma}_{k-1|k-1}  \mathbf{F}_k^T + \mathbf{Q}_k \end{equation} $$
+  $$ \begin{equation}
+  \boldsymbol{\Sigma}_{k|k-1} = \mathbf{F}_k \boldsymbol{\Sigma}_{k-1|k-1} \mathbf{F}_k^T + \mathbf{Q}_k
+  \end{equation} $$
 
   * Measurement update (estimation):
 
-  $$ \begin{equation} \mathbf{K}_k = \boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1}) \left( \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})\boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})^T+\mathbf{R}_k \right)^{-1} \end{equation} $$
+  $$ \begin{equation}
+  \mathbf{K}_k = \boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1}) \left( \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})\boldsymbol{\Sigma}_{k|k-1} \mathbf{H}_k(\hat{\mathbf{x}}_{k|k-1})^T + \mathbf{R}_k \right)^{-1}
+  \end{equation} $$
 
-  $$ \begin{equation} \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \left( \mathbf{y}_k - \mathbf{h}_k(\hat{\mathbf{x}}_{k|k-1}) \right) \end{equation} $$
+  $$ \begin{equation}
+  \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \left( \mathbf{y}_k - \mathbf{h}_k(\hat{\mathbf{x}}_{k|k-1}) \right)
+  \end{equation} $$
 
-  $$ \begin{equation} \label{eq:meas-cov-update}\boldsymbol{\Sigma}_{k|k} = \left( \mathbf{I} -\mathbf{K}_{K} \mathbf{H}_k ( \hat{\mathbf{x}}_{k|k-1} )  \right)\boldsymbol{\Sigma}_{k|k-1} \end{equation} $$
+  $$ \begin{equation} \label{eq:meas-cov-update}
+  \boldsymbol{\Sigma}_{k|k} = \left( \mathbf{I} - \mathbf{K}_{K} \mathbf{H}_k \left(\hat{\mathbf{x}}_{k|k-1}\right) \right)\boldsymbol{\Sigma}_{k|k-1}
+  \end{equation} $$
 {% endcapture %}
 
 <div class="notice--success">
@@ -426,35 +452,93 @@ The transition matrix $$ \mathbf{F}_k $$ models the receiver movement:
 
   * If `PVT.positioning_mode=PPP_Static`:
 
-  $$ \begin{equation} \mathbf{F}_k = \left(\begin{array}{ccccc} \mathbf{I}_{3\times 3} & {} & {} & {} & {} \\ {} &  \mathbf{I}_{3\times 3} & {} & {} & {} \\ {} & {} & 1 & {} & {} \\ {} & {} & {} & \mathbf{I}_{3 \times 3} & {} \\  {} & {} & {} & {} & \mathbf{I}_{m \times m}  \end{array} \right) \end{equation} $$
+  $$ \begin{equation}
+  \mathbf{F}_k = \left(\begin{array}{ccccc} \mathbf{I}_{3\times 3} & {} & {} & {} & {} \\
+  {} & \mathbf{I}_{3\times 3} & {} & {} & {} \\
+  {} & {} & 1 & {} & {} \\
+  {} & {} & {} & \mathbf{I}_{3 \times 3} & {} \\
+  {} & {} & {} & {} & \mathbf{I}_{m \times m} \end{array} \right)
+  \end{equation} $$
 
   * If `PVT.positioning_mode=PPP_Kinematic`:
 
-  $$ \begin{equation} \mathbf{F}_k = \left(\begin{array}{ccccc} \mathbf{I}_{3\times 3} & \mathbf{I}_{3\times 3} \Delta_k  & {} & {} & {} \\ {} &  \mathbf{I}_{3\times 3} & {} & {} & {} \\ {} & {} & 1 & {} & {} \\ {} & {} & {} & \mathbf{I}_{3 \times 3} & {} \\  {} & {} & {} & {} & \mathbf{I}_{m \times m}  \end{array} \right) \end{equation} $$
+  $$ \begin{equation}
+  \mathbf{F}_k = \left(\begin{array}{ccccc}
+  \mathbf{I}_{3\times 3} & \mathbf{I}_{3\times 3} \Delta_k  & {} & {} & {} \\
+  {} & \mathbf{I}_{3\times 3} & {} & {} & {} \\
+  {} & {} & 1 & {} & {} \\
+  {} & {} & {} & \mathbf{I}_{3 \times 3} & {} \\
+  {} & {} & {} & {} & \mathbf{I}_{m \times m} \end{array} \right)
+  \end{equation} $$
 
   where $$ \Delta_k = t_{k+1} - t_k $$ is the time between GNSS measurements, in s.
 
 
 The dynamics model noise covariance matrix $$ \mathbf{Q}_k $$ is set to:
 
-$$ \begin{equation} \mathbf{Q}_k = \left(\begin{array}{ccccc} \mathbf{Q}_{r} & {} & {} & {} & {} \\ {} &  \mathbf{Q}_{v} & {} & {} & {} \\ {} & {} & \sigma_{c \cdot dt_{r}}^2 & {} & {} \\ {} & {} & {} & \mathbf{Q}_{T} & {} \\  {} & {} & {} & {} & \sigma_{bias}^2 \Delta_k \mathbf{I}_{m\times m} \end{array} \right) \end{equation} $$
+$$ \begin{equation}
+\mathbf{Q}_k = \left(\begin{array}{ccccc} \mathbf{Q}_{r} & {} & {} & {} & {} \\
+{} & \mathbf{Q}_{v} & {} & {} & {} \\
+{} & {} & \sigma_{c \cdot dt_{r}}^2 & {} & {} \\
+{} & {} & {} & \mathbf{Q}_{T} & {} \\
+{} & {} & {} & {} & \sigma_{bias}^2 \Delta_k \mathbf{I}_{m\times m} \end{array} \right)
+\end{equation} $$
 
 with:
 
-  * $$ \mathbf{Q}_r = \mathbf{E}_r^T \text{diag} \left( \sigma_{re}^2 , \sigma_{rn}^2 , \sigma_{ru}^2 \right) \mathbf{E}_r $$, where  $$ \mathbf{E}_r$$ is the coordinates rotation matrix from ECEF to local coordinates at the receiver antenna position (defined below), and  $$ \sigma_{re} $$, $$  \sigma_{rn} $$ and $$ \sigma_{ru} $$ are the standard deviations of east, north, and up components of the receiver position model noises (in m).
-    * If the positioning mode is set to `PVT.positioning_mode=PPP_Static`, these values are initialized to $$ \sigma_{re} =  \sigma_{rn} =  \sigma_{ru} = 100 $$ m in the first epoch and then set to $$ 0 $$ in the following time updates.
-    * If the positioning mode is set to `PVT.positioning_mode=PPP_Kinematic`, these values are set to $$ \sigma_{re} = \sigma_{rn} =  \sigma_{ru} = 100 $$ m for all time updates.
-  * $$ \mathbf{Q}_v = \mathbf{E}_r^T \text{diag} \left( \sigma_{ve}^2 \Delta_k , \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) \mathbf{E}_r $$, where $$ \sigma_{ve} $$, $$  \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the standard deviations of east, north, and up components of the receiver velocity model noises (in m/s/$$ \sqrt{s} $$). In the current implementation, those parameters are set to $$ \sigma_{ve} = \sigma_{vn} = \sigma_{vu} = 0 $$.
-  * $$ \sigma_{c \cdot dt_{r}} $$ is the standard deviation of the receiver clock offset (in m). This value is set to $$ \sigma_{c \cdot dt_{r}} = 100 $$ m.
-  * $$ \mathbf{Q}_{T} = \text{diag} \left( \sigma_{Z}^2 \Delta_k, \sigma_{G_{N}}^2 \Delta_k,  \sigma_{G_{E}}^2 \Delta_k \right) $$ is the noise covariance matrix of the troposphere terms. These values are set to $$ \sigma_{Z} = 0.0001 $$, and $$ \sigma_{G_{N}} = \sigma_{G_{E}} $$ are initialized to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.001 $$ m/$$ \sqrt{s} $$ in the first epoch and then set to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.1 \cdot \sigma_{Z} $$ in the following time updates. The default value of $$ \sigma_{Z} = 0.0001 $$ m/$$ \sqrt{s} $$ can be configured with the `PVT.sigma_trop` option.
-  * $$ \sigma_{bias} $$ is the standard deviation of the ionosphere-free carrier-phase bias measurements, in m/$$ \sqrt{s} $$. This value is initialized at the first epoch and after a cycle slip to $$ \sigma_{bias} = 100$$ m/$$ \sqrt{s} $$, and then is set to a default value of $$ \sigma_{bias} = 0.0001 $$ m/$$ \sqrt{s} $$ in the following time updates. This value and can be configured with the option `PVT.sigma_bias`.
-  * $$ \mathbf{E}_r = \left( \begin{array}{ccc} - \sin(\theta_r) & \cos (\theta_r) & 0 \\ -\sin (\psi_r) \cos(\theta_r) & -\sin (\psi_r)\sin(\theta_r) & \cos (\psi_r)\\ \cos(\psi_r)\cos(\theta_r) & \cos(\psi_r)\sin(\theta_r) & \sin(\psi_r)\end{array} \right) $$ is the rotation matrix of the ECEF coordinates to the local coordinates, where where $$ \psi_r $$ and $$ \theta_r $$ are the geodetic latitude and the longitude of the receiver position.
-
+  * $$ \mathbf{Q}_r = \mathbf{E}_r^T \text{diag} \left( \sigma_{re}^2 ,
+    \sigma_{rn}^2 , \sigma_{ru}^2 \right) \mathbf{E}_r $$, where  $$
+    \mathbf{E}_r$$ is the coordinates rotation matrix from ECEF to local
+    coordinates at the receiver antenna position (defined below), and
+    $$ \sigma_{re} $$, $$ \sigma_{rn} $$ and $$ \sigma_{ru} $$ are the standard
+    deviations of east, north, and up components of the receiver position model
+    noises (in m).
+    * If the positioning mode is set to `PVT.positioning_mode=PPP_Static`, these
+      values are initialized to $$ \sigma_{re} = \sigma_{rn} = \sigma_{ru} = 100 $$
+      m in the first epoch and then set to $$ 0 $$ in the following time
+      updates.
+    * If the positioning mode is set to `PVT.positioning_mode=PPP_Kinematic`,
+      these values are set to $$ \sigma_{re} = \sigma_{rn} = \sigma_{ru} = 100 $$
+      m for all time updates.
+  * $$ \mathbf{Q}_v = \mathbf{E}_r^T \text{diag} \left( \sigma_{ve}^2 \Delta_k ,
+    \sigma_{vn}^2 \Delta_k, \sigma_{vu}^2 \Delta_k \right) \mathbf{E}_r $$,
+    where $$ \sigma_{ve} $$, $$ \sigma_{vn} $$ and $$ \sigma_{vu} $$ are the
+    standard deviations of east, north, and up components of the receiver
+    velocity model noises (in m/s/$$ \sqrt{s} $$). In the current
+    implementation, those parameters are set to $$ \sigma_{ve} = \sigma_{vn} =
+    \sigma_{vu} = 0 $$.
+  * $$ \sigma_{c \cdot dt_{r}} $$ is the standard deviation of the receiver
+    clock offset (in m). This value is set to $$ \sigma_{c \cdot dt_{r}} = 100 $$
+    m.
+  * $$ \mathbf{Q}_{T} = \text{diag} \left( \sigma_{Z}^2 \Delta_k,
+    \sigma_{G_{N}}^2 \Delta_k, \sigma_{G_{E}}^2 \Delta_k \right) $$ is the noise
+    covariance matrix of the troposphere terms. These values are set to $$
+    \sigma_{Z} = 0.0001 $$, and $$ \sigma_{G_{N}} = \sigma_{G_{E}} $$ are
+    initialized to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.001 $$ m/$$ \sqrt{s} $$
+    in the first epoch and then set to $$ \sigma_{G_{N}} = \sigma_{G_{E}} = 0.1
+    \cdot \sigma_{Z} $$ in the following time updates. The default value of $$
+    \sigma_{Z} = 0.0001 $$ m/$$ \sqrt{s} $$ can be configured with the
+    `PVT.sigma_trop` option.
+  * $$ \sigma_{bias} $$ is the standard deviation of the ionosphere-free
+    carrier-phase bias measurements, in m/$$ \sqrt{s} $$. This value is
+    initialized at the first epoch and after a cycle slip to $$ \sigma_{bias} =
+    100 $$ m/$$ \sqrt{s} $$, and then is set to a default value of $$
+    \sigma_{bias} = 0.0001 $$ m/$$ \sqrt{s} $$ in the following time updates.
+    This value and can be configured with the option `PVT.sigma_bias`.
+  * $$ \mathbf{E}_r = \left( \begin{array}{ccc} - \sin(\theta_r) & \cos (\theta_r) & 0 \\
+    -\sin (\psi_r) \cos(\theta_r) & -\sin (\psi_r)\sin(\theta_r) & \cos (\psi_r)\\
+    \cos(\psi_r)\cos(\theta_r) & \cos(\psi_r)\sin(\theta_r) & \sin(\psi_r)\end{array} \right) $$
+    is the rotation matrix of the ECEF coordinates to the local coordinates,
+    where $$ \psi_r $$ and $$ \theta_r $$ are the geodetic latitude and the
+    longitude of the receiver position.
 
 
 The measurement model noise covariance matrix $$ \mathbf{R}_k $$ is defined as:
 
-$$ \begin{equation} \mathbf{R} = \left( \begin{array}{cc} \mathbf{R}_{\Phi,LC} & \mathbf{0} \\ \mathbf{0} & \mathbf{R}_{P,LC} \end{array}\right)~, \end{equation} $$
+$$ \begin{equation}
+\mathbf{R} = \left( \begin{array}{cc} \mathbf{R}_{\Phi,LC} & \mathbf{0} \\
+\mathbf{0} & \mathbf{R}_{P,LC} \end{array}\right)~,
+\end{equation} $$
 
 where:
 
@@ -467,16 +551,31 @@ measurement error (in m), and $$ \sigma_{P,1}^{(s)} $$ is the standard deviation
 of L1 pseudorange measurement error (in m). These quantities are estimated as:
 
   * $$ {\sigma_{\Phi,1}^{(s)}}^2 = a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin(E_r^{(s)})^2} + \sigma_{ion,s}^2 + \sigma_{bclock}^2 + \sigma_{trop,s}^2$$, where:
-    - $$ a_{\sigma} = 0.003 $$ and $$ b_{\sigma} = 0.003 $$ are the carrier phase error factors (configurable via `PVT.carrier_phase_error_factor_a` and `PVT.carrier_phase_error_factor_b`),
-    -  $$ \sigma_{ion,s} $$ is the standard deviation of ionosphere correction model error (in m). This parameter is set to $$ \sigma_{ion} = 5 $$ m by default (`PVT.iono_model=OFF`) and $$ \sigma_{ion} = 0.5 \cdot I_{r,i}^{(s)} $$ m when the option `PVT.iono_model=Broadcast` is set in the configuration file.
-    - $$ \sigma_{bclock} = 30 $$ m is the standard deviation of the broadcast clock,
-    - $$ \sigma_{trop} $$ is the standard deviation of the troposphere correction model error (in m). This parameter is set to $$ \sigma_{trop} = 3 $$ m when `PVT.trop_model=OFF` and $$ \sigma_{trop,s} = 0.3 / \left(\sin(El_r^{(s)}) + 0.1\right) $$  m when `PVT.trop_model=Saastamoinen`, `PVT.trop_model=Estimate_ZTD` or  `PVT.trop_model=Estimate_ZTD_Grad`.
+    - $$ a_{\sigma} = 0.003 $$ and $$ b_{\sigma} = 0.003 $$ are the carrier
+      phase error factors (configurable via `PVT.carrier_phase_error_factor_a`
+      and `PVT.carrier_phase_error_factor_b`),
+    - $$ \sigma_{ion,s} $$ is the standard deviation of ionosphere correction
+      model error (in m). This parameter is set to $$ \sigma_{ion} = 5 $$ m by
+      default (`PVT.iono_model=OFF`) and $$ \sigma_{ion} = 0.5 \cdot
+      I_{r,i}^{(s)} $$ m when the option `PVT.iono_model=Broadcast` is set in
+      the configuration file.
+    - $$ \sigma_{bclock} = 30 $$ m is the standard deviation of the broadcast
+      clock,
+    - $$ \sigma_{trop} $$ is the standard deviation of the troposphere
+      correction model error (in m). This parameter is set to $$ \sigma_{trop} = 3 $$
+      m when `PVT.trop_model=OFF` and $$ \sigma_{trop,s} = \frac{0.3}{\sin(El_r^{(s)}) + 0.1} $$
+      m when `PVT.trop_model=Saastamoinen`, `PVT.trop_model=Estimate_ZTD` or
+      `PVT.trop_model=Estimate_ZTD_Grad`.
 
   * $$ {\sigma_{P,1}^{(s)}}^2 = R_r \cdot \left( a_{\sigma}^2 + \frac{b_{\sigma}^2}{\sin(E_r^{(s)})^2} \right) + \sigma_{ion,s}^2 + \sigma_{bclock}^2 + \sigma_{trop,s}^2 + \sigma_{cbias}^2 $$, where:
     - $$ R_r = 100 $$ (configurable via `PVT.code_phase_error_ratio_l1`),
-    - $$ a_{\sigma} = b_{\sigma} = 0.003 $$ m (configurable via `PVT.carrier_phase_error_factor_a` and `PVT.carrier_phase_error_factor_b`),
-    - $$ \sigma_{ion,s} $$, $$ \sigma_{bclock} $$ and $$ \sigma_{trop,s} $$ defined as above.
-    - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m). This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
+    - $$ a_{\sigma} = b_{\sigma} = 0.003 $$ m (configurable via
+      `PVT.carrier_phase_error_factor_a` and
+      `PVT.carrier_phase_error_factor_b`),
+    - $$ \sigma_{ion,s} $$, $$ \sigma_{bclock} $$ and $$ \sigma_{trop,s} $$
+      defined as above.
+    - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m).
+      This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
 
 ### Outlier rejection
 
