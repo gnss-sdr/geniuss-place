@@ -99,7 +99,7 @@ Equation $$ \mathbf{h}(\mathbf{x}) $$ is clearly nonlinear due to the presence
 of the Euclidean norm operator $$ \left\| \cdot \right\| $$. However, this term
 can be extended by using Taylor series around an initial parameter vector $$
 \mathbf{x}_0 $$ as $$ \mathbf{h}(\mathbf{x}) = \mathbf{h}(\mathbf{x}_0) +
-\mathbf{H}(\mathbf{x}-\mathbf{x}_0) + ... $$, where $$ \mathbf{H}=
+\mathbf{H}(\mathbf{x}-\mathbf{x}_0) + ... $$, where $$ \mathbf{H} =
 \frac{\partial \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}}
 \bigg\rvert_{\mathbf{x} = \mathbf{x}_{0} } $$ is a partial derivatives matrix of $$
 \mathbf{h}(\mathbf{x}) $$ with respect to $$ \mathbf{x} $$ at $$ \mathbf{x} =
@@ -119,12 +119,12 @@ method.
 Matrix $$ \mathbf{H} $$ can be written as:
 
 $$ \begin{equation}
-\label{eq:H-single} \mathbf{H} = \left( \begin{array}{cc} -{\mathbf{e}_{r}^{(1)}}^T & 1 \\
+\label{eq:H-single} \mathbf{H} = \left( \begin{array}{cc} - {\mathbf{e}_{r}^{(1)}}^T & 1 \\
 -{\mathbf{e}_{r}^{(2)}}^T & 1 \\
 -{\mathbf{e}_{r}^{(3)}}^T & 1 \\
 \vdots & \vdots \\
 -{\mathbf{e}_{r}^{(m)}}^T & 1 \end{array} \right),
-\quad \text{where } \mathbf{e}_r^{(s)}= \frac{\mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\|}
+\quad \text{where } \mathbf{e}_r^{(s)} = \frac{\mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) }{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\|}
 \end{equation} $$
 
 and the weighted least squares estimator (LSE) of the unknown state vector is
@@ -234,7 +234,7 @@ estimate:
 Defining the residuals vector $$ \boldsymbol{\nu} = \left( \nu_1, \nu_2, \nu_3, ...,
 \nu_m \right)^T $$ with:
 
-$$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} +c \hat{dt}_r - c \cdot dT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s}~, $$
+$$ \nu_s = \frac{P_r^{(s)} - \left( \hat{\rho}_r^{(s)} + c \hat{dt}_r - c \cdot dT^{(s)} + I_r^{(s)} + T_r^{(s)} \right)}{\sigma_s}~, $$
 
 the residuals test is defined as:
 
@@ -249,7 +249,7 @@ is, $$ prob > 0.001 $$).
 **2) GDOP Test**
 
 The Geometric Dilution of Precision, defined as $$ \text{GDOP} =
-\sqrt{\sigma_{r_{x}}^2+ \sigma_{r_{y}}^2 + \sigma_{r_{z}}^2 + \sigma_{c \cdot dt}^2 } $$,
+\sqrt{\sigma_{r_{x}}^2 + \sigma_{r_{y}}^2 + \sigma_{r_{z}}^2 + \sigma_{c \cdot dt}^2 } $$,
 must be better (that is, lower) than a certain threshold:
 
 $$ \text{GDOP} < \text{GDOP}_{\text{threshold}} $$
@@ -306,11 +306,9 @@ of pseudorange $$ P_{r,i}^{(s)} $$ and phase-range $$ \Phi_{r,i}^{(s)} $$
 measurements (where the definitions at [Observables]({{
 "docs/sp-blocks/observables/#phase-range-measurement" | relative_url }}) apply):
 
-
 $$ P_{r,LC}^{(s)} = C_i P_{r,i}^{(s)} + C_j P_{r,j}^{(s)} $$
 
 $$ \Phi_{r,LC}^{(s)} = C_i \Phi_{r,i}^{(s)} + C_j \Phi_{r,j}^{(s)} $$
-
 
 with $$ C_i = \frac{f_i^2}{f_i^2 - f_j^2} $$ and  $$ C_j = \frac{-f_j^2}{f_i^2 -
 f_j^2} $$, where $$ f_i $$ and $$ f_j $$ are the frequencies (in Hz) of $$ L_i $$
@@ -332,13 +330,12 @@ B_{r,LC}^{(s)} = C_i \left( \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} \rig
 
 $$ \begin{equation}
 \begin{array}{ccl} d\Phi_{r,LC}^{(s)} & = & - \left( C_i \mathbf{d}_{r,pco,i} + C_j C_i \mathbf{d}_{r,pco,i}  \right)^T \mathbf{e}_{r,enu}^{(s)} + \\
-{} & {} & + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} +  C_j\mathbf{d}_{pco,j}^{(s)} \right) \right)^T \mathbf{e}_r^{(s)} + \\
-{} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)})+C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) +\\
-{} & {} & + \left( d_{pcv,i}^{(s)}(\theta) +  d_{pcv,j}^{(s)}(\theta)\right) + \\
+{} & {} & + \left( \mathbf{E}^{(s)} \left( C_i \mathbf{d}_{pco,i}^{(s)} + C_j\mathbf{d}_{pco,j}^{(s)} \right) \right)^T \mathbf{e}_r^{(s)} + \\
+{} & {} & + \left( C_i d_{r,pcv,i}(El_{r}^{(s)}) + C_j d_{r,pcv,j}(El_{r}^{(s)}) \right) + \\
+{} & {} & + \left( d_{pcv,i}^{(s)}(\theta) + d_{pcv,j}^{(s)}(\theta)\right) + \\
 {} & {} & - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} +\left( C_i\lambda_i + C_j \lambda_j \right) \phi_{pw}
 \end{array}
 \end{equation} $$
-
 
 In the current implementation, satellites and receiver antennas offset and
 variation are not applied, so $$ \mathbf{d}_{r,pco,i} = \mathbf{d}_{pco,i}^{(s)} =
@@ -349,7 +346,9 @@ activated through the `PVT.earth_tide` and `PVT.phwindup` options, respectively.
 
 The measurement vector is then defined as:
 
-$$ \begin{equation} \mathbf{y} = \left( \boldsymbol{\Phi}_{LC}^T, \mathbf{P}_{LC}^T \right)^T~, \end{equation} $$
+$$ \begin{equation}
+\mathbf{y} = \left( \boldsymbol{\Phi}_{LC}^T, \mathbf{P}_{LC}^T \right)^T~,
+\end{equation} $$
 
 where $$ \boldsymbol{\Phi}_{LC} = \left(\Phi_{r,LC}^{(1)}, \Phi_{r,LC}^{(2)},
 \Phi_{r,LC}^{(3)}, ..., \Phi_{r,LC}^{(m)} \right)^T $$ and $$ \mathbf{P}_{LC} =
@@ -363,8 +362,9 @@ L1 band are used.
 The equation $$ \mathbf{h}(\mathbf{x}) $$ that relates measurements and states
 is:
 
-$$ \begin{equation} \mathbf{h}(\mathbf{x}) = \left( \mathbf{h}_{\Phi}^T,
-\mathbf{h}_{P}^T \right)^T~, \end{equation} $$
+$$ \begin{equation}
+\mathbf{h}(\mathbf{x}) = \left( \mathbf{h}_{\Phi}^T, \mathbf{h}_{P}^T \right)^T~,
+\end{equation} $$
 
 where:
 
@@ -388,21 +388,21 @@ status of the troposphere. The [Extended Kalman
 Filter](https://en.wikipedia.org/wiki/Extended_Kalman_filter) offers a suitable
 framework for that.
 
-The partial derivatives matrix $$ \mathbf{H}= \frac{\partial
+The partial derivatives matrix $$ \mathbf{H} = \frac{\partial
 \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} =
 \mathbf{x}_{0} } $$ can be written as:
 
 $$ \begin{equation}
 \mathbf{H}(\mathbf{x}) = \left(\begin{array}{ccccc} - \mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T && \mathbf{I} \\
--\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T  && \mathbf{0} \end{array} \right)~,
+-\mathbf{DE} & \mathbf{0} & \mathbf{1} & \mathbf{DM}_T && \mathbf{0} \end{array} \right)~,
 \end{equation} $$
 
 where $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 &
 0 & -1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & 0 & 0 &
-\cdots & -1 \end{array} \right) $$ is known as the single‐differencing matrix,  $$
-\mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)},
+\cdots & -1 \end{array} \right) $$ is known as the single‐differencing matrix,
+$$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)},
 \mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)}  \right)^T $$ with $$
-\mathbf{e}_{r}^{(s)} $$ defined as above, and
+\mathbf{e}_{r}^{(s)} $$ defined as in equation ($$ \ref{eq:H-single} $$), and
 
 $$ \scriptstyle \begin{equation}
 \!\!\!\!\!\!\!\!\!\!\! \mathbf{M}_T \; = \; \left( \begin{array}{ccc} m_{WG,r}^{(1)} \left( El_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \cos \left( Az_r^{(1)} \right) & m_{W,r}^{(1)} \left( El_r^{(1)} \right) \cot \left( El_r^{(1)} \right) \sin \left( Az_r^{(1)} \right) \\
@@ -421,7 +421,7 @@ as follows:
   * Time update (prediction):
 
   $$ \begin{equation} \label{eq:state-update}
-  \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k  \hat{\mathbf{x}}_{k-1|k-1}
+  \hat{\mathbf{x}}_{k|k-1} = \mathbf{F}_k \hat{\mathbf{x}}_{k-1|k-1}
   \end{equation} $$
 
   $$ \begin{equation}
@@ -464,7 +464,7 @@ The transition matrix $$ \mathbf{F}_k $$ models the receiver movement:
 
   $$ \begin{equation}
   \mathbf{F}_k = \left(\begin{array}{ccccc}
-  \mathbf{I}_{3\times 3} & \mathbf{I}_{3\times 3} \Delta_k  & {} & {} & {} \\
+  \mathbf{I}_{3\times 3} & \mathbf{I}_{3\times 3} \Delta_k & {} & {} & {} \\
   {} & \mathbf{I}_{3\times 3} & {} & {} & {} \\
   {} & {} & 1 & {} & {} \\
   {} & {} & {} & \mathbf{I}_{3 \times 3} & {} \\
@@ -526,7 +526,7 @@ with:
     \sigma_{bias} = 0.0001 $$ m/$$ \sqrt{s} $$ in the following time updates.
     This value and can be configured with the option `PVT.sigma_bias`.
   * $$ \mathbf{E}_r = \left( \begin{array}{ccc} - \sin(\theta_r) & \cos (\theta_r) & 0 \\
-    -\sin (\psi_r) \cos(\theta_r) & -\sin (\psi_r)\sin(\theta_r) & \cos (\psi_r)\\
+    -\sin (\psi_r) \cos(\theta_r) & - \sin (\psi_r)\sin(\theta_r) & \cos (\psi_r) \\
     \cos(\psi_r)\cos(\theta_r) & \cos(\psi_r)\sin(\theta_r) & \sin(\psi_r)\end{array} \right) $$
     is the rotation matrix of the ECEF coordinates to the local coordinates,
     where $$ \psi_r $$ and $$ \theta_r $$ are the geodetic latitude and the
