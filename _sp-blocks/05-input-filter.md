@@ -59,7 +59,7 @@ pulsed or continuous. In the first case, the period between pulses, time
 duration, intensity, and bandwidth of the pulses can be constant or vary over
 time. In the second case, the intensity, instantaneous frequency and frequency
 rate of the interference may also behave randomly. For this reason, there is no
-a "one-fits-all" algorithm for interference mitigation. Furthermore, during last
+"one-fits-all" algorithm for interference mitigation. Furthermore, during last
 years research literature has been populated with new signal processing
 techniques that perform many kinds of Interference Cancellation[^Dovis15].
 
