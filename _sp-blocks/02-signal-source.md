@@ -656,29 +656,38 @@ SignalSource.enable_throttle_control=false
 ```
 
 {% capture bias-tee-rtlsdrv3 %}
-**Tip:** Please note that the new [RTL-SDR Blog
-V3](https://www.rtl-sdr.com/wp-content/uploads/2018/02/RTL-SDR-Blog-V3-Datasheet.pdf)
-dongles ship a < 1 PPM temperature compensated oscillator (TCXO), which is well
+**Tip:** To feed an active GNSS antenna, various SDRs feature a bias-tee which is activated through *osmosdr_args*.
+
+In the case of using a [HackRF One](https://greatscottgadgets.com/hackrf/),
+you can activate the antenna feeding with:
+
+```ini
+SignalSource.osmosdr_args=hackrf,bias=1
+```
+
+The new [RTL-SDR Blog V3](https://www.rtl-sdr.com/wp-content/uploads/2018/02/RTL-SDR-Blog-V3-Datasheet.pdf)
+dongles ship a < 1 PPM temperature compensated oscillator (TCXO), well
 suited for GNSS signal processing, and a 4.5 V powered bias-tee to feed an
-active antenna. Whether the bias-tee is turned off before reception or remains
-active depends on which version of
-[gr-osmosdr](https://github.com/osmocom/gr-osmosdr) was used when compiling
-GNSS-SDR. With an old version (for example, v0.1.4-8), the utility
-[rtl_biast](https://github.com/OrbitTheSun/rtl_biast) may be used to switch the
-bias-tee, and then call gnss-sdr.  After reception, the bias-tee is switched off
-automatically by the program. With newer versions of gr-osmosdr (>= 0.1.4-13),
-the bias-tee can be activated by passing the following parameters to the
-configuration:
+active antenna.
+With newer versions of [gr-osmosdr](https://github.com/osmocom/gr-osmosdr)
+(>= 0.1.4-13), the bias-tee can be activated by passing the following
+parameters to the configuration:
 
 ```ini
 SignalSource.osmosdr_args=rtl,bias=1
 ```
 
-In the case of using a [HackRF One](https://greatscottgadgets.com/hackrf/), you can activate the antenna feeding with:
+For older gr-osmosdr versions (at GNSS-SDR compile time), the utility
+[rtl_biast](https://github.com/OrbitTheSun/rtl_biast) may be used to switch the
+bias-tee on before calling gnss-sdr. After reception, the bias-tee is switched off
+automatically by the program.
 
+
+For the [bladeRF 2.0 micro](https://www.nuand.com/bladerf-2-0-micro/), the argument is slightly different:
 ```ini
-SignalSource.osmosdr_args=hackrf,bias=1
+SignalSource.osmosdr_args=bladerf,biastee=1	#or =[on,rx]
 ```
+
 {% endcapture %}
 
 <div class="notice--warning">
