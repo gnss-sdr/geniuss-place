@@ -2,7 +2,7 @@
 title: "How to contribute"
 permalink: /contribute/
 excerpt: "Contributing to the GNSS-SDR source code and to this website."
-last_modified_at: 2021-01-27T08:54:02+02:00
+last_modified_at: 2021-02-27T08:54:02+02:00
 header:
   teaser: "/assets/images/geniuss-contribute.png"
 comments: true
@@ -117,29 +117,23 @@ in several ways:
 
 The required software can be installed through
 [RubyGems](https://rubygems.org/), which is probably already installed in your
-system.
+system. If this is not the case, please check [how to install
+Ruby](https://www.ruby-lang.org/en/documentation/installation/).
 
-Install [Jekyll](https://jekyllrb.com/):
-
-```console
-$ sudo gem install jekyll
-```
-
-More information at [Jekyll's installation
-page](https://jekyllrb.com/docs/installation/). Then, install
-[Bundler](https://bundler.io/), a tool for managing the required dependencies:
+Install [Bundler](https://bundler.io/), a tool for managing the required
+dependencies:
 
 ```console
-$ sudo gem install bundler
+$ gem install bundler
 ```
 
 Clone your forked repository of this website and install the required
-dependencies:
+dependencies (replacing `YOUR_USERNAME` by your actual GitHub user name):
 
 ```console
 $ git clone https://github.com/YOUR_USERNAME/geniuss-place/
 $ cd geniuss-place
-$ bundler install
+$ bundle install
 ```
 
 After all gems are installed, the following command will deploy the website and
@@ -166,9 +160,17 @@ Configuration file: _config.dev.yml
 ```
 {: class="no-copy"}
 
-Just point your browser to that [local direction](http://127.0.0.1:4000/) in
-order to enjoy this website without the need for an Internet connection. Some
-features such as comments might not work.
+Just point your browser to http://127.0.0.1:4000/ in order to enjoy this website
+without the need for an Internet connection. Some features such as comments
+might not work.
+
+If you already forked and cloned this repo before, and then have pulled from
+upstream, be sure to keep your gems updated with the exact required versions by
+re-running:
+
+```console
+$ bundle install
+```
 
 {% capture protip %}
 **Pro Tip**: if you want to modify JavaScript (under `assets/js`), you will
