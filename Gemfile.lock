@@ -214,7 +214,7 @@ GEM
       jekyll (>= 3.5, < 5.0)
       jekyll-feed (~> 0.9)
       jekyll-seo-tag (~> 2.1)
-    minitest (5.14.3)
+    minitest (5.14.4)
     multipart-post (2.1.1)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
@@ -281,4 +281,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   2.1.4
+   2.2.11
