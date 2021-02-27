@@ -72,35 +72,28 @@ upstream  https://github.com/gnss-sdr/geniuss-place.git (push)
 ### Install the required software and run a local copy of the website
 
 The required software can be installed through
-[RubyGems](https://rubygems.org/), which is probably already installed
-in your system.
+[RubyGems](https://rubygems.org/), which is probably already installed in your
+system. If this is not the case, please check [how to install
+Ruby](https://www.ruby-lang.org/en/documentation/installation/).
 
-Install [Jekyll](https://jekyllrb.com/):
-
-```
-$ sudo gem install jekyll
-```
-
-More information at [Jekyll's installation
-page](https://jekyllrb.com/docs/installation/). Then, install
-[Bundler](https://bundler.io/), a tool for managing the required
+Install [Bundler](https://bundler.io/), a tool for managing the required
 dependencies:
 
 ```
-$ sudo gem install bundler
+$ gem install bundler
 ```
 
 Clone your forked repository of this website and install the required
-dependencies:
+dependencies (replacing `YOUR_USERNAME` by your actual GitHub user name):
 
 ```
 $ git clone https://github.com/YOUR_USERNAME/geniuss-place/
 $ cd geniuss-place
-$ bundler install
+$ bundle install
 ```
 
-After all gems are installed, the following command will deploy the
-website and run a local server at http://127.0.0.1:4000/
+After all gems are installed, the following command will deploy the website and
+run a local server at http://127.0.0.1:4000/
 
 ```
 $ bundle exec jekyll serve -w --config _config.yml,_config.dev.yml
@@ -115,17 +108,24 @@ Configuration file: _config.dev.yml
        Destination: /path_to_cloned_repo/geniuss-place/_site
  Incremental build: disabled. Enable with --incremental
       Generating...
-       Jekyll Feed: Generating feed for posts
+       Jekyll Feed: Generating feed for posts      
                     done in 4.017 seconds.
  Auto-regeneration: enabled for '/path_to_cloned_repo/geniuss-place'
     Server address: http://127.0.0.1:4000/
   Server running... press ctrl-c to stop.
 ```
 
-Just point your browser to that [local
-direction](http://127.0.0.1:4000/) in order to enjoy this website
-without the need of Internet connection. Some features such as comments
+Just point your browser to http://127.0.0.1:4000/ in order to enjoy this website
+without the need for an Internet connection. Some features such as comments
 might not work.
+
+If you already forked and cloned this repo before, and then have pulled from
+upstream, be sure to keep your gems updated with the exact required versions by
+re-running:
+
+```
+$ bundle install
+```
 
 **Pro Tip**: if you want to modify JavaScript (under `assets/js`),
 you will need to install [Node.js](https://nodejs.org/en/), `cd` to
