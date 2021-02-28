@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-04-21T15:54:02-04:00
+last_modified_at: 2021-02-28T15:54:02-04:00
 ---
 
 
@@ -152,7 +152,7 @@ The configuration of the _Monitor_ block accepts the following parameters:
 Example 1:
 
 The following configuration streams the receiver internal parameters to the
-localhost address on port 1234 UDP without decimation:
+localhost address on port 1234 UDP without decimation (observables every 20 ms):
 
 ```ini
 ;######### MONITOR CONFIG ############
@@ -166,12 +166,37 @@ Example 2:
 
 The following configuration streams the receiver internal parameters to the
 addresses 10.10.10.1 and 10.10.10.2 on port 1234 UDP with a decimation integer
-factor of $$ N=1000 $$:
+factor of $$ N=50 $$ (observables every 1 s):
 
 ```ini
 ;######### MONITOR CONFIG ############
 Monitor.enable_monitor=true
-Monitor.decimation_factor=1000
+Monitor.decimation_factor=50
 Monitor.client_addresses=10.10.10.1_10.10.10.2
 Monitor.udp_port=1234
 ```
+
+## Monitor listeners
+
+Once your receiver is streaming data, you need a client listening on the other
+side.
+
+{% capture monitor-clients %}
+**Monitor client examples:**
+  * For an example of a simple, terminal-based client, please check our tutorial about
+[monitoring the internal status of the software receiver]({{ "/docs/tutorials/monitoring-software-receiver-internal-status/" | relative_url }}).
+  * For a more sophisticated approach, including a graphical interface and the
+ability to read both from the observables Monitor and from the custom PVT
+streaming, please check the Qt5-based
+[gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor) application.
+{% endcapture %}
+
+<div class="notice--success">
+  {{ monitor-clients | markdownify }}
+</div>
+
+Of course, you are free to develop other clients covering your specific
+requirements. All you need is the
+[`gnss_synchro.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/gnss_synchro.proto)
+file, which allows you to write clients in Java, Python, C++, Objective-C, C#,
+Dart, Go, or Ruby.
