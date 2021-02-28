@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2019-05-30T11:37:02+02:00
+last_modified_at: 2021-02-28T11:37:02+02:00
 ---
 
 
@@ -54,7 +54,7 @@ Copy and paste the following line in a terminal:
 $ sudo apt-get install build-essential cmake libboost-dev libboost-system-dev \
    libprotobuf-dev protobuf-compiler libncurses5-dev libncursesw5-dev wget
 ```
-This will install the GCC/g++ compiler, the CMake build system, and the library dependencies: Protocol Buffers, Boost and [ncurses](https://www.gnu.org/software/ncurses/ncurses.html).
+This will install the GCC/g++ compiler, the CMake build system, and the library dependencies: Protocol Buffers, Boost, and [ncurses](https://www.gnu.org/software/ncurses/ncurses.html).
 
 ### Download the required files
 
@@ -116,7 +116,7 @@ We are going to use 6 member variables:
 | `error` | Operating system-specific errors. (See [boost::system::error_code](https://www.boost.org/doc/libs/release/libs/system/doc/html/system.html#reference)). |
 | `endpoint` | Endpoint that will be associated with the UDP socket. (See [ip::udp::endpoint](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/ip__udp/endpoint.html)). |
 | `stocks` | Object of the class gnss_sdr::Observables, which is a collection of gnss_sdr::GnssSynchro objects received from the socket. |
-| `channels` | Map container of gnss_sdr::GnssSynchro objects objects indexed by their `channel_id`. |
+| `channels` | Map container of gnss_sdr::GnssSynchro objects indexed by their `channel_id`. |
 |----------
 
 and 4 member functions:
@@ -170,7 +170,7 @@ bool Gnss_Synchro_Udp_Source::read_gnss_synchro(gnss_sdr::Observables& stocks)
 }
 ```
 
-The implementation of `populate_channels` is straight forward. The function receives a collection of GnssSynchro annotations as a parameter and inserts each of them into the `channels` map container based on the `channel_id`. We only allow objects with a sampling frequency different from zero into the map container.
+The implementation of `populate_channels` is straightforward. The function receives a collection of GnssSynchro annotations as a parameter and inserts each of them into the `channels` map container based on the `channel_id`. We only allow objects with a sampling frequency different from zero into the map container.
 
 ```cpp
 void Gnss_Synchro_Udp_Source::populate_channels(gnss_sdr::Observables& stocks)
@@ -409,7 +409,7 @@ $ tree
 ```
 {: class="no-copy"}
 
-Finally go ahead and build the source code:
+Finally, go ahead and build the source code:
 
 ```console
 $ cd build
@@ -454,12 +454,12 @@ Copy the [configuration file]({{ "/my-first-fix/#step-3-configure-gnss-sdr" | re
 ```ini
 ;######### MONITOR CONFIG ############
 Monitor.enable_monitor=true
-Monitor.output_rate_ms=1000
+Monitor.decimator_factor=50
 Monitor.client_addresses=127.0.0.1
 Monitor.udp_port=1234
 ```
 
-We will stream the receiver internal parameters to the localhost address on port 1234 UDP with an output rate of 1000 ms, so that we get status updates once a second.
+We will stream the receiver internal parameters to the localhost address on port 1234 UDP with a decimation rate of 50. GNSS observations are delivered each 20 ms, so this will provide status updates once a second.
 
 The complete configuration file should look like this:
 
@@ -525,7 +525,7 @@ PVT.display_rate_ms=500
 
 ;######### MONITOR CONFIG ############
 Monitor.enable_monitor=true
-Monitor.output_rate_ms=1000
+Monitor.decimator_factor=50
 Monitor.client_addresses=127.0.0.1
 Monitor.udp_port=1234
 ```
@@ -574,5 +574,5 @@ If you see something similar to this... Yay! You are successfully monitoring the
 
 <figure>
   {{ fig_img2 | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>Client application displaying the values of PRN, CN0 and Doppler for each channel while GNSS-SDR is running simultaneously.</figcaption>
+  <figcaption>Client application displaying the values of PRN, CN0, and Doppler for each channel while GNSS-SDR is running simultaneously.</figcaption>
 </figure>
