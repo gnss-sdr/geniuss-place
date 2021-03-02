@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2020-09-29T02:11:02+02:00
+last_modified_at: 2021-03-02T02:11:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function
@@ -67,29 +67,40 @@ options are described below:
 
 ### Option 1: Downloading the SDK
 
-You can download the SDK from the links below. Version names (Jethro, Krogoth,
-Morty, ...) follow those of the [Yocto Project
-Releases](https://wiki.yoctoproject.org/wiki/Releases).
+You can download a Software Development Kit built for the Zedboard platform from
+the links below. Version names (Jethro, Krogoth, Morty, ..., up to Gatesgarth)
+follow those of the
+[Yocto Project Releases](https://wiki.yoctoproject.org/wiki/Releases).
 
-The following table lists the available SDK versions:
+The following table lists the available SDK versions. To download one of them,
+right-click on the SDK link and choose "Save link as ...".
 
+<a name="sdk-table"></a>
 
-| Version | Status | Download | Size | md5 | Manifest |
+| Yocto version | SDK version | Download | Size | MD5 checksum | Manifest |
 |:-|:-:|:-:|:-:|:-|:-:|
-| Thud | Recommended | [SDK](https://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 416 MB | 9bf042cc7481cb0fee9511a2c63751b2 | [Host](https://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Thud/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Sumo | Stable | [SDK](https://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 359 MB | 7a34b8d1ade2608825b2642466ff31f6 | [Host](https://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Sumo/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Rocko | Stable | [SDK](https://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"}  | 1.3 GB  | 11286d1464aa4b0f2c116f0c8bf853b5 | [Host](https://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Rocko/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Pyro | Outdated | [SDK](https://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.1 GB | 8ce7c2a732884e5487f592ae102780f1 | [Host](https://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Morty | Outdated | [SDK](https://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.0 GB | b2eb36d4ef2838586afa1bc6b44dc0f4 | [Host](https://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Krogoth | Outdated | [SDK](https://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 920 MB | 16af7ab553a0c8f553ba4d6ccc5d6bfe | [Host](https://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
-| Jethro | Outdated | [SDK](https://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh"} | 1.6 GB | d0419e9c1e0894a327af4d9560cf0294 | [Host](https://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest) |
+| Gatesgarth | [v21.02](https://github.com/carlesfernandez/oe-gnss-sdr-manifest/releases/tag/gatesgarth-21.02) | [SDK](https://sites.cttc.es/gnss_files/SDK/Gatesgarth/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-gatesgarth-21.02.0.sh){:download="geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-gatesgarth-21.02.0.sh"} | 547 MB | 0e029304bec0a60eb14140f6f1cb57bd | [Host](https://sites.cttc.es/gnss_files/SDK/Gatesgarth/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-gatesgarth-21.02.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Gatesgarth/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-gatesgarth-21.02.0.target.manifest) |
+| Dunfell | [v21.02](https://github.com/carlesfernandez/oe-gnss-sdr-manifest/releases/tag/dunfell-21.02) | [SDK](https://sites.cttc.es/gnss_files/SDK/Dunfell/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-dunfell-21.02.0.sh){:download="geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-dunfell-21.02.0.sh"} | 531 MB | 95d376b1bb47d00cfc80365b40f3001a | [Host](https://sites.cttc.es/gnss_files/SDK/Dunfell/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-dunfell-21.02.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Dunfell/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-dunfell-21.02.0.target.manifest) |
+| Zeus | [v21.02](https://github.com/carlesfernandez/oe-gnss-sdr-manifest/releases/tag/zeus-21.02) | [SDK](https://sites.cttc.es/gnss_files/SDK/Zeus/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-zeus-21.02.0.sh){:download="geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-zeus-21.02.0.sh"} | 478 MB | 3ec15c9f6faad44850ed25bd4769c765 | [Host](https://sites.cttc.es/gnss_files/SDK/Zeus/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-zeus-21.02.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Zeus/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-zeus-21.02.0.target.manifest) |
+| Warrior | [v21.02](https://github.com/carlesfernandez/oe-gnss-sdr-manifest/releases/tag/warrior-21.02) | [SDK](https://sites.cttc.es/gnss_files/SDK/Warrior/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-warrior-21.02.0.sh){:download="geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-warrior-21.02.0.sh"} | 544 MB | 393b8f90066fa6fa3460a1101d18c22b | [Host](https://sites.cttc.es/gnss_files/SDK/Warrior/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-warrior-21.02.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Warrior/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-warrior-21.02.0.target.manifest) |
+| Thud | [v21.02](https://github.com/carlesfernandez/oe-gnss-sdr-manifest/releases/tag/thud-21.02) | [SDK](https://sites.cttc.es/gnss_files/SDK/Thud/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-thud-21.02.0.sh){:download="geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-thud-21.02.0.sh"} | 514 MB | 16b10ce1dc83cb4cc3fcd12e1f737e2d | [Host](https://sites.cttc.es/gnss_files/SDK/Thud/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-thud-21.02.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Thud/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-thud-21.02.0.target.manifest) |
+| Sumo | [v21.02](https://github.com/carlesfernandez/oe-gnss-sdr-manifest/releases/tag/sumo-21.02) | [SDK](https://sites.cttc.es/gnss_files/SDK/Sumo/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-sumo-21.02.0.sh){:download="geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-sumo-21.02.0.sh"} | 425 MB | 185c25e35bf710634be1a62ca3a0689e | [Host](https://sites.cttc.es/gnss_files/SDK/Sumo/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-sumo-21.02.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Sumo/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-sumo-21.02.0.manifest) |
+| Rocko | [v21.02](https://github.com/carlesfernandez/oe-gnss-sdr-manifest/releases/tag/rocko-21.02) | [SDK](https://sites.cttc.es/gnss_files/SDK/Rocko/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-rocko-21.02.0.sh){:download="geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-rocko-21.02.0.sh"} | 1.24 GB | 48685ad11056f5835e39c3b6cc312444 | [Host](https://sites.cttc.es/gnss_files/SDK/Rocko/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-rocko-21.02.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Rocko/geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-rocko-21.02.0.target.manifest) |
+| Pyro | Abandoned | [SDK](https://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.1 GB | 8ce7c2a732884e5487f592ae102780f1 | [Host](https://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Pyro/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Morty | Abandoned | [SDK](https://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 1.0 GB | b2eb36d4ef2838586afa1bc6b44dc0f4 | [Host](https://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Morty/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Krogoth | Abandoned | [SDK](https://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh"} | 920 MB | 16af7ab553a0c8f553ba4d6ccc5d6bfe | [Host](https://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Krogoth/oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.target.manifest) |
+| Jethro | Abandoned | [SDK](https://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh){:download="oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.sh"} | 1.6 GB | d0419e9c1e0894a327af4d9560cf0294 | [Host](https://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.host.manifest), [Target](https://sites.cttc.es/gnss_files/SDK/Jethro/oecore-x86_64-armv7ahf-vfp-neon-toolchain-nodistro.0.target.manifest) |
 
 
-Check out the manifest files to see the full list of packages and versions each
-SDK will install in the root filesystem of your device. Releases are listed from
-the most recent (top) to the oldest (bottom). All the SDKs but Jethro include
-all the required dependency packages for cross-compiling GNSS-SDR in your own
-machine, including optional packages such as `gr-osmosdr` and `gr-iio`.
+Releases are listed from the most recent (top) to the oldest (bottom). All the
+stable SDK versions (that is, starting from Rocko) incorporate all the required
+dependency packages for cross-compiling GNSS-SDR in your own machine, including
+software drivers for a wide range of RF front-ends such as
+[UHD](https://github.com/EttusResearch/uhd),
+[gr-osmosdr](https://github.com/osmocom/gr-osmosdr), and
+[gr-iio](https://github.com/analogdevicesinc/gr-iio). Check out the target
+manifest files to see the full list of packages and versions each particular SDK
+will install in the root filesystem of your target device.
 
 
 ### Option 2: Building your own SDK
@@ -189,10 +200,11 @@ For your convenience, you can also directly pull and run this image from an
 arm32v7-based device:
 
 ```console
-$ docker run -it carlesfernandez/gnsssdr-dev-arm32v7:thud /bin/bash
+$ docker run -it carlesfernandez/gnsssdr-dev-arm32v7:rocko-21.02 /bin/bash
 ```
 
-(or `carlesfernandez/gnsssdr-dev-arm32v7:sumo` for the Sumo image).
+(or `carlesfernandez/gnsssdr-dev-arm32v7:sumo-21.02` for the Sumo image, and so
+on).
 
 Copy the results of your cross-compilation there and you are ready to go. Please
 note that this image can only be executed by an arm32v7-based system.
@@ -204,7 +216,8 @@ note that this image can only be executed by an arm32v7-based system.
   everything in a virtualized environment (including an interactive mode in
   which you can make changes and experiment), and a script that automates the
   whole process, so you can build the version you want with a single command
-  line. Check the README.md file on that repo for instructions.
+  line. Check the [README.md](https://github.com/carlesfernandez/yocto-geniux/blob/master/README.md)
+  file on that repo for instructions.
   {: .notice--success}
 
 
@@ -219,11 +232,11 @@ Install some basic packages required by the SDK:
 $ sudo apt-get install xz-utils python3
 ```
 
-Then, download the SDK shell script (or use a locally created SDK, as explained
-above) and install it:
+Then, download an SDK shell script from the [table above](#sdk-table) (or use
+your own-generated SDK) and install it:
 
 ```console
-$ sudo sh oecore-x86_64-armv7ahf-neon-toolchain-nodistro.0.sh
+$ sh ./geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-rocko-21.02.0.sh
 ```
 
 This will ask you what directory to install the SDK into. Which directory does
@@ -245,7 +258,7 @@ the environment variables are only set for the current shell, you need to source
 it for every console you will run the SDK from):
 
 ```console
-$ . /usr/local/oecore-x86_64/environment-setup-armv7ahf-neon-oe-linux-gnueabi
+$ . /usr/local/oecore-x86_64/environment-setup-armv7ahf-neon-geniux-linux-gnueabi
 ```
 
 ### Cross-compiling GNSS-SDR and installing it on the target filesystem
@@ -259,7 +272,7 @@ $ git checkout next
 $ cd build
 $ cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchains/oe-sdk_cross.cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 $ make
-$ sudo make install DESTDIR=/usr/local/oecore-x86_64/sysroots/armv7ahf-neon-oe-linux-gnueabi/
+$ sudo make install DESTDIR=/usr/local/oecore-x86_64/sysroots/armv7ahf-neon-geniux-linux-gnueabi/
 ```
 
 Please note that we set the install prefix to `/usr`. That will be the
@@ -316,7 +329,7 @@ $ sudo mount -rw /dev/sdb2 ./mounted_SD
 $ cd ./mounted_SD
 $ sudo rm -rf *
 $ cd ..
-$ sudo cp /usr/local/oecore-x86_64/sysroots/armv7ahf-neon-oe-linux-gnueabi/* -a ./mounted_SD
+$ sudo cp /usr/local/oecore-x86_64/sysroots/armv7ahf-neon-geniux-linux-gnueabi/* -a ./mounted_SD
 ```
 
 ### Copying only GNSS-SDR executables to the device over the network using `sshfs`
