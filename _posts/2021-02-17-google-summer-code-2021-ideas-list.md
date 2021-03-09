@@ -8,11 +8,11 @@ tags:
 author_profile: false
 sidebar:
   nav: "news"
-last_modified_at: 2021-02-17T12:08:02+02:00
+last_modified_at: 2021-03-09T12:08:02+02:00
 ---
 
 
-This year, GNSS-SDR is applying again as a mentoring organization for [Google
+This year, GNSS-SDR is serving again as a mentoring organization for [Google
 Summer of Code](https://summerofcode.withgoogle.com/) (also known as GSoC), a
 global program that offers students stipends to write code for open source
 projects. In order to participate in the program, you must be a student. Google
