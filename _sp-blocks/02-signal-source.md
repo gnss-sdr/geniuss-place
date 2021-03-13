@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-03-11T10:54:02+02:00
+last_modified_at: 2021-03-13T10:54:02+02:00
 ---
 
 {% capture fig_img2 %}
@@ -435,12 +435,12 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|
 |--------------
 | `implementation` | `Labsat_Signal_Source` | Mandatory |
-| `filename` | Path to the file base name of files containing the raw digitized signal samples. For single files using the LabSat 2 the Labsat 3 Wideband formats, write directly the name of the file. Example: ```output.ls2``` | Mandatory |
+| `filename` | Path to the file base name of files containing the raw digitized signal samples. For single files using the LabSat 2 or the LabSat 3 Wideband formats, write directly the name of the file. Example: ```output.ls2``` | Mandatory |
 | `selected_channel` | [`1`, `2`, `3`]: Select the frequency band of data present in the file. It defaults to 1. | Optional |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this implementation. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it throttles the output flow of samples such that the average rate does not exceed `throttle_frequency_sps`, thus emulating real-time operation. It defaults to `false`. | Optional |
 | `throttle_frequency_sps` | If `enable_throttle_control` is set to `true`, this parameter sets the sample rate applied by the throttle. It defaults to $$ 16368000 $$ Sps. | Optional |
-| `digital_io_enabled`| [`true`, `false`]: If set to `true`, indicates that the Labsat 3 Wideband file contains additional I/O data. Those digital input channels are not used. This parameter is ignored for Labsat 2 and Labsat 3 file formats. It defaults to `false`.  | Optional |
+| `digital_io_enabled`| [`true`, `false`]: If set to `true`, indicates that the LabSat 3 Wideband file contains additional I/O data. Those digital input channels are not used. This parameter is ignored for Labsat 2 and Labsat 3 file formats. It defaults to `false`.  | Optional |
 | `dump` | [`true`, `false`]: If set to `true`, it dumps the content of the source file `filename` in <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> format. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, the name of the dump file. It defaults to `labsat_output.dat` | Optional |
 |-------
@@ -486,7 +486,7 @@ Please note that reading the LabSat 3 Wideband version requires an additional
 INI file with the same name as the binary file but the extension (so in the
 example it would be `./output.ini`) and located in the same folder.
 
-**Note**: The ability to read the Labsat 3 Wideband format is only available
+**Note**: The ability to read the LabSat 3 Wideband format is only available
 from the `next` branch of the upstream repository. This feature will be included
 in the next stable release.
 {: .notice--warning }
@@ -1145,14 +1145,23 @@ Examples of such configuration could be:
 </figure>
 
 
+**NOTE**: Parameter name `Receiver.sources_count` has been replaced by
+`GNSS-SDR.num_sources` in the `next` branch of the upstream repository. The old
+parameter name is still read to ensure backward compatibility with configuration
+files using that nomenclature.
+{: .notice--warning }
+
+
 ```ini
 Receiver.sources_count=2
+; GNSS-SDR.num_sources=2   ; starting from v0.0.15
 ```
 
 Then:
 
 ```ini
 Receiver.sources_count=2
+; GNSS-SDR.num_sources=2   ; starting from v0.0.15
 ...
 SignalSource0.implementation=...
 SignalSource1.implementation=...

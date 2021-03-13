@@ -8,7 +8,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2020-03-13T12:54:02+02:00
+last_modified_at: 2021-03-13T12:54:02+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -51,6 +51,29 @@ Example in the configuration file:
 ```ini
 GNSS-SDR.internal_fs_sps=4000000
 ```
+
+## Multiple signal sources
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+| `num_sources` | Number of input signal sources. It defaults to 1. | Optional |
+|--------------
+
+Example:
+
+```ini
+GNSS-SDR.num_sources=2
+```
+
+For more details, please check [how to configure multiple signal sources]({{ "docs/sp-blocks/signal-source/#multiple-sources" | relative_url }}).
+
+**NOTE**: This parameter is equivalent to the former parameter
+`Receiver.sources_count`. The old name is still read to ensure backward
+compatibility with configuration files using that nomenclature. The new name
+`GNSS-SDR.num_sources` is used in the `next` branch of the upstream repository
+and will be present in the next stable release.
+{: .notice--warning }
 
 ## Telecommand via TCP/IP
 
