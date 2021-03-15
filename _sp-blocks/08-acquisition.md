@@ -834,7 +834,7 @@ The acquisition grid can be plotted from MATLAB or Octave as:
 
 ```matlab
 load('./acq_dump_G_1C_chan0_1_sat1.mat')
-f = -doppler_max:doppler_step:(doppler_max);
+f = -doppler_max:doppler_step:(doppler_max-doppler_step);
 tau = linspace(0, 1023, size(acq_grid, 1));
 surf(f, tau, acq_grid); xlabel('Doppler [Hz]'); ylabel('Delay [chips]');
 ```
