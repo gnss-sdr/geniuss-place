@@ -415,8 +415,10 @@ realistic and repeatable testing to be carried out under controlled conditions.
 This block reads files stored by LabSat 2 or LabSat 3 devices, and delivers a
 stream of samples of type <abbr id="data-type" title="Complex samples with real
 and imaginary parts of type 32-bit floating point. C++ name:
-std::complex<float>">`gr_complex`</abbr>. Only single-frequency reading is
-implemented.
+std::complex<float>">`gr_complex`</abbr>. For the LabSat 3 Wideband file format,
+this source can provide
+[multiple radio frequency channels](#multiple-radio-frequency-chains).
+This feature is not implemented for LabSat 2 or LabSat 3 format files.
 
 LabSat 3 splits data into 2 GB files. This file source automatically increments
 the file name when the signal is split into several files: it adds "_0000.LS3"
@@ -436,7 +438,7 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `Labsat_Signal_Source` | Mandatory |
 | `filename` | Path to the file base name of files containing the raw digitized signal samples. For single files using the LabSat 2 or the LabSat 3 Wideband formats, write directly the name of the file. Example: ```output.ls2``` | Mandatory |
-| `selected_channel` | [`1`, `2`, `3`]: Select the frequency band of data present in the file. It defaults to 1. | Optional |
+| `selected_channel` | [`1`, `2`, `3`]: Select the frequency band of data present in the file. It defaults to 1. For LabSat 3 Wideband format files, this parameter admits a list of channels (_i.e._, `SignalSource.selected_channel=1,2`) and the source becomes a [multiple radio frequency channel source](#multiple-radio-frequency-chains). | Optional |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this implementation. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it throttles the output flow of samples such that the average rate does not exceed `throttle_frequency_sps`, thus emulating real-time operation. It defaults to `false`. | Optional |
 | `throttle_frequency_sps` | If `enable_throttle_control` is set to `true`, this parameter sets the sample rate applied by the throttle. It defaults to $$ 16368000 $$ Sps. | Optional |
