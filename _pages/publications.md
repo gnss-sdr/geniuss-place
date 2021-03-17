@@ -7,7 +7,7 @@ header:
   teaser: /assets/images/books.png
 sidebar:
     nav: "about"
-last_modified_at: 2020-06-16T12:38:52+00:00
+last_modified_at: 2021-03-16T12:38:52+00:00
 redirect_from:
   - /documentation/publications
 ---
@@ -15,6 +15,35 @@ redirect_from:
 List of academic papers in which GNSS-SDR has been referenced, described or used for research purposes. If you are aware of other publications not listed here, please [let us know]({{ "/team/" | relative_url }}).
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
+
+
+<ul class="biblist">
+    <!-- Item: Feng21 -->
+    <li ><p>
+    W.&nbsp;Feng, J.-M.&nbsp;Friedt, G.&nbsp;Goavec-Merou and F.&nbsp;Meyer
+    <br><b>Software-Defined Radio Implemented GPS Spoofing and Its Computationally Efficient Detection and Suppression</b><br>
+<i>IEEE Aerospace and Electronic Systems Magazine </i>, Vol. 36, No. 3, pp. 36-52, Mar.&nbsp;2021.
+    <br />
+    <a href="javascript:toggleBibtex('Feng21')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9374670" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="http://jmfriedt.free.fr/Main_new_two_antennas.pdf" ><i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/MAES.2020.3040491" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Feng21" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Feng21,
+author  = {W.~Feng and J.-M.~Friedt and G.~{Goavec-Merou} and F.~Meyer},
+title   = {Software-Defined Radio Implemented {GPS} Spoofing and Its Computationally Efficient Detection and Suppression},
+journal = {IEEE Aerospace and Electronic Systems Magazine},
+year    = {2021},
+month   = {Mar.},
+volume  = {36},
+number  = {3},
+pages   = {36--52},
+note    = { {doi}: 10.1109/MAES.2020.3040491}
+}</pre>
+    </div>
+    </li>
+</ul>
 
 
 <ul class="biblist">
