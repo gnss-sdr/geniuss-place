@@ -145,7 +145,7 @@ the website.
 ## Contributing to the source code of this website
 
 When start working on a new improvement, please **always** branch off
-from `master`. Open a new branch and start working on it:
+from `main`. Open a new branch and start working on it:
 
 ```
 $ git checkout -b my_feature
@@ -160,12 +160,12 @@ your repository:
 $ git push origin my_feature
 ```
 
-If there have been new pushes to the `master` branch of the `upstream`
+If there have been new pushes to the `main` branch of the `upstream`
 repository since the last time you pulled from it, you might want to put
 your commits on top of them (this is mandatory for pull requests):
 
 ```
-$ git pull --rebase upstream master
+$ git pull --rebase upstream main
 ```
 
 ### How to submit a pull request
