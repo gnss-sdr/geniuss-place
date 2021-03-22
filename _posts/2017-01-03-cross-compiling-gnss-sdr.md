@@ -216,7 +216,7 @@ note that this image can only be executed by an arm32v7-based system.
   everything in a virtualized environment (including an interactive mode in
   which you can make changes and experiment), and a script that automates the
   whole process, so you can build the version you want with a single command
-  line. Check the [README.md](https://github.com/carlesfernandez/yocto-geniux/blob/master/README.md)
+  line. Check the [README.md](https://github.com/carlesfernandez/yocto-geniux/blob/main/README.md)
   file on that repo for instructions.
   {: .notice--success}
 
