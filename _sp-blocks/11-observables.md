@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-02-07T09:54:02+02:00
+last_modified_at: 2021-03-30T09:54:02+02:00
 ---
 
 The role of an _Observables_ block is to collect the synchronization data coming
@@ -34,7 +34,7 @@ signal reception time $$ \bar{t}_r $$ (s) measured by the receiver clock and the
 signal transmission time $$ \bar{t}^{(s)} $$ (s) measured by the satellite clock
 as:
 
-$$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right) $$
+$$ P_{r,i}^{(s)} = c \left( \bar{t}_r - \bar{t}^{(s)} \right)~. $$
 
 ![Pseudorange model]({{ "/assets/images/pseudorange_model.png" | relative_url }}){: .align-center .invert-colors}
 _Pseudorange measurement (from the RTKLIB Manual)[^RTKLIBManual]_
@@ -47,9 +47,9 @@ I_{r,i}^{(s)} $$ and $$ T_r^{(s)} $$ and the measurement error $$ \epsilon_P $$
 as:
 
 $$ \begin{equation}
-\begin{array}{ccl} P_{r,i}^{(s)} & = & c\left( (t_r+dt_r(t_r)) - (t^{(s)}+dT^{(s)}(t^{(s)})) \right)+ \epsilon_P \\
+\!\!\!\!\!\! \begin{array}{ccl} P_{r,i}^{(s)} & = & c\left( (t_r+dt_r(t_r)) - (t^{(s)}+dT^{(s)}(t^{(s)})) \right)+ \epsilon_P \\
 {} & = & c(t_r - t^{(s)} )+c \left( dt_r(t_r)-dT^{(s)}(t^{(s)}) \right)+\epsilon_P \\
-{} & = & \rho_r^{(s)} + c\left( dt_r(t_r) - dT^{(s)}(t^{(s)}) \right) + I_{r,i}^{(s)} + T_r^{(s)} +\epsilon_P \end{array}
+{} & = & \rho_r^{(s)} + c\left( dt_r(t_r) - dT^{(s)}(t^{(s)}) \right) + I_{r,i}^{(s)} + T_r^{(s)} +\epsilon_P ~,\end{array}
 \end{equation} $$
 
 where:
@@ -86,10 +86,13 @@ meters considering the speed of light. Then, the pseudoranges for all other
 satellites are derived by adding the relative-arrival times. Each travel time
 $$ \tau $$ can be computed as:
 
-$$ \tau^{(s)} = \Delta \text{TOW}^{(s)} + \Delta t_r^{(s)} + \tau_\text{ref} = \text{TOW}^{(s)} - \text{TOW}_\text{ref} + t_r^{(s)} - t_{r_\text{ref}} + \tau_\text{ref} $$
+$$ \begin{array}{ccl}
+\tau^{(s)} & = & \Delta \text{TOW}^{(s)} + \Delta t_r^{(s)} + \tau_\text{ref}\\
+& = & \text{TOW}^{(s)} - \text{TOW}_\text{ref} + t_r^{(s)} - t_{r_\text{ref}} + \tau_\text{ref}~,
+\end{array} $$
 
 where $$ \Delta \text{TOW}^{(s)} $$ is the difference between the reference
-$$ -\text{TOW}_\text{ref} $$ and the current TOW of the $$ s $$-th satellite;
+$$ \text{TOW}_\text{ref} $$ and the current TOW of the $$ s $$-th satellite;
 $$ \Delta t_r^{(s)} $$ is the time elapsed between the reference
 $$ t_{r_\text{ref}} $$ and the actual receiver time, when the pseudorange must
 be computed for the specific satellite. This method is equivalent to taking a
@@ -114,10 +117,13 @@ frequency between the received carrier of the satellite signal and a
 receiver-generated reference frequency. It can be modeled as:
 
 $$ \begin{equation}
-\!\!\!\!\!\!\!\!\!\!\begin{array}{ccl}  \phi_{r,i}^{(s)} \!\!\! & = \!\!\!\!&\phi_{r,i}(t_r) - \phi_{i}^{(s)}(t^{(s)}) + N_{r,i}^{(s)} + \epsilon_{\phi} \\
-{} & \!\!\!= \!\!\!\!& \left(f_i(t_r + dt_r(t_r) - t_0) + \phi_{r,0,i}\right) +\\
-{} & {} & - \left(f_i(t^{(s)} + dT^{(s)}(t^{(s)}) - t_0 ) + \phi_{0,i}^{(s)} \right) + N_{r_i}^{(s)} + \epsilon_{\phi}\\
-{} & \!\!\!=\!\!\!\! &  \frac{c}{\lambda_i} (t_r-t^{(s)})+ \frac{c}{\lambda_i}(dt_r(t_r) - dT^{(s)}(t^{(s)})) + (\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \epsilon_{\phi} \end{array}
+\begin{array}{ccl}
+\phi_{r,i}^{(s)} & = & \phi_{r,i}(t_r) - \phi_{i}^{(s)}(t^{(s)}) + N_{r,i}^{(s)} + \epsilon_{\phi}\\
+{} & = & \left(f_i \left(t_r + dt_r(t_r) - t_0\right) + \phi_{r,0,i}\right)~+\\
+{} & {} & - \left(f_i\left(t^{(s)} + dT^{(s)}(t^{(s)}) - t_0 \right) + \phi_{0,i}^{(s)} \right) + N_{r_i}^{(s)} + \epsilon_{\phi}\\
+{} & = & \frac{c}{\lambda_i} \left(t_r - t^{(s)}\right) + \frac{c}{\lambda_i}\left(dt_r(t_r) - dT^{(s)}(t^{(s)})\right)~+\\
+{} & {} & +~ \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} + \epsilon_{\phi}~,
+\end{array}
 \end{equation} $$
 
 where:
@@ -142,7 +148,7 @@ where:
 As shown in a paper by Petovello and O'Driscoll[^Petovello10], the carrier‐phase
 integer ambiguity term $$ N_{r,i}^{(s)} $$ can be written as:
 
-$$ N_{r,i}^{(s)} (t_r) = L_{r,i} (t_{r}) - K_{r,i} (t_{r}) $$
+$$ N_{r,i}^{(s)} (t_r) = L_{r,i} (t_{r}) - K_{r,i} (t_{r})~, $$
 
 where:
   * $$ L_{r,i} (t_{r}) $$ is the integer component of the receiver's numerically controlled oscillator (NCO) phase.
@@ -160,10 +166,13 @@ Phase measurements are sometimes given in meters. This is referred to as
 **phase-range measurement**, and it is defined as the carrier phase multiplied
 by the carrier wavelength $$ \lambda_i $$. It can be expressed as:
 
-$$ \begin{array}{ccl}
-\Phi_{r,i}^{(s)} & = & \lambda_i \phi_{r,i}^{(s)} \\
-{} & = &c(t_r-t^{(s)}) + c (dt_r(t_r) - dT^{(s)}(t^{(s)})) + \lambda_i(\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}) + \lambda_i \epsilon_{\phi}
-\end{array} $$
+$$ \begin{equation}
+\nonumber
+\begin{array}{ccl} \Phi_{r,i}^{(s)} & = & \lambda_i \phi_{r,i}^{(s)} \\
+{} & = & c\left(t_r - t^{(s)}\right) + c \left(dt_r(t_r) - dT^{(s)}(t^{(s)})\right)~+\\
+{} & {} & +~ \lambda_i\left(\phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)}\right) + \lambda_i \epsilon_{\phi}~.
+\end{array}
+\end{equation} $$
 
 The term $$ c(t_r-t^{(s)}) $$ admits a more detailed model (including antenna
 phase center offsets and variations, station displacement by earth tides, phase
@@ -172,16 +181,18 @@ useful for [precise point positioning]({{
 "/docs/sp-blocks/pvt/#precise-point-positioning" | relative_url }}) algorithms.
 The phase-range measurement can then be modeled as:
 
-$$ \!\!\!\!\begin{equation}
-\Phi_{r,i}^{(s)} = \rho_{r}^{(s)} +c(dt_r(t_r) - dT^{(s)}(t^{(s)})) - I_{r,i}^{(s)} + T_{r}^{(s)} + \lambda_i B_{r,i}^{(s)} + d\Phi_{r,i}^{(s)} + \epsilon_{\Phi}
-\end{equation} $$
+$$ \begin{eqnarray}
+\nonumber \Phi_{r,i}^{(s)} & = & \rho_{r}^{(s)} + c\left(dt_r(t_r) - dT^{(s)}(t^{(s)})\right)~+\\
+{} & {} & - I_{r,i}^{(s)} + T_{r}^{(s)} + \lambda_i B_{r,i}^{(s)} + d\Phi_{r,i}^{(s)} + \epsilon_{\Phi,i}~,
+\end{eqnarray} $$
 
 where:
 
   * The ionospheric term $$ I_{r,i}^{(s)} $$ is included with a negative sign due to the phase advancement effect on electromagnetic waves going through a plasmatic media.
   * $$ B_{r,i}^{(s)} = \phi_{r,0,i} - \phi_{0,i}^{(s)} + N_{r,i}^{(s)} $$ is the carrier‐phase bias for the $$ i $$-th band (in cycles).
-  * $$ \begin{array}{ccl} d\Phi_{r,i}^{(s)} & = &\mathbf{d}_{r,pco,i}^T \mathbf{e}_{r,enu}^{(s)} + \left(\mathbf{E}^{(s)} \mathbf{d}_{pco,i}^{(s)} \right)^T \mathbf{e}_r^{(s)} + \\ {} & {} & + d_{r,pcv,i}(El) + d_{pcv,i}^{(s)}(\theta) - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} + \lambda_i \phi_{pw} \end{array} $$, where:
-
+  * $$ d\Phi_{r,i}^{(s)} $$ is a term accounting for satellite's and receiver's antenna phase center variation in the $$ i $$-th band, defined as:<br/>
+  $$ \begin{array}{ccl} d\Phi_{r,i}^{(s)} & = &\mathbf{d}_{r,pco,i}^T \mathbf{e}_{r,enu}^{(s)} + \left(\mathbf{E}^{(s)} \mathbf{d}_{pco,i}^{(s)} \right)^T \mathbf{e}_r^{(s)}~+ \\ {} & {} & +~ d_{r,pcv,i}(El) + d_{pcv,i}^{(s)}(\theta) - \mathbf{d}_{r,disp}^T \mathbf{e}_{r,enu}^{(s)} + \lambda_i \phi_{pw}~, \end{array} $$<br/>
+  where:<br/>
     * $$ \mathbf{d}_{r,pco,i} $$ is the receiver's $$ i $$-th band antenna phase center offset in local coordinates (in meters).
     * $$ d_{r,pcv,i} $$ is the receiver's $$ i $$-th band antenna phase center variation (in meters).
 
@@ -191,7 +202,7 @@ where:
     _Receiver antenna phase center offset and variation (from the RTKLIB Manual)[^RTKLIBManual]_
     {: style="text-align: center;"}
 
-    * $$ \mathbf{d}_{pco,i}^{(s)} $$ is the satellite's  $$ i $$-th band antenna phase center offset in satellite body‐fixed coordinates (in meters).
+    * $$ \mathbf{d}_{pco,i}^{(s)} $$ is the satellite's $$ i $$-th band antenna phase center offset in satellite body‐fixed coordinates (in meters).
     * $$ d_{pcv,i}^{(s)} $$ is the satellite's antenna phase center variation (in meters).
 
     ![Satellites' antenna phase center]({{ "/assets/images/satellite-phase-center.png" | relative_url }}){:height="350px" width="350px"}{: .align-center .invert-colors}
@@ -230,42 +241,41 @@ where:
     the Sun direction in order to obtain the maximum energy while the satellite
     antenna keeps pointing to the earth's centre. This rotation causes a phase
     variation that the receiver misunderstands as a range variation.
-
+  * $$ \epsilon_{\Phi,i} = \lambda_i \epsilon_{\phi} $$ is a term modeling instrumental phase noise.
 
 ## Doppler shift measurement
 
 The Doppler effect[^Doppler] (or the Doppler shift) is the change in frequency
 for an observer (in this case, the GNSS receiver) moving relative to its source
 (in this case, a given GNSS satellite $$ s $$). The relationship between
-observed frequency $$ f $$ and emitted frequency $$ f_i $$ is given by:
+observed frequency $$ f $$ and emitted frequency $$ f_i $$ is given by
 
-$$ f = \left( \frac{c+v_r}{c+v^{(s)}}\right)f_i $$
+$$ f = \left( \frac{c+v_r}{c+v^{(s)}}\right)f_i~. $$
 
 Since the speeds of the receiver $$ \mathbf{v}_r(t) $$ and the satellite $$
 \mathbf{v}^{(s)} $$ are small compared to the speed of the wave, the difference
 between the observed frequency $$ f $$ and emitted frequency $$ f_i $$ can be
-approximated by:
+approximated by
 
-
-$$ f_{D_{i}}^{(s)} = -f_i\frac{\partial \tau^{(s)}(t)}{\partial t} $$
+$$ f_{D_{i}}^{(s)} = -f_i\frac{\partial \tau^{(s)}(t)}{\partial t}~. $$
 
 Then, the **Doppler shift measurement** can be written as:
 
-$$ \!\!\!\begin{equation}
-\begin{array}{ccl} f_{D_{i}}^{(s)} & = & -f_i \frac{\partial (t_r - t^{(s)}) }{\partial t}\\
-{} & = &  -f_i \frac{\partial \left( \frac{1}{c} \left(\rho_r^{(s)} + I_{r,i}^{(s)} + T_r^{(s)}\right) + dt_r(t_r) - dT^{(s)}(t^{(s)}) \right)}{\partial t}\\
-{} & = & -\frac{f_i}{c}\frac{\partial \left( \left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\| +I_{r,i}^{(s)} + T_{r}^{(s)}+c(dt_r(t_r) - dT^{(s)}(t^{(s)}))  \right)}{\partial t}\\
+$$ \begin{equation}
+\!\!\!\!\!\!\!\!\!\!\begin{array}{ccl} f_{D_{i}}^{(s)} & = & -f_i \frac{\partial (t_r - t^{(s)}) }{\partial t}\\
+{} & = & -f_i \frac{\partial \left( \frac{1}{c} \left(\rho_r^{(s)} + I_{r,i}^{(s)} + T_r^{(s)}\right) + dt_r(t_r) - dT^{(s)}(t^{(s)}) \right)}{\partial t}\\
+{} & = & -\frac{f_i}{c}\frac{\partial \left( \left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\| + I_{r,i}^{(s)} + T_{r}^{(s)}+c(dt_r(t_r) - dT^{(s)}(t^{(s)})) \right)}{\partial t}\\
 {} & = & -\frac{f_i}{c} \left( \left( \mathbf{v}^{(s)}(t^{(s)}) - \mathbf{v}_{r}(t_r) \right)^T \frac{\left( \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right)}{\left\| \mathbf{r}^{(s)}(t^{(s)}) - \mathbf{r}_r(t_r) \right\|} + \frac{\partial I_{r,i}^{(s)}}{\partial t} + \right.\\
-{} & {} & \left. + \frac{\partial T_{r}^{(s)}}{\partial t} + c\frac{\partial dt_r(t_r)}{\partial t} - c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right)\\
-{} & = & -\frac{f_i}{c} \left( \left( \mathbf{v}^{(s)}(t^{(s)}) - \mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c\frac{\partial dt_r(t_r)}{\partial t} - c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right) + \epsilon_{f_{D}}
+{} & {} & \left. +~ \frac{\partial T_{r}^{(s)}}{\partial t} + c\frac{\partial dt_r(t_r)}{\partial t} - c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right)\\
+{} & = & -\frac{f_i}{c} \left( \left( \mathbf{v}^{(s)}(t^{(s)}) - \mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c\frac{\partial dt_r(t_r)}{\partial t} - c\frac{\partial dT^{(s)}(t^{(s)})}{\partial t} \right) + \epsilon_{f_{D}}~,
 \end{array}
 \end{equation} $$
 
 where $$ \mathbf{r}_r(t) $$ and $$ \mathbf{v}_r(t) $$ are the position and
 velocity of the receiver at the instant $$ t $$. The term $$ \left(
-\mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} $$ is
-the radial velocity from the receiver relative to the satellite, and $$
-\frac{\partial dt_r(t_r)}{\partial t} $$ and $$ \frac{\partial
+\mathbf{v}^{(s)}(t^{(s)}) - \mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} $$
+is the radial velocity from the receiver relative to the satellite, and
+$$ \frac{\partial dt_r(t_r)}{\partial t} $$ and $$ \frac{\partial
 dT^{(s)}(t^{(s)})}{\partial t} $$ are the receiver and satellite clocks drift,
 respectively. The Doppler shift measurement is given in Hz.
 
@@ -278,7 +288,8 @@ multiplied by the negative of carrier wavelength $$ \lambda_i $$. Its model can
 be written as:
 
 $$ \begin{eqnarray} \dot{P}_{r,i}^{(s)} & = & -\lambda_i f_{D_{i}}^{(s)} \nonumber \\
-{} & = & \left( \mathbf{v}^{(s)}(t^{(s)})-\mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} + c \left( \frac{\partial dt_r(t_r)}{\partial t} - \frac{\partial dT^{(s)}(t^{(s)})}{\partial t}\right) + \epsilon_{\dot{P}}
+{} & = & \left( \mathbf{v}^{(s)}(t^{(s)}) - \mathbf{v}_{r}(t_r) \right)^T \mathbf{e}_r^{(s)} ~+\\
+{} & {} & + c \left( \frac{\partial dt_r(t_r)}{\partial t} - \frac{\partial dT^{(s)}(t^{(s)})}{\partial t}\right) + \epsilon_{\dot{P}}~. \nonumber
 \end{eqnarray} $$
 
 
@@ -293,7 +304,10 @@ measurements of a given satellite $$ s $$, in the band $$ i $$, at the time $$ n
 Thence, the smoothed code $$ \hat{P}_{r,i}^{(s)}[n] $$ can be computed as:
 
 $$ \begin{equation} \label{eq:smoothing}
-\hat{P}_{r,i}^{(s)}[k] = \frac{1}{M}  P_{r,i}^{(s)}[k] + \frac{M-1}{M}\left[ \hat{P}_{r,i}^{(s)}[k-1] + \left(\Phi_{r,i}^{(s)}[k] - \Phi_{r,i}^{(s)}[k-1] \right) \right]
+\begin{array}{ccl}
+\hat{P}_{r,i}^{(s)}[k] & = & \frac{1}{M} P_{r,i}^{(s)}[k] ~+\\
+{} & {} & +~ \frac{M-1}{M}\left[ \hat{P}_{r,i}^{(s)}[k-1]  \left(\Phi_{r,i}^{(s)}[k] - \Phi_{r,i}^{(s)}[k-1] \right) \right]~,
+\end{array}
 \end{equation} $$
 
 where $$ n=k $$ when $$ k<M $$ and $$ n=M $$ when $$ k \geq M $$.
@@ -301,7 +315,7 @@ where $$ n=k $$ when $$ k<M $$ and $$ n=M $$ when $$ k \geq M $$.
 The algorithm is initialized with:
 
 $$ \begin{equation}
-\hat{P}_{r,i}^{(s)}[1] = P_{r,i}^{(s)}[1]
+\nonumber \hat{P}_{r,i}^{(s)}[1] = P_{r,i}^{(s)}[1]~.
 \end{equation} $$
 
 This algorithm is initialized every time that a carrier phase cycle-slip occurs.

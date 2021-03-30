@@ -20,7 +20,7 @@ A _generic_ GNSS complex baseband signal transmitted by a given GNSS space
 vehicle $$ i $$ can be described as
 
 $$ \begin{equation}
-s^{(i)}_T(t) = \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}\Big(d_I^{(i)}(u)g_I(t - uT_{b_I}) + j d_Q^{(i)}(u)g_Q(t - uT_{b_Q})\Big)~,
+\!\!\!\!\!\!\!\!\!\!\!\!s^{(i)}_T(t) = \sqrt{\mathcal{P}_{T}} \sum_{u=-\infty}^{\infty}\Big(d_I^{(i)}(u)g_I(t - uT_{b_I}) + j d_Q^{(i)}(u)g_Q(t - uT_{b_Q})\Big)~,
 \end{equation} $$
 
 where the Inphase and Quadrature (I&Q) components have the form
