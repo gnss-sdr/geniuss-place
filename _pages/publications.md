@@ -18,6 +18,34 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 
 
 <ul class="biblist">
+    <!-- Item: Krafczyk21 -->
+    <li ><p>
+    M.&nbsp;S.&nbsp;Krafczyk, A.&nbsp;Shi, A.&nbsp;Bhaskar, D.&nbsp;Marinov and V.&nbsp;Stodden
+    <br><b>Learning from reproducing computational results: introducing three principles and the <i>Reproduction Package</i></b><br>
+<i>Philosophical Transactions of the Royal Society A</i>, 379, 20200069, Mar.&nbsp;2021.
+    <br />
+    <a href="javascript:toggleBibtex('Krafczyk21')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://royalsocietypublishing.org/doi/pdf/10.1098/rsta.2020.0069" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1098/rsta.2020.0069" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Krafczyk21" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Krafczyk21,
+author  = {M.~S.~Krafczyk and A.~Shi and A.~Bhaskar, D.~Marinov and V.~Stodden},
+title   = {Learning from reproducing computational results: introducing three principles and the {R}eproduction {P}ackage},
+journal = {Phil. Trans. R. Soc. A},
+year    = {2021},
+month   = {Mar.},
+volume  = {379},
+number  = {20200069},
+pages   = {1--28},
+note    = { {doi}: 10.1098/rsta.2020.0069}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Feng21 -->
     <li ><p>
     W.&nbsp;Feng, J.-M.&nbsp;Friedt, G.&nbsp;Goavec-Merou and F.&nbsp;Meyer
