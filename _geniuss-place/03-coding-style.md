@@ -1228,7 +1228,9 @@ $ sudo port install clang-11
 **Step 2.- Apply clang-tidy**
 
 This tool integrates nicely with CMake >= 3.6. In GNSS-SDR, all you need to do
-is to tell CMake to use clang:
+is to tell CMake to use clang. From an empty build folder (so if you have
+leftovers from previous buildings with GCC, please delete them out before
+switching to clang), write:
 
 ```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
@@ -1237,11 +1239,13 @@ $ make volk_gnsssdr_module core_monitor pvt_libs
 ```
 
 (pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of
-the clang binaries in your machine). This will create a file named
-`compile_commands.json` in your build folder containing the exact compiler calls
-for all translation units of the project in machine-readable form. After that,
-you can use the `run-clang-tidy` script (called `run-clang-tidy.py` in some
-platforms) to perform the project default checks over all files in the
+the clang binaries in your machine). The first command line will create a file
+named `compile_commands.json` in your build folder containing the exact compiler
+calls for all translation units of the project in machine-readable form. Then,
+you need to build some libraries (_i.e._, `volk_gnsssdr_module`, `core_monitor`,
+and `pvt_libs`) that require some building steps not supported by clang-tidy.
+After that, you can use the `run-clang-tidy` script (called `run-clang-tidy.py`
+in some platforms) to perform the project default checks over all files in the
 compilation database:
 
 ```console
@@ -1260,7 +1264,8 @@ activating the building option `ENABLE_CLANG_TIDY`:
 ```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang \
-        -DENABLE_CLANG_TIDY=ON ..
+$ make volk_gnsssdr_module core_monitor pvt_libs        
+$ cmake -DENABLE_CLANG_TIDY=ON ..
 $ make  
 ```
 
@@ -1282,8 +1287,9 @@ or
 ```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang \
-        -DENABLE_CLANG_TIDY=ON ..
-$ make  
+$ make volk_gnsssdr_module core_monitor pvt_libs        
+$ cmake -DENABLE_CLANG_TIDY=ON ..
+$ make   
 ```
 and check if there are warnings and/or fixes related to your code (use `git
 status` and `git diff`). If you agree with the changes, add and commit them in
