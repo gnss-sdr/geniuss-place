@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-02-05T10:54:02+02:00
+last_modified_at: 2021-04-19T10:54:02+02:00
 ---
 
 
@@ -148,6 +148,7 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|    
 |--------------
 | `implementation` | `Galileo_E1B_Telemetry_Decoder` | Mandatory |
+| `enable_reed_solomon` |  [`true`, `false`]: If set to `true`, it enables the FEC2 Erasure Correction defined for the Galileo E1B INAV message at [OS ICD v2.0](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf). It defaults to `false`. <span style="color: orange">NOTE: This feature is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
