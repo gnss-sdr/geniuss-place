@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-03-13T10:54:02+02:00
+last_modified_at: 2021-04-20T10:54:02+02:00
 ---
 
 {% capture fig_img2 %}
@@ -496,6 +496,54 @@ in the next stable release.
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
+## Reading data from a pipe
+
+### Implementation: `Fifo_Signal_Source`
+
+This implementation allows using a
+[Unix FIFO](https://en.wikipedia.org/wiki/Named_pipe) as a signal source, thus
+allowing to multiplex signal streams outside of `gnss-sdr`, letting another
+program to hold access to the receiver, or allowing signal sources that are not
+supported by `gnss-sdr` but can dump the signal to a FIFO.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `Fifo_Signal_Source` | Mandatory |
+| `filename` | Name of the fifo stream from which samples will be read. | Mandatory |
+| `sample_type` | [`ishort`, `gr_complex`]: Sample type in fifo stream. It defaults to `ishort`. The output of this block is always `gr_complex`. | Optional |
+| `dump` | [`true`, `false`]: If set to `true`, it dumps the content of the source file `filename` in <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> format. It defaults to `false`. | Optional |
+| `dump_filename` | If `dump` is set to `true`, the name of the dump file. It defaults to `./data/signal_source.dat` | Optional |
+|-------
+
+_Signal Source implementation:_ **`Fifo_Signal_Source`**
+{: style="text-align: center;"}
+
+Example of configuration:
+
+```ini
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=Fifo_Signal_Source
+SignalSource.filename=fifo.fifo
+SignalSource.sample_type=ishort
+SignalSource.dump=false
+SignalSource.dump_filename=./dump.dat
+```
+
+Example of usage:
+```console
+$ mkfifo fifo.fifo && cat path_to.bin >> fifo.fifo
+```
+
+**Note**: This implementation is only available from the `next` branch of the
+upstream repository, and it will be included in the next stable release.
+{: .notice--warning }
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 ## Radio Frequency front-ends
 
