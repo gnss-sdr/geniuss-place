@@ -2,54 +2,90 @@
 permalink: /acks/
 layout: single
 title: "Acknowledgements"
-excerpt: "List of public and private organizations that have helped in the development of GNSS-SDR."
+excerpt: "List of public and private organizations that have contributed to the development of GNSS-SDR."
 sidebar:
     nav: "about"
-last_modified_at: 2017-08-05T18:38:52+00:00
+last_modified_at: 2021-05-10T14:38:52+02:00
 ---
 
-This project has been mainly developed on a volunteer basis, for education and research purposes. The main [Developer Team]({{ "/team/" | relative_url }}) is a group of researchers at CTTC, a non-profit research institution, and they use to be quite busy developing amazing new concepts and practical developments for advanced wireless communication systems and serving the industry in actually deploying them. Only some selected students  got a stipend (through their participation in Google Summer of Code and ESA Summer of Code In Space programs) for their direct work on GNSS-SDR.  
+This project has been mainly developed on a volunteer basis, for education and
+research purposes. The main [Developer Team]({{ "/team/" | relative_url }}) is a
+group of researchers at [CTTC](http://www.cttc.es), a non-profit research
+institution, and the project enjoys from a solid base of external users and
+contributors.
 
-According to [Open HUB](https://www.openhub.net/p/gnss-sdr), the development of GNSS-SDR from its [first commit](https://github.com/gnss-sdr/gnss-sdr/commit/228fa3b797dba7d0192f751e7e25a7b8348f9326) to a Git repository (in October 2011, after a happy childhood living in a Subversion repository) up to now has taken 35 years of effort, as estimated by the Constructive Cost Model ([COCOMO](https://en.wikipedia.org/wiki/COCOMO)).
+Slowly but steadily baked, the source code evolved and demonstrated its
+feasibility as an open and free framework for software-defined GNSS receiver
+development, attracting the interest of [more researchers]({{ "/publications/" |
+relative_url }}), students, skilled hobbyists, and the industry.
+
+According to [Black Duck Open Hub](https://www.openhub.net/p/gnss-sdr), the
+development of GNSS-SDR from its [first
+commit](https://github.com/gnss-sdr/gnss-sdr/commit/228fa3b797dba7d0192f751e7e25a7b8348f9326)
+to a Git repository (in October 2011, after a happy childhood living in a
+Subversion repository) up to now has taken 97 years of effort, as estimated by
+the Constructive Cost Model ([COCOMO](https://en.wikipedia.org/wiki/COCOMO)).
 {: .notice--info}
 
-Slowly but steadily baked, the source code evolved and demonstrated its feasibility as an open and free framework for software-defined GNSS receiver development, attracting the interest of more researchers, students, skilled hobbyists, and the industry.
-
-
-The Authors are proud to be supported by the following public institutions, private companies, and spontaneous, enthusiastic volunteers that contribute in maintaining and expanding the capabilities and field of applications of a free and open-source GNSS software-defined receiver:
-
+The Authors are proud to be supported by the following public institutions,
+private companies, and spontaneous, enthusiastic volunteers that contribute to
+maintaining and expanding the capabilities and field of applications of a free
+and open-source GNSS software-defined receiver:
 
 
 ## Public Research Funds
 
+* Support from the Spanish Ministry of Science, Innovation, and Universities.
 
-* **[AUDITOR](https://www.gsa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture** is a project developing a multi-band, multi-constellation receiver based on GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo and GPS civil signals in the L1, L2 and L5 bands.
+  ![ARISTIDES logo]({{ "/assets/images/logo-aristides.png" | relative_url }}){:width="400px" .invert-colors}
+  {: style="text-align: center;"}
+
+  **The Spanish Ministry of Science, Innovation, and Universities** provides
+  partial support for development infrastructure through the [Statistical
+  Learning and Inference for Large Dimensional Communication Systems
+  (ARISTIDES)](http://www.cttc.es/project/aristides/) project
+  (RTI2018-099722-B-I00). Jan. 2019 - Dec. 2021.
+  {: .notice--success}
+
+* Support of Research Groups by the Government of Catalonia.
+
+  **The Government of Catalonia**, through Grant 2017--SGR--1479, provides
+  partial support for registrations and travel expenses to well-established
+  scientific conferences. Sep. 2017 - Sep. 2021.
+  {: .notice--success}
+
+* **[AUDITOR](https://www.gsa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture**
+  is a project that developed a multi-band, multi-constellation receiver based on
+  GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo
+  and GPS civil signals in the L1, L2, and L5 bands.
 
   ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | relative_url }}){:height="250px" width="250px"}
   {: style="text-align: center;"}
 
-  This project has received funding from the [**European GNSS Agency**](https://www.gsa.europa.eu/) under the European Union's Horizon 2020 research and innovation programme under grant agreement no. [687367](https://cordis.europa.eu/project/rcn/199301_en.html).
+  This project received funding from the [**European GNSS
+  Agency**](https://www.gsa.europa.eu/) under the European Union's Horizon 2020
+  research and innovation programme under grant agreement no.
+  [687367](https://cordis.europa.eu/project/rcn/199301_en.html). Jan. 2016 -
+  Jun. 2018.
   {: .notice--success}
 
-* Support of the Spanish Ministry of Economy and Competitiveness.
+* Support from the Spanish Ministry of Economy and Competitiveness.
 
-  **The Spanish Ministry of Economy and Competitiveness**, through project ADVENTURE (Ref. TEC2015-69868-C2-2-R), provides partial support for registrations and travel expenses to well-established scientific conferences, as well as publication fees.
-  {: .notice--success}
-
-* Support of Research Groups by the Government of Catalonia (Grant 2014--SGR--1567).
-
-  **The Government of Catalonia**, through Grant 2014--SGR--1567, provides partial support for registrations and travel expenses to well-established scientific conferences.
+  **The Spanish Ministry of Economy and Competitiveness**, through project
+  ADVENTURE (Ref. TEC2015-69868-C2-2-R), provided partial support for
+  registrations and travel expenses to well-established scientific
+  conferences, as well as publication fees. Jan. 2016 - Jan. 2019.
   {: .notice--success}
 
 * Research networks
 
-  - **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org))**, which aims to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
+  - **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org))**, aimed to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
 
   ![IRACON logo]({{ "/assets/images/iracon-logo-big.jpg" | relative_url }}){:height="250px" width="250px"}
   {: style="text-align: center;"}
 
-   **IRACON** offers Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsm/).
-   {: .notice--success}
+  **IRACON** offered Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsm/). Mar 2016 - Mar. 2020.
+  {: .notice--success}
 
 
 ## Education programs funded by private entities
@@ -147,9 +183,18 @@ The Authors are proud to be supported by the following public institutions, priv
 ![NSL logo]({{ "/assets/images/logo-nsl.jpg" | relative_url }}){:height="250px" width="250px"}
 {: style="text-align: center;"}
 
-* [NSL](https://gmvnsl.com/), a leading company specialising in satellite navigation, actively supports GNSS-SDR. Based in Nottingham, UK, NSL deliver reliable and robust Global Navigation Satellite System technologies for a variety of applications, such as those that require highest accuracies, impact safety, or are critical in terms of business, finance and security. NSL also produce radiofrequency front-ends and associated products, for example the dual channel [Stereo](https://gmvnsl.com/advanced-gnns-hw-sw/2016-04-11-15-01-35) system that is being used with GNSS-SDR development.
+* [NSL](https://gmvnsl.com/), a leading company specialised in satellite
+navigation, actively supported GNSS-SDR. Based in Nottingham, UK, NSL deliver
+reliable and robust Global Navigation Satellite System technologies for a
+variety of applications, such as those that require highest accuracies, impact
+safety, or are critical in terms of business, finance and security. NSL also
+produce radiofrequency front-ends and associated products, for example the
+dual channel
+[Stereo](https://gmvnsl.com/advanced-gnns-hw-sw/2016-04-11-15-01-35) system
+that is being used with GNSS-SDR development.
 
-[**NSL**](https://gmvnsl.com/) kindly provided equipment and technical support to the development of dual-band software architectures.
+[**NSL**](https://gmvnsl.com/) kindly provided equipment and technical support
+to the development of dual-band software architectures.
 {: .notice--success}
 
 -----
@@ -158,7 +203,14 @@ The Authors are proud to be supported by the following public institutions, priv
 ![Xilinx logo]({{ "/assets/images/logo-xilinx.png" | relative_url }}){:height="250px" width="250px"}
 {: style="text-align: center;"}
 
-* [Xilinx](https://www.xilinx.com) is a worldwide renowned supplier of programmable logic devices. It is known for inventing the field-programmable gate array (FPGA) and as the first semiconductor company with a fabless manufacturing model.
+* [Xilinx](https://www.xilinx.com) is a worldwide renowned supplier of
+programmable logic devices. It is known for inventing the field-programmable
+gate array (FPGA) and as the first semiconductor company with a fabless
+manufacturing model.
 
-Through their [**Xilinx University Program (XUP)**](https://www.xilinx.com/support/university.html), Xilinx is supporting GNSS-SDR with the donation of four Zedboard development kits and a full license of the Vivado Design Suite, a software tool for synthesis and analysis of HDL designs.
+Through their [**Xilinx University Program
+(XUP)**](https://www.xilinx.com/support/university.html), Xilinx is supporting
+GNSS-SDR with the donation of four Zedboard development kits and a full license
+of the Vivado Design Suite, a software tool for synthesis and analysis of HDL
+designs.
 {: .notice--success}
