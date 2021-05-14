@@ -23,7 +23,7 @@ According to [Black Duck Open Hub](https://www.openhub.net/p/gnss-sdr), the
 development of GNSS-SDR from its [first
 commit](https://github.com/gnss-sdr/gnss-sdr/commit/228fa3b797dba7d0192f751e7e25a7b8348f9326)
 to a Git repository (in October 2011, after a happy childhood living in a
-Subversion repository) up to now has taken 97 years of effort, as estimated by
+Subversion repository) up to now has taken 77 years of effort, as estimated by
 the Constructive Cost Model ([COCOMO](https://en.wikipedia.org/wiki/COCOMO)).
 {: .notice--info}
 
