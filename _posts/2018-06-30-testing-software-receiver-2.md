@@ -423,8 +423,8 @@ and files:
  tests.
  * The [GPSTk project](https://github.com/SGL-UT/GPSTk), an open-source library
  and suite of applications for the satellite navigation community. GPSTk is
- sponsored by [Space and Geophysics
- Laboratory](https://wwwext.arlut.utexas.edu/sgl.html), within the [Applied
+ sponsored by the [Space and Geophysics
+ Laboratory](https://www.arlut.utexas.edu/sgl.shtml), within the [Applied
  Research Laboratories](https://www.arlut.utexas.edu/) at the [University of
  Texas at Austin](https://www.utexas.edu) (ARL:UT). GPSTk is the by-product of
  GPS research conducted at ARL:UT since before the first satellite launched in
