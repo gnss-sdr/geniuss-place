@@ -58,7 +58,7 @@ $
 {: class="no-copy"}
 
 please check out the [building guide]({{ "/build-and-install/" | relative_url }})
-and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md)
+and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/README.md)
 file for more details on how to install GNSS-SDR.
 
 In order to take advantage of the SIMD instruction sets present in your

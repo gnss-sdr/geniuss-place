@@ -151,7 +151,7 @@ This release has several improvements in different dimensions, addition of new f
  * Updated and improved [documentation of processing blocks]({{ "/docs/sp-blocks/" | relative_url }}).
  * Improved documentation of required dependency packages in several GNU/Linux distributions.
  * Parameter names with the same role have been harmonized within different block implementations.
- * Added a [changelog](https://github.com/gnss-sdr/gnss-sdr/blob/master/docs/changelog.md), a [code of conduct](https://github.com/gnss-sdr/gnss-sdr/blob/master/CODE_OF_CONDUCT.md), a [contributing guide](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md) and a [pull-request template](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/PULL_REQUEST_TEMPLATE.md) in the source tree.
+ * Added a [changelog](https://github.com/gnss-sdr/gnss-sdr/blob/main/docs/changelog.md), a [code of conduct](https://github.com/gnss-sdr/gnss-sdr/blob/main/CODE_OF_CONDUCT.md), a [contributing guide](https://github.com/gnss-sdr/gnss-sdr/blob/main/CONTRIBUTING.md) and a [pull-request template](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/PULL_REQUEST_TEMPLATE.md) in the source tree.
  * Added colors to the commandline user interface.
  * Updated manfiles.
 

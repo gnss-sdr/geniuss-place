@@ -247,7 +247,7 @@ is the top-level hierarchical block representing a flow graph. It defines GNU
 Radio runtime functions used during the execution of the program: `run()`,
 `start()`, `stop()`, `wait()`, etc. As shown in the figure below, a subclass
 called
-[`GNSSBlockInterface`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/gnss_block_interface.h)
+[`GNSSBlockInterface`](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/core/interfaces/gnss_block_interface.h)
 is the common interface for all the GNSS-SDR modules. It defines pure
 **virtual** methods, that are required to be implemented by a derived class:
 
@@ -262,7 +262,7 @@ implemented by that class or a parent class.
 {: .notice--info}
 
 Subclassing
-[`GNSSBlockInterface`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/gnss_block_interface.h),
+[`GNSSBlockInterface`](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/core/interfaces/gnss_block_interface.h),
 we defined interfaces for the receiver's processing blocks. This hierarchy,
 shown in the figure below, provides a way to define an arbitrary number of
 algorithms and implementations for each processing block, which will be
@@ -280,7 +280,7 @@ _Class hierarchy for the Signal Processing Plane._
 This design pattern allows for an infinite number of algorithms and
 implementations for each block. For instance, defining a new algorithm for
 signal acquisition requires an _adapter_ ensuring it meets a minimal
-[AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/acquisition_interface.h),
+[AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/core/interfaces/acquisition_interface.h),
 and the actual implementation in form of GNU Radio processing block (that is,
 inheriting from
 [`gr::block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h)).
@@ -288,15 +288,15 @@ inheriting from
 **Example:** An available implementation of an Acquisition block is called
 `GPS_L1_CA_DLL_PLL_Tracking`. Like any other Acquisition block, it has an
 adapter that inherits from
-[AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/interfaces/acquisition_interface.h)
+[AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/core/interfaces/acquisition_interface.h)
 and the corresponding GNU Radio block inheriting from
 [`gr::block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h)
 and implementing the actual processing. You can take a look at the source code:
 
-* Adapter interface: [gnss-sdr/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h)
-* Adapter implementation: [gnss-sdr/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.cc)
-* Processing block interface: [gnss-sdr/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.h)
-* Processing block implementation: [gnss-sdr/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.cc)
+* Adapter interface: [gnss-sdr/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h)
+* Adapter implementation: [gnss-sdr/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.cc](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.cc)
+* Processing block interface: [gnss-sdr/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.h)
+* Processing block implementation: [gnss-sdr/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.cc](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/algorithms/acquisition/gnuradio_blocks/pcps_acquisition.cc)
 
 ### General class hierarchy for GNSS-SDR
 

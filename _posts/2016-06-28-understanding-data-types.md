@@ -337,7 +337,7 @@ samples from your  _Signal Source_ to the processing _Channels_:
 Your duty as a user when configuring GNSS-SDR, in matters related to data types,
 ends when delivering samples to _Channels_. After that, all the information is
 handled by an object of an internal class ([check out its
-API](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/core/system_parameters/gnss_synchro.h)
+API](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/core/system_parameters/gnss_synchro.h)
 if you are curious) and the results of the whole processing are then delivered
 in standard formats such as [RINEX](https://en.wikipedia.org/wiki/RINEX), [RTCM
 104](https://en.wikipedia.org/wiki/RTCM), or

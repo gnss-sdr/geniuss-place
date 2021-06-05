@@ -144,7 +144,7 @@ structured data.
 In order to install those dependencies in your system, check out our [building
 guide]({{ "/build-and-install/" | relative_url }}) and find more details at
 GNSS-SDR's
-[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md) file.
+[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/README.md) file.
 
 **Availability of automated tools**: Building and installing GNSS-SDR and its
 dependencies is a quite complex process, but there are automated tools that can

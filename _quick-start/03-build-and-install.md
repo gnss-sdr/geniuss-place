@@ -81,7 +81,7 @@ position fix]({{ "/my-first-fix/" | relative_url }}). Or maybe you might prefer
 other options, such as using [Homebrew](https://brew.sh/) instead of Macports as
 a software package manager, or building the source code manually. For more
 details of GNSS-SDR on macOS, please check the
-[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#macos-and-mac-os-x)
+[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/README.md#macos-and-mac-os-x)
 file.
 
 # Building from source
@@ -247,7 +247,7 @@ $ pybombs install armadillo gflags glog gnutls protobuf
 
 or manually, just downloading, building and installing them. More details are
 available in the
-[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/README.md#manual-installation-of-other-required-dependencies)
+[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/README.md#manual-installation-of-other-required-dependencies)
 file.
 
 ## Clone, build and install GNSS-SDR

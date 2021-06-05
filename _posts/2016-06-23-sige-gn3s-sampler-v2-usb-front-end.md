@@ -259,8 +259,8 @@ GNSS-SDR support for GN3S dongles makes use of the gr-gn3s GNU Radio source
 block and driver. The associated GNSS-SDR Signal Source name is
 `Gn3s_Signal_Source` and the adapter source code is located at:
 
-* [gnss-sdr/src/algorithms/signal_source/adapters/gn3s_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/signal_source/adapters/gn3s_signal_source.h)
-* [gnss-sdr/src/algorithms/signal_source/adapters/gn3s_signal_source.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/algorithms/signal_source/adapters/gn3s_signal_source.cc)
+* [gnss-sdr/src/algorithms/signal_source/adapters/gn3s_signal_source.h](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/algorithms/signal_source/adapters/gn3s_signal_source.h)
+* [gnss-sdr/src/algorithms/signal_source/adapters/gn3s_signal_source.cc](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/algorithms/signal_source/adapters/gn3s_signal_source.cc)
 
 
 It makes use of the library gr-gn3s by including the following header:
@@ -401,7 +401,7 @@ Tracking.dump_filename=./tracking_ch_
 ```
 
 As a sanity check, we did some post-processing analysis using the Matlab script available at
-[gnss-sdr/src/utils/matlab/gps_l1_ca_dll_pll_plot_sample.m](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/utils/matlab/gps_l1_ca_dll_pll_plot_sample.m).
+[gnss-sdr/src/utils/matlab/gps_l1_ca_dll_pll_plot_sample.m](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/utils/matlab/gps_l1_ca_dll_pll_plot_sample.m).
 The figure clearly shows the GPS C/A navigation symbols:
 
 

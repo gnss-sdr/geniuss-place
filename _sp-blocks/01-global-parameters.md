@@ -216,7 +216,7 @@ GNSS-SDR can read assistance data from [Extensible Markup Language
 [Time-To-First-Fix](https://gnss-sdr.org/design-forces/availability/#time-to-first-fix-ttff),
 and can store navigation data decoded from GNSS signals in the same format.
 Check [this
-folder](https://github.com/gnss-sdr/gnss-sdr/tree/master/docs/xml-schemas) for
+folder](https://github.com/gnss-sdr/gnss-sdr/tree/main/docs/xml-schemas) for
 XML Schemas describing those XML files structure.
 
 When reading AGNSS data from XML files, you must provide a rough initial
