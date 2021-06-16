@@ -8,7 +8,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-03-13T12:54:02+02:00
+last_modified_at: 2021-06-12T12:54:02+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -73,6 +73,27 @@ For more details, please check [how to configure multiple signal sources]({{ "do
 compatibility with configuration files using that nomenclature. The new name
 `GNSS-SDR.num_sources` is used in the `next` branch of the upstream repository
 and will be present in the next stable release.
+{: .notice--warning }
+
+## Internal observables processing rate
+
+This global parameter allows to control the internal rate at which observable
+sets are processed.
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+| `observable_interval_ms` | Time interval, in ms, at which observable sets are processed. It defaults to 20. | Optional |
+|--------------
+
+Example in the configuration file:
+
+```ini
+GNSS-SDR.observable_interval_ms=10
+```
+
+**NOTE**: This parameter is only available from the `next` branch of the
+upstream repository, and it will be present in the next stable release.
 {: .notice--warning }
 
 ## Telecommand via TCP/IP

@@ -884,11 +884,11 @@ result in an assertion, checking that the obtained result is actually the
 expected one.
 
 For more details about the usage of the Google C++ Testing Framework and its
-available features, please check out its documentation:
+available features, please check out its [User's Guide](https://google.github.io/googletest/):
 
- * [Primer](https://github.com/google/googletest/blob/master/docs/primer.md) -- start here if you are new to googletest.
- * [Advanced Topics](https://github.com/google/googletest/blob/master/docs/advanced.md) -- learn some new tricks.
- * [Frequently-Asked Questions](https://github.com/google/googletest/blob/master/docs/faq.md) -- maybe your question is answered here.
+ * [Primer](https://google.github.io/googletest/primer.html) -- start here if you are new to googletest.
+ * [Advanced Topics](https://google.github.io/googletest/advanced.html) -- learn some new tricks.
+ * [Frequently-Asked Questions](https://google.github.io/googletest/faq.html) -- maybe your question is answered here.
 
 
 The existing tests are also a source of examples on how to write tests. Please

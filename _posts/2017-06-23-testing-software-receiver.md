@@ -300,7 +300,7 @@ Test) for its testing code. This framework is based on the following premises:
  without making tests depend on each other.
 
 When using Google Test, developers write
-[_assertions_](https://github.com/google/googletest/blob/master/docs/primer.md#assertions),
+[_assertions_](https://google.github.io/googletest/primer.html#assertions),
 which are statements that check whether a condition is true. An assertion's
 result can be _success_, _nonfatal failure_, or _fatal failure_. If a fatal
 failure occurs, it aborts the current function; otherwise, the program continues
@@ -314,7 +314,7 @@ A _Test Suite_ contains one or many test cases. You should group your test cases
 into test suites that reflect the structure of the tested code. When multiple
 test cases in a test suite need to share common objects and subroutines, you can
 put them into a [_Test
-Fixture_](https://github.com/google/googletest/blob/master/docs/primer.md#test-fixtures-using-the-same-data-configuration-for-multiple-tests-same-data-multiple-tests)
+Fixture_](https://google.github.io/googletest/primer.html#same-data-multiple-tests)
 class.
 
 A _Test Program_ can contain multiple test suites.

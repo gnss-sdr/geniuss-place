@@ -44,10 +44,9 @@ in distributed development processes that emphasize the _modification-related_
 capabilities of openness. Everyone can freely access the source code, and can
 modify and redistribute it under the same terms, thus nourishing continuous
 cycles of improvement, adaptation, and extension in a distributed fashion. For
-more details, please check out [this guide on Open-Source Software
-Licenses](https://www.whoishostingthis.com/resources/open-source-licenses/),
-which describes the most popular open-source licenses currently available and
-provides further reading (guides, tutorials, and infographics).
+more details, please check out [this overview on Open-Source Software
+Licenses](https://opensource.org/licenses), which describes the most popular
+open-source licenses currently available and provides further reading.
 
 The value proposition and thrust of **[Open
 Design](https://github.com/OpenDesign-WorkingGroup/Open-Design-Definition)**
