@@ -1,5 +1,5 @@
-const releaseVersion = "0.0.13";
-const serviceWorkerVersion = "4";
+const releaseVersion = "0.0.14";
+const serviceWorkerVersion = "5";
 const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
 
 const offlineFallbackPage = "offline.html";
@@ -38,6 +38,7 @@ self.addEventListener("install", function (event) {
           '/assets/images/gnss-signals-teaser.png',
           '/assets/images/lego.jpg',
           '/assets/images/logo-git.png'
+          '/assets/images/master-to-main-teaser.png'
       ]);
     })
   );

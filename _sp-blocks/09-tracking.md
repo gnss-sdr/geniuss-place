@@ -63,18 +63,18 @@ reinjected back to the matched filter, as shown in the figure below:
 ![VOLK_GNSSDR example](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr/docs/images/VOLK_GNSSSDR_Usage_Example.png)
 _Typical diagram of a tracking block. Colored boxes indicate functions
 implemented in the
-[VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr)
+[VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/main/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr)
 library._
 {: style="text-align: center;"}
 
 GNSS-SDR's _Tracking_ implementations make heavy use of
-[VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr),
+[VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/main/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr),
 an extension module of the original [VOLK](https://www.libvolk.org/) library
 which contains some functions that are especially useful in the context of a
 GNSS receiver (some examples in the figure above).
 
 The
-[VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr)
+[VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/main/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr)
 library addresses [**Efficiency**]({{ "/design-forces/efficiency/" |
 relative_url }}) and [**Portability**]({{ "/design-forces/portability/" |
 relative_url }}) at the same time, by providing several implementations of the
@@ -571,7 +571,7 @@ receiver can keep the tracking process in lock.
 The implementation of this block is described in the Algorithm below. The
 computation of the complex values VE, E, P, L and VL in step $$ 5 $$ was
 implemented using the
-[VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr)
+[VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/main/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr)
 library. The PLL discriminator implemented in step $$ 6 $$ is the extended
 arctangent (four-quadrant) discriminator, and for the DLL we used the normalized
 Very Early Minus Late Power discriminator (step $$ 10 $$). The low-pass filters
@@ -1321,9 +1321,9 @@ Then, after the processing, you will get a list of `.mat` files (in this case,
 storing the intermediate results obtained by the Tracking blocks.
 
 Some Matlab/Octave plotting script examples are available from
-[src/utils/matlab](https://github.com/gnss-sdr/gnss-sdr/tree/master/src/utils/matlab).
+[src/utils/matlab](https://github.com/gnss-sdr/gnss-sdr/tree/main/src/utils/matlab).
 For instance, the
-[`dll_pll_veml_plot_sample.m`](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/utils/matlab/dll_pll_veml_plot_sample.m)
+[`dll_pll_veml_plot_sample.m`](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/utils/matlab/dll_pll_veml_plot_sample.m)
 script just requires the modification of the `samplingFreq`, `channels`,
 `tracking_log_path`, and `path` variables to get a set of figures with the main
 tracking results for each channel.
