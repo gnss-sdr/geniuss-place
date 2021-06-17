@@ -87,8 +87,8 @@ The transition policy is as follows:
 - A copy of the branch formerly known as "master" will be kept in the repository
   (although it will not be the default branch name anymore and will not receive
   further updates) until the forthcoming release of GNSS-SDR v0.0.15. Once
-  v0.0.15 is released, the "master" branch name will be deleted from the
-  upstream repository.
+  v0.0.15 is released, the "master" branch will be deleted from the upstream
+  repository.
 
 We are aware that this change could require modifications in your scripts
 involving the upstream GNSS-SDR repository (although if you are using the `next`
