@@ -1,4 +1,4 @@
----
+gnss-sdr/blob/main---
 title: "How to contribute"
 permalink: /contribute/
 excerpt: "Contributing to the GNSS-SDR source code and to this website."
@@ -74,7 +74,7 @@ switch to the branch where your contributions are, and click the **Pull
 Request** button.
 
 More details are available in the
-[CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md)
+[CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/CONTRIBUTING.md)
 file.
 
 Before start working in GNSS-SDR source code, especially if you want to

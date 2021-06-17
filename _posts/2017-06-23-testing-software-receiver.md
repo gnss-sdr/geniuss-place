@@ -143,7 +143,7 @@ very welcome and greatly appreciated since all of them point towards improved
 quality, no matter the step size. More details on the _howtos_ in the context of
 GNSS-SDR are available in our [Git tutorial]({{ "/docs/tutorials/using-git/" |
 relative_url }}) and in the
-[CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/master/CONTRIBUTING.md)
+[CONTRIBUTING.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/CONTRIBUTING.md)
 file.
 
 &nbsp;

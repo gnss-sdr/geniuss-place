@@ -116,7 +116,7 @@ initialization of the non-local objects with static storage duration. It is the
 designated entry point to a program that is executed in a hosted environment
 (that is, with an operating system). An excerpt of such `main` method (its
 actual implementation is at
-[gnss-sdr/src/main/main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/master/src/main/main.cc))
+[gnss-sdr/src/main/main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/main/main.cc))
 is as follows:
 
 ```cpp
