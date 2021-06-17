@@ -1,4 +1,4 @@
-gnss-sdr/blob/main---
+---
 title: "How to contribute"
 permalink: /contribute/
 excerpt: "Contributing to the GNSS-SDR source code and to this website."
