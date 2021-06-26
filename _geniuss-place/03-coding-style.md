@@ -1074,13 +1074,13 @@ $ brew install clang-format
 
   * **In macOS using Macports:**
 ```console
-$ sudo port install clang-11
+$ sudo port install clang-12
 ```
   NOTE: You can see all available choices with `port select --list` for clang:
     ```console
 $ port select --list clang
 Available versions for clang:
-	mp-clang-11
+	mp-clang-12
 	none (active)
     ```
     {: class="no-copy"}
@@ -1088,14 +1088,14 @@ Available versions for clang:
   new default, which will create symlinks in `/opt/local/bin` without the
   version suffix.
     ```console
-$ sudo port select --set clang mp-clang-11
-selecting 'mp-clang-11' for 'clang' succeeded. 'mp-clang-11' is now active.
+$ sudo port select --set clang mp-clang-12
+selecting 'mp-clang-12' for 'clang' succeeded. 'mp-clang-12' is now active.
     ```
     {: class="no-copy"}
   You can confirm this change by looking at the version of the tool:
     ```console
 $ clang-format --version
-clang-format version 11.0.0
+clang-format version 12.0.0
     ```
     {: class="no-copy"}
   If you later wish to remove these symlinks in order to avoid hiding tools
@@ -1216,13 +1216,13 @@ $ sudo zypper -n install llvm-clang
 ```console
 $ brew install llvm
 $ ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin
-$ ln -s /usr/local/Cellar/llvm/11.*/bin/clang-apply-replacements /usr/local/bin
-$ ln -s /usr/local/Cellar/llvm/11.*/share/clang/run-clang-tidy.py /usr/local/bin
+$ ln -s /usr/local/Cellar/llvm/12.*/bin/clang-apply-replacements /usr/local/bin
+$ ln -s /usr/local/Cellar/llvm/12.*/share/clang/run-clang-tidy.py /usr/local/bin
 ```
 
 * **In macOS using Macports:**
 ```console
-$ sudo port install clang-11
+$ sudo port install clang-12
 ```
 
 **Step 2.- Apply clang-tidy**
