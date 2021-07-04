@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2021-03-02T02:11:02+02:00
+last_modified_at: 2021-07-04T02:11:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function
@@ -182,6 +182,13 @@ completely self-contained toolchain that allows you to cross-develop on the host
 machine for the target hardware. The generated script will be found under
 `./tmp-glibc/deploy/sdk/`.
 
+For building an image with the [Xfce](https://www.xfce.org/) desktop environment
+and `gnss-sdr` already included:
+
+```console
+$ bitbake gnss-sdr-demo-image
+```
+
 If you are using Rocko or above, you can create a Docker image of the target
 environment by doing:
 
@@ -241,21 +248,21 @@ $ sh ./geniux-x86_64-gnss-sdr-dev-image-zedboard-zynq7-toolchain-rocko-21.02.0.s
 
 This will ask you what directory to install the SDK into. Which directory does
 not matter, just make sure wherever it goes that you have enough disk space. The
-default is `/usr/local`.
+default is `/usr/local/oecore-x86_64/`.
 
-The SDK comes with everything you need to build GNSS-SDR. The main contents it
-has are:
+The SDK comes with everything you need to build GNSS-SDR. Its main contents are:
 
-* An "`environment-setup-...`" script that sets up our environmental variables,
-like editing PATH, CC, CXX, etc.
+* An "`environment-setup-...`" script that sets up all the required
+  environmental variables, like editing PATH, CC, CXX, etc.
 * Two sysroots; one for the host machine and one for the target device
-(installed by default at `/usr/local/oecore-x86_64/sysroots/`).
+  (both installed by default at `/usr/local/oecore-x86_64/sysroots/`).
 
 ### Setting up the cross-compiling environment
-Running the environment script will set up most of the variables you'll need to
-compile. You will need to do this each time you want to run the SDK (and since
-the environment variables are only set for the current shell, you need to source
-it for every console you will run the SDK from):
+
+Running the environment script will set up all the variables needed for
+cross-compiling. You will need to do this each time you want to run the SDK (and
+since the environment variables are only set for the current shell, you need to
+source it for every console you run the SDK from):
 
 ```console
 $ . /usr/local/oecore-x86_64/environment-setup-armv7ahf-neon-geniux-linux-gnueabi
@@ -281,7 +288,7 @@ all links and references within the file system will be based on this prefix,
 but it is obviously not where we want to install these files on our own host
 system. Instead, we use the `make` program's `DESTDIR` directive. On the device
 itself, however, the file system would have this installed onto `/usr`, which
-means all our links and references are correct as far as the device is
+means all the links and references are correct as far as the device is
 concerned.
 
 
@@ -299,7 +306,8 @@ $ tar -xvzf gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz -C my
 $ sudo dd status=progress bs=4M if=myimage of=/dev/sdX
 ```
 
-where `/dev/sdX` is the device the card is mounted as. This works, but can be slow.
+where `/dev/sdX` is the device the card is mounted at. This works, but can be
+slow.
 
 ### Using `bmaptool`
 
