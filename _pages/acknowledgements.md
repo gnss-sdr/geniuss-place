@@ -35,6 +35,12 @@ and open-source GNSS software-defined receiver:
 
 ## Public Research Funds
 
+* Support from the European Union through European Regional Development Fund (ERDF).
+
+  ![ERDF logo]({{ "/assets/images/logo-eu.png" | relative_url }}){:width="215px"} ![ERDF logo]({{ "/assets/images/logo-feder.png" | relative_url }}){:width="300px"}
+  {: style="text-align: center;"}
+
+
 * Support from the Spanish Ministry of Science, Innovation, and Universities.
 
   ![ARISTIDES logo]({{ "/assets/images/logo-aristides.png" | relative_url }}){:width="400px" .invert-colors}
