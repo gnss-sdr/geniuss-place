@@ -53,9 +53,9 @@ and open-source GNSS software-defined receiver:
   {: style="text-align: center;"}
 
   GNSS-SDR Continuous Integration system is run in a hardware infrastructure
-  (servers, network storage) partially provided by ERDF through Project 5G-Lab
-  (Ministerio de Ciencia, Innovaci&oacute;n y Universidades, no.
-  EQC2018-005257-P). Nov. 2018 - Mar. 2021.
+  (servers, network storage) partially provided by ERDF through Project
+  [5G-Lab](http://www.cttc.es/project/5g-lab/) (Spanish Ministry of Science,
+  Innovation, and Universities, Ref. EQC2018-005257-P). Nov. 2018 - Mar. 2021.
   {: .notice--success}
 
 * Support of Research Groups by the Government of Catalonia.
