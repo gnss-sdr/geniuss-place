@@ -40,9 +40,9 @@ According to the name and the quality of the theme this website is based upon, a
 
 - [Jekyll](https://jekyllrb.com/)
 - [jQuery](https://jquery.com/)
-- [Susy](http://oddbird.net/susy/)
+- [Susy](https://oddbird.net/susy/)
 - [Breakpoint](http://breakpoint-sass.com/)
-- [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/)
+- [Magnific Popup](https://dimsemenov.com/plugins/magnific-popup/)
 - [FitVids.JS](http://fitvidsjs.com/)
 - [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
 - [Gumshoe](https://github.com/cferdinandi/gumshoe)
@@ -101,13 +101,13 @@ Copyright &copy; 2012, Carlos Paniego. All rights reserved.
 
 This work incorporates [Font Awesome](https://fontawesome.com/),
 Copyright &copy; 2017 Dave Gandy.
-Font Awesome is distributed under the terms of the [SIL OFL 1.1](http://scripts.sil.org/OFL) and [MIT License](https://opensource.org/licenses/MIT).
+Font Awesome is distributed under the terms of the [SIL OFL 1.1](https://scripts.sil.org/OFL) and [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [Academicons](https://jpswalsh.github.io/academicons/),
 Copyright &copy; 2017 James Walsh.
-Academicons is distributed under the terms of the [SIL OFL 1.1](http://scripts.sil.org/OFL) and [MIT License](https://opensource.org/licenses/MIT).
+Academicons is distributed under the terms of the [SIL OFL 1.1](https://scripts.sil.org/OFL) and [MIT License](https://opensource.org/licenses/MIT).
 
-This work incorporates [Susy](http://oddbird.net/susy/),
+This work incorporates [Susy](https://oddbird.net/susy/),
 Copyright &copy; 2017, Miriam Eric Suzanne.
 Susy is distributed under the terms of the [BSD 3-clause "New" or "Revised" License](https://opensource.org/licenses/BSD-3-Clause).
 
@@ -118,21 +118,21 @@ This work incorporates [FitVids.js](https://github.com/davatron5000/FitVids.js/)
 Copyright &copy; 2013 Dave Rubert and Chris Coyier.
 FitVids is distributed under the terms of the [WTFPL License](http://www.wtfpl.net/).
 
-This work incorporates [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/),
-Copyright &copy; 2014-2016 Dmitry Semenov, http://dimsemenov.com.
+This work incorporates [Magnific Popup](https://dimsemenov.com/plugins/magnific-popup/),
+Copyright &copy; 2014-2016 Dmitry Semenov, https://dimsemenov.com/.
 Magnific Popup is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-This work incorporates [Smooth Scroll](http://github.com/cferdinandi/smooth-scroll),
+This work incorporates [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll),
 Copyright &copy; 2020 Chris Ferdinandi.
 Smooth Scroll is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-This work incorporates [Gumshoe](http://github.com/cferdinandi/gumshoe),
+This work incorporates [Gumshoe](https://github.com/cferdinandi/gumshoe),
 Copyright &copy; 2016 Chris Ferdinandi.
 Gumshoe is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [jQuery throttle / debounce](http://benalman.com/projects/jquery-throttle-debounce-plugin/),
 Copyright &copy; 2010 "Cowboy" Ben Alman.
-jQuery throttle / debounce is distributed under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+jQuery throttle / debounce is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 This work incorporates [GreedyNav.js](https://github.com/lukejacksonn/GreedyNav),
 Copyright &copy; 2015 Luke Jackson.
