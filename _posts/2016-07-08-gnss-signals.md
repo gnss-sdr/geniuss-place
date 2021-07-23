@@ -12,7 +12,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2021-01-11T09:37:02+02:00
+last_modified_at: 2021-07-23T09:37:02+02:00
 ---
 
 
@@ -840,21 +840,21 @@ The following table lists the GNSS signals providing Open Service.
 |  **GNSS Signal**  |  **Center Freq.** |  **Modulation** |
 |:-:|:-:|:-:|    
 |--------------
-| [**GPS L5**](https://www.gps.gov/technical/icwg/IS-GPS-705G.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
+| [**GPS L5**](https://www.gps.gov/technical/icwg/IS-GPS-705H.pdf)$$ ^{(*)} $$ | $$ 1176.45 $$ MHz  |  BPSK(10)  |
 | [**Galileo E5a**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf) | $$ 1176.45 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(**)} $$   | $$ 1176.45 $$ MHz |  BPSK(10)   |
 | [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1202.025 $$ MHz |  BPSK(10)  |
 | [**Galileo E5b**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf) | $$ 1207.14 $$ MHz  |  QPSK(10)  |
 | [**BeiDou B2I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf) |  $$ 1207.14 $$ MHz  | BPSK(2) |
-| [**GPS L2C**](https://www.gps.gov/technical/icwg/IS-GPS-200L.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
+| [**GPS L2C**](https://www.gps.gov/technical/icwg/IS-GPS-200M.pdf)$$ ^{(*)} $$   | $$ 1227.60 $$ MHz  |  BPSK(1)   |
 | [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1246.00 $$ MHz  |  BPSK(0.5) |
 | [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$  | $$ 1248.06 $$ MHz  |  BOC(1,1)  |
 | [**BeiDou B3I**](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf)$$ ^{(*)} $$  | $$ 1268.520 $$ MHz | BPSK(10) |
 | [**Galileo E6B**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf)$$ ^{(**)} $$ | $$ 1278.750 $$ MHz | BPSK(5) |
 | [**BeiDou B1I**](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/201902/P020190227601370045731.pdf) | $$ 1561.098 $$ MHz | BPSK(2) |
 | [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$  | $$ 1575.42 $$ MHz | BOC(1,1) |
-| [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IS-GPS-200L.pdf) | $$ 1575.42 $$ MHz  |  BPSK(1)   |
-| [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800G.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
+| [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IS-GPS-200M.pdf) | $$ 1575.42 $$ MHz  |  BPSK(1)   |
+| [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800H.pdf)$$ ^{(**)} $$ | $$ 1575.42 $$ MHz  |  BOC(1,1)  |
 | [**Galileo E1b/c**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf) | $$ 1575.42 $$ MHz  |  CBOC(6,1,1/11) |
 | [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$   | $$ 1600.995 $$ MHz | BOC(1,1) |
 | [**GLONASS L1OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)  | $$ 1602.00 $$ MHz | BPSK(0.5) |
@@ -877,11 +877,11 @@ The following table lists the GNSS signals providing Open Service.
 
 [^GPS-PPS]: U.S. Government, Department of Defense, Positioning, Navigation, and Timing Executive Committee, [Global Positioning System Precise Positioning Service Performance Standard](https://www.gps.gov/technical/ps/2007-PPS-performance-standard.pdf), 1st edition, Feb. 2007.
 
-[^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200L: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200L.pdf), May 2020.
+[^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200M: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200M.pdf), May 2021.
 
-[^ISGPS800]: Global Positioning System Directorate, [Interface Specification IS-GPS-800G: Navstar GPS Space Segment/User Segment L1C Interface](https://www.gps.gov/technical/icwg/IS-GPS-800G.pdf), May 2020.
+[^ISGPS800]: Global Positioning System Directorate, [Interface Specification IS-GPS-800H: Navstar GPS Space Segment/User Segment L1C Interface](https://www.gps.gov/technical/icwg/IS-GPS-800H.pdf), May 2021.
 
-[^ISGPS705]: Global Positioning System Directorate, [Interface Specification IS-GPS-705G: Navstar GPS Space Segment/User Segment L5 Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-705G.pdf), May 2020.
+[^ISGPS705]: Global Positioning System Directorate, [Interface Specification IS-GPS-705H: Navstar GPS Space Segment/User Segment L5 Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-705H.pdf), May 2021.
 
 [^GLONASS08]: Global Navigation Satellite System GLONASS. [Interface Control Document. Navigational radiosignal in bands L1, L2](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf). Edition 5.1, Moscow, Russia, 2008.
 
