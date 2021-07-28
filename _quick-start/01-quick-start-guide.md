@@ -19,7 +19,7 @@ The name is not a bragging display of creativity:
   signals transmitted by satellites, world-wide. The obvious example is
   [GPS](https://www.gps.gov/), but this term also includes other systems such as
   [GLONASS](https://www.glonass-iac.ru/en/),
-  [Galileo](https://ec.europa.eu/growth/sectors/space/galileo/), and
+  [Galileo](https://www.gsc-europa.eu/galileo/what-is-galileo), and
   [BeiDou](http://en.beidou.gov.cn/).
 
 - **SDR:** **S**oftware **D**efined **R**eceiver. We play a little trick here,
