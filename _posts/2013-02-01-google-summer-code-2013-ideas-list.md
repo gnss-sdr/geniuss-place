@@ -174,7 +174,7 @@ Finally, remember that if you are interested in contributing to the GNSS-SDR pro
 
 ## References
 
-[^1]: Galileo Joint Undertaking, "[Galileo Open Service. Signal In Space Interface Control Document (OS SIS ICD)](https://ec.europa.eu/growth/sectors/space/galileo_en)", Tech. rep., European Space Agency / European GNSS Supervisory Authority, September 2010.
+[^1]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021.
 
 [^2]: European Commission Directorate-General for Energy, and Transport, "[EGNOS Service Definition Document: Open Service EGN-SDD OS V1.0](https://egnos-user-support.essp-sas.eu/new_egnos_ops/documents/egnos-sdd/egnos-open-service-sdd)", Tech. rep., 2009.
 
