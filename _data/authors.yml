@@ -8,6 +8,7 @@ Carles Fernandez:
   location    :
   email       : carles.fernandez@cttc.cat
   uri         : "http://www.cttc.es/people/cfernandez/"
+  home        : "http://www.cttc.es/people/cfernandez/"
   linkedin    : "carlesfernandez"
   twitter     : "FernandezPrades"
   orcid       : "0000-0002-9201-7007"
@@ -29,6 +30,7 @@ Ignacio Paniego:
 Javier Arribas:
   name        : "Javier Arribas"
   uri         : "http://www.cttc.es/people/jarribas/"
+  home        : "http://www.cttc.es/people/jarribas/"
   email       : "javier.arribas@cttc.es"
   bio         : "Senior Researcher<br/>CTTC"
   avatar      : "/assets/images/javier.jpg"
@@ -43,6 +45,7 @@ Javier Arribas:
 Pau Closas:
   name        : "Pau Closas"
   uri         : "https://coe.northeastern.edu/people/closas-pau/"
+  home        : "https://coe.northeastern.edu/people/closas-pau/"
   email       : "pau.closas@northeastern.edu"
   bio         : "Assistant Professor<br/>Northeastern University"
   avatar      : "/assets/images/pau.jpg"
@@ -67,6 +70,7 @@ Luis Esteve:
 Jordi Vila:
   name        : "Jordi Vil&agrave;-Valls"
   uri         : "https://jordivilavalls.wordpress.com"
+  home        : "https://jordivilavalls.wordpress.com"
   email       : "jordi.vila-valls@isae-supaero.fr"
   bio         : "Associate Professor<br/>ISAE-SUPAERO"
   avatar      : "/assets/images/Jordi.jpg"
@@ -95,6 +99,7 @@ Antonio Ramos:
 Marc Majoral:
   name        : "Marc Majoral"
   uri         : "http://www.cttc.es/people/mmajoral/"
+  home        : "http://www.cttc.es/people/mmajoral/"
   email       : "marc.majoral@cttc.cat"
   bio         : "Senior Researcher<br/>CTTC"
   avatar      : "/assets/images/mmajoral.jpg"
@@ -109,6 +114,7 @@ Marc Majoral:
 Alvaro Cebrian:
   name        : "&Aacute;lvaro Cebri&aacute;n Juan"
   uri         : "http://www.cttc.es/people/acebrian/"
+  home        : "http://www.cttc.es/people/acebrian/"
   email       : "alvaro.cebrian@cttc.es"
   bio         : "Research Assistant<br/>CTTC"
   avatar      : "/assets/images/acebrian.jpg"
