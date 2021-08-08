@@ -217,12 +217,12 @@ USRP product line spans from affordable hobbyist SDRs to high-end high-bandwidth
 radios. All USRPs can be used by GNSS-SDR through the USRP Hardware Driver
 ([UHD](https://files.ettus.com/manual/)).
 
-* **Fairwaves [UmTRX](https://umtrx.org/)** is an open hardware dual-channel
-wideband transceiver that covers from 300 MHz to 3.8 GHz with a maximum RF
-bandwidth of 28 MHz, delivering 12-bit quadrature samples up to 40 MS/s, and it
-is able to operate at industrial temperature ranges. Host connection is via
-Gigabit Ethernet, and a special version of UHD provides a host driver, along
-with the firmware.
+* **Fairwaves [UmTRX](https://osmocom.org/projects/umtrx/wiki/UmTRX)** is an
+open hardware dual-channel wideband transceiver that covers from 300 MHz to 3.8
+GHz with a maximum RF bandwidth of 28 MHz, delivering 12-bit quadrature samples
+up to 40 MS/s, and it is able to operate at industrial temperature ranges. Host
+connection is via Gigabit Ethernet, and a special version of UHD provides a host
+driver, along with the firmware.
 
 * **Great Scott Gadgets [HackRF One](https://greatscottgadgets.com/hackrf/)**
 is an open-source hardware platform for Software Defined Radio that can operate
