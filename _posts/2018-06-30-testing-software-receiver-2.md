@@ -14,7 +14,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2020-11-07T11:37:02+02:00
+last_modified_at: 2021-08-11T11:37:02+02:00
 ---
 
 [Testability]({{ "/design-forces/testability/" | relative_url }}) is an
@@ -724,6 +724,7 @@ command-line flags:
 | `--static_position` | `30.286502,120.032669,100` | Static receiver position [lat,log,height] |
 | `--disable_generator` | `false` | If set to `true`, it disables the signal generator (so an external raw signal file must be available for the test). |
 | `--duration` | `100` | Duration of the experiment [in seconds, max = $$ 300 $$]. |
+| `--num_channels` | `11` | Number of channels in the default configuration. |
 | `--config_file_ptest` | empty | File containing the configuration parameters for the position test. |
 | `--static_scenario` | `true` | Compute figures of merit for static user position (DRMS, CEP, etc.). |
 | `--use_ref_motion_file` | `false` | Enable or disable the use of a reference file containing the true receiver position, velocity, and acceleration. |
