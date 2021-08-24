@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2021-07-04T02:11:02+02:00
+last_modified_at: 2021-08-24T02:11:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function
@@ -320,6 +320,19 @@ $ sudo python setup.py install
 $ sudo bmaptool copy gnss-sdr-dev-image-zedboard-zynq7-20170103150322.rootfs.tar.gz /dev/sdX --nobmap
 ```
 
+Starting from Zeus v21.08, it is possible to flash bootable images from
+`*.rootfs.wic.xz` and `*.rootfs.wic.bmap` files:
+
+```console
+$ sudo bmaptool copy gnss-sdr-demo-image-zedboard-zynq7-20170103150322.rootfs.wic.xz \
+  --bmap gnss-sdr-demo-image-zedboard-zynq7-20170103150322.rootfs.wic.bmap \
+  /dev/sdX
+```
+
+For `*.rootfs.wic.xz` files, another interesting choice for flashing images is
+[Balena Etcher](https://www.balena.io/etcher/), a tool that works in GNU/Linux,
+Microsoft Windows and macOS.
+
 ### Copying only the sysroot to the SD card using `cp`
 
 For systems with a dedicated u-boot, devicetree and Kernel, it is possible to
@@ -368,6 +381,14 @@ in order to install the GNSS-SDR binary directly in your device. To unmount:
 ```console
 $ fusermount -u ~/mydevice
 ```
+
+
+## Disclaimer
+
+Yocto Project and all related marks and logos are trademarks of The Linux
+Foundation. This website is not, in any way, endorsed by the Yocto Project or
+[The Linux Foundation](https://linuxfoundation.org/).
+
 
 References
 --------
