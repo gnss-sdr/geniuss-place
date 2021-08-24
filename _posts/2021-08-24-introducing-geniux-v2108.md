@@ -323,6 +323,7 @@ You can replace `21.08` by `latest` in order to get the latest developments.
   * Development tools: Automake v1.16.1, CMake v3.14.1, GCC v8.3.0
     (+&nbsp;libgfortran), make v4.2.1, ninja v1.9.0, Python v2.7.18 and v3.7.7.
   * Goodies for signal processing:
+    - GNSS-SDR v0.0.15.
     - SDR framework: GNU Radio v3.8.2.0.
     - Number crunching libraries: Armadillo v10.5.0, FFTW v3.3.9, Lapack v3.7.0,
       VOLK v2.3.0.
@@ -371,6 +372,7 @@ You can replace `21.08` by `latest` in order to get the latest developments.
   * Development tools: Automake v1.16.1, CMake v3.15.3, GCC v9.2.0
     (+&nbsp;libgfortran), make v4.2.1, ninja v1.9.0, Python v2.7.18 and v3.7.8.
   * Goodies for signal processing:
+    - GNSS-SDR v0.0.15.
     - SDR framework: GNU Radio v3.8.2.0.
     - Number crunching libraries: Armadillo v10.5.0, FFTW v3.3.9, Lapack v3.7.0,
       VOLK v2.3.0.
@@ -420,6 +422,7 @@ You can replace `21.08` by `latest` in order to get the latest developments.
   * Development tools: Automake v1.16.1, CMake v3.16.5, GCC v9.3.0
     (+&nbsp;libgfortran), make v4.3, ninja v1.10.0, Python v3.8.11.
   * Goodies for signal processing:
+    - GNSS-SDR v0.0.15.
     - SDR framework: GNU Radio v3.8.2.0.
     - Number crunching libraries: Armadillo v10.5.0, FFTW v3.3.9, Lapack v3.7.0,
       VOLK v2.4.1.
@@ -468,6 +471,7 @@ You can replace `21.08` by `latest` in order to get the latest developments.
   * Development tools: Automake v1.16.2, CMake v3.18.2, GCC v10.2.0
     (+&nbsp;libgfortran), make v4.3, ninja v1.10.1, Python v3.8.5.
   * Goodies for signal processing:
+    - GNSS-SDR v0.0.15.
     - SDR framework: GNU Radio v3.8.2+.
     - Number crunching libraries: Armadillo v10.5.0, FFTW v3.3.9, Lapack v3.9.0,
       VOLK v2.4.1.
@@ -520,6 +524,7 @@ You can replace `21.08` by `latest` in order to get the latest developments.
   * Development tools: Automake v1.16.3, CMake v3.19.5, GCC v10.2.0
     (+&nbsp;libgfortran), make v4.3, ninja v1.10.2, Python v3.9.5.
   * Goodies for signal processing:
+    - GNSS-SDR v0.0.15.
     - SDR framework: GNU Radio v3.9.2.0.
     - Number crunching libraries: Armadillo v10.5.0, FFTW v3.3.9, Lapack v3.9.0,
       VOLK v2.5.0.
