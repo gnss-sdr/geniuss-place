@@ -136,7 +136,7 @@ below:
   properly for other values than 1.
 
 
------[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5242839.svg)](https://doi.org/10.5281/zenodo.5242839)
+-----
 
 
 As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.15) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
