@@ -71,8 +71,7 @@ For more details, please check [how to configure multiple signal sources]({{ "do
 **NOTE**: This parameter is equivalent to the former parameter
 `Receiver.sources_count`. The old name is still read to ensure backward
 compatibility with configuration files using that nomenclature. The new name
-`GNSS-SDR.num_sources` is used in the `next` branch of the upstream repository
-and will be present in the next stable release.
+`GNSS-SDR.num_sources` is used since GNSS-SDR v.0.0.15.
 {: .notice--warning }
 
 ## Internal observables processing rate
@@ -92,12 +91,8 @@ Example in the configuration file:
 GNSS-SDR.observable_interval_ms=10
 ```
 
-**NOTE**: This parameter is only available from the `next` branch of the
-upstream repository, and it will be present in the next stable release.
-{: .notice--warning }
 
 ## Telecommand via TCP/IP
-
 
 The user can access the receiver interactive interface by connecting a TCP/IP
 client (_e.g._, with a telnet client) to the TCP port specified in the
@@ -150,7 +145,7 @@ The following commands are implemented in GNSS-SDR's telecommand interface:
 | `standby` |  `OK` / `ERROR` | Stops all the acquisition and tracking operations and sets the receiver in the standby state. The front-end will continue delivering samples to the receiver but no signal processing will be done. Obviously, all the tracked satellites will be lost, but the received satellite telemetry (_e.g._ ephemeris data) and the last PVT state will be kept. NOTE: It is possible to specify an option in the configuration file to start the receiver already in the standby state, ready to receive start commands. |
 | `coldstart` |  `OK` / `ERROR` | Performs a receiver cold start. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search for all the satellites in all the signals configured in the configuration file. |
 | `warmstart`&nbsp;`dd/mm/yyyy`&nbsp;`HH:MM:SS`&nbsp;`Lat Long Height` |  `OK` / `ERROR`  | Performs an assisted acquisition receiver start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will read the ephemeris and the almanac assistance data from the [XML files specified in the configuration file](#axml), and the last valid PVT information to predict the visible satellites and coarse estimations of their Doppler rates. |
-| `hotstart dd/mm/yyyy HH:MM:SS Lat Long Height` |  `OK` / `ERROR`   | Performs a receiver hot start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search first for the last set of in-view satellites  according to the stored ephemeris, almanac, and the predicted visible satellites based on the last valid PVT. |
+| `hotstart dd/mm/yyyy HH:MM:SS Lat Long Height` | `OK` / `ERROR` | Performs a receiver hot start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search first for the last set of in-view satellites  according to the stored ephemeris, almanac, and the predicted visible satellites based on the last valid PVT. |
 | `status` |  Summary of current receiver status: individual channel status and PVT status.  | This command prints a summary of the current receiver status intended for debugging and system testing purposes only. The user should monitor the RTCM and NMEA streams for detailed and synchronized receiver data, which are the primary receiver standard data interfaces. |
 | `exit` |  `OK`  | Closes the telecommand connection. |
 |--------------

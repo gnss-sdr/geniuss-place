@@ -9,7 +9,7 @@ tags:
 author_profile: false
 sidebar:
   nav: "news"
-last_modified_at: 2021-06-17T12:08:02+02:00
+last_modified_at: 2021-08-23T12:08:02+02:00
 ---
 
 ![Master to main transition]({{ "/assets/images/master-to-main.png" | relative_url }}){: .align-center}
@@ -89,6 +89,11 @@ The transition policy is as follows:
   further updates) until the forthcoming release of GNSS-SDR v0.0.15. Once
   v0.0.15 is released, the "master" branch will be deleted from the upstream
   repository.
+
+  **Update**: the "master" branch was removed from the upstream repository on
+  August 23rd, 2021, with the release of GNSS-SDR v0.0.15.
+  {: .notice--info}
+
 
 We are aware that this change could require modifications in your scripts
 involving the upstream GNSS-SDR repository (although if you are using the `next`
