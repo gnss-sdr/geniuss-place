@@ -135,6 +135,7 @@ Acquisition_1C.item_type=gr_complex
 Acquisition_1C.pfa=0.01
 Acquisition_1C.doppler_max=10000
 Acquisition_1C.doppler_step=250
+Acquisition_1C.blocking=true
 
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
