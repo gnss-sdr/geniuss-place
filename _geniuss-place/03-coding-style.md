@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2021-01-27T03:20:02+02:00
+last_modified_at: 2021-09-08T03:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -1235,7 +1235,7 @@ switching to clang), write:
 ```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
-$ make volk_gnsssdr_module core_monitor pvt_libs
+$ make volk_gnsssdr_module core_monitor core_libs pvt_libs
 ```
 
 (pointing `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` to the actual location of
@@ -1243,10 +1243,10 @@ the clang binaries in your machine). The first command line will create a file
 named `compile_commands.json` in your build folder containing the exact compiler
 calls for all translation units of the project in machine-readable form. Then,
 you need to build some libraries (_i.e._, `volk_gnsssdr_module`, `core_monitor`,
-and `pvt_libs`) that require some building steps not supported by clang-tidy.
-After that, you can use the `run-clang-tidy` script (called `run-clang-tidy.py`
-in some platforms) to perform the project default checks over all files in the
-compilation database:
+`core_libs`, and `pvt_libs`) that require some building steps not supported by
+clang-tidy. After that, you can use the `run-clang-tidy` script (called
+`run-clang-tidy.py` in some platforms) to perform the project default checks
+over all files in the compilation database:
 
 ```console
 $ run-clang-tidy -fix
@@ -1264,7 +1264,7 @@ activating the building option `ENABLE_CLANG_TIDY`:
 ```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang \
-$ make volk_gnsssdr_module core_monitor pvt_libs        
+$ make volk_gnsssdr_module core_monitor core_libs pvt_libs
 $ cmake -DENABLE_CLANG_TIDY=ON ..
 $ make  
 ```
@@ -1280,14 +1280,14 @@ With clang and clang-tidy already installed, please do:
 ```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang ..
-$ make volk_gnsssdr_module core_monitor pvt_libs
+$ make volk_gnsssdr_module core_monitor core_libs pvt_libs
 $ run-clang-tidy -fix
 ```
 or
 ```console
 $ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
         -DCMAKE_C_COMPILER=/usr/bin/clang \
-$ make volk_gnsssdr_module core_monitor pvt_libs        
+$ make volk_gnsssdr_module core_monitor core_libs pvt_libs
 $ cmake -DENABLE_CLANG_TIDY=ON ..
 $ make   
 ```

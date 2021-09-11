@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-04-19T10:54:02+02:00
+last_modified_at: 2021-09-08T10:54:02+02:00
 ---
 
 
@@ -479,3 +479,54 @@ TelemetryDecoder_XX.dump_filename=nav_data
 TelemetryDecoder_XX.dump_mat=false
 ```
 so files will be named  `nav_data0.dat`, `nav_data1.dat`, etc.
+
+
+## Retrieving decoded navigation messages
+
+Retrieving the decoded bits of the navigation message (that is, the navigation
+data bits after all the required decoding mechanisms, including deinterleaving,
+FEC decoding, etc.), so they appear as described in their corresponding ICDs, is
+an interesting feature for educational and research purposes. To this end, there
+is a Navigation Data monitor that is able to forward decoded navigation
+messages to any IP addresses via UDP. In order to enable this option, all you
+need to do is including these three lines in your configuration file:
+
+```ini
+NavDataMonitor.enable_monitor=true
+NavDataMonitor.client_addresses=127.0.0.1  ; destination IP
+NavDataMonitor.port=1237                   ; destination port
+```
+
+where `127.0.0.1` is your desired destination IP and `1237` is your desired
+destination IP port (those are the default values). You can specify multiple
+destination addresses, separated by underscores:
+
+```ini
+NavDataMonitor.client_addresses=79.154.253.31_79.154.253.32
+```
+
+This applies to all existing Telemetry Decoder implementations.
+
+Then, you need a listener application running at the destination address. All
+you need for developing your own listener application is the
+[nav_message.proto](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/nav_message.proto)
+file, which you are free to copy and use according to its [3-Clause
+BSD](https://opensource.org/licenses/BSD-3-Clause) license, the [Protocol
+Buffers](https://developers.google.com/protocol-buffers) library, also with a
+similar
+[license](https://github.com/protocolbuffers/protobuf/blob/master/LICENSE), and
+a library to handle UDP/IP communications.
+
+The Protocol Buffers library allows to write listener applications in a wide
+range of programming languages. A very simple example written in C++ (an
+application that listens to a given port and dumps the retrieved messages in the
+terminal) using the `nav_message.proto` file is provided
+[here](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/nav-listener/).
+This example uses the [Boost libraries](https://www.boost.org/) to handle UDP
+communications with [Boost
+Asio](https://www.boost.org/doc/libs/1_77_0/doc/html/boost_asio.html).
+
+This feature is only present in the [`next` branch of the upstream
+repository](https://github.com/gnss-sdr/gnss-sdr/tree/next), and will be
+available in the next stable release.
+{: .notice--warning}
