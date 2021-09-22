@@ -418,7 +418,7 @@ s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t) - e_{E6C}(t)\rig
 \end{equation} $$
 
 $$ \begin{equation}
-e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{HAS}} \Big[ [l]_{5115}\Big] \oplus C_{E6B}\Big[|l|_{5115}\Big] \cdot p(t - lT_{c,E6B})~,
+e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{HAS}} \Big[ [m]_{5115}\Big] \oplus C_{E6B}\Big[|m|_{5115}\Big] \cdot p(t - mT_{c,E6B})~,
 \end{equation} $$
 
 $$ \!\!\!\!\!\!\!\!\!\begin{equation}
