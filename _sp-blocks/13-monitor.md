@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-02-28T15:54:02-04:00
+last_modified_at: 2021-09-28T15:54:02-04:00
 ---
 
 
@@ -116,6 +116,7 @@ Decoder]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) block.
 |--------------
 | `Flag_valid_word` | `bool` | Indicates the validity of the decoded word for pseudorange computation. |
 | `TOW_at_current_symbol_ms` | `uint32_t` | Time of week of the current symbol, in [ms]. |
+| `Flag_PLL_180_deg_phase_locked` | `bool` | Indicates if the PLL got locked at 180 degrees, so the symbol sign is reversed. <span style="color: orange">NOTE: This parameter is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> |
 |----------
 
 ### Observables
