@@ -1215,9 +1215,9 @@ $ sudo zypper -n install llvm-clang
 * **In macOS using Homebrew:**
 ```console
 $ brew install llvm
-$ ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin
-$ ln -s /usr/local/Cellar/llvm/12.*/bin/clang-apply-replacements /usr/local/bin
-$ ln -s /usr/local/Cellar/llvm/12.*/share/clang/run-clang-tidy.py /usr/local/bin
+$ ln -s $(brew --prefix llvm)/bin/clang-tidy /usr/local/bin /usr/local/bin
+$ ln -s $(brew --prefix llvm)/bin/clang-apply-replacements /usr/local/bin
+$ ln -s $(brew --prefix llvm)/bin/run-clang-tidy /usr/local/bin
 ```
 
 * **In macOS using Macports:**
