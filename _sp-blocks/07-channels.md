@@ -81,7 +81,7 @@ Then, each type of defined channel requires the configuration of:
 targeting the desired signal type, in charge of the detection of signals coming
 from a given GNSS satellite and, in the case of a positive detection, to provide
 coarse estimations of the code phase $$ \hat{\tau} $$ and the Doppler shift
-$$ \hat{f}_{\!\!d} $$,
+$$ \hat{f}_{d} $$,
 * [_Tracking_]({{ "/docs/sp-blocks/tracking/" | relative_url }}) blocks
 targeting the desired signal type, in charge of following the evolution of the
 signal synchronization parameters: code phase $$ \tau(t) $$, Doppler shift
