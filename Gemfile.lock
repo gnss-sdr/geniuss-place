@@ -50,7 +50,7 @@ GEM
     ffi (1.15.4-x64-mingw32)
     forwardable-extended (2.6.0)
     gemoji (3.0.1)
-    github-pages (222)
+    github-pages (223)
       github-pages-health-check (= 1.17.9)
       jekyll (= 3.9.0)
       jekyll-avatar (= 0.7.0)
@@ -60,6 +60,7 @@ GEM
       jekyll-feed (= 0.15.1)
       jekyll-gist (= 1.5.0)
       jekyll-github-metadata (= 2.13.0)
+      jekyll-include-cache (= 0.2.1)
       jekyll-mentions (= 1.6.0)
       jekyll-optional-front-matter (= 0.3.2)
       jekyll-paginate (= 1.1.0)
@@ -276,7 +277,7 @@ GEM
     unf_ext (0.0.8)
     unf_ext (0.0.8-x64-mingw32)
     unicode-display_width (1.8.0)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.3)
 
 PLATFORMS
   ruby
