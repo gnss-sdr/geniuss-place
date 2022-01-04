@@ -50,18 +50,6 @@ The [European Space Agency](https://www.esa.int/) acknowledged CTTC as one of th
 ![ESA Certificate]({{ "/assets/images/ESA-ack.jpg" | relative_url }}){: width="500px"}
 {: style="text-align: center;"}
 
-----
-
-## European Commission News
-
-On [July 17, 2013](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemdetail.cfm?item_type=251&lang=en&item_id=6833) and on February 12, 2014 (and later [updated](http://ec.europa.eu/growth/tools-databases/newsroom/cf/itemdetail.cfm?item_type=251&lang=en&item_id=7254) on June 24, 2015), GNSS-SDR appeared at the News published by the European Commission.
-
-![EC news screenshot]({{ "/assets/images/ec-growth.png" | relative_url }})]
-{: style="text-align: center;"}
-
-
-![EC news screenshot 2]({{ "/assets/images/ec-growth-gsoc.png" | relative_url }})
-{: style="text-align: center;"}
 
 ----
 
