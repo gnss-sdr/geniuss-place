@@ -615,7 +615,7 @@ the abbreviation BDS.
 
 Updated information can be found at the [Beidou Navigation Satellite System
 website](http://en.beidou.gov.cn/). The status of the constellation can be
-consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
+consulted [here](http://www.csno-tarc.cn/en/system/constellation).
 
 
 ### Beidou B1I
@@ -893,7 +893,7 @@ The following table lists the GNSS signals providing Open Service.
 
 [^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
-[^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.1.pdf), Issue 1.1, May 2019.
+[^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.2.pdf), Issue 1.2, Nov. 2021.
 
 [^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021.
 
