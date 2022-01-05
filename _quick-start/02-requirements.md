@@ -45,11 +45,11 @@ GNSS-SDR will process incoming raw samples as fast as the computing platform
 executing it allows. It will automatically take advantage of multi-core
 architectures, and it will select the fastest SIMD implementation available in
 your machine (covering technologies such as
-[SSE2](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=SSE2),
-[SSE3](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=SSE3),
-[SSE4.1](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=SSE4_1),
-[AVX](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=AVX),
-[AVX2](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#techs=AVX2),
+[SSE2](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=SSE2),
+[SSE3](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=SSE3),
+[SSE4.1](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=SSE4_1),
+[AVX](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=AVX),
+[AVX2](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=AVX2),
 and [NEON](https://developer.arm.com/technologies/neon)). It can even offload
 some of the computing work to the Graphics Processing Unit. If there is
 computational power enough, GNSS-SDR can be used in real-time, reading raw
