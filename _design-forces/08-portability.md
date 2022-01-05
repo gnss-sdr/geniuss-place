@@ -42,7 +42,8 @@ Examples of notable CPU architectures:
     [Intel 64](https://en.wikipedia.org/wiki/X86-64#Intel_64) versions.
     - Single Instruction Multiple Data (SIMD) instruction set extensions: SSE2,
       SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, FMA, AVX-512, and others (see the
-      [Intel Intrinsics Guide](https://software.intel.com/sites/landingpage/IntrinsicsGuide/)
+      [Intel Intrinsics
+      Guide](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html)
       for a full list of technologies).
 
 - ARM
