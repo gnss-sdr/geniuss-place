@@ -57,7 +57,7 @@ _Channels_ accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `Channels_1G.count` |  Number of channels targeting Glonass L1 C/A signals. It defaults to $$ 0 $$. | Optional |
 | `Channels_1C.count` |  Number of channels targeting GPS L1 C/A signals. It defaults to $$ 0 $$. | Optional |

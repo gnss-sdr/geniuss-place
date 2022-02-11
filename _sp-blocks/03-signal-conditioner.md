@@ -63,7 +63,7 @@ The `Signal_Conditioner` implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Signal_Conditioner` | Mandatory |
 | _DataTypeAdapter_ | This implementation requires the configuration of a [Data Type Adapter]({{ "/docs/sp-blocks/data-type-adapter/" | relative_url }}) block. | Mandatory |
@@ -106,7 +106,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Pass_Through` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>]: Format of data samples. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |

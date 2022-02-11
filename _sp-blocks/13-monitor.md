@@ -140,7 +140,7 @@ The configuration of the _Monitor_ block accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `Monitor.enable_monitor` | [`true`, `false`]: If set to `true`, the _Monitor_ block is activated. | Mandatory |
 | `Monitor.decimation_factor` | Decimation integer factor $$ N $$. Limits the streaming output rate to only every $$ N^{th} $$ sample. To stream all the samples, set this to `1`. Zero or negative values are treated as `1`. The output rate is by default 20 ms, and it can be changed with the [`GNSS-SDR.observable_interval_ms`]({{ "docs/sp-blocks/global-parameters/#internal-observables-processing-rate" |

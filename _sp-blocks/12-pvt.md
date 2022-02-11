@@ -975,7 +975,7 @@ standard and precise positioning. It accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `GNSS-SDR.SUPL_gps_ephemeris_xml` |  Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml` | Optional |
 | `GNSS-SDR.pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. | Optional |
@@ -983,7 +983,7 @@ standard and precise positioning. It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `RTKLIB_PVT` | Mandatory |
 | `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. The minimum is 20 ms, and the value must be a multiple of it. It defaults to 500 ms. | Optional |
