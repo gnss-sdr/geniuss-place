@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2019-01-28T12:54:02+02:00
+last_modified_at: 2022-02-09T12:54:02+02:00
 ---
 
 
@@ -33,15 +33,16 @@ of the following signal identifiers:
 |  `B3`      | Beidou B3I | $$ 1268.520 $$ MHz |
 |  `2G`      | Glonass L2 C/A | $$ 1246.00 $$ MHz |
 |  `2S`      | GPS L2 L2CM | $$ 1227.60 $$ MHz |
-|  `5X`      | Galileo E5a | $$ 1176.45 $$ MHz |
+|  `7X`      | Galileo E5b | $$ 1207.140 $$ MHz |
+|  `5X`      | Galileo E5a | $$ 1176.450 $$ MHz |
 |  `L5`      | GPS L5C | $$ 1176.45 $$ MHz |
 |-----
 
 
-Then, nine parameters can be set: `Channels_1G.count`, `Channels_1C.count`,
+Then, ten parameters can be set: `Channels_1G.count`, `Channels_1C.count`,
 `Channels_1B.count`, `Channels_B1.count`, `Channels_B3.count`,
-`Channels_2G.count`, `Channels_2S.count`, `Channels_5X.count`, and
-`Channels_L5.count`, all of them defaulting to $$ 0 $$.
+`Channels_2G.count`, `Channels_2S.count`, `Channels_7X.count`,
+`Channels_5X.count`, and `Channels_L5.count`, all of them defaulting to $$ 0 $$.
 
 In addition, the GNSS-SDR flow graph allows setting the number of channels that
 will be executing signal acquisition (which is known to require a high
@@ -65,6 +66,7 @@ _Channels_ accepts the following parameters:
 | `Channels_B3.count` |  Number of channels targeting BeiDou B3I signals. It defaults to $$ 0 $$.| Optional |
 | `Channels_2S.count` |  Number of channels targeting GPS L2 L2CM signals. It defaults to $$ 0 $$.| Optional |
 | `Channels_2G.count` |  Number of channels targeting Glonass L2 C/A signals. It defaults to $$ 0 $$. | Optional |
+| `Channels_7X.count` |  Number of channels targeting Galileo E5b (I+Q) signals. It defaults to $$ 0 $$. | Optional |
 | `Channels_5X.count` |  Number of channels targeting Galileo E5a (I+Q) signals. It defaults to $$ 0 $$. | Optional |
 | `Channels_L5.count` | Number of channels targeting GPS L5 signals. It defaults to $$ 0 $$. | Optional |
 | `Channel.signal` |  Assign all channels to a specific signal [`1C`, `1B`, `2S`, `5X`, `L5`]. Only required in single-system receivers. | Optional |
