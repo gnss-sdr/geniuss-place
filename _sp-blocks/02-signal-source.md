@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-04-20T10:54:02+02:00
+last_modified_at: 2022-02-11T10:54:02+02:00
 ---
 
 {% capture fig_img2 %}
@@ -565,7 +565,7 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `UHD_Signal_Source` | Mandatory |
 | `device_address` |  IP address of the USRP device. When left empty, the device discovery routines will search all the available transports on the system (Ethernet, USB, ...) | Mandatory |
@@ -581,7 +581,7 @@ If `RF_channels` is set to `1`, then:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `freq` | Set the RF front-end center frequency, in Hz. | Mandatory |
 | `IF_bandwidth_hz` | Set the IF passband filter bandwidth of the front-end, in Hz. It defaults to `sampling_frequency` / 2. | Optional |
@@ -621,7 +621,7 @@ For instance, if `RF_channels` is set to `2`, then:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `freq0` | RF front-end center frequency for RF channel 0, in Hz. | Mandatory |
 | `IF_bandwidth_hz0` | Set the IF passband filter bandwidth of RF channel 0, in Hz. It defaults to `sampling_frequency` / 2. | Optional |
@@ -690,7 +690,7 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Osmosdr_Signal_Source` | Mandatory |
 | `freq` | RF front-end center frequency, in Hz. | Mandatory |
@@ -879,6 +879,12 @@ $ cd ../..
 **Warning**: do **not** use gr-iio < 0.3 packaged in Debian releases older than
 Buster and Ubuntu releases older than Cosmic.
 
+`gr-iio` became a [native component of GNU
+Radio](https://github.com/gnuradio/gnuradio/tree/main/gr-iio) since version
+3.10.1.0. If that native component is found, the explicit installation of the
+gr-iio package is not required.
+{: .notice--info }
+
 Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_FMCOMMS2=ON`
 at configure time:
 
@@ -894,7 +900,7 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Fmcomms2_Signal_Source` | Mandatory |
 | `device_address` | Set to `local:` if using GNSS-SDR locally on the target (_e.g._, in a Zedboard). If using GNSS-SDR remotely on a PC, set the target IP address using `ip:XXX.XXX.XXX.XXX` or via USB using the URI `usb:XX.XX.XX`. It defaults to `192.168.2.1` | Mandatory |
@@ -975,6 +981,12 @@ $ cd ../..
 **Warning**: do **not** use gr-iio < 0.3 packaged in some Debian and Ubuntu
 distributions.
 
+`gr-iio` became a [native component of GNU
+Radio](https://github.com/gnuradio/gnuradio/tree/main/gr-iio) since version
+3.10.1.0. If that native component is found, the explicit installation of the
+gr-iio package is not required.
+{: .notice--info }
+
 Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_PLUTOSDR=ON`
 at configure time:
 
@@ -991,7 +1003,7 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Plutosdr_Signal_Source` | Mandatory |
 | `device_address` | Set to `local:` if using GNSS-SDR locally on the target (_e.g._, in a Zedboard). If using GNSS-SDR remotely on a PC, set the target IP address using `ip:XXX.XXX.XXX.XXX` or via USB using the URI `usb:XX.XX.XX`. It defaults to `192.168.2.1` | Mandatory |
@@ -1030,6 +1042,83 @@ SignalSource.buffer_size=65000
 SignalSource.dump=false
 SignalSource.dump_filename=./capture.dat
 ```
+
+
+### Implementation: `Limesdr_Signal_Source`
+
+[![LimeSDR]({{ "/assets/images/LimeSDR.png" | relative_url
+}}){:width="250px"}{:.align-right}](https://limemicro.com/products/boards/limesdr/)
+
+[LimeSDR](https://limemicro.com/products/boards/limesdr/) is a low cost, open
+source, apps-enabled software defined radio (SDR) platform that can be used to
+support just about any type of wireless communication standard. For more
+information, please check the [LimeSDR Wiki](https://wiki.myriadrf.org/LimeSDR).
+
+GNSS-SDR can make use of this platform through a dedicated Signal Source
+implementation. In order to enable it, you need to build
+GNSS-SDR from the source code after installing the required software
+dependencies. On Debian-based systems, this can be done by:
+
+```console
+$ sudo apt-get install gr-limesdr
+```
+
+Please check the [official instructions](https://wiki.myriadrf.org/Gr-limesdr_Plugin_for_GNURadio)
+for installing gr-limesdr on other systems.
+
+Once `gr-limesdr` is installed, build GNSS-SDR passing the flag
+`-DENABLE_LIMESDR=ON` at configure time:
+
+```console
+$ cd gnss-sdr/build
+$ git checkout next
+$ git pull upstream next
+$ cmake -DENABLE_LIMESDR=ON ..
+$ make && sudo make install
+```
+
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `Limesdr_Signal_Source` | Mandatory |
+| `freq` | `[100000-3800000000]`: RF center frequency, in Hz. | Mandatory |
+| `gain` | `[0-73]`: Combined RX gain settings, in dB. | Mandatory |
+| `item_type` | `[ibyte, ishort, gr_complex]` sets the item to be streamed from the source to the rest of the signal processing blocks. GNSS-SDR works internally with `gr_complex` (`std::complex<float>`) samples. Thus, setting the `item_type` to `gr_complex` avoids the use of extra data type converters in the signal conditioner. | Mandatory |
+| `sampling_frequency` | Sampling frequency, in Sps. It defaults to `2000000`. | Optional |
+| `limesdr_serial` | LimeSDR serial number to discriminate between two or more LimeSDR connected to the same computer. If not set, the detection is automatic. | Optional |
+| `samples` | Number of samples to be read. If set to `0`, the receiver will work until `q`+`ENTER` are pressed. It defaults to `0` . | Optional |
+| `antenna` | `[0, 1, 2, 3, 255]` Set which antenna is used: None(0), LNAH(1), LNAL(2), LNAW(3), AUTO(255). It defaults to `3`. | Optional |
+| `channels` | `[1, 2]` Number of channels to activate: `1` or `2`. It defaults to `1`. | Optional |
+| `analog_bw` | `[0, 1500000-130000000]`: Analog filter bandwidth for each channel, in Hz. Analog filter is off if bandwidth is set to `0`. If enabled, its range is between 1.5 MHz and 130 MHz. | Optional |
+| `digital_bw` | `[0-sampling_frequency]`: Digital filter bandwidth for each channel. Digital filter if off if bandwidth is set to 0. Bandwidth should not be higher than the `sampling_frequency`. | Optional |
+| `limechannel_mode` | `[0, 1, 2]` Channel and mode selection: A(0), B(1) or (A+B) MIMO(2). It defaults to `0`. | Optional |
+| `ext_clock_MHz` | Frequency of the external oscillator, if connected. It defaults to `0` (no external oscillator). | Optional |
+| `dump` | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.  | Optional |
+| `dump_filename` | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+|-------
+
+  _Signal Source implementation:_ **`Limesdr_Signal_Source`**
+  {: style="text-align: center;"}
+
+Example:
+```ini
+SignalSource.implementation=Limesdr_Signal_Source
+SignalSource.item_type=gr_complex
+SignalSource.sampling_frequency=5000000
+SignalSource.freq=1575420000
+SignalSource.gain=50
+SignalSource.antenna=2
+SignalSource.ext_clock_MHz=0
+SignalSource.limechannel_mode=0
+SignalSource.samples=0
+SignalSource.dump=false
+SignalSource.dump_filename=./captured_signal.dat
+```
+
 
 
 Multiple radio frequency chains
