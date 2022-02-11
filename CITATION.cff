@@ -10,6 +10,7 @@ authors:
     given-names: Carles
     orcid: "https://orcid.org/0000-0002-9201-7007"
 cff-version: "1.2.0"
+date-released: "2021-08-23"
 keywords:
   - "Global Navigation Satellite System"
   - GNSS
@@ -20,6 +21,15 @@ keywords:
   - C++
 license: CC-BY-4.0
 message: "If you use this software, please cite it using the metadata from this file."
+references:
+  - authors:
+    - name: "The GNSS-SDR Project team"
+    doi: 10.5281/zenodo.591700
+    repository-code: "https://github.com/gnss-sdr/gnss-sdr"
+    scope: "The documented software."
+    title: "GNSS-SDR"
+    type: software
+    url: "https://gnss-sdr.org"
 repository-code: "https://github.com/gnss-sdr/geniuss-place"
 title: "GNSS-SDR website"
 type: software
