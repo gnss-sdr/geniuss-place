@@ -16,4 +16,4 @@ jobs:
     - name: Check links
       uses: docker://dcycle/broken-link-checker:2
       with:
-        args: --ignore-url "^ftp"  --check-extern https://gnss-sdr.org
+        args: --ignore-url "^ftp"  --check-extern https://gnss-sdr.org --no-robots
