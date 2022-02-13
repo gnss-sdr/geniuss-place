@@ -9,7 +9,7 @@ on:
       - '**/CITATION.cff'
 
 jobs:
-  REUSE-compliance:
+  link-checker:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -17,3 +17,6 @@ jobs:
       uses: docker://dcycle/broken-link-checker:2
       with:
         args: --ignore-url "^ftp"  --check-extern https://gnss-sdr.org > ./result.csv
+    - name: print results
+      run: |
+        cat ./result.csv
