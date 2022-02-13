@@ -143,7 +143,6 @@ applications.
 - **Real-Time Operating Systems** such as
   [VxWorks](https://windriver.com/products/vxworks/),
   [eCos](http://ecos.sourceware.org/), [QNX](https://blackberry.qnx.com/),
-  [MontaVista Linux](https://www.mvista.com/),
   [RTLinux](https://www.rtlinux.org/), and Real-Time Executive for
   Multiprocessor Systems ([RTEMS](https://www.rtems.org/)).
 

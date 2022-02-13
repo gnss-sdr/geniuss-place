@@ -1170,7 +1170,7 @@ deactivated with `rtcm_output_file_enabled=false`.
 
 [^MacMillan95]: D. S. MacMillan, [Atmospheric gradients from very long baseline interferometry observation](https://onlinelibrary.wiley.com/doi/10.1029/95GL00887/abstract), in Geophysical Research Letters, Volume 22, Issue 9, May 1995, pp. 1041-1044.
 
-[^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](https://doi.org/10.1029/95JB03048), Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
+[^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/95JB03048), Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
 
 [^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200M: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200M.pdf), May 2021.
 
