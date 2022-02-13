@@ -56,7 +56,7 @@ the radio frequency front-end or a file containing those raw signal samples.
 
 All the intermediate signals are observable, and the _products_ of the GNSS
 signal processing (that is, the measurements known in this context as
-[observables](https://gssc.esa.int/navipedia//index.php/GNSS_Basic_Observables)
+[observables](https://gssc.esa.int/navipedia/index.php/GNSS_Basic_Observables)
 and the data transmitted by the satellites in their navigation message) are
 delivered in standard formats.
 
