@@ -7,7 +7,7 @@ on:
   push:
     paths-ignore:
       - '**/CITATION.cff'
-    ignore-branches:
+    branches-ignore:
       - main
 
 jobs:
