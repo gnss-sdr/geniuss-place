@@ -1,0 +1,19 @@
+name: Link Checker
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**/CITATION.cff'
+  push:
+    paths-ignore:
+      - '**/CITATION.cff'
+
+jobs:
+  REUSE-compliance:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Check links
+      uses: docker://dcycle/broken-link-checker:2
+      with:
+        args: --ignore-url "^ftp"  --check-extern https://gnss-sdr.org > ./result.csv
