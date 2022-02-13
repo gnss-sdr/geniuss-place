@@ -90,12 +90,12 @@ and open-source GNSS software-defined receiver:
 
 * Research networks
 
-  - **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org))**, aimed to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
+  - **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://iracon.org/))**, aimed to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
 
   ![IRACON logo]({{ "/assets/images/iracon-logo-big.jpg" | relative_url }}){:height="250px" width="250px"}
   {: style="text-align: center;"}
 
-  **IRACON** offered Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsm/). Mar 2016 - Mar. 2020.
+  **IRACON** offered Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsms/). Mar 2016 - Mar. 2020.
   {: .notice--success}
 
 
