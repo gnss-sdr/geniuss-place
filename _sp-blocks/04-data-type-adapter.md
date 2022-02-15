@@ -84,7 +84,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Byte_To_Short` | Mandatory |
 |-------
@@ -115,7 +115,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Ibyte_To_Cbyte` | Mandatory |
 | `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
@@ -147,7 +147,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Ibyte_To_Cshort` | Mandatory |
 | `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
@@ -179,7 +179,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Ibyte_To_Complex` | Mandatory |
 | `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
@@ -210,7 +210,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Ishort_To_Cshort` | Mandatory |
 | `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
@@ -241,7 +241,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Ishort_To_Complex` | Mandatory |
 | `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
@@ -265,7 +265,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Pass_Through` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Format of data samples. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |

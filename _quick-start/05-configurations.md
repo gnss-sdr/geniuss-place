@@ -3,7 +3,7 @@ title: "Configurations"
 permalink: /conf/
 excerpt: "How to configure GNSS-SDR in a variety of setups."
 related: true
-last_modified_at: 2020-08-13T13:54:02+02:00
+last_modified_at: 2022-02-09T13:54:02+02:00
 header:
   teaser: "/assets/images/configuration.png"
 sidebar:
@@ -347,7 +347,7 @@ You should see something similar to:
 
 ```console
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
-Initializing GNSS-SDR v0.0.15 ... Please wait.
+Initializing GNSS-SDR v0.0.16 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 -- X300 initialization sequence...
