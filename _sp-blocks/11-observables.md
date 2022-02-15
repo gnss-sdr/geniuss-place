@@ -332,7 +332,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Hybrid_Observables` | Mandatory |
 | `enable_carrier_smoothing` |  [`true`, `false`]: If set to `true`, it enables [carrier smoothing](https://insidegnss.com/wp-content/uploads/2018/01/julyaug15-SOLUTIONS.pdf) of code pseudoranges. It defaults to `false`. | Optional |

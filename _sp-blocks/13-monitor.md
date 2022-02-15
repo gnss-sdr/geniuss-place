@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-09-28T15:54:02-04:00
+last_modified_at: 2022-02-09T15:54:02-04:00
 ---
 
 
@@ -116,7 +116,7 @@ Decoder]({{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}) block.
 |--------------
 | `Flag_valid_word` | `bool` | Indicates the validity of the decoded word for pseudorange computation. |
 | `TOW_at_current_symbol_ms` | `uint32_t` | Time of week of the current symbol, in [ms]. |
-| `Flag_PLL_180_deg_phase_locked` | `bool` | Indicates if the PLL got locked at 180 degrees, so the symbol sign is reversed. <span style="color: orange">NOTE: This parameter is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> |
+| `Flag_PLL_180_deg_phase_locked` | `bool` | Indicates if the PLL got locked at 180 degrees, so the symbol sign is reversed. |
 |----------
 
 ### Observables
@@ -140,7 +140,7 @@ The configuration of the _Monitor_ block accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `Monitor.enable_monitor` | [`true`, `false`]: If set to `true`, the _Monitor_ block is activated. | Mandatory |
 | `Monitor.decimation_factor` | Decimation integer factor $$ N $$. Limits the streaming output rate to only every $$ N^{th} $$ sample. To stream all the samples, set this to `1`. Zero or negative values are treated as `1`. The output rate is by default 20 ms, and it can be changed with the [`GNSS-SDR.observable_interval_ms`]({{ "docs/sp-blocks/global-parameters/#internal-observables-processing-rate" |

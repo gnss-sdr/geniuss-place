@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-02-22T09:54:02+02:00
+last_modified_at: 2022-02-09T09:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -975,7 +975,7 @@ standard and precise positioning. It accepts the following parameters:
 
 |----------
 |  **Global Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `GNSS-SDR.SUPL_gps_ephemeris_xml` |  Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml` | Optional |
 | `GNSS-SDR.pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. | Optional |
@@ -983,7 +983,7 @@ standard and precise positioning. It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `RTKLIB_PVT` | Mandatory |
 | `output_rate_ms` |  Rate at which PVT solutions will be computed, in ms. The minimum is 20 ms, and the value must be a multiple of it. It defaults to 500 ms. | Optional |
@@ -1056,7 +1056,7 @@ standard and precise positioning. It accepts the following parameters:
 | `monitor_ephemeris_udp_port` | Destination UDP port number of the real-time monitoring port for ephemeris data. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. | Optional |
 | `enable_protobuf` | [`true`, `false`]: If set to `true`, the data serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). An example of usage is the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). For an example of usage of the latter, check the [gnss-sdr-pvt-monitoring-client](https://github.com/acebrianjuan/gnss-sdr-pvt-monitoring-client). This parameter defaults to `true` (Protocol Buffers is used). | Optional |
 | `show_local_time_zone` | [`true`, `false`]: If set to `true`, the time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC. | Optional |
-| `rtk_trace_level` | Configure the RTKLIB trace level (`0`: off, up to `5`: max. verbosity). When set to something > `2`, the RTKLIB library become more verbose in the internal logging file. It defaults to `0` (off). <span style="color: orange">NOTE: This parameter is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> | Optional |
+| `rtk_trace_level` | Configure the RTKLIB trace level (`0`: off, up to `5`: max. verbosity). When set to something > `2`, the RTKLIB library become more verbose in the internal logging file. It defaults to `0` (off). | Optional |
 |----------
 
 {::comment}
