@@ -565,7 +565,7 @@ You can replace `22.02` by `latest` in order to get the latest developments.
 
 ### Geniux Honister 22.02.0
 
-* Operating System based on the Yocto Project version 3.4.1.
+* Operating System based on the Yocto Project version 3.4.2.
 * It brings, among many others, the following software packages:
   * Development tools: Automake v1.16.3, CMake v3.21.1, GCC v11.2.0
     (+&nbsp;libgfortran), make v4.3, ninja v1.10.2, Python v3.9.6.
