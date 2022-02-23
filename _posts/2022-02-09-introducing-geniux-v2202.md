@@ -128,10 +128,11 @@ with at least 120 GB of free space in the hard disk and 32 GB of RAM. When
 finished, you will get your products in the `output/` folder (or wherever the
 `GENIUX_STORE_PATH` environment variable points to). Among others:
 
-* gnss-sdr-demo-image: an image containing gnss-sdr, ready to go.
+* gnss-sdr-demo-image: an image containing gnss-sdr, ready to go. It defines the
+  "root" and "geniux" users, both with default password "geniux".
 * gnss-sdr-dev-image: a development image with everything required for gnss-sdr,
   **but without gnss-sdr**. You can cross-compile the binary and copy it to the
-  target filesystem.
+  target filesystem. No password.
 * Starting from Zeus v21.08, `wic.xz` and `wic.bmap` image files ready to de
   deployed on an SD card.
 * gnss-sdr-dev-docker: a Docker development image archive file for the target
@@ -421,7 +422,7 @@ You can replace `22.02` by `latest` in order to get the latest developments.
 * Operating System based on the Yocto Project version 3.1.14 LTS.
 * It brings, among many others, the following software packages:
   * Development tools: Automake v1.16.1, CMake v3.16.5, GCC v9.3.0
-    (+&nbsp;libgfortran), make v4.3, ninja v1.10.0, Python v3.8.11.
+    (+&nbsp;libgfortran), make v4.3, ninja v1.10.0, Python v3.8.12.
   * Goodies for signal processing:
     - GNSS-SDR v0.0.16.
     - SDR framework: GNU Radio v3.8.5.0.
@@ -522,8 +523,8 @@ You can replace `22.02` by `latest` in order to get the latest developments.
 
 * Operating System based on the Yocto Project version 3.3.4.
 * It brings, among many others, the following software packages:
-  * Development tools: Automake v1.16.3, CMake v3.19.5, GCC v10.2.0
-    (+&nbsp;libgfortran), make v4.3, ninja v1.10.2, Python v3.9.5.
+  * Development tools: Automake v1.16.3, CMake v3.19.5, GCC v10.3.0
+    (+&nbsp;libgfortran), make v4.3, ninja v1.10.2, Python v3.9.9.
   * Goodies for signal processing:
     - GNSS-SDR v0.0.16.
     - SDR framework: GNU Radio v3.9.5.0.
@@ -568,7 +569,7 @@ You can replace `22.02` by `latest` in order to get the latest developments.
 * Operating System based on the Yocto Project version 3.4.2.
 * It brings, among many others, the following software packages:
   * Development tools: Automake v1.16.3, CMake v3.21.1, GCC v11.2.0
-    (+&nbsp;libgfortran), make v4.3, ninja v1.10.2, Python v3.9.6.
+    (+&nbsp;libgfortran), make v4.3, ninja v1.10.2, Python v3.9.9.
   * Goodies for signal processing:
     - GNSS-SDR v0.0.16.
     - SDR framework: GNU Radio v3.10.1.1.
@@ -580,10 +581,11 @@ You can replace `22.02` by `latest` in order to get the latest developments.
     - Graphical representation: gnss-sdr-monitor v1.0, Gnuplot v5.4.1,
       Matplotlib v3.4.1.
     - Additional Python modules (_e.g._, Scipy) can be installed with `pip3`.
-  * Software drivers and tools for RF front-ends:  gr-osmosdr v0.2.3 (+ rtl-sdr
+  * Software drivers and tools for RF front-ends:  gr-osmosdr v0.2.0 (+ rtl-sdr
     and hackrf), gr-iio v0.3, libiio v0.23, libad9361-iio v0.2, iio-oscilloscope
     v0.14.
 * It can be built for machines defined by the
+  [`meta-xilinx-bsp`](https://github.com/Xilinx/meta-xilinx/tree/honister/meta-xilinx-bsp/conf/machine/),
   [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=hardknott),
   [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=hardknott),
   and
