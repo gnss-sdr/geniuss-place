@@ -177,7 +177,7 @@ interval of 8 hours.
 
 [^Vandewalle09]: P. Vandewalle, J. Kova&#x010D;evi‌&#263;, and M. Vetterli, [Reproducible research in signal processing](https://ieeexplore.ieee.org/document/4815541/). IEEE Signal Processing Magazine, Vol. 26, no. 3, pp. 37-47, May 2009.
 
-[^Peng11]: R. D. Peng, [Reproducible research in computational science](https://science.sciencemag.org/content/334/6060/1226). Science, Vol. 334, no. 6060, pp. 1226–1227, Dec. 2011. DOI: 10.1126/science.1213847
+[^Peng11]: R. D. Peng, [Reproducible research in computational science](https://www.science.org/doi/10.1126/science.1213847). Science, Vol. 334, no. 6060, pp. 1226–1227, Dec. 2011. DOI: 10.1126/science.1213847
 
 [^Beaulieu17]: B. K. Beaulieu-Jones and C. S. Greene, [Reproducibility of computational workflows is automated using continuous analysis](https://www.biorxiv.org/content/early/2016/08/11/056473). Nature Biotechnology, Vol. 35, no. 4, pp. 342–346, Apr. 2017.
 
