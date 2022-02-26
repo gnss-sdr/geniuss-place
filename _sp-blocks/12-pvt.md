@@ -1168,7 +1168,7 @@ deactivated with `rtcm_output_file_enabled=false`.
 
 [^RTKLIBManual]: T. Takasu, [RTKLIB ver. 2.4.2 Manual](http://www.rtklib.com/prog/manual_2.4.2.pdf). April 29, 2013.
 
-[^MacMillan95]: D. S. MacMillan, [Atmospheric gradients from very long baseline interferometry observation](https://onlinelibrary.wiley.com/doi/10.1029/95GL00887/abstract), in Geophysical Research Letters, Volume 22, Issue 9, May 1995, pp. 1041-1044.
+[^MacMillan95]: D. S. MacMillan, [Atmospheric gradients from very long baseline interferometry observation](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/95GL00887), in Geophysical Research Letters, Volume 22, Issue 9, May 1995, pp. 1041-1044.
 
 [^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/95JB03048), Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
 
