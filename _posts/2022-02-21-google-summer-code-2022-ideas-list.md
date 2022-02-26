@@ -124,6 +124,8 @@ Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
 
 ### Description:
 
+* **Large sized project (350 h)**
+
 This is a continuation of the work developed during previous GSoC editions, and some
 additional voluntary efforts by the mentor. The code is almost complete, but
 some additional bug fixing and refinements are needed.
@@ -163,6 +165,8 @@ Dr. Damian Miralles, Mr. Luis Esteve.
 ## Project Title: Completing processing of Beidou B1C signals
 
 ### Description:
+
+* **Large sized project (350 h)**
 
 This is a continuation of efforts developed during GSoC 2019. The code needs
 updates, some bug fixing, and improvements over existing algorithms.
