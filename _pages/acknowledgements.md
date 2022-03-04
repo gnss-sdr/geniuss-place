@@ -65,7 +65,7 @@ and open-source GNSS software-defined receiver:
   scientific conferences. Sep. 2017 - Sep. 2021.
   {: .notice--success}
 
-* **[AUDITOR](https://www.gsa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture**
+* **[AUDITOR](https://www.euspa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture**
   is a project that developed a multi-band, multi-constellation receiver based on
   GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo
   and GPS civil signals in the L1, L2, and L5 bands.
@@ -73,11 +73,11 @@ and open-source GNSS software-defined receiver:
   ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | relative_url }}){:height="250px" width="250px"}
   {: style="text-align: center;"}
 
-  This project received funding from the [**European GNSS
-  Agency**](https://www.gsa.europa.eu/) under the European Union's Horizon 2020
-  research and innovation programme under grant agreement no.
-  [687367](https://cordis.europa.eu/project/rcn/199301_en.html). Jan. 2016 -
-  Jun. 2018.
+  This project received funding from the [**European Union Agency for the Space
+  Programme**](https://www.euspa.europa.eu/) (formerly called GSA) under the
+  European Union's Horizon 2020 research and innovation programme under grant
+  agreement no. [687367](https://cordis.europa.eu/project/rcn/199301_en.html).
+  Jan. 2016 - Jun. 2018.
   {: .notice--success}
 
 * Support from the Spanish Ministry of Economy and Competitiveness.
