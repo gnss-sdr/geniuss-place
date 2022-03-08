@@ -16,6 +16,31 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
+<ul class="biblist">
+    <!-- Item: Stenberg22 -->
+    <li ><p>
+    N.&nbsp;Stenberg, E.&nbsp;Axell, J.&nbsp;Rantakokko and G.&nbsp;Hendeby
+    <br><b>Results on GNSS Spoofing Mitigation Using Multiple Receivers</b><br>
+    <i>Navigation</i>, Vol. 69, No. 1, pp. 1-29, Spring&nbsp;2022.
+    <br />
+    <a href="javascript:toggleBibtex('Stenberg22')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=102947" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Stenberg22" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Stenberg22,
+author  = {N.~Stenberg and E.~Axell and J.~Rantakokko and G.~Hendeby},
+title   = {Results on {GNSS} Spoofing Mitigation Using Multiple Receivers},
+journal = {Navigation},
+year    = {2022},
+volume  = {69},
+number  = {1},
+pages   = {1--29},
+note    = { {doi}: 10.33012/navi.510}
+}</pre>
+    </div>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: Krafczyk21 -->
