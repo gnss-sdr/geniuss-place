@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2021-08-31T02:11:02+02:00
+last_modified_at: 2022-03-25T02:11:02+02:00
 ---
 
 An **embedded system** is defined as a computer system with a specific function
@@ -128,7 +128,7 @@ $ cd oe-repo
 3) Initialize `repo`, download the required tools and prepare your building environment:
 
 ```console
-$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b thud
+$ repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b thud
 $ repo sync
 $ TEMPLATECONF=`pwd`/meta-gnss-sdr/conf source ./oe-core/oe-init-build-env ./build ./bitbake
 ```
@@ -142,14 +142,14 @@ Please note that the name of the oe-gnss-sdr-manifest branch passed to `repo`
 will determine the version of the SDK to be built. For instance,
 
 ```console
-$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b sumo
+$ repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b sumo
 ```
 
 will generate the Sumo release of the SDK (see the manifest for a list of
 installed packages and their respective versions), while
 
 ```console
-$ repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b thud
+$ repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b thud
 ```
 
 will generate the Thud release.
