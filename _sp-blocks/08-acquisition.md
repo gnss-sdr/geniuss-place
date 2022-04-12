@@ -919,7 +919,7 @@ _Negative acquisition._
 
 [^Borre06]: K. Borre, D. M. Akos, N. Bertelsen, P. Rinder, S. H. Jensen, _A Software-Defined GPS and Galileo Receiver. A Single-Frequency Approach_, 1st edition, Boston: Birkh&auml;user, November 2006.
 
-[^Fernandez12]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk, The Netherlands.
+[^Fernandez12]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](https://www.researchgate.net/publication/233859838_An_Open_Source_Galileo_E1_Software_Receiver), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk, The Netherlands.
 
 [^Lohan11]: J. Zhang, E. S. Lohan, _Galileo E1 and E5a Link-Level Performances in Single and Multipath Channels_. In G. Giambene, C. Sacchi, Eds., Personal Satellite Services, Third International ICST Conference PSATS 2011, M&aacute;laga, Spain, February 2011.
 
