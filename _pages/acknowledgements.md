@@ -10,7 +10,7 @@ last_modified_at: 2021-05-10T14:38:52+02:00
 
 This project has been mainly developed on a volunteer basis, for education and
 research purposes. The main [Developer Team]({{ "/team/" | relative_url }}) is a
-group of researchers at [CTTC](http://www.cttc.es), a non-profit research
+group of researchers at [CTTC](https://www.cttc.cat/), a non-profit research
 institution, and the project enjoys from a solid base of external users and
 contributors.
 
@@ -43,8 +43,8 @@ and open-source GNSS software-defined receiver:
   **The Spanish Ministry of Science, Innovation, and Universities** provides
   partial support for development infrastructure through the [Statistical
   Learning and Inference for Large Dimensional Communication Systems
-  (ARISTIDES)](http://www.cttc.es/project/aristides/) project
-  (RTI2018-099722-B-I00). Jan. 2019 - Dec. 2021.
+  (ARISTIDES)](https://www.cttc.cat/project/aprendizaje-estadistico-e-inferencia-para-sistemas-de-comunicacion-de-alta-dimensionalidad/)
+  project (RTI2018-099722-B-I00). Jan. 2019 - Dec. 2021.
   {: .notice--success}
 
 * Support from the European Union through European Regional Development Fund (ERDF).
@@ -53,9 +53,9 @@ and open-source GNSS software-defined receiver:
   {: style="text-align: center;"}
 
   GNSS-SDR Continuous Integration system is run in a hardware infrastructure
-  (servers, network storage) partially provided by ERDF through Project
-  [5G-Lab](http://www.cttc.es/project/5g-lab/) (Spanish Ministry of Science,
-  Innovation, and Universities, Ref. EQC2018-005257-P). Nov. 2018 - Mar. 2021.
+  (servers, network storage) partially provided by ERDF through Project 5G-Lab
+  (Spanish Ministry of Science, Innovation, and Universities, Ref.
+  EQC2018-005257-P). Nov. 2018 - Mar. 2021.
   {: .notice--success}
 
 * Support of Research Groups by the Government of Catalonia.

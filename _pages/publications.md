@@ -1069,7 +1069,7 @@ note    = { {doi}: 10.1109/MetroAeroSpace.2014.6865957}
     Nashville, TN, Sept.&nbsp;2013, pp. 1492-1507.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR13')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=11334" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/09/Turning_TV_into_GNSS_Rx1.pdf" >PDF</a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=11334" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/257137427_Turning_a_Television_into_a_GNSS_Receiver" >PDF</a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR13" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR13,
@@ -1094,7 +1094,7 @@ month   = {Sept.}
     ESTEC, Noordwijk, The Netherlands, Dec. 2012, pp. 1-8.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR12')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6423057/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2012.6423057" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6423057/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/233859838_An_Open_Source_Galileo_E1_Software_Receiver" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2012.6423057" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR12" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR12,
@@ -1171,7 +1171,7 @@ month   = {Sept.}
     ESTEC, Noordwijk, The Netherlands, Dec. 2010, pp. 1-8.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR10')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/5707981/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/101213-pid1531501-14543.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2010.5707981" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/5707981/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/228624103_Design_Patterns_for_GNSS_Software_Receivers" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2010.5707981" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR10" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR10,

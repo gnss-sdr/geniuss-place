@@ -1419,6 +1419,6 @@ _Tracking results for a given channel._
 
 [^Kaplan17]: E. D. Kaplan and C. J. Hegarty, Eds., _Understanding GPS. Principles and Applications_, 3rd edition, Artech House, Norwood, MA, 2017.
 
-[^Fernandez]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk, The Netherlands.
+[^Fernandez]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](https://www.researchgate.net/publication/233859838_An_Open_Source_Galileo_E1_Software_Receiver), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk, The Netherlands.
 
 [^Pauluzzi00]: D. R. Pauluzzi and N. C. Beaulieu, [A comparison of SNR estimation techniques for the AWGN channel](https://ieeexplore.ieee.org/document/871393), IEEE Transactions on Communications, Vol. 48, no. 10, pp 1681-1691, Oct. 2000.
