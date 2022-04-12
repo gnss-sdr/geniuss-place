@@ -293,7 +293,7 @@ DEPENDENCIES
   jekyll-include-cache
   jekyll-paginate
   jekyll-sitemap
-  nokogiri (>= 1.10.8)
+  nokogiri (>= 1.13.4)
   rubyzip (~> 2.3.0)
   tzinfo-data
 
