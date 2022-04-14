@@ -182,7 +182,7 @@ $ pprof --gv ./gnss-sdr /tmp/prof.gnss-sdr.0045.heap
 
 Another king of profilers instrument (that is, monitor or measure) the target
 program with additional instructions to collect the required information about
-software performance. [Valgrind](https://www.valgrind.org/) is an
+software performance. [Valgrind](https://valgrind.org/) is an
 instrumentation framework for building dynamic analysis tools. There are
 Valgrind tools that can automatically detect many memory management and
 threading bugs, and profile  programs in detail. One of these tools is
@@ -227,8 +227,8 @@ and then we have to open the file `callgrind.out.XXX` we obtained before.
 
 The Valgrind framework offers other interesting tools such as Memcheck, a memory
 error detector. See the [Memcheck
-manual](https://www.valgrind.org/docs/manual/mc-manual.html) for more details.
+manual](https://valgrind.org/docs/manual/mc-manual.html) for more details.
 
 To know more, a good place to start is the [Valgrind
-homepage](https://www.valgrind.org/) and a list of [research papers about
-Valgrind](https://www.valgrind.org/docs/pubs.html).
+homepage](https://valgrind.org/) and a list of [research papers about
+Valgrind](https://valgrind.org/docs/pubs.html).

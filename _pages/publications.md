@@ -859,7 +859,7 @@ note    = { {doi}: 10.33012/2016.14576}
 Tampa, Florida, Sept.&nbsp;2015, pp. 3222-3234.
     <br />
     <a href="javascript:toggleBibtex('GNSS-SDR15')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=13101" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=13101" >Online</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_GNSS-SDR15" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ GNSS-SDR15,
@@ -964,7 +964,7 @@ month   = {Nov.}
 Tampa, Florida, Sept.&nbsp;2014, pp. 1383-1395.
     <br />
     <a href="javascript:toggleBibtex('GNSS-SDR14b')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=12428" >Online</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_GNSS-SDR14b" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ GNSS-SDR14b,
@@ -990,7 +990,7 @@ month   = {Sept.}
     A Coru&ntilde;a, Spain, June&nbsp;2014, pp. 121-124.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR14a')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6882355/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/profile/Pau_Closas/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach/links/548a95080cf225bf669c7fc0.pdf?origin=publication_detail" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/SAM.2014.6882355" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6882355/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/SAM.2014.6882355" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR14a" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR14a,
@@ -1069,7 +1069,7 @@ note    = { {doi}: 10.1109/MetroAeroSpace.2014.6865957}
     Nashville, TN, Sept.&nbsp;2013, pp. 1492-1507.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR13')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=11334" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/257137427_Turning_a_Television_into_a_GNSS_Receiver" >PDF</a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=11334 " >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/257137427_Turning_a_Television_into_a_GNSS_Receiver" >PDF</a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR13" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR13,
@@ -1146,7 +1146,7 @@ note    = { {doi}: 10.1109/NAVITEC.2012.6423057}
     Portland, OR, Sept.&nbsp;2011, pp. 780-794.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR11')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=9640" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/profile/Carles_Fernandez-Prades/publication/233380791_GNSS-SDR_An_open_source_tool_for_researchers_and_developers/links/09e41509e27ee6de56000000.pdf?origin=publication_detail" >PDF</a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=9640" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/233380791_GNSS-SDR_An_open_source_tool_for_researchers_and_developers " >PDF</a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR11" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR11,

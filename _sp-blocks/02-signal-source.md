@@ -554,7 +554,7 @@ upstream repository, and it will be included in the next stable release.
 .invert-colors}](https://www.ettus.com) The USRP Hardware Driver
 ([UHD](https://files.ettus.com/manual/)) software API supports application
 development on all [Ettus Research](https://www.ettus.com)'s
-[USRP](https://www.ettus.com/product) Software Defined Radio products. Using a
+[USRP](https://www.ettus.com/products/) Software Defined Radio products. Using a
 common software interface is critical as it increases code portability, allowing
 applications to transition seamlessly to other USRP SDR platforms when
 development requirements expand or new platforms are available. Hence, it

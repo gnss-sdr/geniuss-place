@@ -130,7 +130,7 @@ More details in version 1.0 of the
 The software receiver should deliver the results of the processing in several
 standard output formats:
 
-- GIS-oriented formats: [KML](https://www.opengeospatial.org/standards/kml),
+- GIS-oriented formats: [KML](https://www.ogc.org/standards/kml),
   [GeoJSON](https://geojson.org/),
   [SHP](https://en.wikipedia.org/wiki/Shapefile).
 
@@ -300,7 +300,7 @@ GNSS receiver:
     host computer executing the software-defined GNSS receiver.
 - Number of supported combinations of data collection topologies and formats.
 - Number of supported standard output formats.
-  - GIS formats: [KML](https://www.opengeospatial.org/standards/kml),
+  - GIS formats: [KML](https://www.ogc.org/standards/kml),
     [GeoJSON](https://geojson.org/),
     [Shapefile](https://en.wikipedia.org/wiki/Shapefile), others.
   - Application-specific formats: NMEA

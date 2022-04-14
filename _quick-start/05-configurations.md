@@ -39,7 +39,7 @@ model's datasheet).
 
 This is an example of an eight-channel GPS L1 C/A receiver, working at 4 MS/s
 (baseband, _i.e._ complex samples), and using a device from the [USRP
-family](https://www.ettus.com/product) as the "air-to-computer" interface.
+family](https://www.ettus.com/products/) as the "air-to-computer" interface.
 
 ### Required equipment
 

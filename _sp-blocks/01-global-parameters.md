@@ -255,7 +255,7 @@ those satellites and thus accelerate its Time-To-First-Fix.
 | `AGNSS_gal_ephemeris_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo ephemeris data. It defaults to  `gal_ephemeris.xml`| Optional |
 | `AGNSS_gal_iono_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo Ionosphere model data. It defaults to  `gal_iono.xml` | Optional |
 | `AGNSS_gal_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo UTC model data. It defaults to  `gal_utc_model.xml` | Optional |
-| `AGNSS_gal_almanac_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo almanac data. The XML format of [Galileo almanac data published by the European GNSS Service Centre](https://www.gsc-europa.eu/system-status/almanac-data) is also accepted. It defaults to `gal_almanac.xml` | Optional |
+| `AGNSS_gal_almanac_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo almanac data. The XML format of [Galileo almanac data published by the European GNSS Service Centre](https://www.gsc-europa.eu/product-almanacs) is also accepted. It defaults to `gal_almanac.xml` | Optional |
 | `AGNSS_gps_cnav_ephemeris_xml` |  If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS CNAV ephemeris data. It defaults to  `gps_cnav_ephemeris.xml` | Optional |
 | `AGNSS_cnav_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS UTC model data. It defaults to  `gps_cnav_utc_model.xml` |  Optional |
 |-------
@@ -279,7 +279,7 @@ the [own-defined XML
 format](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/xml-schemas/gal_almanac_map.xsd)
 for the Galileo almanac, the XML format published by the European GNSS Service
 Centre and available
-[here](https://www.gsc-europa.eu/system-status/almanac-data). Just download the
+[here](https://www.gsc-europa.eu/product-almanacs). Just download the
 latest almanac XML file from there, and set the following parameters in your
 configuration file:
 
