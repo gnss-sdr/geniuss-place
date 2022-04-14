@@ -647,8 +647,8 @@ public repositories:
   [meta-qt5](https://github.com/meta-qt5/meta-qt5),
   [meta-sdr](https://github.com/balister/meta-sdr),
   [meta-xilinx](https://github.com/Xilinx/meta-xilinx),
-  [meta-rasperrypi](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi),
-  [meta-intel](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel), etc.).
+  [meta-rasperrypi](https://git.yoctoproject.org/meta-raspberrypi),
+  [meta-intel](https://git.yoctoproject.org/meta-intel), etc.).
   * URL:
     [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github.com/carlesfernandez/oe-gnss-sdr-manifest)
   * Each Geniux version is defined in a different branch: `rocko`, `sumo`,
