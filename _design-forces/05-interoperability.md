@@ -233,11 +233,11 @@ standard output formats:
   {: .notice--info}
 
 - RINEX observation and navigation data files. Specify version:
-  [2.10](ftp://igs.org/pub/data/format/rinex210.txt),
-  [2.11](ftp://igs.org/pub/data/format/rinex211.txt),
-  [3.00](ftp://igs.org/pub/data/format/rinex300.pdf),
-  [3.02](ftp://igs.org/pub/data/format/rinex302.pdf),
-  [3.03](ftp://igs.org/pub/data/format/rinex303.pdf),
+  [2.10](https://files.igs.org/pub/data/format/rinex210.txt),
+  [2.11](https://files.igs.org/pub/data/format/rinex211.txt),
+  [3.00](https://files.igs.org/pub/data/format/rinex300.pdf),
+  [3.02](https://files.igs.org/pub/data/format/rinex302.pdf),
+  [3.03](https://files.igs.org/pub/data/format/rinex303.pdf),
   [3.04](https://files.igs.org/pub/data/format/rinex304.pdf), or
   [3.05](https://files.igs.org/pub/data/format/rinex305.pdf).
 
