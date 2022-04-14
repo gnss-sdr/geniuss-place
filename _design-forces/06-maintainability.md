@@ -63,7 +63,7 @@ the adherence to the official language programming standards. Examples:
     _ISO International Standard ISO/IEC 14882:2014 &ndash; Programming languages
     &ndash; C++_. You can get it from
     [ISO](https://www.iso.org/standard/64029.html), or
-    [ANSI](<https://webstore.ansi.org/RecordDetail.aspx?sku=INCITS/ISO/IEC+14882:2014+(2016)>).
+    [ANSI](<https://webstore.ansi.org/Standards/INCITS/INCITSISOIEC1488220142016>).
     The closest free working document available is
     [N4296](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf).
   - **C++11**: An older ISO C++ standard was ISO/IEC 14882:2011. You can get it

@@ -670,7 +670,7 @@ several RF front-ends such as [RTL-based
 dongles](https://www.rtl-sdr.com/tag/v3/),
 [HackRF](https://greatscottgadgets.com/hackrf/),
 [bladeRF](https://www.nuand.com/),
-[LimeSDR](https://myriadrf.org/projects/limesdr/),
+[LimeSDR](https://myriadrf.org/projects/component/limesdr/),
 [etc](https://osmocom.org/projects/gr-osmosdr).
 
 If you installed GNSS-SDR from a software package, this implementation is

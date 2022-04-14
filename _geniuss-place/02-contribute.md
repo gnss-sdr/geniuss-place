@@ -90,7 +90,7 @@ Found a typo on this website? Interested in giving your thoughts on existing
 pages, adding a post, tutorial, new feature, or enhancement?
 
 This website itself lives in a [GitHub
-repository](https://github.com/gnss-sdr/geniuss-place.git). You can contribute
+repository](https://github.com/gnss-sdr/geniuss-place). You can contribute
 in several ways:
 
  * Commenting (through your Google, Facebook, or Twitter account, or just open
@@ -204,7 +204,7 @@ start to remove references to the term "master" from GitHub services and
 replacing it with a more neutral term like "main," a
 [change](https://github.com/github/renaming) already adopted by many other
 communities (see some media reports
-[here](https://www.vice.com/en_us/article/k7qbyv/github-to-remove-masterslave-terminology-from-its-platform)
+[here](https://www.vice.com/en/article/k7qbyv/github-to-remove-masterslave-terminology-from-its-platform )
 and
 [here](https://www.theserverside.com/feature/Why-GitHub-renamed-its-master-branch-to-main)).
 Moving to use "main" felt an appropriate way to honor our own

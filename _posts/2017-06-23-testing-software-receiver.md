@@ -336,7 +336,7 @@ please check [Testing the software receiver, Part II: Test Execution]({{
 
 [^Shore08]: J. Shore and S. Warden, [The Art of Agile Development](https://www.jamesshore.com/Agile-Book/), O'Reilly, Sebastopol, CA, 2008.
 
-[^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](https://www.wiley.com/WileyCDA/WileyTitle/productCd-0470192410.html), Jossey-Bass, San Francisco, CA, 2009.
+[^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](https://www.wiley.com/en-us/The+Improvement+Guide:+A+Practical+Approach+to+Enhancing+Organizational+Performance,+2nd+Edition-p-9780470192412), Jossey-Bass, San Francisco, CA, 2009.
 
 [^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education-second-edition), MIT Press, Cambridge, MA, 1993.
 

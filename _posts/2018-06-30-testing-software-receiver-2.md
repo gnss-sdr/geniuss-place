@@ -504,7 +504,7 @@ Acquisition block. This test accepts the following flags:
     ```
 
   * `GpsL1CAKfTrackingTest`: set of test cases for
-  [gps_l1_ca_kf_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/)
+  [gps_l1_ca_kf_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_kf_tracking.h)
   that make use of the software-defined signal generator. This test plots the
   correlators' outputs with the flag `--plot_gps_l1_kf_tracking_test`. For long
   tests, data can be decimated with the flag `--plot_decimate`. For not showing

@@ -38,7 +38,7 @@ components. Notable examples are the
 [HackRF](https://greatscottgadgets.com/hackrf/) board by Great Scott Gadgets,
 which design is freely available in a [git
 repository](https://github.com/mossmann/hackrf/tree/master/hardware/hackrf-one),
-and the [BladeRF](https://nuand.com) board by Nuand, which design is also
+and the [BladeRF](https://www.nuand.com/) board by Nuand, which design is also
 [freely available](https://github.com/Nuand/bladeRF). Such physical artifacts
 are usually referred to as [_open-source
 hardware_](https://en.wikipedia.org/wiki/Open-source_hardware), and belong to a

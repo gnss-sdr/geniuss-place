@@ -232,7 +232,7 @@ to feed an active antenna and a Hi-Speed USB 2.0 connection. GNSS-SDR
 integration is provided via
 [gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR).
 
-* **Nuand [BladeRF](https://nuand.com)** is a wideband transceiver that covers
+* **Nuand [BladeRF](https://www.nuand.com/)** is a wideband transceiver that covers
 from 300 MHz to 3.8 GHz, delivering 12-bit quadrature sampling at a rate of up to
 40 MS/s. The host connection is via USB 3.0 Superspeed, and GNSS-SDR integration
 is provided via
