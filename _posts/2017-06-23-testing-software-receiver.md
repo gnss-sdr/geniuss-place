@@ -340,7 +340,7 @@ please check [Testing the software receiver, Part II: Test Execution]({{
 
 [^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education-second-edition), MIT Press, Cambridge, MA, 1993.
 
-[^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Understand - Improve - Apply](https://www.springer.com/gp/book/9783642137563), Springer-Verlag, Berlin, Germany, 2011.
+[^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Understand - Improve - Apply](https://link.springer.com/book/10.1007/978-3-642-13757-0), Springer-Verlag, Berlin, Germany, 2011.
 
 [^Cross11]: N. Cross, [Design Thinking: Understanding How Designers Think and Work](https://books.google.es/books/about/Design_Thinking.html?id=F4SUVT1XCCwC), Berg Publishers, Oxford, UK, 2011.
 
