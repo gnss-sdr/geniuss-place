@@ -126,7 +126,7 @@ jumper in order to feed the antenna.
 ![DBSRX2]({{ "/assets/images/DBSRX2_scale.jpg" | relative_url }}){: .align-center}
 _DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the
 injection of current towards the antenna. Source: [Radio
-Adventures](http://yo3iiu.ro/blog/)._
+Adventures](https://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 If this feature is not available (_e.g._, WBX daughterboards), you will need a
@@ -134,12 +134,12 @@ bias-T between the USRP and the antenna, and to connect it to a power source
 delivering the voltage required by your antenna (usually, 3 V or 5 V).
 
 ![Bias-T]({{ "/assets/images/bias_tee_scale.jpg" | relative_url }}){: .align-center}
-_Bias-T allowing the injection of DC voltage to the antenna. Source: [Radio Adventures ](http://yo3iiu.ro/blog/)._
+_Bias-T allowing the injection of DC voltage to the antenna. Source: [Radio Adventures ](https://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 
 ![Setup]({{ "/assets/images/whole_hw_scaled.jpg" | relative_url }}){: .align-center}
-_USRP N210 with the bias-T and the GPS antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/)._
+_USRP N210 with the bias-T and the GPS antenna. Source: [Radio Adventures](https://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 Depending on the specific USRP model you are using, the connection to the host
