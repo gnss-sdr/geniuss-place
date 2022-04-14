@@ -1189,7 +1189,7 @@ deactivated with `rtcm_output_file_enabled=false`.
 
 [^Bevis94]: M. Bevis, S. Businger, S. Chiswell, T. A. Herring, R. A. Anthes, C. Rocken, R. H. Ware, [GPS Meteorology: Mapping Zenith Delay onto Precipitable Water](https://dx.doi.org/10.1175/1520-0450(1994)033%3C0379:GMMZWD%3E2.0.CO;2), American Meteorological Society, vol. 33, March 1994, pp. 379-386.
 
-[^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.615.3798&rep=rep1&type=pdf), Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](https://www.springer.com/gp/book/9781402018053), G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
+[^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.615.3798&rep=rep1&type=pdf), Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](https://link.springer.com/book/10.1007/978-94-017-0528-8), G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
 
 
 <link rel="prerender" href="{{ "/docs/sp-blocks/observables/" | relative_url }}">
