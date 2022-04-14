@@ -118,7 +118,7 @@ Dr. Javier Arribas,  Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
 
 ## Design and Implementation of a Graphical User Interface (GUI) to show the GNSS-SDR status in real-time
 
-Almost all the commercial GNSS receivers come with an intuitive, easy to install and easy to use software that shows if your receiver is working properly or not. Examples of such software are the [Google GNSS Analysis software](https://developer.android.com/guide/topics/sensors/gnss.html#analyze) and [uBlox uCenter](https://www.u-blox.com/en/product/u-center-windows).
+Almost all the commercial GNSS receivers come with an intuitive, easy to install and easy to use software that shows if your receiver is working properly or not. Examples of such software are the [Google GNSS Analysis software](https://developer.android.com/guide/topics/sensors/gnss.html#analyze) and [uBlox uCenter](https://www.u-blox.com/en/product/u-center).
 
 The minimum GNSS receiver information reported by the status software should be:
   * GNSS Satellites on track

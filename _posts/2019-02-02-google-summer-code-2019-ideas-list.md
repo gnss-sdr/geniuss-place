@@ -126,7 +126,7 @@ Mr. Damian Miralles, Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
 
 ## Improving the Graphical User Interface (GUI) for monitoring the GNSS-SDR status in real-time
 
-Almost all the commercial GNSS receivers come with an intuitive, easy to install and easy to use software that shows if your receiver is working properly or not. Examples of such software are the [Google GNSS Analysis software](https://developer.android.com/guide/topics/sensors/gnss.html#analyze) and [uBlox uCenter](https://www.u-blox.com/en/product/u-center-windows).
+Almost all the commercial GNSS receivers come with an intuitive, easy to install and easy to use software that shows if your receiver is working properly or not. Examples of such software are the [Google GNSS Analysis software](https://developer.android.com/guide/topics/sensors/gnss.html#analyze) and [uBlox uCenter](https://www.u-blox.com/en/product/u-center).
 
 During GSoC 2018, a basic GUI was developed for monitoring the GNSS-SDR status [1], which shows the following information in real-time:
 
