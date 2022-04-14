@@ -30,7 +30,7 @@ Team at work:
 
 {% include video id="zkWvXU3oMs4" provider="youtube" %}
 
-Visualization created with [gource](https://gource.io/) and based on the upstream repository [https://github.com/gnss-sdr/gnss-sdr.git](https://github.com/gnss-sdr/gnss-sdr.git).
+Visualization created with [gource](https://gource.io/) and based on the upstream repository [https://github.com/gnss-sdr/gnss-sdr](https://github.com/gnss-sdr/gnss-sdr).
 
 ----
 
