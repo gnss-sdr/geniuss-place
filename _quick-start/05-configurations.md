@@ -126,7 +126,7 @@ jumper in order to feed the antenna.
 ![DBSRX2]({{ "/assets/images/DBSRX2_scale.jpg" | relative_url }}){: .align-center}
 _DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the
 injection of current towards the antenna. Source: [Radio
-Adventures](http://yo3iiu.ro/blog/)._
+Adventures](https://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 If this feature is not available (_e.g._, WBX daughterboards), you will need a
