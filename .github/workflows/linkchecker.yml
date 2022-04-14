@@ -18,4 +18,4 @@ jobs:
     - name: Check links
       uses: docker://dcycle/broken-link-checker:2
       with:
-        args: --ignore-url "^ftp" --ignore-url linkedin --ignore-url iracon --ignore-url SOCIS --check-extern https://gnss-sdr.org --no-robots
+        args: --ignore-url "^ftp" --ignore-url linkedin --ignore-url iracon --ignore-url SOCIS --ignore-url russianspacesystems --ignore-url agupubs --check-extern https://gnss-sdr.org --no-robots
