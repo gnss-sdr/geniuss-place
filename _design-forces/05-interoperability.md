@@ -226,7 +226,7 @@ standard output formats:
   source that can feed an NTRIP server. NTRIP (Networked Transport of RTCM via
   Internet Protocol) is an open standard protocol that can be freely downloaded
   from
-  [BKG](https://igs.bkg.bund.de/root_ftp/NTRIP/documentation/NtripDocumentation.pdf "Networked Transport of RTCM via Internet Protocol (Ntrip) Version 1.0"),
+  [here](https://gssc.esa.int/wp-content/uploads/2018/07/NtripDocumentation.pdf "Networked Transport of RTCM via Internet Protocol (Ntrip) Version 1.0"),
   and it is designed for disseminating differential correction data (_e.g._ in
   the RTCM-104 format) or other kinds of GNSS streaming data to stationary or
   mobile users over the Internet.
