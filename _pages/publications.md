@@ -163,7 +163,7 @@ note    = { {doi}: 10.3390/geosciences10020079}
 <i>GPS Solutions</i>, Vol. 23, No. 3, pp. 72, May 2019.
     <br />
     <a href="javascript:toggleBibtex('Miralles19')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://link.springer.com/article/10.1007%2Fs10291-019-0865-8" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/article/10.1007/s10291-019-0865-8" >Online</a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/s10291-019-0865-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Miralles19" class="bibtex noshow" style="color: #111111">
@@ -358,7 +358,7 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 Vol. III, Chengdu, China, Nov. 2020, pp. 276-287.
     <br />
     <a href="javascript:toggleBibtex('Deng20')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://link.springer.com/chapter/10.1007%2F978-981-15-3715-8_26" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/978-981-15-3715-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/chapter/10.1007/978-981-15-3715-8_26" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/978-981-15-3715-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Deng20" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Deng20,
@@ -1146,7 +1146,7 @@ note    = { {doi}: 10.1109/NAVITEC.2012.6423057}
     Portland, OR, Sept.&nbsp;2011, pp. 780-794.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR11')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=9640" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/233380791_GNSS-SDR_An_open_source_tool_for_researchers_and_developers " >PDF</a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=9640" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/233380791_GNSS-SDR_An_open_source_tool_for_researchers_and_developers" >PDF</a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR11" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR11,
@@ -1244,7 +1244,7 @@ month = {Feb.}
 J.&nbsp;Arribas
 <br><b>GNSS Array-based Acquisition: Theory and Implementation</b><br>
 <i>PhD Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, June&nbsp;2012.</i>
-<br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="https://eurasip.org/?option=com_content&view=article&id=121&Itemid=124 " >2015</a>
+<br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="https://eurasip.org/best-phd-award/" >2015</a>
 <br />
 <a href="javascript:toggleBibtex('Arribas12')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>

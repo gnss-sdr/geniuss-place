@@ -334,7 +334,7 @@ please check [Testing the software receiver, Part II: Test Execution]({{
 
 [^Beck02]: K. Beck, [Test Driven Development: By Example](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnx0ZXN0MTIzNHNpbTQ2NXxneDpiYTJmYWIwYTAyOGJiZmQ), Addison-Wesley Professional, Boston, MA, 2002.
 
-[^Shore08]: J. Shore and S. Warden, [The Art of Agile Development](https://www.jamesshore.com/Agile-Book/), O'Reilly, Sebastopol, CA, 2008.
+[^Shore08]: J. Shore and S. Warden, [The Art of Agile Development](https://www.jamesshore.com/v2/books/aoad1), O'Reilly, Sebastopol, CA, 2008.
 
 [^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](https://www.wiley.com/en-us/The+Improvement+Guide:+A+Practical+Approach+to+Enhancing+Organizational+Performance,+2nd+Edition-p-9780470192412), Jossey-Bass, San Francisco, CA, 2009.
 

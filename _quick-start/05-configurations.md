@@ -508,9 +508,9 @@ required computational load for this particular implementation.
 ## GPS L1 C/A receiver using a HackRF One
 
 [HackRF One](https://greatscottgadgets.com/hackrf/) from Great Scott Gadgets is
-an [open-source](https://github.com/mossmann/hackrf) Software Defined Radio
-peripheral capable of reception of radio signals from 1 MHz to 6 GHz, and thus
-is well suited for GNSS applications. If features:
+an [open-source](https://github.com/greatscottgadgets/hackrf) Software Defined
+Radio peripheral capable of reception of radio signals from 1 MHz to 6 GHz, and
+thus is well suited for GNSS applications. If features:
 
   * Up to 20 million samples per second.
   * 8-bit quadrature samples (8-bit I and 8-bit Q).
@@ -524,7 +524,8 @@ is well suited for GNSS applications. If features:
 ![HackRF One]({{ "/assets/images/hackRF.jpg" | relative_url }}){: .align-center} _HackRF One._
 {: style="text-align: center;"}
 
-For more information, check out the [HackRF wiki](https://github.com/mossmann/hackrf/wiki).
+For more information, check out the [HackRF
+documentation](https://hackrf.readthedocs.io/en/latest/index.html).
 
 ### Required equipment
 
