@@ -1069,7 +1069,7 @@ note    = { {doi}: 10.1109/MetroAeroSpace.2014.6865957}
     Nashville, TN, Sept.&nbsp;2013, pp. 1492-1507.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR13')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=11334 " >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/257137427_Turning_a_Television_into_a_GNSS_Receiver" >PDF</a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=11334" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/257137427_Turning_a_Television_into_a_GNSS_Receiver" >PDF</a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR13" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR13,
