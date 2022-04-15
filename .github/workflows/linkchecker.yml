@@ -26,6 +26,5 @@ jobs:
           --ignore-url russianspacesystems
           --ignore-url agupubs
           --ignore-url science.org
-          --ignore-url GNSS_Basic_Observables
-          --ignore-url GPS_Signal_Plan
+          --ignore-url navipedia
           --check-extern https://gnss-sdr.org
