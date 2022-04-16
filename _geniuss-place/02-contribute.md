@@ -24,14 +24,14 @@ redirect_from:
 Found a bug in the code? Interested in adding a new feature or [fixing a known
 bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an
 issue](https://github.com/gnss-sdr/gnss-sdr/issues/new) or [pull
-request](https://help.github.com/articles/using-pull-requests/). If this is your
-first pull request, it may be helpful to read up on the [GitHub
-Flow](https://guides.github.com/introduction/flow/) first. If you need a quick
-introduction to Git and its parlance (concepts such as _repository_, _commit_,
-_push_, _pull-request_, etc.), check our [Git tutorial]({{
-"/docs/tutorials/using-git/" | relative_url }}). This project adheres to the
-[Contributor Covenant code of conduct]({{ "/code-of-conduct/" | relative_url }}).
-By participating, you are expected to uphold this code.
+request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+If this is your first pull request, it may be helpful to read up on the [GitHub
+Flow](https://docs.github.com/en/get-started/quickstart/github-flow) first. If
+you need a quick introduction to Git and its parlance (concepts such as
+_repository_, _commit_, _push_, _pull-request_, etc.), check our [Git
+tutorial]({{ "/docs/tutorials/using-git/" | relative_url }}). This project
+adheres to the [Contributor Covenant code of conduct]({{ "/code-of-conduct/" |
+relative_url }}). By participating, you are expected to uphold this code.
 
 Any code contributions going into GNSS-SDR will become part of a GPL-licensed,
 open-source repository. It is therefore imperative that code submissions belong
@@ -90,7 +90,7 @@ Found a typo on this website? Interested in giving your thoughts on existing
 pages, adding a post, tutorial, new feature, or enhancement?
 
 This website itself lives in a [GitHub
-repository](https://github.com/gnss-sdr/geniuss-place.git). You can contribute
+repository](https://github.com/gnss-sdr/geniuss-place). You can contribute
 in several ways:
 
  * Commenting (through your Google, Facebook, or Twitter account, or just open
@@ -204,7 +204,7 @@ start to remove references to the term "master" from GitHub services and
 replacing it with a more neutral term like "main," a
 [change](https://github.com/github/renaming) already adopted by many other
 communities (see some media reports
-[here](https://www.vice.com/en_us/article/k7qbyv/github-to-remove-masterslave-terminology-from-its-platform)
+[here](https://www.vice.com/en/article/k7qbyv/github-to-remove-masterslave-terminology-from-its-platform )
 and
 [here](https://www.theserverside.com/feature/Why-GitHub-renamed-its-master-branch-to-main)).
 Moving to use "main" felt an appropriate way to honor our own

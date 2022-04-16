@@ -178,8 +178,8 @@ exit.
     libiio v2019_R1, libad9361-iio v2019_R1, iio-oscilloscope v2019_R1.
 * It can be built for machines defined by the
   [`meta-xilinx-bsp`](https://github.com/Xilinx/meta-xilinx/tree/rocko/meta-xilinx-bsp/conf/machine/),
-  [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=rocko),
-  [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=rocko),
+  [`meta-raspberrypi`](https://git.yoctoproject.org/meta-raspberrypi/tree/conf/machine?h=rocko),
+  [`meta-intel`](https://git.yoctoproject.org/meta-intel/tree/conf/machine?h=rocko),
   and
   [`openembedded-core/meta`](https://github.com/openembedded/openembedded-core/tree/rocko/meta/conf/machine)
   layers.
@@ -234,8 +234,8 @@ You can replace `22.02` by `latest` in order to get the latest developments.
     iio-oscilloscope v2019_R1.
 * It can be built for machines defined by the
   [`meta-xilinx-bsp`](https://github.com/Xilinx/meta-xilinx/tree/sumo/meta-xilinx-bsp/conf/machine/),
-  [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=sumo),
-  [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=sumo),
+  [`meta-raspberrypi`](https://git.yoctoproject.org/meta-raspberrypi/tree/conf/machine?h=sumo),
+  [`meta-intel`](https://git.yoctoproject.org/meta-intel/tree/conf/machine?h=sumo),
   and
   [`openembedded-core/meta`](https://github.com/openembedded/openembedded-core/tree/sumo/meta/conf/machine)
   layers.
@@ -282,8 +282,8 @@ You can replace `22.02` by `latest` in order to get the latest developments.
     libiio v2019_R2, libad9361-iio v2019_R2, iio-oscilloscope v2019_R2.
 * It can be built for machines defined by the
   [`meta-xilinx-bsp`](https://github.com/Xilinx/meta-xilinx/tree/rel-v2019.2/meta-xilinx-bsp/conf/machine/),
-  [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=thud),
-  [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=thud),
+  [`meta-raspberrypi`](https://git.yoctoproject.org/meta-raspberrypi/tree/conf/machine?h=thud),
+  [`meta-intel`](https://git.yoctoproject.org/meta-intel/tree/conf/machine?h=thud),
   and
   [`openembedded-core/meta`](https://github.com/openembedded/openembedded-core/tree/thud/meta/conf/machine)
   layers.
@@ -340,8 +340,8 @@ You can replace `22.02` by `latest` in order to get the latest developments.
     libad9361-iio v0.2, iio-oscilloscope v0.14.
 * It can be built for machines defined by the
   [`meta-xilinx-bsp`](https://github.com/Xilinx/meta-xilinx/tree/warrior/meta-xilinx-bsp/conf/machine/),
-  [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=warrior),
-  [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=warrior),
+  [`meta-raspberrypi`](https://git.yoctoproject.org/meta-raspberrypi/tree/conf/machine?h=warrior),
+  [`meta-intel`](https://git.yoctoproject.org/meta-intel/tree/conf/machine?h=warrior),
   and
   [`openembedded-core/meta`](https://github.com/openembedded/openembedded-core/tree/warrior/meta/conf/machine)
   layers.
@@ -389,8 +389,8 @@ You can replace `22.02` by `latest` in order to get the latest developments.
     libad9361-iio v0.2, iio-oscilloscope v0.14.
 * It can be built for machines defined by the
   [`meta-xilinx-bsp`](https://github.com/Xilinx/meta-xilinx/tree/rel-v2020.3/meta-xilinx-bsp/conf/machine/),
-  [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=zeus),
-  [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=zeus),
+  [`meta-raspberrypi`](https://git.yoctoproject.org/meta-raspberrypi/tree/conf/machine?h=zeus),
+  [`meta-intel`](https://git.yoctoproject.org/meta-intel/tree/conf/machine?h=zeus),
   and
   [`openembedded-core/meta`](https://github.com/openembedded/openembedded-core/tree/zeus/meta/conf/machine)
   layers.
@@ -439,8 +439,8 @@ You can replace `22.02` by `latest` in order to get the latest developments.
     libad9361-iio v0.2, iio-oscilloscope v0.14.
 * It can be built for machines defined by the
   [`meta-xilinx-bsp`](https://github.com/Xilinx/meta-xilinx/tree/gatesgarth/meta-xilinx-bsp/conf/machine/),
-  [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=dunfell),
-  [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=dunfell),
+  [`meta-raspberrypi`](https://git.yoctoproject.org/meta-raspberrypi/tree/conf/machine?h=dunfell),
+  [`meta-intel`](https://git.yoctoproject.org/meta-intel/tree/conf/machine?h=dunfell),
   and
   [`openembedded-core/meta`](https://github.com/openembedded/openembedded-core/tree/dunfell/meta/conf/machine)
   layers.
@@ -488,8 +488,8 @@ You can replace `22.02` by `latest` in order to get the latest developments.
     libad9361-iio v0.2, iio-oscilloscope v0.14.
 * It can be built for machines defined by the
   [`meta-xilinx-bsp`](https://github.com/Xilinx/meta-xilinx/tree/rel-v2021.1/meta-xilinx-bsp/conf/machine/),
-  [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=gatesgarth),
-  [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=gatesgarth),
+  [`meta-raspberrypi`](https://git.yoctoproject.org/meta-raspberrypi/tree/conf/machine?h=gatesgarth),
+  [`meta-intel`](https://git.yoctoproject.org/meta-intel/tree/conf/machine?h=gatesgarth),
   and
   [`openembedded-core/meta`](https://github.com/openembedded/openembedded-core/tree/gatesgarth/meta/conf/machine)
   layers.
@@ -540,8 +540,8 @@ You can replace `22.02` by `latest` in order to get the latest developments.
     gr-osmosdr v0.2.3 (+ rtl-sdr and hackrf), gr-iio v0.3, libiio v0.23,
     libad9361-iio v0.2, iio-oscilloscope v0.14.
 * It can be built for machines defined by the
-  [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=hardknott),
-  [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=hardknott),
+  [`meta-raspberrypi`](https://git.yoctoproject.org/meta-raspberrypi/tree/conf/machine?h=hardknott),
+  [`meta-intel`](https://git.yoctoproject.org/meta-intel/tree/conf/machine?h=hardknott),
   and
   [`openembedded-core/meta`](https://github.com/openembedded/openembedded-core/tree/hardknott/meta/conf/machine)
   layers.
@@ -586,8 +586,8 @@ You can replace `22.02` by `latest` in order to get the latest developments.
     v0.14.
 * It can be built for machines defined by the
   [`meta-xilinx-bsp`](https://github.com/Xilinx/meta-xilinx/tree/honister/meta-xilinx-bsp/conf/machine/),
-  [`meta-raspberrypi`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine?h=hardknott),
-  [`meta-intel`](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/conf/machine?h=hardknott),
+  [`meta-raspberrypi`](https://git.yoctoproject.org/meta-raspberrypi/tree/conf/machine?h=hardknott),
+  [`meta-intel`](https://git.yoctoproject.org/meta-intel/tree/conf/machine?h=hardknott),
   and
   [`openembedded-core/meta`](https://github.com/openembedded/openembedded-core/tree/hardknott/meta/conf/machine)
   layers.
@@ -647,8 +647,8 @@ public repositories:
   [meta-qt5](https://github.com/meta-qt5/meta-qt5),
   [meta-sdr](https://github.com/balister/meta-sdr),
   [meta-xilinx](https://github.com/Xilinx/meta-xilinx),
-  [meta-rasperrypi](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi),
-  [meta-intel](http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel), etc.).
+  [meta-rasperrypi](https://git.yoctoproject.org/meta-raspberrypi),
+  [meta-intel](https://git.yoctoproject.org/meta-intel), etc.).
   * URL:
     [https://github.com/carlesfernandez/oe-gnss-sdr-manifest](https://github.com/carlesfernandez/oe-gnss-sdr-manifest)
   * Each Geniux version is defined in a different branch: `rocko`, `sumo`,

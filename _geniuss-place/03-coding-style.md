@@ -1317,7 +1317,7 @@ An automated code linter helps to improve [**Efficiency**]({{
 
 Take a look at the [C++ Core
 Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
-edited by [Bjarne Stroustrup](http://www.stroustrup.com/) and [Herb
+edited by [Bjarne Stroustrup](https://www.stroustrup.com/) and [Herb
 Sutter](https://herbsutter.com/).
 
 

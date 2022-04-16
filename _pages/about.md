@@ -30,7 +30,7 @@ different institutions.
 There is an open distribution list devoted to discussions related to the development of GNSS-SDR. You can:
 
 
-[<i class="far fa-envelope fa-lg"></i> Subscribe to GNSS-SDR-developers mailing list](https://lists.sourceforge.net/lists/listinfo/gnss-sdr-developers){: .btn .btn--geniuss .btn--x-large}
+[<i class="far fa-envelope fa-lg"></i> Subscribe to GNSS-SDR-developers mailing list](https://sourceforge.net/projects/gnss-sdr/lists/gnss-sdr-developers){: .btn .btn--geniuss .btn--x-large}
 {: style="text-align: center;"}
 
 or

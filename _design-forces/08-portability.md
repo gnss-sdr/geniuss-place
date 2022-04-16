@@ -49,7 +49,7 @@ Examples of notable CPU architectures:
 - ARM
   - [ARM architecture](https://en.wikipedia.org/wiki/ARM_architecture) (32-bit).
     - SIMD instruction set extension:
-      [NEON](https://www.arm.com/products/processors/technologies/neon.php).
+      [NEON](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon).
   - [AArch64](https://en.wikipedia.org/wiki/ARM_architecture#64-bit)
     (64/32-bit).
     - SIMD instruction set extension: AArch64 NEON instruction set.
@@ -122,9 +122,9 @@ applications.
 
   - The [Linux](https://en.wikipedia.org/wiki/Linux) kernel, used in some
     popular distributions such as [Debian](https://www.debian.org/),
-    [Fedora](https://getfedora.org/), [Ubuntu](https://www.ubuntu.com/),
+    [Fedora](https://getfedora.org/), [Ubuntu](https://ubuntu.com/),
     [openSUSE](https://www.opensuse.org/),
-    [Arch Linux](https://www.archlinux.org/),
+    [Arch Linux](https://archlinux.org/),
     [Linux Mint](https://www.linuxmint.com/),
     [Linaro](https://en.wikipedia.org/wiki/Linaro),
     [Raspbian](https://www.raspbian.org/) or Google's
@@ -141,9 +141,9 @@ applications.
   [Windows XP](https://en.wikipedia.org/wiki/Windows_XP).
 
 - **Real-Time Operating Systems** such as
-  [VxWorks](https://windriver.com/products/vxworks/),
+  [VxWorks](https://www.windriver.com/products/vxworks),
   [eCos](http://ecos.sourceware.org/), [QNX](https://blackberry.qnx.com/),
-  [RTLinux](https://www.rtlinux.org/), and Real-Time Executive for
+  [Wind River Linux](https://www.windriver.com/products/linux), and Real-Time Executive for
   Multiprocessor Systems ([RTEMS](https://www.rtems.org/)).
 
 ## Building tools

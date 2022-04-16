@@ -130,7 +130,7 @@ More details in version 1.0 of the
 The software receiver should deliver the results of the processing in several
 standard output formats:
 
-- GIS-oriented formats: [KML](https://www.opengeospatial.org/standards/kml),
+- GIS-oriented formats: [KML](https://www.ogc.org/standards/kml),
   [GeoJSON](https://geojson.org/),
   [SHP](https://en.wikipedia.org/wiki/Shapefile).
 
@@ -233,11 +233,11 @@ standard output formats:
   {: .notice--info}
 
 - RINEX observation and navigation data files. Specify version:
-  [2.10](ftp://igs.org/pub/data/format/rinex210.txt),
-  [2.11](ftp://igs.org/pub/data/format/rinex211.txt),
-  [3.00](ftp://igs.org/pub/data/format/rinex300.pdf),
-  [3.02](ftp://igs.org/pub/data/format/rinex302.pdf),
-  [3.03](ftp://igs.org/pub/data/format/rinex303.pdf),
+  [2.10](https://files.igs.org/pub/data/format/rinex210.txt),
+  [2.11](https://files.igs.org/pub/data/format/rinex211.txt),
+  [3.00](https://files.igs.org/pub/data/format/rinex300.pdf),
+  [3.02](https://files.igs.org/pub/data/format/rinex302.pdf),
+  [3.03](https://files.igs.org/pub/data/format/rinex303.pdf),
   [3.04](https://files.igs.org/pub/data/format/rinex304.pdf), or
   [3.05](https://files.igs.org/pub/data/format/rinex305.pdf).
 
@@ -300,7 +300,7 @@ GNSS receiver:
     host computer executing the software-defined GNSS receiver.
 - Number of supported combinations of data collection topologies and formats.
 - Number of supported standard output formats.
-  - GIS formats: [KML](https://www.opengeospatial.org/standards/kml),
+  - GIS formats: [KML](https://www.ogc.org/standards/kml),
     [GeoJSON](https://geojson.org/),
     [Shapefile](https://en.wikipedia.org/wiki/Shapefile), others.
   - Application-specific formats: NMEA

@@ -363,7 +363,7 @@ v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml)
 format, in a file with the same name as `dump_filename` but terminated in `.mat`
 instead of `.dat`. This is a compressed binary file format that can be easily
 read with Matlab or Octave, by doing `load observables.mat`, or in Python via
-the [h5py](http://docs.h5py.org/en/latest/index.html) library. The stored
+the [h5py](https://docs.h5py.org/en/latest/index.html ) library. The stored
 variables are matrices with a number of rows equal to the total number of
 channels set up in the configuration file, and a number of columns equal to the
 number of epochs (that is, tracking integration times). This block stores the
@@ -388,7 +388,7 @@ Observables.dump=true
 
 ## References
 
-[^Arribas14]: J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas, [Fastening GPS and Galileo Tight with a Software Receiver](https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428), in Proc. of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014), Tampa, Florida, Sep. 2014, pp. 1383 - 1395.
+[^Arribas14]: J. Arribas, M. Branzanti, C. Fern&aacute;ndez-Prades and P. Closas, [Fastening GPS and Galileo Tight with a Software Receiver](https://www.ion.org/publications/abstract.cfm?articleID=12428), in Proc. of the 27th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2014), Tampa, Florida, Sep. 2014, pp. 1383 - 1395.
 
 [^Petovello12]: M. Petovello, M. Rao, G. Falca, [Code Tracking and Pseudoranges: How can pseudorange measurements be generated from code tracking?](https://www.insidegnss.com/auto/IGM_janfeb12-Solutions.pdf), Inside GNSS, vol. 7, no. 1, pp. 26–33, Jan./Feb. 2012.
 

@@ -76,7 +76,7 @@ and open-source GNSS software-defined receiver:
   This project received funding from the [**European Union Agency for the Space
   Programme**](https://www.euspa.europa.eu/) (formerly called GSA) under the
   European Union's Horizon 2020 research and innovation programme under grant
-  agreement no. [687367](https://cordis.europa.eu/project/rcn/199301_en.html).
+  agreement no. [687367](https://cordis.europa.eu/project/id/687367).
   Jan. 2016 - Jun. 2018.
   {: .notice--success}
 

@@ -339,7 +339,7 @@ km and an approximate revolution period of $$ 14 $$ hours. The Control segment
 full infrastructure will be composed of $$ 30-40 $$ sensor stations, $$ 3 $$
 control centers, $$ 9 $$ Mission Uplink stations, and $$ 5 $$ TT&C stations. The
 current constellation status can be checked at the [European GNSS Service Centre
-website](https://www.gsc-europa.eu/system-status/Constellation-Information).
+website](https://www.gsc-europa.eu/system-service-status/constellation-information).
 
 Galileo's Open Service is defined in the Service Definition Document
 (SDD)[^GalileoSSD], and the corresponding signal structures are defined in the
@@ -897,7 +897,7 @@ The following table lists the GNSS signals providing Open Service.
 
 [^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021.
 
-[^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/system/files/galileo_documents/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
+[^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
 
 [^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese). [English version](https://drive.google.com/file/d/19ixverkr6usYFirV_HVtwPzOlQfVL2dC/view?usp=sharing).
 

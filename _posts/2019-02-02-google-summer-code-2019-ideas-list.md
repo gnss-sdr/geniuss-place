@@ -34,7 +34,7 @@ Hereafter we list, in no particular order, some proposals for projects to be car
 
 ### Description:
 
-GNSS Reflectometry (GNSS-R) is the application of GNSS signals to determine geophysical parameters of the Earth's surface, as well as the atmospheric layer. The idea is to jointly exploit the direct and reflected GNSS signals. These reflected signals are particularly interesting on water or ice surfaces. The receiver can be located at all altitudes: from the ground to low Earth orbit (LEO) satellites. Two major types of measurements can be made: _i_) relative power measurements between direct and reflected signals from which we can derive, for instance, the surface roughness, and by extension the surface wind (this is the [mission CYGNSS](http://clasp-research.engin.umich.edu/missions/cygnss/)), and _ii_) measurements of relative delay between direct and reflected signals. For more details see [1-3].
+GNSS Reflectometry (GNSS-R) is the application of GNSS signals to determine geophysical parameters of the Earth's surface, as well as the atmospheric layer. The idea is to jointly exploit the direct and reflected GNSS signals. These reflected signals are particularly interesting on water or ice surfaces. The receiver can be located at all altitudes: from the ground to low Earth orbit (LEO) satellites. Two major types of measurements can be made: _i_) relative power measurements between direct and reflected signals from which we can derive, for instance, the surface roughness, and by extension the surface wind (this is the [mission CYGNSS](https://cygnss.engin.umich.edu/)), and _ii_) measurements of relative delay between direct and reflected signals. For more details see [1-3].
 
 ![GNSS-R]({{ "/assets/images/GNSS-R.jpg" | relative_url }}){:width="800px"}
 {: style="text-align: center;"}
@@ -126,7 +126,7 @@ Mr. Damian Miralles, Mr. Luis Esteve, Dr. Carles Fern&aacute;ndez-Prades.
 
 ## Improving the Graphical User Interface (GUI) for monitoring the GNSS-SDR status in real-time
 
-Almost all the commercial GNSS receivers come with an intuitive, easy to install and easy to use software that shows if your receiver is working properly or not. Examples of such software are the [Google GNSS Analysis software](https://developer.android.com/guide/topics/sensors/gnss.html#analyze) and [uBlox uCenter](https://www.u-blox.com/en/product/u-center-windows).
+Almost all the commercial GNSS receivers come with an intuitive, easy to install and easy to use software that shows if your receiver is working properly or not. Examples of such software are the [Google GNSS Analysis software](https://developer.android.com/guide/topics/sensors/gnss.html#analyze) and [uBlox uCenter](https://www.u-blox.com/en/product/u-center).
 
 During GSoC 2018, a basic GUI was developed for monitoring the GNSS-SDR status [1], which shows the following information in real-time:
 

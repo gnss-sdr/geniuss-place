@@ -50,7 +50,7 @@ your machine (covering technologies such as
 [SSE4.1](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=SSE4_1),
 [AVX](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=AVX),
 [AVX2](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=AVX2),
-and [NEON](https://developer.arm.com/technologies/neon)). It can even offload
+and [NEON](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon)). It can even offload
 some of the computing work to the Graphics Processing Unit. If there is
 computational power enough, GNSS-SDR can be used in real-time, reading raw
 samples from a radio frequency front-end. In slower machines, GNSS-SDR will
@@ -87,7 +87,7 @@ GNSS-SDR and all its dependencies can be easily installed using Mac OS X 10.9
 (Mavericks) and above, including macOS 11 Big Sur. You will need
 [Xcode](https://developer.apple.com/xcode/) and a software package manager such
 as [Macports](https://www.macports.org/) (there is a [gnss-sdr
-port](https://www.macports.org/ports.php?by=name&substr=gnss-sdr) that will do
+port](https://ports.macports.org/search/?q=gnss-sdr&name=on ) that will do
 all the work for you) or [Homebrew](https://brew.sh/).
 * ![Windows Logo]({{ "/assets/images/logo-windows.png" | relative_url
 }}){:height="100px" width="100px"}{: .align-right} **Microsoft Windows**: At
@@ -211,7 +211,7 @@ It follows a non-exhaustive list of commercially available examples of such
 general-purpose "air-to-computer" interfaces that are suitable for
 software-defined GNSS receivers:
 
-* **Ettus Research [USRP family](https://www.ettus.com/product)** is designed
+* **Ettus Research [USRP family](https://www.ettus.com/products/)** is designed
 for RF applications from DC to 6 GHz, and provides a wide range of devices. The
 USRP product line spans from affordable hobbyist SDRs to high-end high-bandwidth
 radios. All USRPs can be used by GNSS-SDR through the USRP Hardware Driver
@@ -232,7 +232,7 @@ to feed an active antenna and a Hi-Speed USB 2.0 connection. GNSS-SDR
 integration is provided via
 [gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR).
 
-* **Nuand [BladeRF](https://nuand.com)** is a wideband transceiver that covers
+* **Nuand [BladeRF](https://www.nuand.com/)** is a wideband transceiver that covers
 from 300 MHz to 3.8 GHz, delivering 12-bit quadrature sampling at a rate of up to
 40 MS/s. The host connection is via USB 3.0 Superspeed, and GNSS-SDR integration
 is provided via
