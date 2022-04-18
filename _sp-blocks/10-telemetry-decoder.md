@@ -493,7 +493,7 @@ format, in a file with the same name than `dump_filename` but terminated in
 `.mat` instead of `.dat`. This is a compressed binary file format that can be
 easily read with Matlab or Octave, by doing `load telemetryN.mat`, where `N` is
 the channel number, or in Python via the
-[h5py](https://docs.h5py.org/en/latest/index.html ) library. The stored variables
+[h5py](https://docs.h5py.org/en/latest/index.html) library. The stored variables
 are vectors with a number of columns equal to the total number of epochs (that
 is, tracking integration times) processed by the Telemetry Decoder block. The
 blocks store the following variables:
