@@ -363,7 +363,7 @@ v7.3](https://www.loc.gov/preservation/digital/formats/fdd/fdd000440.shtml)
 format, in a file with the same name as `dump_filename` but terminated in `.mat`
 instead of `.dat`. This is a compressed binary file format that can be easily
 read with Matlab or Octave, by doing `load observables.mat`, or in Python via
-the [h5py](https://docs.h5py.org/en/latest/index.html ) library. The stored
+the [h5py](https://docs.h5py.org/en/latest/index.html) library. The stored
 variables are matrices with a number of rows equal to the total number of
 channels set up in the configuration file, and a number of columns equal to the
 number of epochs (that is, tracking integration times). This block stores the
