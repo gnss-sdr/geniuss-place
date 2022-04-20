@@ -582,8 +582,3 @@ terminal) using the `nav_message.proto` file is provided
 This example uses the [Boost libraries](https://www.boost.org/) to handle UDP
 communications with [Boost
 Asio](https://www.boost.org/doc/libs/1_77_0/doc/html/boost_asio.html).
-
-This feature is only present in the [`next` branch of the upstream
-repository](https://github.com/gnss-sdr/gnss-sdr/tree/next), and will be
-available in the next stable release.
-{: .notice--warning}
