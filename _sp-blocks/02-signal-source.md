@@ -489,10 +489,6 @@ Please note that reading the LabSat 3 Wideband version requires an additional
 INI file with the same name as the binary file but the extension (so in the
 example it would be `./output.ini`) and located in the same folder.
 
-**Note**: The ability to read the LabSat 3 Wideband format is only available
-from the `next` branch of the upstream repository. This feature will be included
-in the next stable release.
-{: .notice--warning }
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -538,10 +534,6 @@ Example of usage:
 ```console
 $ mkfifo fifo.fifo && cat path_to.bin >> fifo.fifo
 ```
-
-**Note**: This implementation is only available from the `next` branch of the
-upstream repository, and it will be included in the next stable release.
-{: .notice--warning }
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>

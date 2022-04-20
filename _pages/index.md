@@ -12,7 +12,7 @@ header:
       url: "/build-and-install/"
   caption:
   teaser: /assets/images/logo-gnss-sdr.png
-excerpt: 'An open-source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.16](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.16)</small> <br /><br /> '
+excerpt: 'An open-source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.17](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.17)</small> <br /><br /> '
 feature_row:
   - image_path: /assets/images/fix.png
     alt: "Using the software-defined receiver"
