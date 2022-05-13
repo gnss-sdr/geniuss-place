@@ -12,7 +12,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2021-07-23T09:37:02+02:00
+last_modified_at: 2022-05-13T08:37:02+02:00
 ---
 
 
@@ -428,7 +428,9 @@ e_{E6C}(t) \! = \!\!\! \sum_{m=-\infty}^{+\infty} \! C_{E6Cs}\Big[|m|_{100}\Big]
 where $$ D_{\text{HAS}} $$ is the HAS navigation data stream, which is modulated
 with the ranging code $$ C_{E6B} $$ with chip period $$
 T_{c,E6B}=\frac{1}{5.115} $$ $$\mu $$s. Codes $$ C_{E6B} $$, $$ C_{E6Cp} $$ and $$
-C_{E6Cs} $$ are published in Galileo's E6-B/C Codes Technical Note[^GalileoE6].
+C_{E6Cs} $$ are published in Galileo's E6-B/C Codes Technical Note[^GalileoE6],
+and the HAS message structure is described in the Galileo High Accuracy Service
+Signal-In-Space Interface Control Document (HAS SIS ICD)[^GalileoHAS].
 
 This band also contains another component, Galileo E6A, intended for the Public
 Regulated Service (PRS). It uses a BOC modulation with cosine–shaped subcarrier, $$
@@ -898,6 +900,8 @@ The following table lists the GNSS signals providing Open Service.
 [^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021.
 
 [^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
+
+[^GalileoHAS]: European Union, [Galileo High Accuracy Service Signal-In-Space Interface Control Document (HAS SIS ICD)](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_HAS_SIS_ICD_v1.0.pdf), Issue 1.0, May 2022.
 
 [^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese). [English version](https://drive.google.com/file/d/19ixverkr6usYFirV_HVtwPzOlQfVL2dC/view?usp=sharing).
 
