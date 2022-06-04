@@ -23,28 +23,24 @@ classes: wide
         {% include author-profile.html %}
      </td>
      <td class="authortable">
+        {% assign pauthor = "Marc Majoral" %}
+        {% include author-profile.html %}
+     </td>
+     <td class="authortable">
         {% assign pauthor = "Luis Esteve" %}
         {% include author-profile.html %}
-    </td>
-    <td class="authortable">
-    {% assign pauthor = "Pau Closas" %}
-    {% include author-profile.html %}
-   </td>
+     </td>
   </tr>
 </table>
 
 <table>
  <tr>
      <td class="authortable">
-        {% assign pauthor = "Marc Majoral" %}
-        {% include author-profile.html %}
+         {% assign pauthor = "Pau Closas" %}
+         {% include author-profile.html %}
      </td>
      <td class="authortable">
         {% assign pauthor = "Jordi Vila" %}
-        {% include author-profile.html %}
-     </td>
-     <td class="authortable">
-        {% assign pauthor = "Alvaro Cebrian" %}
         {% include author-profile.html %}
      </td>
      <td class="authortable">
@@ -58,6 +54,10 @@ classes: wide
 
 <table>
  <tr>
+     <td class="authortable">
+        {% assign pauthor = "Alvaro Cebrian" %}
+        {% include author-profile.html %}
+     </td>
      <td class="authortable">
         {% assign pauthor = "Antonio Ramos" %}
         {% include author-profile.html %}

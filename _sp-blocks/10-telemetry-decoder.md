@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-09-13T10:54:02+02:00
+last_modified_at: 2022-02-09T10:54:02+02:00
 ---
 
 
@@ -73,14 +73,14 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `GPS_L1_CA_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
 | `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
-| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. <span style="color: orange">NOTE: This feature is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> | Optional |
+| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. | Optional |
 | `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number. | Optional |
 |--------------
 
@@ -147,7 +147,7 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Galileo_E1B_Telemetry_Decoder` | Mandatory |
 | `enable_reed_solomon` |  [`true`, `false`]: If set to `true`, it enables the FEC2 Erasure Correction defined for the Galileo E1B INAV message at [OS ICD v2.0](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf). It defaults to `false`. | Optional |
@@ -155,7 +155,7 @@ This implementation accepts the following parameters:
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
 | `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
-| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. <span style="color: orange">NOTE: This feature is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> | Optional |
+| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. | Optional |
 | `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number. | Optional |
 |--------------
 
@@ -170,6 +170,49 @@ TelemetryDecoder_1B.implementation=Galileo_E1B_Telemetry_Decoder
 TelemetryDecoder_1B.dump=false
 ```
 
+### Implementation: `Galileo_E5b_Telemetry_Decoder`
+
+The Galileo E5b signal can be expressed as:
+
+$$ \begin{equation}
+s_{T}^{(Gal E5b)}(t) \simeq e_{E5bI}(t)+je_{E5bQ}(t).
+\end{equation} $$
+
+where:
+
+$$ \begin{eqnarray} e_{E5bI}(t) & = & \sum_{m=-\infty}^{+\infty}C_{E5bIs}\Big[|m|_{4}\Big] \oplus \sum_{l=1}^{10230}C_{E5aIp}\Big[ l \Big] \oplus \nonumber \\
+{} & {} & \oplus~ {\color{ForestGreen} D_{\text{I/NAV}} \Big[ [l]_{40920}\Big]} p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{eqnarray} $$
+
+$$ \begin{eqnarray} e_{E5bQ}(t) & = & \sum_{m=-\infty}^{+\infty}C_{E5bQs}\Big[|m|_{100}\Big] \oplus \sum_{l=1}^{10230}C_{E5bQp}\Big[ l \Big] \cdot\nonumber \\
+{} & {} & \cdot~p(t-mT_{c,E5s}-lT_{c,E5p})~, \end{eqnarray} $$
+
+As shown in these equations, the E5b signal carries the
+$$ D_{\text{I/NAV}} \in \{1, -1 \} $$ navigation message in its Inphase component.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `Galileo_E5b_Telemetry_Decoder` | Mandatory |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
+| `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
+| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. | Optional |
+| `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number. | Optional |
+|--------------
+
+  _Telemetry Decoder implementation:_ **`Galileo_E5b_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+TelemetryDecoder_7X.implementation=Galileo_E5b_Telemetry_Decoder
+TelemetryDecoder_7X.dump=false
+```
 
 ## Glonass GNAV navigation message
 
@@ -225,14 +268,14 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `GLONASS_L1_CA_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
 | `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
-| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. <span style="color: orange">NOTE: This feature is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> | Optional |
+| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. | Optional |
 | `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number. | Optional |
 |--------------
 
@@ -254,14 +297,14 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `GLONASS_L2_CA_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
 | `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
-| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. <span style="color: orange">NOTE: This feature is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> | Optional |
+| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. | Optional |
 | `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number. | Optional |
 |--------------
 
@@ -309,14 +352,14 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `GPS_L2C_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
 | `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
-| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. <span style="color: orange">NOTE: This feature is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> | Optional |
+| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. | Optional |
 | `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number. | Optional |
 |--------------
 
@@ -363,14 +406,14 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `GPS_L5_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
 | `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
-| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. <span style="color: orange">NOTE: This feature is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> | Optional |
+| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. | Optional |
 | `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number. | Optional |
 |--------------
 
@@ -418,14 +461,14 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Galileo_E5a_Telemetry_Decoder` | Mandatory |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
 | `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
 | `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
-| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. <span style="color: orange">NOTE: This feature is only available from the `next` branch of the upstream repository, and it will be available in the next stable release.</span> | Optional |
+| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. | Optional |
 | `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number. | Optional |
 |--------------
 
@@ -497,7 +540,7 @@ format, in a file with the same name than `dump_filename` but terminated in
 `.mat` instead of `.dat`. This is a compressed binary file format that can be
 easily read with Matlab or Octave, by doing `load telemetryN.mat`, where `N` is
 the channel number, or in Python via the
-[h5py](http://docs.h5py.org/en/latest/index.html) library. The stored variables
+[h5py](https://docs.h5py.org/en/latest/index.html) library. The stored variables
 are vectors with a number of columns equal to the total number of epochs (that
 is, tracking integration times) processed by the Telemetry Decoder block. The
 blocks store the following variables:
@@ -586,8 +629,3 @@ terminal) using the `nav_message.proto` file is provided
 This example uses the [Boost libraries](https://www.boost.org/) to handle UDP
 communications with [Boost
 Asio](https://www.boost.org/doc/libs/1_77_0/doc/html/boost_asio.html).
-
-This feature is only present in the [`next` branch of the upstream
-repository](https://github.com/gnss-sdr/gnss-sdr/tree/next), and will be
-available in the next stable release.
-{: .notice--warning}

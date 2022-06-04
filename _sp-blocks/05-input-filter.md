@@ -79,7 +79,7 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Fir_Filter` | Mandatory |
 | `input_item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Input data type. This implementation only accepts streams of complex data types. | Mandatory |
@@ -210,7 +210,7 @@ This implementation accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Freq_Xlating_Fir_Filter` | Mandatory |
 | `filter_type` |  [`lowpass`, `bandpass`, `hilbert`, `differentiator`]: type of filter to be used after the frequency translation.  | Mandatory |
@@ -345,7 +345,7 @@ The implementation of this block provides the following interface:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Pulse_Blanking_Filter` | Mandatory |
 | `pfa` | Probability of false alarm. It defaults to $$ 0.04 $$ | Optional |
@@ -431,7 +431,7 @@ The implementation of this block provides the following interface:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Notch_Filter` | Mandatory |
 | `p_c_factor` | Pole contraction factor of the filter, $$ k_a $$. It ranges from $$ 0 $$ to $$ 1 $$. The higher the value, the lower the filter bandwidth. It defaults to $$ 0.9 $$  | Optional |
@@ -477,7 +477,7 @@ The implementation of this block provides the following interface:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Notch_Filter_Lite` | Mandatory |
 | `p_c_factor` | Pole contraction factor of the filter, $$ k_a $$. It ranges from $$ 0 $$ to $$ 1 $$. The higher the value, the narrower the filter bandwidth. It defaults to $$ 0.9 $$  | Optional |
@@ -515,7 +515,7 @@ It accepts the following parameters:
 
 |----------
 |  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|    
+|:-:|:--|:-:|
 |--------------
 | `implementation` | `Pass_Through` | Mandatory |
 | `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Format of data samples. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |

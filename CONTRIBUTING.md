@@ -6,7 +6,7 @@ Found a typo in this website? Interested in giving your thoughts on
 existing pages, adding a post, tutorial, new feature or enhancement?
 
 The website https://gnss-sdr.org lives in a [GitHub
-repository](https://github.com/gnss-sdr/geniuss-place.git). You can
+repository](https://github.com/gnss-sdr/geniuss-place). You can
 contribute in several ways:
 
  * Commenting (through your Google, Facebook or Twitter account, or just
@@ -55,7 +55,7 @@ will receive the default name of `origin`. You can also add the original
 website repository, which is usually called `upstream`:
 
           $ cd geniuss-place
-          $ git remote add upstream https://github.com/gnss-sdr/geniuss-place.git
+          $ git remote add upstream https://github.com/gnss-sdr/geniuss-place
 
 To verify the new upstream repository you have specified for your fork,
 type `git remote -v`. You should see the URL for your fork as `origin`,
@@ -65,8 +65,8 @@ and the URL for the original repository as `upstream`:
 $ git remote -v
 origin    https://github.com/YOUR_USERNAME/geniuss-place.git (fetch)
 origin    https://github.com/YOUR_USERNAME/geniuss-place.git (push)
-upstream  https://github.com/gnss-sdr/geniuss-place.git (fetch)
-upstream  https://github.com/gnss-sdr/geniuss-place.git (push)
+upstream  https://github.com/gnss-sdr/geniuss-place (fetch)
+upstream  https://github.com/gnss-sdr/geniuss-place (push)
 ```
 
 ### Install the required software and run a local copy of the website

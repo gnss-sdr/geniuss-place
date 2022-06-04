@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2022 C. Fernandez-Prades carles.fernandez(at)cttc.es
+---
+abstract: "Content from which the GNSS-SDR webpage at https://gnss-sdr.org is generated."
+authors:
+  - affiliation: "Centre Tecnològic de Telecomunicacions de Catalunya (CTTC)"
+    alias: carlesfernandez
+    email: carles.fernandez@cttc.es
+    family-names: "Fernández-Prades"
+    given-names: Carles
+    orcid: "https://orcid.org/0000-0002-9201-7007"
+cff-version: "1.2.0"
+date-released: "2022-04-20"
+doi: 10.5281/zenodo.6473330
+keywords:
+  - "Global Navigation Satellite System"
+  - GNSS
+  - "software radio"
+  - SDR
+  - GPS
+  - Galileo
+  - C++
+license: CC-BY-4.0
+message: "If you use this software, please cite it using the metadata from this file."
+references:
+  - authors:
+    - name: "The GNSS-SDR Project team"
+    doi: 10.5281/zenodo.591700
+    repository-code: "https://github.com/gnss-sdr/gnss-sdr"
+    scope: "The documented software."
+    title: "GNSS-SDR"
+    type: software
+    url: "https://gnss-sdr.org"
+repository-code: "https://github.com/gnss-sdr/geniuss-place"
+title: "GNSS-SDR website"
+type: software
+url: "https://gnss-sdr.org"
+version: "0.0.17"

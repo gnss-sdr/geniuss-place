@@ -7,13 +7,13 @@ Carles Fernandez:
   bio         : "Senior Researcher<br/>CTTC"
   location    :
   email       : carles.fernandez@cttc.cat
-  uri         : "http://www.cttc.es/people/cfernandez/"
-  home        : "http://www.cttc.es/people/cfernandez/"
+  uri         : "https://www.cttc.cat/people/carles-fernandez-prades/"
+  home        : "https://www.cttc.cat/people/carles-fernandez-prades/"
   linkedin    : "carlesfernandez"
   twitter     : "FernandezPrades"
   orcid       : "0000-0002-9201-7007"
   google-scholar: "1blroIcAAAAJ"
-  researchgate: "Carles_Fernandez-Prades"
+  researchgate: "Carles-Fernandez-Prades"
   bitbucket   : carles_fernandez
 
 Ignacio Paniego:
@@ -29,8 +29,8 @@ Ignacio Paniego:
 
 Javier Arribas:
   name        : "Javier Arribas"
-  uri         : "http://www.cttc.es/people/jarribas/"
-  home        : "http://www.cttc.es/people/jarribas/"
+  uri         : "https://www.cttc.cat/people/javier-arribas/"
+  home        : "https://www.cttc.cat/people/javier-arribas/"
   email       : "javier.arribas@cttc.es"
   bio         : "Senior Researcher<br/>CTTC"
   avatar      : "/assets/images/javier.jpg"
@@ -40,7 +40,7 @@ Javier Arribas:
   linkedin    : "javier-arribas-215b785b"
   orcid       : "0000-0001-6346-3406"
   google-scholar: "NSIEEYUAAAAJ"
-  researchgate: "Javier_Arribas2"
+  researchgate: "Javier-Arribas"
 
 Pau Closas:
   name        : "Pau Closas"
@@ -53,7 +53,7 @@ Pau Closas:
   linkedin    : "closas"
   orcid       : "0000-0002-5960-6600"
   google-scholar: "o7bF79sAAAAJ"
-  researchgate: "Pau_Closas"
+  researchgate: "Pau-Closas"
   bitbucket   : "pclosas"
 
 Luis Esteve:
@@ -80,7 +80,7 @@ Jordi Vila:
   linkedin    :
   orcid       : "0000-0001-7858-4171"
   google-scholar: "yKW9RNoAAAAJ"
-  researchgate: "Jordi_Vila-Valls"
+  researchgate: "Jordi-Vila-Valls"
 
 Antonio Ramos:
   name        : "Antonio Ramos de Torres"
@@ -98,8 +98,8 @@ Antonio Ramos:
 
 Marc Majoral:
   name        : "Marc Majoral"
-  uri         : "http://www.cttc.es/people/mmajoral/"
-  home        : "http://www.cttc.es/people/mmajoral/"
+  uri         : "https://www.cttc.cat/people/marc-majoral/"
+  home        : "https://www.cttc.cat/people/marc-majoral/"
   email       : "marc.majoral@cttc.cat"
   bio         : "Senior Researcher<br/>CTTC"
   avatar      : "/assets/images/mmajoral.jpg"
@@ -113,15 +113,15 @@ Marc Majoral:
 
 Alvaro Cebrian:
   name        : "&Aacute;lvaro Cebri&aacute;n Juan"
-  uri         : "http://www.cttc.es/people/acebrian/"
-  home        : "http://www.cttc.es/people/acebrian/"
-  email       : "alvaro.cebrian@cttc.es"
-  bio         : "Research Assistant<br/>CTTC"
+  uri         : "https://github.com/acebrianjuan"
+  home        : "https://github.com/acebrianjuan"
+  email       : "acebrianjuan@gmail.com"
+  bio         : "Aerospace Engineer<br/>Indra"
   avatar      : "/assets/images/acebrian.jpg"
   twitter     :
   github      : "acebrianjuan"
   facebook    :
-  linkedin    :
+  linkedin    : "acebrianjuan"
   orcid       :
   google-scholar:
   researchgate:
@@ -130,7 +130,7 @@ Damian Miralles:
   name        : "Damian Miralles"
   uri         :
   email       : "dmiralles2009@gmail.com"
-  bio         : "PhD Candidate<br/>University of Colorado Boulder"
+  bio         : "Senior Engineer<br/>Samsung Semiconductor Inc."
   avatar      : "/assets/images/dmiralles.jpg"
   twitter     :
   github      : "dmiralles2009"
@@ -138,5 +138,5 @@ Damian Miralles:
   linkedin    : "damian-miralles-230764a0"
   orcid       : "0000-0001-5820-9569"
   google-scholar: "qyUglMkAAAAJ&hl"
-  researchgate: "Damian_Miralles"
+  researchgate: "Damian-Miralles"
   location    : "Iowa, USA"

@@ -69,7 +69,7 @@ This release has several improvements in different dimensions, addition of new f
  *  Improvements in the NMEA output. The receiver can produce GPGGA, GPRMC, GPGSA, GPGSV, GAGSA and GAGSV sentences.
  *  Improvements in the RTCM server stability.
  *  Improvements in the correctness of generated RINEX files.
- *  The receiver can read and make use of Galileo [almanac XML files published by the European GNSS Service Centre](https://www.gsc-europa.eu/system-status/almanac-data).
+ *  The receiver can read and make use of Galileo [almanac XML files published by the European GNSS Service Centre](https://www.gsc-europa.eu/product-almanacs).
  *  Own-defined XML schemas for navigation data published [here](https://github.com/gnss-sdr/gnss-sdr/tree/next/docs/xml-schemas)
  *  Added program rinex2assist to convert RINEX navigation files into XML files usable for Assisted GNSS. Only available building from source. See the [README](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/rinex2assist).
 
@@ -104,7 +104,7 @@ This release has several improvements in different dimensions, addition of new f
  * Improvement in C++ usage: The `<stdio.h>` library has been replaced by the more modern and portable `<fstream>` for file handling.
  * Improvement in C++ usage: C++ libraries preferred over C libraries (_e.g._, `<cctype>` instead of `<ctype.h>`, `<cmath>` instead of `<math.h>`, etc.).
  * Fixes required by [Debian packaging](https://packages.debian.org/sid/gnss-sdr).
- * Fixes required by [Macports packaging](https://www.macports.org/ports.php?by=name&substr=gnss-sdr).
+ * Fixes required by [Macports packaging](https://ports.macports.org/search/?q=gnss-sdr&name=on ).
  * A downside in portability: BLAS and LAPACK libraries are now required even in ARM devices.
  * A downside in portability: the [matio library](https://github.com/tbeu/matio) >= 1.5.3 is a new required dependency. If not found, it is downloaded and built automatically at building time, but this requires `libtool`, `automake` and `hdf5` already installed in the system.
  * A downside in portability: the PugiXML library is a new required dependency. If not found, it is downloaded and built automatically at building time.
@@ -151,7 +151,7 @@ This release has several improvements in different dimensions, addition of new f
  * Updated and improved [documentation of processing blocks]({{ "/docs/sp-blocks/" | relative_url }}).
  * Improved documentation of required dependency packages in several GNU/Linux distributions.
  * Parameter names with the same role have been harmonized within different block implementations.
- * Added a [changelog](https://github.com/gnss-sdr/gnss-sdr/blob/main/docs/changelog.md), a [code of conduct](https://github.com/gnss-sdr/gnss-sdr/blob/main/CODE_OF_CONDUCT.md), a [contributing guide](https://github.com/gnss-sdr/gnss-sdr/blob/main/CONTRIBUTING.md) and a [pull-request template](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/PULL_REQUEST_TEMPLATE.md) in the source tree.
+ * Added a [changelog](https://github.com/gnss-sdr/gnss-sdr/blob/main/docs/CHANGELOG.md), a [code of conduct](https://github.com/gnss-sdr/gnss-sdr/blob/main/CODE_OF_CONDUCT.md), a [contributing guide](https://github.com/gnss-sdr/gnss-sdr/blob/main/CONTRIBUTING.md) and a [pull-request template](https://github.com/gnss-sdr/gnss-sdr/blob/next/.github/PULL_REQUEST_TEMPLATE.md) in the source tree.
  * Added colors to the commandline user interface.
  * Updated manfiles.
 

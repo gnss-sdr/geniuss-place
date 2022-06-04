@@ -1339,6 +1339,78 @@ Tracking_5X.dump=false
 Tracking_5X.dump_filename=./tracking_ch_
 ```
 
+## Galileo E5b signal tracking
+
+### Implementation: `Galileo_E5b_DLL_PLL_Tracking`
+
+This implementation accepts the following parameters:
+
+|----------
+| **Global Parameter** | **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `GNSS-SDR.internal_fs_sps` | Input sample rate to the processing channels, in samples per second. | Mandatory |
+|--------------
+
+
+|----------
+| **Parameter** | **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `Galileo_E5b_DLL_PLL_Tracking` | Mandatory |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `track_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot signal E5bQ and enables an extra prompt correlator (slave to pilot's prompt) in the data component E5bI. If set to `false`, the receiver performs correlations on a data length of 1 ms over the E5bI component. This parameter defaults to `true`. | Optional |
+| `extend_correlation_symbols` | If `track_pilot=true`, sets the number of correlation symbols to be extended after the secondary code $$ C_{E5bQs} $$ is removed from the pilot signal, in number of symbols. Each symbol is 1 ms, so setting this parameter to 25 means a coherent integration time of 25 ms. The higher this parameter is, the better local clock stability will be required. It defaults to 1. | Optional |
+| `pll_bw_hz` | Bandwidth of the PLL low-pass filter, in Hz. It defaults to 50 Hz. | Optional |
+| `pll_bw_narrow_hz` | Bandwidth of the PLL low-pass filter after the secondary code lock, in Hz. It defaults to 2 Hz. | Optional |
+| `pll_filter_order` | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3. | Optional |
+| `dll_bw_hz` | Bandwidth of the DLL low-pass filter, in Hz. It defaults to 2 Hz. | Optional |
+| `dll_bw_narrow_hz` | Bandwidth of the DLL low-pass filter after the secondary code lock, in Hz. It defaults to 0.25 Hz. | Optional |
+| `dll_filter_order` | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2. | Optional |
+| `enable_fll_pull_in` | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`. | Optional |
+| `enable_fll_steady_state` | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`. | Optional |
+| `fll_bw_hz` | Bandwidth of the FLL low-pass filter, in Hz. It defaults to 35 Hz. | Optional |
+| `pull_in_time_s` | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 2 s. | Optional |
+| `early_late_space_chips` | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$. | Optional |
+| `early_late_space_narrow_chips` | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the secondary code $$ C_{E5bQs} $$, normalized by the chip period $$ T_{c,E5p} $$. It defaults to $$ 0.15 $$. | Optional |
+| `carrier_aiding` | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`. | Optional |
+| `cn0_samples` | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20. | Optional |
+| `cn0_min` | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz. | Optional |
+| `max_lock_fail` | Maximum number of lock failures before dropping a satellite. It defaults to 50. | Optional |
+| `carrier_lock_th` | Carrier lock threshold (in rad). It defaults to 0.85 rad. | Optional |
+| `cn0_smoother_samples` | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples. | Optional |
+| `cn0_smoother_alpha` | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
+| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples. | Optional |
+| `carrier_lock_test_smoother_alpha` | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002. | Optional |
+| `dump` | [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging, in form of ".dat" files. This format can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/src/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/matlab). It defaults to `false`. | Optional |
+| `dump_filename` | If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./track_ch`, so files in the form "./track_chX.dat", where `X` is the channel number, will be generated. | Optional |
+| `dump_mat` | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`. | Optional |
+|--------------
+
+  _Tracking implementation:_ **`Galileo_E5b_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TRACKING CONFIG FOR GALILEO E5b CHANNELS ############
+Tracking_7X.implementation=Galileo_E5b_DLL_PLL_Tracking
+Tracking_7X.item_type=gr_complex
+Tracking_7X.track_pilot=true
+Tracking_7X.pll_bw_hz=20.0;
+Tracking_7X.dll_bw_hz=1.5;
+Tracking_7X.extend_correlation_symbols=20
+Tracking_7X.pll_bw_narrow_hz=5.0;
+Tracking_7X.dll_bw_narrow_hz=0.5;
+Tracking_7X.early_late_space_chips=0.5;
+Tracking_7X.early_late_space_chips_narrow=0.1;
+Tracking_7X.fll_bw_hz=4.0
+Tracking_7X.enable_fll_pull_in=true;
+Tracking_7X.enable_fll_steady_state=false
+Tracking_7X.dump=false
+Tracking_7X.dump_filename=./tracking_ch_
+```
+
 ## Plotting results with MATLAB/Octave
 
 Some Tracking block implementations are able to dump intermediate results of the
@@ -1416,6 +1488,6 @@ _Tracking results for a given channel._
 
 [^Kaplan17]: E. D. Kaplan and C. J. Hegarty, Eds., _Understanding GPS. Principles and Applications_, 3rd edition, Artech House, Norwood, MA, 2017.
 
-[^Fernandez]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk, The Netherlands.
+[^Fernandez]: C. Fern&aacute;ndez-Prades, J. Arribas, L. Esteve-Elfau, D. Pubill, P. Closas, [An Open Source Galileo E1 Software Receiver](https://www.researchgate.net/publication/233859838_An_Open_Source_Galileo_E1_Software_Receiver), in Proceedings of the 6th ESA Workshop on Satellite Navigation Technologies (NAVITEC 2012), 5-7 December 2012, ESTEC, Noordwijk, The Netherlands.
 
 [^Pauluzzi00]: D. R. Pauluzzi and N. C. Beaulieu, [A comparison of SNR estimation techniques for the AWGN channel](https://ieeexplore.ieee.org/document/871393), IEEE Transactions on Communications, Vol. 48, no. 10, pp 1681-1691, Oct. 2000.

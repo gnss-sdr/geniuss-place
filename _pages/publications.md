@@ -16,6 +16,31 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
+<ul class="biblist">
+    <!-- Item: Stenberg22 -->
+    <li ><p>
+    N.&nbsp;Stenberg, E.&nbsp;Axell, J.&nbsp;Rantakokko and G.&nbsp;Hendeby
+    <br><b>Results on GNSS Spoofing Mitigation Using Multiple Receivers</b><br>
+    <i>Navigation</i>, Vol. 69, No. 1, pp. 1-29, Spring&nbsp;2022.
+    <br />
+    <a href="javascript:toggleBibtex('Stenberg22')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=102947" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Stenberg22" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Stenberg22,
+author  = {N.~Stenberg and E.~Axell and J.~Rantakokko and G.~Hendeby},
+title   = {Results on {GNSS} Spoofing Mitigation Using Multiple Receivers},
+journal = {Navigation},
+year    = {2022},
+volume  = {69},
+number  = {1},
+pages   = {1--29},
+note    = { {doi}: 10.33012/navi.510}
+}</pre>
+    </div>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: Krafczyk21 -->
@@ -138,7 +163,7 @@ note    = { {doi}: 10.3390/geosciences10020079}
 <i>GPS Solutions</i>, Vol. 23, No. 3, pp. 72, May 2019.
     <br />
     <a href="javascript:toggleBibtex('Miralles19')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://link.springer.com/article/10.1007%2Fs10291-019-0865-8" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/article/10.1007/s10291-019-0865-8" >Online</a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/s10291-019-0865-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Miralles19" class="bibtex noshow" style="color: #111111">
@@ -333,7 +358,7 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 Vol. III, Chengdu, China, Nov. 2020, pp. 276-287.
     <br />
     <a href="javascript:toggleBibtex('Deng20')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://link.springer.com/chapter/10.1007%2F978-981-15-3715-8_26" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/978-981-15-3715-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://link.springer.com/chapter/10.1007/978-981-15-3715-8_26" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1007/978-981-15-3715-8" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Deng20" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Deng20,
@@ -834,7 +859,7 @@ note    = { {doi}: 10.33012/2016.14576}
 Tampa, Florida, Sept.&nbsp;2015, pp. 3222-3234.
     <br />
     <a href="javascript:toggleBibtex('GNSS-SDR15')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=13101" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=13101" >Online</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_GNSS-SDR15" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ GNSS-SDR15,
@@ -939,7 +964,7 @@ month   = {Nov.}
 Tampa, Florida, Sept.&nbsp;2014, pp. 1383-1395.
     <br />
     <a href="javascript:toggleBibtex('GNSS-SDR14b')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=12428" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=12428" >Online</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_GNSS-SDR14b" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ GNSS-SDR14b,
@@ -965,7 +990,7 @@ month   = {Sept.}
     A Coru&ntilde;a, Spain, June&nbsp;2014, pp. 121-124.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR14a')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6882355/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/profile/Pau_Closas/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach/links/548a95080cf225bf669c7fc0.pdf?origin=publication_detail" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/SAM.2014.6882355" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6882355/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/SAM.2014.6882355" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR14a" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR14a,
@@ -1044,7 +1069,7 @@ note    = { {doi}: 10.1109/MetroAeroSpace.2014.6865957}
     Nashville, TN, Sept.&nbsp;2013, pp. 1492-1507.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR13')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?jp=p&articleID=11334" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/09/Turning_TV_into_GNSS_Rx1.pdf" >PDF</a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=11334" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/257137427_Turning_a_Television_into_a_GNSS_Receiver" >PDF</a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR13" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR13,
@@ -1069,7 +1094,7 @@ month   = {Sept.}
     ESTEC, Noordwijk, The Netherlands, Dec. 2012, pp. 1-8.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR12')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6423057/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/121208-2582419-fernandez-9099698438457074772.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2012.6423057" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6423057/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/233859838_An_Open_Source_Galileo_E1_Software_Receiver" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2012.6423057" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR12" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR12,
@@ -1121,7 +1146,7 @@ note    = { {doi}: 10.1109/NAVITEC.2012.6423057}
     Portland, OR, Sept.&nbsp;2011, pp. 780-794.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR11')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=9640" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/profile/Carles_Fernandez-Prades/publication/233380791_GNSS-SDR_An_open_source_tool_for_researchers_and_developers/links/09e41509e27ee6de56000000.pdf?origin=publication_detail" >PDF</a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=9640" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/233380791_GNSS-SDR_An_open_source_tool_for_researchers_and_developers" >PDF</a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR11" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR11,
@@ -1146,7 +1171,7 @@ month   = {Sept.}
     ESTEC, Noordwijk, The Netherlands, Dec. 2010, pp. 1-8.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR10')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/5707981/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="http://www.cttc.es/wp-content/uploads/2013/03/101213-pid1531501-14543.pdf" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2010.5707981" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/5707981/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/228624103_Design_Patterns_for_GNSS_Software_Receivers" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2010.5707981" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR10" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR10,
@@ -1219,7 +1244,7 @@ month = {Feb.}
 J.&nbsp;Arribas
 <br><b>GNSS Array-based Acquisition: Theory and Implementation</b><br>
 <i>PhD Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, June&nbsp;2012.</i>
-<br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="https://www.eurasip.org/index.php?option=com_content&view=article&id=121&Itemid=124" >2015</a>
+<br><i class="fas fa-fw fa-star"></i> EURASIP Best PhD Thesis Award <a href="https://eurasip.org/best-phd-award/" >2015</a>
 <br />
 <a href="javascript:toggleBibtex('Arribas12')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/theses/449/gnss-array-based-acquisition-theory-and/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://theses.eurasip.org/media/theses/documents/arribas-javier-gnss-array-based-acquisition-theory-and-implementation.pdf" >PDF</a><span style="color: #52adc8">]</span>

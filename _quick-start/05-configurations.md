@@ -3,7 +3,7 @@ title: "Configurations"
 permalink: /conf/
 excerpt: "How to configure GNSS-SDR in a variety of setups."
 related: true
-last_modified_at: 2020-08-13T13:54:02+02:00
+last_modified_at: 2022-02-09T13:54:02+02:00
 header:
   teaser: "/assets/images/configuration.png"
 sidebar:
@@ -39,7 +39,7 @@ model's datasheet).
 
 This is an example of an eight-channel GPS L1 C/A receiver, working at 4 MS/s
 (baseband, _i.e._ complex samples), and using a device from the [USRP
-family](https://www.ettus.com/product) as the "air-to-computer" interface.
+family](https://www.ettus.com/products/) as the "air-to-computer" interface.
 
 ### Required equipment
 
@@ -126,7 +126,7 @@ jumper in order to feed the antenna.
 ![DBSRX2]({{ "/assets/images/DBSRX2_scale.jpg" | relative_url }}){: .align-center}
 _DBSRX2 daughterboard. The J101 jumper in the upper right corner allows the
 injection of current towards the antenna. Source: [Radio
-Adventures](http://yo3iiu.ro/blog/)._
+Adventures](https://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 If this feature is not available (_e.g._, WBX daughterboards), you will need a
@@ -134,12 +134,12 @@ bias-T between the USRP and the antenna, and to connect it to a power source
 delivering the voltage required by your antenna (usually, 3 V or 5 V).
 
 ![Bias-T]({{ "/assets/images/bias_tee_scale.jpg" | relative_url }}){: .align-center}
-_Bias-T allowing the injection of DC voltage to the antenna. Source: [Radio Adventures ](http://yo3iiu.ro/blog/)._
+_Bias-T allowing the injection of DC voltage to the antenna. Source: [Radio Adventures ](https://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 
 ![Setup]({{ "/assets/images/whole_hw_scaled.jpg" | relative_url }}){: .align-center}
-_USRP N210 with the bias-T and the GPS antenna. Source: [Radio Adventures](http://yo3iiu.ro/blog/)._
+_USRP N210 with the bias-T and the GPS antenna. Source: [Radio Adventures](https://yo3iiu.ro/blog/)._
 {: style="text-align: center;"}
 
 Depending on the specific USRP model you are using, the connection to the host
@@ -347,7 +347,7 @@ You should see something similar to:
 
 ```console
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
-Initializing GNSS-SDR v0.0.15 ... Please wait.
+Initializing GNSS-SDR v0.0.17 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 -- X300 initialization sequence...
@@ -508,9 +508,9 @@ required computational load for this particular implementation.
 ## GPS L1 C/A receiver using a HackRF One
 
 [HackRF One](https://greatscottgadgets.com/hackrf/) from Great Scott Gadgets is
-an [open-source](https://github.com/mossmann/hackrf) Software Defined Radio
-peripheral capable of reception of radio signals from 1 MHz to 6 GHz, and thus
-is well suited for GNSS applications. If features:
+an [open-source](https://github.com/greatscottgadgets/hackrf) Software Defined
+Radio peripheral capable of reception of radio signals from 1 MHz to 6 GHz, and
+thus is well suited for GNSS applications. If features:
 
   * Up to 20 million samples per second.
   * 8-bit quadrature samples (8-bit I and 8-bit Q).
@@ -524,7 +524,8 @@ is well suited for GNSS applications. If features:
 ![HackRF One]({{ "/assets/images/hackRF.jpg" | relative_url }}){: .align-center} _HackRF One._
 {: style="text-align: center;"}
 
-For more information, check out the [HackRF wiki](https://github.com/mossmann/hackrf/wiki).
+For more information, check out the [HackRF
+documentation](https://hackrf.readthedocs.io/en/latest/index.html).
 
 ### Required equipment
 

@@ -130,7 +130,7 @@ More details in version 1.0 of the
 The software receiver should deliver the results of the processing in several
 standard output formats:
 
-- GIS-oriented formats: [KML](https://www.opengeospatial.org/standards/kml),
+- GIS-oriented formats: [KML](https://www.ogc.org/standards/kml),
   [GeoJSON](https://geojson.org/),
   [SHP](https://en.wikipedia.org/wiki/Shapefile).
 
@@ -226,18 +226,18 @@ standard output formats:
   source that can feed an NTRIP server. NTRIP (Networked Transport of RTCM via
   Internet Protocol) is an open standard protocol that can be freely downloaded
   from
-  [BKG](https://igs.bkg.bund.de/root_ftp/NTRIP/documentation/NtripDocumentation.pdf "Networked Transport of RTCM via Internet Protocol (Ntrip) Version 1.0"),
+  [here](https://gssc.esa.int/wp-content/uploads/2018/07/NtripDocumentation.pdf "Networked Transport of RTCM via Internet Protocol (Ntrip) Version 1.0"),
   and it is designed for disseminating differential correction data (_e.g._ in
   the RTCM-104 format) or other kinds of GNSS streaming data to stationary or
   mobile users over the Internet.
   {: .notice--info}
 
 - RINEX observation and navigation data files. Specify version:
-  [2.10](ftp://igs.org/pub/data/format/rinex210.txt),
-  [2.11](ftp://igs.org/pub/data/format/rinex211.txt),
-  [3.00](ftp://igs.org/pub/data/format/rinex300.pdf),
-  [3.02](ftp://igs.org/pub/data/format/rinex302.pdf),
-  [3.03](ftp://igs.org/pub/data/format/rinex303.pdf),
+  [2.10](https://files.igs.org/pub/data/format/rinex210.txt),
+  [2.11](https://files.igs.org/pub/data/format/rinex211.txt),
+  [3.00](https://files.igs.org/pub/data/format/rinex300.pdf),
+  [3.02](https://files.igs.org/pub/data/format/rinex302.pdf),
+  [3.03](https://files.igs.org/pub/data/format/rinex303.pdf),
   [3.04](https://files.igs.org/pub/data/format/rinex304.pdf), or
   [3.05](https://files.igs.org/pub/data/format/rinex305.pdf).
 
@@ -300,7 +300,7 @@ GNSS receiver:
     host computer executing the software-defined GNSS receiver.
 - Number of supported combinations of data collection topologies and formats.
 - Number of supported standard output formats.
-  - GIS formats: [KML](https://www.opengeospatial.org/standards/kml),
+  - GIS formats: [KML](https://www.ogc.org/standards/kml),
     [GeoJSON](https://geojson.org/),
     [Shapefile](https://en.wikipedia.org/wiki/Shapefile), others.
   - Application-specific formats: NMEA

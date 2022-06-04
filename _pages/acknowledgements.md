@@ -10,7 +10,7 @@ last_modified_at: 2021-05-10T14:38:52+02:00
 
 This project has been mainly developed on a volunteer basis, for education and
 research purposes. The main [Developer Team]({{ "/team/" | relative_url }}) is a
-group of researchers at [CTTC](http://www.cttc.es), a non-profit research
+group of researchers at [CTTC](https://www.cttc.cat/), a non-profit research
 institution, and the project enjoys from a solid base of external users and
 contributors.
 
@@ -43,8 +43,8 @@ and open-source GNSS software-defined receiver:
   **The Spanish Ministry of Science, Innovation, and Universities** provides
   partial support for development infrastructure through the [Statistical
   Learning and Inference for Large Dimensional Communication Systems
-  (ARISTIDES)](http://www.cttc.es/project/aristides/) project
-  (RTI2018-099722-B-I00). Jan. 2019 - Dec. 2021.
+  (ARISTIDES)](https://www.cttc.cat/project/aprendizaje-estadistico-e-inferencia-para-sistemas-de-comunicacion-de-alta-dimensionalidad/)
+  project (RTI2018-099722-B-I00). Jan. 2019 - Dec. 2021.
   {: .notice--success}
 
 * Support from the European Union through European Regional Development Fund (ERDF).
@@ -53,9 +53,9 @@ and open-source GNSS software-defined receiver:
   {: style="text-align: center;"}
 
   GNSS-SDR Continuous Integration system is run in a hardware infrastructure
-  (servers, network storage) partially provided by ERDF through Project
-  [5G-Lab](http://www.cttc.es/project/5g-lab/) (Spanish Ministry of Science,
-  Innovation, and Universities, Ref. EQC2018-005257-P). Nov. 2018 - Mar. 2021.
+  (servers, network storage) partially provided by ERDF through Project 5G-Lab
+  (Spanish Ministry of Science, Innovation, and Universities, Ref.
+  EQC2018-005257-P). Nov. 2018 - Mar. 2021.
   {: .notice--success}
 
 * Support of Research Groups by the Government of Catalonia.
@@ -65,7 +65,7 @@ and open-source GNSS software-defined receiver:
   scientific conferences. Sep. 2017 - Sep. 2021.
   {: .notice--success}
 
-* **[AUDITOR](https://www.gsa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture**
+* **[AUDITOR](https://www.euspa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture**
   is a project that developed a multi-band, multi-constellation receiver based on
   GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo
   and GPS civil signals in the L1, L2, and L5 bands.
@@ -73,11 +73,11 @@ and open-source GNSS software-defined receiver:
   ![AUDITOR logo]({{ "/assets/images/logo-auditor.png" | relative_url }}){:height="250px" width="250px"}
   {: style="text-align: center;"}
 
-  This project received funding from the [**European GNSS
-  Agency**](https://www.gsa.europa.eu/) under the European Union's Horizon 2020
-  research and innovation programme under grant agreement no.
-  [687367](https://cordis.europa.eu/project/rcn/199301_en.html). Jan. 2016 -
-  Jun. 2018.
+  This project received funding from the [**European Union Agency for the Space
+  Programme**](https://www.euspa.europa.eu/) (formerly called GSA) under the
+  European Union's Horizon 2020 research and innovation programme under grant
+  agreement no. [687367](https://cordis.europa.eu/project/id/687367).
+  Jan. 2016 - Jun. 2018.
   {: .notice--success}
 
 * Support from the Spanish Ministry of Economy and Competitiveness.
@@ -90,12 +90,12 @@ and open-source GNSS software-defined receiver:
 
 * Research networks
 
-  - **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org))**, aimed to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
+  - **COST Action CA15104 - Inclusive Radio Communication Networks for 5G and beyond ([IRACON](http://www.iracon.org/))**, aimed to achieve scientific breakthroughs by introducing novel design and analysis methods for the 5th-generation (5G) and beyond-5G radio communication networks.
 
   ![IRACON logo]({{ "/assets/images/iracon-logo-big.jpg" | relative_url }}){:height="250px" width="250px"}
   {: style="text-align: center;"}
 
-  **IRACON** offered Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsm/). Mar 2016 - Mar. 2020.
+  **IRACON** offered Short Term Scientific Missions grants for exchange visits aimed at supporting individual mobility, strengthening existing networks and fostering collaboration between researchers. Check out the [application procedure](http://www.iracon.org/stsms/). Mar 2016 - Mar. 2020.
   {: .notice--success}
 
 
@@ -173,19 +173,22 @@ and open-source GNSS software-defined receiver:
 
 * **ESA Summer Of Code In Space (SOCIS)**
 
-  * [2019](https://www.esa.int/Enabling_Support/Space_Engineering_Technology/SOCIS_The_ESA_Summer_of_Code_in_Space)
+  * **2019**
     - In _Improving the Graphical User Interface (GUI) for monitoring the GNSS-SDR status in real-time_, 	&Aacute;lvaro Cebri&aacute;n worked in a GUI for GNSS-SDR (Honorable Participation).
 
-  * [2015](https://www.esa.int/Enabling_Support/Space_Engineering_Technology/SOCIS_The_ESA_Summer_of_Code_in_Space)
+  * **2015**
     - In _Direct Position Estimation_, Luis Esteve explored the DPE algorithm and proposed receiver architectures.
 
-  * [2014](https://www.esa.int/Enabling_Support/Space_Engineering_Technology/SOCIS_The_ESA_Summer_of_Code_in_Space)
+  * **2014**
     - In _GNSS-SDR. Acceleration with VOLK_, Andr&eacute;s Cecilia created a new VOLK module with kernels for GNSS signal processing, the inception of the current [VOLK_GNSSSDR](https://github.com/gnss-sdr/gnss-sdr/tree/main/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr).
 
-  * [2013](https://www.esa.int/Enabling_Support/Space_Engineering_Technology/SOCIS_The_ESA_Summer_of_Code_in_Space)
+  * **2013**
     - In _Real-time positioning solution for GNSS-SDR_, Vladimir Avrov started working on the generation of RTCM messages.
 
-    **The European Space Agency**, through the SOCIS program, offers students a stipend for contributing to open source projects.
+    **The European Space Agency**, through the
+    [SOCIS](https://www.esa.int/Enabling_Support/Space_Engineering_Technology/SOCIS_The_ESA_Summer_of_Code_in_Space)
+    program, offers students a stipend for contributing to open source
+    projects.
     {: .notice--success}
 
 

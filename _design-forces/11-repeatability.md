@@ -92,4 +92,4 @@ GNSS receiver:
 
 ## References
 
-[^Fernandez13]: C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas, [_Turning a Television into a GNSS Receiver_](http://www.cttc.es/wp-content/uploads/2013/09/Turning_TV_into_GNSS_Rx1.pdf), in Proc. of the 26th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2013), Nashville, TN, Sep. 2013, pp. 1492 - 1507.
+[^Fernandez13]: C. Fern&aacute;ndez-Prades, J. Arribas and P. Closas, [_Turning a Television into a GNSS Receiver_](https://www.researchgate.net/publication/257137427_Turning_a_Television_into_a_GNSS_Receiver), in Proc. of the 26th International Technical Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+ 2013), Nashville, TN, Sep. 2013, pp. 1492 - 1507.

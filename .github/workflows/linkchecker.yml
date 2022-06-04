@@ -1,0 +1,30 @@
+name: Link Checker
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**/CITATION.cff'
+  push:
+    paths-ignore:
+      - '**/CITATION.cff'
+    branches-ignore:
+      - main
+
+jobs:
+  link-checker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Check links
+      uses: docker://dcycle/broken-link-checker:2
+      with:
+        args: >
+          --ignore-url "^ftp"
+          --ignore-url linkedin
+          --ignore-url iracon
+          --ignore-url SOCIS
+          --ignore-url russianspacesystems
+          --ignore-url agupubs
+          --ignore-url science.org
+          --ignore-url navipedia
+          --check-extern https://gnss-sdr.org

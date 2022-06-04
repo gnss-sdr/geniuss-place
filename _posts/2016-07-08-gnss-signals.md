@@ -12,7 +12,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2021-07-23T09:37:02+02:00
+last_modified_at: 2022-05-13T08:37:02+02:00
 ---
 
 
@@ -339,7 +339,7 @@ km and an approximate revolution period of $$ 14 $$ hours. The Control segment
 full infrastructure will be composed of $$ 30-40 $$ sensor stations, $$ 3 $$
 control centers, $$ 9 $$ Mission Uplink stations, and $$ 5 $$ TT&C stations. The
 current constellation status can be checked at the [European GNSS Service Centre
-website](https://www.gsc-europa.eu/system-status/Constellation-Information).
+website](https://www.gsc-europa.eu/system-service-status/constellation-information).
 
 Galileo's Open Service is defined in the Service Definition Document
 (SDD)[^GalileoSSD], and the corresponding signal structures are defined in the
@@ -418,7 +418,7 @@ s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t) - e_{E6C}(t)\rig
 \end{equation} $$
 
 $$ \begin{equation}
-e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{HAS}} \Big[ [l]_{5115}\Big] \oplus C_{E6B}\Big[|l|_{5115}\Big] \cdot p(t - lT_{c,E6B})~,
+e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{HAS}} \Big[ [m]_{5115}\Big] \oplus C_{E6B}\Big[|m|_{5115}\Big] \cdot p(t - mT_{c,E6B})~,
 \end{equation} $$
 
 $$ \!\!\!\!\!\!\!\!\!\begin{equation}
@@ -428,7 +428,9 @@ e_{E6C}(t) \! = \!\!\! \sum_{m=-\infty}^{+\infty} \! C_{E6Cs}\Big[|m|_{100}\Big]
 where $$ D_{\text{HAS}} $$ is the HAS navigation data stream, which is modulated
 with the ranging code $$ C_{E6B} $$ with chip period $$
 T_{c,E6B}=\frac{1}{5.115} $$ $$\mu $$s. Codes $$ C_{E6B} $$, $$ C_{E6Cp} $$ and $$
-C_{E6Cs} $$ are published in Galileo's E6-B/C Codes Technical Note[^GalileoE6].
+C_{E6Cs} $$ are published in Galileo's E6-B/C Codes Technical Note[^GalileoE6],
+and the HAS message structure is described in the Galileo High Accuracy Service
+Signal-In-Space Interface Control Document (HAS SIS ICD)[^GalileoHAS].
 
 This band also contains another component, Galileo E6A, intended for the Public
 Regulated Service (PRS). It uses a BOC modulation with cosine–shaped subcarrier, $$
@@ -615,7 +617,7 @@ the abbreviation BDS.
 
 Updated information can be found at the [Beidou Navigation Satellite System
 website](http://en.beidou.gov.cn/). The status of the constellation can be
-consulted [here](https://www.glonass-iac.ru/en/BEIDOU/).
+consulted [here](http://www.csno-tarc.cn/en/system/constellation).
 
 
 ### Beidou B1I
@@ -893,11 +895,13 @@ The following table lists the GNSS signals providing Open Service.
 
 [^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
-[^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.1.pdf), Issue 1.1, May 2019.
+[^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.2.pdf), Issue 1.2, Nov. 2021.
 
 [^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021.
 
-[^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/system/files/galileo_documents/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
+[^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
+
+[^GalileoHAS]: European Union, [Galileo High Accuracy Service Signal-In-Space Interface Control Document (HAS SIS ICD)](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_HAS_SIS_ICD_v1.0.pdf), Issue 1.0, May 2022.
 
 [^Beidou]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal (Version 2.1)](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf). China Satellite Navigation Office, November 2016 (In Chinese). [English version](https://drive.google.com/file/d/19ixverkr6usYFirV_HVtwPzOlQfVL2dC/view?usp=sharing).
 
