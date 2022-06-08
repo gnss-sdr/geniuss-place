@@ -30,6 +30,7 @@ of the following signal identifiers:
 |  `1C`      | GPS L1 C/A | $$ 1575.42 $$ MHz |
 |  `1B`      | Galileo E1 B/C | $$ 1575.42 $$ MHz |
 |  `B1`      | Beidou B1I | $$ 1561.098 $$ MHz |
+|  `E6`      | Galileo E6B | $$ 1278.75 $$ MHz |
 |  `B3`      | Beidou B3I | $$ 1268.520 $$ MHz |
 |  `2G`      | Glonass L2 C/A | $$ 1246.00 $$ MHz |
 |  `2S`      | GPS L2 L2CM | $$ 1227.60 $$ MHz |
@@ -39,10 +40,16 @@ of the following signal identifiers:
 |-----
 
 
-Then, ten parameters can be set: `Channels_1G.count`, `Channels_1C.count`,
-`Channels_1B.count`, `Channels_B1.count`, `Channels_B3.count`,
-`Channels_2G.count`, `Channels_2S.count`, `Channels_7X.count`,
-`Channels_5X.count`, and `Channels_L5.count`, all of them defaulting to $$ 0 $$.
+Then, eleven parameters can be set: `Channels_1G.count`, `Channels_1C.count`,
+`Channels_1B.count`, `Channels_B1.count`,  `Channels_E6.count`,
+`Channels_B3.count`, `Channels_2G.count`, `Channels_2S.count`,
+`Channels_5X.count`, `Channels_7X.count` and `Channels_L5.count`, all of them
+defaulting to $$ 0 $$.
+
+**NOTE:** The E6 receiver chain (that is, `Channels_E6.count`) is only available
+from the `next` branch of the upstream repository. This feature will be
+available in the next stable release.
+{: .notice--warning}
 
 In addition, the GNSS-SDR flow graph allows setting the number of channels that
 will be executing signal acquisition (which is known to require a high
@@ -63,6 +70,7 @@ _Channels_ accepts the following parameters:
 | `Channels_1C.count` |  Number of channels targeting GPS L1 C/A signals. It defaults to $$ 0 $$. | Optional |
 | `Channels_1B.count` |  Number of channels targeting Galileo E1 B/C signals. It defaults to $$ 0 $$. | Optional |
 | `Channels_B1.count` |  Number of channels targeting BeiDou B1I signals. It defaults to $$ 0 $$.| Optional |
+| `Channels_E6.count` |  Number of channels targeting Galileo E6B signals. It defaults to $$ 0 $$. | Optional |
 | `Channels_B3.count` |  Number of channels targeting BeiDou B3I signals. It defaults to $$ 0 $$.| Optional |
 | `Channels_2S.count` |  Number of channels targeting GPS L2 L2CM signals. It defaults to $$ 0 $$.| Optional |
 | `Channels_2G.count` |  Number of channels targeting Glonass L2 C/A signals. It defaults to $$ 0 $$. | Optional |
