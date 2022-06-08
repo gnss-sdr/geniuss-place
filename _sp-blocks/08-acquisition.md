@@ -633,6 +633,59 @@ Acquisition_2G.doppler_step=250
 Acquisition_2G.pfa=0.0001
 ```
 
+## Galileo E6 signal acquisition
+
+### Implementation: `Galileo_E6_PCPS_Acquisition`
+
+**NOTE:** This block implementation is only available from the `next` branch of
+the upstream repository. It will be available in the next stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
+|--------------
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `Galileo_E6_PCPS_Acquisition` | Mandatory |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is defined in this version. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to $$ 5000 $$ Hz. | Optional |
+| `doppler_min`  | Minimum Doppler value in the search grid, in Hz. It defaults to $$ -5000 $$ Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
+| `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`Galileo_E6_PCPS_Acquisition`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### ACQUISITION CONFIG FOR GALILEO E6 CHANNELS ############
+Acquisition_E6.implementation=Galileo_E6_PCPS_Acquisition
+Acquisition_E6.item_type=gr_complex
+Acquisition_E6.pfa=0.001;
+Acquisition_E6.blocking=true
+Acquisition_E6.doppler_max=5000
+Acquisition_E6.doppler_step=250
+Acquisition_E6.dump=false
+Acquisition_E6.dump_filename=./acq_e6_dump
+Acquisition_E6.dump_channel=0
+```
+
 ## GPS L5 signal acquisition
 
 ### Implementation: `GPS_L5i_PCPS_Acquisition`

@@ -483,6 +483,53 @@ TelemetryDecoder_5X.implementation=Galileo_E5a_Telemetry_Decoder
 TelemetryDecoder_5X.dump=false
 ```
 
+## Galileo HAS navigation message
+
+### Implementation: `Galileo_E6_Telemetry_Decoder`
+
+**NOTE:** This block implementation is only available from the `next` branch of
+the upstream repository. It will be available in the next stable release.
+{: .notice--warning}
+
+The Galileo $$ e_{E6B}(t) $$ baseband signal component can be written as:
+
+$$ \begin{equation}
+e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} {\color{ForestGreen}D_{\text{HAS}} \Big[ [m]_{5115}\Big]} \oplus C_{E6B}\Big[|m|_{5115}\Big] \cdot p(t - mT_{c,E6B})~,
+\end{equation} $$
+
+where $$ D_{\text{HAS}} $$ is the High Accuracy Service data stream, which is
+modulated with the ranging code $$ C_{E6B} $$ with chip period $$
+T_{c,E6B}=\frac{1}{5.115} $$ $$\mu $$s.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `Galileo_E6_Telemetry_Decoder` | Mandatory |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added). | Optional |
+| `dump_mat` |  [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`. | Optional |
+| `remove_dat` |  [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. | Optional |
+| `dump_crc_stats` | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`. | Optional |
+| `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number. | Optional |
+|--------------
+
+  _Telemetry Decoder implementation:_ **`Galileo_E6_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER CONFIG FOR GALILEO E6B CHANNELS ############
+TelemetryDecoder_E6.implementation=Galileo_E6_Telemetry_Decoder
+TelemetryDecoder_E6.dump=false
+TelemetryDecoder_E6.dump_filename=has_data
+TelemetryDecoder_E6.remove_dat=true
+TelemetryDecoder_E6.dump_crc_stats=false
+TelemetryDecoder_E6.dump_crc_stats_filename=./e6_stats/crc_stats
+```
 
 ## Binary output
 

@@ -1053,6 +1053,75 @@ Tracking_2G.pll_bw_hz=40.0;
 Tracking_2G.dll_bw_hz=4.0;
 ```
 
+## Galileo E6 signal tracking
+
+The **Galileo High Accuracy Service (HAS)** will allow users to obtain a
+positioning error below two decimeters in nominal conditions of use, worldwide.
+The Galileo HAS will be based on the free transmission of Precise Point
+Positioning (PPP) corrections through the Galileo E6 signal data component $$
+e_{E6B}(t) $$:
+
+$$ \begin{equation}
+s_{T}^{\text{(Gal E6)}}(t) = \frac{1}{\sqrt{2}}\left(e_{E6B}(t) - e_{E6C}(t)\right)~,
+\end{equation} $$
+
+$$ \begin{equation}
+e_{E6B}(t) = \sum_{m=-\infty}^{+\infty} D_{\text{HAS}} \Big[ [m]_{5115}\Big] \oplus C_{E6B}\Big[|m|_{5115}\Big] \cdot p(t - mT_{c,E6B})~,
+\end{equation} $$
+
+where $$ D_{\text{HAS}} $$ is the HAS navigation data stream, which is modulated
+with the ranging code $$ C_{E6B} $$ with chip period $$
+T_{c,E6B}=\frac{1}{5.115} $$ $$\mu $$s.
+
+The implementation described below performs the estimation of $$ \tau $$, $$ f_D $$
+and $$ \phi $$, which are assumed piecewise constant (that is, constant within
+an integration time, but allowed to vary from one integration period to the next
+one).
+
+### Implementation: `Galileo_E6_DLL_PLL_Tracking`
+
+**NOTE:** This block implementation is only available from the `next` branch of
+the upstream repository. It will be available in the next stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+| **Global Parameter** | **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `GNSS-SDR.internal_fs_sps` | Input sample rate to the processing channels, in samples per second. | Mandatory |
+|--------------
+
+
+|----------
+| **Parameter** | **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `Galileo_E6_DLL_PLL_Tracking` | Mandatory |
+|--------------
+
+  _Tracking implementation:_ **`Galileo_E6_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TRACKING CONFIG FOR Galileo E6B CHANNELS ############
+Tracking_E6.implementation=Galileo_E6_DLL_PLL_Tracking
+Tracking_E6.item_type=gr_complex
+Tracking_E6.pll_bw_hz=30.0
+Tracking_E6.dll_bw_hz=2.0
+Tracking_E6.early_late_space_chips=0.5
+Tracking_E6.early_late_space_narrow_chips=0.15
+Tracking_E6.pll_bw_narrow_hz=10.0
+Tracking_E6.dll_bw_narrow_hz=1.0
+Tracking_E6.track_pilot=false
+Tracking_E6.dump=false
+Tracking_E6.dump_filename=tracking_ch_
+```
+
+
 ## GPS L5 signal tracking
 
 The GPS L5 link is only available on Block IIF and subsequent satellite blocks.
