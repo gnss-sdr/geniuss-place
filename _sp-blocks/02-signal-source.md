@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2022-02-11T10:54:02+02:00
+last_modified_at: 2022-06-06T10:54:02+02:00
 ---
 
 {% capture fig_img2 %}
@@ -691,6 +691,7 @@ This implementation accepts the following parameters:
 | `gain` | RF front-end gain for RF channel 0, in dB. The value is spread across the receiving chain. It defaults to $$ 40 $$ dB. | Optional |
 | `rf_gain` | RF front-end gain for the RF amplifier, in dB. It defaults to $$ 40 $$ dB.|  Optional |
 | `if_gain` | RF front-end gain for the IF amplifier, in dB. It defaults to $$ 40 $$ dB. | Optional |
+| `if_bw`   | Set the bandpass filter on the radio frontend, in Hz. It defaults to `0` (automatic selection). <span style="color:orange">NOTE: this parameter is only present on the `next` branch and it will be included in the next stable release.</span> | Optional |
 | `sampling_frequency` | Sampling frequency, in samples per second. It defaults to 2 Ms/s. | Optional |
 | `AGC_enabled` | [`true`, `false`]: If set to `true`, enables Automatic Gain Control. It defaults to `false`. | Optional |
 | `samples` |  Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
