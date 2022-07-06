@@ -14,7 +14,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2021-08-11T11:37:02+02:00
+last_modified_at: 2022-06-06T11:37:02+02:00
 ---
 
 [Testability]({{ "/design-forces/testability/" | relative_url }}) is an
@@ -99,12 +99,13 @@ and built by passing the following option flags to CMake:
 |  **Variable passed to CMake** | **Possible values** | **Default** | **Effect** |
 |:--|:-:|:-:|:--|
 |--------------
-| `-DENABLE_UNIT_TESTING` | ON / OFF | ON  |  If set to OFF, it disables the building of unit tests. This can be useful in memory-limited systems. |
-| `-DENABLE_UNIT_TESTING_EXTRA` | ON / OFF | OFF  | If set to ON, it downloads external raw sample files and other software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system), and builds some extra unit tests that are added to the `run_tests` executable.  |
-| `-DENABLE_SYSTEM_TESTING` | ON / OFF |  OFF |  If set to ON, it builds system tests (each one with its own executable test program) at the `gnss-sdr/install` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option.  |
-| `-DENABLE_SYSTEM_TESTING_EXTRA` | ON / OFF | OFF  | If set to ON, it downloads external software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the `gnss-sdr/install` folder, unless otherwise indicated by the ENABLE_INSTALL_TESTS option. |
-| `-DENABLE_OWN_GPSTK` | ON / OFF |  OFF | If set to ON, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/GPSTk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
-| `-DENABLE_INSTALL_TESTS` | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder `gnss-sdr/install`. If this option is set to ON, test binaries and auxiliary files will not be copied to  `gnss-sdr/install` but installed in the system path when doing `make install`.  |
+| `-DENABLE_UNIT_TESTING` | ON / OFF | ON | If set to OFF, it disables the building of unit tests. This can be useful in memory-limited systems. |
+| `-DENABLE_UNIT_TESTING_EXTRA` | `ON` / `OFF` | `OFF` | If set to `ON`, it downloads external raw sample files and other software tools (among them, [GNSSTk](https://github.com/SGL-UT/gnsstk/), if it is not already found in your system), and builds some extra unit tests that are added to the `run_tests` executable. |
+| `-DENABLE_SYSTEM_TESTING` | `ON` / `OFF` | `OFF` |  If set to `ON`, it builds system tests. The binary `ttff`, a tool for Time-To-First-Fix measurement, is generated at the `gnss-sdr/install` folder, unless otherwise indicated by the `ENABLE_INSTALL_TESTS` option. |
+| `-DENABLE_SYSTEM_TESTING_EXTRA` | `ON` / `OFF` | `OFF` | If set to `ON`, it downloads external software tools (among them, [GNSSTk](https://github.com/SGL-UT/gnsstk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the `gnss-sdr/install` folder, unless otherwise indicated by the `ENABLE_INSTALL_TESTS` option. |
+| `-DENABLE_OWN_GPSTK` | ON / OFF | OFF | If set to ON, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/gnsstk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. <span style="color:orange">NOTE: This option is DEPRECATED in the `next` branch, in favour of `-DENABLE_OWN_GNSSTK`</span>. |
+| `-DENABLE_OWN_GNSSTK` | ON / OFF | OFF | If set to ON, it forces to download, build and link [GNSSTk](https://github.com/SGL-UT/gnsstk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) or GNSSTK newer than 12.1.0 already installed in your system and you do not want to remove it, but you still want the QA code to use a recent version. <span style="color:orange">NOTE: This option is only present in the `next` branch of the upstream repository, and it will be available in the next stable release.</span> |
+| `-DENABLE_INSTALL_TESTS` | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder `gnss-sdr/install`. If this option is set to ON, test binaries and auxiliary files will not be copied to `gnss-sdr/install` but installed in the system path when doing `make install`. |
 |----------
 
 Those extra tests are described [below]({{ "#extra-unit-tests" }}).
@@ -421,17 +422,19 @@ and files:
  [https://bitbucket.org/jarribas/gnss-simulator](https://bitbucket.org/jarribas/gnss-simulator),
  which includes some sample RINEX and trajectory (.csv) files used by optional
  tests.
- * The [GPSTk project](https://github.com/SGL-UT/GPSTk), an open-source library
- and suite of applications for the satellite navigation community. GPSTk is
- sponsored by the [Space and Geophysics
+
+ * The [GNSSTk project](https://github.com/SGL-UT/gnsstk), an open-source
+ library and suite of applications for the satellite navigation community.
+ GNSSTk is sponsored by the [Space and Geophysics
  Laboratory](https://www.arlut.utexas.edu/sgl.shtml), within the [Applied
  Research Laboratories](https://www.arlut.utexas.edu/) at the [University of
- Texas at Austin](https://www.utexas.edu) (ARL:UT). GPSTk is the by-product of
+ Texas at Austin](https://www.utexas.edu) (ARL:UT). GNSSTk is the by-product of
  GPS research conducted at ARL:UT since before the first satellite launched in
  1978; it is the combined effort of many software engineers and scientists. In
  2003, the research staff at ARL:UT decided to open-source much of their basic
- GNSS processing software as the GPSTk. The source code is currently available
- from [https://github.com/SGL-UT/GPSTk](https://github.com/SGL-UT/GPSTk).
+ GNSS processing software as the GNSSTk. The source code is currently available
+ from [https://github.com/SGL-UT/gnsstk](https://github.com/SGL-UT/gnsstk).
+
  * It downloads `gps_l2c_m_prn7_5msps.dat` and
  `Glonass_L1_CA_SIM_Fs_62Msps_4ms.dat`, files containing raw GNSS signal samples
  that are used by some tests as input data.
@@ -704,7 +707,7 @@ $ make
 
 As in the case of the `-DENABLE_UNIT_TESTING_EXTRA=ON`, this option will also
 download, build and link the software-defined GNSS signal generator and the
-GPSTk library.
+GNSSTk C++ library.
 
 This option generates the following system test program:
 
