@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2022-04-20T09:17:02+02:00
+last_modified_at: 2022-06-06T09:17:02+02:00
 ---
 
 
@@ -208,10 +208,11 @@ package (`sudo apt-get install gnss-sdr`), the option `ENABLE_OSMOSDR` is set to
 |--------------
 | `-DENABLE_UNIT_TESTING` | `ON` / `OFF` | `ON` | If set to `OFF`, it disables the building of unit tests. This can be useful in memory-limited systems. |
 | `-DENABLE_UNIT_TESTING_MINIMAL` | `ON` / `OFF` | `OFF` | If set to `ON`, it builds a minimal subset of unit tests. This can be useful in memory-limited systems. |
-| `-DENABLE_UNIT_TESTING_EXTRA` | `ON` / `OFF` | `OFF` | If set to `ON`, it downloads external raw sample files and other software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system), and builds some extra unit tests that are added to the `run_tests` executable. |
+| `-DENABLE_UNIT_TESTING_EXTRA` | `ON` / `OFF` | `OFF` | If set to `ON`, it downloads external raw sample files and other software tools (among them, [GNSSTk](https://github.com/SGL-UT/gnsstk/), if it is not already found in your system), and builds some extra unit tests that are added to the `run_tests` executable. |
 | `-DENABLE_SYSTEM_TESTING` | `ON` / `OFF` | `OFF` |  If set to `ON`, it builds system tests. The binary `ttff`, a tool for Time-To-First-Fix measurement, is generated at the `gnss-sdr/install` folder, unless otherwise indicated by the `ENABLE_INSTALL_TESTS` option. |
-| `-DENABLE_SYSTEM_TESTING_EXTRA` | `ON` / `OFF` | `OFF` | If set to `ON`, it downloads external software tools (among them, [GPSTk](https://github.com/SGL-UT/GPSTk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the `gnss-sdr/install` folder, unless otherwise indicated by the `ENABLE_INSTALL_TESTS` option. |
-| `-DENABLE_OWN_GPSTK` | `ON` / `OFF` | `OFF` | If set to `ON`, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/GPSTk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. |
+| `-DENABLE_SYSTEM_TESTING_EXTRA` | `ON` / `OFF` | `OFF` | If set to `ON`, it downloads external software tools (among them, [GNSSTk](https://github.com/SGL-UT/gnsstk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the `gnss-sdr/install` folder, unless otherwise indicated by the `ENABLE_INSTALL_TESTS` option. |
+| `-DENABLE_OWN_GPSTK` | ON / OFF | OFF | If set to ON, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/gnsstk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. <span style="color:orange">NOTE: This option is DEPRECATED in the `next` branch, in favour of `-DENABLE_OWN_GNSSTK`</span>. |
+| `-DENABLE_OWN_GNSSTK` | ON / OFF | OFF | If set to ON, it forces to download, build and link [GNSSTk](https://github.com/SGL-UT/gnsstk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) or GNSSTK newer than 12.1.0 already installed in your system and you do not want to remove it, but you still want the QA code to use a recent version. <span style="color:orange">NOTE: This option is only present in the `next` branch of the upstream repository, and it will be available in the next stable release.</span> |
 | `-DENABLE_BENCHMARKS` | `ON` / `OFF` | `OFF` | If set to `ON`, it enables the building of benchmarks for small code snippets, based on the [Benchmark](https://github.com/google/benchmark) library. It requires CMake > 3.5.1. |
 | `-DENABLE_INSTALL_TESTS` | `ON` / `OFF` | `OFF` | By default, generated test binaries are not installed system-wide but placed in the local folder `gnss-sdr/install`. If this option is set to `ON`, test binaries and auxiliary files will not be copied to `gnss-sdr/install` but installed in the system path when doing `make install`. |
 |----------

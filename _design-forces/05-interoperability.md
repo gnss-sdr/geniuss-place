@@ -248,7 +248,7 @@ standard output formats:
   (usually with other data unknown to the original receiver, such as better
   models of the atmospheric conditions at the time of measurement). RINEX files
   can be used by software packages such as
-  [GPSTk](https://github.com/SGL-UT/GPSTk), [RTKLIB](http://www.rtklib.com/),
+  [GNSSTk](https://github.com/SGL-UT/gnsstk), [RTKLIB](http://www.rtklib.com/),
   and [gLAB](https://gage.upc.edu/gLAB/), among many others.
   {: .notice--info}
 
