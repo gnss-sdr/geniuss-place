@@ -69,7 +69,7 @@ This release has several improvements in different dimensions, addition of new f
  *  Improvements in the NMEA output. The receiver can produce GPGGA, GPRMC, GPGSA, GPGSV, GAGSA and GAGSV sentences.
  *  Improvements in the RTCM server stability.
  *  Improvements in the correctness of generated RINEX files.
- *  The receiver can read and make use of Galileo [almanac XML files published by the European GNSS Service Centre](https://www.gsc-europa.eu/product-almanacs).
+ *  The receiver can read and make use of Galileo [almanac XML files published by the European GNSS Service Centre](https://www.gsc-europa.eu/gsc-products/almanac).
  *  Own-defined XML schemas for navigation data published [here](https://github.com/gnss-sdr/gnss-sdr/tree/next/docs/xml-schemas)
  *  Added program rinex2assist to convert RINEX navigation files into XML files usable for Assisted GNSS. Only available building from source. See the [README](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/rinex2assist).
 

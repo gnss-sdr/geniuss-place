@@ -35,7 +35,7 @@ listed below:
 
 - Added a script at `src/utils/scripts/download-galileo-almanac.sh` that
   downloads an XML file with the latest Galileo almanac published by the
-  European GNSS Service Centre at https://www.gsc-europa.eu/product-almanacs
+  European GNSS Service Centre at https://www.gsc-europa.eu/gsc-products/almanac
 
 
 -----
