@@ -27,4 +27,5 @@ jobs:
           --ignore-url agupubs
           --ignore-url science.org
           --ignore-url navipedia
+          --ignore-url researchgate
           --check-extern https://gnss-sdr.org
