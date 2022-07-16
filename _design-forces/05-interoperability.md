@@ -163,11 +163,11 @@ standard output formats:
   **Shapefile** is a digital vector storage format for storing geometric
   location and associated attribute information. It is a popular format for
   geographic information system (GIS) software. It is developed and regulated by
-  [Esri](https://www.esri.com/) as a (mostly) open specification for data
-  interoperability among Esri and other GIS software products. The shapefile
-  format can spatially describe vector features: points, lines, and polygons,
-  representing, for example, water wells, rivers, and lakes. Each item usually
-  has attributes that describe it, such as _name_ or _temperature_.
+  [Esri](https://www.esri.com/en-us/home) as a (mostly) open specification for
+  data interoperability among Esri and other GIS software products. The
+  shapefile format can spatially describe vector features: points, lines, and
+  polygons, representing, for example, water wells, rivers, and lakes. Each item
+  usually has attributes that describe it, such as _name_ or _temperature_.
   {: .notice--info}
 
 - Application-specific messages (_e.g._, NMEA

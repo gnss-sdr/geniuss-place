@@ -50,10 +50,10 @@ can be directly executed by the Zynq device.
   {: .notice--success}
 
 The cross-compilation environment proposed here is based on
-[OpenEmbedded](http://www.openembedded.org), a building framework for embedded
-Linux. OpenEmbedded offers a best-in-class cross-compile environment, allowing
-developers to create a complete, custom GNU/Linux distribution for embedded
-systems.
+[OpenEmbedded](http://www.openembedded.org/wiki/Main_Page), a building framework
+for embedded Linux. OpenEmbedded offers a best-in-class cross-compile
+environment, allowing developers to create a complete, custom GNU/Linux
+distribution for embedded systems.
 
 Below we provide a software developer kit (SDK) that installs a ready-to-use
 cross-compilation environment in your computer.
