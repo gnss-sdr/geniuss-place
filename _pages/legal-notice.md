@@ -13,7 +13,7 @@ last_modified_at: 2020-02-20T10:39:37+02:00
 
 ## TITULARITY
 
-This Webpage is the property of: CENTRE TECNOL&Ograve;GIC DE TELECOMUNICACIONS DE CATALUNYA (CTTC) CIF: G-62616586 Address: Parc Mediterrani de la Tecnologia (PMT) - Building B4 Av. Carl Friedrich Gauss 7 (formerly, Av. Canal Ol&iacute;mpic SN) 08860 - Castelldefels Barcelona (Spain) Register information: [Guia d'Entitats. Departament de Just&iacute;cia de la Generalitat de Catalunya. Registration number: 1613](http://justicia.gencat.cat/ca/serveis/guia_d_entitats/index.html?accion=detalle&pag=1&identitat=47049&idtipus=1&v_tipent=1&v_classif=&v_final=&v_prov=&v_comarca=&v_poblacio=&v_nom=cttc&v_partit=cap&v_nombrecensal=&v_dataaltacens=&idEntitat=47049#)
+This Webpage is the property of: CENTRE TECNOL&Ograve;GIC DE TELECOMUNICACIONS DE CATALUNYA (CTTC) CIF: G-62616586 Address: Parc Mediterrani de la Tecnologia (PMT) - Building B4 Av. Carl Friedrich Gauss 7 (formerly, Av. Canal Ol&iacute;mpic SN) 08860 - Castelldefels Barcelona (Spain) Register information: [Guia d'Entitats. Departament de Just&iacute;cia de la Generalitat de Catalunya. Registration number: 1613](https://justicia.gencat.cat/ca/serveis/guia_d_entitats/index.html?accion=detalle&pag=1&identitat=47049&idtipus=1&v_tipent=1&v_classif=&v_final=&v_prov=&v_comarca=&v_poblacio=&v_nom=cttc&v_partit=cap&v_nombrecensal=&v_dataaltacens=&idEntitat=47049)
 
 For any inquiry or proposal, contact us on + 34 936 452 900 or write an email to [dpo@cttc.cat](mailto:dpo@cttc.cat).
 

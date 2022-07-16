@@ -148,7 +148,7 @@ standard output formats:
   Notation (JSON) supported by numerous mapping and GIS software packages,
   including [OpenLayers](https://openlayers.org),
   [Leaflet](https://leafletjs.com), [MapServer](https://www.mapserver.org/),
-  [GeoServer](http://geoserver.org), [GeoDjango](https://www.djangoproject.com),
+  [GeoServer](https://geoserver.org/), [GeoDjango](https://www.djangoproject.com),
   [GDAL](https://gdal.org/), and [CARTO](https://carto.com/). It is also
   possible to use GeoJSON with [PostGIS](https://postgis.net) and
   [Mapnik](https://mapnik.org/), both of which handle the format via the GDAL
@@ -157,7 +157,7 @@ standard output formats:
   v3 directly supports the
   [integration of GeoJSON data layers](https://developers.google.com/maps/documentation/javascript/examples/layer-data-simple),
   and
-  [GitHub also supports GeoJSON rendering](https://github.com/blog/1528-there-s-a-map-for-that).
+  [GitHub also supports GeoJSON rendering](https://github.blog/2013-06-13-there-s-a-map-for-that/).
   {: .notice--info}
 
   **Shapefile** is a digital vector storage format for storing geometric

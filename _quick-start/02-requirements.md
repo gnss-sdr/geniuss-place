@@ -50,7 +50,7 @@ your machine (covering technologies such as
 [SSE4.1](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=SSE4_1),
 [AVX](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=AVX),
 [AVX2](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#techs=AVX2),
-and [NEON](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon)). It can even offload
+and [NEON](https://developer.arm.com/Architectures/Neon)). It can even offload
 some of the computing work to the Graphics Processing Unit. If there is
 computational power enough, GNSS-SDR can be used in real-time, reading raw
 samples from a radio frequency front-end. In slower machines, GNSS-SDR will
