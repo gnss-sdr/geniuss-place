@@ -395,7 +395,7 @@ References
 
  * More information about the development environment and the usage of BitBake
  can be found in the [Yocto Project
- Documentation](https://www.yoctoproject.org/documentation).
+ Documentation](https://docs.yoctoproject.org/).
 
  * This work is heavily based on [Embedded Developments with GNU
  Radio](https://wiki.gnuradio.org/index.php/Embedded_Development_with_GNU_Radio)

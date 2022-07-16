@@ -36,10 +36,10 @@ the adherence to the official language programming standards. Examples:
     from [ISO](https://www.iso.org/standard/57853.html). You can obtain
     something very close to the standard for free because of the working drafts
     available, the closest
-    is [N1570](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1570.pdf).
+    is [N1570](https://www.open-std.org/jtc1/sc22/WG14/www/docs/n1570.pdf).
   - **C99**: An older standard ISO/IEC 9899:1999 is unavailable from official
     sources, due to the ISO adoption of C11. The closest free working draft is
-    [N1256](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1256.pdf).
+    [N1256](https://www.open-std.org/jtc1/sc22/WG14/www/docs/n1256.pdf).
 - For C++:
   - **Draft C++23**: Check the
     [C++ standard draft sources at GitHub](https://github.com/cplusplus/draft).
@@ -58,18 +58,18 @@ the adherence to the official language programming standards. Examples:
     [IEC](https://webstore.iec.ch/publication/62162), or
     [ANSI](https://webstore.ansi.org/Standards/ISO/ISOIEC148822017). The closest
     free working document available is
-    [N4659](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf).
+    [N4659](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf).
   - **C++14**: An older ISO C++ standard was officially known as
     _ISO International Standard ISO/IEC 14882:2014 &ndash; Programming languages
     &ndash; C++_. You can get it from
     [ISO](https://www.iso.org/standard/64029.html), or
     [ANSI](<https://webstore.ansi.org/Standards/INCITS/INCITSISOIEC1488220142016>).
     The closest free working document available is
-    [N4296](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf).
+    [N4296](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf).
   - **C++11**: An older ISO C++ standard was ISO/IEC 14882:2011. You can get it
     from [ISO](https://www.iso.org/standard/50372.html). The closest free
     working document available is
-    [N3337](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3337.pdf).
+    [N3337](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3337.pdf).
 
 In other programming languages, this could refer to the minimum (oldest) /
 maximum (most recent) working version(s) of the corresponding compiler or

@@ -49,7 +49,7 @@ Examples of notable CPU architectures:
 - ARM
   - [ARM architecture](https://en.wikipedia.org/wiki/ARM_architecture) (32-bit).
     - SIMD instruction set extension:
-      [NEON](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon).
+      [NEON](https://developer.arm.com/Architectures/Neon).
   - [AArch64](https://en.wikipedia.org/wiki/ARM_architecture#64-bit)
     (64/32-bit).
     - SIMD instruction set extension: AArch64 NEON instruction set.
