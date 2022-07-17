@@ -23,7 +23,7 @@ supports directory hierarchies and applications that depend on multiple
 libraries. It can locate executables, files, and libraries to be linked against,
 generating [makefiles](https://en.wikipedia.org/wiki/Makefile) for many
 platforms and IDEs (such as [Eclipse](https://www.eclipse.org),
-[Codeblocks](http://www.codeblocks.org/), and
+[Codeblocks](https://www.codeblocks.org/), and
 [Xcode](https://developer.apple.com/xcode/)), and liberating users from choosing
 the adequate flags for their compiler. CMake is used in conjunction with native
 build systems such as [make](https://en.wikipedia.org/wiki/Make_(software)),
