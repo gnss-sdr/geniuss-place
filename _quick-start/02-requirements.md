@@ -124,7 +124,7 @@ some of which are also used by GNSS-SDR. Notably,
 * [Armadillo](http://arma.sourceforge.net/), a C++ linear algebra library. It
 acts as a wrapper for all the relevant libraries present on your system, such as
 [LAPACK](https://www.netlib.org/lapack/), [BLAS](https://www.netlib.org/blas/),
-[OpenBlas](http://www.openblas.net/),
+[OpenBlas](https://www.openblas.net/),
 [ATLAS](http://math-atlas.sourceforge.net/), and
 [others](http://arma.sourceforge.net/faq.html#linking).
 * [glog](https://github.com/google/glog), a C++ implementation of the Google
