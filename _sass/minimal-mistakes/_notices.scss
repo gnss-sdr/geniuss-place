@@ -55,6 +55,10 @@
     }
   }
 
+  @at-root #{selector-unify(&, "blockquote")} {
+    border-left-color: mix(#000, $notice-color, 10%);
+  }
+
   code {
     background-color: mix(#fff, $notice-color, 95%)
   }
