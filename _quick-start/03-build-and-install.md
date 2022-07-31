@@ -407,10 +407,9 @@ $ xcodebuild -config Release
   <img src="{{ "/assets/images/Snapcraft-logo-bird.png" | relative_url }}" alt="Snapcraft logo">
 </figure>
 
-[Snaps](https://snapcraft.io) are universal Linux packages aimed to work on any
-distribution or device, from IoT devices to servers, desktops to mobile devices.
-Snaps are self-contained packages that bundle the application and all the
-libraries and runtimes it needs, and can be updated and reverted without
+[Snaps](https://snapcraft.io) are Linux packages aimed for Ubuntu or Ubuntu-like
+distros. Snaps are self-contained packages that bundle the application and all
+the libraries and runtimes it needs, and can be updated and reverted without
 affecting the rest of the system. Snaps are confined from the OS and other apps
 through security mechanisms, but can exchange content and functions with other
 snaps.
