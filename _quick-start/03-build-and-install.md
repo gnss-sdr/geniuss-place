@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2020-06-09T11:13:02+02:00
+last_modified_at: 2022-07-31T11:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -165,6 +165,13 @@ by `python-mako` and `python-six`.
 
 Once you have installed these packages, you can jump directly to
 [clone, build and install GNSS-SDR](#build).
+
+<i class="fab fa-linux fa-xl"></i> For other distributions (_e.g._ Arch Linux,
+Debian, Fedora, openSUSE, Rocky Linux) please check the list of dependency
+packages in the
+[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/next/README.md#alternative-1-install-dependencies-using-software-packages)
+file.
+{: .notice--info}
 
 ### Install dependencies using PyBOMBS
 
@@ -407,10 +414,9 @@ $ xcodebuild -config Release
   <img src="{{ "/assets/images/Snapcraft-logo-bird.png" | relative_url }}" alt="Snapcraft logo">
 </figure>
 
-[Snaps](https://snapcraft.io) are universal Linux packages aimed to work on any
-distribution or device, from IoT devices to servers, desktops to mobile devices.
-Snaps are self-contained packages that bundle the application and all the
-libraries and runtimes it needs, and can be updated and reverted without
+[Snaps](https://snapcraft.io) are Linux packages aimed for Ubuntu or Ubuntu-like
+distros. Snaps are self-contained packages that bundle the application and all
+the libraries and runtimes it needs, and can be updated and reverted without
 affecting the rest of the system. Snaps are confined from the OS and other apps
 through security mechanisms, but can exchange content and functions with other
 snaps.
