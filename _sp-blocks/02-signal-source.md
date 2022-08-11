@@ -546,7 +546,7 @@ stream.
 
 The availability of this block requires the source code to be configured with
 
-```
+```console
 $ cmake -DENABLE_ZMQ=ON ..
 ```
 
