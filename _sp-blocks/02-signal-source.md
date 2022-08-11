@@ -563,7 +563,7 @@ This implementation accepts the following parameters:
 | `item_type` | [`gr_complex`, `short`, `ishort`, `byte`, `ibyte`]: Data type of the samples (default: `gr_complex`). | Optional |
 | `vlen` | Vector length of the input items. Note that one vector is one item. It defaults to `1`. | Optional |
 | `pass_tags` | [`true`, `false`]: Whether source will look for and deserialize tags. It defaults to `false`. | Optional |
-| `timeout_ms` | Receive timeout in milliseconds, default is `100` ms, 1 $$ \mu $$s increments. | Optional |
+| `timeout_ms` | Receive timeout in milliseconds, default is `100` ms, 1 ms increments. | Optional |
 | `hwm` | High Watermark to configure the socket to. It defaults to `-1`, which is also zmq's default. | Optional  |
 | `dump` | [`true`, `false`]: If set to `true`, it dumps the content received from the ZMQ pub in a file. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, the name of the dump file. It defaults to `./data/zmq_dump.dat` | Optional |
@@ -577,7 +577,7 @@ Example of configuration:
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=ZMQ_Signal_Source
-SignalSource.endpoint=localhost:8080
+SignalSource.endpoint=tcp://127.0.0.1:55555
 SignalSource.item_type=ishort
 SignalSource.dump=true
 SignalSource.dump_filename=./zmq_dump.dat
