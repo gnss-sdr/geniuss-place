@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2022-06-06T09:17:02+02:00
+last_modified_at: 2022-08-11T09:17:02+02:00
 ---
 
 
@@ -162,6 +162,7 @@ guide to all CMake variables, commands, and properties.
 | `-DENABLE_AD9361` | `ON` / `OFF` | `OFF` | If set to `ON`, it enables the use of signal source for Analog Devices front-end AD9361 connected directly to an FPGA processor. This option requires [libiio](https://github.com/analogdevicesinc/libiio) >= 0.14 already installed in your system. Specifically, the [`Ad9361_Fpga_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-plutosdr_signal_source" | relative_url }}) implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | relative_url }}) block becomes available. |
 | `-DENABLE_LIMESDR` | `ON` / `OFF` | `OFF` | If set to `ON`, it enables the use of [LimeSDR](https://limemicro.com/products/boards/limesdr/). This option requires [gr-limesdr](https://github.com/myriadrf/gr-limesdr) already installed in your system. Specifically, the [`Limesdr_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-limesdr_signal_source" | relative_url }}) implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | relative_url }}) block becomes available. |
 | `-ENABLE_RAW_UDP` | `ON` / `OFF` | `OFF` | If set to `ON`, it enables the reception of IP frames containing samples in UDP frame encapsulation using a high-performance packet capture library. This option requires [libpcap](https://github.com/the-tcpdump-group/libpcap) already installed in your system. Specifically, the [`Custom_UDP_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-plutosdr_signal_source" | relative_url }}) implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | relative_url }}) block becomes available. |
+| `-ENABLE_ZMQ` | `ON` / `OFF` | `OFF` | If set to `ON`, it enables the reception of sample streams published via [ZeroMQ](https://zeromq.org/). Specifically, the [`ZMQ_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-zmq_signal_source" | relative_url }}) implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | relative_url }}) block becomes available. <span style="color:orange">NOTE: This option is only present in the `next` branch of the upstream repository, and it will be available in the next stable release.</span> |
 |----------
 
 Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb

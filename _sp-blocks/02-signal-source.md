@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2022-06-06T10:54:02+02:00
+last_modified_at: 2022-08-11T10:54:02+02:00
 ---
 
 {% capture fig_img2 %}
@@ -534,6 +534,59 @@ Example of usage:
 ```console
 $ mkfifo fifo.fifo && cat path_to.bin >> fifo.fifo
 ```
+
+## Reading data from a ZeroMQ stream
+
+### Implementation: `ZMQ_Signal_Source`
+
+This implementation allows for existing GNU Radio flow graphs to handle the data
+source control, potentially including various transformations, then publish
+samples via [ZeroMQ](https://zeromq.org/). This block could subscribe to that
+stream.
+
+The availability of this block requires the source code to be configured with
+
+```
+$ cmake -DENABLE_ZMQ=ON ..
+```
+
+and the GNU Radio's `gr::zeromq` component installed in your system.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `ZMQ_Signal_Source` | Mandatory |
+| `endpoint` | Address of the ZMQ pub. Empty by default. | Mandatory |
+| `item_type` | [`gr_complex`, `short`, `ishort`, `byte`, `ibyte`]: Data type of the samples (default: `gr_complex`). | Optional |
+| `vlen` | Vector length of the input items. Note that one vector is one item. It defaults to `1`. | Optional |
+| `pass_tags` | [`true`, `false`]: Whether source will look for and deserialize tags. It defaults to `false`. | Optional |
+| `timeout_ms` | Receive timeout in milliseconds, default is `100` ms, 1 $$ \mu $$s increments. | Optional |
+| `hwm` | High Watermark to configure the socket to. It defaults to `-1`, which is also zmq's default. | Optional  |
+| `dump` | [`true`, `false`]: If set to `true`, it dumps the content received from the ZMQ pub in a file. It defaults to `false`. | Optional |
+| `dump_filename` | If `dump` is set to `true`, the name of the dump file. It defaults to `./data/zmq_dump.dat` | Optional |
+|-------
+
+_Signal Source implementation:_ **`ZMQ_Signal_Source`**
+{: style="text-align: center;"}
+
+Example of configuration:
+
+```ini
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=ZMQ_Signal_Source
+SignalSource.endpoint=localhost:8080
+SignalSource.item_type=ishort
+SignalSource.dump=true
+SignalSource.dump_filename=./zmq_dump.dat
+```
+
+NOTE: the `ZMQ_Signal_Source` implementation is only present on the `next`
+branch of the upstream repository, and it will be included in the next stable
+release.
+{: .notice--warning }
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
