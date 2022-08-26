@@ -239,7 +239,7 @@ receiver:
 - Support of FPGA offloading (define FPGA's vendor/model).
   - [Xilinx](https://www.xilinx.com/)
   - [Altera](https://www.altera.com/)
-  - [Microsemi (formerly Actel)](https://www.microsemi.com/products/fpga-soc/fpga-and-soc)
+  - [Microsemi (formerly Actel)](https://www.microsemi.com/product-directory/1636-fpga-soc)
   - Others.
 
 - Other software dependencies (define required minimal versions).
