@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2022-08-11T10:54:02+02:00
+last_modified_at: 2022-08-26T10:54:02+02:00
 ---
 
 {% capture fig_img2 %}
@@ -614,13 +614,13 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|
 |--------------
 | `implementation` | `UHD_Signal_Source` | Mandatory |
-| `device_address` |  IP address of the USRP device. When left empty, the device discovery routines will search all the available transports on the system (Ethernet, USB, ...) | Mandatory |
-| `subdevice` | [`A:0`, `B:0`]: UHD subdevice specification.  | Mandatory |
-| `sampling_frequency` |  Set the sampling frequency, in samples per second. | Mandatory |
+| `device_address` | IP address of the USRP device. When left empty, the device discovery routines will search all the available transports on the system (Ethernet, USB, ...) | Mandatory |
+| `subdevice` | [`A:0`, `B:0`, `A:0 B:0`]: UHD [subdevice specification](https://files.ettus.com/manual/page_configuration.html#config_subdev). | Mandatory |
+| `sampling_frequency` | Set the sampling frequency, in samples per second. | Mandatory |
 | `RF_channels` | Number of RF channels present in the front-end device. It defaults to 1. | Optional |
 | `clock_source` | [`internal`, `external`, `MIMO`]: Set the clock source for the USRP device. It defaults to `internal`. | Optional |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: data type for each sample. The type <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr> (_i.e._, complex signed 8-bit integers) is not available in USRP devices with their default configurations. This parameter defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>. | Optional |
-| `otw_format` | [`sc16` (Q16 I16), `sc8` (Q8_1 I8_1 Q8_0 I8_0), `sc12` (only some devices)]: Set the over-the-wire format (that is, the sample format used between the device and the UHD). It defaults to `sc16`. <span style="color:orange">NOTE: this feature is only present on the `next` branch and it will be included in the next stable release.</span> | Optional |
+| `otw_format` | [`sc16` (Q16 I16), `sc8` (Q8_1 I8_1 Q8_0 I8_0), `sc12` (only some devices)]: Set the [over-the-wire data format](https://files.ettus.com/manual/page_configuration.html#config_stream_args_otw_format) (that is, the sample format used between the device and the UHD). It defaults to `sc16`. <span style="color:orange">NOTE: this feature is only present on the `next` branch and it will be included in the next stable release.</span> | Optional |
 | `device_serial` | Filter the device by serial number if required (useful for USB devices). It is empty by default. | Optional |
 | `device_recv_frame_size` | The size of a single receive buffer in bytes. Default value (on MPMD-based and X300 devices): `1472` (if link rate is GigE); `8000` (if link rate is 10 GigE or 100 GigE); RX MTU (other link rates). Note that value will be capped at the link's receive [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit). <span style="color:orange">NOTE: this feature is only present on the `next` branch and it will be included in the next stable release.</span> | Optional |
 | `device_num_recv_frames` | The number of receive buffers to allocate. Default value: `32`. <span style="color:orange">NOTE: this feature is only present on the `next` branch and it will be included in the next stable release.</span> | Optional |
