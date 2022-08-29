@@ -249,7 +249,8 @@ standard output formats:
   models of the atmospheric conditions at the time of measurement). RINEX files
   can be used by software packages such as
   [GNSSTk](https://github.com/SGL-UT/gnsstk), [RTKLIB](http://www.rtklib.com/),
-  and [gLAB](https://gage.upc.edu/gLAB/), among many others.
+  and [gLAB](https://gage.upc.edu/en/learning-materials/software-tools/glab/),
+  among many others.
   {: .notice--info}
 
 - Custom output formats: if the software receiver needs to output data that is
