@@ -2,7 +2,7 @@
 title: "Coding Style"
 permalink: /coding-style/
 excerpt: "Coding style for GNSS-SDR source code development."
-last_modified_at: 2021-09-08T03:20:02+02:00
+last_modified_at: 2022-09-27T03:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
 comments: true
@@ -18,7 +18,8 @@ quality of the product. Following programming guidelines and code conventions
 not only helps to avoid introducing errors but cuts maintenance costs and favors
 effective code reuse.
 
-[^Kernighan74]: B. W. Kernighan and P. J. Plauger, The Elements of Programming Style, McGraw-Hill, New York, 1974.
+[^Kernighan74]: B. W. Kernighan and P. J. Plauger, The Elements of Programming
+    Style, McGraw-Hill, New York, 1974.
 
 {% capture notice-text %}
 The following rules capture the most important aspects of coding style:
@@ -57,9 +58,9 @@ normally use a style guide as a convenience of getting into the programming
 jargon more easily.
 
 
-**Not invented here!** This coding style guide was written based on this
-[Coding Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some
-ideas were borrowed from the [Google C++ Style
+**Not invented here!** This coding style guide was written based on this [Coding
+Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some ideas were
+borrowed from the [Google C++ Style
 Guide](https://google.github.io/styleguide/cppguide.html) and the [High
 Integrity C++ Coding Standard Version
 4.0](https://www.perforce.com/resources/qac/high-integrity-cpp-coding-standard)
@@ -282,7 +283,8 @@ Be consistent and use the `// ...` style comments.
 The comment styles `///` and `/** ... */` are used by JavaDoc, Doxygen and some
 other code documenting tools.
 
-For a complete description of how to document the code, see the [Doxygen Manual](https://www.doxygen.nl/manual/docblocks.html)
+For a complete description of how to document the code, see the [Doxygen
+Manual](https://www.doxygen.nl/manual/docblocks.html)
 
 All classes in GNSS-SDR should be properly documented with Doxygen comments in
 include (`.h`) files. Source (`.cc`) files should be documented according to a
@@ -351,7 +353,8 @@ private:
 
 ### Include formulae
 
-Follow this link to see how can [include formulae](https://www.doxygen.nl/manual/formulas.html).
+Follow this link to see how can [include
+formulae](https://www.doxygen.nl/manual/formulas.html).
 
 ### Multiple line comments should be split in one comment per line, each having the `/*` and `*/` markers on the same line
 
@@ -810,23 +813,23 @@ if (ptr != nullptr) // ok (C++11)
 
 ### Use the new cast operators
 
-Use `dynamic_cast`, `const_cast`, `reinterpret_cast` and `static_cast`
-instead of the traditional C cast notation. These document better what
-is being performed.
+Use `dynamic_cast`, `const_cast`, `reinterpret_cast` and `static_cast` instead
+of the traditional C cast notation. These document better what is being
+performed.
 
--   Use `static_cast` as the equivalent of a C-style cast that does
-    value conversion, or when you need to explicitly up-cast a pointer
-    from a class to its superclass.
+-   Use `static_cast` as the equivalent of a C-style cast that does value
+    conversion, or when you need to explicitly up-cast a pointer from a class to
+    its superclass.
 
 -   Use `const_cast` to remove the `const` qualifier.
 
--   Use `reinterpret_cast` to do unsafe conversions of pointer types to
-    and from integer and other pointer types. Use this only if you know
-    what you are doing and you understand the aliasing issues.
+-   Use `reinterpret_cast` to do unsafe conversions of pointer types to and from
+    integer and other pointer types. Use this only if you know what you are
+    doing and you understand the aliasing issues.
 
--   Do not use `dynamic_cast` except in test code. If you need to know
-    type information at runtime in this way outside of a unittest, you
-    probably have a design flaw.
+-   Do not use `dynamic_cast` except in test code. If you need to know type
+    information at runtime in this way outside of a unittest, you probably have
+    a design flaw.
 
 ## Language support library
 
@@ -1073,15 +1076,15 @@ $ brew install clang-format
 ```
 
   * **In macOS using Macports:**
-```console
+  ```console
 $ sudo port install clang-12
-```
+  ```
   NOTE: You can see all available choices with `port select --list` for clang:
     ```console
 $ port select --list clang
 Available versions for clang:
-	mp-clang-12
-	none (active)
+        mp-clang-12
+        none (active)
     ```
     {: class="no-copy"}
   With `sudo port select --set clang <version>` you choose one of them as the
@@ -1105,14 +1108,14 @@ clang-format version 12.0.0
 
 **Step 2.- Apply clang-format**
 
-  * **Tell your favorite editor to use clang-format.** You can use it in
-  Eclipse via [CppStyle](https://github.com/wangzw/CppStyle), in Visual Studio
-  Code via the
-  [Clang-Format Extension](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format),
-  and in
-  [many other editors](https://clang.llvm.org/docs/ClangFormat.html#vim-integration).
-  Once the corresponding plugin or module is installed, configure your editor to
-  run clang-format on every file save.
+  * **Tell your favorite editor to use clang-format.** You can use it in Eclipse
+  via [CppStyle](https://github.com/wangzw/CppStyle), in Visual Studio Code via
+  the [Clang-Format
+  Extension](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format),
+  and in [many other
+  editors](https://clang.llvm.org/docs/ClangFormat.html#vim-integration). Once
+  the corresponding plugin or module is installed, configure your editor to run
+  clang-format on every file save.
 
   * For applying code formatting from the command line:
     ```console
@@ -1161,13 +1164,15 @@ $ sudo npm install --global prettier
 $ find . -iname "*.md" | xargs prettier --parser markdown --print-width 80 --prose-wrap always --write
 ```
 
-  **Please apply prettier to your changes before any pull request if you
-  changed and/or created markdown files.**
+  **Please apply prettier to your changes before any pull request if you changed
+  and/or created markdown files.**
   {: .notice--danger}
 
 
 {% capture notice-maintainability %}
-Automated code formatting tools help to improve [**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
+Automated code formatting tools help to
+improve [**Maintainability**]({{ "/design-forces/maintainability/" |
+relative_url }}).
 {% endcapture %}
 
 <div class="notice--success">
@@ -1305,10 +1310,10 @@ order to be included in your pull request. Otherwise, discard the changes with
 </div>
 
 {% capture notice-tidy %}
-An automated code linter helps to improve [**Efficiency**]({{
-"/design-forces/efficiency/" | relative_url }}), [**Reliability**]({{
-"/design-forces/reliability/" | relative_url }}), and [**Maintainability**]({{
-"/design-forces/maintainability/" | relative_url }}).
+An automated code linter helps to improve
+[**Efficiency**]({{ "/design-forces/efficiency/" | relative_url }}),
+[**Reliability**]({{ "/design-forces/reliability/" | relative_url }}), and
+[**Maintainability**]({{ "/design-forces/maintainability/" | relative_url }}).
 {% endcapture %}
 
 <div class="notice--success">
@@ -1341,7 +1346,8 @@ style is also important. If the code you add to a file looks drastically
 different from the existing code around it, the discontinuity throws readers out
 of their rhythm when they go to read it. Try to avoid this.
 
-![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | relative_url }} "GeNiuSS is a stylish character. Be like GeNiuSS."){: .align-center}
+![Coding Style]({{ "/assets/images/geniuss-painting.jpg" | relative_url }}
+"GeNiuSS is a stylish character. Be like GeNiuSS."){: .align-center}
 
 -------
 
