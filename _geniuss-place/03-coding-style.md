@@ -1106,9 +1106,11 @@ clang-format version 12.0.0
 **Step 2.- Apply clang-format**
 
   * **Tell your favorite editor to use clang-format.** You can use it in
-  Eclipse via [CppStyle](https://github.com/wangzw/CppStyle), in Atom via the
-  [clang-format package](https://atom.io/packages/clang-format), and in [many
-  other editors](https://clang.llvm.org/docs/ClangFormat.html#vim-integration).
+  Eclipse via [CppStyle](https://github.com/wangzw/CppStyle), in Visual Studio
+  Code via the
+  [Clang-Format Extension](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format),
+  and in
+  [many other editors](https://clang.llvm.org/docs/ClangFormat.html#vim-integration).
   Once the corresponding plugin or module is installed, configure your editor to
   run clang-format on every file save.
 
