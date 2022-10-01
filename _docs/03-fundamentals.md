@@ -8,7 +8,7 @@ header:
   invert-colors: true
 toc: true
 toc_sticky: true
-last_modified_at: 2021-02-10T11:54:02+02:00
+last_modified_at: 2022-10-01T11:54:02+02:00
 ---
 
 As a matter of fact, GNSS baseband signal processing requires a high
@@ -223,14 +223,14 @@ _`ClassA` inherits from `ClassB`._
 
 A key aspect of an object-oriented software design is how classes relate to each
 other. In the GNU Radio framework,
-[`gr::basic_block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/basic_block.h)
+[`gr::basic_block`](https://github.com/gnuradio/gnuradio/blob/main/gnuradio-runtime/include/gnuradio/basic_block.h)
 is the abstract base class for all signal processing blocks, a bare abstraction
 of an entity that has a name and a set of inputs and outputs. It is never
 instantiated directly; rather, this is the abstract parent class of both
-[`gr::hier_block2`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/hier_block2.h),
+[`gr::hier_block2`](https://github.com/gnuradio/gnuradio/blob/main/gnuradio-runtime/include/gnuradio/hier_block2.h),
 which is a recursive container that adds or removes processing or hierarchical
 blocks to the internal graph,  and
-[`gr::block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h),
+[`gr::block`](https://github.com/gnuradio/gnuradio/blob/main/gnuradio-runtime/include/gnuradio/block.h),
 which is the abstract base class for all the processing blocks. A signal
 processing flow is constructed by creating a tree of hierarchical blocks, which
 at any level may also contain terminal nodes that actually implement signal
@@ -240,22 +240,25 @@ processing functions:
 _GNU Radio's class hierarchy._
 {: style="text-align: center;"}
 
-
-Class
-[`gr::top_block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/top_block.h)
+The class
+[`gr::top_block`](https://github.com/gnuradio/gnuradio/blob/main/gnuradio-runtime/include/gnuradio/top_block.h)
 is the top-level hierarchical block representing a flow graph. It defines GNU
 Radio runtime functions used during the execution of the program: `run()`,
-`start()`, `stop()`, `wait()`, etc. As shown in the figure below, a subclass
-called
+`start()`, `stop()`, `wait()`, etc. It is used for defining the receiver
+flow graph (that is, the interconnections within all the required blocks)
+according to the configuration (more on that in the description of the [Control
+Plane]({{"/docs/control-plane/" | relative_url }})).
+
+The class called
 [`GNSSBlockInterface`](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/core/interfaces/gnss_block_interface.h)
 is the common interface for all the GNSS-SDR modules. It defines pure
-**virtual** methods, that are required to be implemented by a derived class:
+**virtual** methods, that are required to be implemented by a derived class.
 
-![Block interface]({{ "/assets/images/block-interface.png" | relative_url }}){:width="500px"}{: .align-center .invert-colors}
-_`GNSSBlockInterface` inherits from `gr::top_block`._
+![Block interface]({{ "/assets/images/block-interface.png" | relative_url }}){: .align-center .invert-colors}
+_Block interface for all Signal Processing blocks._
 {: style="text-align: center;"}
 
-.**Definition:** Classes containing pure virtual methods are termed _abstract_;
+**Definition:** Classes containing pure virtual methods are termed _abstract_;
 they cannot be instantiated directly, and a subclass of an abstract class can
 only be instantiated directly if all inherited pure virtual methods have been
 implemented by that class or a parent class.
@@ -283,14 +286,16 @@ signal acquisition requires an _adapter_ ensuring it meets a minimal
 [AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/core/interfaces/acquisition_interface.h),
 and the actual implementation in form of GNU Radio processing block (that is,
 inheriting from
-[`gr::block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h)).
+[`gr::block`](https://github.com/gnuradio/gnuradio/blob/main/gnuradio-runtime/include/gnuradio/block.h)).
 
 **Example:** An available implementation of an Acquisition block is called
-`GPS_L1_CA_DLL_PLL_Tracking`. Like any other Acquisition block, it has an
-adapter that inherits from
+[`GPS_L1_CA_PCPS_Acquisition`]({{
+"/docs/sp-blocks/acquisition/#implementation-gps_l1_ca_pcps_acquisition" |
+relative_url }}). Like any other Acquisition block, it has an adapter that
+inherits from
 [AcquisitionInterface](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/core/interfaces/acquisition_interface.h)
 and the corresponding GNU Radio block inheriting from
-[`gr::block`](https://github.com/gnuradio/gnuradio/blob/master/gnuradio-runtime/include/gnuradio/block.h)
+[`gr::block`](https://github.com/gnuradio/gnuradio/blob/main/gnuradio-runtime/include/gnuradio/block.h)
 and implementing the actual processing. You can take a look at the source code:
 
 * Adapter interface: [gnss-sdr/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/main/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h)

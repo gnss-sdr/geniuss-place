@@ -1266,6 +1266,31 @@ month = {June}
 <h3 style="margin-bottom:0px;padding-top:10px;">MS Theses</h3>
 
 <ul class="biblist">
+<!-- Item:Lenhart22 -->
+<li ><p>
+M.&nbsp;Lenhart
+<br><b>Distributed Relay/Replay Attacks on GNSS Signals</b><br>
+<i>Degree project in Electrical Engineering, KTH Royal Institute of Technology,
+Stockholm, Sweden, Mar.&nbsp;2022.</i>
+<br />
+<a href="javascript:toggleBibtex('Lenhart22')">[BibTeX]</a>
+<span style="color: #52adc8">[</span><a href="https://www.diva-portal.org/smash/get/diva2:1698116/FULLTEXT01.pdf" >
+PDF</a><span style="color: #52adc8">]</span>
+</p>
+<div id="bib_Lenhart22" class="bibtex noshow" style="color: #111111">
+<pre>@mastersthesis{ Lenhart22,
+author = {M.~Lenhart},
+title = {Distributed Relay/Replay Attacks on {GNSS} Signals},
+school = {KTH Royal Institute of Technology},
+year = {2022},
+address = {Stockholm, Sweden},
+month = {March}
+}</pre>
+</div>
+</li>
+</ul>
+
+<ul class="biblist">
 <!-- Item: Hennigar14 -->
 <li ><p>
 A. Hennigar
