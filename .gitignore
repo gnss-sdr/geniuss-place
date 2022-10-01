@@ -4,5 +4,6 @@
 *.sublime-workspace
 .DS_Store
 .jekyll-metadata
+.vscode
 _site
 node_modules
