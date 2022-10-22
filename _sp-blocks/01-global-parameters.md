@@ -36,12 +36,12 @@ block can apply some resampling. Please note that this is a **mandatory**
 parameter, it needs to be present in the configuration file.
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+|        **Parameter**        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                     **Required**                      |
+| :-------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------: |
+|       --------------        |
+|      `internal_fs_sps`      | Input sample rate to the processing channels, in samples per second.                                                                                                                                                                                                                                                                                                                                                                                            |                       Mandatory                       |
 | `use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during the signal acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `internal_fs_sps`. All the required setup is configured automatically. This feature is not implemented in all the Acquisition blocks, please check the [Acquisition documentation]({{ "docs/sp-blocks/acquisition/" | relative_url }}). This parameter defaults to `false`. | Optional |
-|--------------
+|       --------------        |
 
 _Global GNSS-SDR parameter: channel's input sampling rate_.
 {: style="text-align: center;"}
@@ -55,10 +55,10 @@ GNSS-SDR.internal_fs_sps=4000000
 ## Multiple signal sources
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-| `num_sources` | Number of input signal sources. It defaults to 1. | Optional |
-|--------------
+| **Parameter**  | **Description**                                   | **Required** |
+| :------------: | :------------------------------------------------ | :----------: |
+| `num_sources`  | Number of input signal sources. It defaults to 1. |   Optional   |
+| -------------- |
 
 Example:
 
@@ -80,10 +80,10 @@ This global parameter allows to control the internal rate at which observable
 sets are processed.
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-| `observable_interval_ms` | Time interval, in ms, at which observable sets are processed. It defaults to 20. | Optional |
-|--------------
+|      **Parameter**       | **Description**                                                                  | **Required** |
+| :----------------------: | :------------------------------------------------------------------------------- | :----------: |
+| `observable_interval_ms` | Time interval, in ms, at which observable sets are processed. It defaults to 20. |   Optional   |
+|      --------------      |
 
 Example in the configuration file:
 
@@ -111,12 +111,12 @@ $ gnss-sdr-harness.sh gnss-sdr -c config_file.conf
 The configuration of the Telecommand system is as follows:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `telecommand_enabled` |  [`true`, `false`]:  If set to `true`, it enables the telecommand system. It defaults to `false`.  | Optional |
-| `telecommand_tcp_port` |  If `telecommand_enabled=true`, this parameter sets the TCP/IP port in which the service will be provided. It defaults to port 3333  | Optional |
-|--------------
+|     **Parameter**      | **Description**                                                                                                                    | **Required** |
+| :--------------------: | :--------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|     --------------     |
+| `telecommand_enabled`  | [`true`, `false`]:  If set to `true`, it enables the telecommand system. It defaults to `false`.                                   |   Optional   |
+| `telecommand_tcp_port` | If `telecommand_enabled=true`, this parameter sets the TCP/IP port in which the service will be provided. It defaults to port 3333 |   Optional   |
+|     --------------     |
 
 _Global GNSS-SDR parameters for telecommand_.
 {: style="text-align: center;"}
@@ -138,17 +138,17 @@ commands will provide feedback to the user.
 The following commands are implemented in GNSS-SDR's telecommand interface:
 
 |----------
-|  **Command**  |  **Response** | **Description** |
-|:-:|:--|:--|
-|--------------
-| `reset` |  `OK`  | Performs a complete reset of the receiver. The receiver will delete all the stored satellite information, reload the configuration parameters from the configuration file and perform a regular startup. Notice that if the configuration file has enabled the assisted acquisition, the receiver will trigger the assisted acquisition. It is equivalent to shutdown and restart the GNSS-SDR program from a regular SSH shell. Notice that the telecommand interface will be also restarted. |
-| `standby` |  `OK` / `ERROR` | Stops all the acquisition and tracking operations and sets the receiver in the standby state. The front-end will continue delivering samples to the receiver but no signal processing will be done. Obviously, all the tracked satellites will be lost, but the received satellite telemetry (_e.g._ ephemeris data) and the last PVT state will be kept. NOTE: It is possible to specify an option in the configuration file to start the receiver already in the standby state, ready to receive start commands. |
-| `coldstart` |  `OK` / `ERROR` | Performs a receiver cold start. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search for all the satellites in all the signals configured in the configuration file. |
-| `warmstart`&nbsp;`dd/mm/yyyy`&nbsp;`HH:MM:SS`&nbsp;`Lat Long Height` |  `OK` / `ERROR`  | Performs an assisted acquisition receiver start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will read the ephemeris and the almanac assistance data from the [XML files specified in the configuration file](#axml), and the last valid PVT information to predict the visible satellites and coarse estimations of their Doppler rates. |
-| `hotstart dd/mm/yyyy HH:MM:SS Lat Long Height` | `OK` / `ERROR` | Performs a receiver hot start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search first for the last set of in-view satellites  according to the stored ephemeris, almanac, and the predicted visible satellites based on the last valid PVT. |
-| `status` |  Summary of current receiver status: individual channel status and PVT status.  | This command prints a summary of the current receiver status intended for debugging and system testing purposes only. The user should monitor the RTCM and NMEA streams for detailed and synchronized receiver data, which are the primary receiver standard data interfaces. |
-| `exit` |  `OK`  | Closes the telecommand connection. |
-|--------------
+|                             **Command**                              | **Response**                                                                  | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| :------------------------------------------------------------------: | :---------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                            --------------                            |
+|                               `reset`                                | `OK`                                                                          | Performs a complete reset of the receiver. The receiver will delete all the stored satellite information, reload the configuration parameters from the configuration file and perform a regular startup. Notice that if the configuration file has enabled the assisted acquisition, the receiver will trigger the assisted acquisition. It is equivalent to shutdown and restart the GNSS-SDR program from a regular SSH shell. Notice that the telecommand interface will be also restarted.                                                                        |
+|                              `standby`                               | `OK` / `ERROR`                                                                | Stops all the acquisition and tracking operations and sets the receiver in the standby state. The front-end will continue delivering samples to the receiver but no signal processing will be done. Obviously, all the tracked satellites will be lost, but the received satellite telemetry (_e.g._ ephemeris data) and the last PVT state will be kept. NOTE: It is possible to specify an option in the configuration file to start the receiver already in the standby state, ready to receive start commands.                                                    |
+|                             `coldstart`                              | `OK` / `ERROR`                                                                | Performs a receiver cold start. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search for all the satellites in all the signals configured in the configuration file.                                                                                                                                                                                                                                                                                                                                           |
+| `warmstart`&nbsp;`dd/mm/yyyy`&nbsp;`HH:MM:SS`&nbsp;`Lat Long Height` | `OK` / `ERROR`                                                                | Performs an assisted acquisition receiver start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will read the ephemeris and the almanac assistance data from the [XML files specified in the configuration file](#axml), and the last valid PVT information to predict the visible satellites and coarse estimations of their Doppler rates. |
+|            `hotstart dd/mm/yyyy HH:MM:SS Lat Long Height`            | `OK` / `ERROR`                                                                | Performs a receiver hot start at the specified UTC time (the receiver will transform the UTC time to GPS time internally) assuming a previous Latitude [deg], Longitude [deg] and Height [m] position. Requires the receiver set to standby mode. After executing this command, the acquisition engine will search first for the last set of in-view satellites  according to the stored ephemeris, almanac, and the predicted visible satellites based on the last valid PVT.                                                                                        |
+|                               `status`                               | Summary of current receiver status: individual channel status and PVT status. | This command prints a summary of the current receiver status intended for debugging and system testing purposes only. The user should monitor the RTCM and NMEA streams for detailed and synchronized receiver data, which are the primary receiver standard data interfaces.                                                                                                                                                                                                                                                                                         |
+|                                `exit`                                | `OK`                                                                          | Closes the telecommand connection.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|                            --------------                            |
 
 
 Telecommand execution examples using telnet:
@@ -243,22 +243,22 @@ before getting any GNSS signal. Hence, the receiver can start searching for
 those satellites and thus accelerate its Time-To-First-Fix.
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `AGNSS_XML_enabled` | [`true`, `false`]: If set to `true`, it enables the load of GNSS assistance data via local XML files. It defaults to `false`. | Optional |
-| `AGNSS_ref_location` | If `AGNSS_XML_enabled` is set to  `true`, this parameter is mandatory, and it sets the reference location used for the preliminary computation of visible satellites from AGNSS data. It must be in the format: `Latitude,Longitude`, in degrees, with a positive sign for North and East. | Mandatory |
-| `AGNSS_ref_utc_time` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the reference local time, expressed in UTC, used for the preliminary computation of visible satellites from AGNSS data. It must be in the format: `DD/MM/YYYY HH:MM:SS`, referred to UTC. If this parameter is not set, the receiver will take the system time of your computer. | Optional |
-| `AGNSS_gps_ephemeris_xml` |  If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS NAV ephemeris data. It defaults to  `gps_ephemeris.xml` | Optional |
-| `AGNSS_gps_iono_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML of the XML that will be read for GPS Ionosphere model data. It defaults to  `gps_iono.xml` | Optional |
-| `AGNSS_gps_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS UTC model data. It defaults to  `gps_utc_model.xml` | Optional |
-| `AGNSS_gal_ephemeris_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo ephemeris data. It defaults to  `gal_ephemeris.xml`| Optional |
-| `AGNSS_gal_iono_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo Ionosphere model data. It defaults to  `gal_iono.xml` | Optional |
-| `AGNSS_gal_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo UTC model data. It defaults to  `gal_utc_model.xml` | Optional |
-| `AGNSS_gal_almanac_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo almanac data. The XML format of [Galileo almanac data published by the European GNSS Service Centre](https://www.gsc-europa.eu/gsc-products/almanac) is also accepted. It defaults to `gal_almanac.xml` | Optional |
-| `AGNSS_gps_cnav_ephemeris_xml` |  If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS CNAV ephemeris data. It defaults to  `gps_cnav_ephemeris.xml` | Optional |
-| `AGNSS_cnav_utc_model_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS UTC model data. It defaults to  `gps_cnav_utc_model.xml` |  Optional |
-|-------
+|         **Parameter**          | **Description**                                                                                                                                                                                                                                                                                                                                | **Required** |
+| :----------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|         --------------         |
+|      `AGNSS_XML_enabled`       | [`true`, `false`]: If set to `true`, it enables the load of GNSS assistance data via local XML files. It defaults to `false`.                                                                                                                                                                                                                  |   Optional   |
+|      `AGNSS_ref_location`      | If `AGNSS_XML_enabled` is set to  `true`, this parameter is mandatory, and it sets the reference location used for the preliminary computation of visible satellites from AGNSS data. It must be in the format: `Latitude,Longitude`, in degrees, with a positive sign for North and East.                                                     |  Mandatory   |
+|      `AGNSS_ref_utc_time`      | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the reference local time, expressed in UTC, used for the preliminary computation of visible satellites from AGNSS data. It must be in the format: `DD/MM/YYYY HH:MM:SS`, referred to UTC. If this parameter is not set, the receiver will take the system time of your computer. |   Optional   |
+|   `AGNSS_gps_ephemeris_xml`    | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS NAV ephemeris data. It defaults to  `gps_ephemeris.xml`                                                                                                                                                                            |   Optional   |
+|      `AGNSS_gps_iono_xml`      | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML of the XML that will be read for GPS Ionosphere model data. It defaults to  `gps_iono.xml`                                                                                                                                                                   |   Optional   |
+|   `AGNSS_gps_utc_model_xml`    | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS UTC model data. It defaults to  `gps_utc_model.xml`                                                                                                                                                                                |   Optional   |
+|   `AGNSS_gal_ephemeris_xml`    | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo ephemeris data. It defaults to  `gal_ephemeris.xml`                                                                                                                                                                            |   Optional   |
+|      `AGNSS_gal_iono_xml`      | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo Ionosphere model data. It defaults to  `gal_iono.xml`                                                                                                                                                                          |   Optional   |
+|   `AGNSS_gal_utc_model_xml`    | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo UTC model data. It defaults to  `gal_utc_model.xml`                                                                                                                                                                            |   Optional   |
+|    `AGNSS_gal_almanac_xml`     | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for Galileo almanac data. The XML format of [Galileo almanac data published by the European GNSS Service Centre](https://www.gsc-europa.eu/gsc-products/almanac) is also accepted. It defaults to `gal_almanac.xml`                        |   Optional   |
+| `AGNSS_gps_cnav_ephemeris_xml` | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS CNAV ephemeris data. It defaults to  `gps_cnav_ephemeris.xml`                                                                                                                                                                      |   Optional   |
+|   `AGNSS_cnav_utc_model_xml`   | If `AGNSS_XML_enabled` is set to  `true`, this parameter sets the name of the XML that will be read for GPS UTC model data. It defaults to  `gps_cnav_utc_model.xml`                                                                                                                                                                           |   Optional   |
+|            -------             |
 
 _Global GNSS-SDR parameters: Assisted GNSS via XML files_.
 {: style="text-align: center;"}
@@ -353,7 +353,7 @@ There are a lot of apps that can do that (an example
 [here](https://play.google.com/store/apps/details?id=com.parizene.netmonitor&hl=en)).
 These applications are able to provide the required MMC, MNC, LAC, and CI
 parameters for your location. A list of MCC and MNC around the World can be
-found at [mcc-mnc.com](https://www.mcc-mnc.com) and at the
+found at [mcc-mnc-list.com](https://mcc-mnc-list.com/list) and at the
 [Wikipedia](https://en.wikipedia.org/wiki/Mobile_country_code).
 
 
@@ -366,23 +366,23 @@ GNSS-SDR configuration parameters for Assisted GNSS with SUPL v1.0 are shown
 below:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `SUPL_gps_enabled` | [`true`, `false`]: If set to `true`, it enables requests of GPS assistance data to a SUPL v1.0 server. It defaults to `false`. |  Optional |
-| `SUPL_read_gps_assistance_xml` | [`true`, `false`]: If `SUPL_gps_enabled` is set to  `true`, this parameter enables searching for local XML files instead of requesting data to the SUPL server. It defaults to `false`. |  Optional |
-| `SUPL_gps_ephemeris_server` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the SUPL server asked for ephemeris data. It defaults to `supl.google.com`. |  Optional |
-| `SUPL_gps_ephemeris_port` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the port of the `SUPL_gps_ephemeris_server` server. It defaults to `7275`. |  Optional |
-| `SUPL_gps_acquisition_server` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the SUPL server asked for acquisition assistance data. It defaults to `supl.google.com`. |  Optional |
-| `SUPL_gps_acquisition_port` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the port of the `SUPL_gps_acquisition_server` server. It defaults to `7275`.  |  Optional |
-| `SUPL_MCC` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Mobile Country Code (MCC) to be sent to the SUPL server. It defaults to `244`. |  Optional |
-|  `SUPL_MNC` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Mobile Network Code (MNC) to be sent to the SUPL server. It defaults to `5`. |  Optional |
-| `SUPL_LAC` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Location Area Code (LAC) to be sent to the SUPL server. It defaults to `0x59e2`. |  Optional |
-| `SUPL_CI` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Cell ID to be sent to the SUPL server. It defaults to `0x31b0`. |  Optional |
-| `SUPL_gps_ephemeris_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS NAV ephemeris data. It defaults to  `gps_ephemeris.xml`. |  Optional |
-| `SUPL_gps_iono_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS Ionosphere model data. It defaults to  `gps_iono.xml`. | Optional |
-| `SUPL_gps_utc_model_xml` | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS UTC model data. It defaults to  `gps_utc_model.xml`. | Optional |
-|-------
+|         **Parameter**          | **Description**                                                                                                                                                                                         | **Required** |
+| :----------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------: |
+|         --------------         |
+|       `SUPL_gps_enabled`       | [`true`, `false`]: If set to `true`, it enables requests of GPS assistance data to a SUPL v1.0 server. It defaults to `false`.                                                                          |   Optional   |
+| `SUPL_read_gps_assistance_xml` | [`true`, `false`]: If `SUPL_gps_enabled` is set to  `true`, this parameter enables searching for local XML files instead of requesting data to the SUPL server. It defaults to `false`.                 |   Optional   |
+|  `SUPL_gps_ephemeris_server`   | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the SUPL server asked for ephemeris data. It defaults to `supl.google.com`.                                                    |   Optional   |
+|   `SUPL_gps_ephemeris_port`    | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the port of the `SUPL_gps_ephemeris_server` server. It defaults to `7275`.                                                                 |   Optional   |
+| `SUPL_gps_acquisition_server`  | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the SUPL server asked for acquisition assistance data. It defaults to `supl.google.com`.                                       |   Optional   |
+|  `SUPL_gps_acquisition_port`   | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the port of the `SUPL_gps_acquisition_server` server. It defaults to `7275`.                                                               |   Optional   |
+|           `SUPL_MCC`           | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Mobile Country Code (MCC) to be sent to the SUPL server. It defaults to `244`.                                                         |   Optional   |
+|           `SUPL_MNC`           | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Mobile Network Code (MNC) to be sent to the SUPL server. It defaults to `5`.                                                           |   Optional   |
+|           `SUPL_LAC`           | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Location Area Code (LAC) to be sent to the SUPL server. It defaults to `0x59e2`.                                                       |   Optional   |
+|           `SUPL_CI`            | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the Cell ID to be sent to the SUPL server. It defaults to `0x31b0`.                                                                        |   Optional   |
+|    `SUPL_gps_ephemeris_xml`    | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS NAV ephemeris data. It defaults to  `gps_ephemeris.xml`. |   Optional   |
+|      `SUPL_gps_iono_xml`       | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS Ionosphere model data. It defaults to  `gps_iono.xml`.   |   Optional   |
+|    `SUPL_gps_utc_model_xml`    | If `SUPL_gps_enabled` is set to  `true`, this parameter sets the name of the XML that will be read/written if the SUPL assistance gets the GPS UTC model data. It defaults to  `gps_utc_model.xml`.     |   Optional   |
+|            -------             |
 
 _Global GNSS-SDR parameters: Assisted GPS via SUPL V1.0_.
 {: style="text-align: center;"}
@@ -418,11 +418,11 @@ deactivated by setting this parameter to `false`, which makes the receiver
 search satellites in each band independently.
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `assist_dual_frequency_acq` | [`true`, `false`]: If set to `true`, it enables the assistance to acquisition from primary to secondary bands in dual-frequency configurations. If set to `false`, satellites are searched for independently in each band. It defaults to `true`. | Optional |
-|-------
+|        **Parameter**        | **Description**                                                                                                                                                                                                                                   | **Required** |
+| :-------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------: |
+|       --------------        |
+| `assist_dual_frequency_acq` | [`true`, `false`]: If set to `true`, it enables the assistance to acquisition from primary to secondary bands in dual-frequency configurations. If set to `false`, satellites are searched for independently in each band. It defaults to `true`. |   Optional   |
+|           -------           |
 
 Example for satellites searched independently in each band:
 
@@ -443,14 +443,14 @@ The following parameters allow to remove specific satellites from the list of
 potentially available ones:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `GPS_banned_prns` | List of GPS satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. | Optional |
-| `Galileo_banned_prns` | List of Galileo satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. | Optional |
-| `Glonass_banned_prns` | List of GLONASS satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. | Optional |
-| `Beidou_banned_prns` | List of Beidou satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. | Optional |
-|-------
+|     **Parameter**     | **Description**                                                                                                                                 | **Required** |
+| :-------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|    --------------     |
+|   `GPS_banned_prns`   | List of GPS satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty.     |   Optional   |
+| `Galileo_banned_prns` | List of Galileo satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. |   Optional   |
+| `Glonass_banned_prns` | List of GLONASS satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. |   Optional   |
+| `Beidou_banned_prns`  | List of Beidou satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty.  |   Optional   |
+|        -------        |
 
 With these parameters, users can specify lists of satellites that will not be
 processed. Satellites on those lists will never be assigned to a processing
@@ -473,11 +473,11 @@ date and time, with the corresponding adjustment to the week rollover.
 
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. | Optional |
-|-------
+|  **Parameter**  | **Description**                                                                                                                                                                                                         | **Required** |
+| :-------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+| --------------  |
+| `pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. |   Optional   |
+|     -------     |
 
 Example:
 
