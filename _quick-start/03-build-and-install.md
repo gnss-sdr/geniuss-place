@@ -81,7 +81,7 @@ position fix]({{ "/my-first-fix/" | relative_url }}). Or maybe you might prefer
 other options, such as using [Homebrew](https://brew.sh/) instead of Macports as
 a software package manager, or building the source code manually. For more
 details of GNSS-SDR on macOS, please check the
-[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/README.md#macos-and-mac-os-x)
+[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/next/README.md#macos)
 file.
 
 # Building from source
