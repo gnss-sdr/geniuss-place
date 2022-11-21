@@ -313,7 +313,7 @@ GNSS receiver:
   - Custom formats: portable, well-documented, easily readable by other
     programming languages, support of backward and forward-compatible formats.
   - Geodesic formats: [RINEX](https://en.wikipedia.org/wiki/RINEX),
-    [RTCM-104](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-2-differential-gnss-global-navigation-satellite-systems-services-version-3-february-1-2013).
+    [RTCM-104](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-3-differential-gnss-global-navigation-satellite-systems-services-version-3-amendment-2-may-20-2021).
     - Generation of RINEX observation and navigation data files. Specify
       version.
     - Real-time generation of RTCM messages in real-time. Type and frequency of
