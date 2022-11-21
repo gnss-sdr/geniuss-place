@@ -205,7 +205,7 @@ standard output formats:
   [large list of software tools](https://www.topografix.com/gpx_resources.asp).
   {: .notice--info}
 
-- [RTCM-104](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-2-differential-gnss-global-navigation-satellite-systems-services-version-3-february-1-2013)
+- [RTCM-104](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-3-differential-gnss-global-navigation-satellite-systems-services-version-3-amendment-2-may-20-2021)
   messages (specify version, type and rate). RTCM messages should be streamed
   over a communication network as defined by the Networked Transport of RTCM via
   Internet Protocol (NTRIP
@@ -215,21 +215,22 @@ standard output formats:
   **RTCM SC-104** provides standards that define the data structure for
   differential GNSS correction information for a variety of differential
   correction applications. Developed by the Radio Technical Commission for
-  Maritime Services
-  ([RTCM](https://www.rtcm.org/ "Radio Technical Commission for Maritime Services")),
-  they have become an industry standard for the communication of correction
-  information. GNSS-SDR implements RTCM version 3.2, defined in the document
-  _RTCM 10403.2, Differential GNSS (Global Navigation Satellite Systems)
-  Services - Version 3_ (October 7, 2016), which can be
-  [purchased online](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-2-differential-gnss-global-navigation-satellite-systems-services-version-3-february-1-2013 "RTCM Online Publication Order Form").
-  The software receiver should implement a TCP/IP server, acting as an NTRIP
-  source that can feed an NTRIP server. NTRIP (Networked Transport of RTCM via
-  Internet Protocol) is an open standard protocol that can be freely downloaded
-  from
-  [here](https://gssc.esa.int/wp-content/uploads/2018/07/NtripDocumentation.pdf "Networked Transport of RTCM via Internet Protocol (Ntrip) Version 1.0"),
-  and it is designed for disseminating differential correction data (_e.g._ in
-  the RTCM-104 format) or other kinds of GNSS streaming data to stationary or
-  mobile users over the Internet.
+  Maritime Services ([RTCM](https://www.rtcm.org/ "Radio Technical Commission
+  for Maritime Services")), they have become an industry standard for the
+  communication of correction information. GNSS-SDR implements RTCM version 3.2,
+  defined in the document _RTCM 10403.2, Differential GNSS (Global Navigation
+  Satellite Systems) Services - Version 3_ (October 7, 2016). A newer version
+  3.3 (August 19, 2022) can be [purchased
+  online](https://rtcm.myshopify.com/collections/differential-global-navigation-satellite-dgnss-standards/products/rtcm-10403-3-differential-gnss-global-navigation-satellite-systems-services-version-3-amendment-2-may-20-2021
+  "RTCM Online Publication Order Form"). The software receiver should implement
+  a TCP/IP server, acting as an NTRIP source that can feed an NTRIP server.
+  NTRIP (Networked Transport of RTCM via Internet Protocol) is an open standard
+  protocol that can be freely downloaded from
+  [here](https://gssc.esa.int/wp-content/uploads/2018/07/NtripDocumentation.pdf
+  "Networked Transport of RTCM via Internet Protocol (Ntrip) Version 1.0"), and
+  it is designed for disseminating differential correction data (_e.g._ in the
+  RTCM-104 format) or other kinds of GNSS streaming data to stationary or mobile
+  users over the Internet.
   {: .notice--info}
 
 - RINEX observation and navigation data files. Specify version:
@@ -238,8 +239,9 @@ standard output formats:
   [3.00](https://files.igs.org/pub/data/format/rinex300.pdf),
   [3.02](https://files.igs.org/pub/data/format/rinex302.pdf),
   [3.03](https://files.igs.org/pub/data/format/rinex303.pdf),
-  [3.04](https://files.igs.org/pub/data/format/rinex304.pdf), or
-  [3.05](https://files.igs.org/pub/data/format/rinex305.pdf).
+  [3.04](https://files.igs.org/pub/data/format/rinex304.pdf),
+  [3.05](https://files.igs.org/pub/data/format/rinex305.pdf), or
+  [4.00](https://files.igs.org/pub/data/format/rinex_4.00.pdf).
 
   **RINEX** (Receiver Independent Exchange Format) is an interchange format for
   raw satellite navigation system data, covering observables and the information
