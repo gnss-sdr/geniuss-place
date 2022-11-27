@@ -356,15 +356,15 @@ $ sudo apt-get install clang
 ```
 
 Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8`,
-`clang-4.0`, `clang-5.0`, ..., or `clang-12` could exist for your distribution,
+`clang-4.0`, `clang-5.0`, ..., or `clang-15` could exist for your distribution,
 check its documentation. Once installed, its use can be configured by passing
 the following parameters to CMake:
 
 ```console
-$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-12 -DCMAKE_C_COMPILER=/usr/bin/clang-12 ..
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-15 -DCMAKE_C_COMPILER=/usr/bin/clang-15 ..
 ```
 
-of course replacing `12` by the actual version installed in your machine. Some
+of course replacing `15` by the actual version installed in your machine. Some
 distributions drop the version number, so you may just have `/usr/bin/clang++`
 and `/usr/bin/clang`.
 
@@ -372,7 +372,7 @@ If you have the Ninja build system installed, you can build GNSS-SDR replacing
 GCC and `make` by Clang and Ninja:
 
 ```console
-$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-12 -DCMAKE_C_COMPILER=/usr/bin/clang-12 -GNinja ..
+$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++-15 -DCMAKE_C_COMPILER=/usr/bin/clang-15 -GNinja ..
 ```
 
 ## Using Xcode
