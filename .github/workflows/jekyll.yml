@@ -3,20 +3,18 @@ name: Jekyll site CI
 on:
   pull_request:
     paths-ignore:
-      - '**/CITATION.cff'
+      - "**/CITATION.cff"
   push:
     paths-ignore:
-      - '**/CITATION.cff'
+      - "**/CITATION.cff"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:3.8.5 /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+      - uses: actions/checkout@v3
+      - name: Build the site in the jekyll/builder container
+        run: |
+          docker run \
+          -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+          jekyll/builder:3.8.5 /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
