@@ -358,7 +358,7 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 Valencia, Spain, Oct. 2022, pp. 31-38.
     <br />
     <a href="javascript:toggleBibtex('Grenier22')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://link.springer.com/chapter/10.1007/978-981-15-3715-8_26" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9943489" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9943489" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9943489" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Grenier22" class="bibtex noshow" style="color: #111111">
 <pre>@inproceedings{ Grenier22,
