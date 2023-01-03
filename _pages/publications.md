@@ -7,7 +7,7 @@ header:
   teaser: /assets/images/books.png
 sidebar:
     nav: "about"
-last_modified_at: 2021-03-16T12:38:52+00:00
+last_modified_at: 2022-12-15T12:38:52+00:00
 redirect_from:
   - /documentation/publications
 ---
@@ -348,6 +348,33 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
+
+<ul class="biblist">
+    <!-- Item: Grenier22 -->
+    <li ><p>
+    A. Grenier, E. Simona Lohan, A. Ometov and J. Nurmi
+    <br><b>An Open-Source Software-Defined Receiver for GNSS Algorithms Benchmarking</b><br>
+<i>Proceedings of the 14th International Congress on Ultra Modern Telecommunications and Control Systems and Workshops (ICUMT)</i>,
+Valencia, Spain, Oct. 2022, pp. 31-38.
+    <br />
+    <a href="javascript:toggleBibtex('Grenier22')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9943489" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/9943489" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Grenier22" class="bibtex noshow" style="color: #111111">
+<pre>@inproceedings{ Grenier22,
+author = {A.~Grenier and E.~{Simona~Lohan} and A.~Ometov and J.~Nurmi},
+booktitle = {14th International Congress on Ultra Modern Telecommunications and Control Systems and Workshops (ICUMT)},
+title = {An Open--Source Software--Defined Receiver for {GNSS} Algorithms Benchmarking},
+month = {Oct.},
+address = {Valencia, Spain},
+year = {2022},
+pages = {31-38},
+note = {doi: 10.1109/ICUMT57764.2022.9943489}
+}</pre>
+    </div>
+    </li>
+</ul>
+
 
 <ul class="biblist">
     <!-- Item: Deng20 -->
