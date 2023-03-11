@@ -7,6 +7,7 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 gem "nokogiri", ">= 1.13.4"
 gem "activesupport", ">= 4.1.11"
 gem "rubyzip", "~> 2.3.0"
+gem "webrick", "~> 1.7"
 
 group :jekyll_plugins do
   gem "jekyll-paginate"
