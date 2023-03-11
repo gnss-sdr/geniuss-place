@@ -350,6 +350,34 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
 
 <ul class="biblist">
+    <!-- Item: Akos22 -->
+    <li ><p>
+    D.&nbsp;Akos, J.&nbsp;Arribas, M.&nbsp;Z.&nbsp;H.&nbsp;Bhuiyan, P.&nbsp;Closas, F.&nbsp;Dovis, I.&nbsp;Fern&aacute;ndez-Hern&aacute;ndez, C.&nbsp;Fern&aacute;ndez-Prades, S.&nbsp;Gunawardena, T.&nbsp;Humphreys, Z.&nbsp;Kassas, J.&nbsp;Salcedo, M.&nbsp;Nicola, T.&nbsp;Pany, M.&nbsp;Psiaki, A.&nbsp;R&#252;gamer, Y.-J.&nbsp;Song, and J.-H.&nbsp;Won
+    <br><b>GNSS software defined radio: History, current developments, and standardization efforts</b><br>
+<i>Proceedings of the 35th International Technical Meeting of the Satellite Division of The Institute
+of Navigation (ION GNSS+ 2022)</i>,
+Denver, Colorado, Sep. 2022, pp. 3180–3209.
+    <br />
+    <a href="javascript:toggleBibtex('Akos22')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=18434" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2022.18434" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Akos22" class="bibtex noshow" style="color: #111111">
+<pre>@inproceedings{ Akos22,
+author = {D.~Akos and J.~Arribas and {M.~Z.~H.}~Ometov and P.~Closas and F.~Dovis and I.~{Fern\'{a}ndez--Hern\'{a}ndez} and C.~{Fern\'{a}ndez--Prades} and S.~Gunawardena and T.~Humphreys and Z.~Kassas and J.~Salcedo and M.~Nicola and T.~Pany and M.~Psiaki and A.~R\"{u}gamer and Y.-J.~Song and J.-H.~Won},
+booktitle = {Proc. 35th Int. Tech. Meeting Sat. Div. Inst. Navig.},
+title = { {GNSS} software defined radio: {H}istory, current developments, and standardization efforts},
+month = {Sep.},
+address = {Denver, CO},
+year = {2022},
+pages = {3180--3209},
+note = {doi: 10.33012/2022.18434}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Grenier22 -->
     <li ><p>
     A. Grenier, E. Simona Lohan, A. Ometov and J. Nurmi
