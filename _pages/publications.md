@@ -17,6 +17,34 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
 <ul class="biblist">
+    <!-- Item: Srinu23 -->
+    <li ><p>
+    C.&nbsp;Srinu and P.&nbsp;Parayitam
+    <br><b>Performance of GNSS-SDR for IRNSS L5 signals using a low-cost RF front-end</b><br>
+    <i>Navigation</i>, Vol. 70, No. 2, pp. 1-26, June 2023.
+    <br />
+    <a href="javascript:toggleBibtex('Srinu23')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://navi.ion.org/content/70/2/navi.573" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/navi.573" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Srinu23" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Srinu23,
+author  = {C.~Srinu and P.~Parayitam},
+title   = {Performance of {GNSS-SDR} for {IRNSS} {L5} signals using a low-cost {RF} front-end},
+journal = {Navigation},
+year    = {2023},
+month   = {June},
+volume  = {70},
+number  = {2},
+pages   = {1--26},
+note    = { {doi}: 10.33012/navi.573}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Stenberg22 -->
     <li ><p>
     N.&nbsp;Stenberg, E.&nbsp;Axell, J.&nbsp;Rantakokko and G.&nbsp;Hendeby
@@ -25,6 +53,7 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
     <br />
     <a href="javascript:toggleBibtex('Stenberg22')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=102947" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/navi.510" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Stenberg22" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Stenberg22,
