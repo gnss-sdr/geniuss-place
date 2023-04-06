@@ -52,14 +52,14 @@ In order to get real-time position fixes, you will need:
   model you are using, the configuration may vary (see below).
 
   |----------
-  |  **USRP Model**  |  **RF bandwidth (MHz @ 16 bits per sample)** | **RX gain (dB)** | **ADC Processing Bandwidth (MS/s)** | **Interface** | **Host Sample Rate (MS/s @ 16-bit I&Q)** |
-  |:--|:-:|:-:|:-:|:-:|:-:|
-  |--------------
-  | USRP 1, B100 | Up to $$ 8 $$ MHz | See daughterboard | $$ 64 $$ MS/s | USB 2.0 | $$ 8 $$ MS/s |
-  | B200, B210, B200mini, B205mini | From $$ 200 $$ kHz to $$ 56 $$ MHz |  Up to $$ 73 $$ dB | $$ 61.44 $$ MS/s | USB 3.0 |  $$ 61.44 $$ MS/s |
-  | N200, N210 |  Up to $$ 25 $$ MHz | See daughterboard | $$ 100 $$ MS/s | Gigabit Ethernet | $$ 25 $$ MS/s |
-  | X300, X310 | Up to $$ 120 $$ MHz | See daughterboard | $$ 200 $$ MS/s | 10 Gigabit Ethernet | $$ 200 $$ MS/s |
-  |--------------
+  | **USRP Model**                 | **RF bandwidth (MHz @ 16 bits per sample)** | **RX gain (dB)**  | **ADC Processing Bandwidth (MS/s)** |    **Interface**    | **Host Sample Rate (MS/s @ 16-bit I&Q)** |
+  | :----------------------------- | :-----------------------------------------: | :---------------: | :---------------------------------: | :-----------------: | :--------------------------------------: |
+  | --------------                 |
+  | USRP 1, B100                   |              Up to $$ 8 $$ MHz              | See daughterboard |            $$ 64 $$ MS/s            |       USB 2.0       |               $$ 8 $$ MS/s               |
+  | B200, B210, B200mini, B205mini |     From $$ 200 $$ kHz to $$ 56 $$ MHz      | Up to $$ 73 $$ dB |          $$ 61.44 $$ MS/s           |       USB 3.0       |             $$ 61.44 $$ MS/s             |
+  | N200, N210                     |             Up to $$ 25 $$ MHz              | See daughterboard |           $$ 100 $$ MS/s            |  Gigabit Ethernet   |              $$ 25 $$ MS/s               |
+  | X300, X310                     |             Up to $$ 120 $$ MHz             | See daughterboard |           $$ 200 $$ MS/s            | 10 Gigabit Ethernet |              $$ 200 $$ MS/s              |
+  | --------------                 |
 
   _Some USRP models and features. The ADC processing bandwidth is the sample
   rate provided by the ADCs on the USRP motherboard, and the host sample rate
@@ -79,19 +79,19 @@ In order to get real-time position fixes, you will need:
   Devices AD9361 RFIC as an integrated wideband transceiver.
 
   |----------
-  |  **Daughterboard**  |  **Frequency coverage** | **Analog bandwidth** | **RX gain**
-  |:--|:-:|:-:|:-:|
-  |--------------
-  | WBX-120 | 50 MHz - 2.2 GHz | 120 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
-  | SBX-120 | 400 MHz - 4.4 GHz | 120 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
-  | CBX-120 | 1.2 GHz - 6 GHz | 120 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
-  | UBX-160 | 10 MHz - 2.2 GHz | 160 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
-  | WBX | 50 MHz - 2.2 GHz | 40 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
-  | SBX | 400 MHz - 4.4 GHz | 40 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
-  | CBX | 1.2 GHz - 6 GHz | 40 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
-  | UBX-40 | 10 MHz - 6 GHz | 40 MHz | $$ 0 $$ to $$ 31.5 $$ dB |
-  | DBSRX2 | 800 MHz - 2.3 GHz | Configurable: 8 MHz to 80 MHz | GC1 from $$ 0 $$ to $$ 73 $$ dB, and BBC from $$ 0 $$ to $$ 15 $$ dB |
-  |--------------
+  | **Daughterboard** | **Frequency coverage** |     **Analog bandwidth**      |                             **RX gain**                              |
+  | :---------------- | :--------------------: | :---------------------------: | :------------------------------------------------------------------: |
+  | --------------    |
+  | WBX-120           |    50 MHz - 2.2 GHz    |            120 MHz            |                       $$ 0 $$ to $$ 31.5 $$ dB                       |
+  | SBX-120           |   400 MHz - 4.4 GHz    |            120 MHz            |                       $$ 0 $$ to $$ 31.5 $$ dB                       |
+  | CBX-120           |    1.2 GHz - 6 GHz     |            120 MHz            |                       $$ 0 $$ to $$ 31.5 $$ dB                       |
+  | UBX-160           |    10 MHz - 2.2 GHz    |            160 MHz            |                       $$ 0 $$ to $$ 31.5 $$ dB                       |
+  | WBX               |    50 MHz - 2.2 GHz    |            40 MHz             |                       $$ 0 $$ to $$ 31.5 $$ dB                       |
+  | SBX               |   400 MHz - 4.4 GHz    |            40 MHz             |                       $$ 0 $$ to $$ 31.5 $$ dB                       |
+  | CBX               |    1.2 GHz - 6 GHz     |            40 MHz             |                       $$ 0 $$ to $$ 31.5 $$ dB                       |
+  | UBX-40            |     10 MHz - 6 GHz     |            40 MHz             |                       $$ 0 $$ to $$ 31.5 $$ dB                       |
+  | DBSRX2            |   800 MHz - 2.3 GHz    | Configurable: 8 MHz to 80 MHz | GC1 from $$ 0 $$ to $$ 73 $$ dB, and BBC from $$ 0 $$ to $$ 15 $$ dB |
+  | --------------    |
 
   _Daugtherboards allowing GNSS signal reception. Note that WBX-120, CBX-120 and
   SBX-120 daughterboards were designed to work with USRP X300/X310 and any
@@ -149,14 +149,14 @@ has [several ways of identifying
 it](https://files.ettus.com/manual/page_identification.html) on the host system:
 
 |----------
-|  **Identifier**  |  **Key** | **Notes** | **Example** |
-|:--|:--|:--|:--|
-|--------------
-| Serial #	| `serial` | 	globally unique identifier | 	12345678 |
-| IP Address | `addr` |	unique identifier on a network	| 192.168.10.2 |
-| Type | `type` | 	hardware series identifier | 	usrp1, usrp2, b200, x300, ... |
-| Name | `name` | optional user-set identifier | lab1_usrp3 |
-|--------------
+| **Identifier** | **Key**  | **Notes**                      | **Example**                   |
+| :------------- | :------- | :----------------------------- | :---------------------------- |
+| -------------- |
+| Serial #       | `serial` | globally unique identifier     | 12345678                      |
+| IP Address     | `addr`   | unique identifier on a network | 192.168.10.2                  |
+| Type           | `type`   | hardware series identifier     | usrp1, usrp2, b200, x300, ... |
+| Name           | `name`   | optional user-set identifier   | lab1_usrp3                    |
+| -------------- |
 
  _Common device identifiers. Source: [Identifying USRP Devices](https://files.ettus.com/manual/page_identification.html)._
  {: style="text-align: center;"}
@@ -347,7 +347,7 @@ You should see something similar to:
 
 ```console
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
-Initializing GNSS-SDR v0.0.17 ... Please wait.
+Initializing GNSS-SDR v0.0.18 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 -- X300 initialization sequence...
