@@ -11,6 +11,7 @@ authors:
     orcid: "https://orcid.org/0000-0002-9201-7007"
 cff-version: "1.2.0"
 date-released: "2023-04-06"
+doi: 10.5281/zenodo.7808152
 keywords:
   - "Global Navigation Satellite System"
   - GNSS
