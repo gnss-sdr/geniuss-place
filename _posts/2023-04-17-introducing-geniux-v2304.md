@@ -420,7 +420,7 @@ You can replace `23.04` by `latest` in order to get the latest developments.
 
 ### Geniux Dunfell 23.04.0
 
-* Operating System based on the Yocto Project version 3.1.20 LTS.
+* Operating System based on the Yocto Project version 3.1.24 LTS.
 * It brings, among many others, the following software packages:
   * Development tools: Automake v1.16.1, CMake v3.16.5, GCC v9.5.0
     (+&nbsp;libgfortran), make v4.3, ninja v1.10.0, Python v3.8.12.
@@ -634,7 +634,7 @@ You can replace `23.04` by `latest` in order to get the latest developments.
 
 ### Geniux Kirkstone 23.04.0
 
-* Operating System based on the Yocto Project version 4.0.5 LTS.
+* Operating System based on the Yocto Project version 4.0.8 LTS.
 * It brings, among many others, the following software packages:
   * Development tools: Automake v1.16.5, CMake v3.22.3, GCC v11.2.0
     (+&nbsp;libgfortran), make v4.3, ninja v1.10.2, Python v3.10.4.
@@ -676,7 +676,7 @@ You can replace `23.04` by `latest` in order to get the latest developments.
 
 ### Geniux Langdale 23.04.0
 
-* Operating System based on the Yocto Project version 4.1.
+* Operating System based on the Yocto Project version 4.1.3.
 * It brings, among many others, the following software packages:
   * Development tools: Automake v1.16.5, CMake v3.24.0, GCC v12.2.0
     (+&nbsp;libgfortran), make v4.3, ninja v1.11.1, Python v3.10.6.
