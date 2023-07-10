@@ -935,10 +935,11 @@ configuration file. The structure of this filter is as follows:
     \end{equation} $$
 
 The following parameters are exposed in the configuration, here with their defaut values:
-  $$ \sigma_{m\_pos} = \text{\texttt{PVT.kf\_measures\_ecef\_pos\_sd\_m}} = 1.0 \text {, in [m].} $$
-  $$ \sigma_{m\_pos} = \text{\texttt{PVT.kf\_measures\_ecef\_vel\_sd\_ms}} = 0.1 \text {, in [m/s].} $$
-  $$ \sigma_{s\_pos} = \text{\texttt{PVT.kf\_system\_ecef\_pos\_sd\_m}} = 0.01 \text {, in [m].} $$ 
-  $$ \sigma_{s\_vel} = \text{\texttt{PVT.kf\_system\_ecef\_vel\_sd\_ms}} = 0.001 \text {, in [m/s].} $$
+
+-  $$ \sigma_{m\_pos} = \text{PVT.kf_measures_ecef_pos_sd_m} = 1.0 \text {, in [m].} $$ 
+-  $$ \sigma_{m\_vel} = \text{PVT.kf_measures_ecef_vel_sd_ms} = 0.1 \text {, in [m/s].} $$
+-  $$ \sigma_{s\_pos} = \text{PVT.kf_system_ecef_pos_sd_m} = 0.01 \text {, in [m].} $$ 
+-  $$ \sigma_{s\_vel} = \text{PVT.kf_system_ecef_vel_sd_ms} = 0.001 \text {, in [m/s].} $$
 
 ---------
 
