@@ -857,6 +857,7 @@ configuration file. The structure of this filter is as follows:
   0 & 0 & 0 & 0 & 0 & 1
   \end{array} \right]
   \end{equation} $$
+
   $$ \begin{equation}
    \textbf{Q} = \begin{bmatrix}
    \sigma_{s\_pos}^{2} & 0 & 0 & 0 & 0 & 0 \\
