@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2023-02-14T09:54:02+02:00
+last_modified_at: 2023-07-10T09:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -52,7 +52,7 @@ where $$ \mathbf{r}_r $$ is the receiver's antenna position in an
 earth-centered, earth-fixed (ECEF) coordinate system (in meters), $$ c $$ is the
 speed of light, and $$ dt_r $$ is the receiver clock bias (in seconds).
 
-The measurement vector is defined as:
+The measurement vector is defi
 
 $$ \begin{equation} \mathbf{y} = \left(P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} \right)^T~. \end{equation} $$
 
@@ -165,8 +165,9 @@ where:
 
   - $$ El_r^{(s)} $$ is the elevation angle of satellite direction (in rad).
 
-  - $$ \sigma_{bclock,s} = 30 $$ is the standard deviation of the broadcast
-  clock error (in m).
+  - $$ \sigma_{bclock,s} $$ is the standard deviation of the broadcast ephemeris
+  and clock error (in m). This parameter is estimated internally from URA (User
+  Range Accuracy) or or similar indicators.
 
   - $$ \sigma_{ion,s} $$ is the standard deviation of ionosphere correction
   model error (in m). This parameter is set to $$ \sigma_{ion} = 5 $$ m by
@@ -814,8 +815,6 @@ function](https://gssc.esa.int/navipedia/index.php/Mapping_of_Niell)[^Niell96].
 The zenith total delay $$ Z_{T,r} $$ is estimated as an unknown parameter in the
 parameter estimation process.
 
-
-
 ## Estimate the tropospheric zenith total delay and gradient
 
 If the processing option `trop_model` is set to `Estimate_ZTD_Grad`, a more
@@ -826,13 +825,111 @@ $$ \begin{equation}
 \!\!\!\!\!\!\!\!\!\!\!\!\!\!m\left(El_{r}^{(s)}\right)\! = \!m_{W}\left(El_{r}^{(s)}\right)\!\left[1\!+\!\cot \! \left(El_{r}^{(s)}\right) \! \left( \! G_{N,r} \cos \! \left(Az_{r}^{(s)}\right) \!+\! G_{E,r} \sin \! \left(Az_{r}^{(s)}\right)\!\right) \!\right]
 \end{equation} $$
 
-where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and
-$$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the
+where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and $$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the
 tropospheric gradient, respectively. The zenith total delay $$ Z_{T,r} $$ and
 the gradient parameters $$ G_{E,r} $$ and $$ G_{N,r} $$ are estimated as unknown
 parameters in the parameter estimation process.
 
 &nbsp;
+
+## A de-noising Kalman filter for the PVT solution
+
+The `PVT` block can apply a simple Kalman filter to the computed PVT solutions.
+This filter can be enabled by setting `PVT.enable_pvt_kf=true` in the
+configuration file. The structure of this filter is as follows:
+
+- **State model:**
+  $$ \begin{equation}
+  \mathbf{x} = \left[ x, y, z, v_x, v_y, v_z \right]^{T}
+  \end{equation} $$
+  $$ \begin{equation}
+  \mathbf{x}_k = \mathbf{F} \mathbf{x}_{k-1} + \mathbf{v}_k~, \quad \mathbf{v}_k \sim \mathcal{N}(\mathbf{0},\mathbf{Q})
+  \end{equation} $$
+  $$ \begin{equation}
+  \textbf{F} = \left[ \begin{array}{cccccc}
+  1 & 0 & 0 & T & 0 & 0 \\
+  0 & 1 & 0 & 0 & T & 0 \\
+  0 & 0 & 1 & 0 & 0 & T \\
+  0 & 0 & 0 & 1 & 0 & 0 \\
+   0 & 0 & 0 & 0 & 1 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 1
+  \end{array} \right]
+  \end{equation} $$
+  $$ \begin{equation}
+   \textbf{Q} = \begin{bmatrix}
+   \sigma_{s\_pos}^{2} & 0 & 0 & 0 & 0 & 0 \\
+   0 & \sigma_{s\_pos}^{2} & 0 & 0 & 0 & 0 \\
+   0 & 0 & \sigma_{s\_pos}^{2} & 0 & 0 & 0 \\
+   0 & 0 & 0 & \sigma_{s\_vel}^{2} & 0 & 0 \\
+   0 & 0 & 0 & 0 & \sigma_{s\_vel}^{2} & 0 \\
+   0 & 0 & 0 & 0 & 0 & \sigma_{s\_vel}^{2}
+  \end{bmatrix}
+  \end{equation} $$
+- **Measurement model:**
+  $$ \begin{equation}
+    \mathbf{z} = \left[ x , y , z , v_{x}, v_{y}, v_{z} \right]^{T}
+    \end{equation} $$
+  $$ \begin{equation}
+    \mathbf{z}_k = \mathbf{H}\mathbf{x}_k + \mathbf{w}_k , \quad \mathbf{w}_k \sim \mathcal{N}(\mathbf{0},\mathbf{R})
+    \end{equation} $$
+  $$ \begin{equation} \textbf{H} = \begin{bmatrix}
+    1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 1
+    \end{bmatrix} \end{equation} $$
+  $$ \begin{equation} \textbf{R} = \begin{bmatrix}
+    \sigma_{m\_pos}^{2} & 0 & 0 & 0 & 0 & 0 \\
+    0 & \sigma_{m\_pos}^{2} & 0 & 0 & 0 & 0 \\
+    0 & 0 & \sigma_{m\_pos}^{2} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \sigma_{m\_vel}^{2} & 0 & 0 \\
+    0 & 0 & 0 & 0 & \sigma_{m\_vel}^{2} & 0 \\
+    0 & 0 & 0 & 0 & 0 & \sigma_{m\_vel}^{2}
+    \end{bmatrix} \end{equation} $$
+
+- **Initialization:**
+  $$ \begin{equation}
+    \mathbf{x}_{0|0} = \left[ \begin{array}{cccc} x_{0} & y_{0} & z_{0} & v_{x_{0}} & v_{y_{0}} & v_{z_{0}} \end{array} \right]^T
+    \end{equation} $$
+
+  $$\begin{equation}
+    \mathbf{P}_{0|0} = \begin{bmatrix}
+    \sigma_{s\_pos}^{2} & 0 & 0 & 0 & 0 & 0 \\
+    0 & \sigma_{s\_pos}^{2} & 0 & 0 & 0 & 0 \\
+    0 & 0 & \sigma_{s\_pos}^{2} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \sigma_{s\_vel}^{2} & 0 & 0 \\
+    0 & 0 & 0 & 0 & \sigma_{s\_vel}^{2} & 0 \\
+    0 & 0 & 0 & 0 & 0 & \sigma_{s\_vel}^{2}
+   \end{bmatrix}
+   \end{equation} $$
+
+- **Prediction:**
+  $$ \begin{equation}
+    \hat{\mathbf{x}}_{k|k-1} = \mathbf{F} \hat{\mathbf{x}}_{k-1|k-1}
+    \end{equation} $$
+  $$ \begin{equation}
+    \mathbf{P}_{k|k-1} = \mathbf{F} \mathbf{P}_{k-1|k-1} \mathbf{F}^T + \mathbf{Q}
+    \end{equation} $$
+- **Update:**
+  $$ \begin{equation}
+    \mathbf{K}_k = \mathbf{P}_{k|k-1} \mathbf{H}^T \left( \mathbf{H}\mathbf{P}_{k|k-1} \mathbf{H}^T + \mathbf{R} \right)^{-1}
+    \end{equation} $$
+
+  $$ \begin{equation}
+    \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \left( \mathbf{z}_k - \mathbf{H}_k\hat{\mathbf{x}}_{k|k-1} \right)
+    \end{equation} $$
+
+  $$ \begin{equation}
+    \mathbf{P}_{k|k} = \left( \mathbf{I} - \mathbf{K}_{k} \mathbf{H} \right)\mathbf{P}_{k|k-1}
+    \end{equation} $$
+
+The following parameters are exposed in the configuration, here with their defaut values:
+  $$ \sigma_{m\_pos} = \text{\texttt{PVT.kf\_measures\_ecef\_pos\_sd\_m}} = 1.0 \text {, in [m].} $$
+  $$ \sigma_{m\_pos} = \text{\texttt{PVT.kf\_measures\_ecef\_vel\_sd\_ms}} = 0.1 \text {, in [m/s].} $$
+  $$ \sigma_{s\_pos} = \text{\texttt{PVT.kf\_system\_ecef\_pos\_sd\_m}} = 0.01 \text {, in [m].} $$ 
+  $$ \sigma_{s\_vel} = \text{\texttt{PVT.kf\_system\_ecef\_vel\_sd\_ms}} = 0.001 \text {, in [m/s].} $$
 
 ---------
 
@@ -1058,6 +1155,11 @@ standard and precise positioning. It accepts the following parameters:
 |          `enable_protobuf`           | [`true`, `false`]: If set to `true`, the data serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). An example of usage is the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). For an example of usage of the latter, check the [gnss-sdr-pvt-monitoring-client](https://github.com/acebrianjuan/gnss-sdr-pvt-monitoring-client). This parameter defaults to `true` (Protocol Buffers is used). |   Optional   |
 |           `use_e6_for_pvt`           | [`true`, `false`]: If set to `false`, the PVT engine will ignore observables from Galileo E6B signals. It defaults to `true`, so observables will be used if found. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
 |        `use_has_corrections`         | [`true`, `false`]: If set to `false`, the PVT engine will ignore corrections from the Galileo High Accuracy Service. It defaults to `true`, so corrections will be applied if available. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
+|           `enable_pvt_kf`            | [`true`, `false`]: If set to `true`, it enables the Kalman filter of the PVT solution. It defaults to `false`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
+|     `kf_measures_ecef_pos_sd_m`      | Standard deviation of the position estimations, in meters. It defaults to `1.0` [m]. Only used if `PVT.enable_pvt_kf=true`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                                                  |   Optional   |
+|     `kf_measures_ecef_vel_sd_ms`     | Standard deviation of the velocity estimations, in meters per second. It defaults to `0.1` [m/s]. Only used if `PVT.enable_pvt_kf=true`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|      `kf_system_ecef_pos_sd_m`       | Standard deviation of the dynamic system model for position, in meters. It defaults to `0.01` [m]. Only used if `PVT.enable_pvt_kf=true`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
+|      `kf_system_ecef_vel_sd_ms`      | Standard deviation of the dynamic system model for velocity, in meters per second. It defaults to `0.001` [m/s]. Only used if `PVT.enable_pvt_kf=true`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                      |   Optional   |
 |         `use_unhealthy_sats`         | [`true`, `false`]: If set to `true`, the PVT engine will use observables from satellites flagged as unhealthy in the navigation message. It defaults to `false`, so those observables will be ignored. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
 |        `show_local_time_zone`        | [`true`, `false`]: If set to `true`, the time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC.                                                                                                                                                                                                                                                                                                                                                                                                                                  |   Optional   |
 |          `rtk_trace_level`           | Configure the RTKLIB trace level (`0`: off, up to `5`: max. verbosity). When set to something > `2`, the RTKLIB library become more verbose in the internal logging file. It defaults to `0` (off).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
