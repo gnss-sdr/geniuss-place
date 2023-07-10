@@ -842,9 +842,11 @@ configuration file. The structure of this filter is as follows:
   $$ \begin{equation}
   \mathbf{x} = \left[ x, y, z, v_x, v_y, v_z \right]^{T}
   \end{equation} $$
+
   $$ \begin{equation}
   \mathbf{x}_k = \mathbf{F} \mathbf{x}_{k-1} + \mathbf{v}_k~, \quad \mathbf{v}_k \sim \mathcal{N}(\mathbf{0},\mathbf{Q})
   \end{equation} $$
+
   $$ \begin{equation}
   \textbf{F} = \left[ \begin{array}{cccccc}
   1 & 0 & 0 & T & 0 & 0 \\
@@ -865,13 +867,16 @@ configuration file. The structure of this filter is as follows:
    0 & 0 & 0 & 0 & 0 & \sigma_{s\_vel}^{2}
   \end{bmatrix}
   \end{equation} $$
+
 - **Measurement model:**
   $$ \begin{equation}
     \mathbf{z} = \left[ x , y , z , v_{x}, v_{y}, v_{z} \right]^{T}
     \end{equation} $$
+
   $$ \begin{equation}
     \mathbf{z}_k = \mathbf{H}\mathbf{x}_k + \mathbf{w}_k , \quad \mathbf{w}_k \sim \mathcal{N}(\mathbf{0},\mathbf{R})
     \end{equation} $$
+
   $$ \begin{equation} \textbf{H} = \begin{bmatrix}
     1 & 0 & 0 & 0 & 0 & 0 \\
     0 & 1 & 0 & 0 & 0 & 0 \\
@@ -880,6 +885,7 @@ configuration file. The structure of this filter is as follows:
     0 & 0 & 0 & 0 & 1 & 0 \\
     0 & 0 & 0 & 0 & 0 & 1
     \end{bmatrix} \end{equation} $$
+
   $$ \begin{equation} \textbf{R} = \begin{bmatrix}
     \sigma_{m\_pos}^{2} & 0 & 0 & 0 & 0 & 0 \\
     0 & \sigma_{m\_pos}^{2} & 0 & 0 & 0 & 0 \\
@@ -909,9 +915,11 @@ configuration file. The structure of this filter is as follows:
   $$ \begin{equation}
     \hat{\mathbf{x}}_{k|k-1} = \mathbf{F} \hat{\mathbf{x}}_{k-1|k-1}
     \end{equation} $$
+
   $$ \begin{equation}
     \mathbf{P}_{k|k-1} = \mathbf{F} \mathbf{P}_{k-1|k-1} \mathbf{F}^T + \mathbf{Q}
     \end{equation} $$
+
 - **Update:**
   $$ \begin{equation}
     \mathbf{K}_k = \mathbf{P}_{k|k-1} \mathbf{H}^T \left( \mathbf{H}\mathbf{P}_{k|k-1} \mathbf{H}^T + \mathbf{R} \right)^{-1}
