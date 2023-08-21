@@ -987,12 +987,12 @@ messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting
 the execution of the software receiver. By default, the server will operate on
 port 2101 (which is the recommended port for RTCM services according to the
 Internet Assigned Numbers Authority,
-[IANA](https://www.iana.org/assignments/service-names-port-numbers "Service Name
-and Transport Protocol Port Number Registry")), and will identify the Reference
-Station with ID= $$ 1234 $$. These values can be changed with
+[IANA](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
+"Service Name and Transport Protocol Port Number Registry")), and will identify
+the Reference Station with ID= $$ 1234 $$. These values can be changed with
 `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM
-messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$
-5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms),
+messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to
+$$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms),
 `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can
 also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to
 `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration

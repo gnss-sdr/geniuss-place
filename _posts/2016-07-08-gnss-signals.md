@@ -218,7 +218,7 @@ ascending node. Eight satellites are equally spaced in each plane with $$ 45^o $
 argument of latitude. Moreover, the orbital planes have an argument of latitude
 displacement of $$ 15^o $$ relative to each other. The current constellation
 status can be checked at the Russian [Information and Analysis Center for
-Positioning, Navigation and Timing website](https://www.glonass-iac.ru/en/).
+Positioning, Navigation and Timing website](https://glonass-iac.ru/en/about_glonass/).
 
 The ground control segment of GLONASS is almost entirely located within former
 Soviet Union territory, except for a station in Brasilia, Brazil. The Ground
