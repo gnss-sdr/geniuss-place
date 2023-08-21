@@ -1289,7 +1289,7 @@ deactivated with `rtcm_output_file_enabled=false`.
 
 [^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/95JB03048), Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
 
-[^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200M: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200M.pdf), May 2021.
+[^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200N: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200N.pdf), August 2022.
 
 [^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](https://standards.globalspec.com/std/1014192/rtca-do-229), RTCA Inc., December 13, 2006.
 
