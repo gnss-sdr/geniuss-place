@@ -102,7 +102,7 @@ denying non–U.S. military users) are sequences of $$ 7 $$ days in length.
 
 Regarding the modernization plans for GPS, it is worthwhile to mention that
 there is a new civilian–use signal planned, called L1C and defined in
-IS-GPS-800D[^ISGPS800], to be broadcast on the same L1 frequency that currently
+IS-GPS-800J[^ISGPS800], to be broadcast on the same L1 frequency that currently
 contains the C/A signal. The L1C signal will be available with first Block III
 launch, currently scheduled for May 2018 by SpaceX, and it will feature a
 Multiplexed Binary Offset Carrier (MBOC) modulation scheme that ensures backward
@@ -117,7 +117,7 @@ of the respective ranging codes as needed to protect users from
 receiving and utilizing anomalous signals. These "incorrect" codes are
 termed non-standard $$ L1C_P $$ (NSCP) and non-standard $$ L1C_D $$ (NSCD).
 Non-standard codes are not for utilization by the users and, therefore,
-are not defined in IS-GPS-800D.
+are not defined in IS-GPS-800J.
 
 ![Spectra GPS Signals L1]({{ "/assets/images/Spectra_GPS_Signals_L1.png" | relative_url }}){: .align-center .invert-colors}
 _GPS signals spectra in L1. Source: [Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)_.
