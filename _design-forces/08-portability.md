@@ -237,9 +237,9 @@ receiver:
   - Others.
 
 - Support of FPGA offloading (define FPGA's vendor/model).
-  - [Xilinx](https://www.xilinx.com/)
-  - [Altera](https://www.altera.com/)
-  - [Microsemi (formerly Actel)](https://www.microsemi.com/product-directory/1636-fpga-soc)
+  - [AMD (formerly Xilinx)](https://www.xilinx.com/products/silicon-devices/fpga.html)
+  - [Intel (formerly Altera)](https://www.intel.com/content/www/us/en/products/programmable.html)
+  - [Microchip (formerly Actel)](https://www.microchip.com/en-us/products/fpgas-and-plds#)
   - Others.
 
 - Other software dependencies (define required minimal versions).
