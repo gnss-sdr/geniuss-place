@@ -470,7 +470,7 @@ note    = {doi: 10.1007/978-981-15-3715-8}
 Cork, Ireland, 31 Aug. / 3 Sept., 2020. pp. 1-4.
     <br />
     <a href="javascript:toggleBibtex('Calvo20')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="http://eprints.networks.imdea.org/id/eprint/2139" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://faculty.iiitd.ac.in/~arani/assets/pdf/wowmom20.pdf" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Calvo20" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Calvo20,
