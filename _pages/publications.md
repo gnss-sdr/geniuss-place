@@ -16,6 +16,35 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
+
+<ul class="biblist">
+    <!-- Item: Varais23 -->
+    <li ><p>
+    N.&nbsp;Varais, J.&nbsp;Verdun, J.&nbsp;Cali and L.&nbsp;Lestarquit
+    <br><b>Lake Altimetry Using Long Coherent Integration Carrier Phase Measurements from Airborne GNSS Reflectometry</b><br>
+    <i>Remote Sensing</i>, Vol. 15, 4192, pp. 1-17, Sept. 2023.
+    <br />
+    <a href="javascript:toggleBibtex('Varais23')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.mdpi.com/2072-4292/15/17/4192" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.3390/rs15174192" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Varais23" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Varais23,
+author  = {N.~Varais and J.~Verdun and J.~Cali and L.~Lestarquit},
+title   = {Lake Altimetry Using Long Coherent Integration Carrier Phase Measurements from Airborne {GNSS} Reflectometry},
+journal = {Remote Sensing},
+year    = {2023},
+month   = {Sep},
+volume  = {15},
+number  = {4192},
+pages   = {1--17},
+note    = { {doi}: 10.3390/rs15174192}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
 <ul class="biblist">
     <!-- Item: Srinu23 -->
     <li ><p>

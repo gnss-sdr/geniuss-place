@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2023-07-10T09:54:02+02:00
+last_modified_at: 2023-09-21T07:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -1017,38 +1017,39 @@ Java, Python, C#, Dart, Go, or Ruby, among other languages, hence enhancing
 The following table shows the complete list of streamed parameters:
 
 |----------
-|          **Name**          |  **Type**  | **Description**                                                            |
-| :------------------------: | :--------: | :------------------------------------------------------------------------- |
+|          **Name**          |  **Type**  | **Description**                                                                                                                                                                                                                                                         |
+| :------------------------: | :--------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |       --------------       |
-| `tow_at_current_symbol_ms` | `uint32_t` | Time of week of the current symbol, in [ms].                               |
-|           `week`           | `uint32_t` | PVT GPS week.                                                              |
-|         `rx_time`          |  `double`  | PVT GPS time.                                                              |
-|     `user_clk_offset`      |  `double`  | User clock offset, in [s].                                                 |
-|          `pos_x`           |  `double`  | Position X component in ECEF, expressed in [m].                            |
-|          `pos_y`           |  `double`  | Position Y component in ECEF, expressed in [m].                            |
-|          `pos_z`           |  `double`  | Position Z component in ECEF, expressed in [m].                            |
-|          `vel_x`           |  `double`  | Velocity X component in ECEF, expressed in [m/s].                          |
-|          `vel_y`           |  `double`  | Velocity Y component in ECEF, expressed in [m/s].                          |
-|          `vel_z`           |  `double`  | Velocity Z component in ECEF, expressed in [m/s].                          |
-|          `cov_xx`          |  `double`  | Position variance in the X component, $$ \sigma_{xx}^2 $$, in [$$ m^2 $$]. |
-|          `cov_yy`          |  `double`  | Position variance in the Y component, $$ \sigma_{yy}^2 $$, in [$$ m^2 $$]. |
-|          `cov_zz`          |  `double`  | Position variance in the X component, $$ \sigma_{zz}^2 $$, in [$$ m^2 $$]. |
-|          `cov_xy`          |  `double`  | Position XY covariance $$ \sigma_{xy}^2 $$, in [$$ m^2 $$].                |
-|          `cov_yz`          |  `double`  | Position YZ covariance $$ \sigma_{yz}^2 $$, in [$$ m^2 $$].                |
-|          `cov_zx`          |  `double`  | Position ZX covariance $$ \sigma_{zx}^2 $$, in [$$ m^2 $$].                |
-|         `latitude`         |  `double`  | Latitude, in [deg]. Positive: North.                                       |
-|        `longitude`         |  `double`  | Longitude, in [deg]. Positive: East.                                       |
-|          `height`          |  `double`  | Height, in [m].                                                            |
-|        `valid_sats`        | `uint32_t` | Number of valid satellites.                                                |
-|     `solution_status`      | `uint32_t` | RTKLIB solution status.                                                    |
-|      `solution_type`       | `uint32_t` | RTKLIB solution type (`0`: xyz-ecef, `1`: enu-baseline).                   |
-|     `ar_ratio_factor`      |  `float`   | Ambiguity resolution ratio factor for validation.                          |
-|    `ar_ratio_threshold`    |  `float`   | Ambiguity resolution ratio threshold for validation.                       |
-|           `gdop`           |  `double`  | Geometric dilution of precision (GDOP).                                    |
-|           `pdop`           |  `double`  | Position (3D) dilution of precision (PDOP).                                |
-|           `hdop`           |  `double`  | Horizontal dilution of precision (HDOP).                                   |
-|           `vdop`           |  `double`  | Vertical dilution of precision (VDOP).                                     |
-|    `user_clk_drift_ppm`    |  `double`  | User clock drift, in parts per million.                                    |
+| `tow_at_current_symbol_ms` | `uint32_t` | Time of week of the current symbol, in [ms].                                                                                                                                                                                                                            |
+|           `week`           | `uint32_t` | PVT GPS week.                                                                                                                                                                                                                                                           |
+|         `rx_time`          |  `double`  | PVT GPS time.                                                                                                                                                                                                                                                           |
+|     `user_clk_offset`      |  `double`  | User clock offset, in [s].                                                                                                                                                                                                                                              |
+|          `pos_x`           |  `double`  | Position X component in ECEF, expressed in [m].                                                                                                                                                                                                                         |
+|          `pos_y`           |  `double`  | Position Y component in ECEF, expressed in [m].                                                                                                                                                                                                                         |
+|          `pos_z`           |  `double`  | Position Z component in ECEF, expressed in [m].                                                                                                                                                                                                                         |
+|          `vel_x`           |  `double`  | Velocity X component in ECEF, expressed in [m/s].                                                                                                                                                                                                                       |
+|          `vel_y`           |  `double`  | Velocity Y component in ECEF, expressed in [m/s].                                                                                                                                                                                                                       |
+|          `vel_z`           |  `double`  | Velocity Z component in ECEF, expressed in [m/s].                                                                                                                                                                                                                       |
+|          `cov_xx`          |  `double`  | Position variance in the X component, $$ \sigma_{xx}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                              |
+|          `cov_yy`          |  `double`  | Position variance in the Y component, $$ \sigma_{yy}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                              |
+|          `cov_zz`          |  `double`  | Position variance in the X component, $$ \sigma_{zz}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                              |
+|          `cov_xy`          |  `double`  | Position XY covariance $$ \sigma_{xy}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                                             |
+|          `cov_yz`          |  `double`  | Position YZ covariance $$ \sigma_{yz}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                                             |
+|          `cov_zx`          |  `double`  | Position ZX covariance $$ \sigma_{zx}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                                             |
+|         `latitude`         |  `double`  | Latitude, in [deg]. Positive: North.                                                                                                                                                                                                                                    |
+|        `longitude`         |  `double`  | Longitude, in [deg]. Positive: East.                                                                                                                                                                                                                                    |
+|          `height`          |  `double`  | Height, in [m].                                                                                                                                                                                                                                                         |
+|        `valid_sats`        | `uint32_t` | Number of valid satellites.                                                                                                                                                                                                                                             |
+|     `solution_status`      | `uint32_t` | RTKLIB solution status.                                                                                                                                                                                                                                                 |
+|      `solution_type`       | `uint32_t` | RTKLIB solution type (`0`: xyz-ecef, `1`: enu-baseline).                                                                                                                                                                                                                |
+|     `ar_ratio_factor`      |  `float`   | Ambiguity resolution ratio factor for validation.                                                                                                                                                                                                                       |
+|    `ar_ratio_threshold`    |  `float`   | Ambiguity resolution ratio threshold for validation.                                                                                                                                                                                                                    |
+|           `gdop`           |  `double`  | Geometric dilution of precision (GDOP).                                                                                                                                                                                                                                 |
+|           `pdop`           |  `double`  | Position (3D) dilution of precision (PDOP).                                                                                                                                                                                                                             |
+|           `hdop`           |  `double`  | Horizontal dilution of precision (HDOP).                                                                                                                                                                                                                                |
+|           `vdop`           |  `double`  | Vertical dilution of precision (VDOP).                                                                                                                                                                                                                                  |
+|    `user_clk_drift_ppm`    |  `double`  | User clock drift, in parts per million.                                                                                                                                                                                                                                 |
+|         `utc_time`         |  `string`  | PVT UTC time ([RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) datetime string).  <span style="color: orange"> This parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span> |
 |       --------------       |
 
 &nbsp;
