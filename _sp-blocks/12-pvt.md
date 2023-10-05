@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2023-02-14T09:54:02+02:00
+last_modified_at: 2023-10-05T07:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -52,7 +52,7 @@ where $$ \mathbf{r}_r $$ is the receiver's antenna position in an
 earth-centered, earth-fixed (ECEF) coordinate system (in meters), $$ c $$ is the
 speed of light, and $$ dt_r $$ is the receiver clock bias (in seconds).
 
-The measurement vector is defined as:
+The measurement vector is defi
 
 $$ \begin{equation} \mathbf{y} = \left(P_r^{(1)}, P_r^{(2)}, P_r^{(3)}, ..., P_r^{(m)} \right)^T~. \end{equation} $$
 
@@ -165,8 +165,9 @@ where:
 
   - $$ El_r^{(s)} $$ is the elevation angle of satellite direction (in rad).
 
-  - $$ \sigma_{bclock,s} = 30 $$ is the standard deviation of the broadcast
-  clock error (in m).
+  - $$ \sigma_{bclock,s} $$ is the standard deviation of the broadcast ephemeris
+  and clock error (in m). This parameter is estimated internally from URA (User
+  Range Accuracy) or or similar indicators.
 
   - $$ \sigma_{ion,s} $$ is the standard deviation of ionosphere correction
   model error (in m). This parameter is set to $$ \sigma_{ion} = 5 $$ m by
@@ -814,8 +815,6 @@ function](https://gssc.esa.int/navipedia/index.php/Mapping_of_Niell)[^Niell96].
 The zenith total delay $$ Z_{T,r} $$ is estimated as an unknown parameter in the
 parameter estimation process.
 
-
-
 ## Estimate the tropospheric zenith total delay and gradient
 
 If the processing option `trop_model` is set to `Estimate_ZTD_Grad`, a more
@@ -826,13 +825,121 @@ $$ \begin{equation}
 \!\!\!\!\!\!\!\!\!\!\!\!\!\!m\left(El_{r}^{(s)}\right)\! = \!m_{W}\left(El_{r}^{(s)}\right)\!\left[1\!+\!\cot \! \left(El_{r}^{(s)}\right) \! \left( \! G_{N,r} \cos \! \left(Az_{r}^{(s)}\right) \!+\! G_{E,r} \sin \! \left(Az_{r}^{(s)}\right)\!\right) \!\right]
 \end{equation} $$
 
-where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and
-$$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the
+where $$ Az_{r}^{(s)} $$ is the azimuth angle of satellite direction (rad), and $$ G_{E,r} $$ and $$ G_{N,r} $$ are the east and north components of the
 tropospheric gradient, respectively. The zenith total delay $$ Z_{T,r} $$ and
 the gradient parameters $$ G_{E,r} $$ and $$ G_{N,r} $$ are estimated as unknown
 parameters in the parameter estimation process.
 
 &nbsp;
+
+## A de-noising Kalman filter for the PVT solution
+
+The `PVT` block can apply a simple Kalman filter to the computed PVT solutions.
+This filter can be enabled by setting `PVT.enable_pvt_kf=true` in the
+configuration file. The structure of this filter is as follows:
+
+- **State model:**
+  $$ \begin{equation}
+  \mathbf{x} = \left[ x, y, z, v_x, v_y, v_z \right]^{T}
+  \end{equation} $$
+
+  $$ \begin{equation}
+  \mathbf{x}_k = \mathbf{F} \mathbf{x}_{k-1} + \mathbf{v}_k~, \quad \mathbf{v}_k \sim \mathcal{N}(\mathbf{0},\mathbf{Q})
+  \end{equation} $$
+
+  $$ \begin{equation}
+  \textbf{F} = \left[ \begin{array}{cccccc}
+  1 & 0 & 0 & T & 0 & 0 \\
+  0 & 1 & 0 & 0 & T & 0 \\
+  0 & 0 & 1 & 0 & 0 & T \\
+  0 & 0 & 0 & 1 & 0 & 0 \\
+   0 & 0 & 0 & 0 & 1 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 1
+  \end{array} \right]
+  \end{equation} $$
+
+  $$ \begin{equation}
+   \textbf{Q} = \begin{bmatrix}
+   \sigma_{s\_pos}^{2} & 0 & 0 & 0 & 0 & 0 \\
+   0 & \sigma_{s\_pos}^{2} & 0 & 0 & 0 & 0 \\
+   0 & 0 & \sigma_{s\_pos}^{2} & 0 & 0 & 0 \\
+   0 & 0 & 0 & \sigma_{s\_vel}^{2} & 0 & 0 \\
+   0 & 0 & 0 & 0 & \sigma_{s\_vel}^{2} & 0 \\
+   0 & 0 & 0 & 0 & 0 & \sigma_{s\_vel}^{2}
+  \end{bmatrix}
+  \end{equation} $$
+
+- **Measurement model:**
+  $$ \begin{equation}
+    \mathbf{z} = \left[ x , y , z , v_{x}, v_{y}, v_{z} \right]^{T}
+    \end{equation} $$
+
+  $$ \begin{equation}
+    \mathbf{z}_k = \mathbf{H}\mathbf{x}_k + \mathbf{w}_k , \quad \mathbf{w}_k \sim \mathcal{N}(\mathbf{0},\mathbf{R})
+    \end{equation} $$
+
+  $$ \begin{equation} \textbf{H} = \begin{bmatrix}
+    1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 1
+    \end{bmatrix} \end{equation} $$
+
+  $$ \begin{equation} \textbf{R} = \begin{bmatrix}
+    \sigma_{m\_pos}^{2} & 0 & 0 & 0 & 0 & 0 \\
+    0 & \sigma_{m\_pos}^{2} & 0 & 0 & 0 & 0 \\
+    0 & 0 & \sigma_{m\_pos}^{2} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \sigma_{m\_vel}^{2} & 0 & 0 \\
+    0 & 0 & 0 & 0 & \sigma_{m\_vel}^{2} & 0 \\
+    0 & 0 & 0 & 0 & 0 & \sigma_{m\_vel}^{2}
+    \end{bmatrix} \end{equation} $$
+
+- **Initialization:**
+  $$ \begin{equation}
+    \mathbf{x}_{0|0} = \left[ \begin{array}{cccc} x_{0} & y_{0} & z_{0} & v_{x_{0}} & v_{y_{0}} & v_{z_{0}} \end{array} \right]^T
+    \end{equation} $$
+
+  $$\begin{equation}
+    \mathbf{P}_{0|0} = \begin{bmatrix}
+    \sigma_{s\_pos}^{2} & 0 & 0 & 0 & 0 & 0 \\
+    0 & \sigma_{s\_pos}^{2} & 0 & 0 & 0 & 0 \\
+    0 & 0 & \sigma_{s\_pos}^{2} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \sigma_{s\_vel}^{2} & 0 & 0 \\
+    0 & 0 & 0 & 0 & \sigma_{s\_vel}^{2} & 0 \\
+    0 & 0 & 0 & 0 & 0 & \sigma_{s\_vel}^{2}
+   \end{bmatrix}
+   \end{equation} $$
+
+- **Prediction:**
+  $$ \begin{equation}
+    \hat{\mathbf{x}}_{k|k-1} = \mathbf{F} \hat{\mathbf{x}}_{k-1|k-1}
+    \end{equation} $$
+
+  $$ \begin{equation}
+    \mathbf{P}_{k|k-1} = \mathbf{F} \mathbf{P}_{k-1|k-1} \mathbf{F}^T + \mathbf{Q}
+    \end{equation} $$
+
+- **Update:**
+  $$ \begin{equation}
+    \mathbf{K}_k = \mathbf{P}_{k|k-1} \mathbf{H}^T \left( \mathbf{H}\mathbf{P}_{k|k-1} \mathbf{H}^T + \mathbf{R} \right)^{-1}
+    \end{equation} $$
+
+  $$ \begin{equation}
+    \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \left( \mathbf{z}_k - \mathbf{H}_k\hat{\mathbf{x}}_{k|k-1} \right)
+    \end{equation} $$
+
+  $$ \begin{equation}
+    \mathbf{P}_{k|k} = \left( \mathbf{I} - \mathbf{K}_{k} \mathbf{H} \right)\mathbf{P}_{k|k-1}
+    \end{equation} $$
+
+The following parameters are exposed in the configuration, here with their defaut values:
+
+-  $$ \sigma_{m\_pos} = \text{PVT.kf_measures_ecef_pos_sd_m} = 1.0 \text {, in [m].} $$ 
+-  $$ \sigma_{m\_vel} = \text{PVT.kf_measures_ecef_vel_sd_ms} = 0.1 \text {, in [m/s].} $$
+-  $$ \sigma_{s\_pos} = \text{PVT.kf_system_ecef_pos_sd_m} = 0.01 \text {, in [m].} $$ 
+-  $$ \sigma_{s\_vel} = \text{PVT.kf_system_ecef_vel_sd_ms} = 0.001 \text {, in [m/s].} $$
 
 ---------
 
@@ -880,12 +987,12 @@ messages, v3.2. A TCP/IP server of RTCM messages can be enabled by setting
 the execution of the software receiver. By default, the server will operate on
 port 2101 (which is the recommended port for RTCM services according to the
 Internet Assigned Numbers Authority,
-[IANA](https://www.iana.org/assignments/service-names-port-numbers "Service Name
-and Transport Protocol Port Number Registry")), and will identify the Reference
-Station with ID= $$ 1234 $$. These values can be changed with
+[IANA](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
+"Service Name and Transport Protocol Port Number Registry")), and will identify
+the Reference Station with ID= $$ 1234 $$. These values can be changed with
 `PVT.rtcm_tcp_port` and `PVT.rtcm_station_id`. The rate of the generated RTCM
-messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to $$
-5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms),
+messages can be tuned with the options `PVT.rtcm_MT1045_rate_ms` (it defaults to
+$$ 5000 $$ ms), `PVT.rtcm_MT1019_rate_ms` (it defaults to $$ 5000 $$ ms),
 `PVT.rtcm_MSM_rate_ms` (it defaults to $$ 1000 $$ ms). The RTCM messages can
 also be forwarded to the serial port `PVT.rtcm_dump_devname` (it defaults to
 `/dev/pts/1`) by setting `PVT.flag_rtcm_tty_port=true` in the configuration
@@ -910,38 +1017,45 @@ Java, Python, C#, Dart, Go, or Ruby, among other languages, hence enhancing
 The following table shows the complete list of streamed parameters:
 
 |----------
-|          **Name**          |  **Type**  | **Description**                                                            |
-| :------------------------: | :--------: | :------------------------------------------------------------------------- |
+|          **Name**          |  **Type**  | **Description**                                                                                                                                                                                                                                                         |
+| :------------------------: | :--------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |       --------------       |
-| `tow_at_current_symbol_ms` | `uint32_t` | Time of week of the current symbol, in [ms].                               |
-|           `week`           | `uint32_t` | PVT GPS week.                                                              |
-|         `rx_time`          |  `double`  | PVT GPS time.                                                              |
-|     `user_clk_offset`      |  `double`  | User clock offset, in [s].                                                 |
-|          `pos_x`           |  `double`  | Position X component in ECEF, expressed in [m].                            |
-|          `pos_y`           |  `double`  | Position Y component in ECEF, expressed in [m].                            |
-|          `pos_z`           |  `double`  | Position Z component in ECEF, expressed in [m].                            |
-|          `vel_x`           |  `double`  | Velocity X component in ECEF, expressed in [m/s].                          |
-|          `vel_y`           |  `double`  | Velocity Y component in ECEF, expressed in [m/s].                          |
-|          `vel_z`           |  `double`  | Velocity Z component in ECEF, expressed in [m/s].                          |
-|          `cov_xx`          |  `double`  | Position variance in the X component, $$ \sigma_{xx}^2 $$, in [$$ m^2 $$]. |
-|          `cov_yy`          |  `double`  | Position variance in the Y component, $$ \sigma_{yy}^2 $$, in [$$ m^2 $$]. |
-|          `cov_zz`          |  `double`  | Position variance in the X component, $$ \sigma_{zz}^2 $$, in [$$ m^2 $$]. |
-|          `cov_xy`          |  `double`  | Position XY covariance $$ \sigma_{xy}^2 $$, in [$$ m^2 $$].                |
-|          `cov_yz`          |  `double`  | Position YZ covariance $$ \sigma_{yz}^2 $$, in [$$ m^2 $$].                |
-|          `cov_zx`          |  `double`  | Position ZX covariance $$ \sigma_{zx}^2 $$, in [$$ m^2 $$].                |
-|         `latitude`         |  `double`  | Latitude, in [deg]. Positive: North.                                       |
-|        `longitude`         |  `double`  | Longitude, in [deg]. Positive: East.                                       |
-|          `height`          |  `double`  | Height, in [m].                                                            |
-|        `valid_sats`        | `uint32_t` | Number of valid satellites.                                                |
-|     `solution_status`      | `uint32_t` | RTKLIB solution status.                                                    |
-|      `solution_type`       | `uint32_t` | RTKLIB solution type (`0`: xyz-ecef, `1`: enu-baseline).                   |
-|     `ar_ratio_factor`      |  `float`   | Ambiguity resolution ratio factor for validation.                          |
-|    `ar_ratio_threshold`    |  `float`   | Ambiguity resolution ratio threshold for validation.                       |
-|           `gdop`           |  `double`  | Geometric dilution of precision (GDOP).                                    |
-|           `pdop`           |  `double`  | Position (3D) dilution of precision (PDOP).                                |
-|           `hdop`           |  `double`  | Horizontal dilution of precision (HDOP).                                   |
-|           `vdop`           |  `double`  | Vertical dilution of precision (VDOP).                                     |
-|    `user_clk_drift_ppm`    |  `double`  | User clock drift, in parts per million.                                    |
+| `tow_at_current_symbol_ms` | `uint32_t` | Time of week of the current symbol, in [ms].                                                                                                                                                                                                                            |
+|           `week`           | `uint32_t` | PVT GPS week.                                                                                                                                                                                                                                                           |
+|         `rx_time`          |  `double`  | PVT GPS time.                                                                                                                                                                                                                                                           |
+|     `user_clk_offset`      |  `double`  | User clock offset, in [s].                                                                                                                                                                                                                                              |
+|          `pos_x`           |  `double`  | Position X component in ECEF, expressed in [m].                                                                                                                                                                                                                         |
+|          `pos_y`           |  `double`  | Position Y component in ECEF, expressed in [m].                                                                                                                                                                                                                         |
+|          `pos_z`           |  `double`  | Position Z component in ECEF, expressed in [m].                                                                                                                                                                                                                         |
+|          `vel_x`           |  `double`  | Velocity X component in ECEF, expressed in [m/s].                                                                                                                                                                                                                       |
+|          `vel_y`           |  `double`  | Velocity Y component in ECEF, expressed in [m/s].                                                                                                                                                                                                                       |
+|          `vel_z`           |  `double`  | Velocity Z component in ECEF, expressed in [m/s].                                                                                                                                                                                                                       |
+|          `cov_xx`          |  `double`  | Position variance in the X component, $$ \sigma_{xx}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                              |
+|          `cov_yy`          |  `double`  | Position variance in the Y component, $$ \sigma_{yy}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                              |
+|          `cov_zz`          |  `double`  | Position variance in the X component, $$ \sigma_{zz}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                              |
+|          `cov_xy`          |  `double`  | Position XY covariance $$ \sigma_{xy}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                                             |
+|          `cov_yz`          |  `double`  | Position YZ covariance $$ \sigma_{yz}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                                             |
+|          `cov_zx`          |  `double`  | Position ZX covariance $$ \sigma_{zx}^2 $$, in [$$ m^2 $$].                                                                                                                                                                                                             |
+|         `latitude`         |  `double`  | Latitude, in [deg]. Positive: North.                                                                                                                                                                                                                                    |
+|        `longitude`         |  `double`  | Longitude, in [deg]. Positive: East.                                                                                                                                                                                                                                    |
+|          `height`          |  `double`  | Height, in [m].                                                                                                                                                                                                                                                         |
+|        `valid_sats`        | `uint32_t` | Number of valid satellites.                                                                                                                                                                                                                                             |
+|     `solution_status`      | `uint32_t` | RTKLIB solution status.                                                                                                                                                                                                                                                 |
+|      `solution_type`       | `uint32_t` | RTKLIB solution type (`0`: xyz-ecef, `1`: enu-baseline).                                                                                                                                                                                                                |
+|     `ar_ratio_factor`      |  `float`   | Ambiguity resolution ratio factor for validation.                                                                                                                                                                                                                       |
+|    `ar_ratio_threshold`    |  `float`   | Ambiguity resolution ratio threshold for validation.                                                                                                                                                                                                                    |
+|           `gdop`           |  `double`  | Geometric dilution of precision (GDOP).                                                                                                                                                                                                                                 |
+|           `pdop`           |  `double`  | Position (3D) dilution of precision (PDOP).                                                                                                                                                                                                                             |
+|           `hdop`           |  `double`  | Horizontal dilution of precision (HDOP).                                                                                                                                                                                                                                |
+|           `vdop`           |  `double`  | Vertical dilution of precision (VDOP).                                                                                                                                                                                                                                  |
+|    `user_clk_drift_ppm`    |  `double`  | User clock drift, in parts per million.                                                                                                                                                                                                                                 |
+|         `utc_time`         |  `string`  | PVT UTC time ([RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) datetime string).  <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span> |
+|          `vel_e`           |  `double`  | East component of the velocity in the local ENU frame, in m/s. <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                      |
+|          `vel_n`           |  `double`  | North component of the velocity in the local ENU frame, in m/s. <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                     |
+|          `vel_u`           |  `double`  | Up component of the velocity in the local ENU frame, in m/s. <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                        |
+|           `cog`            |  `double`  | Course Over Ground, in degrees. <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                     |
+| `galhas_status` | `uint32_t` | Galileo HAS  status (0: not available; 1: HAS corrections applied). <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span> |
+| `geohash` | `string` | [Encoded geographic location](https://en.wikipedia.org/wiki/Geohash). <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span> |
 |       --------------       |
 
 &nbsp;
@@ -1058,6 +1172,11 @@ standard and precise positioning. It accepts the following parameters:
 |          `enable_protobuf`           | [`true`, `false`]: If set to `true`, the data serialization is done using [Protocol Buffers](https://developers.google.com/protocol-buffers/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). An example of usage is the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). For an example of usage of the latter, check the [gnss-sdr-pvt-monitoring-client](https://github.com/acebrianjuan/gnss-sdr-pvt-monitoring-client). This parameter defaults to `true` (Protocol Buffers is used). |   Optional   |
 |           `use_e6_for_pvt`           | [`true`, `false`]: If set to `false`, the PVT engine will ignore observables from Galileo E6B signals. It defaults to `true`, so observables will be used if found. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
 |        `use_has_corrections`         | [`true`, `false`]: If set to `false`, the PVT engine will ignore corrections from the Galileo High Accuracy Service. It defaults to `true`, so corrections will be applied if available. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
+|           `enable_pvt_kf`            | [`true`, `false`]: If set to `true`, it enables the Kalman filter of the PVT solution. It defaults to `false`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
+|     `kf_measures_ecef_pos_sd_m`      | Standard deviation of the position estimations, in meters. It defaults to `1.0` [m]. Only used if `PVT.enable_pvt_kf=true`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                                                  |   Optional   |
+|     `kf_measures_ecef_vel_sd_ms`     | Standard deviation of the velocity estimations, in meters per second. It defaults to `0.1` [m/s]. Only used if `PVT.enable_pvt_kf=true`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|      `kf_system_ecef_pos_sd_m`       | Standard deviation of the dynamic system model for position, in meters. It defaults to `0.01` [m]. Only used if `PVT.enable_pvt_kf=true`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
+|      `kf_system_ecef_vel_sd_ms`      | Standard deviation of the dynamic system model for velocity, in meters per second. It defaults to `0.001` [m/s]. Only used if `PVT.enable_pvt_kf=true`. <span style="color: orange"> This configuration parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                                                                                                                                                                                                                                                                                                                                      |   Optional   |
 |         `use_unhealthy_sats`         | [`true`, `false`]: If set to `true`, the PVT engine will use observables from satellites flagged as unhealthy in the navigation message. It defaults to `false`, so those observables will be ignored. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
 |        `show_local_time_zone`        | [`true`, `false`]: If set to `true`, the time of the PVT solution displayed in the terminal is shown in the local time zone, referred to UTC. It defaults to `false`, so time is shown in UTC. This parameter does not affect time annotations in other output formats, which are always UTC.                                                                                                                                                                                                                                                                                                                                                                                                                                  |   Optional   |
 |          `rtk_trace_level`           | Configure the RTKLIB trace level (`0`: off, up to `5`: max. verbosity). When set to something > `2`, the RTKLIB library become more verbose in the internal logging file. It defaults to `0` (off).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
@@ -1177,7 +1296,7 @@ deactivated with `rtcm_output_file_enabled=false`.
 
 [^Niell96]: A. E. Niell, [Global mapping functions for the atmosphere delay at radio wavelengths](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/95JB03048), Journal of Geophysical Research: Solid Earth, Volume 101, Issue B2 10, Feb. 1996, pp. 3227-3246.
 
-[^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200M: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200M.pdf), May 2021.
+[^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200N: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/technical/icwg/IS-GPS-200N.pdf), August 2022.
 
 [^MOPS]: RTCA/DO‐229C, [Minimum operational performance standards for global positioning system/wide area augmentation system airborne equipment](https://standards.globalspec.com/std/1014192/rtca-do-229), RTCA Inc., December 13, 2006.
 

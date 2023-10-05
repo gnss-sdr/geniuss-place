@@ -18,7 +18,7 @@ The name is not a bragging display of creativity:
   encompasses those systems that allow users to compute their position based on
   signals transmitted by satellites, world-wide. The obvious example is
   [GPS](https://www.gps.gov/), but this term also includes other systems such as
-  [GLONASS](https://www.glonass-iac.ru/en/),
+  [GLONASS](https://glonass-iac.ru/en/about_glonass/),
   [Galileo](https://www.gsc-europa.eu/galileo/what-is-galileo), and
   [BeiDou](http://en.beidou.gov.cn/).
 
