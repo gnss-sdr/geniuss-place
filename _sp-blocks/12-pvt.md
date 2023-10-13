@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2023-10-01T07:54:02+02:00
+last_modified_at: 2023-10-05T07:54:02+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -1049,11 +1049,13 @@ The following table shows the complete list of streamed parameters:
 |           `hdop`           |  `double`  | Horizontal dilution of precision (HDOP).                                                                                                                                                                                                                                |
 |           `vdop`           |  `double`  | Vertical dilution of precision (VDOP).                                                                                                                                                                                                                                  |
 |    `user_clk_drift_ppm`    |  `double`  | User clock drift, in parts per million.                                                                                                                                                                                                                                 |
-|         `utc_time`         |  `string`  | PVT UTC time ([RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) datetime string).  <span style="color: orange"> This parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span> |
-|          `vel_e`           |  `double`  | East component of the velocity in the local ENU frame, in m/s. <span style="color: orange"> This parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                      |
-|          `vel_n`           |  `double`  | North component of the velocity in the local ENU frame, in m/s. <span style="color: orange"> This parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                     |
-|          `vel_u`           |  `double`  | Up component of the velocity in the local ENU frame, in m/s. <span style="color: orange"> This parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                        |
-|           `cog`            |  `double`  | Course Over Ground, in degrees. <span style="color: orange"> This parameter is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                     |
+|         `utc_time`         |  `string`  | PVT UTC time ([RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) datetime string).  <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span> |
+|          `vel_e`           |  `double`  | East component of the velocity in the local ENU frame, in m/s. <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                      |
+|          `vel_n`           |  `double`  | North component of the velocity in the local ENU frame, in m/s. <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                     |
+|          `vel_u`           |  `double`  | Up component of the velocity in the local ENU frame, in m/s. <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                        |
+|           `cog`            |  `double`  | Course Over Ground, in degrees. <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span>                                                     |
+| `galhas_status` | `uint32_t` | Galileo HAS  status (0: not available; 1: HAS corrections applied). <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span> |
+| `geohash` | `string` | [Encoded geographic location](https://en.wikipedia.org/wiki/Geohash). <span style="color: orange"> This metric is only present on the `next` branch of the upstream repository, and it will be included in the next stable release of GNSS-SDR.</span> |
 |       --------------       |
 
 &nbsp;
