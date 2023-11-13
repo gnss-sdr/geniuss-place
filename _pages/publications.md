@@ -782,7 +782,7 @@ Portland, OR, Sept.&nbsp;2017, pp. 1204-1228.
     <br />
     <a href="javascript:toggleBibtex('Arribas17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15301" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15301" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037280" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://zenodo.org/records/1037280" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Arribas17a" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Arribas17a,
@@ -812,7 +812,7 @@ Portland, OR, Sept.&nbsp;2017, pp. 3796-3815.
     <a href="javascript:toggleBibtex('Fernandez17a')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=15234" >Online</a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2017.15234" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/1037906" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://zenodo.org/records/1037906" >PDF <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/a-cloud-optical-access-network-for-virtualized-gnss-receivers/zhgrtpqstxrx" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez17a" class="bibtex noshow" style="color: #111111">
@@ -840,7 +840,7 @@ note    = { {doi}: 10.33012/2017.15234}
 ESA/ESTEC, Noordwijk, The Netherlands, Dec. 14-16, 2016, pp. 1-9.
     <br />
     <a href="javascript:toggleBibtex('Fernandez16c')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/266524" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://zenodo.org/records/266524" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2016.7931740" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez16c" class="bibtex noshow" style="color: #111111">
@@ -945,7 +945,7 @@ Portland, OR, Sept.&nbsp;2016, pp. 44-61.<br>
 <i class="fas fa-fw fa-star"></i> Best Presentation Award (<i>Session A1: Advances in GNSS Software-defined Receivers</i>)
     <br />
     <a href="javascript:toggleBibtex('Fernandez16b')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/266493" >Online  <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2016.14576" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://zenodo.org/records/266493" >Online  <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/2016.14576" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     <span style="color: #52adc8">[</span><a href="https://www.overleaf.com/articles/accelerating-gnss-software-receivers/ywcwtdjwgnky" >Slides <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez16b" class="bibtex noshow" style="color: #111111">
@@ -1051,7 +1051,7 @@ month   = {Jan./Feb. }
 ESA-ESTEC, Noordwijk, The Netherlands, 2014, pp. 1-3.
     <br />
     <a href="javascript:toggleBibtex('Fabra14')">[BibTeX]</a>
-    <span style="color: #52adc8">[</span><a href="https://zenodo.org/record/399181/files/Processing%20Aspects%20of%20the%20Software%20Paris%20Interferometric%20Receiver.pdf" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://zenodo.org/records/399181/files/Processing%20Aspects%20of%20the%20Software%20Paris%20Interferometric%20Receiver.pdf" >Online</a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fabra14" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Fabra14,
