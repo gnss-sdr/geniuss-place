@@ -57,7 +57,7 @@ processing output can be stored in Receiver Independent Exchange Format
 ([RINEX](https://en.wikipedia.org/wiki/RINEX)), used by most geodetic processing
 software for GNSS, or transmitted as RTCM 3.2 messages through a TCP/IP server
 in real-time. Navigation results are stored in
-[KML](https://www.ogc.org/standards/kml) and
+[KML](https://www.ogc.org/standard/kml) and
 [GeoJSON](https://geojson.org/) formats.
 
 ![Block diagram](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/docs/doxygen/images/GeneralBlockDiagram.png){:width="800px"}{: .align-center .invert-colors}

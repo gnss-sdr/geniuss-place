@@ -26,7 +26,7 @@ Since the introduction of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative
 
 In this article, we are going to learn how to create a minimal monitoring client application written in C/C++ that will print and update the PRN, CN0, and Doppler frequency shift for each channel on a terminal window while the receiver is running with the Monitor block activated.
 
-The Monitor block implements this mechanism using the binary serialization format provided by [Protocol Buffers](https://developers.google.com/protocol-buffers/) and defined in the [`gnss_synchro.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/gnss_synchro.proto) file. The networking functions are taken from the [Boost.Asio](https://www.boost.org/doc/libs/release/doc/html/boost_asio.html) library.
+The Monitor block implements this mechanism using the binary serialization format provided by [Protocol Buffers](https://protobuf.dev/) and defined in the [`gnss_synchro.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/gnss_synchro.proto) file. The networking functions are taken from the [Boost.Asio](https://www.boost.org/doc/libs/release/doc/html/boost_asio.html) library.
 
 The following diagram can help us to better understand how this block works.
 
@@ -108,28 +108,28 @@ private:
 We are going to use 6 member variables:
 
 |----------
-|  **Variable Name**  | **Description** |
-|:-:|:--|    
-|--------------
-| `io_service` | Abstraction of the operating system interfaces. (See [io_service](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/io_service.html)). |
-| `socket` | The UDP socket. (See [ip::udp::socket](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/ip__udp/socket.html)). |
-| `error` | Operating system-specific errors. (See [boost::system::error_code](https://www.boost.org/doc/libs/release/libs/system/doc/html/system.html#reference)). |
-| `endpoint` | Endpoint that will be associated with the UDP socket. (See [ip::udp::endpoint](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/ip__udp/endpoint.html)). |
-| `stocks` | Object of the class gnss_sdr::Observables, which is a collection of gnss_sdr::GnssSynchro objects received from the socket. |
-| `channels` | Map container of gnss_sdr::GnssSynchro objects indexed by their `channel_id`. |
-|----------
+| **Variable Name** | **Description**                                                                                                                                                              |
+| :---------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  --------------   |
+|   `io_service`    | Abstraction of the operating system interfaces. (See [io_service](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/io_service.html)).                    |
+|     `socket`      | The UDP socket. (See [ip::udp::socket](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/ip__udp/socket.html)).                                           |
+|      `error`      | Operating system-specific errors. (See [boost::system::error_code](https://www.boost.org/doc/libs/release/libs/system/doc/html/system.html#reference)).                      |
+|    `endpoint`     | Endpoint that will be associated with the UDP socket. (See [ip::udp::endpoint](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/ip__udp/endpoint.html)). |
+|     `stocks`      | Object of the class gnss_sdr::Observables, which is a collection of gnss_sdr::GnssSynchro objects received from the socket.                                                  |
+|    `channels`     | Map container of gnss_sdr::GnssSynchro objects indexed by their `channel_id`.                                                                                                |
+|    ----------     |
 
 and 4 member functions:
 
 |----------
-|  **Function Name**  | **Description** |
-|:-:|:--|    
-|--------------
-| `Gnss_Synchro_Udp_Source` | Constructor. Opens and binds the `socket` to the `endpoint`. |
-| `read_gnss_synchro` | Fills the `stocks` collection with the latest deserialized gnss_sdr::GnssSynchro objects. |
-| `populate_channels` | This function inserts the latest gnss_sdr::GnssSynchro objects from the `stocks` collection into the `channels` map container. |
-| `print_table` | Prints the contents of the `channels` map in a table on the terminal screen. |
-|----------
+|     **Function Name**     | **Description**                                                                                                                |
+| :-----------------------: | :----------------------------------------------------------------------------------------------------------------------------- |
+|      --------------       |
+| `Gnss_Synchro_Udp_Source` | Constructor. Opens and binds the `socket` to the `endpoint`.                                                                   |
+|    `read_gnss_synchro`    | Fills the `stocks` collection with the latest deserialized gnss_sdr::GnssSynchro objects.                                      |
+|    `populate_channels`    | This function inserts the latest gnss_sdr::GnssSynchro objects from the `stocks` collection into the `channels` map container. |
+|       `print_table`       | Prints the contents of the `channels` map in a table on the terminal screen.                                                   |
+|        ----------         |
 
 Now let's go ahead and write the functions in the implementation file: `gnss_synchro_udp_source.cc`
 
