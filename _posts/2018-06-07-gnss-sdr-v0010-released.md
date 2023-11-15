@@ -16,7 +16,7 @@ This release has several improvements in different dimensions, addition of new f
 
 ## Improvements in [Accuracy]({{ "/design-forces/accuracy/" | relative_url }}):
 
- * Part of the [RTKLIB](http://www.rtklib.com/) core library has been integrated into GNSS-SDR. There is now a single PVT block implementation which makes use of RTKLIB to deliver PVT solutions, including Single and PPP navigation modes.
+ * Part of the [RTKLIB](https://www.rtklib.com/) core library has been integrated into GNSS-SDR. There is now a single PVT block implementation which makes use of RTKLIB to deliver PVT solutions, including Single and PPP navigation modes.
  * Fixed CN0 estimation for other correlation times than 1 ms.
  * Improved computation of tracking parameters and GNSS observables.
  * Other minor bug fixes.

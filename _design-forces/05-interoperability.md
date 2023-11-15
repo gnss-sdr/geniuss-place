@@ -130,7 +130,7 @@ More details in version 1.0 of the
 The software receiver should deliver the results of the processing in several
 standard output formats:
 
-- GIS-oriented formats: [KML](https://www.ogc.org/standards/kml),
+- GIS-oriented formats: [KML](https://www.ogc.org/standard/kml),
   [GeoJSON](https://geojson.org/),
   [SHP](https://en.wikipedia.org/wiki/Shapefile).
 
@@ -139,7 +139,7 @@ standard output formats:
   KML is an open standard officially named the OpenGIS KML Encoding Standard
   (OGC KML), and it is maintained by the Open Geospatial Consortium, Inc. (OGC).
   KML files can be displayed in geobrowsers such as
-  [Google Earth](https://www.google.com/earth/),
+  [Google Earth](https://earth.google.com/web/),
   [Marble](https://marble.kde.org), [osgEarth](http://osgearth.org), or used
   with the [NASA World Wind SDK for Java](https://worldwind.arc.nasa.gov/java/).
   {: .notice--info}
@@ -250,7 +250,7 @@ standard output formats:
   (usually with other data unknown to the original receiver, such as better
   models of the atmospheric conditions at the time of measurement). RINEX files
   can be used by software packages such as
-  [GNSSTk](https://github.com/SGL-UT/gnsstk), [RTKLIB](http://www.rtklib.com/),
+  [GNSSTk](https://github.com/SGL-UT/gnsstk), [RTKLIB](https://www.rtklib.com/),
   and [gLAB](https://gage.upc.edu/en/learning-materials/software-tools/glab/),
   among many others.
   {: .notice--info}
@@ -268,7 +268,7 @@ standard output formats:
   doing that without breaking existing external applications still using the old
   format. An example of an open-source software library that fulfills these
   requirements is
-  [Protocol Buffers](https://developers.google.com/protocol-buffers/), which
+  [Protocol Buffers](https://protobuf.dev/), which
   allows reading data from many different languages such as C++, C#, Dart, Go,
   Java, Javascript, Ruby, Objective-C, PHP, and Python.
 
@@ -303,7 +303,7 @@ GNSS receiver:
     host computer executing the software-defined GNSS receiver.
 - Number of supported combinations of data collection topologies and formats.
 - Number of supported standard output formats.
-  - GIS formats: [KML](https://www.ogc.org/standards/kml),
+  - GIS formats: [KML](https://www.ogc.org/standard/kml),
     [GeoJSON](https://geojson.org/),
     [Shapefile](https://en.wikipedia.org/wiki/Shapefile), others.
   - Application-specific formats: NMEA

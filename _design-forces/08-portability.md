@@ -174,7 +174,7 @@ executables are generated from the source code through three kinds of tools:
     Objective-C (`clang`) and C++ (`clang++`), while other external projects
     allow the compilation of Ruby, Python, Haskell, Java, D, PHP, Pure, Lua, and
     a number of other languages.
-  - Those included in [Microsoft Visual Studio](https://www.visualstudio.com/),
+  - Those included in [Microsoft Visual Studio](https://visualstudio.microsoft.com/),
     such as the Microsoft C++ Compiler (MSVC) provided by
     [Microsoft Visual C++](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B);
     `vbc.exe`, the Visual Basic .NET compiler; and `csc.exe`, the C# compiler,

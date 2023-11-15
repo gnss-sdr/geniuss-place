@@ -488,10 +488,6 @@ TelemetryDecoder_5X.dump=false
 
 ### Implementation: `Galileo_E6_Telemetry_Decoder`
 
-**NOTE:** This block implementation is only available from the `next` branch of
-the upstream repository. It will be available in the next stable release.
-{: .notice--warning}
-
 The Galileo $$ e_{E6B}(t) $$ baseband signal component can be written as:
 
 $$ \begin{equation}

@@ -134,7 +134,7 @@ command-line flags processing.
 * [matio](https://github.com/tbeu/matio), a MATLAB MAT file I/O library.
 * [PugiXML](https://github.com/zeux/pugixml), a light-weight, simple and fast
 XML parser for C++.
-* [Protocol Buffers](https://developers.google.com/protocol-buffers/), Google's
+* [Protocol Buffers](https://protobuf.dev/), Google's
 language-neutral, platform-neutral, extensible mechanism for serializing
 structured data.
 * A library implementing some basic SSL functions, such as

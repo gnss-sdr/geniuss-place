@@ -85,7 +85,7 @@ checkpoints:
 
 ## References
 
-[^Fernandez16]: C. Fern&aacute;ndez-Prades, J. Arribas, P. Closas, [_Assessment of software-defined GNSS receivers_](https://zenodo.org/record/266524), in Proc. of Navitec 2016, ESA-ESTEC, Noordwijk, The Netherlands, 14-16 Dec. 2016, pp. 1-9.
+[^Fernandez16]: C. Fern&aacute;ndez-Prades, J. Arribas, P. Closas, [_Assessment of software-defined GNSS receivers_](https://zenodo.org/records/266524), in Proc. of Navitec 2016, ESA-ESTEC, Noordwijk, The Netherlands, 14-16 Dec. 2016, pp. 1-9.
 
 [^Teasley95]: J. B. S. Teasley, [_Summary of the initial GPS Test Standards Document: ION STD-101_](https://www.ion.org/publications/abstract.cfm?articleID=2506), in Proc. of 8th International Technical Meeting of the Satellite Division of The Institute of Navigation, Palm Springs, CA, Sep. 1995, pp. 1645–1653.
 
