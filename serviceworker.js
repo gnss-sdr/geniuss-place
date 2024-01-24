@@ -1,4 +1,4 @@
-const releaseVersion = "0.0.18";
+const releaseVersion = "0.0.19";
 const serviceWorkerVersion = "10";
 const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
 
