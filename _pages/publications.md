@@ -7,7 +7,7 @@ header:
   teaser: /assets/images/books.png
 sidebar:
     nav: "about"
-last_modified_at: 2022-12-15T12:38:52+00:00
+last_modified_at: 2024-01-26T12:38:52+00:00
 redirect_from:
   - /documentation/publications
 ---
@@ -16,6 +16,91 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
+
+<ul class="biblist">
+    <!-- Item: Pany24 -->
+    <li ><p>
+    T.&nbsp;Pany, D.&nbsp;Akos, J.&nbsp;Arribas, M.&nbsp;Z.&nbsp;H.&nbsp;Bhuiyan, P.&nbsp;Closas,
+    F.&nbsp;Dovis, I.&nbsp;Fern&aacute;ndez-Hern&aacute;ndez, C.&nbsp;Fern&aacute;ndez–Prades, S.&nbsp;Gunawardena,
+    T.&nbsp;Humphreys, Z.&nbsp;M.&nbsp;Kassas, J.&nbsp;A.&nbsp;L&oacute;pez&nbsp;Salcedo, M.&nbsp;Nicola,
+    M.&nbsp;L.&nbsp;Psiaki, A.&nbsp;R&uuml;gamer, Y.-J.&nbsp;Song, and J.-H.&nbsp;Won
+    <br><b>GNSS Software-Defined Radio: History, Current Developments, and Standardization Efforts</b><br>
+    <i>NAVIGATION: Journal of the Institute of Navigation</i>, vol. 71, no. 1, pp. 1-45, March 2024.
+    <br />
+    <a href="javascript:toggleBibtex('Pany24')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://navi.ion.org/content/71/1/navi.628" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.33012/navi.628" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Pany24" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Pany24,
+author  = {T.~Pany, D.~Akos, J.~Arribas, M.Z.H.~Bhuiyan, P.~Closas, F.~Dovis, I.~{Fern\'{a}ndez-Hern\'{a}ndez}, C.~{Fern\'{a}ndez-Prades}, S.~Gunawardena, T.~Humphreys, Z.M.~Kassas, J.A.~{L\'{o}pez~Salcedo}, M.~Nicola, M.L.~Psiaki, A.~R\"{u}gamer, Y.-J.~Song and J.-H.~Won},
+title   = { {GNSS} {S}oftware-{D}efined {R}adio: {H}istory, Current Developments, and Standardization Efforts},
+journal = {Navigation},
+year    = {2024},
+month   = {Mar},
+volume  = {71},
+number  = {1},
+pages   = {1--45},
+note    = { {doi}: 10.33012/navi.628}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: Majoral23 -->
+    <li ><p>
+    M.&nbsp;Majoral, C.&nbsp;Fern&aacute;ndez–Prades and J.&nbsp;Arribas
+    <br><b>A Flexible System-on-Chip Field-Programmable Gate Array Architecture for Prototyping Experimental Global Navigation Satellite System Receivers</b><br>
+    <i>Sensors</i>, 23(23), 9483, pp. 1-39, Nov 2023.
+    <br />
+    <a href="javascript:toggleBibtex('Majoral23')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.mdpi.com/1424-8220/23/23/9483" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.3390/s23239483" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Majoral23" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Majoral23,
+author  = {M.~Majoral, C.~{Fern\'{a}ndez-Prades} and J.~Arribas},
+title   = {A Flexible {S}ystem-on-{C}hip {F}ield-{P}rogrammable {G}ate {A}rray Architecture for Prototyping Experimental {G}lobal {N}avigation {S}atellite {S}ystem Receivers},
+journal = {Sensors},
+year    = {2023},
+month   = {Nov},
+volume  = {23},
+number  = {9483},
+pages   = {1--39},
+note    = { {doi}: 10.3390/s23239483}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
+    <!-- Item: Gomez23 -->
+    <li ><p>
+    M.A.&nbsp;G&oacute;mez, A.&nbsp;Solera-Rico, E.&nbsp;Valero, J.&nbsp;Arribas and C.&nbsp;Fern&aacute;ndez-Prades
+    <br><b>Enhancing GNSS receiver performance with software-defined vector carrier tracking for rocket launching</b><br>
+    <i>Results in Engineering</i>, vol. 19, pp. 101310, Sept. 2023
+    <br />
+    <a href="javascript:toggleBibtex('Gomez23')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.sciencedirect.com/science/article/pii/S2590123023004371" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1016/j.rineng.2023.101310" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Gomez23" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Gomez23,
+author  = {M.A.~G\'{o}mez, A.~{Solera-Rico}, E.~Valero, J.~Arribas and C.~{Fern\'{a}ndez-Prades}},
+title   = {Enhancing {GNSS} receiver performance with software-defined vector carrier tracking for rocket launching},
+journal = {Results in Engineering},
+year    = {2023},
+month   = {Sep},
+volume  = {19},
+pages   = {101310},
+note    = { {doi}: 10.1016/j.rineng.2023.101310}
+}</pre>
+    </div>
+    </li>
+</ul>
 
 <ul class="biblist">
     <!-- Item: Varais23 -->
@@ -50,7 +135,7 @@ note    = { {doi}: 10.3390/rs15174192}
     <li ><p>
     C.&nbsp;Srinu and P.&nbsp;Parayitam
     <br><b>Performance of GNSS-SDR for IRNSS L5 signals using a low-cost RF front-end</b><br>
-    <i>Navigation</i>, Vol. 70, No. 2, pp. 1-26, June 2023.
+    <i>NAVIGATION: Journal of the Institute of Navigation</i>, Vol. 70, No. 2, pp. 1-26, June 2023.
     <br />
     <a href="javascript:toggleBibtex('Srinu23')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://navi.ion.org/content/70/2/navi.573" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
@@ -78,7 +163,7 @@ note    = { {doi}: 10.33012/navi.573}
     <li ><p>
     N.&nbsp;Stenberg, E.&nbsp;Axell, J.&nbsp;Rantakokko and G.&nbsp;Hendeby
     <br><b>Results on GNSS Spoofing Mitigation Using Multiple Receivers</b><br>
-    <i>Navigation</i>, Vol. 69, No. 1, pp. 1-29, Spring&nbsp;2022.
+    <i>NAVIGATION: Journal of the Institute of Navigation</i>, Vol. 69, No. 1, pp. 1-29, Spring&nbsp;2022.
     <br />
     <a href="javascript:toggleBibtex('Stenberg22')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://www.ion.org/publications/abstract.cfm?articleID=102947" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
