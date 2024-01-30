@@ -46,11 +46,6 @@ Then, eleven parameters can be set: `Channels_1G.count`, `Channels_1C.count`,
 `Channels_5X.count`, `Channels_7X.count` and `Channels_L5.count`, all of them
 defaulting to $$ 0 $$.
 
-**NOTE:** The E6 receiver chain (that is, `Channels_E6.count`) is only available
-from the `next` branch of the upstream repository. This feature will be
-available in the next stable release.
-{: .notice--warning}
-
 In addition, the GNSS-SDR flow graph allows setting the number of channels that
 will be executing signal acquisition (which is known to require a high
 computational load) concurrently. This is controlled by the parameter

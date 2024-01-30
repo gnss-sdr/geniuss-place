@@ -83,13 +83,13 @@ real samples) at its output.
 It accepts the following parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `implementation` | `Byte_To_Short` | Mandatory |
-|-------
+|  **Parameter**   | **Description** | **Required** |
+| :--------------: | :-------------- | :----------: |
+|  --------------  |
+| `implementation` | `Byte_To_Short` |  Mandatory   |
+|     -------      |
 
-  _Signal Conditioner implementation:_ **`Byte_To_Short`**.
+  _Data Type Adapter implementation:_ **`Byte_To_Short`**.
   {: style="text-align: center;"}
 
 Example:
@@ -114,14 +114,14 @@ rate by two.
 It accepts the following parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `implementation` | `Ibyte_To_Cbyte` | Mandatory |
-| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
-|-------
+|    **Parameter**    | **Description**                                                                                | **Required** |
+| :-----------------: | :--------------------------------------------------------------------------------------------- | :----------: |
+|   --------------    |
+|  `implementation`   | `Ibyte_To_Cbyte`                                                                               |  Mandatory   |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. |   Optional   |
+|       -------       |
 
-  _Signal Conditioner implementation:_ **`Ibyte_To_Cbyte`**.
+  _Data Type Adapter implementation:_ **`Ibyte_To_Cbyte`**.
   {: style="text-align: center;"}
 
 Example:
@@ -146,14 +146,14 @@ the sample rate by two.
 It accepts the following parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `implementation` | `Ibyte_To_Cshort` | Mandatory |
-| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
-|-------
+|    **Parameter**    | **Description**                                                                                | **Required** |
+| :-----------------: | :--------------------------------------------------------------------------------------------- | :----------: |
+|   --------------    |
+|  `implementation`   | `Ibyte_To_Cshort`                                                                              |  Mandatory   |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. |   Optional   |
+|       -------       |
 
-  _Signal Conditioner implementation:_ **`Ibyte_To_Cshort`**.
+  _Data Type Adapter implementation:_ **`Ibyte_To_Cshort`**.
   {: style="text-align: center;"}
 
 Example:
@@ -178,14 +178,14 @@ rate by two.
 It accepts the following parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `implementation` | `Ibyte_To_Complex` | Mandatory |
-| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
-|-------
+|    **Parameter**    | **Description**                                                                                | **Required** |
+| :-----------------: | :--------------------------------------------------------------------------------------------- | :----------: |
+|   --------------    |
+|  `implementation`   | `Ibyte_To_Complex`                                                                             |  Mandatory   |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. |   Optional   |
+|       -------       |
 
-  _Signal Conditioner implementation:_ **`Ibyte_To_Complex`**.
+  _Data Type Adapter implementation:_ **`Ibyte_To_Complex`**.
   {: style="text-align: center;"}
 
 Example:
@@ -209,14 +209,14 @@ the sample rate by two.
 It accepts the following parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `implementation` | `Ishort_To_Cshort` | Mandatory |
-| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
-|-------
+|    **Parameter**    | **Description**                                                                                | **Required** |
+| :-----------------: | :--------------------------------------------------------------------------------------------- | :----------: |
+|   --------------    |
+|  `implementation`   | `Ishort_To_Cshort`                                                                             |  Mandatory   |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. |   Optional   |
+|       -------       |
 
-  _Signal Conditioner implementation:_ **`Ishort_To_Cshort`**.
+  _Data Type Adapter implementation:_ **`Ishort_To_Cshort`**.
   {: style="text-align: center;"}
 
 Example:
@@ -240,14 +240,14 @@ rate by two.
 It accepts the following parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `implementation` | `Ishort_To_Complex` | Mandatory |
-| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. | Optional |
-|-------
+|    **Parameter**    | **Description**                                                                                | **Required** |
+| :-----------------: | :--------------------------------------------------------------------------------------------- | :----------: |
+|   --------------    |
+|  `implementation`   | `Ishort_To_Complex`                                                                            |  Mandatory   |
+| `inverted_spectrum` | [`true`, `false`]: If set to `true`, it performs a spectrum inversion. It defaults to `false`. |   Optional   |
+|       -------       |
 
-  _Signal Conditioner implementation:_ **`Ishort_To_Complex`**.
+  _Data Type Adapter implementation:_ **`Ishort_To_Complex`**.
   {: style="text-align: center;"}
 
 Example:
@@ -264,12 +264,12 @@ This implementation copies samples from its input to its output.
 It accepts the following parameters:
 
 |----------
-|  **Parameter**  |  **Description** | **Required** |
-|:-:|:--|:-:|
-|--------------
-| `implementation` | `Pass_Through` | Mandatory |
-| `item_type` |  [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Format of data samples. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
-|-------
+|  **Parameter**   | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | **Required** |
+| :--------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|  --------------  |
+| `implementation` | `Pass_Through`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |  Mandatory   |
+|   `item_type`    | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Format of data samples. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. |   Optional   |
+|     -------      |
 
   _Data Type Adapter implementation:_ **`Pass_Through`**.
   {: style="text-align: center;"}
