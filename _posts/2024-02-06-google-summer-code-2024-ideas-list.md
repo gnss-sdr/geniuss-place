@@ -238,6 +238,8 @@ with the GNU Radio framework or GNSS-SDR is a plus).
 
 ### Potential mentor(s):
 Damian Miralles, Luis Esteve.
+
+
 ---------
 
 Please provide in your proposal the information listed down below. Text
