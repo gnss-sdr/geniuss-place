@@ -90,7 +90,7 @@ proficiency in C++ programming are essential. Familiarity with the GNU Radio
 framework or GNSS-SDR is considered a valuable plus. 
 
 ### Potential mentor(s):
-Miguel Ángel Gómez, Javier Arribas.
+Luis Esteve, Javier Arribas.
 
 -------
 
@@ -172,7 +172,72 @@ environment can be found here: http://www.rfsoc-pynq.io/
 Javier Arribas.
 
 
+-------
 
+## Project Title: Expanding the receiver to BEIDOU B2a
+### Description:
+
+This is a continuation of efforts developed during GSoC 2019. The code needs
+updates, some bug fixing, and improve over existing algorithms.
+
+The objective by the end of the summer is to provide a working implementation of
+a GNSS receiver working with [Beidou B2a
+signals](https://gnss-sdr.org/docs/tutorials/gnss-signals/#beidou-b2a),
+delivering RINEX files (the standard input of geodesic software libraries for
+high—accuracy positioning) and an on-the-fly navigation solution (that is,
+computation of position, velocity and time of the user’s receiver).
+
+- Implementation of acquisition and tracking algorithms for Beidou B2a signals,
+  following the examples already implemented for other GNSS signals. This would
+  facilitate research on multi-constellation, multi-frequency receivers (*e.g.*,
+  GPS + Galileo + Beidou) working with real signals.
+
+- Demodulation of the navigation message, opening the door to open innovation in
+  multi-constellation receivers and addressing topics such as integrity,
+  reliability, robustness, enhanced coverage, and high-accuracy positioning.
+
+- Integration of Beidou observables into the PVT position.
+
+### Required skills:
+
+Basic knowledge of digital signal processing and C++ programming (familiarity
+with the GNU Radio framework or GNSS-SDR is a plus).
+
+### Potential mentor(s):
+Damian Miralles, Luis Esteve.
+
+---------
+
+
+
+## Project Title: Expanding the receiver to BEIDOU B1C
+### Description:
+
+This is a continuation of efforts developed during GSoC 2019. The code needs
+updates, some bug fixing, and improve over existing algorithms.
+
+The objective by the end of the summer is to provide a working implementation of
+a GNSS receiver working with [Beidou B1C
+signals](https://gnss-sdr.org/docs/tutorials/gnss-signals/#beidou-b1c),
+delivering RINEX files (the standard input of geodesic software libraries for
+high—accuracy positioning) and an on-the-fly navigation solution (that is,
+computation of position, velocity and time of the user’s receiver).
+
+- Implementation of acquisition and tracking algorithms for Beidou B1C signals, following the examples already implemented for other GNSS signals. This would facilitate research on multi-constellation, multi-frequency receivers (e.g., GPS + Galileo + Beidou) working with real signals.
+
+- Demodulation of the navigation message, opening the door to open innovation in
+  multi-constellation receivers and addressing topics such as integrity,
+  reliability, robustness, enhanced coverage, and high-accuracy positioning.
+
+- Integration of Beidou observables into the PVT position.
+
+### Required skills:
+
+Basic knowledge of digital signal processing and C++ programming (familiarity
+with the GNU Radio framework or GNSS-SDR is a plus).
+
+### Potential mentor(s):
+Damian Miralles, Luis Esteve.
 ---------
 
 Please provide in your proposal the information listed down below. Text
