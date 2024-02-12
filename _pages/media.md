@@ -3,7 +3,6 @@ permalink: /media/
 title: "Media"
 author_profile: false
 comments: false
-excerpt: "Appearances of GNSS-SDR in general media"
 header:
   teaser: /assets/images/media.png
 sidebar:

@@ -3,7 +3,6 @@ permalink: /legal-notice/
 title: "Legal Notice"
 author_profile: false
 comments: false
-excerpt: "Legal Notice in compliance with the General Data Protection Regulation (EU GDPR)"
 header:
   teaser: /assets/images/media.png
 sidebar:

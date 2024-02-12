@@ -2,7 +2,6 @@
 permalink: /publications/
 layout: publications
 title: "Publications"
-excerpt: "List of academic papers in which GNSS-SDR has been described or used for research purposes."
 header:
   teaser: /assets/images/books.png
 sidebar:

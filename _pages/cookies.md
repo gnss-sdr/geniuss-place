@@ -3,7 +3,6 @@ permalink: /cookies/
 title: "Cookies"
 author_profile: false
 comments: false
-excerpt: "Cookies information, in compliance with the General Data Protection Regulation (EU GDPR)"
 header:
   teaser: /assets/images/media.png
 sidebar:

@@ -3,7 +3,6 @@ permalink: /about/
 title: "About Us"
 author_profile: false
 comments: false
-excerpt: "General Information about GNSS-SDR."
 sidebar:
     nav: "about"
 modified: 2022-02-12T16:39:37-04:00

@@ -12,7 +12,6 @@ header:
       url: "/build-and-install/"
   caption:
   teaser: /assets/images/logo-gnss-sdr.png
-excerpt: 'An open-source Global Navigation Satellite Systems software-defined receiver. <br /> <small>Current release: [v0.0.19](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.19)</small> <br /><br /> '
 feature_row:
   - image_path: /assets/images/fix.png
     alt: "Using the software-defined receiver"
@@ -36,7 +35,7 @@ feature_row:
     btn_class: "btn--geniuss"
     btn_label: "Read more"
 intro:
-  - excerpt: '{::nomarkdown} <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160" height="30" title="Watch counter"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160" height="30" title="Star counter"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158" height="30" title="Fork counter"></iframe>{:/nomarkdown}'
+  - excerpt: '<big>An open-source Global Navigation Satellite Systems<br />software-defined receiver.</big><br /> <small>Current release: [v0.0.19](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.19)</small> <br /><br /> {::nomarkdown} <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160" height="30" title="Watch counter"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160" height="30" title="Star counter"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=gnss-sdr&repo=gnss-sdr&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158" height="30" title="Fork counter"></iframe>{:/nomarkdown}'
 
 ---
 
