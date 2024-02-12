@@ -177,6 +177,8 @@ Javier Arribas.
 ## Project Title: Expanding the receiver to BEIDOU B2a
 ### Description:
 
+**Medium-sized project (175h)**
+
 This is a continuation of efforts developed during GSoC 2019. The code needs
 updates, some bug fixing, and improve over existing algorithms.
 
@@ -212,6 +214,8 @@ Damian Miralles, Luis Esteve.
 
 ## Project Title: Expanding the receiver to BEIDOU B1C
 ### Description:
+
+**Medium-sized project (175h)**
 
 This is a continuation of efforts developed during GSoC 2019. The code needs
 updates, some bug fixing, and improve over existing algorithms.
