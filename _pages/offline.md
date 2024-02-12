@@ -1,6 +1,5 @@
 ---
 title: "Offline"
-excerpt: "Offline. It can happen in the 21st century."
 author_profile: false
 sitemap: false
 sidebar:

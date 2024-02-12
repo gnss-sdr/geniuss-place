@@ -2,7 +2,6 @@
 permalink: /acks/
 layout: single
 title: "Acknowledgements"
-excerpt: "List of public and private organizations that have contributed to the development of GNSS-SDR."
 sidebar:
     nav: "about"
 last_modified_at: 2021-05-10T14:38:52+02:00

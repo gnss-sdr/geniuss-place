@@ -2,7 +2,6 @@
 permalink: /team/
 title: "Team"
 comments: false
-excerpt: "Team members profiles"
 sidebar:
   nav: "about"
 redirect_from:

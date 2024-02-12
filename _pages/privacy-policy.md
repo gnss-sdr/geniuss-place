@@ -3,9 +3,6 @@ permalink: /privacy-policy/
 title: "Privacy Policy"
 author_profile: false
 comments: false
-excerpt:
-  "Privacy Policy information, in compliance with the General Data Protection
-  Regulation (EU GDPR)"
 header:
   teaser: /assets/images/media.png
 sidebar:
