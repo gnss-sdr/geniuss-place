@@ -15,6 +15,34 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
+<ul class="biblist">
+    <!-- Item: Majoral24 -->
+    <li ><p>
+    M.&nbsp;Majoral, J.&nbsp;Arribas, and C.&nbsp;Fern&aacute;ndez–Prades
+    <br><b>Implementation of a High-Sensitivity Global Navigation Satellite System Receiver on a System-on-Chip Field-Programmable Gate Array Platform</b><br>
+    <i>Sensors</i>, 24(5), 1416, pp. 1-41, February 2024.
+    <br />
+    <a href="javascript:toggleBibtex('Majoral24')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.mdpi.com/1424-8220/24/5/1416" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.3390/s24051416" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Majoral24" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Majoral24,
+author  = {M.~Majoral, J.~Arribas, C.~{Fern\'{a}ndez-Prades}},
+title   = {Implementation of a High-Sensitivity {G}lobal {N}avigation {S}atellite {S}ystem Receiver on a System-on-Chip Field-Programmable Gate Array Platform},
+journal = {Sensors},
+year    = {2024},
+month   = {Feb},
+volume  = {24},
+number  = {5},
+pages   = {1--41},
+note    = { {doi}: 10.3390/s24051416}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
 
 <ul class="biblist">
     <!-- Item: Pany24 -->
