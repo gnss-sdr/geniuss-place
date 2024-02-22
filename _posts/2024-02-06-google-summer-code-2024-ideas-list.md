@@ -8,11 +8,11 @@ tags:
 author_profile: false
 sidebar:
   nav: "news"
-last_modified_at: 2024-02-06T06:08:02+02:00
+last_modified_at: 2024-02-21T06:08:02+02:00
 ---
 
 
-This year, GNSS-SDR is opting again as a mentor organization for [Google
+This year, GNSS-SDR is serving again as a mentor organization for [Google
 Summer of Code](https://summerofcode.withgoogle.com/) (also known as GSoC), a
 global program that offers contributors stipends to write code for open source
 projects. You must be at least 18 years old and must be eligible
