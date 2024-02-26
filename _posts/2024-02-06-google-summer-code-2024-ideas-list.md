@@ -90,7 +90,7 @@ proficiency in C++ programming are essential. Familiarity with the GNU Radio
 framework or GNSS-SDR is considered a valuable plus. 
 
 ### Potential mentor(s):
-Luis Esteve, Javier Arribas.
+Miguel Ángel Gómez, Luis Esteve, Javier Arribas.
 
 -------
 
