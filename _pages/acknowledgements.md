@@ -34,12 +34,22 @@ and open-source GNSS software-defined receiver:
 
 ## Public Research Funds
 
+* Support from the Spanish Ministry of Science and Innovation.
+
+  ![SpanishMinistry logo]({{ "/assets/images/SpanishMinistry.png" | relative_url }}){:width="600px"}
+  {: style="text-align: center;"}
+
+**The Spanish Ministry of Science and Innovation** provides
+partial support for development through project CPP2021-008648, titled ``Receptor Abierto y Flexible de Investigación por Satélite''. Mar 2022 - Mar 2025.
+{: .notice--success}
+
+
 * Support from the Spanish Ministry of Science, Innovation, and Universities.
 
   ![ARISTIDES logo]({{ "/assets/images/logo-aristides.png" | relative_url }}){:width="400px" .invert-colors}
   {: style="text-align: center;"}
 
-  **The Spanish Ministry of Science, Innovation, and Universities** provides
+  **The Spanish Ministry of Science, Innovation, and Universities** provided
   partial support for development infrastructure through the [Statistical
   Learning and Inference for Large Dimensional Communication Systems
   (ARISTIDES)](https://www.cttc.cat/project/aprendizaje-estadistico-e-inferencia-para-sistemas-de-comunicacion-de-alta-dimensionalidad/)
