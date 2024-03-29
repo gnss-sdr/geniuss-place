@@ -52,7 +52,7 @@ stakeholders, make sure that all are listed, each with a separate
 The basic setup steps for a contribution to the source code are the following:
 
 1. If you still have not done so, [create your personal account on
-GitHub](https://github.com/join).
+GitHub](https://github.com/signup).
 
 2. [Fork the GNSS-SDR source code repository from
 GitHub](https://github.com/gnss-sdr/gnss-sdr/fork). This will copy the whole

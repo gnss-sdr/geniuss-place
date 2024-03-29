@@ -38,7 +38,7 @@ carles.fernandez@cttc.es.
 ### Preliminaries
 
    1. If you still have not done so, [create your personal account on
-GitHub](https://github.com/join).
+GitHub](https://github.com/signup).
 
    2. [Fork this repository from
 GitHub](https://github.com/gnss-sdr/geniuss-place/fork). This will copy the

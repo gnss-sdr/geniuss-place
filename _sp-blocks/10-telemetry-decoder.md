@@ -613,7 +613,7 @@ you need for developing your own listener application is the
 [nav_message.proto](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/nav_message.proto)
 file, which you are free to copy and use according to its [3-Clause
 BSD](https://opensource.org/license/BSD-3-Clause) license, the [Protocol
-Buffers](https://developers.google.com/protocol-buffers) library, also with a
+Buffers]( https://protobuf.dev) library, also with a
 similar
 [license](https://github.com/protocolbuffers/protobuf/blob/master/LICENSE), and
 a library to handle UDP/IP communications.

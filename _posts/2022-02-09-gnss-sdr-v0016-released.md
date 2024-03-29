@@ -39,7 +39,7 @@ This release adds new features and fixes some bugs. Most relevant changes with r
 
 - Fixed building against the new API in the gr-iio component present in GNU Radio v3.10.X.Y.
 - Fixed building against GNU Radio v3.10.X.Y, which does not support the C++20 standard.
-- Fixed building against GNU Radio v3.10.X.Y, which replaced [log4cpp](http://log4cpp.sourceforge.net/) by the [spdlog](https://github.com/gabime/spdlog) and [fmt](https://github.com/fmtlib/fmt) libraries.
+- Fixed building against GNU Radio v3.10.X.Y, which replaced [log4cpp](https://log4cpp.sourceforge.net/) by the [spdlog](https://github.com/gabime/spdlog) and [fmt](https://github.com/fmtlib/fmt) libraries.
 - Updated `cpu_features` library for improved processor detection.
 
 ## Improvements in [Reliability]({{ "/design-forces/reliability/" | relative_url }}):

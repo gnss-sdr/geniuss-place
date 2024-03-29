@@ -106,7 +106,7 @@ below:
 - Fix segmentation fault if the RINEX output was disabled.
 - Added a feature that optionally enables the remote monitoring of GPS and
   Galileo ephemeris using UDP and
-  [Protocol Buffers](https://developers.google.com/protocol-buffers).
+  [Protocol Buffers]( https://protobuf.dev).
 - Now building the software passing the `-DENABLE_FPGA=ON` to CMake does not
   make the receiver unusable when running on non-FPGA-enabled platforms. On
   FPGA-enabled platforms, now it is possible to run non-FPGA-enabled

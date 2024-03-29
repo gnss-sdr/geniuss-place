@@ -173,7 +173,7 @@ interval of 8 hours.
 
 [^Bobbio15]: J. Bobbio, [How to make your software build reproducibly](https://reproducible-builds.org/_lfs/presentations/2015-08-13-CCCamp15.pdf), in Chaos Communication Camp, Zehdenick, Germany, 2015.
 
-[^Royal12]: The Royal Society, [Science as an open enterprise](https://royalsociety.org/topics-policy/projects/science-public-enterprise/report/), Report 02/12. London, UK, June 2012.
+[^Royal12]: The Royal Society, [Science as an open enterprise](https://royalsociety.org/news-resources/projects/science-public-enterprise/report/), Report 02/12. London, UK, June 2012.
 
 [^Vandewalle09]: P. Vandewalle, J. Kova&#x010D;evi‌&#263;, and M. Vetterli, [Reproducible research in signal processing](https://ieeexplore.ieee.org/document/4815541/). IEEE Signal Processing Magazine, Vol. 26, no. 3, pp. 37-47, May 2009.
 

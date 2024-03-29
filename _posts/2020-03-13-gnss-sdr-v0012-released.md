@@ -83,7 +83,7 @@ features and bug fixes:
  during development, but automatically set to `ON` if the option
  `ENABLE_PACKAGING` is set to `ON`.
  * All shadowed variables detected by passing `-Wshadow` to the compiler have
- been fixed (see [rules.sonarsource.com](https://rules.sonarsource.com/cpp/RSPEC-1117?search=shadow) and
+ been fixed (see [rules.sonarsource.com](https://rules.sonarsource.com/cpp/rspec-1117/?search=shadow) and
  MISRA C++:2008, 2-10-2 - Identifiers declared in an inner scope shall not hide
  an identifier declared in an outer scope).
  * Apply more clang-tidy checks related to readability:

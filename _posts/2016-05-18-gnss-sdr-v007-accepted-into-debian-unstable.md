@@ -27,5 +27,5 @@ $ sudo apt-get install gnss-sdr
 ```
 
 
-<a href="https://dx.doi.org/10.5281/zenodo.51521" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://help.zenodo.org/faq/). The DOI for GNSS-SDR v0.0.7 is [10.5281/zenodo.51521](https://dx.doi.org/10.5281/zenodo.51521).
+<a href="https://doi.org/10.5281/zenodo.51521" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://help.zenodo.org/faq/). The DOI for GNSS-SDR v0.0.7 is [10.5281/zenodo.51521](https://doi.org/10.5281/zenodo.51521).
 {: .notice--info}

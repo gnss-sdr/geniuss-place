@@ -353,7 +353,7 @@ There are a lot of apps that can do that (an example
 [here](https://play.google.com/store/apps/details?id=com.parizene.netmonitor&hl=en)).
 These applications are able to provide the required MMC, MNC, LAC, and CI
 parameters for your location. A list of MCC and MNC around the World can be
-found at [mcc-mnc-list.com](https://mcc-mnc-list.com/list) and at the
+found at [mcc-mnc.com](https://mcc-mnc.com/) and at the
 [Wikipedia](https://en.wikipedia.org/wiki/Mobile_country_code).
 
 

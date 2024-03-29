@@ -77,7 +77,7 @@ rules. Examples:
 
 - _SEI CERT C++ Coding Standard: Rules for Developing Safe, Reliable, and Secure
   Systems in C++
-  [(2016 Edition)](https://resources.sei.cmu.edu/library/asset-view.cfm?assetID=494932)_,
+  [(2016 Edition)](https://insights.sei.cmu.edu/library/sei-cert-c-coding-standard-rules-for-developing-safe-reliable-and-secure-systems-2016-edition-2/)_,
   based on the [ISO/IEC 14882-2014](https://www.iso.org/standard/64029.html)
   standard.
 
@@ -162,7 +162,7 @@ receiver:
   [DO--178B](https://en.wikipedia.org/wiki/DO-178B)).
 
 - If the programming language is C++: Coding Standard certifications (_e.g._,
-  [SEI CERT C++ Coding Standard](https://resources.sei.cmu.edu/library/asset-view.cfm?assetID=494932),
+  [SEI CERT C++ Coding Standard](https://insights.sei.cmu.edu/library/sei-cert-c-coding-standard-rules-for-developing-safe-reliable-and-secure-systems-2016-edition-2/),
   [High Integrity C++](https://www.perforce.com/blog/qac/high-integrity-cpp-hicpp),
   MISRA C++:2008, others)
   - Availability of a `.clang-tidy` file for clang-tidy check customization.
