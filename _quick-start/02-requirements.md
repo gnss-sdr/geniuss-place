@@ -121,12 +121,12 @@ software radio. In turn, GNU Radio requires a number of software dependencies,
 some of which are also used by GNSS-SDR. Notably,
 [Boost](https://www.boost.org/), [FFTW](http://www.fftw.org/) and
 [VOLK](https://www.libvolk.org/).
-* [Armadillo](http://arma.sourceforge.net/), a C++ linear algebra library. It
+* [Armadillo](https://arma.sourceforge.net/), a C++ linear algebra library. It
 acts as a wrapper for all the relevant libraries present on your system, such as
 [LAPACK](https://www.netlib.org/lapack/), [BLAS](https://www.netlib.org/blas/),
 [OpenBlas](https://www.openblas.net/),
-[ATLAS](http://math-atlas.sourceforge.net/), and
-[others](http://arma.sourceforge.net/faq.html#linking).
+[ATLAS](https://math-atlas.sourceforge.net/), and
+[others](https://arma.sourceforge.net/faq.html#linking).
 * [glog](https://github.com/google/glog), a C++ implementation of the Google
 logging module.
 * [gflags](https://github.com/gflags/gflags), a C++ library that implements

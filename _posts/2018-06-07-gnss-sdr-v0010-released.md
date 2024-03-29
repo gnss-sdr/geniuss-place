@@ -77,7 +77,7 @@ This release has several improvements in different dimensions, addition of new f
 
 ## Improvements in [Maintainability]({{ "/design-forces/maintainability/" | relative_url }}):
 
- * Setup of a Continuous Integration system that checks building and runs QA code in a wide range of GNU/Linux distributions (ArchLinux, CentOS, Debian, Fedora, OpenSUSE, Ubuntu) and releases. See the latest GitLab [pipeline](https://gitlab.com/gnss-sdr/gnss-sdr/pipelines) for this project.
+ * Setup of a Continuous Integration system that checks building and runs QA code in a wide range of GNU/Linux distributions (ArchLinux, CentOS, Debian, Fedora, OpenSUSE, Ubuntu) and releases. See the latest GitLab [pipeline](https://gitlab.com/gnss-sdr/gnss-sdr/-/pipelines) for this project.
  * Creation of multi-system processing blocks, drastically reducing code duplication and maintainability time.
  * Automated code formatting with [clang-format](https://clang.llvm.org/docs/ClangFormat.html). This tool is widely available and easy to integrate into many code editors, and it also can be used from the command line. It cuts time spent on adhering to the project's code formatting style.
  * Improvement in C++ usage: C-style casts have been replaced by C++ casts. C-style casts are difficult to search for. C++ casts provide compile time checking ability and express programmers' intent better, so they are safer and clearer.
@@ -161,5 +161,5 @@ This release has several improvements in different dimensions, addition of new f
 
 As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.10) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
 
-<a href="https://doi.org/10.5281/zenodo.2279988" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.10 is [10.5281/zenodo.2279988](https://dx.doi.org/10.5281/zenodo.2279988).
+<a href="https://doi.org/10.5281/zenodo.2279988" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://help.zenodo.org/faq/). The DOI for GNSS-SDR v0.0.10 is [10.5281/zenodo.2279988](https://zenodo.org/records/2279988).
 {: .notice--info}

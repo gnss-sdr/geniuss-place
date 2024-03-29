@@ -338,7 +338,7 @@ please check [Testing the software receiver, Part II: Test Execution]({{
 
 [^Langley09]: G. J. Langley, R. D. Moen, K. M. Nolan, T. W. Nolan, C. L. Norman and L. P. Provost, [The Improvement Guide](https://www.wiley.com/en-us/The+Improvement+Guide:+A+Practical+Approach+to+Enhancing+Organizational+Performance,+2nd+Edition-p-9780470192412), Jossey-Bass, San Francisco, CA, 2009.
 
-[^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/books/new-economics-industry-government-education-second-edition), MIT Press, Cambridge, MA, 1993.
+[^Deming93]: W. E. Deming, [The new economics for industry, government, education](https://mitpress.mit.edu/9780262541169/), MIT Press, Cambridge, MA, 1993.
 
 [^Plattner11]: H. Plattner, C. Meinel, L. Leifer (Eds.), [Design Thinking: Understand - Improve - Apply](https://link.springer.com/book/10.1007/978-3-642-13757-0), Springer-Verlag, Berlin, Germany, 2011.
 

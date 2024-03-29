@@ -547,4 +547,4 @@ InputFilter.item_type=cshort
 
 [^Dovis15]: F. Dovis, Ed. [GNSS Interference Threats and Countermeasures](https://us.artechhouse.com/GNSS-Interference-Threats-Countermeasures-P1710.aspx), Artech House, Noordwood, MA, 2015.
 
-[^Prony95]: R. Prony, [Essai exp&eacute;rimental et analytique sur les lois de la dilabilit&eacute; des fluides &eacute;lastiques, et sur celles de la force expansive de la vapeur de l’eau et de la vapeur de l’alkool, &agrave; diff&eacute;rentes temp&eacute;ratures](http://users.polytech.unice.fr/~leroux/PRONY.pdf), Journal de l'&Eacute;cole Polytechnique, Flor&eacute;al et Prairial, Vol. 1, no. 22, pp. 24–76, 1795.
+[^Prony95]: R. Prony, [Essai exp&eacute;rimental et analytique sur les lois de la dilabilit&eacute; des fluides &eacute;lastiques, et sur celles de la force expansive de la vapeur de l’eau et de la vapeur de l’alkool, &agrave; diff&eacute;rentes temp&eacute;ratures](https://users.polytech.unice.fr/~leroux/PRONY.pdf), Journal de l'&Eacute;cole Polytechnique, Flor&eacute;al et Prairial, Vol. 1, no. 22, pp. 24–76, 1795.

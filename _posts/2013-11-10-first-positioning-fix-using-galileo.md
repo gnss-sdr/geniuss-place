@@ -89,7 +89,7 @@ The minimal available Galileo constellation of four satellites provided a Diluti
 </figure>
 
 
-If you are interested in replicating the experiments and playing with the software receiver, we suggest the use of a tool such as [GPredict](http://gpredict.oz9aec.net/) for predicting the time window in which the four satellites will be visible from your location. Happy satellite hunting!
+If you are interested in replicating the experiments and playing with the software receiver, we suggest the use of a tool such as [GPredict](https://oz9aec.dk/gpredict/) for predicting the time window in which the four satellites will be visible from your location. Happy satellite hunting!
 
 
 ---------

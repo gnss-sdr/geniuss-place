@@ -62,7 +62,7 @@ GNSS receiver[^Fernandez18]:
   * Availability of a version control system providing a unique identifier to
   each source code snapshot (_e.g._, Git).
   * Public reading access to the upstream repository (for instance, via
-  [GitHub](https://github.com) or [BitBucket](https://bitbucket.com)).
+  [GitHub](https://github.com) or [BitBucket](https://bitbucket.org)).
   * Availability of a Digital Object Identifier (DOI) for source code releases
   (for instance, provided by [Zenodo.org](https://zenodo.org/)).
   * Meet the requirements of [Reproducible Builds](https://reproducible-builds.org),
@@ -179,6 +179,6 @@ interval of 8 hours.
 
 [^Peng11]: R. D. Peng, [Reproducible research in computational science](https://www.science.org/doi/10.1126/science.1213847). Science, Vol. 334, no. 6060, pp. 1226–1227, Dec. 2011. DOI: 10.1126/science.1213847
 
-[^Beaulieu17]: B. K. Beaulieu-Jones and C. S. Greene, [Reproducibility of computational workflows is automated using continuous analysis](https://www.biorxiv.org/content/early/2016/08/11/056473). Nature Biotechnology, Vol. 35, no. 4, pp. 342–346, Apr. 2017.
+[^Beaulieu17]: B. K. Beaulieu-Jones and C. S. Greene, [Reproducibility of computational workflows is automated using continuous analysis](https://www.biorxiv.org/content/10.1101/056473v2). Nature Biotechnology, Vol. 35, no. 4, pp. 342–346, Apr. 2017.
 
 [^Fernandez18]: C. Fern&aacute;ndez-Prades, J. Vil&agrave;-Valls, J. Arribas and A. Ramos, [Continuous Reproducibility in GNSS Signal Processing](https://ieeexplore.ieee.org/document/8331069/), IEEE Access, Vol. 6, no. 1, pp. 20451-20463, Apr. 2018. DOI: 10.1109/ACCESS.2018.2822835

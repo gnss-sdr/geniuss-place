@@ -96,6 +96,6 @@ receiver:
 
 ## References
 
-[^Tapscott13]: Tapscott, D., Williams, A.D.: Radical Openness: Four Unexpected Principles for Success. [TED Conference](https://www.ted.com/talks/don_tapscott_four_principles_for_the_open_world_1?language=en), LLC, New York, NY (2013).
+[^Tapscott13]: Tapscott, D., Williams, A.D.: Radical Openness: Four Unexpected Principles for Success. [TED Conference](https://www.ted.com/talks/don_tapscott_four_principles_for_the_open_world?language=en), LLC, New York, NY (2013).
 
 [^Avital11]: Avital, M.: The generative bedrock of open design. In: B. van Abel, L. Evers, R. Klaassen, P. Troxler (eds.) [Open design now: why design cannot remain exclusive](http://opendesignnow.org/), pp. 48– 58. BIS Publishers, Amsterdam, The Netherlands (2011)
