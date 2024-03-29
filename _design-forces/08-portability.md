@@ -122,7 +122,7 @@ applications.
 
   - The [Linux](https://en.wikipedia.org/wiki/Linux) kernel, used in some
     popular distributions such as [Debian](https://www.debian.org/),
-    [Fedora](https://getfedora.org/), [Ubuntu](https://ubuntu.com/),
+    [Fedora](https://fedoraproject.org/), [Ubuntu](https://ubuntu.com/),
     [openSUSE](https://www.opensuse.org/),
     [Arch Linux](https://archlinux.org/),
     [Linux Mint](https://www.linuxmint.com/),
@@ -142,7 +142,7 @@ applications.
 
 - **Real-Time Operating Systems** such as
   [VxWorks](https://www.windriver.com/products/vxworks),
-  [eCos](http://ecos.sourceware.org/), [QNX](https://blackberry.qnx.com/),
+  [eCos](http://ecos.sourceware.org/), [QNX](https://blackberry.qnx.com/en/),
   [Wind River Linux](https://www.windriver.com/products/linux), and Real-Time Executive for
   Multiprocessor Systems ([RTEMS](https://www.rtems.org/)).
 

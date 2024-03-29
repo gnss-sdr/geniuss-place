@@ -61,7 +61,7 @@ and the data transmitted by the satellites in their navigation message) are
 delivered in standard formats.
 
 GNSS-SDR is
-[free and open-source software](https://en.unesco.org/freeandopensourcesoftware)
+[free and open-source software](https://webarchive.unesco.org/web/20210404161138/https://en.unesco.org/freeandopensourcesoftware)
 released under the
 [General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html). This
 means you have:

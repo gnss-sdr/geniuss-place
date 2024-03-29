@@ -389,7 +389,7 @@ note    = { {doi}: 10.1109/TIM.2018.2811446}
     <br />
     <a href="javascript:toggleBibtex('Fernandez18')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/8331069/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/ACCESS.2018.2822835" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/ACCESS.2018.2822835" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez18" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Fernandez18,
@@ -442,7 +442,7 @@ pages   = {43--49}
     <br />
     <a href="javascript:toggleBibtex('Lestarquit16')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/7501832/" >Online</a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/JSTARS.2016.2568742" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/JSTARS.2016.2568742" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Lestarquit16" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Lestarquit16,
@@ -470,7 +470,7 @@ note    = { {doi}: 10.1109/JSTARS.2016.2568742}
     <br />
     <a href="javascript:toggleBibtex('Fernandez16')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/7444116/" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/JPROC.2016.2532963" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/JPROC.2016.2532963" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez16" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Fernandez16,
@@ -498,7 +498,7 @@ note    = { {doi}: 10.1109/JPROC.2016.2532963}
     <br />
     <a href="javascript:toggleBibtex('Arribas13')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://asp-eurasipjournals.springeropen.com/articles/10.1186/1687-6180-2013-143" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1186/1687-6180-2013-143" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1186/1687-6180-2013-143" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Arribas13" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Arribas13,
@@ -953,7 +953,7 @@ ESA/ESTEC, Noordwijk, The Netherlands, Dec. 14-16, 2016, pp. 1-9.
     <br />
     <a href="javascript:toggleBibtex('Fernandez16c')">[BibTeX]</a>
     <span style="color: #52adc8">[</span><a href="https://zenodo.org/records/266524" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
-    <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2016.7931740" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/NAVITEC.2016.7931740" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
     </p>
     <div id="bib_Fernandez16c" class="bibtex noshow" style="color: #111111">
     <pre>@inproceedings{ Fernandez16c,
@@ -1215,7 +1215,7 @@ month   = {Sept.}
     A Coru&ntilde;a, Spain, June&nbsp;2014, pp. 121-124.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR14a')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6882355/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/SAM.2014.6882355" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6882355/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/268195837_Interference_mitigation_in_GNSS_receivers_by_array_signal_processing_A_software_radio_approach" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/SAM.2014.6882355" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR14a" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR14a,
@@ -1243,7 +1243,7 @@ note    = { {doi}: 10.1109/SAM.2014.6882355}
         <br />
         <a href="javascript:toggleBibtex('Falone14')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6865943/" >Online</a><span style="color: #52adc8">]</span>
-        <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/MetroAeroSpace.2014.6865943" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/MetroAeroSpace.2014.6865943" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_Falone14" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ Falone14,
@@ -1269,7 +1269,7 @@ note    = { {doi}: 10.1109/MetroAeroSpace.2014.6865943}
         <br />
         <a href="javascript:toggleBibtex('Angeletti14')">[BibTeX]</a>
         <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6865957/" >Online</a><span style="color: #52adc8">]</span>
-        <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/MetroAeroSpace.2014.6865957" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/MetroAeroSpace.2014.6865957" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_Angeletti14" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ Angeletti14,
@@ -1319,7 +1319,7 @@ month   = {Sept.}
     ESTEC, Noordwijk, The Netherlands, Dec. 2012, pp. 1-8.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR12')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6423057/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/233859838_An_Open_Source_Galileo_E1_Software_Receiver" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2012.6423057" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/6423057/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/233859838_An_Open_Source_Galileo_E1_Software_Receiver" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/NAVITEC.2012.6423057" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR12" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR12,
@@ -1396,7 +1396,7 @@ month   = {Sept.}
     ESTEC, Noordwijk, The Netherlands, Dec. 2010, pp. 1-8.
         <br />
         <a href="javascript:toggleBibtex('GNSS-SDR10')">[BibTeX]</a>
-        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/5707981/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/228624103_Design_Patterns_for_GNSS_Software_Receivers" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.1109/NAVITEC.2010.5707981" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+        <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/5707981/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/228624103_Design_Patterns_for_GNSS_Software_Receivers" >PDF</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/NAVITEC.2010.5707981" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
         </p>
         <div id="bib_GNSS-SDR10" class="bibtex noshow" style="color: #111111">
         <pre>@inproceedings{ GNSS-SDR10,
@@ -1423,7 +1423,7 @@ A. Ranganathan
 <i>PhD Thesis, ETH Z&uuml;rich, Department of Computer Science, Z&uuml;rich, Switzerland, June&nbsp;2016.</i>
 <br><a href="javascript:toggleBibtex('Ranganathan16')">[BibTeX]</a>
 <span style="color: #52adc8">[</span><a href="https://www.research-collection.ethz.ch/handle/20.500.11850/117163" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/117163/eth-49164-02.pdf" >PDF</a><span style="color: #52adc8">]</span>
-<span style="color: #52adc8">[</span><a href="https://dx.doi.org/10.3929/ethz-a-010659030" >
+<span style="color: #52adc8">[</span><a href="https://doi.org/10.3929/ethz-a-010659030" >
 <i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
 </p>
 <div id="bib_Ranganathan16" class="bibtex noshow" style="color: #111111">

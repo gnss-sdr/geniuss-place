@@ -39,7 +39,7 @@ This release adds new features and fixes some bugs. Most relevant changes with r
 
 - Fixed building against the new API in the gr-iio component present in GNU Radio v3.10.X.Y.
 - Fixed building against GNU Radio v3.10.X.Y, which does not support the C++20 standard.
-- Fixed building against GNU Radio v3.10.X.Y, which replaced [log4cpp](http://log4cpp.sourceforge.net/) by the [spdlog](https://github.com/gabime/spdlog) and [fmt](https://github.com/fmtlib/fmt) libraries.
+- Fixed building against GNU Radio v3.10.X.Y, which replaced [log4cpp](https://log4cpp.sourceforge.net/) by the [spdlog](https://github.com/gabime/spdlog) and [fmt](https://github.com/fmtlib/fmt) libraries.
 - Updated `cpu_features` library for improved processor detection.
 
 ## Improvements in [Reliability]({{ "/design-forces/reliability/" | relative_url }}):
@@ -66,5 +66,5 @@ This release adds new features and fixes some bugs. Most relevant changes with r
 
 As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.16) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
 
-<a href="https://doi.org/10.5281/zenodo.6090349" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.16 is [10.5281/zenodo.6090349](https://doi.org/10.5281/zenodo.6090349).
+<a href="https://doi.org/10.5281/zenodo.6090349" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://help.zenodo.org/faq/). The DOI for GNSS-SDR v0.0.16 is [10.5281/zenodo.6090349](https://doi.org/10.5281/zenodo.6090349).
 {: .notice--info}

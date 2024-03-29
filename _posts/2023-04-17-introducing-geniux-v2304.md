@@ -26,7 +26,7 @@ specific set of popular tools, libraries, and device drivers tailored for
 supporting an extended range of Software Defined Radio applications, helping to
 bring them to production-ready deployments with an approach [widely adopted
 throughout the embedded/IoT
-industry](https://www.yoctoproject.org/is-yocto-project-for-you/).
+industry](https://www.yoctoproject.org/about/project-overview/).
 
 The Geniux distribution comes in different version names, following [those of
 the Yocto Project](https://wiki.yoctoproject.org/wiki/Releases), being Rocko the
@@ -729,7 +729,7 @@ You can replace `23.04` by `latest` in order to get the latest developments.
 Starting from Geniux Zeus 21.08, the `geniux-builder.sh` script produces `.wic`
 images that can be flashed on an SD card and your device will be ready to go.
 For image flashing, we recommend using a software tool such as [Balena
-Etcher](https://www.balena.io/etcher/). Just pick up the
+Etcher](https://etcher.balena.io/). Just pick up the
 `gnss-sdr-demo-image-$MACHINE-yyyymmddHHMMSS.rootfs.wic.xz` file, flash your SD
 card, insert it in your device, and it will be ready to boot and run `gnss-sdr`.
 Other flashing options [here]({{
@@ -780,14 +780,14 @@ public repositories:
 
 If you miss any feature on Geniux, or have an idea on how to make it better,
 pull requests and issues are welcome on those repositories. Their contents are
-released under the [MIT License](https://opensource.org/licenses/MIT).
+released under the [MIT License](https://opensource.org/license/MIT).
 
 
 ## Disclaimer
 
 Yocto Project and all related marks and logos are trademarks of The Linux
 Foundation. This website is not, in any way, endorsed by the Yocto Project or
-[The Linux Foundation](https://linuxfoundation.org/).
+[The Linux Foundation](https://www.linuxfoundation.org/).
 
 &nbsp;
 

@@ -86,7 +86,7 @@ The licensor cannot revoke these freedoms as long as you follow the license term
 This work incorporates [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes),
 Copyright &copy; 2013-2021 Michael Rose and contributors.
 With modifications: &copy; 2016-2021 Carles Fern&aacute;ndez-Prades.
-Minimal Mistakes is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Minimal Mistakes is distributed under the terms of the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates icons from [The Noun Project](https://thenounproject.com/).
 Authors: Garrett Knoll, Arthur Shlain, and tracy tam.
@@ -101,18 +101,18 @@ Copyright &copy; 2012, Carlos Paniego. All rights reserved.
 
 This work incorporates [Font Awesome](https://fontawesome.com/),
 Copyright &copy; 2017 Dave Gandy.
-Font Awesome is distributed under the terms of the [SIL OFL 1.1](https://scripts.sil.org/OFL) and [MIT License](https://opensource.org/licenses/MIT).
+Font Awesome is distributed under the terms of the [SIL OFL 1.1](https://scripts.sil.org/OFL) and [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates [Academicons](https://jpswalsh.github.io/academicons/),
 Copyright &copy; 2017 James Walsh.
-Academicons is distributed under the terms of the [SIL OFL 1.1](https://scripts.sil.org/OFL) and [MIT License](https://opensource.org/licenses/MIT).
+Academicons is distributed under the terms of the [SIL OFL 1.1](https://scripts.sil.org/OFL) and [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates [Susy](https://oddbird.net/susy/),
 Copyright &copy; 2017, Miriam Eric Suzanne.
-Susy is distributed under the terms of the [BSD 3-clause "New" or "Revised" License](https://opensource.org/licenses/BSD-3-Clause).
+Susy is distributed under the terms of the [BSD 3-clause "New" or "Revised" License](https://opensource.org/license/BSD-3-Clause).
 
 This work incorporates [Breakpoint](http://breakpoint-sass.com/).
-Breakpoint is distributed under the terms of the [MIT/GPL Licenses](https://opensource.org/licenses/MIT).
+Breakpoint is distributed under the terms of the [MIT/GPL Licenses](https://opensource.org/license/MIT).
 
 This work incorporates [FitVids.js](https://github.com/davatron5000/FitVids.js/),
 Copyright &copy; 2013 Dave Rubert and Chris Coyier.
@@ -120,31 +120,31 @@ FitVids is distributed under the terms of the [WTFPL License](http://www.wtfpl.n
 
 This work incorporates [Magnific Popup](https://dimsemenov.com/plugins/magnific-popup/),
 Copyright &copy; 2014-2016 Dmitry Semenov, https://dimsemenov.com/.
-Magnific Popup is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Magnific Popup is distributed under the terms of the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll),
 Copyright &copy; 2020 Chris Ferdinandi.
-Smooth Scroll is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Smooth Scroll is distributed under the terms of the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates [Gumshoe](https://github.com/cferdinandi/gumshoe),
 Copyright &copy; 2016 Chris Ferdinandi.
-Gumshoe is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Gumshoe is distributed under the terms of the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates [jQuery throttle / debounce](http://benalman.com/projects/jquery-throttle-debounce-plugin/),
 Copyright &copy; 2010 "Cowboy" Ben Alman.
-jQuery throttle / debounce is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+jQuery throttle / debounce is distributed under the terms of the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates [GreedyNav.js](https://github.com/lukejacksonn/GreedyNav),
 Copyright &copy; 2015 Luke Jackson.
-GreedyNav.js is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+GreedyNav.js is distributed under the terms of the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates [Jekyll Group-By-Array](https://github.com/mushishi78/jekyll-group-by-array),
 Copyright &copy; 2015 Max White <mushishi78@gmail.com>.
-Jekyll Group-By-Array is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Jekyll Group-By-Array is distributed under the terms of the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates [@allejo's Pure Liquid Jekyll Table of Contents](https://allejo.io/blog/a-jekyll-toc-without-plugins-or-javascript/),
 Copyright &copy; 2017 Vladimir Jimenez.
-Pure Liquid Jekyll Table of Contents is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Pure Liquid Jekyll Table of Contents is distributed under the terms of the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates code from [iBug-source](https://github.com/iBug/iBug-source),
 Copyright &copy; 2020-2021 iBug <git@ibugone.com>.

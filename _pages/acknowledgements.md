@@ -18,7 +18,7 @@ feasibility as an open and free framework for software-defined GNSS receiver
 development, attracting the interest of [more researchers]({{ "/publications/" |
 relative_url }}), students, skilled hobbyists, and the industry.
 
-According to [Black Duck Open Hub](https://www.openhub.net/p/gnss-sdr), the
+According to [Black Duck Open Hub](https://openhub.net/p/gnss-sdr), the
 development of GNSS-SDR from its [first
 commit](https://github.com/gnss-sdr/gnss-sdr/commit/228fa3b797dba7d0192f751e7e25a7b8348f9326)
 to a Git repository (in October 2011, after a happy childhood living in a
