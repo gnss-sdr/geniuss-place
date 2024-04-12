@@ -104,5 +104,5 @@ This release has several improvements in different dimensions, addition of new f
 
 As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.11) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
 
-<a href="https://doi.org/10.5281/zenodo.3359989" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.11 is [10.5281/zenodo.3359989](https://doi.org/10.5281/zenodo.3359989).
+<a href="https://doi.org/10.5281/zenodo.3359989" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://help.zenodo.org/faq/). The DOI for GNSS-SDR v0.0.11 is [10.5281/zenodo.3359989](https://doi.org/10.5281/zenodo.3359989).
 {: .notice--info}

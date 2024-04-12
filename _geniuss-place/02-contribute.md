@@ -26,7 +26,7 @@ bug](https://github.com/gnss-sdr/gnss-sdr/issues)? Then by all means [submit an
 issue](https://github.com/gnss-sdr/gnss-sdr/issues/new) or [pull
 request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 If this is your first pull request, it may be helpful to read up on the [GitHub
-Flow](https://docs.github.com/en/get-started/quickstart/github-flow) first. If
+Flow](https://docs.github.com/en/get-started/using-github/github-flow) first. If
 you need a quick introduction to Git and its parlance (concepts such as
 _repository_, _commit_, _push_, _pull-request_, etc.), check our [Git
 tutorial]({{ "/docs/tutorials/using-git/" | relative_url }}). This project
@@ -52,7 +52,7 @@ stakeholders, make sure that all are listed, each with a separate
 The basic setup steps for a contribution to the source code are the following:
 
 1. If you still have not done so, [create your personal account on
-GitHub](https://github.com/join).
+GitHub](https://github.com/signup).
 
 2. [Fork the GNSS-SDR source code repository from
 GitHub](https://github.com/gnss-sdr/gnss-sdr/fork). This will copy the whole

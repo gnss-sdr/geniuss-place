@@ -25,7 +25,7 @@ the adherence to the official language programming standards. Examples:
     &ndash; Programming languages &ndash; C_, and it is available
     from [ISO](https://www.iso.org/standard/74528.html),
     [IEC](https://webstore.iec.ch/publication/63478), and
-    [ANSI](https://webstore.ansi.org/Standards/ISO/ISOIEC98992018). You can
+    [ANSI](https://webstore.ansi.org/standards/iso/isoiec98992018). You can
     obtain something very close to the standard for free because of the working
     drafts available, the closest
     is [N2176](https://web.archive.org/web/20181230041359if_/http://www.open-std.org/jtc1/sc22/wg14/www/abq/c17_updated_proposed_fdis.pdf).
@@ -48,7 +48,7 @@ the adherence to the official language programming standards. Examples:
     &ndash; C++_. You can get it from
     [ISO](https://www.iso.org/standard/79358.html),
     [IEC](https://webstore.iec.ch/publication/68285), or
-    [ANSI](https://webstore.ansi.org/Standards/ISO/ISOIEC148822020). The closest
+    [ANSI](https://webstore.ansi.org/standards/iso/isoiec148822020). The closest
     free working document available is
     [N4868](https://github.com/cplusplus/draft/releases/download/n4868/n4868.pdf).
   - **C++17**: The former ISO C++ standard was officially known as
@@ -56,14 +56,14 @@ the adherence to the official language programming standards. Examples:
     &ndash; C++_. You can get it from
     [ISO](https://www.iso.org/standard/68564.html),
     [IEC](https://webstore.iec.ch/publication/62162), or
-    [ANSI](https://webstore.ansi.org/Standards/ISO/ISOIEC148822017). The closest
+    [ANSI](https://webstore.ansi.org/standards/iso/isoiec148822017). The closest
     free working document available is
     [N4659](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf).
   - **C++14**: An older ISO C++ standard was officially known as
     _ISO International Standard ISO/IEC 14882:2014 &ndash; Programming languages
     &ndash; C++_. You can get it from
     [ISO](https://www.iso.org/standard/64029.html), or
-    [ANSI](<https://webstore.ansi.org/Standards/INCITS/INCITSISOIEC1488220142016>).
+    [ANSI](<https://webstore.ansi.org/standards/incits/incitsisoiec1488220142016>).
     The closest free working document available is
     [N4296](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf).
   - **C++11**: An older ISO C++ standard was ISO/IEC 14882:2011. You can get it

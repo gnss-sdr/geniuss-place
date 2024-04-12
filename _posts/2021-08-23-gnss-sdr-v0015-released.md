@@ -106,7 +106,7 @@ below:
 - Fix segmentation fault if the RINEX output was disabled.
 - Added a feature that optionally enables the remote monitoring of GPS and
   Galileo ephemeris using UDP and
-  [Protocol Buffers](https://developers.google.com/protocol-buffers).
+  [Protocol Buffers]( https://protobuf.dev).
 - Now building the software passing the `-DENABLE_FPGA=ON` to CMake does not
   make the receiver unusable when running on non-FPGA-enabled platforms. On
   FPGA-enabled platforms, now it is possible to run non-FPGA-enabled
@@ -141,5 +141,5 @@ below:
 
 As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.15) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
 
-<a href="https://doi.org/10.5281/zenodo.5242839" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://zenodo.org/faq). The DOI for GNSS-SDR v0.0.15 is [10.5281/zenodo.5242839](https://doi.org/10.5281/zenodo.5242839).
+<a href="https://doi.org/10.5281/zenodo.5242839" ><i class="ai ai-fw ai-doi ai-lg" aria-hidden="true"></i></a>In order to make GNSS-SDR more easily referenced, and to promote reproducible research, each software release gets a Digital Object Identifier provided by [Zenodo](https://help.zenodo.org/faq/). The DOI for GNSS-SDR v0.0.15 is [10.5281/zenodo.5242839](https://doi.org/10.5281/zenodo.5242839).
 {: .notice--info}

@@ -330,7 +330,7 @@ $ sudo bmaptool copy gnss-sdr-demo-image-zedboard-zynq7-20170103150322.rootfs.wi
 ```
 
 For `*.rootfs.wic.xz` files, another interesting choice for flashing images is
-[Balena Etcher](https://www.balena.io/etcher/), a tool that works in GNU/Linux,
+[Balena Etcher](https://etcher.balena.io/), a tool that works in GNU/Linux,
 Microsoft Windows and macOS.
 
 ### Copying only the sysroot to the SD card using `cp`
@@ -387,7 +387,7 @@ $ fusermount -u ~/mydevice
 
 Yocto Project and all related marks and logos are trademarks of The Linux
 Foundation. This website is not, in any way, endorsed by the Yocto Project or
-[The Linux Foundation](https://linuxfoundation.org/).
+[The Linux Foundation](https://www.linuxfoundation.org/).
 
 
 References
