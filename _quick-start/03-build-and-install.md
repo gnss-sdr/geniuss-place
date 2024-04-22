@@ -179,7 +179,7 @@ This option is adequate if you are interested in development, in working with
 the most recent versions of software dependencies, want more fine-tuning on the
 installed versions, or simply in building everything from the scratch just for
 the fun of it. In such cases, we recommend using
-[PyBOMBS](https://www.gnuradio.org/blog/2016-06-19-pybombs-the-what-the-how-and-the-why/ "PyBOMBS - The What, the How and the Why")
+[PyBOMBS](https://github.com/gnuradio/pybombs "PyBOMBS")
 (Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager
 tool that installs software from source, or whatever the local package manager
 is, that automatically does all the work for you. Please take a look at the
