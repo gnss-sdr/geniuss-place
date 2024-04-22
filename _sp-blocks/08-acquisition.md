@@ -978,4 +978,4 @@ _Negative acquisition._
 
 [^Tong73]: P. S. Tong, _A Suboptimum Synchronization Procedure for Pseudo Noise Communication Systems_, in Proc. of National Telecommunications Conference, pp. 26D1-26D5. Atlanta, GA, Nov. 1973.
 
-[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021.
+[^GalileoICD]: [European GNSS (Galileo) Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf), Issue 2.1, Nov. 2023.

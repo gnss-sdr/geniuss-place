@@ -843,10 +843,10 @@ The following table lists the GNSS signals providing Open Service.
 | :----------------------------------------------------------------------------------------------------------------------------: | :----------------: | :------------: |
 |                                                         --------------                                                         |
 |                          [**GPS L5**](https://www.gps.gov/technical/icwg/IS-GPS-705J.pdf)$$ ^{(*)} $$                          | $$ 1176.45 $$ MHz  |    BPSK(10)    |
-|          [**Galileo E5a**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf)          | $$ 1176.45 $$ MHz  |    QPSK(10)    |
+|          [**Galileo E5a**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf)          | $$ 1176.45 $$ MHz  |    QPSK(10)    |
 |               [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(**)} $$                | $$ 1176.45 $$ MHz  |    BPSK(10)    |
 | [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$  | $$ 1202.025 $$ MHz |    BPSK(10)    |
-|          [**Galileo E5b**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf)          | $$ 1207.14 $$ MHz  |    QPSK(10)    |
+|          [**Galileo E5b**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf)          | $$ 1207.14 $$ MHz  |    QPSK(10)    |
 |                      [**BeiDou B2I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf)                      | $$ 1207.14 $$ MHz  |    BPSK(2)     |
 |                         [**GPS L2C**](https://www.gps.gov/technical/icwg/IS-GPS-200N.pdf)$$ ^{(*)} $$                          | $$ 1227.60 $$ MHz  |    BPSK(1)     |
 |             [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)              | $$ 1246.00 $$ MHz  |   BPSK(0.5)    |
@@ -857,7 +857,7 @@ The following table lists the GNSS signals providing Open Service.
 |               [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$                | $$ 1575.42 $$ MHz  |    BOC(1,1)    |
 |                              [**GPS L1 C/A**](https://www.gps.gov/technical/icwg/IS-GPS-200N.pdf)                              | $$ 1575.42 $$ MHz  |    BPSK(1)     |
 |                         [**GPS L1C**](https://www.gps.gov/technical/icwg/IS-GPS-800J.pdf)$$ ^{(**)} $$                         | $$ 1575.42 $$ MHz  |    BOC(1,1)    |
-|         [**Galileo E1b/c**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf)         | $$ 1575.42 $$ MHz  | CBOC(6,1,1/11) |
+|         [**Galileo E1b/c**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf)         | $$ 1575.42 $$ MHz  | CBOC(6,1,1/11) |
 | [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$ | $$ 1600.995 $$ MHz |    BOC(1,1)    |
 |             [**GLONASS L1OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)              | $$ 1602.00 $$ MHz  |   BPSK(0.5)    |
 |                                                         --------------                                                         |
@@ -895,9 +895,9 @@ The following table lists the GNSS signals providing Open Service.
 
 [^GLONASS16-3]: Global Navigation Satellite System GLONASS. [An open-access navigation radio signal with code division in the L3 band](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf). Revision 1.0, Moscow, Russia, 2016. (In Russian).
 
-[^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.2.pdf), Issue 1.2, Nov. 2021.
+[^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.3.pdf), Issue 1.3, Nov. 2023.
 
-[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.0.pdf), Issue 2.0, Jan. 2021.
+[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf), Issue 2.1, Nov. 2023.
 
 [^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
 
