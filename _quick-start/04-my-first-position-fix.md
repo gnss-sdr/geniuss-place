@@ -106,6 +106,7 @@ favorite plain text editor:
 
 ;######### GLOBAL OPTIONS ##################
 GNSS-SDR.internal_fs_sps=2000000
+GNSS-SDR.pre_2009_file=true
 
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=File_Signal_Source
