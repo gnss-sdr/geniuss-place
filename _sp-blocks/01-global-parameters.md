@@ -92,6 +92,39 @@ GNSS-SDR.observable_interval_ms=10
 ```
 
 
+## Open Service Navigation Message Authentication (OSNMA)
+
+The Galileo OSNMA service is enabled by default if the configuration file defines `1B` (that is, Galileo E1 OS) channels. 
+
+Users must register and log in on the [EUSPA website](https://www.gsc-europa.eu/), and download the OSNMA public key ("GSC Products > OSNMA_PublicKey", the file with `.crt` format) and the OSNMA Merkle Tree root file ("GSC Products > OSNMA_MerkleTree", in `.xml` format), and set the corresponding options in the GNSS-SDR configuration file:
+
+|----------
+| **Parameter**  | **Description**                                   | **Required** |
+| :------------: | :------------------------------------------------ | :----------: |
+| `osnma_enable`  | [`true`, `false`]: Enables or disables the OSNMA service. It defaults to `true`. |   Optional   |
+| `osnma_public_key` | Path to the OSNMA Public Key (`.crt` file). it defaukts to `../data/OSNMA_PublicKey_20240115100000_newPKID_1.crt` |   Optional   |
+| `osnma_merkletree` | Path to the Merkle Tree root (`.xml` file). It defaults to `../data/OSNMA_MerkleTree_20240115100000_newPKID_1.xml` |   Optional |
+| `osnma_mode` | If set to `strict`, only authenticated satellites are used in the PVT computation. If not set, the receiver will only log OSNMA events and warn the user in case of authentication failures. |   Optional |
+| -------------- |
+
+Example in the configuration file:
+
+```ini
+GNSS-SDR.osnma_public_key=./OSNMA_PublicKey_20240115100000_newPKID_1.crt
+GNSS-SDR.osnma_merkletree=./OSNMA_MerkleTree_20240115100000_newPKID_1.xml
+GNSS-SDR.osnma_mode=strict
+```
+
+Example to turn off the OSNMA reception:
+
+```ini
+GNSS-SDR.osnma_enable=false
+```
+
+**NOTE**: The OSNMA service is only available from the `next` branch of the upstream repository, and it will be present in the next stable release of GNSS-SDR.
+{: .notice--warning}
+
+
 ## Telecommand via TCP/IP
 
 The user can access the receiver interactive interface by connecting a TCP/IP
