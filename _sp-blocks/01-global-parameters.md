@@ -96,7 +96,7 @@ GNSS-SDR.observable_interval_ms=10
 
 The Galileo OSNMA service is enabled by default if the configuration file defines `1B` (that is, Galileo E1 OS) channels. 
 
-Users must register and log in on the [EUSPA website](https://www.gsc-europa.eu/), and download the OSNMA public key ("GSC Products > OSNMA_PublicKey", the file with `.crt` format) and the OSNMA Merkle Tree root file ("GSC Products > OSNMA_MerkleTree", in `.xml` format), and set the corresponding options in the GNSS-SDR configuration file:
+Users must register and log in on the [European GNSS Service Centre website](https://www.gsc-europa.eu/), and download the OSNMA public key ("GSC Products > OSNMA_PublicKey", the file with `.crt` format) and the OSNMA Merkle Tree root file ("GSC Products > OSNMA_MerkleTree", in `.xml` format), and set the corresponding options in the GNSS-SDR configuration file:
 
 |----------
 | **Parameter**  | **Description**                                   | **Required** |
