@@ -170,7 +170,7 @@ package (`sudo apt-get install gnss-sdr`), the option `ENABLE_OSMOSDR` is set to
 `ON`, and the required drivers are already installed.
 
 
-## GPU off-loading and SIMD-related options
+## FPGA / GPU off-loading and SIMD-related options
 
 |----------
 | **Variable passed to CMake** | **Possible values** | **Default** | **Effect**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
