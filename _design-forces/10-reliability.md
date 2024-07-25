@@ -6,7 +6,7 @@ excerpt:
   a specified period of time."
 header:
   teaser: /assets/images/radar-chart.png
-last_modified_at: 2017-08-14T14:54:02+02:00
+last_modified_at: 2024-07-15T14:54:02+02:00
 ---
 
 _Reliability_ describes the ability of a system or component to function under
@@ -125,6 +125,15 @@ problems or might have unintended effects that the programmer was not aware of.
 Different compilers warn more or less than others, and they all have options to
 increase or decrease the number of warnings.
 
+Reliability can also be addressed at higher system levels. Recently, Galileo has
+introduced a Navigation Message Authentication service known as OSNMA. This
+service allows enabled receivers to authenticate the navigation data broadcast
+by satellites, thereby countering potential spoofing attacks.
+
+Finally, the signal can be protected at the PRN level, as is the case with the
+GPS M-code or Galileo Public Regulated Service. This usage is restricted to 
+authorized users.
+
 ## Indicators of Reliability
 
 It follows a list of possible reliability indicators for a software-defined GNSS
@@ -156,7 +165,10 @@ receiver:
 - Deployment of network security and data integrity mechanisms.
 - Availability of GNSS signal authentication mechanisms.
   - Probability of failure.
-  - Time to authentication.
+  - For OSNMA-enabled Galileo receivers: Time To First Authenticated Fix (TTFAF).
+  - Encrypted PRN.
+    - GPS M-code enabled.
+    - Galileo PRS enabled.
 
 - Safety-critical software certifications (_e.g._,
   [DO--178B](https://en.wikipedia.org/wiki/DO-178B)).
