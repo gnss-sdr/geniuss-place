@@ -4,7 +4,7 @@ Carles Fernandez:
   name        : "Carles Fern&aacute;ndez-Prades"
   github      : "carlesfernandez"
   avatar      : "/assets/images/carles.jpg"
-  bio         : "Senior Researcher<br/>CTTC"
+  bio         : "Research Director<br/>CTTC"
   location    :
   email       : carles.fernandez@cttc.cat
   uri         : "https://www.cttc.cat/people/carles-fernandez-prades/"
@@ -140,3 +140,13 @@ Damian Miralles:
   google-scholar: "qyUglMkAAAAJ&hl"
   researchgate: "Damian-Miralles"
   location    : "Iowa, USA"
+
+
+Xavier Guerrero:
+  name        : "Xavier Guerrero"
+  uri         :
+  email       : "xguerrero@cttc.es"
+  bio         : "Researcher<br/>CTTC"
+  avatar      : "/assets/images/xguerrero.jpg"
+  twitter     :
+  github      : "xguerreropau"
