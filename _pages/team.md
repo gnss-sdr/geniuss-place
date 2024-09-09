@@ -34,6 +34,10 @@ classes: wide
 
 <table>
  <tr>
+      <td class="authortable">
+        {% assign pauthor = "Xavier Guerrero" %}
+        {% include author-profile.html %}
+     </td>
      <td class="authortable">
          {% assign pauthor = "Pau Closas" %}
          {% include author-profile.html %}
@@ -46,6 +50,7 @@ classes: wide
         {% assign pauthor = "Damian Miralles" %}
         {% include author-profile.html %}
      </td>
+
   </tr>
 </table>
 
