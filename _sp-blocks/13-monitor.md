@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2022-02-09T15:54:02-04:00
+last_modified_at: 2024-09-09T14:54:02-02:00
 ---
 
 
@@ -145,7 +145,7 @@ The configuration of the _Monitor_ block accepts the following parameters:
 |  `Monitor.enable_monitor`   | [`true`, `false`]: If set to `true`, the _Monitor_ block is activated.                                                                                                                                                                                                                                                                                                                                                                                                                               |  Mandatory   |
 | `Monitor.decimation_factor` | Decimation integer factor $$ N $$. Limits the streaming output rate to only every $$ N^{th} $$ sample. To stream all the samples, set this to `1`. Zero or negative values are treated as `1`. The output rate is by default 20 ms, and it can be changed with the [`GNSS-SDR.observable_interval_ms`](https://gnss-sdr.org/docs/sp-blocks/global-parameters/#internal-observables-processing-rate) parameter.                                                                                       |  Mandatory   |
 | `Monitor.client_addresses`  | Destination IP address(es). To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored.                                                                                                                                                                                                                                                                                       |  Mandatory   |
-|     `Monitor.udp_port`      | Destination port number. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients.                                                                                                                                                                                                                                                                                                                                 |  Mandatory   |
+|     `Monitor.udp_port`      | Destination port number. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. To specify multiple ports, use an underscore delimiter character ( `_` ) between ports. The port numbers are the same for all the clients. <span style="color: orange">The multi-port feature is only present in the `next` branch of the upstream repository, and will be present in the next stable release.</span>        |  Mandatory   |
 |  `Monitor.enable_protobuf`  | [`true`, `false`]: If set to `true`, the serialization is done using [Protocol Buffers](https://protobuf.dev/), with the format defined at [`gnss_synchro.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/gnss_synchro.proto). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). That is a deprecated behavior that can be abandoned in the future. It defaults to `true` (Protocol Buffers is used). |   Optional   |
 |         ----------          |
 
@@ -166,7 +166,7 @@ Monitor.udp_port=1234
 Example 2:
 
 The following configuration streams the receiver internal parameters to the
-addresses 10.10.10.1 and 10.10.10.2 on port 1234 UDP with a decimation integer
+addresses 10.10.10.1 and 10.10.10.2 on ports 1234 and 4321 UDP with a decimation integer
 factor of $$ N=50 $$ (observables every 1 s):
 
 ```ini
@@ -174,7 +174,7 @@ factor of $$ N=50 $$ (observables every 1 s):
 Monitor.enable_monitor=true
 Monitor.decimation_factor=50
 Monitor.client_addresses=10.10.10.1_10.10.10.2
-Monitor.udp_port=1234
+Monitor.udp_port=1234_4321
 ```
 
 ## Monitor listeners
