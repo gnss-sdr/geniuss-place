@@ -60,6 +60,10 @@ $(function() {
     $(".author__urls#urls-DamianMiralles").toggleClass("is--visible");
     $(".author__urls-wrapper").find("button#DamianMiralles").toggleClass("open");
   });
+  $(".author__urls-wrapper").find("button#XavierGuerrero").on("click", function () {
+    $(".author__urls#urls-XavierGuerrero").toggleClass("is--visible");
+    $(".author__urls-wrapper").find("button#XavierGuerrero").toggleClass("open");
+  });
   $(".author__urls-wrapper").find("button#AntonioRamosdeTorres").on("click", function () {
     $(".author__urls#urls-AntonioRamosdeTorres").toggleClass("is--visible");
     $(".author__urls-wrapper").find("button#AntonioRamosdeTorres").toggleClass("open");
