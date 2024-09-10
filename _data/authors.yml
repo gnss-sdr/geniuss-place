@@ -144,7 +144,8 @@ Damian Miralles:
 
 Xavier Guerrero:
   name        : "Xavier Guerrero"
-  uri         :
+  uri         : "https://www.cttc.cat/people/xavier-guerrero/"
+  home        : "https://www.cttc.cat/people/xavier-guerrero/"
   email       : "xguerrero@cttc.es"
   bio         : "Researcher<br/>CTTC"
   avatar      : "/assets/images/xguerrero.jpg"
