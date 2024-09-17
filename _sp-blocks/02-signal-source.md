@@ -490,6 +490,106 @@ INI file with the same name as the binary file but the extension (so in the
 example it would be `./output.ini`) and located in the same folder.
 
 
+### Implementation: `ION_GSMS_Signal_Source`
+
+This is a signal source implementation that can read XML files that follow ION's
+[GNSS Software Defined Receiver Metadata Standard](https://sdr.ion.org/) and
+properly extract sample streams on demand.
+
+A metadata file provides a structured representation of a list of sample streams,
+which are stored in a specified location. The precise location and manner in which
+the data is stored are entirely defined within the metadata file. Consequently,
+users are not required to have knowledge of details such as quantization, alignment,
+or data packing. The only necessary configuration for the user is to specify which
+streams to decode and which to exclude.
+
+This process is straightforward, as each stream within the metadata file is identified
+by a unique string ID. The user simply needs to supply a comma-separated list of these
+stream IDs. The specified streams will then be read, decoded, and presented as distinct
+signal sources, thereby enabling support for multi-band receivers. GNSS-SDR can
+automatically determine the item types and sizes based on the metadata file.
+
+This source is not built by default. It requires explicit activation when building GNSS-SDR:
+
+```console
+$ cmake -DENABLE_ION=ON ../
+```
+
+This implementation accepts the following parameters:
+
+|----------
+|    **Parameter**    | **Description**                                  | **Required** |
+| :-----------------: |
+|  `implementation`   | `ION_GSMS_Signal_Source`                         | Mandatory    |
+| `metadata_filename` | Path to the file containing the metadata.        | Mandatory    |
+|      `streams`      | Comma-separated list of streams to be processed. | Mandatory    |
+|       -------       |
+
+  _Signal Source implementation:_ **`ION_GSMS_Signal_Source`**
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=ION_GSMS_Signal_Source
+SignalSource.metadata_filename=data/capture0_L1.sdrx
+SignalSource.streams=L1
+```
+
+For testing purposes, this is an example of a metadata file that describes
+the data file used in [My first position fix]({{ "/my-first-fix/" | relative_url }}):
+
+```xml
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadata xmlns="http://www.ion.org/standards/sdrwg/schema/metadata.xsd">
+    <system id="test-system">
+        <freqbase format="MHz"> 4.0000000000000000e+00 </freqbase>
+    </system>
+    <band id="L1">
+        <centerfreq format="GHz"> 1.5754200000000000e+00 </centerfreq>
+        <translatedfreq format="kHz"> 0.0000000000000000e+00 </translatedfreq>
+        <bandwidth format="MHz"> 2.4000000000000000e+01 </bandwidth>
+    </band>
+    <file>
+        <url>2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat</url>
+        <timestamp>04-Apr-2013 00:00:00</timestamp>
+        <lane id="L1"/>
+    </file>
+    <lane id="L1">
+        <bandsrc idband="L1" idsrc="none"/>
+        <system id="test-system"/>
+        <block>
+            <cycles>0</cycles>
+            <chunk>
+                <sizeword>2</sizeword>
+                <countwords>2</countwords>
+                <endian>Little</endian>
+                <padding>None</padding>
+                <wordshift>Left</wordshift>
+                <lump>
+                    <stream id="L1">
+                        <ratefactor>1</ratefactor>
+                        <quantization>16</quantization>
+                        <packedbits>32</packedbits>
+                        <alignment>Right</alignment>
+                        <shift>Left</shift>
+                        <format>IQ</format>
+                        <encoding>TC</encoding>
+                        <band id="L1"/>
+                    </stream>
+                </lump>
+            </chunk>
+        </block>
+    </lane>
+</metadata>
+```
+
+**NOTE:** the `ION_GSMS_Signal_Source` implementation is only present on the `next`
+branch of the upstream repository, and it will be included in the next stable
+release.
+{: .notice--warning }
+
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
@@ -511,7 +611,7 @@ This implementation accepts the following parameters:
 |  --------------  |
 | `implementation` | `Fifo_Signal_Source`                                                                                                                                                                                                                                                                   |  Mandatory   |
 |    `filename`    | Name of the fifo stream from which samples will be read.                                                                                                                                                                                                                               |  Mandatory   |
-|  `sample_type`   | [`ishort`, `gr_complex`]: Sample type in fifo stream. It defaults to `ishort`. The output of this block is always `gr_complex`.                                                                                                                                                        |   Optional   |
+|  `sample_type`   | [`ibyte`, `ishort`, `gr_complex`]: Sample type in fifo stream. It defaults to `ishort`. The output of this block is always `gr_complex`.                                                                                                                                                        |   Optional   |
 |      `dump`      | [`true`, `false`]: If set to `true`, it dumps the content of the source file `filename` in <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> format. It defaults to `false`. |   Optional   |
 | `dump_filename`  | If `dump` is set to `true`, the name of the dump file. It defaults to `./data/signal_source.dat`                                                                                                                                                                                       |   Optional   |
 |     -------      |
@@ -582,11 +682,6 @@ SignalSource.item_type=ishort
 SignalSource.dump=true
 SignalSource.dump_filename=./zmq_dump.dat
 ```
-
-NOTE: the `ZMQ_Signal_Source` implementation is only present on the `next`
-branch of the upstream repository, and it will be included in the next stable
-release.
-{: .notice--warning }
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -961,7 +1056,7 @@ This implementation accepts the following parameters:
 |     `rx1_enable`     | [`true`, `false`]: If set to `true`, it enables the RX1 chain. It defaults to `true`.                                                                                                                                                                                                                                                                                                                          |   Optional   |
 |     `rx2_enable`     | [`true`, `false`]: If set to `true`, it enables the RX2 chain. It defaults to `false`.                                                                                                                                                                                                                                                                                                                         |   Optional   |
 |    `buffer_size`     | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).                                                                                                                                                                                                                                                   |   Optional   |
-|     `quadrature`     | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/rf/wide-band-rf-transceivers/design-support/w/documents/10074/ad9361-transmit-quadrature-calibration-tx-quad-cal)). It defaults to `true`.                                                                                                                                          |   Optional   |
+|     `quadrature`     | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/rf/wide-band-rf-transceivers/design-support/w/documents/10074/ad9361-transmit-quadrature-calibration-tx-quad-cal)). It defaults to `true`.                                                                                                                                       |   Optional   |
 |       `rf_dc`        | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
 |       `bb_dc`        | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
 |   `gain_mode_rx1`    | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`.                                                                                                                                                         |   Optional   |
@@ -1062,7 +1157,7 @@ This implementation accepts the following parameters:
 |     `bandwidth`      | Configures RX analog filters TIA LPF and BB LPF, in Hz. It defaults to $$ 2000000 $$ Hz.                                                                                                                                                                                                                                                                                                                       |   Optional   |
 |     `item_type`      | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. |   Optional   |
 |    `buffer_size`     | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).                                                                                                                                                                                                                                                   |   Optional   |
-|     `quadrature`     | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/rf/wide-band-rf-transceivers/design-support/w/documents/10074/ad9361-transmit-quadrature-calibration-tx-quad-cal)). It defaults to `true`.                                                                                                                                          |   Optional   |
+|     `quadrature`     | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/rf/wide-band-rf-transceivers/design-support/w/documents/10074/ad9361-transmit-quadrature-calibration-tx-quad-cal)). It defaults to `true`.                                                                                                                                       |   Optional   |
 |       `rf_dc`        | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
 |       `bb_dc`        | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
 |     `gain_mode`      | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`.                                                                                                                                                          |   Optional   |
