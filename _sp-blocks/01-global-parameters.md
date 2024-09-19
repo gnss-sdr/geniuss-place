@@ -104,10 +104,17 @@ Users must register and log in on the [European GNSS Service Centre website](htt
 | `osnma_enable`  | [`true`, `false`]: Enables or disables the OSNMA service. It defaults to `true`. |   Optional   |
 | `osnma_public_key` | Path to the OSNMA Public Key (`.crt` file). it defaults to `./OSNMA_PublicKey_20240115100000_newPKID_1.crt` |   Optional   |
 | `osnma_merkletree` | Path to the Merkle Tree root (`.xml` file). It defaults to `./OSNMA_MerkleTree_20240115100000_newPKID_1.xml` |   Optional |
-| `osnma_mode` | If set to `strict`, only authenticated satellites are used in the PVT computation. If not set, the receiver will only log OSNMA events and warn the user in case of authentication failures. Please note that the `strict` mode requires the host computer's internal date and time to be synchronized with the Galileo System Time, allowing a tolerance of ±30 seconds, so it is only intended for real-time operation. |   Optional |
+| `osnma_mode` | If set to `strict`, only authenticated satellites are used in the PVT computation. If not set, the receiver will only log OSNMA events and warn the user in case of authentication failures. Please note that the `strict` mode requires the host computer's internal date and time to be synchronized with the Galileo System Time, allowing a tolerance of ±30 seconds, so it is only intended for real-time operation. No other systems than Galileo will be used in the PVT solution. |   Optional |
 | -------------- |
 
 Example in the configuration file:
+
+```ini
+GNSS-SDR.osnma_public_key=./OSNMA_PublicKey_20240115100000_newPKID_1.crt
+GNSS-SDR.osnma_merkletree=./OSNMA_MerkleTree_20240115100000_newPKID_1.xml
+```
+
+The same, but with the strict mode:
 
 ```ini
 GNSS-SDR.osnma_public_key=./OSNMA_PublicKey_20240115100000_newPKID_1.crt
