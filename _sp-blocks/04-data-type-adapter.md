@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-12-14T12:54:02-04:00
+last_modified_at: 2024-09-30T12:54:02-04:00
 ---
 
 
@@ -256,6 +256,41 @@ Example:
 ;######### DATA_TYPE_ADAPTER CONFIG ############
 DataTypeAdapter.implementation=Ishort_To_Complex
 ```
+
+### Implementation: `Cshort_To_Gr_Complex`
+
+This implementation takes samples of type <abbr id="data-type" title="Complex samples with real
+and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom
+definition of std::complex<int16_t>)">`cshort`</abbr> (complex samples with real
+and imaginary components of 16-bits integers each) at its input and writes samples of type
+<abbr id="data-type" title="Complex samples with real
+and imaginary parts of type 32-bit floating point. C++ name:
+std::complex<float>">`gr_complex`</abbr> (complex samples with real and
+imaginary components of 32 bits each) at its output.
+
+It accepts the following parameters:
+
+|----------
+|  **Parameter**   | **Description** | **Required** |
+| :--------------: | :-------------- | :----------: |
+|  --------------  |
+| `implementation` | `Cshort_to_Gr_Complex` |  Mandatory   |
+|     -------      |
+
+  _Data Type Adapter implementation:_ **`Cshort_to_Gr_Complex`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### DATA_TYPE_ADAPTER CONFIG ############
+DataTypeAdapter.implementation=Cshort_to_Gr_Complex
+```
+
+Please note that this implementation is currently available only in the `next` branch
+of the [upstream repository](https://github.com/gnss-sdr/gnss-sdr) and will be included
+in the next stable release of GNSS-SDR.
+{: .notice--warning}
 
 ### Implementation: `Pass_Through`
 
