@@ -266,8 +266,9 @@ the repository, build the source code and install the software in your system:
 
 ```console
 $ git clone https://github.com/gnss-sdr/gnss-sdr
-$ cd gnss-sdr/build
+$ cd gnss-sdr
 $ git checkout next
+$ mkdir -p build && cd build
 $ cmake ..
 $ make
 $ sudo make install
@@ -308,8 +309,9 @@ that is used by the Ninja build system to compile and link the source code.
 Thus, after cloning the repository, the build workflow is:
 
 ```console
-$ cd gnss-sdr/build
+$ cd gnss-sdr
 $ git checkout next
+$ mkdir -p build && cd build
 $ cmake -GNinja ..
 $ ninja
 $ sudo ninja install

@@ -71,7 +71,7 @@ This release has several improvements in different dimensions, addition of new f
  *  Improvements in the correctness of generated RINEX files.
  *  The receiver can read and make use of Galileo [almanac XML files published by the European GNSS Service Centre](https://www.gsc-europa.eu/gsc-products/almanac).
  *  Own-defined XML schemas for navigation data published [here](https://github.com/gnss-sdr/gnss-sdr/tree/next/docs/xml-schemas)
- *  Added program rinex2assist to convert RINEX navigation files into XML files usable for Assisted GNSS. Only available building from source. See the [README](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/rinex2assist).
+ *  Added program rinex2assist to convert RINEX navigation files into XML files usable for Assisted GNSS. Only available building from source. See the [README](https://github.com/gnss-sdr/gnss-sdr/tree/next/utils/rinex2assist).
 
 
 
@@ -124,7 +124,7 @@ This release has several improvements in different dimensions, addition of new f
 
 ## Improvements in [Reproducibility]({{ "/design-forces/reproducibility/" | relative_url }}):
 
- * Setup of a Continuous Reproducibility system at GitLab for the automatic reproduction of experiments. The concept was introduced in [this paper](https://ieeexplore.ieee.org/document/8331069/). Example added in the [`src/utils/reproducibility/ieee-access18/`](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/reproducibility/ieee-access18) folder.
+ * Setup of a Continuous Reproducibility system at GitLab for the automatic reproduction of experiments. The concept was introduced in [this paper](https://ieeexplore.ieee.org/document/8331069/). Example added in the [`utils/reproducibility/ieee-access18/`](https://github.com/gnss-sdr/gnss-sdr/tree/next/utils/reproducibility/ieee-access18) folder.
  * Fixes of Lintian warnings related to build reproducibility.
 
 ## Improvements in [Scalability]({{ "/design-forces/scalability/" | relative_url }}):

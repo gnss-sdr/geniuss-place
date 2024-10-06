@@ -1034,7 +1034,7 @@ Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_FMCOMMS2=ON`
 at configure time:
 
 ```console
-$ cd gnss-sdr/build
+$ cd gnss-sdr && mkdir build && cd build
 $ git checkout next
 $ git pull upstream next
 $ cmake -DENABLE_FMCOMMS2=ON ..
@@ -1136,7 +1136,7 @@ Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_PLUTOSDR=ON`
 at configure time:
 
 ```console
-$ cd gnss-sdr/build
+$ cd gnss-sdr && mkdir build && cd build
 $ git checkout next
 $ git pull upstream next
 $ cmake -DENABLE_PLUTOSDR=ON ..
@@ -1215,7 +1215,7 @@ Once `gr-limesdr` is installed, build GNSS-SDR passing the flag
 `-DENABLE_LIMESDR=ON` at configure time:
 
 ```console
-$ cd gnss-sdr/build
+$ cd gnss-sdr && mkdir build && cd build
 $ git checkout next
 $ git pull upstream next
 $ cmake -DENABLE_LIMESDR=ON ..

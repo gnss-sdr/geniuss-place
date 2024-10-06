@@ -53,10 +53,20 @@ Once all the required dependencies are installed in your system, the default
 building process is:
 
 ```console
-$ cd gnss-sdr/build
+$ cd gnss-sdr && git checkout next
+$ mkdir -p build && cd build
 $ cmake ..
 $ make
 $ sudo make install
+```
+
+or, alternatively:
+
+```console
+$ cd gnss-sdr && git checkout next
+$ cmake -S . -B build
+$ cmake --build build
+$ sudo cmake --install build
 ```
 
 CMake's defaults and GNSS-SDR project configuration settings can be overridden
@@ -66,6 +76,12 @@ on the command line with the -D option, with the following syntax:
 $ cmake -D<variable_name>=<value>
 ```
 {: class="no-copy"}
+
+or, if you are using CMake's binary options:
+
+```console
+$ cmake -S . -B build -D<variable_name>=<value>
+```
 
 Thus, if you want to set the variable named `CMAKE_BUILD_TYPE` to the `Debug`
 value, you can write in your command line:
