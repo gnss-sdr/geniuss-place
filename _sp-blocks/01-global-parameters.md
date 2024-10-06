@@ -139,9 +139,9 @@ client (_e.g._, with a telnet client) to the TCP port specified in the
 configuration file for telecommand.
 
 In order to use it, the executable `gnss-sdr` must be called with the
-[gnss-sdr-harness.sh](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/utils/scripts/gnss-sdr-harness.sh)
+[gnss-sdr-harness.sh](https://github.com/gnss-sdr/gnss-sdr/blob/next/utils/scripts/gnss-sdr-harness.sh)
 script provided at
-[src/utils/scripts](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/scripts):
+[utils/scripts](https://github.com/gnss-sdr/gnss-sdr/tree/next/utils/scripts):
 
 ```console
 $ gnss-sdr-harness.sh gnss-sdr -c config_file.conf
@@ -338,7 +338,7 @@ as a reference. So, if you are using the receiver with live signals from an RF
 front-end, you do not need to set this parameter.
 
 You could find useful the utility program
-[rinex2assist](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/rinex2assist)
+[rinex2assist](https://github.com/gnss-sdr/gnss-sdr/tree/next/utils/rinex2assist)
 for the generation of compatible XML files from recent, publicly available RINEX
 navigation data files.
 

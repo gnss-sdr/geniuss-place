@@ -57,8 +57,9 @@ By default, only a (large) subset of unit tests is compiled (see details
 [below]({{ "#unit-tests" }})). So, when doing:
 
 ```console
-$ cd gnss-sdr/build
+$ cd gnss-sdr
 $ git checkout next
+$ mkdir build && cd build
 $ cmake ..
 $ make
 $ make check  # THIS STEP IS OPTIONAL. It builds and runs a subset of tests.
@@ -927,17 +928,17 @@ place your testing code in an adequate folder from the GNSS-SDR source tree:
 
 Once the test code is written, you need to build and link it against the Google
 Test library. This process is managed in the file
-[gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt).
+[gnss-sdr/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/tests/CMakeLists.txt).
 You will need to list your new test in the appropriate place in order to include
 it in the building:
 
  * If your test is a Unit Test, please `#include` it in the file
- [gnss-sdr/src/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/test_main.cc)
+ [gnss-sdr/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/tests/test_main.cc)
  and rebuild the source code. It should be getting included in the test program
  `run_tests`.
 
  * If your test is a System Test, please modify accordingly the file
- [gnss-sdr/src/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/tests/CMakeLists.txt)
+ [gnss-sdr/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/tests/CMakeLists.txt)
  to define a new target and then rebuild the source code to get the new
  executable.
 
