@@ -622,7 +622,7 @@ The Protocol Buffers library allows to write listener applications in a wide
 range of programming languages. A very simple example written in C++ (an
 application that listens to a given port and dumps the retrieved messages in the
 terminal) using the `nav_message.proto` file is provided
-[here](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/utils/nav-listener/).
+[here](https://github.com/gnss-sdr/gnss-sdr/tree/next/utils/nav-listener/).
 This example uses the [Boost libraries](https://www.boost.org/) to handle UDP
 communications with [Boost
 Asio](https://www.boost.org/doc/libs/1_77_0/doc/html/boost_asio.html).

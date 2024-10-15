@@ -900,7 +900,7 @@ The existing tests are also a source of examples on how to write tests. Please
 place your testing code in an adequate folder from the GNSS-SDR source tree:
 
 ```
-├── src
+├── gnss-sdr
 │   ├── tests
 │   │   ├── CMakeLists.txt
 │   │   ├── common-files
