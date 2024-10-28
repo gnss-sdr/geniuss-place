@@ -155,7 +155,7 @@ Example of GNSS-SDR configuration:
 InputFilter.implementation=Fir_Filter
 
 InputFilter.dump=false
-InputFilter.dump_filename=../data/input_filter.dat
+InputFilter.dump_filename=./input_filter.dat
 
 InputFilter.input_item_type=cbyte
 InputFilter.output_item_type=gr_complex
@@ -250,7 +250,7 @@ Example:
 InputFilter.implementation=Freq_Xlating_Fir_Filter
 
 InputFilter.dump=false
-InputFilter.dump_filename=../data/input_filter.dat
+InputFilter.dump_filename=./input_filter.dat
 
 InputFilter.input_item_type=byte
 InputFilter.output_item_type=gr_complex

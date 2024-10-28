@@ -633,7 +633,7 @@ InputFilter.band2_error=1.0
 InputFilter.filter_type=bandpass
 InputFilter.grid_density=16
 InputFilter.dump=false
-InputFilter.dump_filename=../data/input_filter.dat
+InputFilter.dump_filename=./input_filter.dat
 
 ;######### RESAMPLER CONFIG ############
 Resampler.implementation=Pass_Through
