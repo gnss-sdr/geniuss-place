@@ -520,6 +520,33 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
 
 <ul class="biblist">
+    <!-- Item: Friedt24 -->
+    <li ><p>
+    J.-M&nbsp;Friedt
+    <br><b>Software Defined Radio for Time and Frequency Applications: Example of Passive Monitoring of TWSTFT and other Timing Signals</b><br>
+<i>2024 European Frequency and Time Forum (EFTF)</i>,
+ Neuch&acirc;tel, Switzerland, June 2024, pp. 7-10.
+    <br />
+    <a href="javascript:toggleBibtex('Friedt24')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://ieeexplore.ieee.org/document/10722130/" >Online</a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://doi.org/10.1109/EFTF61992.2024.10722130" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Friedt24" class="bibtex noshow" style="color: #111111">
+<pre>@inproceedings{ Friedt24,
+author = {J.M-~Friedt},
+booktitle = {European Frequency and Time Forum (EFTF)},
+title = {Software Defined Radio for Time and Frequency Applications: {E}xample of Passive Monitoring of {TWSTFT} and other Timing Signals},
+month = {Jun.},
+address = {Neuch\^{a}tel, Switzerland},
+year = {2024},
+pages = {7--10},
+note = {doi: 10.1109/EFTF61992.2024.10722130}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Akos22 -->
     <li ><p>
     D.&nbsp;Akos, J.&nbsp;Arribas, M.&nbsp;Z.&nbsp;H.&nbsp;Bhuiyan, P.&nbsp;Closas, F.&nbsp;Dovis, I.&nbsp;Fern&aacute;ndez-Hern&aacute;ndez, C.&nbsp;Fern&aacute;ndez-Prades, S.&nbsp;Gunawardena, T.&nbsp;Humphreys, Z.&nbsp;Kassas, J.&nbsp;Salcedo, M.&nbsp;Nicola, T.&nbsp;Pany, M.&nbsp;Psiaki, A.&nbsp;R&#252;gamer, Y.-J.&nbsp;Song, and J.-H.&nbsp;Won
