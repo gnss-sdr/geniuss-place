@@ -16,6 +16,33 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles in peer-reviewed, indexed Journals and Magazines</h3>
 
 <ul class="biblist">
+    <!-- Item: Li24 -->
+    <li ><p>
+    Yong Li, Chu He, Qile Zhao, Ming Xu, and Jiarui Hu
+    <br><b>Preliminary insights on fast GNSS signal capture using SFT and FFT frequency shift</b><br>
+    <i>Computers and Electrical Engineering</i>, Volume 119, Part B, 109563, Nov. 2024.
+    <br />
+    <a href="javascript:toggleBibtex('Li24')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.sciencedirect.com/science/article/abs/pii/S0045790624004907" >Online</a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1016/j.compeleceng.2024.109563" ><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Li24" class="bibtex noshow" style="color: #111111">
+    <pre>@article{ Li24,
+author  = {Yong Li and Chu He and Qile Zhao and Ming Xu and Jiarui Hu},
+title   = {Preliminary insights on fast {GNSS} signal capture using {SFT} and {FFT} frequency shift},
+journal = {Computers and Electrical Engineering},
+year    = {2024},
+month   = {Nov},
+volume  = {119},
+number  = {B},
+pages   = {109563},
+note    = { {doi}: 10.1016/j.compeleceng.2024.109563}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<ul class="biblist">
     <!-- Item: Majoral24 -->
     <li ><p>
     M.&nbsp;Majoral, J.&nbsp;Arribas, and C.&nbsp;Fern&aacute;ndez–Prades
@@ -28,7 +55,7 @@ List of academic papers in which GNSS-SDR has been referenced, described or used
     </p>
     <div id="bib_Majoral24" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Majoral24,
-author  = {M.~Majoral, J.~Arribas, C.~{Fern\'{a}ndez-Prades}},
+author  = {M.~Majoral and J.~Arribas and C.~{Fern\'{a}ndez-Prades}},
 title   = {Implementation of a High-Sensitivity {G}lobal {N}avigation {S}atellite {S}ystem Receiver on a System-on-Chip Field-Programmable Gate Array Platform},
 journal = {Sensors},
 year    = {2024},
@@ -60,7 +87,7 @@ note    = { {doi}: 10.3390/s24051416}
     </p>
     <div id="bib_Pany24" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Pany24,
-author  = {T.~Pany, D.~Akos, J.~Arribas, M.Z.H.~Bhuiyan, P.~Closas, F.~Dovis, I.~{Fern\'{a}ndez-Hern\'{a}ndez}, C.~{Fern\'{a}ndez-Prades}, S.~Gunawardena, T.~Humphreys, Z.M.~Kassas, J.A.~{L\'{o}pez~Salcedo}, M.~Nicola, M.L.~Psiaki, A.~R\"{u}gamer, Y.-J.~Song and J.-H.~Won},
+author  = {T.~Pany and D.~Akos and J.~Arribas and M.Z.H.~Bhuiyan and P.~Closas and F.~Dovis and I.~{Fern\'{a}ndez-Hern\'{a}ndez} and C.~{Fern\'{a}ndez-Prades} and S.~Gunawardena and T.~Humphreys and Z.M.~Kassas and J.A.~{L\'{o}pez~Salcedo} and M.~Nicola and M.L.~Psiaki and A.~R\"{u}gamer and Y.-J.~Song and J.-H.~Won},
 title   = { {GNSS} {S}oftware-{D}efined {R}adio: {H}istory, Current Developments, and Standardization Efforts},
 journal = {Navigation},
 year    = {2024},
@@ -78,7 +105,7 @@ note    = { {doi}: 10.33012/navi.628}
 <ul class="biblist">
     <!-- Item: Majoral23 -->
     <li ><p>
-    M.&nbsp;Majoral, C.&nbsp;Fern&aacute;ndez–Prades and J.&nbsp;Arribas
+    M.&nbsp;Majoral, C.&nbsp;Fern&aacute;ndez–Prades, and J.&nbsp;Arribas
     <br><b>A Flexible System-on-Chip Field-Programmable Gate Array Architecture for Prototyping Experimental Global Navigation Satellite System Receivers</b><br>
     <i>Sensors</i>, 23(23), 9483, pp. 1-39, Nov 2023.
     <br />
@@ -88,7 +115,7 @@ note    = { {doi}: 10.33012/navi.628}
     </p>
     <div id="bib_Majoral23" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Majoral23,
-author  = {M.~Majoral, C.~{Fern\'{a}ndez-Prades} and J.~Arribas},
+author  = {M.~Majoral and C.~{Fern\'{a}ndez-Prades} and J.~Arribas},
 title   = {A Flexible {S}ystem-on-{C}hip {F}ield-{P}rogrammable {G}ate {A}rray Architecture for Prototyping Experimental {G}lobal {N}avigation {S}atellite {S}ystem Receivers},
 journal = {Sensors},
 year    = {2023},
@@ -106,7 +133,7 @@ note    = { {doi}: 10.3390/s23239483}
 <ul class="biblist">
     <!-- Item: Gomez23 -->
     <li ><p>
-    M.A.&nbsp;G&oacute;mez, A.&nbsp;Solera-Rico, E.&nbsp;Valero, J.&nbsp;Arribas and C.&nbsp;Fern&aacute;ndez-Prades
+    M.A.&nbsp;G&oacute;mez, A.&nbsp;Solera-Rico, E.&nbsp;Valero, J.&nbsp;Arribas, and C.&nbsp;Fern&aacute;ndez-Prades
     <br><b>Enhancing GNSS receiver performance with software-defined vector carrier tracking for rocket launching</b><br>
     <i>Results in Engineering</i>, vol. 19, pp. 101310, Sept. 2023
     <br />
@@ -116,7 +143,7 @@ note    = { {doi}: 10.3390/s23239483}
     </p>
     <div id="bib_Gomez23" class="bibtex noshow" style="color: #111111">
     <pre>@article{ Gomez23,
-author  = {M.A.~G\'{o}mez, A.~{Solera-Rico}, E.~Valero, J.~Arribas and C.~{Fern\'{a}ndez-Prades}},
+author  = {M.A.~G\'{o}mez and A.~{Solera-Rico} and E.~Valero and J.~Arribas and C.~{Fern\'{a}ndez-Prades}},
 title   = {Enhancing {GNSS} receiver performance with software-defined vector carrier tracking for rocket launching},
 journal = {Results in Engineering},
 year    = {2023},
