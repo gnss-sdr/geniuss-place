@@ -547,6 +547,31 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
 
 <ul class="biblist">
+    <!-- Item: Ali24 -->
+    <li ><p>
+    M. Ali, F. Tuz Zahra, and A. Ali Raja
+    <br><b>Robust Spoofing Detection in GNSS-SDR Systems: A Two-Stage Method for Real-Time Signal Integrity</b><br>
+<i>3rd International Conference on Emerging Trends in Electrical, Control, and Telecommunication Engineering (ETECTE'24)</i>,
+ Lahore, Pakistan, Nov. 2024, pp. 1-6.
+    <br />
+    <a href="javascript:toggleBibtex('Ali24')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://www.researchgate.net/publication/385470272_Robust_Spoofing_Detection_in_GNSS-SDR_Systems_A_Two-Stage_Method_for_Real-Time_Signal_Integrity" >Online</a><span style="color: #52adc8">]</span>
+    </p>
+    <div id="bib_Ali24" class="bibtex noshow" style="color: #111111">
+<pre>@inproceedings{ Ali24,
+author = {M.~Ali and F.~{Tuz~Zahra} and A.~{Ali~Raja}},
+booktitle = {3rd International Conference on Emerging Trends in Electrical, Control, and Telecommunication Engineering (ETECTE'24)},
+title = {Robust Spoofing Detection in {GNSS-SDR} Systems: {A} Two-Stage Method for Real-Time Signal Integrity},
+month = {Nov.},
+address = {Lahore, Pakistan},
+year = {2024},
+pages = {1--6}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+<ul class="biblist">
     <!-- Item: Friedt24 -->
     <li ><p>
     J.-M&nbsp;Friedt
