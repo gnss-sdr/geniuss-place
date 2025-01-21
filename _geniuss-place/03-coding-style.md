@@ -1122,7 +1122,7 @@ clang-format version 19.1.6
 $ clang-format -i <file>
     ```
     {: class="no-copy"}
-  or for a folder and its and subfolders:
+  or for a folder and its subfolders:
 ```console
 $ find src/algorithms/conditioner/ -iname *.h -o -iname *.cc | xargs clang-format -i
 ```
