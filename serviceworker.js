@@ -1,5 +1,5 @@
 const releaseVersion = "0.0.19";
-const serviceWorkerVersion = "10";
+const serviceWorkerVersion = "11";
 const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
 
 const offlineFallbackPage = "offline.html";
@@ -34,6 +34,7 @@ self.addEventListener("install", function (event) {
           '/assets/images/logo-gsoc.png',
           '/assets/images/gnss-sdr_monitoring_teaser.png',
           '/assets/images/fpga-ip-core.png',
+          '/assets/images/OSNMA_teaser.png',
           '/assets/images/PDCA.png',
           '/assets/images/Cmake-logo.png',
           '/assets/images/oe-logo.png',
