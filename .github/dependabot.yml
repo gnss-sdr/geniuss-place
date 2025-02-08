@@ -6,6 +6,7 @@ version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
+    target-branch: gh-pages
     groups:
       github-actions:
         patterns:
