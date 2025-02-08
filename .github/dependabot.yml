@@ -19,7 +19,7 @@ updates:
     directory: "/"
     target-branch: gh-pages
     groups:
-      github-actions:
+      bundler:
         patterns:
           - "*"
     schedule:
