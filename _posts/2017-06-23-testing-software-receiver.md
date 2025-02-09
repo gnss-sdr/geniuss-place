@@ -344,4 +344,4 @@ please check [Testing the software receiver, Part II: Test Execution]({{
 
 [^Cross11]: N. Cross, [Design Thinking: Understanding How Designers Think and Work](https://books.google.es/books/about/Design_Thinking.html?id=F4SUVT1XCCwC), Berg Publishers, Oxford, UK, 2011.
 
-[^IEEE730]: IEEE Computer Society, [730-2014 - IEEE Standard for Software Quality Assurance Processes](https://ieeexplore.ieee.org/document/6835311/), New York, NY, 2014.
+[^IEEE730]: IEEE Computer Society, [730-2014 - IEEE Standard for Software Quality Assurance Processes](https://ieeexplore.ieee.org/document/6835311), New York, NY, 2014.

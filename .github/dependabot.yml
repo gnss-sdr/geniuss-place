@@ -1,4 +1,4 @@
-# Keep GitHub Actions up to date with GitHub's Dependabot
+# Keep GitHub Actions and Gems up to date with GitHub's Dependabot
 # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
 # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem
 
@@ -12,5 +12,18 @@ updates:
         patterns:
           - "*"  # Group all Actions updates into a single larger pull request    
     schedule:
-      # Check for updates to GitHub Actions every week
       interval: "weekly"
+      day: "monday"
+      time: "04:00"
+
+  - package-ecosystem: "bundler"
+    directory: "/"
+    target-branch: gh-pages
+    groups:
+      bundler:
+        patterns:
+          - "*"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "05:00"
