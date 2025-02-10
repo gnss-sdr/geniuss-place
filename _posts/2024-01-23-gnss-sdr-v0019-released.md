@@ -83,7 +83,7 @@ respect to the former release are listed below:
   user pressing Ctrl+C, or another user application sending an interruption
   signal).
 - The estimated CN0 value is now printed in the terminal when navigation data is
-  succesfully decoded.
+  successfully decoded.
 - Fixed GPS navigation message satellite validation.
 - Latitude and longitude are now reported in the terminal with six decimal
   places (the sixth decimal place worths up to 0.11 m), instead of the

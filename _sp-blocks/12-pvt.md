@@ -934,7 +934,7 @@ configuration file. The structure of this filter is as follows:
     \mathbf{P}_{k|k} = \left( \mathbf{I} - \mathbf{K}_{k} \mathbf{H} \right)\mathbf{P}_{k|k-1}
     \end{equation} $$
 
-The following parameters are exposed in the configuration, here with their defaut values:
+The following parameters are exposed in the configuration, here with their default values:
 
 -  $$ \sigma_{m\_pos} = \text{PVT.kf_measures_ecef_pos_sd_m} = 1.0 \text {, in [m].} $$ 
 -  $$ \sigma_{m\_vel} = \text{PVT.kf_measures_ecef_vel_sd_ms} = 0.1 \text {, in [m/s].} $$

@@ -1301,7 +1301,7 @@ $ make
 and check if there are warnings and/or fixes related to your code (use `git
 status` and `git diff`). If you agree with the changes, add and commit them in
 order to be included in your pull request. Otherwise, discard the changes with
-`git ckeckout -- /path/to/changed_file`.
+`git checkout -- /path/to/changed_file`.
 {% endcapture %}
 
 <div class="notice--danger">
