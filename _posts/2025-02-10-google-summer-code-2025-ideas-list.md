@@ -61,7 +61,9 @@ proposal process.
 
 -------
 
+&nbsp;
 
+&nbsp;
 ## Project Title: Integration of SBAS (EGNOS/WAAS) in GNSS-SDR
 ### Description:
 
@@ -82,7 +84,9 @@ Miguel Ángel Gómez, Luis Esteve, Javier Arribas.
 -------
 
 
+&nbsp;
 
+&nbsp;
 ## Project Title: Sensor Fusion
 ### Description:
 
@@ -98,10 +102,38 @@ Applicants should possess a fundamental understanding of digital signal processi
 ### Potential mentor(s):
 Miguel Ángel Gómez.
 
+&nbsp;
 
+&nbsp;
+
+## Project Title: Improving the volk-gnsssdr library
+### Description:
+
+**Medium project (175 h)**
+
+This project aims to improve [volk-gnsssdr](https://github.com/gnss-sdr/gnss-sdr/next/main/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr), the Vector-Optimized Library of Kernels for GNSS-SDR. This library provides SIMD-optimized implementations of essential signal processing functions (named *kernels* in this context) for efficient execution on modern processors.
+
+
+* **Objectives:** During the summer, the focus will be on:
+
+  - Identifying performance-critical kernels that significantly impact GNSS-SDR execution speed.
+  - Implementing missing SIMD optimizations by adding NEON (for ARM architectures) and RISC-V vector extensions to existing kernels.
+  - Benchmarking and validating improvements to ensure enhanced performance and correctness across different hardware platforms. *No physical access to those hardware platforms is required.*
+* **Expected outcomes:** By the end of the project, volk-gnsssdr will have broader SIMD coverage, improving the efficiency of GNSS-SDR on ARM and RISC-V architectures, making it more portable and performant for diverse GNSS applications.
+
+
+### Required skills:
+Applicants should have a solid understanding of numerical computations and be proficient in C programming.
+
+### Potential mentor(s):
+Carles Fernández-Prades.
 
 ---------
+&nbsp;
 
+&nbsp;
+
+# Proposal submission
 Please provide in your proposal the information listed down below. Text
 formatting is up to you, but be sure to include those sections. Other additions
 are welcome if relevant.
