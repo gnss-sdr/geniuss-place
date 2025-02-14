@@ -873,7 +873,7 @@ The following table lists the GNSS signals providing Open Service.
 
 ## References
 
-[^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](https://ieeexplore.ieee.org/document/5942139/), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](https://doi.org/10.1109/JPROC.2011.2158032).
+[^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](https://ieeexplore.ieee.org/document/5942139), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](https://doi.org/10.1109/JPROC.2011.2158032).
 
 [^GPS-SPS]: U.S. Government, Department of Defense, [Global Positioning System Standard Positioning Service Performance Standard](https://www.gps.gov/technical/ps/2020-SPS-performance-standard.pdf), 5th edition, April 2020.
 
