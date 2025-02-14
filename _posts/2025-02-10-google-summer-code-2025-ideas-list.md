@@ -102,7 +102,9 @@ Applicants should possess a fundamental understanding of digital signal processi
 
 ### Potential mentor(s):
 Miguel Ángel Gómez.
+
 -------
+
 &nbsp;
 
 &nbsp;
@@ -123,7 +125,9 @@ Applicants should possess a fundamental understanding of digital signal processi
 ## Potential mentor(s):
 
 Miguel Ángel Gómez.
+
 -------
+
 &nbsp;
 
 &nbsp;
