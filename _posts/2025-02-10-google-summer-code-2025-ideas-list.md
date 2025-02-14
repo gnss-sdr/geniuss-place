@@ -64,16 +64,17 @@ proposal process.
 &nbsp;
 
 &nbsp;
-## Project Title: Integration of SBAS (EGNOS/WAAS) in GNSS-SDR
+
+## Project Title: WAAS
 ### Description:
 
 **Large-sized project (350 h)**
 
-This Google Summer of Code (GSoC) project focuses on advancing the functionalities of GNSS receiver related to SBAS.
+This Google Summer of Code (GSoC) project focuses on advancing the functionalities of GNSS-SDR receivers related to WAAS.
 
-The primary goal for the summer is to provide a working implementation of a GNSS receiver working with SBAS signals: Signal acquisition and tracking algorithms for their specific signals. The outcome should be a robust GNSS receiver capable of delivering RINEX-B files and real-time navigation solutions including SBAS information.
+The primary goal for the summer is to provide a working implementation of a GNSS-SDR receiver working with WAAS signals: Signal acquisition and tracking algorithms for their specific signals. The outcome should be a robust GNSS receiver capable of delivering RINEX-B files and real-time navigation solutions including SBAS information.
 
-Implement acquisition and tracking algorithms for EGNOS signals, following the examples already implemented for other GNSS signals. This would facilitate research on precise positioning, safety positioning and and drone-related activities working with real signals. Demodulation of the navigation message, opening the door to open innovation in multi-constellation receivers.
+Implement acquisition and tracking algorithms for WAAS signals, following the examples already implemented for other GNSS signals. This would facilitate research on precise positioning, safety positioning and drone-related activities working with real signals. Demodulation of the navigation message, opening the door to open innovation in multi-constellation receivers.
 
 ### Required skills:
 Basic knowledge of digital signal processing and proficiency in C++ programming are essential. Familiarity with the GNU Radio framework or GNSS-SDR is considered a valuable plus.
@@ -101,7 +102,28 @@ Applicants should possess a fundamental understanding of digital signal processi
 
 ### Potential mentor(s):
 Miguel Ángel Gómez.
+-------
+&nbsp;
 
+&nbsp;
+
+
+## Project Title: Vector Tracking
+
+### Description:
+
+Large-sized project (350 h)
+
+This Google Summer of Code initiative aims to enhance vector tracking capabilities between GNSS (Global Navigation Satellite System). The goal is to develop a functional GNSS-SDR receiver capable of performing Vector Tracking. It is well-known that the use of Vector Tracking Loops (VTL) in GNSS receivers can result in improved tracking performance and sensitivity, faster acquisition, and improved interference robustness. This project leads to a real-time SDR GNSS VTL receiver capable of working with different COTS front-ends.  These methods will enhance research on sensor fusion, precise positioning, and urban canyon navigation using real-world signals.
+
+## Required skills:
+
+Applicants should possess a fundamental understanding of digital signal processing and demonstrate proficiency in C++ programming. Knowledge of GNSS principles and prior experience with sensor fusion, particularly between GNSS and INS, will be advantageous.
+
+## Potential mentor(s):
+
+Miguel Ángel Gómez.
+-------
 &nbsp;
 
 &nbsp;
