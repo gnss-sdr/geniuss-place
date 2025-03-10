@@ -12,7 +12,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2023-08-21T08:37:02+02:00
+last_modified_at: 2025-03-10T08:37:02+02:00
 ---
 
 
@@ -763,7 +763,7 @@ Details of the $$ e_{B2Q}(t) $$ component have not been disclosed.
 
 As stated in the ICD[^Beidou], *"B2I will be gradually replaced by a better
 signal with the construction of global system"*. That new "better signal" is
-B2a, described below.
+B2b, described below.
 
 ### BeiDou B2a
 
@@ -793,6 +793,28 @@ bit/s.
 
 This signal replaces the former B2I defined in version 2.1 of the ICD[^Beidou].
 
+### BeiDou B2b
+
+BeiDou B2b signals, transmitted by Medium Earth Orbit (MEO) satellites and the
+Inclined GeoSynchronous Orbit (IGSO) satellites of BDS-3, are centered at  $$
+f_{B2b} = 1207.14 $$ MHz, featuring a data channel with a BPSK(10) modulation in
+the I component:[^BeidouB2b]
+
+$$ \begin{equation}
+s^{\text{(BeiDou B2b)}}_{T}(t) = \frac{1}{\sqrt{2}}D_{B2bI}(t)C_{B2bI}(t)~,
+\end{equation} $$
+
+with
+
+$$ \begin{equation}
+D_{B2b-I}(t) = \sum_{k=-\infty}^{\infty} d_{B2bI} [k] p(t-kT_{B2bI})
+\end{equation} $$
+and
+$$ \begin{equation}
+C_{B2bI}(t) =\sum_{n=-\infty}^{\infty}\sum_{k=0}^{N_{B2bI}-1} c_{B2b-I}[k]p(t-(N_{B2bI}n+k)T_{c,B2bI})~,
+\end{equation} $$
+
+where $$N_{B2bI}=10230$$ is the code length, and $$T_{c,B2bI}=\frac{1}{10.23}$$ $$\mu$$s is the chip period.
 
 ### BeiDou B3I
 
@@ -848,6 +870,7 @@ The following table lists the GNSS signals providing Open Service.
 | [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$  | $$ 1202.025 $$ MHz |    BPSK(10)    |
 |          [**Galileo E5b**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf)          | $$ 1207.14 $$ MHz  |    QPSK(10)    |
 |                      [**BeiDou B2I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf)                      | $$ 1207.14 $$ MHz  |    BPSK(2)     |
+| [**BeiDou B2b**](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/202008/P020231201543618407017.pdf)                           | $$ 1207.14 $$ MHz  |    BPSK(10)    |
 |                         [**GPS L2C**](https://www.gps.gov/technical/icwg/IS-GPS-200N.pdf)$$ ^{(*)} $$                          | $$ 1227.60 $$ MHz  |    BPSK(1)     |
 |             [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)              | $$ 1246.00 $$ MHz  |   BPSK(0.5)    |
 | [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$ | $$ 1248.06 $$ MHz  |    BOC(1,1)    |
@@ -910,5 +933,7 @@ The following table lists the GNSS signals providing Open Service.
 [^BeidouB1C]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B1C (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf). China Satellite Navigation Office, December 2017.
 
 [^BeidouB2a]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B2a (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf). China Satellite Navigation Office, December 2017.
+
+[^BeidouB2b]:  BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B2b (Version 1.0)](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/202008/P020231201543618407017.pdf). China Satellite Navigation Office, July 2020.
 
 [^BeidouB3I]: BeiDou Navigation Satellite System Signal In Space Interface Control Document. [Open Service Signal B3I (Version 1.0)](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf). China Satellite Navigation Office, February 2018.
