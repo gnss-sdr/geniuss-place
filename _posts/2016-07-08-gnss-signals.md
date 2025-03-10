@@ -811,7 +811,7 @@ D_{B2bI}(t) = \sum_{k=-\infty}^{\infty} d_{B2bI} [k] p(t-kT_{B2bI})
 \end{equation} $$
 and
 $$ \begin{equation}
-C_{B2bI}(t) =\sum_{n=-\infty}^{\infty}\sum_{k=0}^{N_{B2bI}-1} c_{B2b-I}[k]p(t-(N_{B2bI}n+k)T_{c,B2bI})~,
+C_{B2bI}(t) =\sum_{n=-\infty}^{\infty}\sum_{k=0}^{N_{B2bI}-1} c_{B2bI}[k]p(t-(N_{B2bI}n+k)T_{c,B2bI})~,
 \end{equation} $$
 
 where $$N_{B2bI}=10230$$ is the code length, and $$T_{c,B2bI}=\frac{1}{10.23}$$ $$\mu$$s is the chip period.
