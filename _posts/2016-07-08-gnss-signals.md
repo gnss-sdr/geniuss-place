@@ -801,13 +801,13 @@ f_{B2b} = 1207.14 $$ MHz, featuring a data channel with a BPSK(10) modulation in
 the I component:[^BeidouB2b]
 
 $$ \begin{equation}
-s^{\text{(BeiDou B2b)}}_{T}(t) = \frac{1}{\sqrt{2}}D_{B2bI}(t)C_{B2bI}(t)~,
+s^{\text{(BeiDou B2b)}}_{T,I}(t) = \frac{1}{\sqrt{2}}D_{B2bI}(t)C_{B2bI}(t)~,
 \end{equation} $$
 
 with
 
 $$ \begin{equation}
-D_{B2b-I}(t) = \sum_{k=-\infty}^{\infty} d_{B2bI} [k] p(t-kT_{B2bI})
+D_{B2bI}(t) = \sum_{k=-\infty}^{\infty} d_{B2bI} [k] p(t-kT_{B2bI})
 \end{equation} $$
 and
 $$ \begin{equation}
