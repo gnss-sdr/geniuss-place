@@ -155,6 +155,47 @@ Applicants should have a solid understanding of numerical computations and be pr
 Carles Fernández-Prades.
 
 ---------
+
+&nbsp;
+
+&nbsp;
+
+## Project Title: Galileo E5 implementation in GNSS-SDR with RFSoC front-end
+
+### Description:
+
+**Large-sized project (350 h)**
+
+The Galileo E5 signal is one of the key signals used in the European Galileo Global Navigation Satellite System (GNSS). It operates in the 1164–1215 MHz frequency band and is divided into two main components:
+
+  - E5a (1164–1189 MHz) – Aligned with GPS L5 for interoperability.
+  - E5b (1189–1214 MHz) 
+
+Currently GNSS-SDR is able to use only the E5a / E5b signal component as different signals. However, if both components are processed together, a number of benefits arise:
+
+ 1. **Higher Accuracy** – Utilizes a wide bandwidth (50 MHz), providing better resolution and positioning precision.
+ 2. **Robust Multipath Resistance** – Reduces signal reflection errors, making it more reliable in urban environments due to better autocorrelation properties.
+ 3. **Improved Signal Penetration** – Offers better performance in challenging environments (e.g., forests, cities).
+ 4. **Lower Noise and Jamming Resistance** – The AltBOC (Alternative Binary Offset Carrier) modulation adds resilience against interferences
+
+This makes E5 ideal for high-precision applications, including aviation, geodesy, and autonomous navigation.
+
+In order to implement a new signal processing chain in GNSS-SDR, it is required to create the following new GNSS-SDR processing blocks:
+
+* Galileo E5 acquisition
+* Galileo E5 tracking
+* Galileo E5 telemetry decoding
+
+
+### Required skills:
+Basic knowledge of digital signal processing and proficiency in C++ programming are essential. Familiarity with the GNU Radio framework or GNSS-SDR is considered a valuable plus.
+
+### Potential mentor(s):
+Javier Arribas.
+
+
+---------
+
 &nbsp;
 
 &nbsp;
