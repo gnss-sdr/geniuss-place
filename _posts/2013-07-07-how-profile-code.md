@@ -204,7 +204,7 @@ First of all, you need to install Callgrind and KCachegrind. In Ubuntu, you can
 install everything by doing
 
 ```console
-$ sudo apt-get install valgrind kcachegrind
+$ sudo apt install valgrind kcachegrind
 ```
 
 in a terminal. To profile an application with Callgrind, you just have to

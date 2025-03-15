@@ -43,8 +43,8 @@ $
 Please check that your installed version is 0.0.19 (or something like
 0.0.19.git-`branchname`-`githash` if you built the code from a source code
 snapshot). Older versions could not work for the example shown here. If you
-installed GNSS-SDR by doing `sudo apt-get install gnss-sdr` and you got a
-version earlier to 0.0.19, please do `sudo apt-get remove gnss-sdr` and [build
+installed GNSS-SDR by doing `sudo apt install gnss-sdr` and you got a
+version earlier to 0.0.19, please do `sudo apt remove gnss-sdr` and [build
 it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 

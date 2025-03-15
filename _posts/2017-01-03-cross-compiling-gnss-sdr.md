@@ -236,7 +236,7 @@ Using the SDK
 Install some basic packages required by the SDK:
 
 ```console
-$ sudo apt-get install xz-utils python3
+$ sudo apt install xz-utils python3
 ```
 
 Then, download an SDK shell script from the [table above](#sdk-table) (or use
@@ -361,7 +361,7 @@ address. Let's say it's called "mydevice" and it has an ip address of
 install sshfs and mount mydevice locally:
 
 ```console
-$ sudo apt-get install sshfs
+$ sudo apt install sshfs
 $ sudo gpasswd -a $USER fuse
 $ cd
 $ mkdir mydevice

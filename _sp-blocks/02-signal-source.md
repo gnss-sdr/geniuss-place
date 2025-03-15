@@ -1001,14 +1001,14 @@ from the source code after installing the required software dependencies.
 In Debian Buster or Ubuntu Cosmic, those dependencies can be installed as:
 
 ```console
-$ sudo apt-get install libiio-dev gr-iio
+$ sudo apt install libiio-dev gr-iio
 ```
 
 In older releases or other distributions, dependencies can be built from source
 as:
 
 ```console
-$ sudo apt-get install libxml2-dev bison flex
+$ sudo apt install libxml2-dev bison flex
 $ git clone https://github.com/analogdevicesinc/libiio
 $ cd libiio
 $ mkdir build && cd build && cmake .. && make && sudo make install
@@ -1110,7 +1110,7 @@ In order to make use of this block implementation, you need to build GNSS-SDR
 from the source code after installing the required software dependencies:
 
 ```console
-$ sudo apt-get install libxml2-dev bison flex
+$ sudo apt install libxml2-dev bison flex
 $ git clone https://github.com/analogdevicesinc/libiio
 $ cd libiio
 $ mkdir build && cd build && cmake .. && make && sudo make install
@@ -1207,7 +1207,7 @@ GNSS-SDR from the source code after installing the required software
 dependencies. On Debian-based systems, this can be done by:
 
 ```console
-$ sudo apt-get install gr-limesdr
+$ sudo apt install gr-limesdr
 ```
 
 Please check the [official instructions](https://wiki.myriadrf.org/Gr-limesdr_Plugin_for_GNURadio)

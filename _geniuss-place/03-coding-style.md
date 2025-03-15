@@ -1052,7 +1052,7 @@ You can use clang-format in two simple steps:
 
   * **In GNU/Linux using Debian / Ubuntu distributions:**
 ```console
-$ sudo apt-get install clang-format
+$ sudo apt install clang-format
 ```
 
   * **In GNU/Linux using Fedora / CentOS distributions:**
@@ -1201,7 +1201,7 @@ You can use clang-tidy in two simple steps:
 
 * **In GNU/Linux using Debian / Ubuntu distributions:**
 ```console
-$ sudo apt-get install clang clang-tidy
+$ sudo apt install clang clang-tidy
 ```
 
 * **In GNU/Linux using Fedora / CentOS distributions:**
