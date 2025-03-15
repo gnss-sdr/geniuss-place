@@ -182,7 +182,7 @@ guide to all CMake variables, commands, and properties.
 | ----------                   |
 
 Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb
-package (`sudo apt-get install gnss-sdr`), the option `ENABLE_OSMOSDR` is set to
+package (`sudo apt install gnss-sdr`), the option `ENABLE_OSMOSDR` is set to
 `ON`, and the required drivers are already installed.
 
 
@@ -288,7 +288,7 @@ definitions.
 In Debian and Ubuntu machines, clang-tidy can be installed with:
 
 ```console
-$ sudo apt-get install clang clang-tidy
+$ sudo apt install clang clang-tidy
 ```
 
 Example of usage:
@@ -326,7 +326,7 @@ local installation of MathJax (version 2.x) by disabling the option below.
 For instance, in Debian/Ubuntu systems MathJax can be installed as:
 
 ```console
-$ sudo apt-get install libjs-mathjax
+$ sudo apt install libjs-mathjax
 ```
 
 --------

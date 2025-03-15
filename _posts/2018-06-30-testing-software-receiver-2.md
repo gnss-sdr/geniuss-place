@@ -28,7 +28,7 @@ be seen as Performance tests.
 In order to execute the tests, you must build GNSS-SDR from source. If the
 Google C++ Testing Framework source code is not already present in your system
 (and pointing the `GTEST_DIR` environment variable to the root of the source
-code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt-get
+code tree or, on Debian-based GNU/Linux distributions, doing `sudo apt
 install libgtest-dev`), it will be automatically downloaded from its Git
 repository, compiled and linked to GNSS-SDR at building time. The CMake script
 automates all those steps for you.
@@ -36,7 +36,7 @@ automates all those steps for you.
 **Tip:** some tests can optionally output plots if
 [Gnuplot](http://www.gnuplot.info/), a portable command-line driven graphing
 utility, is installed in your system. If you want to use this feature, install
-Gnuplot (by doing `sudo apt-get install gnuplot` in Debian-based Linux
+Gnuplot (by doing `sudo apt install gnuplot` in Debian-based Linux
 distributions, or `sudo port install gnuplot` using Macports in macOS) before
 building GNSS-SDR, and then activate the corresponding flag in the tests in
 which it is allowed (those flags start with `--plot_...`). This will display

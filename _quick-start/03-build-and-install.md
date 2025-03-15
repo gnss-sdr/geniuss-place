@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2022-07-31T11:13:02+02:00
+last_modified_at: 2025-03-14T11:13:02+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -26,7 +26,7 @@ This page describes several ways to build and install GNSS-SDR.
 Starting from Debian 9 and Ubuntu 16.04, you can install GNSS-SDR just by doing:
 
 ```console
-$ sudo apt-get install gnss-sdr
+$ sudo apt install gnss-sdr
 ```
 
 However, even on very recent distributions, the latest packaged GNSS-SDR version
@@ -49,9 +49,9 @@ position fix]({{ "/my-first-fix/" | relative_url }}). If your Operating System
 release still does not include the GNSS-SDR package, you can
 [build it from source](#source).
 
-## macOS / Mac OS X using Macports
+## macOS using Macports
 
-If you are using macOS 11 Big Sur (or Mac OS X 10.9 and above), and the
+If you are using macOS 12 Monterey or above, and the
 [Macports](https://www.macports.org/) package manager, GNSS-SDR can be installed
 by typing in a Terminal:
 
@@ -138,36 +138,27 @@ below.
 
 ### Install all dependencies using packages
 
-If you are using Debian 8, Ubuntu 14.10 or above, this can be done by copying
-and pasting the following line in a terminal:
+If you are using Debian or Ubuntu, you can install the required dependencies by
+running the following commands in a terminal:
 
 ```console
-$ sudo apt-get install build-essential cmake git pkg-config libboost-dev \
-   libboost-date-time-dev libboost-system-dev libboost-filesystem-dev \
-   libboost-thread-dev libboost-chrono-dev libboost-serialization-dev \
-   libboost-program-options-dev libboost-test-dev liblog4cpp5-dev \
-   libuhd-dev gnuradio-dev gr-osmosdr libblas-dev liblapack-dev \
-   libarmadillo-dev libgflags-dev libgoogle-glog-dev libhdf5-dev \
-   libgnutls-openssl-dev libmatio-dev libpugixml-dev libpcap-dev \
-   libprotobuf-dev protobuf-compiler libgtest-dev googletest \
-   python3-mako python3-six
+$ sudo apt update
+$ sudo apt build-dep gnss-sdr
 ```
 
-**Note for Ubuntu 14.04 LTS users:** you will need to build from source and
-install GNU Radio manually, as explained below, since GNSS-SDR requires
-gnuradio-dev >= 3.7.3, and Ubuntu 14.04 came with 3.7.2. Install all the
-packages above BUT EXCEPT `libuhd-dev`, `gnuradio-dev` and `gr-osmosdr` (and
-remove them if they are already installed in your machine), and install those
-dependencies using PyBOMBS, as explained below. <br/><br/> **Note for Ubuntu
-older than 16.04:** Packages `python3-mako` and `python3-six` must be replaced
-by `python-mako` and `python-six`.
-{: .notice--warning}
+The `build-dep` option tells `apt` to install all the dependencies required 
+to build `gnss-sdr` from source for your specific distribution. This **does not**
+install `gnss-sdr` itself, only its dependencies.
+
+If you are building the software from the `next` branch of the upstream repository,
+please check the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/next/README.md#alternative-1-install-dependencies-using-software-packages)
+file to see if any new dependencies have been added or if others have been removed
+since the version packaged in your distribution.
 
 Once you have installed these packages, you can jump directly to
 [clone, build and install GNSS-SDR](#build).
 
-<i class="fab fa-linux fa-xl"></i> For other distributions (_e.g._ Arch Linux,
-Debian, Fedora, openSUSE, Rocky Linux) please check the list of dependency
+<i class="fab fa-linux fa-xl"></i> For other distributions (_e.g._ Arch Linux, Fedora, openSUSE, Rocky Linux) please check the list of dependency
 packages in the
 [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/next/README.md#alternative-1-install-dependencies-using-software-packages)
 file.
@@ -189,7 +180,7 @@ Here we provide a quick step-by-step tutorial.
 First of all, install some basic packages:
 
 ```console
-$ sudo apt-get install git python3-pip
+$ sudo apt install git python3-pip
 ```
 
 Download, build and install PyBOMBS:
@@ -276,7 +267,7 @@ $ sudo make install
 
 The step `git checkout next` is optional, and sets the source tree pointing to
 the `next` branch, which is the most recent development snapshot. If this step
-is omitted it takes the `master` branch by default, which contains the latest
+is omitted it takes the `main` branch by default, which contains the latest
 stable release, and maybe some bug fixes.
 
 In addition, CMake accepts a number of configuration options for your building
@@ -325,7 +316,7 @@ especially for developers who need to often recompile the source code. In
 Debian-based GNU/Linux distributions, it can be installed by doing:
 
 ```console
-$ sudo apt-get install ninja-build
+$ sudo apt install ninja-build
 ```
 
 On macOS, Ninja can be installed using Macports:
@@ -354,7 +345,7 @@ default. In GNU/Linux, it can be used to build GNSS-SDR in replacement of GCC.
 In Debian/Ubuntu-based distributions, Clang can be installed by doing:
 
 ```console
-$ sudo apt-get install clang
+$ sudo apt install clang
 ```
 
 Other packages specifying the Clang version, such as `clang-3.4`, `clang-3.8`,

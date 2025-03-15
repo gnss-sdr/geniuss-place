@@ -51,7 +51,7 @@ Finally, at the other end, the monitoring client deserializes the Gnss_Synchro o
 Copy and paste the following line in a terminal:
 
 ```console
-$ sudo apt-get install build-essential cmake libboost-dev libboost-system-dev \
+$ sudo apt install build-essential cmake libboost-dev libboost-system-dev \
    libprotobuf-dev protobuf-compiler libncurses5-dev libncursesw5-dev wget
 ```
 This will install the GCC/g++ compiler, the CMake build system, and the library dependencies: Protocol Buffers, Boost, and [ncurses](https://www.gnu.org/software/ncurses/ncurses.html).
