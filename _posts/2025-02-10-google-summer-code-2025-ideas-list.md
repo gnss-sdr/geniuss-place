@@ -193,6 +193,38 @@ Basic knowledge of digital signal processing and proficiency in C++ programming 
 ### Potential mentor(s):
 Javier Arribas.
 
+---------
+
+&nbsp;
+
+&nbsp;
+
+## Project Title: Enhancing GNSS-SDR’s PVT engine with DGNSS support via RTCM corrections
+
+### Description:
+
+**Large-sized project (350 h)**
+
+This project aims to enhance the Position, Velocity, and Time (PVT) engine of GNSS-SDR by improving its handling of Differential GNSS (DGNSS) corrections using RTCM messages. While GNSS-SDR already integrates RTKLIB, its real-time correction capabilities can be expanded to process RTCM-based corrections more efficiently, improving positioning accuracy in degraded GNSS environments.
+
+* Benefits to the Community
+  - Accurate positioning is critical for applications such as autonomous navigation, surveying, and georeferencing. By enhancing GNSS-SDR’s PVT engine to incorporate real-time RTCM corrections from base stations, users will gain access to a fully open-source software-defined radio (SDR) receiver capable of precise positioning without proprietary solutions. This will make GNSS-SDR a more competitive and accessible tool for research and development.
+
+* Technical Details
+  - Modify GNSS-SDR’s PVT engine to properly integrate real-time corrections from RTCM sources.
+  - Implement support for key RTCM messages (e.g., MSM, ionospheric corrections, and base station coordinates).
+  - Optimize the processing pipeline to minimize latency in differential corrections application.
+
+* Expected Impact
+  - This project will enable GNSS-SDR to function as a robust open-source DGNSS-capable receiver, improving its usability for high-precision GNSS applications.
+
+### Required skills:
+C++ and Python programming. GNSS signal processing and PVT computation. RTCM protocol and DGNSS principles. Software-defined radio (SDR) development.
+
+
+### Potential mentor(s):
+Javier Arribas, Carles Fernandez, Miguel Ángel Gómez
+
 
 ---------
 
