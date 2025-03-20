@@ -15,8 +15,8 @@ This year, GNSS-SDR is serving again as a mentor organization for [Google
 Summer of Code](https://summerofcode.withgoogle.com/) (also known as GSoC), a
 global program that offers contributors stipends to write code for open source
 projects. You must be at least 18 years old and must be eligible
-to work in your country of residence during duration of the program to be
-eligible to participate in Google Summer of Code in 2024.
+to work in your country of residence during the duration of the program to be
+eligible to participate in Google Summer of Code in 2025.
 
 If you are an eligible and interested contributor, read through the list and note
 the projects you are interested in. You, as the contributor programmer, then submit
