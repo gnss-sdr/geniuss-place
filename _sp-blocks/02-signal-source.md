@@ -585,11 +585,6 @@ the data file used in [My first position fix]({{ "/my-first-fix/" | relative_url
 </metadata>
 ```
 
-**NOTE:** the `ION_GSMS_Signal_Source` implementation is only present on the `next`
-branch of the upstream repository, and it will be included in the next stable
-release.
-{: .notice--warning }
-
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
@@ -844,8 +839,8 @@ This implementation accepts the following parameters:
 |       `if_bw`        | Set the bandpass filter on the radio frontend, in Hz. It defaults to `0` (automatic selection). This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                 |   Optional   |
 | `sampling_frequency` | Sampling frequency, in samples per second. It defaults to 2 Ms/s.                                                                                                                                                                                                                                                                                                                                               |   Optional   |
 |    `AGC_enabled`     | [`true`, `false`]: If set to `true`, enables Automatic Gain Control. It defaults to `false`.                                                                                                                                                                                                                                                                                                                    |   Optional   |
-| `iq_balance_mode` | [`0`, `1`, `2`]: Set the RF front-end IQ balance mode: `0` = Off, `1` = Manual, `2` = Automatic. The automatic correction uses an algorithm to adjust for I-Q imbalance. It defaults to `2` (Automatic). <span style="color: orange">This configuration parameter is currently available only in the `next` branch of the upstream repository and will be included in the next stable release.</span> | Optional |
-| `dc_offset_mode` | [`0`, `1`, `2`]: Set the RF front-end DC correction mode: `0` = Off, `1` = Manual, `2` = Automatic. The automatic correction subtracts out the long-run average. It defaults to `2` (Automatic). <span style="color: orange">This configuration parameter is currently available only in the `next` branch of the upstream repository and will be included in the next stable release.</span> | Optional |
+| `iq_balance_mode` | [`0`, `1`, `2`]: Set the RF front-end IQ balance mode: `0` = Off, `1` = Manual, `2` = Automatic. The automatic correction uses an algorithm to adjust for I-Q imbalance. It defaults to `2` (Automatic). | Optional |
+| `dc_offset_mode` | [`0`, `1`, `2`]: Set the RF front-end DC correction mode: `0` = Off, `1` = Manual, `2` = Automatic. The automatic correction subtracts out the long-run average. It defaults to `2` (Automatic).  | Optional |
 |      `samples`       | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples.                                                                                                                                                                                                                                                                                                                        |   Optional   |
 |     `item_type`      | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only  <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. |   Optional   |
 |    `osmosdr_args`    | Pass arguments to the OsmoSDR driver. Check the [gr-osmosdr wiki](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR) for a list of arguments for your specific hardware.                                                                                                                                                                                                                                   |   Optional   |
@@ -1430,12 +1425,6 @@ Examples of such configuration could be:
   GPS L2C (M) signals.</figcaption>
 </figure>
 
-
-**NOTE**: Parameter name `Receiver.sources_count` has been replaced by
-`GNSS-SDR.num_sources` in the `next` branch of the upstream repository. The old
-parameter name is still read to ensure backward compatibility with configuration
-files using that nomenclature.
-{: .notice--warning }
 
 
 ```ini

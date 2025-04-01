@@ -128,9 +128,6 @@ Example to turn off the OSNMA reception:
 GNSS-SDR.osnma_enable=false
 ```
 
-**NOTE**: The OSNMA service is only available from the `next` branch of the upstream repository, and it will be present in the next stable release of GNSS-SDR.
-{: .notice--warning}
-
 
 ## Telecommand via TCP/IP
 
