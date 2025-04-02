@@ -1,5 +1,5 @@
-const releaseVersion = "0.0.19";
-const serviceWorkerVersion = "11";
+const releaseVersion = "0.0.20";
+const serviceWorkerVersion = "12";
 const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
 
 const offlineFallbackPage = "offline.html";

@@ -10,7 +10,7 @@ authors:
     given-names: Carles
     orcid: "https://orcid.org/0000-0002-9201-7007"
 cff-version: "1.2.0"
-date-released: "2024-01-23"
+date-released: "2025-04-01"
 doi: 10.5281/zenodo.7808152
 keywords:
   - "Global Navigation Satellite System"
@@ -26,4 +26,4 @@ repository-code: "https://github.com/gnss-sdr/geniuss-place"
 title: "GNSS-SDR website"
 type: software
 url: "https://gnss-sdr.org"
-version: "0.0.19"
+version: "0.0.20"

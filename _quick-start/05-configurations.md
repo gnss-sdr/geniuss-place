@@ -347,7 +347,7 @@ You should see something similar to:
 
 ```console
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
-Initializing GNSS-SDR v0.0.18 ... Please wait.
+Initializing GNSS-SDR v0.0.20 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 -- X300 initialization sequence...
