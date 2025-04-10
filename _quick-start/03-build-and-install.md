@@ -164,91 +164,14 @@ packages in the
 file.
 {: .notice--info}
 
-### Install dependencies using PyBOMBS
+### Install dependencies manually
 
 This option is adequate if you are interested in development, in working with
 the most recent versions of software dependencies, want more fine-tuning on the
 installed versions, or simply in building everything from the scratch just for
-the fun of it. In such cases, we recommend using
-[PyBOMBS](https://github.com/gnuradio/pybombs "PyBOMBS")
-(Python Build Overlay Managed Bundle System), GNU Radio's meta-package manager
-tool that installs software from source, or whatever the local package manager
-is, that automatically does all the work for you. Please take a look at the
-[configuration options and general PyBOMBS usage](https://github.com/gnuradio/pybombs).
-Here we provide a quick step-by-step tutorial.
+the fun of it. Please check [how to manually build GNSS-SDR dependencies](https://github.com/gnss-sdr/gnss-sdr/blob/next/README.md#alternative-2-manual-installation-of-required-dependencies).
 
-First of all, install some basic packages:
-
-```console
-$ sudo apt install git python3-pip
-```
-
-Download, build and install PyBOMBS:
-
-```console
-$ sudo pip3 install --upgrade git+https://github.com/gnuradio/pybombs.git
-```
-
-Apply a configuration:
-
-```console
-$ pybombs auto-config
-```
-
-Add list of default recipes (_i.e._, instructions on how to install software
-dependencies):
-
-```console
-$ pybombs recipes add-defaults
-```
-
-Download, build and install GNU Radio, related drivers, and some other extra
-modules into the directory `/path/to/prefix` (replace this path by your
-preferred one, for instance `$HOME/sdr`):
-
-```console
-$ pybombs prefix init /path/to/prefix -a myprefix -R gnuradio-default
-```
-
-This will perform a local installation of the dependencies under
-`/path/to/prefix`, so they will not be visible when opening a new terminal. In
-order to make them available, you will need to set up the adequate environment
-variables by sourcing the `setup_env.sh` script:
-
-```console
-$ cd /path/to/prefix
-$ . ./setup_env.sh
-```
-
-Now you are ready to use GNU Radio and to jump into [building GNSS-SDR](#build)
-after installing a few other dependencies. Actually, those are steps that
-PyBOMBS can do for you as well:
-
-```console
-$ pybombs install gnss-sdr
-```
-
-By default, PyBOMBS installs the ‘next’ branch of GNSS-SDR development, which is
-the most recent version of the source code. This behavior can be modified by
-altering the corresponding recipe at
-`$HOME/.pybombs/recipes/gr-recipes/gnss-sdr.lwr`
-
-In case you do not want to use PyBOMBS and prefer to build and install GNSS-SDR
-step by step (i.e., cloning the repository and doing the usual
-`cmake .. && make && sudo make install` dance, as explained below), there are
-still some missing dependencies (_i.e._, Armadillo, GFlags, Glog, GnuTLS and
-Protocol Buffers) that can be installed either by using PyBOMBS:
-
-```console
-$ pybombs install armadillo gflags glog gnutls protobuf
-```
-
-or manually, just downloading, building and installing them. More details are
-available in the
-[README.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/README.md#manual-installation-of-other-required-dependencies)
-file.
-
-## Clone, build and install GNSS-SDR
+## Clone, build, and install GNSS-SDR
 
 <a name="build"></a>
 
@@ -453,22 +376,8 @@ Docker Hub.
   $ docker pull carlesfernandez/docker-gnsssdr:latest
   ```
 
-- An image based on Ubuntu with dependencies built and installed via PyBOMBS:
-
-  ```console
-  $ docker run -it carlesfernandez/docker-pybombs-gnsssdr
-  ```
-
-  The latest built from GNSS-SDR's `next` branch can be pulled as:
-
-  ```console
-  $ docker pull carlesfernandez/docker-pybombs-gnsssdr:latest
-  ```
-
 Visit
 [https://hub.docker.com/r/carlesfernandez/docker-gnsssdr](https://hub.docker.com/r/carlesfernandez/docker-gnsssdr)
-or
-[https://hub.docker.com/r/carlesfernandez/docker-pybombs-gnsssdr](https://hub.docker.com/r/carlesfernandez/docker-pybombs-gnsssdr)
 for further instructions (how to share folders within the host machine and the
 Docker image, how to set the graphical environment, etc.).
 
