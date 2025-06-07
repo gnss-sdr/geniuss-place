@@ -42,6 +42,8 @@ docs:
         url: /docs/control-plane/
       - title: "Signal Processing Blocks"
         url: /docs/sp-blocks/
+      - title: "Loss of Lock Issues"
+        url: /docs/troubleshooting/loss-of-lock/
       - title: "Tutorials"
         url: /docs/tutorials/
 

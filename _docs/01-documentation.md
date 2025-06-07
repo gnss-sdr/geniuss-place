@@ -55,3 +55,4 @@ particular topics or examples of use:
 <link rel="prerender" href="{{ "/docs/fundamentals/" | relative_url }}" />
 <link rel="prerender" href="{{ "/docs/control-plane/" | relative_url }}" />
 <link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />
+<link rel="prerender" href="{{"/docs/troubleshooting/loss-of-lock/" | relative_url }}" />
