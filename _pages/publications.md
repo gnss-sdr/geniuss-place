@@ -547,6 +547,32 @@ note     = { {doi}: 10.1186/1687-6180-2013-143}
 <h3 style="margin-bottom:0px;padding-top:10px;">Articles and Presentations in International Conferences</h3>
 
 <ul class="biblist">
+    <!-- Item: Cheng25 -->
+    <li ><p>
+    X. Cheng, H. Yang, S. Liu, and Y. Yang  
+    <br><b>Distributed Multi-Antenna GPS Spoofing Attack using Off-the-Shelf Devices</b><br>
+<i>18th ACM Conference on Security and Privacy in Wireless and Mobile Networks</i>,  
+Arlington, VA, USA, June 30 - July 3, 2025, pp. 28–39.  
+    <br />
+    <a href="javascript:toggleBibtex('Cheng25')">[BibTeX]</a>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1145/3734477.3734706">Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span>
+    <span style="color: #52adc8">[</span><a href="https://doi.org/10.1145/3734477.3734706"><i class="ai ai-doi"> </i></a><span style="color: #52adc8">]</span></p>
+    <div id="bib_Cheng25" class="bibtex noshow" style="color: #111111">
+<pre>@inproceedings{ Cheng25,
+author = {X.~Cheng and H.~Yang and S.~Liu and Y.~Yang},
+title = {Distributed Multi-Antenna {GPS} Spoofing Attack using Off-the-Shelf Devices},
+booktitle = {18th ACM Conference on Security and Privacy in Wireless and Mobile Networks},
+address = {Arlington, VA, USA},
+year = {2025},
+pages = {28--39},
+note  = { {doi}: 10.1145/3734477.3734706}
+}</pre>
+    </div>
+    </li>
+</ul>
+
+
+<ul class="biblist">
     <!-- Item: Ali24 -->
     <li ><p>
     M. Ali, F. Tuz Zahra, and A. Ali Raja
