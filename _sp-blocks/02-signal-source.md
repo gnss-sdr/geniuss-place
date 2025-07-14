@@ -585,6 +585,266 @@ the data file used in [My first position fix]({{ "/my-first-fix/" | relative_url
 </metadata>
 ```
 
+### Implementation: `NTLab_File_Signal_Source`
+
+This Signal Source implementation is currently available only in the `next` branch of the [GNSS-SDR upstream repository](https://github.com/gnss-sdr/gnss-sdr). It will be included in the upcoming stable release.
+{: .notice--warning}
+
+This is a Signal Source implementation that can read files of samples grabbed from [NTLab RF front-ends](https://ntlab.lt/) (NT1062/65/66/68/69), which can deliver 1, 2, or 4 parallel float streams from 2-bit sign-magnitude packed samples. This implementation supports 1-, 2-, or 4-channel modes, and it has been tested on the [TEXCUP GNSS dataset](https://mklimenko.github.io/english/2020/05/23/texcup_gnss_dataset/) (NTLab NT1065 capture). The dataset is described in this [article](/http://rnl.ae.utexas.edu/wp-content/uploads/texcup.pdf).
+
+This Signal Source delivers 32-bit float items, each containing 4 bytes of real data, and with an Intermediate Frequency (check the NTLab documentation of the specific configuration used for signal grabbing).
+
+* **Bit packing format:**
+
+Each input byte encodes four 2-bit samples (**M**=magnitude, **S**=sign) in MSB-first order:
+
+| Bits  | Sample Description          |
+|:-----:|:----------------------------|
+| 7–6   | $$ \left[ M_0^k S_0^k \right] $$ (ch 0 at time k) |
+| 5–4   | $$ \left[ M_1^k S_1^k \right] $$ (ch 1 at time k) |
+| 3–2   | $$ \left[ M_2^k S_2^k \right] $$ (ch 2 at time k) |
+| 1–0   | $$ \left[ M_3^k S_3^k \right] $$ (ch 3 at time k) |
+
+* **Value mapping**:
+
+| M | S | Sample |
+|:-:|:-:|:------:|
+| 0 | 0 |  −1    |
+| 0 | 1 |  +1    |
+| 1 | 0 |  −3    |
+| 1 | 1 |  +3    |
+
+* **Sample arrangement by channel count:**
+  - **1 channel**: each byte defined as $$ \left[ M_0^k S_0^k \quad \| \quad M_0^{k+1} S_0^{k+1} \quad \| \quad  M_0^{k+2} S_0^{k+2} \quad \|\quad  M_0^{k+3} S_0^{k+3} \right] $$, where symbol $$ \| $$ means bit concatenation.
+
+  - **2 channels**: each byte defined as $$ \left[ M_0^k S_0^k	\quad \| \quad  M_1^k S_1^k\quad \| \quad  M_0^{k+1} S_0^{k+1}	\quad \| \quad  M_1^{k+1} S_1^{k+1} \right] $$.
+
+  - **4 channels**: each byte defined as $$ \left[ M_0^k S_0^k \quad \| \quad M_1^k S_1^k	\quad \| \quad M_2^k S_2^k \quad \| \quad M_3^k S_3^k \right] $$.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**   | **Description**     | **Required** |
+| :--------------: | :------- | :----------: |
+|  --------------  |
+| `implementation` | `NTLab_File_Signal_Source`  |  Mandatory   |
+|    `filename`    | Path to the file where samples dumped by the NTLab receiver is stored.  |  Mandatory   |
+| `RF_channels` | `[1/2/4]` Number of RF bands delivered by the NTLab RF front-end. | Mandatory |
+|   `sampling_frequency`    | Sample rate, in samples per second.  |  Mandatory   |
+|         `samples`         | Number of samples to be read. If set to $$ 0 $$, the whole file but the last few milliseconds are processed. It defaults to $$ 0 $$.  |   Optional   |
+|        `item_type`        | This implementation only admits <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>. |   Optional   |
+|     `seconds_to_skip`     | Seconds of signal to skip from the beginning of the file before start processing. It defaults to $$ 0 $$ s.  |   Optional   |
+|         `repeat`          | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`.  |   Optional   |
+| `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`.  |   Optional   |
+ -------       |
+
+  _Signal Source implementation:_ **`NTLab_File_Signal_Source`**
+  {: style="text-align: center;"}
+
+
+* **Configuration example:**
+
+For this NTLab receiver's configuration:
+
+**Channel 0:**
+  - Sampling frequency: 79.5 Msps.
+  - RF mixer frequency: 1590 MHz.
+  - Passband: 1559 MHz - 1590 MHz.
+  - Spectral inversion: true.
+  - IF: 14.58 MHz.
+  - Signals: GPS L1 C/A, Galileo E1, Beidou B1C.
+
+**Channel 1:**
+  - Sampling frequency: 79.5 Msps.
+  - RF mixer frequency: 1590 MHz.
+  - Passband: 1590 MHz - 1610 MHz.
+  - Spectral inversion: false.
+
+**Channel 2:**
+  - Sampling frequency: 79.5 Msps.
+  - RF mixer frequency: 1200 MHz.
+  - Passband: 1163 MHz - 1200 MHz.
+  - Spectral inversion: true.
+  - IF: 23.55 MHz
+  - Signals: GPS L5, Galileo E5a.
+
+**Channel 3:**
+  - Sampling frequency: 79.5 Msps.
+  - RF mixer frequency: 1200 MHz.
+  - Passband: 1200 MHz - 1237 MHz.
+  - Spectral inversion: false.
+  - IF: 27.6 MHz
+  - Signals: GPS L2C.
+
+A possible GNSS-SDR configuration file could look like this:
+
+```ini
+
+[GNSS-SDR]
+
+;######### GLOBAL OPTIONS ##################
+GNSS-SDR.internal_fs_sps=9937500
+
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=NTLab_File_Signal_Source
+SignalSource.filename=ntlab.bin  ; <- PUT YOUR FILE HERE
+SignalSource.sampling_frequency=79500000
+SignalSource.RF_channels=4
+
+;######### SIGNAL_CONDITIONER CONFIG ############
+SignalConditioner0.implementation=Signal_Conditioner  ; RF CHANNEL 0
+SignalConditioner1.implementation=Signal_Conditioner  ; RF CHANNEL 1
+SignalConditioner2.implementation=Signal_Conditioner  ; RF CHANNEL 2
+SignalConditioner3.implementation=Signal_Conditioner  ; RF CHANNEL 3
+
+;######### DATA_TYPE_ADAPTER CONFIG ############
+; RF CHANNEL 0
+DataTypeAdapter0.implementation=Pass_Through
+DataTypeAdapter0.item_type=float
+DataTypeAdapter0.inverted_spectrum=true
+; RF CHANNEL 1
+DataTypeAdapter1.implementation=Pass_Through
+DataTypeAdapter1.item_type=float
+; RF CHANNEL 2
+DataTypeAdapter2.implementation=Pass_Through
+DataTypeAdapter2.item_type=float
+DataTypeAdapter2.inverted_spectrum=true
+; RF CHANNEL 3
+DataTypeAdapter3.implementation=Pass_Through
+DataTypeAdapter3.item_type=float
+
+;######### INPUT_FILTER CONFIG ############
+; RF CHANNEL 0
+InputFilter0.implementation=Freq_Xlating_Fir_Filter
+InputFilter0.dump=false
+InputFilter0.input_item_type=float
+InputFilter0.output_item_type=gr_complex
+InputFilter0.taps_item_type=float
+InputFilter0.number_of_taps=5
+InputFilter0.number_of_bands=2
+InputFilter0.band1_begin=0.0
+InputFilter0.band1_end=0.45
+InputFilter0.band2_begin=0.55
+InputFilter0.band2_end=1.0
+InputFilter0.ampl1_begin=1.0
+InputFilter0.ampl1_end=1.0
+InputFilter0.ampl2_begin=0.0
+InputFilter0.ampl2_end=0.0
+InputFilter0.band1_error=1.0
+InputFilter0.band2_error=1.0
+InputFilter0.filter_type=bandpass
+InputFilter0.grid_density=16
+InputFilter0.sampling_frequency=79500000
+InputFilter0.IF=14580000
+InputFilter0.decimation_factor=8
+; RF CHANNEL 1
+InputFilter1.implementation=Freq_Xlating_Fir_Filter
+InputFilter1.dump=false
+InputFilter1.input_item_type=float
+InputFilter1.output_item_type=gr_complex
+InputFilter1.taps_item_type=float
+InputFilter1.number_of_taps=5
+InputFilter1.number_of_bands=2
+InputFilter1.band1_begin=0.0
+InputFilter1.band1_end=0.45
+InputFilter1.band2_begin=0.55
+InputFilter1.band2_end=1.0
+InputFilter1.ampl1_begin=1.0
+InputFilter1.ampl1_end=1.0
+InputFilter1.ampl2_begin=0.0
+InputFilter1.ampl2_end=0.0
+InputFilter1.band1_error=1.0
+InputFilter1.band2_error=1.0
+InputFilter1.filter_type=bandpass
+InputFilter1.grid_density=16
+InputFilter1.sampling_frequency=79500000
+InputFilter1.IF=0
+InputFilter1.decimation_factor=8
+; RF CHANNEL 2
+InputFilter2.implementation=Freq_Xlating_Fir_Filter
+InputFilter2.dump=false
+InputFilter2.input_item_type=float
+InputFilter2.output_item_type=gr_complex
+InputFilter2.taps_item_type=float
+InputFilter2.number_of_taps=5
+InputFilter2.number_of_bands=2
+InputFilter2.band1_begin=0.0
+InputFilter2.band1_end=0.45
+InputFilter2.band2_begin=0.55
+InputFilter2.band2_end=1.0
+InputFilter2.ampl1_begin=1.0
+InputFilter2.ampl1_end=1.0
+InputFilter2.ampl2_begin=0.0
+InputFilter2.ampl2_end=0.0
+InputFilter2.band1_error=1.0
+InputFilter2.band2_error=1.0
+InputFilter2.filter_type=bandpass
+InputFilter2.grid_density=16
+InputFilter2.sampling_frequency=79500000
+InputFilter2.IF=23550000
+InputFilter2.decimation_factor=8
+; RF CHANNEL 3
+InputFilter3.implementation=Freq_Xlating_Fir_Filter
+InputFilter3.dump=false
+InputFilter3.input_item_type=float
+InputFilter3.output_item_type=gr_complex
+InputFilter3.taps_item_type=float
+InputFilter3.number_of_taps=5
+InputFilter3.number_of_bands=2
+InputFilter3.band1_begin=0.0
+InputFilter3.band1_end=0.45
+InputFilter3.band2_begin=0.55
+InputFilter3.band2_end=1.0
+InputFilter3.ampl1_begin=1.0
+InputFilter3.ampl1_end=1.0
+InputFilter3.ampl2_begin=0.0
+InputFilter3.ampl2_end=0.0
+InputFilter3.band1_error=1.0
+InputFilter3.band2_error=1.0
+InputFilter3.filter_type=bandpass
+InputFilter3.grid_density=16
+InputFilter3.sampling_frequency=79500000
+InputFilter3.IF=27600000
+InputFilter3.decimation_factor=8
+
+;######### RESAMPLER CONFIG ############
+; RF CHANNEL 0
+Resampler0.implementation=Pass_Through
+Resampler0.item_type=gr_complex
+; RF CHANNEL 1
+Resampler1.implementation=Pass_Through
+Resampler1.item_type=gr_complex
+; RF CHANNEL 2
+Resampler2.implementation=Pass_Through
+Resampler2.item_type=gr_complex
+; RF CHANNEL 3
+Resampler3.implementation=Pass_Through
+Resampler3.item_type=gr_complex
+
+;######### CHANNELS GLOBAL CONFIG ############
+Channels.in_acquisition=1
+Channels_1C.count=8 ;# GPS L1
+Channels_L5.count=8 ;# GPS L5
+Channels_2S.count=8 ;# GPS L2C
+Channels_1B.count=8 ;# Galileo E1b
+Channels_5X.count=8 ;# Galileo E5a
+Channels_B1.count=8 ;# Beidou B1I
+; RF CHANNEL MAPPING
+Channels_1C.RF_channel_ID=0
+Channels_L5.RF_channel_ID=2
+Channels_2S.RF_channel_ID=3
+Channels_1B.RF_channel_ID=0
+Channels_5X.RF_channel_ID=2
+Channels_B1.RF_channel_ID=0
+
+;######### ACQUISITION CONFIG ############
+...
+```
+
+A full configuration example is available [here](https://github.com/gnss-sdr/gnss-sdr/blob/next/conf/File_input/MultiCons/gnss-sdr_ntlab.conf).
+
+---
+
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
