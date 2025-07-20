@@ -97,7 +97,7 @@ footer:
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       url: "https://gitlab.com/gnss-sdr/gnss-sdr"
-
+  since: "2016"
 
 # Reading Files
 include:
@@ -189,7 +189,7 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: true
+      comments: false
       share: true
       related: true
       show_date: true
@@ -218,7 +218,7 @@ defaults:
       read_time: true
       author_profile: false
       share: true
-      comments: true
+      comments: false
       sidebar:
         nav: "docs"
   # _geniuss-place
@@ -243,7 +243,7 @@ defaults:
       read_time: false
       author_profile: false
       share: true
-      comments: true
+      comments: false
 # _design-forces
   - scope:
       path: ""
@@ -253,7 +253,7 @@ defaults:
       read_time: false
       author_profile: false
       share: true
-      comments: true
+      comments: false
       related: true
       sidebar:
         nav: "design-forces"
