@@ -5,7 +5,7 @@ excerpt: "Contributing to the GNSS-SDR source code and to this website."
 last_modified_at: 2021-03-22T08:54:02+02:00
 header:
   teaser: "/assets/images/geniuss-contribute.png"
-comments: true
+comments: false
 toc: true
 toc_sticky: true
 redirect_from:

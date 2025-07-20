@@ -5,7 +5,7 @@ excerpt: "Coding style for GNSS-SDR source code development."
 last_modified_at: 2022-09-27T03:20:02+02:00
 header:
   teaser: /assets/images/geniuss-painting.jpg
-comments: true
+comments: false
 toc: true
 toc_sticky: true
 toc_h_max: 2

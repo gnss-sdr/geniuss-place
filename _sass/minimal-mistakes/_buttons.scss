@@ -41,6 +41,9 @@
   (twitter, $twitter-color),
   (reddit, $reddit-color),
   (linkedin, $linkedin-color),
+  (mastodon, $mastodon-color),
+  (x, $x-color),
+  (bluesky, $bluesky-color),
   (geniuss, $geniuss-color);
 
   @each $buttoncolor, $color in $buttoncolors {

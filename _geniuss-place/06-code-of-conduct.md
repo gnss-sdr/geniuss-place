@@ -2,7 +2,7 @@
 title: "Code of Conduct"
 excerpt: "Contributor Covenant: A Code of Conduct for Open Source Projects."
 permalink: /code-of-conduct/
-comments: true
+comments: false
 header:
   teaser: /assets/images/code-of-conduct.jpg
 sidebar:
