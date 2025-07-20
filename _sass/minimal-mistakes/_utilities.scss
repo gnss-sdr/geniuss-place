@@ -267,6 +267,11 @@ body:hover .visually-hidden button {
     color: $linkedin-color;
   }
 
+  .fa-mastodon,
+  .fa-mastodon-square {
+    color: $mastodon-color;
+  }
+
   .fa-pinterest,
   .fa-pinterest-p,
   .fa-pinterest-square {
@@ -295,6 +300,11 @@ body:hover .visually-hidden button {
   .fa-twitter,
   .fa-twitter-square {
     color: $twitter-color;
+  }
+
+  .fa-x-twitter,
+  .fa-square-x-twitter {
+    color: $x-color;
   }
 
   .fa-vimeo,
