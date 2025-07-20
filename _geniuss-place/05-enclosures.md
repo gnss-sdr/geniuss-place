@@ -2,7 +2,7 @@
 title: "Make your own GNSS receiver"
 excerpt: "Designs of enclosures for you gear that you can print in 3D."
 permalink: /enclosures/
-comments: true
+comments: false
 header:
   image: /assets/images/usrp-enclosure-header.jpg
   teaser: /assets/images/usrp-enclosure-header.jpg

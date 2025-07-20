@@ -2,7 +2,7 @@
 title: "16 Design Forces for software-defined GNSS receivers"
 excerpt: "A discussion on how to assess software-defined GNSS receivers."
 permalink: "/design-forces/"
-comments: true
+comments: false
 header:
   image: /assets/images/kpi-header.jpg
   teaser: /assets/images/kpi-header.jpg
