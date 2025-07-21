@@ -158,23 +158,25 @@ $(function() {
   });
 
   // Add anchors for headings
-  var content = document.querySelector('.page__content');
-  if (content) {
-    var headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    if (headings) {
-      headings.forEach(function (element) {
-        var id = element.getAttribute('id');
+  (function () {
+    var pageContentElement = document.querySelector(".page__content");
+    if (!pageContentElement) return;
+
+    pageContentElement
+      .querySelectorAll("h1, h2, h3, h4, h5, h6")
+      .forEach(function (element) {
+        var id = element.getAttribute("id");
         if (id) {
           var anchor = document.createElement("a");
-          anchor.className = 'header-link';
-          anchor.href = '#' + id;
-          anchor.innerHTML = '<span class=\"sr-only\">Permalink</span><i class=\"fas fa-link\"></i>';
+          anchor.className = "header-link";
+          anchor.href = "#" + id;
+          anchor.innerHTML =
+            '<span class="sr-only">Permalink</span><i class="fas fa-link"></i>';
           anchor.title = "Permalink";
           element.appendChild(anchor);
         }
       });
-    }
-  }
+  })();
 
   // Add copy button for <pre> blocks
   var copyText = function (text) {
