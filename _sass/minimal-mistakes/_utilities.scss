@@ -115,13 +115,13 @@ body:hover .visually-hidden button {
   }
 
   .task-list-item-checkbox {
-    margin-right: 0.5em;
+    margin-inline-end: 0.5em;
     opacity: 1;
   }
 }
 
 .task-list .task-list {
-  margin-left: 1em;
+  margin-inline-start: 1em;
 }
 
 /*
@@ -135,8 +135,7 @@ body:hover .visually-hidden button {
 }
 
 .wrapper {
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
   width: 100%;
 }
 
@@ -148,8 +147,7 @@ body:hover .visually-hidden button {
 
 .align-left {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
 
   @include breakpoint($small) {
     float: left;
@@ -161,8 +159,7 @@ body:hover .visually-hidden button {
 
 .align-right {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
 
   @include breakpoint($small) {
     float: right;
@@ -174,15 +171,14 @@ body:hover .visually-hidden button {
 
 .align-center {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
 }
 
 /* file page content container */
 
 .full {
   @include breakpoint($large) {
-    margin-right: -1 * span(2.5 of 12) !important;
+    margin-inline-end: -1 * span(2.5 of 12) !important;
   }
 }
 
@@ -356,7 +352,7 @@ body:hover .visually-hidden button {
   &:after {
     content: "";
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     width: $navicon-width;
     height: $navicon-height;
     @include color-assign(background, primary);
@@ -404,7 +400,7 @@ body:hover .visually-hidden button {
       content: '';
       position: fixed;
       top: 0;
-      left: 0;
+      inset-inline-start: 0;
       width: 100%;
       height: 100%;
       opacity: 0;
@@ -482,7 +478,7 @@ body:hover .visually-hidden button {
     position: absolute;
     content: "";
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     height: 100%;
     z-index: 999;
@@ -499,8 +495,8 @@ body:hover .visually-hidden button {
   position: fixed;
   width: 300px;
   top: 50%;
-  left: 50%;
-  margin-left: -150px;
+  inset-inline-start: 50%;
+  margin-inline-start: -150px;
   margin-top: -150px;
   min-height: 0;
   z-index: 9999;
@@ -592,7 +588,7 @@ a.reversefootnote {
   embed {
     position: absolute;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     height: 100%;
   }
@@ -627,7 +623,7 @@ pre {
     display: block;
     position: absolute;
     top: 0.6em;
-    right: 0.5em;
+    inset-inline-end: 0.5em;
     z-index: 1;
     background: none;
     border: none;
@@ -645,11 +641,24 @@ pre {
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      inset: 0;
       z-index: 2;
+    }
+
+    i {
+      position: absolute;
+      top: 0.25em;
+      inset-inline-end: 0.25em;
+      &.copied {
+        opacity: 0;
+      }
+    }
+
+    &.copied i {
+      opacity: 0;
+      &.copied {
+        opacity: 1;
+      }
     }
 
     @at-root {
@@ -672,8 +681,7 @@ pre {
   text-align: center;
   align-self: center;
   width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
   @media (prefers-color-scheme: dark) {
       content: url("/assets/images/CTTC_logo_dark.png");
   }

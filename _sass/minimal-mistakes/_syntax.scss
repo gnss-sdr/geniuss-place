@@ -33,11 +33,11 @@ figure.highlight {
     /* line numbers*/
     &.gutter,
     &.rouge-gutter {
-      padding-right: 1em;
+      padding-inline-end: 1em;
       width: 1em;
       @include color-assign(color, base04);
-      @include color-assign(border-right, base04, '1px solid here');
-      text-align: right;
+      @include color-assign(border-inline-end, base04, '1px solid here');
+      text-align: end;
     }
 
     /* code */

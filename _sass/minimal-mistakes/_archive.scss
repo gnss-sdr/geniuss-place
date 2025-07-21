@@ -52,10 +52,7 @@
   a[rel="permalink"]::before {
    content: '';
    position: absolute;
-   left: 0;
-   top: 0;
-   right: 0;
-   bottom: 0;
+   inset: 0;
   }
 
   a {
@@ -163,7 +160,7 @@
   margin-bottom: 2em;
 
   @include breakpoint($small) {
-    float: left;
+    float: inline-start;
     width: span(5 of 10);
 
     &:nth-child(2n + 1) {
@@ -178,8 +175,7 @@
   }
 
   @include breakpoint($medium) {
-    margin-left: 0; /* override margin*/
-    margin-right: 0; /* override margin*/
+    margin-inline: 0; /* override margin*/
     width: span(3 of 12);
 
     &:nth-child(2n + 1) {
@@ -192,17 +188,17 @@
 
     &:nth-child(4n + 2) {
       clear: none;
-      margin-left: gutter(1 of 12);
+      margin-inline-start: gutter(1 of 12);
     }
 
     &:nth-child(4n + 3) {
       clear: none;
-      margin-left: gutter(1 of 12);
+      margin-inline-start: gutter(1 of 12);
     }
 
     &:nth-child(4n + 4) {
       clear: none;
-      margin-left: gutter(1 of 12);
+      margin-inline-start: gutter(1 of 12);
     }
   }
 

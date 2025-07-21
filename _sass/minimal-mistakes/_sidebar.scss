@@ -10,7 +10,7 @@
   @include clearfix();
 
   @include breakpoint($large) {
-    float: left;
+    float: inline-start;
     width: calc(#{$right-sidebar-width-narrow} - 1em);
     opacity: 0.75;
     -webkit-transition: opacity 0.2s ease-in-out;
@@ -70,10 +70,10 @@
   @include breakpoint($large) {
     position: absolute;
     top: 0;
-    right: 0;
+    inset-inline-end: 0;
     width: $right-sidebar-width-narrow;
-    margin-right: -1 * $right-sidebar-width-narrow;
-    padding-left: 1em;
+    margin-inline-end: -1 * $right-sidebar-width-narrow;
+    padding-inline-start: 1em;
     z-index: 10;
 
     &.sticky {
@@ -81,25 +81,25 @@
       position: -webkit-sticky;
       position: sticky;
       top: 2em;
-      float: right;
+      float: inline-end;
     }
   }
 
   @include breakpoint($x-large) {
     width: $right-sidebar-width;
-    margin-right: -1 * $right-sidebar-width;
+    margin-inline-end: -1 * $right-sidebar-width;
   }
 }
 
 .splash .sidebar__right {
   @include breakpoint($large) {
     position: relative;
-    float: right;
-    margin-right: 0;
+    float: inline-end;
+    margin-inline-end: 0;
   }
 
   @include breakpoint($x-large) {
-    margin-right: 0;
+    margin-inline-end: 0;
   }
 }
 
@@ -187,7 +187,7 @@
 
   .author__urls {
     span.label {
-      padding-left: 5px;
+      padding-inline-start: 5px;
     }
   }
 
@@ -204,7 +204,7 @@
         content: '';
         position: fixed;
         top: 0;
-        left: 0;
+        inset-inline-start: 0;
         width: 100%;
         height: 100%;
         pointer-events: none;
@@ -226,7 +226,7 @@
 .author__urls {
   display: none;
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   margin-top: 15px;
   padding: 10px;
   list-style-type: none;
@@ -256,7 +256,7 @@
     content: "";
     position: absolute;
     top: -11px;
-    left: calc(50% - 10px);
+    inset-inline-start: calc(50% - 10px);
     width: 0;
     border-style: solid;
     border-width: 0 10px 10px;
@@ -273,7 +273,7 @@
     content: "";
     position: absolute;
     top: -10px;
-    left: calc(50% - 10px);
+    inset-inline-start: calc(50% - 10px);
     width: 0;
     border-style: solid;
     border-width: 0 10px 10px;
@@ -297,9 +297,8 @@
   a {
     display: block;
     margin-bottom: 5px;
-    padding-right: 5px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-block: 2px;
+    padding-inline-end: 5px;
     color: inherit;
     font-size: $type-size-5;
     text-decoration: none;
@@ -325,10 +324,10 @@
   @include breakpoint($large) {
     position: initial;
     top: initial;
-    right: initial;
+    inset-inline-end: initial;
     width: initial;
-    margin-right: initial;
-    padding-left: initial;
+    margin-inline-end: initial;
+    padding-inline-start: initial;
     z-index: initial;
 
     &.sticky {
@@ -338,7 +337,7 @@
 
   @include breakpoint($x-large) {
     width: initial;
-    margin-right: initial;
+    margin-inline-end: initial;
   }
 }
 
@@ -360,7 +359,7 @@
     height: 2px;
     position: absolute;
     top: 0;
-    right: -2px;
+    inset-inline-end: -2px;
   }
 
   // WARNING: This is not working

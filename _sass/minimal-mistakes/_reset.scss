@@ -8,15 +8,24 @@ html {
   /* apply a natural box layout model to all elements */
   box-sizing: border-box;
   @include color-assign(background-color, background);
-  font-size: 16px;
+  font-size: $doc-font-size;
 
   @include breakpoint($medium) {
-    font-size: 18px;
+    font-size: $doc-font-size-medium;
+  }
+
+  @include breakpoint($large) {
+    font-size: $doc-font-size-medium;
+  }
+
+  @include breakpoint($x-large) {
+    font-size: $doc-font-size-medium;
   }
 
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
+
 
 /* Remove margin */
 
@@ -56,8 +65,6 @@ audio,
 canvas,
 video {
   display: inline-block;
-  *display: inline;
-  *zoom: 1;
 }
 
 /* Prevents modern browsers from displaying 'audio' without controls */
@@ -134,7 +141,6 @@ textarea {
 
 button,
 input {
-  *overflow: visible; /* inner spacing ie IE6/7*/
   line-height: normal; /* FF3/4 have !important on line-height in UA stylesheet*/
 }
 
