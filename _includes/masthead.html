@@ -7,7 +7,7 @@
           {% else %}
             {% assign logo = "/assets/images/logo-gnss-sdr.png" %}
           {% endif %}
-        <a class="site-title" href="{{ '/' | relative_url }}"><img id="main-logo" src="{{ logo | relative_url }}" alt="GNSS-SDR logo"></img>{% if site.subtitle %}<span class="site-subtitle">{{ site.subtitle }}</span>{% endif %}</a>
+        <a class="site-title" href="{{ '/' | relative_url }}"><img id="main-logo" src="{{ logo | relative_url }}" alt="GNSS-SDR logo"></img>{% if site.subtitle %}<span class="site-subtitle">{{ site.subtitle | escape_once | strip }}</span>{% endif %}</a>
         <ul class="visible-links">
           {%- for link in site.data.navigation.main -%}
           <li class="masthead__menu-item">
