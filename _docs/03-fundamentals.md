@@ -178,7 +178,7 @@ less powerful platform.
 
 [^Kahn74]:  G. Kahn, [The semantics of a simple language for parallel programming](http://www1.cs.columbia.edu/~sedwards/papers/kahn1974semantics.pdf), in Information processing, J. L. Rosenfeld, Ed., Stockholm, Sweden, Aug 1974, pp. 471–475, North Holland.
 
-[^Kahn77]: G. Kahn and D. B. MacQueen, [Coroutines and networks of parallel processes](https://inria.hal.science/inria-00306565/PDF/rr_iria202.pdf), in Information processing, B. Gilchrist, Ed., Amsterdam, NE, 1977, pp. 993–998, North Holland.
+[^Kahn77]: G. Kahn and D. B. MacQueen, [Coroutines and networks of parallel processes](https://inria.hal.science/hal-04716357v1), in Information processing, B. Gilchrist, Ed., Amsterdam, NE, 1977, pp. 993–998, North Holland.
 
 [^Parks95]: T. M. Parks, [Bounded Scheduling of Process Networks](https://www2.eecs.berkeley.edu/Pubs/TechRpts/1995/ERL-95-105.pdf), Ph.D. thesis, University of California, Berkeley, CA, Dec. 1995.
 

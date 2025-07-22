@@ -119,7 +119,7 @@ GNSS-SDR builds upon a number of free and open-source software libraries:
 * [GNU Radio](https://www.gnuradio.org/), a free and open-source toolkit for
 software radio. In turn, GNU Radio requires a number of software dependencies,
 some of which are also used by GNSS-SDR. Notably,
-[Boost](https://www.boost.org/), [FFTW](http://www.fftw.org/) and
+[Boost](https://www.boost.org/), [FFTW](https://www.fftw.org/) and
 [VOLK](https://www.libvolk.org/).
 * [Armadillo](https://arma.sourceforge.net/), a C++ linear algebra library. It
 acts as a wrapper for all the relevant libraries present on your system, such as

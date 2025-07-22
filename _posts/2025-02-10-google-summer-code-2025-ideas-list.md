@@ -137,7 +137,7 @@ Miguel Ángel Gómez.
 
 **Medium project (175 h)**
 
-This project aims to improve [volk-gnsssdr](https://github.com/gnss-sdr/gnss-sdr/next/main/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr), the Vector-Optimized Library of Kernels for GNSS-SDR. This library provides SIMD-optimized implementations of essential signal processing functions (named *kernels* in this context) for efficient execution on modern processors.
+This project aims to improve [volk-gnsssdr](https://github.com/gnss-sdr/gnss-sdr/tree/next/src/algorithms/libs/volk_gnsssdr_module/volk_gnsssdr), the Vector-Optimized Library of Kernels for GNSS-SDR. This library provides SIMD-optimized implementations of essential signal processing functions (named *kernels* in this context) for efficient execution on modern processors.
 
 
 * **Objectives:** During the summer, the focus will be on:

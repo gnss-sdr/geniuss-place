@@ -135,7 +135,7 @@ $$ \hat{\tau}_{acq} = \tau_j $$.
 
 The computation of the Fast Fourier Transform and its inverse (second and fourth
 steps inside the _for_ loop) are performed by means of GNU Radio wrappers of the
-[FFTW library](http://www.fftw.org/), an efficient implementation for computing
+[FFTW library](https://www.fftw.org/), an efficient implementation for computing
 the discrete Fourier transform, whereas the products (first and third steps in
 the _for_ loop) are implemented with the Vector-Optimized Library of Kernels
 ([VOLK](https://www.libvolk.org/)), which generates processor-specific

@@ -12,7 +12,7 @@ last_modified_at: 2019-09-01T10:39:37+02:00
 
 ## Youtube
 
-[AUDITOR](https://www.euspa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) Project:
+[AUDITOR](https://www.euspa.europa.eu/opportunities/horizon-europe/project-portfolio/advanced-multi-constellation-egnss-augmentation-and) Project:
 
 {% include video id="SLe064VqUY8" provider="youtube" %}
 
