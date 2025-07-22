@@ -24,9 +24,9 @@ at the price of limited processing resources.
 
 This page is devoted to the development cycle for building and executing
 GNSS-SDR in an embedded computer. In this example, we are working with a
-[Zedboard](https://www.xilinx.com/video/soc/zedboard-overview-featuring-zynq.html)
+[Zedboard](https://www.youtube.com/watch?v=NRUyY3jT5hQ)
 (a development board that ships a [Xilinx
-Zynq-7000](https://www.xilinx.com/video/soc/xilinx-arm-zynq-7000-all-programmable-soc.html)
+Zynq-7000](https://www.youtube.com/user/AMD/playlists)
 all-programmable [SoC](https://en.wikipedia.org/wiki/System_on_a_chip), which
 houses two ARM and one FPGA processor in a single chip), but this procedure is
 applicable to other embedded platforms without much modification.
@@ -50,7 +50,7 @@ can be directly executed by the Zynq device.
   {: .notice--success}
 
 The cross-compilation environment proposed here is based on
-[OpenEmbedded](http://www.openembedded.org/wiki/Main_Page), a building framework
+[OpenEmbedded](https://www.openembedded.org/wiki/Main_Page), a building framework
 for embedded Linux. OpenEmbedded offers a best-in-class cross-compile
 environment, allowing developers to create a complete, custom GNU/Linux
 distribution for embedded systems.

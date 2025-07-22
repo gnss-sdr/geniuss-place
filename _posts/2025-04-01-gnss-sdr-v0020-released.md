@@ -120,7 +120,7 @@ respect to the former release are listed below:
   that the received Galileo navigation message is coming from the system itself
   and has not been modified. OSNMA is enabled by default if the receiver
   configuration defines Galileo E1 OS channels. More details can be found in
-  [Introducing GNSS Navigation Message Authentication](https://gnss-sdr.org/osnma).
+  [Introducing GNSS Navigation Message Authentication](https://gnss-sdr.org/osnma/).
 
 ## Improvements in [Usability]({{ "/design-forces/usability/" | relative_url }}):
 

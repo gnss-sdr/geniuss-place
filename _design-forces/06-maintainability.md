@@ -24,7 +24,7 @@ the adherence to the official language programming standards. Examples:
     is officially known as _ISO/IEC 9899:2018 &ndash; Information technology
     &ndash; Programming languages &ndash; C_, and it is available
     from [ISO](https://www.iso.org/standard/74528.html),
-    [IEC](https://webstore.iec.ch/publication/63478), and
+    [IEC](https://webstore.iec.ch/en/publication/63478), and
     [ANSI](https://webstore.ansi.org/standards/iso/isoiec98992018). You can
     obtain something very close to the standard for free because of the working
     drafts available, the closest
@@ -47,7 +47,7 @@ the adherence to the official language programming standards. Examples:
     International Standard ISO/IEC 14882:2020(E) &ndash; Programming Languages
     &ndash; C++_. You can get it from
     [ISO](https://www.iso.org/standard/79358.html),
-    [IEC](https://webstore.iec.ch/publication/68285), or
+    [IEC](https://webstore.iec.ch/en/publication/68285), or
     [ANSI](https://webstore.ansi.org/standards/iso/isoiec148822020). The closest
     free working document available is
     [N4868](https://github.com/cplusplus/draft/releases/download/n4868/n4868.pdf).
@@ -55,7 +55,7 @@ the adherence to the official language programming standards. Examples:
     _ISO International Standard ISO/IEC 14882:2017 &ndash; Programming languages
     &ndash; C++_. You can get it from
     [ISO](https://www.iso.org/standard/68564.html),
-    [IEC](https://webstore.iec.ch/publication/62162), or
+    [IEC](https://webstore.iec.ch/en/publication/62162), or
     [ANSI](https://webstore.ansi.org/standards/iso/isoiec148822017). The closest
     free working document available is
     [N4659](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf).
