@@ -130,7 +130,7 @@ More details in version 1.0 of the
 The software receiver should deliver the results of the processing in several
 standard output formats:
 
-- GIS-oriented formats: [KML](https://www.ogc.org/standard/kml/),
+- GIS-oriented formats: [KML](https://www.ogc.org/standards/kml/),
   [GeoJSON](https://geojson.org/),
   [SHP](https://en.wikipedia.org/wiki/Shapefile).
 
@@ -157,7 +157,7 @@ standard output formats:
   v3 directly supports the
   [integration of GeoJSON data layers](https://developers.google.com/maps/documentation/javascript/examples/layer-data-simple),
   and
-  [GitHub also supports GeoJSON rendering](https://github.blog/2013-06-13-there-s-a-map-for-that/).
+  [GitHub also supports GeoJSON rendering](https://github.blog/news-insights/product-news/there-s-a-map-for-that/).
   {: .notice--info}
 
   **Shapefile** is a digital vector storage format for storing geometric
@@ -303,7 +303,7 @@ GNSS receiver:
     host computer executing the software-defined GNSS receiver.
 - Number of supported combinations of data collection topologies and formats.
 - Number of supported standard output formats.
-  - GIS formats: [KML](https://www.ogc.org/standard/kml/),
+  - GIS formats: [KML](https://www.ogc.org/standards/kml/),
     [GeoJSON](https://geojson.org/),
     [Shapefile](https://en.wikipedia.org/wiki/Shapefile), others.
   - Application-specific formats: NMEA

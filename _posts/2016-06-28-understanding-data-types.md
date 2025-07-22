@@ -144,7 +144,7 @@ receives the incoming sample stream: the _Data Type_Adapter_.
 
 In the C and C++ programming languages,
 [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h)
-(or its [`cstdint`](https://en.cppreference.com/w/cpp/header/cstdint)
+(or its [`cstdint`](https://en.cppreference.com/w/cpp/header/cstdint.html)
 counterpart for C++) is the name of the header file that allows programmers to
 write more portable code by providing a set of typedefs that specify exact-width
 integer types, together with the defined minimum and maximum allowable values
@@ -154,7 +154,7 @@ requiring integer data of fixed widths, specific locations and exact alignments.
 The naming convention for exact-width integer types is `intN_t` for `signed int`
 and `uintN_t` for `unsigned int`. Among others, both
 [`stdint.h`](https://en.wikibooks.org/wiki/C_Programming/C_Reference/stdint.h)
-and [`cstdint`](https://en.cppreference.com/w/cpp/header/cstdint) define the
+and [`cstdint`](https://en.cppreference.com/w/cpp/header/cstdint.html) define the
 following typedefs:
 
 -   `int8_t` Signed integer type with a width of *exactly* 8 bits.
@@ -166,7 +166,7 @@ following typedefs:
 Building upon these definitions, the [Vector-Optimized Library of Kernels
 (VOLK)](https://www.libvolk.org/) library defines complex data types. As shown
 below, it loads the header
-[`<complex>`](https://en.cppreference.com/w/cpp/header/complex), a file that
+[`<complex>`](https://en.cppreference.com/w/cpp/header/complex.html), a file that
 defines functionality for complex arithmetic (i.e. basic, arithmetic,
 trigonometric and hyperbolic operations, but only for floating-point data types:
 `float`, `double` and `long double`. This means that complex operations are not

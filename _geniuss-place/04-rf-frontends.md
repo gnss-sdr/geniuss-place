@@ -63,14 +63,14 @@ is similar in many ways to Open Source development practices.
 
 > Open design promotes the unprecedented sharing of knowledge between the
 professional and amateur designer, breaking down unnecessary barriers.
-> <cite><a href="http://opendesignnow.org/index.html%3Fp=399.html" >Paul
+> <cite><a href="https://opendesignnow.org/index.html%3Fp=399.html" >Paul
 Atkinson</a></cite>
 
 > Open design is a specific approach to design in which a group of intrinsically
 motivated people from various backgrounds develop design opportunities and
 solutions together in an open community, based on respect for each other's
 skills and expertise.
-> <cite><a href="http://opendesignnow.org/index.html%3Fp=425.html" >Carolien
+> <cite><a href="https://opendesignnow.org/index.html%3Fp=425.html" >Carolien
 Hummels</a></cite>
 
 The aim is to offer an unbiased creative scenario for GNSS front-end receiver

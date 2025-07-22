@@ -388,7 +388,7 @@ Docker image, how to set the graphical environment, etc.).
 </figure>
 
 We provide a Software Development Kit (SDK) based on
-[OpenEmbedded](http://www.openembedded.org/wiki/Main_Page) for cross-compiling
+[OpenEmbedded](https://www.openembedded.org/wiki/Main_Page) for cross-compiling
 GNSS-SDR in your desktop computer, producing executables that can run in
 embedded platforms, such as a Zedboard or a Raspberry Pi 3. OpenEmbedded offers
 a best-in-class cross-compile environment, allowing developers to create a

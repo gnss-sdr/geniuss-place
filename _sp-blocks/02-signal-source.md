@@ -1449,9 +1449,9 @@ SignalSource.dump_filename=./capture.dat
 ### Implementation: `Limesdr_Signal_Source`
 
 [![LimeSDR]({{ "/assets/images/LimeSDR.png" | relative_url
-}}){:width="250px"}{:.align-right}](https://limemicro.com/products/boards/limesdr/)
+}}){:width="250px"}{:.align-right}](https://limemicro.com/boards/limesdr/)
 
-[LimeSDR](https://limemicro.com/products/boards/limesdr/) is a low cost, open
+[LimeSDR](https://limemicro.com/boards/limesdr/) is a low cost, open
 source, apps-enabled software defined radio (SDR) platform that can be used to
 support just about any type of wireless communication standard. For more
 information, please check the [LimeSDR Wiki](https://wiki.myriadrf.org/LimeSDR).
