@@ -9,6 +9,7 @@ minimal_mistakes_skin    : "default" # "geniuss-dark", air", "aqua", "contrast",
 
 # Site Settings
 locale                   : "en-US"
+rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "GNSS-SDR"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
@@ -123,6 +124,7 @@ exclude:
   - gulpfile.js
   - LICENSE
   - log
+  - minimal-mistakes-jekyll.gemspec
   - node_modules
   - package.json
   - packege-lock.json

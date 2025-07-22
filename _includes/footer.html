@@ -6,7 +6,7 @@
     {% if site.footer.links %}
       {% for link in site.footer.links %}
         {% if link.label and link.url %}
-          <li><a href="{{ link.url }}" rel="nofollow noopener noreferrer"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a></li>
+          <li><a href="{{ link.url }}" rel="nofollow noopener noreferrer"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label | escape_once | strip }}</a></li>
         {% endif %}
       {% endfor %}
     {% endif %}
@@ -31,6 +31,6 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; {% assign site_time = site.time | date: '%Y' %}{% if site.footer.since and site_time != site.footer.since %}{{ site.footer.since }} - {% endif %}{{ site_time }} {{ site.name | default: site.title }}, <a href="https://www.cttc.cat" rel="nofollow noopener noreferrer">CTTC</a>. {{ site.data.ui-text[site.locale].powered_by }} <a href="https://jekyllrb.com" rel="nofollow noopener">Jekyll</a>, <a href="https://mmistakes.github.io/minimal-mistakes/" rel="nofollow noopener">Minimal Mistakes</a>, and <a href="https://github.com/gnss-sdr/geniuss-place/blob/main/README.md" >many other tools</a>. Except where otherwise noted, content on this site is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/legalcode" rel="nofollow noopener noreferrer">Creative Commons Attribution 4.0 International</a> license.</div>
+<div class="page__footer-copyright">&copy; {% assign site_time = site.time | date: '%Y' %}{% if site.footer.since and site_time != site.footer.since %}{{ site.footer.since }} - {% endif %}{{ site_time }} {{ site.name | default: site.title | escape_once | strip }}, <a href="https://www.cttc.cat" rel="nofollow noopener noreferrer">CTTC</a>. {{ site.data.ui-text[site.locale].powered_by }} <a href="https://jekyllrb.com" rel="nofollow noopener">Jekyll</a>, <a href="https://mmistakes.github.io/minimal-mistakes/" rel="nofollow noopener">Minimal Mistakes</a>, and <a href="https://github.com/gnss-sdr/geniuss-place/blob/main/README.md" >many other tools</a>. Except where otherwise noted, content on this site is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/legalcode" rel="nofollow noopener noreferrer">Creative Commons Attribution 4.0 International</a> license.</div>
 
 <div class="page__footer-copyright"><a href="{{ "/legal-notice/" | relative_url }}"><i class="fas fa-balance-scale"></i> Legal Notice</a>&nbsp;-&nbsp;<a href="{{ "/privacy-policy/" | relative_url }}"><i class="fas fa-user-secret"></i> Privacy Policy</a>&nbsp;-&nbsp;<a href="{{ "/cookies/" | relative_url }}"><i class="fas fa-cookie"></i> Cookies</a> </div>

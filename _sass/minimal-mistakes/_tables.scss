@@ -23,7 +23,7 @@ thead {
 th {
   padding: 0.5em;
   font-weight: bold;
-  text-align: left;
+  text-align: start;
   @include color-assign(border-right, mix-border-table-25, '1px solid here');
 }
 

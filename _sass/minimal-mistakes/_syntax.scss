@@ -13,6 +13,11 @@ figure.highlight {
   line-height: 1.8;
   border-radius: $border-radius;
 
+  [dir=rtl] & {
+    direction: ltr;
+    text-align: start;
+  }
+
   > pre,
   pre.highlight {
     margin: 0;
@@ -33,11 +38,11 @@ figure.highlight {
     /* line numbers*/
     &.gutter,
     &.rouge-gutter {
-      padding-right: 1em;
+      padding-inline-end: 1em;
       width: 1em;
       @include color-assign(color, base04);
-      @include color-assign(border-right, base04, '1px solid here');
-      text-align: right;
+      @include color-assign(border-inline-end, base04, '1px solid here');
+      text-align: end;
     }
 
     /* code */
