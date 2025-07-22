@@ -111,7 +111,7 @@ We are going to use 6 member variables:
 | **Variable Name** | **Description**                                                                                                                                                              |
 | :---------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |  --------------   |
-|   `io_service`    | Abstraction of the operating system interfaces. (See [io_service](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/io_service.html)).                    |
+|   `io_service`    | Abstraction of the operating system interfaces. (See [io_service](https://www.boost.org/doc/libs/1_69_0/doc/html/boost_asio/reference/io_service.html)).                    |
 |     `socket`      | The UDP socket. (See [ip::udp::socket](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/ip__udp/socket.html)).                                           |
 |      `error`      | Operating system-specific errors. (See [boost::system::error_code](https://www.boost.org/doc/libs/release/libs/system/doc/html/system.html#reference)).                      |
 |    `endpoint`     | Endpoint that will be associated with the UDP socket. (See [ip::udp::endpoint](https://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/ip__udp/endpoint.html)). |

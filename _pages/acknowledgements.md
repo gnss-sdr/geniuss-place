@@ -74,7 +74,7 @@ partial support for development through project CPP2021-008648, titled ``Recepto
   scientific conferences. Sep. 2017 - Sep. 2021.
   {: .notice--success}
 
-* **[AUDITOR](https://www.euspa.europa.eu/advanced-multi-constellation-egnss-augmentation-and-monitoring-network-and-its-application-precision) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture**
+* **[AUDITOR](https://www.euspa.europa.eu/opportunities/horizon-europe/project-portfolio/advanced-multi-constellation-egnss-augmentation-and) - Advanced Multi-Constellation EGNSS Augmentation and Monitoring Network and its Application in Precision Agriculture**
   is a project that developed a multi-band, multi-constellation receiver based on
   GNSS-SDR and targeted to Precision Agriculture applications, targeting Galileo
   and GPS civil signals in the L1, L2, and L5 bands.

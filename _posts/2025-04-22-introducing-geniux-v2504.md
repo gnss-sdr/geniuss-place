@@ -536,7 +536,7 @@ You can replace `25.04` by `latest` in order to get the latest developments.
   - Updated `openembedded-core` layer. See the
     [`openembedded-core` layer changelog](https://github.com/openembedded/openembedded-core/compare/60d88989698968c13f8e641f0ba1a82fcf700fb7..f23d1bfca0ea57150c397bc2e495191fb61423d0).
   - Updated `meta-openembedded` layer. See the
-    [`meta-openembedded` layer changelog](https://github.com/openembedded/meta-openembedded/compare/ce9c0d76171ce9d07e4bcb702b750416b265562a..8dddbfcbfe502cb71375a7a907e61a92e8d4474).
+    [`meta-openembedded` layer changelog](https://github.com/openembedded/meta-openembedded/compare/ce9c0d76171ce9d07e4bcb702b750416b265562a..f8dddbfcbfe502cb71375a7a907e61a92e8d4474).
   - Updated `meta-qt5` layer. See the
     [`meta-qt5` layer changelog](https://github.com/meta-qt5/meta-qt5/compare/fe0bf7f0e5408aac6cc89ff3b19b1b1941df4f64..644ebf220245bdc06e7696ccc90acc97a0dd2566).
   - Updated `meta-sdr` layer. See the
