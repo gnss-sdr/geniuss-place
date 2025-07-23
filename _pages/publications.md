@@ -1653,7 +1653,7 @@ L.&nbsp;Esteve-Elfau
 <i>MS Thesis, Universitat Polit&egrave;cnica de Catalunya, Department of Signal Theory and Communications, Barcelona, Spain, July 2011.</i>
 <br />
 <a href="javascript:toggleBibtex('Esteve11')">[BibTeX]</a>
-<span style="color: #52adc8">[</span><a href="https://upcommons.upc.edu/handle/2099.1/18997" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://upcommons.upc.edu/bitstream/handle/2099.1/18997/PFC_Luis_Esteve_Elfau.pdf" >
+<span style="color: #52adc8">[</span><a href="https://upcommons.upc.edu/entities/publication/1741180b-ebd1-487a-8bd9-9a7305850584" >Online <i class="ai ai-open-access"> </i></a><span style="color: #52adc8">]</span> <span style="color: #52adc8">[</span><a href="https://upcommons.upc.edu/bitstreams/257037b6-e0b6-4986-84ed-e820d0b18a1b/download" >
 PDF</a><span style="color: #52adc8">]</span>
 </p>
 <div id="bib_Esteve11" class="bibtex noshow" style="color: #111111">

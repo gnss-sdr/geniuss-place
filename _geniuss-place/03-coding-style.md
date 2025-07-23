@@ -63,7 +63,7 @@ Style Generator](http://www.rosvall.ie/cgi-bin/genCodeStd.pl). Some ideas were
 borrowed from the [Google C++ Style
 Guide](https://google.github.io/styleguide/cppguide.html) and the [High
 Integrity C++ Coding Standard Version
-4.0](https://www.perforce.com/resources/qac/high-integrity-cpp-coding-standard)
+4.0](https://www.perforce.com/products/helix-qac)
 Guidelines for the use of the C++ language in critical systems.
 {: .notice--primary}
 
