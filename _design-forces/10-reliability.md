@@ -82,7 +82,7 @@ rules. Examples:
   standard.
 
 - _High Integrity C++ Coding Standard
-  [Version 4.0](https://www.perforce.com/resources/qac/high-integrity-cpp-coding-standard)_,
+  [Version 4.0](https://www.perforce.com/products/helix-qac)_,
   released on 3 October 2013. It is based on the
   [ISO/IEC 14882:2011](https://www.iso.org/standard/50372.html) standard.
 

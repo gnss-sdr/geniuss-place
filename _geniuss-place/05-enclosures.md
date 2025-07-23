@@ -33,7 +33,7 @@ iteration.
 
 ## Stereolitography example:
 
-<script src="https://embed.github.com/view/3d/hectorbu/Prueba-2/master/USRP_Version4/USRP_Base1.4.stl">
+<script src="https://embed.githubusercontent.com/view/3d/hectorbu/Prueba-2/master/USRP_Version4/USRP_Base1.4.stl">
 </script>
 
 
