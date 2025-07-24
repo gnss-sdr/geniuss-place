@@ -237,7 +237,7 @@ receiver:
   - Others.
 
 - Support of FPGA offloading (define FPGA's vendor/model).
-  - [AMD (formerly Xilinx)](https://www.xilinx.com/products/silicon-devices/fpga.html)
+  - [AMD (formerly Xilinx)](https://www.amd.com/en/products/adaptive-socs-and-fpgas/fpga.html)
   - [Altera](https://www.altera.com/)
   - [Microchip (formerly Actel)](https://www.microchip.com/en-us/products/fpgas-and-plds#)
   - Others.

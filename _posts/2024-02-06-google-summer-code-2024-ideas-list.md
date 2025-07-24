@@ -166,7 +166,7 @@ environment can be found here: http://www.rfsoc-pynq.io/
 - Knowledge of Python and C++.
 - Basic knowledge of Linux OS.
 
-[1] https://www.xilinx.com/support/university/xup-boards/RFSoC4x2.html 
+[1] https://www.amd.com/en/corporate/university-program/aup-boards/rfsoc4x2.html
 
 ### Potential mentor(s):
 Javier Arribas.
