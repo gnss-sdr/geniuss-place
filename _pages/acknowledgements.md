@@ -192,7 +192,7 @@ partial support for development through project CPP2021-008648, titled ``Recepto
 
   * In [Development of new blocks for Galileo E1 in GNSS-SDR: From telemetry to PVT solutions](https://g.co/gsoc), Mara Branzanti worked on the Galileo E1 receiver.
   * In [GNSS-SDR goes SBAS](https://g.co/gsoc), Daniel Fehr set the basis for the EGNOS receiver.
-  * In [Improve the acquisition sensitivity of a GNSS receiver](hhttps://g.co/gsoc), Marc Molina improved the performance of acquisition algorithms.
+  * In [Improve the acquisition sensitivity of a GNSS receiver](https://g.co/gsoc), Marc Molina improved the performance of acquisition algorithms.
 
 [2012](https://g.co/gsoc), under the kind umbrella of GNU Radio and the GNU Project.
 
