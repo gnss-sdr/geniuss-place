@@ -1,5 +1,5 @@
 const releaseVersion = "0.0.20";
-const serviceWorkerVersion = "12";
+const serviceWorkerVersion = "13";
 const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
 
 const offlineFallbackPage = "offline.html";
@@ -16,7 +16,11 @@ self.addEventListener("install", function (event) {
         [
           '/assets/css/main.css',
           '/assets/css/style.css',
-          '/assets/fonts/fontawesome/css/all.min.css',
+          '/assets/fonts/fontawesome/css/fontawesome.css',
+          '/assets/fonts/fontawesome/css/brands.css',
+          '/assets/fonts/fontawesome/css/regular.css',
+          '/assets/fonts/fontawesome/css/solid.css',
+          '/assets/css/academicons.min.css',
           '/assets/js/main.min.js',
           '/assets/images/site-logo.png',
           '/assets/images/logo-gnss-sdr.png',
