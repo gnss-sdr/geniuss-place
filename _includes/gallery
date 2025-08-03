@@ -1,4 +1,4 @@
-{{% if include.id %}
+{% if include.id %}
   {% assign gallery = page[include.id] %}
 {% else %}
   {% assign gallery = page.gallery %}
