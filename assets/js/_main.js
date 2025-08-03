@@ -257,14 +257,13 @@ $(document).ready(function() {
     // Restore the focus to the button
     thisButton.focus();
     if (result) {
-      if (thisButton.interval !== null) {
-        clearInterval(thisButton.interval);
+      if (thisButton.timeout !== undefined && thisButton.timeout !== null) {
+        clearTimeout(thisButton.timeout);
       }
       thisButton.classList.add('copied');
       thisButton.interval = setTimeout(function () {
         thisButton.classList.remove('copied');
-        clearInterval(thisButton.interval);
-        thisButton.interval = null;
+        thisButton.timeout = null;
       }, 1500);
     }
     return result;
