@@ -1,8 +1,7 @@
 const releaseVersion = "0.0.20";
-const serviceWorkerVersion = "16";
+const serviceWorkerVersion = "17";
 const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
-
-const offlineFallbackPage = "offline.html";
+const offlineFallbackPage = "/offline.html";
 
 const ASSETS_TO_CACHE = [
   "/index.html",
@@ -37,78 +36,119 @@ const ASSETS_TO_CACHE = [
   "/assets/images/geniux-teaser.png"
 ];
 
-// Install stage sets up the index page (home page) in the cache and opens a new cache
-self.addEventListener("install", function (event) {
-  console.log("Install Event processing");
+// Install: Pre-cache static assets
+self.addEventListener("install", event => {
+  console.log("Service Worker: Install");
+
+  self.skipWaiting();
 
   event.waitUntil(
-    caches.open(CACHE).then(function (cache) {
-      console.log("Cached offline and index pages during install");
-
+    caches.open(CACHE).then(cache => {
+      console.log("Caching index page and offline fallback");
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
 });
 
-// If any fetch fails, it will look for the request in the cache and serve it from there first
-self.addEventListener("fetch", function (event) {
+// Activate: Clean up old caches
+self.addEventListener("activate", event => {
+  console.log("Service Worker: Activate");
+
+  event.waitUntil(
+    caches.keys().then(cacheNames =>
+      Promise.all(
+        cacheNames
+          .filter(name => name !== CACHE)
+          .map(name => {
+            console.log("Deleting old cache:", name);
+            return caches.delete(name);
+          })
+      )
+    ).then(() => self.clients.claim())
+  );
+});
+
+// Fetch: Network-first for HTML, Cache-first for others
+self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
-  event.respondWith(
-    fetch(event.request)
-      .then(function (response) {
-        console.log("Add page to offline cache: " + response.url);
+  const request = event.request;
+  const acceptHeader = request.headers.get("accept") || "";
+  const isHTML = acceptHeader.includes("text/html");
 
-        // If request was success, add or update it in the cache
-        event.waitUntil(updateCache(event.request, response.clone()));
-
-        return response;
-      })
-      .catch(function (error) {
-        console.log("Network request Failed. Serving content from cache: " + error);
-        return fromCache(event.request);
-      })
-  );
-});
-
-self.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.filter(function(cacheName) {
-          // Return true if you want to remove this cache,
-          // but remember that caches are shared across
-          // the whole origin
-        }).map(function(cacheName) {
-          return caches.delete(cacheName);
+  if (isHTML) {
+    // Network-first strategy for HTML
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          const cloned = response.clone();
+          if (isCacheableRequest(request)) {
+            event.waitUntil(updateCache(request, cloned));
+          }
+          return response;
         })
-      );
-    })
-  );
+        .catch(error => {
+          console.warn("Fetch failed; trying cache for HTML:", error);
+          return fromCache(request);
+        })
+    );
+  } else {
+    // Cache-first strategy for static assets
+    event.respondWith(
+      caches.match(request).then(cached => {
+        if (cached) return cached;
+
+        return fetch(request)
+          .then(response => {
+            if (
+              response &&
+              response.status === 200 &&
+              isCacheableRequest(request)
+            ) {
+              const cloned = response.clone();
+              event.waitUntil(updateCache(request, cloned));
+            }
+            return response;
+          })
+          .catch(error => {
+            console.warn("Fetch failed; asset not cached:", error);
+            return;
+          });
+      })
+    );
+  }
 });
 
-function fromCache(request) {
-  // Check to see if you have it in the cache
-  // Return response
-  // If not in the cache, then return the offline page
-  return caches.open(CACHE).then(function (cache) {
-    return cache.match(request).then(function (matching) {
-      if (!matching || matching.status === 404) {
-        // The following validates that the request was for a navigation to a new document
-        if (request.destination !== "document" || request.mode !== "navigate") {
-          return Promise.reject("no-match");
-        }
-
-        return cache.match(offlineFallbackPage);
-      }
-
-      return matching;
-    });
-  });
+// Only cache GET requests with http/https schemes from same origin
+function isCacheableRequest(request) {
+  try {
+    const url = new URL(request.url);
+    return (
+      request.method === "GET" &&
+      (url.protocol === "http:" || url.protocol === "https:") &&
+      url.origin === self.location.origin
+    );
+  } catch (e) {
+    return false;
+  }
 }
 
+// Serve cached content or fallback offline page
+function fromCache(request) {
+  return caches.open(CACHE).then(cache =>
+    cache.match(request).then(matching => {
+      if (!matching || matching.status === 404) {
+        if (request.destination === "document" || request.mode === "navigate") {
+          return cache.match(offlineFallbackPage);
+        }
+        return Response.error();
+      }
+      return matching;
+    })
+  );
+}
+
+// Store response in cache
 function updateCache(request, response) {
-  return caches.open(CACHE).then(function (cache) {
-    return cache.put(request, response);
-  });
+  return caches.open(CACHE).then(cache => cache.put(request, response));
 }
