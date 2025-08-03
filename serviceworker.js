@@ -1,5 +1,5 @@
 const releaseVersion = "0.0.20";
-const serviceWorkerVersion = "15";
+const serviceWorkerVersion = "16";
 const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
 
 const offlineFallbackPage = "offline.html";
@@ -60,9 +60,7 @@ self.addEventListener("fetch", function (event) {
         console.log("Add page to offline cache: " + response.url);
 
         // If request was success, add or update it in the cache
-        if (isCacheableRequest(event.request)) {
-          event.waitUntil(updateCache(event.request, networkResponse.clone()));
-        }
+        event.waitUntil(updateCache(event.request, response.clone()));
 
         return response;
       })
@@ -109,20 +107,7 @@ function fromCache(request) {
   });
 }
 
-function isCacheableRequest(request) {
-  try {
-    const url = new URL(request.url);
-    return url.protocol === "http:" || url.protocol === "https:";
-  } catch (e) {
-    return false;
-  }
-}
-
 function updateCache(request, response) {
-  if (!isCacheableRequest(request)) {
-    // skip unsupported schemes like chrome-extension:
-    return Promise.resolve();
-  }
   return caches.open(CACHE).then(function (cache) {
     return cache.put(request, response);
   });
