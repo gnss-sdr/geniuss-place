@@ -1,8 +1,41 @@
 const releaseVersion = "0.0.20";
-const serviceWorkerVersion = "13";
+const serviceWorkerVersion = "15";
 const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
 
 const offlineFallbackPage = "offline.html";
+
+const ASSETS_TO_CACHE = [
+  "/index.html",
+  "/offline.html",
+  "/assets/css/main.css",
+  "/assets/css/style.css",
+  "/assets/fonts/fontawesome/css/all.min.css",
+  "/assets/css/academicons.min.css",
+  "/assets/js/main.min.js",
+  "/assets/images/site-logo.png",
+  "/assets/images/logo-gnss-sdr.png",
+  "/assets/images/logo-gnss-sdr-invert.png",
+  "/assets/images/not-found.jpg",
+  "/assets/images/main-page-header.jpg",
+  "/assets/images/icon-gnss-sdr-white.png",
+  "/assets/images/fix.png",
+  "/assets/images/binder.png",
+  "/assets/images/radar-chart.png",
+  "/assets/images/geniuss.png",
+  "/assets/images/logo-gnss-sdr-new-release.png",
+  "/assets/images/logo-gsoc.png",
+  "/assets/images/gnss-sdr_monitoring_teaser.png",
+  "/assets/images/fpga-ip-core.png",
+  "/assets/images/OSNMA_teaser.png",
+  "/assets/images/PDCA.png",
+  "/assets/images/Cmake-logo.png",
+  "/assets/images/oe-logo.png",
+  "/assets/images/gnss-signals-teaser.png",
+  "/assets/images/lego.jpg",
+  "/assets/images/logo-git.png",
+  "/assets/images/master-to-main-teaser.png",
+  "/assets/images/geniux-teaser.png"
+];
 
 // Install stage sets up the index page (home page) in the cache and opens a new cache
 self.addEventListener("install", function (event) {
@@ -12,42 +45,7 @@ self.addEventListener("install", function (event) {
     caches.open(CACHE).then(function (cache) {
       console.log("Cached offline and index pages during install");
 
-      return cache.addAll(
-        [
-          '/assets/css/main.css',
-          '/assets/css/style.css',
-          '/assets/fonts/fontawesome/css/fontawesome.css',
-          '/assets/fonts/fontawesome/css/brands.css',
-          '/assets/fonts/fontawesome/css/regular.css',
-          '/assets/fonts/fontawesome/css/solid.css',
-          '/assets/css/academicons.min.css',
-          '/assets/js/main.min.js',
-          '/assets/images/site-logo.png',
-          '/assets/images/logo-gnss-sdr.png',
-          '/assets/images/logo-gnss-sdr-invert.png',
-          '/assets/images/not-found.jpg',
-          '/offline.html',
-          '/index.html',
-          '/assets/images/main-page-header.jpg',
-          '/assets/images/icon-gnss-sdr-white.png',
-          '/assets/images/fix.png',
-          '/assets/images/binder.png',
-          '/assets/images/radar-chart.png',
-          '/assets/images/geniuss.png',
-          '/assets/images/logo-gnss-sdr-new-release.png',
-          '/assets/images/logo-gsoc.png',
-          '/assets/images/gnss-sdr_monitoring_teaser.png',
-          '/assets/images/fpga-ip-core.png',
-          '/assets/images/OSNMA_teaser.png',
-          '/assets/images/PDCA.png',
-          '/assets/images/Cmake-logo.png',
-          '/assets/images/oe-logo.png',
-          '/assets/images/gnss-signals-teaser.png',
-          '/assets/images/lego.jpg',
-          '/assets/images/logo-git.png',
-          '/assets/images/master-to-main-teaser.png',
-          '/assets/images/geniux-teaser.png'
-      ]);
+      return cache.addAll(ASSETS_TO_CACHE);
     })
   );
 });
@@ -62,7 +60,9 @@ self.addEventListener("fetch", function (event) {
         console.log("Add page to offline cache: " + response.url);
 
         // If request was success, add or update it in the cache
-        event.waitUntil(updateCache(event.request, response.clone()));
+        if (isCacheableRequest(event.request)) {
+          event.waitUntil(updateCache(event.request, networkResponse.clone()));
+        }
 
         return response;
       })
@@ -109,7 +109,20 @@ function fromCache(request) {
   });
 }
 
+function isCacheableRequest(request) {
+  try {
+    const url = new URL(request.url);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (e) {
+    return false;
+  }
+}
+
 function updateCache(request, response) {
+  if (!isCacheableRequest(request)) {
+    // skip unsupported schemes like chrome-extension:
+    return Promise.resolve();
+  }
   return caches.open(CACHE).then(function (cache) {
     return cache.put(request, response);
   });
