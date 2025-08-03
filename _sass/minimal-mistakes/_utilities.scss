@@ -88,21 +88,13 @@ body:hover .visually-hidden button {
    Type
    ========================================================================== */
 
-.text-left {
-  text-align: left;
+$text-alignments: left, right, start, end, center, justify;
+@each $alignment in $text-alignments {
+  .text-#{$alignment} {
+    text-align: $alignment;
+  }
 }
 
-.text-center {
-  text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-justify {
-  text-align: justify;
-}
 
 .text-nowrap {
   white-space: nowrap;
@@ -624,24 +616,25 @@ a.reversefootnote {
 }
 
 pre {
+  &.highlight .clipboard-copy-button {
+    color: #ffffca;
+  }
+
   .clipboard-copy-button {
     display: block;
     position: absolute;
     top: 0.6em;
     inset-inline-end: 0.5em;
+    width: 1.8em;
+    height: 1.5em;
     z-index: 1;
     background: none;
     border: none;
     outline: none;
     border-radius: 0.1em;
     padding: 0.2em 0.5em;
-    color: white;
     opacity: 0.4;
     transition: color 0.25s linear -0.25s, opacity 0.25s linear;
-
-    &:hover {
-      color: #ffffca;
-    }
 
     &::before {
       content: '';

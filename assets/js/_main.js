@@ -2,7 +2,7 @@
    jQuery plugin settings and other scripts
    ========================================================================== */
 
-$(function() {
+$(document).ready(function() {
   // FitVids init
   $("#main").fitVids();
 
@@ -69,7 +69,7 @@ $(function() {
     $(".author__urls-wrapper").find("button#AntonioRamosdeTorres").toggleClass("open");
   });
 
-  // Close search screen with Esc key
+    // Close search screen with Esc key
   $(document).keyup(function (e) {
     if (e.keyCode === 27) {
       if ($(".initial-content").hasClass("is--hidden")) {
@@ -85,16 +85,16 @@ $(function() {
     $(".initial-content").toggleClass("is--hidden");
     // set focus on input
     setTimeout(function () {
-      $(".search-content").find("input").focus();
+      $(".search-content input").focus();
     }, 400);
   });
 
   // Smooth scrolling
   var scroll = new SmoothScroll('a[href*="#"]', {
     offset: 20,
-    speed: 300,
-    durationMax: 600,
-    easing: 'easeInOutQuint',
+    speed: 400,
+    speedAsDuration: true,
+    durationMax: 500,
   });
 
   // Gumshoe scroll spy init
@@ -117,6 +117,28 @@ $(function() {
     });
   }
 
+  // Auto scroll sticky ToC with content
+  const scrollTocToContent = function (event) {
+    var target = event.target;
+    var scrollOptions = { behavior: "auto", block: "nearest", inline: "start" };
+
+    var tocElement = document.querySelector("aside.sidebar__right.sticky");
+    if (!tocElement) return;
+    if (window.getComputedStyle(tocElement).position !== "sticky") return;
+
+    if (target.parentElement.classList.contains("toc__menu") && target == target.parentElement.firstElementChild) {
+      // Scroll to top instead
+      document.querySelector("nav.toc header").scrollIntoView(scrollOptions);
+    } else {
+      target.scrollIntoView(scrollOptions);
+    }
+  };
+
+  // Has issues on Firefox, whitelist Chrome for now
+  if (!!window.chrome) {
+    document.addEventListener("gumshoeActivate", scrollTocToContent);
+  }
+
   // add lightbox class to all image links
   $(
     "a[href$='.jpg'],a[href$='.jpeg'],a[href$='.JPG'],a[href$='.png'],a[href$='.gif'],a[href$='.webp']"
@@ -124,7 +146,7 @@ $(function() {
 
   // Magnific-Popup options
   $(".image-popup").magnificPopup({
-    // disableOn: function () {
+    // disableOn: function() {
     //   if( $(window).width() < 500 ) {
     //     return false;
     //   }
@@ -145,7 +167,7 @@ $(function() {
     // make it unique to apply your CSS animations just to this exact popup
     mainClass: "mfp-zoom-in",
     callbacks: {
-      beforeOpen: function() {
+      beforeOpen: function () {
         // just a hack that adds mfp-anim class to markup
         this.st.image.markup = this.st.image.markup.replace(
           "mfp-figure",
@@ -181,9 +203,9 @@ $(function() {
   // Add copy button for <pre> blocks
   var copyText = function (text) {
     if (document.queryCommandEnabled("copy") && navigator.clipboard) {
-        navigator.clipboard.writeText(text).then(
-          () => true,
-          () => console.error("Failed to copy text to clipboard: " + text)
+      navigator.clipboard.writeText(text).then(
+        () => true,
+        () => console.error("Failed to copy text to clipboard: " + text)
       );
       return true;
     } else {
@@ -231,9 +253,21 @@ $(function() {
     if (realCodeBlock) {
       codeBlock = realCodeBlock;
     }
-    // Skip terminal prompt symbol
-    var skippedText = codeBlock.innerText.replace(/\$\s/g,'')
-    return copyText(skippedText);
+    var result = copyText(codeBlock.innerText.replace(/\$\s/g,''));
+    // Restore the focus to the button
+    thisButton.focus();
+    if (result) {
+      if (thisButton.interval !== null) {
+        clearInterval(thisButton.interval);
+      }
+      thisButton.classList.add('copied');
+      thisButton.interval = setTimeout(function () {
+        thisButton.classList.remove('copied');
+        clearInterval(thisButton.interval);
+        thisButton.interval = null;
+      }, 1500);
+    }
+    return result;
   };
 
   var elem = document.querySelectorAll(".page__content pre > code");
