@@ -2,7 +2,7 @@
    jQuery plugin settings and other scripts
    ========================================================================== */
 
-$(document).ready(function() {
+$(function() {
   // FitVids init
   $("#main").fitVids();
 
@@ -202,36 +202,44 @@ $(document).ready(function() {
 
   // Add copy button for <pre> blocks
   var copyText = function (text) {
-    if (document.queryCommandEnabled("copy") && navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(
-        () => true,
-        () => console.error("Failed to copy text to clipboard: " + text)
-      );
-      return true;
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+      // Modern async clipboard API
+      return navigator.clipboard.writeText(text)
+        .then(() => true)
+        .catch((err) => {
+          console.error("Failed to copy using clipboard API:", err);
+          return fallbackCopy(text);
+        });
     } else {
-      var isRTL = document.documentElement.getAttribute("dir") === "rtl";
-
-      var textarea = document.createElement("textarea");
-      textarea.className = "clipboard-helper";
-      textarea.style[isRTL ? "right" : "left"] = "-9999px";
-      // Move element to the same position vertically
-      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-      textarea.style.top = yPosition + "px";
-
-      textarea.setAttribute("readonly", "");
-      textarea.value = text;
-      document.body.appendChild(textarea);
-
-      var success = true;
-      try {
-        textarea.select();
-        success = document.execCommand("copy");
-      } catch (e) {
-        success = false;
-      }
-      textarea.parentNode.removeChild(textarea);
-      return success;
+      // Fallback for older browsers
+      return Promise.resolve(fallbackCopy(text));
     }
+  };
+
+  function fallbackCopy(text) {
+    var isRTL = document.documentElement.getAttribute("dir") === "rtl";
+
+    var textarea = document.createElement("textarea");
+    textarea.className = "clipboard-helper";
+    textarea.style.position = "absolute";
+    textarea.style[isRTL ? "right" : "left"] = "-9999px";
+    textarea.style.top = (window.pageYOffset || document.documentElement.scrollTop) + "px";
+    textarea.setAttribute("readonly", "");
+    textarea.value = text;
+
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    let success = false;
+    try {
+      success = document.execCommand("copy");
+    } catch (e) {
+      console.warn("Fallback copy failed:", e);
+      success = false;
+    }
+
+    textarea.remove();
+    return success;
   };
 
   var copyButtonEventListener = function (event) {

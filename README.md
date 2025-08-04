@@ -84,8 +84,8 @@ The licensor cannot revoke these freedoms as long as you follow the license term
 **No additional restrictions**. You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 
 This work incorporates [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes),
-Copyright &copy; 2013-2021 Michael Rose and contributors.
-With modifications: &copy; 2016-2021 Carles Fern&aacute;ndez-Prades.
+Copyright &copy; 2013-2025 Michael Rose and contributors.
+With modifications: &copy; 2016-2025 Carles Fern&aacute;ndez-Prades.
 Minimal Mistakes is distributed under the terms of the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates icons from [The Noun Project](https://thenounproject.com/).
@@ -100,8 +100,8 @@ This work incorporates GeNiuSS, a character created by Carlos Paniego.
 Copyright &copy; 2012, Carlos Paniego. All rights reserved.
 
 This work incorporates [Font Awesome](https://fontawesome.com/),
-Copyright &copy; 2017 Dave Gandy.
-Font Awesome is distributed under the terms of the [SIL OFL 1.1](https://scripts.sil.org/OFL) and [MIT License](https://opensource.org/license/MIT).
+Copyright &copy; 2025 Fonticons, Inc.
+Font Awesome webfont files are distributed under the terms of the [SIL OFL 1.1](https://scripts.sil.org/OFL), and the code is under the [MIT License](https://opensource.org/license/MIT).
 
 This work incorporates [Academicons](https://jpswalsh.github.io/academicons/),
 Copyright &copy; 2017 James Walsh.
