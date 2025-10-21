@@ -52,6 +52,7 @@ and open-source GNSS software-defined receiver:
   partial support for development infrastructure through the 
   [Artificial Intelligence-Native Air Interface for 6G (6G-AINA)](https://6g-aina.cttc.es/)
   project (Grant PID PID2021-128373OB-I00). Sep. 2022 - Aug. 2025.
+  {: .notice--success}
 
 
 * Support from the Spanish Ministry of Science, Innovation, and Universities.
