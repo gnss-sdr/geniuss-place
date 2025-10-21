@@ -39,9 +39,19 @@ and open-source GNSS software-defined receiver:
   ![SpanishMinistry logo]({{ "/assets/images/SpanishMinistry.png" | relative_url }}){:width="600px"}
   {: style="text-align: center;"}
 
-**The Spanish Ministry of Science and Innovation** provides
-partial support for development through project CPP2021-008648, titled ``Receptor Abierto y Flexible de Investigación por Satélite''. Mar 2022 - Mar 2025.
-{: .notice--success}
+  **The Spanish Ministry of Science and Innovation** provides
+  partial support for development through project CPP2021-008648, titled ``Receptor Abierto y Flexible de Investigación por Satélite''. Mar 2022 - Mar 2025.
+  {: .notice--success}
+
+* Support from the Spanish Ministry of Science anf Innovation
+  
+  ![SpanishMinistry logo]({{ "/assets/images/mineco_T.png" | relative_url }}){:width="600px"}
+  {: style="text-align: center;"}
+
+  **The Spanish Ministry of Science anf Innovation** provided
+  partial support for development infrastructure through the 
+  [Artificial Intelligence-Native Air Interface for 6G (6G-AINA)](https://6g-aina.cttc.es/)
+  project (Grant PID PID2021-128373OB-I00). Sep. 2022 - Aug. 2025.
 
 
 * Support from the Spanish Ministry of Science, Innovation, and Universities.
