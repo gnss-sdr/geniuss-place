@@ -920,7 +920,7 @@ The following table lists the GNSS signals providing Open Service.
 
 [^GalileoSSD]: European GNSS (Galileo) [Open Service Service Definition Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.3.pdf), Issue 1.3, Nov. 2023.
 
-[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf), Issue 2.1, Nov. 2023.
+[^GalileoICD]: European GNSS (Galileo) [Open Service Signal In Space Interface Control Document](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.2.pdf), Issue 2.2, Nov. 2025.
 
 [^GalileoE6]: European Union, [Galileo E6-B/C Codes Technical Note](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf), Issue 1, January 2019.
 
