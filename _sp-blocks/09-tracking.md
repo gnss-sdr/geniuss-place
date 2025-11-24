@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2023-10-13T10:54:02+02:00
+last_modified_at: 2025-11-24T10:54:02+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
@@ -1469,6 +1469,8 @@ The list of output vector variables contained in each `.mat` file is the followi
   * `PRN_start_sample_counter`: Sample counter from tracking start.
   * `Prompt_I`: Value of the Prompt correlator in the In-phase component.
   * `Prompt_Q`: Value of the Prompt correlator in the Quadrature component.
+  * `TOW_ms`: Time of Week, in milliseconds, when available from the Telemetry Decoder block. Requires `GNSS-SDR.tow_to_trk=true` in the GNSS-SDR configuration file, otherwise it is set to zero. <span style="color: orange">Only available from the `next` branch of the upstream repository, and will be included in the next stable release.</span>
+  * `WN`: Week number, when available from the Telemetry Decoder block. Requires `GNSS-SDR.tow_to_trk=true` in the GNSS-SDR configuration file, otherwise it is set to zero. <span style="color: orange">Only available from the `next` branch of the upstream repository, and will be included in the next stable release.</span>
 
 Each variable is a vector containing the outputs of every integration period.
 
