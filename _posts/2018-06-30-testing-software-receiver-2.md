@@ -386,7 +386,6 @@ the test program `run_tests`.
       ```
       - `GalileoE1DllPllVemlTrackingInternalTest`: set of test cases for [galileo_e1_dll_pll_veml_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e1_dll_pll_veml_tracking.h)
       - `GlonassL1CaDllPllTrackingTest`: set of test cases for [glonass_l1_ca_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/glonass_l1_ca_dll_pll_tracking.h)  
-      - `GlonassL1CaDllPllCAidTrackingTest`: set of test cases for [glonass_l1_ca_dll_pll_c_aid_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/glonass_l1_ca_dll_pll_tracking.h)
       - `GalileoE5aTrackingTest`: set of test cases for [galileo_e5a_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e5a_dll_pll_tracking.h)    
       - `TrackingLoopFilterTest`: set of test cases for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h)
 
