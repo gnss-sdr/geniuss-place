@@ -243,7 +243,7 @@ standard output formats:
   [3.05](https://files.igs.org/pub/data/format/rinex305.pdf), or
   [4.00](https://files.igs.org/pub/data/format/rinex_4.00.pdf).
 
-  **RINEX** (Receiver Independent Exchange Format) is an interchange format for
+  **RINEX** (Receiver INdependent EXchange Format) is an interchange format for
   raw satellite navigation system data, covering observables and the information
   contained in the navigation message broadcast by GNSS satellites. This allows
   the user to post-process the received data to produce a more accurate result
