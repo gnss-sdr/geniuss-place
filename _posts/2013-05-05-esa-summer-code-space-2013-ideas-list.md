@@ -15,7 +15,7 @@ redirect_from:
 
 ESA Summer of Code in Space 2013 ([SOCIS 2013](https://www.esa.int/Enabling_Support/Space_Engineering_Technology/SOCIS_The_ESA_Summer_of_Code_in_Space)) is a program run by the European Space Agency. It aims at offering student developers stipends to write code for various space-related open source software projects. Through SOCIS, accepted student applicants are paired with a mentor or mentors from the participating projects, thus gaining exposure to real-world software development scenarios. In turn, the participating projects are able to more easily identify and bring in new developers.
 
-If you are an eligible and interested student, read through the list and note the projects you are interested in. You, as the student programmer, then submit a proposal to ESA using the SOCIS 2013 website. The application form will be open from June 30 until July 15. We recommend you to submit your application early. By doing so, it will be given a greater share of attention than is possible for applications submitted at the last minute.
+If you are an eligible and interested student, read through the list and note the projects you are interested in. You, as the student programmer, then submit a proposal to ESA using the SOCIS 2013 website. The application form will be open from June 30 until July 15. We recommend that you submit your application early. By doing so, it will be given a greater share of attention than is possible for applications submitted at the last minute.
 
 You might submit a proposal following the guidelines below, or you might want to adapt it. Changes to the proposal could include:
 
@@ -57,9 +57,9 @@ Mentor: Dr. Pau Closas
 
 The VITA 49 Radio Transport (VRT) is an emerging standard for SDR signal samples transport protocol. Prior to the development of the VRT standard, each SDR RF front-end manufacturer developed custom and proprietary digitized data formats and metadata formats. A remarkable feature of the VRT protocol is the ability to provide accurate timestamping of the signal samples.
 
-One of the most common and undesirable event in a real-time software-defined receiver is the sample buffer overrun situation. The problem occurs when the host machine eventually consumes signal samples at a lower speed than the hardware driver produces. If the sample buffer fills up, then the hardware driver start to discard signal samples. This transitory event can be caused by the multitasking nature of the host operating system, specially in slow machines when they are also used to concurrently run other user programs, such as GPS navigation displays and mapping software.
+One of the most common and undesirable events in a real-time software-defined receiver is the sample buffer overrun situation. The problem occurs when the host machine eventually consumes signal samples at a lower speed than the hardware driver produces. If the sample buffer fills up, then the hardware driver starts to discard signal samples. This transitory event can be caused by the multitasking nature of the host operating system, especially in slow machines when they are also used to concurrently run other user programs, such as GPS navigation displays and mapping software.
 
-The immediate effect of discarding a sample is that all the signal tracking loops in the GNSS-SDR receiver loss their lock to the satellite signals due to an unexpected shift in the CDMA synchronization process.
+The immediate effect of discarding a sample is that all the signal tracking loops in the GNSS-SDR receiver lose their lock to the satellite signals due to an unexpected shift in the CDMA synchronization process.
 
 The idea behind this project is to exploit the sample timestamp information provided by VRT 49 protocol to detect buffer overruns and feed the tracking loops with a prediction of the missing sample according to the expected pseudorandom noise code, and thus providing continuity to the tracking process without falling back again into signal acquisition.
 
@@ -71,7 +71,7 @@ Mentor: Dr. Javier Arribas
 
 ## Integration of open-source positioning libraries at observable level in real-time
 
-Currently, the GNSS-SDR project focuses the main development activities to enhance the signal processing operations that occurs before the observable data is obtained (mainly code pseudorange and carrier phase observables). In this category fall the signal acquisition and tracking operations along with the corresponding navigation message decoding and the observable estimation. By the end of 2013, GNSS-SDR software will be capable of acquire, track and obtain combined observables of both GPS L1 C/A and Galileo E1b and E1c signals.
+Currently, the GNSS-SDR project focuses the main development activities to enhance the signal processing operations that occurs before the observable data is obtained (mainly code pseudorange and carrier phase observables). In this category fall the signal acquisition and tracking operations along with the corresponding navigation message decoding and the observable estimation. By the end of 2013, GNSS-SDR software will be capable of acquiring, tracking, and obtaining combined observables of both GPS L1 C/A and Galileo E1b and E1c signals.
 
 However, to obtain the final GNSS product, typically composed of the Position, Velocity and Time (PVT) solution, there is still much work to do. GNSS-SDR provides an internal satellite orbital model that uses the broadcast ephemeris to estimate the satellite positions. It is complemented with a basic Least Squares (LS) solver that obtains the PVT solution.
 

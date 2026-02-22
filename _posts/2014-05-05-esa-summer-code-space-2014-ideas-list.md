@@ -14,7 +14,7 @@ redirect_from:
 
 ESA Summer of Code in Space 2014 ([SOCIS 2014](https://www.esa.int/Enabling_Support/Space_Engineering_Technology/SOCIS_The_ESA_Summer_of_Code_in_Space)) is a program run by the European Space Agency. It aims at offering student developers stipends to write code for various space-related open source software projects. Through SOCIS, accepted student applicants are paired with a mentor or mentors from the participating projects, thus gaining exposure to real-world software development scenarios. In turn, the participating projects are able to more easily identify and bring in new developers.
 
-If you are an eligible and interested student, read through the list and note the projects you are interested in. You, as the student programmer, then submit a proposal to ESA using the SOCIS 2014 website. The application form will be open until May 15. We recommend you to submit your application early. By doing so, it will be given a greater share of attention than is possible for applications submitted at the last minute.
+If you are an eligible and interested student, read through the list and note the projects you are interested in. You, as the student programmer, then submit a proposal to ESA using the SOCIS 2014 website. The application form will be open until May 15. We recommend that you submit your application early. By doing so, it will be given a greater share of attention than is possible for applications submitted at the last minute.
 
 You might submit a proposal following the guidelines below, or you might want to adapt it. Changes to the proposal could include:
 
