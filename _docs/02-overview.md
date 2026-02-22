@@ -53,7 +53,7 @@ offering an easy way to measure their impact on the overall receiver
 performance. Testing of all the processes is conducted both by the systematic
 functional validation of every single software block and by experimental
 validation of the complete receiver using both real and synthetic signals. The
-processing output can be stored in Receiver INdependent EXchange Format
+processing output can be stored in Receiver INdependent EXchange format
 ([RINEX](https://en.wikipedia.org/wiki/RINEX)), used by most geodetic processing
 software for GNSS, or transmitted as RTCM 3.2 messages through a TCP/IP server
 in real-time. Navigation results are stored in
