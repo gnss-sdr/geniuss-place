@@ -35,7 +35,7 @@ the projects you are interested in. You, as the student programmer, then submit
 a proposal to Google, using the [GSoC 2021
 website](https://summerofcode.withgoogle.com/). The application form for
 students will be open from March 29, 2021, until April 13, 2021, at 20:00
-(Central European Summer Time). We recommend you to submit your application
+(Central European Summer Time). We recommend that you submit your application
 early. By doing so, it will be given a greater share of attention than is
 possible for applications submitted at the last minute.
 
