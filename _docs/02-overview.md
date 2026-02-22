@@ -185,4 +185,4 @@ section. Before that, however, we highly recommend going through the
 [Fundamentals]({{ "/docs/fundamentals/" | relative_url }}) section, which
 describes GNSS-SDR's internal software architecture and underlying key concepts.
 
-<link rel="prerender" href="{{ "/docs/fundamentals/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/fundamentals/" | relative_url }}" />

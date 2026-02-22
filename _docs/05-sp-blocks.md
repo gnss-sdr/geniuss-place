@@ -44,15 +44,15 @@ as blue boxes in the figure below, and their parameters.
 </td> </tr> </table>
 
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/signal-source/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/signal-conditioner/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/data-type-adapter/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/input-filter/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/resampler/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/channels/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/acquisition/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/tracking/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/observables/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/sp-blocks/monitor/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/signal-source/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/signal-conditioner/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/data-type-adapter/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/input-filter/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/resampler/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/channels/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/acquisition/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/tracking/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/telemetry-decoder/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/observables/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/monitor/" | relative_url }}" />

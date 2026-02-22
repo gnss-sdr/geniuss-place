@@ -1315,4 +1315,4 @@ deactivated with `rtcm_output_file_enabled=false`.
 [^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](https://link.springer.com/chapter/10.1007/978-94-017-0528-8_3), Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](https://link.springer.com/book/10.1007/978-94-017-0528-8), G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
 
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/observables/" | relative_url }}">
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/observables/" | relative_url }}">

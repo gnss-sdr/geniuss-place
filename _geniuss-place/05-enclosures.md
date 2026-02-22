@@ -37,4 +37,4 @@ iteration.
 </script>
 
 
-<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/quick-start-guide/" | relative_url }}" />

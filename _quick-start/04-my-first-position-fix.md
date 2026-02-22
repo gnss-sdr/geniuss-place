@@ -299,8 +299,8 @@ GNSS-SDR:
 ... play with the configuration parameters or try out more challenging
 [configurations]({{ "/conf/" | relative_url }}).
 
-<link rel="prerender" href="{{ "/conf/" | relative_url }}" />
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/" | relative_url }}" />
-<link rel="prerender" href="{{ "/requirements/" | relative_url }}" />
-<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/conf/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/build-and-install/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/requirements/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/quick-start-guide/" | relative_url }}" />

@@ -337,4 +337,4 @@ software-defined GNSS receiver. Those are jobs of the
 ## References
 
 
-<link rel="prerender" href="{{ "/docs/control-plane/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/control-plane/" | relative_url }}" />
