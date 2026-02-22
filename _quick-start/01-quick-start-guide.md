@@ -88,9 +88,9 @@ Here you will find:
 
 ---
 
-<link rel="prerender" href="{{ "/requirements/" | relative_url }}" />
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
-<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/requirements/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/build-and-install/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/my-first-fix/" | relative_url }}" />
 
 {::comment}
 ![Introducing GeNiuSS]({{ "/assets/images/geniuss.jpg" | relative_url }}){:height="250px" width="250px"}{: style="text-align: center;"} This is GeNiuSS. You will see him here and there.

@@ -400,4 +400,4 @@ Observables.dump=true
 
 [^LoPresti15]: M. Petovello, L. Lo Presti, M. Visintin, [Can you list all the properties of the carrier-smoothing filter?](https://insidegnss.com/wp-content/uploads/2018/01/julyaug15-SOLUTIONS.pdf), Inside GNSS, vol. 10, no. 4, pp. 32–37, Jul./Aug. 2015.
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}">
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/pvt/" | relative_url }}">

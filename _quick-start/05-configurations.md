@@ -724,5 +724,5 @@ interface.
 
 
 
-<link rel="prerender" href="{{ "/docs/overview/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/overview/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/" | relative_url }}" />

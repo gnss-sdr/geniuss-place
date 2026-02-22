@@ -250,4 +250,4 @@ to protect the RF circuitry.
 If everything is ready, now you can jump into [building and installing
 GNSS-SDR]({{ "/build-and-install/" | relative_url }}) on your own computer.
 
-<link rel="prerender" href="{{ "/build-and-install/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/build-and-install/" | relative_url }}" />

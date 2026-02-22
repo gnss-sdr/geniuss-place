@@ -399,8 +399,8 @@ for instructions on cross-compiling GNSS-SDR for embedded systems.
 
 -----
 
-<link rel="prerender" href="{{ "/my-first-fix/" | relative_url }}" />
-<link rel="prerender" href="{{ "/conf/" | relative_url }}" />
-<link rel="prerender" href="{{ "/docs/" | relative_url }}" />
-<link rel="prerender" href="{{ "/requirements/" | relative_url }}" />
-<link rel="prerender" href="{{ "/quick-start-guide/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/my-first-fix/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/conf/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/requirements/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/quick-start-guide/" | relative_url }}" />

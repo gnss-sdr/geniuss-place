@@ -128,6 +128,6 @@ SignalConditioner.implementation=Pass_Through
 SignalConditioner.item_type=cshort
 ```
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/data-type-adapter/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/sp-blocks/input-filter/" | relative_url }}">
-<link rel="prerender" href="{{ "/docs/sp-blocks/resampler/" | relative_url }}">
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/data-type-adapter/" | relative_url }}">
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/input-filter/" | relative_url }}">
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/resampler/" | relative_url }}">

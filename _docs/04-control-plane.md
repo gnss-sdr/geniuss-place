@@ -301,4 +301,4 @@ and how they are configured.
 
 [^Fernandez10]: C. Fern&aacute;ndez-Prades, C. Avil&eacute;s, L. Esteve, J. Arribas and P. Closas, [Design patterns for GNSS software receivers](https://www.researchgate.net/publication/228624103_Design_Patterns_for_GNSS_Software_Receivers), in Proc. of the 5th ESA Workshop on Satellite Navigation Technologies, ESTEC, Noordwijk, The Netherlands, Dec. 2010, pp. 1 - 8.
 
-<link rel="prerender" href="{{ "/docs/sp-blocks/" | relative_url }}" />
+<link rel="prefetch" as="document" href="{{ "/docs/sp-blocks/" | relative_url }}" />
