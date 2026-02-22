@@ -86,11 +86,6 @@ community may be part of a mutually agreed upon resolution.
 
 ## Addressing and Repairing Harm
 
-**[NOTE: The remedies and repairs outlined below are suggestions based on best
-practices in code of conduct enforcement. If your community has its own
-established enforcement process, be sure to edit this section to describe your
-own policies.]**
-
 If an investigation by the Community Moderators finds that this Code of Conduct
 has been violated, the following enforcement ladder may be used to determine how
 best to repair harm, based on the incident's impact on the individuals involved
