@@ -846,6 +846,79 @@ Channels_B1.RF_channel_ID=0
 
 A full configuration example is available [here](https://github.com/gnss-sdr/gnss-sdr/blob/next/conf/File_input/MultiCons/gnss-sdr_ntlab.conf).
 
+
+### Implementation: `Multichannel_File_Signal_Source`
+
+This _Signal Source_ implementation allows reading **multiple raw data files simultaneously**, each one corresponding to a different radio-frequency chain.
+
+It is particularly useful when:
+
+- Multi-band recordings are stored in **separate files** (_e.g._, L1 in one file, L5 in another).
+- A capture system stores each RF channel independently.
+- You want to emulate a multi-front-end receiver using file-based playback.
+
+Each file represents one RF channel. The number of channels is defined by the parameter `total_channels`, and all channels must share the same sampling frequency and item type.
+
+This implementation accepts the following parameters:
+
+
+|----------
+|       **Parameter**       | **Description** | **Required** |
+| :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------: |
+|      --------------       |
+|     `implementation`      | `Multichannel_File_Signal_Source` | Mandatory |
+|     `total_channels`      | Number of RF channels (number of input files). Defaults to `1`. | Mandatory |
+|        `filename0`        | Path to the file containing raw digitized samples for RF channel 0. | Mandatory |
+|        `filename1`        | Path to the file containing raw digitized samples for RF channel 1. | Required if `total_channels > 1` |
+|            `...`          | Additional filenames up to `filenameN`. | Required if `total_channels > 2` |
+|   `sampling_frequency`    | Sample rate, in samples per second. | Mandatory |
+|         `samples`         | Number of samples to be processed. If set to `0`, the full file (excluding the last few milliseconds) is processed. Defaults to `0`. | Optional |
+|        `item_type`        | [`byte`, `ibyte`, `short`, `ishort`, `float`, `gr_complex`]: Sample data type. Defaults to `short`. | Optional |
+|     `seconds_to_skip`     | Seconds of signal to skip from the beginning of each file. Defaults to `0`. | Optional |
+|       `header_size`       | Number of bytes to skip at the beginning of each file. Defaults to `0`. | Optional |
+|         `repeat`          | [`true`, `false`]: If set to `true`, processing restarts from the beginning of the file when EOF is reached. Defaults to `false`. | Optional |
+| `enable_throttle_control` | [`true`, `false`]: If set to `true`, a throttle block is inserted to limit data rate to `sampling_frequency`. Defaults to `false`. | Optional |
+|          -------          |
+
+_Signal Source implementation:_ **`Multichannel_File_Signal_Source`**
+{: style="text-align: center;"}
+
+
+* **Configuration example:**
+
+```ini
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=Multichannel_File_Signal_Source
+SignalSource.RF_channels=2
+SignalSource.total_channels=2
+SignalSource.filename0=/path/to/file1
+SignalSource.filename1=/path/to/file2
+SignalSource.sampling_frequency=25000000
+SignalSource.item_type=ishort
+
+```
+
+* **Multi-channel usage example:**
+
+
+When using this implementation with multiple RF channels, the corresponding Signal Conditioner and channel mapping must also be configured:
+
+
+```ini
+SignalSource.total_channels=2
+
+SignalConditioner0.implementation=Signal_Conditioner
+; ...
+SignalConditioner1.implementation=Signal_Conditioner
+; ...
+
+Channels_1C.count=8
+Channels_L5.count=8
+
+Channels_1C.RF_channel_ID=0
+Channels_L5.RF_channel_ID=1
+```
+
 ---
 
 <p>&nbsp;</p>
