@@ -39,7 +39,6 @@ GEM
       ffi (>= 1.15.0)
       logger
     eventmachine (1.2.7)
-    eventmachine (1.2.7-x64-mingw32)
     execjs (2.10.0)
     faraday (2.14.1)
       faraday-net_http (>= 2.0, < 3.5)
@@ -274,7 +273,7 @@ GEM
       ethon (>= 0.9.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2025.3)
+    tzinfo-data (1.2026.1)
       tzinfo (>= 1.0.0)
     unicode-display_width (1.8.0)
     uri (1.1.1)
@@ -282,7 +281,7 @@ GEM
 
 PLATFORMS
   ruby
-  x64-mingw32
+  x64-mingw-ucrt
 
 DEPENDENCIES
   activesupport (>= 4.1.11)
