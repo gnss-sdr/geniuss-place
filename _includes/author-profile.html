@@ -35,7 +35,7 @@
     <ul class="author__urls social-icons" id="urls-{{ author.name | remove: " " }}">
       {% if author.location %}
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality"> {{ author.location }} </span>
+          <i class="fas fa-fw fa-location-dot" aria-hidden="true"></i> <span itemprop="name" class="p-locality"> {{ author.location }} </span>
         </li>
       {% endif %}
 
