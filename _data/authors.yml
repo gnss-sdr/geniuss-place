@@ -55,6 +55,7 @@ Pau Closas:
   google-scholar: "o7bF79sAAAAJ"
   researchgate: "Pau-Closas"
   bitbucket   : "pclosas"
+  location    : "Boston, USA"
 
 Luis Esteve:
   name        : "Luis Esteve"
@@ -69,8 +70,8 @@ Luis Esteve:
 
 Jordi Vila:
   name        : "Jordi Vil&agrave;-Valls"
-  uri         : "https://jordivilavalls.wordpress.com"
-  home        : "https://jordivilavalls.wordpress.com"
+  uri         : "https://pagespro.isae-supaero.fr/jordi-vila-valls/short-bio.html"
+  home        : "https://pagespro.isae-supaero.fr/jordi-vila-valls/short-bio.html"
   email       : "jordi.vila-valls@isae-supaero.fr"
   bio         : "Associate Professor<br/>ISAE-SUPAERO"
   avatar      : "/assets/images/Jordi.jpg"
@@ -81,6 +82,7 @@ Jordi Vila:
   orcid       : "0000-0001-7858-4171"
   google-scholar: "yKW9RNoAAAAJ"
   researchgate: "Jordi-Vila-Valls"
+  location    : "Toulouse, France"
 
 Antonio Ramos:
   name        : "Antonio Ramos de Torres"
@@ -144,10 +146,8 @@ Damian Miralles:
 
 Xavier Guerrero:
   name        : "Xavier Guerrero"
-  uri         : "https://www.cttc.cat/people/xavier-guerrero/"
-  home        : "https://www.cttc.cat/people/xavier-guerrero/"
-  email       : "xguerrero@cttc.es"
-  bio         : "Researcher<br/>CTTC"
+  bio         : "Computer Engineer"
   avatar      : "/assets/images/xguerrero.jpg"
   twitter     :
+  linkedin    : "xavier-guerrero-0b4b9266"
   github      : "xguerreropau"
