@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2023-09-13T10:54:02+02:00
+last_modified_at: 2026-03-10T08:54:02+02:00
 ---
 
 
@@ -21,7 +21,7 @@ In the description of baseband signals, this page uses the following notation:
  * $$ \mid l \mid_{L} $$ means $$ l $$ modulo $$ L $$.
 
 
-## GPS NAV navigation message
+## GPS LNAV navigation message
 
 ### Implementation: `GPS_L1_CA_Telemetry_Decoder`
 
@@ -94,6 +94,41 @@ Example:
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
 TelemetryDecoder_1C.dump=false
 ```
+
+
+### Implementation: `QZSS_L1_CA_Telemetry_Decoder`
+
+**NOTE:** This block implementation is only available from the `next` branch of
+the upstream repository. It will be available in the next stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                | **Required** |
+| :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|      --------------       |
+|     `implementation`      | `QZSS_L1_CA_Telemetry_Decoder`                                                                                                                                                                                                                                                                                  |  Mandatory   |
+|          `dump`           | [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`.                                                                                               |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added).                                                                                          |   Optional   |
+|        `dump_mat`         | [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`.                                                                               |   Optional   |
+|       `remove_dat`        | [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. |   Optional   |
+|     `dump_crc_stats`      | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`.                                                    |   Optional   |
+| `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number.                                            |   Optional   |
+|      --------------       |
+
+  _Telemetry Decoder implementation:_ **`QZSS_L1_CA_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER CONFIG FOR QZSS L1 C/A CHANNELS ############
+TelemetryDecoder_J1.implementation=QZSS_L1_CA_Telemetry_Decoder
+TelemetryDecoder_J1.dump=false
+```
+
+
 
 ## Galileo I/NAV navigation message
 
@@ -429,6 +464,37 @@ TelemetryDecoder_L5.implementation=GPS_L5_Telemetry_Decoder
 TelemetryDecoder_L5.dump=true
 ```
 
+### Implementation: `QZSS_L5_Telemetry_Decoder`
+
+**NOTE:** This block implementation is only available from the `next` branch of
+the upstream repository. It will be available in the next stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                | **Required** |
+| :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|      --------------       |
+|     `implementation`      | `QZSS_L5_Telemetry_Decoder`                                                                                                                                                                                                                                                                                     |  Mandatory   |
+|          `dump`           | [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`.                                                                                               |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added).                                                                                          |   Optional   |
+|        `dump_mat`         | [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`.                                                                               |   Optional   |
+|       `remove_dat`        | [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. |   Optional   |
+|     `dump_crc_stats`      | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`.                                                    |   Optional   |
+| `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number.                                            |   Optional   |
+|      --------------       |
+
+  _Telemetry Decoder implementation:_ **`QZSS_L5_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER CONFIG FOR QZSS L5 CHANNELS ############
+TelemetryDecoder_J5.implementation=QZSS_L5_Telemetry_Decoder
+TelemetryDecoder_J5.dump=true
+```
 
 
 ## Galileo F/NAV navigation message
@@ -527,6 +593,68 @@ TelemetryDecoder_E6.remove_dat=true
 TelemetryDecoder_E6.dump_crc_stats=false
 TelemetryDecoder_E6.dump_crc_stats_filename=./e6_stats/crc_stats
 ```
+
+## BeiDou navigation message
+
+### Implementation: `BEIDOU_B1I_Telemetry_Decoder`
+
+This implementation accepts the following parameters:
+
+
+|----------
+|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                | **Required** |
+| :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|      --------------       |
+|     `implementation`      | `BEIDOU_B1I_Telemetry_Decoder`                                                                                                                                                                                                                                                                                     |  Mandatory   |
+|          `dump`           | [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`.                                                                                               |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added).                                                                                          |   Optional   |
+|        `dump_mat`         | [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`.                                                                               |   Optional   |
+|       `remove_dat`        | [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. |   Optional   |
+|     `dump_crc_stats`      | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`.                                                    |   Optional   |
+| `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number.                                            |   Optional   |
+|      --------------       |
+
+  _Telemetry Decoder implementation:_ **`BEIDOU_B1I_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER CONFIG FOR BeiDou B1I CHANNELS ############
+TelemetryDecoder_B1.implementation=BEIDOU_B1I_Telemetry_Decoder
+TelemetryDecoder_B1.dump=true
+```
+
+
+### Implementation: `BEIDOU_B3I_Telemetry_Decoder`
+
+This implementation accepts the following parameters:
+
+
+|----------
+|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                | **Required** |
+| :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|      --------------       |
+|     `implementation`      | `BEIDOU_B3I_Telemetry_Decoder`                                                                                                                                                                                                                                                                                     |  Mandatory   |
+|          `dump`           | [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`.                                                                                               |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added).                                                                                          |   Optional   |
+|        `dump_mat`         | [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`.                                                                               |   Optional   |
+|       `remove_dat`        | [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. |   Optional   |
+|     `dump_crc_stats`      | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`.                                                    |   Optional   |
+| `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number.                                            |   Optional   |
+|      --------------       |
+
+  _Telemetry Decoder implementation:_ **`BEIDOU_B3I_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER CONFIG FOR BeiDou B3I CHANNELS ############
+TelemetryDecoder_B3.implementation=BEIDOU_B3I_Telemetry_Decoder
+TelemetryDecoder_B3.dump=true
+```
+
 
 ## Binary output
 
