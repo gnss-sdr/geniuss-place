@@ -2,7 +2,7 @@
 title: "My first position fix"
 permalink: /my-first-fix/
 excerpt: "How to quickly get a position fix with GNSS-SDR."
-last_modified_at: 2022-02-09T08:54:02+02:00
+last_modified_at: 2026-04-13T08:54:02+02:00
 header:
   teaser: "/assets/images/gn3s_pvt_4_sats.jpg"
 sidebar:
@@ -35,16 +35,16 @@ you should see something similar to:
 
 ```console
 $ gnss-sdr --version
-gnss-sdr version 0.0.20
+gnss-sdr version 0.0.21
 $  
 ```
 {: class="no-copy"}
 
-Please check that your installed version is 0.0.20 (or something like
-0.0.20.git-`branchname`-`githash` if you built the code from a source code
+Please check that your installed version is 0.0.21 (or something like
+0.0.21.git-`branchname`-`githash` if you built the code from a source code
 snapshot). Older versions could not work for the example shown here. If you
 installed GNSS-SDR by doing `sudo apt install gnss-sdr` and you got a
-version earlier to 0.0.20, please do `sudo apt remove gnss-sdr` and [build
+version earlier to 0.0.21, please do `sudo apt remove gnss-sdr` and [build
 it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
@@ -141,8 +141,8 @@ Acquisition_1C.blocking=true
 ;######### TRACKING GLOBAL CONFIG ############
 Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
 Tracking_1C.item_type=gr_complex
-Tracking_1C.pll_bw_hz=40.0;
-Tracking_1C.dll_bw_hz=4.0;
+Tracking_1C.pll_bw_hz=40.0
+Tracking_1C.dll_bw_hz=4.0
 
 ;######### TELEMETRY DECODER GPS CONFIG ############
 TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
@@ -163,7 +163,6 @@ PVT.rtcm_dump_devname=/dev/pts/1
 PVT.rtcm_tcp_port=2101
 PVT.rtcm_MT1019_rate_ms=5000
 PVT.rtcm_MT1077_rate_ms=1000
-PVT.rinex_version=2
 ```
 
 **NOTE:** Check that the parameter `SignalSource.filename` actually points to
@@ -202,7 +201,7 @@ You should see something similar to:
 
 ```
 $ gnss-sdr --config_file=./my-first-GNSS-SDR-receiver.conf
-Initializing GNSS-SDR v0.0.20 ... Please wait.
+Initializing GNSS-SDR v0.0.21 ... Please wait.
 Logging will be done at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 Processing file /home/your-username/work/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat, which contains 1600000000 [bytes]

@@ -48,10 +48,6 @@ Then, thirteen parameters can be set: `Channels_1G.count`, `Channels_1C.count`,
 `Channels_5X.count`, `Channels_7X.count`, `Channels_L5.count`, and `Channels_J5.count`, and all of them
 defaulting to $$ 0 $$.
 
-**NOTE:** Parameters `Channels_J1.count` and `Channels_J5.count` are only available from the `next` branch of
-the upstream repository. They will be available in the next stable release.
-{: .notice--warning}
-
 In addition, the GNSS-SDR flow graph allows setting the number of channels that
 will be executing signal acquisition (which is known to require a high
 computational load) concurrently. This is controlled by the parameter

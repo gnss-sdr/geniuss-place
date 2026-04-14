@@ -589,10 +589,6 @@ Acquisition_B1.max_dwells=1
 
 ### Implementation: `QZSS_L1_PCPS_Acquisition`
 
-**NOTE:** This block implementation is only available from the `next` branch of
-the upstream repository. It will be available in the next stable release.
-{: .notice--warning}
-
 This implementation accepts the following parameters:
 
 |----------
@@ -1007,10 +1003,6 @@ Acquisition_B3.max_dwells=1
 ## QZSS L5 signal acquisition
 
 ### Implementation: `QZSS_L5i_PCPS_Acquisition`
-
-**NOTE:** This block implementation is only available from the `next` branch of
-the upstream repository. It will be available in the next stable release.
-{: .notice--warning}
 
 This implementation accepts the following parameters:
 

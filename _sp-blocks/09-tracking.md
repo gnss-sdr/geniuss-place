@@ -900,10 +900,6 @@ Tracking_B1.dump_filename=tracking_ch_
 
 ### Implementation: `QZSS_L1_CA_DLL_PLL_Tracking`
 
-**NOTE:** This block implementation is only available from the `next` branch of
-the upstream repository. It will be available in the next stable release.
-{: .notice--warning}
-
 This implementation accepts the following parameters:
 
 |----------
@@ -1431,10 +1427,6 @@ Tracking_5X.dump_filename=./tracking_ch_
 
 ### Implementation: `QZSS_L5_DLL_PLL_Tracking`
 
-**NOTE:** This block implementation is only available from the `next` branch of
-the upstream repository. It will be available in the next stable release.
-{: .notice--warning}
-
 This implementation accepts the following parameters:
 
 |----------
@@ -1678,8 +1670,8 @@ The list of output vector variables contained in each `.mat` file is the followi
   * `PRN_start_sample_counter`: Sample counter from tracking start.
   * `Prompt_I`: Value of the Prompt correlator in the In-phase component.
   * `Prompt_Q`: Value of the Prompt correlator in the Quadrature component.
-  * `TOW_ms`: Time of Week, in milliseconds, when available from the Telemetry Decoder block. Requires `GNSS-SDR.tow_to_trk=true` in the GNSS-SDR configuration file, otherwise it is set to zero. <span style="color: orange">Only available from the `next` branch of the upstream repository, and will be included in the next stable release.</span>
-  * `WN`: Week number, when available from the Telemetry Decoder block. Requires `GNSS-SDR.tow_to_trk=true` in the GNSS-SDR configuration file, otherwise it is set to zero. <span style="color: orange">Only available from the `next` branch of the upstream repository, and will be included in the next stable release.</span>
+  * `TOW_ms`: Time of Week, in milliseconds, when available from the Telemetry Decoder block. Requires `GNSS-SDR.tow_to_trk=true` in the GNSS-SDR configuration file, otherwise it is set to zero.
+  * `WN`: Week number, when available from the Telemetry Decoder block. Requires `GNSS-SDR.tow_to_trk=true` in the GNSS-SDR configuration file, otherwise it is set to zero.
 
 Each variable is a vector containing the outputs of every integration period.
 
