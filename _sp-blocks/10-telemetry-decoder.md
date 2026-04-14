@@ -98,10 +98,6 @@ TelemetryDecoder_1C.dump=false
 
 ### Implementation: `QZSS_L1_CA_Telemetry_Decoder`
 
-**NOTE:** This block implementation is only available from the `next` branch of
-the upstream repository. It will be available in the next stable release.
-{: .notice--warning}
-
 This implementation accepts the following parameters:
 
 |----------
@@ -465,10 +461,6 @@ TelemetryDecoder_L5.dump=true
 ```
 
 ### Implementation: `QZSS_L5_Telemetry_Decoder`
-
-**NOTE:** This block implementation is only available from the `next` branch of
-the upstream repository. It will be available in the next stable release.
-{: .notice--warning}
 
 This implementation accepts the following parameters:
 

@@ -542,7 +542,3 @@ Example:
 ```ini
 GNSS-SDR.tow_to_trk=true
 ```
-
-**NOTE**: This parameter is only available from the `next` branch of the upstream repository,
-and will be included in the next GNSS-SDR stable release.
-{: .notice--warning}
