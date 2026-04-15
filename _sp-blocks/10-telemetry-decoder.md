@@ -96,7 +96,7 @@ TelemetryDecoder_1C.dump=false
 ```
 
 
-### Implementation: `QZSS_L1_CA_Telemetry_Decoder`
+### Implementation: `QZSS_L1_Telemetry_Decoder`
 
 This implementation accepts the following parameters:
 
@@ -104,7 +104,7 @@ This implementation accepts the following parameters:
 |       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                | **Required** |
 | :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
 |      --------------       |
-|     `implementation`      | `QZSS_L1_CA_Telemetry_Decoder`                                                                                                                                                                                                                                                                                  |  Mandatory   |
+|     `implementation`      | `QZSS_L1_Telemetry_Decoder`                                                                                                                                                                                                                                                                                  |  Mandatory   |
 |          `dump`           | [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`.                                                                                               |   Optional   |
 |      `dump_filename`      | If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added).                                                                                          |   Optional   |
 |        `dump_mat`         | [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`.                                                                               |   Optional   |
@@ -113,14 +113,14 @@ This implementation accepts the following parameters:
 | `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number.                                            |   Optional   |
 |      --------------       |
 
-  _Telemetry Decoder implementation:_ **`QZSS_L1_CA_Telemetry_Decoder`**.
+  _Telemetry Decoder implementation:_ **`QZSS_L1_Telemetry_Decoder`**.
   {: style="text-align: center;"}
 
 Example:
 
 ```ini
 ;######### TELEMETRY DECODER CONFIG FOR QZSS L1 C/A CHANNELS ############
-TelemetryDecoder_J1.implementation=QZSS_L1_CA_Telemetry_Decoder
+TelemetryDecoder_J1.implementation=QZSS_L1_Telemetry_Decoder
 TelemetryDecoder_J1.dump=false
 ```
 
