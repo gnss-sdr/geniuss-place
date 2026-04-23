@@ -14,7 +14,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2022-06-06T11:37:02+02:00
+last_modified_at: 2026-04-22T11:37:02+02:00
 ---
 
 [Testability]({{ "/design-forces/testability/" | relative_url }}) is an
@@ -496,7 +496,7 @@ Acquisition block. This test accepts the following flags:
 **Extra Unit Tests for Tracking blocks**
 
   * `GpsL1CADllPllTrackingTest`: set of test cases for
-  [gps_l1_ca_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_tracking.h)
+  [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
   that make use of the software-defined signal generator. This test plots the
   correlators' outputs with the flag `--plot_gps_l1_tracking_test`. For long
   tests, data can be decimated with the flag `--plot_decimate`. For not showing
@@ -505,6 +505,11 @@ Acquisition block. This test accepts the following flags:
     ```console
     $ ./run_tests --gtest_filter=GpsL1CADllPllTrackingTest* --plot_gps_l1_tracking_test --plot_decimate=10
     ```
+
+  * `GpsL2MDllPllTrackingTest`: set of test cases for
+  [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
+  that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded
+  with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
 
   * `GpsL1CAKfTrackingTest`: set of test cases for
   [gps_l1_ca_kf_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_kf_tracking.h)
@@ -516,11 +521,6 @@ Acquisition block. This test accepts the following flags:
     ```console
     $ ./run_tests --gtest_filter=GpsL1CAKfTrackingTest* --plot_gps_l1_kf_tracking_test --plot_decimate=10
     ```
-
-  * `GpsL2MDllPllTrackingTest`: set of test cases for
-  [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h)
-  that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded
-  with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
 
 
 ### `TrackingPullInTest`
@@ -576,7 +576,7 @@ This test accepts the following flags:
 **Extra Unit Tests for Telemetry Decoder blocks**
 
   * `GpsL1CATelemetryDecoderTest`: set of test cases for
-  [gps_l1_ca_telemetry_decoder.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/gps_l1_ca_telemetry_decoder.h)
+  [telemetry_decoder_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/telemetry_decoder_adapter.h)
   that make use of the software-defined signal generator.
 
 **Extra Unit Tests for Observables blocks**
