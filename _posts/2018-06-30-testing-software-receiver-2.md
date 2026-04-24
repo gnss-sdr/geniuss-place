@@ -385,8 +385,8 @@ the test program `run_tests`.
       $ ./run_tests --gtest_filter=Gpu* --gpu_multicorrelator_iterations_test=10000 --gpu_multicorrelator_max_threads_test=2
       ```
       - `DllPllTrackingAdapterGalileoE1Test`: set of test cases for [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
-      - `GlonassL1CaDllPllTrackingTest`: set of test cases for [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)  
-      - `GalileoE5aTrackingTest`: set of test cases for [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)    
+      - `GlonassL1CaDllPllTrackingTest`: set of test cases for [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
+      - `GalileoE5aTrackingTest`: set of test cases for [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
       - `TrackingLoopFilterTest`: set of test cases for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h)
 
  * Telemetry Decoder
