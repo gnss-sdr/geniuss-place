@@ -14,7 +14,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2022-06-06T11:37:02+02:00
+last_modified_at: 2026-04-22T11:37:02+02:00
 ---
 
 [Testability]({{ "/design-forces/testability/" | relative_url }}) is an
@@ -335,23 +335,23 @@ the test program `run_tests`.
       - `MmseResamplerTest`: set of test cases for [mmse_resampler_conditioner.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/resampler/adapters/mmse_resampler_conditioner.h)
 
  * Acquisition
-      - `GpsL1CaPcpsAcquisitionTest`: set of test cases for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h). If Gnuplot is installed in your machine, this test can plot the acquisition grid by passing the flag `--plot_acq_grid`. Example:
+      - `GpsL1CaPcpsAcquisitionTest`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h). If Gnuplot is installed in your machine, this test can plot the acquisition grid by passing the flag `--plot_acq_grid`. Example:
       ```console
       $ ./run_tests --gtest_filter=GpsL1CaPcpsAcquisitionTest* --plot_acq_grid
       ```
-      - `GpsL1CaPcpsAcquisitionGSoC2013Test`: set of test cases for [gps_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_acquisition.h) developed during GSoC 2013.
+      - `GpsL1CaPcpsAcquisitionGSoC2013Test`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h) developed during GSoC 2013.
       - `GpsL1CaPcpsTongAcquisitionGSoC2013Test`: set of test cases for [gps_l1_ca_pcps_tong_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_tong_acquisition.h)
       - `GpsL1CaPcpsQuickSyncAcquisitionGSoC2014Test`: set of test cases for [gps_l1_ca_pcps_quicksync_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_quicksync_acquisition.h)
-      - `GalileoE1PcpsAmbiguousAcquisitionTest`: set of test cases for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h). If Gnuplot is installed in your machine, this test can plot the acquisition grid by passing the flag `--plot_acq_grid`. Example:
+      - `GalileoE1PcpsAmbiguousAcquisitionTest`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h). If Gnuplot is installed in your machine, this test can plot the acquisition grid by passing the flag `--plot_acq_grid`. Example:
       ```console
       $ ./run_tests --gtest_filter=GalileoE1PcpsAmbiguousAcquisitionTest* --plot_acq_grid
       ```
-      - `GalileoE1PcpsAmbiguousAcquisitionGSoCTest`: set of test cases for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h) developed during GSoC 2012.
-      - `GalileoE1PcpsAmbiguousAcquisitionGSoC2013Test`: set of test cases for [galileo_e1_pcps_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_ambiguous_acquisition.h) developed during GSoC 2013.
+      - `GalileoE1PcpsAmbiguousAcquisitionGSoCTest`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h) developed during GSoC 2012.
+      - `GalileoE1PcpsAmbiguousAcquisitionGSoC2013Test`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h) developed during GSoC 2013.
       - `GalileoE1PcpsTongAmbiguousAcquisitionGSoC2013Test`: set of test cases for [galileo_e1_pcps_tong_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_tong_ambiguous_acquisition.h) developed during GSoC 2013.
       - `GalileoE1PcpsQuickSyncAmbiguousAcquisitionGSoC2014Test`: set of test cases for [galileo_e1_pcps_quicksync_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_quicksync_ambiguous_acquisition.h) developed during GSoC 2014.
       - `GalileoE5aPcpsAcquisitionGSoC2014GensourceTest`: set of test cases for [galileo_e5a_noncoherent_iq_acquisition_caf.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e5a_noncoherent_iq_acquisition_caf.h) developed during GSoC 2014.
-      - `GlonassL1CaPcpsAcquisitionGSoC2017Test`: set of test cases for [glonass_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/glonass_l1_ca_pcps_acquisition.h) developed during GSoC 2017.
+      - `GlonassL1CaPcpsAcquisitionGSoC2017Test`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h) developed during GSoC 2017.
 
  * Tracking
       - `CpuMulticorrelatorTest`: set of test cases for
@@ -384,9 +384,9 @@ the test program `run_tests`.
       ```console
       $ ./run_tests --gtest_filter=Gpu* --gpu_multicorrelator_iterations_test=10000 --gpu_multicorrelator_max_threads_test=2
       ```
-      - `GalileoE1DllPllVemlTrackingInternalTest`: set of test cases for [galileo_e1_dll_pll_veml_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e1_dll_pll_veml_tracking.h)
-      - `GlonassL1CaDllPllTrackingTest`: set of test cases for [glonass_l1_ca_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/glonass_l1_ca_dll_pll_tracking.h)  
-      - `GalileoE5aTrackingTest`: set of test cases for [galileo_e5a_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/galileo_e5a_dll_pll_tracking.h)    
+      - `DllPllTrackingAdapterGalileoE1Test`: set of test cases for [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
+      - `GlonassL1CaDllPllTrackingTest`: set of test cases for [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
+      - `GalileoE5aTrackingTest`: set of test cases for [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
       - `TrackingLoopFilterTest`: set of test cases for [tracking_loop_filter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/tracking_loop_filter.h)
 
  * Telemetry Decoder
@@ -445,12 +445,12 @@ The following Unit Test Suites are added to the executable `run_tests`:
 **Extra Unit Tests for Acquisition blocks**
 
   * `GpsL2MPcpsAcquisitionTest`: set of test cases for
-  [gps_l2_m_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l2_m_pcps_acquisition.h)
+  [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h)
   that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded
   with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
 
   * `GlonassL1CaPcpsAcquisitionTest`: set of test cases for
-  [glonass_l1_ca_pcps_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/glonass_l1_ca_pcps_acquisition.h)
+  [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h)
   that make use of the `Glonass_L1_CA_SIM_Fs_62Msps_4ms.dat` raw sample file
   downloaded with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
 
@@ -495,16 +495,21 @@ Acquisition block. This test accepts the following flags:
 
 **Extra Unit Tests for Tracking blocks**
 
-  * `GpsL1CADllPllTrackingTest`: set of test cases for
-  [gps_l1_ca_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_dll_pll_tracking.h)
+  * `DllPllTrackingAdapterGpsL1CaTest`: set of test cases for
+  [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
   that make use of the software-defined signal generator. This test plots the
   correlators' outputs with the flag `--plot_gps_l1_tracking_test`. For long
   tests, data can be decimated with the flag `--plot_decimate`. For not showing
   the plots in the screen, but still get the figures in PDF and PS file formats,
   use `--noshow_plots`. Example:
     ```console
-    $ ./run_tests --gtest_filter=GpsL1CADllPllTrackingTest* --plot_gps_l1_tracking_test --plot_decimate=10
+    $ ./run_tests --gtest_filter=DllPllTrackingAdapterGpsL1CaTest* --plot_gps_l1_tracking_test --plot_decimate=10
     ```
+
+  * `GpsL2MDllPllTrackingTest`: set of test cases for
+  [dll_pll_tracking_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/dll_pll_tracking_adapter.h)
+  that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded
+  with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
 
   * `GpsL1CAKfTrackingTest`: set of test cases for
   [gps_l1_ca_kf_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_kf_tracking.h)
@@ -516,11 +521,6 @@ Acquisition block. This test accepts the following flags:
     ```console
     $ ./run_tests --gtest_filter=GpsL1CAKfTrackingTest* --plot_gps_l1_kf_tracking_test --plot_decimate=10
     ```
-
-  * `GpsL2MDllPllTrackingTest`: set of test cases for
-  [gps_l2_m_dll_pll_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l2_m_dll_pll_tracking.h)
-  that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded
-  with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
 
 
 ### `TrackingPullInTest`
@@ -575,8 +575,8 @@ This test accepts the following flags:
 
 **Extra Unit Tests for Telemetry Decoder blocks**
 
-  * `GpsL1CATelemetryDecoderTest`: set of test cases for
-  [gps_l1_ca_telemetry_decoder.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/gps_l1_ca_telemetry_decoder.h)
+  * `TelemetryDecoderAdapterGpsL1CaTest`: set of test cases for
+  [telemetry_decoder_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/telemetry_decoder/adapters/telemetry_decoder_adapter.h)
   that make use of the software-defined signal generator.
 
 **Extra Unit Tests for Observables blocks**
