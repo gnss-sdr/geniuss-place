@@ -487,6 +487,7 @@ potentially available ones:
 | `Galileo_banned_prns` | List of Galileo satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. |   Optional   |
 | `Glonass_banned_prns` | List of GLONASS satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty. |   Optional   |
 | `Beidou_banned_prns`  | List of Beidou satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty.  |   Optional   |
+| `QZSS_banned_prns`    | List of QZSS satellites, by PRN, that will be removed from the list of available satellites and will not be processed. It defaults to empty.  |   Optional   |
 |        -------        |
 
 With these parameters, users can specify lists of satellites that will not be
