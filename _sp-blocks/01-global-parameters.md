@@ -8,7 +8,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2025-11-24T12:54:02+02:00
+last_modified_at: 2026-04-29T12:54:02+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -110,15 +110,15 @@ Users must register and log in on the [European GNSS Service Centre website](htt
 Example in the configuration file:
 
 ```ini
-GNSS-SDR.osnma_public_key=./OSNMA_PublicKey_20240115100000_newPKID_1.crt
-GNSS-SDR.osnma_merkletree=./OSNMA_MerkleTree_20240115100000_newPKID_1.xml
+GNSS-SDR.osnma_public_key=./OSNMA_PublicKey_20251210100000_newPKID_2.crt
+GNSS-SDR.osnma_merkletree=./OSNMA_MerkleTree_20251210100000_newPKID_2.xml
 ```
 
 The same, but with the strict mode:
 
 ```ini
-GNSS-SDR.osnma_public_key=./OSNMA_PublicKey_20240115100000_newPKID_1.crt
-GNSS-SDR.osnma_merkletree=./OSNMA_MerkleTree_20240115100000_newPKID_1.xml
+GNSS-SDR.osnma_public_key=./OSNMA_PublicKey_20251210100000_newPKID_2.crt
+GNSS-SDR.osnma_merkletree=./OSNMA_MerkleTree_20251210100000_newPKID_2.xml
 GNSS-SDR.osnma_mode=strict
 ```
 
