@@ -287,11 +287,6 @@ Example:
 DataTypeAdapter.implementation=Cshort_to_Gr_Complex
 ```
 
-Please note that this implementation is currently available only in the `next` branch
-of the [upstream repository](https://github.com/gnss-sdr/gnss-sdr) and will be included
-in the next stable release of GNSS-SDR.
-{: .notice--warning}
-
 ### Implementation: `Pass_Through`
 
 This implementation copies samples from its input to its output.

@@ -102,9 +102,9 @@ Users must register and log in on the [European GNSS Service Centre website](htt
 | **Parameter**  | **Description**                                   | **Required** |
 | :------------: | :------------------------------------------------ | :----------: |
 | `osnma_enable`  | [`true`, `false`]: Enables or disables the OSNMA service. It defaults to `true`. |   Optional   |
-| `osnma_public_key` | Path to the OSNMA Public Key (`.crt` file). it defaults to `./OSNMA_PublicKey_20240115100000_newPKID_1.crt` |   Optional   |
-| `osnma_merkletree` | Path to the Merkle Tree root (`.xml` file). It defaults to `./OSNMA_MerkleTree_20240115100000_newPKID_1.xml` |   Optional |
-| `osnma_mode` | If set to `strict`, only authenticated satellites are used in the PVT computation. If not set, the receiver will only log OSNMA events and warn the user in case of authentication failures. Please note that the `strict` mode requires the host computer's internal date and time to be synchronized with the Galileo System Time, allowing a tolerance of ±30 seconds, so it is only intended for real-time operation. No other systems than Galileo will be used in the PVT solution. |   Optional |
+| `osnma_public_key` | Path to the OSNMA Public Key (`.crt` file). it defaults to `./OSNMA_PublicKey.crt` |   Optional   |
+| `osnma_merkletree` | Path to the Merkle Tree root (`.xml` file). It defaults to `./OSNMA_MerkleTree.xml` |   Optional |
+| `osnma_mode` | [`strict`, `replay`]. If set to `strict`, only authenticated satellites are used in the PVT computation. Please note that the `strict` mode requires the host computer's internal date and time to be synchronized with the Galileo System Time, allowing a tolerance of ±30 seconds, so it is only intended for real-time operation. No other systems than Galileo will be used in the PVT solution. If set to `replay`, disables the receiver wall-clock GST alignment check for OSNMA tag processing, allowing previously captured Galileo signals to be replayed while keeping all other OSNMA verification steps active. If not set, the receiver will only log OSNMA events and warn the user in case of authentication failures. <span style="color: orange">The `replay` mode is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span> |   Optional |
 | -------------- |
 
 Example in the configuration file:
