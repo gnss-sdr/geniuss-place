@@ -588,9 +588,6 @@ the data file used in [My first position fix]({{ "/my-first-fix/" | relative_url
 
 ### Implementation: `NTLab_File_Signal_Source`
 
-This Signal Source implementation is currently available only in the `next` branch of the [GNSS-SDR upstream repository](https://github.com/gnss-sdr/gnss-sdr). It will be included in the upcoming stable release.
-{: .notice--warning}
-
 This is a Signal Source implementation that can read files of samples grabbed from [NTLab RF front-ends](https://ntlab.lt/) (NT1062/65/66/68/69), which can deliver 1, 2, or 4 parallel float streams from 2-bit sign-magnitude packed samples. This implementation supports 1-, 2-, or 4-channel modes, and it has been tested on the [TEXCUP GNSS dataset](https://mklimenko.github.io/english/2020/05/23/texcup_gnss_dataset/) (NTLab NT1065 capture). The dataset is described in this [article](/http://rnl.ae.utexas.edu/wp-content/uploads/texcup.pdf).
 
 This Signal Source delivers 32-bit float items, each containing 4 bytes of real data, and with an Intermediate Frequency (check the NTLab documentation of the specific configuration used for signal grabbing).
