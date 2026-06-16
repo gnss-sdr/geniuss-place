@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2024-10-17T10:54:02+02:00
+last_modified_at: 2026-06-16T10:54:02+02:00
 ---
 
 {% capture fig_img2 %}
@@ -1587,6 +1587,71 @@ SignalSource.gain=50
 SignalSource.antenna=2
 SignalSource.ext_clock_MHz=0
 SignalSource.limechannel_mode=0
+SignalSource.samples=0
+SignalSource.dump=false
+SignalSource.dump_filename=./captured_signal.dat
+```
+
+
+### Implementation: `Pocket_SDR_Signal_Source`
+
+[Pocket SDR](https://github.com/tomojitakasu/PocketSDR) is an open-source GNSS
+software-defined radio platform. Its Pocket SDR FE 2CH/4CH/8CH front-ends can
+stream RF samples to GNSS-SDR through the
+[gr-pocketsdr](https://github.com/minhaj6/gr-pocketsdr) GNU Radio out-of-tree
+module.
+
+**Warning**: This Signal Source is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+In order to make use of this block implementation, you need to build GNSS-SDR
+from the source code after installing `gr-pocketsdr`. Once `gr-pocketsdr` is
+installed, build GNSS-SDR passing the flag `-DENABLE_POCKETSDR=ON` at configure
+time:
+
+```console
+$ cd gnss-sdr && mkdir build && cd build
+$ git checkout next
+$ git pull upstream next
+$ cmake -DENABLE_POCKETSDR=ON ..
+$ make && sudo make install
+```
+
+The device is configured with a standard Pocket SDR configuration file
+(`pocket_conf` format) passed with the `conf_file` parameter. If `conf_file` is
+empty, the device keeps its current settings. GNSS-SDR reads back the actual
+sample rate and LO frequency from the device and compares them with
+`sampling_frequency` and `freq`, if provided in the receiver configuration.
+
+This implementation accepts the following parameters:
+
+|----------
+|    **Parameter**     | **Description**                                                                                                                                                                                                                                                                                                    | **Required** |
+| :------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|    --------------    |
+|   `implementation`   | `Pocket_SDR_Signal_Source`                                                                                                                                                                                                                                                                                        |  Mandatory   |
+|     `conf_file`      | Path to a Pocket SDR configuration file in `pocket_conf` format. If empty, the current device settings are kept. It defaults to an empty string.                                                                                                                                                                   |   Optional   |
+|      `channel`       | 1-based RF channel number to stream from the Pocket SDR front-end. It defaults to `1`.                                                                                                                                                                                                                             |   Optional   |
+|     `item_type`      | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. |   Optional   |
+| `sampling_frequency` | Expected sampling frequency, in Sps. If set, GNSS-SDR compares it with the actual value reported by the device.                                                                                                                                                                                                     |   Optional   |
+|        `freq`        | Expected RX local oscillator frequency, in Hz. If set, GNSS-SDR compares it with the actual value reported by the device. It defaults to $$ f_{\text{GPS L1}}=1575420000 $$ Hz.                                                                                                                                    |   Optional   |
+|      `samples`       | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples.                                                                                                                                                                                                                           |   Optional   |
+|        `dump`        | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.                                                                                                                                                                                                 |   Optional   |
+|   `dump_filename`    | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat`                                                                                                                                                                                           |   Optional   |
+|       -------        |
+
+  _Signal Source implementation:_ **`Pocket_SDR_Signal_Source`**
+  {: style="text-align: center;"}
+
+Example:
+```ini
+SignalSource.implementation=Pocket_SDR_Signal_Source
+SignalSource.conf_file=/path/to/pocket_sdr.conf
+SignalSource.item_type=gr_complex
+SignalSource.channel=1
+SignalSource.sampling_frequency=24000000
+SignalSource.freq=1575420000
 SignalSource.samples=0
 SignalSource.dump=false
 SignalSource.dump_filename=./captured_signal.dat
