@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-06-20T00:00:00+02:00
+last_modified_at: 2026-06-26T00:00:00+02:00
 ---
 
 {% capture fig_img2 %}
@@ -525,10 +525,11 @@ realistic and repeatable testing to be carried out under controlled conditions.
 This block reads files stored by LabSat 2, LabSat 3, or LabSat 4 devices, and delivers a
 stream of samples of type <abbr id="data-type" title="Complex samples with real
 and imaginary parts of type 32-bit floating point. C++ name:
-std::complex<float>">`gr_complex`</abbr>. For the LabSat 3 Wideband file format,
-this source can provide
-[multiple radio frequency channels](#multiple-radio-frequency-chains).
-This feature is not implemented for LabSat 2 or LabSat 3 format files.
+std::complex<float>">`gr_complex`</abbr>. When the recording contains multiple
+RF channels, this source can provide
+[multiple radio frequency channels](#multiple-radio-frequency-chains), including
+LabSat 2/3 dual-channel recordings, LabSat 3 triple-constellation recordings,
+LabSat 3 Wideband files, and LabSat 4 files.
 
 LabSat 3 splits data into 2 GB files. This file source automatically increments
 the file name when the signal is split into several files: it adds "_0000.LS3"
@@ -547,14 +548,14 @@ This implementation accepts the following parameters:
 | :-----------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
 |      --------------       |
 |     `implementation`      | `Labsat_Signal_Source`    |  Mandatory   |
-|        `filename`         | Path to the file base name of files containing the raw digitized signal samples. For single files using the LabSat 2 or the LabSat 3 Wideband formats, write directly the name of the file. Example: ```output.ls2```   |  Mandatory   |
-|    `selected_channel`     | [`1`, `2`, `3`]: Select the frequency band of data present in the file. It defaults to 1. For LabSat 3 Wideband format files, this parameter admits a list of channels (_i.e._, `SignalSource.selected_channel=1,2`) and the source becomes a [multiple radio frequency channel source](#multiple-radio-frequency-chains). |   Optional   |
+|        `filename`         | Path to the file base name of files containing the raw digitized signal samples. For single files using the LabSat 2, LabSat 3 Wideband, or LabSat 4 formats, write directly the name of the file. Example: ```output.ls2```   |  Mandatory   |
+|    `selected_channel`     | [`1`, `2`, `3`]: Select the frequency band of data present in the file. It defaults to 1. This parameter admits a comma-separated list of channels when the file contains multiple RF channels, for example `SignalSource.selected_channel=1,2` for LabSat 2/3 dual-channel A+B recordings or `SignalSource.selected_channel=1,2,3` for LabSat 3 triple-constellation, LabSat 3 Wideband, or LabSat 4 recordings. In that case, the source becomes a [multiple radio frequency channel source](#multiple-radio-frequency-chains). |   Optional   |
 |        `item_type`        | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this implementation. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. |   Optional   |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it throttles the output flow of samples such that the average rate does not exceed `throttle_frequency_sps`, thus emulating real-time operation. It defaults to `false`.   |   Optional   |
 | `throttle_frequency_sps`  | If `enable_throttle_control` is set to `true`, this parameter sets the sample rate applied by the throttle. It defaults to $$ 16368000 $$ Sps.   |   Optional   |
 |   `digital_io_enabled`    | [`true`, `false`]: If set to `true`, indicates that the LabSat 3 Wideband file contains additional I/O data. Those digital input channels are not used. This parameter is ignored for Labsat 2 and Labsat 3 file formats. It defaults to `false`.    |   Optional   |
 |          `dump`           | [`true`, `false`]: If set to `true`, it dumps the content of the source file `filename` in <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> format. It defaults to `false`.  |   Optional   |
-|      `dump_filename`      | If `dump` is set to `true`, the name of the dump file. It defaults to `labsat_output.dat`  |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, the name of the dump file. With one selected channel, this value is used as-is. With multiple selected channels, the source writes one dump file per RF output and appends `_chA`, `_chB`, or `_chC` before the extension, for example `labsat_output_chA.dat`. It defaults to `labsat_output.dat`  |   Optional   |
 | `seconds_to_skip`| Seconds to skip at the beginning of the file. Only applicable to LabSat 4 files, ignored otherwise. It defaults to `0` s. | Optional   |
 |          -------          |
 
