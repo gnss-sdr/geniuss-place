@@ -8,7 +8,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-04-29T12:54:02+02:00
+last_modified_at: 2026-07-16T10:00:00+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -505,25 +505,39 @@ GNSS-SDR.Galileo_banned_prns=14,18
 
 ## Processing old data files
 
-If you are processing raw data files containing GPS L1 C/A signals dated before
-July 14, 2009, you can set this parameter to `true` in order to get the right
-date and time, with the corresponding adjustment to the week rollover.
+GPS L1 C/A navigation messages broadcast the week number modulo 1024, so the
+week counter rolls over every 1024 weeks (about 19.7 years; rollovers occurred
+on August 21, 1999, and April 6, 2019, and the next one will occur on
+November 20, 2038). By default, the receiver resolves this ambiguity using the
+computer's current date, which is the right choice when operating in real time,
+but yields a wrong date and time (and a wrong leap-second offset) when
+post-processing a raw data file recorded more than about ten years ago. If you
+are processing an old recording, set the approximate date of the signal capture
+with this parameter in order to get the right date and time:
 
 
 |----------
-|  **Parameter**  | **Description**                                                                                                                                                                                                         | **Required** |
-| :-------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
-| --------------  |
-| `pre_2009_file` | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. |   Optional   |
-|     -------     |
+|   **Parameter**    | **Description**                                                                                                                                                                                                                                                                                                                     | **Required** |
+| :----------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|   --------------   |
+| `observation_date` | Approximate date of the signal capture, in `YYYY-MM-DD` or `YYYY` format. The broadcast week number is resolved to the 1024-week era closest to this date, so an accuracy of a few years is enough. If it is not set, the date is derived from the computer's clock, which is the right choice for real-time operation. It defaults to empty. |   Optional   |
+|      -------       |
 
-Example:
-
-
+Example: for a file recorded on December 20, 2014:
 
 ```ini
-GNSS-SDR.pre_2009_file=true
+GNSS-SDR.observation_date=2014-12-20
 ```
+
+<span style="color: orange">The `observation_date` parameter is only present in
+the `next` branch of the upstream repository, and will be included in the next
+GNSS-SDR stable release.</span>
+
+This parameter replaces `GNSS-SDR.pre_2009_file`, available in older versions
+of GNSS-SDR, which could only select the August 1999 - April 2019 era (so, for
+instance, `GNSS-SDR.pre_2009_file=true` is the right setting for a file
+recorded in 2014). The old flag still works, but it is deprecated and ignored
+if `GNSS-SDR.observation_date` is also set.
 
 
 ## Getting the TOW and the Week Number in the Tracking blocks
