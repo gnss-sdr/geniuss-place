@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2024-09-12T07:54:02+02:00
+last_modified_at: 2026-07-16T10:00:00+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -1093,7 +1093,8 @@ standard and precise positioning. It accepts the following parameters:
 | :-------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
 |          --------------           |
 | `GNSS-SDR.SUPL_gps_ephemeris_xml` | Name of an XML file containing GPS ephemeris data. It defaults to `./gps_ephemeris.xml`                                                                                                                                 |   Optional   |
-|     `GNSS-SDR.pre_2009_file`      | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. |   Optional   |
+|    `GNSS-SDR.observation_date`    | Approximate date of the signal capture, in `YYYY-MM-DD` or `YYYY` format, used to resolve the GPS week-number rollover when post-processing recorded files (see the [Global receiver parameters documentation]({{ "/docs/sp-blocks/global-parameters/#processing-old-data-files" | relative_url }})). If it is not set, the date is derived from the computer's clock, which is the right choice for real-time operation. It defaults to empty. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span> |   Optional   |
+|     `GNSS-SDR.pre_2009_file`      | [`true`, `false`]: If you are processing raw data files containing GPS L1 C/A signals dated before July 14, 2009, you can set this parameter to `true` in order to get the right date and time. It defaults to `false`. Deprecated since it can only select the August 1999 - April 2019 week-number era: use `GNSS-SDR.observation_date` instead.        |   Optional   |
 |          --------------           |
 
 |----------
