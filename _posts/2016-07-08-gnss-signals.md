@@ -898,9 +898,9 @@ The following table lists the GNSS signals providing Open Service.
 
 [^Fernandez11]: C. Fern&aacute;ndez-Prades, L. Lo Presti, E. Falleti, [Satellite Radiolocalization From GPS to GNSS and Beyond: Novel Technologies and Applications for Civil Mass–Market](https://ieeexplore.ieee.org/document/5942139), Proceedings of the IEEE. Special Issue on Aerospace Communications and Networking in the Next Two Decades: Current Trends and Future Perspectives. Vol 99, No. 11, pp. 1882-1904. November 2011. DOI: [10.1109/JPROC.2011.2158032](https://doi.org/10.1109/JPROC.2011.2158032).
 
-[^GPS-SPS]: U.S. Government, Department of Defense, [Global Positioning System Standard Positioning Service Performance Standard](https://www.gps.gov/technical/ps/2020-SPS-performance-standard.pdf), 5th edition, April 2020.
+[^GPS-SPS]: U.S. Government, Department of Defense, [Global Positioning System Standard Positioning Service Performance Standard](https://www.gps.gov/sites/default/files/2025-07/2020-SPS-performance-standard.pdf), 5th edition, April 2020.
 
-[^GPS-PPS]: U.S. Government, Department of Defense, Positioning, Navigation, and Timing Executive Committee, [Global Positioning System Precise Positioning Service Performance Standard](https://www.gps.gov/technical/ps/2007-PPS-performance-standard.pdf), 1st edition, Feb. 2007.
+[^GPS-PPS]: U.S. Government, Department of Defense, Positioning, Navigation, and Timing Executive Committee, [Global Positioning System Precise Positioning Service Performance Standard](https://www.gps.gov/sites/default/files/2025-07/2007-PPS-performance-standard_0.pdf), 1st edition, Feb. 2007.
 
 [^ISGPS200]: Global Positioning System Directorate, [Interface Specification IS-GPS-200N: Navstar GPS Space Segment/Navigation User Interfaces](https://www.gps.gov/sites/default/files/2025-07/IS-GPS-200N.pdf), Aug 2022.
 
