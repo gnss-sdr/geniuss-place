@@ -178,7 +178,7 @@ Finally, remember that if you are interested in contributing to the GNSS-SDR pro
 
 [^2]: European Commission Directorate-General for Energy, and Transport, "[EGNOS Service Definition Document: Open Service EGN-SDD OS V1.0](https://egnos.gsc-europa.eu/documents/egnos-open-service-sdd)", Tech. rep., 2009.
 
-[^3]: "[Global Positioning System Wide Area Augmentation System (WAAS) Performance Standard GPS WAAS PS v1.0](https://www.gps.gov/technical/ps/2008-WAAS-performance-standard.pdf)", Tech. rep., US Department of transportation and Federal Aviation Administration, 2008.
+[^3]: "[Global Positioning System Wide Area Augmentation System (WAAS) Performance Standard GPS WAAS PS v1.0](https://www.gps.gov/sites/default/files/2025-07/2008-WAAS-performance-standard.pdf)", Tech. rep., US Department of transportation and Federal Aviation Administration, 2008.
 
 [^4]: VITA Standards Organization. (2009, May 26). VITA Radio Transport (VRT) Standard, NSI/VITA 49.0-2009. Available from [vita.com](https://www.vita.com/).
 
