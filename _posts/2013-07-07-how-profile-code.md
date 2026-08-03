@@ -111,7 +111,7 @@ $ HEAPCHECK=1 /path/to/gnss-sdr
 
 Other values for HEAPCHECK: `normal` (equivalent to `1`), `strict`, `draconian`.
 
-Please see more details on the [heap checker options](https://gperftools.github.io/gperftools/heap_checker.html).
+Please see more details on the [heap checker options](https://gperftools.github.io/gperftools/heapprofile.html).
 
 
 ### Heap profiler
