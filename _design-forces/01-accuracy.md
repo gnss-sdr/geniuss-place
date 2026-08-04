@@ -142,4 +142,4 @@ receiver:
 
 ## References
 
-[^Petit10]: G. Petit and B. Luzum, Eds., [_IERS Conventions (2010)_](https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36.pdf?__blob=publicationFile&v=1), Verlag des Bundesamts f&uuml;r Kartographie und Geod&auml;sie, Frankfurt, Germany, 2010, IERS Technical Note 36. ISBN 3-89888-989-6.
+[^Petit10]: G. Petit and B. Luzum, Eds., [_IERS Conventions (2010)_](https://www.iers.org/iers/en/publications/technicalnotes/tn36), Verlag des Bundesamts f&uuml;r Kartographie und Geod&auml;sie, Frankfurt, Germany, 2010, IERS Technical Note 36. ISBN 3-89888-989-6.
