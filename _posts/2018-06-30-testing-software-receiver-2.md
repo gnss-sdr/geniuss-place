@@ -14,7 +14,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2026-04-22T11:37:02+02:00
+last_modified_at: 2026-08-03T11:37:02+02:00
 ---
 
 [Testability]({{ "/design-forces/testability/" | relative_url }}) is an
@@ -340,17 +340,17 @@ the test program `run_tests`.
       $ ./run_tests --gtest_filter=GpsL1CaPcpsAcquisitionTest* --plot_acq_grid
       ```
       - `GpsL1CaPcpsAcquisitionGSoC2013Test`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h) developed during GSoC 2013.
-      - `GpsL1CaPcpsTongAcquisitionGSoC2013Test`: set of test cases for [gps_l1_ca_pcps_tong_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_tong_acquisition.h)
-      - `GpsL1CaPcpsQuickSyncAcquisitionGSoC2014Test`: set of test cases for [gps_l1_ca_pcps_quicksync_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/gps_l1_ca_pcps_quicksync_acquisition.h)
+      - `GpsL1CaPcpsTongAcquisitionGSoC2013Test`: set of test cases for [pcps_tong_acquisition_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/gnuradio_blocks/pcps_tong_acquisition_cc.h)
+      - `GpsL1CaPcpsQuickSyncAcquisitionGSoC2014Test`: set of test cases for [pcps_quicksync_acquisition_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/gnuradio_blocks/pcps_quicksync_acquisition_cc.h)
       - `GalileoE1PcpsAmbiguousAcquisitionTest`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h). If Gnuplot is installed in your machine, this test can plot the acquisition grid by passing the flag `--plot_acq_grid`. Example:
       ```console
       $ ./run_tests --gtest_filter=GalileoE1PcpsAmbiguousAcquisitionTest* --plot_acq_grid
       ```
       - `GalileoE1PcpsAmbiguousAcquisitionGSoCTest`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h) developed during GSoC 2012.
       - `GalileoE1PcpsAmbiguousAcquisitionGSoC2013Test`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h) developed during GSoC 2013.
-      - `GalileoE1PcpsTongAmbiguousAcquisitionGSoC2013Test`: set of test cases for [galileo_e1_pcps_tong_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_tong_ambiguous_acquisition.h) developed during GSoC 2013.
-      - `GalileoE1PcpsQuickSyncAmbiguousAcquisitionGSoC2014Test`: set of test cases for [galileo_e1_pcps_quicksync_ambiguous_acquisition.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e1_pcps_quicksync_ambiguous_acquisition.h) developed during GSoC 2014.
-      - `GalileoE5aPcpsAcquisitionGSoC2014GensourceTest`: set of test cases for [galileo_e5a_noncoherent_iq_acquisition_caf.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/galileo_e5a_noncoherent_iq_acquisition_caf.h) developed during GSoC 2014.
+      - `GalileoE1PcpsTongAmbiguousAcquisitionGSoC2013Test`: set of test cases for [pcps_tong_acquisition_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/gnuradio_blocks/pcps_tong_acquisition_cc.h) developed during GSoC 2013.
+      - `GalileoE1PcpsQuickSyncAmbiguousAcquisitionGSoC2014Test`: set of test cases for [pcps_quicksync_acquisition_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/gnuradio_blocks/pcps_quicksync_acquisition_cc.h) developed during GSoC 2014.
+      - `GalileoE5aPcpsAcquisitionGSoC2014GensourceTest`: set of test cases for [galileo_e5a_noncoherent_iq_acquisition_caf_cc.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/gnuradio_blocks/galileo_e5a_noncoherent_iq_acquisition_caf_cc.h) developed during GSoC 2014.
       - `GlonassL1CaPcpsAcquisitionGSoC2017Test`: set of test cases for [pcps_acquisition_adapter.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/acquisition/adapters/pcps_acquisition_adapter.h) developed during GSoC 2017.
 
  * Tracking
