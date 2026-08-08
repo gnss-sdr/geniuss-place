@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-03-10T08:54:02+02:00
+last_modified_at: 2026-08-07T10:00:00+02:00
 ---
 
 
@@ -645,6 +645,52 @@ Example:
 ;######### TELEMETRY DECODER CONFIG FOR BeiDou B3I CHANNELS ############
 TelemetryDecoder_B3.implementation=BEIDOU_B3I_Telemetry_Decoder
 TelemetryDecoder_B3.dump=true
+```
+
+
+## BeiDou B-CNAV1 navigation message
+
+The B-CNAV1 navigation message is broadcast by the data component of the BeiDou
+B1C signal at $$ 100 $$ symbols per second. Each frame is $$ 1800 $$ symbols
+($$ 18 $$ s) long and is divided into three subframes: subframe 1 ($$ 72 $$
+symbols) carries the PRN and the seconds-of-hour counter, encoded with BCH
+codes; subframes 2 ($$ 1200 $$ symbols) and 3 ($$ 528 $$ symbols) carry the
+ephemeris, clock corrections, group delays ($$ TGD_{B1Cp} $$ /
+$$ ISC_{B1Cd} $$), the BeiDou Global Ionospheric delay correction Model (BDGIM)
+parameters, and the UTC model, encoded with 64-ary LDPC codes and protected by
+a 24-bit CRC.
+
+### Implementation: `BEIDOU_B1C_Telemetry_Decoder`
+
+**Warning**: This implementation is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+
+|----------
+|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                | **Required** |
+| :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|      --------------       |
+|     `implementation`      | `BEIDOU_B1C_Telemetry_Decoder`                                                                                                                                                                                                                                                                                     |  Mandatory   |
+|          `dump`           | [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`.                                                                                               |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added).                                                                                          |   Optional   |
+|        `dump_mat`         | [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`.                                                                               |   Optional   |
+|       `remove_dat`        | [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. |   Optional   |
+|     `dump_crc_stats`      | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`.                                                    |   Optional   |
+| `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number.                                            |   Optional   |
+|      --------------       |
+
+  _Telemetry Decoder implementation:_ **`BEIDOU_B1C_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER CONFIG FOR BeiDou B1C CHANNELS ############
+TelemetryDecoder_1D.implementation=BEIDOU_B1C_Telemetry_Decoder
+TelemetryDecoder_1D.dump=false
 ```
 
 

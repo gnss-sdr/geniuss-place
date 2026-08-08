@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-03-10T08:54:02+02:00
+last_modified_at: 2026-08-07T10:00:00+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
@@ -893,6 +893,112 @@ Tracking_B1.enable_fll_pull_in=true;
 Tracking_B1.enable_fll_steady_state=false
 Tracking_B1.dump=false
 Tracking_B1.dump_filename=tracking_ch_
+```
+
+
+## BeiDou B1C signal tracking
+
+The BeiDou B1C signal (GNSS-SDR identifier `1D`), transmitted by BeiDou-3 MEO
+and IGSO satellites at $$ 1575.42 $$ MHz, is composed of a data component
+(modulated with BOC(1,1) and carrying the B-CNAV1 navigation message) and a
+pilot component (modulated with QMBOC(6,1,4/33)), with a data:pilot power ratio
+of 1:3. Both components use ranging codes of $$ 10230 $$ chips transmitted at
+$$ 1.023 $$ Mchip/s (thus with a period of $$ 10 $$ ms), and the pilot
+component is further modulated by a secondary code of $$ 1800 $$ chips
+($$ 18 $$ s), whose synchronization also provides the B-CNAV1 frame
+synchronization. Due to the BOC modulation, the autocorrelation function
+exhibits secondary peaks, so this signal is tracked with a Very Early - Early -
+Prompt - Late - Very Late (VEML) correlator structure.
+
+### Implementation: `BEIDOU_B1C_DLL_PLL_VEML_Tracking`
+
+**Warning**: This implementation is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+By default, this implementation tracks the pilot component (which carries
+$$ 3/4 $$ of the total signal power) and enables an extra prompt correlator
+(slave to the pilot's prompt) in the data component, used for demodulating the
+B-CNAV1 message symbols. The local replica can be generated either with the
+full QMBOC(6,1,4/33) waveform or with a simpler sinBOC(1,1) approximation,
+controlled by the `qmboc` parameter (shared with the Acquisition block).
+
+This implementation accepts the following parameters:
+
+|----------
+|    **Global Parameter**    | **Description**                                                      | **Required** |
+| :------------------------: | :------------------------------------------------------------------- | :----------: |
+|       --------------       |
+| `GNSS-SDR.internal_fs_sps` | Input sample rate to the processing channels, in samples per second. |  Mandatory   |
+|       --------------       |
+
+
+|----------
+|            **Parameter**             | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                              | **Required** |
+| :----------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|            --------------            |
+|           `implementation`           | `BEIDOU_B1C_DLL_PLL_VEML_Tracking`                                                                                                                                                                                                                                                                                                                                                                                                                                            |  Mandatory   |
+|             `item_type`              | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.                                                                             |   Optional   |
+|            `track_pilot`             | [`true`, `false`]: If set to `true`, the receiver is set to track the B1C pilot component and enables an extra prompt correlator (slave to pilot's prompt) in the data component. If set to `false`, the receiver performs correlations on the data component only. It defaults to `true`.                                                                                                                                                                                     |   Optional   |
+|               `qmboc`                | [`true`, `false`]: If set to `true`, the local replica is generated with the QMBOC(6,1,4/33) waveform; if set to `false`, a simpler sinBOC(1,1) replica is used. If this parameter is not set, its value is inherited from `Acquisition_1D.qmboc`; if both are set to different values, the Tracking value is used and a warning is printed. It defaults to `true`.                                                                                                            |   Optional   |
+|     `extend_correlation_symbols`     | Sets the number of correlation symbols to be extended after symbol synchronization has been achieved. Each B-CNAV1 symbol is 10 ms. When `track_pilot=true`, this parameter is forced to 1, since the synchronization of the 1800-chip pilot secondary code requires one-symbol correlations. It defaults to 1.                                                                                                                                                                |   Optional   |
+| `bit_synchronization_time_limit_s`   | Time limit, in seconds, for achieving synchronization with the pilot secondary code before the channel declares a loss of lock. When `track_pilot=true`, values below 48 s (one full 18-second B-CNAV1 frame plus margin) are raised to 48 s.                                                                                                                                                                                                                                  |   Optional   |
+|             `pll_bw_hz`              | Bandwidth of the PLL low-pass filter, in Hz. It defaults to 35 Hz.                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|          `pll_bw_narrow_hz`          | Bandwidth of the PLL low-pass filter after synchronization with the pilot secondary code, in Hz. It defaults to 5 Hz.                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
+|          `pll_filter_order`          | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3.                                                                                                                                                                                                                                                                                                                                                                                                      |   Optional   |
+|         `enable_fll_pull_in`         | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
+|      `enable_fll_steady_state`       | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|             `fll_bw_hz`              | Bandwidth of the FLL low-pass filter, in Hz. It defaults to 35 Hz.                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|           `pull_in_time_s`           | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 5 s.                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|             `dll_bw_hz`              | Bandwidth of the DLL low-pass filter, in Hz. It defaults to 2 Hz.                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|          `dll_bw_narrow_hz`          | Bandwidth of the DLL low-pass filter after synchronization with the pilot secondary code, in Hz. It defaults to 0.75 Hz.                                                                                                                                                                                                                                                                                                                                                      |   Optional   |
+|          `dll_filter_order`          | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2.                                                                                                                                                                                                                                                                                                                                                                                                 |   Optional   |
+|       `early_late_space_chips`       | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.25 $$.                                                                                                                                                                                                                                                                                                                                 |   Optional   |
+|    `very_early_late_space_chips`     | Spacing between Very Early and Prompt and between Prompt and Very Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$.                                                                                                                                                                                                                                                                                                                        |   Optional   |
+|   `early_late_space_narrow_chips`    | Spacing between Early and Prompt and between Prompt and Late correlators after synchronization with the pilot secondary code, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$.                                                                                                                                                                                                                                                                             |   Optional   |
+| `very_early_late_space_narrow_chips` | Spacing between Very Early and Prompt and between Prompt and Very Late correlators after synchronization with the pilot secondary code, normalized by the chip period $$ T_c $$. It defaults to $$ 0.5 $$.                                                                                                                                                                                                                                                                    |   Optional   |
+|      `b1c_secondary_lock_ratio`      | Correlation ratio threshold, in the $$ [0.5, 1.0] $$ range, used to declare synchronization with the 1800-chip pilot secondary code. It defaults to $$ 0.88 $$.                                                                                                                                                                                                                                                                                                               |   Optional   |
+|       `b1c_prompt_use_data_q`        | [`true`, `false`]: If set to `true`, the data-component prompt used for B-CNAV1 symbol demodulation is taken from the quadrature arm of the complex correlator output (the B1C data component is in phase quadrature with respect to the pilot in this implementation); if set to `false`, the in-phase arm is used. It defaults to `true`.                                                                                                                                     |   Optional   |
+|     `b1c_prompt_normalize_power`     | [`true`, `false`]: If set to `true`, the data and pilot prompt outputs are scaled by `b1c_data_prompt_scale` and `b1c_pilot_prompt_scale`, respectively, in order to compensate for the 1:3 data:pilot power ratio. It defaults to `true`.                                                                                                                                                                                                                                     |   Optional   |
+|        `b1c_data_prompt_scale`       | Scale factor applied to the data prompt output when `b1c_prompt_normalize_power=true`. It defaults to $$ \sqrt{3} \approx 1.7320508 $$.                                                                                                                                                                                                                                                                                                                                       |   Optional   |
+|       `b1c_pilot_prompt_scale`       | Scale factor applied to the pilot prompt output when `b1c_prompt_normalize_power=true`. It defaults to $$ 1.0 $$.                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|           `carrier_aiding`           | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`.                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
+|            `cn0_samples`             | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
+|              `cn0_min`               | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.                                                                                                                                                                                                                                                                                                                                                                                                                        |   Optional   |
+|           `max_lock_fail`            | Maximum number of lock failures before dropping a satellite. It defaults to 50.                                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
+|          `carrier_lock_th`           | Carrier lock threshold (in rad). It defaults to 0.85 rad.                                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|        `cn0_smoother_samples`        | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples.                                                                                                                                                                                                                                                                                                                                                                          |   Optional   |
+|         `cn0_smoother_alpha`         | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002.                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples.                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
+|  `carrier_lock_test_smoother_alpha`  | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002.                                                                                                                                                                                                                                                                                                                                           |   Optional   |
+|                `dump`                | [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging, in form of ".dat" files. This format can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/utils/matlab). It defaults to `false`.                                                                                                                                                |   Optional   |
+|           `dump_filename`            | If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./track_ch`, so files in the form "./track_chX.dat", where `X` is the channel number, will be generated.                                                                                                                                 |   Optional   |
+|              `dump_mat`              | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`. |   Optional   |
+|            --------------            |
+
+  _Tracking implementation:_ **`BEIDOU_B1C_DLL_PLL_VEML_Tracking`**.
+  {: style="text-align: center;"}
+
+
+Example:
+
+```ini
+;######### TRACKING CONFIG FOR BeiDou B1C CHANNELS ############
+Tracking_1D.implementation=BEIDOU_B1C_DLL_PLL_VEML_Tracking
+Tracking_1D.item_type=gr_complex
+Tracking_1D.track_pilot=true
+Tracking_1D.extend_correlation_symbols=1
+Tracking_1D.bit_synchronization_time_limit_s=90
+Tracking_1D.pull_in_time_s=5
+Tracking_1D.pll_bw_hz=10.0
+Tracking_1D.dll_bw_hz=0.5
+Tracking_1D.pll_bw_narrow_hz=5.0
+Tracking_1D.dll_bw_narrow_hz=0.2
+Tracking_1D.pll_filter_order=2
+Tracking_1D.early_late_space_chips=0.15
+Tracking_1D.very_early_late_space_chips=0.5
+Tracking_1D.cn0_min=20
+Tracking_1D.b1c_secondary_lock_ratio=0.92
 ```
 
 

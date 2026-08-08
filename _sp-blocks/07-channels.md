@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-03-10T08:54:02+02:00
+last_modified_at: 2026-08-07T10:00:00+02:00
 ---
 
 
@@ -29,6 +29,7 @@ of the following signal identifiers:
 |      `1G`      | Glonass L1 C/A |  $$ 1602.00 $$ MHz   |
 |      `1C`      |   GPS L1 C/A   |  $$ 1575.42 $$ MHz   |
 |      `1B`      | Galileo E1 B/C |  $$ 1575.42 $$ MHz   |
+|      `1D`      |   BeiDou B1C   |  $$ 1575.42 $$ MHz   |
 |      `B1`      |   Beidou B1I   |  $$ 1561.098 $$ MHz  |
 |      `J1`      |   QZSS L1 C/A  |  $$ 1575.42 $$ MHz   |
 |      `E6`      |  Galileo E6B   |  $$ 1278.75 $$ MHz   |
@@ -42,11 +43,16 @@ of the following signal identifiers:
 |     -----      |
 
 
-Then, thirteen parameters can be set: `Channels_1G.count`, `Channels_1C.count`,
-`Channels_1B.count`, `Channels_B1.count`,  `Channels_J1.count`,  `Channels_E6.count`,
+Then, fourteen parameters can be set: `Channels_1G.count`, `Channels_1C.count`,
+`Channels_1B.count`, `Channels_1D.count`, `Channels_B1.count`,  `Channels_J1.count`,  `Channels_E6.count`,
 `Channels_B3.count`, `Channels_2G.count`, `Channels_2S.count`,
 `Channels_5X.count`, `Channels_7X.count`, `Channels_L5.count`, and `Channels_J5.count`, and all of them
 defaulting to $$ 0 $$.
+
+**Warning**: The BeiDou B1C signal (identifier `1D`) is only available from the
+`next` branch of the upstream GNSS-SDR repository. It will be included in the
+next stable release.
+{: .notice--warning}
 
 In addition, the GNSS-SDR flow graph allows setting the number of channels that
 will be executing signal acquisition (which is known to require a high
@@ -66,6 +72,7 @@ _Channels_ accepts the following parameters:
 |     `Channels_1G.count`     | Number of channels targeting Glonass L1 C/A signals. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                      |   Optional   |
 |     `Channels_1C.count`     | Number of channels targeting GPS L1 C/A signals. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                          |   Optional   |
 |     `Channels_1B.count`     | Number of channels targeting Galileo E1 B/C signals. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                      |   Optional   |
+|     `Channels_1D.count`     | Number of channels targeting BeiDou B1C signals. It defaults to $$ 0 $$. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span>                                                                                                                                 |   Optional   |
 |     `Channels_B1.count`     | Number of channels targeting BeiDou B1I signals. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                          |   Optional   |
 |     `Channels_J1.count`     | Number of channels targeting QZSS L1 C/A signals. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                              |   Optional   |
 |     `Channels_E6.count`     | Number of channels targeting Galileo E6B signals. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                         |   Optional   |
@@ -76,11 +83,12 @@ _Channels_ accepts the following parameters:
 |     `Channels_5X.count`     | Number of channels targeting Galileo E5a (I+Q) signals. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                   |   Optional   |
 |     `Channels_L5.count`     | Number of channels targeting GPS L5 signals. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                              |   Optional   |
 |     `Channels_J5.count`     | Number of channels targeting QZSS L5 signals. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                              |   Optional   |
-|      `Channel.signal`       | Assign all channels to a specific signal [`1C`, `1B`, `B1`, `J1`, `2S`, `5X`, `L5`, `B3`, `J5`, `7X`]. Only required in single-system receivers.                                                                                                                                                                                                                                                                |   Optional   |
-|      `ChannelN.signal`      | (where `N` is the channel number, starting from $$ 0 $$). Assign each channel to a specific signal [`1C`, `1B`, `B1`, `J1`, `2S`, `5X`, `L5`, `B3`, `J5`, `7X`]. Not required in single-system receivers.                                                                                                                                                                                                       |   Optional   |
+|      `Channel.signal`       | Assign all channels to a specific signal [`1C`, `1B`, `1D`, `B1`, `J1`, `2S`, `5X`, `L5`, `B3`, `J5`, `7X`]. Only required in single-system receivers.                                                                                                                                                                                                                                                          |   Optional   |
+|      `ChannelN.signal`      | (where `N` is the channel number, starting from $$ 0 $$). Assign each channel to a specific signal [`1C`, `1B`, `1D`, `B1`, `J1`, `2S`, `5X`, `L5`, `B3`, `J5`, `7X`]. Not required in single-system receivers.                                                                                                                                                                                                 |   Optional   |
 | `Channels_1G.RF_channel_ID` | Connects channels targeting Glonass L1 C/A to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                             |   Optional   |
 | `Channels_1C.RF_channel_ID` | Connects channels targeting GPS L1 C/A to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                 |   Optional   |
 | `Channels_1B.RF_channel_ID` | Connects channels targeting Galileo E1 B/C to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                             |   Optional   |
+| `Channels_1D.RF_channel_ID` | Connects channels targeting BeiDou B1C to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span>                                                                        |   Optional   |
 | `Channels_B1.RF_channel_ID` | Connects channels targeting BeiDou B1I to a radio frequency chain. It defaults to $$ 0 $$.Not required in single-band receivers. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                  |   Optional   |
 | `Channels_J1.RF_channel_ID` | Connects channels targeting QZSS L1 C/A to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. This feature is present in GNSS-SDR v0.0.21 and later versions.                                                                                                                                                                                |   Optional   |
 | `Channels_E6.RF_channel_ID` | Connects channels targeting Galileo E6B to a radio frequency chain. It defaults to $$ 0 $$. Not required in single-band receivers. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                |   Optional   |
