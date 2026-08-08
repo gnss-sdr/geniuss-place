@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-07T10:00:00+02:00
+last_modified_at: 2026-08-08T12:00:00+02:00
 ---
 
 
@@ -691,6 +691,67 @@ Example:
 ;######### TELEMETRY DECODER CONFIG FOR BeiDou B1C CHANNELS ############
 TelemetryDecoder_1D.implementation=BEIDOU_B1C_Telemetry_Decoder
 TelemetryDecoder_1D.dump=false
+```
+
+
+## SBAS L1 navigation message
+
+The SBAS L1 navigation message, defined in RTCA DO-229, is broadcast at
+$$ 250 $$ bits per second and encoded with a rate-$$ 1/2 $$,
+constraint-length-$$ 7 $$ convolutional code, resulting in a channel rate of
+$$ 500 $$ symbols per second. Each 1-second, $$ 250 $$-bit block contains an
+$$ 8 $$-bit preamble (part of a $$ 24 $$-bit pattern, `0x53`, `0x9A`, `0xC6`,
+distributed over three consecutive blocks), a $$ 6 $$-bit message type
+identifier, a $$ 212 $$-bit data field, and $$ 24 $$ parity bits (CRC-24Q).
+
+### Implementation: `SBAS_L1_Telemetry_Decoder`
+
+**Warning**: This implementation is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+This implementation performs Viterbi decoding of the convolutional code, symbol
+and bit alignment, preamble detection (with polarity resolution), and CRC-24Q
+verification, and reports the message type and reception timestamp of every
+validated message. The transport layer is fully implemented, but the content of
+the messages is not parsed yet: no SBAS corrections are applied to the PVT
+solution, and SBAS satellites are not used as ranging sources, so channels
+targeting `S1` do not produce observables.
+
+Unlike in the other Telemetry Decoder implementations, the `dump` option of
+this block does not produce the binary `.dat` / `.mat` output described in the
+<a href="#binary-output">Binary Output</a> section below. Instead, all
+CRC-validated messages of each PRN are written in hexadecimal, one message per
+line, to a plain text file named after the `dump_filename` parameter with a
+`_PRN<nnn>.ems` suffix. The file layout is similar to that of the EGNOS Message
+Server (EMS) archive files (GPS week, time of week, PRN, message type, and the
+message content as 64 hexadecimal characters), but it is not a conformant EMS
+file: the receiver has no absolute GPS time reference in this configuration, so
+the week field is always $$ 0 $$ and the time-of-week field holds the receiver
+time elapsed since the start of the processing. Dump files are overwritten at
+each receiver run.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Parameter**  | **Description**                                                                                                                                                                                                                             | **Required** |
+| :-------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------: |
+| --------------  |
+| `implementation` | `SBAS_L1_Telemetry_Decoder`                                                                                                                                                                                                                |  Mandatory   |
+|     `dump`      | [`true`, `false`]: If set to `true`, it enables the raw navigation message dump in per-PRN text files with an EMS-like layout, as described above. It defaults to `false`.                                                                   |   Optional   |
+| `dump_filename` | If `dump` is set to `true`, base name of the files in which the decoded messages will be stored (a trailing `.dat` extension, if present, is dropped, and `_PRN<nnn>.ems` is appended). Required for the dump to be produced: it has no default value, so if it is not set, no file is written. |   Optional   |
+| --------------  |
+
+  _Telemetry Decoder implementation:_ **`SBAS_L1_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER CONFIG FOR SBAS L1 CHANNELS ############
+TelemetryDecoder_S1.implementation=SBAS_L1_Telemetry_Decoder
+TelemetryDecoder_S1.dump=true
+TelemetryDecoder_S1.dump_filename=./sbas_telemetry.dat
 ```
 
 

@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-07T10:00:00+02:00
+last_modified_at: 2026-08-08T12:00:00+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
@@ -564,7 +564,7 @@ This implementation accepts the following parameters:
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_C_1C_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_C_B1_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
@@ -695,7 +695,7 @@ This implementation accepts the following parameters:
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_1C_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_J_J1_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
@@ -712,6 +712,79 @@ Acquisition_J1.doppler_step=250
 Acquisition_J1.pfa=0.01
 Acquisition_J1.coherent_integration_time_ms=1
 Acquisition_J1.max_dwells=1
+```
+
+
+## SBAS L1 signal acquisition
+
+The SBAS L1 signal, broadcast at $$ 1575.42 $$ MHz by the geostationary
+satellites of the different satellite-based augmentation systems (EGNOS, WAAS,
+...), uses Gold codes of $$ 1023 $$ chips transmitted at $$ 1.023 $$ Mchip/s
+(thus with a period of $$ 1 $$ ms, the same code family as GPS L1 C/A), and
+carries navigation data at $$ 250 $$ bits per second, convolutionally encoded
+at rate $$ 1/2 $$ into a $$ 500 $$ symbols-per-second data channel. There is no
+pilot component. GNSS-SDR identifies the SBAS L1 signal with the identifier
+`S1`, and supports PRNs $$ 120 $$ to $$ 138 $$ (RTCA DO-229, Table A-1).
+
+Since the transmitting satellites are geostationary, the Doppler shift observed
+by a static receiver is below $$ \pm 100 $$ Hz, so the acquisition search space
+mainly needs to accommodate the frequency error of the receiver's reference
+oscillator (about $$ 1.6 $$ kHz per ppm of error at the L1 frequency): with an
+accurate or calibrated reference, `doppler_max` can be reduced well below the
+default, speeding up acquisition.
+
+### Implementation: `SBAS_L1_PCPS_Acquisition`
+
+**Warning**: This implementation is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `SBAS_L1_PCPS_Acquisition` | Mandatory |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present). | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
+| `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
+| `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
+| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_S_S1_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
+| `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`SBAS_L1_PCPS_Acquisition`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### ACQUISITION CONFIG FOR SBAS L1 CHANNELS ############
+Acquisition_S1.implementation=SBAS_L1_PCPS_Acquisition
+Acquisition_S1.item_type=gr_complex
+Acquisition_S1.pfa=0.01
+Acquisition_S1.doppler_max=5000
+Acquisition_S1.doppler_step=250
 ```
 
 
@@ -1055,7 +1128,7 @@ This implementation accepts the following parameters:
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_C_L5_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
+| `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_C_B3_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
@@ -1109,7 +1182,7 @@ This implementation accepts the following parameters:
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_J_L5_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
+| `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_J_J5_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
