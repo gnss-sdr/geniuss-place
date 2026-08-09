@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-08T12:00:00+02:00
+last_modified_at: 2026-08-09T12:00:00+02:00
 ---
 
 
@@ -713,10 +713,17 @@ upstream GNSS-SDR repository. It will be included in the next stable release.
 This implementation performs Viterbi decoding of the convolutional code, symbol
 and bit alignment, preamble detection (with polarity resolution), and CRC-24Q
 verification, and reports the message type and reception timestamp of every
-validated message. The transport layer is fully implemented, but the content of
-the messages is not parsed yet: no SBAS corrections are applied to the PVT
-solution, and SBAS satellites are not used as ranging sources, so channels
-targeting `S1` do not produce observables.
+validated message. Each CRC-valid frame is also sent automatically to the PVT
+block. The `RTKLIB_PVT` implementation decodes the legacy SBAS L1 correction
+messages used for the satellite mask, fast and long-term orbit/clock
+corrections, integrity information, and ionospheric grid corrections. See the
+[PVT block documentation]({{ "/docs/sp-blocks/pvt/#sbas-augmentation" |
+relative_url }}) for the options that enable each correction.
+
+SBAS satellites are not used as ranging sources, so channels targeting `S1` do
+not produce observables. The implemented correction path is intended for
+non-safety-critical SBAS Open Service use: it does not compute protection
+levels or provide a Safety-of-Life solution.
 
 Unlike in the other Telemetry Decoder implementations, the `dump` option of
 this block does not produce the binary `.dat` / `.mat` output described in the
