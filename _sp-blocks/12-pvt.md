@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-07-30T10:00:00+02:00
+last_modified_at: 2026-08-09T12:00:00+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -636,6 +636,39 @@ If the validation failed, RTKLIB outputs the ʺFLOATʺ solution $$ \hat{\mathbf{
 
 &nbsp;
 
+# SBAS augmentation
+
+The `RTKLIB_PVT` implementation can apply legacy SBAS L1 corrections, such as
+those broadcast by EGNOS, to a GPS L1 single-point solution. The receiver needs
+at least one `S1` channel using the
+[`SBAS_L1_Telemetry_Decoder`]({{ "/docs/sp-blocks/telemetry-decoder/#implementation-sbas_l1_telemetry_decoder" | relative_url }}).
+CRC-valid SBAS frames are forwarded automatically from that decoder to the PVT
+block; the SBAS satellite itself is not used as a ranging source.
+
+The correction controls are independent:
+
+* `PVT.satellite_ephemeris=SBAS` applies fast and long-term satellite
+  orbit/clock corrections. A GPS satellite without a current valid correction
+  from the selected SBAS stream is excluded from the augmented solution.
+* `PVT.iono_model=SBAS` applies the ionospheric grid delays and their associated
+  quality information broadcast in SBAS message types 18 and 26.
+* `PVT.trop_model=SBAS` applies the SBAS receiver-specification tropospheric
+  model, commonly known as the MOPS model. It does not depend on a broadcast
+  SBAS message.
+* `PVT.sbas_satellite` selects the SBAS GEO correction stream when more than one
+  is received.
+
+This implementation provides a non-safety-critical SBAS Open Service solution.
+It uses the broadcast UDRE and GIVE information to reject unusable corrections
+and model their variance, but it does not compute protection levels or provide
+a Safety-of-Life solution.
+
+&nbsp;
+
+---------
+
+&nbsp;
+
 # Ionospheric Model
 
 The ionosphere is a region of Earth's upper atmosphere, from about 60 km to
@@ -711,11 +744,12 @@ F \cdot \left( 5 \cdot 10^{-9} + \sum_{n=1}^{4} \alpha_n  {\psi_m}^{n} \cdot \le
 
 This correction is activated when `PVT.iono_model` is set to `Broadcast`.
 
-{::comment}
 ## SBAS
 
-SBAS corrections for ionospheric delay is provided by the message type 18 (ionospheric grid point masks) and the message type 26 (ionospheric delay corrections).
-{:/comment}
+If `PVT.iono_model` is set to `SBAS`, the ionospheric delay is obtained from the
+SBAS ionospheric grid. Message type 18 defines the ionospheric grid point masks,
+and message type 26 provides the vertical delays and GIVE quality indicators.
+The correction is applied only where the received grid provides valid coverage.
 
 &nbsp;
 
@@ -787,11 +821,11 @@ geodetic height is approximated by the ellipsoidal height and the relative
 humidity is fixed to 70%.
 
 
-{::comment}
 ## SBAS
 
-If the processing option `PVT.trop_model` is set to `SBAS`, the SBAS troposphere models defined in the SBAS receiver specifications are applied. The model often called as "MOPS model". Refer to [MOPS reference](https://standards.globalspec.com/std/1014192/rtca-do-229)[^MOPS], A.4.2.4 for details.
-{:/comment}
+If `PVT.trop_model` is set to `SBAS`, the tropospheric model defined in the SBAS
+receiver specifications is applied. This is commonly known as the MOPS model.
+Refer to Appendix A.4.2.4 of the MOPS reference[^MOPS] for details.
 
 
 
@@ -1108,8 +1142,10 @@ standard and precise positioning. It accepts the following parameters:
 |             `num_bands`              | [`1`: L1 Single frequency, `2`: L1 and L2 Dual‐frequency, `3`: L1, L2 and L5 Triple‐frequency] This option is automatically configured according to the Channels configuration. This option can be useful to force some configuration (*e.g.*, single-band solution in a dual-frequency receiver).                                                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
 |           `elevation_mask`           | Set the elevation mask angle, in degrees. It defaults to $$ 15^{o} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
 |           `dynamics_model`           | [`0`: Off, `1`: On] Set the dynamics model of the receiver. If set to $$ 1 $$ and `PVT.positioning_mode=PPP_Kinematic`, the receiver position is predicted with the estimated velocity and acceleration. It defaults to $$ 0 $$ (no dynamics model).                                                                                                                                                                                                                                                                                                                                                                                                                                                 |   Optional   |
-|             `iono_model`             | [`OFF`, `Broadcast`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Not apply the ionospheric correction. `Broadcast`: Apply broadcast ionospheric model. `Iono‐Free-LC`: Ionosphere‐free linear combination with dual-frequency (L1‐L2 for GPS or L1‐L5 for Galileo) measurements is used for ionospheric correction. It defaults to `OFF` (no ionospheric correction)                                                                                                                                                                                                                                                                                                                 |   Optional   |
-|             `trop_model`             | [`OFF`, `Saastamoinen`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set whether tropospheric parameters (zenith total delay at rover and base‐station positions) are estimated or not. `OFF`: Not apply troposphere correction. `Saastamoinen`: Apply Saastamoinen model. `Estimate_ZTD`: Estimate ZTD (zenith total delay) parameters as EKF states. `Estimate_ZTD_Grad`: Estimate ZTD and horizontal gradient parameters as EKF states. If defaults to `OFF` (no troposphere correction).                                                                                                                                                                                                                |   Optional   |
+|       `satellite_ephemeris`          | [`Broadcast`, `SBAS`]: Select the satellite ephemeris/clock correction source. `Broadcast` uses the broadcast ephemeris and clock without SBAS satellite corrections. `SBAS` uses the broadcast ephemeris and applies fast and long-term orbit/clock corrections received from an SBAS L1 telemetry channel to GPS observations; satellites without a current valid correction are excluded. It defaults to `Broadcast`.                                                                                                                                                                                                                                                                                                     |   Optional   |
+|          `sbas_satellite`            | Select the SBAS PRN whose correction stream is used. Set it to an SBAS PRN in the range 120–138, or to `0` to select and remain with the first received SBAS stream. Values outside that range are treated as `0`. It defaults to `0`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
+|             `iono_model`             | [`OFF`, `Broadcast`, `SBAS`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Do not apply an ionospheric correction. `Broadcast`: Apply the broadcast ionospheric model. `SBAS`: Apply SBAS ionospheric grid corrections received in message types 18 and 26. `Iono-Free-LC`: Use an ionosphere-free linear combination of dual-frequency measurements. It defaults to `OFF`.                                                                                                                                                                                                                                                                                                          |   Optional   |
+|             `trop_model`             | [`OFF`, `Saastamoinen`, `SBAS`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set the tropospheric correction option. `OFF`: Do not apply a tropospheric correction. `Saastamoinen`: Apply the Saastamoinen model. `SBAS`: Apply the SBAS MOPS model. `Estimate_ZTD`: Estimate zenith total delay as an EKF state. `Estimate_ZTD_Grad`: Estimate zenith total delay and horizontal gradients as EKF states. It defaults to `OFF`.                                                                                                                                                                                                                                                                             |   Optional   |
 |     `enable_rx_clock_correction`     | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is only used in the computation of Observables when the clock offset estimation exceeds the value of `max_clock_offset_ms`. This parameter defaults to `false`.                                                                                                                                                                                                                                                                                                          |   Optional   |
 |        `max_clock_offset_ms`         | If `enable_rx_clock_correction` is set to `false`, this parameter sets the maximum allowed local clock offset with respect to the Time solution. If the estimated offset exceeds this parameter, a clock correction is applied to the computation of Observables. It defaults to 40 ms.                                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
 |     `code_phase_error_ratio_l1`      | Code/phase error ratio $$ R_r $$ for the L1 band. It defaults to $$ 100 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |   Optional   |
@@ -1221,6 +1257,27 @@ PVT.rtcm_MT1097_rate_ms=1000
 PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
 ```
+
+For a GPS L1 single-point solution augmented with SBAS corrections, use an
+`S1` telemetry channel and configure PVT as follows:
+
+```ini
+;######### SBAS L1 TELEMETRY DECODER CONFIG ############
+TelemetryDecoder_S1.implementation=SBAS_L1_Telemetry_Decoder
+
+;######### PVT CONFIG WITH SBAS CORRECTIONS ############
+PVT.implementation=RTKLIB_PVT
+PVT.positioning_mode=Single
+PVT.satellite_ephemeris=SBAS
+PVT.sbas_satellite=0
+PVT.iono_model=SBAS
+PVT.trop_model=SBAS
+```
+
+The receiver must also define at least one SBAS L1 channel, for example with
+`Channels_S1.count=1`. Set `PVT.sbas_satellite` to a specific GEO PRN when the
+receiver tracks multiple SBAS signals and a particular correction stream is
+required.
 
 The generation of output files is controlled by the parameter `output_enabled`.
 If set to `true` (which is its default value), RINEX, XML, GPX, KML, GeoJSON,
