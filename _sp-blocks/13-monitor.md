@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2024-09-09T14:54:02-02:00
+last_modified_at: 2026-08-15T12:00:00+02:00
 ---
 
 
@@ -50,7 +50,7 @@ to `false` in your configuration file.
 ## Exposed Internal Parameters
 
 The exposed internal parameters are the data members of the `Gnss_Synchro`
-class. There are 25 in total, and can be classified based on the subsystem they
+class. There are 29 in total, and can be classified based on the subsystem they
 inform about:
 
 ### Satellite and signal information
@@ -103,6 +103,7 @@ The following set of variables record information about the [Tracking]({{
 | `Tracking_sample_counter`  | `uint64_t` | Sample counter as an index (1,2,3,..etc) indicating number of samples processed. |
 | `Flag_valid_symbol_output` |   `bool`   | Indicates the validity of the tracking for each channel.                         |
 |  `correlation_length_ms`   | `int32_t`  | Time duration of correlation-integration, in [ms].                               |
+| `Flag_carrier_phase_continuous` | `bool` | `false` on the first output after the accumulated carrier phase has been (re)initialized, that is, whenever the carrier-phase ambiguity of the channel has changed. In the Protocol Buffers stream it is sent negated, as `flag_carrier_phase_discontinuity`, so that a missing field defaults to "no discontinuity". <span style="color: orange">This field is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span> |
 |         ----------         |
 
 ### Telemetry Decoder
@@ -132,6 +133,8 @@ The following set of variables record information about the [Observables]({{
 |        `RX_time`         | `double` | Receiving time in each channel after the start of the week, in [s]. |
 | `Flag_valid_pseudorange` |  `bool`  | Pseudorange computation status in each channel.                     |
 |     `interp_TOW_ms`      | `double` | Interpolated time of week, in [ms].                                 |
+|     `Flag_cycle_slip`    |  `bool`  | Carrier cycle-slip detection flag. This field is available starting from GNSS-SDR v0.0.21.  |
+|  `Flag_half_cycle_slip`  |  `bool`  | Indicates that the carrier phase has jumped by half a cycle, caused by a change in the phase polarity of the Costas loop resolved by the Telemetry Decoder. <span style="color: orange">This field is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>  |
 |        ----------        |
 
 ## Configuration

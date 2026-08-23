@@ -7,7 +7,7 @@ excerpt:
 header:
   teaser: /assets/images/what-is-gnss-sdr.png
   invert-colors: true
-last_modified_at: 2021-02-10T11:54:02+01:00
+last_modified_at: 2026-08-15T12:00:00+02:00
 redirect_from:
   - /documentation/general-overview
   - /project
@@ -56,8 +56,12 @@ validation of the complete receiver using both real and synthetic signals. The
 processing output can be stored in Receiver INdependent EXchange format
 ([RINEX](https://en.wikipedia.org/wiki/RINEX)), used by most geodetic processing
 software for GNSS, or transmitted as RTCM 3.2 messages through a TCP/IP server
-in real-time. Navigation results are stored in
-[KML](https://www.ogc.org/standards/kml/) and
+in real-time. The receiver can also act as an NTRIP client, retrieving RTCM 3
+corrections from a physical or virtual base station over the Internet and
+computing GPS, Galileo, BeiDou, or multi-constellation Real-Time Kinematic solutions. <span style="color: orange">The NTRIP client is
+only available in the `next` branch of the upstream repository, and will be
+included in the next GNSS-SDR stable release.</span> Navigation results are
+stored in [KML](https://www.ogc.org/standards/kml/) and
 [GeoJSON](https://geojson.org/) formats.
 
 ![Block diagram](https://raw.githubusercontent.com/gnss-sdr/gnss-sdr/next/docs/doxygen/images/GeneralBlockDiagram.png){:width="800px"}{: .align-center .invert-colors}
