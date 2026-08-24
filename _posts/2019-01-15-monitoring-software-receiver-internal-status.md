@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2021-02-28T11:37:02+02:00
+last_modified_at: 2026-08-15T12:00:00+02:00
 ---
 
 
@@ -22,7 +22,7 @@ last_modified_at: 2021-02-28T11:37:02+02:00
 This guide assumes that GNSS-SDR and its software dependencies are already installed on your system, otherwise please check out the [building guide]({{ "/build-and-install/" | relative_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/README.md) file for more details on how to install GNSS-SDR.
 {: .notice--info}
 
-Since the introduction of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative_url }}) block, GNSS-SDR offers a mechanism for monitoring the status of the software receiver in real-time by providing access to 25 internal parameters that tell us about the performance of each channel. The complete list of parameters is documented [here]({{ "/docs/sp-blocks/monitor/#exposed-internal-parameters" | relative_url }}).
+Since the introduction of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative_url }}) block, GNSS-SDR offers a mechanism for monitoring the status of the software receiver in real-time by providing access to 29 internal parameters that tell us about the performance of each channel. The complete list of parameters is documented [here]({{ "/docs/sp-blocks/monitor/#exposed-internal-parameters" | relative_url }}). The list has grown over time: for instance, a carrier cycle-slip flag was added in GNSS-SDR v0.0.21, and two carrier-phase integrity flags (`flag_carrier_phase_discontinuity` and `flag_half_cycle_slip`) were added later on. <span style="color: orange">These last two fields are only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span> Since new fields are always appended to the message definition, Protocol Buffers guarantees backward compatibility: clients built against an older `gnss_synchro.proto` keep working, and missing fields simply read as their default values.
 
 In this article, we are going to learn how to create a minimal monitoring client application written in C/C++ that will print and update the PRN, CN0, and Doppler frequency shift for each channel on a terminal window while the receiver is running with the Monitor block activated.
 
@@ -454,7 +454,7 @@ Copy the [configuration file]({{ "/my-first-fix/#step-3-configure-gnss-sdr" | re
 ```ini
 ;######### MONITOR CONFIG ############
 Monitor.enable_monitor=true
-Monitor.decimator_factor=50
+Monitor.decimation_factor=50
 Monitor.client_addresses=127.0.0.1
 Monitor.udp_port=1234
 ```
@@ -525,7 +525,7 @@ PVT.display_rate_ms=500
 
 ;######### MONITOR CONFIG ############
 Monitor.enable_monitor=true
-Monitor.decimator_factor=50
+Monitor.decimation_factor=50
 Monitor.client_addresses=127.0.0.1
 Monitor.udp_port=1234
 ```
@@ -576,3 +576,87 @@ If you see something similar to this... Yay! You are successfully monitoring the
   {{ fig_img2 | markdownify | remove: "<p>" | remove: "</p>" }}
   <figcaption>Client application displaying the values of PRN, CN0, and Doppler for each channel while GNSS-SDR is running simultaneously.</figcaption>
 </figure>
+
+
+## Bonus: displaying the carrier-phase integrity flags
+
+**Warning**: This section makes use of the `flag_carrier_phase_discontinuity`
+and `flag_half_cycle_slip` fields, which are only available from the `next`
+branch of the upstream GNSS-SDR repository. They will be included in the next
+stable release.
+{: .notice--warning}
+
+The `GnssSynchro` message also carries the carrier-phase integrity flags
+described in the [Observables block documentation]({{
+"/docs/sp-blocks/observables/#carrier-phase-continuity-flags" | relative_url
+}}): a cycle-slip detection flag, a carrier-phase discontinuity flag raised
+after a signal reacquisition, and a half-cycle slip flag raised when the
+telemetry-resolved phase polarity changes. Let's extend our client to keep a
+per-channel count of the flagged epochs it observes.
+
+Add a counter container to the private section of the class declaration in
+`gnss_synchro_udp_source.h`:
+
+```cpp
+    std::map<int, int> slips;
+```
+
+Count the flagged epochs as they are received, in `populate_channels`:
+
+```cpp
+void Gnss_Synchro_Udp_Source::populate_channels(gnss_sdr::Observables& stocks)
+{
+    for (std::size_t i = 0; i < stocks.observable_size(); i++)
+        {
+            gnss_sdr::GnssSynchro ch = stocks.observable(i);
+            if (ch.fs() != 0)  // Channel is valid.
+                {
+                    if (ch.flag_cycle_slip() ||
+                        ch.flag_carrier_phase_discontinuity() ||
+                        ch.flag_half_cycle_slip())
+                        {
+                            slips[ch.channel_id()]++;
+                        }
+                    channels[ch.channel_id()] = ch;
+                }
+        }
+}
+```
+
+And print the new column in `print_table`:
+
+```cpp
+            // Print table header.
+            attron(A_REVERSE);
+            printw("%3s%6s%14s%17s%9s\n", "CH", "PRN", "CN0 [dB-Hz]", "Doppler [Hz]", "Slips");
+            attroff(A_REVERSE);
+
+            // Print table contents.
+            for (auto const& ch : channels)
+                {
+                    int channel_id = ch.first;      // Key
+                    gnss_sdr::GnssSynchro data = ch.second;  // Value
+
+                    printw("%3d%6d%14f%17f%9d\n", channel_id, data.prn(), data.cn0_db_hz(),
+                        data.carrier_doppler_hz(), slips[channel_id]);
+                }
+```
+
+After rebuilding, the table gains a `Slips` column that accumulates the
+carrier-phase events observed on each channel:
+
+```console
+CH   PRN   CN0 [dB-Hz]     Doppler [Hz]    Slips
+ 0     1     44.205502      7175.743399        0
+ 2    17     43.886524     10032.649712        1
+ 3    11     45.290539      5585.268260        0
+ 4    20     42.442753      8469.028326        0
+ 6    32     43.016476      6550.037773        0
+```
+{: class="no-copy"}
+
+Note that these flags mark single epochs, and the Monitor block only streams
+one epoch out of every `Monitor.decimation_factor`: with the value of 50 used
+in this tutorial, the client inspects one epoch per second and will miss the
+events in between. Set `Monitor.decimation_factor=1` to catch every epoch (at
+the cost of updates every 20 ms).

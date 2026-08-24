@@ -1077,13 +1077,13 @@ $ brew install clang-format
 
   * **In macOS using Macports:**
   ```console
-$ sudo port install clang-19
+$ sudo port install clang-22
   ```
   NOTE: You can see all available choices with `port select --list` for clang:
     ```console
 $ port select --list clang
 Available versions for clang:
-        mp-clang-19
+        mp-clang-22
         none (active)
     ```
     {: class="no-copy"}
@@ -1091,8 +1091,8 @@ Available versions for clang:
   new default, which will create symlinks in `/opt/local/bin` without the
   version suffix.
     ```console
-$ sudo port select --set clang mp-clang-19
-selecting 'mp-clang-19' for 'clang' succeeded. 'mp-clang-19' is now active.
+$ sudo port select --set clang mp-clang-22
+selecting 'mp-clang-22' for 'clang' succeeded. 'mp-clang-22' is now active.
     ```
     {: class="no-copy"}
   You can confirm this change by looking at the version of the tool:
@@ -1229,7 +1229,7 @@ $ ln -s $(brew --prefix llvm)/bin/run-clang-tidy /usr/local/bin
 
 * **In macOS using Macports:**
 ```console
-$ sudo port install clang-19
+$ sudo port install clang-22
 ```
 
 **Step 2.- Apply clang-tidy**
