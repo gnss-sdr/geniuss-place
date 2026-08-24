@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2021-03-30T09:54:02+02:00
+last_modified_at: 2026-08-15T12:00:00+02:00
 ---
 
 The role of an _Observables_ block is to collect the synchronization data coming
@@ -243,6 +243,38 @@ where:
     variation that the receiver misunderstands as a range variation.
   * $$ \epsilon_{\Phi,i} = \lambda_i \epsilon_{\phi} $$ is a term modeling instrumental phase noise.
 
+### Carrier-phase continuity flags
+
+The usability of carrier-phase measurements in precise positioning modes relies
+on the integer ambiguity $$ N_{r,i}^{(s)} $$ remaining constant over time.
+GNSS-SDR detects and flags carrier-phase discontinuities at their source, and
+propagates that information along the receiver chain:
+
+  * The [Tracking]({{ "/docs/sp-blocks/tracking/" | relative_url }}) block
+    reports a discontinuity on the first output after the accumulated carrier
+    phase has been (re)initialized — that is, whenever the channel (re)acquires
+    a satellite and the carrier-phase ambiguity changes.
+  * The Observables block detects **half-cycle slips**: when the Telemetry
+    Decoder resolves a change in the phase polarity of the Costas loop, the
+    carrier phase steps by half a cycle, and the affected observation is
+    flagged accordingly.
+  * A **cycle-slip detector** monitors the carrier-phase evolution and flags
+    inconsistent jumps (this detector is available starting from GNSS-SDR
+    v0.0.21).
+
+These flags are consumed downstream: RINEX observation files report them with
+standard loss-of-lock indicator (LLI) values (bit 0: loss of lock or cycle
+slip; bit 1: half-cycle ambiguity change), the RTK engine of the [PVT]({{
+"/docs/sp-blocks/pvt/" | relative_url }}) block resets or deweights the
+affected ambiguities instead of carrying them over, and the optional
+carrier-smoothing filter described below restarts instead of smoothing across
+the jump.
+
+**Warning**: The carrier-phase discontinuity and half-cycle slip flags are only
+available from the `next` branch of the upstream GNSS-SDR repository. They will
+be included in the next stable release.
+{: .notice--warning}
+
 ## Doppler shift measurement
 
 The Doppler effect[^Doppler] (or the Doppler shift) is the change in frequency
@@ -318,7 +350,10 @@ $$ \begin{equation}
 \nonumber \hat{P}_{r,i}^{(s)}[1] = P_{r,i}^{(s)}[1]~.
 \end{equation} $$
 
-This algorithm is initialized every time that a carrier phase cycle-slip occurs.
+This algorithm is initialized every time that a carrier phase cycle-slip
+occurs, or a carrier-phase discontinuity is flagged (see the [carrier-phase
+continuity flags](#carrier-phase-continuity-flags) above), instead of smoothing
+across the jump.
 
 
 ## Implementation: `Hybrid_Observables`  

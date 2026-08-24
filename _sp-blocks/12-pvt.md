@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-09T12:00:00+02:00
+last_modified_at: 2026-08-15T12:00:00+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -184,43 +184,46 @@ where:
   - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m).
   This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
 
+In addition, two optional terms can extend this
+error model. <span style="color: orange">These options are only present in the
+`next` branch of the upstream repository, and will be included in the next
+GNSS-SDR stable release.</span>
+
+  - An **SNR-dependent term**, activated when `PVT.error_factor_snr` is set to
+    a positive value $$ e_{\sigma} $$ (in m; ta recommended value is $$ 0.005 $$ m),
+    which adds to the variance a term
+
+    $$ e_{\sigma}^2 \cdot 10^{~0.1 \cdot \max \left( \text{SNR}_{\text{max}} - C/N_0^{(s)},~ 0 \right)}~, $$
+
+    where $$ C/N_0^{(s)} $$ is the carrier-to-noise density ratio reported by
+    the tracking loop for satellite $$ s $$, and $$ \text{SNR}_{\text{max}} $$
+    is a reference value (in dB-Hz) above which no penalty is applied,
+    configurable with `PVT.error_snr_max` (it defaults to $$ 52 $$ dB-Hz). It
+    defaults to $$ 0.0 $$ (disabled), preserving the elevation-only error
+    model.
+
+  - A **receiver-reported standard deviation term**, activated when
+  `PVT.error_factor_rcv_std` is set to a positive value, which weights each
+  observation with the pseudorange / carrier-phase standard deviations reported
+  in the observation structure (fields ready to be populated from the
+  tracking-loop variance estimates). It defaults to $$ 0.0 $$ (disabled).
+
+By default, the receiver clock bias estimated in single point positioning is
+assumed to be common to all GPS-like signals, including QZSS. Setting
+`PVT.estimate_qzss_isb=true` adds a separate QZS-GPS inter-system bias to the
+vector of unknowns. The estimated offset is
+reported in the RTKLIB solution structure (`sol.dtr[4]`). Since the extra
+unknown requires one more satellite in mixed GPS + QZSS epochs, which degrades
+availability under limited sky visibility, this option defaults to `false` and
+should only be enabled in open-sky scenarios with six or more satellites in
+view. <span style="color: orange">This option is only present in the `next`
+branch of the upstream repository, and will be included in the next GNSS-SDR
+stable release.</span>
+
 The estimated receiver clock bias $$ dt_r $$ is not explicitly output, but
 incorporated in the solution time‐tag. That means the solution time‐tag
 indicates not the receiver time‐tag but the true signal reception time measured
 in [GPS Time](https://gssc.esa.int/navipedia/index.php/Time_References_in_GNSS).
-
-{::comment}
-### Static / Kinematic
-
-Assuming the use of triple‐frequency GPS/GNSS receivers for both of the rover and the base‐station, the unknown state vector $$ \mathbf{x} $$ to be estimated can be defined as:
-
-$$ \mathbf{x} = \left(\mathbf{r}_{r}^{T}, \mathbf{v}_{r}^{T} ,\mathbf{B}_{1}^{T} ,\mathbf{B}_{2}^{T} ,\mathbf{B}_{5}^{T} \right)^T $$
-
-where $$ \mathbf{B}_{i} = \left ( B_{rb,i}^{(1)}, B_{rb,i}^{(2)}, B_{rb,i}^{(3)}, ..., B_{rb,i}^{(m)} \right) $$ are the single‐difference carrier‐phase biases (in cycles) for the $$ i $$-th band.
-
-
-$$ \mathbf{y} = \left(\boldsymbol{\Phi}_{1}^T, \boldsymbol{\Phi}_{2}^T, \boldsymbol{\Phi}_{3}^T, \mathbf{P}_{1}^T, \mathbf{P}_{2}^T, \mathbf{P}_{5}^T \right)^T $$
-
-where:
-
-  * $$ \boldsymbol{\Phi}_{i} = \left( \Phi_{rb,i}^{(12)}, \Phi_{rb,i}^{(13)}, \Phi_{rb,i}^{(14)}, ..., \Phi_{rb,i}^{(1m)}\right)^T  $$
-  * $$ \mathbf{P}_{i} =  \left( P_{rb,i}^{(12)}, P_{rb,i}^{(13)}, P_{rb,i}^{(14)}, ..., P_{rb,i}^{(1m)} \right)^T$$
-
-
-$$ \mathbf{h}(\mathbf{x}) = \left( \mathbf{h}_{\Phi,1}^{T}, \mathbf{h}_{\Phi,2}^{T} , \mathbf{h}_{\Phi,5}^{T}, \mathbf{h}_{P,1}^{T}, \mathbf{h}_{P,2}^{T} , \mathbf{h}_{P,5}^{T}  \right)^T $$
-
-where:
-
-  * $$  \mathbf{h}_{\Phi,i} = \left( \begin{array}{c} \rho_{rb}^{(12)} +\lambda_i (B_{rb}^{(1)} -B_{rb}^{(2)} ) \\  \rho_{rb}^{(13)} +\lambda_i (B_{rb}^{(1)} -B_{rb}^{(3)} )\\ \rho_{rb}^{(14)} +\lambda_i (B_{rb}^{(1)} -B_{rb}^{(4)}) \\ \vdots \\ \rho_{rb}^{(1m)} +\lambda_i (B_{rb}^{(1)} -B_{rb}^{(m)} ) \end{array} \right) \quad \mathbf{h}_{P,i} = \left(  \begin{array}{c} \rho_{rb}^{(12)} \\  \rho_{rb}^{(13)} \\ \rho_{rb}^{(14)} \\ \vdots \\ \rho_{rb}^{(1m)} \end{array}\right) $$
-
-
-$$ \mathbf{H}(\mathbf{x}) = \frac{\partial  \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} = \hat{\mathbf{x}} } = \left( \begin{array}{ccccc} -\mathbf{DE} & \mathbf{0} & \lambda_1 \mathbf{D} & \mathbf{0}  & \mathbf{0} \\  -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \lambda_2 \mathbf{D} & \mathbf{0}  \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} &  \mathbf{0} & \lambda_5 \mathbf{D} \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \mathbf{0}  & \mathbf{0} \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \mathbf{0}  & \mathbf{0} \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \mathbf{0}  & \mathbf{0}  \end{array} \right) $$
-
-
-$$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 & 0 & -1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & 0 & 0 & \cdots & -1 \end{array} \right) $$
-
-$$ \mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)}, \mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)}  \right)^T $$
-{:/comment}
 
 ### Solution validation
 
@@ -588,47 +591,281 @@ satellite $$ s $$ is above a certain threshold, that observation is rejected as
 an outlier. The default threshold is set to $$ 30 $$ m and can be configured via
 the option `PVT.threshold_reject_innovation`.
 
+The rejection threshold can be set separately for code and carrier-phase
+observables:
+`PVT.threshold_reject_innovation` applies to code observables, and a new
+`PVT.threshold_reject_innovation_phase` option applies to carrier-phase
+observables. The latter defaults to the value of the former, so existing
+configurations behave identically; a value of $$ 5.0 $$ m for the
+phase threshold in RTK modes. <span style="color: orange">The separate phase
+threshold is only present in the `next` branch of the upstream repository, and
+will be included in the next GNSS-SDR stable release.</span>
 
-{::comment}
-## Integer ambiguity resolution
 
-Once the estimated states obtained in the EKF measurement update, the float carrier‐phase ambiguities can be resolved into integer values in order to improve accuracy and convergence time.
+## Real-Time Kinematic
 
-At first, the estimated states and their covariance matrix are transformed to double difference forms by:
+**Warning**: The Real-Time Kinematic positioning modes and the NTRIP client
+described in this section are only available from the `next` branch of the
+upstream GNSS-SDR repository. They will be included in the next stable release.
+{: .notice--warning}
+
+When the `PVT.positioning_mode` option is set to `Static` or `Kinematic` in the
+configuration file, the positioning problem is solved by relative positioning
+with respect to a base station of known coordinates, using double-differenced
+carrier-phase and pseudorange measurements. `Static` assumes a stationary rover
+antenna, while `Kinematic` models a moving receiver. In this operation mode,
+commonly known as Real-Time Kinematic (RTK), most of the common error sources
+(satellite orbit and clock errors, and, for short baselines, ionospheric and
+tropospheric delays) cancel out in the differencing, and centimeter-level
+accuracy becomes achievable once the carrier-phase integer ambiguities are
+resolved.
+
+The current implementation supports a *fixed* (that is, static) base station
+broadcasting its position and its observations over the RTCM 3 protocol,
+received through the [NTRIP
+client](#base-station-corrections-through-ntrip) described below. Per
+constellation, and freely combined, the receiver may run GPS L1 C/A alone or
+together with one of L2C or L5, Galileo E1 alone or together with E5a, and
+BeiDou B1C (single-frequency). Single-band sets run single-frequency RTK,
+which is viable on the short effective baselines of VRS services and benefits
+from combining constellations. GPS L5 and Galileo E5a share the same center
+frequency, and BeiDou B1C shares the GPS L1 / Galileo E1 center, so the
+combined GPS L1+L5 / Galileo E1+E5a dual-frequency receiver needs only two RF
+channels, and a single-frequency GPS+Galileo+BeiDou receiver needs one.
+The base station can be a physical reference station or a Virtual Reference
+Station (VRS) synthesized by the caster: the client reports the rover position
+to the caster via NMEA GGA sentences (enabled by default, see
+`PVT.ntrip_send_gga` below), as VRS and nearest-station services require.
+
+For a dual-frequency receiver, the vector of unknown states to be estimated is
+defined as:
+
+$$ \begin{equation}
+\mathbf{x} = \left(\mathbf{r}_{r}^{T}, \mathbf{v}_{r}^{T}, \mathbf{B}_{1}^{T}, \mathbf{B}_{2}^{T} \right)^T~,
+\end{equation} $$
+
+where $$ \mathbf{B}_{i} = \left( B_{rb,i}^{(1)}, B_{rb,i}^{(2)}, ...,
+B_{rb,i}^{(m)} \right)^T $$ are the single-difference carrier-phase biases (in
+cycles) between the rover $$ r $$ and the base station $$ b $$ for the $$ i
+$$-th band. The measurement vector stacks double-differenced phase-range and
+pseudorange measurements:
+
+$$ \begin{equation}
+\mathbf{y} = \left(\boldsymbol{\Phi}_{1}^T, \boldsymbol{\Phi}_{2}^T, \mathbf{P}_{1}^T, \mathbf{P}_{2}^T \right)^T~,
+\end{equation} $$
+
+where $$ \boldsymbol{\Phi}_{i} = \left( \Phi_{rb,i}^{(12)}, \Phi_{rb,i}^{(13)},
+..., \Phi_{rb,i}^{(1m)}\right)^T $$ and $$ \mathbf{P}_{i} = \left(
+P_{rb,i}^{(12)}, P_{rb,i}^{(13)}, ..., P_{rb,i}^{(1m)} \right)^T $$, with
+superscript $$ (1s) $$ denoting the difference between the reference satellite
+and satellite $$ s $$. The equations that relate measurements and states are:
+
+$$ \begin{equation}
+\mathbf{h}_{\Phi,i} = \left( \begin{array}{c} \rho_{rb}^{(12)} +\lambda_i (B_{rb,i}^{(1)} -B_{rb,i}^{(2)} ) \\  \rho_{rb}^{(13)} +\lambda_i (B_{rb,i}^{(1)} -B_{rb,i}^{(3)} ) \\ \vdots \\ \rho_{rb}^{(1m)} +\lambda_i (B_{rb,i}^{(1)} -B_{rb,i}^{(m)} ) \end{array} \right), \quad \mathbf{h}_{P,i} = \left(  \begin{array}{c} \rho_{rb}^{(12)} \\  \rho_{rb}^{(13)} \\ \vdots \\ \rho_{rb}^{(1m)} \end{array}\right)~,
+\end{equation} $$
+
+with partial derivatives matrix:
+
+$$ \begin{equation}
+\mathbf{H}(\mathbf{x}) = \frac{\partial  \mathbf{h}(\mathbf{x})}{\partial \mathbf{x}} \bigg\rvert_{\mathbf{x} = \hat{\mathbf{x}} } = \left( \begin{array}{cccc} -\mathbf{DE} & \mathbf{0} & \lambda_1 \mathbf{D} & \mathbf{0}   \\  -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \lambda_2 \mathbf{D}   \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \mathbf{0}   \\ -\mathbf{DE} & \mathbf{0}  & \mathbf{0} & \mathbf{0}  \end{array} \right)~,
+\end{equation} $$
+
+where $$ \mathbf{D} = \left( \begin{array}{ccccc} 1 & -1 & 0 & \cdots & 0 \\ 1 &
+0 & -1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & 0 & 0 &
+\cdots & -1 \end{array} \right) $$ is the single-differencing matrix and $$
+\mathbf{E} = \left( \mathbf{e}_{r}^{(1)}, \mathbf{e}_{r}^{(2)},
+\mathbf{e}_{r}^{(3)}, ..., \mathbf{e}_{r}^{(m)} \right)^T $$ is the matrix of
+receiver-to-satellite line-of-sight vectors. The state vector is propagated and
+updated with the same Extended Kalman Filter described in the Precise Point
+Positioning section above. When `PVT.dynamics_model=1`, the estimated velocity
+propagates the predicted position between epochs; when `PVT.dynamics_model=2`,
+the estimated acceleration also contributes to the prediction. In both cases,
+the process noise (configurable via `PVT.sigma_acch` and `PVT.sigma_accv`)
+grows with the time elapsed between epochs.
+
+The reference satellite for double differencing is selected as the one with the
+lowest measurement variance (instead of the highest elevation), excluding
+satellites flagged with cycle slips. This selection rule is expected to behave
+better in urban conditions, where the received signal quality is a better
+quality proxy than elevation. Measurement noise follows the elevation-dependent
+error model described in the Single Point Positioning section, optionally
+extended with the SNR-dependent term (which in relative positioning uses the
+carrier-to-noise density ratios reported by both the rover and the base
+station) and the receiver-reported standard deviation term.
+
+If an epoch provides fewer than four valid double-differenced carrier phases,
+the code-differenced solution is kept and reported with DGNSS quality, instead
+of being discarded.
+
+### Cycle slips and carrier-phase integrity
+
+Undetected carrier-phase discontinuities corrupt the estimated ambiguities, so
+several complementary detectors are applied:
+
+* **Geometry-free combination**: a cycle slip is declared when the
+  geometry-free linear combination of carrier phases jumps between epochs by
+  more than `PVT.slip_threshold` (it defaults to $$ 0.05 $$ m).
+* **Phase-Doppler difference**: a detector compares the time-differenced carrier phase with the integrated
+  Doppler, after removing the receiver clock error common to all satellites,
+  estimated as the median range-rate residual over all of them. It is enabled by setting `PVT.slip_threshold_doppler` to a
+  positive value, in m/s; it defaults to $$ 0 $$ (disabled).
+* **Carrier-phase integrity flags**: the [Tracking]({{
+  "/docs/sp-blocks/tracking/" | relative_url }}) and [Observables]({{
+  "/docs/sp-blocks/observables/" | relative_url }}) blocks flag carrier-phase
+  discontinuities at their source: cycle slips after a signal reacquisition,
+  and half-cycle jumps caused by a change in the telemetry-resolved phase
+  polarity. The RTK engine resets or deweights the affected ambiguities instead
+  of carrying them over, RINEX observation files report these events with
+  standard loss-of-lock indicator (LLI) values, and the optional
+  [carrier-smoothing filter]({{
+  "/docs/sp-blocks/observables/#carrier-smoothing-of-code-pseudoranges" |
+  relative_url }}) restarts instead of smoothing across the jump.
+
+In the measurement update, innovations are screened against
+`PVT.threshold_reject_innovation` (code observables) and
+`PVT.threshold_reject_innovation_phase` (carrier-phase observables; setting it to $$ 5.0 $$ m in RTK modes is recommended). A carrier-phase bias
+that keeps producing outliers is reinitialized, instead of having its
+measurements rejected indefinitely.
+
+### Integer ambiguity resolution
+
+Once the estimated states are obtained in the EKF measurement update, the float
+carrier-phase ambiguities can be resolved into integer values in order to
+improve accuracy and convergence time. The strategy is selected with the
+`PVT.AR_GPS` option: `OFF`, `Continuous`, `Instantaneous`, `Fix-and-Hold`, or
+`PPP-AR`.
+
+At first, the estimated states and their covariance matrix are transformed to
+double-difference form by:
 
 $$ \hat{\mathbf{x}}_{k|k}^\prime = \mathbf{G} \hat{\mathbf{x}}_{k|k} = \left( \hat{\mathbf{r}}_r^T, \hat{\mathbf{v}}_r^T, \hat{\mathbf{N}}^T \right)^T $$
 
 $$ \boldsymbol{\Sigma}_{k|k}^\prime =  \mathbf{G} \boldsymbol{\Sigma}_{k|k} \mathbf{G}^T = \left( \begin{array}{cc} \mathbf{Q}_R & \mathbf{Q}_{NR} \\ \mathbf{Q}_{RN} & \mathbf{Q}_{N} \end{array} \right) $$
 
-where:
-
-$$ \mathbf{G} = \left( \begin{array}{cccc} \mathbf{I}_{6 \times 6} & {} & {} & \\ {} & \mathbf{D} & {} & {} \\ {} & {} & \mathbf{D} & {} \\ {} & {} & {} & \mathbf{D} \end{array} \right) $$ is the single difference to double difference transformation matrix.
-
-In this transformation, the single difference carrier‐phase biases are transferred to the double difference carrier‐phase form in order to eliminate receiver initial phase terms to obtain integer ambiguities $$ \hat{N} $$ and their covariance $$ \mathbf{Q}_N $$. In these formulas, the most appropriate integer vector $$ \breve{N} $$ for the integer ambiguities is obtained
-by solving an ILS (integer least square) problem expressed as:
+where $$ \mathbf{G} = \left( \begin{array}{ccc} \mathbf{I}_{6 \times 6} & {} &
+{} \\ {} & \mathbf{D} & {} \\ {} & {} & \mathbf{D} \end{array} \right) $$ is
+the single-difference to double-difference transformation matrix, built with an
+index-based formulation (in the style of RTKLIB 2.4.3) that keeps the bias
+bookkeeping consistent when several constellation groups are active. In this
+transformation, the single-difference carrier-phase biases are transferred to
+the double-difference form in order to eliminate receiver initial phase terms
+and obtain integer ambiguities $$ \hat{\mathbf{N}} $$ and their covariance $$
+\mathbf{Q}_N $$. QZSS ambiguities are resolved in their own group instead of
+jointly with GPS, avoiding integer fixes across the GPS-QZSS inter-system bias. 
+The most appropriate integer
+vector $$ \breve{\mathbf{N}} $$ is obtained by solving an ILS (integer least
+squares) problem expressed as:
 
 $$ \breve{\mathbf{N}} =  \underset{\mathbf{N} \in \mathbb{Z}^m}{\arg\min} \left( \left( \mathbf{N} -  \hat{\mathbf{N}} \right)^T \mathbf{Q}_{N}^{-1} \left( \mathbf{N} -  \hat{\mathbf{N}} \right) \right) $$
 
-To solve the ILS problem, a well‐known efficient search strategy LAMBDA[^Teunissen95] and its extension
-MLAMBDA[^Chang05] are employed in the `PVT.RTKLIB_PVT` implementation. LAMBDA and MLAMBDA offer the combination of a linear
-transformation to shrink the integer vector search space and a skillful tree‐search procedure in the
-transformed space.
+To solve the ILS problem, the well-known efficient search strategy
+LAMBDA[^Teunissen95] and its extension MLAMBDA[^Chang05] are employed in the
+`RTKLIB_PVT` implementation. LAMBDA and MLAMBDA offer the combination of a
+linear transformation to shrink the integer vector search space and a skillful
+tree-search procedure in the transformed space.
 
-The integer vector solution by these procedures is validated by the following simple Ratio‐Test:
+The integer vector solution provided by these procedures is validated by the
+following simple Ratio-Test:
 
 $$ R = \frac{\left(\breve{\mathbf{N}}_2 - \hat{\mathbf{N}} \right)^T \mathbf{Q}_N^{-1} \left( \breve{\mathbf{N}}_2 - \hat{\mathbf{N}} \right) }{ \left(\breve{\mathbf{N}} - \hat{\mathbf{N}} \right) \mathbf{Q}_N^{-1}  \left( \breve{\mathbf{N}} - \hat{\mathbf{N}} \right)} > R_{thres} $$
 
-In this Ratio‐Test, the ratio‐factor $$ R $$, defined as the ratio of the weighted sum of the squared residuals by the second best solution $$ \breve{\mathbf{N}}_2 $$  to one by the best $$ \breve{\mathbf{N}} $$, is used to check the reliability of the solution. The validation threshold $$ R_{thres} $$ can be set by the processing option `PVT.min_ratio_to_fix_ambiguity`, and it defaults to $$ 3.0 $$.
+In this Ratio-Test, the ratio-factor $$ R $$, defined as the ratio of the
+weighted sum of the squared residuals by the second best solution $$
+\breve{\mathbf{N}}_2 $$ to the one by the best solution $$ \breve{\mathbf{N}}
+$$, is used to check the reliability of the solution. The validation threshold
+$$ R_{thres} $$ can be set with the `PVT.min_ratio_to_fix_ambiguity` option,
+and it defaults to $$ 3.0 $$. Alternatively, the threshold can be made
+dependent on the number of ambiguity pairs by setting `PVT.ar_ratio_min` and
+`PVT.ar_ratio_max` to different values: the effective threshold then scales
+between those bounds with the number of available ambiguities (equal values
+keep the fixed `PVT.min_ratio_to_fix_ambiguity` threshold).
 
-After the validation, the ʺFIXEDʺ solution of the rover antenna position and velocity $$ \breve{\mathbf{r}}_r $$ and $$ \breve{\mathbf{v}}_r $$ obtained by solving the following equation:
+Integer ambiguity resolution is driven by a management layer that improves robustness in non-ideal conditions:
+
+* Ambiguity resolution is skipped while the float position variance is still
+  above `PVT.ar_max_position_variance` (it defaults to $$ 0.25 $$ m^2;
+  $$ 0 $$ disables this gate), avoiding false fixes while the filter converges.
+* If `PVT.ar_filter=true` (the default), newly-risen satellites are excluded
+  from ambiguity resolution, and the fix is retried when their inclusion
+  degrades the AR ratio.
+* When no fix is achieved with many satellites in view (at least
+  `PVT.min_drop_sats`, defaulting to $$ 10 $$; $$ 0 $$ disables this
+  mechanism), a single satellite at a time is cycled out of the ambiguity
+  resolution and the fix is retried.
+* Fixing and holding are gated on minimum satellite counts, configurable with
+  `PVT.min_fix_sats` (it defaults to $$ 4 $$) and `PVT.min_hold_sats` (it
+  defaults to $$ 5 $$).
+
+After the validation, the &Prime;FIXED&Prime; solution of the rover antenna
+position and velocity $$ \breve{\mathbf{r}}_r $$ and $$ \breve{\mathbf{v}}_r $$
+is obtained by solving the following equation:
 
 $$ \left( \begin{array}{c} \breve{\mathbf{r}}_r \\ \breve{\mathbf{v}}_r \end{array} \right) = \left( \begin{array}{c} \hat{\mathbf{r}}_r \\ \hat{\mathbf{v}}_r \end{array} \right) - \mathbf{Q}_{RN} \mathbf{Q}_{N}^{-1} \left( \hat{\mathbf{N}} -  \breve{\mathbf{N}} \right) $$
 
-If the validation failed, RTKLIB outputs the ʺFLOATʺ solution $$ \hat{\mathbf{r}}_r $$ and $$ \hat{\mathbf{v}}_r $$ instead.
+If the validation fails, the &Prime;FLOAT&Prime; solution $$
+\hat{\mathbf{r}}_r $$ and $$ \hat{\mathbf{v}}_r $$ is output instead.
 
 ### Fix and Hold option
 
-{:/comment}
+If `PVT.AR_GPS` is set to `Fix-and-Hold`, once the integer ambiguities are
+validated they are tightly constrained to their resolved values through
+pseudo-measurements, whose variance can be configured with `PVT.var_holdamb`
+(it defaults to $$ 0.1 $$ cycles^2). Holding requires at least
+`PVT.min_hold_sats` satellites providing validated ambiguities.
+
+### Base station corrections through NTRIP
+
+The PVT block embeds an NTRIP (Networked Transport of RTCM via Internet
+Protocol) client that connects to an NTRIP caster, decodes RTCM 3 messages
+carrying the base station position (message types 1005 / 1006) and its
+observations &#8212; GPS L1 with L2 or L5 (legacy message type 1004 and MSM
+message types 1074-1077), Galileo E1 with E5a (MSM message types 1094-1097),
+and BeiDou B1C (MSM message types 1124-1127, preferring B1C over B1I in the
+shared first slot) &#8212; and feeds time-aligned reference data to the RTKLIB
+relative-positioning solver.
+
+The client is enabled by setting `PVT.ntrip_client_enabled=true`, which
+requires `PVT.positioning_mode` to be set to `Static` or `Kinematic` and, per
+constellation and freely combined, GPS L1 C/A alone or together with one of
+L2C or L5, Galileo E1 alone or together with E5a, and BeiDou B1C; single-band
+sets run single-frequency RTK. Its main features are:
+
+* **NTRIP v2 with automatic v1 fallback**: the client prefers NTRIP v2 and,
+  after a fully-sent v2 exchange closes or times out before receiving response
+  bytes, or returns HTTP 400, 501, or 505, it retries once on a fresh NTRIP v1
+  connection. Setting `PVT.ntrip_version=1` forces the legacy protocol
+  directly.
+* **TLS support**: setting `PVT.ntrip_tls_enabled=true` enables TLS 1.2 or
+  newer, with certificate validation against the system CA store and host name
+  verification.
+* **Credential handling**: HTTP Basic authentication is configured with
+  `PVT.ntrip_username` and `PVT.ntrip_password`. Alternatively, the password
+  can be read from an environment variable named in `PVT.ntrip_password_env`,
+  keeping secrets out of the configuration file. Credentials are redacted from
+  the RTKLIB trace files.
+* **Robust operation**: the client reconnects automatically without blocking
+  the GNU Radio flow graph, filters base station changes (a positive
+  `PVT.ntrip_station_id` restricts the stream to that exact station ID), and
+  drops stale corrections older than `PVT.ntrip_max_correction_age_s` (it
+  defaults to $$ 5 $$ s).
+* **VRS support**: the rover position is periodically reported upstream as an
+  NMEA GGA sentence, as Virtual Reference Station and nearest-station
+  mountpoints require (`PVT.ntrip_send_gga`, enabled by default; the cadence is
+  set by `PVT.ntrip_gga_period_ms`, $$ 10 $$ s by default). No sentence is sent
+  before the receiver produces its first position fix; the single-point
+  bootstrap solution is enough for the caster to start serving the virtual
+  station. Set `PVT.ntrip_send_gga=false` if the rover position must not be
+  disclosed to the caster; physical-base mountpoints work either way.
+* **Explicit fallback**: if corrections become unavailable and
+  `PVT.ntrip_fallback_to_single=true` (the default), the receiver keeps
+  operating with an explicitly labeled single-point solution.
+
+The console reports the RTKLIB solution status: the `First position fix` and
+periodic `Position at` lines are tagged with `[RTK FIXED]`, `[RTK FLOAT]`,
+`[DGNSS]`, `[SBAS]` or `[PPP]` (color-coded), and status transitions are
+announced once when they happen, including the LAMBDA ambiguity-resolution
+ratio and its threshold when an RTK fix is acquired or lost. Plain single-point
+operation keeps the classic, unmodified console output.
 
 &nbsp;
 
@@ -994,7 +1231,7 @@ files are generated by default, upon the computation of the first position fix.
 ## RINEX
 
 For post-processing applications: RINEX
-[2.11](https://files.igs.org/pub/data/format/rinex211.txt).
+[2.11](https://files.igs.org/pub/data/format/rinex211.txt),
 [3.02](https://files.igs.org/pub/data/format/rinex302.pdf), or [4.02](https://files.igs.org/pub/data/format/rinex_4.02.pdf). Version 3.02 is
 generated by default, and versions 2.11 or 4.02 can be requested by setting
 `PVT.rinex_version=2` or `PVT.rinex_version=4` in the configuration file.  <span style="color: orange">NOTE: Version `4` is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span>
@@ -1138,10 +1375,10 @@ standard and precise positioning. It accepts the following parameters:
 |           `implementation`           | `RTKLIB_PVT`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |  Mandatory   |
 |           `output_rate_ms`           | Rate at which PVT solutions will be computed, in ms. The minimum is 20 ms, and the value must be a multiple of it. It defaults to 500 ms.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
 |          `display_rate_ms`           | Rate at which PVT solutions will be displayed in the terminal, in ms. It must be multiple of `output_rate_ms`. It defaults to 500 ms.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
-|          `positioning_mode`          | [`Single`, `PPP_Static`, `PPP_Kinematic`] Set positioning mode. `Single`: Single point positioning.  `PPP_Static`: Precise Point Positioning with static mode. `PPP_Kinematic`: Precise Point Positioning for a moving receiver. It defaults to `Single`.                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|          `positioning_mode`          | [`Single`, `Static`, `Kinematic`, `PPP_Static`, `PPP_Kinematic`] Set positioning mode. `Single`: Single point positioning. `Static`: RTK relative positioning with a stationary rover antenna. `Kinematic`: RTK relative positioning for a moving receiver. `PPP_Static`: Precise Point Positioning with static mode. `PPP_Kinematic`: Precise Point Positioning for a moving receiver. It defaults to `Single`. <span style="color: orange">The RTK modes `Static` and `Kinematic` require base-station corrections received via the NTRIP client, which is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
 |             `num_bands`              | [`1`: L1 Single frequency, `2`: L1 and L2 Dual‐frequency, `3`: L1, L2 and L5 Triple‐frequency] This option is automatically configured according to the Channels configuration. This option can be useful to force some configuration (*e.g.*, single-band solution in a dual-frequency receiver).                                                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
 |           `elevation_mask`           | Set the elevation mask angle, in degrees. It defaults to $$ 15^{o} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
-|           `dynamics_model`           | [`0`: Off, `1`: On] Set the dynamics model of the receiver. If set to $$ 1 $$ and `PVT.positioning_mode=PPP_Kinematic`, the receiver position is predicted with the estimated velocity and acceleration. It defaults to $$ 0 $$ (no dynamics model).                                                                                                                                                                                                                                                                                                                                                                                                                                                 |   Optional   |
+|           `dynamics_model`           | [`0`: none, `1`: velocity, `2`: acceleration] Set the dynamics model of the receiver, used in the `Kinematic` and `PPP_Kinematic` positioning modes. If set to $$ 1 $$, the receiver position is predicted with the estimated velocity; if set to $$ 2 $$, the estimated acceleration also contributes to the prediction. The process noise grows with the time elapsed between epochs, and can be configured with `PVT.sigma_acch` and `PVT.sigma_accv`. It defaults to $$ 0 $$ (no dynamics model).                                                                                                                                                                                                                                                                                                                                                                                                                                                 |   Optional   |
 |       `satellite_ephemeris`          | [`Broadcast`, `SBAS`]: Select the satellite ephemeris/clock correction source. `Broadcast` uses the broadcast ephemeris and clock without SBAS satellite corrections. `SBAS` uses the broadcast ephemeris and applies fast and long-term orbit/clock corrections received from an SBAS L1 telemetry channel to GPS observations; satellites without a current valid correction are excluded. It defaults to `Broadcast`.                                                                                                                                                                                                                                                                                                     |   Optional   |
 |          `sbas_satellite`            | Select the SBAS PRN whose correction stream is used. Set it to an SBAS PRN in the range 120–138, or to `0` to select and remain with the first received SBAS stream. Values outside that range are treated as `0`. It defaults to `0`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
 |             `iono_model`             | [`OFF`, `Broadcast`, `SBAS`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Do not apply an ionospheric correction. `Broadcast`: Apply the broadcast ionospheric model. `SBAS`: Apply SBAS ionospheric grid corrections received in message types 18 and 26. `Iono-Free-LC`: Use an ionosphere-free linear combination of dual-frequency measurements. It defaults to `OFF`.                                                                                                                                                                                                                                                                                                          |   Optional   |
@@ -1151,12 +1388,53 @@ standard and precise positioning. It accepts the following parameters:
 |     `code_phase_error_ratio_l1`      | Code/phase error ratio $$ R_r $$ for the L1 band. It defaults to $$ 100 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |   Optional   |
 |    `carrier_phase_error_factor_a`    | Carrier phase error factor $$ a_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
 |    `carrier_phase_error_factor_b`    | Carrier phase error factor $$ b_{\sigma}^2 $$. It defaults to $$ 0.003 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
+|           `error_factor_snr`         | SNR-dependent term of the observation error model, in m. If set to a positive value, observations with a carrier-to-noise density ratio below `error_snr_max` are deweighted accordingly (in relative positioning, using both the rover's and the base's reported values); tA recommended value is $$ 0.005 $$ m. It defaults to $$ 0.0 $$ (disabled), preserving the elevation-only error model. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |   Optional   |
+|            `error_snr_max`           | Reference carrier-to-noise density ratio (dB-Hz) above which no SNR penalty is applied by the `error_factor_snr` term. It defaults to $$ 52 $$ dB-Hz. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                          |   Optional   |
+|         `error_factor_rcv_std`       | Receiver-reported standard deviation term of the observation error model. If set to a positive value, observations are weighted with the pseudorange / carrier-phase standard deviations reported in the observation structure. It defaults to $$ 0.0 $$ (disabled). <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                          |   Optional   |
 |           `slip_threshold`           | Set the cycle‐slip threshold (m) of geometry‐free LC carrier‐phase difference between epochs. It defaults to $$ 0.05 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|      `slip_threshold_doppler`        | Set the cycle-slip threshold (m/s) of the phase-Doppler difference, after removing the receiver clock error common to all satellites (estimated as the median range-rate residual). It defaults to $$ 0 $$ (test disabled). <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |       `threshold_reject_GDOP`        | Set the reject threshold of GDOP. If the GDOP is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
-|    `threshold_reject_innovation`     | Set the reject threshold of innovation (pre‐fit residual) (m). If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
+|    `threshold_reject_innovation`     | Set the reject threshold of innovation (pre‐fit residual) (m) for code observables. If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
+| `threshold_reject_innovation_phase`  | Set the reject threshold of innovation (pre‐fit residual) (m) for carrier-phase observables. It defaults to the value of `threshold_reject_innovation`, so existing configurations behave identically; a recommended value is $$ 5.0 $$ m in RTK modes. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |         `number_filter_iter`         | Set the number of iteration in the measurement update of the estimation filter. If the baseline length is very short like 1 m, the iteration may be effective to handle the nonlinearity of the measurement equation. It defaults to 1.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
 |             `sigma_bias`             | Set the process noise standard deviation of carrier‐phase bias $$ \sigma_{bias} $$, in cycles/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ cycles/$$ \sqrt{s} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
 |             `sigma_trop`             | Set the process noise standard deviation of zenith tropospheric delay $$ \sigma_{Z} $$, in m/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ m/$$ \sqrt{s} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
+|             `sigma_acch`             | Set the process noise standard deviation of the receiver acceleration, horizontal component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.1 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
+|             `sigma_accv`             | Set the process noise standard deviation of the receiver acceleration, vertical component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.01 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
+|             `sigma_iono`             | Set the process noise standard deviation of vertical ionospheric delay per 10 km baseline, in m/$$ \sqrt{s} $$. It defaults to $$ 0.001 $$ m/$$ \sqrt{s} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|               `bias_0`               | Set the initial-state standard deviation of the carrier‐phase bias (ambiguity), in m. It defaults to $$ 30 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
+|               `iono_0`               | Set the initial-state standard deviation of vertical ionospheric delay per 10 km baseline, in m. It defaults to $$ 0.03 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |   Optional   |
+|               `trop_0`               | Set the initial-state standard deviation of zenith tropospheric delay, in m. It defaults to $$ 0.3 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
+|               `AR_GPS`               | [`OFF`, `Continuous`, `Instantaneous`, `Fix-and-Hold`, `PPP-AR`]. Set the strategy of integer ambiguity resolution for GPS. `OFF`: No ambiguity resolution. `Continuous`: Continuously static integer ambiguities are estimated and resolved. `Instantaneous`: Integer ambiguity is estimated and resolved on an epoch‐by‐epoch basis. `Fix-and-Hold`: Continuously static integer ambiguities are estimated and resolved, and if the validation is OK, the ambiguities are tightly constrained to the resolved values. `PPP-AR`: Ambiguity resolution in PPP (experimental, only applicable to PPP‐* modes). It defaults to `OFF`.                                                                                                                                                                                                                                                                                     |   Optional   |
+|     `min_ratio_to_fix_ambiguity`     | Set the integer ambiguity validation threshold for the ratio‐test, which uses the ratio of squared residuals of the best integer vector to the second‐best vector. It defaults to $$ 3.0 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|            `ar_ratio_min`            | Lower bound for the satellite-count-dependent ambiguity-resolution ratio threshold. If set to a value different from `ar_ratio_max`, the effective ratio threshold scales with the number of ambiguity pairs; equal values keep the fixed `min_ratio_to_fix_ambiguity` threshold. It defaults to $$ 0.0 $$. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|            `ar_ratio_max`            | Upper bound for the satellite-count-dependent ambiguity-resolution ratio threshold. It defaults to $$ 0.0 $$. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
+|       `ar_max_position_variance`     | Maximum float-position variance (m&#178;) to attempt integer ambiguity resolution, avoiding false fixes while the filter is still converging. Set it to $$ 0 $$ to disable this gate. It defaults to $$ 0.25 $$ m&#178;. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                        |   Optional   |
+|             `ar_filter`              | [`true`, `false`]: If set to `true`, newly-risen satellites are excluded from ambiguity resolution, and the fix is retried when their inclusion degrades the AR ratio. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
+|            `min_fix_sats`            | Minimum number of satellites required to fix integer ambiguities. It defaults to $$ 4 $$. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                  |   Optional   |
+|           `min_hold_sats`            | Minimum number of satellites required to hold integer ambiguities in the `Fix-and-Hold` strategy. It defaults to $$ 5 $$. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                  |   Optional   |
+|           `min_drop_sats`            | Minimum number of satellites in view to enable single-satellite exclusion cycling when no fix is achieved. Set it to $$ 0 $$ to disable this mechanism. It defaults to $$ 10 $$. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|            `var_holdamb`             | Variance (cycles&#178;) of the pseudo-measurements that constrain the ambiguities in the `Fix-and-Hold` strategy. It defaults to $$ 0.1 $$ cycles&#178;. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
+|     `min_lock_to_fix_ambiguity`      | Set the minimum lock count to fix integer ambiguity. If the lock count is less than the value, the ambiguity is excluded from the fixed integer vector. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |   Optional   |
+|   `min_elevation_to_fix_ambiguity`   | Set the minimum elevation angle (in degrees) to fix integer ambiguity. If the elevation angle is less than the value, the ambiguity is excluded from the fixed integer vector. It defaults to $$ 0^{o} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|       `outage_reset_ambiguity`       | Set the outage count to reset ambiguity. If the data outage count is over the value, the estimated ambiguity is reset to the initial value. It defaults to $$ 5 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
+|         `estimate_qzss_isb`          | [`true`, `false`]: If set to `true`, the single-point solver estimates a separate QZS-GPS inter-system bias instead of assuming QZSS shares the GPS receiver clock. The extra unknown requires one more satellite in mixed GPS + QZSS epochs, so enable it only in open-sky scenarios with six or more satellites in view. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|        `ntrip_client_enabled`        | [`true`, `false`]: If set to `true`, the built-in NTRIP client is activated, providing base-station corrections to the RTK engine. It requires `positioning_mode` set to `Static` or `Kinematic` and, per constellation and freely combined, GPS L1 C/A alone or together with one of L2C or L5, Galileo E1 alone or together with E5a, and BeiDou B1C (single-band sets run single-frequency RTK). It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|        `ntrip_caster_address`        | Host name or IP address of the NTRIP caster, without protocol prefix, port, or path. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                       |  Mandatory if `ntrip_client_enabled=true`  |
+|         `ntrip_caster_port`          | TCP port of the NTRIP caster. It defaults to $$ 2101 $$. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
+|          `ntrip_mountpoint`          | Mountpoint providing the RTCM 3 correction stream. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |  Mandatory if `ntrip_client_enabled=true`  |
+|           `ntrip_username`           | User name for HTTP Basic authentication against the caster. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
+|           `ntrip_password`           | Password for HTTP Basic authentication against the caster. Credentials are redacted from the RTKLIB trace files. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
+|         `ntrip_password_env`         | Name of an environment variable from which the password is read, keeping secrets out of the configuration file. It cannot be set together with `ntrip_password`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|          `ntrip_station_id`          | If set to a positive value, the correction stream is filtered to that exact station ID; if set to $$ 0 $$, any station is accepted, but observations and base position remain bound to a single ID. It defaults to $$ 0 $$. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                 |   Optional   |
+|           `ntrip_version`            | [`1`, `2`]: NTRIP protocol version. If set to $$ 2 $$, the client prefers NTRIP v2 and automatically retries once over NTRIP v1 when the caster does not support it; if set to $$ 1 $$, the legacy protocol is used directly. It defaults to $$ 2 $$. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                       |   Optional   |
+|         `ntrip_tls_enabled`          | [`true`, `false`]: If set to `true`, the connection uses TLS 1.2 or newer, with certificate validation against the system CA store and host name verification. It defaults to `false`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|     `ntrip_inactivity_timeout_ms`    | Inactivity timeout of the NTRIP connection, in ms. Valid values range from $$ 1000 $$ ms upwards. It defaults to $$ 10000 $$ ms. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
+|     `ntrip_reconnect_interval_ms`    | Delay between reconnection attempts, in ms. Set it to $$ 0 $$ to disable operational reconnects (the single v2-to-v1 compatibility retry is always performed). It defaults to $$ 10000 $$ ms. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                              |   Optional   |
+|      `ntrip_max_correction_age_s`    | Maximum age of the base-station corrections, in s. Older corrections are discarded. It defaults to $$ 5.0 $$ s. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|      `ntrip_fallback_to_single`      | [`true`, `false`]: If set to `true`, the receiver keeps operating with an explicitly labeled single-point solution when base-station corrections are unavailable. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                    |   Optional   |
+|           `ntrip_send_gga`           | [`true`, `false`]: If set to `true`, the rover position is periodically reported to the caster as an NMEA GGA sentence, as required by Virtual Reference Station and nearest-station mountpoints. No sentence is sent before the receiver produces its first position fix. It defaults to `true`. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                           |   Optional   |
+|         `ntrip_gga_period_ms`        | Period between NMEA GGA reports, in ms. Valid values range from $$ 1000 $$ ms to 24 hours. It defaults to $$ 10000 $$ ms. <span style="color: orange">This parameter is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>                                                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
 |              `raim_fde`              | [`0`, `1`]: Set whether RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) feature is enabled or not. It defaults to $$ 0 $$ (RAIM not enabled)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
 |           `reject_GPS_IIA`           | [`0`, `1`]: Set whether the GPS Block IIA satellites are excluded or not. Those satellites often degrade the PPP solutions due to unpredicted behavior of yaw‐attitude. It defaults to $$ 0 $$ (no rejection).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
 |              `phwindup`              | [`0`, `1`]: Set whether the phase windup correction $$ \phi_{pw} $$ for PPP modes is applied or not. It defaults to $$ 0 $$ (no phase windup correction).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
@@ -1220,20 +1498,6 @@ standard and precise positioning. It accepts the following parameters:
 |           `bancroft_init`            | [`true`, `false`]: If set to `false`, the [Bancroft initialization](https://gssc.esa.int/navipedia/index.php/Bancroft_Method) in the first iteration of the PVT computation is skipped. It defaults to `true`. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
 |              ----------              |
 
-{::comment}
-| `sigma_acch` | Set the process noise standard deviation of the receiver acceleration as the horizontal component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.1 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used.| Optional |
-| `sigma_accv` | Set the process noise standard deviation of the receiver acceleration as the vertical component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.01 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used. | Optional |
-| `sigma_iono` | Set the process noise standard deviation of vertical ionospheric delay per 10 km baseline, in m/$$ \sqrt{s} $$. It defaults to $$ 0.001 $$. | Optional |
-| `AR_GPS` | [`OFF`, `Continuous`, `Instantaneous`, `Fix-and-Hold`, `PPP-AR`]. Set the strategy of integer ambiguity resolution for GPS. `OFF`: No ambiguity resolution, `Continuous`: Continuously static integer ambiguities are estimated and resolved, `Instantaneous`: Integer ambiguity is estimated and resolved by epoch‐by‐epoch basis, `Fix-and-Hold`: Continuously static integer ambiguities are estimated and resolved. If the validation OK, the ambiguities are tightly constrained to the resolved values, `PPP-AR`: Ambiguity resolution in PPP (experimental, only applicable to PPP‐* modes). It defaults to `OFF`. | Optional |
-| `min_ratio_to_fix_ambiguity` | Set the integer ambiguity validation threshold for ratio‐test, which uses the ratio  of squared residuals of the best integer vector to the second‐best vector. It defaults to $$ 3.0 $$. | Optional |
-| `min_lock_to_fix_ambiguity` | Set the minimum lock count to fix integer ambiguity. If the lock count is less than the value, the ambiguity is excluded from the fixed integer vector. | Optional |
-| `min_elevation_to_fix_ambiguity` | Set the minimum elevation angle (in degrees) to fix integer ambiguity. If the elevation angle is less than the value, the ambiguity is excluded from the fixed integer vector. It defaults to $$ 0^{o} $$. | Optional |
-| `outage_reset_ambiguity` | Set the outage count to reset ambiguity. If the data outage count is over the value, the estimated ambiguity is reset to the initial value. It defaults to $$ 5 $$. | Optional |
-| `bias_0` | Set the process noise initial bias of carrier‐phase bias (ambiguity), in m. It defaults to 30 m. | Optional |
-| `iono_0` | Set the process noise initial bias of vertical ionospheric delay per 10 km baseline, in m. It defaults to 0.03 m. | Optional |
-| `trop_0` | Set the process noise initial bias of zenith tropospheric delay, in m. It defaults to 0.3 m. | Optional |
-{:/comment}
-
 _PVT implementation:_ **`RTKLIB_PVT`**.
 {: style="text-align: center;"}
 
@@ -1278,6 +1542,42 @@ The receiver must also define at least one SBAS L1 channel, for example with
 `Channels_S1.count=1`. Set `PVT.sbas_satellite` to a specific GEO PRN when the
 receiver tracks multiple SBAS signals and a particular correction stream is
 required.
+
+For an RTK solution with corrections received from an NTRIP caster, configure
+the receiver with a supported channel set &#8212; for instance, GPS L1 C/A +
+L2C with `Channels_1C.count=8` and `Channels_2S.count=8`, a combined GPS
+L1+L5 / Galileo E1+E5a receiver with `Channels_1C`, `Channels_L5`,
+`Channels_1B`, and `Channels_5X` channels, or a single-frequency GPS+Galileo
+receiver with only `Channels_1C` and `Channels_1B` &#8212; and set up PVT as
+follows:
+
+```ini
+;######### PVT CONFIG WITH RTK VIA NTRIP ############
+PVT.implementation=RTKLIB_PVT
+PVT.positioning_mode=Kinematic
+PVT.AR_GPS=Fix-and-Hold
+PVT.threshold_reject_innovation_phase=5.0
+PVT.ntrip_client_enabled=true
+PVT.ntrip_caster_address=caster.example.org
+PVT.ntrip_caster_port=2101
+PVT.ntrip_mountpoint=MOUNTPOINT
+PVT.ntrip_username=user
+PVT.ntrip_password_env=NTRIP_PASSWORD
+PVT.ntrip_tls_enabled=false
+```
+
+In this example, the caster password is read from the `NTRIP_PASSWORD`
+environment variable, so it does not need to be written in the configuration
+file. If the mountpoint is a Virtual Reference Station or a nearest-station
+service, no additional settings are needed: the client reports the rover
+position to the caster via NMEA GGA sentences by default (see
+`PVT.ntrip_send_gga`). The console will tag position fixes with `[RTK FIXED]`,
+`[RTK FLOAT]`, or
+`[DGNSS]` labels, and will announce solution status transitions, including the
+LAMBDA ambiguity-resolution ratio when an RTK fix is acquired or lost. <span
+style="color: orange">This feature is only available in the `next` branch of
+the public repository and will be available in the next GNSS-SDR stable
+release.</span>
 
 The generation of output files is controlled by the parameter `output_enabled`.
 If set to `true` (which is its default value), RINEX, XML, GPX, KML, GeoJSON,
