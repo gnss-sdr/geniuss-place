@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-06-26T00:00:00+02:00
+last_modified_at: 2026-08-27T00:00:00+02:00
 ---
 
 {% capture fig_img2 %}
@@ -1391,6 +1391,10 @@ For the [bladeRF 2.0 micro](https://www.nuand.com/bladerf-2-0-micro/), the argum
 SignalSource.osmosdr_args=bladerf,biastee=1	#or =[on,rx]
 ```
 
+Alternatively, the native
+[`Bladerf_Signal_Source`](#implementation-bladerf_signal_source) implementation
+can enable the bias tee directly with `SignalSource.rx_bias_tee=true`.
+
 {% endcapture %}
 
 <div class="notice--warning">
@@ -1753,6 +1757,104 @@ SignalSource.samples=0
 SignalSource.dump=false
 SignalSource.dump_filename=./captured_signal.dat
 ```
+
+
+### Implementation: `Bladerf_Signal_Source`
+
+[bladeRF](https://www.nuand.com/) is a family of USB 3.0 Software Defined Radio
+platforms designed by [Nuand](https://www.nuand.com/), comprising the bladeRF
+x40 and x115 and the AD9361-based
+[bladeRF 2.0 Micro](https://www.nuand.com/bladerf-2-0-micro/) xA4 and xA9
+boards. While these devices can also be used through the
+[`Osmosdr_Signal_Source`](#implementation-osmosdr_signal_source) implementation,
+this Signal Source streams RX samples directly through
+[libbladeRF](https://github.com/Nuand/bladeRF), with no `gr-osmosdr`
+dependency. The native path exposes two features that are not available through
+the OsmoSDR driver: the RX bias tee of the bladeRF 2.0 Micro, used for powering
+an active GNSS antenna, and the unified overall RX gain control of the bladeRF
+2.0 hardware (note that, as a consequence, there are no separate `rf_gain` /
+`if_gain` stages in this implementation). Only single-channel (SISO) reception
+is currently supported; the second RX channel of the bladeRF 2.0 Micro xA9 is
+not exposed.
+
+**Warning**: This Signal Source is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+In order to make use of this block implementation, you need to build GNSS-SDR
+from the source code with [libbladeRF](https://github.com/Nuand/bladeRF)
+v2.6.0 or newer installed in your system (older versions are rejected at
+configure time). On Debian-based systems, install the library and headers by:
+
+```console
+$ sudo apt install libbladerf-dev
+```
+
+and check the installed version with `pkg-config --modversion libbladeRF`; if
+it is older than v2.6.0, build and install
+[libbladeRF from source](https://github.com/Nuand/bladeRF) instead. Then,
+build GNSS-SDR passing the flag `-DENABLE_BLADERF=ON` at configure time:
+
+```console
+$ cd gnss-sdr && mkdir build && cd build
+$ git checkout next
+$ git pull upstream next
+$ cmake -DENABLE_BLADERF=ON ..
+$ make && sudo make install
+```
+
+This implementation accepts the following parameters:
+
+|----------
+|    **Parameter**     | **Description**                                                                                                                                                                                                                                                                                                    | **Required** |
+| :------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|    --------------    |
+|   `implementation`   | `Bladerf_Signal_Source`                                                                                                                                                                                                                                                                                           |  Mandatory   |
+|        `freq`        | RF front-end center frequency, in Hz. It defaults to $$ f_{\text{GPS L1}}=1575420000 $$ Hz.                                                                                                                                                                                                                       |   Optional   |
+| `sampling_frequency` | Sampling frequency, in samples per second. It defaults to 2 Ms/s.                                                                                                                                                                                                                                                 |   Optional   |
+|     `bandwidth`      | RX bandpass filter bandwidth, in Hz. It defaults to the value of `sampling_frequency`.                                                                                                                                                                                                                            |   Optional   |
+|        `gain`        | Overall RX gain, in dB, spread across the receiving chain by libbladeRF. It defaults to $$ 40 $$ dB. This value is ignored if `AGC_enabled` is set to `true`.                                                                                                                                                      |   Optional   |
+|    `AGC_enabled`     | [`true`, `false`]: If set to `true`, enables Automatic Gain Control. It defaults to `false`.                                                                                                                                                                                                                      |   Optional   |
+|    `rx_bias_tee`     | [`true`, `false`]: If set to `true`, the RX bias tee is enabled for powering an active antenna (bladeRF 2.0 Micro only; ignored, with a warning, on bladeRF x40/x115 boards). It defaults to `false`.                                                                                                              |   Optional   |
+|   `device_serial`    | Serial number of the unit to be opened, to discriminate between two or more bladeRF devices connected to the same computer. If not set, the first bladeRF found is opened. It defaults to _empty_.                                                                                                                 |   Optional   |
+|    `bladerf_args`    | Device identifier string passed verbatim to libbladeRF (_e.g._, `*:serial=f12ce103`). If set, it overrides `device_serial`. It defaults to _empty_.                                                                                                                                                               |   Optional   |
+|     `item_type`      | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. |   Optional   |
+|      `samples`       | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples.                                                                                                                                                                                                                          |   Optional   |
+|    `num_buffers`     | Number of sample buffers of the libbladeRF synchronous RX stream. It defaults to $$ 32 $$.                                                                                                                                                                                                                        |   Optional   |
+|    `buffer_size`     | Size of each stream buffer, in samples. It must be a multiple of 1024. It defaults to $$ 32768 $$.                                                                                                                                                                                                                |   Optional   |
+|   `num_transfers`    | Number of in-flight USB transfers of the RX stream. It defaults to $$ 16 $$.                                                                                                                                                                                                                                      |   Optional   |
+| `stream_timeout_ms`  | RX stream timeout, in ms. It defaults to $$ 3000 $$ ms.                                                                                                                                                                                                                                                           |   Optional   |
+|        `dump`        | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.                                                                                                                                                                                                |   Optional   |
+|   `dump_filename`    | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat`                                                                                                                                                                                          |   Optional   |
+|       -------        |
+
+  _Signal Source implementation:_ **`Bladerf_Signal_Source`**
+  {: style="text-align: center;"}
+
+Example:
+```ini
+SignalSource.implementation=Bladerf_Signal_Source
+SignalSource.item_type=gr_complex
+SignalSource.sampling_frequency=2000000
+SignalSource.freq=1575420000
+SignalSource.bandwidth=2000000
+SignalSource.gain=40
+SignalSource.AGC_enabled=false
+SignalSource.rx_bias_tee=false
+SignalSource.samples=0
+SignalSource.dump=false
+SignalSource.dump_filename=./signal_source.dat
+```
+
+Two sample configuration files are provided in the GNSS-SDR source tree: a GPS
+L1 C/A receiver at
+[gnss-sdr_GPS_L1_bladeRF_native.conf](https://github.com/gnss-sdr/gnss-sdr/blob/next/conf/RealTime_input/gnss-sdr_GPS_L1_bladeRF_native.conf),
+and a four-constellation (GPS L1 C/A + Galileo E1 + GLONASS L1 C/A + BeiDou
+B1I) receiver at
+[gnss-sdr_multichannel_GPS_Galileo_Beidou_Glonass_L1_bladeRF_realtime.conf](https://github.com/gnss-sdr/gnss-sdr/blob/next/conf/RealTime_input/gnss-sdr_multichannel_GPS_Galileo_Beidou_Glonass_L1_bladeRF_realtime.conf),
+in which a single 56 Msps wideband capture from a bladeRF 2.0 Micro is split
+into three sub-bands by parallel `Freq_Xlating_Fir_Filter` chains tapping the
+same physical stream (`SignalSource.RF_channels=3`).
 
 
 ### Implementation: `Pocket_SDR_Signal_Source`
