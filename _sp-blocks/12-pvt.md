@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-15T12:00:00+02:00
+last_modified_at: 2026-08-28T12:00:00+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -1277,7 +1277,7 @@ over UDP through a _monitoring port_ which can be enabled by setting
 for real-time monitoring of the PVT block and its outputs. By default, the data
 is streamed to the localhost address on port 1234 UDP. These settings can be
 changed with `PVT.monitor_client_addresses` and `PVT.monitor_udp_port`. The
-streamed data members (28 in total) are serialized via [Protocol
+streamed data members are serialized via [Protocol
 Buffers](https://protobuf.dev/) into a format defined
 at
 [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto).
@@ -1327,7 +1327,22 @@ The following table shows the complete list of streamed parameters:
 |           `cog`            |  `double`  | Course Over Ground, in degrees. This metric is available starting from GNSS-SDR v0.0.19.                                                     |
 |      `galhas_status`       | `uint32_t` | Galileo HAS  status (0: not available; 1: HAS corrections applied). This metric is available starting from GNSS-SDR v0.0.19.                 |
 |         `geohash`          |  `string`  | [Encoded geographic location](https://en.wikipedia.org/wiki/Geohash). This metric is available starting from GNSS-SDR v0.0.19.               |
+|     `used_satellites`      | `repeated UsedSatellite` | One entry per satellite and signal used in the position solution, including its azimuth, elevation, and whether multiple signals from that satellite were combined. |
 |       --------------       |
+
+Each `UsedSatellite` entry contains the following fields:
+
+|----------
+|      **Name**       | **Type** | **Description**                                                                                         |
+| :-----------------: | :------: | :------------------------------------------------------------------------------------------------------ |
+|    --------------    |
+|        `prn`         | `uint32` | Satellite PRN.                                                                                          |
+|       `system`       | `string` | Constellation identifier: `G` (GPS), `E` (Galileo), `R` (GLONASS), `C` (BeiDou), `S` (SBAS), or `J` (QZSS). |
+|       `signal`       | `string` | Two-character GNSS-SDR signal identifier, for example `1C`, `1B`, or `5X`.                              |
+|    `azimuth_deg`     | `double` | Satellite azimuth, in degrees.                                                                          |
+|   `elevation_deg`    | `double` | Satellite elevation, in degrees.                                                                        |
+|      `combined`      |  `bool`  | `true` if this signal was combined with another signal from the same satellite in the position solution. |
+|    --------------    |
 
 &nbsp;
 
@@ -1478,7 +1493,7 @@ standard and precise positioning. It accepts the following parameters:
 |                `dump`                | [`true`, `false`]: If set to `true`, it enables the PVT internal binary data file logging. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
 |           `dump_filename`            | If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./pvt.dat`.                                                                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
 |              `dump_mat`              | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" file stored by this block into a ".mat" file directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so the ".mat" file is generated by default if `dump=true`.                                                                                                                                                                                                                       |   Optional   |
-|           `enable_monitor`           | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port is activated. This feature allows streaming the internal parameters and outputs of the PVT block to local or remote clients over UDP. The streamed data members (28 in total) are the same ones that are included in the binary dump. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                 |   Optional   |
+|           `enable_monitor`           | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port is activated. This feature allows streaming the internal parameters and outputs of the PVT block to local or remote clients over UDP. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
 |      `monitor_client_addresses`      | Destination IP address(es) of the real-time monitoring port. To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1` (localhost).                                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
 |          `monitor_udp_port`          | Destination UDP port number of the real-time monitoring port. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`. To specify multiple ports, use an underscore delimiter character ( `_` ) between ports.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
 |      `enable_monitor_ephemeris`      | [`true`, `false`]: If set to `true`, the PVT real-time monitoring port streams ephemeris data to local or remote clients over UDP. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
