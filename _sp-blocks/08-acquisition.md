@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-08T12:00:00+02:00
+last_modified_at: 2026-09-01T10:00:00+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
@@ -821,6 +821,7 @@ This implementation accepts the following parameters:
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
+| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the GPS L1 C/A band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_2S_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -872,6 +873,7 @@ This implementation accepts the following parameters:
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the GLONASS L1 C/A band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -917,6 +919,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the Galileo E1 band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -971,6 +974,7 @@ This implementation accepts the following parameters:
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
+| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the GPS L1 C/A band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_L5_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1029,6 +1033,7 @@ This implementation accepts the following parameters:
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
+| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the Galileo E1 band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_E_5X_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1127,6 +1132,7 @@ This implementation accepts the following parameters:
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
+| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the BeiDou B1I band, or in the B1C band if no B1I channel tracks it (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_C_B3_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1181,6 +1187,7 @@ This implementation accepts the following parameters:
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
+| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the QZSS L1 C/A band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_J_J5_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1240,6 +1247,7 @@ This implementation accepts the following parameters:
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
+| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the Galileo E1 band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_E_7X_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1277,7 +1285,9 @@ The list of output variables contained in each `.mat` file is the following:
   * `acq_doppler_hz`: Coarse estimation of Doppler shift, in Hz.
   * `acq_grid`: Acquisition search grid.
   * `d_positive_acq`: `1` if there has been a positive acquisition, `0` for no detection.
+  * `doppler_center`: Center of the Doppler search grid, in Hz. It is `0` unless the acquisition was assisted with a Doppler estimation obtained in another frequency band. <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
   * `doppler_max`: Maximum Doppler shift in the search grid.
+  * `doppler_narrowed`: `1` if the Doppler search was narrowed to a single bin by dual-frequency assistance (see the `enable_doppler_narrowing` parameter), `0` otherwise. In narrowed dumps, `acq_grid` has only two columns (the assisted Doppler bin and a noise-reference bin), encoded with `doppler_max` set to `0` and `doppler_step` set to the configured maximum Doppler, so the Doppler of column $$ i $$ (starting at $$ 0 $$) is always given by `doppler_center - doppler_max + doppler_step * i`, in both full and narrowed dumps. <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
   * `doppler_step`: Doppler step in the search grid.
   * `input_power`: Input signal power.
   * `num_dwells`: Number of dwells performed in non-coherent acquisition.
@@ -1306,7 +1316,7 @@ obtained from the Acquisition block corresponding to channel 0.
 The acquisition grid can be plotted from MATLAB or Octave as:
 
 ```matlab
-load('./acq_dump_G_1C_chan0_1_sat1.mat')
+load('./acq_dump_G_1C_ch_0_1_sat_1.mat')
 f = -doppler_max:doppler_step:(doppler_max-doppler_step);
 tau = linspace(0, 1023, size(acq_grid, 1));
 surf(f, tau, acq_grid); xlabel('Doppler [Hz]'); ylabel('Delay [chips]');
@@ -1323,6 +1333,16 @@ or
 ![Negative acquisition](/assets/images/capture_matlab_acq_negative.png){: .align-center}
 _Negative acquisition._
 {: style="text-align: center;"}
+
+If the dump contains the `doppler_center` variable (see above), the Doppler
+axis becomes `f = double(doppler_center) + (0:size(acq_grid, 2) - 1) *
+double(doppler_step) - double(doppler_max)`, which is valid for both full and
+narrowed grids. The scripts
+[`utils/matlab/plot_acq_grid.m`](https://github.com/gnss-sdr/gnss-sdr/blob/next/utils/matlab/plot_acq_grid.m)
+and
+[`utils/python/plot_acq_grid.py`](https://github.com/gnss-sdr/gnss-sdr/blob/next/utils/python/plot_acq_grid.py)
+provided with the source code automate this plotting and decode all dump
+variants.
 
 
 &nbsp;<br/>

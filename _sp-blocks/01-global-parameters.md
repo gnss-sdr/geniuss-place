@@ -8,7 +8,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-07-16T10:00:00+02:00
+last_modified_at: 2026-09-01T10:00:00+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -453,6 +453,20 @@ reducing the computational load (since the search grid in the secondary band(s)
 can be smaller) and the acquisition-to-tracking latency. This behavior can be
 deactivated by setting this parameter to `false`, which makes the receiver
 search satellites in each band independently.
+
+The assisted pairs are: GPS L1 C/A $$ \rightarrow $$ L2C and L5; Galileo E1
+$$ \rightarrow $$ E5a, E5b, and E6; and QZSS L1 C/A $$ \rightarrow $$ L5.
+<span style="color: orange">In the `next` branch of the public repository, the
+assistance additionally covers GLONASS L1 C/A $$ \rightarrow $$ L2 C/A and
+BeiDou B1I $$ \rightarrow $$ B3I (falling back to a satellite tracked on B1C
+when no B1I channel tracks it), and the Doppler estimation is projected to the
+secondary band by the exact carrier-frequency ratio between the assisting and
+the searched signals. Moreover, if the secondary band's Acquisition block sets
+`enable_doppler_narrowing=true` (see the [Acquisition
+documentation]({{ "/docs/sp-blocks/acquisition/" | relative_url }})), the
+Doppler search in that band is narrowed to a single bin centered at the
+projected value, instead of sweeping the full grid. These features will be
+available in the next GNSS-SDR stable release.</span>
 
 |----------
 |        **Parameter**        | **Description**                                                                                                                                                                                                                                   | **Required** |
