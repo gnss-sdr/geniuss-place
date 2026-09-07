@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-27T00:00:00+02:00
+last_modified_at: 2026-09-07T00:00:00+02:00
 ---
 
 {% capture fig_img2 %}
@@ -747,6 +747,166 @@ the data file used in [My first position fix]({{ "/my-first-fix/" | relative_url
     </lane>
 </metadata>
 ```
+
+### Implementation: `EVK1029_Signal_Source`
+
+**EVK1029** is an Evaluation Kit for the space-grade ASICs
+designed by [SAPHYRION SAGL](https://saphyrion.ch/): the SY1009 RF front-end and
+the SY1019 ADC/DSP. The kit consists of a USB 3.0 device connected to a
+dual-band (E1/E5a) or triple-band (E1/E5a/E6) GNSS front-end board, plus a Linux
+host application that controls and monitors the device and saves the captured
+real-time sample stream to a binary file. This Signal Source reads those raw
+capture files directly.
+
+The capture format is a continuous, header-less stream of real-valued IF
+samples, quantized with 4 bits and encoded as offset-binary-adjusted (`OBA`),
+packed two per byte (low nibble first) and 16 samples per little-endian 64-bit
+word. Although this layout can be described with an `.sdrx` metadata file and
+read through the
+[`ION_GSMS_Signal_Source`](#implementation-ion_gsms_signal_source), the
+dedicated reader is simpler to configure and cheaper to run at the raw ADC rate
+of the kit (up to about $$ 180 $$ Msps). Each 4-bit sample is unpacked into one
+signed byte taking the odd values $$ \{-15, -13, \dots, -1, 1, \dots, 15\} $$,
+so the source delivers a stream of items of type <abbr id="data-type"
+title="Signed integer, 8-bit two's complement number ranging from -128 to 127.
+C++ type name: int8_t">`byte`</abbr>. The Signal Conditioner must therefore
+start with a Data Type Adapter accepting `byte` items (`Pass_Through` or
+`Byte_To_Short`), followed by a `Freq_Xlating_Fir_Filter` that shifts the
+selected band to baseband and decimates to the working sample rate.
+
+When a single capture holds several bands, set `RF_channels` to the number of
+bands. The source then exposes that number of identical, sample-locked output
+streams from a single file read, each feeding its own Signal Conditioner tuned
+to a different intermediate frequency. This is preferable to declaring several
+independent Signal Sources reading the same file, since the shared block keeps
+all bands in lockstep by construction: backpressure from the slowest downstream
+chain stalls every output port together, so bands cannot drift apart over long
+runs. See [Multiple radio frequency chains](#multiple-radio-frequency-chains).
+
+**Warning**: This Signal Source is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+This source is not built by default. It requires explicit activation when
+building GNSS-SDR:
+
+```console
+$ cd gnss-sdr && mkdir build && cd build
+$ git checkout next
+$ cmake -DENABLE_EVK1029=ON ../
+$ make
+$ sudo make install
+```
+
+This implementation accepts the following parameters:
+
+|----------
+|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                                                     | **Required** |
+| :-----------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|      --------------       |
+|     `implementation`      | `EVK1029_Signal_Source`                                                                                                                                                                                                                                                                                                                             |  Mandatory   |
+|        `filename`         | Path to the raw capture file produced by the EVK1029 host application. It defaults to `data.bin`.                                                                                                                                                                                                                                                   |   Optional   |
+|   `sampling_frequency`    | Raw (pre-decimation) ADC sample rate of the capture, in samples per second, as reported by the host application (the `freqbase` field of its `.sdrx` metadata). Note that this is **not** `GNSS-SDR.internal_fs_sps`, which is the decimated rate downstream of the Input Filter. It paces the throttle, when enabled, and sizes the block's internal scheduling quantum. It defaults to the value of `GNSS-SDR.internal_fs_sps`. |   Optional   |
+|       `RF_channels`       | Number of identical, sample-locked output streams delivered from a single file read. Set it to the number of bands to process from the capture (one Signal Conditioner per band). It defaults to `1`.                                                                                                                                              |   Optional   |
+| `enable_throttle_control` | [`true`, `false`]: If set to `true`, it throttles the output flow of samples such that the average rate does not exceed `sampling_frequency`, thus emulating real-time operation. Not supported with `RF_channels` greater than `1`: in that case it is ignored with a warning. It defaults to `false`.                                                |   Optional   |
+|          `dump`           | [`true`, `false`]: If set to `true`, it dumps the unpacked sample stream in <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr> format. With `RF_channels` greater than `1`, only the first output port is dumped (all ports carry identical samples). It defaults to `false`.                                                |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, the name of the dump file. It defaults to `./evk1029_signal_source.dat`.                                                                                                                                                                                                                                                 |   Optional   |
+|          -------          |
+
+  _Signal Source implementation:_ **`EVK1029_Signal_Source`**
+  {: style="text-align: center;"}
+
+Example of a single-band Galileo E1 / GPS L1 receiver reading an EVK1029
+capture. The Input Filter shifts the E1/L1 band from its intermediate frequency
+to baseband and decimates the raw stream to the working rate:
+
+```ini
+[GNSS-SDR]
+GNSS-SDR.internal_fs_sps=22250000
+
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=EVK1029_Signal_Source
+SignalSource.filename=/path/to/capture.bin  ; <- PUT YOUR FILE NAME HERE
+SignalSource.sampling_frequency=178000000   ; <- RAW ADC RATE OF THE CAPTURE
+
+;######### SIGNAL_CONDITIONER CONFIG ############
+SignalConditioner.implementation=Signal_Conditioner
+DataTypeAdapter.implementation=Pass_Through
+DataTypeAdapter.item_type=byte
+InputFilter.implementation=Freq_Xlating_Fir_Filter
+InputFilter.input_item_type=byte
+InputFilter.output_item_type=gr_complex
+InputFilter.taps_item_type=float
+InputFilter.sampling_frequency=178000000
+InputFilter.IF=0      ; <- PUT THE E1/L1 IF OF YOUR CAPTURE HERE
+InputFilter.decimation_factor=8
+InputFilter.filter_type=lowpass
+Resampler.implementation=Pass_Through
+Resampler.item_type=gr_complex
+
+;######### CHANNELS GLOBAL CONFIG ############
+Channels_1C.count=8
+Channels_1B.count=8
+```
+
+Example of a dual-band Galileo E1+E5a / GPS L1+L5 receiver from the same
+capture. This is still a single Signal Source, so `GNSS-SDR.num_sources` can be
+left at its default value of `1`; the two output ports of the source feed
+`SignalConditioner0` (E1/L1, RF channel `0`) and `SignalConditioner1` (E5a/L5,
+RF channel `1`):
+
+```ini
+[GNSS-SDR]
+GNSS-SDR.internal_fs_sps=22250000
+
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=EVK1029_Signal_Source
+SignalSource.filename=/path/to/capture.bin  ; <- PUT YOUR FILE NAME HERE
+SignalSource.sampling_frequency=178000000   ; <- RAW ADC RATE OF THE CAPTURE
+SignalSource.RF_channels=2
+
+;######### SIGNAL_CONDITIONER 0 (E1 / L1) ############
+SignalConditioner0.implementation=Signal_Conditioner
+DataTypeAdapter0.implementation=Pass_Through
+DataTypeAdapter0.item_type=byte
+InputFilter0.implementation=Freq_Xlating_Fir_Filter
+InputFilter0.input_item_type=byte
+InputFilter0.output_item_type=gr_complex
+InputFilter0.taps_item_type=float
+InputFilter0.sampling_frequency=178000000
+InputFilter0.IF=0     ; <- PUT THE E1/L1 IF OF YOUR CAPTURE HERE
+InputFilter0.decimation_factor=8
+InputFilter0.filter_type=lowpass
+Resampler0.implementation=Pass_Through
+Resampler0.item_type=gr_complex
+
+;######### SIGNAL_CONDITIONER 1 (E5a / L5) ############
+SignalConditioner1.implementation=Signal_Conditioner
+DataTypeAdapter1.implementation=Pass_Through
+DataTypeAdapter1.item_type=byte
+InputFilter1.implementation=Freq_Xlating_Fir_Filter
+InputFilter1.input_item_type=byte
+InputFilter1.output_item_type=gr_complex
+InputFilter1.taps_item_type=float
+InputFilter1.sampling_frequency=178000000
+InputFilter1.IF=0     ; <- PUT THE E5a/L5 IF OF YOUR CAPTURE HERE
+InputFilter1.decimation_factor=8
+InputFilter1.filter_type=lowpass
+Resampler1.implementation=Pass_Through
+Resampler1.item_type=gr_complex
+
+;######### CHANNELS GLOBAL CONFIG ############
+Channels_1C.count=8
+Channels_1B.count=8
+Channels_L5.count=8
+Channels_5X.count=8
+
+Channels_1C.RF_channel_ID=0
+Channels_1B.RF_channel_ID=0
+Channels_L5.RF_channel_ID=1
+Channels_5X.RF_channel_ID=1
+```
+
 
 ### Implementation: `NTLab_File_Signal_Source`
 

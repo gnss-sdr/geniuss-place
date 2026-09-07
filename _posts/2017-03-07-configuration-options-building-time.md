@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2026-08-27T00:00:00+02:00
+last_modified_at: 2026-09-07T00:00:00+02:00
 ---
 
 
@@ -181,11 +181,12 @@ guide to all CMake variables, commands, and properties.
 | `-DENABLE_POCKETSDR`        |    `ON` / `OFF`     |    `OFF`    | If set to `ON`, it enables the use of [Pocket SDR FE](https://www.datagnss.com/products/pocketsdr-gnss-receiver) 2CH/4CH/8CH GNSS RF front-ends, based on the open-source [Pocket SDR](https://github.com/tomojitakasu/PocketSDR) project. This option requires [gr-pocketsdr](https://github.com/minhaj6/gr-pocketsdr) already installed in your system. Specifically, the [`Pocket_SDR_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-pocket_sdr_signal_source" | relative_url }}) implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | relative_url }}) block becomes available.                                                                                                                                                                           |
 | `-DENABLE_RAW_UDP`           |    `ON` / `OFF`     |    `OFF`    | If set to `ON`, it enables the reception of IP frames containing samples in UDP frame encapsulation using a high-performance packet capture library. This option requires [libpcap](https://github.com/the-tcpdump-group/libpcap) already installed in your system. Specifically, the [`Custom_UDP_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-plutosdr_signal_source"                                                                                                                                                                                                                                                                                                                             | relative_url }}) implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/"                              | relative_url }}) block becomes available.                                                                                                                                                                           |
 | `-DENABLE_ZMQ`               |    `ON` / `OFF`     |    `OFF`    | If set to `ON`, it enables the reception of sample streams published via [ZeroMQ](https://zeromq.org/). Specifically, the [`ZMQ_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-zmq_signal_source"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | relative_url }}) implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/"                              | relative_url }}) block becomes available. |
+| `-DENABLE_EVK1029`           |    `ON` / `OFF`     |    `OFF`    | If set to `ON`, it enables reading the raw capture files produced by the [SAPHYRION](https://saphyrion.ch/) EVK1029 evaluation kit for the SY1009 RF front-end and SY1019 ADC/DSP space-grade ASICs. Specifically, the [`EVK1029_Signal_Source`]({{ "/docs/sp-blocks/signal-source/#implementation-evk1029_signal_source" | relative_url }}) implementation of a [Signal Source]({{ "/docs/sp-blocks/signal-source/" | relative_url }}) block becomes available. |
 | ----------                   |
 
-**Warning**: The `-DENABLE_BLADERF` and `-DENABLE_POCKETSDR` options are only
-available from the `next` branch of the upstream GNSS-SDR repository. They will
-be included in the next stable release.
+**Warning**: The `-DENABLE_BLADERF`, `-DENABLE_POCKETSDR`, and `-DENABLE_EVK1029`
+options are only available from the `next` branch of the upstream GNSS-SDR
+repository. They will be included in the next stable release.
 {: .notice--warning}
 
 Please note that if you installed GNSS-SDR in Debian or Ubuntu through a .deb
