@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-28T12:00:00+02:00
+last_modified_at: 2026-09-09T12:00:00+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -947,6 +947,39 @@ ionospheric prediction model to remove (as much as possible) this effect, that
 can reach up to several tens of meters.
 
 
+## Band selection
+
+The `PVT.iono_model` option decides the pseudorange model applied to _every_
+satellite of a given system, regardless of how many bands each individual
+satellite is being tracked on:
+
+  * `Iono-Free-LC` forms the ionosphere-free linear combination of the first
+  and second bands (GPS L1+L2 or L1+L5, Galileo E1+E5a, E1+E5b or E1+E6, BeiDou
+  B1I+B3I, GLONASS L1+L2). A satellite whose second band is not available at a
+  given epoch is excluded from the solution at that epoch, so that all
+  satellites of the system share the same clock reference.
+
+  * `OFF`, `Broadcast` and `SBAS` use the first band alone, corrected with the
+  broadcast group delay that matches the clock model of the ephemeris in use
+  (TGD for GPS and BeiDou, $$ BGD_{E1,E5a} $$ or $$ BGD_{E1,E5b} $$ for Galileo
+  depending on whether the F/NAV or the I/NAV clock is used), and the
+  ionospheric delay is modeled or set to zero as selected. A second band present
+  in the same observation record is ignored by the single point solution. When
+  the first band is missing (for instance, a GPS L5-only or a Galileo E5a-only
+  channel), the second band is used alone and the modeled ionospheric delay is
+  scaled by $$ \left(f_{1}/f_{2}\right)^2 $$.
+
+This rule keeps all satellites of a system on a single, consistent model. Mixing
+per-satellite single-band and dual-band pseudoranges within one solution would
+introduce two different clock references, and would also fold the receiver's
+inter-band delay into the position. That delay is not calibrated by GNSS-SDR:
+in particular, two RF channels processed with input filters of different
+lengths differ by their group-delay difference (for instance, 29 versus 289 taps
+at 60 Msps amounts to about 650 m in the code measurements), so multi-band
+configurations should use input filters of the same length in every RF channel.
+Dual-frequency users who want the ionosphere-free combination in the single point
+solution must select `PVT.iono_model=Iono-Free-LC` explicitly.
+
 ## Broadcast
 
 For ionosphere correction for single-frequency GNSS users, GPS navigation data
@@ -1396,7 +1429,7 @@ standard and precise positioning. It accepts the following parameters:
 |           `dynamics_model`           | [`0`: none, `1`: velocity, `2`: acceleration] Set the dynamics model of the receiver, used in the `Kinematic` and `PPP_Kinematic` positioning modes. If set to $$ 1 $$, the receiver position is predicted with the estimated velocity; if set to $$ 2 $$, the estimated acceleration also contributes to the prediction. The process noise grows with the time elapsed between epochs, and can be configured with `PVT.sigma_acch` and `PVT.sigma_accv`. It defaults to $$ 0 $$ (no dynamics model).                                                                                                                                                                                                                                                                                                                                                                                                                                                 |   Optional   |
 |       `satellite_ephemeris`          | [`Broadcast`, `SBAS`]: Select the satellite ephemeris/clock correction source. `Broadcast` uses the broadcast ephemeris and clock without SBAS satellite corrections. `SBAS` uses the broadcast ephemeris and applies fast and long-term orbit/clock corrections received from an SBAS L1 telemetry channel to GPS observations; satellites without a current valid correction are excluded. It defaults to `Broadcast`.                                                                                                                                                                                                                                                                                                     |   Optional   |
 |          `sbas_satellite`            | Select the SBAS PRN whose correction stream is used. Set it to an SBAS PRN in the range 120–138, or to `0` to select and remain with the first received SBAS stream. Values outside that range are treated as `0`. It defaults to `0`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
-|             `iono_model`             | [`OFF`, `Broadcast`, `SBAS`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Do not apply an ionospheric correction. `Broadcast`: Apply the broadcast ionospheric model. `SBAS`: Apply SBAS ionospheric grid corrections received in message types 18 and 26. `Iono-Free-LC`: Use an ionosphere-free linear combination of dual-frequency measurements. It defaults to `OFF`.                                                                                                                                                                                                                                                                                                          |   Optional   |
+|             `iono_model`             | [`OFF`, `Broadcast`, `SBAS`, `Iono-Free-LC`]. Set ionospheric correction options. `OFF`: Do not apply an ionospheric correction. `Broadcast`: Apply the broadcast ionospheric model. `SBAS`: Apply SBAS ionospheric grid corrections received in message types 18 and 26. `Iono-Free-LC`: Use an ionosphere-free linear combination of dual-frequency measurements. This option decides the pseudorange model for every satellite of a system: only `Iono-Free-LC` combines two bands (satellites lacking the second band are then excluded), while `OFF`, `Broadcast` and `SBAS` use the first band alone with its broadcast group delay (TGD/BGD), falling back to the second band alone only when the first one is missing. See [Band selection]({{ "docs/sp-blocks/pvt/#band-selection" | relative_url }}). It defaults to `OFF`.                                                                                                                                                                                                                                                                                                          |   Optional   |
 |             `trop_model`             | [`OFF`, `Saastamoinen`, `SBAS`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set the tropospheric correction option. `OFF`: Do not apply a tropospheric correction. `Saastamoinen`: Apply the Saastamoinen model. `SBAS`: Apply the SBAS MOPS model. `Estimate_ZTD`: Estimate zenith total delay as an EKF state. `Estimate_ZTD_Grad`: Estimate zenith total delay and horizontal gradients as EKF states. It defaults to `OFF`.                                                                                                                                                                                                                                                                             |   Optional   |
 |     `enable_rx_clock_correction`     | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is only used in the computation of Observables when the clock offset estimation exceeds the value of `max_clock_offset_ms`. This parameter defaults to `false`.                                                                                                                                                                                                                                                                                                          |   Optional   |
 |        `max_clock_offset_ms`         | If `enable_rx_clock_correction` is set to `false`, this parameter sets the maximum allowed local clock offset with respect to the Time solution. If the estimated offset exceeds this parameter, a clock correction is applied to the computation of Observables. It defaults to 40 ms.                                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
