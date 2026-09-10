@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-09T12:00:00+02:00
+last_modified_at: 2026-09-10T12:00:00+02:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -1360,10 +1360,10 @@ The following table shows the complete list of streamed parameters:
 |           `cog`            |  `double`  | Course Over Ground, in degrees. This metric is available starting from GNSS-SDR v0.0.19.                                                     |
 |      `galhas_status`       | `uint32_t` | Galileo HAS  status (0: not available; 1: HAS corrections applied). This metric is available starting from GNSS-SDR v0.0.19.                 |
 |         `geohash`          |  `string`  | [Encoded geographic location](https://en.wikipedia.org/wiki/Geohash). This metric is available starting from GNSS-SDR v0.0.19.               |
-|     `used_satellites`      | `repeated UsedSatellite` | One entry per satellite and signal used in the position solution, including its azimuth, elevation, and whether multiple signals from that satellite were combined. |
+|    `tracked_satellites`    | `repeated TrackedSatellite` | One entry per tracked satellite and signal with a computed azimuth and elevation, including whether multiple signals from that satellite were combined and whether the observation was actually used in the position solution. |
 |       --------------       |
 
-Each `UsedSatellite` entry contains the following fields:
+Each `TrackedSatellite` entry contains the following fields:
 
 |----------
 |      **Name**       | **Type** | **Description**                                                                                         |
@@ -1372,10 +1372,19 @@ Each `UsedSatellite` entry contains the following fields:
 |        `prn`         | `uint32` | Satellite PRN.                                                                                          |
 |       `system`       | `string` | Constellation identifier: `G` (GPS), `E` (Galileo), `R` (GLONASS), `C` (BeiDou), `S` (SBAS), or `J` (QZSS). |
 |       `signal`       | `string` | Two-character GNSS-SDR signal identifier, for example `1C`, `1B`, or `5X`.                              |
-|    `azimuth_deg`     | `double` | Satellite azimuth, in degrees.                                                                          |
-|   `elevation_deg`    | `double` | Satellite elevation, in degrees.                                                                        |
-|      `combined`      |  `bool`  | `true` if this signal was combined with another signal from the same satellite in the position solution. |
+|    `azimuth_deg`     | `double` | Satellite azimuth, in degrees, in the range $$ (-180, 180] $$ (positive: East of North).                |
+|   `elevation_deg`    | `double` | Satellite elevation, in degrees. It can be negative for a satellite tracked below the local horizon.    |
+|      `combined`      |  `bool`  | `true` if more than one signal from the same satellite was available and combined in the position solution (_e.g._, the Galileo E1+E5a ionosphere-free combination). |
+|        `used`        |  `bool`  | `true` if this observation contributed to the position solution. It is `false` for a satellite that was tracked and had its azimuth and elevation computed, but was excluded from the solution (_e.g._, because it was below `PVT.elevation_mask`, flagged as unhealthy, or rejected by RAIM FDE). |
 |    --------------    |
+
+Signals are listed individually (one entry per satellite and signal), not
+merged: a satellite whose signals were combined appears as one entry per
+signal, all flagged with `combined = true`. The azimuth and elevation are
+reported as computed by the solver, so a corrupt ephemeris or almanac can result
+in `NaN` values for those fields; client applications are expected to handle
+that case explicitly (for instance, by not drawing that satellite in a sky
+plot). Such a satellite is never used in the position solution.
 
 &nbsp;
 
