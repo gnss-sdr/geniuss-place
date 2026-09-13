@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-09T12:00:00+02:00
+last_modified_at: 2026-09-13T12:00:00+02:00
 ---
 
 
@@ -691,6 +691,71 @@ Example:
 ;######### TELEMETRY DECODER CONFIG FOR BeiDou B1C CHANNELS ############
 TelemetryDecoder_1D.implementation=BEIDOU_B1C_Telemetry_Decoder
 TelemetryDecoder_1D.dump=false
+```
+
+
+## BeiDou B-CNAV2 navigation message
+
+The B-CNAV2 navigation message is broadcast by the data component of the BeiDou
+B2a signal at $$ 200 $$ symbols per second. Each frame is $$ 600 $$ symbols
+($$ 3 $$ s) long and consists of a $$ 24 $$-symbol preamble (`0xE24DE8`)
+followed by $$ 576 $$ symbols that encode, with a 64-ary LDPC(96,48) code,
+$$ 288 $$ information bits: the PRN, the message type, the seconds of week,
+$$ 234 $$ bits of message data, and a 24-bit CRC. Message types 10 and 11,
+broadcast in consecutive frames, carry the ephemeris; message type 30 carries
+the clock correction parameters, the group delays ($$ TGD_{B2ap} $$ /
+$$ ISC_{B2ad} $$ / $$ TGD_{B1Cp} $$), and the BeiDou Global Ionospheric delay
+correction Model (BDGIM) parameters; message types 31 to 34 carry the clock
+correction parameters together with other data (reduced almanac, Earth
+orientation parameters, time offsets with respect to UTC and to other GNSS,
+and integrity indices); and message type 40 carries the midi almanac.
+
+### Implementation: `BEIDOU_B2A_Telemetry_Decoder`
+
+**Warning**: This implementation is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+This implementation takes the $$ 1 $$ ms prompt correlator outputs delivered by
+the Tracking block, wipes off the $$ 5 $$-chip secondary code of the data
+component to form the $$ 5 $$ ms B-CNAV2 symbols, and searches for the frame
+preamble. In its current form it does not perform LDPC decoding: the
+$$ 288 $$ systematic information bits are read directly from the encoded frame
+and validated with the CRC-24Q, so no error correction is applied, and a CRC
+failure at the expected frame boundary immediately drops the frame
+synchronization and restarts the preamble search. The decoder parses message
+types 10 and 11 (ephemeris, required in consecutive frames), 30 (clock
+parameters and group delays), 31 to 34 (clock parameters), and the satellite
+health flag carried by types 11, 30 to 34, and 40, and it delivers an ephemeris
+record to the PVT block once orbit and clock parameters with a matching issue
+of data are available for a healthy MEO or IGSO satellite. The ionospheric,
+UTC, and almanac parameters are not decoded yet.
+
+This implementation accepts the following parameters:
+
+
+|----------
+|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                | **Required** |
+| :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|      --------------       |
+|     `implementation`      | `BEIDOU_B2A_Telemetry_Decoder`                                                                                                                                                                                                                                                                                     |  Mandatory   |
+|          `dump`           | [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`.                                                                                               |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added).                                                                                          |   Optional   |
+|        `dump_mat`         | [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`.                                                                               |   Optional   |
+|       `remove_dat`        | [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. |   Optional   |
+|     `dump_crc_stats`      | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`.                                                    |   Optional   |
+| `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number.                                            |   Optional   |
+|      --------------       |
+
+  _Telemetry Decoder implementation:_ **`BEIDOU_B2A_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER CONFIG FOR BeiDou B2a CHANNELS ############
+TelemetryDecoder_5D.implementation=BEIDOU_B2A_Telemetry_Decoder
+TelemetryDecoder_5D.dump=false
 ```
 
 
