@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-08T12:00:00+02:00
+last_modified_at: 2026-09-13T12:00:00+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
@@ -1676,6 +1676,91 @@ Tracking_J5.early_late_space_chips=0.5;
 Tracking_J5.early_late_space_narrow_chips=0.1;
 Tracking_J5.dump=false
 Tracking_J5.dump_filename=./tracking_ch_
+```
+
+## BeiDou B2a signal tracking
+
+The BeiDou B2a signal (GNSS-SDR identifier `5D`), transmitted by BeiDou-3 MEO
+and IGSO satellites and centered at $$ f_{\text{B2a}} = 1176.45 $$ MHz, is
+composed of a data component carrying the B-CNAV2 navigation message and a
+pilot component, in phase quadrature and with equal power, both modulated with
+BPSK(10). Both components use ranging codes of $$ 10230 $$ chips transmitted
+at $$ 10.23 $$ Mchip/s (thus with a period of $$ 1 $$ ms). The data component
+is further modulated by a $$ 5 $$-chip secondary code (`00010`) at $$ 1 $$
+kchip/s, so each B-CNAV2 symbol spans $$ 5 $$ ms, and the pilot component by a
+$$ 100 $$-chip secondary code.
+
+### Implementation: `BEIDOU_B2A_DLL_PLL_Tracking`
+
+**Warning**: This implementation is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+This implementation tracks the data component of the B2a signal only (the pilot
+component is not used), with a coherent integration time of one code period
+($$ 1 $$ ms). The $$ 1 $$ ms prompt correlator outputs are delivered to the
+[Telemetry Decoder]({{ "/docs/sp-blocks/telemetry-decoder/#beidou-b-cnav2-navigation-message" | relative_url }})
+from the beginning of the pull-in stage, where the $$ 5 $$-chip secondary code
+is wiped off and the B-CNAV2 frame synchronization is performed, so that
+navigation data decoding can start without waiting for the pull-in time to
+elapse.
+
+This implementation accepts the following parameters:
+
+|----------
+|    **Global Parameter**    | **Description**                                                      | **Required** |
+| :------------------------: | :------------------------------------------------------------------- | :----------: |
+|       --------------       |
+| `GNSS-SDR.internal_fs_sps` | Input sample rate to the processing channels, in samples per second. |  Mandatory   |
+|       --------------       |
+
+
+|----------
+|            **Parameter**             | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                              | **Required** |
+| :----------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|            --------------            |
+|           `implementation`           | `BEIDOU_B2A_DLL_PLL_Tracking`                                                                                                                                                                                                                                                                                                                                                                                                                                                    |  Mandatory   |
+|             `item_type`              | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.                                                                             |   Optional   |
+|            `track_pilot`             | [`true`, `false`]: This implementation only tracks the data component of the B2a signal. If set to `true`, a warning is printed and the data component is tracked anyway. It defaults to `false`.                                                                                                                                                                                                                                                                            |   Optional   |
+|     `extend_correlation_symbols`     | For BeiDou B2a, coherent integration is limited to $$ 1 $$ code period ($$ 1 $$ ms), since the synchronization with the $$ 5 $$-chip secondary code of the data component is performed by the Telemetry Decoder. This parameter defaults to 1, and values greater than 1 are clamped back to 1 with a warning.                                                                                                                              |   Optional   |
+|             `pll_bw_hz`              | Bandwidth of the PLL low-pass filter, in Hz. It defaults to 35 Hz.                                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
+|          `pll_filter_order`          | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3.                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|         `enable_fll_pull_in`         | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                        |   Optional   |
+|      `enable_fll_steady_state`       | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
+|             `fll_bw_hz`              | Bandwidth of the FLL low-pass filter, in Hz. It defaults to 35 Hz.                                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
+|           `pull_in_time_s`           | Time, in seconds, in which the tracking loop will be in pull-in mode. It defaults to 5 s.                                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
+|             `dll_bw_hz`              | Bandwidth of the DLL low-pass filter, in Hz. It defaults to 2 Hz.                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|          `dll_filter_order`          | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2.                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
+|       `early_late_space_chips`       | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.25 $$.                                                                                                                                                                                                                                                                                                                                 |   Optional   |
+|           `carrier_aiding`           | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`.                                                                                                                                                                                                                                                                                                                                                                      |   Optional   |
+|            `cn0_samples`             | Number of $$ P $$ correlator outputs used for CN0 estimation. It defaults to 20.                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|              `cn0_min`               | Minimum valid CN0 (in dB-Hz). It defaults to 25 dB-Hz.                                                                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
+|           `max_lock_fail`            | Maximum number of lock failures before dropping a satellite. It defaults to 50.                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
+|          `carrier_lock_th`           | Carrier lock threshold (in rad). It defaults to 0.85 rad.                                                                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
+|        `cn0_smoother_samples`        | Number of samples used to smooth the value of the estimated $$ C/N_0 $$. It defaults to 200 samples.                                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
+|         `cn0_smoother_alpha`         | Forgetting factor of the $$ C/N_0 $$ smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002.                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
+| `carrier_lock_test_smoother_samples` | Number of samples used to smooth the value of the carrier lock test. It defaults to 25 samples.                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
+|  `carrier_lock_test_smoother_alpha`  | Forgetting factor of the carrier lock detector smoother, as in $$ y_k = \alpha x_k + (1 - \alpha) y_{k-1} $$. It defaults to 0.002.                                                                                                                                                                                                                                                                                                                                          |   Optional   |
+|                `dump`                | [`true`, `false`]: If set to `true`, it enables the Tracking internal binary data file logging, in form of ".dat" files. This format can be retrieved and plotted in Matlab / Octave, see scripts under [gnss-sdr/utils/matlab/](https://github.com/gnss-sdr/gnss-sdr/tree/next/utils/matlab). It defaults to `false`.                                                                                                                                               |   Optional   |
+|           `dump_filename`            | If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./track_ch`, so files in the form "./track_chX.dat", where `X` is the channel number, will be generated.                                                                                                                                |   Optional   |
+|              `dump_mat`              | [`true`, `false`]. If `dump=true`, when the receiver exits it can convert the ".dat" files stored by this block into ".mat" files directly readable from Matlab and Octave. If the receiver has processed more than a few minutes of signal, this conversion can take a long time. In systems with limited resources, you can turn off this conversion by setting this parameter to `false`. It defaults to `true`, so ".mat" files are generated by default if `dump=true`. |   Optional   |
+|            --------------            |
+
+  _Tracking implementation:_ **`BEIDOU_B2A_DLL_PLL_Tracking`**.
+  {: style="text-align: center;"}
+
+
+Example:
+
+```ini
+;######### TRACKING CONFIG FOR BeiDou B2a CHANNELS ############
+Tracking_5D.implementation=BEIDOU_B2A_DLL_PLL_Tracking
+Tracking_5D.item_type=gr_complex
+Tracking_5D.pll_bw_hz=15.0
+Tracking_5D.dll_bw_hz=2.0
+Tracking_5D.pull_in_time_s=1
+Tracking_5D.dump=false
+Tracking_5D.dump_filename=./tracking_ch_
 ```
 
 ## BeiDou B3I signal tracking
