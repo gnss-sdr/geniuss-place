@@ -8,7 +8,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-01T10:00:00+02:00
+last_modified_at: 2026-09-12T10:00:00+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -479,6 +479,57 @@ Example for satellites searched independently in each band:
 
 ```ini
 GNSS-SDR.assist_dual_frequency_acq=false
+```
+
+
+## Visibility-aware acquisition search
+
+By default, each idle channel takes the next satellite to search for from a
+single first-in, first-out queue per signal. Satellite visibility only affects
+the initial order of that queue when assisted GNSS is enabled; after that, a
+satellite that fails acquisition simply goes to the back of the queue, so
+channels keep spending time on satellites that are below the horizon.
+
+<span style="color: orange">The `next` branch of the upstream repository adds an
+optional visibility-aware search. Once a receiver position is available, either
+from a position fix or from `AGNSS_ref_location` and `AGNSS_ref_utc_time`,
+satellites are continuously classified as _visible_ (elevation above
+`search_elevation_mask`), _excluded_ (elevation at or below the mask, or
+flagged as unhealthy) or _maybe visible_ (no ephemeris or almanac decoded yet),
+using the freshest ephemeris or almanac available for GPS, Galileo, BeiDou,
+GLONASS, and QZSS. Idle channels then favor visible satellites over the _maybe
+visible_ ones and skip the excluded ones. The classification is refreshed when
+the position fix becomes valid, when new ephemeris or almanac data arrive, when
+the receiver moves, periodically, and when the data used for a satellite
+becomes stale. A satellite that is already being tracked is never released
+because of this classification, and `PVT.elevation_mask` still decides which
+observations enter the navigation solution. This feature will be included in
+the next GNSS-SDR stable release.</span>
+
+|----------
+|                  **Parameter**                  | **Description**                                                                                                                                                                                                                                                                                                                                              | **Required** |
+| :---------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|                 --------------                  |
+|        `enable_visibility_aware_search`         | [`true`, `false`]: If set to `true`, it enables the visibility-aware acquisition search described above. If set to `false`, the search order is the default one. It defaults to `false`.                                                                                                                                                                     |   Optional   |
+|             `search_elevation_mask`             | Minimum elevation, in degrees, for a satellite to be classified as visible for search purposes. It is independent of `PVT.elevation_mask`, which applies to the navigation solution instead of the acquisition search order. It defaults to $$ 0 $$ [degree].                                                                                                         |   Optional   |
+|      `visible_vs_mayvisible_search_ratio`       | Number of visible satellites searched for each _maybe visible_ satellite, once both groups have candidates queued. It defaults to $$ 3 $$.                                                                                                                                                                                                                   |   Optional   |
+|        `visibility_recompute_interval_s`        | Period, in seconds of receiver time, of the periodic reclassification of all satellites. Satellites move slowly, so this is a fallback: the reaction to new data or receiver movement is driven by the other triggers. It defaults to $$ 120 $$ [s].                                                                                                             |   Optional   |
+|   `visibility_recompute_position_threshold_m`   | Receiver displacement, in meters, that forces an immediate reclassification of all satellites, independently of the periodic interval. It defaults to $$ 1000 $$ [m].                                                                                                                                                                                            |   Optional   |
+|         `visibility_almanac_max_age_s`          | Maximum age, in seconds, of the almanac data used to classify a satellite. Older almanacs are ignored, and the satellite goes back to _maybe visible_ unless a usable ephemeris is available. Ephemeris validity is not configurable: ephemerides older than the RTKLIB validity limit of each system are ignored. It defaults to $$ 259200 $$ [s] (three days). |   Optional   |
+|                     -------                     |
+
+Satellites listed in the `<System>_banned_prns` parameters described below are
+never classified as visible.
+
+Example:
+
+```ini
+GNSS-SDR.enable_visibility_aware_search=true
+GNSS-SDR.search_elevation_mask=15
+GNSS-SDR.visible_vs_mayvisible_search_ratio=10
+GNSS-SDR.visibility_recompute_interval_s=120.0
+GNSS-SDR.visibility_recompute_position_threshold_m=1000.0
+GNSS-SDR.visibility_almanac_max_age_s=259200.0
 ```
 
 
