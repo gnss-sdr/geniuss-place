@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-13T12:00:00+02:00
+last_modified_at: 2026-09-16T12:00:00+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
@@ -90,6 +90,88 @@ satellite PRN 11[^Fernandez12]._
 {: style="text-align: center;"}
 
 
+## Completing all non-coherent dwells
+
+The `Acquisition_<signal>.full_grid_search` option controls when the shared CPU
+PCPS acquisition block makes its detection decision. It defaults to `false`.
+
+**Warning**: This option is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+Each dwell computes the correlation over every active Doppler bin and code
+phase. With multiple dwells, the block adds their squared correlation
+magnitudes, forming a non-coherently accumulated search grid. This option changes
+the stopping rule:
+
+* `full_grid_search=false`: after each dwell, accept the strongest peak if its
+  detection statistic exceeds the threshold. Otherwise, continue until
+  `max_dwells` is reached, then declare failure.
+* `full_grid_search=true`: accumulate exactly `max_dwells` dwells before testing
+  the strongest peak for acceptance or rejection. An earlier threshold crossing
+  does not end the search.
+
+Despite its name, `full_grid_search` does not enlarge the Doppler range, reduce
+the Doppler step, or enable additional code-phase hypotheses. Both settings
+search the entire active grid in each dwell.
+
+Waiting for all dwells can improve peak selection when noise or a temporary
+competing peak would otherwise cause an early acceptance. It does not guarantee
+better detection or tracking: a persistent competing peak can remain strongest,
+and a signal that fades or moves across grid cells during accumulation may
+produce a less useful final result. This option does not add motion compensation
+or resolve the inherent ambiguity of a BOC correlation function.
+
+The cost is additional processing and a later handoff to tracking when a signal
+could have been accepted early. For `max_dwells=N` and a coherent integration
+time of `T` ms, a single-stage attempt processes `N*T` ms of input samples. If
+early acceptance would have occurred after `k` dwells, completing all dwells
+requires approximately `N/k` times as much correlation work. Actual elapsed time
+also depends on buffering, processing capacity, and scheduling. An attempt that
+never crosses the threshold already uses all `N` dwells with either setting.
+Accumulation reuses the existing grid, so this option does not require storing
+all dwells separately.
+
+The following interactions apply:
+
+* `max_dwells=1` gives the same behavior with either setting.
+* `bit_transition_flag=true` takes precedence: the block uses one double-length
+  dwell per search stage, regardless of `max_dwells` or `full_grid_search`.
+* With `make_two_steps=true`, each stage accumulates `max_dwells` dwells. If the
+  coarse stage succeeds, the refinement stage starts a fresh accumulation; a
+  successful two-stage attempt processes `2*N*T` ms of input samples.
+* With `enable_doppler_narrowing=true` and valid exact-Doppler assistance, the
+  reduced grid remains in use. `full_grid_search` changes the dwell count, not
+  the assisted search range.
+* Both `blocking=true` and `blocking=false` support this option. Moving the work
+  to a separate thread does not eliminate the additional correlation work.
+* The existing `pfa`-derived or manually configured threshold is retained. The
+  option changes when that threshold is tested; it does not recalibrate it.
+
+Enable this option selectively when stable peak selection matters more than
+the earliest possible handoff to tracking, and compare acquisition success,
+subsequent tracking lock, and CPU load with representative recordings. Keeping
+the default is appropriate when rapid acquisition of strong signals is the
+priority.
+
+For example, this Galileo E1 pilot configuration accumulates five 4 ms dwells
+(20 ms of input samples) before making a single-stage decision:
+
+```ini
+Acquisition_1B.implementation=Galileo_E1_PCPS_Ambiguous_Acquisition
+Acquisition_1B.acquire_pilot=true
+Acquisition_1B.coherent_integration_time_ms=4
+Acquisition_1B.doppler_max=5000
+Acquisition_1B.doppler_step=125
+Acquisition_1B.pfa=1e-7
+Acquisition_1B.max_dwells=5
+Acquisition_1B.full_grid_search=true
+```
+
+This option is supported by the implementations whose parameter tables below
+include `full_grid_search`.
+
+
 ## GPS L1 C/A signal acquisition
 
 ### Implementation: `GPS_L1_CA_PCPS_Acquisition`
@@ -166,6 +248,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -398,6 +481,7 @@ This implementation accepts the following parameters:
 | `acquire_pilot` | [`true`, `false`]: If set to `true`, sets the receiver to acquire the E1C pilot component. It defaults to `false` (that is, the receiver is set to acquire the E1B data component). | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -510,6 +594,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
@@ -558,6 +643,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -633,6 +719,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It must be a multiple of the code period ($$ 10 $$ ms). It defaults to 10 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a symbol transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -689,6 +776,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -763,6 +851,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -816,6 +905,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 20 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -871,6 +961,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the GLONASS L1 C/A band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
@@ -918,6 +1009,7 @@ This implementation accepts the following parameters:
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the Galileo E1 band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
@@ -969,6 +1061,7 @@ This implementation accepts the following parameters:
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -1026,6 +1119,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `acquire_pilot` |  [`true`, `false`]: If set to `true`, it enables the Acquisition of the pilot Galileo E5a signal (Q component). It defaults to `false`. | Optional |
@@ -1127,6 +1221,7 @@ This implementation accepts the following parameters:
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -1182,6 +1277,7 @@ This implementation accepts the following parameters:
 | `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -1260,6 +1356,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a symbol transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -1317,6 +1414,7 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `acquire_pilot` |  [`true`, `false`]: If set to `true`, it enables the Acquisition of the pilot Galileo E5b signal (Q component). It defaults to `false`. | Optional |
