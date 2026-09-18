@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-13T12:00:00+02:00
+last_modified_at: 2026-09-18T12:00:00+02:00
 ---
 
 
@@ -719,10 +719,16 @@ upstream GNSS-SDR repository. It will be included in the next stable release.
 This implementation takes the $$ 1 $$ ms prompt correlator outputs delivered by
 the Tracking block, wipes off the $$ 5 $$-chip secondary code of the data
 component to form the $$ 5 $$ ms B-CNAV2 symbols, and searches for the frame
-preamble. In its current form it does not perform LDPC decoding: the
-$$ 288 $$ systematic information bits are read directly from the encoded frame
-and validated with the CRC-24Q, so no error correction is applied, and a CRC
-failure at the expected frame boundary immediately drops the frame
+preamble. Once the preamble is found, the carrier polarity is resolved from it
+and the $$ 576 $$ soft symbols that follow are normalized to a common
+log-likelihood ratio scale, so that decoding does not depend on the correlator
+gain. The $$ 96 $$ GF(64) symbols are then decoded with a soft-decision 64-ary
+LDPC(96,48) decoder: a truncated fixed-path belief-propagation decoder (shared
+with the B-CNAV1 decoder), followed by a full-alphabet sum-product decoder if
+the first one does not converge to a valid codeword. The resulting $$ 288 $$
+information bits are validated with the CRC-24Q, and the PRN carried in the
+frame is checked against the satellite assigned to the channel. A decoding or
+CRC failure at the expected frame boundary immediately drops the frame
 synchronization and restarts the preamble search. The decoder parses message
 types 10 and 11 (ephemeris, required in consecutive frames), 30 (clock
 parameters and group delays), 31 to 34 (clock parameters), and the satellite
