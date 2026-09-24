@@ -454,12 +454,14 @@ can be smaller) and the acquisition-to-tracking latency. This behavior can be
 deactivated by setting this parameter to `false`, which makes the receiver
 search satellites in each band independently.
 
-Moreover, the Doppler search in the secondary band is
+<span style="color: orange">Moreover, the Doppler search in the secondary band is
 always narrowed to a single bin centered at the projected value, instead of
 sweeping the full grid (see [Reduced Doppler
 search]({{ "/docs/sp-blocks/acquisition/#reduced-doppler-search" | relative_url }})
 in the Acquisition documentation). Setting `assist_dual_frequency_acq=false`
-restores the independent, full-range search in each band. These features will be
+restores the independent, full-range search in each band, and
+`Acquisition_XX.dual_freq_assisted_doppler_narrowing=false` keeps the assistance
+but forces a full-range search for a given signal only. These features will be
 available in the next GNSS-SDR stable release.</span>
 
 |----------
