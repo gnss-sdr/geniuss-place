@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-16T12:00:00+02:00
+last_modified_at: 2026-09-23T12:00:00+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
@@ -140,9 +140,9 @@ The following interactions apply:
 * With `make_two_steps=true`, each stage accumulates `max_dwells` dwells. If the
   coarse stage succeeds, the refinement stage starts a fresh accumulation; a
   successful two-stage attempt processes `2*N*T` ms of input samples.
-* With `enable_doppler_narrowing=true` and valid exact-Doppler assistance, the
-  reduced grid remains in use. `full_grid_search` changes the dwell count, not
-  the assisted search range.
+* When the Doppler search is narrowed (see [Reduced Doppler
+  search](#reduced-doppler-search)), the reduced grid remains in use.
+  `full_grid_search` changes the dwell count, not the searched Doppler range.
 * Both `blocking=true` and `blocking=false` support this option. Moving the work
   to a separate thread does not eliminate the additional correlation work.
 * The existing `pfa`-derived or manually configured threshold is retained. The
@@ -170,6 +170,103 @@ Acquisition_1B.full_grid_search=true
 
 This option is supported by the implementations whose parameter tables below
 include `full_grid_search`.
+
+
+## Reduced Doppler search
+
+**Warning**: This behavior is only available from the `next` branch of the
+upstream GNSS-SDR repository. It will be included in the next stable release.
+{: .notice--warning}
+
+The implementations whose parameter tables below include `full_grid_search` and
+`reference_bin_min_sidelobes` share a CPU PCPS acquisition block that can search
+any number of Doppler bins, from a single one up to the full configured grid,
+centered at a Doppler value $$ f_c $$ provided by the receiver. Without prior
+knowledge, the search covers the full grid of
+$$ N = \lceil 2 \cdot \text{doppler_max} / \text{doppler_step} \rceil $$
+bins centered at $$ f_c = 0 $$ Hz. The receiver narrows it to a single bin when
+the Doppler shift is already known:
+
+* In multi-frequency configurations, the Doppler measured by a channel tracking
+  the same satellite in the primary band is projected to the secondary band (see
+  [Self-assistance in multi-frequency
+  receivers]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})).
+  This is controlled by `GNSS-SDR.assist_dual_frequency_acq`.
+* In the primary band, if `GNSS-SDR.enable_visibility_aware_search=true`, a
+  recent position fix is available, and the satellite is classified as visible,
+  the Doppler is predicted from its ephemeris or almanac (see [Visibility-aware
+  acquisition
+  search]({{ "/docs/sp-blocks/global-parameters/#visibility-aware-acquisition-search" | relative_url }})).
+
+Otherwise, the full grid is searched.
+
+The $$ M $$ candidate bins are placed symmetrically around $$ f_c $$, with the
+$$ k $$-th bin ($$ k = 0, \ldots, M-1 $$) at
+
+$$ f_k = f_c + \left(k - \left\lfloor \frac{M-1}{2} \right\rfloor \right) \cdot \text{doppler_step}~, $$
+
+so a single-bin search tests exactly $$ f_c $$, and with an even $$ M $$ the
+extra bin falls on the positive side. For instance, `doppler_max=5000` and
+`doppler_step=250` give $$ N = 40 $$ bins, from $$ -4750 $$ Hz to $$ +5000 $$
+Hz.
+
+If `pfa` is set, the detection threshold is recomputed for the number of
+candidate bins actually searched every time that number changes, so the
+configured probability of false alarm refers to the current search instead of
+the full grid. A manually configured `threshold` is used as is.
+
+With `pfa` set, the test statistic normalizes the correlation peak by a noise
+power estimate taken from a Doppler bin assumed to contain no signal. In a full
+grid, this is the bin located $$ \lfloor N/2 \rfloor $$ bins away from the
+peak (wrapping around the grid). That bin is replaced by dedicated noise-reference
+bins, computed in addition to the candidates, in these cases:
+
+* The search is narrowed ($$ M < N $$). Reference bins are then always
+  computed, even without `pfa`, although only the CFAR statistic uses them.
+* The full grid is searched, `pfa` is set, and
+  $$ \lfloor N/2 \rfloor \cdot \text{doppler_step} < (\text{reference_bin_min_sidelobes} + 0.5) / T_{int} $$,
+  where $$ T_{int} $$ is the coherent integration time in seconds (the Doppler
+  sidelobes of the correlation are spaced approximately $$ 1/T_{int} $$ Hz
+  apart). For instance, with the default `reference_bin_min_sidelobes=4`, the
+  threshold is $$ 4500 $$ Hz for $$ T_{int} = 1 $$ ms and $$ 1125 $$ Hz for
+  $$ T_{int} = 4 $$ ms.
+
+With a single candidate bin, one reference bin is computed at
+$$ f_c + \text{doppler_max} $$. With more candidates, two reference bins are
+computed, at $$ f_c + \text{doppler_max} $$ and
+$$ f_c - \text{doppler_max} $$, and the statistic uses the one on the
+opposite side of $$ f_c $$ from the strongest candidate, so the reference never
+lies next to a signal near the edge of the search range. Reference bins are
+never placed beyond $$ \pm $$`doppler_max` from $$ f_c $$, even when that
+separation does not reach the `reference_bin_min_sidelobes` target, because
+the configured `doppler_max` is the range for which the rest of the acquisition
+chain is designed, and noise samples taken outside it may be distorted by
+filtering.
+
+Searching only a few Doppler bins is not statistically free: both the
+`pfa`-based threshold calibration and the noise estimate rely on fewer
+independent hypotheses than a full-grid search, so the detection is less
+statistically robust than with the full grid.
+
+For example, consider GPS L5 in a multi-frequency receiver:
+
+```ini
+Acquisition_L5.implementation=GPS_L5i_PCPS_Acquisition
+Acquisition_L5.coherent_integration_time_ms=1
+Acquisition_L5.doppler_max=3000
+Acquisition_L5.doppler_step=250
+Acquisition_L5.pfa=0.01
+Acquisition_L5.reference_bin_min_sidelobes=4
+```
+
+As a secondary band, most L5 searches are narrowed to a single bin by the
+assistance from L1 C/A, with the noise reference at $$ f_c + 3000 $$ Hz. When
+L5 is searched without assistance, the full grid has $$ N = 24 $$ bins, and
+$$ \lfloor 24/2 \rfloor \cdot 250 = 3000 $$ Hz does not reach the
+$$ 4500 $$ Hz target for $$ T_{int} = 1 $$ ms, so two reference bins are added
+at $$ \pm 3000 $$ Hz from $$ f_c $$. Setting `reference_bin_min_sidelobes=2`
+lowers the target to $$ 2500 $$ Hz, and the full grid then takes its reference
+from within the grid.
 
 
 ## GPS L1 C/A signal acquisition
@@ -249,6 +346,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -482,6 +580,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -595,6 +694,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
@@ -644,6 +744,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -720,6 +821,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a symbol transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -777,6 +879,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -852,6 +955,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -906,12 +1010,12 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
-| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the GPS L1 C/A band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_2S_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -962,9 +1066,9 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
-| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the GLONASS L1 C/A band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1010,8 +1114,8 @@ This implementation accepts the following parameters:
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
-| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the Galileo E1 band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
@@ -1062,12 +1166,12 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
-| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the GPS L1 C/A band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_L5_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1120,6 +1224,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `acquire_pilot` |  [`true`, `false`]: If set to `true`, it enables the Acquisition of the pilot Galileo E5a signal (Q component). It defaults to `false`. | Optional |
@@ -1127,7 +1232,6 @@ This implementation accepts the following parameters:
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
-| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the Galileo E1 band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_E_5X_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1222,12 +1326,12 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
-| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the BeiDou B1I band, or in the B1C band if no B1I channel tracks it (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_C_B3_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1278,12 +1382,12 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
-| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the QZSS L1 C/A band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` | If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_J_J5_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated.  | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1357,6 +1461,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a symbol transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
@@ -1415,6 +1520,7 @@ This implementation accepts the following parameters:
 | `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
 | `acquire_pilot` |  [`true`, `false`]: If set to `true`, it enables the Acquisition of the pilot Galileo E5b signal (Q component). It defaults to `false`. | Optional |
@@ -1422,7 +1528,6 @@ This implementation accepts the following parameters:
 | `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
 | `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
 | `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
-| `enable_doppler_narrowing` | [`true`, `false`]: If set to `true`, when this channel is assisted with the Doppler of the same satellite already tracked in the Galileo E1 band (see [`GNSS-SDR.assist_dual_frequency_acq`]({{ "/docs/sp-blocks/global-parameters/#self-assistance-in-multi-frequency-receivers" | relative_url }})), the acquisition searches a single Doppler bin centered at the assisted value (plus one noise-reference bin) instead of sweeping the full grid, reducing the computational load and the acquisition time. If `pfa` is set, the detection threshold is recalibrated for the reduced number of cells in the search space. It defaults to `false`. <span style="color: orange">This feature is only available in the `next` branch of the public repository and will be available in the next GNSS-SDR stable release.</span> | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
 | `dump_filename` |  If `dump` is set to `true`, base name of the file(s) in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_E_7X_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
@@ -1458,11 +1563,12 @@ The list of output variables contained in each `.mat` file is the following:
 
   * `acq_delay_samples`: Coarse estimation of time delay, in number of samples from the start of the pseudorandom code.
   * `acq_doppler_hz`: Coarse estimation of Doppler shift, in Hz.
-  * `acq_grid`: Acquisition search grid.
-  * `d_positive_acq`: `1` if there has been a positive acquisition, `0` for no detection.
-  * `doppler_center`: Center of the Doppler search grid, in Hz. It is `0` unless the acquisition was assisted with a Doppler estimation obtained in another frequency band. <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
-  * `doppler_max`: Maximum Doppler shift in the search grid.
-  * `doppler_narrowed`: `1` if the Doppler search was narrowed to a single bin by dual-frequency assistance (see the `enable_doppler_narrowing` parameter), `0` otherwise. In narrowed dumps, `acq_grid` has only two columns (the assisted Doppler bin and a noise-reference bin), encoded with `doppler_max` set to `0` and `doppler_step` set to the configured maximum Doppler, so the Doppler of column $$ i $$ (starting at $$ 0 $$) is always given by `doppler_center - doppler_max + doppler_step * i`, in both full and narrowed dumps. <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
+  * `acq_grid`: Acquisition search grid. Each column corresponds to a Doppler bin. <span style="color: orange">In dumps generated by the `next` branch, the Doppler bins can be followed by up to two noise-reference columns (see `doppler_num_candidates`).</span>
+  * `positive_acq`: `1` if there has been a positive acquisition, `0` for no detection.
+  * `doppler_center`: Center of the Doppler search grid, in Hz. It is `0` unless the search was centered on a Doppler estimation obtained in another frequency band or predicted from ephemeris or almanac data (see [Reduced Doppler search](#reduced-doppler-search)). <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
+  * `doppler_max`: Maximum Doppler shift in the search grid. <span style="color: orange">In dumps generated by the `next` branch, it is the offset of the first Doppler bin with respect to `doppler_center`, so that the Doppler of column $$ i $$ (starting at $$ 0 $$) is `doppler_center - doppler_max + doppler_step * i`. Since the bins are centered at `doppler_center` (see [Reduced Doppler search](#reduced-doppler-search)), this value can differ from the configured `doppler_max` (for instance, it is $$ 0 $$ for a single-bin search).</span>
+  * `doppler_narrowed`: `1` if fewer Doppler bins than the full configured grid were searched (see [Reduced Doppler search](#reduced-doppler-search)), `0` otherwise. <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
+  * `doppler_num_candidates`: Number of leading columns of `acq_grid` that are Doppler bins. The remaining columns, if any (up to two), are noise-reference bins at `doppler_center` $$ \pm $$ the configured maximum Doppler, which are not on the Doppler axis defined by `doppler_max` and `doppler_step` and must be skipped when plotting. <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
   * `doppler_step`: Doppler step in the search grid.
   * `input_power`: Input signal power.
   * `num_dwells`: Number of dwells performed in non-coherent acquisition.
@@ -1509,15 +1615,24 @@ or
 _Negative acquisition._
 {: style="text-align: center;"}
 
-If the dump contains the `doppler_center` variable (see above), the Doppler
-axis becomes `f = double(doppler_center) + (0:size(acq_grid, 2) - 1) *
-double(doppler_step) - double(doppler_max)`, which is valid for both full and
-narrowed grids. The scripts
+If the dump contains the `doppler_num_candidates` variable (see above), only
+its first `doppler_num_candidates` columns must be plotted, and the Doppler axis
+becomes:
+
+```matlab
+n = double(doppler_num_candidates);
+f = double(doppler_center) - double(doppler_max) + (0:n-1) * double(doppler_step);
+tau = linspace(0, 1023, size(acq_grid, 1));
+surf(f, tau, acq_grid(:, 1:n)); xlabel('Doppler [Hz]'); ylabel('Delay [chips]');
+```
+
+A single-bin search (`n` equal to $$ 1 $$) cannot be drawn with `surf`; plot
+`acq_grid(:, 1)` against `tau` instead. The scripts
 [`utils/matlab/plot_acq_grid.m`](https://github.com/gnss-sdr/gnss-sdr/blob/next/utils/matlab/plot_acq_grid.m)
 and
 [`utils/python/plot_acq_grid.py`](https://github.com/gnss-sdr/gnss-sdr/blob/next/utils/python/plot_acq_grid.py)
-provided with the source code automate this plotting and decode all dump
-variants.
+provided with the source code automate this plotting, skip the noise-reference
+columns, and decode all dump variants.
 
 
 &nbsp;<br/>
