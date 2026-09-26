@@ -373,7 +373,7 @@ the test program `run_tests`.
       4096 $$ and $$ 8192 $$ executed in the GPU. The availability of this test
       suite requires the [CUDA
       Toolkit](https://developer.nvidia.com/cuda-downloads) installed in your
-      system, a GPU [supporting CUDA](https://developer.nvidia.com/cuda-gpus),
+      system, a GPU [supporting CUDA](https://developer.nvidia.com/cuda/gpus),
       and have passed the option `-DENABLE_CUDA=ON` to CMake. By default, the
       measurements average $$ 1000 $$ independent realizations, a value that can
       be changed by the flag `--gpu_multicorrelator_iterations_test`. You can
