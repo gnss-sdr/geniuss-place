@@ -563,7 +563,7 @@ tandem for better utilization of available computing power.
 
 This implementation follows the CUDA programming model and targets NVIDIA's GPU
 computing platform. Thus, you will need a [CUDA-enabled
-GPU](https://developer.nvidia.com/cuda-gpus) and the [CUDA
+GPU](https://developer.nvidia.com/cuda/gpus) and the [CUDA
 Toolkit](https://developer.nvidia.com/cuda-toolkit) installed. Moreover, it is
 only available if GNSS-SDR has been built from source and configured with the
 flag `ENABLE_CUDA` set to `ON`:

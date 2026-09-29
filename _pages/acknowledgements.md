@@ -4,7 +4,7 @@ layout: single
 title: "Acknowledgements"
 sidebar:
     nav: "about"
-last_modified_at: 2021-05-10T14:38:52+02:00
+last_modified_at: 2026-09-24T12:00:00+02:00
 ---
 
 This project has been mainly developed on a volunteer basis, for education and
@@ -233,3 +233,13 @@ and open-source GNSS software-defined receiver:
     projects.
     {: .notice--success}
 
+* **Anthropic - Claude for Open Source**
+
+  GNSS-SDR has been accepted into the [Claude for Open Source](https://claude.com/contact-sales/claude-for-oss)
+  program, through which **Anthropic** provides the maintainers of selected
+  open-source projects with six months of complimentary access to
+  [Claude](https://claude.com/) and [Claude Code](https://claude.com/product/claude-code),
+  its AI assistant and agentic coding tool. This support helps with code review,
+  documentation, and the maintenance of the project's C++ and CMake
+  infrastructure. Aug. 2026 - Jan. 2027.
+  {: .notice--success}
