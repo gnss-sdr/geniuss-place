@@ -8,7 +8,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-23T12:00:00+02:00
+last_modified_at: 2026-09-29T12:00:00+02:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -527,6 +527,74 @@ GNSS-SDR.visibility_recompute_interval_s=120.0
 GNSS-SDR.visibility_recompute_position_threshold_m=1000.0
 GNSS-SDR.visibility_almanac_max_age_s=259200.0
 ```
+
+### Doppler prediction from ephemeris and almanac
+
+<span style="color: orange">With the visibility-aware search enabled, the
+receiver can also use the ephemeris or almanac of a satellite classified as
+visible to predict its Doppler shift, and narrow the acquisition search around
+that value (see [Reduced Doppler
+search]({{ "/docs/sp-blocks/acquisition/#reduced-doppler-search" | relative_url }})
+in the Acquisition documentation). The prediction adds the geometric Doppler,
+computed from the satellite orbit and the receiver position and velocity, and
+the receiver clock drift, both scaled to the carrier frequency of the searched
+signal. With a position fix no older than one second of receiver time, the
+position, velocity, and clock drift come from that fix, and a single Doppler bin
+is searched. Primary bands (GPS L1 C/A, Galileo E1, GLONASS L1, BeiDou B1I and
+B1C, QZSS L1) use this prediction whenever it is available. Secondary bands only
+use it if `Acquisition_XX.alm_ephe_assisted_doppler_narrowing=true` and they are
+searched without dual-frequency assistance (see [Self-assistance in
+multi-frequency
+receivers](#self-assistance-in-multi-frequency-receivers)). No prediction is
+made while a reference position and time received by telecommand is
+active.</span>
+
+<span style="color: orange">Before the first position fix, the prediction can
+optionally be computed at `AGNSS_ref_location` (at zero height), assuming a
+static receiver with a clock drift equal to `clock_frequency_offset_ppm`, at the
+time given by `AGNSS_ref_utc_time` (or by the system time when the receiver
+starts) plus the elapsed sample time. Since the receiver velocity and clock
+drift are not solved yet, the search is widened to cover</span>
+
+$$ \small U = \left( \text{clock_frequency_max_error_ppm} \cdot 10^{-6} + \frac{\text{receiver_max_velocity_m_s}}{c} \right) \cdot f_{carrier} $$
+
+<span style="color: orange">Hz on each side of the predicted value, where
+$$ c $$ is the speed of light. This is only done if
+`doppler_prediction_before_fix=true`, `AGNSS_ref_location` is set, and both
+`clock_frequency_max_error_ppm` and `receiver_max_velocity_m_s` are explicitly
+set to finite, nonnegative values; otherwise, the full Doppler grid is searched
+until the first fix. Setting a bound to zero asserts that there is no
+uncertainty in that component. $$ U $$ does not account for errors in the
+reference position or time, so the reference location should be close to the
+receiver, and in file replays `AGNSS_ref_utc_time` must match the time of the
+recorded samples. These features will be included in the next GNSS-SDR stable
+release.</span>
+
+|----------
+|          **Parameter**          | **Description**                                                                                                                                                                                                                                                                                            | **Required** |
+| :-----------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|         --------------          |
+| `doppler_prediction_before_fix` | [`true`, `false`]: If set to `true`, it enables the Doppler prediction before the first position fix described above. It defaults to `false`.                                                                                                                                                              |   Optional   |
+|  `clock_frequency_offset_ppm`   | Nominal receiver clock frequency offset, in ppm, used as the clock drift of the Doppler prediction before the first fix. It follows the sign convention of the clock drift estimated by the PVT block (`user_clk_drift_ppm`): a positive value lowers the predicted Doppler. It defaults to $$ 0 $$ [ppm]. |   Optional   |
+| `clock_frequency_max_error_ppm` | Maximum error, in ppm, of the receiver clock frequency with respect to `clock_frequency_offset_ppm`. It has no default value: if it is not set, or it is not a finite, nonnegative number, there is no Doppler prediction before the first fix.                                                            |   Optional   |
+|   `receiver_max_velocity_m_s`   | Maximum receiver speed, in m/s, assumed by the Doppler prediction before the first fix. It has no default value: if it is not set, or it is not a finite, nonnegative number, there is no Doppler prediction before the first fix.                                                                         |   Optional   |
+|             -------             |
+
+Example:
+
+```ini
+GNSS-SDR.enable_visibility_aware_search=true
+GNSS-SDR.AGNSS_ref_location=41.39,2.31
+GNSS-SDR.assist_dual_frequency_acq=false
+GNSS-SDR.doppler_prediction_before_fix=true
+GNSS-SDR.clock_frequency_offset_ppm=0.0
+GNSS-SDR.clock_frequency_max_error_ppm=1.0
+GNSS-SDR.receiver_max_velocity_m_s=30.0
+Acquisition_L5.alm_ephe_assisted_doppler_narrowing=true
+```
+
+With these values, $$ U \approx 1733 $$ Hz for GPS L1 C/A and
+$$ U \approx 1294 $$ Hz for GPS L5 before the first fix.
 
 
 ## Banned satellites
