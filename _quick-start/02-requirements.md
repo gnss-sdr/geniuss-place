@@ -67,7 +67,6 @@ output in case it is not able to perform the required computation in real-time.
 If your processor is not fast enough to process GNSS signals in real-time, you
 can still use files and use the software, performing exactly the same processing
 but at a slower pace, and thus without processing time constraints.
-
 {: .notice--success}
 
 ### Operating Systems
