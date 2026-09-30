@@ -2,7 +2,7 @@
 title: "Requirements"
 permalink: /requirements/
 excerpt: "Things you need for executing GNSS-SDR."
-last_modified_at: 2017-04-13T15:54:02-04:00
+last_modified_at: 2026-09-30
 header:
   teaser: "/assets/images/checklist.jpg"
 sidebar:
@@ -90,26 +90,27 @@ as [Macports](https://www.macports.org/) (there is a [gnss-sdr
 port](https://ports.macports.org/search/?q=gnss-sdr&name=on ) that will do
 all the work for you) or [Homebrew](https://brew.sh/).
 * ![Windows Logo]({{ "/assets/images/logo-windows.png" | relative_url
-}}){:height="100px" width="100px"}{: .align-right} **Microsoft Windows**: At
-this time of writing, GNSS-SDR cannot be built natively on Microsoft Windows. As
-far as authors' knowledge, nothing prevents it but their own ignorance on
-Microsoft's building tools. Users have reported successful buildings of GNU
-Radio on Windows systems, so there should be not serious caveats building
-GNSS-SDR as well. However, GNSS-SDR is not blocked for Windows users. There are
-several virtualization tools that work well. Here we suggest Oracle's
-[VirtualBox](https://www.virtualbox.org/), a professional solution that can be
-installed on Windows XP and later and it is freely available as Open Source
-Software under the terms of the GNU General Public License (GPL) version 2.
-Users can install VirtualBox on their Windows machine, and then install the
-ultimate Linux version as a _guest_ operating system. Another possibility is to
-run GNSS-SDR as a [Docker
+}}){:height="100px" width="100px"}{: .align-right} **Microsoft Windows**: Native
+Windows builds of GNSS-SDR are currently not supported. For Windows 10 and
+Windows 11 users, the recommended and simplest option is to use the
+[Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install)
+with an Ubuntu distribution, preferably using WSL 2. Both GNU Radio and
+GNSS-SDR have been successfully built and run under Windows 10/11 using the
+Ubuntu distributions available through WSL. This provides a straightforward way
+to run GNSS-SDR on a Windows machine without setting up a VirtualBox virtual
+machine or a Docker container. Follow Microsoft's WSL installation instructions
+linked above, then use the Ubuntu instructions in our [building guide]({{
+"/build-and-install/" | relative_url }}) from the Ubuntu terminal. As alternatives,
+you can install a GNU/Linux distribution in a virtual machine using
+[VirtualBox](https://www.virtualbox.org/), or run GNSS-SDR as a [Docker
 container](https://github.com/carlesfernandez/docker-gnsssdr).
 
 
 **The Operating System should not be an issue**: GNSS-SDR can be executed in
 GNU/Linux distributions as old as Ubuntu  14.04 LTS, and even in Mac OS X
 starting from 10.9. You are probably already working with newer versions, or you
-can install a virtual machine running the ultimate Ubuntu or Debian releases.
+can use Ubuntu through WSL on Windows 10/11 or install a virtual machine running
+a recent Ubuntu or Debian release.
 {: .notice--success}
 
 ### Software dependencies
