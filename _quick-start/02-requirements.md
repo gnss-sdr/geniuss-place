@@ -83,7 +83,7 @@ and other distributions might also work well.
 * ![Mac OS Logo]({{ "/assets/images/macos-logo.png" | relative_url
 }}){:height="100px" width="100px"}{: .align-right} **macOS / Mac OS X**:
 GNSS-SDR and all its dependencies can be easily installed using Mac OS X 10.9
-(Mavericks) and above, including macOS 11 Big Sur. You will need
+(Mavericks) and above, including macOS 16 Tahoe. You will need
 [Xcode](https://developer.apple.com/xcode/) and a software package manager such
 as [Macports](https://www.macports.org/) (there is a [gnss-sdr
 port](https://ports.macports.org/search/?q=gnss-sdr&name=on ) that will do
