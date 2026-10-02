@@ -2,7 +2,7 @@
 title: "Requirements"
 permalink: /requirements/
 excerpt: "Things you need for executing GNSS-SDR."
-last_modified_at: 2026-09-30
+last_modified_at: 2026-10-01
 header:
   teaser: "/assets/images/checklist.jpg"
 sidebar:
@@ -40,6 +40,10 @@ including 64-bit ARMv8.
 little-endian, 32 and 64 bits.
 * [IBM System z](https://en.wikipedia.org/wiki/IBM_System_z): IBM's
 architecture for mainframe computers.
+* [RISC-V](https://en.wikipedia.org/wiki/RISC-V): 64-bit RISC-V open standard
+instruction set architecture.
+* [LoongArch](https://en.wikipedia.org/wiki/LoongArch): 64-bit RISC-style
+instruction set architecture developed by Loongson Technology.
 
 GNSS-SDR will process incoming raw samples as fast as the computing platform
 executing it allows. It will automatically take advantage of multi-core
@@ -77,13 +81,13 @@ GNSS-SDR can be run on a variety of operating systems:
 }}){:height="100px" width="100px"}{: .align-right} **GNU/Linux**: GNSS-SDR and
 all its dependencies can be easily installed in most popular distributions, and
 it is even included as a software package starting in [Debian 9
-(stretch)](https://packages.debian.org/stretch/gnss-sdr) and [Ubuntu 16.04 LTS
+(stretch)](https://tracker.debian.org/pkg/gnss-sdr) and [Ubuntu 16.04 LTS
 (Xenial)](https://packages.ubuntu.com/search?keywords=gnss-sdr). Older releases
 and other distributions might also work well.
 * ![Mac OS Logo]({{ "/assets/images/macos-logo.png" | relative_url
 }}){:height="100px" width="100px"}{: .align-right} **macOS / Mac OS X**:
 GNSS-SDR and all its dependencies can be easily installed using Mac OS X 10.9
-(Mavericks) and above, including macOS 16 Tahoe. You will need
+(Mavericks) and above, including macOS 27 Golden Gate. You will need
 [Xcode](https://developer.apple.com/xcode/) and a software package manager such
 as [Macports](https://www.macports.org/) (there is a [gnss-sdr
 port](https://ports.macports.org/search/?q=gnss-sdr&name=on ) that will do
@@ -127,10 +131,16 @@ acts as a wrapper for all the relevant libraries present on your system, such as
 [OpenBlas](https://www.openblas.net/),
 [ATLAS](https://math-atlas.sourceforge.net/), and
 [others](https://arma.sourceforge.net/faq.html#linking).
-* [glog](https://github.com/google/glog), a C++ implementation of the Google
-logging module.
-* [gflags](https://github.com/gflags/gflags), a C++ library that implements
-command-line flags processing.
+* [Abseil](https://abseil.io/), an open-source collection of C++ libraries.
+GNSS-SDR uses its [logging](https://abseil.io/docs/cpp/guides/logging) and
+[command-line flags](https://abseil.io/docs/cpp/guides/flags) libraries, and
+requires Abseil v20240116 or newer. If Abseil is not available in your system,
+it is older than that, or your toolchain is too old (GNSS-SDR only uses Abseil
+when building with C++17 or newer and CMake 3.24 or newer), GNSS-SDR falls back to
+[glog](https://github.com/google/glog), a C++ implementation of the Google
+logging module, and [gflags](https://github.com/gflags/gflags), a C++ library
+that implements command-line flags processing. This fallback can also be forced
+by passing `-DENABLE_GLOG_AND_GFLAGS=ON` to CMake.
 * [matio](https://github.com/tbeu/matio), a MATLAB MAT file I/O library.
 * [PugiXML](https://github.com/zeux/pugixml), a light-weight, simple and fast
 XML parser for C++.
@@ -232,11 +242,19 @@ to feed an active antenna and a Hi-Speed USB 2.0 connection. GNSS-SDR
 integration is provided via
 [gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR).
 
-* **Nuand [BladeRF](https://www.nuand.com/)** is a wideband transceiver that covers
-from 300 MHz to 3.8 GHz, delivering 12-bit quadrature sampling at a rate of up to
-40 MS/s. The host connection is via USB 3.0 Superspeed, and GNSS-SDR integration
-is provided via
-[gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR).
+* **Nuand [bladeRF](https://www.nuand.com/)** is a family of wideband
+transceivers with 12-bit quadrature sampling and a USB 3.0 Superspeed host
+connection. The original bladeRF x40 and x115 cover from 300 MHz to 3.8 GHz at
+up to 40 MS/s, while the [bladeRF 2.0
+micro](https://www.nuand.com/bladerf-2-0-micro/) xA4 and xA9 cover from 47 MHz
+to 6 GHz at up to 61.44 MS/s. Starting from GNSS-SDR v0.0.22, all of them are
+supported natively through [libbladeRF](https://github.com/Nuand/bladeRF)
+v2.6.0 or newer with the [`Bladerf_Signal_Source`]({{
+"/docs/sp-blocks/signal-source/#implementation-bladerf_signal_source" |
+relative_url }}) implementation (building GNSS-SDR with `-DENABLE_BLADERF=ON`).
+Integration via
+[gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki/GrOsmoSDR) is also
+available.
 
 For testing purposes, the antenna can be replaced by a radio frequency GNSS
 signal generator, which can directly feed the front-end and thus provide

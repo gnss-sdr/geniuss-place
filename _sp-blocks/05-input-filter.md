@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2018-12-14T12:54:02+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 ---
 
 
@@ -108,7 +108,7 @@ This implementation accepts the following parameters:
 
 Possible `filter_type` are:
 
--   `passband`: designs a FIR filter, using the weights
+-   `bandpass`: designs a FIR filter, using the weights
       `band1_error`, `band2_error`, etc. to weight the fit in each
       frequency band.
 

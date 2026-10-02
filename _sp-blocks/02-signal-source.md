@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-07T00:00:00+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 ---
 
 {% capture fig_img2 %}
@@ -132,8 +132,8 @@ This implementation accepts the following parameters:
 |     `implementation`      | `File_Signal_Source`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |  Mandatory   |
 |        `filename`         | Path to the file containing the raw digitized signal samples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |  Mandatory   |
 |   `sampling_frequency`    | Sample rate, in samples per second.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |  Mandatory   |
-|         `samples`         | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
-|        `item_type`        | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. |   Optional   |
+|         `samples`         | Number of samples to be read. If set to $$ 0 $$, the whole file is processed except a short tail at its end (at least 100 ms, or twice the longest coherent integration time configured in Acquisition or Tracking, if longer; no tail is discarded if `repeat=true`). It defaults to $$ 0 $$. |   Optional   |
+|        `item_type`        | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 8-bit integer. C++ name: int8_t">`ibyte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>, <abbr id="data-type" title="Interleaved (I&Q) stream of samples of type signed 16-bit integer. C++ name: int16_t">`ishort`</abbr>, <abbr id="data-type" title="Defines numbers with fractional parts, can represent values ranging from approx. 1.5e-45 to 3.4e38 with a precision of 7 digits (32 bits). C++ type name: float">`float`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Sample data type. It defaults to <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>. |   Optional   |
 |     `seconds_to_skip`     | Seconds of signal to skip from the beginning of the file before start processing. It defaults to $$ 0 $$ s.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |         `repeat`          | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |   Optional   |
@@ -248,7 +248,7 @@ This implementation accepts the following parameters:
 |     `implementation`      | `Two_Bit_Packed_File_Signal_Source`                                                                                                                                                                                                                                                                                                                                                                                                                                     |  Mandatory   |
 |        `filename`         | Path to the file containing the raw digitized signal samples                                                                                                                                                                                                                                                                                                                                                                                                            |  Mandatory   |
 |   `sampling_frequency`    | Sample rate, in samples per second.                                                                                                                                                                                                                                                                                                                                                                                                                                     |  Mandatory   |
-|         `samples`         | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$.                                                                                                                                                                                                                                                                                                                                    |   Optional   |
+|         `samples`         | Number of samples to be read. If set to $$ 0 $$, the whole file is processed except a short tail at its end (at least 100 ms, or twice the longest coherent integration time configured in Acquisition or Tracking, if longer; no tail is discarded if `repeat=true`). It defaults to $$ 0 $$. |   Optional   |
 |        `item_type`        | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>, <abbr id="data-type" title="Signed integer, 16-bit two's complement number ranging from -32768 to 32767. C++ type name: int16_t">`short`</abbr>]: Sample data type. It defaults to <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>. |   Optional   |
 |         `repeat`          | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                           |   Optional   |
 |       `sample_type`       | [`real`, `qi`, `iq`]: Set real or complex sample types (see above). It defaults to `real`.                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
@@ -303,10 +303,10 @@ frequency, which is a common format found in RF front-ends:
 $$ [S_0], [S_1], [S_2], ... $$ where $$ [S_i] $$ are 2-bit real samples.
 
 This Signal Source implementation is able to read such format and deliver at its
-output a sample stream composed of samples of type *byte* (8-bit signed
-integer). This implementation delivers a stream of samples of type <abbr
-id="data-type" title="Complex samples with real and imaginary parts of type
-32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.
+output a stream of real samples of type <abbr id="data-type" title="Defines
+numbers with fractional parts, can represent values ranging from approx. 1.5e-45
+to 3.4e38 with a precision of 7 digits (32 bits). C++ type name:
+float">`float`</abbr>, each one holding the value of a 2-bit sample.
 
 This implementation accepts the following parameters:
 
@@ -314,21 +314,21 @@ This implementation accepts the following parameters:
 |       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                                                | **Required** |
 | :-----------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
 |      --------------       |
-|     `implementation`      | `Nsr_Signal_Source`                                                                                                                                                                                                                                                                                                                            |  Mandatory   |
+|     `implementation`      | `Nsr_File_Signal_Source`                                                                                                                                                                                                                                                                                                                       |  Mandatory   |
 |        `filename`         | Path to the file containing the raw digitized signal samples                                                                                                                                                                                                                                                                                   |  Mandatory   |
 |   `sampling_frequency`    | Sample rate, in samples per second.                                                                                                                                                                                                                                                                                                            |  Mandatory   |
-|         `samples`         | Number of samples to be read. If set to $$ 0 $$, the whole file but the last two milliseconds are processed. It defaults to $$ 0 $$.                                                                                                                                                                                                           |   Optional   |
+|         `samples`         | Number of samples to be read. If set to $$ 0 $$, the whole file is processed except a short tail at its end (at least 100 ms, or twice the longest coherent integration time configured in Acquisition or Tracking, if longer; no tail is discarded if `repeat=true`). It defaults to $$ 0 $$. |   Optional   |
 |        `item_type`        | [<abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>]: Sample data type. Only <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr> is allowed in this implementation. |   Optional   |
 |         `repeat`          | [`true`, `false`]: If set to `true`, processing of samples restarts the file when the end is reached. It defaults to `false`.                                                                                                                                                                                                                  |   Optional   |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, it places a throttle controlling the data flow. It is generally not required, and it defaults to `false`.                                                                                                                                                                                                 |   Optional   |
 |          -------          |
 
-  _Signal Source implementation:_ **`Nsr_Signal_Source`**
+  _Signal Source implementation:_ **`Nsr_File_Signal_Source`**
   {: style="text-align: center;"}
 
 
 It follows an example of a Signal Source block
-configured with the `Nsr_Signal_Source` implementation:
+configured with the `Nsr_File_Signal_Source` implementation:
 
 ```ini
 ;######### SIGNAL_SOURCE CONFIG ############
@@ -360,13 +360,6 @@ specified in `SignalSource.filename`.
 
 
 ### Implementation: `GSS6450_File_Signal_Source`
-
-**Warning**: The new implementation of this Signal Source is only available from
-the `next` branch of the upstream GNSS-SDR repository. It will be included in the
-next stable release. The former implementation name
-`Spir_GSS6450_File_Signal_Source` is still accepted for backward compatibility,
-but new configurations should use `GSS6450_File_Signal_Source`.
-{: .notice--warning}
 
 [![GSS6450]({{ "/assets/images/GSS6450.png" | relative_url }}){:height="250px" width="250px"}{: .align-right}](https://www.keysight.com/us/en/product/PNT6450A/gss6450-record-playback-system.html)
 
@@ -784,10 +777,6 @@ never lets a producer overwrite samples that any of its readers has not yet
 consumed, the bands cannot drift apart by more than one output buffer over long
 runs. See [Multiple radio frequency chains](#multiple-radio-frequency-chains).
 
-**Warning**: This Signal Source is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
-
 This source is not built by default. It requires explicit activation when
 building GNSS-SDR:
 
@@ -956,7 +945,7 @@ This implementation accepts the following parameters:
 |  --------------  |
 | `implementation` | `NTLab_File_Signal_Source`  |  Mandatory   |
 |    `filename`    | Path to the file where samples dumped by the NTLab receiver is stored.  |  Mandatory   |
-| `RF_channels` | `[1/2/4]` Number of RF bands delivered by the NTLab RF front-end. | Mandatory |
+| `RF_channels` | `[1/2/4]` Number of RF bands delivered by the NTLab RF front-end. It defaults to `4`. | Optional |
 |   `sampling_frequency`    | Sample rate, in samples per second.  |  Mandatory   |
 |         `samples`         | Number of samples to be read. If set to $$ 0 $$, the whole file but the last few milliseconds are processed. It defaults to $$ 0 $$.  |   Optional   |
 |        `item_type`        | This implementation only admits <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr>. |   Optional   |
@@ -1191,7 +1180,7 @@ This implementation accepts the following parameters:
 | :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------: |
 |      --------------       |
 |     `implementation`      | `Multichannel_File_Signal_Source` | Mandatory |
-|     `total_channels`      | Number of RF channels (number of input files). Defaults to `1`. | Mandatory |
+|     `total_channels`      | Number of RF channels (number of input files). Defaults to `1`. | Optional |
 |        `filename0`        | Path to the file containing raw digitized samples for RF channel 0. | Mandatory |
 |        `filename1`        | Path to the file containing raw digitized samples for RF channel 1. | Required if `total_channels > 1` |
 |            `...`          | Additional filenames up to `filenameN`. | Required if `total_channels > 2` |
@@ -1199,7 +1188,7 @@ This implementation accepts the following parameters:
 |         `samples`         | Number of samples to be processed. If set to `0`, the full file (excluding the last few milliseconds) is processed. Defaults to `0`. | Optional |
 |        `item_type`        | [`byte`, `ibyte`, `short`, `ishort`, `float`, `gr_complex`]: Sample data type. Defaults to `short`. | Optional |
 |     `seconds_to_skip`     | Seconds of signal to skip from the beginning of each file. Defaults to `0`. | Optional |
-|       `header_size`       | Number of bytes to skip at the beginning of each file. Defaults to `0`. | Optional |
+|       `header_size`       | Number of items of type `item_type` to skip at the beginning of each file (for interleaved types such as `ishort`, each I or Q value counts as one item). Defaults to `0`. | Optional |
 |         `repeat`          | [`true`, `false`]: If set to `true`, processing restarts from the beginning of the file when EOF is reached. Defaults to `false`. | Optional |
 | `enable_throttle_control` | [`true`, `false`]: If set to `true`, a throttle block is inserted to limit data rate to `sampling_frequency`. Defaults to `false`. | Optional |
 |          -------          |
@@ -1299,13 +1288,14 @@ source control, potentially including various transformations, then publish
 samples via [ZeroMQ](https://zeromq.org/). This block could subscribe to that
 stream.
 
-The availability of this block requires the source code to be configured with
+This block requires the GNU Radio's `gr::zeromq` component to be installed in
+your system. It is built by default when that component is found at configure
+time (the `ENABLE_ZMQ` option defaults to `ON`, and it is automatically switched
+off if `gr::zeromq` is not found). It can be explicitly disabled with:
 
 ```console
-$ cmake -DENABLE_ZMQ=ON ..
+$ cmake -DENABLE_ZMQ=OFF ..
 ```
-
-and the GNU Radio's `gr::zeromq` component installed in your system.
 
 This implementation accepts the following parameters:
 
@@ -1498,7 +1488,7 @@ This implementation accepts the following parameters:
 |      `if_gain`       | RF front-end gain for the IF amplifier, in dB. It defaults to $$ 40 $$ dB.                                                                                                                                                                                                                                                                                                                                      |   Optional   |
 |       `if_bw`        | Set the bandpass filter on the radio frontend, in Hz. It defaults to `0` (automatic selection). This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                 |   Optional   |
 | `sampling_frequency` | Sampling frequency, in samples per second. It defaults to 2 Ms/s.                                                                                                                                                                                                                                                                                                                                               |   Optional   |
-|    `AGC_enabled`     | [`true`, `false`]: If set to `true`, enables Automatic Gain Control. It defaults to `false`.                                                                                                                                                                                                                                                                                                                    |   Optional   |
+|    `AGC_enabled`     | [`true`, `false`]: If set to `true`, enables Automatic Gain Control. It defaults to `true`.                                                                                                                                                                                                                                                                                                                    |   Optional   |
 | `iq_balance_mode` | [`0`, `1`, `2`]: Set the RF front-end IQ balance mode: `0` = Off, `1` = Manual, `2` = Automatic. The automatic correction uses an algorithm to adjust for I-Q imbalance. It defaults to `2` (Automatic). | Optional |
 | `dc_offset_mode` | [`0`, `1`, `2`]: Set the RF front-end DC correction mode: `0` = Off, `1` = Manual, `2` = Automatic. The automatic correction subtracts out the long-run average. It defaults to `2` (Automatic).  | Optional |
 |      `samples`       | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples.                                                                                                                                                                                                                                                                                                                        |   Optional   |
@@ -1587,6 +1577,30 @@ $ cmake -DENABLE_OSMOSDR=ON ../
 For more information, check out the tutorial about [GNSS-SDR options at building
 time]({{ "/docs/tutorials/configuration-options-building-time/" | relative_url }}).
 
+This implementation accepts the following parameters:
+
+|----------
+|    **Parameter**     | **Description** | **Required** |
+| :------------------: | :-------------- | :----------: |
+|    --------------    |
+|   `implementation`   | `RtlTcp_Signal_Source` | Mandatory |
+|      `address`       | IP address of the `rtl_tcp` server. It defaults to `127.0.0.1`. | Optional |
+|        `port`        | TCP port of the `rtl_tcp` server. It defaults to `1234`. | Optional |
+|        `freq`        | RF front-end center frequency, in Hz. It defaults to $$ f_{\text{GPS L1}}=1575420000 $$ Hz. | Optional |
+| `sampling_frequency` | Sampling frequency, in samples per second. It defaults to 2 Ms/s. | Optional |
+|    `AGC_enabled`     | [`true`, `false`]: If set to `true`, enables Automatic Gain Control. It defaults to `true`. | Optional |
+|        `gain`        | RF front-end gain, in dB. Only applied if `AGC_enabled=false`. It defaults to $$ 40 $$ dB. | Optional |
+|      `if_gain`       | RF front-end gain for the IF amplifier, in dB. Only applied if `AGC_enabled=false`. It defaults to $$ 40 $$ dB. | Optional |
+|      `flip_iq`       | [`true`, `false`]: If set to `true`, the I and Q components of the received samples are swapped. It defaults to `false`. | Optional |
+|     `item_type`      | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this implementation, so it is set by default. | Optional |
+|      `samples`       | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples. | Optional |
+|        `dump`        | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`. | Optional |
+|   `dump_filename`    | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat` | Optional |
+|       -------        |
+
+  _Signal Source implementation:_ **`RtlTcp_Signal_Source`**
+  {: style="text-align: center;"}
+
 In a terminal, type:
 
 ```console
@@ -1602,17 +1616,14 @@ SignalSource.item_type=gr_complex
 SignalSource.sampling_frequency=2000000
 SignalSource.freq=1575420000
 SignalSource.gain=40
-SignalSource.rf_gain=40
 SignalSource.if_gain=30
 SignalSource.AGC_enabled=false
 SignalSource.samples=0
-SignalSource.repeat=false
 SignalSource.dump=false
 SignalSource.dump_filename=../data/signal_source.dat
-SignalSource.enable_throttle_control=false
 SignalSource.address=127.0.0.1 ; Put your IP here
 SignalSource.port=1234         ; Put your port here
-SignalSource.swap_iq=false
+SignalSource.flip_iq=false
 ```
 
 
@@ -1657,14 +1668,17 @@ that both the I and Q paths are schematically identical to each other.
 In order to make use of this block implementation, you need to build GNSS-SDR
 from the source code after installing the required software dependencies.
 
-In Debian Buster or Ubuntu Cosmic, those dependencies can be installed as:
+Since GNU Radio 3.10.0.0, `gr-iio` is a [native component of GNU
+Radio](https://github.com/gnuradio/gnuradio/tree/main/gr-iio), so in
+distributions shipping GNU Radio 3.10 or newer (_e.g._, Debian 12 Bookworm and
+later, Ubuntu 22.04 Jammy and later) the dependencies can be installed as:
 
 ```console
-$ sudo apt install libiio-dev gr-iio
+$ sudo apt install gnuradio-dev libiio-dev libad9361-dev
 ```
 
-In older releases or other distributions, dependencies can be built from source
-as:
+With older GNU Radio versions, or in other distributions, dependencies can be
+built from source as:
 
 ```console
 $ sudo apt install libxml2-dev bison flex
@@ -1682,13 +1696,12 @@ $ mkdir build && cd build && cmake .. && make && sudo make install
 $ cd ../..
 ```
 
-**Warning**: do **not** use gr-iio < 0.3 packaged in Debian releases older than
-Buster and Ubuntu releases older than Cosmic.
+**Warning**: do **not** use gr-iio < 0.3 packaged in old Debian and Ubuntu
+releases.
 
-`gr-iio` became a [native component of GNU
-Radio](https://github.com/gnuradio/gnuradio/tree/main/gr-iio) since version
-3.10.1.0. If that native component is found, the explicit installation of the
-gr-iio package is not required.
+If the native `gr-iio` component of GNU Radio (version 3.10.0.0 and later) is
+found, the explicit installation of the standalone gr-iio package is not
+required.
 {: .notice--info }
 
 Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_FMCOMMS2=ON`
@@ -1718,15 +1731,28 @@ This implementation accepts the following parameters:
 |     `rx2_enable`     | [`true`, `false`]: If set to `true`, it enables the RX2 chain. It defaults to `false`.                                                                                                                                                                                                                                                                                                                         |   Optional   |
 |    `buffer_size`     | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).                                                                                                                                                                                                                                                   |   Optional   |
 |     `quadrature`     | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/rf/wide-band-rf-transceivers/design-support/w/documents/10074/ad9361-transmit-quadrature-calibration-tx-quad-cal)). It defaults to `true`.                                                                                                                                       |   Optional   |
-|       `rf_dc`        | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
-|       `bb_dc`        | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
-|   `gain_mode_rx1`    | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`.                                                                                                                                                         |   Optional   |
-|   `gain_mode_rx2`    | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX2 chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`.                                                                                                                                                         |   Optional   |
+|       `rf_dc`        | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-calibration-tracking-controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
+|       `bb_dc`        | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-calibration-tracking-controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
+|   `gain_mode_rx1`    | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX1 chain ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-gain-control-modes)). It defaults to `slow_attack`.                                                                                                                                                         |   Optional   |
+|   `gain_mode_rx2`    | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX2 chain ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-gain-control-modes)). It defaults to `slow_attack`.                                                                                                                                                         |   Optional   |
 |      `gain_rx1`      | If `gain_mode_rx1` is set to `manual`, it sets the gain of the RX1 chain, in dB, with a granularity of 1 dB and range $$ 0 < $$`gain_rx1`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB.                                                                                                                                                                                                                            |   Optional   |
 |      `gain_rx2`      | If `gain_mode_rx2` is set to `manual`, it sets the gain of the RX2 chain, in dB, with a granularity of 1 dB and range $$ 0 < $$`gain_rx2`$$ < 72 $$ dB. It defaults to $$ 64 $$ dB.                                                                                                                                                                                                                            |   Optional   |
-|   `rf_port_select`   | [`A_BALANCED`, `B_BALANCED`, `C_BALANCED`, `A_N`, `A_P`, `B_N`, `B_P`, `C_N`, `C_P`]: Selects the RF port to be used ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#rf_port_selection) and [more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361-customization?&#rf_port_select)). It defaults to `A_BALANCED`.     |   Optional   |
-|    `filter_file`     | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty).                                                                                                                                                                                        |   Optional   |
-|    `filter_auto`     | [`true`, `false`]: If set to `true`, it loads a default FIR filter and thereby enables lower sampling / baseband rates. It defaults to `false`.                                                                                                                                                                                                                                                                |   Optional   |
+|   `rf_port_select`   | [`A_BALANCED`, `B_BALANCED`, `A_N`, `B_N`, `B_P`, `C_N`, `C_P`, `TX_MONITOR1`, `TX_MONITOR2`, `TX_MONITOR1_2`]: Selects the RF port to be used ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-rf-port-selection) and [more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361-customization.html#rf-port-select)). It defaults to `A_BALANCED`.     |   Optional   |
+|    `filter_file`     | Allows a FIR filter configuration to be loaded from a file ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-digital-fir-filter-controls)). It defaults to "" (empty).                                                                                                                                                                                        |   Optional   |
+|    `filter_auto`     | [`true`, `false`]: If set to `true`, it loads a default FIR filter and thereby enables lower sampling / baseband rates. If `filter_source` is not set, `filter_auto=true` sets it to `Auto`. It defaults to `false`.                                                                                                                                                                                                                                                                |   Optional   |
+|   `filter_source`    | [`Off`, `Auto`, `File`, `Design`]: Selects the RX FIR filter configuration: `Off` disables the filter, `Auto` uses auto-generated filters, `File` loads the filter from `filter_filename`, and `Design` creates it from `Fpass`, `Fstop`, `sampling_frequency` and `bandwidth` ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-digital-fir-filter-controls)). It defaults to `Auto` if `filter_auto=true`, and to `Off` otherwise. Only used with the gr-iio component of GNU Radio 3.10 and later. | Optional |
+|  `filter_filename`   | File containing the FIR filter configuration, used if `filter_source=File`. It defaults to the value of `filter_file`. Only used with the gr-iio component of GNU Radio 3.10 and later. | Optional |
+|       `Fpass`        | Passband frequency of the designed filter, in Hz, used if `filter_source=Design`. It defaults to $$ 0 $$. | Optional |
+|       `Fstop`        | Stopband frequency of the designed filter, in Hz, used if `filter_source=Design`. It defaults to $$ 0 $$. | Optional |
+|    `RF_channels`     | [`1`, `2`]: Number of RF channels delivered by the block. If set to `1`, exactly one of `rx1_enable` and `rx2_enable` must be `true`. If set to `2`, both must be `true`. It defaults to `1`. | Optional |
+|    `rf_shutdown`     | [`true`, `false`]: If set to `true`, the AD9361 RX channels (and the TX channel, if `enable_dds_lo=true`) are shut down when the receiver exits. Set it to `false` to leave the AD9361 configured and running. It defaults to the value of the `--rf_shutdown` command-line flag, which is `true` by default. | Optional |
+|   `enable_dds_lo`    | [`true`, `false`]: If set to `true`, the AD9361 TX chain is used to generate a tone (from the internal DDS) that can be used as a local oscillator for an external mixer. It defaults to `false`. | Optional |
+|   `freq_rf_tx_hz`    | TX local oscillator frequency, in Hz, if `enable_dds_lo=true`. It defaults to $$ f_{\text{GPS L1}} - f_{\text{GPS L2}} - $$ `freq_dds_tx_hz`. | Optional |
+|   `freq_dds_tx_hz`   | Frequency of the DDS tone, in Hz, if `enable_dds_lo=true`. It defaults to $$ 10000 $$ Hz. | Optional |
+|   `scale_dds_dbfs`   | Scale of the DDS tone, in dBFS, if `enable_dds_lo=true`. It defaults to $$ 0 $$ dBFS. | Optional |
+|   `phase_dds_deg`    | Phase of the DDS tone, in degrees, if `enable_dds_lo=true`. It defaults to $$ 0 $$ degrees. | Optional |
+| `tx_attenuation_db`  | TX attenuation, in dB, if `enable_dds_lo=true`. Valid values range from $$ -89.75 $$ to $$ 0 $$ dB in $$ 0.25 $$ dB steps. It defaults to $$ -10 $$ dB. | Optional |
+|    `tx_bandwidth`    | TX analog filter bandwidth, in Hz, if `enable_dds_lo=true`. Valid values range from $$ \max(200000, 1.1 \cdot $$`freq_dds_tx_hz`$$) $$ to $$ 1000000 $$ Hz. It defaults to $$ 500000 $$ Hz. | Optional |
 |      `samples`       | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples.                                                                                                                                                                                                                                                                                                                       |   Optional   |
 |        `dump`        | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.                                                                                                                                                                                                                                                                                             |   Optional   |
 |   `dump_filename`    | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat`                                                                                                                                                                                                                                                                                       |   Optional   |
@@ -1789,8 +1815,8 @@ distributions.
 
 `gr-iio` became a [native component of GNU
 Radio](https://github.com/gnuradio/gnuradio/tree/main/gr-iio) since version
-3.10.1.0. If that native component is found, the explicit installation of the
-gr-iio package is not required.
+3.10.0.0. If that native component is found, the explicit installation of the
+standalone gr-iio package is not required.
 {: .notice--info }
 
 Once gr-iio is installed, build GNSS-SDR passing the flag `-DENABLE_PLUTOSDR=ON`
@@ -1819,12 +1845,12 @@ This implementation accepts the following parameters:
 |     `item_type`      | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the output data type. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is allowed in this version, so it is set by default. |   Optional   |
 |    `buffer_size`     | Size of the internal buffer, in samples. This block will only input one buffer of samples at a time. It defaults to 0xA0000 (that is, $$ 655360 $$ samples).                                                                                                                                                                                                                                                   |   Optional   |
 |     `quadrature`     | [`true`, `false`]: If set to `true`, it enables the Quadrature calibration tracking option ([Read more](https://ez.analog.com/rf/wide-band-rf-transceivers/design-support/w/documents/10074/ad9361-transmit-quadrature-calibration-tx-quad-cal)). It defaults to `true`.                                                                                                                                       |   Optional   |
-|       `rf_dc`        | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
-|       `bb_dc`        | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#calibration_tracking_controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
-|     `gain_mode`      | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX chain ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#gain_control_modes)). It defaults to `slow_attack`.                                                                                                                                                          |   Optional   |
+|       `rf_dc`        | [`true`, `false`]: If set to `true`, it enables the RF DC calibration tracking option ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-calibration-tracking-controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
+|       `bb_dc`        | [`true`, `false`]: If set to `true`, it enables the BB DC calibration tracking option ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-calibration-tracking-controls)). It defaults to `true`.                                                                                                                                                               |   Optional   |
+|     `gain_mode`      | [`manual`, `slow_attack`, `hybrid`, `fast_attack`]: Sets the gain control mode of the RX chain ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-gain-control-modes)). It defaults to `slow_attack`.                                                                                                                                                          |   Optional   |
 |        `gain`        | If `gain_mode` is set to `manual`, it sets the gain of the RX chain, in dB, with a granularity of 1 dB and range $$ 0 < $$`gain`$$ < 72 $$ dB. It defaults to $$ 50 $$ dB.                                                                                                                                                                                                                                     |   Optional   |
-|    `filter_file`     | Allows a FIR filter configuration to be loaded from a file ([Read more](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361#digital_fir_filter_controls)). It defaults to "" (empty).                                                                                                                                                                                        |   Optional   |
-|    `filter_auto`     | [`true`, `false`]: If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `true`.                                                                                                                                                                                                                                                                     |   Optional   |
+|    `filter_file`     | Allows a FIR filter configuration to be loaded from a file ([Read more](https://developer.analog.com/docs/linux/drivers/iio-transceiver/ad9361.html#ad9361-digital-fir-filter-controls)). It defaults to "" (empty).                                                                                                                                                                                        |   Optional   |
+|    `filter_auto`     | [`true`, `false`]: If set to `true`, it loads a default filter and thereby enables lower sampling / baseband rates. It defaults to `false`.                                                                                                                                                                                                                                                                     |   Optional   |
 |      `samples`       | Number of samples to be processed. It defaults to $$ 0 $$, which means infinite samples.                                                                                                                                                                                                                                                                                                                       |   Optional   |
 |        `dump`        | [`true`, `false`]: If set to `true`, it enables the dump of the signal source into a file. It defaults to `false`.                                                                                                                                                                                                                                                                                             |   Optional   |
 |   `dump_filename`    | If `dump` is set to `true`, the name of the file in which data will be stored. It defaults to `./data/signal_source.dat`                                                                                                                                                                                                                                                                                       |   Optional   |
@@ -1840,7 +1866,7 @@ SignalSource.device_address=192.168.2.1   ; <- PUT YOUR DEVICE ADDRESS HERE
 SignalSource.freq=1575420000
 SignalSource.bandwidth=2600000
 SignalSource.sampling_frequency=3000000
-SignalSource.item_size=gr_complex
+SignalSource.item_type=gr_complex
 SignalSource.gain_mode=manual
 SignalSource.gain=30
 SignalSource.samples=0
@@ -1897,8 +1923,8 @@ This implementation accepts the following parameters:
 | `sampling_frequency` | Sampling frequency, in Sps. It defaults to `2000000`.                                                                                                                                                                                                                                                                      |   Optional   |
 |   `limesdr_serial`   | LimeSDR serial number to discriminate between two or more LimeSDR connected to the same computer. If not set, the detection is automatic.                                                                                                                                                                                  |   Optional   |
 |      `samples`       | Number of samples to be read. If set to `0`, the receiver will work until `q`+`ENTER` are pressed. It defaults to `0` .                                                                                                                                                                                                    |   Optional   |
-|      `antenna`       | `[0, 1, 2, 3, 255]` Set which antenna is used: None(0), LNAH(1), LNAL(2), LNAW(3), AUTO(255). It defaults to `3`.                                                                                                                                                                                                          |   Optional   |
-|      `channels`      | `[1, 2]` Number of channels to activate: `1` or `2`. It defaults to `1`.                                                                                                                                                                                                                                                   |   Optional   |
+|      `antenna`       | `[0, 1, 2, 3, 255]` Set which antenna is used: None(0), LNAH(1), LNAL(2), LNAW(3), AUTO(255). It defaults to `255` (AUTO).                                                                                                                                                                                                          |   Optional   |
+|      `channel`       | `[0, 1]` Channel to which the `antenna`, `gain`, `analog_bw`, and `digital_bw` settings (and the calibration) are applied: A(0) or B(1). It defaults to `0`. |   Optional   |
 |     `analog_bw`      | `[0, 1500000-130000000]`: Analog filter bandwidth for each channel, in Hz. Analog filter is off if bandwidth is set to `0`. If enabled, its range is between 1.5 MHz and 130 MHz.                                                                                                                                          |   Optional   |
 |     `digital_bw`     | `[0-sampling_frequency]`: Digital filter bandwidth for each channel. Digital filter if off if bandwidth is set to 0. Bandwidth should not be higher than the `sampling_frequency`.                                                                                                                                         |   Optional   |
 |  `limechannel_mode`  | `[0, 1, 2]` Channel and mode selection: A(0), B(1) or (A+B) MIMO(2). It defaults to `0`.                                                                                                                                                                                                                                   |   Optional   |
@@ -1943,10 +1969,6 @@ an active GNSS antenna, and the unified overall RX gain control of the bladeRF
 `if_gain` stages in this implementation). Only single-channel (SISO) reception
 is currently supported; the second RX channel of the bladeRF 2.0 Micro xA9 is
 not exposed.
-
-**Warning**: This Signal Source is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
 
 In order to make use of this block implementation, you need to build GNSS-SDR
 from the source code with [libbladeRF](https://github.com/Nuand/bladeRF)
@@ -2031,10 +2053,6 @@ software-defined radio platform. Its Pocket SDR FE 2CH/4CH/8CH front-ends can
 stream RF samples to GNSS-SDR through the
 [gr-pocketsdr](https://github.com/minhaj6/gr-pocketsdr) GNU Radio out-of-tree
 module.
-
-**Warning**: This Signal Source is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
 
 In order to make use of this block implementation, you need to build GNSS-SDR
 from the source code after installing `gr-pocketsdr`. Once `gr-pocketsdr` is
@@ -2143,40 +2161,8 @@ Channels_1C.count=8
 Channels_2S.count=8
 
 ; # Channel connection
-Channel0.RF_channel_ID=1
-Channel1.RF_channel_ID=1
-Channel2.RF_channel_ID=1
-Channel3.RF_channel_ID=1
-Channel4.RF_channel_ID=1
-Channel5.RF_channel_ID=1
-Channel6.RF_channel_ID=1
-Channel7.RF_channel_ID=1
-Channel8.RF_channel_ID=0
-Channel9.RF_channel_ID=0
-Channel10.RF_channel_ID=0
-Channel11.RF_channel_ID=0
-Channel12.RF_channel_ID=0
-Channel13.RF_channel_ID=0
-Channel14.RF_channel_ID=0
-Channel15.RF_channel_ID=0
-
-; Channel signal
-Channel0.signal=1C
-Channel1.signal=1C
-Channel2.signal=1C
-Channel3.signal=1C
-Channel4.signal=1C
-Channel5.signal=1C
-Channel6.signal=1C
-Channel7.signal=1C
-Channel8.signal=2S
-Channel9.signal=2S
-Channel10.signal=2S
-Channel11.signal=2S
-Channel12.signal=2S
-Channel13.signal=2S
-Channel14.signal=2S
-Channel15.signal=2S
+Channels_1C.RF_channel_ID=0 ; Channels 0 to 7 (GPS L1 C/A), connected to freq0
+Channels_2S.RF_channel_ID=1 ; Channels 8 to 15 (GPS L2C), connected to freq1
 
 ...
 
@@ -2255,25 +2241,23 @@ Examples of such configuration could be:
 
 
 ```ini
-Receiver.sources_count=2
-; GNSS-SDR.num_sources=2   ; starting from v0.0.15
+GNSS-SDR.num_sources=2
 ```
 
 Then:
 
 ```ini
-Receiver.sources_count=2
-; GNSS-SDR.num_sources=2   ; starting from v0.0.15
+GNSS-SDR.num_sources=2
 ...
 SignalSource0.implementation=...
 SignalSource1.implementation=...
 ...
 SignalConditioner0.implementation=...
-DataTypeAdaper0.implementation=...
+DataTypeAdapter0.implementation=...
 InputFilter0.implementation=...
 ...
 SignalConditioner1.implementation=...
-DataTypeAdaper1.implementation=...
+DataTypeAdapter1.implementation=...
 InputFilter1.implementation=...
 ...
 Channels_1C.count=2
@@ -2285,10 +2269,5 @@ Channel0.RF_channel_ID=0
 Channel1.RF_channel_ID=0
 Channel2.RF_channel_ID=1
 Channel3.RF_channel_ID=1
-
-Channel0.signal=1C
-Channel1.signal=1C
-Channel2.signal=1B
-Channel3.signal=1B
 ...
 ```

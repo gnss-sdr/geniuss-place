@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2024-09-30T12:54:02-04:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 ---
 
 
@@ -274,17 +274,17 @@ It accepts the following parameters:
 |  **Parameter**   | **Description** | **Required** |
 | :--------------: | :-------------- | :----------: |
 |  --------------  |
-| `implementation` | `Cshort_to_Gr_Complex` |  Mandatory   |
+| `implementation` | `Cshort_To_Gr_Complex` |  Mandatory   |
 |     -------      |
 
-  _Data Type Adapter implementation:_ **`Cshort_to_Gr_Complex`**.
+  _Data Type Adapter implementation:_ **`Cshort_To_Gr_Complex`**.
   {: style="text-align: center;"}
 
 Example:
 
 ```ini
 ;######### DATA_TYPE_ADAPTER CONFIG ############
-DataTypeAdapter.implementation=Cshort_to_Gr_Complex
+DataTypeAdapter.implementation=Cshort_To_Gr_Complex
 ```
 
 ### Implementation: `Pass_Through`

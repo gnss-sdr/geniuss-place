@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-29T12:00:00+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
@@ -95,10 +95,6 @@ satellite PRN 11[^Fernandez12]._
 The `Acquisition_<signal>.full_grid_search` option controls when the shared CPU
 PCPS acquisition block makes its detection decision. It defaults to `false`.
 
-**Warning**: This option is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
-
 Each dwell computes the correlation over every active Doppler bin and code
 phase. With multiple dwells, the block adds their squared correlation
 magnitudes, forming a non-coherently accumulated search grid. This option changes
@@ -173,10 +169,6 @@ include `full_grid_search`.
 
 
 ## Reduced Doppler search
-
-**Warning**: This behavior is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
 
 The implementations whose parameter tables below include `full_grid_search` and
 `reference_bin_min_sidelobes` share a CPU PCPS acquisition block that can search
@@ -420,7 +412,6 @@ This implementation accepts the following parameters:
 | `implementation` | `GPS_L1_CA_PCPS_Acquisition_Fine_Doppler` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is defined in this version. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to $$ 5000 $$ Hz. | Optional |
-| `doppler_min`  | Minimum Doppler value in the search grid, in Hz. It defaults to $$ -5000 $$ Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
@@ -430,7 +421,7 @@ This implementation accepts the following parameters:
 | `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
 |--------------
 
-  _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Fine_Doppler_Acquisition`**.
+  _Acquisition implementation:_ **`GPS_L1_CA_PCPS_Acquisition_Fine_Doppler`**.
   {: style="text-align: center;"}
 
 Example:
@@ -440,7 +431,6 @@ Example:
 Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition_Fine_Doppler
 Acquisition_1C.threshold=0.007
 Acquisition_1C.doppler_max=10000
-Acquisition_1C.doppler_min=-10000
 Acquisition_1C.doppler_step=500
 Acquisition_1C.max_dwells=10
 ```
@@ -479,7 +469,7 @@ This implementation accepts the following parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|
 |--------------
-| `implementation` | `GPS_L1_CA_Tong_PCPS_Acquisition` | Mandatory |
+| `implementation` | `GPS_L1_CA_PCPS_Tong_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
@@ -728,8 +718,11 @@ This implementation accepts the following parameters:
 | `dual_freq_assisted_doppler_narrowing` | [`true`, `false`]: If set to `false`, the Doppler projected from the primary band when `GNSS-SDR.assist_dual_frequency_acq=true` is discarded for this signal, which is then always searched over the full Doppler grid centered at $$ 0 $$ Hz. The secondary band still waits for the satellite to be tracked in the primary band; only the Doppler assistance is dropped. It defaults to `true`. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
+| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_R_1G_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
@@ -816,10 +809,6 @@ modulated by a secondary code of $$ 1800 $$ chips. GNSS-SDR identifies the
 BeiDou B1C signal with the identifier `1D`.
 
 ### Implementation: `BEIDOU_B1C_PCPS_Ambiguous_Acquisition`
-
-**Warning**: This implementation is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
 
 By default, this implementation acquires the pilot component, which carries
 $$ 3/4 $$ of the total signal power, using a QMBOC(6,1,4/33) local replica. The
@@ -959,10 +948,6 @@ accurate or calibrated reference, `doppler_max` can be reduced well below the
 default, speeding up acquisition.
 
 ### Implementation: `SBAS_L1_PCPS_Acquisition`
-
-**Warning**: This implementation is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
 
 This implementation accepts the following parameters:
 
@@ -1108,8 +1093,11 @@ This implementation accepts the following parameters:
 | `alm_ephe_assisted_doppler_narrowing` | [`true`, `false`]: If set to `true`, and this signal is searched as a secondary band without dual-frequency assistance (_e.g._, with `GNSS-SDR.assist_dual_frequency_acq=false`), its Doppler search is narrowed around the value predicted from the ephemeris or almanac of the satellite, provided that `GNSS-SDR.enable_visibility_aware_search=true` and the satellite is classified as visible. It has no effect when this signal is searched as the primary band, where the prediction is always used. It defaults to `false`. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
 | `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
+| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_R_2G_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
@@ -1145,20 +1133,26 @@ This implementation accepts the following parameters:
 |:-:|:--|:-:|
 |--------------
 | `implementation` | `Galileo_E6_PCPS_Acquisition` | Mandatory |
-| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. Only <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> is defined in this version. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to $$ 5000 $$ Hz. | Optional |
-| `doppler_min`  | Minimum Doppler value in the search grid, in Hz. It defaults to $$ -5000 $$ Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present), | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
 | `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It defaults to 1 ms. | Optional |
+| `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a bit transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
 | `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
 | `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
 | `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `dual_freq_assisted_doppler_narrowing` | [`true`, `false`]: If set to `false`, the Doppler projected from the primary band when `GNSS-SDR.assist_dual_frequency_acq=true` is discarded for this signal, which is then always searched over the full Doppler grid centered at $$ 0 $$ Hz. The secondary band still waits for the satellite to be tracked in the primary band; only the Doppler assistance is dropped. It defaults to `true`. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `alm_ephe_assisted_doppler_narrowing` | [`true`, `false`]: If set to `true`, and this signal is searched as a secondary band without dual-frequency assistance (_e.g._, with `GNSS-SDR.assist_dual_frequency_acq=false`), its Doppler search is narrowed around the value predicted from the ephemeris or almanac of the satellite, provided that `GNSS-SDR.enable_visibility_aware_search=true` and the satellite is classified as visible. It has no effect when this signal is searched as the primary band, where the prediction is always used. It defaults to `false`. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
 | `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, this breaks the determinism provided by the GNU Radio scheduler, and different processing results can be obtained in different machines. Do not use this option for file processing. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
+| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
 | `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
-| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. It defaults to `./acquisition.dat` | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_E_E6_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
+| `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
   _Acquisition implementation:_ **`Galileo_E6_PCPS_Acquisition`**.
@@ -1474,10 +1468,6 @@ secondary code. GNSS-SDR identifies the BeiDou B2a signal with the identifier
 
 ### Implementation: `BEIDOU_B2A_PCPS_Acquisition`
 
-**Warning**: This implementation is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
-
 This implementation searches for the data component of the B2a signal, using a
 local replica of its primary ranging code. Since the primary code period is
 $$ 1 $$ ms and the data component carries a $$ 5 $$-chip secondary code, the
@@ -1543,7 +1533,7 @@ Acquisition_5D.max_dwells=8
 
 ## Galileo E5b signal acquisition
 
-### Implementation: `Galileo_E5b_Pcps_Acquisition`
+### Implementation: `Galileo_E5b_PCPS_Acquisition`
 
 This implementation accepts the following parameters:
 
@@ -1561,7 +1551,7 @@ This implementation accepts the following parameters:
 |  **Parameter**  |  **Description** | **Required** |
 |:-:|:--|:-:|
 |--------------
-| `implementation` | `Galileo_E5b_Pcps_Acquisition` | Mandatory |
+| `implementation` | `Galileo_E5b_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
@@ -1586,7 +1576,7 @@ This implementation accepts the following parameters:
 | `dump_channel` |  If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
 |--------------
 
-  _Acquisition implementation:_ **`Galileo_E5b_Pcps_Acquisition`**.
+  _Acquisition implementation:_ **`Galileo_E5b_PCPS_Acquisition`**.
   {: style="text-align: center;"}
 
 Example:
@@ -1616,12 +1606,12 @@ The list of output variables contained in each `.mat` file is the following:
 
   * `acq_delay_samples`: Coarse estimation of time delay, in number of samples from the start of the pseudorandom code.
   * `acq_doppler_hz`: Coarse estimation of Doppler shift, in Hz.
-  * `acq_grid`: Acquisition search grid. Each column corresponds to a Doppler bin. <span style="color: orange">In dumps generated by the `next` branch, the Doppler bins can be followed by up to two noise-reference columns (see `doppler_num_candidates`).</span>
+  * `acq_grid`: Acquisition search grid. Each column corresponds to a Doppler bin. In dumps generated since GNSS-SDR v0.0.22, the Doppler bins can be followed by up to two noise-reference columns (see `doppler_num_candidates`).
   * `positive_acq`: `1` if there has been a positive acquisition, `0` for no detection.
-  * `doppler_center`: Center of the Doppler search grid, in Hz. It is `0` unless the search was centered on a Doppler estimation obtained in another frequency band or predicted from ephemeris or almanac data (see [Reduced Doppler search](#reduced-doppler-search)). <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
-  * `doppler_max`: Maximum Doppler shift in the search grid. <span style="color: orange">In dumps generated by the `next` branch, it is the offset of the first Doppler bin with respect to `doppler_center`, so that the Doppler of column $$ i $$ (starting at $$ 0 $$) is `doppler_center - doppler_max + doppler_step * i`. Since the bins are centered at `doppler_center` (see [Reduced Doppler search](#reduced-doppler-search)), this value can differ from the configured `doppler_max` (for instance, it is $$ 0 $$ for a single-bin search).</span>
-  * `doppler_narrowed`: `1` if fewer Doppler bins than the full configured grid were searched (see [Reduced Doppler search](#reduced-doppler-search)), `0` otherwise. <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
-  * `doppler_num_candidates`: Number of leading columns of `acq_grid` that are Doppler bins. The remaining columns, if any (up to two), are noise-reference bins at `doppler_center` $$ \pm $$ the configured maximum Doppler, which are not on the Doppler axis defined by `doppler_max` and `doppler_step` and must be skipped when plotting. <span style="color: orange">This variable is only present in dumps generated by the `next` branch of the public repository and will be included in the next GNSS-SDR stable release.</span>
+  * `doppler_center`: Center of the Doppler search grid, in Hz. It is `0` unless the search was centered on a Doppler estimation obtained in another frequency band or predicted from ephemeris or almanac data (see [Reduced Doppler search](#reduced-doppler-search)).
+  * `doppler_max`: Maximum Doppler shift in the search grid. In dumps generated since GNSS-SDR v0.0.22, it is the offset of the first Doppler bin with respect to `doppler_center`, so that the Doppler of column $$ i $$ (starting at $$ 0 $$) is `doppler_center - doppler_max + doppler_step * i`. Since the bins are centered at `doppler_center` (see [Reduced Doppler search](#reduced-doppler-search)), this value can differ from the configured `doppler_max` (for instance, it is $$ 0 $$ for a single-bin search).
+  * `doppler_narrowed`: `1` if fewer Doppler bins than the full configured grid were searched (see [Reduced Doppler search](#reduced-doppler-search)), `0` otherwise.
+  * `doppler_num_candidates`: Number of leading columns of `acq_grid` that are Doppler bins. The remaining columns, if any (up to two), are noise-reference bins at `doppler_center` $$ \pm $$ the configured maximum Doppler, which are not on the Doppler axis defined by `doppler_max` and `doppler_step` and must be skipped when plotting.
   * `doppler_step`: Doppler step in the search grid.
   * `input_power`: Input signal power.
   * `num_dwells`: Number of dwells performed in non-coherent acquisition.

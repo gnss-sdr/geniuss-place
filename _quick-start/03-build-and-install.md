@@ -2,7 +2,7 @@
 title: "Build and install GNSS-SDR"
 permalink: /build-and-install/
 excerpt: "How to quickly build and install GNSS-SDR in your system."
-last_modified_at: 2025-03-14T11:13:02+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 header:
   teaser: "/assets/images/geniuss-building.png"
 sidebar:
@@ -158,7 +158,7 @@ since the version packaged in your distribution.
 Once you have installed these packages, you can jump directly to
 [clone, build and install GNSS-SDR](#build).
 
-<i class="fab fa-linux fa-xl"></i> For other distributions (_e.g._ Arch Linux, Fedora, openSUSE, Rocky Linux) please check the list of dependency
+<i class="fab fa-linux fa-xl"></i> For other distributions (_e.g._ AlmaLinux, Arch Linux, Fedora, openSUSE, Rocky Linux) please check the list of dependency
 packages in the
 [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/next/README.md#alternative-1-install-dependencies-using-software-packages)
 file.
@@ -323,27 +323,6 @@ $ xcodebuild -config Release
 &nbsp;
 
 # Other builds
-
-## Snap package
-
-<figure style="width: 64px" class="align-left">
-  <img src="{{ "/assets/images/Snapcraft-logo-bird.png" | relative_url }}" alt="Snapcraft logo">
-</figure>
-
-[Snaps](https://snapcraft.io) are Linux packages aimed for Ubuntu or Ubuntu-like
-distros. Snaps are self-contained packages that bundle the application and all
-the libraries and runtimes it needs, and can be updated and reverted without
-affecting the rest of the system. Snaps are confined from the OS and other apps
-through security mechanisms, but can exchange content and functions with other
-snaps.
-
-Visit
-[https://github.com/carlesfernandez/snapcraft-sandbox](https://github.com/carlesfernandez/snapcraft-sandbox)
-for instructions on building your own snap package of GNSS-SDR, or install it
-directly from the [Snap Store](https://snapcraft.io/gnss-sdr-next):
-
-[![Get it from the Snap Store]({{ "/assets/images/snap-store-white.svg" | relative_url }})](https://snapcraft.io/gnss-sdr-next)
-{: style="text-align: center;"}
 
 ## Docker
 

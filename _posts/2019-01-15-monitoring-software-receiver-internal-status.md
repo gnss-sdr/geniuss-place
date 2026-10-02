@@ -13,7 +13,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2026-08-15T12:00:00+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 ---
 
 
@@ -22,7 +22,7 @@ last_modified_at: 2026-08-15T12:00:00+02:00
 This guide assumes that GNSS-SDR and its software dependencies are already installed on your system, otherwise please check out the [building guide]({{ "/build-and-install/" | relative_url }}) and the [README.md](https://github.com/gnss-sdr/gnss-sdr/blob/main/README.md) file for more details on how to install GNSS-SDR.
 {: .notice--info}
 
-Since the introduction of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative_url }}) block, GNSS-SDR offers a mechanism for monitoring the status of the software receiver in real-time by providing access to 29 internal parameters that tell us about the performance of each channel. The complete list of parameters is documented [here]({{ "/docs/sp-blocks/monitor/#exposed-internal-parameters" | relative_url }}). The list has grown over time: for instance, a carrier cycle-slip flag was added in GNSS-SDR v0.0.21, and two carrier-phase integrity flags (`flag_carrier_phase_discontinuity` and `flag_half_cycle_slip`) were added later on. <span style="color: orange">These last two fields are only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span> Since new fields are always appended to the message definition, Protocol Buffers guarantees backward compatibility: clients built against an older `gnss_synchro.proto` keep working, and missing fields simply read as their default values.
+Since the introduction of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative_url }}) block, GNSS-SDR offers a mechanism for monitoring the status of the software receiver in real-time by providing access to 29 internal parameters that tell us about the performance of each channel. The complete list of parameters is documented [here]({{ "/docs/sp-blocks/monitor/#exposed-internal-parameters" | relative_url }}). The list has grown over time: for instance, a carrier cycle-slip flag was added in GNSS-SDR v0.0.21, and two carrier-phase integrity flags (`flag_carrier_phase_discontinuity` and `flag_half_cycle_slip`) were added in GNSS-SDR v0.0.22. Since new fields are always appended to the message definition, Protocol Buffers guarantees backward compatibility: clients built against an older `gnss_synchro.proto` keep working, and missing fields simply read as their default values.
 
 In this article, we are going to learn how to create a minimal monitoring client application written in C/C++ that will print and update the PRN, CN0, and Doppler frequency shift for each channel on a terminal window while the receiver is running with the Monitor block activated.
 
@@ -579,12 +579,6 @@ If you see something similar to this... Yay! You are successfully monitoring the
 
 
 ## Bonus: displaying the carrier-phase integrity flags
-
-**Warning**: This section makes use of the `flag_carrier_phase_discontinuity`
-and `flag_half_cycle_slip` fields, which are only available from the `next`
-branch of the upstream GNSS-SDR repository. They will be included in the next
-stable release.
-{: .notice--warning}
 
 The `GnssSynchro` message also carries the carrier-phase integrity flags
 described in the [Observables block documentation]({{

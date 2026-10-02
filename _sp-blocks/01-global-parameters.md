@@ -68,12 +68,6 @@ GNSS-SDR.num_sources=2
 
 For more details, please check [how to configure multiple signal sources]({{ "docs/sp-blocks/signal-source/#multiple-sources" | relative_url }}).
 
-**NOTE**: This parameter is equivalent to the former parameter
-`Receiver.sources_count`. The old name is still read to ensure backward
-compatibility with configuration files using that nomenclature. The new name
-`GNSS-SDR.num_sources` is used since GNSS-SDR v.0.0.15.
-{: .notice--warning }
-
 ## Internal observables processing rate
 
 This global parameter allows to control the internal rate at which observable
@@ -104,7 +98,7 @@ Users must register and log in on the [European GNSS Service Centre website](htt
 | `osnma_enable`  | [`true`, `false`]: Enables or disables the OSNMA service. It defaults to `true`. |   Optional   |
 | `osnma_public_key` | Path to the OSNMA Public Key (`.crt` file). it defaults to `./OSNMA_PublicKey.crt` |   Optional   |
 | `osnma_merkletree` | Path to the Merkle Tree root (`.xml` file). It defaults to `./OSNMA_MerkleTree.xml` |   Optional |
-| `osnma_mode` | [`strict`, `replay`]. If set to `strict`, only authenticated satellites are used in the PVT computation. Please note that the `strict` mode requires the host computer's internal date and time to be synchronized with the Galileo System Time, allowing a tolerance of ±30 seconds, so it is only intended for real-time operation. No other systems than Galileo will be used in the PVT solution. If set to `replay`, disables the receiver wall-clock GST alignment check for OSNMA tag processing, allowing previously captured Galileo signals to be replayed while keeping all other OSNMA verification steps active. If not set, the receiver will only log OSNMA events and warn the user in case of authentication failures. <span style="color: orange">The `replay` mode is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span> |   Optional |
+| `osnma_mode` | [`strict`, `replay`]. If set to `strict`, only authenticated satellites are used in the PVT computation. Please note that the `strict` mode requires the host computer's internal date and time to be synchronized with the Galileo System Time, allowing a tolerance of ±30 seconds, so it is only intended for real-time operation. No other systems than Galileo will be used in the PVT solution. If set to `replay`, disables the receiver wall-clock GST alignment check for OSNMA tag processing, allowing previously captured Galileo signals to be replayed while keeping all other OSNMA verification steps active. If not set, the receiver will only log OSNMA events and warn the user in case of authentication failures. Available since GNSS-SDR v0.0.22. |   Optional |
 | -------------- |
 
 Example in the configuration file:
@@ -454,21 +448,20 @@ can be smaller) and the acquisition-to-tracking latency. This behavior can be
 deactivated by setting this parameter to `false`, which makes the receiver
 search satellites in each band independently.
 
-<span style="color: orange">Moreover, the Doppler search in the secondary band is
+Moreover, the Doppler search in the secondary band is
 always narrowed to a single bin centered at the projected value, instead of
 sweeping the full grid (see [Reduced Doppler
 search]({{ "/docs/sp-blocks/acquisition/#reduced-doppler-search" | relative_url }})
 in the Acquisition documentation). Setting `assist_dual_frequency_acq=false`
 restores the independent, full-range search in each band, and
 `Acquisition_XX.dual_freq_assisted_doppler_narrowing=false` keeps the assistance
-but forces a full-range search for a given signal only. These features will be
-available in the next GNSS-SDR stable release.</span>
+but forces a full-range search for a given signal only.
 
 |----------
 |        **Parameter**        | **Description**                                                                                                                                                                                                                                   | **Required** |
 | :-------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------: |
 |       --------------        |
-| `assist_dual_frequency_acq` | [`true`, `false`]: If set to `true`, it enables the assistance to acquisition from primary to secondary bands in dual-frequency configurations. If set to `false`, satellites are searched for independently in each band. It defaults to `true`. |   Optional   |
+| `assist_dual_frequency_acq` | [`true`, `false`]: If set to `true`, it enables the assistance to acquisition from primary to secondary bands in dual-frequency configurations. If set to `false`, satellites are searched for independently in each band. It defaults to `true`. Available since GNSS-SDR v0.0.22. |   Optional   |
 |           -------           |
 
 Example for satellites searched independently in each band:
@@ -486,7 +479,7 @@ the initial order of that queue when assisted GNSS is enabled; after that, a
 satellite that fails acquisition simply goes to the back of the queue, so
 channels keep spending time on satellites that are below the horizon.
 
-<span style="color: orange">The `next` branch of the upstream repository adds an
+GNSS-SDR v0.0.22 added an
 optional visibility-aware search. Once a receiver position is available, either
 from a position fix or from `AGNSS_ref_location` and `AGNSS_ref_utc_time`,
 satellites are continuously classified as _visible_ (elevation above
@@ -499,8 +492,7 @@ the position fix becomes valid, when new ephemeris or almanac data arrive, when
 the receiver moves, periodically, and when the data used for a satellite
 becomes stale. A satellite that is already being tracked is never released
 because of this classification, and `PVT.elevation_mask` still decides which
-observations enter the navigation solution. This feature will be included in
-the next GNSS-SDR stable release.</span>
+observations enter the navigation solution.
 
 |----------
 |                  **Parameter**                  | **Description**                                                                                                                                                                                                                                                                                                                                              | **Required** |
@@ -530,7 +522,7 @@ GNSS-SDR.visibility_almanac_max_age_s=259200.0
 
 ### Doppler prediction from ephemeris and almanac
 
-<span style="color: orange">With the visibility-aware search enabled, the
+With the visibility-aware search enabled, the
 receiver can also use the ephemeris or almanac of a satellite classified as
 visible to predict its Doppler shift, and narrow the acquisition search around
 that value (see [Reduced Doppler
@@ -547,18 +539,18 @@ searched without dual-frequency assistance (see [Self-assistance in
 multi-frequency
 receivers](#self-assistance-in-multi-frequency-receivers)). No prediction is
 made while a reference position and time received by telecommand is
-active.</span>
+active.
 
-<span style="color: orange">Before the first position fix, the prediction can
+Before the first position fix, the prediction can
 optionally be computed at `AGNSS_ref_location` (at zero height), assuming a
 static receiver with a clock drift equal to `clock_frequency_offset_ppm`, at the
 time given by `AGNSS_ref_utc_time` (or by the system time when the receiver
 starts) plus the elapsed sample time. Since the receiver velocity and clock
-drift are not solved yet, the search is widened to cover</span>
+drift are not solved yet, the search is widened to cover
 
 $$ \small U = \left( \text{clock_frequency_max_error_ppm} \cdot 10^{-6} + \frac{\text{receiver_max_velocity_m_s}}{c} \right) \cdot f_{carrier} $$
 
-<span style="color: orange">Hz on each side of the predicted value, where
+Hz on each side of the predicted value, where
 $$ c $$ is the speed of light. This is only done if
 `doppler_prediction_before_fix=true`, `AGNSS_ref_location` is set, and both
 `clock_frequency_max_error_ppm` and `receiver_max_velocity_m_s` are explicitly
@@ -567,8 +559,7 @@ until the first fix. Setting a bound to zero asserts that there is no
 uncertainty in that component. $$ U $$ does not account for errors in the
 reference position or time, so the reference location should be close to the
 receiver, and in file replays `AGNSS_ref_utc_time` must match the time of the
-recorded samples. These features will be included in the next GNSS-SDR stable
-release.</span>
+recorded samples.
 
 |----------
 |          **Parameter**          | **Description**                                                                                                                                                                                                                                                                                            | **Required** |
@@ -649,7 +640,7 @@ with this parameter in order to get the right date and time:
 |   **Parameter**    | **Description**                                                                                                                                                                                                                                                                                                                     | **Required** |
 | :----------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
 |   --------------   |
-| `observation_date` | Approximate date of the signal capture, in `YYYY-MM-DD` or `YYYY` format. The broadcast week number is resolved to the 1024-week era closest to this date, so an accuracy of a few years is enough. If it is not set, the date is derived from the computer's clock, which is the right choice for real-time operation. It defaults to empty. |   Optional   |
+| `observation_date` | Approximate date of the signal capture, in `YYYY-MM-DD` or `YYYY` format. The broadcast week number is resolved to the 1024-week era closest to this date, so an accuracy of a few years is enough. If it is not set, the date is derived from the computer's clock, which is the right choice for real-time operation. It defaults to empty. Available since GNSS-SDR v0.0.22. |   Optional   |
 |      -------       |
 
 Example: for a file recorded on December 20, 2014:
@@ -657,10 +648,6 @@ Example: for a file recorded on December 20, 2014:
 ```ini
 GNSS-SDR.observation_date=2014-12-20
 ```
-
-<span style="color: orange">The `observation_date` parameter is only present in
-the `next` branch of the upstream repository, and will be included in the next
-GNSS-SDR stable release.</span>
 
 This parameter replaces `GNSS-SDR.pre_2009_file`, available in older versions
 of GNSS-SDR, which could only select the August 1999 - April 2019 era (so, for

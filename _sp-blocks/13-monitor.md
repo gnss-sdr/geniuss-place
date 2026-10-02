@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-08-15T12:00:00+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 ---
 
 
@@ -62,8 +62,8 @@ The following set of variables record general information about the [Channel]({{
 |    **Name**    |  **Type**  | **Description**                                                                                                                                                                              |
 | :------------: | :--------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -------------- |
-|    `System`    |   `char`   | GNSS constellation: `"G"` for GPS, `"R"` for Glonass, `"S"` for SBAS, `"E"` for Galileo, and `"C"` for Beidou.                                                                               |
-|    `Signal`    | `char[3]`  | GNSS signal: `"1C"` for GPS L1 C/A, `"1B"` for Galileo E1b/c, `"1G"` for Glonass L1 C/A, `"2S"` for GPS L2 L2C(M), `"2G"` for Glonass L2 C/A, `"L5"` for GPS L5, and `"5X"` for Galileo E5a. |
+|    `System`    |   `char`   | GNSS constellation: `"G"` for GPS, `"R"` for Glonass, `"S"` for SBAS, `"E"` for Galileo, `"C"` for Beidou, and `"J"` for QZSS.                                                                               |
+|    `Signal`    | `char[3]`  | GNSS signal: `"1C"` for GPS L1 C/A, `"1B"` for Galileo E1b/c, `"1G"` for Glonass L1 C/A, `"2S"` for GPS L2 L2C(M), `"2G"` for Glonass L2 C/A, `"L5"` for GPS L5, `"5X"` for Galileo E5a, `"7X"` for Galileo E5b, `"E6"` for Galileo E6B, `"B1"` for Beidou B1I, `"B3"` for Beidou B3I, `"1D"` for Beidou B1C, `"5D"` for Beidou B2a, `"J1"` for QZSS L1 C/A, `"J5"` for QZSS L5, and `"S1"` for SBAS L1. |
 |     `PRN`      | `uint32_t` | Satellite ID processed in each channel.                                                                                                                                                      |
 |  `Channel_ID`  | `int32_t`  | Absolute channel number.                                                                                                                                                                     |
 |   ----------   |
@@ -103,7 +103,7 @@ The following set of variables record information about the [Tracking]({{
 | `Tracking_sample_counter`  | `uint64_t` | Sample counter as an index (1,2,3,..etc) indicating number of samples processed. |
 | `Flag_valid_symbol_output` |   `bool`   | Indicates the validity of the tracking for each channel.                         |
 |  `correlation_length_ms`   | `int32_t`  | Time duration of correlation-integration, in [ms].                               |
-| `Flag_carrier_phase_continuous` | `bool` | `false` on the first output after the accumulated carrier phase has been (re)initialized, that is, whenever the carrier-phase ambiguity of the channel has changed. In the Protocol Buffers stream it is sent negated, as `flag_carrier_phase_discontinuity`, so that a missing field defaults to "no discontinuity". <span style="color: orange">This field is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span> |
+| `Flag_carrier_phase_continuous` | `bool` | `false` on the first output after the accumulated carrier phase has been (re)initialized, that is, whenever the carrier-phase ambiguity of the channel has changed. In the Protocol Buffers stream it is sent negated, as `flag_carrier_phase_discontinuity`, so that a missing field defaults to "no discontinuity". This parameter is available since GNSS-SDR v0.0.22. |
 |         ----------         |
 
 ### Telemetry Decoder
@@ -134,7 +134,7 @@ The following set of variables record information about the [Observables]({{
 | `Flag_valid_pseudorange` |  `bool`  | Pseudorange computation status in each channel.                     |
 |     `interp_TOW_ms`      | `double` | Interpolated time of week, in [ms].                                 |
 |     `Flag_cycle_slip`    |  `bool`  | Carrier cycle-slip detection flag. This field is available starting from GNSS-SDR v0.0.21.  |
-|  `Flag_half_cycle_slip`  |  `bool`  | Indicates that the carrier phase has jumped by half a cycle, caused by a change in the phase polarity of the Costas loop resolved by the Telemetry Decoder. <span style="color: orange">This field is only present in the `next` branch of the upstream repository, and will be included in the next GNSS-SDR stable release.</span>  |
+|  `Flag_half_cycle_slip`  |  `bool`  | Indicates that the carrier phase has jumped by half a cycle, caused by a change in the phase polarity of the Costas loop resolved by the Telemetry Decoder. This field is available since GNSS-SDR v0.0.22.  |
 |        ----------        |
 
 ## Configuration
@@ -146,9 +146,9 @@ The configuration of the _Monitor_ block accepts the following parameters:
 | :-------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
 |       --------------        |
 |  `Monitor.enable_monitor`   | [`true`, `false`]: If set to `true`, the _Monitor_ block is activated.                                                                                                                                                                                                                                                                                                                                                                                                                               |  Mandatory   |
-| `Monitor.decimation_factor` | Decimation integer factor $$ N $$. Limits the streaming output rate to only every $$ N^{th} $$ sample. To stream all the samples, set this to `1`. Zero or negative values are treated as `1`. The output rate is by default 20 ms, and it can be changed with the [`GNSS-SDR.observable_interval_ms`](https://gnss-sdr.org/docs/sp-blocks/global-parameters/#internal-observables-processing-rate) parameter.                                                                                       |  Mandatory   |
-| `Monitor.client_addresses`  | Destination IP address(es). To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored.                                                                                                                                                                                                                                                                                       |  Mandatory   |
-|     `Monitor.udp_port`      | Destination port number. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. To specify multiple ports, use an underscore delimiter character ( `_` ) between ports. The port numbers are the same for all the clients.       |  Mandatory   |
+| `Monitor.decimation_factor` | Decimation integer factor $$ N $$. Limits the streaming output rate to only every $$ N^{th} $$ sample. To stream all the samples, set this to `1`. Zero or negative values are treated as `1`. The output rate is by default 20 ms, and it can be changed with the [`GNSS-SDR.observable_interval_ms`](https://gnss-sdr.org/docs/sp-blocks/global-parameters/#internal-observables-processing-rate) parameter. It defaults to `1`. |   Optional   |
+| `Monitor.client_addresses`  | Destination IP address(es). To specify multiple clients, use an underscore delimiter character ( `_` ) between addresses. As many addresses can be added as deemed necessary. Duplicate addresses are ignored. It defaults to `127.0.0.1`. |   Optional   |
+|     `Monitor.udp_port`      | Destination port number. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. To specify multiple ports, use an underscore delimiter character ( `_` ) between ports. The port numbers are the same for all the clients. It defaults to `1234`. |   Optional   |
 |  `Monitor.enable_protobuf`  | [`true`, `false`]: If set to `true`, the serialization is done using [Protocol Buffers](https://protobuf.dev/), with the format defined at [`gnss_synchro.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/gnss_synchro.proto). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). That is a deprecated behavior that can be abandoned in the future. It defaults to `true` (Protocol Buffers is used). |   Optional   |
 |         ----------          |
 
