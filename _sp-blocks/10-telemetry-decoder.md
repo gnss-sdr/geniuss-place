@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-18T12:00:00+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 ---
 
 
@@ -662,10 +662,6 @@ a 24-bit CRC.
 
 ### Implementation: `BEIDOU_B1C_Telemetry_Decoder`
 
-**Warning**: This implementation is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
-
 This implementation accepts the following parameters:
 
 
@@ -711,10 +707,6 @@ orientation parameters, time offsets with respect to UTC and to other GNSS,
 and integrity indices); and message type 40 carries the midi almanac.
 
 ### Implementation: `BEIDOU_B2A_Telemetry_Decoder`
-
-**Warning**: This implementation is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
 
 This implementation takes the $$ 1 $$ ms prompt correlator outputs delivered by
 the Tracking block, wipes off the $$ 5 $$-chip secondary code of the data
@@ -776,10 +768,6 @@ distributed over three consecutive blocks), a $$ 6 $$-bit message type
 identifier, a $$ 212 $$-bit data field, and $$ 24 $$ parity bits (CRC-24Q).
 
 ### Implementation: `SBAS_L1_Telemetry_Decoder`
-
-**Warning**: This implementation is only available from the `next` branch of the
-upstream GNSS-SDR repository. It will be included in the next stable release.
-{: .notice--warning}
 
 This implementation performs Viterbi decoding of the convolutional code, symbol
 and bit alignment, preamble detection (with polarity resolution), and CRC-24Q
@@ -863,7 +851,9 @@ Tracking block, for each epoch. Data type: `int32_t`.
 Examples:
 
 1.- Retrieve the `.dat` and`.mat` files with `nav_data` base name (with `XX`
-being `1C`, `1B`, `1G`, `2G`, `2S`, `L5`, or `5X`):
+being `1C`, `1B`, `1D`, `B1`, `J1`, `1G`, `E6`, `B3`, `2G`, `2S`, `7X`, `5X`,
+`L5`, `J5`, or `5D`; this does not apply to `S1`, see the [SBAS L1 Telemetry
+Decoder](#implementation-sbas_l1_telemetry_decoder) above):
 ```ini
 TelemetryDecoder_XX.dump=true
 TelemetryDecoder_XX.dump_filename=nav_data

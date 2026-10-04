@@ -3,7 +3,7 @@ title: "Configurations"
 permalink: /conf/
 excerpt: "How to configure GNSS-SDR in a variety of setups."
 related: true
-last_modified_at: 2022-02-09T13:54:02+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 header:
   teaser: "/assets/images/configuration.png"
 sidebar:
@@ -347,8 +347,8 @@ You should see something similar to:
 
 ```console
 $ gnss-sdr --config_file=./my_GPS_receiver.conf
-Initializing GNSS-SDR v0.0.21 ... Please wait.
-Logging will be done at "/tmp"
+Initializing GNSS-SDR v0.0.22 ... Please wait.
+Logging will be written at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
 -- X300 initialization sequence...
 -- Determining maximum frame size... 8000 bytes.
@@ -368,8 +368,8 @@ Actual daughterboard gain set to: 37.500000 dB...
 Setting RF bandpass filter bandwidth to: 2000000.000000 [Hz]...
 Check for front-end LO: locked ... is Locked
 Using Volk machine: avx2_64_mmx
-Starting a TCP Server on port 2101
-The TCP Server is up and running. Accepting connections ...
+Starting a TCP/IP server of RTCM messages on port 2101
+The TCP/IP server of RTCM messages is up and running. Accepting connections ...
 ...
 ```
 {: class="no-copy"}
@@ -384,47 +384,47 @@ navigation messages (at least, subframes 1, 2, and 3 from four satellites)...
 ```console
 
 ...
-Current input signal time = 49 [s]
-Current input signal time = 50 [s]
-Current input signal time = 51 [s]
-Current input signal time = 52 [s]
+Current receiver time: 49 s
+Current receiver time: 50 s
+Current receiver time: 51 s
+Current receiver time: 52 s
 NAV Message: received subframe 1 from satellite GPS PRN 27 (Block IIF)
 NAV Message: received subframe 1 from satellite GPS PRN 10 (Block IIF)
 NAV Message: received subframe 1 from satellite GPS PRN 08 (Block IIF)
 NAV Message: received subframe 1 from satellite GPS PRN 16 (Block IIR)
 NAV Message: received subframe 1 from satellite GPS PRN 18 (Block IIR)
-Current input signal time = 53 [s]
-Current input signal time = 54 [s]
-Current input signal time = 55 [s]
-Current input signal time = 56 [s]
-Current input signal time = 57 [s]
-Current input signal time = 58 [s]
+Current receiver time: 53 s
+Current receiver time: 54 s
+Current receiver time: 55 s
+Current receiver time: 56 s
+Current receiver time: 57 s
+Current receiver time: 58 s
 NAV Message: received subframe 2 from satellite GPS PRN 27 (Block IIF)
 NAV Message: received subframe 2 from satellite GPS PRN 10 (Block IIF)
 NAV Message: received subframe 2 from satellite GPS PRN 08 (Block IIF)
 NAV Message: received subframe 2 from satellite GPS PRN 16 (Block IIR)
 NAV Message: received subframe 2 from satellite GPS PRN 18 (Block IIR)
-Current input signal time = 59 [s]
-Current input signal time = 60 [s]
-Current input signal time = 61 [s]
-Current input signal time = 62 [s]
-Current input signal time = 63 [s]
-Current input signal time = 64 [s]
+Current receiver time: 59 s
+Current receiver time: 1 min 0 s
+Current receiver time: 1 min 1 s
+Current receiver time: 1 min 2 s
+Current receiver time: 1 min 3 s
+Current receiver time: 1 min 4 s
 NAV Message: received subframe 3 from satellite GPS PRN 27 (Block IIF)
 NAV Message: received subframe 3 from satellite GPS PRN 10 (Block IIF)
 NAV Message: received subframe 3 from satellite GPS PRN 08 (Block IIF)
 NAV Message: received subframe 3 from satellite GPS PRN 16 (Block IIR)
 NAV Message: received subframe 3 from satellite GPS PRN 18 (Block IIR)
-Current input signal time = 65 [s]
+Current receiver time: 1 min 5 s
 Position at 2016-Aug-11 14:23:19 UTC is Lat = 41.2751 [deg], Long = 1.98765 [deg], Height= 68.9893 [m]
 Position at 2016-Aug-11 14:23:19 UTC is Lat = 41.2751 [deg], Long = 1.98765 [deg], Height= 72.1068 [m]
-Current input signal time = 66 [s]
+Current receiver time: 1 min 6 s
 Position at 2016-Aug-11 14:23:20 UTC is Lat = 41.2751 [deg], Long = 1.9877 [deg], Height= 67.0216 [m]
 Position at 2016-Aug-11 14:23:20 UTC is Lat = 41.2751 [deg], Long = 1.9877 [deg], Height= 84.7445 [m]
-Current input signal time = 67 [s]
+Current receiver time: 1 min 7 s
 Position at 2016-Aug-11 14:23:21 UTC is Lat = 41.2751 [deg], Long = 1.98771 [deg], Height= 70.0031 [m]
 Position at 2016-Aug-11 14:23:21 UTC is Lat = 41.2751 [deg], Long = 1.98767 [deg], Height= 63.1242 [m]
-Current input signal time = 68 [s]
+Current receiver time: 1 min 8 s
 ...
 
 ```
@@ -451,9 +451,9 @@ Position at 2016-Aug-11 14:23:31 UTC is Lat = 41.2751 [deg], Long = 1.98762 [deg
 q
 Quit keystroke order received, stopping GNSS-SDR !!
 Stopping GNSS-SDR, please wait!
-Total GNSS-SDR run time 78.3891 [seconds]
+Total GNSS-SDR run time: 78.3891 [seconds]
 GNSS-SDR program ended.
-Stopping TCP Server on port 2101
+Stopping TCP/IP server on port 2101
 $
 ```
 {: class="no-copy"}

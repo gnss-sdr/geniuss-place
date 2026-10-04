@@ -9,7 +9,7 @@ header:
   invert-colors: true
 toc: true
 toc_sticky: true
-last_modified_at: 2021-02-10T11:54:02+01:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 ---
 
 The Control Plane is in charge of creating a flow graph according to the
@@ -163,11 +163,15 @@ wraps the
 instance so we can take advantage of the GNSS block factory, the configuration
 system, and the processing blocks. This class is also responsible for applying
 changes to the configuration of the flow graph during run-time, dynamically
-reconfiguring channels: it selects the strategy for selecting satellites. This
-can range from a sequential search over all the satellites' ID to smarter
-approaches that determine what are the satellites most likely in-view based on
-rough estimations of the receiver position in order to avoid searching
-satellites on the other side of the Earth.
+reconfiguring channels: it selects the strategy for selecting satellites. By
+default, idle channels take the next satellite to search for from a first-in,
+first-out queue per signal. Since GNSS-SDR v0.0.22, a [visibility-aware
+search]({{ "/docs/sp-blocks/global-parameters/#visibility-aware-acquisition-search" | relative_url }})
+can be enabled instead: once a receiver position is available (from a position
+fix or from the assistance data), satellites are classified according to their
+elevation, computed from the freshest ephemeris or almanac data available, so
+that idle channels favor the satellites in view and skip those below the
+elevation mask, avoiding searching satellites on the other side of the Earth.
 
 
 This class internally codifies actions to be taken on the graph. These actions
@@ -242,17 +246,32 @@ int ControlThread::run()
     // Launch the GNSS assistance process
     assist_GNSS();
 
+    // Start the keyboard, message queue, and telecommand listener threads
+    keyboard_thread_ = std::thread(&ControlThread::keyboard_listener, this);
+    message_queue_thread_ = std::thread(&ControlThread::message_queue_listener, this);
+    cmd_interface_thread_ = std::thread(&ControlThread::telecommand_listener, this);
+
     // Main loop to read and process the control messages
+    pmt::pmt_t msg;
     while (flowgraph_->running() && !stop_)
         {
-            read_control_messages();
-            if (control_messages_ != 0) process_control_messages();
+            // wait for an event message, with a 100 ms timeout
+            // to perform low priority receiver management tasks
+            bool valid_event = control_queue_->timed_wait_and_pop(msg, 100);
+            event_dispatcher(valid_event, msg);
         }
     std::cout << "Stopping GNSS-SDR, please wait!\n";
     flowgraph_->stop();
     flowgraph_->disconnect();
-    return 0;
-  }
+
+    // ... (terminate the listener threads)
+
+    if (restart_)
+        {
+            return 42;  // signal the gnss-sdr-harness.sh to restart the receiver program
+        }
+    return 0;  // normal shutdown
+}
 ```
 {: class="no-copy"}
 

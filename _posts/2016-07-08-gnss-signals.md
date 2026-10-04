@@ -12,7 +12,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2025-03-10T08:37:02+02:00
+last_modified_at: 2026-10-02T12:00:00+02:00
 ---
 
 
@@ -62,7 +62,7 @@ Documents are provided in the [References](#references) section.
 
 The Navstar Global Positioning System (GPS) is a space-based radio–navigation
 system owned by the United States Government (USG) and operated by the United
-States Air Force (USAF). GPS provides positioning and timing services to
+States Space Force (USSF). GPS provides positioning and timing services to
 military and civilian users on a continuous, worldwide basis. Two GPS services
 are provided:
 
@@ -100,13 +100,12 @@ $$ L_{\text{P(Y)}}=6.1871 \cdot 10^{12} $$. The precision P codes (named Y codes
 whenever the anti-spoofing mode is activated, encrypting the code and thus
 denying non–U.S. military users) are sequences of $$ 7 $$ days in length.
 
-Regarding the modernization plans for GPS, it is worthwhile to mention that
-there is a new civilian–use signal planned, called L1C and defined in
-IS-GPS-800J[^ISGPS800], to be broadcast on the same L1 frequency that currently
-contains the C/A signal. The L1C signal will be available with first Block III
-launch, currently scheduled for May 2018 by SpaceX, and it will feature a
-Multiplexed Binary Offset Carrier (MBOC) modulation scheme that ensures backward
-compatibility with the C/A signal.
+Regarding the modernization of GPS, it is worthwhile to mention the
+civilian–use signal called L1C and defined in IS-GPS-800J[^ISGPS800], broadcast
+on the same L1 frequency that also contains the C/A signal. The L1C signal is
+broadcast by the GPS III satellites, the first of which was launched in December
+2018, and it features a Multiplexed Binary Offset Carrier (MBOC) modulation
+scheme that ensures backward compatibility with the C/A signal.
 
 The L1C signal consists of two main components; one denoted $$ L1C_P $$ to
 represent a pilot signal, without any data message, that is spread by a
@@ -284,8 +283,9 @@ band, have complicated the design of combined GLONASS/GPS receivers,
 particularly low–cost equipment for mass-market applications.
 
 In late 2016, the Russian Federation published a new ICD related to a CDMA
-signal at $$ 1600.99 $$ MHz, referred to as L1OC, to be broadcast by GLONASS
-satellites starting by Enhanced Glonass-K1 and Glonass-K2, launched from 2018.
+signal at $$ 1600.99 $$ MHz, referred to as L1OC, which is broadcast by the
+new-generation Glonass-K2 satellites, the first of which was launched in August
+2023.
 This documentation is only available in Russian [^GLONASS16-1].
 
 
@@ -311,8 +311,8 @@ liftoff today from Kazakhstan’ Baikonur cosmodrome.
 
 In late 2016, the Russian Federation published a new ICD related to a CDMA
 signal at $$ 1248.06 $$ MHz, referred to as L2OC and featuring a BOC(1,1)
-modulation, to be broadcast by GLONASS satellites starting by Enhanced
-Glonass-K1 and Glonass-K2, to be launched from 2018. This documentation is only
+modulation, which is broadcast by the new-generation Glonass-K2 satellites, the
+first of which was launched in August 2023. This documentation is only
 available in Russian [^GLONASS16-2].
 
 
@@ -397,13 +397,12 @@ _Galileo signals spectra in E1. Source: [Navipedia](https://gssc.esa.int/naviped
 
 ### Galileo E6
 
-Galileo will provide users with added-value services offered through the E6
-band, namely:
+Galileo offers users added-value services through the E6 band, namely:
 
-* The **Galileo High Accuracy Service (HAS)** will allow users to obtain a
-positioning error below two decimeters in nominal conditions of use, worldwide.
-The Galileo HAS will be based on the free transmission of Precise Point
-Positioning (PPP) corrections through the Galileo E6 signal data component $$
+* The **Galileo High Accuracy Service (HAS)**, whose Initial Service was
+declared on January 24, 2023, allows users to obtain a positioning error below
+two decimeters in nominal conditions of use, worldwide. The Galileo HAS is based
+on the free transmission of Precise Point Positioning (PPP) corrections through the Galileo E6 signal data component $$
 e_{E6B}(t) $$ by the Galileo satellites.
 * The **Galileo Commercial Authentication Service (CAS)** will make it possible
 to authenticate signals, allowing for increased robustness of professional
@@ -576,8 +575,9 @@ a global satellite navigation system consisting of $$ 5 $$ geostationary
 satellites and $$ 30 $$ non–geostationary satellites. The geostationary
 satellites will be located at $$ 58.75^o $$ E, $$ 80^o $$ E, $$ 110.5^o $$ E, $$
 140^o $$ E and $$ 160^o $$ E. Non–geostationary satellites will be in
-medium–Earth orbit (MEO) and inclined geosynchronous orbit. Global coverage is
-planned by 2020. The ground segment will consist of one Master Control Station,
+medium–Earth orbit (MEO) and inclined geosynchronous orbit. The global BeiDou
+Navigation Satellite System (BDS-3) has been providing global service since July
+31, 2020. The ground segment will consist of one Master Control Station,
 two Upload Stations and $$ 30 $$ Monitor Stations.
 
 After the first geostationary satellite (located at $$ 140^o $$ E) was launched
@@ -594,7 +594,7 @@ released exactly one year before. One year later version 2.0 was released,
 version 2.1 followed in November 2016[^Beidou], and version 3.0 in February
 2019[^BeidouB1I]. Starting 2018, version 1.0 of the ICD for B1C[^BeidouB1C],
 B2a[^BeidouB2a] and B3I[^BeidouB3I] signals were released, describing the open
-services deployed in the BSD-3 phase of the system development.
+services deployed in the BDS-3 phase of the system development.
 
 ![BeiDou Logo]({{ "/assets/images/BeiDou-Logo.png" | relative_url }}){:height="250px" width="250px"}{: .align-left}
 On December 2012, the China Satellite Navigation Office released the
@@ -866,28 +866,26 @@ The following table lists the GNSS signals providing Open Service.
 |                                                         --------------                                                         |
 |                          [**GPS L5**](https://www.gps.gov/sites/default/files/2025-07/IS-GPS-705J.pdf)$$ ^{(*)} $$             | $$ 1176.45 $$ MHz  |    BPSK(10)    |
 |          [**Galileo E5a**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf)          | $$ 1176.45 $$ MHz  |    QPSK(10)    |
-|               [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(**)} $$                | $$ 1176.45 $$ MHz  |    BPSK(10)    |
+|               [**BeiDou B2a**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226742357364174.pdf)$$ ^{(*)} $$                | $$ 1176.45 $$ MHz  |    BPSK(10)    |
 | [**GLONASS L3OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L3-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$  | $$ 1202.025 $$ MHz |    BPSK(10)    |
 |          [**Galileo E5b**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf)          | $$ 1207.14 $$ MHz  |    QPSK(10)    |
 |                      [**BeiDou B2I**](http://www.beidou.gov.cn/xt/gfxz/201710/P020171202693088949056.pdf)                      | $$ 1207.14 $$ MHz  |    BPSK(2)     |
 | [**BeiDou B2b**](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/202008/P020231201543618407017.pdf)                           | $$ 1207.14 $$ MHz  |    BPSK(10)    |
 |                         [**GPS L2C**](https://www.gps.gov/sites/default/files/2025-07/IS-GPS-200N.pdf)$$ ^{(*)} $$             | $$ 1227.60 $$ MHz  |    BPSK(1)     |
 |             [**GLONASS L2OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)              | $$ 1246.00 $$ MHz  |   BPSK(0.5)    |
-| [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$ | $$ 1248.06 $$ MHz  |    BOC(1,1)    |
+| [**GLONASS L2OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L2-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1248.06 $$ MHz  |    BOC(1,1)    |
 |                [**BeiDou B3I**](http://www.beidou.gov.cn/xt/gfxz/201802/P020180209623601401189.pdf)$$ ^{(*)} $$                | $$ 1268.520 $$ MHz |    BPSK(10)    |
-|   [**Galileo E6B**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf)$$ ^{(**)} $$    | $$ 1278.750 $$ MHz |    BPSK(5)     |
+|   [**Galileo E6B**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf)    | $$ 1278.750 $$ MHz |    BPSK(5)     |
 |              [**BeiDou B1I**](http://en.beidou.gov.cn/SYSTEMS/Officialdocument/201902/P020190227601370045731.pdf)              | $$ 1561.098 $$ MHz |    BPSK(2)     |
-|               [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(**)} $$                | $$ 1575.42 $$ MHz  |    BOC(1,1)    |
+|               [**BeiDou B1C**](http://www.beidou.gov.cn/xt/gfxz/201712/P020171226741342013031.pdf)$$ ^{(*)} $$                | $$ 1575.42 $$ MHz  |    BOC(1,1)    |
 |                              [**GPS L1 C/A**](https://www.gps.gov/sites/default/files/2025-07/IS-GPS-200N.pdf)                 | $$ 1575.42 $$ MHz  |    BPSK(1)     |
-|                         [**GPS L1C**](https://www.gps.gov/sites/default/files/2025-07/IS-GPS-800J.pdf)$$ ^{(**)} $$            | $$ 1575.42 $$ MHz  |    BOC(1,1)    |
+|                         [**GPS L1C**](https://www.gps.gov/sites/default/files/2025-07/IS-GPS-800J.pdf)$$ ^{(*)} $$            | $$ 1575.42 $$ MHz  |    BOC(1,1)    |
 |         [**Galileo E1b/c**](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_OS_SIS_ICD_v2.1.pdf)         | $$ 1575.42 $$ MHz  | CBOC(6,1,1/11) |
-| [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(**)} $$ | $$ 1600.995 $$ MHz |    BOC(1,1)    |
+| [**GLONASS L1OC**](http://russianspacesystems.ru/wp-content/uploads/2016/08/IKD-L1-s-kod.-razd.-Red-1.0-2016.pdf)$$ ^{(*)} $$ | $$ 1600.995 $$ MHz |    BOC(1,1)    |
 |             [**GLONASS L1OF**](http://russianspacesystems.ru/wp-content/uploads/2016/08/ICD_GLONASS_eng_v5.1.pdf)              | $$ 1602.00 $$ MHz  |   BPSK(0.5)    |
 |                                                         --------------                                                         |
 
 (*): Modernized signal not broadcast by all satellites.
-
-(**): Planned signal still not broadcast by any satellite.
 
 
 ------

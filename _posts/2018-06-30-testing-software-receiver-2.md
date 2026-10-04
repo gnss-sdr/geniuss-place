@@ -14,7 +14,7 @@ sidebar:
 toc: true
 toc_sticky: true
 show_date: false
-last_modified_at: 2026-08-03T11:37:02+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 ---
 
 [Testability]({{ "/design-forces/testability/" | relative_url }}) is an
@@ -43,7 +43,7 @@ which it is allowed (those flags start with `--plot_...`). This will display
 figures in new windows and will save them as
 [PostScript](https://en.wikipedia.org/wiki/PostScript) and PDF files in the
 folder where the test was called. In order to avoid showing plots on the screen,
-but still get the figures in files, use `--noshow_plot`.
+but still get the figures in files, use `--noshow_plots`.
 {: .notice--info}
 
 GNSS-SDR tests are divided into two categories:
@@ -104,7 +104,7 @@ and built by passing the following option flags to CMake:
 | `-DENABLE_UNIT_TESTING_EXTRA` | `ON` / `OFF` | `OFF` | If set to `ON`, it downloads external raw sample files and other software tools (among them, [GNSSTk](https://github.com/SGL-UT/gnsstk/), if it is not already found in your system), and builds some extra unit tests that are added to the `run_tests` executable. |
 | `-DENABLE_SYSTEM_TESTING` | `ON` / `OFF` | `OFF` |  If set to `ON`, it builds system tests. The binary `ttff`, a tool for Time-To-First-Fix measurement, is generated at the `gnss-sdr/install` folder, unless otherwise indicated by the `ENABLE_INSTALL_TESTS` option. |
 | `-DENABLE_SYSTEM_TESTING_EXTRA` | `ON` / `OFF` | `OFF` | If set to `ON`, it downloads external software tools (among them, [GNSSTk](https://github.com/SGL-UT/gnsstk/), if it is not already found in your system) and builds some extra system tests. The generated binaries are copied to the `gnss-sdr/install` folder, unless otherwise indicated by the `ENABLE_INSTALL_TESTS` option. |
-| `-DENABLE_OWN_GPSTK` | ON / OFF | OFF | If set to ON, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/gnsstk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. <span style="color:orange">NOTE: This option is DEPRECATED in the `next` branch, in favour of `-DENABLE_OWN_GNSSTK`</span>. |
+| `-DENABLE_OWN_GPSTK` | ON / OFF | OFF | If set to ON, it forces to download, build and link [GPSTk](https://github.com/SGL-UT/gnsstk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a more recent version. NOTE: This option is DEPRECATED since GNSS-SDR v0.0.18, in favour of `-DENABLE_OWN_GNSSTK`. |
 | `-DENABLE_OWN_GNSSTK` | ON / OFF | OFF | If set to ON, it forces to download, build and link [GNSSTk](https://github.com/SGL-UT/gnsstk/) for system tests, even if it is already installed. This can be useful if you have an old version of GPSTk (older than 2.10) already installed in your system and you do not want to remove it, but you still want the QA code to use a recent version. |
 | `-DENABLE_INSTALL_TESTS` | ON / OFF | OFF | By default, generated test binaries are not installed system-wide but placed in the local folder `gnss-sdr/install`. If this option is set to ON, test binaries and auxiliary files will not be copied to `gnss-sdr/install` but installed in the system path when doing `make install`. |
 |----------
@@ -301,7 +301,7 @@ the test program `run_tests`.
  ```
  * `MultiplyTest`: set of test cases measuring the execution time of various
  implementations of vector (element-by-element) multiplication. The default
- vector length is $$ 10000 $$, but this test suite accepts the flag
+ vector length is $$ 100000 $$, but this test suite accepts the flag
  `--size_multiply_test`. You can try a different length by doing:
  ```console
  $ ./run_tests --gtest_filter=Multiply* --size_multiply_test=100000
@@ -357,7 +357,7 @@ the test program `run_tests`.
       - `CpuMulticorrelatorTest`: set of test cases for
       [cpu_multicorrelator.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/libs/cpu_multicorrelator.h)
       that measure the execution time for multi-correlations of size $$ 2048 $$, $$
-      4096 $$ and $$ 8192 $$. By default, the measurements average $$ 1000 $$
+      4096 $$ and $$ 8192 $$. By default, the measurements average $$ 100 $$
       independent realizations, a value that can be changed by the flag
       `--cpu_multicorrelator_iterations_test`. You can also set the number of
       threads spawned by this program with the flag
@@ -511,15 +511,15 @@ Acquisition block. This test accepts the following flags:
   that make use of the `gps_l2c_m_prn7_5msps.dat` raw sample file downloaded
   with the `ENABLE_UNIT_TESTING_EXTRA=ON` option.
 
-  * `GpsL1CAKfTrackingTest`: set of test cases for
-  [gps_l1_ca_kf_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_kf_tracking.h)
+  * `GpsL1CAGaussianTrackingTest`: set of test cases for
+  [gps_l1_ca_gaussian_tracking.h](https://github.com/gnss-sdr/gnss-sdr/blob/next/src/algorithms/tracking/adapters/gps_l1_ca_gaussian_tracking.h)
   that make use of the software-defined signal generator. This test plots the
-  correlators' outputs with the flag `--plot_gps_l1_kf_tracking_test`. For long
+  correlators' outputs with the flag `--plot_gps_l1_gaussian_tracking_test`. For long
   tests, data can be decimated with the flag `--plot_decimate`. For not showing
   the plots in the screen, but still get the figures in PDF and PS file formats,
   use `--noshow_plots`. Example:
     ```console
-    $ ./run_tests --gtest_filter=GpsL1CAKfTrackingTest* --plot_gps_l1_kf_tracking_test --plot_decimate=10
+    $ ./run_tests --gtest_filter=GpsL1CAGaussianTrackingTest* --plot_gps_l1_gaussian_tracking_test --plot_decimate=10
     ```
 
 
@@ -558,8 +558,8 @@ This test accepts the following flags:
 | `--acq_Delay_error_chips_start` | `2.0` | Acquisition Code Delay error start sweep value [chips]. |
 | `--acq_Delay_error_chips_stop` |  `-2.0` | Acquisition Code Delay error stop sweep value [chips]. |
 | `--acq_Delay_error_chips_step` | `-0.1` | Acquisition Code Delay error sweep step value [chips]. |
-| `--PLL_bw_hz_start` | `40.0` | PLL Wide configuration value [Hz]. |
-| `--DLL_bw_hz_start` | `1.5` | DLL Wide configuration value [Hz]. |
+| `--PLL_bw_hz_start` | `20.0` | PLL Wide configuration value [Hz]. |
+| `--DLL_bw_hz_start` | `1.0` | DLL Wide configuration value [Hz]. |
 | `--extend_correlation_symbols` | `1` | Set the tracking coherent correlation to N symbols (up to 20 for GPS L1 C/A). |
 | `--PLL_narrow_bw_hz` | `5.0` | PLL Narrow configuration value [Hz]. |
 | `--DLL_narrow_bw_hz` | `0.75` | DLL Narrow configuration value [Hz]. |
@@ -607,8 +607,8 @@ This test accepts the following flags:
 | `--external_signal_acquisition_doppler_step_hz` |  `125` | Doppler step for satellite acquisition when an external file is used, in Hz. |
 | `--external_signal_acquisition_threshold` | `2.5` | Threshold for satellite acquisition when an external file is used. |
 | `--trk_test_implementation` | `GPS_L1_CA_DLL_PLL_Tracking` | Tracking block implementation under test. |
-| `--PLL_bw_hz_start` | `40.0` | PLL Wide configuration value [Hz]. |
-| `--DLL_bw_hz_start` | `1.5` | DLL Wide configuration value [Hz]. |
+| `--PLL_bw_hz_start` | `20.0` | PLL Wide configuration value [Hz]. |
+| `--DLL_bw_hz_start` | `1.0` | DLL Wide configuration value [Hz]. |
 | `--extend_correlation_symbols` | `1` | Set the tracking coherent correlation to N symbols (up to 20 for GPS L1 C/A). |
 | `--PLL_narrow_bw_hz` | `5.0` | PLL Narrow configuration value [Hz]. |
 | `--DLL_narrow_bw_hz` | `0.75` | DLL Narrow configuration value [Hz]. |
@@ -735,8 +735,8 @@ command-line flags:
 | `--ref_motion_filename` | `motion.csv` | Path and filename for the reference motion file. |
 | `--static_2D_error_m` | `2.0` | Static scenario 2D (East, North) positioning error bias threshold [meters]. |
 | `--static_3D_error_m` | `5.0` | Static scenario 3D (East, North, Up) positioning error bias threshold [meters]. |
-| `--accuracy_CEP` | `2.0` | Static scenario 2D (East, North) accuracy Circular Error Position (CEP) threshold [meters]. |
-| `--precision_SEP` | `10.0` | Static scenario 3D (East, North, Up) precision Spherical Error Position (SEP) threshold [meters]. |
+| `--accuracy_CEP` | `3.0` | Static scenario 2D (East, North) accuracy Circular Error Position (CEP) threshold [meters]. |
+| `--precision_SEP` | `15.0` | Static scenario 3D (East, North, Up) precision Spherical Error Position (SEP) threshold [meters]. |
 | `--dynamic_3D_position_RMSE` | `10.0` | Dynamic scenario 3D (ECEF) accuracy RMSE threshold [meters] |
 | `--dynamic_3D_velocity_RMSE` | `5.0` | Dynamic scenario 3D (ECEF) velocity accuracy RMSE threshold [meters/second] |
 | `--pvt_solver_dump_filename` | `PVT.dat` | Path and filename for the PVT solver binary dump file |
@@ -902,26 +902,36 @@ place your testing code in an adequate folder from the GNSS-SDR source tree:
 ├── gnss-sdr
 │   ├── tests
 │   │   ├── CMakeLists.txt
+│   │   ├── benchmarks
 │   │   ├── common-files
 │   │   ├── data
-│   │   ├── signal_samples
 │   │   ├── single_test_main.cc
 │   │   ├── system-tests
 │   │   ├── test_main.cc
+│   │   ├── unit_tests_acquisition.cc
+│   │   ├── unit_tests_common.h
+│   │   ├── unit_tests_common_flags.cc
+│   │   ├── unit_tests_core.cc
+│   │   ├── unit_tests_osnma.cc
+│   │   ├── unit_tests_pvt.cc
+│   │   ├── unit_tests_system_parameters.cc
+│   │   ├── unit_tests_tracking.cc
 │   │   └── unit-tests
 │   │       ├── arithmetic
 │   │       ├── control-plane
-│   │       └── signal-processing-blocks
-│   │           ├── acquisition
-│   │           ├── adapter
-│   │           ├── filter
-│   │           ├── libs
-│   │           ├── observables
-│   │           ├── pvt
-│   │           ├── resampler
-│   │           ├── sources
-│   │           ├── telemetry_decoder
-│   │           └── tracking
+│   │       ├── signal-processing-blocks
+│   │       │   ├── acquisition
+│   │       │   ├── adapter
+│   │       │   ├── filter
+│   │       │   ├── libs
+│   │       │   ├── observables
+│   │       │   ├── osnma
+│   │       │   ├── pvt
+│   │       │   ├── resampler
+│   │       │   ├── sources
+│   │       │   ├── telemetry_decoder
+│   │       │   └── tracking
+│   │       └── system-parameters
 ```
 {: class="no-copy"}
 
@@ -931,10 +941,13 @@ Test library. This process is managed in the file
 You will need to list your new test in the appropriate place in order to include
 it in the building:
 
- * If your test is a Unit Test, please `#include` it in the file
- [gnss-sdr/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/tests/test_main.cc)
- and rebuild the source code. It should be getting included in the test program
- `run_tests`.
+ * If your test is a Unit Test, please `#include` it in the
+ `gnss-sdr/tests/unit_tests_<category>.cc` file of the corresponding category
+ (_e.g._,
+ [gnss-sdr/tests/unit_tests_tracking.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/tests/unit_tests_tracking.cc)
+ for a Tracking block test) and rebuild the source code. Those files are
+ compiled into the test program `run_tests`, whose entry point is
+ [gnss-sdr/tests/test_main.cc](https://github.com/gnss-sdr/gnss-sdr/blob/next/tests/test_main.cc).
 
  * If your test is a System Test, please modify accordingly the file
  [gnss-sdr/tests/CMakeLists.txt](https://github.com/gnss-sdr/gnss-sdr/blob/next/tests/CMakeLists.txt)

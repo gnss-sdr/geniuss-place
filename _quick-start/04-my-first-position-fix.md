@@ -2,7 +2,7 @@
 title: "My first position fix"
 permalink: /my-first-fix/
 excerpt: "How to quickly get a position fix with GNSS-SDR."
-last_modified_at: 2026-04-13T08:54:02+02:00
+last_modified_at: 2026-10-01T12:00:00+02:00
 header:
   teaser: "/assets/images/gn3s_pvt_4_sats.jpg"
 sidebar:
@@ -35,16 +35,16 @@ you should see something similar to:
 
 ```console
 $ gnss-sdr --version
-gnss-sdr version 0.0.21
+gnss-sdr version 0.0.22
 $  
 ```
 {: class="no-copy"}
 
-Please check that your installed version is 0.0.21 (or something like
-0.0.21.git-`branchname`-`githash` if you built the code from a source code
+Please check that your installed version is 0.0.22 (or something like
+0.0.22.git-`branchname`-`githash` if you built the code from a source code
 snapshot). Older versions could not work for the example shown here. If you
 installed GNSS-SDR by doing `sudo apt install gnss-sdr` and you got a
-version earlier to 0.0.21, please do `sudo apt remove gnss-sdr` and [build
+version earlier to 0.0.22, please do `sudo apt remove gnss-sdr` and [build
 it from source]({{ "/build-and-install/#build" | relative_url }}).
 {: .notice--warning}
 
@@ -106,7 +106,7 @@ favorite plain text editor:
 
 ;######### GLOBAL OPTIONS ##################
 GNSS-SDR.internal_fs_sps=2000000
-GNSS-SDR.pre_2009_file=true
+GNSS-SDR.observation_date=2013-04-04
 
 ;######### SIGNAL_SOURCE CONFIG ############
 SignalSource.implementation=File_Signal_Source
@@ -201,11 +201,11 @@ You should see something similar to:
 
 ```
 $ gnss-sdr --config_file=./my-first-GNSS-SDR-receiver.conf
-Initializing GNSS-SDR v0.0.21 ... Please wait.
-Logging will be done at "/tmp"
+Initializing GNSS-SDR v0.0.22 ... Please wait.
+Logging will be written at "/tmp"
 Use gnss-sdr --log_dir=/path/to/log to change that.
-Processing file /home/your-username/work/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat, which contains 1600000000 [bytes]
-GNSS signal recorded time to be processed: 99.999 [s]
+Processing file /home/your-username/work/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat, which contains 800000000 samples (1600000000 bytes)
+GNSS signal recorded time to be processed: 99.95 [s]
 Starting a TCP/IP server of RTCM messages on port 2101
 The TCP/IP server of RTCM messages is up and running. Accepting connections ...
 ...

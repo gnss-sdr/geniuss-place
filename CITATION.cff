@@ -10,7 +10,7 @@ authors:
     given-names: Carles
     orcid: "https://orcid.org/0000-0002-9201-7007"
 cff-version: "1.2.0"
-date-released: "2026-04-14"
+date-released: "2026-10-04"
 doi: 10.5281/zenodo.6094425
 keywords:
   - "Global Navigation Satellite System"
@@ -19,6 +19,9 @@ keywords:
   - SDR
   - GPS
   - Galileo
+  - GLONASS
+  - BeiDou
+  - QZSS
   - C++
 license: CC-BY-4.0
 message: "If you use this software, please cite it using the metadata from this file."
@@ -26,4 +29,4 @@ repository-code: "https://github.com/gnss-sdr/geniuss-place"
 title: "GNSS-SDR website"
 type: software
 url: "https://gnss-sdr.org"
-version: "0.0.21"
+version: "0.0.22"
