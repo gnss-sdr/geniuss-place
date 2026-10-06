@@ -585,3 +585,5 @@ The most relevant changes with respect to the former release are:
 
 
 As usual, compressed tarballs are available from [GitHub](https://github.com/gnss-sdr/gnss-sdr/releases/tag/v0.0.22) and [Sourceforge](https://sourceforge.net/projects/gnss-sdr/).
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23182959.svg)](https://doi.org/10.5281/zenodo.23182959)
