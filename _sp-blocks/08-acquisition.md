@@ -92,8 +92,9 @@ satellite PRN 11[^Fernandez12]._
 
 ## Completing all non-coherent dwells
 
-The `Acquisition_<signal>.full_grid_search` option controls when the shared CPU
-PCPS acquisition block makes its detection decision. It defaults to `false`.
+The `Acquisition_<signal>.full_grid_search` option controls when the shared
+PCPS acquisition block (CPU or CUDA) makes its detection decision. It defaults
+to `false`.
 
 Each dwell computes the correlation over every active Doppler bin and code
 phase. With multiple dwells, the block adds their squared correlation
@@ -171,8 +172,8 @@ include `full_grid_search`.
 ## Reduced Doppler search
 
 The implementations whose parameter tables below include `full_grid_search` and
-`reference_bin_min_sidelobes` share a CPU PCPS acquisition block that can search
-any number of Doppler bins, from a single one up to the full configured grid,
+`reference_bin_min_sidelobes` share a PCPS acquisition block (CPU or CUDA) that
+can search any number of Doppler bins, from a single one up to the full configured grid,
 centered at a Doppler value $$ f_c $$ provided by the receiver. Without prior
 knowledge, the search covers the full grid of
 $$ N = \lceil 2 \cdot \text{doppler_max} / \text{doppler_step} \rceil $$
