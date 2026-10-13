@@ -79,7 +79,7 @@ The most relevant changes with respect to the former release are:
 ## Improvements in [Availability]({{ "/design-forces/availability/" | relative_url }}):
 
 - Added `Acquisition_XX.full_grid_search` (default: `false`) for acquisition
-  implementations using the CPU PCPS block. When enabled, each search stage
+  implementations using the PCPS block (CPU or CUDA). When enabled, each search stage
   accumulates all `max_dwells` non-coherent integrations before accepting or
   rejecting the strongest peak. This also applies to both stages of
   `make_two_steps` and to narrowed Doppler searches. The default preserves early
