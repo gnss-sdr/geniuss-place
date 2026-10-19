@@ -767,6 +767,10 @@ start with a Data Type Adapter accepting `byte` items (`Pass_Through` or
 `Byte_To_Short`), followed by a `Freq_Xlating_Fir_Filter` that shifts the
 selected band to baseband and decimates to the working sample rate.
 
+Alternatively, with `enable_freq_xlating=true`, the source performs that
+translation itself and delivers baseband <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> samples, one output port per
+band. See [Translating the bands inside the source](#translating-the-bands-inside-the-source).
+
 When a single capture holds several bands, set `RF_channels` to the number of
 bands. The file is then read and unpacked once, and the source exposes a single
 output port that every Signal Conditioner, each tuned to a different
@@ -791,17 +795,17 @@ $ sudo make install
 This implementation accepts the following parameters:
 
 |----------
-|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | **Required** |
-| :-----------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------: |
+|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | **Required** |
+| :-----------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------: |
 |      --------------       |
-|     `implementation`      | `EVK1029_Signal_Source`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |  Mandatory   |
-|        `filename`         | Path to the raw capture file produced by the EVK1029 host application. It defaults to `data.bin`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
-|   `sampling_frequency`    | Raw (pre-decimation) ADC sample rate of the capture, in samples per second, as reported by the host application (the `freqbase` field of its `.sdrx` metadata). Note that this is **not** `GNSS-SDR.internal_fs_sps`, which is the decimated rate downstream of the Input Filter. It paces the throttle, when enabled, converts `seconds_to_skip` into a position in the file, and sizes the block's internal scheduling quantum. It defaults to the value of `GNSS-SDR.internal_fs_sps`, so it must be set explicitly whenever the Input Filter decimates and `seconds_to_skip` is used. |   Optional   |
-|     `seconds_to_skip`     | Number of seconds of the capture to skip before reading begins, so that a long capture can be jumped straight to a time of interest instead of being processed from the beginning. It is converted into a byte position using `sampling_frequency` (two samples per byte) and rounded up to the next 64-bit word boundary, matching the capture's native packing. If that position lies at or beyond the end of the file, the receiver exits with an error message. It defaults to `0`.                                                                                                   |   Optional   |
-|       `RF_channels`       | Number of Signal Conditioners fed from a single file read. Set it to the number of bands to process from the capture: the source exposes one output port carrying the unpacked sample stream, and each Signal Conditioner reads that same port independently. It defaults to `1`.                                                                                                                                                                                                                                                                                                         |   Optional   |
-| `enable_throttle_control` | [`true`, `false`]: If set to `true`, it throttles the output flow of samples such that the average rate does not exceed `sampling_frequency`, thus emulating real-time operation. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                 |   Optional   |
-|          `dump`           | [`true`, `false`]: If set to `true`, it dumps the unpacked sample stream in <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr> format. The dump is just another reader of the source's single output port, so it holds the same stream delivered to every Signal Conditioner when `RF_channels` is greater than `1`. It defaults to `false`.                                                                                                                                                        |   Optional   |
-|      `dump_filename`      | If `dump` is set to `true`, the name of the dump file. It defaults to `./evk1029_signal_source.dat`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |   Optional   |
+|     `implementation`      | `EVK1029_Signal_Source`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |  Mandatory   |
+|        `filename`         | Path to the raw capture file produced by the EVK1029 host application. It defaults to `data.bin`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|   `sampling_frequency`    | Raw (pre-decimation) ADC sample rate of the capture, in samples per second, as reported by the host application (the `freqbase` field of its `.sdrx` metadata). Note that this is **not** `GNSS-SDR.internal_fs_sps`, which is the decimated rate downstream of the Input Filter. It paces the throttle, when enabled, converts `seconds_to_skip` into a position in the file, and sizes the block's internal scheduling quantum. It defaults to the value of `GNSS-SDR.internal_fs_sps`, so it must be set explicitly whenever the Input Filter decimates and `seconds_to_skip` is used.                                                                                                                     |   Optional   |
+|     `seconds_to_skip`     | Number of seconds of the capture to skip before reading begins, so that a long capture can be jumped straight to a time of interest instead of being processed from the beginning. It is converted into a byte position using `sampling_frequency` (two samples per byte) and rounded up to the next 64-bit word boundary, matching the capture's native packing. If that position lies at or beyond the end of the file, the receiver exits with an error message. It defaults to `0`.                                                                                                                                                                                                                       |   Optional   |
+|       `RF_channels`       | Number of Signal Conditioners fed from a single file read. Set it to the number of bands to process from the capture: the source exposes one output port carrying the unpacked sample stream, and each Signal Conditioner reads that same port independently. With `enable_freq_xlating=true`, it is instead the number of bands translated by the source, each delivered on its own output port (see [Translating the bands inside the source](#translating-the-bands-inside-the-source)). It defaults to `1`.                                                                                                                                                                                               |   Optional   |
+| `enable_throttle_control` | [`true`, `false`]: If set to `true`, it throttles the output flow of samples such that the average rate does not exceed `sampling_frequency`, thus emulating real-time operation. It is not available with `enable_freq_xlating=true`, and it is ignored in that case. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
+|          `dump`           | [`true`, `false`]: If set to `true`, it dumps the unpacked sample stream in <abbr id="data-type" title="Signed integer, 8-bit two's complement number ranging from -128 to 127. C++ type name: int8_t">`byte`</abbr> format. The dump is just another reader of the source's single output port, so it holds the same stream delivered to every Signal Conditioner when `RF_channels` is greater than `1`. With `enable_freq_xlating=true`, each band is instead dumped to its own file, in <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> format (see `dump_filename`). It defaults to `false`. |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, the name of the dump file. With `enable_freq_xlating=true` and more than one band, band `n` is written to this name with `_ch<n>` inserted before the extension (for instance, `./evk1029_signal_source_ch1.dat`). It defaults to `./evk1029_signal_source.dat`.                                                                                                                                                                                                                                                                                                                                                                                                                  |   Optional   |
 |          -------          |
 
   _Signal Source implementation:_ **`EVK1029_Signal_Source`**
@@ -902,6 +906,108 @@ Channels_5X.RF_channel_ID=1
 A complete dual-band Galileo E1+E5a / GPS L1+L5 configuration for this
 front-end, including acquisition, tracking, and PVT settings, is available at
 [gnss-sdr/conf/File_input/MultiCons/gnss-sdr_EVK1029_Galileo_GPS_E1_E5a.conf](https://github.com/gnss-sdr/gnss-sdr/blob/next/conf/File_input/MultiCons/gnss-sdr_EVK1029_Galileo_GPS_E1_E5a.conf).
+
+#### Translating the bands inside the source
+
+<span style="color: orange">This feature is only present in the `next` branch
+of the upstream repository, and will be included in the next GNSS-SDR stable
+release.</span>
+
+With `enable_freq_xlating=true`, the source itself shifts each band to baseband,
+low-pass filters it, and decimates it, instead of passing the raw `byte` stream
+to a `Freq_Xlating_Fir_Filter` in each Signal Conditioner. It then exposes one
+output port per band, carrying <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> samples at the decimated rate: band `n`
+(configured with the `band<n>_` parameters below, where `n` goes from `0` to
+`RF_channels`-1) feeds Signal Conditioner `n`. Since these samples
+already have the data type and the sample rate expected by the channels, set
+each Signal Conditioner to
+[`Bypass`]({{ "/docs/sp-blocks/signal-conditioner/#implementation-bypass" | relative_url }}),
+so the channels read directly from the source output ports.
+
+This removes one filtering block per band, together with its thread and its
+buffer. Inside the source, the filter of each band runs on its own worker
+thread, and the next chunk of the capture is decoded while the current one is
+being filtered, so the work is spread over several CPU cores. If GNSS-SDR was
+built with CUDA support (see the
+[CUDA build instructions]({{ "/docs/sp-blocks/tracking/#implementation-gps_l1_ca_dll_pll_tracking_gpu" | relative_url }})),
+the filter of each band can instead be computed on an NVIDIA GPU with
+`band<n>_cuda=true`.
+
+All bands must use the same decimation factor, so that all output ports run at
+the same rate, and `GNSS-SDR.internal_fs_sps` must be set to
+`sampling_frequency` divided by that factor. The receiver does not start if the
+`band<n>_decimation_factor` values differ. The filters are designed as in
+`Freq_Xlating_Fir_Filter` with `filter_type=lowpass`, with a window and an
+attenuation that can be chosen per band. When bands use filters of different
+lengths, the shorter ones are centered on the longest one, so all bands are
+delivered with the same group delay and no inter-band bias is added to the
+pseudoranges. The `enable_throttle_control` parameter is not available in this
+mode.
+
+In addition to the parameters above, this mode accepts the following ones:
+
+|----------
+|        **Parameter**        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                             | **Required** |
+| :-------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------: |
+|       --------------        |
+|    `enable_freq_xlating`    | [`true`, `false`]: If set to `true`, the source translates, filters, and decimates each band itself, and delivers one <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr> output port per band. It defaults to `false`.                                                                                                             |   Optional   |
+|        `band<n>_IF`         | Intermediate frequency $$ f_{IF} $$ of band `n` in the raw capture, in Hz, which is translated to $$ 0 $$ Hz. Since the capture is real-valued, each band appears at both $$ +f_{IF} $$ and $$ -f_{IF} $$ with mirrored spectra, and the sign selects which one is used: use the same value as for the `IF` parameter of a `Freq_Xlating_Fir_Filter` processing the same capture. It defaults to $$ 0 $$ Hz.                                |   Optional   |
+| `band<n>_decimation_factor` | Integer decimation factor from `sampling_frequency` to the output rate of band `n`. It must be the same for all bands, and at least `1`. It defaults to `1`.                                                                                                                                                                                                                                                                                |   Optional   |
+|        `band<n>_bw`         | Cut-off frequency, in Hz, of the low-pass filter of band `n`. It defaults to (`sampling_frequency`/`band<n>_decimation_factor`)/2 Hz.                                                                                                                                                                                                                                                                                                       |   Optional   |
+|        `band<n>_tw`         | Width of the transition band (centered at `band<n>_bw`), in Hz, of the low-pass filter of band `n`. It defaults to $$ \frac{\text{bw}}{10} $$.                                                                                                                                                                                                                                                                                              |   Optional   |
+|      `band<n>_window`       | [`hamming`, `hann`, `blackman`, `blackman_harris`, `rectangular`, `kaiser`]: Window used to design the low-pass filter of band `n`. Except for `kaiser`, each window has a fixed maximum stopband attenuation (for instance, about 53 dB for `hamming`), regardless of the number of taps. An unknown value falls back to `hamming`, with a warning in the log. It defaults to `hamming`.                                                   |   Optional   |
+|  `band<n>_attenuation_dB`   | Target stopband attenuation, in dB, of the low-pass filter of band `n`. If set, the number of taps is computed to reach it (GNU Radio's `firdes::low_pass_2`), and with `band<n>_window=kaiser` it also sets the default value of `band<n>_kaiser_beta`. Only `kaiser` can exceed the fixed attenuation of the other windows. If not set, the number of taps is computed from `band<n>_tw` and the window, as in `Freq_Xlating_Fir_Filter`. |   Optional   |
+|    `band<n>_kaiser_beta`    | Shape parameter $$ \beta $$ of the Kaiser window, only used if `band<n>_window=kaiser`. It defaults to the value derived from `band<n>_attenuation_dB` with Kaiser's empirical formula if that parameter is set, or to $$ 6.76 $$ otherwise. Set it only to depart deliberately from `band<n>_attenuation_dB`.                                                                                                                              |   Optional   |
+|       `band<n>_cuda`        | [`true`, `false`]: If set to `true`, the low-pass filter of band `n` is computed on an NVIDIA GPU instead of on a CPU worker thread. It only takes effect if GNSS-SDR was built with `-DENABLE_CUDA=ON`, and otherwise it is ignored. If no CUDA device is available, or if a GPU call fails, that band falls back to the CPU and a warning is written to the log. It defaults to `false`.                                                  |   Optional   |
+|           -------           |
+
+  _Signal Source implementation:_ **`EVK1029_Signal_Source`**, fused band translation
+  {: style="text-align: center;"}
+
+Example of a dual-band Galileo E1+E5a / GPS L1+L5 receiver in which the source
+translates both bands and the Signal Conditioners are bypassed:
+
+```ini
+[GNSS-SDR]
+GNSS-SDR.internal_fs_sps=22250000  ; <- sampling_frequency / band decimation factor
+
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=EVK1029_Signal_Source
+SignalSource.filename=/path/to/capture.bin  ; <- PUT YOUR FILE NAME HERE
+SignalSource.sampling_frequency=178000000   ; <- RAW ADC RATE OF THE CAPTURE
+SignalSource.RF_channels=2
+SignalSource.enable_freq_xlating=true
+SignalSource.band0_IF=0                     ; <- PUT THE E1/L1 IF OF YOUR CAPTURE HERE
+SignalSource.band0_decimation_factor=8
+SignalSource.band0_bw=10000000
+SignalSource.band0_tw=2000000
+SignalSource.band0_window=kaiser
+SignalSource.band0_attenuation_dB=45
+SignalSource.band1_IF=0                     ; <- PUT THE E5a/L5 IF OF YOUR CAPTURE HERE
+SignalSource.band1_decimation_factor=8
+SignalSource.band1_bw=10000000
+SignalSource.band1_tw=2000000
+SignalSource.band1_window=kaiser
+SignalSource.band1_attenuation_dB=45
+
+;######### SIGNAL_CONDITIONER CONFIG ############
+SignalConditioner0.implementation=Bypass
+SignalConditioner1.implementation=Bypass
+
+;######### CHANNELS GLOBAL CONFIG ############
+Channels_1C.count=8
+Channels_1B.count=8
+Channels_L5.count=8
+Channels_5X.count=8
+
+Channels_1C.RF_channel_ID=0
+Channels_1B.RF_channel_ID=0
+Channels_L5.RF_channel_ID=1
+Channels_5X.RF_channel_ID=1
+```
+
+With `SignalSource.dump=true`, this example writes the two translated bands to
+`./evk1029_signal_source_ch0.dat` and `./evk1029_signal_source_ch1.dat`.
 
 
 ### Implementation: `NTLab_File_Signal_Source`
