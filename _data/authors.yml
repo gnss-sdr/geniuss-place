@@ -148,3 +148,15 @@ Xavier Guerrero:
   twitter     :
   linkedin    : "xavier-guerrero-0b4b9266"
   github      : "xguerreropau"
+
+Miguel Angel Gomez:
+  name        : "Miguel Á. Gómez-López"
+  avatar      : "/assets/images/miguel.jpeg"
+  uri         : "https://researchportal.uc3m.es/display/inv49603"
+  bio         : "Visiting Professor at UC3M"
+  email       : "miguelangel.g.l@uc3m.es"
+  orcid       : "0000-0001-9300-2133"
+  google-scholar: "PCwlFbcAAAAJ"
+  github      : "kalmancito"
+  linkedin    : "miguel-gomez-lopez-783875171"
+  location    : "Madrid, Spain"
