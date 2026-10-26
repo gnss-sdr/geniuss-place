@@ -3,12 +3,12 @@ title: "Global receiver parameters"
 permalink: /docs/sp-blocks/global-parameters/
 excerpt:
   "Documentation of global receiver parameters: Sampling rate of the GNSS
-  baseband engine, Telecommand and Assisted GNSS."
+  baseband engine, Telecommand, Assisted GNSS and deterministic processing."
 sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-09-29T12:00:00+02:00
+last_modified_at: 2026-10-26T12:00:00+01:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -461,7 +461,7 @@ but forces a full-range search for a given signal only.
 |        **Parameter**        | **Description**                                                                                                                                                                                                                                   | **Required** |
 | :-------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------: |
 |       --------------        |
-| `assist_dual_frequency_acq` | [`true`, `false`]: If set to `true`, it enables the assistance to acquisition from primary to secondary bands in dual-frequency configurations. If set to `false`, satellites are searched for independently in each band. It defaults to `true`. Available since GNSS-SDR v0.0.22. |   Optional   |
+| `assist_dual_frequency_acq` | [`true`, `false`]: If set to `true`, it enables the assistance to acquisition from primary to secondary bands in dual-frequency configurations. If set to `false`, satellites are searched for independently in each band. It defaults to `true`, except with [deterministic processing](#deterministic-processing), which does not accept `true`. Available since GNSS-SDR v0.0.22. |   Optional   |
 |           -------           |
 
 Example for satellites searched independently in each band:
@@ -665,7 +665,7 @@ Activating this configuration parameter makes this information available both in
 |----------
 | **Parameter**  | **Description**                                   | **Required** |
 | :------------: | :------------------------------------------------ | :----------: |
-| `tow_to_trk` | [`true`, `false`]: When set to `true`, Telemetry blocks send asynchronous messages back to the Tracking blocks containing the information required to compute the TOW and week number at the tracking stage. It defaults to `false`. |   Optional   |
+| `tow_to_trk` | [`true`, `false`]: When set to `true`, Telemetry blocks send asynchronous messages back to the Tracking blocks containing the information required to compute the TOW and week number at the tracking stage. It is ignored with [deterministic processing](#deterministic-processing). It defaults to `false`. |   Optional   |
 | -------------- |
 
 Example:
@@ -673,3 +673,121 @@ Example:
 ```ini
 GNSS-SDR.tow_to_trk=true
 ```
+
+## Deterministic processing
+
+<span style="color: orange">This feature is only present in the `next` branch
+of the upstream repository, and will be included in the next GNSS-SDR stable
+release.</span>
+
+Processing the same recorded file twice does not necessarily give the same
+results, even with `Acquisition_XX.blocking=true`. Signal processing runs in
+sample time, but the receiver control runs in wall-clock time: the control
+thread starts acquisitions, assigns satellites to channels, and applies channel
+events (successful or failed acquisitions, losses of lock) at whatever sample
+each block has reached when it handles them, and the Observables and PVT blocks
+apply each other's messages (navigation data, receiver clock corrections)
+whenever they arrive. Thread timing then changes the first sample of every
+search and pull-in, the satellite-to-channel assignment, the epoch of the first
+position fix, and the end of the outputs.
+
+Setting `GNSS-SDR.deterministic=true` makes the processing of a recorded file
+repeatable. In this mode:
+
+* Events and messages carry the sample at which they happened, and the control
+  thread handles channel events in sample order.
+* Every action caused by an event (for instance, the start of the next
+  acquisition search, or the tracking pull-in after a successful acquisition)
+  takes effect a fixed lookahead later, at a sample that depends only on the
+  stamp of the event. A gate at the output of each
+  [Signal Conditioner]({{ "docs/sp-blocks/signal-conditioner/" | relative_url }})
+  keeps the stream from running further ahead than the lookahead past the
+  slowest block.
+* Periodic control tasks, such as assigning satellites to idle channels, run
+  every `deterministic_tick_ms` of signal instead of every 100 ms of wall-clock
+  time.
+* The receiver stops only when the whole input file has gone through the PVT
+  block.
+
+Tracking, Telemetry Decoder, Observables and PVT dump files, and RINEX, NMEA,
+KML, GPX and GeoJSON files are then bit-identical from run to run (except for
+the creation time written in the RINEX, KML and GPX headers), whatever the CPU
+load and with `Acquisition_XX.blocking` set to either value, as long as the same
+GNSS-SDR executable runs with the same libraries, on a processor with the same
+instruction set extensions (VOLK and VOLK_GNSSSDR choose their kernels
+according to them), with the same FFTW wisdom (GNU Radio plans its FFTs with
+`FFTW_MEASURE`) and the same VOLK configuration. Different lookahead values
+start the searches at different samples, so they give different (but, again,
+repeatable) results.
+
+Results are not bit-identical across builds or platforms. The same source code
+built with another compiler or other compiler flags, or linked against other
+versions of the math library, VOLK, FFTW or BLAS/LAPACK, rounds floating-point
+operations differently. For instance, GCC and Clang fuse multiplications and
+additions into FMA instructions in different places, the ARM NEON kernels of
+VOLK_GNSSSDR are compiled with `-funsafe-math-optimizations`, and the math
+libraries of macOS and GNU/Linux return different last bits for some inputs of
+functions such as `sin`, `cos` or `atan2`. These differences are tiny in the
+correlator outputs, but they can change a decision near a threshold, such as
+the epoch at which a weak signal loses lock, and from then on that channel
+follows a different sequence of events. To get identical
+files on different computers, run the same executable and libraries (for
+instance, from the same container image) on the same processor architecture.
+
+|----------
+|        **Parameter**         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                      | **Required** |
+| :--------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------: |
+|        --------------        |
+|       `deterministic`        | [`true`, `false`]: If set to `true`, it enables the deterministic processing described above. It defaults to `false`.                                                                                                                                                                                                                                                                                                |   Optional   |
+| `deterministic_lookahead_ms` | Delay, in ms of signal, between a channel event and the actions it causes. It is raised automatically to cover the input that a block needs beyond its current sample (for instance, the samples of all the dwells of an acquisition search). It must be positive, and it cannot exceed the observables delay minus 60 ms: 220 ms with the default `observable_interval_ms` of 20 ms. It defaults to $$ 100 $$ [ms]. |   Optional   |
+|   `deterministic_tick_ms`    | Period, in ms of signal, of the periodic control tasks. It must be at least 1 ms. It defaults to $$ 100 $$ [ms].                                                                                                                                                                                                                                                                                                     |   Optional   |
+|           -------            |
+
+_Global GNSS-SDR parameters: deterministic processing_.
+{: style="text-align: center;"}
+
+Example:
+
+```ini
+GNSS-SDR.deterministic=true
+GNSS-SDR.deterministic_lookahead_ms=200
+```
+
+The receiver refuses to start, with an explanation, if the configuration
+includes any of the following:
+
+* radio frequency front-ends and network or pipe inputs (such as
+  `Fifo_Signal_Source`), whose samples could be lost while the stream is held
+  back;
+* FPGA offloading (`GNSS-SDR.enable_FPGA=true`);
+* `use_acquisition_resampler=true` with Acquisition implementations that do not
+  support the resampler;
+* the [visibility-aware acquisition search](#visibility-aware-acquisition-search)
+  and [assisted GNSS](#assisted-gnss);
+* an explicit `assist_dual_frequency_acq=true`;
+* `osnma_mode=strict`, Galileo HAS corrections (`PVT.use_has_corrections=true`,
+  the default when there are Galileo E6 channels) and NTRIP corrections
+  (`PVT.ntrip_client_enabled=true`), whose effects the PVT block applies when
+  the messages arrive;
+* Galileo E6 channels together with Galileo E1, E5a or E5b channels, whose time
+  of week reaches the E6 Telemetry Decoders when it arrives;
+* `Acquisition_XX.blocking_on_standby=true`;
+* a lookahead that is not positive or exceeds the limit above, or a control
+  tick below 1 ms.
+
+Also, in this mode:
+
+* multi-frequency configurations do not use the
+  [self-assistance](#self-assistance-in-multi-frequency-receivers) from primary
+  to secondary bands, and the receiver does not stop channels that track a
+  satellite signal already tracked in another channel, since both decisions
+  depend on the live tracking status;
+* the Tracking blocks ignore `tow_to_trk=true`, since the Telemetry Decoder
+  messages would reach them at a timing-dependent sample;
+* commands received through the [telecommand](#telecommand-via-tcpip)
+  interface take effect when they arrive, so they make the results depend on
+  their timing.
+
+This mode is intended for post-processing recorded files, for instance to
+compare the outputs of two receiver configurations or software versions, or to
+reproduce a rare event exactly. It is not suitable for real-time operation.
