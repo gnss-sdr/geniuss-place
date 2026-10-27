@@ -1966,18 +1966,36 @@ BPSK(10). Both components use ranging codes of $$ 10230 $$ chips transmitted
 at $$ 10.23 $$ Mchip/s (thus with a period of $$ 1 $$ ms). The data component
 is further modulated by a $$ 5 $$-chip secondary code (`00010`) at $$ 1 $$
 kchip/s, so each B-CNAV2 symbol spans $$ 5 $$ ms, and the pilot component by a
-$$ 100 $$-chip secondary code.
+$$ 100 $$-chip secondary code (a truncated Weil code of length $$ 1021 $$,
+different for each satellite) at $$ 1 $$ kchip/s.
 
 ### Implementation: `BEIDOU_B2A_DLL_PLL_Tracking`
 
-This implementation tracks the data component of the B2a signal only (the pilot
-component is not used), with a coherent integration time of one code period
-($$ 1 $$ ms). The $$ 1 $$ ms prompt correlator outputs are delivered to the
-[Telemetry Decoder]({{ "/docs/sp-blocks/telemetry-decoder/#beidou-b-cnav2-navigation-message" | relative_url }})
-from the beginning of the pull-in stage, where the $$ 5 $$-chip secondary code
-is wiped off and the B-CNAV2 frame synchronization is performed, so that
-navigation data decoding can start without waiting for the pull-in time to
-elapse.
+By default, this implementation tracks the pilot component of the B2a signal,
+and an extra prompt correlator on the data component, slave to the pilot's
+prompt, provides the $$ 1 $$ ms correlator outputs delivered to the
+[Telemetry Decoder]({{ "/docs/sp-blocks/telemetry-decoder/#beidou-b-cnav2-navigation-message" | relative_url }}).
+After the pull-in stage, the Tracking block synchronizes with the
+$$ 100 $$-chip pilot secondary code, which must be achieved within
+`bit_synchronization_time_limit_s`. Once the secondary code is removed, the
+coherent integration time can be extended with `extend_correlation_symbols`,
+in which case the narrow loop bandwidths and correlator spacing are applied.
+
+If `track_pilot=false`, this implementation tracks the data component instead,
+with a coherent integration time of one code period ($$ 1 $$ ms). Its
+$$ 5 $$-chip secondary code is wiped off by the Telemetry Decoder, so there is
+no secondary code synchronization in the Tracking block, and neither extended
+coherent integration nor the narrow loop parameters are used.
+
+In both cases, the data component prompt correlator outputs are delivered to the
+Telemetry Decoder from the beginning of the pull-in stage, where the
+$$ 5 $$-chip secondary code is wiped off and the B-CNAV2 frame synchronization
+is performed, so that navigation data decoding can start without waiting for
+the pull-in time to elapse.
+
+<span style="color: orange">Tracking of the pilot component is only present in
+the `next` branch of the upstream repository, and will be included in the next
+GNSS-SDR stable release. GNSS-SDR v0.0.22 only tracks the data component.</span>
 
 This implementation accepts the following parameters:
 
@@ -1995,9 +2013,10 @@ This implementation accepts the following parameters:
 |            --------------            |
 |           `implementation`           | `BEIDOU_B2A_DLL_PLL_Tracking`                                                                                                                                                                                                                                                                                                                                                                                                                                                    |  Mandatory   |
 |             `item_type`              | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>.                                                                             |   Optional   |
-|            `track_pilot`             | [`true`, `false`]: This implementation only tracks the data component of the B2a signal. If set to `true`, a warning is printed and the data component is tracked anyway. It defaults to `false`.                                                                                                                                                                                                                                                                            |   Optional   |
-|     `extend_correlation_symbols`     | For BeiDou B2a, coherent integration is limited to $$ 1 $$ code period ($$ 1 $$ ms), since the synchronization with the $$ 5 $$-chip secondary code of the data component is performed by the Telemetry Decoder. This parameter defaults to 1, and values greater than 1 are clamped back to 1 with a warning.                                                                                                                              |   Optional   |
+|            `track_pilot`             | [`true`, `false`]: If set to `true`, the receiver is set to track the pilot component (Q) and enables an extra prompt correlator (slave to pilot's prompt) in the data component (I), whose outputs are delivered to the Telemetry Decoder. If set to `false`, the receiver performs correlations on a data length of 1 ms over the data component. It defaults to `true`. In GNSS-SDR v0.0.22, only the data component can be tracked: setting this parameter to `true` prints a warning and the data component is tracked anyway, and it defaults to `false`.                                                                                                                                                                                                                                                                            |   Optional   |
+|     `extend_correlation_symbols`     | If `track_pilot=true`, sets the number of correlation symbols to be extended after the pilot secondary code is removed, in number of symbols. Each symbol is 1 ms, so setting this parameter to 20 means a coherent integration time of 20 ms. The higher this parameter is, the better local clock stability will be required. If `track_pilot=false`, coherent integration is limited to $$ 1 $$ code period ($$ 1 $$ ms), since the synchronization with the $$ 5 $$-chip secondary code of the data component is performed by the Telemetry Decoder, and values greater than 1 are clamped back to 1 with a warning. It defaults to 1.                                                                                                                              |   Optional   |
 |             `pll_bw_hz`              | Bandwidth of the PLL low-pass filter, in Hz. It defaults to 35 Hz.                                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
+|          `pll_bw_narrow_hz`          | Bandwidth of the PLL low-pass filter after the secondary code lock, in Hz. Only used if `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1. It defaults to 5 Hz.                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
 |          `pll_filter_order`          | [`2`, `3`]. Sets the order of the PLL low-pass filter. It defaults to 3.                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
 |         `enable_fll_pull_in`         | [`true`, `false`]. If set to `true`, enables the FLL during the pull-in time. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                        |   Optional   |
 |      `enable_fll_steady_state`       | [`true`, `false`]. If set to `true`, the FLL is enabled beyond the pull-in stage. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
@@ -2010,8 +2029,10 @@ This implementation accepts the following parameters:
 | `f_error_dump` | [`true`, `false`]: If set to `true`, the results of each frequency-error reduction scan are written to the CSV file set by `f_error_dump_filename`. Only used if `f_error_step_num` $$ > $$ 0. It defaults to `false`. | Optional |
 |       `f_error_dump_filename`        | Name of the CSV file in which the results of each frequency-error reduction scan are written. Only used if `f_error_dump=true` and `f_error_step_num` $$ > $$ 0. It defaults to `./f_error_dump.csv`.                                                                                                                                                                                                                                               |   Optional   |
 |             `dll_bw_hz`              | Bandwidth of the DLL low-pass filter, in Hz. It defaults to 2 Hz.                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|          `dll_bw_narrow_hz`          | Bandwidth of the DLL low-pass filter after the secondary code lock, in Hz. Only used if `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1. It defaults to 0.75 Hz.                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
 |          `dll_filter_order`          | [`1`, `2`, `3`]. Sets the order of the DLL low-pass filter. It defaults to 2.                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
 |       `early_late_space_chips`       | Spacing between Early and Prompt and between Prompt and Late correlators, normalized by the chip period $$ T_c $$. It defaults to $$ 0.25 $$.                                                                                                                                                                                                                                                                                                                                 |   Optional   |
+|   `early_late_space_narrow_chips`    | If `track_pilot=true` and `extend_correlation_symbols` $$ > $$ 1, sets the spacing between Early and Prompt and between Prompt and Late correlators after removal of the pilot secondary code, normalized by the chip period $$ T_c $$. It defaults to $$ 0.15 $$.                                                                                                                                                                                                                                                                        |   Optional   |
 |           `carrier_aiding`           | [`true`, `false`]. If set to `true`, the code loop is aided by the carrier loop. It defaults to `true`.                                                                                                                                                                                                                                                                                                                                                                      |   Optional   |
 | `high_dyn` | [`true`, `false`]: If set to `true`, the code and carrier phase rates are estimated and compensated in the local replicas, improving tracking in high-dynamics scenarios. It defaults to `false`. | Optional |
 | `smoother_length` | If `high_dyn=true`, number of samples used to smooth the estimations of the code and carrier phase rates. It defaults to 10. | Optional |
@@ -2039,9 +2060,13 @@ Example:
 ;######### TRACKING CONFIG FOR BeiDou B2a CHANNELS ############
 Tracking_5D.implementation=BEIDOU_B2A_DLL_PLL_Tracking
 Tracking_5D.item_type=gr_complex
+Tracking_5D.track_pilot=true
 Tracking_5D.pll_bw_hz=15.0
 Tracking_5D.dll_bw_hz=2.0
 Tracking_5D.pull_in_time_s=1
+Tracking_5D.extend_correlation_symbols=20
+Tracking_5D.pll_bw_narrow_hz=8.0
+Tracking_5D.dll_bw_narrow_hz=1.5
 Tracking_5D.dump=false
 Tracking_5D.dump_filename=./tracking_ch_
 ```

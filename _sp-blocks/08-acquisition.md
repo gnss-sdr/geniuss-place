@@ -1469,12 +1469,24 @@ secondary code. GNSS-SDR identifies the BeiDou B2a signal with the identifier
 
 ### Implementation: `BEIDOU_B2A_PCPS_Acquisition`
 
-This implementation searches for the data component of the B2a signal, using a
-local replica of its primary ranging code. Since the primary code period is
-$$ 1 $$ ms and the data component carries a $$ 5 $$-chip secondary code, the
-default coherent integration time of $$ 1 $$ ms avoids straddling secondary
-code chip transitions; sensitivity can be increased by accumulating
-non-coherent dwells with `max_dwells`.
+By default, this implementation acquires the pilot component of the B2a
+signal, using a local replica of its primary ranging code. The `acquire_pilot`
+parameter allows acquiring the data component instead, and `acquire_iq` allows
+using a complex local replica that carries the data primary code in phase and
+the pilot primary code in quadrature, as in the transmitted signal. Both
+primary codes have the same length and chip rate, so the code phase and Doppler
+estimates delivered to the Tracking block are valid for either component.
+
+<span style="color: orange">Pilot and joint data+pilot acquisition are only
+present in the `next` branch of the upstream repository, and will be included
+in the next GNSS-SDR stable release. GNSS-SDR v0.0.22 always acquires the data
+component.</span>
+
+Since the primary code period is $$ 1 $$ ms and both components carry a
+secondary code at $$ 1 $$ kchip/s, the default coherent integration time of
+$$ 1 $$ ms keeps at most one secondary code chip transition within each
+correlation; sensitivity can be increased by accumulating non-coherent dwells
+with `max_dwells`.
 
 This implementation accepts the following parameters:
 
@@ -1493,6 +1505,8 @@ This implementation accepts the following parameters:
 |--------------
 | `implementation` | `BEIDOU_B2A_PCPS_Acquisition` | Mandatory |
 | `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `acquire_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to acquire the B2a pilot component (Q). If set to `false`, the receiver is set to acquire the B2a data component (I). It defaults to `true`. Only present in the `next` branch. | Optional |
+| `acquire_iq` | [`true`, `false`]: If set to `true`, the receiver is set to acquire both the data (I) and pilot (Q) components of the B2a signal with a single complex local replica, and `acquire_pilot` is ignored. It defaults to `false`. Only present in the `next` branch. | Optional |
 | `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
 | `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
 | `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present). | Optional |
@@ -1523,6 +1537,7 @@ Example:
 ;######### ACQUISITION CONFIG FOR BeiDou B2a CHANNELS ############
 Acquisition_5D.implementation=BEIDOU_B2A_PCPS_Acquisition
 Acquisition_5D.item_type=gr_complex
+Acquisition_5D.acquire_pilot=true
 Acquisition_5D.coherent_integration_time_ms=1
 Acquisition_5D.pfa=0.01
 Acquisition_5D.doppler_max=5000
