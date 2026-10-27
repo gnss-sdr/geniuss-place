@@ -708,10 +708,12 @@ and integrity indices); and message type 40 carries the midi almanac.
 
 ### Implementation: `BEIDOU_B2A_Telemetry_Decoder`
 
-This implementation takes the $$ 1 $$ ms prompt correlator outputs delivered by
-the Tracking block, wipes off the $$ 5 $$-chip secondary code of the data
-component to form the $$ 5 $$ ms B-CNAV2 symbols, and searches for the frame
-preamble. Once the preamble is found, the carrier polarity is resolved from it
+This implementation takes the $$ 1 $$ ms data component prompt correlator
+outputs delivered by the Tracking block (also when the Tracking block follows
+the pilot component, see `track_pilot` in
+[BeiDou B2a signal tracking]({{ "/docs/sp-blocks/tracking/#beidou-b2a-signal-tracking" | relative_url }})),
+wipes off the $$ 5 $$-chip secondary code of the data component to form the
+$$ 5 $$ ms B-CNAV2 symbols, and searches for the frame preamble. Once the preamble is found, the carrier polarity is resolved from it
 and the $$ 576 $$ soft symbols that follow are normalized to a common
 log-likelihood ratio scale, so that decoding does not depend on the correlator
 gain. The $$ 96 $$ GF(64) symbols are then decoded with a soft-decision 64-ary
