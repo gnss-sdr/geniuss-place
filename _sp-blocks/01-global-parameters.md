@@ -8,7 +8,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-10-26T12:00:00+01:00
+last_modified_at: 2026-10-29T12:00:00+01:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -769,8 +769,6 @@ includes any of the following:
   the default when there are Galileo E6 channels) and NTRIP corrections
   (`PVT.ntrip_client_enabled=true`), whose effects the PVT block applies when
   the messages arrive;
-* Galileo E6 channels together with Galileo E1, E5a or E5b channels, whose time
-  of week reaches the E6 Telemetry Decoders when it arrives;
 * `Acquisition_XX.blocking_on_standby=true`;
 * a lookahead that is not positive or exceeds the limit above, or a control
   tick below 1 ms.
@@ -784,6 +782,9 @@ Also, in this mode:
   depend on the live tracking status;
 * the Tracking blocks ignore `tow_to_trk=true`, since the Telemetry Decoder
   messages would reach them at a timing-dependent sample;
+* the Galileo E6 Telemetry Decoders take the time of week that the E1, E5a or
+  E5b Telemetry Decoders set for the same satellite once the stream has gone one
+  lookahead past the symbol that set it;
 * commands received through the [telecommand](#telecommand-via-tcpip)
   interface take effect when they arrive, so they make the results depend on
   their timing.

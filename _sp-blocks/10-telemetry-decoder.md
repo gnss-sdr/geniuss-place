@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-10-01T12:00:00+02:00
+last_modified_at: 2026-10-31T12:00:00+01:00
 ---
 
 
@@ -489,6 +489,98 @@ TelemetryDecoder_J5.dump=true
 ```
 
 
+## GPS CNAV-2 navigation message
+
+The CNAV-2 navigation message is broadcast by the data component of the GPS L1C
+signal at $$ 100 $$ symbols per second. Each frame is $$ 1800 $$ symbols
+($$ 18 $$ s) long and is divided into three subframes: subframe 1
+($$ 52 $$ symbols) carries the Time of Interval (TOI) count, encoded with a
+BCH(51,8) code; subframes 2 ($$ 1200 $$ symbols) and 3 ($$ 548 $$ symbols) carry
+the clock and ephemeris data and a page of variable data (UTC and ionospheric
+parameters, Earth orientation parameters, almanacs, among others),
+respectively, both protected by a 24-bit CRC, encoded with LDPC codes, and
+block-interleaved together. See the [CNAV-2 message
+description]({{ "/docs/tutorials/gnss-signals/#gps-l1c-navigation-message-cnav-2" | relative_url }})
+for details.
+
+### Implementation: `GPS_L1C_Telemetry_Decoder`
+
+<span style="color: orange">This implementation is only present in the `next`
+branch of the upstream repository, and will be included in the next GNSS-SDR
+stable release.</span>
+
+This implementation takes the $$ 10 $$ ms data component prompt correlator
+outputs delivered by the Tracking block (also when the Tracking block follows
+the pilot component), one per CNAV-2 symbol. It searches for the frame start by
+correlating the first $$ 52 $$ symbols of a candidate frame with the TOI
+codewords and checking the parity of the deinterleaved subframe 2, and it
+resolves the symbol polarity by decoding the frame with both signs. Subframes 2
+and 3 are then decoded with a soft-decision LDPC decoder and validated with
+their CRC-24Q. The time of week is set from the ITOW count of subframe 2 and the
+TOI count only when subframe 2 passes the CRC check, the TOI correlation is
+reliable, and TOI is between $$ 1 $$ and $$ 399 $$. The decoder delivers to the
+PVT block the ephemeris and clock parameters of subframe 2 (including
+$$ T_{GD} $$, $$ ISC_{L1CP} $$, $$ ISC_{L1CD} $$, and the L1C health bit), the
+UTC and ionospheric parameters and the inter-signal corrections of L1 C/A, L2C,
+and L5 of subframe 3 page 1, and the Earth orientation parameters of page 2,
+using only the pages that carry the PRN of the satellite assigned to the
+channel. The almanac, differential correction, text, and satellite
+configuration pages are not decoded.
+
+A subframe that passes the CRC check but carries no navigation data (the
+default message defined in IS-GPS-800J, alternating ones and zeros, or all
+zeros) is not decoded. When subframe 2 carries no data, or when three
+consecutive frames do not provide the time of week, the receiver warns once per
+satellite that its L1C observations cannot be used for PVT. Until the time of
+week is known, the symbols forwarded to the Observables block are flagged as not
+valid, so no pseudoranges are computed for that satellite.
+
+{% capture l1c-cnav2-status %}
+**Status as of October 31, 2026:** the CNAV-2 messages observed in live GPS III
+signals at CTTC on that date carried no usable navigation data: they provided
+no time of week, no ephemeris, and no clock corrections (see the [status of the
+L1C navigation data]({{ "/docs/tutorials/gnss-signals/#status-of-the-l1c-navigation-data-as-of-october-31-2026" | relative_url }})).
+Hence, GNSS-SDR acquires and tracks the L1C signals broadcast by GPS III
+satellites, and it detects, decodes, and validates CNAV-2 frames, but it obtains
+neither L1C pseudoranges nor ephemerides from them. Moreover, the PVT block only
+uses L1C observations of satellites with a CNAV-2 ephemeris: it does not combine
+them with the LNAV ephemeris of the GPS L1 C/A signal or with external
+navigation data. Therefore, L1C-only positioning with GPS signals in space is
+currently not possible in GNSS-SDR, neither autonomously nor with navigation
+data from other sources.
+{% endcapture %}
+
+<div class="notice--warning">
+  {{ l1c-cnav2-status | markdownify }}
+</div>
+
+This implementation accepts the following parameters:
+
+|----------
+|       **Parameter**       | **Description**                                                                                                                                                                                                                                                                                                | **Required** |
+| :-----------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|      --------------       |
+|     `implementation`      | `GPS_L1C_Telemetry_Decoder`                                                                                                                                                                                                                                                                                    |  Mandatory   |
+|          `dump`           | [`true`, `false`]: If set to `true`, it enables the Telemetry Decoder internal binary data file logging (see section <a href="#binary-output">Binary Output</a> down below for details). It defaults to `false`.                                                                                               |   Optional   |
+|      `dump_filename`      | If `dump` is set to `true`, base name of the files in which internal data will be stored. It defaults to `./telemetry`, so files will be named `./telemetryN`, where `N` is the channel number (automatically added).                                                                                          |   Optional   |
+|        `dump_mat`         | [`true`, `false`]: If `dump` is set to `true`, the binary output is converted to `.mat` format, readable from Matlab7octave and Python, at the end of the receiver execution. By default, it is set to the same value as `dump`.                                                                               |   Optional   |
+|       `remove_dat`        | [`true`, `false`]: If `dump=true` and `dump_mat` is not set, or set to `true`, then this parameter controls if the internal `.dat` binary file is removed after conversion to `.mat`, leaving a cleaner output if the user is not interested in the `.dat` file. By default, this parameter is set to `false`. |   Optional   |
+|     `dump_crc_stats`      | [`true`, `false`]: If set to `true`, the success rate of the CRC check when decoding navigation messages is reported in a file generated at the end of the processing (or when exiting with `q` + `[Enter]`). By default, this parameter is set to `false`.                                                    |   Optional   |
+| `dump_crc_stats_filename` | If `dump_crc_stats=true`, this parameter sets the base name of the files in which the CRC success rate is reported. It defaults to `telemetry_crc_stats`, so files named `telemetry_crc_stats_chN.txt` will be created, with `N` in `chN` being the channel number.                                            |   Optional   |
+|      --------------       |
+
+  _Telemetry Decoder implementation:_ **`GPS_L1C_Telemetry_Decoder`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### TELEMETRY DECODER CONFIG FOR GPS L1C CHANNELS ############
+TelemetryDecoder_1S.implementation=GPS_L1C_Telemetry_Decoder
+TelemetryDecoder_1S.dump=false
+```
+
+
 ## Galileo F/NAV navigation message
 
 ### Implementation: `Galileo_E5a_Telemetry_Decoder`
@@ -853,8 +945,8 @@ Tracking block, for each epoch. Data type: `int32_t`.
 Examples:
 
 1.- Retrieve the `.dat` and`.mat` files with `nav_data` base name (with `XX`
-being `1C`, `1B`, `1D`, `B1`, `J1`, `1G`, `E6`, `B3`, `2G`, `2S`, `7X`, `5X`,
-`L5`, `J5`, or `5D`; this does not apply to `S1`, see the [SBAS L1 Telemetry
+being `1C`, `1S`, `1B`, `1D`, `B1`, `J1`, `1G`, `E6`, `B3`, `2G`, `2S`, `7X`,
+`5X`, `L5`, `J5`, or `5D`; this does not apply to `S1`, see the [SBAS L1 Telemetry
 Decoder](#implementation-sbas_l1_telemetry_decoder) above):
 ```ini
 TelemetryDecoder_XX.dump=true

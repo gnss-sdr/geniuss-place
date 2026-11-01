@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-10-25T12:00:00+02:00
+last_modified_at: 2026-10-31T12:00:00+01:00
 ---
 
 A generic GNSS signal defined by its complex baseband equivalent, $$ s_{T}(t) $$,
@@ -499,6 +499,89 @@ Acquisition_1C.doppler_step=250
 Acquisition_1C.tong_init_val=2
 Acquisition_1C.tong_max_val=10
 Acquisition_1C.tong_max_dwells=20
+```
+
+## GPS L1C signal acquisition
+
+The GPS L1C signal, broadcast by GPS III satellites and centered at
+$$ 1575.42 $$ MHz, is composed of a data component (modulated with BOC(1,1) and
+carrying the CNAV-2 navigation message) and a pilot component (modulated with
+TMBOC(6,1,4/33)), with a data:pilot power ratio of 1:3. Both components use
+ranging codes of $$ 10230 $$ chips transmitted at $$ 1.023 $$ Mchip/s, thus with
+a period of $$ 10 $$ ms, and the pilot component is further modulated by an
+overlay code of $$ 1800 $$ chips ($$ 18 $$ s). GNSS-SDR identifies the GPS L1C
+signal with the identifier `1S`. See the [GNSS
+signals]({{ "/docs/tutorials/gnss-signals/#gps-l1" | relative_url }}) page for
+a description of the signal and of the status of its navigation message.
+
+### Implementation: `GPS_L1C_PCPS_Ambiguous_Acquisition`
+
+<span style="color: orange">This implementation is only present in the `next`
+branch of the upstream repository, and will be included in the next GNSS-SDR
+stable release.</span>
+
+By default, this implementation acquires the pilot component, which carries
+$$ 3/4 $$ of the total signal power, with a sinBOC(1,1) local replica of one
+period of its ranging code. The overlay code is not included in the replica,
+since each of its chips lasts a full code period. The `tmboc` parameter selects
+the full TMBOC(6,1,4/33) waveform for the pilot replica, which only makes sense
+with sample rates and front-end bandwidths that resolve the BOC(6,1) component
+(above about $$ 14 $$ MHz). The `acquire_pilot` parameter allows acquiring the
+data component instead, always with a sinBOC(1,1) replica.
+
+This implementation accepts the following parameters:
+
+|----------
+|  **Global Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `GNSS-SDR.internal_fs_sps` |  Input sample rate to the processing channels, in samples per second.  | Mandatory |
+| `GNSS-SDR.use_acquisition_resampler` | [`true`, `false`]: If set to `true`, the Acquisition block makes use of the minimum possible sample rate during acquisition by setting a resampler at its input. This allows reducing the FFT size when using high data rates at `GNSS-SDR.internal_fs_sps`. All the required setup is configured automatically. It defaults to `false`. | Optional |
+|--------------
+
+
+|----------
+|  **Parameter**  |  **Description** | **Required** |
+|:-:|:--|:-:|
+|--------------
+| `implementation` | `GPS_L1C_PCPS_Ambiguous_Acquisition` | Mandatory |
+| `item_type` | [<abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 16-bit integer. C++ name: lv_16sc_t (custom definition of std::complex<int16_t>)">`cshort`</abbr>, <abbr id="data-type" title="Complex samples with real and imaginary parts of type signed 8-bit integer. C++ name: lv_8sc_t (custom definition of std::complex<int8_t>)">`cbyte`</abbr>]: Set the sample data type expected at the block input. It defaults to <abbr id="data-type" title="Complex samples with real and imaginary parts of type 32-bit floating point. C++ name: std::complex<float>">`gr_complex`</abbr>. | Optional |
+| `acquire_pilot` | [`true`, `false`]: If set to `true`, the receiver is set to acquire the L1C pilot component. If set to `false`, the receiver is set to acquire the L1C data component. It defaults to `true`. | Optional |
+| `tmboc` | [`true`, `false`]: If set to `true` and `acquire_pilot=true`, the algorithm uses a TMBOC(6,1,4/33) local replica; if set to `false`, a simpler sinBOC(1,1) local replica is used. The data component replica is always sinBOC(1,1). It defaults to `false`. | Optional |
+| `doppler_max`  | Maximum Doppler value in the search grid, in Hz. It defaults to 5000 Hz. | Optional |
+| `doppler_step` | Frequency step in the search grid, in Hz. It defaults to 500 Hz. | Optional |
+| `threshold`    |  Decision threshold $$ \gamma $$ from which a signal will be considered present. It defaults to $$ 0.0 $$ (_i.e._, all signals are declared present). | Optional |
+| `pfa` |  If defined, it supersedes the `threshold` value and computes a new threshold $$ \gamma_{pfa} $$ based on the Probability of False Alarm. It defaults to $$ 0.0 $$ (_i.e._, not set). | Optional |
+| `coherent_integration_time_ms` |  Set the integration time $$ T_{int} $$, in ms. It must be a multiple of the code period ($$ 10 $$ ms). Longer integrations span overlay code chips (or CNAV-2 symbols) of unknown sign, so non-coherent dwells (`max_dwells`) are the preferred way to increase sensitivity. It defaults to 10 ms. | Optional |
+| `bit_transition_flag` | [`true`, `false`]: If set to `true`, it takes into account the possible presence of a symbol transition, so the effective integration time is doubled. When set, it invalidates the value of `max_dwells`. It defaults to `false`. | Optional |
+| `max_dwells` |  Set the maximum number of non-coherent dwells to declare a signal present. It defaults to 1. | Optional |
+| `full_grid_search` | [`true`, `false`]: If set to `true`, accumulate all `max_dwells` non-coherent dwells before accepting or rejecting the strongest peak. It defaults to `false` (early acceptance). Ignored when `bit_transition_flag=true`. See [Completing all non-coherent dwells](#completing-all-non-coherent-dwells) for availability, tradeoffs, and interactions. | Optional |
+| `reference_bin_min_sidelobes` | Target separation, in Doppler sidelobes of the correlation, between the searched bins and the noise-reference bin of the CFAR statistic. It only decides whether a full-grid search needs dedicated reference bins, and never moves them beyond $$ \pm $$`doppler_max`. Only used if `pfa` is set. It defaults to $$ 4 $$. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
+| `dual_freq_assisted_doppler_narrowing` | [`true`, `false`]: If set to `false`, the Doppler projected from the primary band when `GNSS-SDR.assist_dual_frequency_acq=true` is discarded for this signal, which is then always searched over the full Doppler grid centered at $$ 0 $$ Hz. The secondary band still waits for the satellite to be tracked in the primary band; only the Doppler assistance is dropped. It defaults to `true`. See [Reduced Doppler search](#reduced-doppler-search) for availability and details. | Optional |
+| `repeat_satellite` |  [`true`, `false`]: If set to `true`, the block will search again for the same satellite once its presence has been discarded. Useful for testing. It defaults to `false`. | Optional |
+| `blocking` | [`true`, `false`]: If set to `false`, the acquisition workload is executed in a separate thread, outside the GNU Radio scheduler that manages the flow graph, and the block skips over samples that arrive while the processing thread is busy. This is especially useful in real-time operation using radio frequency front-ends, overcoming the processing bottleneck for medium and high sampling rates. However, results then depend on the processing speed of the host computer, so do not use this option for file processing, unless `GNSS-SDR.deterministic=true` (see [deterministic processing]({{ "docs/sp-blocks/global-parameters/#deterministic-processing" | relative_url }}), only present in the `next` branch), which makes the results independent of this parameter. It defaults to `true`. | Optional |
+| `make_two_steps` | [`true`, `false`]: If set to `true`, an acquisition refinement stage is performed after a signal is declared present. This allows providing an updated, refined Doppler estimation to the Tracking block. It defaults to `false`. | Optional |
+| `second_nbins` | If `make_two_steps` is set to `true`, this parameter sets the number of bins done in the acquisition refinement stage. It defaults to 4. | Optional |
+| `second_doppler_step` | If `make_two_steps` is set to `true`, this parameter sets the Doppler step applied in the acquisition refinement stage, in Hz. It defaults to 125 Hz. | Optional |
+| `dump` |  [`true`, `false`]: If set to `true`, it enables the Acquisition internal binary data file logging. It defaults to `false`. | Optional |
+| `dump_filename` |  If `dump` is set to `true`, name of the file in which internal data will be stored. This parameter accepts either a relative or an absolute path; if there are non-existing specified folders, they will be created. It defaults to `./acquisition`, so files with name `./acquisition_G_1S_ch_N_K_sat_P.mat` (where `N` is the channel number defined by `dump_channel`, `K` is the dump number, and `P` is the targeted satellite's PRN number) will be generated. | Optional |
+| `dump_channel` | If `dump` is set to `true`, channel number from which internal data will be stored. It defaults to 0. | Optional |
+|--------------
+
+  _Acquisition implementation:_ **`GPS_L1C_PCPS_Ambiguous_Acquisition`**.
+  {: style="text-align: center;"}
+
+Example:
+
+```ini
+;######### ACQUISITION CONFIG FOR GPS L1C CHANNELS ############
+Acquisition_1S.implementation=GPS_L1C_PCPS_Ambiguous_Acquisition
+Acquisition_1S.item_type=gr_complex
+Acquisition_1S.acquire_pilot=true
+Acquisition_1S.tmboc=false
+Acquisition_1S.pfa=0.001
+Acquisition_1S.doppler_max=5000
+Acquisition_1S.doppler_step=50
 ```
 
 ## Galileo E1 signal acquisition
