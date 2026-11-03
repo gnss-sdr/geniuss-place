@@ -3,6 +3,7 @@
 *.sublime-project
 *.sublime-workspace
 .DS_Store
+.jekyll-cache
 .jekyll-metadata
 .vscode
 .tool-versions

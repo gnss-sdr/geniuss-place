@@ -1,5 +1,5 @@
 const releaseVersion = "0.0.22";
-const serviceWorkerVersion = "20";
+const serviceWorkerVersion = "21";
 const CACHE = `geniuss-place-${releaseVersion}-${serviceWorkerVersion}`;
 const offlineFallbackPage = "/offline.html";
 
@@ -7,7 +7,6 @@ const ASSETS_TO_CACHE = [
   "/index.html",
   "/offline.html",
   "/assets/css/main.css",
-  "/assets/css/style.css",
   "/assets/fonts/fontawesome/css/all.min.css",
   "/assets/css/academicons.min.css",
   "/assets/js/main.min.js",
