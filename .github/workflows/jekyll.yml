@@ -5,12 +5,16 @@ on:
     paths-ignore:
       - "**/CITATION.cff"
   push:
-    paths-ignore:
-      - "**/CITATION.cff"
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      JEKYLL_ENV: production
     steps:
       - uses: actions/checkout@v7
 
@@ -20,4 +24,25 @@ jobs:
           bundler-cache: true
 
       - name: Build Jekyll site
-        run: bundle exec jekyll build --future
+        run: bundle exec jekyll build
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v5
+
+  deploy:
+    needs: build
+    if: github.repository == 'gnss-sdr/geniuss-place' && github.ref == 'refs/heads/gh-pages'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
