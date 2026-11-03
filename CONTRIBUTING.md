@@ -74,7 +74,8 @@ upstream  https://github.com/gnss-sdr/geniuss-place (push)
 The required software can be installed through
 [RubyGems](https://rubygems.org/), which is probably already installed in your
 system. If this is not the case, please check [how to install
-Ruby](https://www.ruby-lang.org/en/documentation/installation/).
+Ruby](https://www.ruby-lang.org/en/documentation/installation/). Ruby 3.2 or
+later is required.
 
 Install [Bundler](https://bundler.io/), a tool for managing the required
 dependencies:

@@ -127,7 +127,7 @@ exclude:
   - minimal-mistakes-jekyll.gemspec
   - node_modules
   - package.json
-  - packege-lock.json
+  - package-lock.json
   - Rakefile
   - README
   - tmp
@@ -148,6 +148,7 @@ highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
+future: true
 
 
 # Markdown Processing
@@ -266,6 +267,7 @@ sass:
   style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
   quiet_deps: true
   silence_deprecations: ['import']
+  sourcemap: never
 
 
 # Outputting
@@ -279,16 +281,6 @@ timezone: Europe/Madrid # https://en.wikipedia.org/wiki/List_of_tz_database_time
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jekyll-redirect-from
-  - jekyll-include-cache
-
-# mimic GitHub Pages with --safe
-whitelist:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
   - jekyll-feed
   - jekyll-redirect-from
   - jekyll-include-cache
