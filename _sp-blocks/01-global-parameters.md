@@ -8,7 +8,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-10-29T12:00:00+01:00
+last_modified_at: 2026-11-17T12:00:00+01:00
 ---
 
 This page describes GNSS-SDR global parameters.
@@ -673,6 +673,53 @@ Example:
 ```ini
 GNSS-SDR.tow_to_trk=true
 ```
+
+## Exporting the flow graph
+
+<span style="color: orange">This feature is only present in the `next` branch
+of the upstream repository, and will be included in the next GNSS-SDR stable
+release.</span>
+
+GNSS-SDR builds a [GNU Radio](https://www.gnuradio.org/) flow graph out of the
+configuration file. In order to inspect which blocks were actually instantiated
+and how they are connected, the receiver can write that flow graph to a text
+file in the [Graphviz DOT language](https://graphviz.org/doc/info/lang.html).
+The file is written at startup, once all the blocks are connected and before
+the receiver starts processing samples.
+
+|----------
+|       **Parameter**       | **Description**                                                                                                                                                         | **Required** |
+| :-----------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|      --------------       |
+|     `dump_flowgraph`      | [`true`, `false`]: If set to `true`, the receiver writes its flow graph to the file set by `flowgraph_dump_filename`. It defaults to `false`.                           |   Optional   |
+| `flowgraph_dump_filename` | If `dump_flowgraph` is set to `true`, name of the file in which the flow graph is written, replacing its content if it already exists. It defaults to `flowgraph.dot`. |   Optional   |
+|          -------          |
+
+_Global GNSS-SDR parameters: flow graph export_.
+{: style="text-align: center;"}
+
+Example in the configuration file:
+
+```ini
+GNSS-SDR.dump_flowgraph=true
+GNSS-SDR.flowgraph_dump_filename=./my_receiver.dot
+```
+
+The file can then be rendered with [Graphviz](https://graphviz.org/), for
+instance as a PDF document:
+
+```console
+$ dot -Tpdf my_receiver.dot -o my_receiver.pdf
+```
+{: class="no-copy"}
+
+Each node of the graph is a GNU Radio block, and each arrow is a connection
+between two blocks. With GNU Radio 3.8.1 or newer, the nodes are labeled with
+the name of the block followed by its instance number (for instance,
+`dll_pll_veml_tracking0`), and the asynchronous message connections are also
+included, drawn in blue. Older versions of GNU Radio label the nodes with the
+name of the block only, and show just the connections that carry streams of
+samples.
 
 ## Deterministic processing
 
