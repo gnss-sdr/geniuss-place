@@ -103,8 +103,20 @@ The following set of variables record information about the [Tracking]({{
 | `Tracking_sample_counter`  | `uint64_t` | Sample counter as an index (1,2,3,..etc) indicating number of samples processed. |
 | `Flag_valid_symbol_output` |   `bool`   | Indicates the validity of the tracking for each channel.                         |
 |  `correlation_length_ms`   | `int32_t`  | Time duration of correlation-integration, in [ms].                               |
+|   `tracking_component`    |   `enum`   | Signal component tracked by the channel: `Unknown` (0), `Data` (1), or `Pilot` (2). <span style="color: orange">Only present in the `next` branch.</span> |
 | `Flag_carrier_phase_continuous` | `bool` | `false` on the first output after the accumulated carrier phase has been (re)initialized, that is, whenever the carrier-phase ambiguity of the channel has changed. In the Protocol Buffers stream it is sent negated, as `flag_carrier_phase_discontinuity`, so that a missing field defaults to "no discontinuity". This parameter is available since GNSS-SDR v0.0.22. |
 |         ----------         |
+
+`Signal` names the channel type and does not change with the tracked component.
+For the signals with a pilot, `tracking_component` tells which of the two was
+measured, which sets the observation code used in the RINEX and RTCM outputs of
+the [PVT]({{ "/docs/sp-blocks/pvt/#rinex" | relative_url }}) block (for
+instance, `1B` or `1C` for Galileo E1). QZSS L1 C/B measurements are told apart
+from L1 C/A by their `PRN` (203 to 206).
+
+<span style="color: orange">The `tracking_component` field is only present in
+the `next` branch of the upstream repository, and will be included in the next
+GNSS-SDR stable release.</span>
 
 ### Telemetry Decoder
 
