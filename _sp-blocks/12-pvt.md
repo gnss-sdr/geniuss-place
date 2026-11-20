@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-10-01T12:00:00+02:00
+last_modified_at: 2026-11-20T12:00:00+01:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -295,6 +295,14 @@ model [below](#tropospheric-model)) and $$ \mathbf{B}_{LC} = \left(
 B_{r,LC}^{(1)}, B_{r,LC}^{(2)}, B_{r,LC}^{(3)}, ..., B_{r,LC}^{(m)} \right)^T $$
 is the ionosphere‐free linear combination of zero‐differenced carrier‐phase
 biases (in m), defined below in Equation ($$ \ref{eq:bias-lc} $$).
+
+The receiver clock offset $$ c \cdot dt_r $$ is estimated separately for each
+GNSS in the solution (GPS, GLONASS, Galileo and BeiDou; QZSS shares the GPS one
+unless `PVT.estimate_qzss_isb=true`), so that the time offsets between systems,
+or a common offset of the [Galileo HAS](#galileo-has-corrections) GPS clock
+corrections, do not bias the solution. <span style="color: orange">This is only
+present in the `next` branch of the upstream repository. In GNSS-SDR v0.0.22,
+all systems but GLONASS share the GPS receiver clock.</span>
 
 The Precise Point Positioning measurement model is based on the fact that,
 according to the phase and code [ionospheric
@@ -894,6 +902,143 @@ a Safety-of-Life solution.
 
 &nbsp;
 
+# Galileo HAS corrections
+
+The `RTKLIB_PVT` implementation applies the corrections of the Galileo High
+Accuracy Service (HAS), decoded from the Galileo E6-B signal by the
+[`Galileo_E6_Telemetry_Decoder`]({{ "/docs/sp-blocks/telemetry-decoder/#galileo-has-navigation-message" | relative_url }}),
+as defined in the Galileo HAS Signal-In-Space Interface Control
+Document[^HASICD]. They are applied when available, unless
+`PVT.use_has_corrections=false` is set in the configuration file. HAS corrects
+the orbits and clocks broadcast in the Galileo I/NAV and GPS LNAV navigation
+messages, and provides code and phase biases for each signal. It does not
+correct the ionospheric and tropospheric delays.
+
+<span style="color: orange">This section describes the implementation in the
+`next` branch of the upstream repository, which will be included in the next
+GNSS-SDR stable release.</span>
+
+## Applied corrections
+
+For each corrected satellite $$ s $$:
+
+* **Orbit**: the radial, along-track and cross-track corrections $$ \delta r_n
+  $$, $$ \delta r_t $$ and $$ \delta r_w $$ are rotated to the ECEF frame with
+  the satellite position $$ \mathbf{r}^{(s)} $$ and velocity $$
+  \dot{\mathbf{r}}^{(s)} $$ computed from the broadcast ephemeris, and added to
+  the broadcast position:
+
+  $$ \begin{equation} \tilde{\mathbf{r}}^{(s)} = \mathbf{r}^{(s)} + \left( \mathbf{e}_n~~\mathbf{e}_t~~\mathbf{e}_w \right) \left( \begin{array}{c} \delta r_n \\ \delta r_t \\ \delta r_w \end{array} \right)~, \end{equation}$$ $$\begin{equation} \quad \mathbf{e}_t = \frac{\dot{\mathbf{r}}^{(s)}}{\left\| \dot{\mathbf{r}}^{(s)} \right\|}~, \quad \mathbf{e}_w = \frac{\mathbf{r}^{(s)} \times \dot{\mathbf{r}}^{(s)}}{\left\| \mathbf{r}^{(s)} \times \dot{\mathbf{r}}^{(s)} \right\|}~, \quad \mathbf{e}_n = \mathbf{e}_t \times \mathbf{e}_w~. \end{equation} $$
+
+* **Clock**: the clock correction $$ \delta C^{(s)} $$ (the Delta Clock
+  Correction multiplied by its Delta Clock Multiplier) is added to the clock
+  computed from the broadcast polynomial $$ dT_{poly}^{(s)} $$, with the
+  relativistic term computed from the broadcast position and velocity:
+
+  $$ \begin{equation} \tilde{dT}^{(s)} = dT_{poly}^{(s)} - \frac{2 \, \mathbf{r}^{(s)} \cdot \dot{\mathbf{r}}^{(s)}}{c^2} + \frac{\delta C^{(s)}}{c}~. \end{equation} $$
+
+* **Code biases**: the code bias of each signal is added to its pseudorange. It
+  replaces the broadcast group delays ($$ T_{GD} $$, the GPS inter-signal
+  corrections, and the Galileo $$ BGD $$), which are not applied to a corrected
+  satellite.
+
+* **Phase biases**: when they are broadcast, the phase bias of each signal is
+  added to its carrier phase, used in the Precise Point Positioning and
+  Real-Time Kinematic modes.
+
+## Corrected satellites
+
+A satellite gets HAS corrections when all of the following conditions are met:
+
+* An orbit correction and a clock correction with the same Mask ID and IOD Set
+  ID are within their validity intervals. The validity interval of each block
+  starts at the reference time of its message, obtained from its time of hour
+  (HAS SIS ICD Section 7.7), not at the time the message was received.
+* The receiver has decoded the broadcast ephemeris the corrections refer to
+  (its issue of data, IODref): the current one or, until HAS follows an update
+  of the broadcast ephemeris, the one it replaced, within its fit interval.
+  Corrections received before that ephemeris are stored, and they are applied
+  as soon as it is decoded.
+* Every signal of the satellite used in the solution has a code bias of the same
+  Mask ID and IOD Set ID. For a signal with data and pilot components, the bias
+  of the tracked component is preferred, then the bias of the other component of
+  the same signal, then the bias of their combination. The bias of a different signal (for instance, GPS L2 P for L2C) is
+  never used.
+
+For GPS, the corrections apply to the LNAV ephemeris, so the satellite needs its
+L1 C/A observation; its L2C and L5 observations join it with their own code
+biases. For Galileo, only the I/NAV ephemeris is corrected: a corrected
+satellite uses its I/NAV ephemeris for all its signals, including E5a. Any other
+satellite keeps its broadcast orbit, clock and group delays, and its
+observations get no HAS biases.
+
+In addition:
+
+* The orbit corrections and biases of a new IOD Set ID arrive before its clock
+  corrections. Meanwhile, the corrections of the previous set keep being applied
+  within their validity intervals.
+* A satellite that a clock correction block flags as "do not use" is excluded
+  from the solution, whatever its ephemeris, from the reference time of that
+  message until its validity interval ends or a later clock correction for the
+  satellite is received.
+* Only messages in operational mode are used. A message with the HAS status
+  "Don't use" discards all the stored corrections.
+* Turning the HAS corrections of a carrier on or off, changing the signal whose
+  phase bias is applied, or a change of the Phase Discontinuity Indicator are
+  reported as a cycle slip of that carrier, so that the Precise Point
+  Positioning and Real-Time Kinematic filters reset its ambiguity.
+
+## Atmospheric models and receiver clocks
+
+The ionospheric and tropospheric models selected with `PVT.iono_model` and
+`PVT.trop_model` apply as configured. With `PVT.iono_model=OFF` and
+`PVT.trop_model=OFF` (their default values), single-frequency solutions keep the
+full ionospheric and tropospheric delays, of several meters, and most of the
+benefit of HAS is lost. A single-frequency receiver should set:
+
+```ini
+PVT.iono_model=Broadcast
+PVT.trop_model=Saastamoinen
+```
+
+and a dual-frequency receiver (for instance, Galileo E1 + E6 or GPS L1 + L5):
+
+```ini
+PVT.iono_model=Iono-Free-LC
+PVT.trop_model=Saastamoinen
+```
+
+HAS refers the clocks of the Galileo satellites to the Galileo System Time,
+while its GPS clock corrections can include a common offset (HAS SIS ICD Section
+7.3). The single point solution estimates a Galileo-GPS time offset besides the
+receiver clock, and the [Precise Point Positioning](#precise-point-positioning)
+filter estimates a receiver clock for each system, so the offset does not bias
+the solution. A solution that combines GPS satellites with and without HAS
+corrections still shares one GPS receiver clock between them.
+
+## Reporting
+
+* The `galhas_status` field of the [monitoring stream](#custom-streaming) is
+  `1` when at least one satellite in the solution has HAS orbit and clock
+  corrections, and the `has_corrected` field of each `TrackedSatellite` entry
+  tells which satellites and signals got them.
+* In the `PPP_Static` and `PPP_Kinematic` positioning modes, the solution is
+  reported as a PPP solution (in the console, the monitoring stream, the NMEA
+  sentences and the dump file) only when every satellite in it has HAS orbit and
+  clock corrections. Otherwise, it rests on broadcast orbits and clocks, and it
+  is reported as a single point solution.
+* Each record of the PVT dump file (`PVT.dump=true`) ends with the number of
+  satellites in the solution with HAS orbit and clock corrections (`uint8_t`),
+  stored as `has_corrected_sats` in the ".mat" file.
+* The HAS corrections can be sent in RTCM SSR and IGS SSR messages, see
+  [RTCM-104](#rtcm-104).
+
+&nbsp;
+
+---------
+
+&nbsp;
+
 # Ionospheric Model
 
 The ionosphere is a region of Earth's upper atmosphere, from about 60 km to
@@ -1365,6 +1510,28 @@ present in the `next` branch of the upstream repository, and will be included in
 the next GNSS-SDR stable release. GNSS-SDR v0.0.22 only sends Galileo F/NAV
 ephemerides (MT1045).</span>
 
+The [Galileo HAS corrections](#galileo-has-corrections) are also sent, as each
+HAS message is received, in State Space Representation (SSR) messages:
+
+* RTCM SSR, for GPS: MT1057 (orbit corrections), MT1058 (clock corrections, for
+  the full set and the subset of satellites), MT1059 (code biases), and MT1060
+  (combined orbit and clock corrections).
+* IGS SSR[^IGSSSR], in the IGS proprietary message 4076, for GPS and Galileo:
+  IGM01 (orbit corrections, subtypes 21 and 61), IGM02 (clock corrections,
+  subtypes 22 and 62), IGM03 (combined orbit and clock corrections, subtypes 23
+  and 63), and IGM05 (code biases, subtypes 25 and 65).
+
+The combined messages are sent when the orbit and clock corrections share the
+same SSR update interval, and they contain only the satellites with both
+corrections; otherwise, orbit and clock corrections are sent in separate
+messages. The orbit corrections follow the SSR sign convention, opposite to the
+HAS one; the clock corrections include the Delta Clock Multiplier; the SSR epoch
+time is the reference time of the HAS message; and the IOD SSR is made of the
+four least significant bits of the IOD Set ID. Satellites whose corrections are
+flagged as not available or "do not use" are left out, since these messages
+cannot flag a satellite as not to be used: a client can keep applying a previous
+correction of such a satellite until it ages out. Phase biases are not sent.
+
 ## Custom streaming
 In addition to the standard output formats, the PVT block offers a custom
 mechanism for streaming its internal data members to local or remote clients
@@ -1421,9 +1588,9 @@ The following table shows the complete list of streamed parameters:
 |          `vel_n`           |  `double`  | North component of the velocity in the local ENU frame, in m/s. This metric is available starting from GNSS-SDR v0.0.19.                     |
 |          `vel_u`           |  `double`  | Up component of the velocity in the local ENU frame, in m/s. This metric is available starting from GNSS-SDR v0.0.19.                        |
 |           `cog`            |  `double`  | Course Over Ground, in degrees. This metric is available starting from GNSS-SDR v0.0.19.                                                     |
-|      `galhas_status`       | `uint32_t` | Galileo HAS  status (0: not available; 1: HAS corrections applied). This metric is available starting from GNSS-SDR v0.0.19.                 |
+|      `galhas_status`       | `uint32_t` | Galileo HAS status: `1` if at least one satellite in the solution has [HAS](#galileo-has-corrections) orbit and clock corrections, `0` otherwise. This metric is available starting from GNSS-SDR v0.0.19. <span style="color: orange">Up to GNSS-SDR v0.0.22, it is `1` when HAS biases are available for some satellite, whether or not it gets HAS corrections in the solution.</span> |
 |         `geohash`          |  `string`  | [Encoded geographic location](https://en.wikipedia.org/wiki/Geohash). This metric is available starting from GNSS-SDR v0.0.19.               |
-|    `tracked_satellites`    | `repeated TrackedSatellite` | One entry per tracked satellite and signal with a computed azimuth and elevation, including whether multiple signals from that satellite were combined, whether the observation was actually used in the position solution, and the health status broadcast for that signal. |
+|    `tracked_satellites`    | `repeated TrackedSatellite` | One entry per tracked satellite and signal with a computed azimuth and elevation, including whether multiple signals from that satellite were combined, whether the observation was actually used in the position solution, the health status broadcast for that signal, and whether it got Galileo HAS corrections. |
 |       --------------       |
 
 Each `TrackedSatellite` entry contains the following fields:
@@ -1441,6 +1608,7 @@ Each `TrackedSatellite` entry contains the following fields:
 |      `combined`      |  `bool`  | `true` if more than one signal from the same satellite was available and combined in the position solution (_e.g._, the Galileo E1+E5a ionosphere-free combination). |
 |        `used`        |  `bool`  | `true` if this observation contributed to the position solution. It is `false` for a satellite that was tracked and had its azimuth and elevation computed, but was excluded from the solution (_e.g._, because it was below `PVT.elevation_mask`, rejected by RAIM FDE, or discarded by the solver because of its health status). |
 |      `healthy`       |  `bool`  | `true` unless the navigation message broadcast by the satellite flags this signal as unhealthy (or, when no ephemeris has been decoded yet, the almanac does). It is independent of `used`: a satellite can be reported as unhealthy and still used when `PVT.use_unhealthy_sats=true`, or as healthy and not used because of the elevation mask or RAIM. It is `true` when no health information is available for that signal. |
+|   `has_corrected`    |  `bool`  | `true` if the orbit and clock of the satellite carry [Galileo HAS](#galileo-has-corrections) corrections, and this signal its HAS code bias. It is independent of `used`. <span style="color: orange">Only present in the `next` branch.</span> |
 |    --------------    |
 
 Signals are listed individually (one entry per satellite and signal), not
@@ -1611,7 +1779,7 @@ standard and precise positioning. It accepts the following parameters:
 |     `monitor_ephemeris_udp_port`     | Destination UDP port number of the real-time monitoring port for ephemeris data. Must be within the range from `0` to `65535`. Ports outside this range are treated as `0`. The port number is the same for all the clients. It defaults to `1234`.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |   Optional   |
 |          `enable_protobuf`           | [`true`, `false`]: If set to `true`, the data serialization is done using [Protocol Buffers](https://protobuf.dev/), with the format defined at [`monitor_pvt.proto`](https://github.com/gnss-sdr/gnss-sdr/blob/next/docs/protobuf/monitor_pvt.proto). An example of usage is the [gnss-sdr-monitor](https://github.com/acebrianjuan/gnss-sdr-monitor). If set to `false`, it uses [Boost Serialization](https://www.boost.org/doc/libs/release/libs/serialization/doc/index.html). For an example of usage of the latter, check the [gnss-sdr-pvt-monitoring-client](https://github.com/acebrianjuan/gnss-sdr-pvt-monitoring-client). This parameter defaults to `true` (Protocol Buffers is used). |   Optional   |
 |           `use_e6_for_pvt`           | [`true`, `false`]: If set to `false`, the PVT engine will ignore observables from Galileo E6B signals. It defaults to `true`, so observables will be used if found. This feature is present in GNSS-SDR v0.0.18 and later versions. Since GNSS-SDR v0.0.22, this setting is independent of [`Observables.enable_E6`]({{ "/docs/sp-blocks/observables/" | relative_url }}), which controls whether E6 observables are generated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |   Optional   |
-|        `use_has_corrections`         | [`true`, `false`]: If set to `false`, the PVT engine will ignore corrections from the Galileo High Accuracy Service. It defaults to `true`, so corrections will be applied if available. This feature is present in GNSS-SDR v0.0.18 and later versions.                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|        `use_has_corrections`         | [`true`, `false`]: If set to `false`, the PVT engine will ignore corrections from the Galileo High Accuracy Service. It defaults to `true`, so corrections will be applied if available. This feature is present in GNSS-SDR v0.0.18 and later versions. See [Galileo HAS corrections](#galileo-has-corrections).                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |           `enable_pvt_kf`            | [`true`, `false`]: If set to `true`, it enables the Kalman filter of the PVT solution. It defaults to `false`. This configuration parameter is available starting from GNSS-SDR v0.0.19.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |     `kf_measures_ecef_pos_sd_m`      | Standard deviation of the position estimations, in meters. It defaults to `1.0` [m]. Only used if `PVT.enable_pvt_kf=true`. This configuration parameter is available starting from GNSS-SDR v0.0.19.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
 |     `kf_measures_ecef_vel_sd_ms`     | Standard deviation of the velocity estimations, in meters per second. It defaults to `0.1` [m/s]. Only used if `PVT.enable_pvt_kf=true`. This configuration parameter is available starting from GNSS-SDR v0.0.19.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
@@ -1793,6 +1961,10 @@ deactivated with `rtcm_output_file_enabled=false`.
 [^Kouba01]: Kouba, P. H&eacute;roux, [Precise Point Positioning Using IGS Orbit and Clock Products](https://link.springer.com/article/10.1007/PL00012883), GPS Solutions, Vol. 5, no. 2, 2001, pp. 12-28.
 
 [^Bevis94]: M. Bevis, S. Businger, S. Chiswell, T. A. Herring, R. A. Anthes, C. Rocken, R. H. Ware, [GPS Meteorology: Mapping Zenith Delay onto Precipitable Water](https://doi.org/10.1175/1520-0450(1994)033%3C0379:GMMZWD%3E2.0.CO;2), American Meteorological Society, vol. 33, March 1994, pp. 379-386.
+
+[^HASICD]: European Union, [Galileo High Accuracy Service Signal-In-Space Interface Control Document (HAS SIS ICD)](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_HAS_SIS_ICD_v1.0.pdf), Issue 1.0, May 2022.
+
+[^IGSSSR]: International GNSS Service, [IGS State Space Representation (SSR) Format, Version 1.00](https://files.igs.org/pub/data/format/igs_ssr_v1.pdf), October 5, 2020.
 
 [^Ashby04]: N. Ashby, [The Sagnac Effect in the Global Positioning System](https://link.springer.com/chapter/10.1007/978-94-017-0528-8_3), Chapter 1 in [Relativity in Rotating Frames: Relativistic Physics in Rotating Reference Frames (Fundamental Theories of Physics)](https://link.springer.com/book/10.1007/978-94-017-0528-8), G. Rizzi , M.L. Ruggiero (Eds.), Kluwer Academic Publishers, Dordrecht, The Netherlands, 2004.
 
