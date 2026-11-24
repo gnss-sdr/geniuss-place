@@ -443,6 +443,18 @@ The user can configure the noise bandwidth with parameters `dll_bw_hz` and
 The configuration interfaces for the available Tracking block implementations
 are described below.
 
+For the signals with a data and a pilot component, the `track_pilot` parameter
+selects which one is used to track code and carrier. That choice is reported
+with each measurement, and it sets the observation code written in the
+[RINEX]({{ "/docs/sp-blocks/pvt/#rinex" | relative_url }}) files, the signal
+identifier of the RTCM Multiple Signal Messages, and the `tracking_component`
+field of the [Monitor]({{ "/docs/sp-blocks/monitor/" | relative_url }}) block.
+For instance, Galileo E1 is reported as `1C` when the pilot is tracked and as
+`1B` otherwise. <span style="color: orange">This reporting is only present in
+the `next` branch of the upstream repository, and will be included in the next
+GNSS-SDR stable release.</span>
+{: .notice--info}
+
 
 ## GPS L1 C/A signal tracking
 
