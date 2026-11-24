@@ -6,7 +6,7 @@ sidebar:
   nav: "sp-block"
 toc: true
 toc_sticky: true
-last_modified_at: 2026-11-20T12:00:00+01:00
+last_modified_at: 2026-11-23T12:00:00+01:00
 ---
 
 The _PVT_ block is the last one in the GNSS-SDR flow graph. Hence, it acts as a
@@ -304,6 +304,20 @@ corrections, do not bias the solution. <span style="color: orange">This is only
 present in the `next` branch of the upstream repository. In GNSS-SDR v0.0.22,
 all systems but GLONASS share the GPS receiver clock.</span>
 
+The carrier-phase measurements have a receiver clock of their own, estimated as
+a random walk for each GNSS and frequency band (for each pair of bands, when
+they are combined as described below). The oscillators of a radio-frequency
+front end are never exactly at their nominal frequencies, so the carrier phases
+of a band can drift with respect to its code phases, and with respect to the
+carrier phases of the other bands, by the same amount for all the satellites: an
+offset of a fraction of a hertz already amounts to several centimeters per
+second. That common drift is taken by this state instead of ending up in the
+position, and the tests applied to the carrier phases (cycle slips and outliers,
+see below) only look at what departs from the value common to the satellites.
+<span style="color: orange">This is only present in the `next` branch of the
+upstream repository. In GNSS-SDR v0.0.22, code and carrier-phase measurements
+share the receiver clock.</span>
+
 The Precise Point Positioning measurement model is based on the fact that,
 according to the phase and code [ionospheric
 refraction](https://gssc.esa.int/navipedia/index.php/Ionospheric_Delay), the
@@ -345,12 +359,17 @@ $$ \begin{equation}
 \end{array}
 \end{equation} $$
 
-In the current implementation, satellites and receiver antennas offset and
-variation are not applied, so $$ \mathbf{d}_{r,pco,i} = \mathbf{d}_{pco,i}^{(s)} =
-\mathbf{0} $$ and $$ d_{r,pcv,i} = d_{pcv,j}^{(s)} = 0 $$. The correction terms
-for the Earth tide[^McCarthy04] $$ \mathbf{d}_{r,disp} $$ and the phase windup
+The offsets and variations of the phase centers of the satellite and receiver
+antennas are applied when their calibrations are provided, as described in
+[Antenna models](#antenna-models) below. Otherwise, $$ \mathbf{d}_{r,pco,i} =
+\mathbf{d}_{pco,i}^{(s)} = \mathbf{0} $$ and $$ d_{r,pcv,i} = d_{pcv,j}^{(s)} = 0
+$$. The correction terms for the Earth tide[^McCarthy04] $$ \mathbf{d}_{r,disp} $$ and the phase windup
 effect[^Kouba01] $$ \phi_{pw} $$ are deactivated by default, and can be
 activated through the `PVT.earth_tide` and `PVT.phwindup` options, respectively.
+The satellites in eclipse, whose attitude departs from the nominal one, are left
+out of the solution unless `PVT.reject_GPS_IIA=0` is set.
+<span style="color: orange">In GNSS-SDR v0.0.22, they are kept unless
+`PVT.reject_GPS_IIA=1` is set.</span>
 
 The measurement vector is then defined as:
 
@@ -584,6 +603,68 @@ of L1 pseudorange measurement error (in m). These quantities are estimated as:
     - $$ \sigma_{cbias} $$ is the standard deviation of code bias error (in m).
       This parameter is set to $$ \sigma_{cbias} = 0.3 $$ m.
 
+### Uncombined model
+
+The ionosphere-free combination needs two bands of every satellite, and it
+multiplies the noise of the measurements by about three. If
+`PVT.iono_model=Estimate_STEC` is set in the configuration file, the Precise
+Point Positioning modes use instead the measurements of each band as they are,
+and estimate the ionospheric delay of each satellite. <span style="color: orange">This
+is only present in the `next` branch of the upstream repository. In GNSS-SDR
+v0.0.22, that option leaves the ionosphere uncorrected in these positioning
+modes.</span>
+
+For a satellite $$ s $$ and each of its bands $$ i $$, the measurement model is:
+
+$$ \begin{equation}
+P_{r,i}^{(s)} = \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} + \gamma_i I_{r}^{(s)} + b_{r,i} + \epsilon_P
+\end{equation} $$
+
+$$ \begin{equation}
+\begin{array}{ccl} \Phi_{r,i}^{(s)} & = & \rho_{r}^{(s)} + c\left(dt_r - dT^{(s)}\right) + T_{r}^{(s)} - \gamma_i I_{r}^{(s)} + \\
+{} & {} & + c \cdot dt_{r,\Phi,i} + B_{r,i}^{(s)} + d\Phi_{r,i}^{(s)} + \epsilon_{\Phi}
+\end{array}
+\end{equation} $$
+
+with $$ \gamma_i = \left( f_{L1} / f_i \right)^2 $$. The states added to the
+position, the receiver clocks and the troposphere terms are:
+
+  * $$ I_{r}^{(s)} $$, the slant ionospheric delay of the satellite at the L1
+    frequency (in m). It starts at the value given by the
+    [broadcast model](#broadcast), and then it follows a random walk whose
+    process noise is set by `PVT.sigma_iono`. In this model it defaults to
+    $$ 0.1 $$ m/$$ \sqrt{s} $$, the value of the Galileo HAS Reference User
+    Algorithm[^HASRUA], which can be lowered down to $$ 0.005 $$ m/$$ \sqrt{s} $$
+    in quiet ionospheric conditions at mid latitudes.
+  * $$ b_{r,i} $$, the code bias of the receiver in the second and third bands
+    of each GNSS with respect to the first one (in m), which is nearly constant.
+  * $$ c \cdot dt_{r,\Phi,i} $$, the receiver clock of the carrier phases of
+    each GNSS and band, described above.
+  * $$ B_{r,i}^{(s)} $$, the carrier-phase bias of each satellite and band (in
+    m), with the process noise set by `PVT.sigma_bias`. It starts again after a
+    cycle slip in that band.
+
+The pseudorange of each band is corrected with its broadcast group delay, or
+with its code bias in the satellites with [Galileo HAS](#galileo-has-corrections)
+or [SSR](#ssr-corrections-through-ntrip) corrections, as in the Single Point
+Positioning. The errors of the orbit, the clock and the tropospheric delay of a
+satellite are modeled as common to all its measurements, so they do not hide
+the precision of its carrier phases.
+
+Some remarks on this model:
+
+  * The satellites observed in one, two or three bands all take part in the
+    solution, without the need of a common pair of bands.
+  * With a single band, the measurements of a satellite cannot tell its
+    ionospheric delay from its range, so such a satellite only takes part when
+    four or more satellites are observed in two or more bands, which then give
+    the position. Hence, a single-band receiver gets no Precise Point
+    Positioning solution with this option, and it reports the single point one.
+  * The carrier phases of the bands need not be coherent among them, since each
+    band has its receiver clock.
+  * Integer ambiguity resolution (`PVT.AR_GPS=PPP-AR`) is not available in this
+    model.
+
 ### Outlier rejection
 
 In each of the executions of the Extended Kalman Filter defined in ($$
@@ -601,6 +682,117 @@ observables:
 observables. The latter defaults to the value of the former, so existing
 configurations behave identically; a value of $$ 5.0 $$ m for the
 phase threshold in RTK modes.
+
+The receiver clocks are estimated anew at every epoch, starting from the single
+point solution. An offset common to the residuals of all the satellites of a
+receiver clock is then not a fault of their observations: it shows that the
+position of the filter and that solution differ, as it happens after a start
+with few satellites in poor geometry. The test leaves that offset out (the
+median of the residuals of the code observables of each receiver clock, and of
+the carrier-phase observables of each carrier-phase clock), so it does not
+reject the satellites that would correct the position. For the same reason, an
+observation that agrees with the single point solution of the epoch is kept,
+even if most satellites agree with a wrong position of the filter. <span style="color: orange">This
+is only present in the `next` branch of the upstream repository. In GNSS-SDR
+v0.0.22, the test applies to the residuals as they are, and `PPP_Static` could
+stay tens of meters off for minutes after such a start.</span>
+
+The cycle-slip test on the geometry-free combination of carrier phases
+(`PVT.slip_threshold`) follows the same idea in these positioning modes: a slip
+is a change that departs from the median of the changes of the satellites of the
+same GNSS and bands, so a drift common to all of them is not taken as a slip.
+
+### Antenna models
+
+The broadcast orbits, and the corrections to them, do not refer to the point
+that transmits each signal. The orbits of the navigation messages, and the
+Galileo HAS corrections, refer to the antenna phase center of the
+ionosphere-free combination of the signals that the broadcast clock is defined
+for (GPS L1 and L2; Galileo E1 and E5b for I/NAV, or E1 and E5a for F/NAV). The
+phase center of the signals that a receiver actually uses can be decimeters
+away from it along the antenna axis, and it varies with the direction of the
+line of sight. In the same way, the phase centers of the receiver antenna are
+some centimeters away from the point that its position is referred to, by an
+amount that depends on the band and on the elevation of the satellite.
+
+In the Precise Point Positioning modes, these effects are corrected when the
+antenna calibrations are provided in the ANTEX format[^ANTEX], version 1.4 or
+2.0. <span style="color: orange">This is only present in the `next` branch of the
+upstream repository.</span>
+
+  * `PVT.antex_file` sets the ANTEX file with the calibrations of the satellite
+    antennas. The measurements of the GPS and Galileo satellites are then
+    referred to the phase center of each signal in use, including its variation
+    with the nadir angle.
+  * `PVT.satellite_metadata_file` sets the IGS satellite metadata file (SINEX
+    format). ANTEX 2.0 identifies the satellites by their space vehicle number,
+    and this file tells the PRN of each one over time, so the satellite antennas
+    of an ANTEX 2.0 file need it.
+  * `PVT.antenna_type` sets the name of the receiver antenna and its radome as
+    they appear in the ANTEX file (for instance, `NAX3G+C NONE`), which
+    selects its calibration: the phase center offset of each band and its
+    variation with the elevation angle. If the radome is omitted, or the antenna
+    has no calibration with it, the calibration with no radome (`NONE`) is used.
+    A band with no calibration takes that of the GPS signal in the same band or,
+    if there is none, that of GPS L2. The antenna is looked up in
+    `PVT.antex_file` or, if it is set, in `PVT.receiver_antex_file`, since the
+    IGS distributes the ANTEX 2.0 calibrations of satellites and receivers in
+    separate files.
+  * `PVT.antenna_delta_east_m`, `PVT.antenna_delta_north_m` and
+    `PVT.antenna_delta_up_m` set the position of the antenna reference point
+    with respect to the marker, in m. The receiver then reports the position of
+    the marker.
+
+The variations of the phase centers with the azimuth are not applied: the
+values used are those that the calibration gives for all azimuths (ANTEX 1.4)
+or their mean over the azimuth (ANTEX 2.0).
+
+The files are published by the International GNSS Service (IGS) and, for the
+Galileo satellites, by the European GNSS Service Centre (GSC):
+
+|----------
+| **File** | **Content** | **Option** |
+| :-- | :-- | :-- |
+| -------------- |
+| [`igs20.atx`](https://files.igs.org/pub/station/general/igs20.atx.gz) | Satellite and receiver antennas, ANTEX 1.4 (IGS). | `PVT.antex_file` |
+| [`igs20_sat.atx2`](https://files.igs.org/pub/station/general/igs20_sat.atx2.gz) | Satellite antennas, ANTEX 2.0 (IGS). | `PVT.antex_file` |
+| [`igs_satellite_metadata.snx`](https://files.igs.org/pub/station/general/igs_satellite_metadata.snx) | Satellite metadata, needed by `igs20_sat.atx2` (IGS). | `PVT.satellite_metadata_file` |
+| [`igs20_rcv.atx2`](https://files.igs.org/pub/station/general/igs20_rcv.atx2.gz) | Receiver antennas, ANTEX 2.0 (IGS). | `PVT.receiver_antex_file` |
+| [`GSAT_2409.atx`](https://www.gsc-europa.eu/sites/default/files/sites/all/files/GSAT_2409.atx) | Galileo satellite antennas, ANTEX 1.4 (GSC). | `PVT.antex_file` |
+| -------------- |
+
+The script
+[`download-antenna-files.sh`](https://github.com/gnss-sdr/gnss-sdr/blob/next/utils/scripts/download-antenna-files.sh),
+in the `utils/scripts` folder of the source tree, downloads the latest version
+of all of them and stores them uncompressed. The GSC also lists, in its
+[Galileo satellite metadata](https://www.gsc-europa.eu/support-to-developers/galileo-satellite-metadata)
+page, the IGS file in use by the Galileo High Accuracy Service at each time; the
+script retrieves it if its calibrations differ from those of the latest
+`igs20.atx`.
+
+Example for a static receiver with a calibrated antenna:
+
+```ini
+PVT.positioning_mode=PPP_Static
+PVT.antex_file=/path/to/igs20.atx
+PVT.antenna_type=NAX3G+C NONE
+PVT.antenna_delta_up_m=0.1
+```
+
+or, with the ANTEX 2.0 files:
+
+```ini
+PVT.positioning_mode=PPP_Static
+PVT.antex_file=/path/to/igs20_sat.atx2
+PVT.satellite_metadata_file=/path/to/igs_satellite_metadata.snx
+PVT.receiver_antex_file=/path/to/igs20_rcv.atx2
+PVT.antenna_type=NAX3G+C NONE
+PVT.antenna_delta_up_m=0.1
+```
+
+These options only apply in the Precise Point Positioning modes. In the
+Real-Time Kinematic ones, the offsets of the rover antenna alone would bias the
+baseline, so they are ignored.
 
 
 ## Real-Time Kinematic
@@ -856,6 +1048,10 @@ sets run single-frequency RTK. Its main features are:
   `PVT.ntrip_fallback_to_single=true` (the default), the receiver keeps
   operating with an explicitly labeled single-point solution.
 
+With `PVT.positioning_mode` set to `PPP_Static` or `PPP_Kinematic`, the same
+client takes the stream as corrections to the broadcast orbits and clocks
+instead: see [SSR corrections through NTRIP](#ssr-corrections-through-ntrip).
+
 The console reports the RTKLIB solution status: the `First position fix` and
 periodic `Position at` lines are tagged with `[RTK FIXED]`, `[RTK FLOAT]`,
 `[DGNSS]`, `[SBAS]` or `[PPP]` (color-coded), and status transitions are
@@ -946,6 +1142,13 @@ For each corrected satellite $$ s $$:
   added to its carrier phase, used in the Precise Point Positioning and
   Real-Time Kinematic modes.
 
+In the Precise Point Positioning modes, a corrected satellite is weighted with
+the accuracy of its corrected orbit and clock ($$ 0.1 $$ m in each axis and
+$$ 0.2 $$ m, respectively, as in the Galileo HAS Reference User
+Algorithm[^HASRUA]) instead of the accuracy index of its navigation message,
+which describes the broadcast ones. In this way, the carrier-phase measurements
+drive the solution.
+
 ## Corrected satellites
 
 A satellite gets HAS corrections when all of the following conditions are met:
@@ -1008,6 +1211,15 @@ PVT.iono_model=Iono-Free-LC
 PVT.trop_model=Saastamoinen
 ```
 
+In the Precise Point Positioning modes, a receiver with two or more bands can
+also set `PVT.iono_model=Estimate_STEC`. This [uncombined
+model](#uncombined-model) gives less noisy solutions than the ionosphere-free
+combination, and it also uses the satellites observed in a single band.
+
+The corrected orbits refer to the antenna phase center that the navigation
+message refers to, which is not the one of the signals of every receiver: see
+[Antenna models](#antenna-models).
+
 HAS refers the clocks of the Galileo satellites to the Galileo System Time,
 while its GPS clock corrections can include a common offset (HAS SIS ICD Section
 7.3). The single point solution estimates a Galileo-GPS time offset besides the
@@ -1032,6 +1244,83 @@ corrections still shares one GPS receiver clock between them.
   stored as `has_corrected_sats` in the ".mat" file.
 * The HAS corrections can be sent in RTCM SSR and IGS SSR messages, see
   [RTCM-104](#rtcm-104).
+
+&nbsp;
+
+---------
+
+&nbsp;
+
+# SSR corrections through NTRIP
+
+<span style="color: orange">This section describes a feature of the `next` branch of
+the upstream repository, which will be included in the next GNSS-SDR stable
+release.</span>
+
+In the Precise Point Positioning modes, the NTRIP client described in [Base
+station corrections through NTRIP](#base-station-corrections-through-ntrip)
+takes the stream of the caster as State Space Representation (SSR) corrections
+to the broadcast orbits and clocks, instead of the data of a base station. It
+is enabled by setting `PVT.ntrip_client_enabled=true` together with
+`PVT.positioning_mode=PPP_Static` or `PPP_Kinematic`. The connection options
+(caster, mountpoint, credentials, TLS, reporting of the receiver position) are
+the same ones, and the channel sets are those of the Precise Point Positioning
+modes.
+
+The stream must carry orbit, clock and code bias corrections for GPS (referred
+to the LNAV message) or Galileo (referred to the I/NAV message), in either of
+these formats:
+
+* **RTCM SSR**: message types 1057 to 1062 for GPS, and 1240 to 1245 for
+  Galileo.
+* **IGS SSR**[^IGSSSR], version 1.00: message type 4076, sub-types 21 to 25 for
+  GPS and 61 to 65 for Galileo.
+
+The corrections are applied in the same way as the [Galileo
+HAS](#galileo-has-corrections) ones, which they replace when this client is
+enabled:
+
+* A satellite is corrected when the issue of data of its broadcast ephemeris is
+  the one that the corrections refer to, and every one of its signals in the
+  solution has a code bias. Any other satellite keeps its broadcast orbit, clock
+  and group delays.
+* The orbit and clock corrections of a satellite are used as a pair. When an
+  orbit correction for another issue of ephemeris arrives, the previous pair
+  keeps being applied until the clock correction that matches it is received.
+* Corrections older than `PVT.ntrip_max_correction_age_s` are discarded. In this
+  role, it defaults to $$ 90 $$ s.
+* The corrected satellites are weighted, and the solutions are reported as PPP,
+  as described for the Galileo HAS corrections.
+
+The corrected orbits of an SSR stream refer to a point of the satellite that
+depends on the service, and the [antenna models](#antenna-models) need to know
+it. It is set by `PVT.ssr_reference_point`:
+
+* `Primary_Frequency` (the default): the antenna phase center of L1 or E1, as
+  defined in IGS SSR.
+* `Navigation_Message`: the antenna phase center that the navigation message
+  refers to, as in Galileo HAS and in the SSR messages that GNSS-SDR generates
+  from it (see [RTCM-104](#rtcm-104)).
+* `Center_Of_Mass`: the center of mass of the satellite, which requires the
+  ANTEX file set by `PVT.antex_file`.
+
+Example:
+
+```ini
+;######### PVT CONFIG WITH SSR CORRECTIONS VIA NTRIP ############
+PVT.implementation=RTKLIB_PVT
+PVT.positioning_mode=PPP_Kinematic
+PVT.iono_model=Estimate_STEC
+PVT.trop_model=Saastamoinen
+PVT.ntrip_client_enabled=true
+PVT.ntrip_caster_address=caster.example.org
+PVT.ntrip_caster_port=2101
+PVT.ntrip_mountpoint=SSR_MOUNTPOINT
+PVT.ntrip_username=user
+PVT.ntrip_password_env=NTRIP_PASSWORD
+PVT.ssr_reference_point=Primary_Frequency
+PVT.antex_file=/path/to/igs20.atx
+```
 
 &nbsp;
 
@@ -1108,6 +1397,12 @@ satellite is being tracked on:
   channel), the second band is used alone and the modeled ionospheric delay is
   scaled by $$ \left(f_{1}/f_{2}\right)^2 $$.
 
+  * `Estimate_STEC`, in the Precise Point Positioning modes, uses every band of
+  each satellite on its own, each one with its group delay, and estimates the
+  slant ionospheric delay of the satellite (see [Uncombined
+  model](#uncombined-model)). <span style="color: orange">This is only present
+  in the `next` branch of the upstream repository.</span>
+
 ## Broadcast
 
 For ionosphere correction for single-frequency GNSS users, GPS navigation data
@@ -1158,6 +1453,15 @@ If `PVT.iono_model` is set to `SBAS`, the ionospheric delay is obtained from the
 SBAS ionospheric grid. Message type 18 defines the ionospheric grid point masks,
 and message type 26 provides the vertical delays and GIVE quality indicators.
 The correction is applied only where the received grid provides valid coverage.
+
+## Estimate the slant ionospheric delays
+
+If `PVT.iono_model` is set to `Estimate_STEC`, the ionospheric delays are
+estimated as states of the filter instead of being modeled: the slant delay of
+each satellite in the [uncombined model](#uncombined-model) of the Precise Point
+Positioning modes, and the differences of the delays between the receiver and
+the base station in the Real-Time Kinematic modes. In the Single Point
+Positioning mode, this option applies no ionospheric correction.
 
 &nbsp;
 
@@ -1671,7 +1975,7 @@ standard and precise positioning. It accepts the following parameters:
 |           `dynamics_model`           | [`0`: none, `1`: velocity, `2`: acceleration] Set the dynamics model of the receiver, used in the `Kinematic` and `PPP_Kinematic` positioning modes. If set to $$ 1 $$, the receiver position is predicted with the estimated velocity; if set to $$ 2 $$, the estimated acceleration also contributes to the prediction. The process noise grows with the time elapsed between epochs, and can be configured with `PVT.sigma_acch` and `PVT.sigma_accv`. It defaults to $$ 0 $$ (no dynamics model).                                                                                                                                                                                                                                                                                                                                                                                                                                                 |   Optional   |
 |       `satellite_ephemeris`          | [`Broadcast`, `SBAS`]: Select the satellite ephemeris/clock correction source. `Broadcast` uses the broadcast ephemeris and clock without SBAS satellite corrections. `SBAS` uses the broadcast ephemeris and applies fast and long-term orbit/clock corrections received from an SBAS L1 telemetry channel to GPS observations; satellites without a current valid correction are excluded. It defaults to `Broadcast`.                                                                                                                                                                                                                                                                                                     |   Optional   |
 |          `sbas_satellite`            | Select the SBAS PRN whose correction stream is used. Set it to an SBAS PRN in the range 120–138, or to `0` to select and remain with the first received SBAS stream. Values outside that range are treated as `0`. It defaults to `0`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
-|             `iono_model`             | [`OFF`, `Broadcast`, `SBAS`, `Iono-Free-LC`, `Estimate_STEC`]. Set ionospheric correction options. `OFF`: Do not apply an ionospheric correction. `Broadcast`: Apply the broadcast ionospheric model. `SBAS`: Apply SBAS ionospheric grid corrections received in message types 18 and 26. `Iono-Free-LC`: Use an ionosphere-free linear combination of dual-frequency measurements. `Estimate_STEC`: Estimate the slant ionospheric delays as additional states of the filter (only for the RTK positioning modes; in `Single` mode, no ionospheric correction is applied). This option decides the pseudorange model for every satellite of a system: only `Iono-Free-LC` combines two bands (satellites lacking the second band are then excluded), while `OFF`, `Broadcast` and `SBAS` use the first band alone with its broadcast group delay (TGD/BGD), falling back to the second band alone only when the first one is missing. See [Band selection]({{ "docs/sp-blocks/pvt/#band-selection" | relative_url }}). It defaults to `OFF`.                                                                                                                                                                                                                                                                                                          |   Optional   |
+|             `iono_model`             | [`OFF`, `Broadcast`, `SBAS`, `Iono-Free-LC`, `Estimate_STEC`]. Set ionospheric correction options. `OFF`: Do not apply an ionospheric correction. `Broadcast`: Apply the broadcast ionospheric model. `SBAS`: Apply SBAS ionospheric grid corrections received in message types 18 and 26. `Iono-Free-LC`: Use an ionosphere-free linear combination of dual-frequency measurements. `Estimate_STEC`: Estimate the ionospheric delays as additional states of the filter, in the RTK positioning modes and, <span style="color: orange">only in the `next` branch</span>, in the PPP ones, where it selects the [uncombined model](#uncombined-model) (in `Single` mode, no ionospheric correction is applied). This option decides the pseudorange model for every satellite of a system: only `Iono-Free-LC` combines two bands (satellites lacking the second band are then excluded) and `Estimate_STEC`, in the PPP modes, uses every band on its own, while `OFF`, `Broadcast` and `SBAS` use the first band alone with its broadcast group delay (TGD/BGD), falling back to the second band alone only when the first one is missing. See [Band selection]({{ "docs/sp-blocks/pvt/#band-selection" | relative_url }}). It defaults to `OFF`.                                                                                                                                                                                                                                                                                                          |   Optional   |
 |             `trop_model`             | [`OFF`, `Saastamoinen`, `SBAS`, `Estimate_ZTD`, `Estimate_ZTD_Grad`]. Set the tropospheric correction option. `OFF`: Do not apply a tropospheric correction. `Saastamoinen`: Apply the Saastamoinen model. `SBAS`: Apply the SBAS MOPS model. `Estimate_ZTD`: Estimate zenith total delay as an EKF state. `Estimate_ZTD_Grad`: Estimate zenith total delay and horizontal gradients as EKF states. It defaults to `OFF`.                                                                                                                                                                                                                                                                             |   Optional   |
 |     `enable_rx_clock_correction`     | [`true`, `false`]: If set to `true`, the receiver makes use of the PVT solution to correct timing in observables, hence providing continuous measurements in long observation periods. If set to `false`, the Time solution is only used in the computation of Observables when the clock offset estimation exceeds the value of `max_clock_offset_ms`. This parameter defaults to `false`.                                                                                                                                                                                                                                                                                                          |   Optional   |
 |        `max_clock_offset_ms`         | If `enable_rx_clock_correction` is set to `false`, this parameter sets the maximum allowed local clock offset with respect to the Time solution. If the estimated offset exceeds this parameter, a clock correction is applied to the computation of Observables. It defaults to 40 ms.                                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
@@ -1681,17 +1985,17 @@ standard and precise positioning. It accepts the following parameters:
 |           `error_factor_snr`         | SNR-dependent term of the observation error model, in m. If set to a positive value, observations with a carrier-to-noise density ratio below `error_snr_max` are deweighted accordingly (in relative positioning, using both the rover's and the base's reported values); its recommended value is $$ 0.005 $$ m. It defaults to $$ 0.0 $$ (disabled), preserving the elevation-only error model. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
 |            `error_snr_max`           | Reference carrier-to-noise density ratio (dB-Hz) above which no SNR penalty is applied by the `error_factor_snr` term. It defaults to $$ 52 $$ dB-Hz. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                                                         |   Optional   |
 |         `error_factor_rcv_std`       | Receiver-reported standard deviation term of the observation error model. If set to a positive value, observations are weighted with the pseudorange / carrier-phase standard deviations reported in the observation structure. It defaults to $$ 0.0 $$ (disabled). This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                          |   Optional   |
-|           `slip_threshold`           | Set the cycle‐slip threshold (m) of geometry‐free LC carrier‐phase difference between epochs. It defaults to $$ 0.05 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|           `slip_threshold`           | Set the cycle‐slip threshold (m) of geometry‐free LC carrier‐phase difference between epochs. It defaults to $$ 0.05 $$. In the PPP modes, the difference is taken with respect to the median of the satellites of the same GNSS and bands. <span style="color: orange">Only present in the `next` branch.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |      `slip_threshold_doppler`        | Set the cycle-slip threshold (m/s) of the phase-Doppler difference, after removing the receiver clock error common to all satellites (estimated as the median range-rate residual). It defaults to $$ 0 $$ (test disabled). This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |       `threshold_reject_GDOP`        | Set the reject threshold of GDOP. If the GDOP is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
-|    `threshold_reject_innovation`     | Set the reject threshold of innovation (pre‐fit residual) (m) for code observables. If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
+|    `threshold_reject_innovation`     | Set the reject threshold of innovation (pre‐fit residual) (m) for code observables. If the innovation is over the value, the observable is excluded for the estimation process as an outlier. It defaults to $$ 30.0 $$ m. In the PPP modes, the offset common to the satellites of a receiver clock is left out of the test, see [Outlier rejection](#outlier-rejection). <span style="color: orange">Only present in the `next` branch.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |   Optional   |
 | `threshold_reject_innovation_phase`  | Set the reject threshold of innovation (pre‐fit residual) (m) for carrier-phase observables. It defaults to the value of `threshold_reject_innovation`, so existing configurations behave identically; a recommended value is $$ 5.0 $$ m in RTK modes. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |         `number_filter_iter`         | Set the number of iteration in the measurement update of the estimation filter. If the baseline length is very short like 1 m, the iteration may be effective to handle the nonlinearity of the measurement equation. It defaults to 1.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
 |             `sigma_bias`             | Set the process noise standard deviation of carrier‐phase bias $$ \sigma_{bias} $$, in cycles/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ cycles/$$ \sqrt{s} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
 |             `sigma_trop`             | Set the process noise standard deviation of zenith tropospheric delay $$ \sigma_{Z} $$, in m/$$ \sqrt{s} $$. It defaults to $$ 0.0001 $$ m/$$ \sqrt{s} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
 |             `sigma_acch`             | Set the process noise standard deviation of the receiver acceleration, horizontal component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.1 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |   Optional   |
 |             `sigma_accv`             | Set the process noise standard deviation of the receiver acceleration, vertical component, in m/s$$ ^2/ \sqrt{s} $$. It defaults to $$ 0.01 $$ m/s$$ ^2/ \sqrt{s} $$. If `PVT.dynamics_model` is set to $$ 0 $$, this parameter is not used.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
-|             `sigma_iono`             | Set the process noise standard deviation of vertical ionospheric delay per 10 km baseline, in m/$$ \sqrt{s} $$. It defaults to $$ 0.001 $$ m/$$ \sqrt{s} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
+|             `sigma_iono`             | Set the process noise standard deviation of vertical ionospheric delay per 10 km baseline, in m/$$ \sqrt{s} $$. It defaults to $$ 0.001 $$ m/$$ \sqrt{s} $$. In the [uncombined model](#uncombined-model) of the PPP modes, it is the process noise standard deviation of the slant ionospheric delay of each satellite, and it defaults to $$ 0.1 $$ m/$$ \sqrt{s} $$. <span style="color: orange">Only present in the `next` branch.</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |               `bias_0`               | Set the initial-state standard deviation of the carrier‐phase bias (ambiguity), in m. It defaults to $$ 30 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
 |               `iono_0`               | Set the initial-state standard deviation of vertical ionospheric delay per 10 km baseline, in m. It defaults to $$ 0.03 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |   Optional   |
 |               `trop_0`               | Set the initial-state standard deviation of zenith tropospheric delay, in m. It defaults to $$ 0.3 $$ m.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |   Optional   |
@@ -1709,7 +2013,7 @@ standard and precise positioning. It accepts the following parameters:
 |   `min_elevation_to_fix_ambiguity`   | Set the minimum elevation angle (in degrees) to fix integer ambiguity. If the elevation angle is less than the value, the ambiguity is excluded from the fixed integer vector. It defaults to $$ 0^{o} $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
 |       `outage_reset_ambiguity`       | Set the outage count to reset ambiguity. If the data outage count is over the value, the estimated ambiguity is reset to the initial value. It defaults to $$ 5 $$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |   Optional   |
 |         `estimate_qzss_isb`          | [`true`, `false`]: If set to `true`, the single-point solver estimates a separate QZS-GPS inter-system bias instead of assuming QZSS shares the GPS receiver clock. The extra unknown requires one more satellite in mixed GPS + QZSS epochs, so enable it only in open-sky scenarios with six or more satellites in view. It defaults to `false`. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                             |   Optional   |
-|        `ntrip_client_enabled`        | [`true`, `false`]: If set to `true`, the built-in NTRIP client is activated, providing base-station corrections to the RTK engine. It requires `positioning_mode` set to `Static` or `Kinematic` and, per constellation and freely combined, GPS L1 C/A alone or together with one of L2C or L5, Galileo E1 alone or together with E5a, and BeiDou B1C (single-band sets run single-frequency RTK). It defaults to `false`. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
+|        `ntrip_client_enabled`        | [`true`, `false`]: If set to `true`, the built-in NTRIP client is activated, providing base-station corrections to the RTK engine. It requires `positioning_mode` set to `Static` or `Kinematic` and, per constellation and freely combined, GPS L1 C/A alone or together with one of L2C or L5, Galileo E1 alone or together with E5a, and BeiDou B1C (single-band sets run single-frequency RTK). It defaults to `false`. This parameter is available since GNSS-SDR v0.0.22. With `positioning_mode` set to `PPP_Static` or `PPP_Kinematic`, the client takes the stream as SSR corrections to the broadcast orbits and clocks instead, see [SSR corrections through NTRIP](#ssr-corrections-through-ntrip). <span style="color: orange">Only present in the `next` branch.</span>                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
 |        `ntrip_caster_address`        | Host name or IP address of the NTRIP caster, without protocol prefix, port, or path. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                                                                                       |  Mandatory if `ntrip_client_enabled=true`  |
 |         `ntrip_caster_port`          | TCP port of the NTRIP caster. It defaults to $$ 2101 $$. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
 |          `ntrip_mountpoint`          | Mountpoint providing the RTCM 3 correction stream. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |  Mandatory if `ntrip_client_enabled=true`  |
@@ -1721,14 +2025,22 @@ standard and precise positioning. It accepts the following parameters:
 |         `ntrip_tls_enabled`          | [`true`, `false`]: If set to `true`, the connection uses TLS 1.2 or newer, with certificate validation against the system CA store and host name verification. It defaults to `false`. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                     |   Optional   |
 |     `ntrip_inactivity_timeout_ms`    | Inactivity timeout of the NTRIP connection, in ms. Valid values range from $$ 1000 $$ ms to 24 hours. It defaults to $$ 10000 $$ ms. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                                           |   Optional   |
 |     `ntrip_reconnect_interval_ms`    | Delay between reconnection attempts, in ms. Set it to $$ 0 $$ to disable operational reconnects (the single v2-to-v1 compatibility retry is always performed). It defaults to $$ 10000 $$ ms. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                              |   Optional   |
-|      `ntrip_max_correction_age_s`    | Maximum age of the base-station corrections, in s. Older corrections are discarded. It defaults to $$ 5.0 $$ s. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
+|      `ntrip_max_correction_age_s`    | Maximum age of the corrections, in s. Older corrections are discarded. It defaults to $$ 5.0 $$ s for base-station corrections, and to $$ 90 $$ s for SSR corrections in the PPP modes. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
 |      `ntrip_fallback_to_single`      | [`true`, `false`]: If set to `true`, the receiver keeps operating with an explicitly labeled single-point solution when base-station corrections are unavailable. It defaults to `true`. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                    |   Optional   |
 |           `ntrip_send_gga`           | [`true`, `false`]: If set to `true`, the rover position is periodically reported to the caster as an NMEA GGA sentence, as required by Virtual Reference Station and nearest-station mountpoints. No sentence is sent before the receiver produces its first position fix. It defaults to `true`. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                           |   Optional   |
 |         `ntrip_gga_period_ms`        | Period between NMEA GGA reports, in ms. Valid values range from $$ 1000 $$ ms to 24 hours. It defaults to $$ 10000 $$ ms. This parameter is available since GNSS-SDR v0.0.22.                                                                                                                                                                                                                                                                                                                                                                                                   |   Optional   |
+| `ssr_reference_point` | [`Primary_Frequency`, `Navigation_Message`, `Center_Of_Mass`]: Point of the satellite that the orbits corrected with [SSR corrections](#ssr-corrections-through-ntrip) refer to, used by the satellite [antenna models](#antenna-models). `Primary_Frequency`: antenna phase center of L1 or E1, as in IGS SSR. `Navigation_Message`: antenna phase center that the navigation message refers to, as in Galileo HAS and in the SSR messages generated from it. `Center_Of_Mass`: center of mass of the satellite, which requires `antex_file`. It defaults to `Primary_Frequency`. <span style="color: orange">Only present in the `next` branch.</span> | Optional |
 |              `raim_fde`              | [`0`, `1`]: Set whether RAIM (receiver autonomous integrity monitoring) FDE (fault detection and exclusion) feature is enabled or not. It defaults to $$ 0 $$ (RAIM not enabled)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
-|           `reject_GPS_IIA`           | [`0`, `1`]: Set whether the GPS Block IIA satellites are excluded or not. Those satellites often degrade the PPP solutions due to unpredicted behavior of yaw‐attitude. It defaults to $$ 0 $$ (no rejection).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
+| `reject_GPS_IIA` | [`0`, `1`]: Set whether the satellites in eclipse, that is, in the shadow of the Earth, are left out of the PPP solution or not. The attitude of a satellite in eclipse departs from the nominal one, which shifts its carrier phase (phase windup) and its antenna phase center in a way that the PPP models do not follow, and this degrades the solution. The name of the parameter comes from RTKLIB, where the exclusion is limited to the GPS Block IIA satellites, of unpredictable yaw attitude in eclipse, when the type of each satellite is known. GNSS-SDR does not pass the satellite type to the filter, so every satellite in eclipse is left out, whatever its constellation. Only applies to the PPP modes. It defaults to $$ 1 $$ (rejection). <span style="color: orange">This default is only present in the `next` branch of the upstream repository. In GNSS-SDR v0.0.22, it defaults to $$ 0 $$ (no rejection).</span> | Optional |
 |              `phwindup`              | [`0`, `1`]: Set whether the phase windup correction $$ \phi_{pw} $$ for PPP modes is applied or not. It defaults to $$ 0 $$ (no phase windup correction).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |   Optional   |
 |             `earth_tide`             | [`0`, `1`]: Set whether earth tides correction is applied or not. If set to $$ 1 $$, the solid earth tides correction $$ \mathbf{d}_{r,disp} $$ is applied to the PPP solution, following the description in [IERS Technical Note No. 32](https://www.iers.org/iers/en/publications/technicalnotes/tn32)[^McCarthy04], Chapter 7. It defaults to $$ 0 $$ (no Earth tide correction).                                                                                                                                                                                                                                                                                                            |   Optional   |
+| `antex_file` | ANTEX file, version 1.4 or 2.0, with the calibrations of the satellite antennas and, optionally, of the receiver antenna. If set, the measurements of GPS and Galileo satellites are referred to the antenna phase center of each signal in use. Only applies to the PPP modes, see [Antenna models](#antenna-models). It defaults to empty (no antenna models). <span style="color: orange">Only present in the `next` branch.</span> | Optional |
+| `satellite_metadata_file` | IGS satellite metadata file (SINEX format), with the PRN of each satellite over time. Needed for the satellite antennas of an ANTEX 2.0 file, which identifies them by their space vehicle number. Available [here](https://files.igs.org/pub/station/general/igs_satellite_metadata.snx). It defaults to empty. <span style="color: orange">Only present in the `next` branch.</span> | Optional |
+| `receiver_antex_file` | ANTEX file with the calibration of the receiver antenna, if it is not in `antex_file`. It defaults to empty. <span style="color: orange">Only present in the `next` branch.</span> | Optional |
+| `antenna_type` | Name of the receiver antenna and its radome, as they appear in the ANTEX file (for instance, `NAX3G+C NONE`), which selects the calibration of the receiver antenna. Only applies to the PPP modes. It defaults to empty (receiver antenna not modeled). <span style="color: orange">Only present in the `next` branch.</span> | Optional |
+| `antenna_delta_east_m` | East component of the position of the antenna reference point with respect to the marker, in m. Only applies to the PPP modes, in which the position of the marker is then reported. It defaults to $$ 0.0 $$ m. <span style="color: orange">Only present in the `next` branch.</span> | Optional |
+| `antenna_delta_north_m` | North component of the position of the antenna reference point with respect to the marker, in m. It defaults to $$ 0.0 $$ m. <span style="color: orange">Only present in the `next` branch.</span> | Optional |
+| `antenna_delta_up_m` | Up component of the position of the antenna reference point with respect to the marker, in m. It defaults to $$ 0.0 $$ m. <span style="color: orange">Only present in the `next` branch.</span> | Optional |
 |           `output_enabled`           | [`true`, `false`]: If set to `false`, output data files are not stored. It defaults to `true`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |   Optional   |
 |      `rtcm_output_file_enabled`      | [`true`, `false`]: If set to `false`, RTCM binary files are not stored. It defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |   Optional   |
 |         `gpx_output_enabled`         | [`true`, `false`]: If set to `false`, GPX files are not stored. It defaults to `output_enabled`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |   Optional   |
@@ -1815,6 +2127,22 @@ PVT.rtcm_MT1046_rate_ms=5000 ; only present in the next branch
 PVT.rtcm_MT1097_rate_ms=1000
 PVT.rtcm_MT1077_rate_ms=1000
 PVT.rinex_version=2
+```
+
+For a Precise Point Positioning solution with the corrections of the Galileo
+High Accuracy Service, a receiver of Galileo E1 and E6 signals (optionally with
+GPS L1 C/A, and with any other band of those systems) can be set up as follows.
+The antenna options are only present in the `next` branch of the upstream
+repository, as it is the meaning of `Estimate_STEC` in this positioning mode:
+
+```ini
+;######### PVT CONFIG WITH GALILEO HAS CORRECTIONS ############
+PVT.implementation=RTKLIB_PVT
+PVT.positioning_mode=PPP_Kinematic
+PVT.iono_model=Estimate_STEC
+PVT.trop_model=Saastamoinen
+PVT.antex_file=/path/to/igs20.atx
+PVT.antenna_type=NAX3G+C NONE
 ```
 
 For a GPS L1 single-point solution augmented with SBAS corrections, use an
@@ -1963,6 +2291,10 @@ deactivated with `rtcm_output_file_enabled=false`.
 [^Bevis94]: M. Bevis, S. Businger, S. Chiswell, T. A. Herring, R. A. Anthes, C. Rocken, R. H. Ware, [GPS Meteorology: Mapping Zenith Delay onto Precipitable Water](https://doi.org/10.1175/1520-0450(1994)033%3C0379:GMMZWD%3E2.0.CO;2), American Meteorological Society, vol. 33, March 1994, pp. 379-386.
 
 [^HASICD]: European Union, [Galileo High Accuracy Service Signal-In-Space Interface Control Document (HAS SIS ICD)](https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_HAS_SIS_ICD_v1.0.pdf), Issue 1.0, May 2022.
+
+[^HASRUA]: European Union, Galileo High Accuracy Service Reference User Algorithm (HAS UA) Technical Note, Issue 1.0, November 2025.
+
+[^ANTEX]: M. Rothacher, R. Schmid, [ANTEX: The Antenna Exchange Format, Version 1.4](https://files.igs.org/pub/data/format/antex14.txt), September 15, 2010, and International GNSS Service, [ANTEX: The Antenna Exchange Format, Version 2.0](https://files.igs.org/pub/data/format/antex20.pdf), April 2026.
 
 [^IGSSSR]: International GNSS Service, [IGS State Space Representation (SSR) Format, Version 1.00](https://files.igs.org/pub/data/format/igs_ssr_v1.pdf), October 5, 2020.
 

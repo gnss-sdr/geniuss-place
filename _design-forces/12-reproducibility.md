@@ -6,7 +6,7 @@ excerpt:
   researcher or by someone else working independently."
 header:
   teaser: /assets/images/radar-chart.png
-last_modified_at: 2018-04-06T15:54:02-04:00
+last_modified_at: 2026-10-25T12:00:00+02:00
 ---
 
 
@@ -154,7 +154,7 @@ GNSS receiver[^Fernandez18]:
   and the scripts used to analyze the results and generate the figures or tables
   appearing in the document in which the results were presented.
 
-### Results reproducibility
+### Results of reproducibility
 
 * Availability of measurements from external information sources (DGNSS,
 A-GNSS, other sensors). Should be stored as part of workload data.
@@ -162,6 +162,10 @@ A-GNSS, other sensors). Should be stored as part of workload data.
 * When relevant, and in order to make the measurements as independent as
 possible from the satellite geometry, measurements should be spread in an
 interval of 8 hours.
+
+* Run-to-run consistency of the processing: the same input file, processed
+with the same configuration on the same machine, should give the same outputs
+in every run, whatever the CPU load.
 
 
 
